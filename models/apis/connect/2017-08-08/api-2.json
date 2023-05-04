@@ -347,7 +347,6 @@
       "output":{"shape":"CreateParticipantResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
-        {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"ServiceQuotaExceededException"},

@@ -17,7 +17,7 @@
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a flow for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "CreateContactFlowModule": "<p>Creates a flow module for the specified Amazon Connect instance. </p>",
-    "CreateEvaluationForm": "<p>Creates an evaluation form in the specified Amazon Connect instance. The form can be used to define questions related to agent performance, and create sections to organize such questions. An evaluation form must have a unique title within an instance. Question and section identifiers cannot be duplicated within the same evaluation form.</p>",
+    "CreateEvaluationForm": "<p>Creates an evaluation form in the specified Amazon Connect instance. The form can be used to define questions related to agent performance, and create sections to organize such questions. Question and section identifiers cannot be duplicated within the same evaluation form.</p>",
     "CreateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates hours of operation. </p>",
     "CreateInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect. </p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "CreateIntegrationAssociation": "<p>Creates an Amazon Web Services resource association with an Amazon Connect instance.</p>",
@@ -159,7 +159,7 @@
     "UpdateContactFlowModuleMetadata": "<p>Updates metadata about specified flow module.</p>",
     "UpdateContactFlowName": "<p>The name of the flow.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "UpdateContactSchedule": "<p>Updates the scheduled time of a task contact that is already scheduled.</p>",
-    "UpdateEvaluationForm": "<p>Updates details about a specific evaluation form version in the specified Amazon Connect instance. An evaluation form must have a unique title within an instance. Question and section identifiers cannot be duplicated within the same evaluation form.</p> <p>This operation does not support partial updates. Instead it does a full update of evaluation form content.</p>",
+    "UpdateEvaluationForm": "<p>Updates details about a specific evaluation form version in the specified Amazon Connect instance. Question and section identifiers cannot be duplicated within the same evaluation form.</p> <p>This operation does not support partial updates. Instead it does a full update of evaluation form content.</p>",
     "UpdateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation.</p>",
     "UpdateInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the value for the specified attribute type.</p>",
     "UpdateInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates an existing configuration for a resource type. This API is idempotent.</p>",
@@ -2165,12 +2165,12 @@
     "EvaluationFormTitle": {
       "base": null,
       "refs": {
-        "CreateEvaluationFormRequest$Title": "<p>A unique title of the evaluation form.</p>",
-        "EvaluationForm$Title": "<p>A unique title of the evaluation form.</p>",
-        "EvaluationFormContent$Title": "<p>A unique title of the evaluation form.</p>",
-        "EvaluationFormSummary$Title": "<p>A unique title of the evaluation form.</p>",
-        "EvaluationSummary$EvaluationFormTitle": "<p>A unique title of the evaluation form.</p>",
-        "UpdateEvaluationFormRequest$Title": "<p>A unique title of the evaluation form.</p>"
+        "CreateEvaluationFormRequest$Title": "<p>A title of the evaluation form.</p>",
+        "EvaluationForm$Title": "<p>A title of the evaluation form.</p>",
+        "EvaluationFormContent$Title": "<p>A title of the evaluation form.</p>",
+        "EvaluationFormSummary$Title": "<p>A title of the evaluation form.</p>",
+        "EvaluationSummary$EvaluationFormTitle": "<p>A title of the evaluation form.</p>",
+        "UpdateEvaluationFormRequest$Title": "<p>A title of the evaluation form.</p>"
       }
     },
     "EvaluationFormVersionIsLocked": {
@@ -3848,7 +3848,7 @@
       }
     },
     "NumericQuestionPropertyValueAutomation": {
-      "base": "<p>Information about the property value used in automation of a numeric questions. Label values are associated with minimum and maximum values for the numeric question.</p> <ul> <li> <p>Sentiment scores have a minimum value of -5 and maximum value of 5.</p> </li> <li> <p> Duration labels, such as <code>NON_TALK_TIME</code>, <code>CONTACT_DURATION</code>, <code>AGENT_INTERACTION_DURATION</code>, <code>CUSTOMER_HOLD_TIME</code> have a minimum value of 0 and maximum value of 28800.</p> </li> <li> <p>Percantages have a minimum value of 0 and maximum value of 100. </p> </li> <li> <p> <code>NUMBER_OF_INTERRUPTIONS</code> has a minimum value of 0 and maximum value of 100.</p> </li> </ul>",
+      "base": "<p>Information about the property value used in automation of a numeric questions. Label values are associated with minimum and maximum values for the numeric question.</p> <ul> <li> <p>Sentiment scores have a minimum value of -5 and maximum value of 5.</p> </li> <li> <p> Duration labels, such as <code>NON_TALK_TIME</code>, <code>CONTACT_DURATION</code>, <code>AGENT_INTERACTION_DURATION</code>, <code>CUSTOMER_HOLD_TIME</code> have a minimum value of 0 and maximum value of 28800.</p> </li> <li> <p>Percentages have a minimum value of 0 and maximum value of 100. </p> </li> <li> <p> <code>NUMBER_OF_INTERRUPTIONS</code> has a minimum value of 0 and maximum value of 1000.</p> </li> </ul>",
       "refs": {
         "EvaluationFormNumericQuestionAutomation$PropertyValue": "<p>The property value of the automation.</p>"
       }
@@ -4460,7 +4460,7 @@
         "EvaluationFormSection$RefId": "<p>The identifier of the section. An identifier must be unique within the evaluation form.</p>",
         "EvaluationFormSingleSelectQuestionAutomation$DefaultOptionRefId": "<p>The identifier of the default answer option, when none of the automation options match the criteria.</p>",
         "EvaluationFormSingleSelectQuestionOption$RefId": "<p>The identifier of the answer option. An identifier must be unique within the question.</p>",
-        "SingleSelectQuestionRuleCategoryAutomation$OptionRefId": "<p>The identifier of the answer option tha</p>"
+        "SingleSelectQuestionRuleCategoryAutomation$OptionRefId": "<p>The identifier of the answer option.</p>"
       }
     },
     "ReferenceKey": {

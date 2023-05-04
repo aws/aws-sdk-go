@@ -223,6 +223,13 @@ type SecurityHubAPI interface {
 	GetFindingAggregatorWithContext(aws.Context, *securityhub.GetFindingAggregatorInput, ...request.Option) (*securityhub.GetFindingAggregatorOutput, error)
 	GetFindingAggregatorRequest(*securityhub.GetFindingAggregatorInput) (*request.Request, *securityhub.GetFindingAggregatorOutput)
 
+	GetFindingHistory(*securityhub.GetFindingHistoryInput) (*securityhub.GetFindingHistoryOutput, error)
+	GetFindingHistoryWithContext(aws.Context, *securityhub.GetFindingHistoryInput, ...request.Option) (*securityhub.GetFindingHistoryOutput, error)
+	GetFindingHistoryRequest(*securityhub.GetFindingHistoryInput) (*request.Request, *securityhub.GetFindingHistoryOutput)
+
+	GetFindingHistoryPages(*securityhub.GetFindingHistoryInput, func(*securityhub.GetFindingHistoryOutput, bool) bool) error
+	GetFindingHistoryPagesWithContext(aws.Context, *securityhub.GetFindingHistoryInput, func(*securityhub.GetFindingHistoryOutput, bool) bool, ...request.Option) error
+
 	GetFindings(*securityhub.GetFindingsInput) (*securityhub.GetFindingsOutput, error)
 	GetFindingsWithContext(aws.Context, *securityhub.GetFindingsInput, ...request.Option) (*securityhub.GetFindingsOutput, error)
 	GetFindingsRequest(*securityhub.GetFindingsInput) (*request.Request, *securityhub.GetFindingsOutput)

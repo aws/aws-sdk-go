@@ -27,6 +27,13 @@ const (
 	// currently in use.
 	ErrCodeConflictException = "ConflictException"
 
+	// ErrCodeDependencyFailureException for service response error code
+	// "DependencyFailureException".
+	//
+	// An exception for when a failure in one of the dependencies results in the
+	// service being unable to fetch details about the resource.
+	ErrCodeDependencyFailureException = "DependencyFailureException"
+
 	// ErrCodeDisabledOperationException for service response error code
 	// "DisabledOperationException".
 	//
@@ -90,6 +97,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":           newErrorAccessDeniedException,
 	"BaseException":                   newErrorBaseException,
 	"ConflictException":               newErrorConflictException,
+	"DependencyFailureException":      newErrorDependencyFailureException,
 	"DisabledOperationException":      newErrorDisabledOperationException,
 	"InternalException":               newErrorInternalException,
 	"InvalidPaginationTokenException": newErrorInvalidPaginationTokenException,

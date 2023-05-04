@@ -43,6 +43,8 @@ func ExampleECS_CreateCluster_shared00() {
 				fmt.Println(ecs.ErrCodeClientException, aerr.Error())
 			case ecs.ErrCodeInvalidParameterException:
 				fmt.Println(ecs.ErrCodeInvalidParameterException, aerr.Error())
+			case ecs.ErrCodeNamespaceNotFoundException:
+				fmt.Println(ecs.ErrCodeNamespaceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -21,6 +21,9 @@
     "CreateTemplateAlias": "<p>Creates a template alias for a template.</p>",
     "CreateTheme": "<p>Creates a theme.</p> <p>A <i>theme</i> is set of configuration options for color and layout. Themes apply to analyses and dashboards. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "CreateThemeAlias": "<p>Creates a theme alias for a theme.</p>",
+    "CreateTopic": "<p>Creates a new Q topic.</p>",
+    "CreateTopicRefreshSchedule": "<p>Creates a topic refresh schedule.</p>",
+    "CreateVPCConnection": "<p>Creates a new VPC connection.</p>",
     "DeleteAccountCustomization": "<p>Deletes all Amazon QuickSight customizations in this Amazon Web Services Region for the specified Amazon Web Services account and Amazon QuickSight namespace.</p>",
     "DeleteAccountSubscription": "<p>Use the <code>DeleteAccountSubscription</code> operation to delete an Amazon QuickSight account. This operation will result in an error message if you have configured your account termination protection settings to <code>True</code>. To change this setting and delete your account, call the <code>UpdateAccountSettings</code> API and set the value of the <code>TerminationProtectionEnabled</code> parameter to <code>False</code>, then make another call to the <code>DeleteAccountSubscription</code> API.</p>",
     "DeleteAnalysis": "<p>Deletes an analysis from Amazon QuickSight. You can optionally include a recovery window during which you can restore the analysis. If you don't specify a recovery window value, the operation defaults to 30 days. Amazon QuickSight attaches a <code>DeletionTime</code> stamp to the response that specifies the end of the recovery window. At the end of the recovery window, Amazon QuickSight deletes the analysis permanently.</p> <p>At any time before recovery window ends, you can use the <code>RestoreAnalysis</code> API operation to remove the <code>DeletionTime</code> stamp and cancel the deletion of the analysis. The analysis remains visible in the API until it's deleted, so you can describe it but you can't make a template from it.</p> <p>An analysis that's scheduled for deletion isn't accessible in the Amazon QuickSight console. To access it in the console, restore it. Deleting an analysis doesn't delete the dashboards that you publish from it.</p>",
@@ -39,8 +42,11 @@
     "DeleteTemplateAlias": "<p>Deletes the item that the specified template alias points to. If you provide a specific alias, you delete the version of the template that the alias points to.</p>",
     "DeleteTheme": "<p>Deletes a theme.</p>",
     "DeleteThemeAlias": "<p>Deletes the version of the theme that the specified theme alias points to. If you provide a specific alias, you delete the version of the theme that the alias points to.</p>",
+    "DeleteTopic": "<p>Deletes a topic.</p>",
+    "DeleteTopicRefreshSchedule": "<p>Deletes a topic refresh schedule.</p>",
     "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the IAM user or role that's making the call. The IAM user isn't deleted as a result of this call. </p>",
     "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p>",
+    "DeleteVPCConnection": "<p>Deletes a VPC connection.</p>",
     "DescribeAccountCustomization": "<p>Describes the customizations associated with the provided Amazon Web Services account and Amazon Amazon QuickSight namespace in an Amazon Web Services Region. The Amazon QuickSight console evaluates which customizations to apply by running this API operation with the <code>Resolved</code> flag included. </p> <p>To determine what customizations display when you run this command, it can help to visualize the relationship of the entities involved. </p> <ul> <li> <p> <code>Amazon Web Services account</code> - The Amazon Web Services account exists at the top of the hierarchy. It has the potential to use all of the Amazon Web Services Regions and Amazon Web Services Services. When you subscribe to Amazon QuickSight, you choose one Amazon Web Services Region to use as your home Region. That's where your free SPICE capacity is located. You can use Amazon QuickSight in any supported Amazon Web Services Region. </p> </li> <li> <p> <code>Amazon Web Services Region</code> - In each Amazon Web Services Region where you sign in to Amazon QuickSight at least once, Amazon QuickSight acts as a separate instance of the same service. If you have a user directory, it resides in us-east-1, which is the US East (N. Virginia). Generally speaking, these users have access to Amazon QuickSight in any Amazon Web Services Region, unless they are constrained to a namespace. </p> <p>To run the command in a different Amazon Web Services Region, you change your Region settings. If you're using the CLI, you can use one of the following options:</p> <ul> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html\">command line options</a>. </p> </li> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html\">named profiles</a>. </p> </li> <li> <p>Run <code>aws configure</code> to change your default Amazon Web Services Region. Use Enter to key the same settings for your keys. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html\">Configuring the CLI</a>.</p> </li> </ul> </li> <li> <p> <code>Namespace</code> - A QuickSight namespace is a partition that contains users and assets (data sources, datasets, dashboards, and so on). To access assets that are in a specific namespace, users and groups must also be part of the same namespace. People who share a namespace are completely isolated from users and assets in other namespaces, even if they are in the same Amazon Web Services account and Amazon Web Services Region.</p> </li> <li> <p> <code>Applied customizations</code> - Within an Amazon Web Services Region, a set of Amazon QuickSight customizations can apply to an Amazon Web Services account or to a namespace. Settings that you apply to a namespace override settings that you apply to an Amazon Web Services account. All settings are isolated to a single Amazon Web Services Region. To apply them in other Amazon Web Services Regions, run the <code>CreateAccountCustomization</code> command in each Amazon Web Services Region where you want to apply the same customizations. </p> </li> </ul>",
     "DescribeAccountSettings": "<p>Describes the settings that were used when your Amazon QuickSight subscription was first created in this Amazon Web Services account.</p>",
     "DescribeAccountSubscription": "<p>Use the DescribeAccountSubscription operation to receive a description of an Amazon QuickSight account's subscription. A successful API call returns an <code>AccountInfo</code> object that includes an account's name, subscription status, authentication type, edition, and notification email address.</p>",
@@ -72,7 +78,12 @@
     "DescribeTheme": "<p>Describes a theme.</p>",
     "DescribeThemeAlias": "<p>Describes the alias for a theme.</p>",
     "DescribeThemePermissions": "<p>Describes the read and write permissions for a theme.</p>",
+    "DescribeTopic": "<p>Describes a topic.</p>",
+    "DescribeTopicPermissions": "<p>Describes the permissions of a topic.</p>",
+    "DescribeTopicRefresh": "<p>Describes the status of a topic refresh.</p>",
+    "DescribeTopicRefreshSchedule": "<p>Deletes a topic refresh schedule.</p>",
     "DescribeUser": "<p>Returns information about a user, given the user name. </p>",
+    "DescribeVPCConnection": "<p>Describes a VPC connection.</p>",
     "GenerateEmbedUrlForAnonymousUser": "<p>Generates an embed URL that you can use to embed an Amazon QuickSight dashboard or visual in your website, without having to register any reader users. Before you use this action, make sure that you have configured the dashboards and permissions.</p> <p>The following rules apply to the generated URL:</p> <ul> <li> <p>It contains a temporary bearer token. It is valid for 5 minutes after it is generated. Once redeemed within this period, it cannot be re-used again.</p> </li> <li> <p>The URL validity period should not be confused with the actual session lifetime that can be customized using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForAnonymousUser.html#QS-GenerateEmbedUrlForAnonymousUser-request-SessionLifetimeInMinutes\">SessionLifetimeInMinutes</a> </code> parameter. The resulting user session is valid for 15 minutes (minimum) to 10 hours (maximum). The default session duration is 10 hours.</p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedded Analytics</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
     "GenerateEmbedUrlForRegisteredUser": "<p>Generates an embed URL that you can use to embed an Amazon QuickSight experience in your website. This action can be used for any type of user registered in an Amazon QuickSight account. Before you use this action, make sure that you have configured the relevant Amazon QuickSight resource and permissions.</p> <p>The following rules apply to the generated URL:</p> <ul> <li> <p>It contains a temporary bearer token. It is valid for 5 minutes after it is generated. Once redeemed within this period, it cannot be re-used again.</p> </li> <li> <p>The URL validity period should not be confused with the actual session lifetime that can be customized using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html#QS-GenerateEmbedUrlForRegisteredUser-request-SessionLifetimeInMinutes\">SessionLifetimeInMinutes</a> </code> parameter.</p> <p>The resulting user session is valid for 15 minutes (minimum) to 10 hours (maximum). The default session duration is 10 hours.</p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedded Analytics</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
     "GetDashboardEmbedUrl": "<p>Generates a temporary session URL and authorization code(bearer token) that you can use to embed an Amazon QuickSight read-only dashboard in your website or application. Before you use this command, make sure that you have configured the dashboards and permissions. </p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user's browser. The following rules apply to the generated URL:</p> <ul> <li> <p>They must be used together.</p> </li> <li> <p>They can be used one time only.</p> </li> <li> <p>They are valid for 5 minutes after you run this command.</p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> <li> <p>The resulting user session is valid for 15 minutes (default) up to 10 hours (maximum). You can use the optional <code>SessionLifetimeInMinutes</code> parameter to customize session duration.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-deprecated.html\">Embedding Analytics Using GetDashboardEmbedUrl</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
@@ -86,8 +97,8 @@
     "ListFolders": "<p>Lists all folders in an account.</p>",
     "ListGroupMemberships": "<p>Lists member users in a group.</p>",
     "ListGroups": "<p>Lists all user groups in Amazon QuickSight. </p>",
-    "ListIAMPolicyAssignments": "<p>Lists IAM policy assignments in the current Amazon QuickSight account.</p>",
-    "ListIAMPolicyAssignmentsForUser": "<p>Lists all the IAM policy assignments, including the Amazon Resource Names (ARNs) for the IAM policies assigned to the specified user and group or groups that the user belongs to.</p>",
+    "ListIAMPolicyAssignments": "<p>Lists the IAM policy assignments in the current Amazon QuickSight account.</p>",
+    "ListIAMPolicyAssignmentsForUser": "<p>Lists all of the IAM policy assignments, including the Amazon Resource Names (ARNs), for the IAM policies assigned to the specified user and group, or groups that the user belongs to.</p>",
     "ListIngestions": "<p>Lists the history of SPICE ingestions for a dataset.</p>",
     "ListNamespaces": "<p>Lists the namespaces for the specified Amazon Web Services account. This operation doesn't list deleted namespaces.</p>",
     "ListRefreshSchedules": "<p>Lists the refresh schedules of a dataset. Each dataset can have up to 5 schedules. </p>",
@@ -98,8 +109,11 @@
     "ListThemeAliases": "<p>Lists all the aliases of a theme.</p>",
     "ListThemeVersions": "<p>Lists all the versions of the themes in the current Amazon Web Services account.</p>",
     "ListThemes": "<p>Lists all the themes in the current Amazon Web Services account.</p>",
+    "ListTopicRefreshSchedules": "<p>Lists all of the refresh schedules for a topic.</p>",
+    "ListTopics": "<p>Lists all of the topics within an account.</p>",
     "ListUserGroups": "<p>Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member of.</p>",
     "ListUsers": "<p>Returns a list of all of the Amazon QuickSight users belonging to this account. </p>",
+    "ListVPCConnections": "<p>Lists all of the VPC connections in the current set Amazon Web Services Region of an Amazon Web Services account.</p>",
     "PutDataSetRefreshProperties": "<p>Creates or updates the dataset refresh properties for the dataset.</p>",
     "RegisterUser": "<p>Creates an Amazon QuickSight user whose identity is associated with the Identity and Access Management (IAM) identity or role specified in the request. When you register a new user from the Amazon QuickSight API, Amazon QuickSight generates a registration URL. The user accesses this registration URL to create their account. Amazon QuickSight doesn't send a registration email to users who are registered from the Amazon QuickSight API. If you want new users to receive a registration email, then add those users in the Amazon QuickSight console. For more information on registering a new user in the Amazon QuickSight console, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/managing-users.html#inviting-users\"> Inviting users to access Amazon QuickSight</a>.</p>",
     "RestoreAnalysis": "<p>Restores an analysis.</p>",
@@ -109,7 +123,7 @@
     "SearchDataSources": "<p>Use the <code>SearchDataSources</code> operation to search for data sources that belong to an account.</p>",
     "SearchFolders": "<p>Searches the subfolders in a folder.</p>",
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
-    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
+    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, and topic. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, the only customization that you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
     "UpdateAccountSettings": "<p>Updates the Amazon QuickSight settings in your Amazon Web Services account.</p>",
@@ -126,7 +140,7 @@
     "UpdateFolderPermissions": "<p>Updates permissions of a folder.</p>",
     "UpdateGroup": "<p>Changes a group description. </p>",
     "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
-    "UpdateIpRestriction": "<p>Updates the content and status of IP rules. To use this operation, you need to provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
+    "UpdateIpRestriction": "<p>Updates the content and status of IP rules. To use this operation, you must provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
     "UpdatePublicSharingSettings": "<p>Use the <code>UpdatePublicSharingSettings</code> operation to turn on or turn off the public sharing settings of an Amazon QuickSight dashboard.</p> <p>To use this operation, turn on session capacity pricing for your Amazon QuickSight account.</p> <p>Before you can turn on public sharing on your account, make sure to give public sharing permissions to an administrative user in the Identity and Access Management (IAM) console. For more information on using IAM with Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html\">Using Amazon QuickSight with IAM</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "UpdateRefreshSchedule": "<p>Updates a refresh schedule for a dataset.</p>",
     "UpdateTemplate": "<p>Updates a template from an existing Amazon QuickSight analysis or another template.</p>",
@@ -135,7 +149,11 @@
     "UpdateTheme": "<p>Updates a theme.</p>",
     "UpdateThemeAlias": "<p>Updates an alias of a theme.</p>",
     "UpdateThemePermissions": "<p>Updates the resource permissions for a theme. Permissions apply to the action to grant or revoke permissions on, for example <code>\"quicksight:DescribeTheme\"</code>.</p> <p>Theme permissions apply in groupings. Valid groupings include the following for the three levels of permissions, which are user, owner, or no permissions: </p> <ul> <li> <p>User</p> <ul> <li> <p> <code>\"quicksight:DescribeTheme\"</code> </p> </li> <li> <p> <code>\"quicksight:DescribeThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:ListThemeAliases\"</code> </p> </li> <li> <p> <code>\"quicksight:ListThemeVersions\"</code> </p> </li> </ul> </li> <li> <p>Owner</p> <ul> <li> <p> <code>\"quicksight:DescribeTheme\"</code> </p> </li> <li> <p> <code>\"quicksight:DescribeThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:ListThemeAliases\"</code> </p> </li> <li> <p> <code>\"quicksight:ListThemeVersions\"</code> </p> </li> <li> <p> <code>\"quicksight:DeleteTheme\"</code> </p> </li> <li> <p> <code>\"quicksight:UpdateTheme\"</code> </p> </li> <li> <p> <code>\"quicksight:CreateThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:DeleteThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:UpdateThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:UpdateThemePermissions\"</code> </p> </li> <li> <p> <code>\"quicksight:DescribeThemePermissions\"</code> </p> </li> </ul> </li> <li> <p>To specify no permissions, omit the permissions list.</p> </li> </ul>",
-    "UpdateUser": "<p>Updates an Amazon QuickSight user.</p>"
+    "UpdateTopic": "<p>Updates a topic.</p>",
+    "UpdateTopicPermissions": "<p>Updates the permissions of a topic.</p>",
+    "UpdateTopicRefreshSchedule": "<p>Updates a topic refresh schedule.</p>",
+    "UpdateUser": "<p>Updates an Amazon QuickSight user.</p>",
+    "UpdateVPCConnection": "<p>Updates a VPC connection.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -204,6 +222,12 @@
         "NumericEqualityFilter$AggregationFunction": "<p>The aggregation function of the filter.</p>",
         "NumericRangeFilter$AggregationFunction": "<p>The aggregation function of the filter.</p>",
         "ReferenceLineDynamicDataConfiguration$MeasureAggregationFunction": "<p>The aggregation function that is used in the dynamic data.</p>"
+      }
+    },
+    "AggregationFunctionParameters": {
+      "base": null,
+      "refs": {
+        "NamedEntityDefinitionMetric$AggregationFunctionParameters": "<p>The additional parameters for an aggregation function.</p>"
       }
     },
     "AggregationSortConfiguration": {
@@ -451,6 +475,12 @@
         "CreateTemplateResponse$VersionArn": "<p>The ARN for the template, including the version information of the first version.</p>",
         "CreateThemeResponse$Arn": "<p>The Amazon Resource Name (ARN) for the theme.</p>",
         "CreateThemeResponse$VersionArn": "<p>The Amazon Resource Name (ARN) for the new theme.</p>",
+        "CreateTopicRefreshScheduleRequest$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "CreateTopicRefreshScheduleResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "CreateTopicRefreshScheduleResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "CreateTopicResponse$Arn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "CreateTopicResponse$RefreshArn": "<p>The Amazon Resource Name (ARN) of the topic refresh.</p>",
+        "CreateVPCConnectionResponse$Arn": "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
         "CustomSql$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "Dashboard$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "DashboardSourceTemplate$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -467,6 +497,7 @@
         "DataSetSummary$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DataSource$Arn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "DataSourceSummary$Arn": "<p>The arn of the datasource.</p>",
+        "DatasetMetadata$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DeleteAnalysisResponse$Arn": "<p>The Amazon Resource Name (ARN) of the deleted analysis.</p>",
         "DeleteDashboardResponse$Arn": "<p>The Secure Socket Layer (SSL) properties that apply for the resource.</p>",
         "DeleteDataSetResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
@@ -477,6 +508,10 @@
         "DeleteTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "DeleteThemeAliasResponse$Arn": "<p>The Amazon Resource Name (ARN) of the theme resource using the deleted alias.</p>",
         "DeleteThemeResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "DeleteTopicRefreshScheduleResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "DeleteTopicRefreshScheduleResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "DeleteTopicResponse$Arn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "DeleteVPCConnectionResponse$Arn": "<p>The Amazon Resource Name (ARN) of the deleted VPC connection.</p>",
         "DescribeAccountCustomizationResponse$Arn": "<p>The Amazon Resource Name (ARN) of the customization that's associated with this Amazon Web Services account.</p>",
         "DescribeAnalysisDefinitionResponse$ThemeArn": "<p>The ARN of the theme of the analysis.</p>",
         "DescribeAnalysisPermissionsResponse$AnalysisArn": "<p>The Amazon Resource Name (ARN) of the analysis whose permissions you're describing.</p>",
@@ -490,6 +525,10 @@
         "DescribeTemplateDefinitionResponse$ThemeArn": "<p>The ARN of the theme of the template.</p>",
         "DescribeTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "DescribeThemePermissionsResponse$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme.</p>",
+        "DescribeTopicPermissionsResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "DescribeTopicRefreshScheduleResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "DescribeTopicRefreshScheduleResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "DescribeTopicResponse$Arn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
         "Folder$Arn": "<p>The Amazon Resource Name (ARN) for the folder.</p>",
         "FolderSummary$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
         "GenerateEmbedUrlForAnonymousUserResponse$AnonymousUserArn": "<p>The Amazon Resource Name (ARN) to use for the anonymous Amazon QuickSight user.</p>",
@@ -501,6 +540,7 @@
         "IAMPolicyAssignment$PolicyArn": "<p>The Amazon Resource Name (ARN) for the IAM policy.</p>",
         "Ingestion$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want a list of tags for.</p>",
+        "ListTopicRefreshSchedulesResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
         "LogicalTableSource$DataSetArn": "<p>The Amazon Resource Number (ARN) of the parent dataset.</p>",
         "MemberIdArnPair$MemberArn": "<p>The Amazon Resource Name (ARN) of the member.</p>",
         "NamespaceInfoV2$Arn": "<p>The namespace ARN.</p>",
@@ -524,6 +564,9 @@
         "ThemeSummary$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ThemeVersion$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ThemeVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the theme version.</p>",
+        "TopicRefreshDetails$RefreshArn": "<p>The Amazon Resource Name (ARN) of the topic refresh.</p>",
+        "TopicRefreshScheduleSummary$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "TopicSummary$Arn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to untag.</p>",
         "UpdateAccountCustomizationResponse$Arn": "<p>The Amazon Resource Name (ARN) for the updated customization for this Amazon Web Services account.</p>",
         "UpdateAnalysisPermissionsResponse$AnalysisArn": "<p>The Amazon Resource Name (ARN) of the analysis that you updated.</p>",
@@ -550,7 +593,15 @@
         "UpdateThemePermissionsResponse$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme.</p>",
         "UpdateThemeResponse$Arn": "<p>The Amazon Resource Name (ARN) for the theme.</p>",
         "UpdateThemeResponse$VersionArn": "<p>The Amazon Resource Name (ARN) for the new version of the theme.</p>",
+        "UpdateTopicPermissionsResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "UpdateTopicRefreshScheduleResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "UpdateTopicRefreshScheduleResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "UpdateTopicResponse$Arn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "UpdateTopicResponse$RefreshArn": "<p>The Amazon Resource Name (ARN) of the topic refresh.</p>",
+        "UpdateVPCConnectionResponse$Arn": "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
         "User$Arn": "<p>The Amazon Resource Name (ARN) for the user.</p>",
+        "VPCConnection$Arn": "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
+        "VPCConnectionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
         "VpcConnectionProperties$VpcConnectionArn": "<p>The Amazon Resource Name (ARN) for the VPC connection.</p>"
       }
     },
@@ -596,6 +647,21 @@
         "CreateAccountSubscriptionRequest$AuthenticationMethod": "<p>The method that you want to use to authenticate your Amazon QuickSight account. Currently, the valid values for this parameter are <code>IAM_AND_QUICKSIGHT</code>, <code>IAM_ONLY</code>, and <code>ACTIVE_DIRECTORY</code>.</p> <p>If you choose <code>ACTIVE_DIRECTORY</code>, provide an <code>ActiveDirectoryName</code> and an <code>AdminGroup</code> associated with your Active Directory.</p>"
       }
     },
+    "AuthorSpecifiedAggregation": {
+      "base": null,
+      "refs": {
+        "AuthorSpecifiedAggregations$member": null
+      }
+    },
+    "AuthorSpecifiedAggregations": {
+      "base": null,
+      "refs": {
+        "TopicCalculatedField$AllowedAggregations": "<p>The list of aggregation types that are allowed for the calculated field. Valid values for this structure are <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MIN</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, and <code>PERCENTILE</code>.</p>",
+        "TopicCalculatedField$NotAllowedAggregations": "<p>The list of aggregation types that are not allowed for the calculated field. Valid values for this structure are <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MIN</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, and <code>PERCENTILE</code>.</p>",
+        "TopicColumn$AllowedAggregations": "<p>The list of aggregation types that are allowed for the column. Valid values for this structure are <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MIN</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, and <code>PERCENTILE</code>.</p>",
+        "TopicColumn$NotAllowedAggregations": "<p>The list of aggregation types that are not allowed for the column. Valid values for this structure are <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MIN</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, and <code>PERCENTILE</code>.</p>"
+      }
+    },
     "AwsAccountId": {
       "base": null,
       "refs": {
@@ -619,6 +685,9 @@
         "CreateTemplateRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. You use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "CreateThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme for the new theme alias.</p>",
         "CreateThemeRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to store the new theme. </p>",
+        "CreateTopicRefreshScheduleRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic you're creating a refresh schedule for.</p>",
+        "CreateTopicRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that you want to create a topic in.</p>",
+        "CreateVPCConnectionRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account where you want to create a new VPC connection.</p>",
         "DeleteAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to delete Amazon QuickSight customizations from in this Amazon Web Services Region.</p>",
         "DeleteAccountSubscriptionRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account that you want to delete.</p>",
         "DeleteAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to delete an analysis.</p>",
@@ -637,8 +706,11 @@
         "DeleteTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're deleting.</p>",
         "DeleteThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme alias to delete.</p>",
         "DeleteThemeRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme that you're deleting.</p>",
+        "DeleteTopicRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "DeleteTopicRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic that you want to delete.</p>",
         "DeleteUserByPrincipalIdRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DeleteUserRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
+        "DeleteVPCConnectionRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account where you want to delete a VPC connection.</p>",
         "DescribeAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to describe Amazon QuickSight customizations for.</p>",
         "DescribeAccountCustomizationResponse$AwsAccountId": "<p>The ID for the Amazon Web Services account that you're describing.</p>",
         "DescribeAccountSettingsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the settings that you want to list.</p>",
@@ -671,7 +743,12 @@
         "DescribeTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're describing.</p>",
         "DescribeThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme alias that you're describing.</p>",
         "DescribeThemePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme that you're describing.</p>",
+        "DescribeTopicPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic that you want described.</p>",
+        "DescribeTopicRefreshRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic whose refresh you want to describe.</p>",
+        "DescribeTopicRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "DescribeTopicRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeUserRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
+        "DescribeVPCConnectionRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account that contains the VPC connection that you want described.</p>",
         "GenerateEmbedUrlForAnonymousUserRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the dashboard that you're embedding.</p>",
         "GenerateEmbedUrlForRegisteredUserRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the dashboard that you're embedding.</p>",
         "GetDashboardEmbedUrlRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the dashboard that you're embedding.</p>",
@@ -697,8 +774,11 @@
         "ListThemeAliasesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme aliases that you're listing.</p>",
         "ListThemeVersionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the themes that you're listing.</p>",
         "ListThemesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the themes that you're listing.</p>",
+        "ListTopicRefreshSchedulesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic whose refresh schedule you want described.</p>",
+        "ListTopicsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topics that you want to list.</p>",
         "ListUserGroupsRequest$AwsAccountId": "<p>The Amazon Web Services account ID that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "ListUsersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
+        "ListVPCConnectionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account that contains the VPC connections that you want to list.</p>",
         "PutDataSetRefreshPropertiesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "RegisterUserRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "RestoreAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis.</p>",
@@ -734,7 +814,11 @@
         "UpdateThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme alias that you're updating.</p>",
         "UpdateThemePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme.</p>",
         "UpdateThemeRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme that you're updating.</p>",
-        "UpdateUserRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>"
+        "UpdateTopicPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic that you want to update the permissions for.</p>",
+        "UpdateTopicRefreshScheduleRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic whose refresh schedule you want to update.</p>",
+        "UpdateTopicRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic that you want to update.</p>",
+        "UpdateUserRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
+        "UpdateVPCConnectionRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account that contains the VPC connection that you want to update.</p>"
       }
     },
     "AwsAndAccountId": {
@@ -943,17 +1027,26 @@
         "BodySectionConfiguration$Content": "<p>The configuration of content in a body section.</p>"
       }
     },
+    "BookmarksConfigurations": {
+      "base": "<p>The bookmarks configuration of an embedded dashboard.</p>",
+      "refs": {
+        "RegisteredUserDashboardFeatureConfigurations$Bookmarks": "<p>The bookmarks configuration for an embedded dashboard in Amazon QuickSight.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
         "AccountSettings$PublicSharingEnabled": "<p>A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account. For more information about turning on public sharing, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html\">UpdatePublicSharingSettings</a>.</p>",
         "AccountSettings$TerminationProtectionEnabled": "<p>A boolean value that determines whether or not an Amazon QuickSight account can be deleted. A <code>True</code> value doesn't allow the account to be deleted and results in an error message if a user tries to make a <code>DeleteAccountSubsctiption</code> request. A <code>False</code> value will allow the ccount to be deleted. </p>",
+        "BookmarksConfigurations$Enabled": "<p>A Boolean value that determines whether a user can bookmark an embedded dashboard.</p>",
         "BorderStyle$Show": "<p>The option to enable display of borders for visuals.</p>",
         "DataSetSummary$RowLevelPermissionTagConfigurationApplied": "<p>Whether or not the row level permission tags are applied.</p>",
         "DataSetSummary$ColumnLevelPermissionRulesApplied": "<p>A value that indicates if the dataset has column level permission configured.</p>",
         "DataSetUsageConfiguration$DisableUseAsDirectQuerySource": "<p>An option that controls whether a child dataset of a direct query can use this dataset as a source.</p>",
         "DataSetUsageConfiguration$DisableUseAsImportedSource": "<p>An option that controls whether a child dataset that's stored in QuickSight can use this dataset as a source.</p>",
         "DeleteAnalysisRequest$ForceDeleteWithoutRecovery": "<p>This option defaults to the value <code>NoForceDeleteWithoutRecovery</code>. To immediately delete the analysis, add the <code>ForceDeleteWithoutRecovery</code> option. You can't restore an analysis after it's deleted. </p>",
+        "DisplayFormatOptions$UseBlankCellFormat": "<p>A Boolean value that indicates whether to use blank cell format.</p>",
+        "DisplayFormatOptions$UseGrouping": "<p>A Boolean value that indicates whether to use grouping.</p>",
         "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
         "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
         "GetDashboardEmbedUrlRequest$StatePersistenceEnabled": "<p>Adds persistence of state for the user session in an embedded dashboard. Persistence applies to the sheet and the parameter settings. These are control settings that the dashboard subscriber (Amazon QuickSight reader) chooses while viewing the dashboard. If this is set to <code>TRUE</code>, the settings are the same when the subscriber reopens the same dashboard URL. The state is stored in Amazon QuickSight, not in a browser cookie. If this is set to FALSE, the state of the user session is not persisted. The default is <code>FALSE</code>.</p>",
@@ -967,6 +1060,14 @@
         "StatePersistenceConfigurations$Enabled": "<p>Determines if a Amazon QuickSight dashboard's state persistence settings are turned on or off.</p>",
         "TimeRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
         "TimeRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
+        "TopicCalculatedField$IsIncludedInTopic": "<p>A boolean value that indicates if a calculated field is included in the topic.</p>",
+        "TopicCalculatedField$NeverAggregateInFilter": "<p>A Boolean value that indicates whether to never aggregate calculated field in filters.</p>",
+        "TopicCategoryFilter$Inverse": "<p>A Boolean value that indicates if the filter is inverse.</p>",
+        "TopicColumn$IsIncludedInTopic": "<p>A Boolean value that indicates whether the column is included in the query results.</p>",
+        "TopicColumn$NeverAggregateInFilter": "<p>A Boolean value that indicates whether to aggregate the column data when it's used in a filter context.</p>",
+        "TopicDateRangeFilter$Inclusive": "<p>A Boolean value that indicates whether the date range filter should include the boundary values. If set to true, the filter includes the start and end dates. If set to false, the filter excludes them.</p>",
+        "TopicNumericRangeFilter$Inclusive": "<p>A Boolean value that indicates whether the endpoints of the numeric range are included in the filter. If set to true, topics whose numeric field value is equal to the endpoint values will be included in the filter. If set to false, topics whose numeric field value is equal to the endpoint values will be excluded from the filter.</p>",
+        "TopicRefreshSchedule$BasedOnSpiceSchedule": "<p>A Boolean value that controls whether to schedule runs at the same schedule that is specified in SPICE dataset.</p>",
         "UpdateAccountSettingsRequest$TerminationProtectionEnabled": "<p>A boolean value that determines whether or not an Amazon QuickSight account can be deleted. A <code>True</code> value doesn't allow the account to be deleted and results in an error message if a user tries to make a <code>DeleteAccountSubscription</code> request. A <code>False</code> value will allow the account to be deleted.</p>",
         "UpdatePublicSharingSettingsRequest$PublicSharingEnabled": "<p>A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account.</p>",
         "UpdateUserRequest$UnapplyCustomPermissions": "<p>A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.</p>",
@@ -1070,6 +1171,12 @@
         "CalculatedFields$member": null
       }
     },
+    "CalculatedFieldExpression": {
+      "base": null,
+      "refs": {
+        "CalculatedField$Expression": "<p>The expression of the calculated field.</p>"
+      }
+    },
     "CalculatedFields": {
       "base": null,
       "refs": {
@@ -1164,6 +1271,12 @@
         "CategoryFilter$Configuration": "<p>The configuration for a <code>CategoryFilter</code>.</p>"
       }
     },
+    "CategoryFilterFunction": {
+      "base": null,
+      "refs": {
+        "TopicCategoryFilter$CategoryFilterFunction": "<p>The category filter function. Valid values for this structure are <code>EXACT</code> and <code>CONTAINS</code>.</p>"
+      }
+    },
     "CategoryFilterMatchOperator": {
       "base": null,
       "refs": {
@@ -1180,6 +1293,12 @@
         "FilterListConfiguration$SelectAllOptions": "<p>Select all of the values. Null is not the assigned value of select all.</p> <ul> <li> <p> <code>FILTER_ALL_VALUES</code> </p> </li> </ul>"
       }
     },
+    "CategoryFilterType": {
+      "base": null,
+      "refs": {
+        "TopicCategoryFilter$CategoryFilterType": "<p>The category filter type. This element is used to specify whether a filter is a simple category filter or an inverse category filter.</p>"
+      }
+    },
     "CategoryValue": {
       "base": null,
       "refs": {
@@ -1193,6 +1312,19 @@
         "CategoryDrillDownFilter$CategoryValues": "<p>A list of the string inputs that are the values of the category drill down filter.</p>",
         "CustomFilterListConfiguration$CategoryValues": "<p>The list of category values for the filter.</p>",
         "FilterListConfiguration$CategoryValues": "<p>The list of category values for the filter.</p>"
+      }
+    },
+    "CellValueSynonym": {
+      "base": "<p>A structure that represents the cell value synonym.</p>",
+      "refs": {
+        "CellValueSynonyms$member": null
+      }
+    },
+    "CellValueSynonyms": {
+      "base": null,
+      "refs": {
+        "TopicCalculatedField$CellValueSynonyms": "<p>The other names or aliases for the calculated field cell value.</p>",
+        "TopicColumn$CellValueSynonyms": "<p>The other names or aliases for the column cell value.</p>"
       }
     },
     "ChartAxisLabelOptions": {
@@ -1247,6 +1379,12 @@
         "GeospatialPointStyleOptions$ClusterMarkerConfiguration": "<p>The cluster marker configuration of the geospatial point style.</p>"
       }
     },
+    "CollectiveConstant": {
+      "base": "<p>A structure that represents a collective constant.</p>",
+      "refs": {
+        "TopicCategoryFilterConstant$CollectiveConstant": "<p>A collective constant used in a category filter. This element is used to specify a list of values for the constant.</p>"
+      }
+    },
     "ColorFillType": {
       "base": null,
       "refs": {
@@ -1287,11 +1425,18 @@
         "TemplateVersionDefinition$ColumnConfigurations": "<p> An array of template-level column configurations. Column configurations are used to set default formatting for a column that's used throughout a template. </p>"
       }
     },
+    "ColumnDataRole": {
+      "base": null,
+      "refs": {
+        "TopicCalculatedField$ColumnDataRole": "<p>The column data role for a calculated field. Valid values for this structure are <code>DIMENSION</code> and <code>MEASURE</code>.</p>",
+        "TopicColumn$ColumnDataRole": "<p>The role of the column in the data. Valid values are <code>DIMENSION</code> and <code>MEASURE</code>.</p>"
+      }
+    },
     "ColumnDataType": {
       "base": null,
       "refs": {
         "CastColumnTypeOperation$NewColumnType": "<p>New column data type.</p>",
-        "OutputColumn$Type": "<p>Type.</p>"
+        "OutputColumn$Type": "<p>The type.</p>"
       }
     },
     "ColumnDescription": {
@@ -1397,8 +1542,10 @@
         "ColumnSort$SortBy": null,
         "ColumnTooltipItem$Column": "<p>The target column of the tooltip item.</p>",
         "ContributorDimensionList$member": null,
+        "CustomActionColumnList$member": null,
         "DateDimensionField$Column": "<p>The column that is used in the <code>DateDimensionField</code>.</p>",
         "DateMeasureField$Column": "<p>The column that is used in the <code>DateMeasureField</code>.</p>",
+        "DestinationParameterValueConfiguration$SourceColumn": null,
         "DynamicDefaultValue$UserNameColumn": "<p>The column that contains the username.</p>",
         "DynamicDefaultValue$GroupNameColumn": "<p>The column that contains the group name.</p>",
         "DynamicDefaultValue$DefaultValueColumn": "<p>The column that contains the default value of each user or group.</p>",
@@ -1459,6 +1606,12 @@
       "base": null,
       "refs": {
         "ColumnLevelPermissionRule$ColumnNames": "<p>An array of column names.</p>"
+      }
+    },
+    "ColumnOrderingType": {
+      "base": null,
+      "refs": {
+        "ComparativeOrder$UseOrdering": "<p>The ordering type for a column. Valid values for this structure are <code>GREATER_IS_BETTER</code>, <code>LESSER_IS_BETTER</code> and <code>SPECIFIED</code>.</p>"
       }
     },
     "ColumnRole": {
@@ -1544,6 +1697,13 @@
       "base": "<p>A combo chart.</p> <p>The <code>ComboChartVisual</code> includes stacked bar combo charts and clustered bar combo charts</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/combo-charts.html\">Using combo charts</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
       "refs": {
         "Visual$ComboChartVisual": "<p>A combo chart.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/combo-charts.html\">Using combo charts</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
+      }
+    },
+    "ComparativeOrder": {
+      "base": "<p>A structure that represents a comparative order.</p>",
+      "refs": {
+        "TopicCalculatedField$ComparativeOrder": "<p>The order in which data is displayed for the calculated field when it's used in a comparative context.</p>",
+        "TopicColumn$ComparativeOrder": "<p>The order in which data is displayed for the column when it's used in a comparative context.</p>"
       }
     },
     "ComparisonConfiguration": {
@@ -1655,6 +1815,14 @@
     "ConflictException": {
       "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
       "refs": {
+      }
+    },
+    "ConstantType": {
+      "base": null,
+      "refs": {
+        "TopicCategoryFilterConstant$ConstantType": "<p>The type of category filter constant. This element is used to specify whether a constant is a singular or collective. Valid values are <code>SINGULAR</code> and <code>COLLECTIVE</code>.</p>",
+        "TopicRangeFilterConstant$ConstantType": "<p>The data type of the constant value that is used in a range filter. Valid values for this structure are <code>RANGE</code>.</p>",
+        "TopicSingularFilterConstant$ConstantType": "<p>The type of the singular filter constant. Valid values for this structure are <code>SINGULAR</code>.</p>"
       }
     },
     "ContributionAnalysisDefault": {
@@ -1869,6 +2037,36 @@
       "refs": {
       }
     },
+    "CreateTopicRefreshScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTopicRefreshScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTopicRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTopicResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVPCConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVPCConnectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CredentialPair": {
       "base": "<p>The combination of user name and password that are used as credentials.</p>",
       "refs": {
@@ -1891,6 +2089,12 @@
       "base": "<p>The options that determine the currency display format configuration.</p>",
       "refs": {
         "NumericFormatConfiguration$CurrencyDisplayFormatConfiguration": "<p>The options that determine the currency display format configuration.</p>"
+      }
+    },
+    "CustomActionColumnList": {
+      "base": null,
+      "refs": {
+        "FilterOperationSelectedFieldsConfiguration$SelectedColumns": "<p>The selected columns of a dataset.</p>"
       }
     },
     "CustomActionFilterOperation": {
@@ -2137,6 +2341,12 @@
         "DashboardPublishOptions$VisualPublishOptions": "<p>The visual publish options of a visual in a dashboard.</p>"
       }
     },
+    "DataAggregation": {
+      "base": "<p>A structure that represents a data aggregation.</p>",
+      "refs": {
+        "DatasetMetadata$DataAggregation": "<p>The definition of a data aggregation.</p>"
+      }
+    },
     "DataBarsOptions": {
       "base": "<p>The options for data bars.</p>",
       "refs": {
@@ -2307,6 +2517,7 @@
         "DataSetIdentifierDeclaration$Identifier": "<p>The identifier of the data set, typically the data set's name.</p>",
         "EmptyVisual$DataSetIdentifier": "<p>The data set that is used in the empty visual. Every visual requires a dataset to render.</p>",
         "InsightVisual$DataSetIdentifier": "<p>The dataset that is used in the insight visual.</p>",
+        "MappedDataSetParameter$DataSetIdentifier": "<p>A unique name that identifies a dataset within the analysis or dashboard.</p>",
         "RollingDateConfiguration$DataSetIdentifier": "<p>The data set that is used in the rolling date configuration.</p>"
       }
     },
@@ -2491,7 +2702,7 @@
         "AuroraPostgreSqlParameters$Database": "<p>The Amazon Aurora PostgreSQL database to connect to.</p>",
         "MariaDbParameters$Database": "<p>Database.</p>",
         "MySqlParameters$Database": "<p>Database.</p>",
-        "OracleParameters$Database": "<p>Database.</p>",
+        "OracleParameters$Database": "<p>The database.</p>",
         "PostgreSqlParameters$Database": "<p>Database.</p>",
         "RdsParameters$Database": "<p>Database.</p>",
         "RedshiftParameters$Database": "<p>Database.</p>",
@@ -2504,6 +2715,61 @@
       "base": "<p>The required parameters that are needed to connect to a Databricks data source.</p>",
       "refs": {
         "DataSourceParameters$DatabricksParameters": "<p>The required parameters that are needed to connect to a Databricks data source.</p>"
+      }
+    },
+    "DatasetMetadata": {
+      "base": "<p>A structure that represents a dataset.</p>",
+      "refs": {
+        "Datasets$member": null
+      }
+    },
+    "DatasetParameter": {
+      "base": "<p>A dataset parameter.</p>",
+      "refs": {
+        "DatasetParameterList$member": null
+      }
+    },
+    "DatasetParameterId": {
+      "base": null,
+      "refs": {
+        "DateTimeDatasetParameter$Id": "<p>An identifier for the parameter that is created in the dataset.</p>",
+        "DecimalDatasetParameter$Id": "<p>An identifier for the decimal parameter created in the dataset.</p>",
+        "IntegerDatasetParameter$Id": "<p>An identifier for the integer parameter created in the dataset.</p>",
+        "StringDatasetParameter$Id": "<p>An identifier for the string parameter that is created in the dataset.</p>"
+      }
+    },
+    "DatasetParameterList": {
+      "base": null,
+      "refs": {
+        "CreateDataSetRequest$DatasetParameters": "<p>The parameter declarations of the dataset.</p>",
+        "DataSet$DatasetParameters": "<p>The parameters that are declared in a dataset.</p>",
+        "UpdateDataSetRequest$DatasetParameters": "<p>The parameter declarations of the dataset.</p>"
+      }
+    },
+    "DatasetParameterName": {
+      "base": null,
+      "refs": {
+        "DateTimeDatasetParameter$Name": "<p>The name of the date time parameter that is created in the dataset.</p>",
+        "DecimalDatasetParameter$Name": "<p>The name of the decimal parameter that is created in the dataset.</p>",
+        "IntegerDatasetParameter$Name": "<p>The name of the integer parameter that is created in the dataset.</p>",
+        "OverrideDatasetParameterOperation$ParameterName": "<p>The name of the parameter to be overridden with different values.</p>",
+        "OverrideDatasetParameterOperation$NewParameterName": "<p>The new name for the parameter.</p>",
+        "StringDatasetParameter$Name": "<p>The name of the string parameter that is created in the dataset.</p>"
+      }
+    },
+    "DatasetParameterValueType": {
+      "base": null,
+      "refs": {
+        "DateTimeDatasetParameter$ValueType": "<p>The value type of the dataset parameter. Valid values are <code>single value</code> or <code>multi value</code>.</p>",
+        "DecimalDatasetParameter$ValueType": "<p>The value type of the dataset parameter. Valid values are <code>single value</code> or <code>multi value</code>.</p>",
+        "IntegerDatasetParameter$ValueType": "<p>The value type of the dataset parameter. Valid values are <code>single value</code> or <code>multi value</code>.</p>",
+        "StringDatasetParameter$ValueType": "<p>The value type of the dataset parameter. Valid values are <code>single value</code> or <code>multi value</code>.</p>"
+      }
+    },
+    "Datasets": {
+      "base": null,
+      "refs": {
+        "TopicDetails$DataSets": "<p>The data sets that the topic is associated with.</p>"
       }
     },
     "DateAggregationFunction": {
@@ -2529,6 +2795,31 @@
       "base": "<p>The measure type field with date type columns.</p>",
       "refs": {
         "MeasureField$DateMeasureField": "<p>The measure type field with date type columns.</p>"
+      }
+    },
+    "DateTimeDatasetParameter": {
+      "base": "<p>A date time parameter for a dataset.</p>",
+      "refs": {
+        "DatasetParameter$DateTimeDatasetParameter": "<p>A date time parameter that is created in the dataset.</p>"
+      }
+    },
+    "DateTimeDatasetParameterDefaultValue": {
+      "base": "<p>The default value for the date time parameter.</p>",
+      "refs": {
+        "DateTimeDatasetParameterValueList$member": null
+      }
+    },
+    "DateTimeDatasetParameterDefaultValues": {
+      "base": "<p>The default values of a date time parameter.</p>",
+      "refs": {
+        "DateTimeDatasetParameter$DefaultValues": "<p>A list of default values for a given date time parameter. This structure only accepts static values.</p>"
+      }
+    },
+    "DateTimeDatasetParameterValueList": {
+      "base": null,
+      "refs": {
+        "DateTimeDatasetParameterDefaultValues$StaticValues": "<p>A list of static default values for a given date time parameter.</p>",
+        "NewDefaultValues$DateTimeStaticValues": "<p>A list of static default values for a given date time parameter.</p>"
       }
     },
     "DateTimeDefaultValueList": {
@@ -2609,6 +2900,31 @@
         "ScheduleRefreshOnEntity$DayOfWeek": "<p>The day of the week that you want to schedule a refresh on.</p>"
       }
     },
+    "DecimalDatasetParameter": {
+      "base": "<p>A decimal parameter for a dataset.</p>",
+      "refs": {
+        "DatasetParameter$DecimalDatasetParameter": "<p>A decimal parameter that is created in the dataset.</p>"
+      }
+    },
+    "DecimalDatasetParameterDefaultValue": {
+      "base": "<p>The default value for the decimal parameter.</p>",
+      "refs": {
+        "DecimalDatasetParameterValueList$member": null
+      }
+    },
+    "DecimalDatasetParameterDefaultValues": {
+      "base": "<p>The default values of a decimal parameter.</p>",
+      "refs": {
+        "DecimalDatasetParameter$DefaultValues": "<p>A list of default values for a given decimal parameter. This structure only accepts static values.</p>"
+      }
+    },
+    "DecimalDatasetParameterValueList": {
+      "base": null,
+      "refs": {
+        "DecimalDatasetParameterDefaultValues$StaticValues": "<p>A list of static default values for a given decimal parameter.</p>",
+        "NewDefaultValues$DecimalStaticValues": "<p>A list of static default values for a given decimal parameter.</p>"
+      }
+    },
     "DecimalDefaultValueList": {
       "base": null,
       "refs": {
@@ -2658,6 +2974,20 @@
       "base": "<p>The configuration that defines the default value of a <code>Decimal</code> parameter when a value has not been set.</p>",
       "refs": {
         "DecimalParameterDeclaration$ValueWhenUnset": "<p>The configuration that defines the default value of a <code>Decimal</code> parameter when a value has not been set.</p>"
+      }
+    },
+    "DefaultAggregation": {
+      "base": null,
+      "refs": {
+        "TopicCalculatedField$Aggregation": "<p>The default aggregation. Valid values for this structure are <code>SUM</code>, <code>MAX</code>, <code>MIN</code>, <code>COUNT</code>, <code>DISTINCT_COUNT</code>, and <code>AVERAGE</code>.</p>",
+        "TopicColumn$Aggregation": "<p>The type of aggregation that is performed on the column data when it's queried. Valid values for this structure are <code>SUM</code>, <code>MAX</code>, <code>MIN</code>, <code>COUNT</code>, <code>DISTINCT_COUNT</code>, and <code>AVERAGE</code>.</p>"
+      }
+    },
+    "DefaultFormatting": {
+      "base": "<p>A structure that represents a default formatting definition.</p>",
+      "refs": {
+        "TopicCalculatedField$DefaultFormatting": "<p>The default formatting definition.</p>",
+        "TopicColumn$DefaultFormatting": "<p>The default formatting used for values in the column.</p>"
       }
     },
     "DefaultFreeFormLayoutConfiguration": {
@@ -2876,6 +3206,26 @@
       "refs": {
       }
     },
+    "DeleteTopicRefreshScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTopicRefreshScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTopicRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTopicResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteUserByPrincipalIdRequest": {
       "base": "<p/>",
       "refs": {
@@ -2892,6 +3242,16 @@
       }
     },
     "DeleteUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVPCConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVPCConnectionResponse": {
       "base": null,
       "refs": {
       }
@@ -3212,12 +3572,62 @@
       "refs": {
       }
     },
+    "DescribeTopicPermissionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTopicPermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTopicRefreshRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTopicRefreshResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTopicRefreshScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTopicRefreshScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTopicRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTopicResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeUserRequest": {
       "base": null,
       "refs": {
       }
     },
     "DescribeUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeVPCConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeVPCConnectionResponse": {
       "base": null,
       "refs": {
       }
@@ -3270,11 +3680,33 @@
         "SankeyDiagramAggregatedFieldWells$Source": "<p>The source field wells of a sankey diagram.</p>",
         "SankeyDiagramAggregatedFieldWells$Destination": "<p>The destination field wells of a sankey diagram.</p>",
         "ScatterPlotCategoricallyAggregatedFieldWells$Category": "<p>The category field well of a scatter plot.</p>",
+        "ScatterPlotCategoricallyAggregatedFieldWells$Label": "<p>The label field well of a scatter plot.</p>",
         "ScatterPlotUnaggregatedFieldWells$XAxis": "<p>The x-axis field well of a scatter plot.</p> <p>The x-axis is a dimension field and cannot be aggregated.</p>",
         "ScatterPlotUnaggregatedFieldWells$YAxis": "<p>The y-axis field well of a scatter plot.</p> <p>The y-axis is a dimension field and cannot be aggregated.</p>",
+        "ScatterPlotUnaggregatedFieldWells$Category": "<p>The category field well of a scatter plot.</p>",
+        "ScatterPlotUnaggregatedFieldWells$Label": "<p>The label field well of a scatter plot.</p>",
         "TableAggregatedFieldWells$GroupBy": "<p>The group by field well for a pivot table. Values are grouped by group by fields.</p>",
         "WaterfallChartAggregatedFieldWells$Categories": "<p>The category field wells of a waterfall visual.</p>",
         "WaterfallChartAggregatedFieldWells$Breakdowns": "<p>The breakdown field wells of a waterfall visual.</p>"
+      }
+    },
+    "DisplayFormat": {
+      "base": null,
+      "refs": {
+        "DefaultFormatting$DisplayFormat": "<p>The display format. Valid values for this structure are <code>AUTO</code>, <code>PERCENT</code>, <code>CURRENCY</code>, <code>NUMBER</code>, <code>DATE</code>, and <code>STRING</code>.</p>"
+      }
+    },
+    "DisplayFormatOptions": {
+      "base": "<p>A structure that represents additional options for display formatting.</p>",
+      "refs": {
+        "DefaultFormatting$DisplayFormatOptions": "<p>The additional options for display formatting.</p>"
+      }
+    },
+    "DnsResolverList": {
+      "base": null,
+      "refs": {
+        "CreateVPCConnectionRequest$DnsResolvers": "<p>A list of IP addresses of DNS resolver endpoints for the VPC connection.</p>",
+        "UpdateVPCConnectionRequest$DnsResolvers": "<p>A list of IP addresses of DNS resolver endpoints for the VPC connection.</p>"
       }
     },
     "Domain": {
@@ -3480,7 +3912,6 @@
       "base": null,
       "refs": {
         "CalculatedColumn$Expression": "<p>An expression that defines the calculated column.</p>",
-        "CalculatedField$Expression": "<p>The expression of the calculated field.</p>",
         "CalculatedMeasureField$Expression": "<p>The expression in the table calculation.</p>",
         "ConditionalFormattingCustomIconCondition$Expression": "<p>The expression that determines the condition of the icon set.</p>",
         "ConditionalFormattingGradientColor$Expression": "<p>The expression that determines the formatting configuration for gradient color.</p>",
@@ -3488,7 +3919,8 @@
         "ConditionalFormattingSolidColor$Expression": "<p>The expression that determines the formatting configuration for solid color.</p>",
         "FilterOperation$ConditionExpression": "<p>An expression that must evaluate to a Boolean value. Rows for which the expression evaluates to true are kept in the dataset.</p>",
         "RollingDateConfiguration$Expression": "<p>The expression of the rolling date configuration.</p>",
-        "SheetElementRenderingRule$Expression": "<p>The expression of the rendering rules of a sheet.</p>"
+        "SheetElementRenderingRule$Expression": "<p>The expression of the rendering rules of a sheet.</p>",
+        "TopicCalculatedField$Expression": "<p>The calculated field expression.</p>"
       }
     },
     "FieldBasedTooltip": {
@@ -3703,6 +4135,12 @@
       "base": "<p>With a <code>Filter</code>, you can remove portions of data from a particular visual or view.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>",
       "refs": {
         "FilterList$member": null
+      }
+    },
+    "FilterClass": {
+      "base": null,
+      "refs": {
+        "TopicFilter$FilterClass": "<p>The class of the filter. Valid values for this structure are <code>ENFORCED_VALUE_FILTER</code>, <code>CONDITIONAL_VALUE_FILTER</code>, and <code>NAMED_VALUE_FILTER</code>.</p>"
       }
     },
     "FilterControl": {
@@ -4684,14 +5122,14 @@
       "base": null,
       "refs": {
         "ActiveIAMPolicyAssignment$AssignmentName": "<p>A name for the IAM policy assignment.</p>",
-        "CreateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule. It must be unique within an Amazon Web Services account.</p>",
-        "CreateIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment. This name must be unique within the Amazon Web Services account.</p>",
+        "CreateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule. The name must be unique within the Amazon Web Services account.</p>",
+        "CreateIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment. The name must be unique within the Amazon Web Services account.</p>",
         "DeleteIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment. </p>",
         "DeleteIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment. </p>",
         "DescribeIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule.</p>",
         "IAMPolicyAssignment$AssignmentName": "<p>Assignment name.</p>",
         "IAMPolicyAssignmentSummary$AssignmentName": "<p>Assignment name.</p>",
-        "UpdateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule. This name must be unique within an Amazon Web Services account.</p>",
+        "UpdateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule. The name must be unique within the Amazon Web Services account.</p>",
         "UpdateIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment or rule.</p>"
       }
     },
@@ -4705,6 +5143,12 @@
       "base": null,
       "refs": {
         "ListIAMPolicyAssignmentsResponse$IAMPolicyAssignments": "<p>Information describing the IAM policy assignments.</p>"
+      }
+    },
+    "IPv4Address": {
+      "base": null,
+      "refs": {
+        "DnsResolverList$member": null
       }
     },
     "Icon": {
@@ -4866,9 +5310,35 @@
       "refs": {
         "ArcAxisConfiguration$ReserveRange": "<p>The reserved range of the arc axis.</p>",
         "AxisLinearScale$StepCount": "<p>The step count setup of a linear axis.</p>",
+        "DisplayFormatOptions$FractionDigits": "<p>Determines the number of fraction digits.</p>",
         "ExcludePeriodConfiguration$Amount": "<p>The amount or number of the exclude period.</p>",
         "RelativeDatesFilter$RelativeDateValue": "<p>The date value of the filter.</p>",
         "TopBottomFilter$Limit": "<p>The number of items to include in the top bottom filter results.</p>"
+      }
+    },
+    "IntegerDatasetParameter": {
+      "base": "<p>An integer parameter for a dataset.</p>",
+      "refs": {
+        "DatasetParameter$IntegerDatasetParameter": "<p>An integer parameter that is created in the dataset.</p>"
+      }
+    },
+    "IntegerDatasetParameterDefaultValue": {
+      "base": "<p>The default value for the integer parameter.</p>",
+      "refs": {
+        "IntegerDatasetParameterValueList$member": null
+      }
+    },
+    "IntegerDatasetParameterDefaultValues": {
+      "base": "<p>The default values of an integer parameter.</p>",
+      "refs": {
+        "IntegerDatasetParameter$DefaultValues": "<p>A list of default values for a given integer parameter. This structure only accepts static values.</p>"
+      }
+    },
+    "IntegerDatasetParameterValueList": {
+      "base": null,
+      "refs": {
+        "IntegerDatasetParameterDefaultValues$StaticValues": "<p>A list of static default values for a given integer parameter.</p>",
+        "NewDefaultValues$IntegerStaticValues": "<p>A list of static default values for a given integer parameter.</p>"
       }
     },
     "IntegerDefaultValueList": {
@@ -5132,6 +5602,53 @@
     "LimitExceededException": {
       "base": "<p>A limit is exceeded.</p>",
       "refs": {
+      }
+    },
+    "LimitedString": {
+      "base": null,
+      "refs": {
+        "AggregationFunctionParameters$key": null,
+        "AggregationFunctionParameters$value": null,
+        "CellValueSynonym$CellValue": "<p>The cell value.</p>",
+        "DataAggregation$DefaultDateColumnName": "<p>The column name for the default date.</p>",
+        "DatasetMetadata$DatasetName": "<p>The name of the dataset.</p>",
+        "DatasetMetadata$DatasetDescription": "<p>The description of the dataset.</p>",
+        "DisplayFormatOptions$BlankCellFormat": "<p>Determines the blank cell format.</p>",
+        "DisplayFormatOptions$DateFormat": "<p>Determines the <code>DateTime</code> format.</p>",
+        "DisplayFormatOptions$GroupingSeparator": "<p>Determines the grouping separator.</p>",
+        "DisplayFormatOptions$Prefix": "<p>The prefix value for a display format.</p>",
+        "DisplayFormatOptions$Suffix": "<p>The suffix value for a display format.</p>",
+        "DisplayFormatOptions$CurrencySymbol": "<p>The currency symbol, such as <code>USD</code>.</p>",
+        "NamedEntityDefinition$FieldName": "<p>The name of the entity.</p>",
+        "NamedEntityDefinition$PropertyName": "<p>The property name to be used for the named entity.</p>",
+        "NegativeFormat$Prefix": "<p>The prefix for a negative format.</p>",
+        "NegativeFormat$Suffix": "<p>The suffix for a negative format.</p>",
+        "RangeConstant$Minimum": "<p>The minimum value for a range constant.</p>",
+        "RangeConstant$Maximum": "<p>The maximum value for a range constant.</p>",
+        "SemanticEntityType$TypeName": "<p>The semantic entity type name.</p>",
+        "SemanticEntityType$SubTypeName": "<p>The semantic entity sub type name.</p>",
+        "SemanticType$TypeName": "<p>The semantic type name.</p>",
+        "SemanticType$SubTypeName": "<p>The semantic type sub type name.</p>",
+        "Synonyms$member": null,
+        "TopicCalculatedField$CalculatedFieldName": "<p>The calculated field name.</p>",
+        "TopicCalculatedField$CalculatedFieldDescription": "<p>The calculated field description.</p>",
+        "TopicCategoryFilterConstant$SingularConstant": "<p>A singular constant used in a category filter. This element is used to specify a single value for the constant.</p>",
+        "TopicColumn$ColumnName": "<p>The name of the column.</p>",
+        "TopicColumn$ColumnFriendlyName": "<p>A user-friendly name for the column.</p>",
+        "TopicColumn$ColumnDescription": "<p>A description of the column and its contents.</p>",
+        "TopicDetails$Description": "<p>The description of the topic.</p>",
+        "TopicFilter$FilterDescription": "<p>A description of the filter used to select items for a topic.</p>",
+        "TopicFilter$FilterName": "<p>The name of the filter.</p>",
+        "TopicFilter$OperandFieldName": "<p>The name of the field that the filter operates on.</p>",
+        "TopicNamedEntity$EntityName": "<p>The name of the named entity.</p>",
+        "TopicNamedEntity$EntityDescription": "<p>The description of the named entity.</p>",
+        "TopicRefreshSchedule$Timezone": "<p>The timezone that you want the refresh schedule to use.</p>",
+        "TopicRefreshSchedule$RepeatAt": "<p>The time of day when the refresh should run, for example, Monday-Sunday.</p>",
+        "TopicRefreshScheduleSummary$DatasetId": "<p>The ID of the dataset.</p>",
+        "TopicRefreshScheduleSummary$DatasetName": "<p>The name of the dataset.</p>",
+        "TopicSingularFilterConstant$SingularConstant": "<p>The value of the singular filter constant.</p>",
+        "TypeParameters$key": null,
+        "TypeParameters$value": null
       }
     },
     "LineChartAggregatedFieldWells": {
@@ -5459,6 +5976,26 @@
       "refs": {
       }
     },
+    "ListTopicRefreshSchedulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTopicRefreshSchedulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTopicsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTopicsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListUserGroupsRequest": {
       "base": null,
       "refs": {
@@ -5475,6 +6012,16 @@
       }
     },
     "ListUsersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVPCConnectionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVPCConnectionsResponse": {
       "base": null,
       "refs": {
       }
@@ -5504,7 +6051,7 @@
       }
     },
     "LogicalTableId": {
-      "base": null,
+      "base": "<p>An identifier for the logical table that is defined in the dataset</p>",
       "refs": {
         "JoinInstruction$LeftOperand": "<p>The operand on the left side of a join.</p>",
         "JoinInstruction$RightOperand": "<p>The operand on the right side of a join.</p>",
@@ -5587,6 +6134,21 @@
         "GeospatialWindowOptions$MapZoomMode": "<p>The map zoom modes (manual, auto) of the geospatial window options.</p>"
       }
     },
+    "MappedDataSetParameter": {
+      "base": "<p>A dataset parameter that is mapped to an analysis parameter.</p>",
+      "refs": {
+        "MappedDataSetParameters$member": null
+      }
+    },
+    "MappedDataSetParameters": {
+      "base": "<p>A list of dataset parameters that are mapped to an analysis parameter.</p>",
+      "refs": {
+        "DateTimeParameterDeclaration$MappedDataSetParameters": null,
+        "DecimalParameterDeclaration$MappedDataSetParameters": null,
+        "IntegerParameterDeclaration$MappedDataSetParameters": null,
+        "StringParameterDeclaration$MappedDataSetParameters": null
+      }
+    },
     "MarginStyle": {
       "base": "<p>The display options for margins around the outside edge of sheets.</p>",
       "refs": {
@@ -5620,8 +6182,10 @@
         "ListThemeAliasesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListThemeVersionsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListThemesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "ListTopicsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListUserGroupsRequest$MaxResults": "<p>The maximum number of results to return from this request.</p>",
         "ListUsersRequest$MaxResults": "<p>The maximum number of results to return from this request.</p>",
+        "ListVPCConnectionsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "SearchAnalysesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "SearchDashboardsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "SearchDataSetsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
@@ -5745,6 +6309,43 @@
         "DataSourceParameters$MySqlParameters": "<p>The parameters for MySQL.</p>"
       }
     },
+    "NamedEntityAggType": {
+      "base": null,
+      "refs": {
+        "NamedEntityDefinitionMetric$Aggregation": "<p>The aggregation of a named entity. Valid values for this structure are <code>SUM</code>, <code>MIN</code>, <code>MAX</code>, <code>COUNT</code>, <code>AVERAGE</code>, <code>DISTINCT_COUNT</code>, <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, <code>PERCENTILE</code>, <code>MEDIAN</code>, and <code>CUSTOM</code>.</p>"
+      }
+    },
+    "NamedEntityDefinition": {
+      "base": "<p>A structure that represents a named entity.</p>",
+      "refs": {
+        "NamedEntityDefinitions$member": null
+      }
+    },
+    "NamedEntityDefinitionMetric": {
+      "base": "<p>A structure that represents a metric.</p>",
+      "refs": {
+        "NamedEntityDefinition$Metric": "<p>The definition of a metric.</p>"
+      }
+    },
+    "NamedEntityDefinitions": {
+      "base": null,
+      "refs": {
+        "TopicNamedEntity$Definition": "<p>The definition of a named entity.</p>"
+      }
+    },
+    "NamedFilterAggType": {
+      "base": null,
+      "refs": {
+        "TopicNumericEqualityFilter$Aggregation": "<p>An aggregation function that specifies how to calculate the value of a numeric field for a topic. Valid values for this structure are <code>NO_AGGREGATION</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>MIN</code>, <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, and <code>VARP</code>.</p>",
+        "TopicNumericRangeFilter$Aggregation": "<p>An aggregation function that specifies how to calculate the value of a numeric field for a topic, Valid values for this structure are <code>NO_AGGREGATION</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>MIN</code>, <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, and <code>VARP</code>.</p>"
+      }
+    },
+    "NamedFilterType": {
+      "base": null,
+      "refs": {
+        "TopicFilter$FilterType": "<p>The type of the filter. Valid values for this structure are <code>CATEGORY_FILTER</code>, <code>NUMERIC_EQUALITY_FILTER</code>, <code>NUMERIC_RANGE_FILTER</code>, <code>DATE_RANGE_FILTER</code>, and <code>RELATIVE_DATE_FILTER</code>.</p>"
+      }
+    },
     "Namespace": {
       "base": null,
       "refs": {
@@ -5828,6 +6429,12 @@
         "CustomNarrativeOptions$Narrative": "<p>The string input of custom narrative.</p>"
       }
     },
+    "NegativeFormat": {
+      "base": "<p>A structure that represents a negative format.</p>",
+      "refs": {
+        "DisplayFormatOptions$NegativeFormat": "<p>The negative format.</p>"
+      }
+    },
     "NegativeValueConfiguration": {
       "base": "<p>The options that determine the negative value configuration.</p>",
       "refs": {
@@ -5840,6 +6447,37 @@
       "base": null,
       "refs": {
         "NegativeValueConfiguration$DisplayMode": "<p>Determines the display mode of the negative value configuration.</p>"
+      }
+    },
+    "NetworkInterface": {
+      "base": "<p>The structure that contains information about a network interface.</p>",
+      "refs": {
+        "NetworkInterfaceList$member": null
+      }
+    },
+    "NetworkInterfaceId": {
+      "base": null,
+      "refs": {
+        "NetworkInterface$NetworkInterfaceId": "<p>The network interface ID.</p>"
+      }
+    },
+    "NetworkInterfaceList": {
+      "base": null,
+      "refs": {
+        "VPCConnection$NetworkInterfaces": "<p>A list of network interfaces.</p>",
+        "VPCConnectionSummary$NetworkInterfaces": "<p>A list of network interfaces.</p>"
+      }
+    },
+    "NetworkInterfaceStatus": {
+      "base": null,
+      "refs": {
+        "NetworkInterface$Status": "<p>The status of the network interface.</p>"
+      }
+    },
+    "NewDefaultValues": {
+      "base": "<p>The configuration that overrides the existing default values for a dataset parameter that is inherited from another dataset.</p>",
+      "refs": {
+        "OverrideDatasetParameterOperation$NewDefaultValues": "<p>The new default values for the parameter.</p>"
       }
     },
     "NonEmptyString": {
@@ -5878,6 +6516,9 @@
       "base": null,
       "refs": {
         "DescribeIpRestrictionResponse$Enabled": "<p>A value that specifies whether IP rules are turned on.</p>",
+        "TopicCalculatedField$DisableIndexing": "<p>A Boolean value that indicates if a calculated field is visible in the autocomplete.</p>",
+        "TopicColumn$DisableIndexing": "<p>A Boolean value that indicates whether the column shows in the autocomplete functionality.</p>",
+        "TopicRefreshSchedule$IsEnabled": "<p>A Boolean value that controls whether to schedule is enabled.</p>",
         "UpdateIpRestrictionRequest$Enabled": "<p>A value that specifies whether IP rules are turned on.</p>"
       }
     },
@@ -5900,6 +6541,7 @@
       "base": null,
       "refs": {
         "CurrencyDisplayFormatConfiguration$NumberScale": "<p>Determines the number scale value for the currency format.</p>",
+        "DisplayFormatOptions$UnitScaler": "<p>The unit scaler. Valid values for this structure are: <code>NONE</code>, <code>AUTO</code>, <code>THOUSANDS</code>, <code>MILLIONS</code>, <code>BILLIONS</code>, and <code>TRILLIONS</code>.</p>",
         "NumberDisplayFormatConfiguration$NumberScale": "<p>Determines the number scale value of the number format.</p>"
       }
     },
@@ -6027,6 +6669,12 @@
         "DataSet$OutputColumns": "<p>The list of columns after all transforms. These columns are available in templates, analyses, and dashboards.</p>"
       }
     },
+    "OverrideDatasetParameterOperation": {
+      "base": "<p>A transform operation that overrides the dataset parameter values that are defined in another dataset.</p>",
+      "refs": {
+        "TransformOperation$OverrideDatasetParameterOperation": null
+      }
+    },
     "PageNumber": {
       "base": null,
       "refs": {
@@ -6122,6 +6770,7 @@
         "DateTimeParameterDeclaration$Name": "<p>The name of the parameter that is being declared.</p>",
         "DecimalParameterDeclaration$Name": "<p>The name of the parameter that is being declared.</p>",
         "IntegerParameterDeclaration$Name": "<p>The name of the parameter that is being declared.</p>",
+        "MappedDataSetParameter$DataSetParameterName": "<p>The name of the dataset parameter.</p>",
         "NumericEqualityFilter$ParameterName": "<p>The parameter whose value should be used for the filter value.</p>",
         "NumericRangeFilterValue$Parameter": "<p>The parameter that is used in the numeric range.</p>",
         "ParameterDateTimePickerControl$SourceParameterName": "<p>The name of the <code>ParameterDateTimePickerControl</code>.</p>",
@@ -6513,7 +7162,7 @@
         "ExasolParameters$Port": "<p>The port for the Exasol data source.</p>",
         "MariaDbParameters$Port": "<p>Port.</p>",
         "MySqlParameters$Port": "<p>Port.</p>",
-        "OracleParameters$Port": "<p>Port.</p>",
+        "OracleParameters$Port": "<p>The port.</p>",
         "PostgreSqlParameters$Port": "<p>Port.</p>",
         "PrestoParameters$Port": "<p>Port.</p>",
         "SparkParameters$Port": "<p>Port.</p>",
@@ -6615,6 +7264,18 @@
         "ProjectOperation$ProjectedColumns": "<p>Projected columns.</p>"
       }
     },
+    "PropertyRole": {
+      "base": null,
+      "refs": {
+        "NamedEntityDefinition$PropertyRole": "<p>The property role. Valid values for this structure are <code>PRIMARY</code> and <code>ID</code>.</p>"
+      }
+    },
+    "PropertyUsage": {
+      "base": null,
+      "refs": {
+        "NamedEntityDefinition$PropertyUsage": "<p>The property usage. Valid values for this structure are <code>INHERIT</code>, <code>DIMENSION</code>, and <code>MEASURE</code>.</p>"
+      }
+    },
     "PutDataSetRefreshPropertiesRequest": {
       "base": null,
       "refs": {
@@ -6712,6 +7373,12 @@
       "base": "<p>A radar chart visual.</p>",
       "refs": {
         "Visual$RadarChartVisual": "<p>A radar chart visual.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/radar-chart.html\">Using radar charts</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
+      }
+    },
+    "RangeConstant": {
+      "base": "<p>A structure that represents a range constant.</p>",
+      "refs": {
+        "TopicRangeFilterConstant$RangeConstant": "<p>The value of the constant that is used to specify the endpoints of a range filter.</p>"
       }
     },
     "RangeEndsLabelType": {
@@ -6996,8 +7663,10 @@
         "DescribeDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DescribeDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DescribeRefreshScheduleRequest$DataSetId": "<p>The ID of the dataset.</p>",
+        "DescribeTopicRefreshRequest$RefreshId": "<p>The ID of the refresh, which is performed when the topic is created or updated.</p>",
         "ListRefreshSchedulesRequest$DataSetId": "<p>The ID of the dataset.</p>",
         "PutDataSetRefreshPropertiesRequest$DataSetId": "<p>The ID of the dataset.</p>",
+        "TopicRefreshDetails$RefreshId": "<p>The ID of the refresh, which occurs as a result of topic creation or topic update.</p>",
         "UpdateDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "UpdateDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "UpdateDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
@@ -7015,12 +7684,18 @@
       "refs": {
         "CreateDataSetRequest$Name": "<p>The display name for the dataset.</p>",
         "CreateDataSourceRequest$Name": "<p>A display name for the data source.</p>",
+        "CreateVPCConnectionRequest$Name": "<p>The display name for the VPC connection.</p>",
         "DataSet$Name": "<p>A display name for the dataset.</p>",
         "DataSetSummary$Name": "<p>A display name for the dataset.</p>",
         "DataSource$Name": "<p>A display name for the data source.</p>",
         "DataSourceSummary$Name": "<p>The name of the data source.</p>",
+        "TopicDetails$Name": "<p>The name of the topic.</p>",
+        "TopicSummary$Name": "<p>The name of the topic.</p>",
         "UpdateDataSetRequest$Name": "<p>The display name for the dataset.</p>",
-        "UpdateDataSourceRequest$Name": "<p>A display name for the data source.</p>"
+        "UpdateDataSourceRequest$Name": "<p>A display name for the data source.</p>",
+        "UpdateVPCConnectionRequest$Name": "<p>The display name for the VPC connection.</p>",
+        "VPCConnection$Name": "<p>The display name for the VPC connection.</p>",
+        "VPCConnectionSummary$Name": "<p>The display name for the VPC connection.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -7054,6 +7729,7 @@
         "DescribeFolderResolvedPermissionsResponse$Permissions": "<p>Information about the permissions for the folder.</p>",
         "DescribeTemplatePermissionsResponse$Permissions": "<p>A list of resource permissions to be set on the template. </p>",
         "DescribeThemePermissionsResponse$Permissions": "<p>A list of resource permissions set on the theme. </p>",
+        "DescribeTopicPermissionsResponse$Permissions": "<p>A list of resource permissions that are configured to the topic.</p>",
         "LinkSharingConfiguration$Permissions": "<p>A structure that contains the permissions of a shareable link.</p>",
         "UpdateAnalysisPermissionsResponse$Permissions": "<p>A structure that describes the principals and the resource-level permissions on an analysis.</p>",
         "UpdateDashboardPermissionsResponse$Permissions": "<p>Information about the permissions on the dashboard.</p>",
@@ -7065,7 +7741,8 @@
         "UpdateFolderPermissionsRequest$RevokePermissions": "<p>The permissions that you want to revoke from a resource.</p>",
         "UpdateFolderPermissionsResponse$Permissions": "<p>Information about the permissions for the folder.</p>",
         "UpdateTemplatePermissionsResponse$Permissions": "<p>A list of resource permissions to be set on the template.</p>",
-        "UpdateThemePermissionsResponse$Permissions": "<p>The resulting list of resource permissions for the theme.</p>"
+        "UpdateThemePermissionsResponse$Permissions": "<p>The resulting list of resource permissions for the theme.</p>",
+        "UpdateTopicPermissionsResponse$Permissions": "<p>A list of resource permissions on the topic.</p>"
       }
     },
     "ResourceStatus": {
@@ -7143,7 +7820,9 @@
       "base": null,
       "refs": {
         "AthenaParameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific Athena data source. For example, say an account administrator has turned off all Athena access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow Athena access for the single Athena data source that is specified in the structure, even if the account-wide role forbidding Athena access is still active.</p>",
-        "S3Parameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific S3 data source. For example, say an account administrator has turned off all S3 access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow S3 access for the single S3 data source that is specified in the structure, even if the account-wide role forbidding S3 access is still active.</p>"
+        "CreateVPCConnectionRequest$RoleArn": "<p>The IAM role to associate with the VPC connection.</p>",
+        "S3Parameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific S3 data source. For example, say an account administrator has turned off all S3 access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow S3 access for the single S3 data source that is specified in the structure, even if the account-wide role forbidding S3 access is still active.</p>",
+        "UpdateVPCConnectionRequest$RoleArn": "<p>An IAM role associated with the VPC connection.</p>"
       }
     },
     "RoleName": {
@@ -7314,7 +7993,7 @@
     "ScatterPlotCategoricallyAggregatedFieldWells": {
       "base": "<p>The aggregated field well of a scatter plot.</p>",
       "refs": {
-        "ScatterPlotFieldWells$ScatterPlotCategoricallyAggregatedFieldWells": "<p>The aggregated field wells of a scatter plot. Scatter plots that have a field in the category (group/color) field will have aggregated field wells. The x and y-axes of these scatter plots are aggregated by category.</p>"
+        "ScatterPlotFieldWells$ScatterPlotCategoricallyAggregatedFieldWells": "<p>The aggregated field wells of a scatter plot. The x and y-axes of scatter plots with aggregated field wells are aggregated by category, label, or both.</p>"
       }
     },
     "ScatterPlotConfiguration": {
@@ -7332,7 +8011,7 @@
     "ScatterPlotUnaggregatedFieldWells": {
       "base": "<p>The unaggregated field wells of a scatter plot.</p>",
       "refs": {
-        "ScatterPlotFieldWells$ScatterPlotUnaggregatedFieldWells": "<p>The unaggregated field wells of a scatter plot. Scatter plots without a category field well have unaggregated field wells. The x and y-axes of these scatter plots are unaggregated.</p>"
+        "ScatterPlotFieldWells$ScatterPlotUnaggregatedFieldWells": "<p>The unaggregated field wells of a scatter plot. The x and y-axes of these scatter plots are unaggregated.</p>"
       }
     },
     "ScatterPlotVisual": {
@@ -7483,6 +8162,21 @@
         "HeaderFooterSectionConfiguration$Style": "<p>The style options of a header or footer section.</p>"
       }
     },
+    "SecurityGroupId": {
+      "base": null,
+      "refs": {
+        "SecurityGroupIdList$member": null
+      }
+    },
+    "SecurityGroupIdList": {
+      "base": null,
+      "refs": {
+        "CreateVPCConnectionRequest$SecurityGroupIds": "<p>A list of security group IDs for the VPC connection.</p>",
+        "UpdateVPCConnectionRequest$SecurityGroupIds": "<p>A list of security group IDs for the VPC connection.</p>",
+        "VPCConnection$SecurityGroupIds": "<p>The Amazon EC2 security group IDs associated with the VPC connection.</p>",
+        "VPCConnectionSummary$SecurityGroupIds": "<p>The Amazon EC2 security group IDs associated with the VPC connection.</p>"
+      }
+    },
     "SelectAllValueOptions": {
       "base": null,
       "refs": {
@@ -7511,6 +8205,19 @@
       "base": null,
       "refs": {
         "TooltipOptions$SelectedTooltipType": "<p>The selected type for the tooltip. Choose one of the following options:</p> <ul> <li> <p> <code>BASIC</code>: A basic tooltip.</p> </li> <li> <p> <code>DETAILED</code>: A detailed tooltip.</p> </li> </ul>"
+      }
+    },
+    "SemanticEntityType": {
+      "base": "<p>A structure that represents a semantic entity type.</p>",
+      "refs": {
+        "TopicNamedEntity$SemanticEntityType": "<p>The type of named entity that a topic represents.</p>"
+      }
+    },
+    "SemanticType": {
+      "base": "<p>A structure that represents a semantic type.</p>",
+      "refs": {
+        "TopicCalculatedField$SemanticType": "<p>The semantic type.</p>",
+        "TopicColumn$SemanticType": "<p>The semantic type of data contained in the column.</p>"
       }
     },
     "SensitiveDouble": {
@@ -7556,6 +8263,8 @@
       "base": null,
       "refs": {
         "DataFieldSeriesItem$FieldValue": "<p>The field value of the field that you are setting the axis binding to.</p>",
+        "SemanticType$TruthyCellValue": "<p>The semantic type truthy cell value.</p>",
+        "SemanticType$FalseyCellValue": "<p>The semantic type falsey cell value.</p>",
         "SensitiveStringList$member": null,
         "StringValueWhenUnsetConfiguration$CustomValue": "<p>A custom value that's used when the value of a parameter isn't set.</p>"
       }
@@ -7563,6 +8272,8 @@
     "SensitiveStringList": {
       "base": null,
       "refs": {
+        "SemanticType$TruthyCellValueSynonyms": "<p>The other names or aliases for the true cell value.</p>",
+        "SemanticType$FalseyCellValueSynonyms": "<p>The other names or aliases for the false cell value.</p>",
         "StringParameter$Values": "<p>The values of a string parameter.</p>"
       }
     },
@@ -8161,6 +8872,9 @@
         "CreateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateThemeResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateTopicRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateTopicResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateVPCConnectionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteAccountSubscriptionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8179,8 +8893,11 @@
         "DeleteTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteThemeResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteTopicRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteTopicResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteUserByPrincipalIdResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteUserResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteVPCConnectionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAccountSettingsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAccountSubscriptionResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8212,7 +8929,12 @@
         "DescribeThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeThemePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeThemeResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeTopicPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeTopicRefreshResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeTopicRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeTopicResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeUserResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeVPCConnectionResponse$Status": "<p>The HTTP status of the request.</p>",
         "GenerateEmbedUrlForAnonymousUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "GenerateEmbedUrlForRegisteredUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "GetDashboardEmbedUrlResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8238,8 +8960,11 @@
         "ListThemeAliasesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListThemeVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListThemesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListTopicRefreshSchedulesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListTopicsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUserGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUsersResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListVPCConnectionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "PutDataSetRefreshPropertiesResponse$Status": "<p>The HTTP status of the request.</p>",
         "RegisterUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "RestoreAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8275,7 +9000,11 @@
         "UpdateThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateThemePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateThemeResponse$Status": "<p>The HTTP status of the request.</p>",
-        "UpdateUserResponse$Status": "<p>The HTTP status of the request.</p>"
+        "UpdateTopicPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateTopicRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateTopicResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateUserResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateVPCConnectionResponse$Status": "<p>The HTTP status of the request.</p>"
       }
     },
     "String": {
@@ -8337,6 +9066,10 @@
         "CreateTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateThemeAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateThemeResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "CreateTopicRefreshScheduleRequest$DatasetName": "<p>The name of the dataset.</p>",
+        "CreateTopicRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "CreateTopicResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "CreateVPCConnectionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DashboardSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_USER</code>, that you want to use as a filter, for example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>. </p>",
         "DataSetConfiguration$Placeholder": "<p>Placeholder.</p>",
         "DataSetSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_OWNER</code>, that you want to use as a filter, for example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p>",
@@ -8362,9 +9095,13 @@
         "DeleteTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteThemeAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteThemeResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteTopicRefreshScheduleRequest$DatasetId": "<p>The ID of the dataset.</p>",
+        "DeleteTopicRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteTopicResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteUserByPrincipalIdRequest$PrincipalId": "<p>The principal ID of the user.</p>",
         "DeleteUserByPrincipalIdResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteUserResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteVPCConnectionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAccountCustomizationResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAccountSettingsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAccountSubscriptionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -8398,7 +9135,13 @@
         "DescribeThemeAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeThemePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeThemeResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeTopicPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeTopicRefreshResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeTopicRefreshScheduleRequest$DatasetId": "<p>The ID of the dataset.</p>",
+        "DescribeTopicRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeTopicResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeUserResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeVPCConnectionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DestinationParameterValueConfiguration$SourceParameterName": "<p>The source parameter name of the destination parameter.</p>",
         "DomainNotWhitelistedException$Message": null,
         "DomainNotWhitelistedException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
@@ -8491,17 +9234,26 @@
         "ListThemesRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListThemesResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListThemesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListTopicRefreshSchedulesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListTopicsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListTopicsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListTopicsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListUserGroupsRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUserGroupsResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUserGroupsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListUsersRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUsersResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUsersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListVPCConnectionsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListVPCConnectionsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListVPCConnectionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "LookbackWindow$ColumnName": "<p>The name of the lookback window column.</p>",
         "MaximumMinimumComputation$Name": "<p>The name of a computation.</p>",
         "MetricComparisonComputation$Name": "<p>The name of a computation.</p>",
         "NamespaceError$Message": "<p>The message for the error.</p>",
         "NamespaceInfoV2$CapacityRegion": "<p>The namespace Amazon Web Services Region.</p>",
+        "NetworkInterface$AvailabilityZone": "<p>The availability zone that the network interface resides in.</p>",
+        "NetworkInterface$ErrorMessage": "<p>An error message.</p>",
         "ParameterSelectableValueList$member": null,
         "PeriodOverPeriodComputation$Name": "<p>The name of a computation.</p>",
         "PeriodToDateComputation$Name": "<p>The name of a computation.</p>",
@@ -8599,17 +9351,51 @@
         "UpdateThemeAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateThemePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateThemeResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateTopicPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateTopicRefreshScheduleRequest$DatasetId": "<p>The ID of the dataset.</p>",
+        "UpdateTopicRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateTopicResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateUserRequest$Email": "<p>The email address of the user that you want to update.</p>",
         "UpdateUserRequest$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> <li> <p> <code>NONE</code>: This clears all the previously saved external login information for a user. Use the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeUser.html\">DescribeUser</a> </code> API operation to check the external login information.</p> </li> </ul>",
         "UpdateUserRequest$CustomFederationProviderUrl": "<p>The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. This parameter should only be used when <code>ExternalLoginFederationProviderType</code> parameter is set to <code>CUSTOM_OIDC</code>.</p>",
         "UpdateUserRequest$ExternalLoginId": "<p>The identity ID for a user in the external login provider.</p>",
         "UpdateUserResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateVPCConnectionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "User$Email": "<p>The user's email address.</p>",
         "User$PrincipalId": "<p>The principal ID of the user.</p>",
         "User$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let the user federate into Amazon QuickSight with an associated IAM role. The type can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider.</p> </li> </ul>",
         "User$ExternalLoginFederationProviderUrl": "<p>The URL of the external login provider.</p>",
         "User$ExternalLoginId": "<p>The identity ID for the user in the external login provider.</p>",
+        "VPCConnection$VPCId": "<p>The Amazon EC2 VPC ID associated with the VPC connection.</p>",
+        "VPCConnection$RoleArn": "<p>The ARN of the IAM role associated with the VPC connection.</p>",
+        "VPCConnectionSummary$VPCId": "<p>The Amazon EC2 VPC ID associated with the VPC connection.</p>",
+        "VPCConnectionSummary$RoleArn": "<p>The ARN of the IAM role associated with the VPC connection.</p>",
         "WaterfallChartOptions$TotalBarLabel": "<p>This option determines the total bar label of a waterfall visual.</p>"
+      }
+    },
+    "StringDatasetParameter": {
+      "base": "<p>A string parameter for a dataset.</p>",
+      "refs": {
+        "DatasetParameter$StringDatasetParameter": "<p>A string parameter that is created in the dataset.</p>"
+      }
+    },
+    "StringDatasetParameterDefaultValue": {
+      "base": "<p>The default value for the string parameter.</p>",
+      "refs": {
+        "StringDatasetParameterValueList$member": null
+      }
+    },
+    "StringDatasetParameterDefaultValues": {
+      "base": "<p>The default values of a string parameter.</p>",
+      "refs": {
+        "StringDatasetParameter$DefaultValues": "<p>A list of default values for a given string dataset parameter type. This structure only accepts static values.</p>"
+      }
+    },
+    "StringDatasetParameterValueList": {
+      "base": null,
+      "refs": {
+        "NewDefaultValues$StringStaticValues": "<p>A list of static default values for a given string parameter.</p>",
+        "StringDatasetParameterDefaultValues$StaticValues": "<p>A list of static default values for a given string parameter.</p>"
       }
     },
     "StringDefaultValueList": {
@@ -8636,8 +9422,13 @@
     "StringList": {
       "base": null,
       "refs": {
+        "CellValueSynonym$Synonyms": "<p>Other names or aliases for the cell value.</p>",
+        "CollectiveConstant$ValueList": "<p>A list of values for the collective constant.</p>",
+        "ComparativeOrder$SpecifedOrder": "<p>The list of columns to be used in the ordering.</p>",
         "GenerateEmbedUrlForAnonymousUserRequest$AllowedDomains": "<p>The domains that you want to add to the allow list for access to the generated URL that is then embedded. This optional parameter overrides the static domains that are configured in the Manage QuickSight menu in the Amazon QuickSight console. Instead, it allows only the domains that you include in this parameter. You can list up to three domains or subdomains in each API call.</p> <p>To include all subdomains under a specific domain to the allow list, use <code>*</code>. For example, <code>https://*.sapp.amazon.com</code> includes all subdomains under <code>https://sapp.amazon.com</code>.</p>",
-        "GenerateEmbedUrlForRegisteredUserRequest$AllowedDomains": "<p>The domains that you want to add to the allow list for access to the generated URL that is then embedded. This optional parameter overrides the static domains that are configured in the Manage QuickSight menu in the Amazon QuickSight console. Instead, it allows only the domains that you include in this parameter. You can list up to three domains or subdomains in each API call.</p> <p>To include all subdomains under a specific domain to the allow list, use <code>*</code>. For example, <code>https://*.sapp.amazon.com</code> includes all subdomains under <code>https://sapp.amazon.com</code>.</p>"
+        "GenerateEmbedUrlForRegisteredUserRequest$AllowedDomains": "<p>The domains that you want to add to the allow list for access to the generated URL that is then embedded. This optional parameter overrides the static domains that are configured in the Manage QuickSight menu in the Amazon QuickSight console. Instead, it allows only the domains that you include in this parameter. You can list up to three domains or subdomains in each API call.</p> <p>To include all subdomains under a specific domain to the allow list, use <code>*</code>. For example, <code>https://*.sapp.amazon.com</code> includes all subdomains under <code>https://sapp.amazon.com</code>.</p>",
+        "VPCConnection$DnsResolvers": "<p>A list of IP addresses of DNS resolver endpoints for the VPC connection.</p>",
+        "VPCConnectionSummary$DnsResolvers": "<p>A list of IP addresses of DNS resolver endpoints for the VPC connection.</p>"
       }
     },
     "StringParameter": {
@@ -8664,6 +9455,20 @@
         "StringParameterDeclaration$ValueWhenUnset": "<p>The configuration that defines the default value of a <code>String</code> parameter when a value has not been set.</p>"
       }
     },
+    "SubnetId": {
+      "base": null,
+      "refs": {
+        "NetworkInterface$SubnetId": "<p>The subnet ID associated with the network interface.</p>",
+        "SubnetIdList$member": null
+      }
+    },
+    "SubnetIdList": {
+      "base": null,
+      "refs": {
+        "CreateVPCConnectionRequest$SubnetIds": "<p>A list of subnet IDs for the VPC connection.</p>",
+        "UpdateVPCConnectionRequest$SubnetIds": "<p>A list of subnet IDs for the VPC connection.</p>"
+      }
+    },
     "SubtotalOptions": {
       "base": "<p>The subtotal options.</p>",
       "refs": {
@@ -8677,6 +9482,15 @@
         "CurrencyDisplayFormatConfiguration$Suffix": "<p>Determines the suffix value of the currency format.</p>",
         "NumberDisplayFormatConfiguration$Suffix": "<p>Determines the suffix value of the number format.</p>",
         "PercentageDisplayFormatConfiguration$Suffix": "<p>Determines the suffix value of the percentage format.</p>"
+      }
+    },
+    "Synonyms": {
+      "base": null,
+      "refs": {
+        "TopicCalculatedField$CalculatedFieldSynonyms": "<p>The other names or aliases for the calculated field.</p>",
+        "TopicColumn$ColumnSynonyms": "<p>The other names or aliases for the column.</p>",
+        "TopicFilter$FilterSynonyms": "<p>The other names or aliases for the filter.</p>",
+        "TopicNamedEntity$EntitySynonyms": "<p>The other names or aliases for the named entity.</p>"
       }
     },
     "TableAggregatedFieldWells": {
@@ -8952,6 +9766,8 @@
         "CreateNamespaceRequest$Tags": "<p>The tags that you want to associate with the namespace that you're creating.</p>",
         "CreateTemplateRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>",
         "CreateThemeRequest$Tags": "<p>A map of the key-value pairs for the resource tag or tags that you want to add to the resource.</p>",
+        "CreateTopicRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags that are assigned to the dataset.</p>",
+        "CreateVPCConnectionRequest$Tags": "<p>A map of the key-value pairs for the resource tag or tags assigned to the VPC connection.</p>",
         "ListTagsForResourceResponse$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>",
         "TagResourceRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>"
       }
@@ -9277,6 +10093,7 @@
       "refs": {
         "DataPathColor$TimeGranularity": "<p>The time granularity of the field that the color needs to be applied to.</p>",
         "DateDimensionField$DateGranularity": "<p>The date granularity of the <code>DateDimensionField</code>. Choose one of the following options:</p> <ul> <li> <p> <code>YEAR</code> </p> </li> <li> <p> <code>QUARTER</code> </p> </li> <li> <p> <code>MONTH</code> </p> </li> <li> <p> <code>WEEK</code> </p> </li> <li> <p> <code>DAY</code> </p> </li> <li> <p> <code>HOUR</code> </p> </li> <li> <p> <code>MINUTE</code> </p> </li> <li> <p> <code>SECOND</code> </p> </li> <li> <p> <code>MILLISECOND</code> </p> </li> </ul>",
+        "DateTimeDatasetParameter$TimeGranularity": "<p>The time granularity of the date time parameter.</p>",
         "DateTimeParameterDeclaration$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
         "ExcludePeriodConfiguration$Granularity": "<p>The granularity or unit (day, month, year) of the exclude period.</p>",
         "PeriodToDateComputation$PeriodTimeGranularity": "<p>The time granularity setup of period to date computation. Choose from the following options:</p> <ul> <li> <p>YEAR: Year to date.</p> </li> <li> <p>MONTH: Month to date.</p> </li> </ul>",
@@ -9353,6 +10170,11 @@
         "TimeRangeDrillDownFilter$RangeMinimum": "<p>The minimum value for the filter value range.</p>",
         "TimeRangeDrillDownFilter$RangeMaximum": "<p>The maximum value for the filter value range.</p>",
         "TimeRangeFilterValue$StaticValue": "<p>The static input value.</p>",
+        "TopicRefreshSchedule$StartingAt": "<p>The starting date and time for the refresh schedule.</p>",
+        "VPCConnection$CreatedTime": "<p>The time that the VPC connection was created.</p>",
+        "VPCConnection$LastUpdatedTime": "<p>The time that the VPC connection was last updated.</p>",
+        "VPCConnectionSummary$CreatedTime": "<p>The time that the VPC connection was created.</p>",
+        "VPCConnectionSummary$LastUpdatedTime": "<p>The time that the VPC connection was last updated.</p>",
         "WhatIfPointScenario$Date": "<p>The date that you need the forecast results for.</p>",
         "WhatIfRangeScenario$StartDate": "<p>The start date in the date range that you need the forecast results for.</p>",
         "WhatIfRangeScenario$EndDate": "<p>The end date in the date range that you need the forecast results for.</p>"
@@ -9435,6 +10257,213 @@
       "base": null,
       "refs": {
         "TopBottomMoversComputation$SortOrder": "<p>The sort order setup of the top and bottom movers computation.</p>"
+      }
+    },
+    "TopicCalculatedField": {
+      "base": "<p>A structure that represents a calculated field.</p>",
+      "refs": {
+        "TopicCalculatedFields$member": null
+      }
+    },
+    "TopicCalculatedFields": {
+      "base": null,
+      "refs": {
+        "DatasetMetadata$CalculatedFields": "<p>The list of calculated field definitions.</p>"
+      }
+    },
+    "TopicCategoryFilter": {
+      "base": "<p>A structure that represents a category filter.</p>",
+      "refs": {
+        "TopicFilter$CategoryFilter": "<p>The category filter that is associated with this filter.</p>"
+      }
+    },
+    "TopicCategoryFilterConstant": {
+      "base": "<p>A constant used in a category filter.</p>",
+      "refs": {
+        "TopicCategoryFilter$Constant": "<p>The constant used in a category filter.</p>"
+      }
+    },
+    "TopicColumn": {
+      "base": "<p>Represents a column in a dataset.</p>",
+      "refs": {
+        "TopicColumns$member": null
+      }
+    },
+    "TopicColumns": {
+      "base": null,
+      "refs": {
+        "DatasetMetadata$Columns": "<p>The list of column definitions.</p>"
+      }
+    },
+    "TopicDateRangeFilter": {
+      "base": "<p>A filter used to restrict data based on a range of dates or times.</p>",
+      "refs": {
+        "TopicFilter$DateRangeFilter": "<p>The date range filter.</p>"
+      }
+    },
+    "TopicDetails": {
+      "base": "<p>A structure that describes the details of a topic, such as its name, description, and associated data sets.</p>",
+      "refs": {
+        "CreateTopicRequest$Topic": "<p>The definition of a topic to create.</p>",
+        "DescribeTopicResponse$Topic": "<p>The definition of a topic.</p>",
+        "UpdateTopicRequest$Topic": "<p>The definition of the topic that you want to update.</p>"
+      }
+    },
+    "TopicFilter": {
+      "base": "<p>A structure that represents a filter used to select items for a topic.</p>",
+      "refs": {
+        "TopicFilters$member": null
+      }
+    },
+    "TopicFilters": {
+      "base": null,
+      "refs": {
+        "DatasetMetadata$Filters": "<p>The list of filter definitions.</p>"
+      }
+    },
+    "TopicId": {
+      "base": null,
+      "refs": {
+        "CreateTopicRefreshScheduleRequest$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "CreateTopicRefreshScheduleResponse$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "CreateTopicRequest$TopicId": "<p>The ID for the topic that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "CreateTopicResponse$TopicId": "<p>The ID for the topic that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteTopicRefreshScheduleRequest$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteTopicRefreshScheduleResponse$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteTopicRequest$TopicId": "<p>The ID of the topic that you want to delete. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteTopicResponse$TopicId": "<p>The ID of the topic that you want to delete. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeTopicPermissionsRequest$TopicId": "<p>The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeTopicPermissionsResponse$TopicId": "<p>The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeTopicRefreshRequest$TopicId": "<p>The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeTopicRefreshScheduleRequest$TopicId": "<p>The ID of the topic that contains the refresh schedule that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeTopicRefreshScheduleResponse$TopicId": "<p>The ID of the topic that contains the refresh schedule that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeTopicRequest$TopicId": "<p>The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeTopicResponse$TopicId": "<p>The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "ListTopicRefreshSchedulesRequest$TopicId": "<p>The ID for the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "ListTopicRefreshSchedulesResponse$TopicId": "<p>The ID for the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "TopicSummary$TopicId": "<p>The ID for the topic. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateTopicPermissionsRequest$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateTopicPermissionsResponse$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateTopicRefreshScheduleRequest$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateTopicRefreshScheduleResponse$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateTopicRequest$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateTopicResponse$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>"
+      }
+    },
+    "TopicNamedEntities": {
+      "base": null,
+      "refs": {
+        "DatasetMetadata$NamedEntities": "<p>The list of named entities definitions.</p>"
+      }
+    },
+    "TopicNamedEntity": {
+      "base": "<p>A structure that represents a named entity.</p>",
+      "refs": {
+        "TopicNamedEntities$member": null
+      }
+    },
+    "TopicNumericEqualityFilter": {
+      "base": "<p>A filter that filters topics based on the value of a numeric field. The filter includes only topics whose numeric field value matches the specified value.</p>",
+      "refs": {
+        "TopicFilter$NumericEqualityFilter": "<p>The numeric equality filter.</p>"
+      }
+    },
+    "TopicNumericRangeFilter": {
+      "base": "<p>A filter that filters topics based on the value of a numeric field. The filter includes only topics whose numeric field value falls within the specified range.</p>",
+      "refs": {
+        "TopicFilter$NumericRangeFilter": "<p>The numeric range filter.</p>"
+      }
+    },
+    "TopicNumericSeparatorSymbol": {
+      "base": null,
+      "refs": {
+        "DisplayFormatOptions$DecimalSeparator": "<p>Determines the decimal separator.</p>"
+      }
+    },
+    "TopicRangeFilterConstant": {
+      "base": "<p>A constant value that is used in a range filter to specify the endpoints of the range.</p>",
+      "refs": {
+        "TopicDateRangeFilter$Constant": "<p>The constant used in a date range filter.</p>",
+        "TopicNumericRangeFilter$Constant": "<p>The constant used in a numeric range filter.</p>"
+      }
+    },
+    "TopicRefreshDetails": {
+      "base": "<p>The details about the refresh of a topic.</p>",
+      "refs": {
+        "DescribeTopicRefreshResponse$RefreshDetails": "<p>Details of the refresh, which is performed when the topic is created or updated.</p>"
+      }
+    },
+    "TopicRefreshSchedule": {
+      "base": "<p>A structure that represents a topic refresh schedule.</p>",
+      "refs": {
+        "CreateTopicRefreshScheduleRequest$RefreshSchedule": "<p>The definition of a refresh schedule.</p>",
+        "DescribeTopicRefreshScheduleResponse$RefreshSchedule": "<p>The definition of a refresh schedule.</p>",
+        "TopicRefreshScheduleSummary$RefreshSchedule": "<p>The definition of a refresh schedule.</p>",
+        "UpdateTopicRefreshScheduleRequest$RefreshSchedule": "<p>The definition of a refresh schedule.</p>"
+      }
+    },
+    "TopicRefreshScheduleSummaries": {
+      "base": null,
+      "refs": {
+        "ListTopicRefreshSchedulesResponse$RefreshSchedules": "<p>The list of topic refresh schedules.</p>"
+      }
+    },
+    "TopicRefreshScheduleSummary": {
+      "base": "<p>A summary of the refresh schedule details for a dataset.</p>",
+      "refs": {
+        "TopicRefreshScheduleSummaries$member": null
+      }
+    },
+    "TopicRefreshStatus": {
+      "base": null,
+      "refs": {
+        "TopicRefreshDetails$RefreshStatus": "<p>The status of the refresh job that indicates whether the job is still running, completed successfully, or failed.</p>"
+      }
+    },
+    "TopicRelativeDateFilter": {
+      "base": "<p>A structure that represents a relative date filter.</p>",
+      "refs": {
+        "TopicFilter$RelativeDateFilter": "<p>The relative date filter.</p>"
+      }
+    },
+    "TopicRelativeDateFilterFunction": {
+      "base": null,
+      "refs": {
+        "TopicRelativeDateFilter$RelativeDateFilterFunction": "<p>The function to be used in a relative date filter to determine the range of dates to include in the results. Valid values for this structure are <code>BEFORE</code>, <code>AFTER</code>, and <code>BETWEEN</code>.</p>"
+      }
+    },
+    "TopicScheduleType": {
+      "base": null,
+      "refs": {
+        "TopicRefreshSchedule$TopicScheduleType": "<p>The type of refresh schedule. Valid values for this structure are <code>HOURLY</code>, <code>DAILY</code>, <code>WEEKLY</code>, and <code>MONTHLY</code>.</p>"
+      }
+    },
+    "TopicSingularFilterConstant": {
+      "base": "<p>A structure that represents a singular filter constant, used in filters to specify a single value to match against.</p>",
+      "refs": {
+        "TopicNumericEqualityFilter$Constant": "<p>The constant used in a numeric equality filter.</p>",
+        "TopicRelativeDateFilter$Constant": "<p>The constant used in a relative date filter.</p>"
+      }
+    },
+    "TopicSummaries": {
+      "base": null,
+      "refs": {
+        "ListTopicsResponse$TopicsSummaries": "<p>A list of topic summaries.</p>"
+      }
+    },
+    "TopicSummary": {
+      "base": "<p>A topic summary.</p>",
+      "refs": {
+        "TopicSummaries$member": null
+      }
+    },
+    "TopicTimeGranularity": {
+      "base": null,
+      "refs": {
+        "DataAggregation$DatasetRowDateGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
+        "TopicCalculatedField$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
+        "TopicColumn$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
+        "TopicRelativeDateFilter$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>"
       }
     },
     "TotalAggregationComputation": {
@@ -9522,6 +10551,13 @@
         "CastColumnTypeOperation$Format": "<p>When casting a column from string to datetime type, you can supply a string in a format supported by Amazon QuickSight to denote the source data format.</p>"
       }
     },
+    "TypeParameters": {
+      "base": null,
+      "refs": {
+        "SemanticEntityType$TypeParameters": "<p>The semantic entity type parameters.</p>",
+        "SemanticType$TypeParameters": "<p>The semantic type parameters.</p>"
+      }
+    },
     "Typography": {
       "base": "<p>Determines the typography options.</p>",
       "refs": {
@@ -9558,6 +10594,12 @@
       "base": null,
       "refs": {
         "TableUnaggregatedFieldWells$Values": "<p>The values field well for a pivot table. Values are unaggregated for an unaggregated table.</p>"
+      }
+    },
+    "UndefinedSpecifiedValueType": {
+      "base": null,
+      "refs": {
+        "ComparativeOrder$TreatUndefinedSpecifiedValues": "<p>The treat of undefined specified values. Valid values for this structure are <code>LEAST</code> and <code>MOST</code>.</p>"
       }
     },
     "UnicodeIcon": {
@@ -9801,7 +10843,9 @@
         "UpdateTemplatePermissionsRequest$GrantPermissions": "<p>A list of resource permissions to be granted on the template. </p>",
         "UpdateTemplatePermissionsRequest$RevokePermissions": "<p>A list of resource permissions to be revoked from the template. </p>",
         "UpdateThemePermissionsRequest$GrantPermissions": "<p>A list of resource permissions to be granted for the theme.</p>",
-        "UpdateThemePermissionsRequest$RevokePermissions": "<p>A list of resource permissions to be revoked from the theme.</p>"
+        "UpdateThemePermissionsRequest$RevokePermissions": "<p>A list of resource permissions to be revoked from the theme.</p>",
+        "UpdateTopicPermissionsRequest$GrantPermissions": "<p>The resource permissions that you want to grant to the topic.</p>",
+        "UpdateTopicPermissionsRequest$RevokePermissions": "<p>The resource permissions that you want to revoke from the topic.</p>"
       }
     },
     "UpdateTemplateAliasRequest": {
@@ -9864,12 +10908,52 @@
       "refs": {
       }
     },
+    "UpdateTopicPermissionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTopicPermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTopicRefreshScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTopicRefreshScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTopicRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTopicResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateUserRequest": {
       "base": null,
       "refs": {
       }
     },
     "UpdateUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVPCConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVPCConnectionResponse": {
       "base": null,
       "refs": {
       }
@@ -9919,6 +11003,63 @@
       "base": null,
       "refs": {
         "CredentialPair$Username": "<p>User name.</p>"
+      }
+    },
+    "VPCConnection": {
+      "base": "<p>The structure of a VPC connection.</p>",
+      "refs": {
+        "DescribeVPCConnectionResponse$VPCConnection": "<p>A response object that provides information for the specified VPC connection.</p>"
+      }
+    },
+    "VPCConnectionAvailabilityStatus": {
+      "base": null,
+      "refs": {
+        "CreateVPCConnectionResponse$AvailabilityStatus": "<p>The availability status of the VPC connection.</p>",
+        "DeleteVPCConnectionResponse$AvailabilityStatus": "<p>The availability status of the VPC connection.</p>",
+        "UpdateVPCConnectionResponse$AvailabilityStatus": "<p>The availability status of the VPC connection.</p>",
+        "VPCConnection$AvailabilityStatus": "<p>The availability status of the VPC connection.</p>",
+        "VPCConnectionSummary$AvailabilityStatus": "<p>The availability status of the VPC connection.</p>"
+      }
+    },
+    "VPCConnectionResourceIdRestricted": {
+      "base": null,
+      "refs": {
+        "CreateVPCConnectionRequest$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
+        "CreateVPCConnectionResponse$VPCConnectionId": "<p>The ID for the VPC connection that you're creating. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>"
+      }
+    },
+    "VPCConnectionResourceIdUnrestricted": {
+      "base": null,
+      "refs": {
+        "DeleteVPCConnectionRequest$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
+        "DeleteVPCConnectionResponse$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
+        "DescribeVPCConnectionRequest$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
+        "UpdateVPCConnectionRequest$VPCConnectionId": "<p>The ID of the VPC connection that you're updating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
+        "UpdateVPCConnectionResponse$VPCConnectionId": "<p>The ID of the VPC connection that you are updating. This ID is a unique identifier for each Amazon Web Services Region in anAmazon Web Services account.</p>",
+        "VPCConnection$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
+        "VPCConnectionSummary$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>"
+      }
+    },
+    "VPCConnectionResourceStatus": {
+      "base": null,
+      "refs": {
+        "CreateVPCConnectionResponse$CreationStatus": "<p>The status of the creation of the VPC connection.</p>",
+        "DeleteVPCConnectionResponse$DeletionStatus": "<p>The deletion status of the VPC connection.</p>",
+        "UpdateVPCConnectionResponse$UpdateStatus": "<p>The update status of the VPC connection's last update.</p>",
+        "VPCConnection$Status": "<p>The status of the VPC connection.</p>",
+        "VPCConnectionSummary$Status": "<p>The status of the VPC connection.</p>"
+      }
+    },
+    "VPCConnectionSummary": {
+      "base": "<p>The summary metadata that describes a VPC connection.</p>",
+      "refs": {
+        "VPCConnectionSummaryList$member": null
+      }
+    },
+    "VPCConnectionSummaryList": {
+      "base": null,
+      "refs": {
+        "ListVPCConnectionsResponse$VPCConnectionSummaries": "<p>A <code>VPCConnectionSummaries</code> object that returns a summary of VPC connection objects.</p>"
       }
     },
     "ValueWhenUnsetOption": {
@@ -9995,6 +11136,7 @@
         "DataLabelOptions$Visibility": "<p>Determines the visibility of the data labels.</p>",
         "DataLabelOptions$CategoryLabelVisibility": "<p>Determines the visibility of the category field labels.</p>",
         "DataLabelOptions$MeasureLabelVisibility": "<p>Determines the visibility of the measure field labels.</p>",
+        "DataLabelOptions$TotalsVisibility": "<p>Determines the visibility of the total.</p>",
         "DataPathLabelType$Visibility": "<p>The visibility of the data label.</p>",
         "DateAxisOptions$MissingDateVisibility": "<p>Determines whether or not missing dates are displayed.</p>",
         "DonutCenterOptions$LabelVisibility": "<p>Determines the visibility of the label in a donut chart. In the Amazon QuickSight console, this option is called <code>'Show total'</code>.</p>",

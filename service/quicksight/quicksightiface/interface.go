@@ -136,6 +136,18 @@ type QuickSightAPI interface {
 	CreateThemeAliasWithContext(aws.Context, *quicksight.CreateThemeAliasInput, ...request.Option) (*quicksight.CreateThemeAliasOutput, error)
 	CreateThemeAliasRequest(*quicksight.CreateThemeAliasInput) (*request.Request, *quicksight.CreateThemeAliasOutput)
 
+	CreateTopic(*quicksight.CreateTopicInput) (*quicksight.CreateTopicOutput, error)
+	CreateTopicWithContext(aws.Context, *quicksight.CreateTopicInput, ...request.Option) (*quicksight.CreateTopicOutput, error)
+	CreateTopicRequest(*quicksight.CreateTopicInput) (*request.Request, *quicksight.CreateTopicOutput)
+
+	CreateTopicRefreshSchedule(*quicksight.CreateTopicRefreshScheduleInput) (*quicksight.CreateTopicRefreshScheduleOutput, error)
+	CreateTopicRefreshScheduleWithContext(aws.Context, *quicksight.CreateTopicRefreshScheduleInput, ...request.Option) (*quicksight.CreateTopicRefreshScheduleOutput, error)
+	CreateTopicRefreshScheduleRequest(*quicksight.CreateTopicRefreshScheduleInput) (*request.Request, *quicksight.CreateTopicRefreshScheduleOutput)
+
+	CreateVPCConnection(*quicksight.CreateVPCConnectionInput) (*quicksight.CreateVPCConnectionOutput, error)
+	CreateVPCConnectionWithContext(aws.Context, *quicksight.CreateVPCConnectionInput, ...request.Option) (*quicksight.CreateVPCConnectionOutput, error)
+	CreateVPCConnectionRequest(*quicksight.CreateVPCConnectionInput) (*request.Request, *quicksight.CreateVPCConnectionOutput)
+
 	DeleteAccountCustomization(*quicksight.DeleteAccountCustomizationInput) (*quicksight.DeleteAccountCustomizationOutput, error)
 	DeleteAccountCustomizationWithContext(aws.Context, *quicksight.DeleteAccountCustomizationInput, ...request.Option) (*quicksight.DeleteAccountCustomizationOutput, error)
 	DeleteAccountCustomizationRequest(*quicksight.DeleteAccountCustomizationInput) (*request.Request, *quicksight.DeleteAccountCustomizationOutput)
@@ -208,6 +220,14 @@ type QuickSightAPI interface {
 	DeleteThemeAliasWithContext(aws.Context, *quicksight.DeleteThemeAliasInput, ...request.Option) (*quicksight.DeleteThemeAliasOutput, error)
 	DeleteThemeAliasRequest(*quicksight.DeleteThemeAliasInput) (*request.Request, *quicksight.DeleteThemeAliasOutput)
 
+	DeleteTopic(*quicksight.DeleteTopicInput) (*quicksight.DeleteTopicOutput, error)
+	DeleteTopicWithContext(aws.Context, *quicksight.DeleteTopicInput, ...request.Option) (*quicksight.DeleteTopicOutput, error)
+	DeleteTopicRequest(*quicksight.DeleteTopicInput) (*request.Request, *quicksight.DeleteTopicOutput)
+
+	DeleteTopicRefreshSchedule(*quicksight.DeleteTopicRefreshScheduleInput) (*quicksight.DeleteTopicRefreshScheduleOutput, error)
+	DeleteTopicRefreshScheduleWithContext(aws.Context, *quicksight.DeleteTopicRefreshScheduleInput, ...request.Option) (*quicksight.DeleteTopicRefreshScheduleOutput, error)
+	DeleteTopicRefreshScheduleRequest(*quicksight.DeleteTopicRefreshScheduleInput) (*request.Request, *quicksight.DeleteTopicRefreshScheduleOutput)
+
 	DeleteUser(*quicksight.DeleteUserInput) (*quicksight.DeleteUserOutput, error)
 	DeleteUserWithContext(aws.Context, *quicksight.DeleteUserInput, ...request.Option) (*quicksight.DeleteUserOutput, error)
 	DeleteUserRequest(*quicksight.DeleteUserInput) (*request.Request, *quicksight.DeleteUserOutput)
@@ -215,6 +235,10 @@ type QuickSightAPI interface {
 	DeleteUserByPrincipalId(*quicksight.DeleteUserByPrincipalIdInput) (*quicksight.DeleteUserByPrincipalIdOutput, error)
 	DeleteUserByPrincipalIdWithContext(aws.Context, *quicksight.DeleteUserByPrincipalIdInput, ...request.Option) (*quicksight.DeleteUserByPrincipalIdOutput, error)
 	DeleteUserByPrincipalIdRequest(*quicksight.DeleteUserByPrincipalIdInput) (*request.Request, *quicksight.DeleteUserByPrincipalIdOutput)
+
+	DeleteVPCConnection(*quicksight.DeleteVPCConnectionInput) (*quicksight.DeleteVPCConnectionOutput, error)
+	DeleteVPCConnectionWithContext(aws.Context, *quicksight.DeleteVPCConnectionInput, ...request.Option) (*quicksight.DeleteVPCConnectionOutput, error)
+	DeleteVPCConnectionRequest(*quicksight.DeleteVPCConnectionInput) (*request.Request, *quicksight.DeleteVPCConnectionOutput)
 
 	DescribeAccountCustomization(*quicksight.DescribeAccountCustomizationInput) (*quicksight.DescribeAccountCustomizationOutput, error)
 	DescribeAccountCustomizationWithContext(aws.Context, *quicksight.DescribeAccountCustomizationInput, ...request.Option) (*quicksight.DescribeAccountCustomizationOutput, error)
@@ -340,9 +364,29 @@ type QuickSightAPI interface {
 	DescribeThemePermissionsWithContext(aws.Context, *quicksight.DescribeThemePermissionsInput, ...request.Option) (*quicksight.DescribeThemePermissionsOutput, error)
 	DescribeThemePermissionsRequest(*quicksight.DescribeThemePermissionsInput) (*request.Request, *quicksight.DescribeThemePermissionsOutput)
 
+	DescribeTopic(*quicksight.DescribeTopicInput) (*quicksight.DescribeTopicOutput, error)
+	DescribeTopicWithContext(aws.Context, *quicksight.DescribeTopicInput, ...request.Option) (*quicksight.DescribeTopicOutput, error)
+	DescribeTopicRequest(*quicksight.DescribeTopicInput) (*request.Request, *quicksight.DescribeTopicOutput)
+
+	DescribeTopicPermissions(*quicksight.DescribeTopicPermissionsInput) (*quicksight.DescribeTopicPermissionsOutput, error)
+	DescribeTopicPermissionsWithContext(aws.Context, *quicksight.DescribeTopicPermissionsInput, ...request.Option) (*quicksight.DescribeTopicPermissionsOutput, error)
+	DescribeTopicPermissionsRequest(*quicksight.DescribeTopicPermissionsInput) (*request.Request, *quicksight.DescribeTopicPermissionsOutput)
+
+	DescribeTopicRefresh(*quicksight.DescribeTopicRefreshInput) (*quicksight.DescribeTopicRefreshOutput, error)
+	DescribeTopicRefreshWithContext(aws.Context, *quicksight.DescribeTopicRefreshInput, ...request.Option) (*quicksight.DescribeTopicRefreshOutput, error)
+	DescribeTopicRefreshRequest(*quicksight.DescribeTopicRefreshInput) (*request.Request, *quicksight.DescribeTopicRefreshOutput)
+
+	DescribeTopicRefreshSchedule(*quicksight.DescribeTopicRefreshScheduleInput) (*quicksight.DescribeTopicRefreshScheduleOutput, error)
+	DescribeTopicRefreshScheduleWithContext(aws.Context, *quicksight.DescribeTopicRefreshScheduleInput, ...request.Option) (*quicksight.DescribeTopicRefreshScheduleOutput, error)
+	DescribeTopicRefreshScheduleRequest(*quicksight.DescribeTopicRefreshScheduleInput) (*request.Request, *quicksight.DescribeTopicRefreshScheduleOutput)
+
 	DescribeUser(*quicksight.DescribeUserInput) (*quicksight.DescribeUserOutput, error)
 	DescribeUserWithContext(aws.Context, *quicksight.DescribeUserInput, ...request.Option) (*quicksight.DescribeUserOutput, error)
 	DescribeUserRequest(*quicksight.DescribeUserInput) (*request.Request, *quicksight.DescribeUserOutput)
+
+	DescribeVPCConnection(*quicksight.DescribeVPCConnectionInput) (*quicksight.DescribeVPCConnectionOutput, error)
+	DescribeVPCConnectionWithContext(aws.Context, *quicksight.DescribeVPCConnectionInput, ...request.Option) (*quicksight.DescribeVPCConnectionOutput, error)
+	DescribeVPCConnectionRequest(*quicksight.DescribeVPCConnectionInput) (*request.Request, *quicksight.DescribeVPCConnectionOutput)
 
 	GenerateEmbedUrlForAnonymousUser(*quicksight.GenerateEmbedUrlForAnonymousUserInput) (*quicksight.GenerateEmbedUrlForAnonymousUserOutput, error)
 	GenerateEmbedUrlForAnonymousUserWithContext(aws.Context, *quicksight.GenerateEmbedUrlForAnonymousUserInput, ...request.Option) (*quicksight.GenerateEmbedUrlForAnonymousUserOutput, error)
@@ -480,6 +524,17 @@ type QuickSightAPI interface {
 	ListThemesPages(*quicksight.ListThemesInput, func(*quicksight.ListThemesOutput, bool) bool) error
 	ListThemesPagesWithContext(aws.Context, *quicksight.ListThemesInput, func(*quicksight.ListThemesOutput, bool) bool, ...request.Option) error
 
+	ListTopicRefreshSchedules(*quicksight.ListTopicRefreshSchedulesInput) (*quicksight.ListTopicRefreshSchedulesOutput, error)
+	ListTopicRefreshSchedulesWithContext(aws.Context, *quicksight.ListTopicRefreshSchedulesInput, ...request.Option) (*quicksight.ListTopicRefreshSchedulesOutput, error)
+	ListTopicRefreshSchedulesRequest(*quicksight.ListTopicRefreshSchedulesInput) (*request.Request, *quicksight.ListTopicRefreshSchedulesOutput)
+
+	ListTopics(*quicksight.ListTopicsInput) (*quicksight.ListTopicsOutput, error)
+	ListTopicsWithContext(aws.Context, *quicksight.ListTopicsInput, ...request.Option) (*quicksight.ListTopicsOutput, error)
+	ListTopicsRequest(*quicksight.ListTopicsInput) (*request.Request, *quicksight.ListTopicsOutput)
+
+	ListTopicsPages(*quicksight.ListTopicsInput, func(*quicksight.ListTopicsOutput, bool) bool) error
+	ListTopicsPagesWithContext(aws.Context, *quicksight.ListTopicsInput, func(*quicksight.ListTopicsOutput, bool) bool, ...request.Option) error
+
 	ListUserGroups(*quicksight.ListUserGroupsInput) (*quicksight.ListUserGroupsOutput, error)
 	ListUserGroupsWithContext(aws.Context, *quicksight.ListUserGroupsInput, ...request.Option) (*quicksight.ListUserGroupsOutput, error)
 	ListUserGroupsRequest(*quicksight.ListUserGroupsInput) (*request.Request, *quicksight.ListUserGroupsOutput)
@@ -487,6 +542,13 @@ type QuickSightAPI interface {
 	ListUsers(*quicksight.ListUsersInput) (*quicksight.ListUsersOutput, error)
 	ListUsersWithContext(aws.Context, *quicksight.ListUsersInput, ...request.Option) (*quicksight.ListUsersOutput, error)
 	ListUsersRequest(*quicksight.ListUsersInput) (*request.Request, *quicksight.ListUsersOutput)
+
+	ListVPCConnections(*quicksight.ListVPCConnectionsInput) (*quicksight.ListVPCConnectionsOutput, error)
+	ListVPCConnectionsWithContext(aws.Context, *quicksight.ListVPCConnectionsInput, ...request.Option) (*quicksight.ListVPCConnectionsOutput, error)
+	ListVPCConnectionsRequest(*quicksight.ListVPCConnectionsInput) (*request.Request, *quicksight.ListVPCConnectionsOutput)
+
+	ListVPCConnectionsPages(*quicksight.ListVPCConnectionsInput, func(*quicksight.ListVPCConnectionsOutput, bool) bool) error
+	ListVPCConnectionsPagesWithContext(aws.Context, *quicksight.ListVPCConnectionsInput, func(*quicksight.ListVPCConnectionsOutput, bool) bool, ...request.Option) error
 
 	PutDataSetRefreshProperties(*quicksight.PutDataSetRefreshPropertiesInput) (*quicksight.PutDataSetRefreshPropertiesOutput, error)
 	PutDataSetRefreshPropertiesWithContext(aws.Context, *quicksight.PutDataSetRefreshPropertiesInput, ...request.Option) (*quicksight.PutDataSetRefreshPropertiesOutput, error)
@@ -640,9 +702,25 @@ type QuickSightAPI interface {
 	UpdateThemePermissionsWithContext(aws.Context, *quicksight.UpdateThemePermissionsInput, ...request.Option) (*quicksight.UpdateThemePermissionsOutput, error)
 	UpdateThemePermissionsRequest(*quicksight.UpdateThemePermissionsInput) (*request.Request, *quicksight.UpdateThemePermissionsOutput)
 
+	UpdateTopic(*quicksight.UpdateTopicInput) (*quicksight.UpdateTopicOutput, error)
+	UpdateTopicWithContext(aws.Context, *quicksight.UpdateTopicInput, ...request.Option) (*quicksight.UpdateTopicOutput, error)
+	UpdateTopicRequest(*quicksight.UpdateTopicInput) (*request.Request, *quicksight.UpdateTopicOutput)
+
+	UpdateTopicPermissions(*quicksight.UpdateTopicPermissionsInput) (*quicksight.UpdateTopicPermissionsOutput, error)
+	UpdateTopicPermissionsWithContext(aws.Context, *quicksight.UpdateTopicPermissionsInput, ...request.Option) (*quicksight.UpdateTopicPermissionsOutput, error)
+	UpdateTopicPermissionsRequest(*quicksight.UpdateTopicPermissionsInput) (*request.Request, *quicksight.UpdateTopicPermissionsOutput)
+
+	UpdateTopicRefreshSchedule(*quicksight.UpdateTopicRefreshScheduleInput) (*quicksight.UpdateTopicRefreshScheduleOutput, error)
+	UpdateTopicRefreshScheduleWithContext(aws.Context, *quicksight.UpdateTopicRefreshScheduleInput, ...request.Option) (*quicksight.UpdateTopicRefreshScheduleOutput, error)
+	UpdateTopicRefreshScheduleRequest(*quicksight.UpdateTopicRefreshScheduleInput) (*request.Request, *quicksight.UpdateTopicRefreshScheduleOutput)
+
 	UpdateUser(*quicksight.UpdateUserInput) (*quicksight.UpdateUserOutput, error)
 	UpdateUserWithContext(aws.Context, *quicksight.UpdateUserInput, ...request.Option) (*quicksight.UpdateUserOutput, error)
 	UpdateUserRequest(*quicksight.UpdateUserInput) (*request.Request, *quicksight.UpdateUserOutput)
+
+	UpdateVPCConnection(*quicksight.UpdateVPCConnectionInput) (*quicksight.UpdateVPCConnectionOutput, error)
+	UpdateVPCConnectionWithContext(aws.Context, *quicksight.UpdateVPCConnectionInput, ...request.Option) (*quicksight.UpdateVPCConnectionOutput, error)
+	UpdateVPCConnectionRequest(*quicksight.UpdateVPCConnectionInput) (*request.Request, *quicksight.UpdateVPCConnectionOutput)
 }
 
 var _ QuickSightAPI = (*quicksight.QuickSight)(nil)

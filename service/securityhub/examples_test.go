@@ -1302,6 +1302,48 @@ func ExampleSecurityHub_GetFindingAggregator_shared00() {
 	fmt.Println(result)
 }
 
+// To get finding history
+// The following example retrieves the history of the specified finding during the specified
+// time frame. If the time frame permits, Security Hub returns finding history for the
+// last 90 days.
+func ExampleSecurityHub_GetFindingHistory_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.GetFindingHistoryInput{
+		EndTime: parseTime("2006-01-02T15:04:05.999999999Z", "2021-09-31T15:53:35.573Z"),
+		FindingIdentifier: &securityhub.AwsSecurityFindingIdentifier{
+			Id:         aws.String("a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"),
+			ProductArn: aws.String("arn:aws:securityhub:us-west-2:123456789012:product/123456789012/default"),
+		},
+		MaxResults: aws.Int64(2),
+		StartTime:  parseTime("2006-01-02T15:04:05.999999999Z", "2021-09-30T15:53:35.573Z"),
+	}
+
+	result, err := svc.GetFindingHistory(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To get a list of findings
 // The following example returns a filtered and sorted list of Security Hub findings.
 func ExampleSecurityHub_GetFindings_shared00() {

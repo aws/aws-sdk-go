@@ -1556,9 +1556,8 @@ func (c *Connect) CreateEvaluationFormRequest(input *CreateEvaluationFormInput) 
 //
 // Creates an evaluation form in the specified Amazon Connect instance. The
 // form can be used to define questions related to agent performance, and create
-// sections to organize such questions. An evaluation form must have a unique
-// title within an instance. Question and section identifiers cannot be duplicated
-// within the same evaluation form.
+// sections to organize such questions. Question and section identifiers cannot
+// be duplicated within the same evaluation form.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1959,9 +1958,6 @@ func (c *Connect) CreateParticipantRequest(input *CreateParticipantInput) (req *
 //
 //   - InvalidRequestException
 //     The request is not valid.
-//
-//   - InvalidParameterException
-//     One or more of the specified parameters are not valid.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -17579,9 +17575,8 @@ func (c *Connect) UpdateEvaluationFormRequest(input *UpdateEvaluationFormInput) 
 // UpdateEvaluationForm API operation for Amazon Connect Service.
 //
 // Updates details about a specific evaluation form version in the specified
-// Amazon Connect instance. An evaluation form must have a unique title within
-// an instance. Question and section identifiers cannot be duplicated within
-// the same evaluation form.
+// Amazon Connect instance. Question and section identifiers cannot be duplicated
+// within the same evaluation form.
 //
 // This operation does not support partial updates. Instead it does a full update
 // of evaluation form content.
@@ -23706,7 +23701,7 @@ type CreateEvaluationFormInput struct {
 	// A scoring strategy of the evaluation form.
 	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
 
-	// A unique title of the evaluation form.
+	// A title of the evaluation form.
 	//
 	// Title is a required field
 	Title *string `type:"string" required:"true"`
@@ -32147,7 +32142,7 @@ type EvaluationForm struct {
 	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// A unique title of the evaluation form.
+	// A title of the evaluation form.
 	//
 	// Title is a required field
 	Title *string `type:"string" required:"true"`
@@ -32287,7 +32282,7 @@ type EvaluationFormContent struct {
 	// A scoring strategy of the evaluation form.
 	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
 
-	// A unique title of the evaluation form.
+	// A title of the evaluation form.
 	//
 	// Title is a required field
 	Title *string `type:"string" required:"true"`
@@ -33316,7 +33311,7 @@ type EvaluationFormSummary struct {
 	// LatestVersion is a required field
 	LatestVersion *int64 `min:"1" type:"integer" required:"true"`
 
-	// A unique title of the evaluation form.
+	// A title of the evaluation form.
 	//
 	// Title is a required field
 	Title *string `type:"string" required:"true"`
@@ -33694,7 +33689,7 @@ type EvaluationSummary struct {
 	// EvaluationFormId is a required field
 	EvaluationFormId *string `min:"1" type:"string" required:"true"`
 
-	// A unique title of the evaluation form.
+	// A title of the evaluation form.
 	//
 	// EvaluationFormTitle is a required field
 	EvaluationFormTitle *string `type:"string" required:"true"`
@@ -43031,10 +43026,10 @@ func (s *NumberReference) SetValue(v string) *NumberReference {
 //   - Duration labels, such as NON_TALK_TIME, CONTACT_DURATION, AGENT_INTERACTION_DURATION,
 //     CUSTOMER_HOLD_TIME have a minimum value of 0 and maximum value of 28800.
 //
-//   - Percantages have a minimum value of 0 and maximum value of 100.
+//   - Percentages have a minimum value of 0 and maximum value of 100.
 //
 //   - NUMBER_OF_INTERRUPTIONS has a minimum value of 0 and maximum value of
-//     100.
+//     1000.
 type NumericQuestionPropertyValueAutomation struct {
 	_ struct{} `type:"structure"`
 
@@ -48024,7 +48019,7 @@ type SingleSelectQuestionRuleCategoryAutomation struct {
 	// Condition is a required field
 	Condition *string `type:"string" required:"true" enum:"SingleSelectQuestionRuleCategoryAutomationCondition"`
 
-	// The identifier of the answer option tha
+	// The identifier of the answer option.
 	//
 	// OptionRefId is a required field
 	OptionRefId *string `type:"string" required:"true"`
@@ -52320,7 +52315,7 @@ type UpdateEvaluationFormInput struct {
 	// A scoring strategy of the evaluation form.
 	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
 
-	// A unique title of the evaluation form.
+	// A title of the evaluation form.
 	//
 	// Title is a required field
 	Title *string `type:"string" required:"true"`

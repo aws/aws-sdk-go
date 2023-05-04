@@ -591,6 +591,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetFindingHistory":{
+      "name":"GetFindingHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/findingHistory/get"
+      },
+      "input":{"shape":"GetFindingHistoryRequest"},
+      "output":{"shape":"GetFindingHistoryResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "GetFindings":{
       "name":"GetFindings",
       "http":{
@@ -6788,6 +6803,47 @@
       "type":"list",
       "member":{"shape":"FindingAggregator"}
     },
+    "FindingHistoryRecord":{
+      "type":"structure",
+      "members":{
+        "FindingIdentifier":{"shape":"AwsSecurityFindingIdentifier"},
+        "UpdateTime":{"shape":"Timestamp"},
+        "FindingCreated":{"shape":"Boolean"},
+        "UpdateSource":{"shape":"FindingHistoryUpdateSource"},
+        "Updates":{"shape":"FindingHistoryUpdatesList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "FindingHistoryRecordList":{
+      "type":"list",
+      "member":{"shape":"FindingHistoryRecord"}
+    },
+    "FindingHistoryUpdate":{
+      "type":"structure",
+      "members":{
+        "UpdatedField":{"shape":"NonEmptyString"},
+        "OldValue":{"shape":"NonEmptyString"},
+        "NewValue":{"shape":"NonEmptyString"}
+      }
+    },
+    "FindingHistoryUpdateSource":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"FindingHistoryUpdateSourceType"},
+        "Identity":{"shape":"NonEmptyString"}
+      }
+    },
+    "FindingHistoryUpdateSourceType":{
+      "type":"string",
+      "enum":[
+        "BATCH_UPDATE_FINDINGS",
+        "BATCH_IMPORT_FINDINGS"
+      ]
+    },
+    "FindingHistoryUpdatesList":{
+      "type":"list",
+      "member":{"shape":"FindingHistoryUpdate"}
+    },
     "FindingProviderFields":{
       "type":"structure",
       "members":{
@@ -6898,6 +6954,24 @@
         "FindingAggregationRegion":{"shape":"NonEmptyString"},
         "RegionLinkingMode":{"shape":"NonEmptyString"},
         "Regions":{"shape":"StringList"}
+      }
+    },
+    "GetFindingHistoryRequest":{
+      "type":"structure",
+      "required":["FindingIdentifier"],
+      "members":{
+        "FindingIdentifier":{"shape":"AwsSecurityFindingIdentifier"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "GetFindingHistoryResponse":{
+      "type":"structure",
+      "members":{
+        "Records":{"shape":"FindingHistoryRecordList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "GetFindingsRequest":{

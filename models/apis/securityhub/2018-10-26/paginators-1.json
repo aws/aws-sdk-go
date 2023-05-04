@@ -30,6 +30,12 @@
       "limit_key": "MaxResults",
       "result_key": "StandardsSubscriptions"
     },
+    "GetFindingHistory": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Records"
+    },
     "GetFindings": {
       "input_token": "NextToken",
       "output_token": "NextToken",

@@ -34374,6 +34374,75 @@ const (
 
 	// ResourceTypeAwsConnectPhoneNumber is a ResourceType enum value
 	ResourceTypeAwsConnectPhoneNumber = "AWS::Connect::PhoneNumber"
+
+	// ResourceTypeAwsAppConfigDeploymentStrategy is a ResourceType enum value
+	ResourceTypeAwsAppConfigDeploymentStrategy = "AWS::AppConfig::DeploymentStrategy"
+
+	// ResourceTypeAwsAppFlowFlow is a ResourceType enum value
+	ResourceTypeAwsAppFlowFlow = "AWS::AppFlow::Flow"
+
+	// ResourceTypeAwsAuditManagerAssessment is a ResourceType enum value
+	ResourceTypeAwsAuditManagerAssessment = "AWS::AuditManager::Assessment"
+
+	// ResourceTypeAwsCloudWatchMetricStream is a ResourceType enum value
+	ResourceTypeAwsCloudWatchMetricStream = "AWS::CloudWatch::MetricStream"
+
+	// ResourceTypeAwsDeviceFarmInstanceProfile is a ResourceType enum value
+	ResourceTypeAwsDeviceFarmInstanceProfile = "AWS::DeviceFarm::InstanceProfile"
+
+	// ResourceTypeAwsDeviceFarmProject is a ResourceType enum value
+	ResourceTypeAwsDeviceFarmProject = "AWS::DeviceFarm::Project"
+
+	// ResourceTypeAwsEc2Ec2fleet is a ResourceType enum value
+	ResourceTypeAwsEc2Ec2fleet = "AWS::EC2::EC2Fleet"
+
+	// ResourceTypeAwsEc2SubnetRouteTableAssociation is a ResourceType enum value
+	ResourceTypeAwsEc2SubnetRouteTableAssociation = "AWS::EC2::SubnetRouteTableAssociation"
+
+	// ResourceTypeAwsEcrPullThroughCacheRule is a ResourceType enum value
+	ResourceTypeAwsEcrPullThroughCacheRule = "AWS::ECR::PullThroughCacheRule"
+
+	// ResourceTypeAwsGroundStationConfig is a ResourceType enum value
+	ResourceTypeAwsGroundStationConfig = "AWS::GroundStation::Config"
+
+	// ResourceTypeAwsImageBuilderImagePipeline is a ResourceType enum value
+	ResourceTypeAwsImageBuilderImagePipeline = "AWS::ImageBuilder::ImagePipeline"
+
+	// ResourceTypeAwsIoTFleetMetric is a ResourceType enum value
+	ResourceTypeAwsIoTFleetMetric = "AWS::IoT::FleetMetric"
+
+	// ResourceTypeAwsIoTwirelessServiceProfile is a ResourceType enum value
+	ResourceTypeAwsIoTwirelessServiceProfile = "AWS::IoTWireless::ServiceProfile"
+
+	// ResourceTypeAwsNetworkManagerDevice is a ResourceType enum value
+	ResourceTypeAwsNetworkManagerDevice = "AWS::NetworkManager::Device"
+
+	// ResourceTypeAwsNetworkManagerGlobalNetwork is a ResourceType enum value
+	ResourceTypeAwsNetworkManagerGlobalNetwork = "AWS::NetworkManager::GlobalNetwork"
+
+	// ResourceTypeAwsNetworkManagerLink is a ResourceType enum value
+	ResourceTypeAwsNetworkManagerLink = "AWS::NetworkManager::Link"
+
+	// ResourceTypeAwsNetworkManagerSite is a ResourceType enum value
+	ResourceTypeAwsNetworkManagerSite = "AWS::NetworkManager::Site"
+
+	// ResourceTypeAwsPanoramaPackage is a ResourceType enum value
+	ResourceTypeAwsPanoramaPackage = "AWS::Panorama::Package"
+
+	// ResourceTypeAwsPinpointApp is a ResourceType enum value
+	ResourceTypeAwsPinpointApp = "AWS::Pinpoint::App"
+
+	// ResourceTypeAwsRedshiftScheduledAction is a ResourceType enum value
+	ResourceTypeAwsRedshiftScheduledAction = "AWS::Redshift::ScheduledAction"
+
+	// ResourceTypeAwsRoute53resolverFirewallRuleGroupAssociation is a ResourceType enum value
+	ResourceTypeAwsRoute53resolverFirewallRuleGroupAssociation = "AWS::Route53Resolver::FirewallRuleGroupAssociation"
+
+	// ResourceTypeAwsSageMakerAppImageConfig is a ResourceType enum value
+	ResourceTypeAwsSageMakerAppImageConfig = "AWS::SageMaker::AppImageConfig"
+
+	// ResourceTypeAwsSageMakerImage is a ResourceType enum value
+	ResourceTypeAwsSageMakerImage = "AWS::SageMaker::Image"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -34653,6 +34722,29 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsCustomerProfilesDomain,
 		ResourceTypeAwsAutoScalingWarmPool,
 		ResourceTypeAwsConnectPhoneNumber,
+		ResourceTypeAwsAppConfigDeploymentStrategy,
+		ResourceTypeAwsAppFlowFlow,
+		ResourceTypeAwsAuditManagerAssessment,
+		ResourceTypeAwsCloudWatchMetricStream,
+		ResourceTypeAwsDeviceFarmInstanceProfile,
+		ResourceTypeAwsDeviceFarmProject,
+		ResourceTypeAwsEc2Ec2fleet,
+		ResourceTypeAwsEc2SubnetRouteTableAssociation,
+		ResourceTypeAwsEcrPullThroughCacheRule,
+		ResourceTypeAwsGroundStationConfig,
+		ResourceTypeAwsImageBuilderImagePipeline,
+		ResourceTypeAwsIoTFleetMetric,
+		ResourceTypeAwsIoTwirelessServiceProfile,
+		ResourceTypeAwsNetworkManagerDevice,
+		ResourceTypeAwsNetworkManagerGlobalNetwork,
+		ResourceTypeAwsNetworkManagerLink,
+		ResourceTypeAwsNetworkManagerSite,
+		ResourceTypeAwsPanoramaPackage,
+		ResourceTypeAwsPinpointApp,
+		ResourceTypeAwsRedshiftScheduledAction,
+		ResourceTypeAwsRoute53resolverFirewallRuleGroupAssociation,
+		ResourceTypeAwsSageMakerAppImageConfig,
+		ResourceTypeAwsSageMakerImage,
 	}
 }
 

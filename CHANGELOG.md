@@ -1,3 +1,27 @@
+Release v1.44.257 (2023-05-04)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/connect`: Updates service API and documentation
+* `service/ecs`: Updates service API
+  * Documentation update for new error type NamespaceNotFoundException for CreateCluster and UpdateCluster
+* `service/monitoring`: Updates service API and documentation
+  * Adds support for filtering by metric names in CloudWatch Metric Streams.
+* `service/network-firewall`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * Add support for Topic, Dataset parameters and VPC
+* `service/rekognition`: Updates service API and documentation
+  * This release adds a new attribute FaceOccluded. Additionally, you can now select attributes individually (e.g. ["DEFAULT", "FACE_OCCLUDED", "AGE_RANGE"] instead of ["ALL"]), which can reduce response time.
+* `service/s3`: Updates service documentation and examples
+  * Documentation updates for Amazon S3
+* `service/sagemaker`: Updates service API
+  * We added support for ml.inf2 and ml.trn1 family of instances on Amazon SageMaker for deploying machine learning (ML) models for Real-time and Asynchronous inference. You can use these instances to achieve high performance at a low cost for generative artificial intelligence (AI) models.
+* `service/securityhub`: Updates service API, documentation, paginators, and examples
+* `service/sqs`: Updates service API, documentation, and paginators
+  * This release enables customers to call SQS using AWS JSON-1.0 protocol.
+
 Release v1.44.256 (2023-05-03)
 ===
 
