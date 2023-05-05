@@ -32,6 +32,7 @@
     "ListMembers": "<p>List members associated with the Amazon Inspector delegated administrator for your organization.</p>",
     "ListTagsForResource": "<p>Lists all tags attached to a given resource.</p>",
     "ListUsageTotals": "<p>Lists the Amazon Inspector usage totals over the last 30 days.</p>",
+    "SearchVulnerabilities": "<p>Lists Amazon Inspector coverage details for a specific vulnerability.</p>",
     "TagResource": "<p>Adds tags to a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateConfiguration": "<p>Updates setting configurations for your Amazon Inspector account. When you use this API as an Amazon Inspector delegated administrator this updates the setting for all accounts you manage. Member accounts in an organization cannot update this setting.</p>",
@@ -237,6 +238,12 @@
       "refs": {
       }
     },
+    "AtigData": {
+      "base": "<p>The Amazon Web Services Threat Intel Group (ATIG) details for a specific vulnerability.</p>",
+      "refs": {
+        "Vulnerability$atigData": "<p>An object that contains information about the Amazon Web Services Threat Intel Group (ATIG) details for the vulnerability.</p>"
+      }
+    },
     "AutoEnable": {
       "base": "<p>Represents which scan types are automatically enabled for new members of your Amazon Inspector organization.</p>",
       "refs": {
@@ -352,6 +359,30 @@
     "CancelFindingsReportResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CisaAction": {
+      "base": null,
+      "refs": {
+        "CisaData$action": "<p>The remediation action recommended by CISA for this vulnerability.</p>"
+      }
+    },
+    "CisaData": {
+      "base": "<p>The Cybersecurity and Infrastructure Security Agency (CISA) details for a specific vulnerability.</p>",
+      "refs": {
+        "Vulnerability$cisaData": "<p>An object that contains the Cybersecurity and Infrastructure Security Agency (CISA) details for the vulnerability.</p>"
+      }
+    },
+    "CisaDateAdded": {
+      "base": null,
+      "refs": {
+        "CisaData$dateAdded": "<p>The date and time CISA added this vulnerability to their catalogue.</p>"
+      }
+    },
+    "CisaDateDue": {
+      "base": null,
+      "refs": {
+        "CisaData$dateDue": "<p>The date and time CISA expects a fix to have been provided vulnerability.</p>"
       }
     },
     "ClientToken": {
@@ -493,6 +524,42 @@
         "Usage$currency": "<p>The currency type used when calculating usage data.</p>"
       }
     },
+    "Cvss2": {
+      "base": "<p>The Common Vulnerability Scoring System (CVSS) version 2 details for the vulnerability.</p>",
+      "refs": {
+        "Vulnerability$cvss2": "<p>An object that contains the Common Vulnerability Scoring System (CVSS) Version 2 details for the vulnerability.</p>"
+      }
+    },
+    "Cvss2BaseScore": {
+      "base": null,
+      "refs": {
+        "Cvss2$baseScore": "<p>The CVSS v2 base score for the vulnerability.</p>"
+      }
+    },
+    "Cvss2ScoringVector": {
+      "base": null,
+      "refs": {
+        "Cvss2$scoringVector": "<p>The scoring vector associated with the CVSS v2 score.</p>"
+      }
+    },
+    "Cvss3": {
+      "base": "<p>The Common Vulnerability Scoring System (CVSS) version 3 details for the vulnerability.</p>",
+      "refs": {
+        "Vulnerability$cvss3": "<p>An object that contains the Common Vulnerability Scoring System (CVSS) Version 3 details for the vulnerability.</p>"
+      }
+    },
+    "Cvss3BaseScore": {
+      "base": null,
+      "refs": {
+        "Cvss3$baseScore": "<p>The CVSS v3 base score for the vulnerability.</p>"
+      }
+    },
+    "Cvss3ScoringVector": {
+      "base": null,
+      "refs": {
+        "Cvss3$scoringVector": "<p>The scoring vector associated with the CVSS v3 score.</p>"
+      }
+    },
     "CvssScore": {
       "base": "<p>The CVSS score for a finding.</p>",
       "refs": {
@@ -521,6 +588,18 @@
       "base": null,
       "refs": {
         "PackageVulnerabilityDetails$cvss": "<p>An object that contains details about the CVSS score of a finding.</p>"
+      }
+    },
+    "Cwe": {
+      "base": null,
+      "refs": {
+        "Cwes$member": null
+      }
+    },
+    "Cwes": {
+      "base": null,
+      "refs": {
+        "Vulnerability$cwes": "<p>The Common Weakness Enumeration (CWE) associated with the vulnerability.</p>"
       }
     },
     "DateFilter": {
@@ -606,6 +685,12 @@
       "refs": {
         "CreateFindingsReportRequest$s3Destination": "<p>The Amazon S3 export destination for the report.</p>",
         "GetFindingsReportStatusResponse$destination": "<p>The destination of the report.</p>"
+      }
+    },
+    "DetectionPlatforms": {
+      "base": null,
+      "refs": {
+        "Vulnerability$detectionPlatforms": "<p>Platforms that the vulnerability can be detected on.</p>"
       }
     },
     "DisableDelegatedAdminAccountRequest": {
@@ -767,6 +852,18 @@
       "refs": {
       }
     },
+    "Epss": {
+      "base": "<p>Details about the Exploit Prediction Scoring System (EPSS) score.</p>",
+      "refs": {
+        "Vulnerability$epss": "<p>An object that contains the Exploit Prediction Scoring System (EPSS) score.</p>"
+      }
+    },
+    "EpssScore": {
+      "base": null,
+      "refs": {
+        "Epss$score": "<p>The Exploit Prediction Scoring System (EPSS) score.</p>"
+      }
+    },
     "ErrorCode": {
       "base": null,
       "refs": {
@@ -790,6 +887,12 @@
       "base": null,
       "refs": {
         "Finding$exploitAvailable": "<p>If a finding discovered in your environment has an exploit available.</p>"
+      }
+    },
+    "ExploitObserved": {
+      "base": "<p>Contains information on when this exploit was observed.</p>",
+      "refs": {
+        "Vulnerability$exploitObserved": "<p>An object that contains details on when the exploit was observed.</p>"
       }
     },
     "ExploitabilityDetails": {
@@ -969,6 +1072,13 @@
       "base": null,
       "refs": {
         "FindingTypeAggregation$sortBy": "<p>The value to sort results by.</p>"
+      }
+    },
+    "FirstSeen": {
+      "base": null,
+      "refs": {
+        "AtigData$firstSeen": "<p>The date and time this vulnerability was first observed.</p>",
+        "ExploitObserved$firstSeen": "<p>The date an time when the exploit was first seen.</p>"
       }
     },
     "FixAvailable": {
@@ -1225,6 +1335,13 @@
       "base": "<p>The VPC security groups and subnets that are attached to an AWS Lambda function. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html\">VPC Settings</a>.</p>",
       "refs": {
         "AwsLambdaFunctionDetails$vpcConfig": "<p>The AWS Lambda function's networking configuration.</p>"
+      }
+    },
+    "LastSeen": {
+      "base": null,
+      "refs": {
+        "AtigData$lastSeen": "<p>The date and time this vulnerability was last observed.</p>",
+        "ExploitObserved$lastSeen": "<p>The date an time when the exploit was last seen.</p>"
       }
     },
     "LayerList": {
@@ -1524,7 +1641,9 @@
         "ListFindingsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListFindingsResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListMembersRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
-        "ListMembersResponse$nextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>"
+        "ListMembersResponse$nextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
+        "SearchVulnerabilitiesRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "SearchVulnerabilitiesResponse$nextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>"
       }
     },
     "NonEmptyString": {
@@ -1552,6 +1671,7 @@
         "CvssScoreDetails$scoreSource": "<p>The source for the CVSS score.</p>",
         "CvssScoreDetails$scoringVector": "<p>The vector for the CVSS score.</p>",
         "CvssScoreDetails$version": "<p>The CVSS version used in scoring.</p>",
+        "DetectionPlatforms$member": null,
         "Ec2InstanceAggregationResponse$instanceId": "<p>The Amazon EC2 instance ID.</p>",
         "FailedAccount$errorMessage": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
         "FailedMemberAccountEc2DeepInspectionStatusState$errorMessage": "<p>The error message explaining why the account failed to activate Amazon Inspector deep inspection.</p>",
@@ -1579,7 +1699,8 @@
         "State$errorMessage": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
         "StringList$member": null,
         "TitleAggregationResponse$title": "<p>The title that the findings were aggregated on.</p>",
-        "UpdateEc2DeepInspectionConfigurationResponse$errorMessage": "<p>An error message explaining why new Amazon Inspector deep inspection custom paths could not be added.</p>"
+        "UpdateEc2DeepInspectionConfigurationResponse$errorMessage": "<p>An error message explaining why new Amazon Inspector deep inspection custom paths could not be added.</p>",
+        "Vulnerability$id": "<p>The ID for the specific vulnerability.</p>"
       }
     },
     "NonEmptyStringList": {
@@ -1761,6 +1882,18 @@
         "Remediation$recommendation": "<p>An object that contains information about the recommended course of action to remediate the finding.</p>"
       }
     },
+    "RelatedVulnerabilities": {
+      "base": null,
+      "refs": {
+        "Vulnerability$relatedVulnerabilities": "<p>A list of related vulnerabilities.</p>"
+      }
+    },
+    "RelatedVulnerability": {
+      "base": null,
+      "refs": {
+        "RelatedVulnerabilities$member": null
+      }
+    },
     "RelationshipStatus": {
       "base": null,
       "refs": {
@@ -1904,6 +2037,22 @@
       "base": null,
       "refs": {
         "CoveredResource$scanType": "<p>The Amazon Inspector scan type covering the resource.</p>"
+      }
+    },
+    "SearchVulnerabilitiesFilterCriteria": {
+      "base": "<p>Details on the criteria used to define the filter for a vulnerability search. </p>",
+      "refs": {
+        "SearchVulnerabilitiesRequest$filterCriteria": "<p>The criteria used to filter the results of a vulnerability search.</p>"
+      }
+    },
+    "SearchVulnerabilitiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchVulnerabilitiesResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "SecurityGroupId": {
@@ -2196,6 +2345,18 @@
       "refs": {
       }
     },
+    "Target": {
+      "base": null,
+      "refs": {
+        "Targets$member": null
+      }
+    },
+    "Targets": {
+      "base": null,
+      "refs": {
+        "AtigData$targets": "<p>The commercial sectors this vulnerability targets.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>The limit on the number of requests per second was exceeded.</p>",
       "refs": {
@@ -2227,6 +2388,18 @@
       "base": null,
       "refs": {
         "TitleAggregation$sortBy": "<p>The value to sort results by.</p>"
+      }
+    },
+    "Ttp": {
+      "base": null,
+      "refs": {
+        "Ttps$member": null
+      }
+    },
+    "Ttps": {
+      "base": null,
+      "refs": {
+        "AtigData$ttps": "<p>The <a href=\"https://attack.mitre.org/\">MITRE ATT&amp;CK</a> tactics, techniques, and procedures (TTPs) associated with vulnerability.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -2360,6 +2533,24 @@
         "ValidationException$reason": "<p>The reason for the validation failure.</p>"
       }
     },
+    "VendorCreatedAt": {
+      "base": null,
+      "refs": {
+        "Vulnerability$vendorCreatedAt": "<p>The date and time when the vendor created this vulnerability.</p>"
+      }
+    },
+    "VendorSeverity": {
+      "base": null,
+      "refs": {
+        "Vulnerability$vendorSeverity": "<p>The severity assigned by the vendor.</p>"
+      }
+    },
+    "VendorUpdatedAt": {
+      "base": null,
+      "refs": {
+        "Vulnerability$vendorUpdatedAt": "<p>The date and time when the vendor last updated this vulnerability.</p>"
+      }
+    },
     "Version": {
       "base": null,
       "refs": {
@@ -2370,6 +2561,36 @@
       "base": null,
       "refs": {
         "LambdaVpcConfig$vpcId": "<p>The ID of the VPC.</p>"
+      }
+    },
+    "VulnId": {
+      "base": null,
+      "refs": {
+        "VulnIdList$member": null
+      }
+    },
+    "VulnIdList": {
+      "base": null,
+      "refs": {
+        "SearchVulnerabilitiesFilterCriteria$vulnerabilityIds": "<p>The IDs for specific vulnerabilities.</p>"
+      }
+    },
+    "Vulnerabilities": {
+      "base": null,
+      "refs": {
+        "SearchVulnerabilitiesResponse$vulnerabilities": "<p>Details about the listed vulnerability.</p>"
+      }
+    },
+    "Vulnerability": {
+      "base": "<p>Contains details about a specific vulnerability Amazon Inspector can detect.</p>",
+      "refs": {
+        "Vulnerabilities$member": null
+      }
+    },
+    "VulnerabilityDescription": {
+      "base": null,
+      "refs": {
+        "Vulnerability$description": "<p>A description of the vulnerability.</p>"
       }
     },
     "VulnerabilityId": {
@@ -2383,6 +2604,30 @@
       "base": null,
       "refs": {
         "PackageVulnerabilityDetails$relatedVulnerabilities": "<p>One or more vulnerabilities related to the one identified in this finding.</p>"
+      }
+    },
+    "VulnerabilityReferenceUrl": {
+      "base": null,
+      "refs": {
+        "VulnerabilityReferenceUrls$member": null
+      }
+    },
+    "VulnerabilityReferenceUrls": {
+      "base": null,
+      "refs": {
+        "Vulnerability$referenceUrls": "<p>Links to various resources with more information on this vulnerability. </p>"
+      }
+    },
+    "VulnerabilitySource": {
+      "base": null,
+      "refs": {
+        "Vulnerability$source": "<p>The source of the vulnerability information.</p>"
+      }
+    },
+    "VulnerabilitySourceUrl": {
+      "base": null,
+      "refs": {
+        "Vulnerability$sourceUrl": "<p>A link to the official source material for this vulnerability.</p>"
       }
     },
     "VulnerablePackage": {

@@ -207,6 +207,13 @@ type Inspector2API interface {
 	ListUsageTotalsPages(*inspector2.ListUsageTotalsInput, func(*inspector2.ListUsageTotalsOutput, bool) bool) error
 	ListUsageTotalsPagesWithContext(aws.Context, *inspector2.ListUsageTotalsInput, func(*inspector2.ListUsageTotalsOutput, bool) bool, ...request.Option) error
 
+	SearchVulnerabilities(*inspector2.SearchVulnerabilitiesInput) (*inspector2.SearchVulnerabilitiesOutput, error)
+	SearchVulnerabilitiesWithContext(aws.Context, *inspector2.SearchVulnerabilitiesInput, ...request.Option) (*inspector2.SearchVulnerabilitiesOutput, error)
+	SearchVulnerabilitiesRequest(*inspector2.SearchVulnerabilitiesInput) (*request.Request, *inspector2.SearchVulnerabilitiesOutput)
+
+	SearchVulnerabilitiesPages(*inspector2.SearchVulnerabilitiesInput, func(*inspector2.SearchVulnerabilitiesOutput, bool) bool) error
+	SearchVulnerabilitiesPagesWithContext(aws.Context, *inspector2.SearchVulnerabilitiesInput, func(*inspector2.SearchVulnerabilitiesOutput, bool) bool, ...request.Option) error
+
 	TagResource(*inspector2.TagResourceInput) (*inspector2.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *inspector2.TagResourceInput, ...request.Option) (*inspector2.TagResourceOutput, error)
 	TagResourceRequest(*inspector2.TagResourceInput) (*request.Request, *inspector2.TagResourceOutput)

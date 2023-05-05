@@ -8,8 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
-	"github.com/aws/aws-sdk-go/private/protocol"
-	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/private/protocol/query"
 )
 
 // SQS provides the API operation methods for making requests to
@@ -71,8 +70,6 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 				Endpoint:       endpoint,
 				APIVersion:     "2012-11-05",
 				ResolvedRegion: resolvedRegion,
-				JSONVersion:    "1.0",
-				TargetPrefix:   "AmazonSQS",
 			},
 			handlers,
 		),
@@ -80,12 +77,10 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 
 	// Handlers
 	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
-	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
-	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
-	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
-	svc.Handlers.UnmarshalError.PushBackNamed(
-		protocol.NewUnmarshalErrorHandler(jsonrpc.NewUnmarshalTypedErrorWithOptions(exceptionFromCode, jsonrpc.WithQueryCompatibility(queryExceptionFromCode))).NamedHandler(),
-	)
+	svc.Handlers.Build.PushBackNamed(query.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(query.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(query.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(query.UnmarshalErrorHandler)
 
 	// Run custom client initialization if present
 	if initClient != nil {

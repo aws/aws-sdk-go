@@ -503,6 +503,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "SearchVulnerabilities":{
+      "name":"SearchVulnerabilities",
+      "http":{
+        "method":"POST",
+        "requestUri":"/vulnerabilities/search",
+        "responseCode":200
+      },
+      "input":{"shape":"SearchVulnerabilitiesRequest"},
+      "output":{"shape":"SearchVulnerabilitiesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -837,6 +853,15 @@
         "accountId":{"shape":"AccountId"}
       }
     },
+    "AtigData":{
+      "type":"structure",
+      "members":{
+        "firstSeen":{"shape":"FirstSeen"},
+        "lastSeen":{"shape":"LastSeen"},
+        "targets":{"shape":"Targets"},
+        "ttps":{"shape":"Ttps"}
+      }
+    },
     "AutoEnable":{
       "type":"structure",
       "required":[
@@ -1032,6 +1057,20 @@
         "reportId":{"shape":"ReportId"}
       }
     },
+    "CisaAction":{
+      "type":"string",
+      "min":0
+    },
+    "CisaData":{
+      "type":"structure",
+      "members":{
+        "action":{"shape":"CisaAction"},
+        "dateAdded":{"shape":"CisaDateAdded"},
+        "dateDue":{"shape":"CisaDateDue"}
+      }
+    },
+    "CisaDateAdded":{"type":"timestamp"},
+    "CisaDateDue":{"type":"timestamp"},
     "ClientToken":{
       "type":"string",
       "max":64,
@@ -1213,6 +1252,30 @@
       "type":"string",
       "enum":["USD"]
     },
+    "Cvss2":{
+      "type":"structure",
+      "members":{
+        "baseScore":{"shape":"Cvss2BaseScore"},
+        "scoringVector":{"shape":"Cvss2ScoringVector"}
+      }
+    },
+    "Cvss2BaseScore":{"type":"double"},
+    "Cvss2ScoringVector":{
+      "type":"string",
+      "min":0
+    },
+    "Cvss3":{
+      "type":"structure",
+      "members":{
+        "baseScore":{"shape":"Cvss3BaseScore"},
+        "scoringVector":{"shape":"Cvss3ScoringVector"}
+      }
+    },
+    "Cvss3BaseScore":{"type":"double"},
+    "Cvss3ScoringVector":{
+      "type":"string",
+      "min":0
+    },
     "CvssScore":{
       "type":"structure",
       "required":[
@@ -1263,6 +1326,15 @@
     "CvssScoreList":{
       "type":"list",
       "member":{"shape":"CvssScore"}
+    },
+    "Cwe":{
+      "type":"string",
+      "min":0
+    },
+    "Cwes":{
+      "type":"list",
+      "member":{"shape":"Cwe"},
+      "min":0
     },
     "DateFilter":{
       "type":"structure",
@@ -1342,6 +1414,12 @@
         "keyPrefix":{"shape":"String"},
         "kmsKeyArn":{"shape":"String"}
       }
+    },
+    "DetectionPlatforms":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":0
     },
     "DisableDelegatedAdminAccountRequest":{
       "type":"structure",
@@ -1556,6 +1634,13 @@
         "failedAccounts":{"shape":"FailedAccountList"}
       }
     },
+    "Epss":{
+      "type":"structure",
+      "members":{
+        "score":{"shape":"EpssScore"}
+      }
+    },
+    "EpssScore":{"type":"double"},
     "ErrorCode":{
       "type":"string",
       "enum":[
@@ -1586,6 +1671,13 @@
         "YES",
         "NO"
       ]
+    },
+    "ExploitObserved":{
+      "type":"structure",
+      "members":{
+        "firstSeen":{"shape":"FirstSeen"},
+        "lastSeen":{"shape":"LastSeen"}
+      }
     },
     "ExploitabilityDetails":{
       "type":"structure",
@@ -1842,6 +1934,7 @@
         "ALL"
       ]
     },
+    "FirstSeen":{"type":"timestamp"},
     "FixAvailable":{
       "type":"string",
       "enum":[
@@ -2185,6 +2278,7 @@
         "vpcId":{"shape":"VpcId"}
       }
     },
+    "LastSeen":{"type":"timestamp"},
     "LayerList":{
       "type":"list",
       "member":{"shape":"LambdaLayerArn"},
@@ -2746,6 +2840,16 @@
         "text":{"shape":"NonEmptyString"}
       }
     },
+    "RelatedVulnerabilities":{
+      "type":"list",
+      "member":{"shape":"RelatedVulnerability"},
+      "max":100,
+      "min":0
+    },
+    "RelatedVulnerability":{
+      "type":"string",
+      "min":0
+    },
     "RelationshipStatus":{
       "type":"string",
       "enum":[
@@ -2987,6 +3091,29 @@
         "PACKAGE"
       ]
     },
+    "SearchVulnerabilitiesFilterCriteria":{
+      "type":"structure",
+      "required":["vulnerabilityIds"],
+      "members":{
+        "vulnerabilityIds":{"shape":"VulnIdList"}
+      }
+    },
+    "SearchVulnerabilitiesRequest":{
+      "type":"structure",
+      "required":["filterCriteria"],
+      "members":{
+        "filterCriteria":{"shape":"SearchVulnerabilitiesFilterCriteria"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "SearchVulnerabilitiesResponse":{
+      "type":"structure",
+      "required":["vulnerabilities"],
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "vulnerabilities":{"shape":"Vulnerabilities"}
+      }
+    },
     "SecurityGroupId":{
       "type":"string",
       "pattern":"^sg-([a-z0-9]{8}|[a-z0-9]{17}|\\*)$"
@@ -3213,6 +3340,16 @@
       "members":{
       }
     },
+    "Target":{
+      "type":"string",
+      "max":50,
+      "min":0
+    },
+    "Targets":{
+      "type":"list",
+      "member":{"shape":"Target"},
+      "min":0
+    },
     "ThrottlingException":{
       "type":"structure",
       "required":["message"],
@@ -3259,6 +3396,16 @@
         "HIGH",
         "ALL"
       ]
+    },
+    "Ttp":{
+      "type":"string",
+      "max":30,
+      "min":0
+    },
+    "Ttps":{
+      "type":"list",
+      "member":{"shape":"Ttp"},
+      "min":0
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -3444,6 +3591,13 @@
         "OTHER"
       ]
     },
+    "VendorCreatedAt":{"type":"timestamp"},
+    "VendorSeverity":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "VendorUpdatedAt":{"type":"timestamp"},
     "Version":{
       "type":"string",
       "pattern":"^\\$LATEST|[0-9]+$"
@@ -3452,6 +3606,46 @@
       "type":"string",
       "pattern":"^vpc-([a-z0-9]{8}|[a-z0-9]{17}|\\*)$"
     },
+    "VulnId":{
+      "type":"string",
+      "pattern":"^CVE-[12][0-9]{3}-[0-9]{1,10}$"
+    },
+    "VulnIdList":{
+      "type":"list",
+      "member":{"shape":"VulnId"},
+      "max":1,
+      "min":1
+    },
+    "Vulnerabilities":{
+      "type":"list",
+      "member":{"shape":"Vulnerability"},
+      "max":1,
+      "min":0
+    },
+    "Vulnerability":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "atigData":{"shape":"AtigData"},
+        "cisaData":{"shape":"CisaData"},
+        "cvss2":{"shape":"Cvss2"},
+        "cvss3":{"shape":"Cvss3"},
+        "cwes":{"shape":"Cwes"},
+        "description":{"shape":"VulnerabilityDescription"},
+        "detectionPlatforms":{"shape":"DetectionPlatforms"},
+        "epss":{"shape":"Epss"},
+        "exploitObserved":{"shape":"ExploitObserved"},
+        "id":{"shape":"NonEmptyString"},
+        "referenceUrls":{"shape":"VulnerabilityReferenceUrls"},
+        "relatedVulnerabilities":{"shape":"RelatedVulnerabilities"},
+        "source":{"shape":"VulnerabilitySource"},
+        "sourceUrl":{"shape":"VulnerabilitySourceUrl"},
+        "vendorCreatedAt":{"shape":"VendorCreatedAt"},
+        "vendorSeverity":{"shape":"VendorSeverity"},
+        "vendorUpdatedAt":{"shape":"VendorUpdatedAt"}
+      }
+    },
+    "VulnerabilityDescription":{"type":"string"},
     "VulnerabilityId":{
       "type":"string",
       "max":128,
@@ -3460,6 +3654,24 @@
     "VulnerabilityIdList":{
       "type":"list",
       "member":{"shape":"VulnerabilityId"}
+    },
+    "VulnerabilityReferenceUrl":{
+      "type":"string",
+      "min":0
+    },
+    "VulnerabilityReferenceUrls":{
+      "type":"list",
+      "member":{"shape":"VulnerabilityReferenceUrl"},
+      "max":100,
+      "min":0
+    },
+    "VulnerabilitySource":{
+      "type":"string",
+      "enum":["NVD"]
+    },
+    "VulnerabilitySourceUrl":{
+      "type":"string",
+      "min":0
     },
     "VulnerablePackage":{
       "type":"structure",
