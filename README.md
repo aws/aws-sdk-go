@@ -1,75 +1,44 @@
-# AWS SDK for Go
+AWS SDK for Go
 
-[![API Reference](https://img.shields.io/badge/api-reference-blue.svg)](https://docs.aws.amazon.com/sdk-for-go/api) [![Join the chat at https://gitter.im/aws/aws-sdk-go](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aws/aws-sdk-go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build status](https://github.com/aws/aws-sdk-go/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/aws/aws-sdk-go/actions/workflows/go.yml) [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/aws/aws-sdk-go/blob/main/LICENSE.txt)
+aws-sdk-go गो प्रोग्रामिंग भाषा के लिए आधिकारिक AWS SDK है।
+एसडीके में जोड़े गए नवीनतम बग फिक्स, अपडेट और सुविधाओं के बारे में जानकारी के लिए हमारे रिलीज़ नोट देखें।
+हमने Go V2 (v2) के लिए AWS SDK के लिए सामान्य उपलब्धता की घोषणा की। V2 SDK स्रोत https://github.com/aws/aws-sdk-go-v2 पर उपलब्ध है। गो V2 के लिए AWS SDK के साथ आरंभ करने के लिए v2 SDK की डेवलपर मार्गदर्शिका की समीक्षा करें या यदि आप पहले से संस्करण 1 का उपयोग करते हैं तो माइग्रेशन मार्गदर्शिका की समीक्षा करें।
 
-aws-sdk-go is the official AWS SDK for the Go programming language.
+करने के लिए कूद:
+शुरू करना
+त्वरित उदाहरण
+मदद प्राप्त करें
+योगदान
+और अधिक संसाधनों
+शुरू करना
+स्थापित कर रहा है
+अपने GOPATH कार्यक्षेत्र, या प्रोजेक्ट के गो मॉड्यूल निर्भरता में जोड़ने के लिए SDK को पुनः प्राप्त करने के लिए go get का उपयोग करें।
 
-Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for
-information about the latest bug fixes, updates, and features added to the SDK.
+go get github.com/aws/aws-sdk-go
 
-We [announced](https://aws.amazon.com/blogs/developer/aws-sdk-for-go-version-2-general-availability/) the General Availability for the [AWS SDK for Go V2 (v2)](https://github.com/aws/aws-sdk-go-v2). The v2 SDK source is available at https://github.com/aws/aws-sdk-go-v2. Review the v2 SDK's [Developer Guide](https://aws.github.io/aws-sdk-go-v2/docs/) to get started with AWS SDK for Go V2 or review the [migration guide](https://aws.github.io/aws-sdk-go-v2/docs/migrating/) if you already use version 1.
+एसडीके को अपडेट करने के लिए एसडीके के नवीनतम संस्करण को पुनः प्राप्त करने के लिए get -u का उपयोग करें।
+go get -u github.com/aws/aws-sdk-go
 
-Jump To:
-* [Getting Started](#Getting-Started)
-* [Quick Examples](#Quick-Examples)
-* [Getting Help](#Getting-Help)
-* [Contributing](#Contributing)
-* [More Resources](#Resources)
+Dependencies
+SDK में एक विक्रेता फ़ोल्डर शामिल होता है जिसमें SDK की रनटाइम निर्भरताएँ होती हैं। SDK की निर्भरताओं का मेटाडेटा Go मॉड्यूल फ़ाइल go.mod या Dep फ़ाइल Gopkg.toml में पाया जा सकता है।
 
-## Getting Started
+मॉड्यूल जाओ
+यदि आप गो मॉड्यूल का उपयोग कर रहे हैं, तो आपका गो गेट एसडीके के नवीनतम टैग किए गए रिलीज़ संस्करण के लिए डिफ़ॉल्ट होगा। SDK का विशिष्ट रिलीज़ संस्करण प्राप्त करने के लिए अपने go get कमांड में @<tag> का उपयोग करें।
+go get github.com/aws/aws-sdk-go@v1.15.77
 
-### Installing
-Use `go get` to retrieve the SDK to add it to your `GOPATH` workspace, or
-project's Go module dependencies.
+नवीनतम SDK रिपॉजिटरी परिवर्तन उपयोग प्राप्त करने के लिए
+@latest.
 
-	go get github.com/aws/aws-sdk-go
+go get github.com/aws/aws-sdk-go@latest
 
-To update the SDK use `go get -u` to retrieve the latest version of the SDK.
-
-	go get -u github.com/aws/aws-sdk-go
-
-### Dependencies
-
-The SDK includes a `vendor` folder containing the runtime dependencies of the
-SDK. The metadata of the SDK's dependencies can be found in the Go module file
-`go.mod` or Dep file `Gopkg.toml`.
-
-### Go Modules
-
-If you are using Go modules, your `go get` will default to the latest tagged
-release version of the SDK. To get a specific release version of the SDK use
-`@<tag>` in your `go get` command.
-
-	go get github.com/aws/aws-sdk-go@v1.15.77
-
-To get the latest SDK repository change use `@latest`.
-
-	go get github.com/aws/aws-sdk-go@latest
-
-### Go 1.5
-
-If you are using Go 1.5 without vendoring enabled, (`GO15VENDOREXPERIMENT=1`),
-you will need to use `...` when retrieving the SDK to get its dependencies.
-
-	go get github.com/aws/aws-sdk-go/...
-
-This will still include the `vendor` folder. The `vendor` folder can be deleted
-if not used by your environment.
-
-    rm -rf $GOPATH/src/github.com/aws/aws-sdk-go/vendor
-
-
-## Quick Examples 
-
-### Complete SDK Example
-
-This example shows a complete working Go file which will upload a file to S3
-and use the Context pattern to implement timeout logic that will cancel the
-request if it takes too long. This example highlights how to use sessions,
-create a service client, make a request, handle the error, and process the
-response.
-
-```go
+Go 1.5
+यदि आप वेंडरिंग सक्षम किए बिना Go 1.5 का उपयोग कर रहे हैं, (GO15VENDOREXPERIMENT=1), तो आपको इसकी निर्भरता प्राप्त करने के लिए SDK को पुनर्प्राप्त करते समय ... का उपयोग करने की आवश्यकता होगी।
+go get github.com/aws/aws-sdk-go/...
+इसमें अभी भी विक्रेता फ़ोल्डर शामिल होगा। यदि आपके पर्यावरण द्वारा उपयोग नहीं किया जाता है तो विक्रेता फ़ोल्डर को हटाया जा सकता है।
+rm -rf $GOPATH/src/github.com/aws/aws-sdk-go/vendor
+त्वरित उदाहरण
+पूरा एसडीके उदाहरण
+यह उदाहरण एक पूर्ण कार्यशील गो फ़ाइल दिखाता है जो S3 पर एक फ़ाइल अपलोड करेगा और टाइमआउट तर्क को लागू करने के लिए संदर्भ पैटर्न का उपयोग करेगा जो बहुत अधिक समय लगने पर अनुरोध को रद्द कर देगा। यह उदाहरण इस बात पर प्रकाश डालता है कि सत्रों का उपयोग कैसे करें, सेवा ग्राहक कैसे बनाएं, अनुरोध करें, त्रुटि को संभालें और प्रतिक्रिया को संसाधित करें।
   package main
 
   import (
@@ -151,113 +120,52 @@ response.
 
   	fmt.Printf("successfully uploaded file to %s/%s\n", bucket, key)
   }
-```
+एसडीके के पैकेजों का अवलोकन
+एसडीके दो मुख्य घटकों, एसडीके कोर और सर्विस क्लाइंट से बना है। SDK कोर पैकेज सभी SDK के रूट पर aws पैकेज के अंतर्गत उपलब्ध हैं। समर्थित AWS सेवा के लिए प्रत्येक ग्राहक SDK के रूट पर सेवा फ़ोल्डर के अंतर्गत अपने स्वयं के पैकेज में उपलब्ध है।
 
-### Overview of SDK's Packages
+aws - SDK कोर, सामान्य साझा प्रकार प्रदान करता है जैसे कि कॉन्फ़िग, लॉगर, और उपयोगिताओं को API पैरामीटर के साथ काम करना आसान बनाता है।
 
-The SDK is composed of two main components, SDK core, and service clients.
-The SDK core packages are all available under the aws package at the root of
-the SDK. Each client for a supported AWS service is available within its own
-package under the service folder at the root of the SDK.
+awserr - एसडीके के प्रसंस्करण में होने वाली सभी त्रुटियों के लिए एसडीके द्वारा उपयोग किया जाने वाला त्रुटि इंटरफ़ेस प्रदान करता है। इसमें सेवा API प्रतिक्रिया त्रुटियाँ भी शामिल हैं। त्रुटि प्रकार एक कोड और संदेश से बना होता है। SDK द्वारा लौटाए गए त्रुटि प्रकार को awserr.Error में कास्ट करें और विशिष्ट त्रुटि कोड से लौटाई गई त्रुटि की तुलना करने के लिए कोड विधि को कॉल करें। अतिरिक्त मानों के लिए पैकेज के दस्तावेज़ीकरण को देखें जिन्हें RequestID जैसे निकाला जा सकता है।
 
-  * aws - SDK core, provides common shared types such as Config, Logger,
-    and utilities to make working with API parameters easier.
+क्रेडेंशियल्स - एपीआई अनुरोध करने के लिए एडब्ल्यूएस क्रेडेंशियल्स को पुनः प्राप्त करने के लिए एसडीके द्वारा उपयोग किए जाने वाले क्रेडेंशियल प्रदाताओं में प्रकार और निर्मित प्रदान करता है। इस फ़ोल्डर के अंतर्गत नेस्टेड अतिरिक्त क्रेडेंशियल प्रदाता भी हैं जैसे कि IAM भूमिकाएँ ग्रहण करने के लिए stscreds, और EC2 उदाहरण भूमिकाओं के लिए ec2rolecreds।
 
-      * awserr - Provides the error interface that the SDK will use for all
-        errors that occur in the SDK's processing. This includes service API
-        response errors as well. The Error type is made up of a code and message.
-        Cast the SDK's returned error type to awserr.Error and call the Code
-        method to compare returned error to specific error codes. See the package's
-        documentation for additional values that can be extracted such as RequestID.
+एंडपॉइंट्स - एसडीके के लिए एडब्ल्यूएस क्षेत्र और एंडपॉइंट्स मेटाडेटा प्रदान करता है। इसका उपयोग AWS सर्विस एंडपॉइंट की जानकारी देखने के लिए करें जैसे कि कौन सी सेवाएं एक क्षेत्र में हैं, और कौन से क्षेत्र में एक सेवा है। कॉन्स्टेंट सभी क्षेत्र पहचानकर्ताओं के लिए भी प्रदान किए जाते हैं, उदाहरण के लिए "us-west-2" के लिए UsWest2RegionID।
 
-      * credentials - Provides the types and built in credentials providers
-        the SDK will use to retrieve AWS credentials to make API requests with.
-        Nested under this folder are also additional credentials providers such as
-        stscreds for assuming IAM roles, and ec2rolecreds for EC2 Instance roles.
+सत्र - प्रारंभिक डिफ़ॉल्ट कॉन्फ़िगरेशन प्रदान करता है, और बाहरी स्रोतों जैसे पर्यावरण और साझा क्रेडेंशियल्स फ़ाइल से कॉन्फ़िगरेशन लोड करता है।
 
-      * endpoints - Provides the AWS Regions and Endpoints metadata for the SDK.
-        Use this to lookup AWS service endpoint information such as which services
-        are in a region, and what regions a service is in. Constants are also provided
-        for all region identifiers, e.g UsWest2RegionID for "us-west-2".
+अनुरोध - एसडीके के लिए एपीआई अनुरोध भेजने और पुनः प्रयास तर्क प्रदान करता है। इस पैकेज में आपके स्वयं के अनुरोध रिट्रीयर को परिभाषित करने और एसडीके अनुरोध को कैसे संसाधित करता है, इसे कॉन्फ़िगर करने के लिए उपयोगिताओं को भी शामिल किया गया है।
 
-      * session - Provides initial default configuration, and load
-        configuration from external sources such as environment and shared
-        credentials file.
+सेवा - एडब्ल्यूएस सेवाओं के लिए ग्राहक। SDK द्वारा समर्थित सभी सेवाएँ इस फ़ोल्डर के अंतर्गत उपलब्ध हैं।
 
-      * request - Provides the API request sending, and retry logic for the SDK.
-        This package also includes utilities for defining your own request
-        retryer, and configuring how the SDK processes the request.
+SDK के AWS सर्विस क्लाइंट का उपयोग कैसे करें
+SDK में वे प्रकार और उपयोगिताएँ शामिल हैं जिनका उपयोग आप AWS सेवा API के लिए अनुरोध करने के लिए कर सकते हैं। एसडीके के मूल में सेवा फ़ोल्डर के भीतर आपको एसडीके द्वारा समर्थित प्रत्येक एडब्ल्यूएस सेवा के लिए एक पैकेज मिलेगा। सभी सर्विस क्लाइंट निर्माण और उपयोग के सामान्य पैटर्न का पालन करते हैं।
 
-  * service - Clients for AWS services. All services supported by the SDK are
-    available under this folder.
+AWS सेवा के लिए क्लाइंट बनाते समय आपको सबसे पहले एक सत्र मूल्य का निर्माण करना होगा। सत्र साझा कॉन्फ़िगरेशन प्रदान करता है जिसे आपके सेवा क्लाइंट के बीच साझा किया जा सकता है। जब सेवा क्लाइंट बनाए जाते हैं तो आप कस्टम कॉन्फ़िगरेशन के साथ सेवा क्लाइंट इंस्टेंस बनाने के लिए सत्र में प्रदान किए गए कॉन्फ़िगरेशन को ओवरराइड करने के लिए aws.Config प्रकार के माध्यम से अतिरिक्त कॉन्फ़िगरेशन पास कर सकते हैं।
 
-### How to Use the SDK's AWS Service Clients
+एक बार सेवा का क्लाइंट बन जाने के बाद आप इसका उपयोग एपीआई को एडब्ल्यूएस सेवा के लिए अनुरोध करने के लिए कर सकते हैं। ये ग्राहक समवर्ती रूप से उपयोग करने के लिए सुरक्षित हैं।
 
-The SDK includes the Go types and utilities you can use to make requests to
-AWS service APIs. Within the service folder at the root of the SDK you'll find
-a package for each AWS service the SDK supports. All service clients follow common pattern of creation and usage.
+एसडीके को कॉन्फ़िगर करना
+गो के लिए एडब्ल्यूएस एसडीके में, आप सेवा ग्राहकों के लिए सेटिंग्स को कॉन्फ़िगर कर सकते हैं, जैसे लॉग स्तर और अधिकतम संख्या में पुनर्प्रयास। अधिकांश सेटिंग्स वैकल्पिक हैं; हालाँकि, प्रत्येक सेवा क्लाइंट के लिए, आपको एक क्षेत्र और अपनी साख निर्दिष्ट करनी होगी। SDK इन मानों का उपयोग सही AWS क्षेत्र में अनुरोध भेजने और सही क्रेडेंशियल्स के साथ अनुरोध पर हस्ताक्षर करने के लिए करता है। आप इन मानों को सत्र के भाग के रूप में या पर्यावरण चर के रूप में निर्दिष्ट कर सकते हैं।
 
-When creating a client for an AWS service you'll first need to have a Session
-value constructed. The Session provides shared configuration that can be shared
-between your service clients. When service clients are created you can pass
-in additional configuration via the aws.Config type to override configuration
-provided by in the Session to create service client instances with custom
-configuration.
+अधिक जानकारी के लिए SDK की कॉन्फ़िगरेशन मार्गदर्शिका देखें।
 
-Once the service's client is created you can use it to make API requests the
-AWS service. These clients are safe to use concurrently.
+SDK के साथ सत्र का उपयोग करने के तरीके के बारे में अधिक जानकारी के लिए सत्र पैकेज दस्तावेज़ीकरण देखें।
 
-### Configuring the SDK
+कॉन्फ़िगरेशन विकल्पों के बारे में अधिक जानकारी के लिए aws पैकेज में कॉन्फ़िग प्रकार देखें।
 
-In the AWS SDK for Go, you can configure settings for service clients, such
-as the log level and maximum number of retries. Most settings are optional;
-however, for each service client, you must specify a region and your credentials.
-The SDK uses these values to send requests to the correct AWS region and sign
-requests with the correct credentials. You can specify these values as part
-of a session or as environment variables.
+क्रेडेंशियल्स को कॉन्फ़िगर करना
+एसडीके का उपयोग करते समय आपको एडब्ल्यूएस सेवाओं के साथ प्रमाणित करने के लिए आम तौर पर अपने एडब्ल्यूएस प्रमाण-पत्रों की आवश्यकता होगी। एसडीके इन क्रेडेंशियल्स का समर्थन करने के कई तरीकों का समर्थन करता है। डिफ़ॉल्ट रूप से SDK अपनी डिफ़ॉल्ट क्रेडेंशियल श्रृंखला से स्वचालित रूप से क्रेडेंशियल्स प्राप्त करेगा। इस शृंखला के बारे में अधिक जानकारी के लिए, और इसे कैसे कॉन्फ़िगर करें, सत्र पैकेज देखें। क्रेडेंशियल श्रृंखला में सामान्य आइटम निम्न हैं:
 
-See the SDK's [configuration guide][config_guide] for more information.
+पर्यावरण क्रेडेंशियल्स - पर्यावरण चर का सेट जो तब उपयोगी होता है जब विशिष्ट भूमिकाओं के लिए उप प्रक्रियाएं बनाई जाती हैं।
 
-See the [session][session_pkg] package documentation for more information on how to use Session
-with the SDK.
+साझा क्रेडेंशियल्स फ़ाइल (~/.aws/क्रेडेंशियल्स) - यह फ़ाइल एक प्रोफ़ाइल नाम के आधार पर आपके क्रेडेंशियल्स को संग्रहीत करती है और स्थानीय विकास के लिए उपयोगी है।
 
-See the [Config][config_typ] type in the [aws][aws_pkg] package for more information on configuration
-options.
+EC2 इंस्टेंस रोल क्रेडेंशियल्स - EC2 इंस्टेंस पर चल रहे एप्लिकेशन को क्रेडेंशियल्स असाइन करने के लिए EC2 इंस्टेंस रोल का उपयोग करें। यह उत्पादन में क्रेडेंशियल फ़ाइलों को प्रबंधित करने की आवश्यकता को हटा देता है।
 
-[config_guide]: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html
-[session_pkg]: https://docs.aws.amazon.com/sdk-for-go/api/aws/session/
-[config_typ]: https://docs.aws.amazon.com/sdk-for-go/api/aws/#Config
-[aws_pkg]: https://docs.aws.amazon.com/sdk-for-go/api/aws/
+क्रेडेंशियल्स को कोड में कॉन्फ़िगर किया जा सकता है, कॉन्फ़िग के क्रेडेंशियल्स मान को कस्टम प्रदाता पर सेट करके या एसडीके के साथ शामिल प्रदाताओं में से एक का उपयोग करके डिफ़ॉल्ट क्रेडेंशियल श्रृंखला को बायपास करने और कस्टम एक का उपयोग करने के लिए। यह तब मददगार होता है जब आप एसडीके को केवल क्रेडेंशियल्स या प्रदाताओं के एक विशिष्ट सेट का उपयोग करने का निर्देश देना चाहते हैं।
 
-### Configuring Credentials
+यह उदाहरण एक IAM भूमिका, "myRoleARN" ग्रहण करने के लिए एक क्रेडेंशियल प्रदाता बनाता है और S3 सेवा क्लाइंट को API अनुरोधों के लिए उस भूमिका का उपयोग करने के लिए कॉन्फ़िगर करता है।
 
-When using the SDK you'll generally need your AWS credentials to authenticate
-with AWS services. The SDK supports multiple methods of supporting these
-credentials. By default the SDK will source credentials automatically from
-its default credential chain. See the session package for more information
-on this chain, and how to configure it. The common items in the credential
-chain are the following:
-
-  * Environment Credentials - Set of environment variables that are useful
-    when sub processes are created for specific roles.
-
-  * Shared Credentials file (~/.aws/credentials) - This file stores your
-    credentials based on a profile name and is useful for local development.
-
-  * EC2 Instance Role Credentials - Use EC2 Instance Role to assign credentials
-    to application running on an EC2 instance. This removes the need to manage
-    credential files in production.
-
-Credentials can be configured in code as well by setting the Config's Credentials
-value to a custom provider or using one of the providers included with the
-SDK to bypass the default credential chain and use a custom one. This is
-helpful when you want to instruct the SDK to only use a specific set of
-credentials or providers.
-
-This example creates a credential provider for assuming an IAM role, "myRoleARN"
-and configures the S3 service client to use that role for API requests.
-
-```go
   // Initial credentials loaded from SDK's default credential chain. Such as
   // the environment, shared credentials (~/.aws/credentials), or EC2 Instance
   // Role. These credentials will be used to to make the STS Assume Role API.
@@ -270,124 +178,53 @@ and configures the S3 service client to use that role for API requests.
   // Create service client value configured for credentials
   // from assumed role.
   svc := s3.New(sess, &aws.Config{Credentials: creds})
-```
+एसडीके के साथ शामिल क्रेडेंशियल प्रदाताओं के बारे में अधिक जानकारी के लिए क्रेडेंशियल्स पैकेज दस्तावेज़ीकरण देखें, और एसडीके के क्रेडेंशियल्स के उपयोग को कैसे अनुकूलित करें।
 
-See the [credentials][credentials_pkg] package documentation for more information on credential
-providers included with the SDK, and how to customize the SDK's usage of
-credentials.
-
-The SDK has support for the shared configuration file (~/.aws/config). This
-support can be enabled by setting the environment variable, "AWS_SDK_LOAD_CONFIG=1",
-or enabling the feature in code when creating a Session via the
-Option's SharedConfigState parameter.
-
-```go
+साझा कॉन्फ़िगरेशन फ़ाइल (~/.aws/config) के लिए SDK का समर्थन है। यह समर्थन पर्यावरण चर, "AWS_SDK_LOAD_CONFIG=1" सेट करके या विकल्प के SharedConfigState पैरामीटर के माध्यम से सत्र बनाते समय कोड में सुविधा को सक्षम करके सक्षम किया जा सकता है।
   sess := session.Must(session.NewSessionWithOptions(session.Options{
       SharedConfigState: session.SharedConfigEnable,
   }))
-```
+AWS क्षेत्र को कॉन्फ़िगर करना
+क्रेडेंशियल्स के अलावा आपको उस क्षेत्र को निर्दिष्ट करने की आवश्यकता होगी जिसका उपयोग एसडीके एडब्ल्यूएस एपीआई अनुरोध करने के लिए करेगा। SDK में आप क्षेत्र को पर्यावरण चर के साथ या सीधे कोड में निर्दिष्ट कर सकते हैं जब एक सत्र या सेवा क्लाइंट बनाया जाता है। यदि क्षेत्र को कई तरीकों से निर्दिष्ट किया जाता है, तो कोड में निर्दिष्ट अंतिम मान जीत जाता है।
 
-[credentials_pkg]: https://docs.aws.amazon.com/sdk-for-go/api/aws/credentials
+क्षेत्र को पर्यावरण चर के माध्यम से सेट करने के लिए "AWS_REGION" को उस क्षेत्र में सेट करें जिसे आप एसडीके का उपयोग करना चाहते हैं। क्षेत्र सेट करने के लिए इस पद्धति का उपयोग करने से आप क्षेत्र का चयन करने के लिए एप्लिकेशन में अतिरिक्त कोड की आवश्यकता के बिना अपने एप्लिकेशन को कई क्षेत्रों में चला सकेंगे।
+AWS_REGION=us-west-2
+समापन बिंदु पैकेज में उन सभी क्षेत्रों के लिए स्थिरांक शामिल हैं जिन्हें SDK जानता है। मान सभी RegionID के साथ प्रत्ययित हैं। ये मान सहायक होते हैं, क्योंकि ये क्षेत्र स्ट्रिंग को मैन्युअल रूप से टाइप करने की आवश्यकता को कम करते हैं।
 
-### Configuring AWS Region
-
-In addition to the credentials you'll need to specify the region the SDK
-will use to make AWS API requests to. In the SDK you can specify the region
-either with an environment variable, or directly in code when a Session or
-service client is created. The last value specified in code wins if the region
-is specified multiple ways.
-
-To set the region via the environment variable set the "AWS_REGION" to the
-region you want to the SDK to use. Using this method to set the region will
-allow you to run your application in multiple regions without needing additional
-code in the application to select the region.
-
-    AWS_REGION=us-west-2
-
-The endpoints package includes constants for all regions the SDK knows. The
-values are all suffixed with RegionID. These values are helpful, because they
-reduce the need to type the region string manually.
-
-To set the region on a Session use the aws package's Config struct parameter
-Region to the AWS region you want the service clients created from the session to
-use. This is helpful when you want to create multiple service clients, and
-all of the clients make API requests to the same region.
-
-```go
+एक सत्र पर क्षेत्र सेट करने के लिए एडब्ल्यूएस क्षेत्र के एडब्ल्यूएस पैकेज के कॉन्फिग स्ट्रक्चर पैरामीटर क्षेत्र का उपयोग करें, आप चाहते हैं कि सत्र से बनाए गए सेवा क्लाइंट का उपयोग किया जाए। यह तब मददगार होता है जब आप कई सर्विस क्लाइंट बनाना चाहते हैं, और सभी क्लाइंट एक ही क्षेत्र के लिए एपीआई अनुरोध करते हैं।
   sess := session.Must(session.NewSession(&aws.Config{
       Region: aws.String(endpoints.UsWest2RegionID),
   }))
-```
+AWS क्षेत्र और समापन बिंदु मेटाडेटा के लिए समापन बिंदु पैकेज देखें।
 
-See the [endpoints][endpoints_pkg] package for the AWS Regions and Endpoints metadata.
-
-In addition to setting the region when creating a Session you can also set
-the region on a per service client bases. This overrides the region of a
-Session. This is helpful when you want to create service clients in specific
-regions different from the Session's region.
-
-```go
+सत्र बनाते समय क्षेत्र निर्धारित करने के अलावा आप क्षेत्र को प्रति सेवा ग्राहक आधार पर भी निर्धारित कर सकते हैं। यह एक सत्र के क्षेत्र को ओवरराइड करता है। यह तब मददगार होता है जब आप सत्र के क्षेत्र से भिन्न विशिष्ट क्षेत्रों में सेवा क्लाइंट बनाना चाहते हैं।
   svc := s3.New(sess, &aws.Config{
       Region: aws.String(endpoints.UsWest2RegionID),
   })
-```
+अधिक जानकारी और समापन बिंदु सेट करने जैसे अतिरिक्त विकल्पों और अन्य सर्विस क्लाइंट कॉन्फ़िगरेशन विकल्पों के लिए aws पैकेज में कॉन्फ़िग प्रकार देखें।
 
-See the [Config][config_typ] type in the [aws][aws_pkg] package for more information and additional
-options such as setting the Endpoint, and other service client configuration options.
+एपीआई अनुरोध करना
+क्लाइंट बनने के बाद आप सेवा के लिए एपीआई अनुरोध कर सकते हैं। प्रत्येक एपीआई विधि एक इनपुट पैरामीटर लेती है, और सेवा प्रतिक्रिया और एक त्रुटि लौटाती है। एसडीके कई तरीकों से एपीआई कॉल करने के तरीके प्रदान करता है।
 
-[endpoints_pkg]: https://docs.aws.amazon.com/sdk-for-go/api/aws/endpoints/
+इस सूची में हम एपीआई अनुरोध करने के विभिन्न तरीकों के लिए एक उदाहरण के रूप में S3 ListObjects API का उपयोग करेंगे।
 
-### Making API Requests
+ListObjects - बेस एपीआई ऑपरेशन जो सेवा के लिए एपीआई अनुरोध करेगा।
 
-Once the client is created you can make an API request to the service.
-Each API method takes a input parameter, and returns the service response
-and an error. The SDK provides methods for making the API call in multiple ways.
+ListObjectsRequest - अनुरोध के साथ प्रत्यय वाली API विधियाँ API अनुरोध का निर्माण करेंगी, लेकिन इसे नहीं भेजेंगी। यह तब भी मददगार होता है जब आप किसी अनुरोध के लिए एक निर्धारित URL प्राप्त करना चाहते हैं, और अपने आवेदन को सीधे अनुरोध करने के बजाय निर्धारित URL को साझा करना चाहते हैं।
 
-In this list we'll use the S3 ListObjects API as an example for the different
-ways of making API requests.
+ListObjectsPages - बेस एपीआई ऑपरेशन के समान, लेकिन एपीआई की प्रतिक्रिया के पेजिनेशन को स्वचालित रूप से संभालने के लिए कॉलबैक का उपयोग करता है।
 
-  * ListObjects - Base API operation that will make the API request to the service.
+ListObjectsWithContext - बेस एपीआई ऑपरेशन के समान, लेकिन संदर्भ पैटर्न के लिए समर्थन जोड़ता है। यह उड़ान अनुरोधों को रद्द करने को नियंत्रित करने में मददगार है। अधिक जानकारी के लिए गो स्टैंडर्ड लाइब्रेरी कॉन्टेक्स्ट पैकेज देखें। यह विधि अनुरोध पैकेज के विकल्प कार्यात्मक विकल्पों को भी संशोधित करने के लिए विविध तर्क के रूप में लेती है कि अनुरोध कैसे किया जाएगा, या कच्चे HTTP प्रतिक्रिया से जानकारी निकालने के लिए।
 
-  * ListObjectsRequest - API methods suffixed with Request will construct the
-    API request, but not send it. This is also helpful when you want to get a
-    presigned URL for a request, and share the presigned URL instead of your
-    application making the request directly.
+ListObjectsPagesWithContext - ListObjectsPages के समान, लेकिन संदर्भ पैटर्न के लिए समर्थन जोड़ता है। ListObjectsWithContext के समान यह विधि अनुरोध पैकेज के विकल्प फ़ंक्शन विकल्प प्रकारों को विविध तर्क के रूप में भी लेती है।
 
-  * ListObjectsPages - Same as the base API operation, but uses a callback to
-    automatically handle pagination of the API's response.
+एपीआई ऑपरेशंस के अलावा एसडीके में कई उच्च स्तरीय विधियां भी शामिल हैं जो एडब्ल्यूएस संसाधनों की वांछित स्थिति में होने के लिए जांच और प्रतीक्षा कर रही हैं। इस सूची में हम वेटर्स के विभिन्न रूपों को प्रदर्शित करने के लिए WaitUntilBucketExists का उपयोग करेंगे।
 
-  * ListObjectsWithContext - Same as base API operation, but adds support for
-    the Context pattern. This is helpful for controlling the canceling of in
-    flight requests. See the Go standard library context package for more
-    information. This method also takes request package's Option functional
-    options as the variadic argument for modifying how the request will be
-    made, or extracting information from the raw HTTP response.
+प्रतीक्षा करें जब तक बाल्टी मौजूद नहीं है। - किसी संसाधन की स्थिति के लिए AWS सेवा को क्वेरी करने के लिए API अनुरोध करने की विधि। उस अवस्था के पूर्ण होने पर सफलतापूर्वक वापस लौटेंगे।
 
-  * ListObjectsPagesWithContext - same as ListObjectsPages, but adds support for
-    the Context pattern. Similar to ListObjectsWithContext this method also
-    takes the request package's Option function option types as the variadic
-    argument.
+WaitUntilBucketExistsWithContext - WaitUntilBucketExists के समान, लेकिन संदर्भ पैटर्न के लिए समर्थन जोड़ता है। इसके अलावा ये विधियाँ वेटर को कॉन्फ़िगर करने के लिए पैकेज के WaiterOptions का अनुरोध करती हैं, और SDK द्वारा अंतर्निहित अनुरोध कैसे किया जाएगा।
 
-In addition to the API operations the SDK also includes several higher level
-methods that abstract checking for and waiting for an AWS resource to be in
-a desired state. In this list we'll use WaitUntilBucketExists to demonstrate
-the different forms of waiters.
-
-  * WaitUntilBucketExists. - Method to make API request to query an AWS service for
-    a resource's state. Will return successfully when that state is accomplished.
-
-  * WaitUntilBucketExistsWithContext - Same as WaitUntilBucketExists, but adds
-    support for the Context pattern. In addition these methods take request
-    package's WaiterOptions to configure the waiter, and how underlying request
-    will be made by the SDK.
-
-The API method will document which error codes the service might return for
-the operation. These errors will also be available as const strings prefixed
-with "ErrCode" in the service client's package. If there are no errors listed
-in the API's SDK documentation you'll need to consult the AWS service's API
-documentation for the errors that could be returned.
-
-```go
+एपीआई विधि दस्तावेज करेगी कि ऑपरेशन के लिए सेवा किस त्रुटि कोड को वापस कर सकती है। ये त्रुटियाँ सर्विस क्लाइंट के पैकेज में "ErrCode" के साथ प्रीफ़िक्स्ड कॉन्स्ट स्ट्रिंग्स के रूप में भी उपलब्ध होंगी। यदि एपीआई के एसडीके प्रलेखन में कोई त्रुटि सूचीबद्ध नहीं है, तो आपको लौटाई जा सकने वाली त्रुटियों के लिए एडब्ल्यूएस सेवा के एपीआई दस्तावेज से परामर्श करने की आवश्यकता होगी।
   ctx := context.Background()
 
   result, err := svc.GetObjectWithContext(ctx, &s3.GetObjectInput{
@@ -408,15 +245,8 @@ documentation for the errors that could be returned.
   defer result.Body.Close()
 
   fmt.Println("Object Size:", aws.Int64Value(result.ContentLength))
-```
-
-### API Request Pagination and Resource Waiters
-
-Pagination helper methods are suffixed with "Pages", and provide the
-functionality needed to round trip API page requests. Pagination methods
-take a callback function that will be called for each page of the API's response.
-
-```go
+एपीआई अनुरोध पृष्ठांकन और संसाधन वेटर
+पेजिनेशन हेल्पर विधियाँ "पेज" के साथ प्रत्ययबद्ध हैं, और राउंड ट्रिप एपीआई पेज अनुरोधों के लिए आवश्यक कार्यक्षमता प्रदान करती हैं। पेजिनेशन विधि एक कॉलबैक फ़ंक्शन लेती है जिसे एपीआई की प्रतिक्रिया के प्रत्येक पृष्ठ के लिए कॉल किया जाएगा।
    objects := []string{}
    err := svc.ListObjectsPagesWithContext(ctx, &s3.ListObjectsInput{
        Bucket: aws.String(myBucket),
@@ -431,16 +261,8 @@ take a callback function that will be called for each page of the API's response
    }
 
    fmt.Println("Objects in bucket:", objects)
-```
+वेटर सहायक विधियाँ AWS संसाधन स्थिति की प्रतीक्षा करने की कार्यक्षमता प्रदान करती हैं। ये विधियाँ AWS संसाधन की स्थिति की जाँच करने के लिए आवश्यक तर्क को अमूर्त करती हैं, और तब तक प्रतीक्षा करती हैं जब तक कि संसाधन वांछित स्थिति में न हो। वेटर तब तक ब्लॉक रहेगा जब तक कि संसाधन उस स्थिति में नहीं है जो वांछित है, एक त्रुटि होती है, या वेटर का समय समाप्त हो जाता है। यदि संसाधन का समय समाप्त हो जाता है, तो लौटाया गया त्रुटि कोड अनुरोध होगा। WaiterResourceNotReadyErrorCode।
 
-Waiter helper methods provide the functionality to wait for an AWS resource
-state. These methods abstract the logic needed to check the state of an
-AWS resource, and wait until that resource is in a desired state. The waiter
-will block until the resource is in the state that is desired, an error occurs,
-or the waiter times out. If a resource times out the error code returned will
-be request.WaiterResourceNotReadyErrorCode.
-
-```go
   err := svc.WaitUntilBucketExistsWithContext(ctx, &s3.HeadBucketInput{
       Bucket: aws.String(myBucket),
   })
@@ -452,75 +274,38 @@ be request.WaiterResourceNotReadyErrorCode.
       panic(fmt.Errorf("failed to wait for bucket to exist, %v", err))
   }
   fmt.Println("Bucket", myBucket, "exists")
-```    
+मदद प्राप्त करें
+सहायता प्राप्त करने के लिए कृपया इन सामुदायिक संसाधनों का उपयोग करें। हम बग और फीचर अनुरोधों को ट्रैक करने के लिए गिटहब मुद्दों का उपयोग करते हैं।
 
-## Getting Help
+StackOverflow पर एक प्रश्न पूछें और उसे aws-sdk-go टैग से टैग करें।
+गो कम्युनिटी चैट के लिए AWS SDK में शामिल हों।
+AWS सपोर्ट के साथ सपोर्ट टिकट खोलें।
+अगर आपको लगता है कि आपको कोई बग मिल गया है, तो कृपया कोई समस्या खोलें।
+यह एसडीके एडब्ल्यूएस सेवा एपीआई लागू करता है। एडब्ल्यूएस सेवाओं और उनकी सीमाओं के बारे में सामान्य मुद्दों के लिए, आप अमेज़ॅन वेब सेवा चर्चा मंचों पर भी नज़र डाल सकते हैं।
 
-Please use these community resources for getting help. We use the GitHub issues
-for tracking bugs and feature requests.
+खुलने के मुद्दे
+यदि आप गो के लिए एडब्ल्यूएस एसडीके के साथ एक बग का सामना करते हैं तो हम इसके बारे में सुनना चाहेंगे। मौजूदा मुद्दों को खोजें और देखें कि क्या कोई नया मुद्दा खोलने से पहले अन्य लोग भी समस्या का अनुभव कर रहे हैं। कृपया गो, गो भाषा और आपके द्वारा उपयोग किए जा रहे ओएस के लिए एडब्ल्यूएस एसडीके का संस्करण शामिल करें। उपयुक्त होने पर कृपया पुनरुत्पादन मामले को भी शामिल करें।
 
-* Ask a question on [StackOverflow](http://stackoverflow.com/) and tag it with the [`aws-sdk-go`](http://stackoverflow.com/questions/tagged/aws-sdk-go) tag.
-* Come join the AWS SDK for Go community chat on [gitter](https://gitter.im/aws/aws-sdk-go).
-* Open a support ticket with [AWS Support](http://docs.aws.amazon.com/awssupport/latest/user/getting-started.html).
-* If you think you may have found a bug, please open an [issue](https://github.com/aws/aws-sdk-go/issues/new/choose).
+गिटहब मुद्दे बग रिपोर्ट और फीचर अनुरोधों के लिए लक्षित हैं। गो के लिए एडब्ल्यूएस एसडीके का उपयोग करने में सहायता और प्रश्नों के लिए कृपया सहायता प्राप्त करना अनुभाग में सूचीबद्ध संसाधनों का उपयोग करें। खुले मुद्दों की सूची को संक्षिप्त रखने से हमें समयबद्ध तरीके से जवाब देने में मदद मिलेगी।
 
-This SDK implements AWS service APIs. For general issues regarding the AWS services and their limitations, you may also take a look at the [Amazon Web Services Discussion Forums](https://forums.aws.amazon.com/).
+योगदान
+हम अपनी AWS सेवाओं के लिए एक उच्च-गुणवत्ता और उपयोगी SDK प्रदान करने के लिए कड़ी मेहनत करते हैं, और हम अपने समुदाय से प्रतिक्रिया और योगदान को बहुत महत्व देते हैं। कृपया किसी भी समस्या को सबमिट करने या अनुरोध करने से पहले हमारे योगदान दिशानिर्देशों की समीक्षा करें ताकि यह सुनिश्चित हो सके कि आपके बग रिपोर्ट या योगदान का प्रभावी ढंग से जवाब देने के लिए हमारे पास सभी आवश्यक जानकारी है।
 
-### Opening Issues
+एसडीके के प्रमुख संस्करणों के लिए रखरखाव और समर्थन
+एसडीके प्रमुख संस्करणों और हमारी अंतर्निहित निर्भरताओं के रखरखाव और समर्थन के बारे में जानकारी के लिए, एडब्ल्यूएस एसडीके और उपकरण साझा कॉन्फ़िगरेशन और क्रेडेंशियल्स संदर्भ गाइड में निम्नलिखित देखें:
 
-If you encounter a bug with the AWS SDK for Go we would like to hear about it.
-Search the [existing issues](https://github.com/aws/aws-sdk-go/issues) and see
-if others are also experiencing the issue before opening a new issue. Please
-include the version of AWS SDK for Go, Go language, and OS you’re using. Please
-also include reproduction case when appropriate.
+एडब्ल्यूएस एसडीके और उपकरण रखरखाव नीति
+एडब्ल्यूएस एसडीके और उपकरण संस्करण मैट्रिक्स का समर्थन करते हैं
+संसाधन
+डेवलपर मार्गदर्शिका - यह दस्तावेज़ एक सामान्य परिचय है कि कैसे कॉन्फ़िगर करें और SDK के साथ अनुरोध करें। यदि आप पहली बार SDK का उपयोग कर रहे हैं, तो यह दस्तावेज़ और API दस्तावेज़ आपको आरंभ करने में मदद करेंगे। यह दस्तावेज़ SDK के सिंटैक्स और व्यवहार पर केंद्रित है। सर्विस डेवलपर गाइड आपको विशिष्ट AWS सेवाओं का उपयोग शुरू करने में मदद करेगी।
 
-The GitHub issues are intended for bug reports and feature requests. For help
-and questions with using AWS SDK for Go please make use of the resources listed
-in the [Getting Help](https://github.com/aws/aws-sdk-go#getting-help) section.
-Keeping the list of open issues lean will help us respond in a timely manner.
+एसडीके एपीआई संदर्भ दस्तावेज - एसडीके द्वारा समर्थित एडब्ल्यूएस सेवाओं के लिए सभी एपीआई ऑपरेशन इनपुट और आउटपुट पैरामीटर देखने के लिए इस दस्तावेज़ का उपयोग करें। एपीआई संदर्भ में एसडीके के दस्तावेज भी शामिल हैं, और उदाहरण हैं कि एसडीके का उपयोग कैसे करें, सर्विस क्लाइंट एपीआई ऑपरेशंस और एपीआई ऑपरेशन के लिए पैरामीटर की आवश्यकता होती है।
 
-## Contributing
+सेवा दस्तावेज़ीकरण - AWS सेवाओं के साथ इंटरफ़ेस करने का तरीका जानने के लिए इस दस्तावेज़ का उपयोग करें। ये मार्गदर्शिकाएँ किसी सेवा के साथ आरंभ करने के लिए, या किसी सेवा के बारे में अधिक जानकारी की तलाश करते समय बहुत अच्छी होती हैं। जबकि कोडिंग के लिए इस दस्तावेज़ की आवश्यकता नहीं है, सेवाएँ देखने के लिए सहायक नमूने प्रदान कर सकती हैं।
 
-We work hard to provide a high-quality and useful SDK for our AWS services, and we greatly value feedback and contributions from our community. Please review our [contributing guidelines](./CONTRIBUTING.md) before submitting any [issues] or [pull requests][pr] to ensure we have all the necessary information to effectively respond to your bug report or contribution.
+एसडीके उदाहरण - एसडीके के रेपो में शामिल एसडीके सुविधाओं और एडब्ल्यूएस सेवाओं का उपयोग करते हुए कई हस्तनिर्मित उदाहरण हैं।
 
-## Maintenance and support for SDK major versions
+फ़ोरम - प्रश्न पूछें, सहायता प्राप्त करें और फ़ीडबैक दें
 
-For information about maintenance and support for SDK major versions and our underlying dependencies, see the following in the AWS SDKs and Tools Shared Configuration and Credentials Reference Guide:
+मुद्दे - मुद्दों की रिपोर्ट करें, पुल अनुरोध सबमिट करें, और शामिल हों (Apache 2.0 लाइसेंस देखें)
 
-* [AWS SDKs and Tools Maintenance Policy](https://docs.aws.amazon.com/credref/latest/refdocs/maint-policy.html)
-* [AWS SDKs and Tools Version Support Matrix](https://docs.aws.amazon.com/credref/latest/refdocs/version-support-matrix.html)
-
-## Resources
-
-[Developer guide](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/welcome.html) - This document
-is a general introduction on how to configure and make requests with the SDK.
-If this is your first time using the SDK, this documentation and the API
-documentation will help you get started. This document focuses on the syntax
-and behavior of the SDK. The [Service Developer Guide](https://aws.amazon.com/documentation/) 
-will help you get started using specific AWS services.
-
-[SDK API Reference Documentation](https://docs.aws.amazon.com/sdk-for-go/api/) - Use this
-document to look up all API operation input and output parameters for AWS
-services supported by the SDK. The API reference also includes documentation of
-the SDK, and examples how to using the SDK, service client API operations, and
-API operation require parameters.
-
-[Service Documentation](https://aws.amazon.com/documentation/) - Use this
-documentation to learn how to interface with AWS services. These guides are
-great for getting started with a service, or when looking for more 
-information about a service. While this document is not required for coding, 
-services may supply helpful samples to look out for.
-
-[SDK Examples](https://github.com/aws/aws-sdk-go/tree/main/example) -
-Included in the SDK's repo are several hand crafted examples using the SDK
-features and AWS services.
-
-[Forum](https://forums.aws.amazon.com/forum.jspa?forumID=293) - Ask questions, get help, and give feedback
-
-[Issues][issues] - Report issues, submit pull requests, and get involved
-  (see [Apache 2.0 License][license])
-
-
-[issues]: https://github.com/aws/aws-sdk-go/issues
-[pr]: https://github.com/aws/aws-sdk-go/pulls
-[license]: http://aws.amazon.com/apache2.0/
