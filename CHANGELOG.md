@@ -1,3 +1,14 @@
+Release v1.44.258 (2023-05-05)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * This release adds support the inf2 and trn1n instances. inf2 instances are purpose built for deep learning inference while trn1n instances are powered by AWS Trainium accelerators and they build on the capabilities of Trainium-powered trn1 instances.
+* `service/inspector2`: Updates service API, documentation, and paginators
+* `service/mediatailor`: Updates service API and documentation
+* `service/sqs`: Updates service API, documentation, and paginators
+  * Revert previous SQS protocol change.
+
 Release v1.44.257 (2023-05-04)
 ===
 

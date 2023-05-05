@@ -548,6 +548,7 @@
     "AvailSuppression":{
       "type":"structure",
       "members":{
+        "FillPolicy":{"shape":"FillPolicy"},
         "Mode":{"shape":"Mode"},
         "Value":{"shape":"__string"}
       }
@@ -1255,6 +1256,13 @@
         "VodSourceName":{"shape":"__string"}
       }
     },
+    "FillPolicy":{
+      "type":"string",
+      "enum":[
+        "FULL_AVAIL_ONLY",
+        "PARTIAL_AVAIL"
+      ]
+    },
     "GetChannelPolicyRequest":{
       "type":"structure",
       "required":["ChannelName"],
@@ -1679,7 +1687,8 @@
       "type":"string",
       "enum":[
         "OFF",
-        "BEHIND_LIVE_EDGE"
+        "BEHIND_LIVE_EDGE",
+        "AFTER_LIVE_EDGE"
       ]
     },
     "Operator":{

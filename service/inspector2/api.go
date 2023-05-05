@@ -3289,6 +3289,153 @@ func (c *Inspector2) ListUsageTotalsPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opSearchVulnerabilities = "SearchVulnerabilities"
+
+// SearchVulnerabilitiesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchVulnerabilities operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchVulnerabilities for more information on using the SearchVulnerabilities
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchVulnerabilitiesRequest method.
+//	req, resp := client.SearchVulnerabilitiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/SearchVulnerabilities
+func (c *Inspector2) SearchVulnerabilitiesRequest(input *SearchVulnerabilitiesInput) (req *request.Request, output *SearchVulnerabilitiesOutput) {
+	op := &request.Operation{
+		Name:       opSearchVulnerabilities,
+		HTTPMethod: "POST",
+		HTTPPath:   "/vulnerabilities/search",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchVulnerabilitiesInput{}
+	}
+
+	output = &SearchVulnerabilitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchVulnerabilities API operation for Inspector2.
+//
+// Lists Amazon Inspector coverage details for a specific vulnerability.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation SearchVulnerabilities for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/SearchVulnerabilities
+func (c *Inspector2) SearchVulnerabilities(input *SearchVulnerabilitiesInput) (*SearchVulnerabilitiesOutput, error) {
+	req, out := c.SearchVulnerabilitiesRequest(input)
+	return out, req.Send()
+}
+
+// SearchVulnerabilitiesWithContext is the same as SearchVulnerabilities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchVulnerabilities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) SearchVulnerabilitiesWithContext(ctx aws.Context, input *SearchVulnerabilitiesInput, opts ...request.Option) (*SearchVulnerabilitiesOutput, error) {
+	req, out := c.SearchVulnerabilitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchVulnerabilitiesPages iterates over the pages of a SearchVulnerabilities operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchVulnerabilities method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchVulnerabilities operation.
+//	pageNum := 0
+//	err := client.SearchVulnerabilitiesPages(params,
+//	    func(page *inspector2.SearchVulnerabilitiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Inspector2) SearchVulnerabilitiesPages(input *SearchVulnerabilitiesInput, fn func(*SearchVulnerabilitiesOutput, bool) bool) error {
+	return c.SearchVulnerabilitiesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchVulnerabilitiesPagesWithContext same as SearchVulnerabilitiesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) SearchVulnerabilitiesPagesWithContext(ctx aws.Context, input *SearchVulnerabilitiesInput, fn func(*SearchVulnerabilitiesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchVulnerabilitiesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchVulnerabilitiesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchVulnerabilitiesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -4752,6 +4899,67 @@ func (s *AssociateMemberOutput) SetAccountId(v string) *AssociateMemberOutput {
 	return s
 }
 
+// The Amazon Web Services Threat Intel Group (ATIG) details for a specific
+// vulnerability.
+type AtigData struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time this vulnerability was first observed.
+	FirstSeen *time.Time `locationName:"firstSeen" type:"timestamp"`
+
+	// The date and time this vulnerability was last observed.
+	LastSeen *time.Time `locationName:"lastSeen" type:"timestamp"`
+
+	// The commercial sectors this vulnerability targets.
+	Targets []*string `locationName:"targets" type:"list"`
+
+	// The MITRE ATT&CK (https://attack.mitre.org/) tactics, techniques, and procedures
+	// (TTPs) associated with vulnerability.
+	Ttps []*string `locationName:"ttps" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AtigData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AtigData) GoString() string {
+	return s.String()
+}
+
+// SetFirstSeen sets the FirstSeen field's value.
+func (s *AtigData) SetFirstSeen(v time.Time) *AtigData {
+	s.FirstSeen = &v
+	return s
+}
+
+// SetLastSeen sets the LastSeen field's value.
+func (s *AtigData) SetLastSeen(v time.Time) *AtigData {
+	s.LastSeen = &v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *AtigData) SetTargets(v []*string) *AtigData {
+	s.Targets = v
+	return s
+}
+
+// SetTtps sets the Ttps field's value.
+func (s *AtigData) SetTtps(v []*string) *AtigData {
+	s.Ttps = v
+	return s
+}
+
 // Represents which scan types are automatically enabled for new members of
 // your Amazon Inspector organization.
 type AutoEnable struct {
@@ -5898,6 +6106,57 @@ func (s *CancelFindingsReportOutput) SetReportId(v string) *CancelFindingsReport
 	return s
 }
 
+// The Cybersecurity and Infrastructure Security Agency (CISA) details for a
+// specific vulnerability.
+type CisaData struct {
+	_ struct{} `type:"structure"`
+
+	// The remediation action recommended by CISA for this vulnerability.
+	Action *string `locationName:"action" type:"string"`
+
+	// The date and time CISA added this vulnerability to their catalogue.
+	DateAdded *time.Time `locationName:"dateAdded" type:"timestamp"`
+
+	// The date and time CISA expects a fix to have been provided vulnerability.
+	DateDue *time.Time `locationName:"dateDue" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisaData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisaData) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *CisaData) SetAction(v string) *CisaData {
+	s.Action = &v
+	return s
+}
+
+// SetDateAdded sets the DateAdded field's value.
+func (s *CisaData) SetDateAdded(v time.Time) *CisaData {
+	s.DateAdded = &v
+	return s
+}
+
+// SetDateDue sets the DateDue field's value.
+func (s *CisaData) SetDateDue(v time.Time) *CisaData {
+	s.DateDue = &v
+	return s
+}
+
 // A conflict occurred.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -6797,6 +7056,90 @@ func (s CreateFindingsReportOutput) GoString() string {
 // SetReportId sets the ReportId field's value.
 func (s *CreateFindingsReportOutput) SetReportId(v string) *CreateFindingsReportOutput {
 	s.ReportId = &v
+	return s
+}
+
+// The Common Vulnerability Scoring System (CVSS) version 2 details for the
+// vulnerability.
+type Cvss2 struct {
+	_ struct{} `type:"structure"`
+
+	// The CVSS v2 base score for the vulnerability.
+	BaseScore *float64 `locationName:"baseScore" type:"double"`
+
+	// The scoring vector associated with the CVSS v2 score.
+	ScoringVector *string `locationName:"scoringVector" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cvss2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cvss2) GoString() string {
+	return s.String()
+}
+
+// SetBaseScore sets the BaseScore field's value.
+func (s *Cvss2) SetBaseScore(v float64) *Cvss2 {
+	s.BaseScore = &v
+	return s
+}
+
+// SetScoringVector sets the ScoringVector field's value.
+func (s *Cvss2) SetScoringVector(v string) *Cvss2 {
+	s.ScoringVector = &v
+	return s
+}
+
+// The Common Vulnerability Scoring System (CVSS) version 3 details for the
+// vulnerability.
+type Cvss3 struct {
+	_ struct{} `type:"structure"`
+
+	// The CVSS v3 base score for the vulnerability.
+	BaseScore *float64 `locationName:"baseScore" type:"double"`
+
+	// The scoring vector associated with the CVSS v3 score.
+	ScoringVector *string `locationName:"scoringVector" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cvss3) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cvss3) GoString() string {
+	return s.String()
+}
+
+// SetBaseScore sets the BaseScore field's value.
+func (s *Cvss3) SetBaseScore(v float64) *Cvss3 {
+	s.BaseScore = &v
+	return s
+}
+
+// SetScoringVector sets the ScoringVector field's value.
+func (s *Cvss3) SetScoringVector(v string) *Cvss3 {
+	s.ScoringVector = &v
 	return s
 }
 
@@ -8287,6 +8630,79 @@ func (s *EnableOutput) SetAccounts(v []*Account) *EnableOutput {
 // SetFailedAccounts sets the FailedAccounts field's value.
 func (s *EnableOutput) SetFailedAccounts(v []*FailedAccount) *EnableOutput {
 	s.FailedAccounts = v
+	return s
+}
+
+// Details about the Exploit Prediction Scoring System (EPSS) score.
+type Epss struct {
+	_ struct{} `type:"structure"`
+
+	// The Exploit Prediction Scoring System (EPSS) score.
+	Score *float64 `locationName:"score" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Epss) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Epss) GoString() string {
+	return s.String()
+}
+
+// SetScore sets the Score field's value.
+func (s *Epss) SetScore(v float64) *Epss {
+	s.Score = &v
+	return s
+}
+
+// Contains information on when this exploit was observed.
+type ExploitObserved struct {
+	_ struct{} `type:"structure"`
+
+	// The date an time when the exploit was first seen.
+	FirstSeen *time.Time `locationName:"firstSeen" type:"timestamp"`
+
+	// The date an time when the exploit was last seen.
+	LastSeen *time.Time `locationName:"lastSeen" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExploitObserved) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExploitObserved) GoString() string {
+	return s.String()
+}
+
+// SetFirstSeen sets the FirstSeen field's value.
+func (s *ExploitObserved) SetFirstSeen(v time.Time) *ExploitObserved {
+	s.FirstSeen = &v
+	return s
+}
+
+// SetLastSeen sets the LastSeen field's value.
+func (s *ExploitObserved) SetLastSeen(v time.Time) *ExploitObserved {
+	s.LastSeen = &v
 	return s
 }
 
@@ -13745,6 +14161,162 @@ func (s *ScanStatus) SetStatusCode(v string) *ScanStatus {
 	return s
 }
 
+// Details on the criteria used to define the filter for a vulnerability search.
+type SearchVulnerabilitiesFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs for specific vulnerabilities.
+	//
+	// VulnerabilityIds is a required field
+	VulnerabilityIds []*string `locationName:"vulnerabilityIds" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVulnerabilitiesFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVulnerabilitiesFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchVulnerabilitiesFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchVulnerabilitiesFilterCriteria"}
+	if s.VulnerabilityIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("VulnerabilityIds"))
+	}
+	if s.VulnerabilityIds != nil && len(s.VulnerabilityIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VulnerabilityIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVulnerabilityIds sets the VulnerabilityIds field's value.
+func (s *SearchVulnerabilitiesFilterCriteria) SetVulnerabilityIds(v []*string) *SearchVulnerabilitiesFilterCriteria {
+	s.VulnerabilityIds = v
+	return s
+}
+
+type SearchVulnerabilitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The criteria used to filter the results of a vulnerability search.
+	//
+	// FilterCriteria is a required field
+	FilterCriteria *SearchVulnerabilitiesFilterCriteria `locationName:"filterCriteria" type:"structure" required:"true"`
+
+	// A token to use for paginating results that are returned in the response.
+	// Set the value of this parameter to null for the first request to a list action.
+	// For subsequent calls, use the NextToken value returned from the previous
+	// request to continue listing results after the first page.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVulnerabilitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVulnerabilitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchVulnerabilitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchVulnerabilitiesInput"}
+	if s.FilterCriteria == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterCriteria"))
+	}
+	if s.FilterCriteria != nil {
+		if err := s.FilterCriteria.Validate(); err != nil {
+			invalidParams.AddNested("FilterCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *SearchVulnerabilitiesInput) SetFilterCriteria(v *SearchVulnerabilitiesFilterCriteria) *SearchVulnerabilitiesInput {
+	s.FilterCriteria = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchVulnerabilitiesInput) SetNextToken(v string) *SearchVulnerabilitiesInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchVulnerabilitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination parameter to be used on the next list operation to retrieve
+	// more items.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Details about the listed vulnerability.
+	//
+	// Vulnerabilities is a required field
+	Vulnerabilities []*Vulnerability `locationName:"vulnerabilities" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVulnerabilitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVulnerabilitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchVulnerabilitiesOutput) SetNextToken(v string) *SearchVulnerabilitiesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVulnerabilities sets the Vulnerabilities field's value.
+func (s *SearchVulnerabilitiesOutput) SetVulnerabilities(v []*Vulnerability) *SearchVulnerabilitiesOutput {
+	s.Vulnerabilities = v
+	return s
+}
+
 // You have exceeded your service quota. To perform the requested action, remove
 // some of the relevant resources, or use Service Quotas to request a service
 // quota increase.
@@ -15193,6 +15765,188 @@ func (s *ValidationExceptionField) SetMessage(v string) *ValidationExceptionFiel
 // SetName sets the Name field's value.
 func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	s.Name = &v
+	return s
+}
+
+// Contains details about a specific vulnerability Amazon Inspector can detect.
+type Vulnerability struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information about the Amazon Web Services Threat
+	// Intel Group (ATIG) details for the vulnerability.
+	AtigData *AtigData `locationName:"atigData" type:"structure"`
+
+	// An object that contains the Cybersecurity and Infrastructure Security Agency
+	// (CISA) details for the vulnerability.
+	CisaData *CisaData `locationName:"cisaData" type:"structure"`
+
+	// An object that contains the Common Vulnerability Scoring System (CVSS) Version
+	// 2 details for the vulnerability.
+	Cvss2 *Cvss2 `locationName:"cvss2" type:"structure"`
+
+	// An object that contains the Common Vulnerability Scoring System (CVSS) Version
+	// 3 details for the vulnerability.
+	Cvss3 *Cvss3 `locationName:"cvss3" type:"structure"`
+
+	// The Common Weakness Enumeration (CWE) associated with the vulnerability.
+	Cwes []*string `locationName:"cwes" type:"list"`
+
+	// A description of the vulnerability.
+	Description *string `locationName:"description" type:"string"`
+
+	// Platforms that the vulnerability can be detected on.
+	DetectionPlatforms []*string `locationName:"detectionPlatforms" type:"list"`
+
+	// An object that contains the Exploit Prediction Scoring System (EPSS) score.
+	Epss *Epss `locationName:"epss" type:"structure"`
+
+	// An object that contains details on when the exploit was observed.
+	ExploitObserved *ExploitObserved `locationName:"exploitObserved" type:"structure"`
+
+	// The ID for the specific vulnerability.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
+
+	// Links to various resources with more information on this vulnerability.
+	ReferenceUrls []*string `locationName:"referenceUrls" type:"list"`
+
+	// A list of related vulnerabilities.
+	RelatedVulnerabilities []*string `locationName:"relatedVulnerabilities" type:"list"`
+
+	// The source of the vulnerability information.
+	Source *string `locationName:"source" type:"string" enum:"VulnerabilitySource"`
+
+	// A link to the official source material for this vulnerability.
+	SourceUrl *string `locationName:"sourceUrl" type:"string"`
+
+	// The date and time when the vendor created this vulnerability.
+	VendorCreatedAt *time.Time `locationName:"vendorCreatedAt" type:"timestamp"`
+
+	// The severity assigned by the vendor.
+	VendorSeverity *string `locationName:"vendorSeverity" min:"1" type:"string"`
+
+	// The date and time when the vendor last updated this vulnerability.
+	VendorUpdatedAt *time.Time `locationName:"vendorUpdatedAt" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Vulnerability) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Vulnerability) GoString() string {
+	return s.String()
+}
+
+// SetAtigData sets the AtigData field's value.
+func (s *Vulnerability) SetAtigData(v *AtigData) *Vulnerability {
+	s.AtigData = v
+	return s
+}
+
+// SetCisaData sets the CisaData field's value.
+func (s *Vulnerability) SetCisaData(v *CisaData) *Vulnerability {
+	s.CisaData = v
+	return s
+}
+
+// SetCvss2 sets the Cvss2 field's value.
+func (s *Vulnerability) SetCvss2(v *Cvss2) *Vulnerability {
+	s.Cvss2 = v
+	return s
+}
+
+// SetCvss3 sets the Cvss3 field's value.
+func (s *Vulnerability) SetCvss3(v *Cvss3) *Vulnerability {
+	s.Cvss3 = v
+	return s
+}
+
+// SetCwes sets the Cwes field's value.
+func (s *Vulnerability) SetCwes(v []*string) *Vulnerability {
+	s.Cwes = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Vulnerability) SetDescription(v string) *Vulnerability {
+	s.Description = &v
+	return s
+}
+
+// SetDetectionPlatforms sets the DetectionPlatforms field's value.
+func (s *Vulnerability) SetDetectionPlatforms(v []*string) *Vulnerability {
+	s.DetectionPlatforms = v
+	return s
+}
+
+// SetEpss sets the Epss field's value.
+func (s *Vulnerability) SetEpss(v *Epss) *Vulnerability {
+	s.Epss = v
+	return s
+}
+
+// SetExploitObserved sets the ExploitObserved field's value.
+func (s *Vulnerability) SetExploitObserved(v *ExploitObserved) *Vulnerability {
+	s.ExploitObserved = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Vulnerability) SetId(v string) *Vulnerability {
+	s.Id = &v
+	return s
+}
+
+// SetReferenceUrls sets the ReferenceUrls field's value.
+func (s *Vulnerability) SetReferenceUrls(v []*string) *Vulnerability {
+	s.ReferenceUrls = v
+	return s
+}
+
+// SetRelatedVulnerabilities sets the RelatedVulnerabilities field's value.
+func (s *Vulnerability) SetRelatedVulnerabilities(v []*string) *Vulnerability {
+	s.RelatedVulnerabilities = v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *Vulnerability) SetSource(v string) *Vulnerability {
+	s.Source = &v
+	return s
+}
+
+// SetSourceUrl sets the SourceUrl field's value.
+func (s *Vulnerability) SetSourceUrl(v string) *Vulnerability {
+	s.SourceUrl = &v
+	return s
+}
+
+// SetVendorCreatedAt sets the VendorCreatedAt field's value.
+func (s *Vulnerability) SetVendorCreatedAt(v time.Time) *Vulnerability {
+	s.VendorCreatedAt = &v
+	return s
+}
+
+// SetVendorSeverity sets the VendorSeverity field's value.
+func (s *Vulnerability) SetVendorSeverity(v string) *Vulnerability {
+	s.VendorSeverity = &v
+	return s
+}
+
+// SetVendorUpdatedAt sets the VendorUpdatedAt field's value.
+func (s *Vulnerability) SetVendorUpdatedAt(v time.Time) *Vulnerability {
+	s.VendorUpdatedAt = &v
 	return s
 }
 
@@ -16820,5 +17574,17 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonCannotParse,
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonOther,
+	}
+}
+
+const (
+	// VulnerabilitySourceNvd is a VulnerabilitySource enum value
+	VulnerabilitySourceNvd = "NVD"
+)
+
+// VulnerabilitySource_Values returns all elements of the VulnerabilitySource enum
+func VulnerabilitySource_Values() []string {
+	return []string{
+		VulnerabilitySourceNvd,
 	}
 }
