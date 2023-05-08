@@ -49966,7 +49966,10 @@ type Job struct {
 	// 4 vCPUs of compute capacity and 16 GB of memory. For more information, see
 	// the Glue pricing page (https://aws.amazon.com/glue/pricing/).
 	//
-	// Do not set Max Capacity if using WorkerType and NumberOfWorkers.
+	// For Glue version 2.0 or later jobs, you cannot specify a Maximum capacity.
+	// Instead, you should specify a Worker type and the Number of workers.
+	//
+	// Do not set MaxCapacity if using WorkerType and NumberOfWorkers.
 	//
 	// The value that can be allocated for MaxCapacity depends on whether you are
 	// running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming
@@ -49979,9 +49982,6 @@ type Job struct {
 	//    or Apache Spark streaming ETL job (JobCommand.Name="gluestreaming"), you
 	//    can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type
 	//    cannot have a fractional DPU allocation.
-	//
-	// For Glue version 2.0 jobs, you cannot instead specify a Maximum capacity.
-	// Instead, you should specify a Worker type and the Number of workers.
 	MaxCapacity *float64 `type:"double"`
 
 	// The maximum number of times to retry this job after a JobRun fails.
@@ -50024,11 +50024,25 @@ type Job struct {
 	//
 	//    * For the G.1X worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of
 	//    memory, 64 GB disk), and provides 1 executor per worker. We recommend
-	//    this worker type for memory-intensive jobs.
+	//    this worker type for workloads such as data transforms, joins, and queries,
+	//    to offers a scalable and cost effective way to run most jobs.
 	//
 	//    * For the G.2X worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of
 	//    memory, 128 GB disk), and provides 1 executor per worker. We recommend
-	//    this worker type for memory-intensive jobs.
+	//    this worker type for workloads such as data transforms, joins, and queries,
+	//    to offers a scalable and cost effective way to run most jobs.
+	//
+	//    * For the G.4X worker type, each worker maps to 4 DPU (16 vCPU, 64 GB
+	//    of memory, 256 GB disk), and provides 1 executor per worker. We recommend
+	//    this worker type for jobs whose workloads contain your most demanding
+	//    transforms, aggregations, joins, and queries. This worker type is available
+	//    only for Glue version 3.0 or later jobs.
+	//
+	//    * For the G.8X worker type, each worker maps to 8 DPU (32 vCPU, 128 GB
+	//    of memory, 512 GB disk), and provides 1 executor per worker. We recommend
+	//    this worker type for jobs whose workloads contain your most demanding
+	//    transforms, aggregations, joins, and queries. This worker type is available
+	//    only for Glue version 3.0 or later jobs.
 	//
 	//    * For the G.025X worker type, each worker maps to 0.25 DPU (2 vCPU, 4
 	//    GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend
@@ -74136,6 +74150,12 @@ const (
 
 	// WorkerTypeG025x is a WorkerType enum value
 	WorkerTypeG025x = "G.025X"
+
+	// WorkerTypeG4x is a WorkerType enum value
+	WorkerTypeG4x = "G.4X"
+
+	// WorkerTypeG8x is a WorkerType enum value
+	WorkerTypeG8x = "G.8X"
 )
 
 // WorkerType_Values returns all elements of the WorkerType enum
@@ -74145,6 +74165,8 @@ func WorkerType_Values() []string {
 		WorkerTypeG1x,
 		WorkerTypeG2x,
 		WorkerTypeG025x,
+		WorkerTypeG4x,
+		WorkerTypeG8x,
 	}
 }
 

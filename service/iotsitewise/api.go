@@ -11428,9 +11428,9 @@ type BatchGetAssetPropertyAggregatesInput struct {
 	// The maximum number of results to return for each paginated request. A result
 	// set is returned in the two cases, whichever occurs first.
 	//
-	//    * The size of the result set is less than 1 MB.
+	//    * The size of the result set is equal to 1 MB.
 	//
-	//    * The number of data points in the result set is less than the value of
+	//    * The number of data points in the result set is equal to the value of
 	//    maxResults. The maximum value of maxResults is 4000.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12135,10 +12135,10 @@ type BatchGetAssetPropertyValueHistoryInput struct {
 	// The maximum number of results to return for each paginated request. A result
 	// set is returned in the two cases, whichever occurs first.
 	//
-	//    * The size of the result set is less than 1 MB.
+	//    * The size of the result set is equal to 4 MB.
 	//
-	//    * The number of data points in the result set is less than the value of
-	//    maxResults. The maximum value of maxResults is 4000.
+	//    * The number of data points in the result set is equal to the value of
+	//    maxResults. The maximum value of maxResults is 20000.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -18475,9 +18475,13 @@ type GetAssetPropertyAggregatesInput struct {
 	// EndDate is a required field
 	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp" required:"true"`
 
-	// The maximum number of results to return for each paginated request.
+	// The maximum number of results to return for each paginated request. A result
+	// set is returned in the two cases, whichever occurs first.
 	//
-	// Default: 100
+	//    * The size of the result set is equal to 1 MB.
+	//
+	//    * The number of data points in the result set is equal to the value of
+	//    maxResults. The maximum value of maxResults is 250.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -18695,9 +18699,13 @@ type GetAssetPropertyValueHistoryInput struct {
 	// in seconds in Unix epoch time.
 	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp"`
 
-	// The maximum number of results to return for each paginated request.
+	// The maximum number of results to return for each paginated request. A result
+	// set is returned in the two cases, whichever occurs first.
 	//
-	// Default: 100
+	//    * The size of the result set is equal to 4 MB.
+	//
+	//    * The number of data points in the result set is equal to the value of
+	//    maxResults. The maximum value of maxResults is 20000.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.

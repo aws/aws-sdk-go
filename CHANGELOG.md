@@ -1,3 +1,19 @@
+Release v1.44.259 (2023-05-08)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * We don't do release notes https://w.amazon.com/bin/view/AWSDocs/common-tasks/release-notes
+* `service/guardduty`: Updates service API and documentation
+  * Add AccessDeniedException 403 Error message code to support 3 Tagging related APIs
+* `service/iotsitewise`: Updates service API and documentation
+* `service/sts`: Updates service documentation
+  * Documentation updates for AWS Security Token Service.
+
+### SDK Bugs
+* `restjson`: Correct failure to deserialize errors.
+  * Deserialize generic error information when no response body is present.
+
 Release v1.44.258 (2023-05-05)
 ===
 
