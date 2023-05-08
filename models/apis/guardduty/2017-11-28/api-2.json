@@ -743,6 +743,7 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -814,6 +815,7 @@
       "output":{"shape":"TagResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -842,6 +844,7 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -1045,6 +1048,21 @@
           "locationName":"allowsPublicWriteAccess"
         }
       }
+    },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"__type"
+        }
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
     },
     "AccessKeyDetails":{
       "type":"structure",

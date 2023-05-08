@@ -5084,6 +5084,9 @@ func (c *GuardDuty) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 //   - BadRequestException
 //     A bad request exception object.
 //
+//   - AccessDeniedException
+//     An access denied exception object.
+//
 //   - InternalServerErrorException
 //     An internal server error exception object.
 //
@@ -5567,6 +5570,9 @@ func (c *GuardDuty) TagResourceRequest(input *TagResourceInput) (req *request.Re
 //   - BadRequestException
 //     A bad request exception object.
 //
+//   - AccessDeniedException
+//     An access denied exception object.
+//
 //   - InternalServerErrorException
 //     An internal server error exception object.
 //
@@ -5732,6 +5738,9 @@ func (c *GuardDuty) UntagResourceRequest(input *UntagResourceInput) (req *reques
 //
 //   - BadRequestException
 //     A bad request exception object.
+//
+//   - AccessDeniedException
+//     An access denied exception object.
 //
 //   - InternalServerErrorException
 //     An internal server error exception object.
@@ -6765,6 +6774,74 @@ func (s *AccessControlList) SetAllowsPublicReadAccess(v bool) *AccessControlList
 func (s *AccessControlList) SetAllowsPublicWriteAccess(v bool) *AccessControlList {
 	s.AllowsPublicWriteAccess = &v
 	return s
+}
+
+// An access denied exception object.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message.
+	Message_ *string `locationName:"message" type:"string"`
+
+	// The error type.
+	Type *string `locationName:"__type" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about the access keys.

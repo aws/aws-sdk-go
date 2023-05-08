@@ -98,6 +98,11 @@
         "BucketLevelPermissions$AccessControlList": "<p>Contains information on how Access Control Policies are applied to the bucket.</p>"
       }
     },
+    "AccessDeniedException": {
+      "base": "<p>An access denied exception object.</p>",
+      "refs": {
+      }
+    },
     "AccessKeyDetails": {
       "base": "<p>Contains information about the access keys.</p>",
       "refs": {
@@ -2508,6 +2513,8 @@
         "AcceptAdministratorInvitationRequest$InvitationId": "<p>The value that is used to validate the administrator account to the member account.</p>",
         "AcceptInvitationRequest$MasterId": "<p>The account ID of the GuardDuty administrator account whose invitation you're accepting.</p>",
         "AcceptInvitationRequest$InvitationId": "<p>The value that is used to validate the administrator account to the member account.</p>",
+        "AccessDeniedException$Message": "<p>The error message.</p>",
+        "AccessDeniedException$Type": "<p>The error type.</p>",
         "AccessKeyDetails$AccessKeyId": "<p>The access key ID of the user.</p>",
         "AccessKeyDetails$PrincipalId": "<p>The principal ID of the user.</p>",
         "AccessKeyDetails$UserName": "<p>The name of the user.</p>",

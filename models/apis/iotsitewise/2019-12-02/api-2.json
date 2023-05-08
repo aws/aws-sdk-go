@@ -3562,7 +3562,7 @@
           "locationName":"nextToken"
         },
         "maxResults":{
-          "shape":"MaxResults",
+          "shape":"GetAssetPropertyValueAggregatesMaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         }
@@ -3575,6 +3575,14 @@
         "aggregatedValues":{"shape":"AggregatedValues"},
         "nextToken":{"shape":"NextToken"}
       }
+    },
+    "GetAssetPropertyValueAggregatesMaxResults":{
+      "type":"integer",
+      "min":1
+    },
+    "GetAssetPropertyValueHistoryMaxResults":{
+      "type":"integer",
+      "min":1
     },
     "GetAssetPropertyValueHistoryRequest":{
       "type":"structure",
@@ -3620,7 +3628,7 @@
           "locationName":"nextToken"
         },
         "maxResults":{
-          "shape":"MaxResults",
+          "shape":"GetAssetPropertyValueHistoryMaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         }
@@ -4824,9 +4832,9 @@
     },
     "Resolution":{
       "type":"string",
-      "max":2,
+      "max":3,
       "min":2,
-      "pattern":"1m|1h|1d"
+      "pattern":"1m|15m|1h|1d"
     },
     "Resource":{
       "type":"structure",
