@@ -9356,7 +9356,8 @@
       "members":{
         "VariantName":{"shape":"VariantName"},
         "DesiredWeight":{"shape":"VariantWeight"},
-        "DesiredInstanceCount":{"shape":"TaskCount"}
+        "DesiredInstanceCount":{"shape":"TaskCount"},
+        "ServerlessUpdateConfig":{"shape":"ProductionVariantServerlessUpdateConfig"}
       }
     },
     "DesiredWeightAndCapacityList":{
@@ -16969,7 +16970,15 @@
       ],
       "members":{
         "MemorySizeInMB":{"shape":"ServerlessMemorySizeInMB"},
-        "MaxConcurrency":{"shape":"ServerlessMaxConcurrency"}
+        "MaxConcurrency":{"shape":"ServerlessMaxConcurrency"},
+        "ProvisionedConcurrency":{"shape":"ServerlessProvisionedConcurrency"}
+      }
+    },
+    "ProductionVariantServerlessUpdateConfig":{
+      "type":"structure",
+      "members":{
+        "MaxConcurrency":{"shape":"ServerlessMaxConcurrency"},
+        "ProvisionedConcurrency":{"shape":"ServerlessProvisionedConcurrency"}
       }
     },
     "ProductionVariantStatus":{
@@ -18201,6 +18210,11 @@
       "type":"integer",
       "max":6144,
       "min":1024
+    },
+    "ServerlessProvisionedConcurrency":{
+      "type":"integer",
+      "max":200,
+      "min":1
     },
     "ServiceCatalogEntityId":{
       "type":"string",

@@ -284,6 +284,37 @@
       "refs": {
       }
     },
+    "AmazonRedshiftAdvancedOption": {
+      "base": "<p>Specifies an Amazon Redshift data store.</p>",
+      "refs": {
+        "AmazonRedshiftAdvancedOptions$member": null
+      }
+    },
+    "AmazonRedshiftAdvancedOptions": {
+      "base": null,
+      "refs": {
+        "AmazonRedshiftNodeData$AdvancedOptions": "<p>Optional values when connecting to the Redshift cluster.</p>"
+      }
+    },
+    "AmazonRedshiftNodeData": {
+      "base": "<p>Specifies an Amazon Redshift node.</p>",
+      "refs": {
+        "AmazonRedshiftSource$Data": "<p>Specifies the data of the Amazon Reshift source node.</p>",
+        "AmazonRedshiftTarget$Data": "<p>Specifies the data of the Amazon Reshift target node.</p>"
+      }
+    },
+    "AmazonRedshiftSource": {
+      "base": "<p>Specifies an Amazon Redshift source.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$AmazonRedshiftSource": "<p>Specifies a target that writes to a data source in Amazon Redshift.</p>"
+      }
+    },
+    "AmazonRedshiftTarget": {
+      "base": "<p>Specifies an Amazon Redshift target.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$AmazonRedshiftTarget": "<p>Specifies a target that writes to a data target in Amazon Redshift.</p>"
+      }
+    },
     "ApplyMapping": {
       "base": "<p>Specifies a transform that maps data property keys in the data source to data property keys in the data target. You can rename keys, modify the data types for keys, and choose which keys to drop from the dataset.</p>",
       "refs": {
@@ -726,6 +757,7 @@
     "BooleanValue": {
       "base": null,
       "refs": {
+        "AmazonRedshiftNodeData$Upsert": "<p>The action used on Redshift sinks when doing an APPEND.</p>",
         "CreateTriggerRequest$StartOnCreation": "<p>Set to <code>true</code> to start <code>SCHEDULED</code> and <code>CONDITIONAL</code> triggers when created. True is not supported for <code>ON_DEMAND</code> triggers.</p>",
         "GetJobRunRequest$PredecessorsIncluded": "<p>True if a list of predecessor runs should be returned.</p>",
         "S3CsvSource$OptimizePerformance": "<p>A Boolean value that specifies whether to use the advanced SIMD CSV reader along with Apache Arrow based columnar memory formats. Only available in Glue version 3.0.</p>",
@@ -2707,6 +2739,7 @@
       "refs": {
         "AdditionalOptions$key": null,
         "AdditionalOptions$value": null,
+        "AmazonRedshiftNodeData$TempDir": "<p>The Amazon S3 path where temporary data can be staged when copying out of the database.</p>",
         "AthenaConnectorSource$ConnectionName": "<p>The name of the connection that is associated with the connector.</p>",
         "AthenaConnectorSource$ConnectorName": "<p>The name of a connector that assists with accessing the data store in Glue Studio.</p>",
         "AthenaConnectorSource$ConnectionType": "<p>The type of connection, such as marketplace.athena or custom.athena, designating a connection to an Amazon Athena data store.</p>",
@@ -2790,6 +2823,9 @@
         "MySQLCatalogTarget$Database": "<p>The name of the database to write to.</p>",
         "MySQLCatalogTarget$Table": "<p>The name of the table in the database to write to.</p>",
         "NullValueField$Value": "<p>The value of the null placeholder.</p>",
+        "Option$Value": "<p>Specifies the value of the option.</p>",
+        "Option$Label": "<p>Specifies the label of the option.</p>",
+        "Option$Description": "<p>Specifies the description of the option.</p>",
         "OracleSQLCatalogSource$Database": "<p>The name of the database to read from.</p>",
         "OracleSQLCatalogSource$Table": "<p>The name of the table in the database to read from.</p>",
         "OracleSQLCatalogTarget$Database": "<p>The name of the database to write to.</p>",
@@ -3176,6 +3212,12 @@
     "GenericLimitedString": {
       "base": null,
       "refs": {
+        "AmazonRedshiftNodeData$AccessType": "<p>The access type for the Redshift connection. Can be a direct connection or catalog connections.</p>",
+        "AmazonRedshiftNodeData$SourceType": "<p>The source type to specify whether a specific table is the source or a custom query.</p>",
+        "AmazonRedshiftNodeData$TablePrefix": "<p>Specifies the prefix to a table.</p>",
+        "AmazonRedshiftNodeData$MergeAction": "<p>The action used when to detemine how a MERGE in a Redshift sink will be handled.</p>",
+        "AmazonRedshiftNodeData$MergeWhenMatched": "<p>The action used when to detemine how a MERGE in a Redshift sink will be handled when an existing record matches a new record.</p>",
+        "AmazonRedshiftNodeData$MergeWhenNotMatched": "<p>The action used when to detemine how a MERGE in a Redshift sink will be handled when an existing record doesn't match a new record.</p>",
         "DQResultsPublishingOptions$EvaluationContext": "<p>The context of the evaluation.</p>",
         "Datatype$Id": "<p>The datatype of the value.</p>",
         "Datatype$Label": "<p>A label assigned to the datatype.</p>",
@@ -3201,6 +3243,17 @@
       "refs": {
         "AdditionalPlanOptionsMap$key": null,
         "AdditionalPlanOptionsMap$value": null,
+        "AmazonRedshiftAdvancedOption$Key": "<p>The key when specifying a key-value pair.</p>",
+        "AmazonRedshiftAdvancedOption$Value": "<p>The value when specifying a key-value pair.</p>",
+        "AmazonRedshiftNodeData$CatalogRedshiftSchema": "<p>The Redshift schema name when working with a data catalog.</p>",
+        "AmazonRedshiftNodeData$CatalogRedshiftTable": "<p>The database table to read from.</p>",
+        "AmazonRedshiftNodeData$SampleQuery": "<p>The SQL used to fetch the data from a Redshift sources when the SourceType is 'query'.</p>",
+        "AmazonRedshiftNodeData$PreAction": "<p>The SQL used before a MERGE or APPEND with upsert is run.</p>",
+        "AmazonRedshiftNodeData$PostAction": "<p>The SQL used before a MERGE or APPEND with upsert is run.</p>",
+        "AmazonRedshiftNodeData$Action": "<p>Specifies how writing to a Redshift cluser will occur.</p>",
+        "AmazonRedshiftNodeData$MergeClause": "<p>The SQL used in a custom merge to deal with matching records.</p>",
+        "AmazonRedshiftNodeData$CrawlerConnection": "<p>Specifies the name of the connection that is associated with the catalog table used.</p>",
+        "AmazonRedshiftNodeData$StagingTable": "<p>The name of the temporary staging table that is used when doing a MERGE or APPEND with upsert.</p>",
         "Blueprint$BlueprintLocation": "<p>Specifies the path in Amazon S3 where the blueprint is published.</p>",
         "Blueprint$BlueprintServiceLocation": "<p>Specifies a path in Amazon S3 where the blueprint is copied when you call <code>CreateBlueprint/UpdateBlueprint</code> to register the blueprint in Glue.</p>",
         "CrawlsFilter$FieldValue": "<p>The value provided for comparison on the crawl field. </p>",
@@ -4030,6 +4083,7 @@
         "CatalogDeltaSource$OutputSchemas": "<p>Specifies the data schema for the Delta Lake source.</p>",
         "CatalogHudiSource$OutputSchemas": "<p>Specifies the data schema for the Hudi source.</p>",
         "CustomCode$OutputSchemas": "<p>Specifies the data schema for the custom code transform.</p>",
+        "DynamicTransform$OutputSchemas": "<p>Specifies the data schema for the dynamic transform.</p>",
         "JDBCConnectorSource$OutputSchemas": "<p>Specifies the data schema for the custom JDBC source.</p>",
         "JDBCConnectorTarget$OutputSchemas": "<p>Specifies the data schema for the JDBC target.</p>",
         "S3CatalogDeltaSource$OutputSchemas": "<p>Specifies the data schema for the Delta Lake source.</p>",
@@ -5527,6 +5581,8 @@
       "base": null,
       "refs": {
         "Aggregate$Name": "<p>The name of the transform node.</p>",
+        "AmazonRedshiftSource$Name": "<p>The name of the Amazon Redshift source.</p>",
+        "AmazonRedshiftTarget$Name": "<p>The name of the Amazon Redshift target.</p>",
         "ApplyMapping$Name": "<p>The name of the transform node.</p>",
         "AthenaConnectorSource$Name": "<p>The name of the data source.</p>",
         "BasicCatalogTarget$Name": "<p>The name of your data target.</p>",
@@ -5767,6 +5823,7 @@
       "base": null,
       "refs": {
         "Aggregate$Inputs": "<p>Specifies the fields and rows to use as inputs for the aggregate transform.</p>",
+        "AmazonRedshiftTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "ApplyMapping$Inputs": "<p>The data inputs identified by their node names.</p>",
         "BasicCatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "DropDuplicates$Inputs": "<p>The data inputs identified by their node names.</p>",
@@ -5802,6 +5859,25 @@
     "OperationTimeoutException": {
       "base": "<p>The operation timed out.</p>",
       "refs": {
+      }
+    },
+    "Option": {
+      "base": "<p>Specifies an option value.</p>",
+      "refs": {
+        "AmazonRedshiftNodeData$Connection": "<p>The Glue connection to the Redshift cluster.</p>",
+        "AmazonRedshiftNodeData$Schema": "<p>The Redshift schema name when working with a direct connection.</p>",
+        "AmazonRedshiftNodeData$Table": "<p>The Redshift table name when working with a direct connection.</p>",
+        "AmazonRedshiftNodeData$CatalogDatabase": "<p>The name of the Glue Data Catalog database when working with a data catalog.</p>",
+        "AmazonRedshiftNodeData$CatalogTable": "<p>The Glue Data Catalog table name when working with a data catalog.</p>",
+        "AmazonRedshiftNodeData$IamRole": "<p>Optional. The role name use when connection to S3. The IAM role ill default to the role on the job when left blank.</p>",
+        "OptionList$member": null
+      }
+    },
+    "OptionList": {
+      "base": null,
+      "refs": {
+        "AmazonRedshiftNodeData$TableSchema": "<p>The array of schema output for a given node.</p>",
+        "AmazonRedshiftNodeData$SelectedColumns": "<p>The list of column names used to determine a matching record when doing a MERGE or APPEND with upsert.</p>"
       }
     },
     "OracleSQLCatalogSource": {

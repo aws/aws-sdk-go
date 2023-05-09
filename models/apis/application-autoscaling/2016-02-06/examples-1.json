@@ -319,6 +319,9 @@
           "ScalableDimension": "ecs:service:DesiredCount",
           "ServiceNamespace": "ecs"
         },
+        "output": {
+          "ScalableTargetARN": "arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123"
+        },
         "comments": {
           "input": {
           },
