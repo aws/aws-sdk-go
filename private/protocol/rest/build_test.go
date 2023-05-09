@@ -20,7 +20,7 @@ func TestCleanPath(t *testing.T) {
 		Scheme: "https",
 		Host:   "host",
 	}
-	cleanPath(uri)
+	cleanPath(uri, "")
 
 	expected := "https://host/foo/bar"
 	if a, e := uri.String(), expected; a != e {

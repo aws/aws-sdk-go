@@ -77,6 +77,10 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 	// stored in RawPath that will be used by the Go client.
 	r.HTTPRequest.URL.RawPath = r.HTTPRequest.URL.Path
 
+	// topic needs to be restored after cleaning url
+	topic := ""
+	var err error
+
 	for i := 0; i < v.NumField(); i++ {
 		m := v.Field(i)
 		if n := v.Type().Field(i).Name; n[0:1] == strings.ToLower(n[0:1]) {
@@ -89,6 +93,13 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 			if name == "" {
 				name = field.Name
 			}
+			if name == "topic" {
+				topic, err = convertType(m, field.Tag)
+				if err != nil {
+					return
+				}
+			}
+
 			if kind := m.Kind(); kind == reflect.Ptr {
 				m = m.Elem()
 			} else if kind == reflect.Interface {
@@ -135,7 +146,7 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 
 	r.HTTPRequest.URL.RawQuery = query.Encode()
 	if !aws.BoolValue(r.Config.DisableRestProtocolURICleaning) {
-		cleanPath(r.HTTPRequest.URL)
+		cleanPath(r.HTTPRequest.URL, topic)
 	}
 }
 
@@ -244,7 +255,7 @@ func buildQueryString(query url.Values, v reflect.Value, name string, tag reflec
 	return nil
 }
 
-func cleanPath(u *url.URL) {
+func cleanPath(u *url.URL, topic string) {
 	hasSlash := strings.HasSuffix(u.Path, "/")
 
 	// clean up path, removing duplicate `/`
@@ -254,6 +265,17 @@ func cleanPath(u *url.URL) {
 	if hasSlash && !strings.HasSuffix(u.Path, "/") {
 		u.Path += "/"
 		u.RawPath += "/"
+	}
+
+	// restore topic if exists
+	if topic != "" {
+		start := strings.Index(u.Path, "topics/")
+		end := strings.Index(u.Path, "?qos")
+		if end == -1 {
+			end = len(u.Path)
+		}
+		runes := []rune(u.Path)
+		u.Path = string(runes[:start+7]) + topic + string(runes[end:])
 	}
 }
 
