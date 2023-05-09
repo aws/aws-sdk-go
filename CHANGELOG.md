@@ -3,7 +3,7 @@ Release v1.44.259 (2023-05-08)
 
 ### Service Client Updates
 * `service/glue`: Updates service API and documentation
-  * We don't do release notes https://w.amazon.com/bin/view/AWSDocs/common-tasks/release-notes
+  * Support large worker types G.4x and G.8x for Glue Spark”
 * `service/guardduty`: Updates service API and documentation
   * Add AccessDeniedException 403 Error message code to support 3 Tagging related APIs
 * `service/iotsitewise`: Updates service API and documentation
