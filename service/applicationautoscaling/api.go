@@ -1909,6 +1909,9 @@ type DeleteScalingPolicyInput struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1975,6 +1978,9 @@ type DeleteScalingPolicyInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2137,6 +2143,9 @@ type DeleteScheduledActionInput struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -2203,6 +2212,9 @@ type DeleteScheduledActionInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2370,6 +2382,9 @@ type DeregisterScalableTargetInput struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -2436,6 +2451,9 @@ type DeregisterScalableTargetInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2597,6 +2615,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	ResourceIds []*string `type:"list"`
 
 	// The scalable dimension associated with the scalable target. This string consists
@@ -2663,6 +2684,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -2851,6 +2875,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2917,6 +2944,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -3110,6 +3140,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -3176,6 +3209,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -3366,6 +3402,9 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -3432,6 +3471,9 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The names of the scheduled actions to describe.
@@ -4278,6 +4320,9 @@ type PutScalingPolicyInput struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4344,6 +4389,9 @@ type PutScalingPolicyInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -4570,6 +4618,9 @@ type PutScheduledActionInput struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4636,6 +4687,9 @@ type PutScheduledActionInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -4860,6 +4914,8 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * Lambda provisioned concurrency
 	//
+	//    * SageMaker Serverless endpoint provisioned concurrency
+	//
 	//    * SageMaker endpoint variants
 	//
 	//    * Spot Fleets
@@ -4930,6 +4986,9 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
@@ -5006,6 +5065,9 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5315,6 +5377,9 @@ type ScalableTarget struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5387,6 +5452,9 @@ type ScalableTarget struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5615,6 +5683,9 @@ type ScalingActivity struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5681,6 +5752,9 @@ type ScalingActivity struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5889,6 +5963,9 @@ type ScalingPolicy struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5955,6 +6032,9 @@ type ScalingPolicy struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -6117,6 +6197,9 @@ type ScheduledAction struct {
 	//    * Neptune cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:mycluster.
 	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -6183,6 +6266,9 @@ type ScheduledAction struct {
 	//
 	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
 	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The new minimum and maximum capacity. You can set both values or just one.
@@ -6482,6 +6568,8 @@ type StepScalingPolicyConfiguration struct {
 	//
 	//    * Neptune clusters
 	//
+	//    * SageMaker Serverless endpoint provisioned concurrency
+	//
 	//    * SageMaker endpoint variants
 	//
 	//    * Spot Fleets
@@ -6661,7 +6749,7 @@ type TagResourceInput struct {
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
 	// The tags assigned to the resource. A tag is a label that you assign to an
-	// AWS resource.
+	// Amazon Web Services resource.
 	//
 	// Each tag consists of a tag key and a tag value.
 	//
@@ -7162,6 +7250,8 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	//
 	//    * Neptune clusters
 	//
+	//    * SageMaker Serverless endpoint provisioned concurrency
+	//
 	//    * SageMaker endpoint variants
 	//
 	//    * Spot Fleets
@@ -7206,6 +7296,8 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	//    * EMR clusters
 	//
 	//    * Neptune clusters
+	//
+	//    * SageMaker Serverless endpoint provisioned concurrency
 	//
 	//    * SageMaker endpoint variants
 	//
@@ -7672,6 +7764,9 @@ const (
 
 	// MetricTypeNeptuneReaderAverageCpuutilization is a MetricType enum value
 	MetricTypeNeptuneReaderAverageCpuutilization = "NeptuneReaderAverageCPUUtilization"
+
+	// MetricTypeSageMakerVariantProvisionedConcurrencyUtilization is a MetricType enum value
+	MetricTypeSageMakerVariantProvisionedConcurrencyUtilization = "SageMakerVariantProvisionedConcurrencyUtilization"
 )
 
 // MetricType_Values returns all elements of the MetricType enum
@@ -7698,6 +7793,7 @@ func MetricType_Values() []string {
 		MetricTypeElastiCacheReplicaEngineCpuutilization,
 		MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage,
 		MetricTypeNeptuneReaderAverageCpuutilization,
+		MetricTypeSageMakerVariantProvisionedConcurrencyUtilization,
 	}
 }
 
@@ -7777,6 +7873,9 @@ const (
 
 	// ScalableDimensionNeptuneClusterReadReplicaCount is a ScalableDimension enum value
 	ScalableDimensionNeptuneClusterReadReplicaCount = "neptune:cluster:ReadReplicaCount"
+
+	// ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency is a ScalableDimension enum value
+	ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency = "sagemaker:variant:DesiredProvisionedConcurrency"
 )
 
 // ScalableDimension_Values returns all elements of the ScalableDimension enum
@@ -7802,6 +7901,7 @@ func ScalableDimension_Values() []string {
 		ScalableDimensionElasticacheReplicationGroupNodeGroups,
 		ScalableDimensionElasticacheReplicationGroupReplicas,
 		ScalableDimensionNeptuneClusterReadReplicaCount,
+		ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency,
 	}
 }
 

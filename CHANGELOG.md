@@ -1,3 +1,13 @@
+Release v1.44.260 (2023-05-09)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API, documentation, and examples
+* `service/glue`: Updates service API and documentation
+  * This release adds AmazonRedshift Source and Target nodes in addition to DynamicTransform OutputSchemas
+* `service/sagemaker`: Updates service API and documentation
+  * This release includes support for (1) Provisioned Concurrency for Amazon SageMaker Serverless Inference and (2) UpdateEndpointWeightsAndCapacities API for Serverless endpoints.
+
 Release v1.44.259 (2023-05-08)
 ===
 

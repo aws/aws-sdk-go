@@ -3264,6 +3264,63 @@
       },
       "exception":true
     },
+    "AmazonRedshiftAdvancedOption":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"GenericString"},
+        "Value":{"shape":"GenericString"}
+      }
+    },
+    "AmazonRedshiftAdvancedOptions":{
+      "type":"list",
+      "member":{"shape":"AmazonRedshiftAdvancedOption"}
+    },
+    "AmazonRedshiftNodeData":{
+      "type":"structure",
+      "members":{
+        "AccessType":{"shape":"GenericLimitedString"},
+        "SourceType":{"shape":"GenericLimitedString"},
+        "Connection":{"shape":"Option"},
+        "Schema":{"shape":"Option"},
+        "Table":{"shape":"Option"},
+        "CatalogDatabase":{"shape":"Option"},
+        "CatalogTable":{"shape":"Option"},
+        "CatalogRedshiftSchema":{"shape":"GenericString"},
+        "CatalogRedshiftTable":{"shape":"GenericString"},
+        "TempDir":{"shape":"EnclosedInStringProperty"},
+        "IamRole":{"shape":"Option"},
+        "AdvancedOptions":{"shape":"AmazonRedshiftAdvancedOptions"},
+        "SampleQuery":{"shape":"GenericString"},
+        "PreAction":{"shape":"GenericString"},
+        "PostAction":{"shape":"GenericString"},
+        "Action":{"shape":"GenericString"},
+        "TablePrefix":{"shape":"GenericLimitedString"},
+        "Upsert":{"shape":"BooleanValue"},
+        "MergeAction":{"shape":"GenericLimitedString"},
+        "MergeWhenMatched":{"shape":"GenericLimitedString"},
+        "MergeWhenNotMatched":{"shape":"GenericLimitedString"},
+        "MergeClause":{"shape":"GenericString"},
+        "CrawlerConnection":{"shape":"GenericString"},
+        "TableSchema":{"shape":"OptionList"},
+        "StagingTable":{"shape":"GenericString"},
+        "SelectedColumns":{"shape":"OptionList"}
+      }
+    },
+    "AmazonRedshiftSource":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Data":{"shape":"AmazonRedshiftNodeData"}
+      }
+    },
+    "AmazonRedshiftTarget":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Data":{"shape":"AmazonRedshiftNodeData"},
+        "Inputs":{"shape":"OneInput"}
+      }
+    },
     "ApplyMapping":{
       "type":"structure",
       "required":[
@@ -4204,7 +4261,9 @@
         "CatalogDeltaSource":{"shape":"CatalogDeltaSource"},
         "S3DeltaSource":{"shape":"S3DeltaSource"},
         "S3DeltaCatalogTarget":{"shape":"S3DeltaCatalogTarget"},
-        "S3DeltaDirectTarget":{"shape":"S3DeltaDirectTarget"}
+        "S3DeltaDirectTarget":{"shape":"S3DeltaDirectTarget"},
+        "AmazonRedshiftSource":{"shape":"AmazonRedshiftSource"},
+        "AmazonRedshiftTarget":{"shape":"AmazonRedshiftTarget"}
       }
     },
     "CodeGenConfigurationNodes":{
@@ -6328,7 +6387,8 @@
         "Parameters":{"shape":"TransformConfigParameterList"},
         "FunctionName":{"shape":"EnclosedInStringProperty"},
         "Path":{"shape":"EnclosedInStringProperty"},
-        "Version":{"shape":"EnclosedInStringProperty"}
+        "Version":{"shape":"EnclosedInStringProperty"},
+        "OutputSchemas":{"shape":"GlueSchemas"}
       }
     },
     "DynamoDBCatalogSource":{
@@ -9363,6 +9423,18 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "Option":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"EnclosedInStringProperty"},
+        "Label":{"shape":"EnclosedInStringProperty"},
+        "Description":{"shape":"EnclosedInStringProperty"}
+      }
+    },
+    "OptionList":{
+      "type":"list",
+      "member":{"shape":"Option"}
     },
     "OracleSQLCatalogSource":{
       "type":"structure",
