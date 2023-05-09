@@ -1,0 +1,8 @@
+{
+    "id": "09dc2a79-0637-4b81-8a70-a25a4b238623",
+    "type": "bugfix",
+    "description": "change logic of cleaning http request url to preserve IoT topic format ",
+    "modules": [
+        "."
+    ]
+}
