@@ -77,7 +77,7 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 	// stored in RawPath that will be used by the Go client.
 	r.HTTPRequest.URL.RawPath = r.HTTPRequest.URL.Path
 
-	// topic needs to be restored after cleaning url
+	// for services including iotdataplane, topic needs to be preserved while encoded into url
 	topic := ""
 	var err error
 
@@ -122,7 +122,6 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 				m = m.Convert(byteSliceType)
 			}
 
-			var err error
 			switch field.Tag.Get("location") {
 			case "headers": // header maps
 				err = buildHeaderMap(&r.HTTPRequest.Header, m, field.Tag)
