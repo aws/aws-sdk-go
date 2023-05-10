@@ -187,7 +187,7 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 		Must(writeS3ManagerUploadInputFile(g))
 	}
 
-	if len(g.API.SmokeTests.TestCases) > 0 {
+	if len(g.API.SmokeTests.TestCases) > 0 && g.API.PackageName() != "sms" {
 		Must(writeAPISmokeTestsFile(g))
 	}
 }
