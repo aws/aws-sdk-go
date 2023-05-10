@@ -1730,7 +1730,8 @@
         "identity":{"shape":"Identity"},
         "nextPageToken":{"shape":"PageToken"},
         "maximumPageSize":{"shape":"PageSize"},
-        "reverseOrder":{"shape":"ReverseOrder"}
+        "reverseOrder":{"shape":"ReverseOrder"},
+        "startAtPreviousStartedEvent":{"shape":"StartAtPreviousStartedEvent"}
       }
     },
     "RecordActivityTaskHeartbeatInput":{
@@ -2141,6 +2142,7 @@
         "input":{"shape":"Data"}
       }
     },
+    "StartAtPreviousStartedEvent":{"type":"boolean"},
     "StartChildWorkflowExecutionDecisionAttributes":{
       "type":"structure",
       "required":[

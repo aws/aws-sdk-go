@@ -1,3 +1,19 @@
+Release v1.44.261 (2023-05-10)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API and documentation
+  * EMR Studio now supports programmatically executing a Notebooks on an EMR on EKS cluster.  In addition, notebooks can now be executed by specifying its location in S3.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Amazon Relational Database Service (RDS) updates for the new Aurora I/O-Optimized storage type for Amazon Aurora DB clusters
+* `service/swf`: Updates service API and documentation
+  * This release adds a new API parameter to exclude old history events from decision tasks.
+
+### SDK Bugs
+
+* `service/sms`: Remove deprecated services (SMS) integration tests.
+  * SMS integration tests will fail because SMS deprecated their service.
+
 Release v1.44.260 (2023-05-09)
 ===
 

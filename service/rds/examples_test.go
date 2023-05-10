@@ -2965,6 +2965,8 @@ func ExampleRDS_ModifyDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeDBInstanceAlreadyExistsFault, aerr.Error())
 			case rds.ErrCodeDomainNotFoundFault:
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
+			case rds.ErrCodeStorageTypeNotAvailableFault:
+				fmt.Println(rds.ErrCodeStorageTypeNotAvailableFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3826,6 +3828,8 @@ func ExampleRDS_RestoreDBClusterFromS3_shared00() {
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeInsufficientStorageClusterCapacityFault:
 				fmt.Println(rds.ErrCodeInsufficientStorageClusterCapacityFault, aerr.Error())
+			case rds.ErrCodeStorageTypeNotSupportedFault:
+				fmt.Println(rds.ErrCodeStorageTypeNotSupportedFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
