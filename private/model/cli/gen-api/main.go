@@ -187,6 +187,8 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 		Must(writeS3ManagerUploadInputFile(g))
 	}
 
+	// SMS service is deprecated and endpoints are turned off, so dont generate
+	// integration tests for that service.
 	if len(g.API.SmokeTests.TestCases) > 0 && g.API.PackageName() != "sms" {
 		Must(writeAPISmokeTestsFile(g))
 	}
