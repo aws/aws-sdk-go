@@ -1370,6 +1370,11 @@
         "AdditionalSlaveSecurityGroups":{"shape":"StringList"}
       }
     },
+    "EnvironmentVariablesMap":{
+      "type":"map",
+      "key":{"shape":"XmlStringMaxLen256"},
+      "value":{"shape":"XmlString"}
+    },
     "ErrorCode":{
       "type":"string",
       "max":256,
@@ -1398,7 +1403,8 @@
       "members":{
         "Id":{"shape":"XmlStringMaxLen256"},
         "Type":{"shape":"ExecutionEngineType"},
-        "MasterInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"}
+        "MasterInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
+        "ExecutionRoleArn":{"shape":"IAMRoleArn"}
       }
     },
     "ExecutionEngineType":{
@@ -1510,6 +1516,12 @@
         "MainClass":{"shape":"String"},
         "Args":{"shape":"StringList"}
       }
+    },
+    "IAMRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$"
     },
     "IdentityType":{
       "type":"string",
@@ -2172,7 +2184,8 @@
         "Status":{"shape":"NotebookExecutionStatus"},
         "From":{"shape":"Date"},
         "To":{"shape":"Date"},
-        "Marker":{"shape":"Marker"}
+        "Marker":{"shape":"Marker"},
+        "ExecutionEngineId":{"shape":"XmlString"}
       }
     },
     "ListNotebookExecutionsOutput":{
@@ -2341,7 +2354,11 @@
         "OutputNotebookURI":{"shape":"XmlString"},
         "LastStateChangeReason":{"shape":"XmlString"},
         "NotebookInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "NotebookS3Location":{"shape":"NotebookS3LocationForOutput"},
+        "OutputNotebookS3Location":{"shape":"OutputNotebookS3LocationForOutput"},
+        "OutputNotebookFormat":{"shape":"OutputNotebookFormat"},
+        "EnvironmentVariables":{"shape":"EnvironmentVariablesMap"}
       }
     },
     "NotebookExecutionStatus":{
@@ -2367,12 +2384,28 @@
         "NotebookExecutionName":{"shape":"XmlStringMaxLen256"},
         "Status":{"shape":"NotebookExecutionStatus"},
         "StartTime":{"shape":"Date"},
-        "EndTime":{"shape":"Date"}
+        "EndTime":{"shape":"Date"},
+        "NotebookS3Location":{"shape":"NotebookS3LocationForOutput"},
+        "ExecutionEngineId":{"shape":"XmlString"}
       }
     },
     "NotebookExecutionSummaryList":{
       "type":"list",
       "member":{"shape":"NotebookExecutionSummary"}
+    },
+    "NotebookS3LocationForOutput":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"XmlStringMaxLen256"},
+        "Key":{"shape":"UriString"}
+      }
+    },
+    "NotebookS3LocationFromInput":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"XmlStringMaxLen256"},
+        "Key":{"shape":"UriString"}
+      }
     },
     "OSRelease":{
       "type":"structure",
@@ -2426,6 +2459,24 @@
       "type":"string",
       "max":2048,
       "min":0
+    },
+    "OutputNotebookFormat":{
+      "type":"string",
+      "enum":["HTML"]
+    },
+    "OutputNotebookS3LocationForOutput":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"XmlStringMaxLen256"},
+        "Key":{"shape":"UriString"}
+      }
+    },
+    "OutputNotebookS3LocationFromInput":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"XmlStringMaxLen256"},
+        "Key":{"shape":"UriString"}
+      }
     },
     "PlacementGroupConfig":{
       "type":"structure",
@@ -2842,8 +2893,6 @@
     "StartNotebookExecutionInput":{
       "type":"structure",
       "required":[
-        "EditorId",
-        "RelativePath",
         "ExecutionEngine",
         "ServiceRole"
       ],
@@ -2855,7 +2904,11 @@
         "ExecutionEngine":{"shape":"ExecutionEngineConfig"},
         "ServiceRole":{"shape":"XmlString"},
         "NotebookInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "NotebookS3Location":{"shape":"NotebookS3LocationFromInput"},
+        "OutputNotebookS3Location":{"shape":"OutputNotebookS3LocationFromInput"},
+        "OutputNotebookFormat":{"shape":"OutputNotebookFormat"},
+        "EnvironmentVariables":{"shape":"EnvironmentVariablesMap"}
       }
     },
     "StartNotebookExecutionOutput":{
@@ -3161,6 +3214,12 @@
         "IdentityType":{"shape":"IdentityType"},
         "SessionPolicyArn":{"shape":"XmlStringMaxLen256"}
       }
+    },
+    "UriString":{
+      "type":"string",
+      "max":10280,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\r\\n\\t]*"
     },
     "UsernamePassword":{
       "type":"structure",
