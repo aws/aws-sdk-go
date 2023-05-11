@@ -1,3 +1,21 @@
+Release v1.44.262 (2023-05-11)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service documentation
+* `service/elasticache`: Updates service API and documentation
+  * Added support to modify the cluster mode configuration for the existing ElastiCache ReplicationGroups. Customers can now modify the configuration from cluster mode disabled to cluster mode enabled.
+* `service/es`: Updates service API and documentation
+  * This release fixes DescribePackages API error with null filter value parameter.
+* `service/health`: Updates service documentation
+  * Add support for regional endpoints
+* `service/ivs-realtime`: Updates service API, documentation, and paginators
+* `service/omics`: Updates service API, documentation, and paginators
+* `service/opensearch`: Updates service API
+* `service/route53resolver`: Adds new service
+* `service/support`: Updates service API and documentation
+  * This release adds 2 new Support APIs, DescribeCreateCaseOptions and DescribeSupportedLanguages. You can use these new APIs to get available support languages.
+
 Release v1.44.261 (2023-05-10)
 ===
 

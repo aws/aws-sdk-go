@@ -10565,7 +10565,7 @@ type DescribePackagesFilter struct {
 	Name *string `type:"string" enum:"DescribePackagesFilterName"`
 
 	// A non-empty list of values for the specified filter field.
-	Value []*string `type:"list"`
+	Value []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -10584,6 +10584,19 @@ func (s DescribePackagesFilter) String() string {
 // value will be replaced with "sensitive".
 func (s DescribePackagesFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePackagesFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePackagesFilter"}
+	if s.Value != nil && len(s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetName sets the Name field's value.
@@ -10631,6 +10644,26 @@ func (s DescribePackagesInput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribePackagesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePackagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePackagesInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetFilters sets the Filters field's value.

@@ -11,7 +11,52 @@
     "uid": "omics-2022-11-28"
   },
   "operations": {
+    "AbortMultipartReadSetUpload": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "control-storage-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "NotSupportedOperationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "RequestTimeoutException"
+        }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/sequencestore/{sequenceStoreId}/upload/{uploadId}/abort",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "AbortMultipartReadSetUploadRequest"
+      },
+      "name": "AbortMultipartReadSetUpload",
+      "output": {
+        "shape": "AbortMultipartReadSetUploadResponse"
+      }
+    },
     "BatchDeleteReadSet": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -50,6 +95,7 @@
       }
     },
     "CancelAnnotationImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -85,6 +131,7 @@
       }
     },
     "CancelRun": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -125,6 +172,7 @@
       "name": "CancelRun"
     },
     "CancelVariantImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -159,7 +207,52 @@
         "shape": "CancelVariantImportResponse"
       }
     },
+    "CompleteMultipartReadSetUpload": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "storage-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "NotSupportedOperationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "RequestTimeoutException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/sequencestore/{sequenceStoreId}/upload/{uploadId}/complete",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CompleteMultipartReadSetUploadRequest"
+      },
+      "name": "CompleteMultipartReadSetUpload",
+      "output": {
+        "shape": "CompleteMultipartReadSetUploadResponse"
+      }
+    },
     "CreateAnnotationStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -199,7 +292,52 @@
         "shape": "CreateAnnotationStoreResponse"
       }
     },
+    "CreateMultipartReadSetUpload": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "control-storage-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "NotSupportedOperationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "RequestTimeoutException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/sequencestore/{sequenceStoreId}/upload",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateMultipartReadSetUploadRequest"
+      },
+      "name": "CreateMultipartReadSetUpload",
+      "output": {
+        "shape": "CreateMultipartReadSetUploadResponse"
+      }
+    },
     "CreateReferenceStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -237,6 +375,7 @@
       }
     },
     "CreateRunGroup": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -280,6 +419,7 @@
       }
     },
     "CreateSequenceStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -317,6 +457,7 @@
       }
     },
     "CreateVariantStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -357,6 +498,7 @@
       }
     },
     "CreateWorkflow": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -400,6 +542,7 @@
       }
     },
     "DeleteAnnotationStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -438,6 +581,7 @@
       }
     },
     "DeleteReference": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -479,6 +623,7 @@
       }
     },
     "DeleteReferenceStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -520,6 +665,7 @@
       }
     },
     "DeleteRun": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -561,6 +707,7 @@
       "name": "DeleteRun"
     },
     "DeleteRunGroup": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -602,6 +749,7 @@
       "name": "DeleteRunGroup"
     },
     "DeleteSequenceStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -643,6 +791,7 @@
       }
     },
     "DeleteVariantStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -681,6 +830,7 @@
       }
     },
     "DeleteWorkflow": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -722,6 +872,7 @@
       "name": "DeleteWorkflow"
     },
     "GetAnnotationImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -756,6 +907,7 @@
       }
     },
     "GetAnnotationStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -790,6 +942,7 @@
       }
     },
     "GetReadSet": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "storage-"
       },
@@ -833,6 +986,7 @@
       }
     },
     "GetReadSetActivationJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -870,6 +1024,7 @@
       }
     },
     "GetReadSetExportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -907,6 +1062,7 @@
       }
     },
     "GetReadSetImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -944,6 +1100,7 @@
       }
     },
     "GetReadSetMetadata": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -981,6 +1138,7 @@
       }
     },
     "GetReference": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "storage-"
       },
@@ -1021,6 +1179,7 @@
       }
     },
     "GetReferenceImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1058,6 +1217,7 @@
       }
     },
     "GetReferenceMetadata": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1095,6 +1255,7 @@
       }
     },
     "GetReferenceStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1132,6 +1293,7 @@
       }
     },
     "GetRun": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1175,6 +1337,7 @@
       }
     },
     "GetRunGroup": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1218,6 +1381,7 @@
       }
     },
     "GetRunTask": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1261,6 +1425,7 @@
       }
     },
     "GetSequenceStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1298,6 +1463,7 @@
       }
     },
     "GetVariantImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1332,6 +1498,7 @@
       }
     },
     "GetVariantStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1366,6 +1533,7 @@
       }
     },
     "GetWorkflow": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1409,6 +1577,7 @@
       }
     },
     "ListAnnotationImportJobs": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1443,6 +1612,7 @@
       }
     },
     "ListAnnotationStores": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1476,7 +1646,52 @@
         "shape": "ListAnnotationStoresResponse"
       }
     },
+    "ListMultipartReadSetUploads": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "control-storage-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "NotSupportedOperationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "RequestTimeoutException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/sequencestore/{sequenceStoreId}/uploads",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListMultipartReadSetUploadsRequest"
+      },
+      "name": "ListMultipartReadSetUploads",
+      "output": {
+        "shape": "ListMultipartReadSetUploadsResponse"
+      }
+    },
     "ListReadSetActivationJobs": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1514,6 +1729,7 @@
       }
     },
     "ListReadSetExportJobs": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1551,6 +1767,7 @@
       }
     },
     "ListReadSetImportJobs": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1587,7 +1804,52 @@
         "shape": "ListReadSetImportJobsResponse"
       }
     },
+    "ListReadSetUploadParts": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "control-storage-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "NotSupportedOperationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "RequestTimeoutException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/sequencestore/{sequenceStoreId}/upload/{uploadId}/parts",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListReadSetUploadPartsRequest"
+      },
+      "name": "ListReadSetUploadParts",
+      "output": {
+        "shape": "ListReadSetUploadPartsResponse"
+      }
+    },
     "ListReadSets": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1625,6 +1887,7 @@
       }
     },
     "ListReferenceImportJobs": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1662,6 +1925,7 @@
       }
     },
     "ListReferenceStores": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1696,6 +1960,7 @@
       }
     },
     "ListReferences": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1733,6 +1998,7 @@
       }
     },
     "ListRunGroups": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1776,6 +2042,7 @@
       }
     },
     "ListRunTasks": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1819,6 +2086,7 @@
       }
     },
     "ListRuns": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1862,6 +2130,7 @@
       }
     },
     "ListSequenceStores": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1896,6 +2165,7 @@
       }
     },
     "ListTagsForResource": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "tags-"
       },
@@ -1939,6 +2209,7 @@
       }
     },
     "ListVariantImportJobs": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1973,6 +2244,7 @@
       }
     },
     "ListVariantStores": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2007,6 +2279,7 @@
       }
     },
     "ListWorkflows": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2050,6 +2323,7 @@
       }
     },
     "StartAnnotationImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2087,6 +2361,7 @@
       }
     },
     "StartReadSetActivationJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2127,6 +2402,7 @@
       }
     },
     "StartReadSetExportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2167,6 +2443,7 @@
       }
     },
     "StartReadSetImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2207,6 +2484,7 @@
       }
     },
     "StartReferenceImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2247,6 +2525,7 @@
       }
     },
     "StartRun": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2290,6 +2569,7 @@
       }
     },
     "StartVariantImportJob": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2327,6 +2607,7 @@
       }
     },
     "TagResource": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "tags-"
       },
@@ -2370,6 +2651,7 @@
       }
     },
     "UntagResource": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "tags-"
       },
@@ -2414,6 +2696,7 @@
       }
     },
     "UpdateAnnotationStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2448,6 +2731,7 @@
       }
     },
     "UpdateRunGroup": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2488,6 +2772,7 @@
       "name": "UpdateRunGroup"
     },
     "UpdateVariantStore": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2522,6 +2807,7 @@
       }
     },
     "UpdateWorkflow": {
+      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2560,9 +2846,84 @@
         "shape": "UpdateWorkflowRequest"
       },
       "name": "UpdateWorkflow"
+    },
+    "UploadReadSetPart": {
+      "authtype": "v4-unsigned-body",
+      "endpoint": {
+        "hostPrefix": "storage-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "NotSupportedOperationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "RequestTimeoutException"
+        }
+      ],
+      "http": {
+        "method": "PUT",
+        "requestUri": "/sequencestore/{sequenceStoreId}/upload/{uploadId}/part",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UploadReadSetPartRequest"
+      },
+      "name": "UploadReadSetPart",
+      "output": {
+        "shape": "UploadReadSetPartResponse"
+      }
     }
   },
   "shapes": {
+    "AbortMultipartReadSetUploadRequest": {
+      "members": {
+        "sequenceStoreId": {
+          "location": "uri",
+          "locationName": "sequenceStoreId",
+          "shape": "SequenceStoreId"
+        },
+        "uploadId": {
+          "location": "uri",
+          "locationName": "uploadId",
+          "shape": "UploadId"
+        }
+      },
+      "required": [
+        "sequenceStoreId",
+        "uploadId"
+      ],
+      "type": "structure"
+    },
+    "AbortMultipartReadSetUploadResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "Accelerators": {
+      "enum": [
+        "GPU"
+      ],
+      "max": 64,
+      "min": 1,
+      "type": "string"
+    },
     "AccessDeniedException": {
       "error": {
         "httpStatusCode": 403,
@@ -2612,10 +2973,10 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
         "sequenceStoreId",
-        "status"
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -2652,7 +3013,26 @@
     "ActivationJobId": {
       "max": 36,
       "min": 10,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
+      "type": "string"
+    },
+    "AnnotationFieldMap": {
+      "key": {
+        "shape": "AnnotationFieldMapKeyString"
+      },
+      "type": "map",
+      "value": {
+        "shape": "AnnotationFieldMapValueString"
+      }
+    },
+    "AnnotationFieldMapKeyString": {
+      "max": 21,
+      "min": 1,
+      "type": "string"
+    },
+    "AnnotationFieldMapValueString": {
+      "max": 21,
+      "min": 1,
       "type": "string"
     },
     "AnnotationImportItemDetail": {
@@ -2665,8 +3045,8 @@
         }
       },
       "required": [
-        "jobStatus",
-        "source"
+        "source",
+        "jobStatus"
       ],
       "type": "structure"
     },
@@ -2698,6 +3078,9 @@
     },
     "AnnotationImportJobItem": {
       "members": {
+        "annotationFields": {
+          "shape": "AnnotationFieldMap"
+        },
         "completionTime": {
           "shape": "CompletionTime"
         },
@@ -2724,11 +3107,11 @@
         }
       },
       "required": [
-        "creationTime",
-        "destinationName",
         "id",
+        "destinationName",
         "roleArn",
         "status",
+        "creationTime",
         "updateTime"
       ],
       "type": "structure"
@@ -2779,18 +3162,18 @@
         }
       },
       "required": [
-        "creationTime",
-        "description",
         "id",
-        "name",
         "reference",
-        "sseConfig",
         "status",
-        "statusMessage",
         "storeArn",
+        "name",
         "storeFormat",
-        "storeSizeBytes",
-        "updateTime"
+        "description",
+        "sseConfig",
+        "creationTime",
+        "updateTime",
+        "statusMessage",
+        "storeSizeBytes"
       ],
       "type": "structure"
     },
@@ -2815,7 +3198,7 @@
     "Arn": {
       "max": 2048,
       "min": 20,
-      "pattern": "^arn:([^: ]*):([^: ]*):([^: ]*):([0-9]{12}):([^: ]*)$",
+      "pattern": "arn:([^: ]*):([^: ]*):([^: ]*):([0-9]{12}):([^: ]*)",
       "type": "string"
     },
     "BatchDeleteReadSetRequest": {
@@ -2900,13 +3283,78 @@
     "ClientToken": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "CommentChar": {
       "max": 1,
       "min": 1,
       "type": "string"
+    },
+    "CompleteMultipartReadSetUploadRequest": {
+      "members": {
+        "parts": {
+          "shape": "CompleteReadSetUploadPartList"
+        },
+        "sequenceStoreId": {
+          "location": "uri",
+          "locationName": "sequenceStoreId",
+          "shape": "SequenceStoreId"
+        },
+        "uploadId": {
+          "location": "uri",
+          "locationName": "uploadId",
+          "shape": "UploadId"
+        }
+      },
+      "required": [
+        "sequenceStoreId",
+        "uploadId",
+        "parts"
+      ],
+      "type": "structure"
+    },
+    "CompleteMultipartReadSetUploadResponse": {
+      "members": {
+        "readSetId": {
+          "shape": "ReadSetId"
+        }
+      },
+      "required": [
+        "readSetId"
+      ],
+      "type": "structure"
+    },
+    "CompleteReadSetUploadPartList": {
+      "member": {
+        "shape": "CompleteReadSetUploadPartListItem"
+      },
+      "type": "list"
+    },
+    "CompleteReadSetUploadPartListItem": {
+      "members": {
+        "checksum": {
+          "shape": "String"
+        },
+        "partNumber": {
+          "shape": "CompleteReadSetUploadPartListItemPartNumberInteger"
+        },
+        "partSource": {
+          "shape": "ReadSetPartSource"
+        }
+      },
+      "required": [
+        "partNumber",
+        "partSource",
+        "checksum"
+      ],
+      "type": "structure"
+    },
+    "CompleteReadSetUploadPartListItemPartNumberInteger": {
+      "box": true,
+      "max": 10000,
+      "min": 1,
+      "type": "integer"
     },
     "CompletionTime": {
       "timestampFormat": "iso8601",
@@ -2958,7 +3406,7 @@
       "type": "structure"
     },
     "CreateAnnotationStoreRequestNameString": {
-      "pattern": "^([a-z]){1}([a-z0-9_]){2,254}$",
+      "pattern": "([a-z]){1}([a-z0-9_]){2,254}",
       "type": "string"
     },
     "CreateAnnotationStoreResponse": {
@@ -2986,10 +3434,102 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
+        "status",
         "name",
-        "status"
+        "creationTime"
+      ],
+      "type": "structure"
+    },
+    "CreateMultipartReadSetUploadRequest": {
+      "members": {
+        "clientToken": {
+          "shape": "ClientToken"
+        },
+        "description": {
+          "shape": "ReadSetDescription"
+        },
+        "generatedFrom": {
+          "shape": "GeneratedFrom"
+        },
+        "name": {
+          "shape": "ReadSetName"
+        },
+        "referenceArn": {
+          "shape": "ReferenceArn"
+        },
+        "sampleId": {
+          "shape": "SampleId"
+        },
+        "sequenceStoreId": {
+          "location": "uri",
+          "locationName": "sequenceStoreId",
+          "shape": "SequenceStoreId"
+        },
+        "sourceFileType": {
+          "shape": "FileType"
+        },
+        "subjectId": {
+          "shape": "SubjectId"
+        },
+        "tags": {
+          "shape": "TagMap"
+        }
+      },
+      "required": [
+        "sequenceStoreId",
+        "sourceFileType",
+        "subjectId",
+        "sampleId",
+        "referenceArn",
+        "name"
+      ],
+      "type": "structure"
+    },
+    "CreateMultipartReadSetUploadResponse": {
+      "members": {
+        "creationTime": {
+          "shape": "SyntheticTimestamp_date_time"
+        },
+        "description": {
+          "shape": "ReadSetDescription"
+        },
+        "generatedFrom": {
+          "shape": "GeneratedFrom"
+        },
+        "name": {
+          "shape": "ReadSetName"
+        },
+        "referenceArn": {
+          "shape": "ReferenceArn"
+        },
+        "sampleId": {
+          "shape": "SampleId"
+        },
+        "sequenceStoreId": {
+          "shape": "SequenceStoreId"
+        },
+        "sourceFileType": {
+          "shape": "FileType"
+        },
+        "subjectId": {
+          "shape": "SubjectId"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "uploadId": {
+          "shape": "UploadId"
+        }
+      },
+      "required": [
+        "sequenceStoreId",
+        "uploadId",
+        "sourceFileType",
+        "subjectId",
+        "sampleId",
+        "referenceArn",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -3038,9 +3578,9 @@
         }
       },
       "required": [
+        "id",
         "arn",
-        "creationTime",
-        "id"
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -3051,6 +3591,9 @@
         },
         "maxDuration": {
           "shape": "CreateRunGroupRequestMaxDurationInteger"
+        },
+        "maxGpus": {
+          "shape": "CreateRunGroupRequestMaxGpusInteger"
         },
         "maxRuns": {
           "shape": "CreateRunGroupRequestMaxRunsInteger"
@@ -3078,6 +3621,12 @@
       "type": "integer"
     },
     "CreateRunGroupRequestMaxDurationInteger": {
+      "box": true,
+      "max": 100000,
+      "min": 1,
+      "type": "integer"
+    },
+    "CreateRunGroupRequestMaxGpusInteger": {
       "box": true,
       "max": 100000,
       "min": 1,
@@ -3111,6 +3660,9 @@
         "description": {
           "shape": "SequenceStoreDescription"
         },
+        "fallbackLocation": {
+          "shape": "S3Destination"
+        },
         "name": {
           "shape": "SequenceStoreName"
         },
@@ -3137,6 +3689,9 @@
         "description": {
           "shape": "SequenceStoreDescription"
         },
+        "fallbackLocation": {
+          "shape": "S3Destination"
+        },
         "id": {
           "shape": "SequenceStoreId"
         },
@@ -3148,9 +3703,9 @@
         }
       },
       "required": [
+        "id",
         "arn",
-        "creationTime",
-        "id"
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -3178,7 +3733,7 @@
       "type": "structure"
     },
     "CreateVariantStoreRequestNameString": {
-      "pattern": "^([a-z]){1}([a-z0-9_]){2,254}$",
+      "pattern": "([a-z]){1}([a-z0-9_]){2,254}",
       "type": "string"
     },
     "CreateVariantStoreResponse": {
@@ -3200,15 +3755,18 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
+        "status",
         "name",
-        "status"
+        "creationTime"
       ],
       "type": "structure"
     },
     "CreateWorkflowRequest": {
       "members": {
+        "accelerators": {
+          "shape": "Accelerators"
+        },
         "definitionUri": {
           "shape": "WorkflowDefinition"
         },
@@ -3449,7 +4007,7 @@
     "ExportJobId": {
       "max": 36,
       "min": 10,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "ExportReadSet": {
@@ -3523,11 +4081,11 @@
         }
       },
       "required": [
-        "creationTime",
-        "destination",
         "id",
         "sequenceStoreId",
-        "status"
+        "destination",
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -3617,7 +4175,7 @@
     "GeneratedFrom": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "GetAnnotationImportRequest": {
@@ -3635,6 +4193,9 @@
     },
     "GetAnnotationImportResponse": {
       "members": {
+        "annotationFields": {
+          "shape": "AnnotationFieldMap"
+        },
         "completionTime": {
           "shape": "CompletionTime"
         },
@@ -3670,17 +4231,17 @@
         }
       },
       "required": [
-        "completionTime",
-        "creationTime",
-        "destinationName",
-        "formatOptions",
         "id",
-        "items",
+        "destinationName",
         "roleArn",
-        "runLeftNormalization",
         "status",
         "statusMessage",
-        "updateTime"
+        "creationTime",
+        "updateTime",
+        "completionTime",
+        "items",
+        "runLeftNormalization",
+        "formatOptions"
       ],
       "type": "structure"
     },
@@ -3743,18 +4304,18 @@
         }
       },
       "required": [
-        "creationTime",
-        "description",
         "id",
-        "name",
         "reference",
-        "sseConfig",
         "status",
-        "statusMessage",
         "storeArn",
-        "storeSizeBytes",
+        "name",
+        "description",
+        "sseConfig",
+        "creationTime",
+        "updateTime",
         "tags",
-        "updateTime"
+        "statusMessage",
+        "storeSizeBytes"
       ],
       "type": "structure"
     },
@@ -3802,10 +4363,10 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
         "sequenceStoreId",
-        "status"
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -3823,8 +4384,8 @@
         }
       },
       "required": [
-        "id",
-        "sequenceStoreId"
+        "sequenceStoreId",
+        "id"
       ],
       "type": "structure"
     },
@@ -3856,11 +4417,11 @@
         }
       },
       "required": [
-        "creationTime",
-        "destination",
         "id",
         "sequenceStoreId",
-        "status"
+        "destination",
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -3911,12 +4472,12 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
-        "roleArn",
         "sequenceStoreId",
-        "sources",
-        "status"
+        "roleArn",
+        "status",
+        "creationTime",
+        "sources"
       ],
       "type": "structure"
     },
@@ -3977,17 +4538,20 @@
         "status": {
           "shape": "ReadSetStatus"
         },
+        "statusMessage": {
+          "shape": "ReadSetStatusMessage"
+        },
         "subjectId": {
           "shape": "SubjectId"
         }
       },
       "required": [
-        "arn",
-        "creationTime",
-        "fileType",
         "id",
+        "arn",
         "sequenceStoreId",
-        "status"
+        "status",
+        "fileType",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -4016,8 +4580,8 @@
       },
       "required": [
         "id",
-        "partNumber",
-        "sequenceStoreId"
+        "sequenceStoreId",
+        "partNumber"
       ],
       "type": "structure"
     },
@@ -4083,12 +4647,12 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
         "referenceStoreId",
         "roleArn",
-        "sources",
-        "status"
+        "status",
+        "creationTime",
+        "sources"
       ],
       "type": "structure"
     },
@@ -4145,11 +4709,11 @@
         }
       },
       "required": [
-        "arn",
-        "creationTime",
         "id",
-        "md5",
+        "arn",
         "referenceStoreId",
+        "md5",
+        "creationTime",
         "updateTime"
       ],
       "type": "structure"
@@ -4184,8 +4748,8 @@
       },
       "required": [
         "id",
-        "partNumber",
-        "referenceStoreId"
+        "referenceStoreId",
+        "partNumber"
       ],
       "type": "structure"
     },
@@ -4239,9 +4803,9 @@
         }
       },
       "required": [
+        "id",
         "arn",
-        "creationTime",
-        "id"
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -4275,6 +4839,9 @@
         "maxDuration": {
           "shape": "GetRunGroupResponseMaxDurationInteger"
         },
+        "maxGpus": {
+          "shape": "GetRunGroupResponseMaxGpusInteger"
+        },
         "maxRuns": {
           "shape": "GetRunGroupResponseMaxRunsInteger"
         },
@@ -4294,6 +4861,12 @@
       "type": "integer"
     },
     "GetRunGroupResponseMaxDurationInteger": {
+      "box": true,
+      "max": 100000,
+      "min": 1,
+      "type": "integer"
+    },
+    "GetRunGroupResponseMaxGpusInteger": {
       "box": true,
       "max": 100000,
       "min": 1,
@@ -4325,6 +4898,9 @@
     },
     "GetRunResponse": {
       "members": {
+        "accelerators": {
+          "shape": "Accelerators"
+        },
         "arn": {
           "shape": "RunArn"
         },
@@ -4433,6 +5009,9 @@
         "creationTime": {
           "shape": "TaskTimestamp"
         },
+        "gpus": {
+          "shape": "GetRunTaskResponseGpusInteger"
+        },
         "logStream": {
           "shape": "TaskLogStream"
         },
@@ -4465,6 +5044,11 @@
       "min": 1,
       "type": "integer"
     },
+    "GetRunTaskResponseGpusInteger": {
+      "box": true,
+      "min": 0,
+      "type": "integer"
+    },
     "GetRunTaskResponseMemoryInteger": {
       "box": true,
       "min": 1,
@@ -4494,6 +5078,9 @@
         "description": {
           "shape": "SequenceStoreDescription"
         },
+        "fallbackLocation": {
+          "shape": "S3Destination"
+        },
         "id": {
           "shape": "SequenceStoreId"
         },
@@ -4505,9 +5092,9 @@
         }
       },
       "required": [
+        "id",
         "arn",
-        "creationTime",
-        "id"
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -4526,6 +5113,9 @@
     },
     "GetVariantImportResponse": {
       "members": {
+        "annotationFields": {
+          "shape": "AnnotationFieldMap"
+        },
         "completionTime": {
           "shape": "CompletionTime"
         },
@@ -4558,15 +5148,15 @@
         }
       },
       "required": [
-        "creationTime",
-        "destinationName",
         "id",
-        "items",
+        "destinationName",
         "roleArn",
-        "runLeftNormalization",
         "status",
         "statusMessage",
-        "updateTime"
+        "creationTime",
+        "updateTime",
+        "items",
+        "runLeftNormalization"
       ],
       "type": "structure"
     },
@@ -4623,18 +5213,18 @@
         }
       },
       "required": [
-        "creationTime",
-        "description",
         "id",
-        "name",
         "reference",
-        "sseConfig",
         "status",
-        "statusMessage",
         "storeArn",
-        "storeSizeBytes",
+        "name",
+        "description",
+        "sseConfig",
+        "creationTime",
+        "updateTime",
         "tags",
-        "updateTime"
+        "statusMessage",
+        "storeSizeBytes"
       ],
       "type": "structure"
     },
@@ -4663,6 +5253,9 @@
     },
     "GetWorkflowResponse": {
       "members": {
+        "accelerators": {
+          "shape": "Accelerators"
+        },
         "arn": {
           "shape": "WorkflowArn"
         },
@@ -4686,6 +5279,9 @@
         },
         "main": {
           "shape": "WorkflowMain"
+        },
+        "metadata": {
+          "shape": "WorkflowMetadata"
         },
         "name": {
           "shape": "WorkflowName"
@@ -4723,7 +5319,7 @@
     "ImportJobId": {
       "max": 36,
       "min": 10,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "ImportReadSetFilter": {
@@ -4762,11 +5358,11 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
-        "roleArn",
         "sequenceStoreId",
-        "status"
+        "roleArn",
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -4813,11 +5409,11 @@
         }
       },
       "required": [
-        "sampleId",
-        "sourceFileType",
         "sourceFiles",
+        "sourceFileType",
         "status",
-        "subjectId"
+        "subjectId",
+        "sampleId"
       ],
       "type": "structure"
     },
@@ -4863,11 +5459,11 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
         "referenceStoreId",
         "roleArn",
-        "status"
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -4942,7 +5538,7 @@
     "JobStatusMessage": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "JobStatusMsg": {
@@ -5074,6 +5670,46 @@
       },
       "type": "structure"
     },
+    "ListMultipartReadSetUploadsRequest": {
+      "members": {
+        "maxResults": {
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "ListMultipartReadSetUploadsRequestMaxResultsInteger"
+        },
+        "nextToken": {
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        },
+        "sequenceStoreId": {
+          "location": "uri",
+          "locationName": "sequenceStoreId",
+          "shape": "SequenceStoreId"
+        }
+      },
+      "required": [
+        "sequenceStoreId"
+      ],
+      "type": "structure"
+    },
+    "ListMultipartReadSetUploadsRequestMaxResultsInteger": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListMultipartReadSetUploadsResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "uploads": {
+          "shape": "MultipartReadSetUploadList"
+        }
+      },
+      "type": "structure"
+    },
     "ListReadSetActivationJobsRequest": {
       "members": {
         "filter": {
@@ -5199,6 +5835,59 @@
         },
         "nextToken": {
           "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListReadSetUploadPartsRequest": {
+      "members": {
+        "filter": {
+          "shape": "ReadSetUploadPartListFilter"
+        },
+        "maxResults": {
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "ListReadSetUploadPartsRequestMaxResultsInteger"
+        },
+        "nextToken": {
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        },
+        "partSource": {
+          "shape": "ReadSetPartSource"
+        },
+        "sequenceStoreId": {
+          "location": "uri",
+          "locationName": "sequenceStoreId",
+          "shape": "SequenceStoreId"
+        },
+        "uploadId": {
+          "location": "uri",
+          "locationName": "uploadId",
+          "shape": "UploadId"
+        }
+      },
+      "required": [
+        "sequenceStoreId",
+        "uploadId",
+        "partSource"
+      ],
+      "type": "structure"
+    },
+    "ListReadSetUploadPartsRequestMaxResultsInteger": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListReadSetUploadPartsResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "parts": {
+          "shape": "ReadSetUploadPartList"
         }
       },
       "type": "structure"
@@ -5479,6 +6168,11 @@
           "location": "querystring",
           "locationName": "startingToken",
           "shape": "RunListToken"
+        },
+        "status": {
+          "location": "querystring",
+          "locationName": "status",
+          "shape": "RunStatus"
         }
       },
       "type": "structure"
@@ -5732,14 +6426,84 @@
     "Md5": {
       "max": 255,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{N}]+$",
+      "pattern": "[\\p{L}||\\p{N}]+",
       "type": "string"
+    },
+    "MultipartReadSetUploadList": {
+      "member": {
+        "shape": "MultipartReadSetUploadListItem"
+      },
+      "type": "list"
+    },
+    "MultipartReadSetUploadListItem": {
+      "members": {
+        "creationTime": {
+          "shape": "SyntheticTimestamp_date_time"
+        },
+        "description": {
+          "shape": "ReadSetDescription"
+        },
+        "generatedFrom": {
+          "shape": "GeneratedFrom"
+        },
+        "name": {
+          "shape": "ReadSetName"
+        },
+        "referenceArn": {
+          "shape": "ReferenceArn"
+        },
+        "sampleId": {
+          "shape": "SampleId"
+        },
+        "sequenceStoreId": {
+          "shape": "SequenceStoreId"
+        },
+        "sourceFileType": {
+          "shape": "FileType"
+        },
+        "subjectId": {
+          "shape": "SubjectId"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "uploadId": {
+          "shape": "UploadId"
+        }
+      },
+      "required": [
+        "sequenceStoreId",
+        "uploadId",
+        "sourceFileType",
+        "subjectId",
+        "sampleId",
+        "generatedFrom",
+        "referenceArn",
+        "creationTime"
+      ],
+      "type": "structure"
     },
     "NextToken": {
       "max": 6144,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
+    },
+    "NotSupportedOperationException": {
+      "error": {
+        "httpStatusCode": 405,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "type": "structure"
     },
     "PrimitiveBoolean": {
       "type": "boolean"
@@ -5755,7 +6519,7 @@
     "Range": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RangeNotSatisfiableException": {
@@ -5833,7 +6597,7 @@
     "ReadSetArn": {
       "max": 127,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "ReadSetBatchError": {
@@ -5849,8 +6613,8 @@
         }
       },
       "required": [
-        "code",
         "id",
+        "code",
         "message"
       ],
       "type": "structure"
@@ -5864,7 +6628,7 @@
     "ReadSetDescription": {
       "max": 255,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "ReadSetExportJobItemStatus": {
@@ -5918,14 +6682,23 @@
         "createdBefore": {
           "shape": "SyntheticTimestamp_date_time"
         },
+        "generatedFrom": {
+          "shape": "GeneratedFrom"
+        },
         "name": {
           "shape": "ReadSetName"
         },
         "referenceArn": {
           "shape": "ReferenceArn"
         },
+        "sampleId": {
+          "shape": "SampleId"
+        },
         "status": {
           "shape": "ReadSetStatus"
+        },
+        "subjectId": {
+          "shape": "SubjectId"
         }
       },
       "type": "structure"
@@ -5933,7 +6706,7 @@
     "ReadSetId": {
       "max": 36,
       "min": 10,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "ReadSetIdList": {
@@ -6006,25 +6779,40 @@
         "status": {
           "shape": "ReadSetStatus"
         },
+        "statusMessage": {
+          "shape": "ReadSetStatusMessage"
+        },
         "subjectId": {
           "shape": "SubjectId"
         }
       },
       "required": [
-        "arn",
-        "creationTime",
-        "fileType",
         "id",
+        "arn",
         "sequenceStoreId",
-        "status"
+        "status",
+        "fileType",
+        "creationTime"
       ],
       "type": "structure"
     },
     "ReadSetName": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
+    },
+    "ReadSetPartSource": {
+      "enum": [
+        "SOURCE1",
+        "SOURCE2"
+      ],
+      "type": "string"
+    },
+    "ReadSetPartStreamingBlob": {
+      "requiresLength": true,
+      "streaming": true,
+      "type": "blob"
     },
     "ReadSetStatus": {
       "enum": [
@@ -6032,24 +6820,90 @@
         "ACTIVATING",
         "ACTIVE",
         "DELETING",
-        "DELETED"
+        "DELETED",
+        "PROCESSING_UPLOAD",
+        "UPLOAD_FAILED"
       ],
+      "type": "string"
+    },
+    "ReadSetStatusMessage": {
+      "max": 255,
+      "min": 1,
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "ReadSetStreamingBlob": {
       "streaming": true,
       "type": "blob"
     },
+    "ReadSetUploadPartList": {
+      "member": {
+        "shape": "ReadSetUploadPartListItem"
+      },
+      "type": "list"
+    },
+    "ReadSetUploadPartListFilter": {
+      "members": {
+        "createdAfter": {
+          "shape": "SyntheticTimestamp_date_time"
+        },
+        "createdBefore": {
+          "shape": "SyntheticTimestamp_date_time"
+        }
+      },
+      "type": "structure"
+    },
+    "ReadSetUploadPartListItem": {
+      "members": {
+        "checksum": {
+          "shape": "String"
+        },
+        "creationTime": {
+          "shape": "SyntheticTimestamp_date_time"
+        },
+        "lastUpdatedTime": {
+          "shape": "SyntheticTimestamp_date_time"
+        },
+        "partNumber": {
+          "shape": "ReadSetUploadPartListItemPartNumberInteger"
+        },
+        "partSize": {
+          "shape": "ReadSetUploadPartListItemPartSizeLong"
+        },
+        "partSource": {
+          "shape": "ReadSetPartSource"
+        }
+      },
+      "required": [
+        "partNumber",
+        "partSize",
+        "partSource",
+        "checksum"
+      ],
+      "type": "structure"
+    },
+    "ReadSetUploadPartListItemPartNumberInteger": {
+      "box": true,
+      "max": 10000,
+      "min": 1,
+      "type": "integer"
+    },
+    "ReadSetUploadPartListItemPartSizeLong": {
+      "box": true,
+      "max": 5368709120,
+      "min": 1,
+      "type": "long"
+    },
     "ReferenceArn": {
       "max": 127,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "ReferenceDescription": {
       "max": 255,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "ReferenceFile": {
@@ -6090,7 +6944,7 @@
     "ReferenceId": {
       "max": 36,
       "min": 10,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "ReferenceImportJobItemStatus": {
@@ -6160,11 +7014,11 @@
         }
       },
       "required": [
-        "arn",
-        "creationTime",
         "id",
-        "md5",
+        "arn",
         "referenceStoreId",
+        "md5",
+        "creationTime",
         "updateTime"
       ],
       "type": "structure"
@@ -6172,7 +7026,7 @@
     "ReferenceName": {
       "max": 255,
       "min": 3,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "ReferenceStatus": {
@@ -6186,13 +7040,13 @@
     "ReferenceStoreArn": {
       "max": 127,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "ReferenceStoreDescription": {
       "max": 255,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "ReferenceStoreDetail": {
@@ -6218,8 +7072,8 @@
       },
       "required": [
         "arn",
-        "creationTime",
-        "id"
+        "id",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -6246,13 +7100,13 @@
     "ReferenceStoreId": {
       "max": 36,
       "min": 10,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "ReferenceStoreName": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "ReferenceStreamingBlob": {
@@ -6276,7 +7130,7 @@
       "type": "structure"
     },
     "ResourceId": {
-      "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+      "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}",
       "type": "string"
     },
     "ResourceIdentifier": {
@@ -6303,13 +7157,13 @@
     "RoleArn": {
       "max": 2048,
       "min": 20,
-      "pattern": "^arn:.*",
+      "pattern": "arn:.*",
       "type": "string"
     },
     "RunArn": {
       "max": 128,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "RunExport": {
@@ -6331,13 +7185,13 @@
     "RunGroupArn": {
       "max": 128,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "RunGroupId": {
       "max": 18,
       "min": 1,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "RunGroupList": {
@@ -6363,6 +7217,9 @@
         "maxDuration": {
           "shape": "RunGroupListItemMaxDurationInteger"
         },
+        "maxGpus": {
+          "shape": "RunGroupListItemMaxGpusInteger"
+        },
         "maxRuns": {
           "shape": "RunGroupListItemMaxRunsInteger"
         },
@@ -6384,6 +7241,12 @@
       "min": 1,
       "type": "integer"
     },
+    "RunGroupListItemMaxGpusInteger": {
+      "box": true,
+      "max": 100000,
+      "min": 1,
+      "type": "integer"
+    },
     "RunGroupListItemMaxRunsInteger": {
       "box": true,
       "max": 100000,
@@ -6393,19 +7256,19 @@
     "RunGroupListToken": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunGroupName": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunGroupRequestId": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunGroupTimestamp": {
@@ -6415,7 +7278,7 @@
     "RunId": {
       "max": 18,
       "min": 1,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "RunLeftNormalization": {
@@ -6477,7 +7340,7 @@
     "RunListToken": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunLogLevel": {
@@ -6494,31 +7357,31 @@
     "RunName": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunOutputUri": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunRequestId": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunResourceDigest": {
       "max": 64,
       "min": 0,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunResourceDigestKey": {
       "max": 256,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunResourceDigests": {
@@ -6533,7 +7396,7 @@
     "RunRoleArn": {
       "max": 128,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "RunStartedBy": {
@@ -6557,7 +7420,7 @@
       "type": "string"
     },
     "RunStatusMessage": {
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "RunTimestamp": {
@@ -6565,17 +7428,17 @@
       "type": "timestamp"
     },
     "S3Destination": {
-      "pattern": "^s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/?((.{1,1024})/)?$",
+      "pattern": "s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/?((.{1,1024})/)?",
       "type": "string"
     },
     "S3Uri": {
-      "pattern": "^s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/(.{1,1024})$",
+      "pattern": "s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/(.{1,1024})",
       "type": "string"
     },
     "SampleId": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "SchemaItem": {
@@ -6590,7 +7453,7 @@
       }
     },
     "SchemaItemKeyString": {
-      "pattern": "^[a-z0-9_]{1,255}$",
+      "pattern": "[a-z0-9_]{1,255}",
       "type": "string"
     },
     "SchemaValueType": {
@@ -6629,13 +7492,13 @@
     "SequenceStoreArn": {
       "max": 127,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "SequenceStoreDescription": {
       "max": 255,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "SequenceStoreDetail": {
@@ -6649,6 +7512,9 @@
         "description": {
           "shape": "SequenceStoreDescription"
         },
+        "fallbackLocation": {
+          "shape": "S3Destination"
+        },
         "id": {
           "shape": "SequenceStoreId"
         },
@@ -6661,8 +7527,8 @@
       },
       "required": [
         "arn",
-        "creationTime",
-        "id"
+        "id",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -6689,13 +7555,13 @@
     "SequenceStoreId": {
       "max": 36,
       "min": 10,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "SequenceStoreName": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "ServiceQuotaExceededException": {
@@ -6745,11 +7611,14 @@
     "SseConfigKeyArnString": {
       "max": 2048,
       "min": 20,
-      "pattern": "arn:([^: ]*):([^: ]*):([^: ]*):([0-9]{12}):([^: ]*)",
+      "pattern": ".*arn:([^: ]*):([^: ]*):([^: ]*):([0-9]{12}):([^: ]*).*",
       "type": "string"
     },
     "StartAnnotationImportRequest": {
       "members": {
+        "annotationFields": {
+          "shape": "AnnotationFieldMap"
+        },
         "destinationName": {
           "shape": "StoreName"
         },
@@ -6768,8 +7637,8 @@
       },
       "required": [
         "destinationName",
-        "items",
-        "roleArn"
+        "roleArn",
+        "items"
       ],
       "type": "structure"
     },
@@ -6828,10 +7697,10 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
         "sequenceStoreId",
-        "status"
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -6867,9 +7736,9 @@
         }
       },
       "required": [
+        "sequenceStoreId",
         "destination",
         "roleArn",
-        "sequenceStoreId",
         "sources"
       ],
       "type": "structure"
@@ -6901,11 +7770,11 @@
         }
       },
       "required": [
-        "creationTime",
-        "destination",
         "id",
         "sequenceStoreId",
-        "status"
+        "destination",
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -6927,8 +7796,8 @@
         }
       },
       "required": [
-        "roleArn",
         "sequenceStoreId",
+        "roleArn",
         "sources"
       ],
       "type": "structure"
@@ -6960,11 +7829,11 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
-        "roleArn",
         "sequenceStoreId",
-        "status"
+        "roleArn",
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -6999,11 +7868,11 @@
         }
       },
       "required": [
-        "referenceArn",
-        "sampleId",
-        "sourceFileType",
         "sourceFiles",
-        "subjectId"
+        "sourceFileType",
+        "subjectId",
+        "sampleId",
+        "referenceArn"
       ],
       "type": "structure"
     },
@@ -7058,11 +7927,11 @@
         }
       },
       "required": [
-        "creationTime",
         "id",
         "referenceStoreId",
         "roleArn",
-        "status"
+        "status",
+        "creationTime"
       ],
       "type": "structure"
     },
@@ -7082,8 +7951,8 @@
         }
       },
       "required": [
-        "name",
-        "sourceFile"
+        "sourceFile",
+        "name"
       ],
       "type": "structure"
     },
@@ -7128,8 +7997,8 @@
         }
       },
       "required": [
-        "requestId",
-        "roleArn"
+        "roleArn",
+        "requestId"
       ],
       "type": "structure"
     },
@@ -7164,6 +8033,9 @@
     },
     "StartVariantImportRequest": {
       "members": {
+        "annotationFields": {
+          "shape": "AnnotationFieldMap"
+        },
         "destinationName": {
           "shape": "StoreName"
         },
@@ -7179,8 +8051,8 @@
       },
       "required": [
         "destinationName",
-        "items",
-        "roleArn"
+        "roleArn",
+        "items"
       ],
       "type": "structure"
     },
@@ -7216,7 +8088,7 @@
     "StoreName": {
       "max": 255,
       "min": 3,
-      "pattern": "^([a-z]){1}([a-z0-9_]){2,254}$",
+      "pattern": "([a-z]){1}([a-z0-9_]){2,254}",
       "type": "string"
     },
     "StoreOptions": {
@@ -7244,7 +8116,7 @@
     "SubjectId": {
       "max": 127,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "SyntheticTimestamp_date_time": {
@@ -7254,7 +8126,7 @@
     "TagArn": {
       "max": 128,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "TagKey": {
@@ -7319,7 +8191,7 @@
     "TaskId": {
       "max": 18,
       "min": 1,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "TaskList": {
@@ -7335,6 +8207,9 @@
         },
         "creationTime": {
           "shape": "TaskTimestamp"
+        },
+        "gpus": {
+          "shape": "TaskListItemGpusInteger"
         },
         "memory": {
           "shape": "TaskListItemMemoryInteger"
@@ -7362,6 +8237,11 @@
       "min": 1,
       "type": "integer"
     },
+    "TaskListItemGpusInteger": {
+      "box": true,
+      "min": 0,
+      "type": "integer"
+    },
     "TaskListItemMemoryInteger": {
       "box": true,
       "min": 1,
@@ -7370,11 +8250,11 @@
     "TaskListToken": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "TaskLogStream": {
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "TaskName": {
@@ -7397,7 +8277,7 @@
       "type": "string"
     },
     "TaskStatusMessage": {
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "TaskTimestamp": {
@@ -7523,12 +8403,12 @@
         }
       },
       "required": [
-        "creationTime",
-        "description",
         "id",
-        "name",
         "reference",
         "status",
+        "name",
+        "description",
+        "creationTime",
         "updateTime"
       ],
       "type": "structure"
@@ -7545,6 +8425,9 @@
         },
         "maxDuration": {
           "shape": "UpdateRunGroupRequestMaxDurationInteger"
+        },
+        "maxGpus": {
+          "shape": "UpdateRunGroupRequestMaxGpusInteger"
         },
         "maxRuns": {
           "shape": "UpdateRunGroupRequestMaxRunsInteger"
@@ -7565,6 +8448,12 @@
       "type": "integer"
     },
     "UpdateRunGroupRequestMaxDurationInteger": {
+      "box": true,
+      "max": 100000,
+      "min": 1,
+      "type": "integer"
+    },
+    "UpdateRunGroupRequestMaxGpusInteger": {
       "box": true,
       "max": 100000,
       "min": 1,
@@ -7621,12 +8510,12 @@
         }
       },
       "required": [
-        "creationTime",
-        "description",
         "id",
-        "name",
         "reference",
         "status",
+        "name",
+        "description",
+        "creationTime",
         "updateTime"
       ],
       "type": "structure"
@@ -7647,6 +8536,65 @@
       },
       "required": [
         "id"
+      ],
+      "type": "structure"
+    },
+    "UploadId": {
+      "max": 36,
+      "min": 10,
+      "pattern": "[0-9]+",
+      "type": "string"
+    },
+    "UploadReadSetPartRequest": {
+      "members": {
+        "partNumber": {
+          "location": "querystring",
+          "locationName": "partNumber",
+          "shape": "UploadReadSetPartRequestPartNumberInteger"
+        },
+        "partSource": {
+          "location": "querystring",
+          "locationName": "partSource",
+          "shape": "ReadSetPartSource"
+        },
+        "payload": {
+          "shape": "ReadSetPartStreamingBlob"
+        },
+        "sequenceStoreId": {
+          "location": "uri",
+          "locationName": "sequenceStoreId",
+          "shape": "SequenceStoreId"
+        },
+        "uploadId": {
+          "location": "uri",
+          "locationName": "uploadId",
+          "shape": "UploadId"
+        }
+      },
+      "payload": "payload",
+      "required": [
+        "sequenceStoreId",
+        "uploadId",
+        "partSource",
+        "partNumber",
+        "payload"
+      ],
+      "type": "structure"
+    },
+    "UploadReadSetPartRequestPartNumberInteger": {
+      "box": true,
+      "max": 10000,
+      "min": 1,
+      "type": "integer"
+    },
+    "UploadReadSetPartResponse": {
+      "members": {
+        "checksum": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "checksum"
       ],
       "type": "structure"
     },
@@ -7679,8 +8627,8 @@
         }
       },
       "required": [
-        "jobStatus",
-        "source"
+        "source",
+        "jobStatus"
       ],
       "type": "structure"
     },
@@ -7711,6 +8659,9 @@
     },
     "VariantImportJobItem": {
       "members": {
+        "annotationFields": {
+          "shape": "AnnotationFieldMap"
+        },
         "completionTime": {
           "shape": "CompletionTime"
         },
@@ -7737,11 +8688,11 @@
         }
       },
       "required": [
-        "creationTime",
-        "destinationName",
         "id",
+        "destinationName",
         "roleArn",
         "status",
+        "creationTime",
         "updateTime"
       ],
       "type": "structure"
@@ -7789,17 +8740,17 @@
         }
       },
       "required": [
-        "creationTime",
-        "description",
         "id",
-        "name",
         "reference",
-        "sseConfig",
         "status",
-        "statusMessage",
         "storeArn",
-        "storeSizeBytes",
-        "updateTime"
+        "name",
+        "description",
+        "sseConfig",
+        "creationTime",
+        "updateTime",
+        "statusMessage",
+        "storeSizeBytes"
       ],
       "type": "structure"
     },
@@ -7823,19 +8774,19 @@
     "WorkflowArn": {
       "max": 128,
       "min": 1,
-      "pattern": "^arn:.+$",
+      "pattern": "arn:.+",
       "type": "string"
     },
     "WorkflowDefinition": {
       "max": 256,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "WorkflowDescription": {
       "max": 256,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "WorkflowDigest": {
@@ -7871,7 +8822,7 @@
     "WorkflowId": {
       "max": 18,
       "min": 1,
-      "pattern": "^[0-9]+$",
+      "pattern": "[0-9]+",
       "type": "string"
     },
     "WorkflowList": {
@@ -7894,6 +8845,9 @@
         "id": {
           "shape": "WorkflowId"
         },
+        "metadata": {
+          "shape": "WorkflowMetadata"
+        },
         "name": {
           "shape": "WorkflowName"
         },
@@ -7909,19 +8863,38 @@
     "WorkflowListToken": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "WorkflowMain": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
+      "type": "string"
+    },
+    "WorkflowMetadata": {
+      "key": {
+        "shape": "WorkflowMetadataKey"
+      },
+      "type": "map",
+      "value": {
+        "shape": "WorkflowMetadataValue"
+      }
+    },
+    "WorkflowMetadataKey": {
+      "max": 128,
+      "min": 1,
+      "type": "string"
+    },
+    "WorkflowMetadataValue": {
+      "max": 256,
+      "min": 0,
       "type": "string"
     },
     "WorkflowName": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "WorkflowParameter": {
@@ -7938,13 +8911,13 @@
     "WorkflowParameterDescription": {
       "max": 256,
       "min": 0,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "WorkflowParameterName": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "WorkflowParameterTemplate": {
@@ -7961,7 +8934,7 @@
     "WorkflowRequestId": {
       "max": 128,
       "min": 1,
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "WorkflowStatus": {
@@ -7970,14 +8943,15 @@
         "ACTIVE",
         "UPDATING",
         "DELETED",
-        "FAILED"
+        "FAILED",
+        "INACTIVE"
       ],
       "max": 64,
       "min": 1,
       "type": "string"
     },
     "WorkflowStatusMessage": {
-      "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "WorkflowTimestamp": {
@@ -7986,7 +8960,8 @@
     },
     "WorkflowType": {
       "enum": [
-        "PRIVATE"
+        "PRIVATE",
+        "READY2RUN"
       ],
       "max": 64,
       "min": 1,
