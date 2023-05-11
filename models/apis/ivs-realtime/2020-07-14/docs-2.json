@@ -1,12 +1,17 @@
 {
   "version": "2.0",
-  "service": "<p> <b>Introduction</b> </p> <p>The Amazon Interactive Video Service (IVS) stage API is REST compatible, using a standard HTTP API and an AWS EventBridge event stream for responses. JSON is used for both requests and responses, including errors. </p> <p>Terminology: The IVS stage API sometimes is referred to as the IVS RealTime API.</p> <p> <b>Resources</b> </p> <p>The following resources contain information about your IVS live stream (see <a href=\"https://docs.aws.amazon.com/ivs/latest/userguide/getting-started.html\">Getting Started with Amazon IVS</a>):</p> <ul> <li> <p> <b>Stage</b> — A stage is a virtual space where multiple participants can exchange audio and video in real time.</p> </li> </ul> <p> <b>Tagging</b> </p> <p>A <i>tag</i> is a metadata label that you assign to an AWS resource. A tag comprises a <i>key</i> and a <i>value</i>, both set by you. For example, you might set a tag as <code>topic:nature</code> to label a particular video category. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS stages has no service-specific constraints beyond what is documented there.</p> <p>Tags can help you identify and organize your AWS resources. For example, you can use the same tag for different resources to indicate that they are related. You can also use tags to manage access (see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html\">Access Tags</a>).</p> <p>The Amazon IVS stage API has these tag-related endpoints: <a>TagResource</a>, <a>UntagResource</a>, and <a>ListTagsForResource</a>. The following resource supports tagging: Stage.</p> <p>At most 50 tags can be applied to a resource.</p> <p> <b>Stages Endpoints</b> </p> <ul> <li> <p> <a>CreateParticipantToken</a> — Creates an additional token for a specified stage. This can be done after stage creation or when tokens expire.</p> </li> <li> <p> <a>CreateStage</a> — Creates a new stage (and optionally participant tokens).</p> </li> <li> <p> <a>DeleteStage</a> — Shuts down and deletes the specified stage (disconnecting all participants).</p> </li> <li> <p> <a>DisconnectParticipant</a> — Disconnects a specified participant and revokes the participant permanently from a specified stage.</p> </li> <li> <p> <a>GetStage</a> — Gets information for the specified stage.</p> </li> <li> <p> <a>ListStages</a> — Gets summary information about all stages in your account, in the AWS region where the API request is processed.</p> </li> <li> <p> <a>UpdateStage</a> — Updates a stage’s configuration.</p> </li> </ul> <p> <b>Tags Endpoints</b> </p> <ul> <li> <p> <a>ListTagsForResource</a> — Gets information about AWS tags for the specified ARN.</p> </li> <li> <p> <a>TagResource</a> — Adds or updates tags for the AWS resource with the specified ARN.</p> </li> <li> <p> <a>UntagResource</a> — Removes tags from the resource with the specified ARN.</p> </li> </ul>",
+  "service": "<p> <b>Introduction</b> </p> <p>The Amazon Interactive Video Service (IVS) stage API is REST compatible, using a standard HTTP API and an AWS EventBridge event stream for responses. JSON is used for both requests and responses, including errors. </p> <p>Terminology:</p> <ul> <li> <p>The IVS stage API sometimes is referred to as the IVS <i>RealTime</i> API.</p> </li> <li> <p>A <i>participant token</i> is an authorization token used to publish/subscribe to a stage.</p> </li> <li> <p>A <i>participant object</i> represents participants (people) in the stage and contains information about them. When a token is created, it includes a participant ID; when a participant uses that token to join a stage, the participant is associated with that participant ID There is a 1:1 mapping between participant tokens and participants.</p> </li> </ul> <p> <b>Resources</b> </p> <p>The following resources contain information about your IVS live stream (see <a href=\"https://docs.aws.amazon.com/ivs/latest/userguide/getting-started.html\">Getting Started with Amazon IVS</a>):</p> <ul> <li> <p> <b>Stage</b> — A stage is a virtual space where multiple participants can exchange audio and video in real time.</p> </li> </ul> <p> <b>Tagging</b> </p> <p>A <i>tag</i> is a metadata label that you assign to an AWS resource. A tag comprises a <i>key</i> and a <i>value</i>, both set by you. For example, you might set a tag as <code>topic:nature</code> to label a particular video category. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS stages has no service-specific constraints beyond what is documented there.</p> <p>Tags can help you identify and organize your AWS resources. For example, you can use the same tag for different resources to indicate that they are related. You can also use tags to manage access (see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html\">Access Tags</a>).</p> <p>The Amazon IVS stage API has these tag-related endpoints: <a>TagResource</a>, <a>UntagResource</a>, and <a>ListTagsForResource</a>. The following resource supports tagging: Stage.</p> <p>At most 50 tags can be applied to a resource.</p> <p> <b>Stages Endpoints</b> </p> <ul> <li> <p> <a>CreateParticipantToken</a> — Creates an additional token for a specified stage. This can be done after stage creation or when tokens expire.</p> </li> <li> <p> <a>CreateStage</a> — Creates a new stage (and optionally participant tokens).</p> </li> <li> <p> <a>DeleteStage</a> — Shuts down and deletes the specified stage (disconnecting all participants).</p> </li> <li> <p> <a>DisconnectParticipant</a> — Disconnects a specified participant and revokes the participant permanently from a specified stage.</p> </li> <li> <p> <a>GetParticipant</a> — Gets information about the specified participant token.</p> </li> <li> <p> <a>GetStage</a> — Gets information for the specified stage.</p> </li> <li> <p> <a>GetStageSession</a> — Gets information for the specified stage session.</p> </li> <li> <p> <a>ListParticipantEvents</a> — Lists events for a specified participant that occurred during a specified stage session.</p> </li> <li> <p> <a>ListParticipants</a> — Lists all participants in a specified stage session.</p> </li> <li> <p> <a>ListStages</a> — Gets summary information about all stages in your account, in the AWS region where the API request is processed.</p> </li> <li> <p> <a>ListStageSessions</a> — Gets all sessions for a specified stage.</p> </li> <li> <p> <a>UpdateStage</a> — Updates a stage’s configuration.</p> </li> </ul> <p> <b>Tags Endpoints</b> </p> <ul> <li> <p> <a>ListTagsForResource</a> — Gets information about AWS tags for the specified ARN.</p> </li> <li> <p> <a>TagResource</a> — Adds or updates tags for the AWS resource with the specified ARN.</p> </li> <li> <p> <a>UntagResource</a> — Removes tags from the resource with the specified ARN.</p> </li> </ul>",
   "operations": {
     "CreateParticipantToken": "<p>Creates an additional token for a specified stage. This can be done after stage creation or when tokens expire. Tokens always are scoped to the stage for which they are created.</p> <p>Encryption keys are owned by Amazon IVS and never used directly by your application.</p>",
     "CreateStage": "<p>Creates a new stage (and optionally participant tokens).</p>",
     "DeleteStage": "<p>Shuts down and deletes the specified stage (disconnecting all participants).</p>",
     "DisconnectParticipant": "<p>Disconnects a specified participant and revokes the participant permanently from a specified stage.</p>",
+    "GetParticipant": "<p>Gets information about the specified participant token.</p>",
     "GetStage": "<p>Gets information for the specified stage.</p>",
+    "GetStageSession": "<p>Gets information for the specified stage session.</p>",
+    "ListParticipantEvents": "<p>Lists events for a specified participant that occurred during a specified stage session.</p>",
+    "ListParticipants": "<p>Lists all participants in a specified stage session.</p>",
+    "ListStageSessions": "<p>Gets all sessions for a specified stage.</p>",
     "ListStages": "<p>Gets summary information about all stages in your account, in the AWS region where the API request is processed.</p>",
     "ListTagsForResource": "<p>Gets information about AWS tags for the specified ARN.</p>",
     "TagResource": "<p>Adds or updates tags for the AWS resource with the specified ARN.</p>",
@@ -70,6 +75,40 @@
       "refs": {
       }
     },
+    "Event": {
+      "base": "<p>An occurrence during a stage session.</p>",
+      "refs": {
+        "EventList$member": null
+      }
+    },
+    "EventErrorCode": {
+      "base": null,
+      "refs": {
+        "Event$errorCode": "<p>If the event is an error event, the error code is provided to give insight into the specific error that occurred. If the event is not an error event, this field is null. <code>INSUFFICIENT_CAPABILITIES</code> indicates that the participant tried to take an action that the participant’s token is not allowed to do. For more information about participant capabilities, see the <code>capabilities</code> field in <a>CreateParticipantToken</a>.</p>"
+      }
+    },
+    "EventList": {
+      "base": null,
+      "refs": {
+        "ListParticipantEventsResponse$events": "<p>List of the matching events.</p>"
+      }
+    },
+    "EventName": {
+      "base": null,
+      "refs": {
+        "Event$name": "<p>The name of the event.</p>"
+      }
+    },
+    "GetParticipantRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetParticipantResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetStageRequest": {
       "base": null,
       "refs": {
@@ -80,8 +119,48 @@
       "refs": {
       }
     },
+    "GetStageSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetStageSessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "InternalServerException": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ListParticipantEventsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListParticipantEventsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListParticipantsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListParticipantsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStageSessionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStageSessionsResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -105,17 +184,84 @@
       "refs": {
       }
     },
+    "MaxParticipantEventResults": {
+      "base": null,
+      "refs": {
+        "ListParticipantEventsRequest$maxResults": "<p>Maximum number of results to return. Default: 50.</p>"
+      }
+    },
+    "MaxParticipantResults": {
+      "base": null,
+      "refs": {
+        "ListParticipantsRequest$maxResults": "<p>Maximum number of results to return. Default: 50.</p>"
+      }
+    },
     "MaxStageResults": {
       "base": null,
       "refs": {
         "ListStagesRequest$maxResults": "<p>Maximum number of results to return. Default: 50.</p>"
       }
     },
+    "MaxStageSessionResults": {
+      "base": null,
+      "refs": {
+        "ListStageSessionsRequest$maxResults": "<p>Maximum number of results to return. Default: 50.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
+        "ListParticipantEventsRequest$nextToken": "<p>The first participant to retrieve. This is used for pagination; see the <code>nextToken</code> response field.</p>",
+        "ListParticipantEventsResponse$nextToken": "<p>If there are more rooms than <code>maxResults</code>, use <code>nextToken</code> in the request to get the next set. </p>",
+        "ListParticipantsRequest$nextToken": "<p>The first participant to retrieve. This is used for pagination; see the <code>nextToken</code> response field.</p>",
+        "ListParticipantsResponse$nextToken": "<p>If there are more rooms than <code>maxResults</code>, use <code>nextToken</code> in the request to get the next set.</p>",
+        "ListStageSessionsRequest$nextToken": "<p>The first stage to retrieve. This is used for pagination; see the <code>nextToken</code> response field.</p>",
+        "ListStageSessionsResponse$nextToken": "<p>If there are more rooms than <code>maxResults</code>, use <code>nextToken</code> in the request to get the next set.</p>",
         "ListStagesRequest$nextToken": "<p>The first stage to retrieve. This is used for pagination; see the <code>nextToken</code> response field.</p>",
         "ListStagesResponse$nextToken": "<p>If there are more rooms than <code>maxResults</code>, use <code>nextToken</code> in the request to get the next set.</p>"
+      }
+    },
+    "Participant": {
+      "base": "<p>Object describing a participant that has joined a stage.</p>",
+      "refs": {
+        "GetParticipantResponse$participant": "<p>The participant that is returned.</p>"
+      }
+    },
+    "ParticipantAttributes": {
+      "base": null,
+      "refs": {
+        "Participant$attributes": "<p>Application-provided attributes to encode into the token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information</i>.</p>"
+      }
+    },
+    "ParticipantId": {
+      "base": null,
+      "refs": {
+        "Event$participantId": "<p>Unique identifier for the participant who triggered the event. This is assigned by IVS.</p>",
+        "Event$remoteParticipantId": "<p>Unique identifier for the remote participant. For a subscribe event, this is the publisher. For a publish or join event, this is null. This is assigned by IVS.</p>",
+        "GetParticipantRequest$participantId": "<p>Unique identifier for the participant. This is assigned by IVS and returned by <a>CreateParticipantToken</a>.</p>",
+        "ListParticipantEventsRequest$participantId": "<p>Unique identifier for this participant. This is assigned by IVS and returned by <a>CreateParticipantToken</a>.</p>",
+        "Participant$participantId": "<p>Unique identifier for this participant, assigned by IVS.</p>",
+        "ParticipantSummary$participantId": "<p>Unique identifier for this participant, assigned by IVS.</p>"
+      }
+    },
+    "ParticipantList": {
+      "base": null,
+      "refs": {
+        "ListParticipantsResponse$participants": "<p>List of the matching participants (summary information only).</p>"
+      }
+    },
+    "ParticipantState": {
+      "base": null,
+      "refs": {
+        "ListParticipantsRequest$filterByState": "<p>Filters the response list to only show participants in the specified state. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, or <code>filterByState</code> can be provided per request.</p>",
+        "Participant$state": "<p>Whether the participant is connected to or disconnected from the stage.</p>",
+        "ParticipantSummary$state": "<p>Whether the participant is connected to or disconnected from the stage.</p>"
+      }
+    },
+    "ParticipantSummary": {
+      "base": "<p>Summary object describing a participant that has joined a stage.</p>",
+      "refs": {
+        "ParticipantList$member": null
       }
     },
     "ParticipantToken": {
@@ -162,9 +308,9 @@
     "ParticipantTokenDurationMinutes": {
       "base": null,
       "refs": {
-        "CreateParticipantTokenRequest$duration": "<p>Duration (in minutes), after which the token expires. Default: 60 (1 hour).</p>",
-        "ParticipantToken$duration": "<p>Duration (in minutes), after which the participant token expires. Default: 60 (1 hour).</p>",
-        "ParticipantTokenConfiguration$duration": "<p>Duration (in minutes), after which the corresponding participant token expires. Default: 60 (1 hour).</p>"
+        "CreateParticipantTokenRequest$duration": "<p>Duration (in minutes), after which the token expires. Default: 720 (12 hours).</p>",
+        "ParticipantToken$duration": "<p>Duration (in minutes), after which the participant token expires. Default: 720 (12 hours).</p>",
+        "ParticipantTokenConfiguration$duration": "<p>Duration (in minutes), after which the corresponding participant token expires. Default: 720 (12 hours).</p>"
       }
     },
     "ParticipantTokenExpirationTime": {
@@ -176,7 +322,7 @@
     "ParticipantTokenId": {
       "base": null,
       "refs": {
-        "DisconnectParticipantRequest$participantId": "<p>Identifier of the participant to be disconnected. This is returned by <a>CreateParticipantToken</a>.</p>",
+        "DisconnectParticipantRequest$participantId": "<p>Identifier of the participant to be disconnected. This is assigned by IVS and returned by <a>CreateParticipantToken</a>.</p>",
         "ParticipantToken$participantId": "<p>Unique identifier for this participant token, assigned by IVS.</p>"
       }
     },
@@ -196,13 +342,21 @@
       "base": null,
       "refs": {
         "CreateParticipantTokenRequest$userId": "<p>Name that can be specified to help identify the token. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>",
-        "ParticipantToken$userId": "<p>Name to help identify the token. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>",
-        "ParticipantTokenConfiguration$userId": "<p>Name that can be specified to help identify the corresponding participant token. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>"
+        "ParticipantToken$userId": "<p>Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>",
+        "ParticipantTokenConfiguration$userId": "<p>Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>"
       }
     },
     "PendingVerification": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "Published": {
+      "base": null,
+      "refs": {
+        "ListParticipantsRequest$filterByPublished": "<p>Filters the response list to only show participants who published during the stage session. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, or <code>filterByState</code> can be provided per request.</p>",
+        "Participant$published": "<p>Whether the participant ever published to the stage session.</p>",
+        "ParticipantSummary$published": "<p>Whether the participant ever published to the stage session.</p>"
       }
     },
     "ResourceArn": {
@@ -227,8 +381,8 @@
       "base": "<p>Object specifying a stage.</p>",
       "refs": {
         "CreateStageResponse$stage": "<p>The stage that was created.</p>",
-        "GetStageResponse$stage": "<p/>",
-        "UpdateStageResponse$stage": "<p>The updated stage. </p>"
+        "GetStageResponse$stage": "<p>The stage that is returned.</p>",
+        "UpdateStageResponse$stage": "<p>The updated stage.</p>"
       }
     },
     "StageArn": {
@@ -237,7 +391,12 @@
         "CreateParticipantTokenRequest$stageArn": "<p>ARN of the stage to which this token is scoped.</p>",
         "DeleteStageRequest$arn": "<p>ARN of the stage to be deleted.</p>",
         "DisconnectParticipantRequest$stageArn": "<p>ARN of the stage to which the participant is attached.</p>",
+        "GetParticipantRequest$stageArn": "<p>Stage ARN.</p>",
         "GetStageRequest$arn": "<p>ARN of the stage for which the information is to be retrieved.</p>",
+        "GetStageSessionRequest$stageArn": "<p>ARN of the stage for which the information is to be retrieved.</p>",
+        "ListParticipantEventsRequest$stageArn": "<p>Stage ARN.</p>",
+        "ListParticipantsRequest$stageArn": "<p>Stage ARN.</p>",
+        "ListStageSessionsRequest$stageArn": "<p>Stage ARN.</p>",
         "Stage$arn": "<p>Stage ARN.</p>",
         "StageSummary$arn": "<p>Stage ARN.</p>",
         "UpdateStageRequest$arn": "<p>ARN of the stage to be updated.</p>"
@@ -252,11 +411,35 @@
         "UpdateStageRequest$name": "<p>Name of the stage to be updated.</p>"
       }
     },
+    "StageSession": {
+      "base": "<p>A stage session begins when the first participant joins a stage and ends after the last participant leaves the stage. A stage session helps with debugging stages by grouping events and participants into shorter periods of time (i.e., a session), which is helpful when stages are used over long periods of time.</p>",
+      "refs": {
+        "GetStageSessionResponse$stageSession": "<p>The stage session that is returned.</p>"
+      }
+    },
     "StageSessionId": {
       "base": null,
       "refs": {
+        "GetParticipantRequest$sessionId": "<p>ID of a session within the stage.</p>",
+        "GetStageSessionRequest$sessionId": "<p>ID of a session within the stage.</p>",
+        "ListParticipantEventsRequest$sessionId": "<p>ID of a session within the stage.</p>",
+        "ListParticipantsRequest$sessionId": "<p>ID of the session within the stage.</p>",
         "Stage$activeSessionId": "<p>ID of the active session within the stage.</p>",
+        "StageSession$sessionId": "<p>ID of the session within the stage.</p>",
+        "StageSessionSummary$sessionId": "<p>ID of the session within the stage.</p>",
         "StageSummary$activeSessionId": "<p>ID of the active session within the stage.</p>"
+      }
+    },
+    "StageSessionList": {
+      "base": null,
+      "refs": {
+        "ListStageSessionsResponse$stageSessions": "<p>List of matching stage sessions.</p>"
+      }
+    },
+    "StageSessionSummary": {
+      "base": "<p>Summary information about a stage session.</p>",
+      "refs": {
+        "StageSessionList$member": null
       }
     },
     "StageSummary": {
@@ -274,6 +457,8 @@
     "String": {
       "base": null,
       "refs": {
+        "ParticipantAttributes$key": null,
+        "ParticipantAttributes$value": null,
         "ParticipantTokenAttributes$key": null,
         "ParticipantTokenAttributes$value": null
       }
@@ -317,6 +502,18 @@
         "TagResourceRequest$tags": "<p>Array of tags to be added or updated. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints beyond what is documented there.</p>"
       }
     },
+    "Time": {
+      "base": null,
+      "refs": {
+        "Event$eventTime": "<p>ISO 8601 timestamp (returned as a string) for when the event occurred.</p>",
+        "Participant$firstJoinTime": "<p>ISO 8601 timestamp (returned as a string) when the participant first joined the stage session.</p>",
+        "ParticipantSummary$firstJoinTime": "<p>ISO 8601 timestamp (returned as a string) when the participant first joined the stage session.</p>",
+        "StageSession$endTime": "<p>ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if the stage is active.</p>",
+        "StageSession$startTime": "<p> ISO 8601 timestamp (returned as a string) when this stage session began.</p>",
+        "StageSessionSummary$endTime": "<p>ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if the stage is active.</p>",
+        "StageSessionSummary$startTime": "<p> ISO 8601 timestamp (returned as a string) when this stage session began.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -335,6 +532,14 @@
     "UpdateStageResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UserId": {
+      "base": null,
+      "refs": {
+        "ListParticipantsRequest$filterByUserId": "<p>Filters the response list to match the specified user ID. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, or <code>filterByState</code> can be provided per request. A <code>userId</code> is a customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems.</p>",
+        "Participant$userId": "<p>Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information</i>.</p>",
+        "ParticipantSummary$userId": "<p>Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information</i>.</p>"
       }
     },
     "ValidationException": {

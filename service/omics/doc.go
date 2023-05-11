@@ -5,7 +5,7 @@
 //
 // This is the Amazon Omics API Reference. For an introduction to the service,
 // see What is Amazon Omics? (https://docs.aws.amazon.com/omics/latest/dev/)
-// in the Amazon Omics Developer Guide.
+// in the Amazon Omics User Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28 for more information on this service.
 //

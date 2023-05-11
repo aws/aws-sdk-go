@@ -667,7 +667,7 @@
     "DescribePackagesFilterValues": {
       "base": null,
       "refs": {
-        "DescribePackagesFilter$Value": "<p>A list of values for the specified field.</p>"
+        "DescribePackagesFilter$Value": "<p>A non-empty list of values for the specified field.</p>"
       }
     },
     "DescribePackagesRequest": {

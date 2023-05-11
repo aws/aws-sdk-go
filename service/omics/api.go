@@ -10,9 +10,114 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
+
+const opAbortMultipartReadSetUpload = "AbortMultipartReadSetUpload"
+
+// AbortMultipartReadSetUploadRequest generates a "aws/request.Request" representing the
+// client's request for the AbortMultipartReadSetUpload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AbortMultipartReadSetUpload for more information on using the AbortMultipartReadSetUpload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AbortMultipartReadSetUploadRequest method.
+//	req, resp := client.AbortMultipartReadSetUploadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/AbortMultipartReadSetUpload
+func (c *Omics) AbortMultipartReadSetUploadRequest(input *AbortMultipartReadSetUploadInput) (req *request.Request, output *AbortMultipartReadSetUploadOutput) {
+	op := &request.Operation{
+		Name:       opAbortMultipartReadSetUpload,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/sequencestore/{sequenceStoreId}/upload/{uploadId}/abort",
+	}
+
+	if input == nil {
+		input = &AbortMultipartReadSetUploadInput{}
+	}
+
+	output = &AbortMultipartReadSetUploadOutput{}
+	req = c.newRequest(op, input, output)
+
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// AbortMultipartReadSetUpload API operation for Amazon Omics.
+//
+// Stops a multipart upload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Omics's
+// API operation AbortMultipartReadSetUpload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error occurred. Try the request again.
+//
+//   - NotSupportedOperationException
+//     The operation is not supported by Amazon Omics, or the API does not exist.
+//
+//   - ServiceQuotaExceededException
+//     The request exceeds a service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The target resource was not found in the current Region.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/AbortMultipartReadSetUpload
+func (c *Omics) AbortMultipartReadSetUpload(input *AbortMultipartReadSetUploadInput) (*AbortMultipartReadSetUploadOutput, error) {
+	req, out := c.AbortMultipartReadSetUploadRequest(input)
+	return out, req.Send()
+}
+
+// AbortMultipartReadSetUploadWithContext is the same as AbortMultipartReadSetUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AbortMultipartReadSetUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) AbortMultipartReadSetUploadWithContext(ctx aws.Context, input *AbortMultipartReadSetUploadInput, opts ...request.Option) (*AbortMultipartReadSetUploadOutput, error) {
+	req, out := c.AbortMultipartReadSetUploadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opBatchDeleteReadSet = "BatchDeleteReadSet"
 
@@ -52,6 +157,7 @@ func (c *Omics) BatchDeleteReadSetRequest(input *BatchDeleteReadSetInput) (req *
 
 	output = &BatchDeleteReadSetOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -148,6 +254,7 @@ func (c *Omics) CancelAnnotationImportJobRequest(input *CancelAnnotationImportJo
 
 	output = &CancelAnnotationImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -242,6 +349,7 @@ func (c *Omics) CancelRunRequest(input *CancelRunInput) (req *request.Request, o
 
 	output = &CancelRunOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -345,6 +453,7 @@ func (c *Omics) CancelVariantImportJobRequest(input *CancelVariantImportJobInput
 
 	output = &CancelVariantImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -401,6 +510,109 @@ func (c *Omics) CancelVariantImportJobWithContext(ctx aws.Context, input *Cancel
 	return out, req.Send()
 }
 
+const opCompleteMultipartReadSetUpload = "CompleteMultipartReadSetUpload"
+
+// CompleteMultipartReadSetUploadRequest generates a "aws/request.Request" representing the
+// client's request for the CompleteMultipartReadSetUpload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CompleteMultipartReadSetUpload for more information on using the CompleteMultipartReadSetUpload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CompleteMultipartReadSetUploadRequest method.
+//	req, resp := client.CompleteMultipartReadSetUploadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/CompleteMultipartReadSetUpload
+func (c *Omics) CompleteMultipartReadSetUploadRequest(input *CompleteMultipartReadSetUploadInput) (req *request.Request, output *CompleteMultipartReadSetUploadOutput) {
+	op := &request.Operation{
+		Name:       opCompleteMultipartReadSetUpload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sequencestore/{sequenceStoreId}/upload/{uploadId}/complete",
+	}
+
+	if input == nil {
+		input = &CompleteMultipartReadSetUploadInput{}
+	}
+
+	output = &CompleteMultipartReadSetUploadOutput{}
+	req = c.newRequest(op, input, output)
+
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("storage-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CompleteMultipartReadSetUpload API operation for Amazon Omics.
+//
+// Concludes a multipart upload once you have uploaded all the components.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Omics's
+// API operation CompleteMultipartReadSetUpload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error occurred. Try the request again.
+//
+//   - NotSupportedOperationException
+//     The operation is not supported by Amazon Omics, or the API does not exist.
+//
+//   - ServiceQuotaExceededException
+//     The request exceeds a service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The target resource was not found in the current Region.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/CompleteMultipartReadSetUpload
+func (c *Omics) CompleteMultipartReadSetUpload(input *CompleteMultipartReadSetUploadInput) (*CompleteMultipartReadSetUploadOutput, error) {
+	req, out := c.CompleteMultipartReadSetUploadRequest(input)
+	return out, req.Send()
+}
+
+// CompleteMultipartReadSetUploadWithContext is the same as CompleteMultipartReadSetUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CompleteMultipartReadSetUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) CompleteMultipartReadSetUploadWithContext(ctx aws.Context, input *CompleteMultipartReadSetUploadInput, opts ...request.Option) (*CompleteMultipartReadSetUploadOutput, error) {
+	req, out := c.CompleteMultipartReadSetUploadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAnnotationStore = "CreateAnnotationStore"
 
 // CreateAnnotationStoreRequest generates a "aws/request.Request" representing the
@@ -439,6 +651,7 @@ func (c *Omics) CreateAnnotationStoreRequest(input *CreateAnnotationStoreInput) 
 
 	output = &CreateAnnotationStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -500,6 +713,109 @@ func (c *Omics) CreateAnnotationStoreWithContext(ctx aws.Context, input *CreateA
 	return out, req.Send()
 }
 
+const opCreateMultipartReadSetUpload = "CreateMultipartReadSetUpload"
+
+// CreateMultipartReadSetUploadRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMultipartReadSetUpload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMultipartReadSetUpload for more information on using the CreateMultipartReadSetUpload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateMultipartReadSetUploadRequest method.
+//	req, resp := client.CreateMultipartReadSetUploadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/CreateMultipartReadSetUpload
+func (c *Omics) CreateMultipartReadSetUploadRequest(input *CreateMultipartReadSetUploadInput) (req *request.Request, output *CreateMultipartReadSetUploadOutput) {
+	op := &request.Operation{
+		Name:       opCreateMultipartReadSetUpload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sequencestore/{sequenceStoreId}/upload",
+	}
+
+	if input == nil {
+		input = &CreateMultipartReadSetUploadInput{}
+	}
+
+	output = &CreateMultipartReadSetUploadOutput{}
+	req = c.newRequest(op, input, output)
+
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateMultipartReadSetUpload API operation for Amazon Omics.
+//
+// Begins a multipart read set upload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Omics's
+// API operation CreateMultipartReadSetUpload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error occurred. Try the request again.
+//
+//   - NotSupportedOperationException
+//     The operation is not supported by Amazon Omics, or the API does not exist.
+//
+//   - ServiceQuotaExceededException
+//     The request exceeds a service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The target resource was not found in the current Region.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/CreateMultipartReadSetUpload
+func (c *Omics) CreateMultipartReadSetUpload(input *CreateMultipartReadSetUploadInput) (*CreateMultipartReadSetUploadOutput, error) {
+	req, out := c.CreateMultipartReadSetUploadRequest(input)
+	return out, req.Send()
+}
+
+// CreateMultipartReadSetUploadWithContext is the same as CreateMultipartReadSetUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMultipartReadSetUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) CreateMultipartReadSetUploadWithContext(ctx aws.Context, input *CreateMultipartReadSetUploadInput, opts ...request.Option) (*CreateMultipartReadSetUploadOutput, error) {
+	req, out := c.CreateMultipartReadSetUploadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReferenceStore = "CreateReferenceStore"
 
 // CreateReferenceStoreRequest generates a "aws/request.Request" representing the
@@ -538,6 +854,7 @@ func (c *Omics) CreateReferenceStoreRequest(input *CreateReferenceStoreInput) (r
 
 	output = &CreateReferenceStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -634,6 +951,7 @@ func (c *Omics) CreateRunGroupRequest(input *CreateRunGroupInput) (req *request.
 
 	output = &CreateRunGroupOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -736,6 +1054,7 @@ func (c *Omics) CreateSequenceStoreRequest(input *CreateSequenceStoreInput) (req
 
 	output = &CreateSequenceStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -832,6 +1151,7 @@ func (c *Omics) CreateVariantStoreRequest(input *CreateVariantStoreInput) (req *
 
 	output = &CreateVariantStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -931,6 +1251,7 @@ func (c *Omics) CreateWorkflowRequest(input *CreateWorkflowInput) (req *request.
 
 	output = &CreateWorkflowOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1033,6 +1354,7 @@ func (c *Omics) DeleteAnnotationStoreRequest(input *DeleteAnnotationStoreInput) 
 
 	output = &DeleteAnnotationStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1129,6 +1451,7 @@ func (c *Omics) DeleteReferenceRequest(input *DeleteReferenceInput) (req *reques
 
 	output = &DeleteReferenceOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -1229,6 +1552,7 @@ func (c *Omics) DeleteReferenceStoreRequest(input *DeleteReferenceStoreInput) (r
 
 	output = &DeleteReferenceStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -1329,6 +1653,7 @@ func (c *Omics) DeleteRunRequest(input *DeleteRunInput) (req *request.Request, o
 
 	output = &DeleteRunOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -1432,6 +1757,7 @@ func (c *Omics) DeleteRunGroupRequest(input *DeleteRunGroupInput) (req *request.
 
 	output = &DeleteRunGroupOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -1535,6 +1861,7 @@ func (c *Omics) DeleteSequenceStoreRequest(input *DeleteSequenceStoreInput) (req
 
 	output = &DeleteSequenceStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -1635,6 +1962,7 @@ func (c *Omics) DeleteVariantStoreRequest(input *DeleteVariantStoreInput) (req *
 
 	output = &DeleteVariantStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1731,6 +2059,7 @@ func (c *Omics) DeleteWorkflowRequest(input *DeleteWorkflowInput) (req *request.
 
 	output = &DeleteWorkflowOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -1834,6 +2163,7 @@ func (c *Omics) GetAnnotationImportJobRequest(input *GetAnnotationImportJobInput
 
 	output = &GetAnnotationImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1927,6 +2257,7 @@ func (c *Omics) GetAnnotationStoreRequest(input *GetAnnotationStoreInput) (req *
 
 	output = &GetAnnotationStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2020,6 +2351,7 @@ func (c *Omics) GetReadSetRequest(input *GetReadSetInput) (req *request.Request,
 
 	output = &GetReadSetOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2122,6 +2454,7 @@ func (c *Omics) GetReadSetActivationJobRequest(input *GetReadSetActivationJobInp
 
 	output = &GetReadSetActivationJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2218,6 +2551,7 @@ func (c *Omics) GetReadSetExportJobRequest(input *GetReadSetExportJobInput) (req
 
 	output = &GetReadSetExportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2314,6 +2648,7 @@ func (c *Omics) GetReadSetImportJobRequest(input *GetReadSetImportJobInput) (req
 
 	output = &GetReadSetImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2410,6 +2745,7 @@ func (c *Omics) GetReadSetMetadataRequest(input *GetReadSetMetadataInput) (req *
 
 	output = &GetReadSetMetadataOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2506,6 +2842,7 @@ func (c *Omics) GetReferenceRequest(input *GetReferenceInput) (req *request.Requ
 
 	output = &GetReferenceOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2605,6 +2942,7 @@ func (c *Omics) GetReferenceImportJobRequest(input *GetReferenceImportJobInput) 
 
 	output = &GetReferenceImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2701,6 +3039,7 @@ func (c *Omics) GetReferenceMetadataRequest(input *GetReferenceMetadataInput) (r
 
 	output = &GetReferenceMetadataOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2797,6 +3136,7 @@ func (c *Omics) GetReferenceStoreRequest(input *GetReferenceStoreInput) (req *re
 
 	output = &GetReferenceStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2893,6 +3233,7 @@ func (c *Omics) GetRunRequest(input *GetRunInput) (req *request.Request, output 
 
 	output = &GetRunOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2995,6 +3336,7 @@ func (c *Omics) GetRunGroupRequest(input *GetRunGroupInput) (req *request.Reques
 
 	output = &GetRunGroupOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3097,6 +3439,7 @@ func (c *Omics) GetRunTaskRequest(input *GetRunTaskInput) (req *request.Request,
 
 	output = &GetRunTaskOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3199,6 +3542,7 @@ func (c *Omics) GetSequenceStoreRequest(input *GetSequenceStoreInput) (req *requ
 
 	output = &GetSequenceStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3295,6 +3639,7 @@ func (c *Omics) GetVariantImportJobRequest(input *GetVariantImportJobInput) (req
 
 	output = &GetVariantImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3388,6 +3733,7 @@ func (c *Omics) GetVariantStoreRequest(input *GetVariantStoreInput) (req *reques
 
 	output = &GetVariantStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3481,6 +3827,7 @@ func (c *Omics) GetWorkflowRequest(input *GetWorkflowInput) (req *request.Reques
 
 	output = &GetWorkflowOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3589,6 +3936,7 @@ func (c *Omics) ListAnnotationImportJobsRequest(input *ListAnnotationImportJobsI
 
 	output = &ListAnnotationImportJobsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3739,6 +4087,7 @@ func (c *Omics) ListAnnotationStoresRequest(input *ListAnnotationStoresInput) (r
 
 	output = &ListAnnotationStoresOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3845,6 +4194,166 @@ func (c *Omics) ListAnnotationStoresPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListMultipartReadSetUploads = "ListMultipartReadSetUploads"
+
+// ListMultipartReadSetUploadsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMultipartReadSetUploads operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMultipartReadSetUploads for more information on using the ListMultipartReadSetUploads
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMultipartReadSetUploadsRequest method.
+//	req, resp := client.ListMultipartReadSetUploadsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/ListMultipartReadSetUploads
+func (c *Omics) ListMultipartReadSetUploadsRequest(input *ListMultipartReadSetUploadsInput) (req *request.Request, output *ListMultipartReadSetUploadsOutput) {
+	op := &request.Operation{
+		Name:       opListMultipartReadSetUploads,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sequencestore/{sequenceStoreId}/uploads",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMultipartReadSetUploadsInput{}
+	}
+
+	output = &ListMultipartReadSetUploadsOutput{}
+	req = c.newRequest(op, input, output)
+
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListMultipartReadSetUploads API operation for Amazon Omics.
+//
+// Lists all multipart read set uploads and their statuses.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Omics's
+// API operation ListMultipartReadSetUploads for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error occurred. Try the request again.
+//
+//   - NotSupportedOperationException
+//     The operation is not supported by Amazon Omics, or the API does not exist.
+//
+//   - ServiceQuotaExceededException
+//     The request exceeds a service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The target resource was not found in the current Region.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/ListMultipartReadSetUploads
+func (c *Omics) ListMultipartReadSetUploads(input *ListMultipartReadSetUploadsInput) (*ListMultipartReadSetUploadsOutput, error) {
+	req, out := c.ListMultipartReadSetUploadsRequest(input)
+	return out, req.Send()
+}
+
+// ListMultipartReadSetUploadsWithContext is the same as ListMultipartReadSetUploads with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMultipartReadSetUploads for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) ListMultipartReadSetUploadsWithContext(ctx aws.Context, input *ListMultipartReadSetUploadsInput, opts ...request.Option) (*ListMultipartReadSetUploadsOutput, error) {
+	req, out := c.ListMultipartReadSetUploadsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMultipartReadSetUploadsPages iterates over the pages of a ListMultipartReadSetUploads operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMultipartReadSetUploads method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMultipartReadSetUploads operation.
+//	pageNum := 0
+//	err := client.ListMultipartReadSetUploadsPages(params,
+//	    func(page *omics.ListMultipartReadSetUploadsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Omics) ListMultipartReadSetUploadsPages(input *ListMultipartReadSetUploadsInput, fn func(*ListMultipartReadSetUploadsOutput, bool) bool) error {
+	return c.ListMultipartReadSetUploadsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMultipartReadSetUploadsPagesWithContext same as ListMultipartReadSetUploadsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) ListMultipartReadSetUploadsPagesWithContext(ctx aws.Context, input *ListMultipartReadSetUploadsInput, fn func(*ListMultipartReadSetUploadsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMultipartReadSetUploadsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMultipartReadSetUploadsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMultipartReadSetUploadsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListReadSetActivationJobs = "ListReadSetActivationJobs"
 
 // ListReadSetActivationJobsRequest generates a "aws/request.Request" representing the
@@ -3889,6 +4398,7 @@ func (c *Omics) ListReadSetActivationJobsRequest(input *ListReadSetActivationJob
 
 	output = &ListReadSetActivationJobsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4042,6 +4552,7 @@ func (c *Omics) ListReadSetExportJobsRequest(input *ListReadSetExportJobsInput) 
 
 	output = &ListReadSetExportJobsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4195,6 +4706,7 @@ func (c *Omics) ListReadSetImportJobsRequest(input *ListReadSetImportJobsInput) 
 
 	output = &ListReadSetImportJobsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4304,6 +4816,167 @@ func (c *Omics) ListReadSetImportJobsPagesWithContext(ctx aws.Context, input *Li
 	return p.Err()
 }
 
+const opListReadSetUploadParts = "ListReadSetUploadParts"
+
+// ListReadSetUploadPartsRequest generates a "aws/request.Request" representing the
+// client's request for the ListReadSetUploadParts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListReadSetUploadParts for more information on using the ListReadSetUploadParts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListReadSetUploadPartsRequest method.
+//	req, resp := client.ListReadSetUploadPartsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/ListReadSetUploadParts
+func (c *Omics) ListReadSetUploadPartsRequest(input *ListReadSetUploadPartsInput) (req *request.Request, output *ListReadSetUploadPartsOutput) {
+	op := &request.Operation{
+		Name:       opListReadSetUploadParts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sequencestore/{sequenceStoreId}/upload/{uploadId}/parts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListReadSetUploadPartsInput{}
+	}
+
+	output = &ListReadSetUploadPartsOutput{}
+	req = c.newRequest(op, input, output)
+
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListReadSetUploadParts API operation for Amazon Omics.
+//
+// This operation will list all parts in a requested multipart upload for a
+// sequence store.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Omics's
+// API operation ListReadSetUploadParts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error occurred. Try the request again.
+//
+//   - NotSupportedOperationException
+//     The operation is not supported by Amazon Omics, or the API does not exist.
+//
+//   - ServiceQuotaExceededException
+//     The request exceeds a service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The target resource was not found in the current Region.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/ListReadSetUploadParts
+func (c *Omics) ListReadSetUploadParts(input *ListReadSetUploadPartsInput) (*ListReadSetUploadPartsOutput, error) {
+	req, out := c.ListReadSetUploadPartsRequest(input)
+	return out, req.Send()
+}
+
+// ListReadSetUploadPartsWithContext is the same as ListReadSetUploadParts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListReadSetUploadParts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) ListReadSetUploadPartsWithContext(ctx aws.Context, input *ListReadSetUploadPartsInput, opts ...request.Option) (*ListReadSetUploadPartsOutput, error) {
+	req, out := c.ListReadSetUploadPartsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListReadSetUploadPartsPages iterates over the pages of a ListReadSetUploadParts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListReadSetUploadParts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListReadSetUploadParts operation.
+//	pageNum := 0
+//	err := client.ListReadSetUploadPartsPages(params,
+//	    func(page *omics.ListReadSetUploadPartsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Omics) ListReadSetUploadPartsPages(input *ListReadSetUploadPartsInput, fn func(*ListReadSetUploadPartsOutput, bool) bool) error {
+	return c.ListReadSetUploadPartsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListReadSetUploadPartsPagesWithContext same as ListReadSetUploadPartsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) ListReadSetUploadPartsPagesWithContext(ctx aws.Context, input *ListReadSetUploadPartsInput, fn func(*ListReadSetUploadPartsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListReadSetUploadPartsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListReadSetUploadPartsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListReadSetUploadPartsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListReadSets = "ListReadSets"
 
 // ListReadSetsRequest generates a "aws/request.Request" representing the
@@ -4348,6 +5021,7 @@ func (c *Omics) ListReadSetsRequest(input *ListReadSetsInput) (req *request.Requ
 
 	output = &ListReadSetsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4501,6 +5175,7 @@ func (c *Omics) ListReferenceImportJobsRequest(input *ListReferenceImportJobsInp
 
 	output = &ListReferenceImportJobsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4654,6 +5329,7 @@ func (c *Omics) ListReferenceStoresRequest(input *ListReferenceStoresInput) (req
 
 	output = &ListReferenceStoresOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4804,6 +5480,7 @@ func (c *Omics) ListReferencesRequest(input *ListReferencesInput) (req *request.
 
 	output = &ListReferencesOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4957,6 +5634,7 @@ func (c *Omics) ListRunGroupsRequest(input *ListRunGroupsInput) (req *request.Re
 
 	output = &ListRunGroupsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5116,6 +5794,7 @@ func (c *Omics) ListRunTasksRequest(input *ListRunTasksInput) (req *request.Requ
 
 	output = &ListRunTasksOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5275,6 +5954,7 @@ func (c *Omics) ListRunsRequest(input *ListRunsInput) (req *request.Request, out
 
 	output = &ListRunsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5434,6 +6114,7 @@ func (c *Omics) ListSequenceStoresRequest(input *ListSequenceStoresInput) (req *
 
 	output = &ListSequenceStoresOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5578,6 +6259,7 @@ func (c *Omics) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 
 	output = &ListTagsForResourceOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tags-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5686,6 +6368,7 @@ func (c *Omics) ListVariantImportJobsRequest(input *ListVariantImportJobsInput) 
 
 	output = &ListVariantImportJobsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5836,6 +6519,7 @@ func (c *Omics) ListVariantStoresRequest(input *ListVariantStoresInput) (req *re
 
 	output = &ListVariantStoresOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5986,6 +6670,7 @@ func (c *Omics) ListWorkflowsRequest(input *ListWorkflowsInput) (req *request.Re
 
 	output = &ListWorkflowsOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6139,6 +6824,7 @@ func (c *Omics) StartAnnotationImportJobRequest(input *StartAnnotationImportJobI
 
 	output = &StartAnnotationImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6235,6 +6921,7 @@ func (c *Omics) StartReadSetActivationJobRequest(input *StartReadSetActivationJo
 
 	output = &StartReadSetActivationJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6335,6 +7022,7 @@ func (c *Omics) StartReadSetExportJobRequest(input *StartReadSetExportJobInput) 
 
 	output = &StartReadSetExportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6434,6 +7122,7 @@ func (c *Omics) StartReadSetImportJobRequest(input *StartReadSetImportJobInput) 
 
 	output = &StartReadSetImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6533,6 +7222,7 @@ func (c *Omics) StartReferenceImportJobRequest(input *StartReferenceImportJobInp
 
 	output = &StartReferenceImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6632,6 +7322,7 @@ func (c *Omics) StartRunRequest(input *StartRunInput) (req *request.Request, out
 
 	output = &StartRunOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6734,6 +7425,7 @@ func (c *Omics) StartVariantImportJobRequest(input *StartVariantImportJobInput) 
 
 	output = &StartVariantImportJobOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6830,6 +7522,7 @@ func (c *Omics) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 
 	output = &TagResourceOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tags-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -6933,6 +7626,7 @@ func (c *Omics) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 
 	output = &UntagResourceOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tags-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -7036,6 +7730,7 @@ func (c *Omics) UpdateAnnotationStoreRequest(input *UpdateAnnotationStoreInput) 
 
 	output = &UpdateAnnotationStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7129,6 +7824,7 @@ func (c *Omics) UpdateRunGroupRequest(input *UpdateRunGroupInput) (req *request.
 
 	output = &UpdateRunGroupOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -7232,6 +7928,7 @@ func (c *Omics) UpdateVariantStoreRequest(input *UpdateVariantStoreInput) (req *
 
 	output = &UpdateVariantStoreOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7325,6 +8022,7 @@ func (c *Omics) UpdateWorkflowRequest(input *UpdateWorkflowInput) (req *request.
 
 	output = &UpdateWorkflowOutput{}
 	req = c.newRequest(op, input, output)
+
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -7388,6 +8086,201 @@ func (c *Omics) UpdateWorkflowWithContext(ctx aws.Context, input *UpdateWorkflow
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opUploadReadSetPart = "UploadReadSetPart"
+
+// UploadReadSetPartRequest generates a "aws/request.Request" representing the
+// client's request for the UploadReadSetPart operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UploadReadSetPart for more information on using the UploadReadSetPart
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UploadReadSetPartRequest method.
+//	req, resp := client.UploadReadSetPartRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UploadReadSetPart
+func (c *Omics) UploadReadSetPartRequest(input *UploadReadSetPartInput) (req *request.Request, output *UploadReadSetPartOutput) {
+	op := &request.Operation{
+		Name:       opUploadReadSetPart,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/sequencestore/{sequenceStoreId}/upload/{uploadId}/part",
+	}
+
+	if input == nil {
+		input = &UploadReadSetPartInput{}
+	}
+
+	output = &UploadReadSetPartOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Sign.Remove(v4.SignRequestHandler)
+	handler := v4.BuildNamedHandler("v4.CustomSignerHandler", v4.WithUnsignedPayload)
+	req.Handlers.Sign.PushFrontNamed(handler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("storage-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UploadReadSetPart API operation for Amazon Omics.
+//
+// This operation uploads a specific part of a read set. If you upload a new
+// part using a previously used part number, the previously uploaded part will
+// be overwritten.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Omics's
+// API operation UploadReadSetPart for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error occurred. Try the request again.
+//
+//   - NotSupportedOperationException
+//     The operation is not supported by Amazon Omics, or the API does not exist.
+//
+//   - ServiceQuotaExceededException
+//     The request exceeds a service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The target resource was not found in the current Region.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UploadReadSetPart
+func (c *Omics) UploadReadSetPart(input *UploadReadSetPartInput) (*UploadReadSetPartOutput, error) {
+	req, out := c.UploadReadSetPartRequest(input)
+	return out, req.Send()
+}
+
+// UploadReadSetPartWithContext is the same as UploadReadSetPart with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UploadReadSetPart for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) UploadReadSetPartWithContext(ctx aws.Context, input *UploadReadSetPartInput, opts ...request.Option) (*UploadReadSetPartOutput, error) {
+	req, out := c.UploadReadSetPartRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+type AbortMultipartReadSetUploadInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The sequence store ID for the store involved in the multipart upload.
+	//
+	// SequenceStoreId is a required field
+	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
+
+	// The ID for the multipart upload.
+	//
+	// UploadId is a required field
+	UploadId *string `location:"uri" locationName:"uploadId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AbortMultipartReadSetUploadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AbortMultipartReadSetUploadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AbortMultipartReadSetUploadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AbortMultipartReadSetUploadInput"}
+	if s.SequenceStoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SequenceStoreId"))
+	}
+	if s.SequenceStoreId != nil && len(*s.SequenceStoreId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("SequenceStoreId", 10))
+	}
+	if s.UploadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UploadId"))
+	}
+	if s.UploadId != nil && len(*s.UploadId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("UploadId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSequenceStoreId sets the SequenceStoreId field's value.
+func (s *AbortMultipartReadSetUploadInput) SetSequenceStoreId(v string) *AbortMultipartReadSetUploadInput {
+	s.SequenceStoreId = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *AbortMultipartReadSetUploadInput) SetUploadId(v string) *AbortMultipartReadSetUploadInput {
+	s.UploadId = &v
+	return s
+}
+
+type AbortMultipartReadSetUploadOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AbortMultipartReadSetUploadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AbortMultipartReadSetUploadOutput) GoString() string {
+	return s.String()
 }
 
 // You do not have sufficient access to perform this action.
@@ -7730,6 +8623,9 @@ func (s *AnnotationImportItemSource) SetSource(v string) *AnnotationImportItemSo
 type AnnotationImportJobItem struct {
 	_ struct{} `type:"structure"`
 
+	// The annotation schema generated by the parsed annotation data.
+	AnnotationFields map[string]*string `locationName:"annotationFields" type:"map"`
+
 	// When the job completed.
 	CompletionTime *time.Time `locationName:"completionTime" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -7783,6 +8679,12 @@ func (s AnnotationImportJobItem) String() string {
 // value will be replaced with "sensitive".
 func (s AnnotationImportJobItem) GoString() string {
 	return s.String()
+}
+
+// SetAnnotationFields sets the AnnotationFields field's value.
+func (s *AnnotationImportJobItem) SetAnnotationFields(v map[string]*string) *AnnotationImportJobItem {
+	s.AnnotationFields = v
+	return s
 }
 
 // SetCompletionTime sets the CompletionTime field's value.
@@ -8298,6 +9200,208 @@ func (s CancelVariantImportJobOutput) GoString() string {
 	return s.String()
 }
 
+type CompleteMultipartReadSetUploadInput struct {
+	_ struct{} `type:"structure"`
+
+	// The individual uploads or parts of a multipart upload.
+	//
+	// Parts is a required field
+	Parts []*CompleteReadSetUploadPartListItem `locationName:"parts" type:"list" required:"true"`
+
+	// The sequence store ID for the store involved in the multipart upload.
+	//
+	// SequenceStoreId is a required field
+	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
+
+	// The ID for the multipart upload.
+	//
+	// UploadId is a required field
+	UploadId *string `location:"uri" locationName:"uploadId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteMultipartReadSetUploadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteMultipartReadSetUploadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CompleteMultipartReadSetUploadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CompleteMultipartReadSetUploadInput"}
+	if s.Parts == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parts"))
+	}
+	if s.SequenceStoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SequenceStoreId"))
+	}
+	if s.SequenceStoreId != nil && len(*s.SequenceStoreId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("SequenceStoreId", 10))
+	}
+	if s.UploadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UploadId"))
+	}
+	if s.UploadId != nil && len(*s.UploadId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("UploadId", 10))
+	}
+	if s.Parts != nil {
+		for i, v := range s.Parts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParts sets the Parts field's value.
+func (s *CompleteMultipartReadSetUploadInput) SetParts(v []*CompleteReadSetUploadPartListItem) *CompleteMultipartReadSetUploadInput {
+	s.Parts = v
+	return s
+}
+
+// SetSequenceStoreId sets the SequenceStoreId field's value.
+func (s *CompleteMultipartReadSetUploadInput) SetSequenceStoreId(v string) *CompleteMultipartReadSetUploadInput {
+	s.SequenceStoreId = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *CompleteMultipartReadSetUploadInput) SetUploadId(v string) *CompleteMultipartReadSetUploadInput {
+	s.UploadId = &v
+	return s
+}
+
+type CompleteMultipartReadSetUploadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The read set ID created for an uploaded read set.
+	//
+	// ReadSetId is a required field
+	ReadSetId *string `locationName:"readSetId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteMultipartReadSetUploadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteMultipartReadSetUploadOutput) GoString() string {
+	return s.String()
+}
+
+// SetReadSetId sets the ReadSetId field's value.
+func (s *CompleteMultipartReadSetUploadOutput) SetReadSetId(v string) *CompleteMultipartReadSetUploadOutput {
+	s.ReadSetId = &v
+	return s
+}
+
+// Part of the response to the CompleteReadSetUpload API, including metadata.
+type CompleteReadSetUploadPartListItem struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier used to confirm that parts are being added to the correct
+	// upload.
+	//
+	// Checksum is a required field
+	Checksum *string `locationName:"checksum" type:"string" required:"true"`
+
+	// A number identifying the part in a read set upload.
+	//
+	// PartNumber is a required field
+	PartNumber *int64 `locationName:"partNumber" min:"1" type:"integer" required:"true"`
+
+	// The source file of the part being uploaded.
+	//
+	// PartSource is a required field
+	PartSource *string `locationName:"partSource" type:"string" required:"true" enum:"ReadSetPartSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteReadSetUploadPartListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteReadSetUploadPartListItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CompleteReadSetUploadPartListItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CompleteReadSetUploadPartListItem"}
+	if s.Checksum == nil {
+		invalidParams.Add(request.NewErrParamRequired("Checksum"))
+	}
+	if s.PartNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartNumber"))
+	}
+	if s.PartNumber != nil && *s.PartNumber < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PartNumber", 1))
+	}
+	if s.PartSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartSource"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *CompleteReadSetUploadPartListItem) SetChecksum(v string) *CompleteReadSetUploadPartListItem {
+	s.Checksum = &v
+	return s
+}
+
+// SetPartNumber sets the PartNumber field's value.
+func (s *CompleteReadSetUploadPartListItem) SetPartNumber(v int64) *CompleteReadSetUploadPartListItem {
+	s.PartNumber = &v
+	return s
+}
+
+// SetPartSource sets the PartSource field's value.
+func (s *CompleteReadSetUploadPartListItem) SetPartSource(v string) *CompleteReadSetUploadPartListItem {
+	s.PartSource = &v
+	return s
+}
+
 // The request cannot be applied to the target resource in its current state.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -8571,6 +9675,319 @@ func (s *CreateAnnotationStoreOutput) SetStoreOptions(v *StoreOptions) *CreateAn
 	return s
 }
 
+type CreateMultipartReadSetUploadInput struct {
+	_ struct{} `type:"structure"`
+
+	// An idempotency token that can be used to avoid triggering multiple multipart
+	// uploads.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string"`
+
+	// The description of the read set.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// Where the source originated.
+	GeneratedFrom *string `locationName:"generatedFrom" min:"1" type:"string"`
+
+	// The name of the read set.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The ARN of the reference.
+	//
+	// ReferenceArn is a required field
+	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string" required:"true"`
+
+	// The source's sample ID.
+	//
+	// SampleId is a required field
+	SampleId *string `locationName:"sampleId" min:"1" type:"string" required:"true"`
+
+	// The sequence store ID for the store that is the destination of the multipart
+	// uploads.
+	//
+	// SequenceStoreId is a required field
+	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
+
+	// The type of file being uploaded.
+	//
+	// SourceFileType is a required field
+	SourceFileType *string `locationName:"sourceFileType" type:"string" required:"true" enum:"FileType"`
+
+	// The source's subject ID.
+	//
+	// SubjectId is a required field
+	SubjectId *string `locationName:"subjectId" min:"1" type:"string" required:"true"`
+
+	// Any tags to add to the read set.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultipartReadSetUploadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultipartReadSetUploadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMultipartReadSetUploadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMultipartReadSetUploadInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.GeneratedFrom != nil && len(*s.GeneratedFrom) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GeneratedFrom", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ReferenceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReferenceArn"))
+	}
+	if s.ReferenceArn != nil && len(*s.ReferenceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReferenceArn", 1))
+	}
+	if s.SampleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SampleId"))
+	}
+	if s.SampleId != nil && len(*s.SampleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SampleId", 1))
+	}
+	if s.SequenceStoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SequenceStoreId"))
+	}
+	if s.SequenceStoreId != nil && len(*s.SequenceStoreId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("SequenceStoreId", 10))
+	}
+	if s.SourceFileType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFileType"))
+	}
+	if s.SubjectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubjectId"))
+	}
+	if s.SubjectId != nil && len(*s.SubjectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubjectId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateMultipartReadSetUploadInput) SetClientToken(v string) *CreateMultipartReadSetUploadInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateMultipartReadSetUploadInput) SetDescription(v string) *CreateMultipartReadSetUploadInput {
+	s.Description = &v
+	return s
+}
+
+// SetGeneratedFrom sets the GeneratedFrom field's value.
+func (s *CreateMultipartReadSetUploadInput) SetGeneratedFrom(v string) *CreateMultipartReadSetUploadInput {
+	s.GeneratedFrom = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateMultipartReadSetUploadInput) SetName(v string) *CreateMultipartReadSetUploadInput {
+	s.Name = &v
+	return s
+}
+
+// SetReferenceArn sets the ReferenceArn field's value.
+func (s *CreateMultipartReadSetUploadInput) SetReferenceArn(v string) *CreateMultipartReadSetUploadInput {
+	s.ReferenceArn = &v
+	return s
+}
+
+// SetSampleId sets the SampleId field's value.
+func (s *CreateMultipartReadSetUploadInput) SetSampleId(v string) *CreateMultipartReadSetUploadInput {
+	s.SampleId = &v
+	return s
+}
+
+// SetSequenceStoreId sets the SequenceStoreId field's value.
+func (s *CreateMultipartReadSetUploadInput) SetSequenceStoreId(v string) *CreateMultipartReadSetUploadInput {
+	s.SequenceStoreId = &v
+	return s
+}
+
+// SetSourceFileType sets the SourceFileType field's value.
+func (s *CreateMultipartReadSetUploadInput) SetSourceFileType(v string) *CreateMultipartReadSetUploadInput {
+	s.SourceFileType = &v
+	return s
+}
+
+// SetSubjectId sets the SubjectId field's value.
+func (s *CreateMultipartReadSetUploadInput) SetSubjectId(v string) *CreateMultipartReadSetUploadInput {
+	s.SubjectId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMultipartReadSetUploadInput) SetTags(v map[string]*string) *CreateMultipartReadSetUploadInput {
+	s.Tags = v
+	return s
+}
+
+type CreateMultipartReadSetUploadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of the multipart upload.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The description of the read set.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The source of the read set.
+	GeneratedFrom *string `locationName:"generatedFrom" min:"1" type:"string"`
+
+	// The name of the read set.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The read set source's reference ARN.
+	//
+	// ReferenceArn is a required field
+	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string" required:"true"`
+
+	// The source's sample ID.
+	//
+	// SampleId is a required field
+	SampleId *string `locationName:"sampleId" min:"1" type:"string" required:"true"`
+
+	// The sequence store ID for the store that the read set will be created in.
+	//
+	// SequenceStoreId is a required field
+	SequenceStoreId *string `locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
+
+	// The file type of the read set source.
+	//
+	// SourceFileType is a required field
+	SourceFileType *string `locationName:"sourceFileType" type:"string" required:"true" enum:"FileType"`
+
+	// The source's subject ID.
+	//
+	// SubjectId is a required field
+	SubjectId *string `locationName:"subjectId" min:"1" type:"string" required:"true"`
+
+	// The tags to add to the read set.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// he ID for the initiated multipart upload.
+	//
+	// UploadId is a required field
+	UploadId *string `locationName:"uploadId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultipartReadSetUploadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultipartReadSetUploadOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetCreationTime(v time.Time) *CreateMultipartReadSetUploadOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetDescription(v string) *CreateMultipartReadSetUploadOutput {
+	s.Description = &v
+	return s
+}
+
+// SetGeneratedFrom sets the GeneratedFrom field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetGeneratedFrom(v string) *CreateMultipartReadSetUploadOutput {
+	s.GeneratedFrom = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetName(v string) *CreateMultipartReadSetUploadOutput {
+	s.Name = &v
+	return s
+}
+
+// SetReferenceArn sets the ReferenceArn field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetReferenceArn(v string) *CreateMultipartReadSetUploadOutput {
+	s.ReferenceArn = &v
+	return s
+}
+
+// SetSampleId sets the SampleId field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetSampleId(v string) *CreateMultipartReadSetUploadOutput {
+	s.SampleId = &v
+	return s
+}
+
+// SetSequenceStoreId sets the SequenceStoreId field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetSequenceStoreId(v string) *CreateMultipartReadSetUploadOutput {
+	s.SequenceStoreId = &v
+	return s
+}
+
+// SetSourceFileType sets the SourceFileType field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetSourceFileType(v string) *CreateMultipartReadSetUploadOutput {
+	s.SourceFileType = &v
+	return s
+}
+
+// SetSubjectId sets the SubjectId field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetSubjectId(v string) *CreateMultipartReadSetUploadOutput {
+	s.SubjectId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetTags(v map[string]*string) *CreateMultipartReadSetUploadOutput {
+	s.Tags = v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *CreateMultipartReadSetUploadOutput) SetUploadId(v string) *CreateMultipartReadSetUploadOutput {
+	s.UploadId = &v
+	return s
+}
+
 type CreateReferenceStoreInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8759,6 +10176,9 @@ type CreateRunGroupInput struct {
 	// A maximum run time for the group in minutes.
 	MaxDuration *int64 `locationName:"maxDuration" min:"1" type:"integer"`
 
+	// The maximum GPUs that can be used by a run group.
+	MaxGpus *int64 `locationName:"maxGpus" min:"1" type:"integer"`
+
 	// The maximum number of concurrent runs for the group.
 	MaxRuns *int64 `locationName:"maxRuns" min:"1" type:"integer"`
 
@@ -8800,6 +10220,9 @@ func (s *CreateRunGroupInput) Validate() error {
 	if s.MaxDuration != nil && *s.MaxDuration < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxDuration", 1))
 	}
+	if s.MaxGpus != nil && *s.MaxGpus < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxGpus", 1))
+	}
 	if s.MaxRuns != nil && *s.MaxRuns < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxRuns", 1))
 	}
@@ -8825,6 +10248,12 @@ func (s *CreateRunGroupInput) SetMaxCpus(v int64) *CreateRunGroupInput {
 // SetMaxDuration sets the MaxDuration field's value.
 func (s *CreateRunGroupInput) SetMaxDuration(v int64) *CreateRunGroupInput {
 	s.MaxDuration = &v
+	return s
+}
+
+// SetMaxGpus sets the MaxGpus field's value.
+func (s *CreateRunGroupInput) SetMaxGpus(v int64) *CreateRunGroupInput {
+	s.MaxGpus = &v
 	return s
 }
 
@@ -8911,6 +10340,9 @@ type CreateSequenceStoreInput struct {
 	// A description for the store.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// An S3 location that is used to store files that have failed a direct upload.
+	FallbackLocation *string `locationName:"fallbackLocation" type:"string"`
+
 	// A name for the store.
 	//
 	// Name is a required field
@@ -8980,6 +10412,12 @@ func (s *CreateSequenceStoreInput) SetDescription(v string) *CreateSequenceStore
 	return s
 }
 
+// SetFallbackLocation sets the FallbackLocation field's value.
+func (s *CreateSequenceStoreInput) SetFallbackLocation(v string) *CreateSequenceStoreInput {
+	s.FallbackLocation = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateSequenceStoreInput) SetName(v string) *CreateSequenceStoreInput {
 	s.Name = &v
@@ -9013,6 +10451,9 @@ type CreateSequenceStoreOutput struct {
 
 	// The store's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// An S3 location that is used to store files that have failed a direct upload.
+	FallbackLocation *string `locationName:"fallbackLocation" type:"string"`
 
 	// The store's ID.
 	//
@@ -9059,6 +10500,12 @@ func (s *CreateSequenceStoreOutput) SetCreationTime(v time.Time) *CreateSequence
 // SetDescription sets the Description field's value.
 func (s *CreateSequenceStoreOutput) SetDescription(v string) *CreateSequenceStoreOutput {
 	s.Description = &v
+	return s
+}
+
+// SetFallbackLocation sets the FallbackLocation field's value.
+func (s *CreateSequenceStoreOutput) SetFallbackLocation(v string) *CreateSequenceStoreOutput {
+	s.FallbackLocation = &v
 	return s
 }
 
@@ -9250,6 +10697,9 @@ func (s *CreateVariantStoreOutput) SetStatus(v string) *CreateVariantStoreOutput
 type CreateWorkflowInput struct {
 	_ struct{} `type:"structure"`
 
+	// The computational accelerator specified to run the workflow.
+	Accelerators *string `locationName:"accelerators" min:"1" type:"string" enum:"Accelerators"`
+
 	// The URI of a definition for the workflow.
 	DefinitionUri *string `locationName:"definitionUri" min:"1" type:"string"`
 
@@ -9304,6 +10754,9 @@ func (s CreateWorkflowInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateWorkflowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateWorkflowInput"}
+	if s.Accelerators != nil && len(*s.Accelerators) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Accelerators", 1))
+	}
 	if s.DefinitionUri != nil && len(*s.DefinitionUri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DefinitionUri", 1))
 	}
@@ -9330,6 +10783,12 @@ func (s *CreateWorkflowInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccelerators sets the Accelerators field's value.
+func (s *CreateWorkflowInput) SetAccelerators(v string) *CreateWorkflowInput {
+	s.Accelerators = &v
+	return s
 }
 
 // SetDefinitionUri sets the DefinitionUri field's value.
@@ -10474,6 +11933,9 @@ func (s *GetAnnotationImportJobInput) SetJobId(v string) *GetAnnotationImportJob
 type GetAnnotationImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The annotation schema generated by the parsed annotation data.
+	AnnotationFields map[string]*string `locationName:"annotationFields" type:"map"`
+
 	// When the job completed.
 	//
 	// CompletionTime is a required field
@@ -10546,6 +12008,12 @@ func (s GetAnnotationImportJobOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetAnnotationImportJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetAnnotationFields sets the AnnotationFields field's value.
+func (s *GetAnnotationImportJobOutput) SetAnnotationFields(v map[string]*string) *GetAnnotationImportJobOutput {
+	s.AnnotationFields = v
+	return s
 }
 
 // SetCompletionTime sets the CompletionTime field's value.
@@ -11545,6 +13013,10 @@ type GetReadSetMetadataOutput struct {
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ReadSetStatus"`
 
+	// The status message for a read set. It provides more detail as to why the
+	// read set has a status.
+	StatusMessage *string `locationName:"statusMessage" min:"1" type:"string"`
+
 	// The read set's subject ID.
 	SubjectId *string `locationName:"subjectId" min:"1" type:"string"`
 }
@@ -11636,6 +13108,12 @@ func (s *GetReadSetMetadataOutput) SetSequenceStoreId(v string) *GetReadSetMetad
 // SetStatus sets the Status field's value.
 func (s *GetReadSetMetadataOutput) SetStatus(v string) *GetReadSetMetadataOutput {
 	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetReadSetMetadataOutput) SetStatusMessage(v string) *GetReadSetMetadataOutput {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -12371,6 +13849,9 @@ type GetRunGroupOutput struct {
 	// The group's maximum run time in minutes.
 	MaxDuration *int64 `locationName:"maxDuration" min:"1" type:"integer"`
 
+	// The maximum GPUs that can be used by a run group.
+	MaxGpus *int64 `locationName:"maxGpus" min:"1" type:"integer"`
+
 	// The maximum number of concurrent runs for the group.
 	MaxRuns *int64 `locationName:"maxRuns" min:"1" type:"integer"`
 
@@ -12426,6 +13907,12 @@ func (s *GetRunGroupOutput) SetMaxCpus(v int64) *GetRunGroupOutput {
 // SetMaxDuration sets the MaxDuration field's value.
 func (s *GetRunGroupOutput) SetMaxDuration(v int64) *GetRunGroupOutput {
 	s.MaxDuration = &v
+	return s
+}
+
+// SetMaxGpus sets the MaxGpus field's value.
+func (s *GetRunGroupOutput) SetMaxGpus(v int64) *GetRunGroupOutput {
+	s.MaxGpus = &v
 	return s
 }
 
@@ -12507,6 +13994,9 @@ func (s *GetRunInput) SetId(v string) *GetRunInput {
 
 type GetRunOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The computational accelerator used to run the workflow.
+	Accelerators *string `locationName:"accelerators" min:"1" type:"string" enum:"Accelerators"`
 
 	// The run's ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -12591,6 +14081,12 @@ func (s GetRunOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetRunOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccelerators sets the Accelerators field's value.
+func (s *GetRunOutput) SetAccelerators(v string) *GetRunOutput {
+	s.Accelerators = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -12800,6 +14296,9 @@ type GetRunTaskOutput struct {
 	// When the task was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The number of Graphics Processing Units (GPU) specified in the task.
+	Gpus *int64 `locationName:"gpus" type:"integer"`
+
 	// The task's log stream.
 	LogStream *string `locationName:"logStream" type:"string"`
 
@@ -12852,6 +14351,12 @@ func (s *GetRunTaskOutput) SetCpus(v int64) *GetRunTaskOutput {
 // SetCreationTime sets the CreationTime field's value.
 func (s *GetRunTaskOutput) SetCreationTime(v time.Time) *GetRunTaskOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetGpus sets the Gpus field's value.
+func (s *GetRunTaskOutput) SetGpus(v int64) *GetRunTaskOutput {
+	s.Gpus = &v
 	return s
 }
 
@@ -12968,6 +14473,9 @@ type GetSequenceStoreOutput struct {
 	// The store's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// An S3 location that is used to store files that have failed a direct upload.
+	FallbackLocation *string `locationName:"fallbackLocation" type:"string"`
+
 	// The store's ID.
 	//
 	// Id is a required field
@@ -13013,6 +14521,12 @@ func (s *GetSequenceStoreOutput) SetCreationTime(v time.Time) *GetSequenceStoreO
 // SetDescription sets the Description field's value.
 func (s *GetSequenceStoreOutput) SetDescription(v string) *GetSequenceStoreOutput {
 	s.Description = &v
+	return s
+}
+
+// SetFallbackLocation sets the FallbackLocation field's value.
+func (s *GetSequenceStoreOutput) SetFallbackLocation(v string) *GetSequenceStoreOutput {
+	s.FallbackLocation = &v
 	return s
 }
 
@@ -13086,6 +14600,9 @@ func (s *GetVariantImportJobInput) SetJobId(v string) *GetVariantImportJobInput 
 type GetVariantImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The annotation schema generated by the parsed annotation data.
+	AnnotationFields map[string]*string `locationName:"annotationFields" type:"map"`
+
 	// When the job completed.
 	CompletionTime *time.Time `locationName:"completionTime" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -13151,6 +14668,12 @@ func (s GetVariantImportJobOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetVariantImportJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetAnnotationFields sets the AnnotationFields field's value.
+func (s *GetVariantImportJobOutput) SetAnnotationFields(v map[string]*string) *GetVariantImportJobOutput {
+	s.AnnotationFields = v
+	return s
 }
 
 // SetCompletionTime sets the CompletionTime field's value.
@@ -13489,6 +15012,9 @@ func (s *GetWorkflowInput) SetType(v string) *GetWorkflowInput {
 type GetWorkflowOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The computational accelerator specified to run the workflow.
+	Accelerators *string `locationName:"accelerators" min:"1" type:"string" enum:"Accelerators"`
+
 	// The workflow's ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
@@ -13512,6 +15038,9 @@ type GetWorkflowOutput struct {
 
 	// The path of the main definition file for the workflow.
 	Main *string `locationName:"main" min:"1" type:"string"`
+
+	// Gets metadata for workflow.
+	Metadata map[string]*string `locationName:"metadata" type:"map"`
 
 	// The workflow's name.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -13551,6 +15080,12 @@ func (s GetWorkflowOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetWorkflowOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccelerators sets the Accelerators field's value.
+func (s *GetWorkflowOutput) SetAccelerators(v string) *GetWorkflowOutput {
+	s.Accelerators = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -13598,6 +15133,12 @@ func (s *GetWorkflowOutput) SetId(v string) *GetWorkflowOutput {
 // SetMain sets the Main field's value.
 func (s *GetWorkflowOutput) SetMain(v string) *GetWorkflowOutput {
 	s.Main = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *GetWorkflowOutput) SetMetadata(v map[string]*string) *GetWorkflowOutput {
+	s.Metadata = v
 	return s
 }
 
@@ -14501,6 +16042,121 @@ func (s *ListAnnotationStoresOutput) SetNextToken(v string) *ListAnnotationStore
 	return s
 }
 
+type ListMultipartReadSetUploadsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of multipart uploads returned in a page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Next token returned in the response of a previous ListMultipartReadSetUploads
+	// call. Used to get the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The Sequence Store ID used for the multipart uploads.
+	//
+	// SequenceStoreId is a required field
+	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMultipartReadSetUploadsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMultipartReadSetUploadsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMultipartReadSetUploadsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMultipartReadSetUploadsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.SequenceStoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SequenceStoreId"))
+	}
+	if s.SequenceStoreId != nil && len(*s.SequenceStoreId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("SequenceStoreId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMultipartReadSetUploadsInput) SetMaxResults(v int64) *ListMultipartReadSetUploadsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMultipartReadSetUploadsInput) SetNextToken(v string) *ListMultipartReadSetUploadsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSequenceStoreId sets the SequenceStoreId field's value.
+func (s *ListMultipartReadSetUploadsInput) SetSequenceStoreId(v string) *ListMultipartReadSetUploadsInput {
+	s.SequenceStoreId = &v
+	return s
+}
+
+type ListMultipartReadSetUploadsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Next token returned in the response of a previous ListMultipartReadSetUploads
+	// call. Used to get the next page of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// An array of multipart uploads.
+	Uploads []*MultipartReadSetUploadListItem `locationName:"uploads" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMultipartReadSetUploadsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMultipartReadSetUploadsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMultipartReadSetUploadsOutput) SetNextToken(v string) *ListMultipartReadSetUploadsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUploads sets the Uploads field's value.
+func (s *ListMultipartReadSetUploadsOutput) SetUploads(v []*MultipartReadSetUploadListItem) *ListMultipartReadSetUploadsOutput {
+	s.Uploads = v
+	return s
+}
+
 type ListReadSetActivationJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14867,6 +16523,161 @@ func (s *ListReadSetImportJobsOutput) SetImportJobs(v []*ImportReadSetJobItem) *
 // SetNextToken sets the NextToken field's value.
 func (s *ListReadSetImportJobsOutput) SetNextToken(v string) *ListReadSetImportJobsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListReadSetUploadPartsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Attributes used to filter for a specific subset of read set part uploads.
+	Filter *ReadSetUploadPartListFilter `locationName:"filter" type:"structure"`
+
+	// The maximum number of read set upload parts returned in a page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Next token returned in the response of a previous ListReadSetUploadPartsRequest
+	// call. Used to get the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The source file for the upload part.
+	//
+	// PartSource is a required field
+	PartSource *string `locationName:"partSource" type:"string" required:"true" enum:"ReadSetPartSource"`
+
+	// The Sequence Store ID used for the multipart uploads.
+	//
+	// SequenceStoreId is a required field
+	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
+
+	// The ID for the initiated multipart upload.
+	//
+	// UploadId is a required field
+	UploadId *string `location:"uri" locationName:"uploadId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReadSetUploadPartsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReadSetUploadPartsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListReadSetUploadPartsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListReadSetUploadPartsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.PartSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartSource"))
+	}
+	if s.SequenceStoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SequenceStoreId"))
+	}
+	if s.SequenceStoreId != nil && len(*s.SequenceStoreId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("SequenceStoreId", 10))
+	}
+	if s.UploadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UploadId"))
+	}
+	if s.UploadId != nil && len(*s.UploadId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("UploadId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListReadSetUploadPartsInput) SetFilter(v *ReadSetUploadPartListFilter) *ListReadSetUploadPartsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListReadSetUploadPartsInput) SetMaxResults(v int64) *ListReadSetUploadPartsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReadSetUploadPartsInput) SetNextToken(v string) *ListReadSetUploadPartsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPartSource sets the PartSource field's value.
+func (s *ListReadSetUploadPartsInput) SetPartSource(v string) *ListReadSetUploadPartsInput {
+	s.PartSource = &v
+	return s
+}
+
+// SetSequenceStoreId sets the SequenceStoreId field's value.
+func (s *ListReadSetUploadPartsInput) SetSequenceStoreId(v string) *ListReadSetUploadPartsInput {
+	s.SequenceStoreId = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *ListReadSetUploadPartsInput) SetUploadId(v string) *ListReadSetUploadPartsInput {
+	s.UploadId = &v
+	return s
+}
+
+type ListReadSetUploadPartsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Next token returned in the response of a previous ListReadSetUploadParts
+	// call. Used to get the next page of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// An array of upload parts.
+	Parts []*ReadSetUploadPartListItem `locationName:"parts" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReadSetUploadPartsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReadSetUploadPartsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReadSetUploadPartsOutput) SetNextToken(v string) *ListReadSetUploadPartsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetParts sets the Parts field's value.
+func (s *ListReadSetUploadPartsOutput) SetParts(v []*ReadSetUploadPartListItem) *ListReadSetUploadPartsOutput {
+	s.Parts = v
 	return s
 }
 
@@ -15616,6 +17427,9 @@ type ListRunsInput struct {
 	// Specify the pagination token from a previous request to retrieve the next
 	// page of results.
 	StartingToken *string `location:"querystring" locationName:"startingToken" min:"1" type:"string"`
+
+	// The status of a run.
+	Status *string `location:"querystring" locationName:"status" min:"1" type:"string" enum:"RunStatus"`
 }
 
 // String returns the string representation.
@@ -15651,6 +17465,9 @@ func (s *ListRunsInput) Validate() error {
 	if s.StartingToken != nil && len(*s.StartingToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StartingToken", 1))
 	}
+	if s.Status != nil && len(*s.Status) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Status", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15679,6 +17496,12 @@ func (s *ListRunsInput) SetRunGroupId(v string) *ListRunsInput {
 // SetStartingToken sets the StartingToken field's value.
 func (s *ListRunsInput) SetStartingToken(v string) *ListRunsInput {
 	s.StartingToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListRunsInput) SetStatus(v string) *ListRunsInput {
+	s.Status = &v
 	return s
 }
 
@@ -16347,6 +18170,209 @@ func (s *ListWorkflowsOutput) SetNextToken(v string) *ListWorkflowsOutput {
 	return s
 }
 
+// Part of the response to ListMultipartReadSetUploads, excluding completed
+// and aborted multipart uploads.
+type MultipartReadSetUploadListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The time stamp for when a direct upload was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The description of a read set.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The source of an uploaded part.
+	//
+	// GeneratedFrom is a required field
+	GeneratedFrom *string `locationName:"generatedFrom" min:"1" type:"string" required:"true"`
+
+	// The name of a read set.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The source's reference ARN.
+	//
+	// ReferenceArn is a required field
+	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string" required:"true"`
+
+	// The read set source's sample ID.
+	//
+	// SampleId is a required field
+	SampleId *string `locationName:"sampleId" min:"1" type:"string" required:"true"`
+
+	// The sequence store ID used for the multipart upload.
+	//
+	// SequenceStoreId is a required field
+	SequenceStoreId *string `locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
+
+	// The type of file the read set originated from.
+	//
+	// SourceFileType is a required field
+	SourceFileType *string `locationName:"sourceFileType" type:"string" required:"true" enum:"FileType"`
+
+	// The read set source's subject ID.
+	//
+	// SubjectId is a required field
+	SubjectId *string `locationName:"subjectId" min:"1" type:"string" required:"true"`
+
+	// Any tags you wish to add to a read set.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The ID for the initiated multipart upload.
+	//
+	// UploadId is a required field
+	UploadId *string `locationName:"uploadId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultipartReadSetUploadListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultipartReadSetUploadListItem) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *MultipartReadSetUploadListItem) SetCreationTime(v time.Time) *MultipartReadSetUploadListItem {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *MultipartReadSetUploadListItem) SetDescription(v string) *MultipartReadSetUploadListItem {
+	s.Description = &v
+	return s
+}
+
+// SetGeneratedFrom sets the GeneratedFrom field's value.
+func (s *MultipartReadSetUploadListItem) SetGeneratedFrom(v string) *MultipartReadSetUploadListItem {
+	s.GeneratedFrom = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MultipartReadSetUploadListItem) SetName(v string) *MultipartReadSetUploadListItem {
+	s.Name = &v
+	return s
+}
+
+// SetReferenceArn sets the ReferenceArn field's value.
+func (s *MultipartReadSetUploadListItem) SetReferenceArn(v string) *MultipartReadSetUploadListItem {
+	s.ReferenceArn = &v
+	return s
+}
+
+// SetSampleId sets the SampleId field's value.
+func (s *MultipartReadSetUploadListItem) SetSampleId(v string) *MultipartReadSetUploadListItem {
+	s.SampleId = &v
+	return s
+}
+
+// SetSequenceStoreId sets the SequenceStoreId field's value.
+func (s *MultipartReadSetUploadListItem) SetSequenceStoreId(v string) *MultipartReadSetUploadListItem {
+	s.SequenceStoreId = &v
+	return s
+}
+
+// SetSourceFileType sets the SourceFileType field's value.
+func (s *MultipartReadSetUploadListItem) SetSourceFileType(v string) *MultipartReadSetUploadListItem {
+	s.SourceFileType = &v
+	return s
+}
+
+// SetSubjectId sets the SubjectId field's value.
+func (s *MultipartReadSetUploadListItem) SetSubjectId(v string) *MultipartReadSetUploadListItem {
+	s.SubjectId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *MultipartReadSetUploadListItem) SetTags(v map[string]*string) *MultipartReadSetUploadListItem {
+	s.Tags = v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *MultipartReadSetUploadListItem) SetUploadId(v string) *MultipartReadSetUploadListItem {
+	s.UploadId = &v
+	return s
+}
+
+// The operation is not supported by Amazon Omics, or the API does not exist.
+type NotSupportedOperationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotSupportedOperationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotSupportedOperationException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotSupportedOperationException(v protocol.ResponseMetadata) error {
+	return &NotSupportedOperationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *NotSupportedOperationException) Code() string {
+	return "NotSupportedOperationException"
+}
+
+// Message returns the exception's message.
+func (s *NotSupportedOperationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *NotSupportedOperationException) OrigErr() error {
+	return nil
+}
+
+func (s *NotSupportedOperationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *NotSupportedOperationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *NotSupportedOperationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The ranges specified in the request are not valid.
 type RangeNotSatisfiableException struct {
 	_            struct{}                  `type:"structure"`
@@ -16659,14 +18685,23 @@ type ReadSetFilter struct {
 	// The filter's end date.
 	CreatedBefore *time.Time `locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
 
+	// Where the source originated.
+	GeneratedFrom *string `locationName:"generatedFrom" min:"1" type:"string"`
+
 	// A name to filter on.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// A genome reference ARN to filter on.
 	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string"`
 
+	// The read set source's sample ID.
+	SampleId *string `locationName:"sampleId" min:"1" type:"string"`
+
 	// A status to filter on.
 	Status *string `locationName:"status" type:"string" enum:"ReadSetStatus"`
+
+	// The read set source's subject ID.
+	SubjectId *string `locationName:"subjectId" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -16690,11 +18725,20 @@ func (s ReadSetFilter) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ReadSetFilter) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ReadSetFilter"}
+	if s.GeneratedFrom != nil && len(*s.GeneratedFrom) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GeneratedFrom", 1))
+	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 	if s.ReferenceArn != nil && len(*s.ReferenceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ReferenceArn", 1))
+	}
+	if s.SampleId != nil && len(*s.SampleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SampleId", 1))
+	}
+	if s.SubjectId != nil && len(*s.SubjectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubjectId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -16715,6 +18759,12 @@ func (s *ReadSetFilter) SetCreatedBefore(v time.Time) *ReadSetFilter {
 	return s
 }
 
+// SetGeneratedFrom sets the GeneratedFrom field's value.
+func (s *ReadSetFilter) SetGeneratedFrom(v string) *ReadSetFilter {
+	s.GeneratedFrom = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *ReadSetFilter) SetName(v string) *ReadSetFilter {
 	s.Name = &v
@@ -16727,9 +18777,21 @@ func (s *ReadSetFilter) SetReferenceArn(v string) *ReadSetFilter {
 	return s
 }
 
+// SetSampleId sets the SampleId field's value.
+func (s *ReadSetFilter) SetSampleId(v string) *ReadSetFilter {
+	s.SampleId = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *ReadSetFilter) SetStatus(v string) *ReadSetFilter {
 	s.Status = &v
+	return s
+}
+
+// SetSubjectId sets the SubjectId field's value.
+func (s *ReadSetFilter) SetSubjectId(v string) *ReadSetFilter {
+	s.SubjectId = &v
 	return s
 }
 
@@ -16781,6 +18843,10 @@ type ReadSetListItem struct {
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ReadSetStatus"`
+
+	// The status for a read set. It provides more detail as to why the read set
+	// has a status.
+	StatusMessage *string `locationName:"statusMessage" min:"1" type:"string"`
 
 	// The read set's subject ID.
 	SubjectId *string `locationName:"subjectId" min:"1" type:"string"`
@@ -16870,9 +18936,144 @@ func (s *ReadSetListItem) SetStatus(v string) *ReadSetListItem {
 	return s
 }
 
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ReadSetListItem) SetStatusMessage(v string) *ReadSetListItem {
+	s.StatusMessage = &v
+	return s
+}
+
 // SetSubjectId sets the SubjectId field's value.
 func (s *ReadSetListItem) SetSubjectId(v string) *ReadSetListItem {
 	s.SubjectId = &v
+	return s
+}
+
+// Filter settings that select for read set upload parts of interest.
+type ReadSetUploadPartListFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filters for read set uploads after a specified time.
+	CreatedAfter *time.Time `locationName:"createdAfter" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Filters for read set part uploads before a specified time.
+	CreatedBefore *time.Time `locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReadSetUploadPartListFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReadSetUploadPartListFilter) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *ReadSetUploadPartListFilter) SetCreatedAfter(v time.Time) *ReadSetUploadPartListFilter {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *ReadSetUploadPartListFilter) SetCreatedBefore(v time.Time) *ReadSetUploadPartListFilter {
+	s.CreatedBefore = &v
+	return s
+}
+
+// The metadata of a single part of a file that was added to a multipart upload.
+// A list of these parts is returned in the response to the ListReadSetUploadParts
+// API.
+type ReadSetUploadPartListItem struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier used to confirm that parts are being added to the correct
+	// upload.
+	//
+	// Checksum is a required field
+	Checksum *string `locationName:"checksum" type:"string" required:"true"`
+
+	// The time stamp for when a direct upload was created.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The time stamp for the most recent update to an uploaded part.
+	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The number identifying the part in an upload.
+	//
+	// PartNumber is a required field
+	PartNumber *int64 `locationName:"partNumber" min:"1" type:"integer" required:"true"`
+
+	// The size of the the part in an upload.
+	//
+	// PartSize is a required field
+	PartSize *int64 `locationName:"partSize" min:"1" type:"long" required:"true"`
+
+	// The origin of the part being direct uploaded.
+	//
+	// PartSource is a required field
+	PartSource *string `locationName:"partSource" type:"string" required:"true" enum:"ReadSetPartSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReadSetUploadPartListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReadSetUploadPartListItem) GoString() string {
+	return s.String()
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *ReadSetUploadPartListItem) SetChecksum(v string) *ReadSetUploadPartListItem {
+	s.Checksum = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ReadSetUploadPartListItem) SetCreationTime(v time.Time) *ReadSetUploadPartListItem {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *ReadSetUploadPartListItem) SetLastUpdatedTime(v time.Time) *ReadSetUploadPartListItem {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetPartNumber sets the PartNumber field's value.
+func (s *ReadSetUploadPartListItem) SetPartNumber(v int64) *ReadSetUploadPartListItem {
+	s.PartNumber = &v
+	return s
+}
+
+// SetPartSize sets the PartSize field's value.
+func (s *ReadSetUploadPartListItem) SetPartSize(v int64) *ReadSetUploadPartListItem {
+	s.PartSize = &v
+	return s
+}
+
+// SetPartSource sets the PartSource field's value.
+func (s *ReadSetUploadPartListItem) SetPartSource(v string) *ReadSetUploadPartListItem {
+	s.PartSource = &v
 	return s
 }
 
@@ -17446,6 +19647,9 @@ type RunGroupListItem struct {
 	// The group's maximum duration setting in minutes.
 	MaxDuration *int64 `locationName:"maxDuration" min:"1" type:"integer"`
 
+	// The maximum GPUs that can be used by a run group.
+	MaxGpus *int64 `locationName:"maxGpus" min:"1" type:"integer"`
+
 	// The group's maximum concurrent run setting.
 	MaxRuns *int64 `locationName:"maxRuns" min:"1" type:"integer"`
 
@@ -17498,6 +19702,12 @@ func (s *RunGroupListItem) SetMaxCpus(v int64) *RunGroupListItem {
 // SetMaxDuration sets the MaxDuration field's value.
 func (s *RunGroupListItem) SetMaxDuration(v int64) *RunGroupListItem {
 	s.MaxDuration = &v
+	return s
+}
+
+// SetMaxGpus sets the MaxGpus field's value.
+func (s *RunGroupListItem) SetMaxGpus(v int64) *RunGroupListItem {
+	s.MaxGpus = &v
 	return s
 }
 
@@ -17702,6 +19912,9 @@ type SequenceStoreDetail struct {
 	// The store's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// An S3 location that is used to store files that have failed a direct upload.
+	FallbackLocation *string `locationName:"fallbackLocation" type:"string"`
+
 	// The store's ID.
 	//
 	// Id is a required field
@@ -17747,6 +19960,12 @@ func (s *SequenceStoreDetail) SetCreationTime(v time.Time) *SequenceStoreDetail 
 // SetDescription sets the Description field's value.
 func (s *SequenceStoreDetail) SetDescription(v string) *SequenceStoreDetail {
 	s.Description = &v
+	return s
+}
+
+// SetFallbackLocation sets the FallbackLocation field's value.
+func (s *SequenceStoreDetail) SetFallbackLocation(v string) *SequenceStoreDetail {
+	s.FallbackLocation = &v
 	return s
 }
 
@@ -18013,6 +20232,9 @@ func (s *SseConfig) SetType(v string) *SseConfig {
 type StartAnnotationImportJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// The annotation schema generated by the parsed annotation data.
+	AnnotationFields map[string]*string `locationName:"annotationFields" type:"map"`
+
 	// A destination annotation store for the job.
 	//
 	// DestinationName is a required field
@@ -18094,6 +20316,12 @@ func (s *StartAnnotationImportJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAnnotationFields sets the AnnotationFields field's value.
+func (s *StartAnnotationImportJobInput) SetAnnotationFields(v map[string]*string) *StartAnnotationImportJobInput {
+	s.AnnotationFields = v
+	return s
 }
 
 // SetDestinationName sets the DestinationName field's value.
@@ -19408,6 +21636,9 @@ func (s *StartRunOutput) SetTags(v map[string]*string) *StartRunOutput {
 type StartVariantImportJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// The annotation schema generated by the parsed annotation data.
+	AnnotationFields map[string]*string `locationName:"annotationFields" type:"map"`
+
 	// The destination variant store for the job.
 	//
 	// DestinationName is a required field
@@ -19481,6 +21712,12 @@ func (s *StartVariantImportJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAnnotationFields sets the AnnotationFields field's value.
+func (s *StartVariantImportJobInput) SetAnnotationFields(v map[string]*string) *StartVariantImportJobInput {
+	s.AnnotationFields = v
+	return s
 }
 
 // SetDestinationName sets the DestinationName field's value.
@@ -19682,6 +21919,9 @@ type TaskListItem struct {
 	// When the task was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The number of Graphics Processing Units (GPU) specified for the task.
+	Gpus *int64 `locationName:"gpus" type:"integer"`
+
 	// The task's memory use in gigabyes.
 	Memory *int64 `locationName:"memory" min:"1" type:"integer"`
 
@@ -19728,6 +21968,12 @@ func (s *TaskListItem) SetCpus(v int64) *TaskListItem {
 // SetCreationTime sets the CreationTime field's value.
 func (s *TaskListItem) SetCreationTime(v time.Time) *TaskListItem {
 	s.CreationTime = &v
+	return s
+}
+
+// SetGpus sets the Gpus field's value.
+func (s *TaskListItem) SetGpus(v int64) *TaskListItem {
+	s.Gpus = &v
 	return s
 }
 
@@ -20215,6 +22461,9 @@ type UpdateRunGroupInput struct {
 	// A maximum run time for the group in minutes.
 	MaxDuration *int64 `locationName:"maxDuration" min:"1" type:"integer"`
 
+	// The maximum GPUs that can be used by a run group.
+	MaxGpus *int64 `locationName:"maxGpus" min:"1" type:"integer"`
+
 	// The maximum number of concurrent runs for the group.
 	MaxRuns *int64 `locationName:"maxRuns" min:"1" type:"integer"`
 
@@ -20255,6 +22504,9 @@ func (s *UpdateRunGroupInput) Validate() error {
 	if s.MaxDuration != nil && *s.MaxDuration < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxDuration", 1))
 	}
+	if s.MaxGpus != nil && *s.MaxGpus < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxGpus", 1))
+	}
 	if s.MaxRuns != nil && *s.MaxRuns < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxRuns", 1))
 	}
@@ -20283,6 +22535,12 @@ func (s *UpdateRunGroupInput) SetMaxCpus(v int64) *UpdateRunGroupInput {
 // SetMaxDuration sets the MaxDuration field's value.
 func (s *UpdateRunGroupInput) SetMaxDuration(v int64) *UpdateRunGroupInput {
 	s.MaxDuration = &v
+	return s
+}
+
+// SetMaxGpus sets the MaxGpus field's value.
+func (s *UpdateRunGroupInput) SetMaxGpus(v int64) *UpdateRunGroupInput {
+	s.MaxGpus = &v
 	return s
 }
 
@@ -20572,6 +22830,156 @@ func (s UpdateWorkflowOutput) GoString() string {
 	return s.String()
 }
 
+type UploadReadSetPartInput struct {
+	_ struct{} `type:"structure" payload:"Payload"`
+
+	// The number of the part being uploaded.
+	//
+	// PartNumber is a required field
+	PartNumber *int64 `location:"querystring" locationName:"partNumber" min:"1" type:"integer" required:"true"`
+
+	// The source file for an upload part.
+	//
+	// PartSource is a required field
+	PartSource *string `location:"querystring" locationName:"partSource" type:"string" required:"true" enum:"ReadSetPartSource"`
+
+	// The read set data to upload for a part.
+	//
+	// To use an non-seekable io.Reader for this request wrap the io.Reader with
+	// "aws.ReadSeekCloser". The SDK will not retry request errors for non-seekable
+	// readers. This will allow the SDK to send the reader's payload as chunked
+	// transfer encoding.
+	//
+	// Payload is a required field
+	Payload io.ReadSeeker `locationName:"payload" type:"blob" required:"true"`
+
+	// The Sequence Store ID used for the multipart upload.
+	//
+	// SequenceStoreId is a required field
+	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
+
+	// The ID for the initiated multipart upload.
+	//
+	// UploadId is a required field
+	UploadId *string `location:"uri" locationName:"uploadId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UploadReadSetPartInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UploadReadSetPartInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UploadReadSetPartInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UploadReadSetPartInput"}
+	if s.PartNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartNumber"))
+	}
+	if s.PartNumber != nil && *s.PartNumber < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PartNumber", 1))
+	}
+	if s.PartSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartSource"))
+	}
+	if s.Payload == nil {
+		invalidParams.Add(request.NewErrParamRequired("Payload"))
+	}
+	if s.SequenceStoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SequenceStoreId"))
+	}
+	if s.SequenceStoreId != nil && len(*s.SequenceStoreId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("SequenceStoreId", 10))
+	}
+	if s.UploadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UploadId"))
+	}
+	if s.UploadId != nil && len(*s.UploadId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("UploadId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPartNumber sets the PartNumber field's value.
+func (s *UploadReadSetPartInput) SetPartNumber(v int64) *UploadReadSetPartInput {
+	s.PartNumber = &v
+	return s
+}
+
+// SetPartSource sets the PartSource field's value.
+func (s *UploadReadSetPartInput) SetPartSource(v string) *UploadReadSetPartInput {
+	s.PartSource = &v
+	return s
+}
+
+// SetPayload sets the Payload field's value.
+func (s *UploadReadSetPartInput) SetPayload(v io.ReadSeeker) *UploadReadSetPartInput {
+	s.Payload = v
+	return s
+}
+
+// SetSequenceStoreId sets the SequenceStoreId field's value.
+func (s *UploadReadSetPartInput) SetSequenceStoreId(v string) *UploadReadSetPartInput {
+	s.SequenceStoreId = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *UploadReadSetPartInput) SetUploadId(v string) *UploadReadSetPartInput {
+	s.UploadId = &v
+	return s
+}
+
+type UploadReadSetPartOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier used to confirm that parts are being added to the intended
+	// upload.
+	//
+	// Checksum is a required field
+	Checksum *string `locationName:"checksum" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UploadReadSetPartOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UploadReadSetPartOutput) GoString() string {
+	return s.String()
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *UploadReadSetPartOutput) SetChecksum(v string) *UploadReadSetPartOutput {
+	s.Checksum = &v
+	return s
+}
+
 // The input fails to satisfy the constraints specified by an AWS service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -20741,6 +23149,9 @@ func (s *VariantImportItemSource) SetSource(v string) *VariantImportItemSource {
 type VariantImportJobItem struct {
 	_ struct{} `type:"structure"`
 
+	// The annotation schema generated by the parsed annotation data.
+	AnnotationFields map[string]*string `locationName:"annotationFields" type:"map"`
+
 	// When the job completed.
 	CompletionTime *time.Time `locationName:"completionTime" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -20794,6 +23205,12 @@ func (s VariantImportJobItem) String() string {
 // value will be replaced with "sensitive".
 func (s VariantImportJobItem) GoString() string {
 	return s.String()
+}
+
+// SetAnnotationFields sets the AnnotationFields field's value.
+func (s *VariantImportJobItem) SetAnnotationFields(v map[string]*string) *VariantImportJobItem {
+	s.AnnotationFields = v
+	return s
 }
 
 // SetCompletionTime sets the CompletionTime field's value.
@@ -21045,6 +23462,10 @@ type WorkflowListItem struct {
 	// The workflow's ID.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
+	// Any metadata available for workflow. The information listed may vary depending
+	// on the workflow, and there may also be no metadata to return.
+	Metadata map[string]*string `locationName:"metadata" type:"map"`
+
 	// The workflow's name.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -21094,6 +23515,12 @@ func (s *WorkflowListItem) SetDigest(v string) *WorkflowListItem {
 // SetId sets the Id field's value.
 func (s *WorkflowListItem) SetId(v string) *WorkflowListItem {
 	s.Id = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *WorkflowListItem) SetMetadata(v map[string]*string) *WorkflowListItem {
+	s.Metadata = v
 	return s
 }
 
@@ -21154,6 +23581,18 @@ func (s *WorkflowParameter) SetDescription(v string) *WorkflowParameter {
 func (s *WorkflowParameter) SetOptional(v bool) *WorkflowParameter {
 	s.Optional = &v
 	return s
+}
+
+const (
+	// AcceleratorsGpu is a Accelerators enum value
+	AcceleratorsGpu = "GPU"
+)
+
+// Accelerators_Values returns all elements of the Accelerators enum
+func Accelerators_Values() []string {
+	return []string{
+		AcceleratorsGpu,
+	}
 }
 
 const (
@@ -21489,6 +23928,22 @@ func ReadSetImportJobStatus_Values() []string {
 }
 
 const (
+	// ReadSetPartSourceSource1 is a ReadSetPartSource enum value
+	ReadSetPartSourceSource1 = "SOURCE1"
+
+	// ReadSetPartSourceSource2 is a ReadSetPartSource enum value
+	ReadSetPartSourceSource2 = "SOURCE2"
+)
+
+// ReadSetPartSource_Values returns all elements of the ReadSetPartSource enum
+func ReadSetPartSource_Values() []string {
+	return []string{
+		ReadSetPartSourceSource1,
+		ReadSetPartSourceSource2,
+	}
+}
+
+const (
 	// ReadSetStatusArchived is a ReadSetStatus enum value
 	ReadSetStatusArchived = "ARCHIVED"
 
@@ -21503,6 +23958,12 @@ const (
 
 	// ReadSetStatusDeleted is a ReadSetStatus enum value
 	ReadSetStatusDeleted = "DELETED"
+
+	// ReadSetStatusProcessingUpload is a ReadSetStatus enum value
+	ReadSetStatusProcessingUpload = "PROCESSING_UPLOAD"
+
+	// ReadSetStatusUploadFailed is a ReadSetStatus enum value
+	ReadSetStatusUploadFailed = "UPLOAD_FAILED"
 )
 
 // ReadSetStatus_Values returns all elements of the ReadSetStatus enum
@@ -21513,6 +23974,8 @@ func ReadSetStatus_Values() []string {
 		ReadSetStatusActive,
 		ReadSetStatusDeleting,
 		ReadSetStatusDeleted,
+		ReadSetStatusProcessingUpload,
+		ReadSetStatusUploadFailed,
 	}
 }
 
@@ -21847,6 +24310,9 @@ const (
 
 	// WorkflowStatusFailed is a WorkflowStatus enum value
 	WorkflowStatusFailed = "FAILED"
+
+	// WorkflowStatusInactive is a WorkflowStatus enum value
+	WorkflowStatusInactive = "INACTIVE"
 )
 
 // WorkflowStatus_Values returns all elements of the WorkflowStatus enum
@@ -21857,17 +24323,22 @@ func WorkflowStatus_Values() []string {
 		WorkflowStatusUpdating,
 		WorkflowStatusDeleted,
 		WorkflowStatusFailed,
+		WorkflowStatusInactive,
 	}
 }
 
 const (
 	// WorkflowTypePrivate is a WorkflowType enum value
 	WorkflowTypePrivate = "PRIVATE"
+
+	// WorkflowTypeReady2run is a WorkflowType enum value
+	WorkflowTypeReady2run = "READY2RUN"
 )
 
 // WorkflowType_Values returns all elements of the WorkflowType enum
 func WorkflowType_Values() []string {
 	return []string{
 		WorkflowTypePrivate,
+		WorkflowTypeReady2run,
 	}
 }

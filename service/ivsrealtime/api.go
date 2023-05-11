@@ -360,6 +360,88 @@ func (c *IVSRealTime) DisconnectParticipantWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opGetParticipant = "GetParticipant"
+
+// GetParticipantRequest generates a "aws/request.Request" representing the
+// client's request for the GetParticipant operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetParticipant for more information on using the GetParticipant
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetParticipantRequest method.
+//	req, resp := client.GetParticipantRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetParticipant
+func (c *IVSRealTime) GetParticipantRequest(input *GetParticipantInput) (req *request.Request, output *GetParticipantOutput) {
+	op := &request.Operation{
+		Name:       opGetParticipant,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetParticipant",
+	}
+
+	if input == nil {
+		input = &GetParticipantInput{}
+	}
+
+	output = &GetParticipantOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetParticipant API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets information about the specified participant token.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation GetParticipant for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetParticipant
+func (c *IVSRealTime) GetParticipant(input *GetParticipantInput) (*GetParticipantOutput, error) {
+	req, out := c.GetParticipantRequest(input)
+	return out, req.Send()
+}
+
+// GetParticipantWithContext is the same as GetParticipant with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetParticipant for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) GetParticipantWithContext(ctx aws.Context, input *GetParticipantInput, opts ...request.Option) (*GetParticipantOutput, error) {
+	req, out := c.GetParticipantRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetStage = "GetStage"
 
 // GetStageRequest generates a "aws/request.Request" representing the
@@ -440,6 +522,500 @@ func (c *IVSRealTime) GetStageWithContext(ctx aws.Context, input *GetStageInput,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetStageSession = "GetStageSession"
+
+// GetStageSessionRequest generates a "aws/request.Request" representing the
+// client's request for the GetStageSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStageSession for more information on using the GetStageSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetStageSessionRequest method.
+//	req, resp := client.GetStageSessionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetStageSession
+func (c *IVSRealTime) GetStageSessionRequest(input *GetStageSessionInput) (req *request.Request, output *GetStageSessionOutput) {
+	op := &request.Operation{
+		Name:       opGetStageSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetStageSession",
+	}
+
+	if input == nil {
+		input = &GetStageSessionInput{}
+	}
+
+	output = &GetStageSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetStageSession API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets information for the specified stage session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation GetStageSession for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetStageSession
+func (c *IVSRealTime) GetStageSession(input *GetStageSessionInput) (*GetStageSessionOutput, error) {
+	req, out := c.GetStageSessionRequest(input)
+	return out, req.Send()
+}
+
+// GetStageSessionWithContext is the same as GetStageSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStageSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) GetStageSessionWithContext(ctx aws.Context, input *GetStageSessionInput, opts ...request.Option) (*GetStageSessionOutput, error) {
+	req, out := c.GetStageSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListParticipantEvents = "ListParticipantEvents"
+
+// ListParticipantEventsRequest generates a "aws/request.Request" representing the
+// client's request for the ListParticipantEvents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListParticipantEvents for more information on using the ListParticipantEvents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListParticipantEventsRequest method.
+//	req, resp := client.ListParticipantEventsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListParticipantEvents
+func (c *IVSRealTime) ListParticipantEventsRequest(input *ListParticipantEventsInput) (req *request.Request, output *ListParticipantEventsOutput) {
+	op := &request.Operation{
+		Name:       opListParticipantEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListParticipantEvents",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListParticipantEventsInput{}
+	}
+
+	output = &ListParticipantEventsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListParticipantEvents API operation for Amazon Interactive Video Service RealTime.
+//
+// Lists events for a specified participant that occurred during a specified
+// stage session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation ListParticipantEvents for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListParticipantEvents
+func (c *IVSRealTime) ListParticipantEvents(input *ListParticipantEventsInput) (*ListParticipantEventsOutput, error) {
+	req, out := c.ListParticipantEventsRequest(input)
+	return out, req.Send()
+}
+
+// ListParticipantEventsWithContext is the same as ListParticipantEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListParticipantEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListParticipantEventsWithContext(ctx aws.Context, input *ListParticipantEventsInput, opts ...request.Option) (*ListParticipantEventsOutput, error) {
+	req, out := c.ListParticipantEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListParticipantEventsPages iterates over the pages of a ListParticipantEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListParticipantEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListParticipantEvents operation.
+//	pageNum := 0
+//	err := client.ListParticipantEventsPages(params,
+//	    func(page *ivsrealtime.ListParticipantEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IVSRealTime) ListParticipantEventsPages(input *ListParticipantEventsInput, fn func(*ListParticipantEventsOutput, bool) bool) error {
+	return c.ListParticipantEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListParticipantEventsPagesWithContext same as ListParticipantEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListParticipantEventsPagesWithContext(ctx aws.Context, input *ListParticipantEventsInput, fn func(*ListParticipantEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListParticipantEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListParticipantEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListParticipantEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListParticipants = "ListParticipants"
+
+// ListParticipantsRequest generates a "aws/request.Request" representing the
+// client's request for the ListParticipants operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListParticipants for more information on using the ListParticipants
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListParticipantsRequest method.
+//	req, resp := client.ListParticipantsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListParticipants
+func (c *IVSRealTime) ListParticipantsRequest(input *ListParticipantsInput) (req *request.Request, output *ListParticipantsOutput) {
+	op := &request.Operation{
+		Name:       opListParticipants,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListParticipants",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListParticipantsInput{}
+	}
+
+	output = &ListParticipantsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListParticipants API operation for Amazon Interactive Video Service RealTime.
+//
+// Lists all participants in a specified stage session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation ListParticipants for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListParticipants
+func (c *IVSRealTime) ListParticipants(input *ListParticipantsInput) (*ListParticipantsOutput, error) {
+	req, out := c.ListParticipantsRequest(input)
+	return out, req.Send()
+}
+
+// ListParticipantsWithContext is the same as ListParticipants with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListParticipants for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListParticipantsWithContext(ctx aws.Context, input *ListParticipantsInput, opts ...request.Option) (*ListParticipantsOutput, error) {
+	req, out := c.ListParticipantsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListParticipantsPages iterates over the pages of a ListParticipants operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListParticipants method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListParticipants operation.
+//	pageNum := 0
+//	err := client.ListParticipantsPages(params,
+//	    func(page *ivsrealtime.ListParticipantsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IVSRealTime) ListParticipantsPages(input *ListParticipantsInput, fn func(*ListParticipantsOutput, bool) bool) error {
+	return c.ListParticipantsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListParticipantsPagesWithContext same as ListParticipantsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListParticipantsPagesWithContext(ctx aws.Context, input *ListParticipantsInput, fn func(*ListParticipantsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListParticipantsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListParticipantsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListParticipantsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListStageSessions = "ListStageSessions"
+
+// ListStageSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStageSessions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStageSessions for more information on using the ListStageSessions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStageSessionsRequest method.
+//	req, resp := client.ListStageSessionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListStageSessions
+func (c *IVSRealTime) ListStageSessionsRequest(input *ListStageSessionsInput) (req *request.Request, output *ListStageSessionsOutput) {
+	op := &request.Operation{
+		Name:       opListStageSessions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListStageSessions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStageSessionsInput{}
+	}
+
+	output = &ListStageSessionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStageSessions API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets all sessions for a specified stage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation ListStageSessions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListStageSessions
+func (c *IVSRealTime) ListStageSessions(input *ListStageSessionsInput) (*ListStageSessionsOutput, error) {
+	req, out := c.ListStageSessionsRequest(input)
+	return out, req.Send()
+}
+
+// ListStageSessionsWithContext is the same as ListStageSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStageSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListStageSessionsWithContext(ctx aws.Context, input *ListStageSessionsInput, opts ...request.Option) (*ListStageSessionsOutput, error) {
+	req, out := c.ListStageSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStageSessionsPages iterates over the pages of a ListStageSessions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStageSessions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListStageSessions operation.
+//	pageNum := 0
+//	err := client.ListStageSessionsPages(params,
+//	    func(page *ivsrealtime.ListStageSessionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IVSRealTime) ListStageSessionsPages(input *ListStageSessionsInput, fn func(*ListStageSessionsOutput, bool) bool) error {
+	return c.ListStageSessionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStageSessionsPagesWithContext same as ListStageSessionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListStageSessionsPagesWithContext(ctx aws.Context, input *ListStageSessionsInput, fn func(*ListStageSessionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStageSessionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStageSessionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStageSessionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListStages = "ListStages"
@@ -1062,7 +1638,7 @@ type CreateParticipantTokenInput struct {
 	// PUBLISH, SUBSCRIBE.
 	Capabilities []*string `locationName:"capabilities" type:"list" enum:"ParticipantTokenCapability"`
 
-	// Duration (in minutes), after which the token expires. Default: 60 (1 hour).
+	// Duration (in minutes), after which the token expires. Default: 720 (12 hours).
 	Duration *int64 `locationName:"duration" min:"1" type:"integer"`
 
 	// ARN of the stage to which this token is scoped.
@@ -1362,7 +1938,8 @@ func (s DeleteStageOutput) GoString() string {
 type DisconnectParticipantInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the participant to be disconnected. This is returned by CreateParticipantToken.
+	// Identifier of the participant to be disconnected. This is assigned by IVS
+	// and returned by CreateParticipantToken.
 	//
 	// ParticipantId is a required field
 	ParticipantId *string `locationName:"participantId" type:"string" required:"true"`
@@ -1453,6 +2030,194 @@ func (s DisconnectParticipantOutput) GoString() string {
 	return s.String()
 }
 
+// An occurrence during a stage session.
+type Event struct {
+	_ struct{} `type:"structure"`
+
+	// If the event is an error event, the error code is provided to give insight
+	// into the specific error that occurred. If the event is not an error event,
+	// this field is null. INSUFFICIENT_CAPABILITIES indicates that the participant
+	// tried to take an action that the participant’s token is not allowed to
+	// do. For more information about participant capabilities, see the capabilities
+	// field in CreateParticipantToken.
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"EventErrorCode"`
+
+	// ISO 8601 timestamp (returned as a string) for when the event occurred.
+	EventTime *time.Time `locationName:"eventTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The name of the event.
+	Name *string `locationName:"name" type:"string" enum:"EventName"`
+
+	// Unique identifier for the participant who triggered the event. This is assigned
+	// by IVS.
+	ParticipantId *string `locationName:"participantId" type:"string"`
+
+	// Unique identifier for the remote participant. For a subscribe event, this
+	// is the publisher. For a publish or join event, this is null. This is assigned
+	// by IVS.
+	RemoteParticipantId *string `locationName:"remoteParticipantId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Event) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Event) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *Event) SetErrorCode(v string) *Event {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetEventTime sets the EventTime field's value.
+func (s *Event) SetEventTime(v time.Time) *Event {
+	s.EventTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Event) SetName(v string) *Event {
+	s.Name = &v
+	return s
+}
+
+// SetParticipantId sets the ParticipantId field's value.
+func (s *Event) SetParticipantId(v string) *Event {
+	s.ParticipantId = &v
+	return s
+}
+
+// SetRemoteParticipantId sets the RemoteParticipantId field's value.
+func (s *Event) SetRemoteParticipantId(v string) *Event {
+	s.RemoteParticipantId = &v
+	return s
+}
+
+type GetParticipantInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for the participant. This is assigned by IVS and returned
+	// by CreateParticipantToken.
+	//
+	// ParticipantId is a required field
+	ParticipantId *string `locationName:"participantId" type:"string" required:"true"`
+
+	// ID of a session within the stage.
+	//
+	// SessionId is a required field
+	SessionId *string `locationName:"sessionId" min:"16" type:"string" required:"true"`
+
+	// Stage ARN.
+	//
+	// StageArn is a required field
+	StageArn *string `locationName:"stageArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetParticipantInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetParticipantInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetParticipantInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetParticipantInput"}
+	if s.ParticipantId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParticipantId"))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 16 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 16))
+	}
+	if s.StageArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageArn"))
+	}
+	if s.StageArn != nil && len(*s.StageArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParticipantId sets the ParticipantId field's value.
+func (s *GetParticipantInput) SetParticipantId(v string) *GetParticipantInput {
+	s.ParticipantId = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetParticipantInput) SetSessionId(v string) *GetParticipantInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStageArn sets the StageArn field's value.
+func (s *GetParticipantInput) SetStageArn(v string) *GetParticipantInput {
+	s.StageArn = &v
+	return s
+}
+
+type GetParticipantOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The participant that is returned.
+	Participant *Participant `locationName:"participant" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetParticipantOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetParticipantOutput) GoString() string {
+	return s.String()
+}
+
+// SetParticipant sets the Participant field's value.
+func (s *GetParticipantOutput) SetParticipant(v *Participant) *GetParticipantOutput {
+	s.Participant = v
+	return s
+}
+
 type GetStageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1505,7 +2270,7 @@ func (s *GetStageInput) SetArn(v string) *GetStageInput {
 type GetStageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Object specifying a stage.
+	// The stage that is returned.
 	Stage *Stage `locationName:"stage" type:"structure"`
 }
 
@@ -1530,6 +2295,103 @@ func (s GetStageOutput) GoString() string {
 // SetStage sets the Stage field's value.
 func (s *GetStageOutput) SetStage(v *Stage) *GetStageOutput {
 	s.Stage = v
+	return s
+}
+
+type GetStageSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of a session within the stage.
+	//
+	// SessionId is a required field
+	SessionId *string `locationName:"sessionId" min:"16" type:"string" required:"true"`
+
+	// ARN of the stage for which the information is to be retrieved.
+	//
+	// StageArn is a required field
+	StageArn *string `locationName:"stageArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStageSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStageSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStageSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStageSessionInput"}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 16 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 16))
+	}
+	if s.StageArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageArn"))
+	}
+	if s.StageArn != nil && len(*s.StageArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetStageSessionInput) SetSessionId(v string) *GetStageSessionInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStageArn sets the StageArn field's value.
+func (s *GetStageSessionInput) SetStageArn(v string) *GetStageSessionInput {
+	s.StageArn = &v
+	return s
+}
+
+type GetStageSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The stage session that is returned.
+	StageSession *StageSession `locationName:"stageSession" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStageSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStageSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetStageSession sets the StageSession field's value.
+func (s *GetStageSessionOutput) SetStageSession(v *StageSession) *GetStageSessionOutput {
+	s.StageSession = v
 	return s
 }
 
@@ -1597,6 +2459,431 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListParticipantEventsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of results to return. Default: 50.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first participant to retrieve. This is used for pagination; see the nextToken
+	// response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Unique identifier for this participant. This is assigned by IVS and returned
+	// by CreateParticipantToken.
+	//
+	// ParticipantId is a required field
+	ParticipantId *string `locationName:"participantId" type:"string" required:"true"`
+
+	// ID of a session within the stage.
+	//
+	// SessionId is a required field
+	SessionId *string `locationName:"sessionId" min:"16" type:"string" required:"true"`
+
+	// Stage ARN.
+	//
+	// StageArn is a required field
+	StageArn *string `locationName:"stageArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListParticipantEventsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListParticipantEventsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListParticipantEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListParticipantEventsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ParticipantId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParticipantId"))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 16 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 16))
+	}
+	if s.StageArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageArn"))
+	}
+	if s.StageArn != nil && len(*s.StageArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListParticipantEventsInput) SetMaxResults(v int64) *ListParticipantEventsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListParticipantEventsInput) SetNextToken(v string) *ListParticipantEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetParticipantId sets the ParticipantId field's value.
+func (s *ListParticipantEventsInput) SetParticipantId(v string) *ListParticipantEventsInput {
+	s.ParticipantId = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *ListParticipantEventsInput) SetSessionId(v string) *ListParticipantEventsInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStageArn sets the StageArn field's value.
+func (s *ListParticipantEventsInput) SetStageArn(v string) *ListParticipantEventsInput {
+	s.StageArn = &v
+	return s
+}
+
+type ListParticipantEventsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of the matching events.
+	//
+	// Events is a required field
+	Events []*Event `locationName:"events" type:"list" required:"true"`
+
+	// If there are more rooms than maxResults, use nextToken in the request to
+	// get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListParticipantEventsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListParticipantEventsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *ListParticipantEventsOutput) SetEvents(v []*Event) *ListParticipantEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListParticipantEventsOutput) SetNextToken(v string) *ListParticipantEventsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListParticipantsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the response list to only show participants who published during
+	// the stage session. Only one of filterByUserId, filterByPublished, or filterByState
+	// can be provided per request.
+	FilterByPublished *bool `locationName:"filterByPublished" type:"boolean"`
+
+	// Filters the response list to only show participants in the specified state.
+	// Only one of filterByUserId, filterByPublished, or filterByState can be provided
+	// per request.
+	FilterByState *string `locationName:"filterByState" type:"string" enum:"ParticipantState"`
+
+	// Filters the response list to match the specified user ID. Only one of filterByUserId,
+	// filterByPublished, or filterByState can be provided per request. A userId
+	// is a customer-assigned name to help identify the token; this can be used
+	// to link a participant to a user in the customer’s own systems.
+	FilterByUserId *string `locationName:"filterByUserId" type:"string"`
+
+	// Maximum number of results to return. Default: 50.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first participant to retrieve. This is used for pagination; see the nextToken
+	// response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// ID of the session within the stage.
+	//
+	// SessionId is a required field
+	SessionId *string `locationName:"sessionId" min:"16" type:"string" required:"true"`
+
+	// Stage ARN.
+	//
+	// StageArn is a required field
+	StageArn *string `locationName:"stageArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListParticipantsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListParticipantsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListParticipantsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListParticipantsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 16 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 16))
+	}
+	if s.StageArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageArn"))
+	}
+	if s.StageArn != nil && len(*s.StageArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterByPublished sets the FilterByPublished field's value.
+func (s *ListParticipantsInput) SetFilterByPublished(v bool) *ListParticipantsInput {
+	s.FilterByPublished = &v
+	return s
+}
+
+// SetFilterByState sets the FilterByState field's value.
+func (s *ListParticipantsInput) SetFilterByState(v string) *ListParticipantsInput {
+	s.FilterByState = &v
+	return s
+}
+
+// SetFilterByUserId sets the FilterByUserId field's value.
+func (s *ListParticipantsInput) SetFilterByUserId(v string) *ListParticipantsInput {
+	s.FilterByUserId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListParticipantsInput) SetMaxResults(v int64) *ListParticipantsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListParticipantsInput) SetNextToken(v string) *ListParticipantsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *ListParticipantsInput) SetSessionId(v string) *ListParticipantsInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStageArn sets the StageArn field's value.
+func (s *ListParticipantsInput) SetStageArn(v string) *ListParticipantsInput {
+	s.StageArn = &v
+	return s
+}
+
+type ListParticipantsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are more rooms than maxResults, use nextToken in the request to
+	// get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List of the matching participants (summary information only).
+	//
+	// Participants is a required field
+	Participants []*ParticipantSummary `locationName:"participants" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListParticipantsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListParticipantsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListParticipantsOutput) SetNextToken(v string) *ListParticipantsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetParticipants sets the Participants field's value.
+func (s *ListParticipantsOutput) SetParticipants(v []*ParticipantSummary) *ListParticipantsOutput {
+	s.Participants = v
+	return s
+}
+
+type ListStageSessionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of results to return. Default: 50.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first stage to retrieve. This is used for pagination; see the nextToken
+	// response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Stage ARN.
+	//
+	// StageArn is a required field
+	StageArn *string `locationName:"stageArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStageSessionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStageSessionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStageSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStageSessionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StageArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageArn"))
+	}
+	if s.StageArn != nil && len(*s.StageArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStageSessionsInput) SetMaxResults(v int64) *ListStageSessionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStageSessionsInput) SetNextToken(v string) *ListStageSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStageArn sets the StageArn field's value.
+func (s *ListStageSessionsInput) SetStageArn(v string) *ListStageSessionsInput {
+	s.StageArn = &v
+	return s
+}
+
+type ListStageSessionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are more rooms than maxResults, use nextToken in the request to
+	// get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List of matching stage sessions.
+	//
+	// StageSessions is a required field
+	StageSessions []*StageSessionSummary `locationName:"stageSessions" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStageSessionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStageSessionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStageSessionsOutput) SetNextToken(v string) *ListStageSessionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStageSessions sets the StageSessions field's value.
+func (s *ListStageSessionsOutput) SetStageSessions(v []*StageSessionSummary) *ListStageSessionsOutput {
+	s.StageSessions = v
+	return s
 }
 
 type ListStagesInput struct {
@@ -1779,6 +3066,163 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// Object describing a participant that has joined a stage.
+type Participant struct {
+	_ struct{} `type:"structure"`
+
+	// Application-provided attributes to encode into the token and attach to a
+	// stage. Map keys and values can contain UTF-8 encoded text. The maximum length
+	// of this field is 1 KB total. This field is exposed to all stage participants
+	// and should not be used for personally identifying, confidential, or sensitive
+	// information.
+	Attributes map[string]*string `locationName:"attributes" type:"map"`
+
+	// ISO 8601 timestamp (returned as a string) when the participant first joined
+	// the stage session.
+	FirstJoinTime *time.Time `locationName:"firstJoinTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Unique identifier for this participant, assigned by IVS.
+	ParticipantId *string `locationName:"participantId" type:"string"`
+
+	// Whether the participant ever published to the stage session.
+	Published *bool `locationName:"published" type:"boolean"`
+
+	// Whether the participant is connected to or disconnected from the stage.
+	State *string `locationName:"state" type:"string" enum:"ParticipantState"`
+
+	// Customer-assigned name to help identify the token; this can be used to link
+	// a participant to a user in the customer’s own systems. This can be any
+	// UTF-8 encoded text. This field is exposed to all stage participants and should
+	// not be used for personally identifying, confidential, or sensitive information.
+	UserId *string `locationName:"userId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Participant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Participant) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *Participant) SetAttributes(v map[string]*string) *Participant {
+	s.Attributes = v
+	return s
+}
+
+// SetFirstJoinTime sets the FirstJoinTime field's value.
+func (s *Participant) SetFirstJoinTime(v time.Time) *Participant {
+	s.FirstJoinTime = &v
+	return s
+}
+
+// SetParticipantId sets the ParticipantId field's value.
+func (s *Participant) SetParticipantId(v string) *Participant {
+	s.ParticipantId = &v
+	return s
+}
+
+// SetPublished sets the Published field's value.
+func (s *Participant) SetPublished(v bool) *Participant {
+	s.Published = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Participant) SetState(v string) *Participant {
+	s.State = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *Participant) SetUserId(v string) *Participant {
+	s.UserId = &v
+	return s
+}
+
+// Summary object describing a participant that has joined a stage.
+type ParticipantSummary struct {
+	_ struct{} `type:"structure"`
+
+	// ISO 8601 timestamp (returned as a string) when the participant first joined
+	// the stage session.
+	FirstJoinTime *time.Time `locationName:"firstJoinTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Unique identifier for this participant, assigned by IVS.
+	ParticipantId *string `locationName:"participantId" type:"string"`
+
+	// Whether the participant ever published to the stage session.
+	Published *bool `locationName:"published" type:"boolean"`
+
+	// Whether the participant is connected to or disconnected from the stage.
+	State *string `locationName:"state" type:"string" enum:"ParticipantState"`
+
+	// Customer-assigned name to help identify the token; this can be used to link
+	// a participant to a user in the customer’s own systems. This can be any
+	// UTF-8 encoded text. This field is exposed to all stage participants and should
+	// not be used for personally identifying, confidential, or sensitive information.
+	UserId *string `locationName:"userId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantSummary) GoString() string {
+	return s.String()
+}
+
+// SetFirstJoinTime sets the FirstJoinTime field's value.
+func (s *ParticipantSummary) SetFirstJoinTime(v time.Time) *ParticipantSummary {
+	s.FirstJoinTime = &v
+	return s
+}
+
+// SetParticipantId sets the ParticipantId field's value.
+func (s *ParticipantSummary) SetParticipantId(v string) *ParticipantSummary {
+	s.ParticipantId = &v
+	return s
+}
+
+// SetPublished sets the Published field's value.
+func (s *ParticipantSummary) SetPublished(v bool) *ParticipantSummary {
+	s.Published = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ParticipantSummary) SetState(v string) *ParticipantSummary {
+	s.State = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ParticipantSummary) SetUserId(v string) *ParticipantSummary {
+	s.UserId = &v
+	return s
+}
+
 // Object specifying a participant token in a stage.
 type ParticipantToken struct {
 	_ struct{} `type:"structure"`
@@ -1792,7 +3236,7 @@ type ParticipantToken struct {
 	Capabilities []*string `locationName:"capabilities" type:"list" enum:"ParticipantTokenCapability"`
 
 	// Duration (in minutes), after which the participant token expires. Default:
-	// 60 (1 hour).
+	// 720 (12 hours).
 	Duration *int64 `locationName:"duration" min:"1" type:"integer"`
 
 	// ISO 8601 timestamp (returned as a string) for when this token expires.
@@ -1808,9 +3252,10 @@ type ParticipantToken struct {
 	// String and GoString methods.
 	Token *string `locationName:"token" type:"string" sensitive:"true"`
 
-	// Name to help identify the token. This can be any UTF-8 encoded text. This
-	// field is exposed to all stage participants and should not be used for personally
-	// identifying, confidential, or sensitive information.
+	// Customer-assigned name to help identify the token; this can be used to link
+	// a participant to a user in the customer’s own systems. This can be any
+	// UTF-8 encoded text. This field is exposed to all stage participants and should
+	// not be used for personally identifying, confidential, or sensitive information.
 	UserId *string `locationName:"userId" type:"string"`
 }
 
@@ -1889,13 +3334,13 @@ type ParticipantTokenConfiguration struct {
 	Capabilities []*string `locationName:"capabilities" type:"list" enum:"ParticipantTokenCapability"`
 
 	// Duration (in minutes), after which the corresponding participant token expires.
-	// Default: 60 (1 hour).
+	// Default: 720 (12 hours).
 	Duration *int64 `locationName:"duration" min:"1" type:"integer"`
 
-	// Name that can be specified to help identify the corresponding participant
-	// token. This can be any UTF-8 encoded text. This field is exposed to all stage
-	// participants and should not be used for personally identifying, confidential,
-	// or sensitive information.
+	// Customer-assigned name to help identify the token; this can be used to link
+	// a participant to a user in the customer’s own systems. This can be any
+	// UTF-8 encoded text. This field is exposed to all stage participants and should
+	// not be used for personally identifying, confidential, or sensitive information.
 	UserId *string `locationName:"userId" type:"string"`
 }
 
@@ -2214,6 +3659,111 @@ func (s *Stage) SetName(v string) *Stage {
 // SetTags sets the Tags field's value.
 func (s *Stage) SetTags(v map[string]*string) *Stage {
 	s.Tags = v
+	return s
+}
+
+// A stage session begins when the first participant joins a stage and ends
+// after the last participant leaves the stage. A stage session helps with debugging
+// stages by grouping events and participants into shorter periods of time (i.e.,
+// a session), which is helpful when stages are used over long periods of time.
+type StageSession struct {
+	_ struct{} `type:"structure"`
+
+	// ISO 8601 timestamp (returned as a string) when the stage session ended. This
+	// is null if the stage is active.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// ID of the session within the stage.
+	SessionId *string `locationName:"sessionId" min:"16" type:"string"`
+
+	// ISO 8601 timestamp (returned as a string) when this stage session began.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageSession) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageSession) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *StageSession) SetEndTime(v time.Time) *StageSession {
+	s.EndTime = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StageSession) SetSessionId(v string) *StageSession {
+	s.SessionId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *StageSession) SetStartTime(v time.Time) *StageSession {
+	s.StartTime = &v
+	return s
+}
+
+// Summary information about a stage session.
+type StageSessionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// ISO 8601 timestamp (returned as a string) when the stage session ended. This
+	// is null if the stage is active.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// ID of the session within the stage.
+	SessionId *string `locationName:"sessionId" min:"16" type:"string"`
+
+	// ISO 8601 timestamp (returned as a string) when this stage session began.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageSessionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageSessionSummary) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *StageSessionSummary) SetEndTime(v time.Time) *StageSessionSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StageSessionSummary) SetSessionId(v string) *StageSessionSummary {
+	s.SessionId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *StageSessionSummary) SetStartTime(v time.Time) *StageSessionSummary {
+	s.StartTime = &v
 	return s
 }
 
@@ -2614,6 +4164,78 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// EventErrorCodeInsufficientCapabilities is a EventErrorCode enum value
+	EventErrorCodeInsufficientCapabilities = "INSUFFICIENT_CAPABILITIES"
+)
+
+// EventErrorCode_Values returns all elements of the EventErrorCode enum
+func EventErrorCode_Values() []string {
+	return []string{
+		EventErrorCodeInsufficientCapabilities,
+	}
+}
+
+const (
+	// EventNameJoined is a EventName enum value
+	EventNameJoined = "JOINED"
+
+	// EventNameLeft is a EventName enum value
+	EventNameLeft = "LEFT"
+
+	// EventNamePublishStarted is a EventName enum value
+	EventNamePublishStarted = "PUBLISH_STARTED"
+
+	// EventNamePublishStopped is a EventName enum value
+	EventNamePublishStopped = "PUBLISH_STOPPED"
+
+	// EventNameSubscribeStarted is a EventName enum value
+	EventNameSubscribeStarted = "SUBSCRIBE_STARTED"
+
+	// EventNameSubscribeStopped is a EventName enum value
+	EventNameSubscribeStopped = "SUBSCRIBE_STOPPED"
+
+	// EventNamePublishError is a EventName enum value
+	EventNamePublishError = "PUBLISH_ERROR"
+
+	// EventNameSubscribeError is a EventName enum value
+	EventNameSubscribeError = "SUBSCRIBE_ERROR"
+
+	// EventNameJoinError is a EventName enum value
+	EventNameJoinError = "JOIN_ERROR"
+)
+
+// EventName_Values returns all elements of the EventName enum
+func EventName_Values() []string {
+	return []string{
+		EventNameJoined,
+		EventNameLeft,
+		EventNamePublishStarted,
+		EventNamePublishStopped,
+		EventNameSubscribeStarted,
+		EventNameSubscribeStopped,
+		EventNamePublishError,
+		EventNameSubscribeError,
+		EventNameJoinError,
+	}
+}
+
+const (
+	// ParticipantStateConnected is a ParticipantState enum value
+	ParticipantStateConnected = "CONNECTED"
+
+	// ParticipantStateDisconnected is a ParticipantState enum value
+	ParticipantStateDisconnected = "DISCONNECTED"
+)
+
+// ParticipantState_Values returns all elements of the ParticipantState enum
+func ParticipantState_Values() []string {
+	return []string{
+		ParticipantStateConnected,
+		ParticipantStateDisconnected,
+	}
 }
 
 const (

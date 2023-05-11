@@ -26,6 +26,12 @@ const (
 	// An unexpected error occurred. Try the request again.
 	ErrCodeInternalServerException = "InternalServerException"
 
+	// ErrCodeNotSupportedOperationException for service response error code
+	// "NotSupportedOperationException".
+	//
+	// The operation is not supported by Amazon Omics, or the API does not exist.
+	ErrCodeNotSupportedOperationException = "NotSupportedOperationException"
+
 	// ErrCodeRangeNotSatisfiableException for service response error code
 	// "RangeNotSatisfiableException".
 	//
@@ -64,13 +70,14 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":         newErrorAccessDeniedException,
-	"ConflictException":             newErrorConflictException,
-	"InternalServerException":       newErrorInternalServerException,
-	"RangeNotSatisfiableException":  newErrorRangeNotSatisfiableException,
-	"RequestTimeoutException":       newErrorRequestTimeoutException,
-	"ResourceNotFoundException":     newErrorResourceNotFoundException,
-	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
-	"ThrottlingException":           newErrorThrottlingException,
-	"ValidationException":           newErrorValidationException,
+	"AccessDeniedException":          newErrorAccessDeniedException,
+	"ConflictException":              newErrorConflictException,
+	"InternalServerException":        newErrorInternalServerException,
+	"NotSupportedOperationException": newErrorNotSupportedOperationException,
+	"RangeNotSatisfiableException":   newErrorRangeNotSatisfiableException,
+	"RequestTimeoutException":        newErrorRequestTimeoutException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException":  newErrorServiceQuotaExceededException,
+	"ThrottlingException":            newErrorThrottlingException,
+	"ValidationException":            newErrorValidationException,
 }

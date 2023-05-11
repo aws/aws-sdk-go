@@ -9,8 +9,18 @@
 // using a standard HTTP API and an AWS EventBridge event stream for responses.
 // JSON is used for both requests and responses, including errors.
 //
-// Terminology: The IVS stage API sometimes is referred to as the IVS RealTime
-// API.
+// Terminology:
+//
+//   - The IVS stage API sometimes is referred to as the IVS RealTime API.
+//
+//   - A participant token is an authorization token used to publish/subscribe
+//     to a stage.
+//
+//   - A participant object represents participants (people) in the stage and
+//     contains information about them. When a token is created, it includes
+//     a participant ID; when a participant uses that token to join a stage,
+//     the participant is associated with that participant ID There is a 1:1
+//     mapping between participant tokens and participants.
 //
 // # Resources
 //
@@ -51,10 +61,22 @@
 //   - DisconnectParticipant — Disconnects a specified participant and revokes
 //     the participant permanently from a specified stage.
 //
+//   - GetParticipant — Gets information about the specified participant
+//     token.
+//
 //   - GetStage — Gets information for the specified stage.
+//
+//   - GetStageSession — Gets information for the specified stage session.
+//
+//   - ListParticipantEvents — Lists events for a specified participant that
+//     occurred during a specified stage session.
+//
+//   - ListParticipants — Lists all participants in a specified stage session.
 //
 //   - ListStages — Gets summary information about all stages in your account,
 //     in the AWS region where the API request is processed.
+//
+//   - ListStageSessions — Gets all sessions for a specified stage.
 //
 //   - UpdateStage — Updates a stage’s configuration.
 //

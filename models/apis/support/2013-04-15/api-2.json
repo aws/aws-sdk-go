@@ -98,6 +98,19 @@
         {"shape":"CaseIdNotFound"}
       ]
     },
+    "DescribeCreateCaseOptions":{
+      "name":"DescribeCreateCaseOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCreateCaseOptionsRequest"},
+      "output":{"shape":"DescribeCreateCaseOptionsResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeServices":{
       "name":"DescribeServices",
       "http":{
@@ -122,6 +135,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DescribeSupportedLanguages":{
+      "name":"DescribeSupportedLanguages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSupportedLanguagesRequest"},
+      "output":{"shape":"DescribeSupportedLanguagesResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeTrustedAdvisorCheckRefreshStatuses":{
       "name":"DescribeTrustedAdvisorCheckRefreshStatuses",
       "http":{
@@ -131,7 +157,8 @@
       "input":{"shape":"DescribeTrustedAdvisorCheckRefreshStatusesRequest"},
       "output":{"shape":"DescribeTrustedAdvisorCheckRefreshStatusesResponse"},
       "errors":[
-        {"shape":"InternalServerError"}
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DescribeTrustedAdvisorCheckResult":{
@@ -143,7 +170,8 @@
       "input":{"shape":"DescribeTrustedAdvisorCheckResultRequest"},
       "output":{"shape":"DescribeTrustedAdvisorCheckResultResponse"},
       "errors":[
-        {"shape":"InternalServerError"}
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DescribeTrustedAdvisorCheckSummaries":{
@@ -155,7 +183,8 @@
       "input":{"shape":"DescribeTrustedAdvisorCheckSummariesRequest"},
       "output":{"shape":"DescribeTrustedAdvisorCheckSummariesResponse"},
       "errors":[
-        {"shape":"InternalServerError"}
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DescribeTrustedAdvisorChecks":{
@@ -167,7 +196,8 @@
       "input":{"shape":"DescribeTrustedAdvisorChecksRequest"},
       "output":{"shape":"DescribeTrustedAdvisorChecksResponse"},
       "errors":[
-        {"shape":"InternalServerError"}
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "RefreshTrustedAdvisorCheck":{
@@ -288,6 +318,7 @@
       "type":"list",
       "member":{"shape":"Attachment"}
     },
+    "AvailabilityErrorMessage":{"type":"string"},
     "BeforeTime":{"type":"string"},
     "Boolean":{"type":"boolean"},
     "CaseCreationLimitExceeded":{
@@ -353,11 +384,12 @@
       "max":10,
       "min":0
     },
+    "Code":{"type":"string"},
     "Communication":{
       "type":"structure",
       "members":{
         "caseId":{"shape":"CaseId"},
-        "body":{"shape":"CommunicationBody"},
+        "body":{"shape":"ValidatedCommunicationBody"},
         "submittedBy":{"shape":"SubmittedBy"},
         "timeCreated":{"shape":"TimeCreated"},
         "attachmentSet":{"shape":"AttachmentSet"}
@@ -371,6 +403,20 @@
     "CommunicationList":{
       "type":"list",
       "member":{"shape":"Communication"}
+    },
+    "CommunicationTypeOptions":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"Type"},
+        "supportedHours":{"shape":"SupportedHoursList"},
+        "datesWithoutSupport":{"shape":"DatesWithoutSupportList"}
+      }
+    },
+    "CommunicationTypeOptionsList":{
+      "type":"list",
+      "member":{"shape":"CommunicationTypeOptions"},
+      "max":100,
+      "min":1
     },
     "CreateCaseRequest":{
       "type":"structure",
@@ -397,6 +443,17 @@
       }
     },
     "Data":{"type":"blob"},
+    "DateInterval":{
+      "type":"structure",
+      "members":{
+        "startDateTime":{"shape":"ValidatedDateTime"},
+        "endDateTime":{"shape":"ValidatedDateTime"}
+      }
+    },
+    "DatesWithoutSupportList":{
+      "type":"list",
+      "member":{"shape":"DateInterval"}
+    },
     "DescribeAttachmentLimitExceeded":{
       "type":"structure",
       "members":{
@@ -456,6 +513,28 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeCreateCaseOptionsRequest":{
+      "type":"structure",
+      "required":[
+        "issueType",
+        "serviceCode",
+        "language",
+        "categoryCode"
+      ],
+      "members":{
+        "issueType":{"shape":"IssueType"},
+        "serviceCode":{"shape":"ServiceCode"},
+        "language":{"shape":"Language"},
+        "categoryCode":{"shape":"CategoryCode"}
+      }
+    },
+    "DescribeCreateCaseOptionsResponse":{
+      "type":"structure",
+      "members":{
+        "languageAvailability":{"shape":"ValidatedLanguageAvailability"},
+        "communicationTypes":{"shape":"CommunicationTypeOptionsList"}
+      }
+    },
     "DescribeServicesRequest":{
       "type":"structure",
       "members":{
@@ -479,6 +558,25 @@
       "type":"structure",
       "members":{
         "severityLevels":{"shape":"SeverityLevelsList"}
+      }
+    },
+    "DescribeSupportedLanguagesRequest":{
+      "type":"structure",
+      "required":[
+        "issueType",
+        "serviceCode",
+        "categoryCode"
+      ],
+      "members":{
+        "issueType":{"shape":"ValidatedIssueTypeString"},
+        "serviceCode":{"shape":"ValidatedServiceCode"},
+        "categoryCode":{"shape":"ValidatedCategoryCode"}
+      }
+    },
+    "DescribeSupportedLanguagesResponse":{
+      "type":"structure",
+      "members":{
+        "supportedLanguages":{"shape":"SupportedLanguagesList"}
       }
     },
     "DescribeTrustedAdvisorCheckRefreshStatusesRequest":{
@@ -537,8 +635,10 @@
         "checks":{"shape":"TrustedAdvisorCheckList"}
       }
     },
+    "Display":{"type":"string"},
     "DisplayId":{"type":"string"},
     "Double":{"type":"double"},
+    "EndTime":{"type":"string"},
     "ErrorMessage":{"type":"string"},
     "ExpiryTime":{"type":"string"},
     "FileName":{"type":"string"},
@@ -630,6 +730,7 @@
       "type":"list",
       "member":{"shape":"SeverityLevel"}
     },
+    "StartTime":{"type":"string"},
     "Status":{"type":"string"},
     "String":{"type":"string"},
     "StringList":{
@@ -638,6 +739,39 @@
     },
     "Subject":{"type":"string"},
     "SubmittedBy":{"type":"string"},
+    "SupportedHour":{
+      "type":"structure",
+      "members":{
+        "startTime":{"shape":"StartTime"},
+        "endTime":{"shape":"EndTime"}
+      }
+    },
+    "SupportedHoursList":{
+      "type":"list",
+      "member":{"shape":"SupportedHour"}
+    },
+    "SupportedLanguage":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"Code"},
+        "language":{"shape":"Language"},
+        "display":{"shape":"Display"}
+      }
+    },
+    "SupportedLanguagesList":{
+      "type":"list",
+      "member":{"shape":"SupportedLanguage"},
+      "max":100,
+      "min":0
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"AvailabilityErrorMessage"}
+      },
+      "exception":true,
+      "synthetic":true
+    },
     "TimeCreated":{"type":"string"},
     "TrustedAdvisorCategorySpecificSummary":{
       "type":"structure",
@@ -768,6 +902,37 @@
         "resourcesIgnored":{"shape":"Long"},
         "resourcesSuppressed":{"shape":"Long"}
       }
+    },
+    "Type":{"type":"string"},
+    "ValidatedCategoryCode":{
+      "type":"string",
+      "max":100,
+      "min":0
+    },
+    "ValidatedCommunicationBody":{
+      "type":"string",
+      "max":8000,
+      "min":1
+    },
+    "ValidatedDateTime":{
+      "type":"string",
+      "max":30,
+      "min":8
+    },
+    "ValidatedIssueTypeString":{
+      "type":"string",
+      "max":22,
+      "min":9
+    },
+    "ValidatedLanguageAvailability":{
+      "type":"string",
+      "max":100,
+      "min":0
+    },
+    "ValidatedServiceCode":{
+      "type":"string",
+      "max":100,
+      "min":0
     }
   }
 }

@@ -76,9 +76,38 @@ type IVSRealTimeAPI interface {
 	DisconnectParticipantWithContext(aws.Context, *ivsrealtime.DisconnectParticipantInput, ...request.Option) (*ivsrealtime.DisconnectParticipantOutput, error)
 	DisconnectParticipantRequest(*ivsrealtime.DisconnectParticipantInput) (*request.Request, *ivsrealtime.DisconnectParticipantOutput)
 
+	GetParticipant(*ivsrealtime.GetParticipantInput) (*ivsrealtime.GetParticipantOutput, error)
+	GetParticipantWithContext(aws.Context, *ivsrealtime.GetParticipantInput, ...request.Option) (*ivsrealtime.GetParticipantOutput, error)
+	GetParticipantRequest(*ivsrealtime.GetParticipantInput) (*request.Request, *ivsrealtime.GetParticipantOutput)
+
 	GetStage(*ivsrealtime.GetStageInput) (*ivsrealtime.GetStageOutput, error)
 	GetStageWithContext(aws.Context, *ivsrealtime.GetStageInput, ...request.Option) (*ivsrealtime.GetStageOutput, error)
 	GetStageRequest(*ivsrealtime.GetStageInput) (*request.Request, *ivsrealtime.GetStageOutput)
+
+	GetStageSession(*ivsrealtime.GetStageSessionInput) (*ivsrealtime.GetStageSessionOutput, error)
+	GetStageSessionWithContext(aws.Context, *ivsrealtime.GetStageSessionInput, ...request.Option) (*ivsrealtime.GetStageSessionOutput, error)
+	GetStageSessionRequest(*ivsrealtime.GetStageSessionInput) (*request.Request, *ivsrealtime.GetStageSessionOutput)
+
+	ListParticipantEvents(*ivsrealtime.ListParticipantEventsInput) (*ivsrealtime.ListParticipantEventsOutput, error)
+	ListParticipantEventsWithContext(aws.Context, *ivsrealtime.ListParticipantEventsInput, ...request.Option) (*ivsrealtime.ListParticipantEventsOutput, error)
+	ListParticipantEventsRequest(*ivsrealtime.ListParticipantEventsInput) (*request.Request, *ivsrealtime.ListParticipantEventsOutput)
+
+	ListParticipantEventsPages(*ivsrealtime.ListParticipantEventsInput, func(*ivsrealtime.ListParticipantEventsOutput, bool) bool) error
+	ListParticipantEventsPagesWithContext(aws.Context, *ivsrealtime.ListParticipantEventsInput, func(*ivsrealtime.ListParticipantEventsOutput, bool) bool, ...request.Option) error
+
+	ListParticipants(*ivsrealtime.ListParticipantsInput) (*ivsrealtime.ListParticipantsOutput, error)
+	ListParticipantsWithContext(aws.Context, *ivsrealtime.ListParticipantsInput, ...request.Option) (*ivsrealtime.ListParticipantsOutput, error)
+	ListParticipantsRequest(*ivsrealtime.ListParticipantsInput) (*request.Request, *ivsrealtime.ListParticipantsOutput)
+
+	ListParticipantsPages(*ivsrealtime.ListParticipantsInput, func(*ivsrealtime.ListParticipantsOutput, bool) bool) error
+	ListParticipantsPagesWithContext(aws.Context, *ivsrealtime.ListParticipantsInput, func(*ivsrealtime.ListParticipantsOutput, bool) bool, ...request.Option) error
+
+	ListStageSessions(*ivsrealtime.ListStageSessionsInput) (*ivsrealtime.ListStageSessionsOutput, error)
+	ListStageSessionsWithContext(aws.Context, *ivsrealtime.ListStageSessionsInput, ...request.Option) (*ivsrealtime.ListStageSessionsOutput, error)
+	ListStageSessionsRequest(*ivsrealtime.ListStageSessionsInput) (*request.Request, *ivsrealtime.ListStageSessionsOutput)
+
+	ListStageSessionsPages(*ivsrealtime.ListStageSessionsInput, func(*ivsrealtime.ListStageSessionsOutput, bool) bool) error
+	ListStageSessionsPagesWithContext(aws.Context, *ivsrealtime.ListStageSessionsInput, func(*ivsrealtime.ListStageSessionsOutput, bool) bool, ...request.Option) error
 
 	ListStages(*ivsrealtime.ListStagesInput) (*ivsrealtime.ListStagesOutput, error)
 	ListStagesWithContext(aws.Context, *ivsrealtime.ListStagesInput, ...request.Option) (*ivsrealtime.ListStagesOutput, error)

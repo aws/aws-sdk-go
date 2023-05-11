@@ -210,9 +210,9 @@ func (c *Health) DescribeAffectedEntitiesRequest(input *DescribeAffectedEntities
 // Returns a list of entities that have been affected by the specified events,
 // based on the specified filter criteria. Entities can refer to individual
 // customer resources, groups of customer resources, or any other construct,
-// depending on the Amazon Web Services service. Events that have impact beyond
-// that of the affected entities, or where the extent of impact is unknown,
-// include at least one entity indicating this.
+// depending on the Amazon Web Service. Events that have impact beyond that
+// of the affected entities, or where the extent of impact is unknown, include
+// at least one entity indicating this.
 //
 // At least one event ARN is required.
 //
@@ -365,7 +365,7 @@ func (c *Health) DescribeAffectedEntitiesForOrganizationRequest(input *DescribeA
 // for one or more accounts in your organization in Organizations, based on
 // the filter criteria. Entities can refer to individual customer resources,
 // groups of customer resources, or any other construct, depending on the Amazon
-// Web Services service.
+// Web Service.
 //
 // At least one event Amazon Resource Name (ARN) and account ID are required.
 //
@@ -938,8 +938,8 @@ func (c *Health) DescribeEventTypesRequest(input *DescribeEventTypesInput) (req 
 //
 // Returns the event types that meet the specified filter criteria. You can
 // use this API operation to find information about the Health event, such as
-// the category, Amazon Web Services service, and event code. The metadata for
-// each event appears in the EventType (https://docs.aws.amazon.com/health/latest/APIReference/API_EventType.html)
+// the category, Amazon Web Service, and event code. The metadata for each event
+// appears in the EventType (https://docs.aws.amazon.com/health/latest/APIReference/API_EventType.html)
 // object.
 //
 // If you don't specify a filter criteria, the API operation returns all event
@@ -1403,9 +1403,8 @@ func (c *Health) DescribeHealthServiceStatusForOrganizationRequest(input *Descri
 // DescribeHealthServiceStatusForOrganization API operation for AWS Health APIs and Notifications.
 //
 // This operation provides status information on enabling or disabling Health
-// to work with your organization. To call this operation, you must sign in
-// as an IAM user, assume an IAM role, or sign in as the root user (not recommended)
-// in the organization's management account.
+// to work with your organization. To call this operation, you must use the
+// organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1480,9 +1479,8 @@ func (c *Health) DisableHealthServiceAccessForOrganizationRequest(input *Disable
 // DisableHealthServiceAccessForOrganization API operation for AWS Health APIs and Notifications.
 //
 // Disables Health from working with Organizations. To call this operation,
-// you must sign in as an Identity and Access Management (IAM) user, assume
-// an IAM role, or sign in as the root user (not recommended) in the organization's
-// management account. For more information, see Aggregating Health events (https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html)
+// you must sign in to the organization's management account. For more information,
+// see Aggregating Health events (https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html)
 // in the Health User Guide.
 //
 // This operation doesn't remove the service-linked role from the management
@@ -1946,8 +1944,8 @@ type DescribeAffectedAccountsForOrganizationOutput struct {
 	// A JSON set of elements of the affected accounts.
 	AffectedAccounts []*string `locationName:"affectedAccounts" type:"list"`
 
-	// This parameter specifies if the Health event is a public Amazon Web Services
-	// service event or an account-specific event.
+	// This parameter specifies if the Health event is a public Amazon Web Service
+	// event or an account-specific event.
 	//
 	//    * If the eventScopeCode value is PUBLIC, then the affectedAccounts value
 	//    is always empty.
@@ -2731,6 +2729,9 @@ type DescribeEventTypesInput struct {
 	Locale *string `locationName:"locale" min:"2" type:"string"`
 
 	// The maximum number of items to return in one batch, between 10 and 100, inclusive.
+	//
+	// If you don't specify the maxResults parameter, this operation returns a maximum
+	// of 30 items by default.
 	MaxResults *int64 `locationName:"maxResults" min:"10" type:"integer"`
 
 	// If the results of a search are large, only a portion of the results are returned,
@@ -3453,8 +3454,8 @@ type Event struct {
 	// The date and time that the event ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
-	// This parameter specifies if the Health event is a public Amazon Web Services
-	// service event or an account-specific event.
+	// This parameter specifies if the Health event is a public Amazon Web Service
+	// event or an account-specific event.
 	//
 	//    * If the eventScopeCode value is PUBLIC, then the affectedAccounts value
 	//    is always empty.
@@ -3484,8 +3485,7 @@ type Event struct {
 	// The Amazon Web Services Region name of the event.
 	Region *string `locationName:"region" min:"2" type:"string"`
 
-	// The Amazon Web Services service that is affected by the event. For example,
-	// EC2, RDS.
+	// The Amazon Web Service that is affected by the event. For example, EC2, RDS.
 	Service *string `locationName:"service" min:"2" type:"string"`
 
 	// The date and time that the event began.
@@ -3872,8 +3872,7 @@ type EventFilter struct {
 	// A list of Amazon Web Services Regions.
 	Regions []*string `locationName:"regions" min:"1" type:"list"`
 
-	// The Amazon Web Services services associated with the event. For example,
-	// EC2, RDS.
+	// The Amazon Web Services associated with the event. For example, EC2, RDS.
 	Services []*string `locationName:"services" min:"1" type:"list"`
 
 	// A list of dates and times that the event began.
@@ -4049,8 +4048,7 @@ type EventType struct {
 	// ; for example, AWS_EC2_SYSTEM_MAINTENANCE_EVENT.
 	Code *string `locationName:"code" min:"3" type:"string"`
 
-	// The Amazon Web Services service that is affected by the event. For example,
-	// EC2, RDS.
+	// The Amazon Web Service that is affected by the event. For example, EC2, RDS.
 	Service *string `locationName:"service" min:"2" type:"string"`
 }
 
@@ -4103,8 +4101,7 @@ type EventTypeFilter struct {
 	// A list of event type codes.
 	EventTypeCodes []*string `locationName:"eventTypeCodes" min:"1" type:"list"`
 
-	// The Amazon Web Services services associated with the event. For example,
-	// EC2, RDS.
+	// The Amazon Web Services associated with the event. For example, EC2, RDS.
 	Services []*string `locationName:"services" min:"1" type:"list"`
 }
 
@@ -4237,8 +4234,13 @@ type OrganizationAffectedEntitiesErrorItem struct {
 	// entities.
 	AwsAccountId *string `locationName:"awsAccountId" type:"string"`
 
-	// The unique identifier for the event type. The format is AWS_SERVICE_DESCRIPTION.
-	// For example, AWS_EC2_SYSTEM_MAINTENANCE_EVENT.
+	// A message that describes the error. Follow the error message and retry your
+	// request.
+	//
+	// For example, the InvalidAccountInputError error message appears if you call
+	// the DescribeAffectedEntitiesForOrganization operation and specify the AccountSpecific
+	// value for the EventScopeCode parameter, but don't specify an Amazon Web Services
+	// account.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// The name of the error.
@@ -4312,8 +4314,8 @@ type OrganizationEvent struct {
 	// The date and time that the event ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
-	// This parameter specifies if the Health event is a public Amazon Web Services
-	// service event or an account-specific event.
+	// This parameter specifies if the Health event is a public Amazon Web Service
+	// event or an account-specific event.
 	//
 	//    * If the eventScopeCode value is PUBLIC, then the affectedAccounts value
 	//    is always empty.
@@ -4343,8 +4345,7 @@ type OrganizationEvent struct {
 	// The Amazon Web Services Region name of the event.
 	Region *string `locationName:"region" min:"2" type:"string"`
 
-	// The Amazon Web Services service that is affected by the event, such as EC2
-	// and RDS.
+	// The Amazon Web Service that is affected by the event, such as EC2 and RDS.
 	Service *string `locationName:"service" min:"2" type:"string"`
 
 	// The date and time that the event began.
@@ -4644,8 +4645,7 @@ type OrganizationEventFilter struct {
 	// A list of Amazon Web Services Regions.
 	Regions []*string `locationName:"regions" min:"1" type:"list"`
 
-	// The Amazon Web Services services associated with the event. For example,
-	// EC2, RDS.
+	// The Amazon Web Services associated with the event. For example, EC2, RDS.
 	Services []*string `locationName:"services" min:"1" type:"list"`
 
 	// A range of dates and times that is used by the EventFilter (https://docs.aws.amazon.com/health/latest/APIReference/API_EventFilter.html)
