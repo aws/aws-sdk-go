@@ -112,7 +112,7 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go-version }}
-        cache-dependency-path: go/src/github.com/aws/aws-sdk-go
+        cache: false
 
     - name: Setup Go env
       shell: bash
