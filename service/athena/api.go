@@ -9557,6 +9557,10 @@ type EngineConfiguration struct {
 	//
 	// MaxConcurrentDpus is a required field
 	MaxConcurrentDpus *int64 `min:"2" type:"integer" required:"true"`
+
+	// Specifies custom jar files and Spark properties for use cases like cluster
+	// encryption, table formats, and general Spark tuning.
+	SparkProperties map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -9620,6 +9624,12 @@ func (s *EngineConfiguration) SetDefaultExecutorDpuSize(v int64) *EngineConfigur
 // SetMaxConcurrentDpus sets the MaxConcurrentDpus field's value.
 func (s *EngineConfiguration) SetMaxConcurrentDpus(v int64) *EngineConfiguration {
 	s.MaxConcurrentDpus = &v
+	return s
+}
+
+// SetSparkProperties sets the SparkProperties field's value.
+func (s *EngineConfiguration) SetSparkProperties(v map[string]*string) *EngineConfiguration {
+	s.SparkProperties = v
 	return s
 }
 

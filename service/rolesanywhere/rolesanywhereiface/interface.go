@@ -156,6 +156,14 @@ type RolesAnywhereAPI interface {
 	ListTrustAnchorsPages(*rolesanywhere.ListTrustAnchorsInput, func(*rolesanywhere.ListTrustAnchorsOutput, bool) bool) error
 	ListTrustAnchorsPagesWithContext(aws.Context, *rolesanywhere.ListTrustAnchorsInput, func(*rolesanywhere.ListTrustAnchorsOutput, bool) bool, ...request.Option) error
 
+	PutNotificationSettings(*rolesanywhere.PutNotificationSettingsInput) (*rolesanywhere.PutNotificationSettingsOutput, error)
+	PutNotificationSettingsWithContext(aws.Context, *rolesanywhere.PutNotificationSettingsInput, ...request.Option) (*rolesanywhere.PutNotificationSettingsOutput, error)
+	PutNotificationSettingsRequest(*rolesanywhere.PutNotificationSettingsInput) (*request.Request, *rolesanywhere.PutNotificationSettingsOutput)
+
+	ResetNotificationSettings(*rolesanywhere.ResetNotificationSettingsInput) (*rolesanywhere.ResetNotificationSettingsOutput, error)
+	ResetNotificationSettingsWithContext(aws.Context, *rolesanywhere.ResetNotificationSettingsInput, ...request.Option) (*rolesanywhere.ResetNotificationSettingsOutput, error)
+	ResetNotificationSettingsRequest(*rolesanywhere.ResetNotificationSettingsInput) (*request.Request, *rolesanywhere.ResetNotificationSettingsOutput)
+
 	TagResource(*rolesanywhere.TagResourceInput) (*rolesanywhere.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *rolesanywhere.TagResourceInput, ...request.Option) (*rolesanywhere.TagResourceOutput, error)
 	TagResourceRequest(*rolesanywhere.TagResourceInput) (*request.Request, *rolesanywhere.TagResourceOutput)

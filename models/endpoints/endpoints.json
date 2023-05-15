@@ -21990,8 +21990,26 @@
       },
       "route53resolver" : {
         "endpoints" : {
-          "us-gov-east-1" : { },
-          "us-gov-west-1" : { }
+          "us-gov-east-1" : {
+            "variants" : [ {
+              "hostname" : "route53resolver.us-gov-east-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-gov-east-1-fips" : {
+            "deprecated" : true,
+            "hostname" : "route53resolver.us-gov-east-1.amazonaws.com"
+          },
+          "us-gov-west-1" : {
+            "variants" : [ {
+              "hostname" : "route53resolver.us-gov-west-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-gov-west-1-fips" : {
+            "deprecated" : true,
+            "hostname" : "route53resolver.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "runtime.lex" : {
