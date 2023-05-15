@@ -14435,6 +14435,57 @@ func (s *EvaluationResult) SetSummary(v *Summary) *EvaluationResult {
 	return s
 }
 
+// Indicates the direction the eyes are gazing in (independent of the head pose)
+// as determined by its pitch and yaw.
+type EyeDirection struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence that the service has in its predicted eye direction.
+	Confidence *float64 `type:"float"`
+
+	// Value representing eye direction on the pitch axis.
+	Pitch *float64 `type:"float"`
+
+	// Value representing eye direction on the yaw axis.
+	Yaw *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EyeDirection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EyeDirection) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *EyeDirection) SetConfidence(v float64) *EyeDirection {
+	s.Confidence = &v
+	return s
+}
+
+// SetPitch sets the Pitch field's value.
+func (s *EyeDirection) SetPitch(v float64) *EyeDirection {
+	s.Pitch = &v
+	return s
+}
+
+// SetYaw sets the Yaw field's value.
+func (s *EyeDirection) SetYaw(v float64) *EyeDirection {
+	s.Yaw = &v
+	return s
+}
+
 // Indicates whether or not the eyes on the face are open, and the confidence
 // level in the determination.
 type EyeOpen struct {
@@ -14647,6 +14698,9 @@ type FaceDetail struct {
 	// For example, a person pretending to have a sad face might not be sad emotionally.
 	Emotions []*Emotion `type:"list"`
 
+	// Indicates the direction the eyes are gazing in, as defined by pitch and yaw.
+	EyeDirection *EyeDirection `type:"structure"`
+
 	// Indicates whether or not the face is wearing eye glasses, and the confidence
 	// level in the determination.
 	Eyeglasses *Eyeglasses `type:"structure"`
@@ -14738,6 +14792,12 @@ func (s *FaceDetail) SetConfidence(v float64) *FaceDetail {
 // SetEmotions sets the Emotions field's value.
 func (s *FaceDetail) SetEmotions(v []*Emotion) *FaceDetail {
 	s.Emotions = v
+	return s
+}
+
+// SetEyeDirection sets the EyeDirection field's value.
+func (s *FaceDetail) SetEyeDirection(v *EyeDirection) *FaceDetail {
+	s.EyeDirection = v
 	return s
 }
 
@@ -25920,6 +25980,9 @@ const (
 	// AttributeEmotions is a Attribute enum value
 	AttributeEmotions = "EMOTIONS"
 
+	// AttributeEyeDirection is a Attribute enum value
+	AttributeEyeDirection = "EYE_DIRECTION"
+
 	// AttributeEyeglasses is a Attribute enum value
 	AttributeEyeglasses = "EYEGLASSES"
 
@@ -25953,6 +26016,7 @@ func Attribute_Values() []string {
 		AttributeAgeRange,
 		AttributeBeard,
 		AttributeEmotions,
+		AttributeEyeDirection,
 		AttributeEyeglasses,
 		AttributeEyesOpen,
 		AttributeGender,

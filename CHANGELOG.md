@@ -1,3 +1,16 @@
+Release v1.44.263 (2023-05-15)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * You can now define custom spark properties at start of the session for use cases like cluster encryption, table formats, and general Spark tuning.
+* `service/kafka`: Updates service API
+* `service/rekognition`: Updates service API and documentation
+  * This release adds a new EyeDirection attribute in Amazon Rekognition DetectFaces and IndexFaces APIs which predicts the yaw and pitch angles of a person's eye gaze direction for each face detected in the image.
+* `service/rolesanywhere`: Updates service API and documentation
+* `service/transfer`: Updates service API and documentation
+  * This release introduces the ability to require both password and SSH key when users authenticate to your Transfer Family servers that use the SFTP protocol.
+
 Release v1.44.262 (2023-05-11)
 ===
 

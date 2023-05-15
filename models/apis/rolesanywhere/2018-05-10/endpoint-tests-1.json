@@ -1,23 +1,10 @@
 {
     "testCases": [
         {
-            "documentation": "For region af-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer.af-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "af-south-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region ap-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.ap-east-1.amazonaws.com"
+                    "url": "https://rolesanywhere.ap-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +17,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.ap-northeast-1.amazonaws.com"
+                    "url": "https://rolesanywhere.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -43,7 +30,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.ap-northeast-2.amazonaws.com"
+                    "url": "https://rolesanywhere.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -56,7 +43,7 @@
             "documentation": "For region ap-northeast-3 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.ap-northeast-3.amazonaws.com"
+                    "url": "https://rolesanywhere.ap-northeast-3.amazonaws.com"
                 }
             },
             "params": {
@@ -69,7 +56,7 @@
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.ap-south-1.amazonaws.com"
+                    "url": "https://rolesanywhere.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +69,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.ap-southeast-1.amazonaws.com"
+                    "url": "https://rolesanywhere.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -95,7 +82,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.ap-southeast-2.amazonaws.com"
+                    "url": "https://rolesanywhere.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -108,7 +95,7 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.ca-central-1.amazonaws.com"
+                    "url": "https://rolesanywhere.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -118,23 +105,10 @@
             }
         },
         {
-            "documentation": "For region ca-central-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer-fips.ca-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ca-central-1",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.eu-central-1.amazonaws.com"
+                    "url": "https://rolesanywhere.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -147,7 +121,7 @@
             "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.eu-north-1.amazonaws.com"
+                    "url": "https://rolesanywhere.eu-north-1.amazonaws.com"
                 }
             },
             "params": {
@@ -157,23 +131,10 @@
             }
         },
         {
-            "documentation": "For region eu-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer.eu-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-south-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.eu-west-1.amazonaws.com"
+                    "url": "https://rolesanywhere.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -186,7 +147,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.eu-west-2.amazonaws.com"
+                    "url": "https://rolesanywhere.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -199,7 +160,7 @@
             "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.eu-west-3.amazonaws.com"
+                    "url": "https://rolesanywhere.eu-west-3.amazonaws.com"
                 }
             },
             "params": {
@@ -212,7 +173,7 @@
             "documentation": "For region me-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.me-south-1.amazonaws.com"
+                    "url": "https://rolesanywhere.me-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -225,7 +186,7 @@
             "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.sa-east-1.amazonaws.com"
+                    "url": "https://rolesanywhere.sa-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -238,25 +199,12 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-east-1.amazonaws.com"
+                    "url": "https://rolesanywhere.us-east-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-east-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer-fips.us-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -264,25 +212,12 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-east-2.amazonaws.com"
+                    "url": "https://rolesanywhere.us-east-2.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-east-2",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer-fips.us-east-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-2",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -290,25 +225,12 @@
             "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-west-1.amazonaws.com"
+                    "url": "https://rolesanywhere.us-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-west-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer-fips.us-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -316,25 +238,12 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-west-2.amazonaws.com"
+                    "url": "https://rolesanywhere.us-west-2.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-west-2",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer-fips.us-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-2",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -342,7 +251,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer-fips.us-east-1.api.aws"
+                    "url": "https://rolesanywhere-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -352,10 +261,23 @@
             }
         },
         {
+            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://rolesanywhere-fips.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-east-1.api.aws"
+                    "url": "https://rolesanywhere.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -365,36 +287,10 @@
             }
         },
         {
-            "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer.cn-north-1.amazonaws.com.cn"
-                }
-            },
-            "params": {
-                "Region": "cn-north-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region cn-northwest-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer.cn-northwest-1.amazonaws.com.cn"
-                }
-            },
-            "params": {
-                "Region": "cn-northwest-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://rolesanywhere-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -407,7 +303,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://rolesanywhere-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -420,7 +316,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://rolesanywhere.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -430,54 +326,15 @@
             }
         },
         {
-            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-gov-east-1.amazonaws.com"
+                    "url": "https://rolesanywhere.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
-                "Region": "us-gov-east-1",
+                "Region": "cn-north-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer-fips.us-gov-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-east-1",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://transfer-fips.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-west-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -485,7 +342,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer-fips.us-gov-east-1.api.aws"
+                    "url": "https://rolesanywhere-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -495,16 +352,42 @@
             }
         },
         {
+            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://rolesanywhere-fips.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-gov-east-1.api.aws"
+                    "url": "https://rolesanywhere.us-gov-east-1.api.aws"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
                 "UseFIPS": false,
                 "UseDualStack": true
+            }
+        },
+        {
+            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://rolesanywhere.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
             }
         },
         {
@@ -522,7 +405,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://rolesanywhere-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -546,7 +429,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://rolesanywhere.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -570,7 +453,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://rolesanywhere-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -594,7 +477,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://transfer.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://rolesanywhere.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

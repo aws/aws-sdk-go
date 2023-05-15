@@ -3543,7 +3543,7 @@
           "locationName": "vpcConnectionArn"
         }
       },
-      "required" : [ "VpcConnectionArn" ]
+      "required" : [ "VpcConnectionArn", "ClusterArn" ]
     },
     "RejectClientVpcConnectionResponse" : {
       "type": "structure",

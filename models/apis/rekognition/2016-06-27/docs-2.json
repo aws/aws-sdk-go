@@ -619,6 +619,8 @@
     "Degree": {
       "base": null,
       "refs": {
+        "EyeDirection$Yaw": "<p>Value representing eye direction on the yaw axis.</p>",
+        "EyeDirection$Pitch": "<p>Value representing eye direction on the pitch axis.</p>",
         "Pose$Roll": "<p>Value representing the face rotation on the roll axis.</p>",
         "Pose$Yaw": "<p>Value representing the face rotation on the yaw axis.</p>",
         "Pose$Pitch": "<p>Value representing the face rotation on the pitch axis.</p>"
@@ -967,6 +969,12 @@
       "refs": {
         "Face$ExternalImageId": "<p>Identifier that you assign to all the faces in the input image.</p>",
         "IndexFacesRequest$ExternalImageId": "<p>The ID you want to assign to all the faces detected in the image.</p>"
+      }
+    },
+    "EyeDirection": {
+      "base": "<p>Indicates the direction the eyes are gazing in (independent of the head pose) as determined by its pitch and yaw. </p>",
+      "refs": {
+        "FaceDetail$EyeDirection": "<p>Indicates the direction the eyes are gazing in, as defined by pitch and yaw.</p>"
       }
     },
     "EyeOpen": {
@@ -1975,6 +1983,7 @@
         "DominantColor$PixelPercent": "<p>The percentage of image pixels that have a given dominant color.</p>",
         "Emotion$Confidence": "<p>Level of confidence in the determination.</p>",
         "EquipmentDetection$Confidence": "<p>The confidence that Amazon Rekognition has that the bounding box (<code>BoundingBox</code>) contains an item of PPE.</p>",
+        "EyeDirection$Confidence": "<p>The confidence that the service has in its predicted eye direction.</p>",
         "EyeOpen$Confidence": "<p>Level of confidence in the determination.</p>",
         "Eyeglasses$Confidence": "<p>Level of confidence in the determination.</p>",
         "Face$Confidence": "<p>Confidence level that the bounding box contains a face (and not a different object such as a tree).</p>",

@@ -1125,7 +1125,7 @@ func (c *Transfer) DeleteHostKeyRequest(input *DeleteHostKeyInput) (req *request
 
 // DeleteHostKey API operation for AWS Transfer Family.
 //
-// Deletes the host key that's specified in the HoskKeyId parameter.
+// Deletes the host key that's specified in the HostKeyId parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2066,6 +2066,12 @@ func (c *Transfer) DescribeExecutionRequest(input *DescribeExecutionInput) (req 
 // You can use DescribeExecution to check the details of the execution of the
 // specified workflow.
 //
+// This API call only returns details for in-progress workflows.
+//
+// If you provide an ID for an execution that is not in progress, or if the
+// execution doesn't match the specified workflow ID, you receive a ResourceNotFound
+// exception.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2902,9 +2908,9 @@ func (c *Transfer) ImportSshPublicKeyRequest(input *ImportSshPublicKeyInput) (re
 
 // ImportSshPublicKey API operation for AWS Transfer Family.
 //
-// Adds a Secure Shell (SSH) public key to a user account identified by a UserName
-// value assigned to the specific file transfer protocol-enabled server, identified
-// by ServerId.
+// Adds a Secure Shell (SSH) public key to a Transfer Family user identified
+// by a UserName value assigned to the specific file transfer protocol-enabled
+// server, identified by ServerId.
 //
 // The response returns the UserName value, the ServerId value, and the name
 // of the SshPublicKeyId.
@@ -3622,7 +3628,10 @@ func (c *Transfer) ListExecutionsRequest(input *ListExecutionsInput) (req *reque
 
 // ListExecutions API operation for AWS Transfer Family.
 //
-// Lists all executions for the specified workflow.
+// Lists all in-progress executions for the specified workflow.
+//
+// If the specified workflow ID cannot be found, ListExecutions returns a ResourceNotFound
+// exception.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4618,7 +4627,8 @@ func (c *Transfer) ListWorkflowsRequest(input *ListWorkflowsInput) (req *request
 
 // ListWorkflows API operation for AWS Transfer Family.
 //
-// Lists all of your workflows.
+// Lists all workflows associated with your Amazon Web Services account for
+// your current region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5271,8 +5281,15 @@ func (c *Transfer) TestIdentityProviderRequest(input *TestIdentityProviderInput)
 // The ServerId and UserName parameters are required. The ServerProtocol, SourceIp,
 // and UserPassword are all optional.
 //
-// You cannot use TestIdentityProvider if the IdentityProviderType of your server
-// is SERVICE_MANAGED.
+// Note the following:
+//
+//   - You cannot use TestIdentityProvider if the IdentityProviderType of your
+//     server is SERVICE_MANAGED.
+//
+//   - TestIdentityProvider does not work with keys: it only accepts passwords.
+//
+//   - TestIdentityProvider can test the password operation for a custom Identity
+//     Provider that handles keys and passwords.
 //
 //   - If you provide any incorrect values for any parameters, the Response
 //     field is empty.
@@ -5285,7 +5302,9 @@ func (c *Transfer) TestIdentityProviderRequest(input *TestIdentityProviderInput)
 //   - If you enter a Server ID for the --server-id parameter that does not
 //     identify an actual Transfer server, you receive the following error: An
 //     error occurred (ResourceNotFoundException) when calling the TestIdentityProvider
-//     operation: Unknown server
+//     operation: Unknown server. It is possible your sever is in a different
+//     region. You can specify a region by adding the following: --region region-code,
+//     such as --region us-east-2 to specify a server in US East (Ohio).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6479,18 +6498,18 @@ func (s *ConflictException) RequestID() string {
 type CopyStepDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the location for the file being copied. Use ${Transfer:username}
+	// Specifies the location for the file being copied. Use ${Transfer:UserName}
 	// or ${Transfer:UploadDate} in this field to parametrize the destination prefix
 	// by username or uploaded date.
 	//
-	//    * Set the value of DestinationFileLocation to ${Transfer:username} to
+	//    * Set the value of DestinationFileLocation to ${Transfer:UserName} to
 	//    copy uploaded files to an Amazon S3 bucket that is prefixed with the name
 	//    of the Transfer Family user that uploaded the file.
 	//
 	//    * Set the value of DestinationFileLocation to ${Transfer:UploadDate} to
 	//    copy uploaded files to an Amazon S3 bucket that is prefixed with the date
 	//    of the upload. The system resolves UploadDate to a date format of YYYY-MM-DD,
-	//    based on the date the file is uploaded.
+	//    based on the date the file is uploaded in UTC.
 	DestinationFileLocation *InputFileLocation `type:"structure"`
 
 	// The name of the step, used as an identifier.
@@ -6498,6 +6517,15 @@ type CopyStepDetails struct {
 
 	// A flag that indicates whether to overwrite an existing file of the same name.
 	// The default is FALSE.
+	//
+	// If the workflow is processing a file that has the same name as an existing
+	// file, the behavior is as follows:
+	//
+	//    * If OverwriteExisting is TRUE, the existing file is replaced with the
+	//    file being processed.
+	//
+	//    * If OverwriteExisting is FALSE, nothing happens, and the workflow processing
+	//    stops.
 	OverwriteExisting *string `type:"string" enum:"OverwriteExisting"`
 
 	// Specifies which file to use as input to the workflow step: either the output
@@ -7436,11 +7464,11 @@ type CreateServerInput struct {
 	// String and GoString methods.
 	HostKey *string `type:"string" sensitive:"true"`
 
-	// Required when IdentityProviderType is set to AWS_DIRECTORY_SERVICE or API_GATEWAY.
-	// Accepts an array containing all of the information required to use a directory
-	// in AWS_DIRECTORY_SERVICE or invoke a customer-supplied authentication API,
-	// including the API Gateway URL. Not required when IdentityProviderType is
-	// set to SERVICE_MANAGED.
+	// Required when IdentityProviderType is set to AWS_DIRECTORY_SERVICE, Amazon
+	// Web Services_LAMBDA or API_GATEWAY. Accepts an array containing all of the
+	// information required to use a directory in AWS_DIRECTORY_SERVICE or invoke
+	// a customer-supplied authentication API, including the API Gateway URL. Not
+	// required when IdentityProviderType is set to SERVICE_MANAGED.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
 	// The mode of authentication for a server. The default value is SERVICE_MANAGED,
@@ -7460,7 +7488,7 @@ type CreateServerInput struct {
 	//
 	// Use the AWS_LAMBDA value to directly use an Lambda function as your identity
 	// provider. If you choose this value, you must specify the ARN for the Lambda
-	// function in the Function parameter or the IdentityProviderDetails data type.
+	// function in the Function parameter for the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
@@ -7551,8 +7579,8 @@ type CreateServerInput struct {
 	//
 	// In addition to a workflow to execute when a file is uploaded completely,
 	// WorkflowDetails can also contain a workflow ID (and execution role) for a
-	// workflow to execute on partial upload. A partial upload occurs when a file
-	// is open when the session disconnects.
+	// workflow to execute on partial upload. A partial upload occurs when the server
+	// session disconnects while the file is still being uploaded.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -8002,7 +8030,7 @@ type CreateUserOutput struct {
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
-	// A unique string that identifies a user account associated with a server.
+	// A unique string that identifies a Transfer Family user.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -8047,8 +8075,8 @@ type CreateWorkflowInput struct {
 	// Specifies the steps (actions) to take if errors are encountered during execution
 	// of the workflow.
 	//
-	// For custom steps, the lambda function needs to send FAILURE to the call back
-	// API to kick off the exception steps. Additionally, if the lambda does not
+	// For custom steps, the Lambda function needs to send FAILURE to the call back
+	// API to kick off the exception steps. Additionally, if the Lambda does not
 	// send SUCCESS before it times out, the exception steps are executed.
 	OnExceptionSteps []*WorkflowStep `type:"list"`
 
@@ -8219,7 +8247,7 @@ type CustomStepDetails struct {
 	//    enter ${original.file}.
 	SourceFileLocation *string `type:"string"`
 
-	// The ARN for the lambda function that is being called.
+	// The ARN for the Lambda function that is being called.
 	Target *string `type:"string"`
 
 	// Timeout, in seconds, for the step.
@@ -8285,7 +8313,18 @@ func (s *CustomStepDetails) SetTimeoutSeconds(v int64) *CustomStepDetails {
 type DecryptStepDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the location for the file that's being processed.
+	// Specifies the location for the file being decrypted. Use ${Transfer:UserName}
+	// or ${Transfer:UploadDate} in this field to parametrize the destination prefix
+	// by username or uploaded date.
+	//
+	//    * Set the value of DestinationFileLocation to ${Transfer:UserName} to
+	//    decrypt uploaded files to an Amazon S3 bucket that is prefixed with the
+	//    name of the Transfer Family user that uploaded the file.
+	//
+	//    * Set the value of DestinationFileLocation to ${Transfer:UploadDate} to
+	//    decrypt uploaded files to an Amazon S3 bucket that is prefixed with the
+	//    date of the upload. The system resolves UploadDate to a date format of
+	//    YYYY-MM-DD, based on the date the file is uploaded in UTC.
 	//
 	// DestinationFileLocation is a required field
 	DestinationFileLocation *InputFileLocation `type:"structure" required:"true"`
@@ -8295,6 +8334,15 @@ type DecryptStepDetails struct {
 
 	// A flag that indicates whether to overwrite an existing file of the same name.
 	// The default is FALSE.
+	//
+	// If the workflow is processing a file that has the same name as an existing
+	// file, the behavior is as follows:
+	//
+	//    * If OverwriteExisting is TRUE, the existing file is replaced with the
+	//    file being processed.
+	//
+	//    * If OverwriteExisting is FALSE, nothing happens, and the workflow processing
+	//    stops.
 	OverwriteExisting *string `type:"string" enum:"OverwriteExisting"`
 
 	// Specifies which file to use as input to the workflow step: either the output
@@ -10179,8 +10227,8 @@ type DescribeUserOutput struct {
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
-	// An array containing the properties of the user account for the ServerID value
-	// that you specified.
+	// An array containing the properties of the Transfer Family user for the ServerID
+	// value that you specified.
 	//
 	// User is a required field
 	User *DescribedUser `type:"structure" required:"true"`
@@ -11251,7 +11299,7 @@ type DescribedServer struct {
 	//
 	// Use the AWS_LAMBDA value to directly use an Lambda function as your identity
 	// provider. If you choose this value, you must specify the ARN for the Lambda
-	// function in the Function parameter or the IdentityProviderDetails data type.
+	// function in the Function parameter for the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
@@ -11359,8 +11407,8 @@ type DescribedServer struct {
 	//
 	// In addition to a workflow to execute when a file is uploaded completely,
 	// WorkflowDetails can also contain a workflow ID (and execution role) for a
-	// workflow to execute on partial upload. A partial upload occurs when a file
-	// is open when the session disconnects.
+	// workflow to execute on partial upload. A partial upload occurs when the server
+	// session disconnects while the file is still being uploaded.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -12193,11 +12241,29 @@ type IdentityProviderDetails struct {
 	// The identifier of the Directory Service directory that you want to stop sharing.
 	DirectoryId *string `min:"12" type:"string"`
 
-	// The ARN for a lambda function to use for the Identity provider.
+	// The ARN for a Lambda function to use for the Identity provider.
 	Function *string `min:"1" type:"string"`
 
+	// This parameter is only applicable if your IdentityProviderType is API_GATEWAY.
 	// Provides the type of InvocationRole used to authenticate the user account.
 	InvocationRole *string `min:"20" type:"string"`
+
+	// For SFTP-enabled servers, and for custom identity providers only, you can
+	// specify whether to authenticate using a password, SSH key pair, or both.
+	//
+	//    * PASSWORD - users must provide their password to connect.
+	//
+	//    * PUBLIC_KEY - users must provide their private key to connect.
+	//
+	//    * PUBLIC_KEY_OR_PASSWORD - users can authenticate with either their password
+	//    or their key. This is the default value.
+	//
+	//    * PUBLIC_KEY_AND_PASSWORD - users must provide both their private key
+	//    and their password to connect. The server checks the key first, and then
+	//    if the key is valid, the system prompts for a password. If the private
+	//    key provided does not match the public key that is stored, authentication
+	//    fails.
+	SftpAuthenticationMethods *string `type:"string" enum:"SftpAuthenticationMethods"`
 
 	// Provides the location of the service endpoint used to authenticate users.
 	Url *string `type:"string"`
@@ -12255,6 +12321,12 @@ func (s *IdentityProviderDetails) SetFunction(v string) *IdentityProviderDetails
 // SetInvocationRole sets the InvocationRole field's value.
 func (s *IdentityProviderDetails) SetInvocationRole(v string) *IdentityProviderDetails {
 	s.InvocationRole = &v
+	return s
+}
+
+// SetSftpAuthenticationMethods sets the SftpAuthenticationMethods field's value.
+func (s *IdentityProviderDetails) SetSftpAuthenticationMethods(v string) *IdentityProviderDetails {
+	s.SftpAuthenticationMethods = &v
 	return s
 }
 
@@ -12619,7 +12691,7 @@ type ImportSshPublicKeyInput struct {
 	// SshPublicKeyBody is a required field
 	SshPublicKeyBody *string `type:"string" required:"true"`
 
-	// The name of the user account that is assigned to one or more servers.
+	// The name of the Transfer Family user that is assigned to one or more servers.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -13546,18 +13618,7 @@ func (s *ListExecutionsInput) SetWorkflowId(v string) *ListExecutionsInput {
 type ListExecutionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the details for each execution.
-	//
-	//    * NextToken: returned from a call to several APIs, you can use pass it
-	//    to a subsequent command to continue listing additional executions.
-	//
-	//    * StartTime: timestamp indicating when the execution began.
-	//
-	//    * Executions: details of the execution, including the execution ID, initial
-	//    file location, and Service metadata.
-	//
-	//    * Status: one of the following values: IN_PROGRESS, COMPLETED, EXCEPTION,
-	//    HANDLING_EXEPTION.
+	// Returns the details for each execution, in a ListedExecution array.
 	//
 	// Executions is a required field
 	Executions []*ListedExecution `type:"list" required:"true"`
@@ -14277,8 +14338,8 @@ type ListUsersOutput struct {
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
-	// Returns the user accounts and their properties for the ServerId value that
-	// you specify.
+	// Returns the Transfer Family users and their properties for the ServerId value
+	// that you specify.
 	//
 	// Users is a required field
 	Users []*ListedUser `type:"list" required:"true"`
@@ -14999,7 +15060,7 @@ type ListedServer struct {
 	//
 	// Use the AWS_LAMBDA value to directly use an Lambda function as your identity
 	// provider. If you choose this value, you must specify the ARN for the Lambda
-	// function in the Function parameter or the IdentityProviderDetails data type.
+	// function in the Function parameter for the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
@@ -16062,15 +16123,15 @@ func (s *ServiceUnavailableException) RequestID() string {
 }
 
 // Provides information about the public Secure Shell (SSH) key that is associated
-// with a user account for the specific file transfer protocol-enabled server
-// (as identified by ServerId). The information returned includes the date the
-// key was imported, the public key contents, and the public key ID. A user
-// can store more than one SSH public key associated with their user name on
-// a specific server.
+// with a Transfer Family user for the specific file transfer protocol-enabled
+// server (as identified by ServerId). The information returned includes the
+// date the key was imported, the public key contents, and the public key ID.
+// A user can store more than one SSH public key associated with their user
+// name on a specific server.
 type SshPublicKey struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the date that the public key was added to the user account.
+	// Specifies the date that the public key was added to the Transfer Family user.
 	//
 	// DateImported is a required field
 	DateImported *time.Time `type:"timestamp" required:"true"`
@@ -16443,8 +16504,8 @@ type TagResourceInput struct {
 	Arn *string `min:"20" type:"string" required:"true"`
 
 	// Key-value pairs assigned to ARNs that you can use to group and search for
-	// resources by type. You can attach this metadata to user accounts for any
-	// purpose.
+	// resources by type. You can attach this metadata to resources (servers, users,
+	// workflows, and so on) for any purpose.
 	//
 	// Tags is a required field
 	Tags []*Tag `min:"1" type:"list" required:"true"`
@@ -16636,17 +16697,19 @@ type TestIdentityProviderInput struct {
 	//    * File Transfer Protocol Secure (FTPS)
 	//
 	//    * File Transfer Protocol (FTP)
+	//
+	//    * Applicability Statement 2 (AS2)
 	ServerProtocol *string `type:"string" enum:"Protocol"`
 
-	// The source IP address of the user account to be tested.
+	// The source IP address of the account to be tested.
 	SourceIp *string `type:"string"`
 
-	// The name of the user account to be tested.
+	// The name of the account to be tested.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
 
-	// The password of the user account to be tested.
+	// The password of the account to be tested.
 	//
 	// UserPassword is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by TestIdentityProviderInput's
@@ -16733,10 +16796,11 @@ type TestIdentityProviderOutput struct {
 	// failed due to an incorrect username or password.
 	Message *string `type:"string"`
 
-	// The response that is returned from your API Gateway.
+	// The response that is returned from your API Gateway or your Lambda function.
 	Response *string `type:"string"`
 
-	// The HTTP status code that is the response from your API Gateway.
+	// The HTTP status code that is the response from your API Gateway or your Lambda
+	// function.
 	//
 	// StatusCode is a required field
 	StatusCode *int64 `type:"integer" required:"true"`
@@ -18036,8 +18100,8 @@ type UpdateServerInput struct {
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
-	// A system-assigned unique identifier for a server instance that the user account
-	// is assigned to.
+	// A system-assigned unique identifier for a server instance that the Transfer
+	// Family user is assigned to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -18047,8 +18111,8 @@ type UpdateServerInput struct {
 	//
 	// In addition to a workflow to execute when a file is uploaded completely,
 	// WorkflowDetails can also contain a workflow ID (and execution role) for a
-	// workflow to execute on partial upload. A partial upload occurs when a file
-	// is open when the session disconnects.
+	// workflow to execute on partial upload. A partial upload occurs when the server
+	// session disconnects while the file is still being uploaded.
 	//
 	// To remove an associated workflow from a server, you can provide an empty
 	// OnUpload object, as in the following example.
@@ -18196,8 +18260,8 @@ func (s *UpdateServerInput) SetWorkflowDetails(v *WorkflowDetails) *UpdateServer
 type UpdateServerOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a server that the user account is
-	// assigned to.
+	// A system-assigned unique identifier for a server that the Transfer Family
+	// user is assigned to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -18301,8 +18365,8 @@ type UpdateUserInput struct {
 	// when servicing your users' transfer requests.
 	Role *string `min:"20" type:"string"`
 
-	// A system-assigned unique identifier for a server instance that the user account
-	// is assigned to.
+	// A system-assigned unique identifier for a Transfer Family server instance
+	// that the user is assigned to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -18431,8 +18495,8 @@ func (s *UpdateUserInput) SetUserName(v string) *UpdateUserInput {
 type UpdateUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a server instance that the user account
-	// is assigned to.
+	// A system-assigned unique identifier for a Transfer Family server instance
+	// that the account is assigned to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -18487,7 +18551,8 @@ type UserDetails struct {
 	// workflow.
 	SessionId *string `min:"3" type:"string"`
 
-	// A unique string that identifies a user account associated with a server.
+	// A unique string that identifies a Transfer Family user associated with a
+	// server.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -18534,8 +18599,8 @@ func (s *UserDetails) SetUserName(v string) *UserDetails {
 //
 // In addition to a workflow to execute when a file is uploaded completely,
 // WorkflowDetails can also contain a workflow ID (and execution role) for a
-// workflow to execute on partial upload. A partial upload occurs when a file
-// is open when the session disconnects.
+// workflow to execute on partial upload. A partial upload occurs when the server
+// session disconnects while the file is still being uploaded.
 type WorkflowDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -19096,12 +19161,24 @@ func HomeDirectoryType_Values() []string {
 	}
 }
 
-// Returns information related to the type of user authentication that is in
-// use for a file transfer protocol-enabled server's users. For AWS_DIRECTORY_SERVICE
-// or SERVICE_MANAGED authentication, the Secure Shell (SSH) public keys are
-// stored with a user on the server instance. For API_GATEWAY authentication,
-// your custom authentication method is implemented by using an API call. The
-// server can have only one method of authentication.
+// The mode of authentication for a server. The default value is SERVICE_MANAGED,
+// which allows you to store and access user credentials within the Transfer
+// Family service.
+//
+// Use AWS_DIRECTORY_SERVICE to provide access to Active Directory groups in
+// Directory Service for Microsoft Active Directory or Microsoft Active Directory
+// in your on-premises environment or in Amazon Web Services using AD Connector.
+// This option also requires you to provide a Directory ID by using the IdentityProviderDetails
+// parameter.
+//
+// Use the API_GATEWAY value to integrate with an identity provider of your
+// choosing. The API_GATEWAY setting requires you to provide an Amazon API Gateway
+// endpoint URL to call for authentication by using the IdentityProviderDetails
+// parameter.
+//
+// Use the AWS_LAMBDA value to directly use an Lambda function as your identity
+// provider. If you choose this value, you must specify the ARN for the Lambda
+// function in the Function parameter for the IdentityProviderDetails data type.
 const (
 	// IdentityProviderTypeServiceManaged is a IdentityProviderType enum value
 	IdentityProviderTypeServiceManaged = "SERVICE_MANAGED"
@@ -19243,6 +19320,30 @@ func SetStatOption_Values() []string {
 	return []string{
 		SetStatOptionDefault,
 		SetStatOptionEnableNoOp,
+	}
+}
+
+const (
+	// SftpAuthenticationMethodsPassword is a SftpAuthenticationMethods enum value
+	SftpAuthenticationMethodsPassword = "PASSWORD"
+
+	// SftpAuthenticationMethodsPublicKey is a SftpAuthenticationMethods enum value
+	SftpAuthenticationMethodsPublicKey = "PUBLIC_KEY"
+
+	// SftpAuthenticationMethodsPublicKeyOrPassword is a SftpAuthenticationMethods enum value
+	SftpAuthenticationMethodsPublicKeyOrPassword = "PUBLIC_KEY_OR_PASSWORD"
+
+	// SftpAuthenticationMethodsPublicKeyAndPassword is a SftpAuthenticationMethods enum value
+	SftpAuthenticationMethodsPublicKeyAndPassword = "PUBLIC_KEY_AND_PASSWORD"
+)
+
+// SftpAuthenticationMethods_Values returns all elements of the SftpAuthenticationMethods enum
+func SftpAuthenticationMethods_Values() []string {
+	return []string{
+		SftpAuthenticationMethodsPassword,
+		SftpAuthenticationMethodsPublicKey,
+		SftpAuthenticationMethodsPublicKeyOrPassword,
+		SftpAuthenticationMethodsPublicKeyAndPassword,
 	}
 }
 

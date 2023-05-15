@@ -310,6 +310,36 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "PutNotificationSettings":{
+      "name":"PutNotificationSettings",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/put-notifications-settings",
+        "responseCode":200
+      },
+      "input":{"shape":"PutNotificationSettingsRequest"},
+      "output":{"shape":"PutNotificationSettingsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ResetNotificationSettings":{
+      "name":"ResetNotificationSettings",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/reset-notifications-settings",
+        "responseCode":200
+      },
+      "input":{"shape":"ResetNotificationSettingsRequest"},
+      "output":{"shape":"ResetNotificationSettingsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -431,7 +461,7 @@
     "CreateProfileRequestDurationSecondsInteger":{
       "type":"integer",
       "box":true,
-      "max":43200,
+      "max":3600,
       "min":900
     },
     "CreateTrustAnchorRequest":{
@@ -443,6 +473,7 @@
       "members":{
         "enabled":{"shape":"Boolean"},
         "name":{"shape":"ResourceName"},
+        "notificationSettings":{"shape":"NotificationSettings"},
         "source":{"shape":"Source"},
         "tags":{"shape":"TagList"}
       }
@@ -615,6 +646,87 @@
       "max":200,
       "min":1
     },
+    "NotificationChannel":{
+      "type":"string",
+      "enum":["ALL"]
+    },
+    "NotificationEvent":{
+      "type":"string",
+      "enum":[
+        "CA_CERTIFICATE_EXPIRY",
+        "END_ENTITY_CERTIFICATE_EXPIRY"
+      ]
+    },
+    "NotificationSetting":{
+      "type":"structure",
+      "required":[
+        "enabled",
+        "event"
+      ],
+      "members":{
+        "channel":{"shape":"NotificationChannel"},
+        "enabled":{"shape":"Boolean"},
+        "event":{"shape":"NotificationEvent"},
+        "threshold":{"shape":"NotificationSettingThresholdInteger"}
+      }
+    },
+    "NotificationSettingDetail":{
+      "type":"structure",
+      "required":[
+        "enabled",
+        "event"
+      ],
+      "members":{
+        "channel":{"shape":"NotificationChannel"},
+        "configuredBy":{"shape":"NotificationSettingDetailConfiguredByString"},
+        "enabled":{"shape":"Boolean"},
+        "event":{"shape":"NotificationEvent"},
+        "threshold":{"shape":"NotificationSettingDetailThresholdInteger"}
+      }
+    },
+    "NotificationSettingDetailConfiguredByString":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "NotificationSettingDetailThresholdInteger":{
+      "type":"integer",
+      "box":true,
+      "max":360,
+      "min":1
+    },
+    "NotificationSettingDetails":{
+      "type":"list",
+      "member":{"shape":"NotificationSettingDetail"},
+      "max":50,
+      "min":0
+    },
+    "NotificationSettingKey":{
+      "type":"structure",
+      "required":["event"],
+      "members":{
+        "channel":{"shape":"NotificationChannel"},
+        "event":{"shape":"NotificationEvent"}
+      }
+    },
+    "NotificationSettingKeys":{
+      "type":"list",
+      "member":{"shape":"NotificationSettingKey"},
+      "max":50,
+      "min":0
+    },
+    "NotificationSettingThresholdInteger":{
+      "type":"integer",
+      "box":true,
+      "max":360,
+      "min":1
+    },
+    "NotificationSettings":{
+      "type":"list",
+      "member":{"shape":"NotificationSetting"},
+      "max":50,
+      "min":0
+    },
     "ProfileArn":{
       "type":"string",
       "max":1011,
@@ -647,6 +759,42 @@
     "ProfileDetails":{
       "type":"list",
       "member":{"shape":"ProfileDetail"}
+    },
+    "PutNotificationSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "notificationSettings",
+        "trustAnchorId"
+      ],
+      "members":{
+        "notificationSettings":{"shape":"NotificationSettings"},
+        "trustAnchorId":{"shape":"Uuid"}
+      }
+    },
+    "PutNotificationSettingsResponse":{
+      "type":"structure",
+      "required":["trustAnchor"],
+      "members":{
+        "trustAnchor":{"shape":"TrustAnchorDetail"}
+      }
+    },
+    "ResetNotificationSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "notificationSettingKeys",
+        "trustAnchorId"
+      ],
+      "members":{
+        "notificationSettingKeys":{"shape":"NotificationSettingKeys"},
+        "trustAnchorId":{"shape":"Uuid"}
+      }
+    },
+    "ResetNotificationSettingsResponse":{
+      "type":"structure",
+      "required":["trustAnchor"],
+      "members":{
+        "trustAnchor":{"shape":"TrustAnchorDetail"}
+      }
     },
     "ResourceName":{
       "type":"string",
@@ -732,9 +880,14 @@
       "type":"structure",
       "members":{
         "acmPcaArn":{"shape":"String"},
-        "x509CertificateData":{"shape":"String"}
+        "x509CertificateData":{"shape":"SourceDataX509CertificateDataString"}
       },
       "union":true
+    },
+    "SourceDataX509CertificateDataString":{
+      "type":"string",
+      "max":8000,
+      "min":1
     },
     "String":{"type":"string"},
     "SubjectDetail":{
@@ -798,13 +951,13 @@
     "TagKeyList":{
       "type":"list",
       "member":{"shape":"TagKey"},
-      "max":50,
+      "max":200,
       "min":0
     },
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"},
-      "max":50,
+      "max":200,
       "min":0
     },
     "TagResourceRequest":{
@@ -853,6 +1006,7 @@
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
         "enabled":{"shape":"Boolean"},
         "name":{"shape":"ResourceName"},
+        "notificationSettings":{"shape":"NotificationSettingDetails"},
         "source":{"shape":"Source"},
         "trustAnchorArn":{"shape":"String"},
         "trustAnchorId":{"shape":"Uuid"},
@@ -931,7 +1085,7 @@
     "UpdateProfileRequestDurationSecondsInteger":{
       "type":"integer",
       "box":true,
-      "max":43200,
+      "max":3600,
       "min":900
     },
     "UpdateProfileRequestSessionPolicyString":{
