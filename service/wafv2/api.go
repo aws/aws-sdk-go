@@ -2814,8 +2814,11 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 
 // GetRateBasedStatementManagedKeys API operation for AWS WAFV2.
 //
-// Retrieves the keys that are currently blocked by a rate-based rule instance.
-// The maximum number of managed keys that can be blocked for a single rate-based
+// Retrieves the IP addresses that are currently blocked by a rate-based rule
+// instance. This is only available for rate-based rules that aggregate solely
+// on the IP address or on the forwarded IP address.
+//
+// The maximum number of addresses that can be blocked for a single rate-based
 // rule instance is 10,000. If more than 10,000 addresses exceed the rate limit,
 // those with the highest rates are blocked.
 //
@@ -2867,6 +2870,11 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
+//
+//   - WAFUnsupportedAggregateKeyTypeException
+//     The rule that you've named doesn't aggregate solely on the IP address or
+//     solely on the forwarded IP address. This call is only available for rate-based
+//     rules with an AggregateKeyType setting of IP or FORWARDED_IP.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetRateBasedStatementManagedKeys
 func (c *WAFV2) GetRateBasedStatementManagedKeys(input *GetRateBasedStatementManagedKeysInput) (*GetRateBasedStatementManagedKeysOutput, error) {
@@ -6910,10 +6918,13 @@ type ByteMatchStatement struct {
 	SearchString []byte `type:"blob" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
-	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, WAF performs all transformations
-	// on the content of the request component identified by FieldToMatch, starting
-	// from the lowest priority setting, before inspecting the content for a match.
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
 	//
 	// TextTransformations is a required field
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
@@ -17314,11 +17325,76 @@ func (s QueryString) GoString() string {
 	return s.String()
 }
 
-// A rate-based rule tracks the rate of requests for each originating IP address,
-// and triggers the rule action when the rate exceeds a limit that you specify
-// on the number of requests in any 5-minute time span. You can use this to
-// put a temporary block on requests from an IP address that is sending excessive
-// requests.
+// A rate-based rule counts incoming requests and rate limits requests when
+// they are coming at too fast a rate. The rule categorizes requests according
+// to your aggregation criteria, collects them into aggregation instances, and
+// counts and rate limits the requests for each instance.
+//
+// You can specify individual aggregation keys, like IP address or HTTP method.
+// You can also specify aggregation key combinations, like IP address and HTTP
+// method, or HTTP method, query argument, and cookie.
+//
+// Each unique set of values for the aggregation keys that you specify is a
+// separate aggregation instance, with the value from each key contributing
+// to the aggregation instance definition.
+//
+// For example, assume the rule evaluates web requests with the following IP
+// address and HTTP method values:
+//
+//   - IP address 10.1.1.1, HTTP method POST
+//
+//   - IP address 10.1.1.1, HTTP method GET
+//
+//   - IP address 127.0.0.0, HTTP method POST
+//
+//   - IP address 10.1.1.1, HTTP method GET
+//
+// The rule would create different aggregation instances according to your aggregation
+// criteria, for example:
+//
+//   - If the aggregation criteria is just the IP address, then each individual
+//     address is an aggregation instance, and WAF counts requests separately
+//     for each. The aggregation instances and request counts for our example
+//     would be the following: IP address 10.1.1.1: count 3 IP address 127.0.0.0:
+//     count 1
+//
+//   - If the aggregation criteria is HTTP method, then each individual HTTP
+//     method is an aggregation instance. The aggregation instances and request
+//     counts for our example would be the following: HTTP method POST: count
+//     2 HTTP method GET: count 2
+//
+//   - If the aggregation criteria is IP address and HTTP method, then each
+//     IP address and each HTTP method would contribute to the combined aggregation
+//     instance. The aggregation instances and request counts for our example
+//     would be the following: IP address 10.1.1.1, HTTP method POST: count 1
+//     IP address 10.1.1.1, HTTP method GET: count 2 IP address 127.0.0.0, HTTP
+//     method POST: count 1
+//
+// For any n-tuple of aggregation keys, each unique combination of values for
+// the keys defines a separate aggregation instance, which WAF counts and rate-limits
+// individually.
+//
+// You can optionally nest another statement inside the rate-based statement,
+// to narrow the scope of the rule so that it only counts and rate limits requests
+// that match the nested statement. You can use this nested scope-down statement
+// in conjunction with your aggregation key specifications or you can just count
+// and rate limit all requests that match the scope-down statement, without
+// additional aggregation. When you choose to just manage all requests that
+// match a scope-down statement, the aggregation instance is singular for the
+// rule.
+//
+// You cannot nest a RateBasedStatement inside another statement, for example
+// inside a NotStatement or OrStatement. You can define a RateBasedStatement
+// inside a web ACL and inside a rule group.
+//
+// For additional information about the options, see Rate limiting web requests
+// using rate-based rules (https://docs.aws.amazon.com/waf/latest/developerguide/waf-rate-based-rules.html)
+// in the WAF Developer Guide.
+//
+// If you only aggregate on the individual IP address or forwarded IP address,
+// you can retrieve the list of IP addresses that WAF is currently rate limiting
+// for a rule through the API call GetRateBasedStatementManagedKeys. This option
+// is not available for other aggregation configurations.
 //
 // WAF tracks and manages web requests separately for each instance of a rate-based
 // rule that you use. For example, if you provide the same rate-based rule settings
@@ -17327,46 +17403,42 @@ func (s QueryString) GoString() string {
 // you define a rate-based rule inside a rule group, and then use that rule
 // group in multiple places, each use creates a separate instance of the rate-based
 // rule that gets its own tracking and management by WAF.
-//
-// When the rule action triggers, WAF blocks additional requests from the IP
-// address until the request rate falls below the limit.
-//
-// You can optionally nest another statement inside the rate-based statement,
-// to narrow the scope of the rule so that it only counts requests that match
-// the nested statement. For example, based on recent requests that you have
-// seen from an attacker, you might create a rate-based rule with a nested AND
-// rule statement that contains the following nested statements:
-//
-//   - An IP match statement with an IP set that specifies the address 192.0.2.44.
-//
-//   - A string match statement that searches in the User-Agent header for
-//     the string BadBot.
-//
-// In this rate-based rule, you also define a rate limit. For this example,
-// the rate limit is 1,000. Requests that meet the criteria of both of the nested
-// statements are counted. If the count exceeds 1,000 requests per five minutes,
-// the rule action triggers. Requests that do not meet the criteria of both
-// of the nested statements are not counted towards the rate limit and are not
-// affected by this rule.
-//
-// You cannot nest a RateBasedStatement inside another statement, for example
-// inside a NotStatement or OrStatement. You can define a RateBasedStatement
-// inside a web ACL and inside a rule group.
 type RateBasedStatement struct {
 	_ struct{} `type:"structure"`
 
-	// Setting that indicates how to aggregate the request counts. The options are
-	// the following:
+	// Setting that indicates how to aggregate the request counts.
 	//
-	//    * IP - Aggregate the request counts on the IP address from the web request
-	//    origin.
+	// Web requests that are missing any of the components specified in the aggregation
+	// keys are omitted from the rate-based rule evaluation and handling.
+	//
+	//    * CONSTANT - Count and limit the requests that match the rate-based rule's
+	//    scope-down statement. With this option, the counted requests aren't further
+	//    aggregated. The scope-down statement is the only specification used. When
+	//    the count of all requests that satisfy the scope-down statement goes over
+	//    the limit, WAF applies the rule action to all requests that satisfy the
+	//    scope-down statement. With this option, you must configure the ScopeDownStatement
+	//    property.
+	//
+	//    * CUSTOM_KEYS - Aggregate the request counts using one or more web request
+	//    components as the aggregate keys. With this option, you must specify the
+	//    aggregate keys in the CustomKeys property. To aggregate on only the IP
+	//    address or only the forwarded IP address, don't use custom keys. Instead,
+	//    set the aggregate key type to IP or FORWARDED_IP.
 	//
 	//    * FORWARDED_IP - Aggregate the request counts on the first IP address
-	//    in an HTTP header. If you use this, configure the ForwardedIPConfig, to
-	//    specify the header to use.
+	//    in an HTTP header. With this option, you must specify the header to use
+	//    in the ForwardedIPConfig property. To aggregate on a combination of the
+	//    forwarded IP address with other aggregate keys, use CUSTOM_KEYS.
+	//
+	//    * IP - Aggregate the request counts on the IP address from the web request
+	//    origin. To aggregate on a combination of the IP address with other aggregate
+	//    keys, use CUSTOM_KEYS.
 	//
 	// AggregateKeyType is a required field
 	AggregateKeyType *string `type:"string" required:"true" enum:"RateBasedStatementAggregateKeyType"`
+
+	// Specifies the aggregate keys to use in a rate-base rule.
+	CustomKeys []*RateBasedStatementCustomKey `min:"1" type:"list"`
 
 	// The configuration for inspecting IP addresses in an HTTP header that you
 	// specify, instead of using the IP address that's reported by the web request
@@ -17376,21 +17448,31 @@ type RateBasedStatement struct {
 	// If the specified header isn't present in the request, WAF doesn't apply the
 	// rule to the web request at all.
 	//
-	// This is required if AggregateKeyType is set to FORWARDED_IP.
+	// This is required if you specify a forwarded IP in the rule's aggregate key
+	// settings.
 	ForwardedIPConfig *ForwardedIPConfig `type:"structure"`
 
-	// The limit on requests per 5-minute period for a single originating IP address.
-	// If the statement includes a ScopeDownStatement, this limit is applied only
-	// to the requests that match the statement.
+	// The limit on requests per 5-minute period for a single aggregation instance
+	// for the rate-based rule. If the rate-based statement includes a ScopeDownStatement,
+	// this limit is applied only to the requests that match the statement.
+	//
+	// Examples:
+	//
+	//    * If you aggregate on just the IP address, this is the limit on requests
+	//    from any single IP address.
+	//
+	//    * If you aggregate on the HTTP method and the query argument name "city",
+	//    then this is the limit on requests for any single method, city pair.
 	//
 	// Limit is a required field
 	Limit *int64 `min:"100" type:"long" required:"true"`
 
 	// An optional nested statement that narrows the scope of the web requests that
-	// are evaluated by the rate-based statement. Requests are only tracked by the
-	// rate-based statement if they match the scope-down statement. You can use
-	// any nestable Statement in the scope-down statement, and you can nest statements
-	// at any level, the same as you can for a rule statement.
+	// are evaluated and managed by the rate-based statement. When you use a scope-down
+	// statement, the rate-based rule only tracks and rate limits requests that
+	// match the scope-down statement. You can use any nestable Statement in the
+	// scope-down statement, and you can nest statements at any level, the same
+	// as you can for a rule statement.
 	ScopeDownStatement *Statement `type:"structure"`
 }
 
@@ -17418,11 +17500,24 @@ func (s *RateBasedStatement) Validate() error {
 	if s.AggregateKeyType == nil {
 		invalidParams.Add(request.NewErrParamRequired("AggregateKeyType"))
 	}
+	if s.CustomKeys != nil && len(s.CustomKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomKeys", 1))
+	}
 	if s.Limit == nil {
 		invalidParams.Add(request.NewErrParamRequired("Limit"))
 	}
 	if s.Limit != nil && *s.Limit < 100 {
 		invalidParams.Add(request.NewErrParamMinValue("Limit", 100))
+	}
+	if s.CustomKeys != nil {
+		for i, v := range s.CustomKeys {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomKeys", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.ForwardedIPConfig != nil {
 		if err := s.ForwardedIPConfig.Validate(); err != nil {
@@ -17447,6 +17542,12 @@ func (s *RateBasedStatement) SetAggregateKeyType(v string) *RateBasedStatement {
 	return s
 }
 
+// SetCustomKeys sets the CustomKeys field's value.
+func (s *RateBasedStatement) SetCustomKeys(v []*RateBasedStatementCustomKey) *RateBasedStatement {
+	s.CustomKeys = v
+	return s
+}
+
 // SetForwardedIPConfig sets the ForwardedIPConfig field's value.
 func (s *RateBasedStatement) SetForwardedIPConfig(v *ForwardedIPConfig) *RateBasedStatement {
 	s.ForwardedIPConfig = v
@@ -17465,7 +17566,190 @@ func (s *RateBasedStatement) SetScopeDownStatement(v *Statement) *RateBasedState
 	return s
 }
 
+// Specifies a single custom aggregate key for a rate-base rule.
+//
+// Web requests that are missing any of the components specified in the aggregation
+// keys are omitted from the rate-based rule evaluation and handling.
+type RateBasedStatementCustomKey struct {
+	_ struct{} `type:"structure"`
+
+	// Use the value of a cookie in the request as an aggregate key. Each distinct
+	// value in the cookie contributes to the aggregation instance. If you use a
+	// single cookie as your custom key, then each value fully defines an aggregation
+	// instance.
+	Cookie *RateLimitCookie `type:"structure"`
+
+	// Use the first IP address in an HTTP header as an aggregate key. Each distinct
+	// forwarded IP address contributes to the aggregation instance.
+	//
+	// When you specify an IP or forwarded IP in the custom key settings, you must
+	// also specify at least one other key to use. You can aggregate on only the
+	// forwarded IP address by specifying FORWARDED_IP in your rate-based statement's
+	// AggregateKeyType.
+	//
+	// With this option, you must specify the header to use in the rate-based rule's
+	// ForwardedIPConfig property.
+	ForwardedIP *RateLimitForwardedIP `type:"structure"`
+
+	// Use the request's HTTP method as an aggregate key. Each distinct HTTP method
+	// contributes to the aggregation instance. If you use just the HTTP method
+	// as your custom key, then each method fully defines an aggregation instance.
+	HTTPMethod *RateLimitHTTPMethod `type:"structure"`
+
+	// Use the value of a header in the request as an aggregate key. Each distinct
+	// value in the header contributes to the aggregation instance. If you use a
+	// single header as your custom key, then each value fully defines an aggregation
+	// instance.
+	Header *RateLimitHeader `type:"structure"`
+
+	// Use the request's originating IP address as an aggregate key. Each distinct
+	// IP address contributes to the aggregation instance.
+	//
+	// When you specify an IP or forwarded IP in the custom key settings, you must
+	// also specify at least one other key to use. You can aggregate on only the
+	// IP address by specifying IP in your rate-based statement's AggregateKeyType.
+	IP *RateLimitIP `type:"structure"`
+
+	// Use the specified label namespace as an aggregate key. Each distinct fully
+	// qualified label name that has the specified label namespace contributes to
+	// the aggregation instance. If you use just one label namespace as your custom
+	// key, then each label name fully defines an aggregation instance.
+	//
+	// This uses only labels that have been added to the request by rules that are
+	// evaluated before this rate-based rule in the web ACL.
+	//
+	// For information about label namespaces and names, see Label syntax and naming
+	// requirements (https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-label-requirements.html)
+	// in the WAF Developer Guide.
+	LabelNamespace *RateLimitLabelNamespace `type:"structure"`
+
+	// Use the specified query argument as an aggregate key. Each distinct value
+	// for the named query argument contributes to the aggregation instance. If
+	// you use a single query argument as your custom key, then each value fully
+	// defines an aggregation instance.
+	QueryArgument *RateLimitQueryArgument `type:"structure"`
+
+	// Use the request's query string as an aggregate key. Each distinct string
+	// contributes to the aggregation instance. If you use just the query string
+	// as your custom key, then each string fully defines an aggregation instance.
+	QueryString *RateLimitQueryString `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateBasedStatementCustomKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateBasedStatementCustomKey) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RateBasedStatementCustomKey) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RateBasedStatementCustomKey"}
+	if s.Cookie != nil {
+		if err := s.Cookie.Validate(); err != nil {
+			invalidParams.AddNested("Cookie", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Header != nil {
+		if err := s.Header.Validate(); err != nil {
+			invalidParams.AddNested("Header", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LabelNamespace != nil {
+		if err := s.LabelNamespace.Validate(); err != nil {
+			invalidParams.AddNested("LabelNamespace", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.QueryArgument != nil {
+		if err := s.QueryArgument.Validate(); err != nil {
+			invalidParams.AddNested("QueryArgument", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.QueryString != nil {
+		if err := s.QueryString.Validate(); err != nil {
+			invalidParams.AddNested("QueryString", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCookie sets the Cookie field's value.
+func (s *RateBasedStatementCustomKey) SetCookie(v *RateLimitCookie) *RateBasedStatementCustomKey {
+	s.Cookie = v
+	return s
+}
+
+// SetForwardedIP sets the ForwardedIP field's value.
+func (s *RateBasedStatementCustomKey) SetForwardedIP(v *RateLimitForwardedIP) *RateBasedStatementCustomKey {
+	s.ForwardedIP = v
+	return s
+}
+
+// SetHTTPMethod sets the HTTPMethod field's value.
+func (s *RateBasedStatementCustomKey) SetHTTPMethod(v *RateLimitHTTPMethod) *RateBasedStatementCustomKey {
+	s.HTTPMethod = v
+	return s
+}
+
+// SetHeader sets the Header field's value.
+func (s *RateBasedStatementCustomKey) SetHeader(v *RateLimitHeader) *RateBasedStatementCustomKey {
+	s.Header = v
+	return s
+}
+
+// SetIP sets the IP field's value.
+func (s *RateBasedStatementCustomKey) SetIP(v *RateLimitIP) *RateBasedStatementCustomKey {
+	s.IP = v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *RateBasedStatementCustomKey) SetLabelNamespace(v *RateLimitLabelNamespace) *RateBasedStatementCustomKey {
+	s.LabelNamespace = v
+	return s
+}
+
+// SetQueryArgument sets the QueryArgument field's value.
+func (s *RateBasedStatementCustomKey) SetQueryArgument(v *RateLimitQueryArgument) *RateBasedStatementCustomKey {
+	s.QueryArgument = v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *RateBasedStatementCustomKey) SetQueryString(v *RateLimitQueryString) *RateBasedStatementCustomKey {
+	s.QueryString = v
+	return s
+}
+
 // The set of IP addresses that are currently blocked for a RateBasedStatement.
+// This is only available for rate-based rules that aggregate on just the IP
+// address, with the AggregateKeyType set to IP or FORWARDED_IP.
+//
+// A rate-based rule applies its rule action to requests from IP addresses that
+// are in the rule's managed keys list and that match the rule's scope-down
+// statement. When a rule has no scope-down statement, it applies the action
+// to all requests from the IP addresses that are in the list. The rule applies
+// its rule action to rate limit the matching requests. The action is usually
+// Block but it can be any valid rule action except for Allow.
+//
+// The maximum number of IP addresses that can be rate limited by a single rate-based
+// rule instance is 10,000. If more than 10,000 addresses exceed the rate limit,
+// WAF limits those with the highest rates.
 type RateBasedStatementManagedKeysIPSet struct {
 	_ struct{} `type:"structure"`
 
@@ -17503,6 +17787,498 @@ func (s *RateBasedStatementManagedKeysIPSet) SetAddresses(v []*string) *RateBase
 // SetIPAddressVersion sets the IPAddressVersion field's value.
 func (s *RateBasedStatementManagedKeysIPSet) SetIPAddressVersion(v string) *RateBasedStatementManagedKeysIPSet {
 	s.IPAddressVersion = &v
+	return s
+}
+
+// Specifies a cookie as an aggregate key for a rate-based rule. Each distinct
+// value in the cookie contributes to the aggregation instance. If you use a
+// single cookie as your custom key, then each value fully defines an aggregation
+// instance.
+type RateLimitCookie struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the cookie to use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
+	//
+	// TextTransformations is a required field
+	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitCookie) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitCookie) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RateLimitCookie) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RateLimitCookie"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TextTransformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformations"))
+	}
+	if s.TextTransformations != nil && len(s.TextTransformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextTransformations", 1))
+	}
+	if s.TextTransformations != nil {
+		for i, v := range s.TextTransformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextTransformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *RateLimitCookie) SetName(v string) *RateLimitCookie {
+	s.Name = &v
+	return s
+}
+
+// SetTextTransformations sets the TextTransformations field's value.
+func (s *RateLimitCookie) SetTextTransformations(v []*TextTransformation) *RateLimitCookie {
+	s.TextTransformations = v
+	return s
+}
+
+// Specifies the first IP address in an HTTP header as an aggregate key for
+// a rate-based rule. Each distinct forwarded IP address contributes to the
+// aggregation instance.
+//
+// This setting is used only in the RateBasedStatementCustomKey specification
+// of a rate-based rule statement. When you specify an IP or forwarded IP in
+// the custom key settings, you must also specify at least one other key to
+// use. You can aggregate on only the forwarded IP address by specifying FORWARDED_IP
+// in your rate-based statement's AggregateKeyType.
+//
+// This data type supports using the forwarded IP address in the web request
+// aggregation for a rate-based rule, in RateBasedStatementCustomKey. The JSON
+// specification for using the forwarded IP address doesn't explicitly use this
+// data type.
+//
+// JSON specification: "ForwardedIP": {}
+//
+// When you use this specification, you must also configure the forwarded IP
+// address in the rate-based statement's ForwardedIPConfig.
+type RateLimitForwardedIP struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitForwardedIP) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitForwardedIP) GoString() string {
+	return s.String()
+}
+
+// Specifies the request's HTTP method as an aggregate key for a rate-based
+// rule. Each distinct HTTP method contributes to the aggregation instance.
+// If you use just the HTTP method as your custom key, then each method fully
+// defines an aggregation instance.
+//
+// JSON specification: "RateLimitHTTPMethod": {}
+type RateLimitHTTPMethod struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitHTTPMethod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitHTTPMethod) GoString() string {
+	return s.String()
+}
+
+// Specifies a header as an aggregate key for a rate-based rule. Each distinct
+// value in the header contributes to the aggregation instance. If you use a
+// single header as your custom key, then each value fully defines an aggregation
+// instance.
+type RateLimitHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the header to use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
+	//
+	// TextTransformations is a required field
+	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitHeader) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RateLimitHeader) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RateLimitHeader"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TextTransformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformations"))
+	}
+	if s.TextTransformations != nil && len(s.TextTransformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextTransformations", 1))
+	}
+	if s.TextTransformations != nil {
+		for i, v := range s.TextTransformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextTransformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *RateLimitHeader) SetName(v string) *RateLimitHeader {
+	s.Name = &v
+	return s
+}
+
+// SetTextTransformations sets the TextTransformations field's value.
+func (s *RateLimitHeader) SetTextTransformations(v []*TextTransformation) *RateLimitHeader {
+	s.TextTransformations = v
+	return s
+}
+
+// Specifies the IP address in the web request as an aggregate key for a rate-based
+// rule. Each distinct IP address contributes to the aggregation instance.
+//
+// This setting is used only in the RateBasedStatementCustomKey specification
+// of a rate-based rule statement. To use this in the custom key settings, you
+// must specify at least one other key to use, along with the IP address. To
+// aggregate on only the IP address, in your rate-based statement's AggregateKeyType,
+// specify IP.
+//
+// JSON specification: "RateLimitIP": {}
+type RateLimitIP struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitIP) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitIP) GoString() string {
+	return s.String()
+}
+
+// Specifies a label namespace to use as an aggregate key for a rate-based rule.
+// Each distinct fully qualified label name that has the specified label namespace
+// contributes to the aggregation instance. If you use just one label namespace
+// as your custom key, then each label name fully defines an aggregation instance.
+//
+// This uses only labels that have been added to the request by rules that are
+// evaluated before this rate-based rule in the web ACL.
+//
+// For information about label namespaces and names, see Label syntax and naming
+// requirements (https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-label-requirements.html)
+// in the WAF Developer Guide.
+type RateLimitLabelNamespace struct {
+	_ struct{} `type:"structure"`
+
+	// The namespace to use for aggregation.
+	//
+	// Namespace is a required field
+	Namespace *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitLabelNamespace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitLabelNamespace) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RateLimitLabelNamespace) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RateLimitLabelNamespace"}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *RateLimitLabelNamespace) SetNamespace(v string) *RateLimitLabelNamespace {
+	s.Namespace = &v
+	return s
+}
+
+// Specifies a query argument in the request as an aggregate key for a rate-based
+// rule. Each distinct value for the named query argument contributes to the
+// aggregation instance. If you use a single query argument as your custom key,
+// then each value fully defines an aggregation instance.
+type RateLimitQueryArgument struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the query argument to use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
+	//
+	// TextTransformations is a required field
+	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitQueryArgument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitQueryArgument) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RateLimitQueryArgument) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RateLimitQueryArgument"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TextTransformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformations"))
+	}
+	if s.TextTransformations != nil && len(s.TextTransformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextTransformations", 1))
+	}
+	if s.TextTransformations != nil {
+		for i, v := range s.TextTransformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextTransformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *RateLimitQueryArgument) SetName(v string) *RateLimitQueryArgument {
+	s.Name = &v
+	return s
+}
+
+// SetTextTransformations sets the TextTransformations field's value.
+func (s *RateLimitQueryArgument) SetTextTransformations(v []*TextTransformation) *RateLimitQueryArgument {
+	s.TextTransformations = v
+	return s
+}
+
+// Specifies the request's query string as an aggregate key for a rate-based
+// rule. Each distinct string contributes to the aggregation instance. If you
+// use just the query string as your custom key, then each string fully defines
+// an aggregation instance.
+type RateLimitQueryString struct {
+	_ struct{} `type:"structure"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
+	//
+	// TextTransformations is a required field
+	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitQueryString) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitQueryString) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RateLimitQueryString) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RateLimitQueryString"}
+	if s.TextTransformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformations"))
+	}
+	if s.TextTransformations != nil && len(s.TextTransformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextTransformations", 1))
+	}
+	if s.TextTransformations != nil {
+		for i, v := range s.TextTransformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextTransformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTextTransformations sets the TextTransformations field's value.
+func (s *RateLimitQueryString) SetTextTransformations(v []*TextTransformation) *RateLimitQueryString {
+	s.TextTransformations = v
 	return s
 }
 
@@ -17567,10 +18343,13 @@ type RegexMatchStatement struct {
 	RegexString *string `min:"1" type:"string" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
-	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, WAF performs all transformations
-	// on the content of the request component identified by FieldToMatch, starting
-	// from the lowest priority setting, before inspecting the content for a match.
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
 	//
 	// TextTransformations is a required field
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
@@ -17750,10 +18529,13 @@ type RegexPatternSetReferenceStatement struct {
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
-	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, WAF performs all transformations
-	// on the content of the request component identified by FieldToMatch, starting
-	// from the lowest priority setting, before inspecting the content for a match.
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
 	//
 	// TextTransformations is a required field
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
@@ -19735,10 +20517,13 @@ type SizeConstraintStatement struct {
 	Size *int64 `type:"long" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
-	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, WAF performs all transformations
-	// on the content of the request component identified by FieldToMatch, starting
-	// from the lowest priority setting, before inspecting the content for a match.
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
 	//
 	// TextTransformations is a required field
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
@@ -19852,10 +20637,13 @@ type SqliMatchStatement struct {
 	SensitivityLevel *string `type:"string" enum:"SensitivityLevel"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
-	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, WAF performs all transformations
-	// on the content of the request component identified by FieldToMatch, starting
-	// from the lowest priority setting, before inspecting the content for a match.
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
 	//
 	// TextTransformations is a required field
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
@@ -20026,11 +20814,76 @@ type Statement struct {
 	// You provide more than one Statement within the OrStatement.
 	OrStatement *OrStatement `type:"structure"`
 
-	// A rate-based rule tracks the rate of requests for each originating IP address,
-	// and triggers the rule action when the rate exceeds a limit that you specify
-	// on the number of requests in any 5-minute time span. You can use this to
-	// put a temporary block on requests from an IP address that is sending excessive
-	// requests.
+	// A rate-based rule counts incoming requests and rate limits requests when
+	// they are coming at too fast a rate. The rule categorizes requests according
+	// to your aggregation criteria, collects them into aggregation instances, and
+	// counts and rate limits the requests for each instance.
+	//
+	// You can specify individual aggregation keys, like IP address or HTTP method.
+	// You can also specify aggregation key combinations, like IP address and HTTP
+	// method, or HTTP method, query argument, and cookie.
+	//
+	// Each unique set of values for the aggregation keys that you specify is a
+	// separate aggregation instance, with the value from each key contributing
+	// to the aggregation instance definition.
+	//
+	// For example, assume the rule evaluates web requests with the following IP
+	// address and HTTP method values:
+	//
+	//    * IP address 10.1.1.1, HTTP method POST
+	//
+	//    * IP address 10.1.1.1, HTTP method GET
+	//
+	//    * IP address 127.0.0.0, HTTP method POST
+	//
+	//    * IP address 10.1.1.1, HTTP method GET
+	//
+	// The rule would create different aggregation instances according to your aggregation
+	// criteria, for example:
+	//
+	//    * If the aggregation criteria is just the IP address, then each individual
+	//    address is an aggregation instance, and WAF counts requests separately
+	//    for each. The aggregation instances and request counts for our example
+	//    would be the following: IP address 10.1.1.1: count 3 IP address 127.0.0.0:
+	//    count 1
+	//
+	//    * If the aggregation criteria is HTTP method, then each individual HTTP
+	//    method is an aggregation instance. The aggregation instances and request
+	//    counts for our example would be the following: HTTP method POST: count
+	//    2 HTTP method GET: count 2
+	//
+	//    * If the aggregation criteria is IP address and HTTP method, then each
+	//    IP address and each HTTP method would contribute to the combined aggregation
+	//    instance. The aggregation instances and request counts for our example
+	//    would be the following: IP address 10.1.1.1, HTTP method POST: count 1
+	//    IP address 10.1.1.1, HTTP method GET: count 2 IP address 127.0.0.0, HTTP
+	//    method POST: count 1
+	//
+	// For any n-tuple of aggregation keys, each unique combination of values for
+	// the keys defines a separate aggregation instance, which WAF counts and rate-limits
+	// individually.
+	//
+	// You can optionally nest another statement inside the rate-based statement,
+	// to narrow the scope of the rule so that it only counts and rate limits requests
+	// that match the nested statement. You can use this nested scope-down statement
+	// in conjunction with your aggregation key specifications or you can just count
+	// and rate limit all requests that match the scope-down statement, without
+	// additional aggregation. When you choose to just manage all requests that
+	// match a scope-down statement, the aggregation instance is singular for the
+	// rule.
+	//
+	// You cannot nest a RateBasedStatement inside another statement, for example
+	// inside a NotStatement or OrStatement. You can define a RateBasedStatement
+	// inside a web ACL and inside a rule group.
+	//
+	// For additional information about the options, see Rate limiting web requests
+	// using rate-based rules (https://docs.aws.amazon.com/waf/latest/developerguide/waf-rate-based-rules.html)
+	// in the WAF Developer Guide.
+	//
+	// If you only aggregate on the individual IP address or forwarded IP address,
+	// you can retrieve the list of IP addresses that WAF is currently rate limiting
+	// for a rule through the API call GetRateBasedStatementManagedKeys. This option
+	// is not available for other aggregation configurations.
 	//
 	// WAF tracks and manages web requests separately for each instance of a rate-based
 	// rule that you use. For example, if you provide the same rate-based rule settings
@@ -20039,31 +20892,6 @@ type Statement struct {
 	// you define a rate-based rule inside a rule group, and then use that rule
 	// group in multiple places, each use creates a separate instance of the rate-based
 	// rule that gets its own tracking and management by WAF.
-	//
-	// When the rule action triggers, WAF blocks additional requests from the IP
-	// address until the request rate falls below the limit.
-	//
-	// You can optionally nest another statement inside the rate-based statement,
-	// to narrow the scope of the rule so that it only counts requests that match
-	// the nested statement. For example, based on recent requests that you have
-	// seen from an attacker, you might create a rate-based rule with a nested AND
-	// rule statement that contains the following nested statements:
-	//
-	//    * An IP match statement with an IP set that specifies the address 192.0.2.44.
-	//
-	//    * A string match statement that searches in the User-Agent header for
-	//    the string BadBot.
-	//
-	// In this rate-based rule, you also define a rate limit. For this example,
-	// the rate limit is 1,000. Requests that meet the criteria of both of the nested
-	// statements are counted. If the count exceeds 1,000 requests per five minutes,
-	// the rule action triggers. Requests that do not meet the criteria of both
-	// of the nested statements are not counted towards the rate limit and are not
-	// affected by this rule.
-	//
-	// You cannot nest a RateBasedStatement inside another statement, for example
-	// inside a NotStatement or OrStatement. You can define a RateBasedStatement
-	// inside a web ACL and inside a rule group.
 	RateBasedStatement *RateBasedStatement `type:"structure"`
 
 	// A rule statement used to search web request components for a match against
@@ -20548,10 +21376,10 @@ func (s TagResourceOutput) GoString() string {
 type TextTransformation struct {
 	_ struct{} `type:"structure"`
 
-	// Sets the relative processing order for multiple transformations that are
-	// defined for a rule statement. WAF processes all transformations, from lowest
-	// priority to highest, before inspecting the transformed content. The priorities
-	// don't need to be consecutive, but they must all be different.
+	// Sets the relative processing order for multiple transformations. WAF processes
+	// all transformations, from lowest priority to highest, before inspecting the
+	// transformed content. The priorities don't need to be consecutive, but they
+	// must all be different.
 	//
 	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
@@ -23523,6 +24351,72 @@ func (s *WAFUnavailableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The rule that you've named doesn't aggregate solely on the IP address or
+// solely on the forwarded IP address. This call is only available for rate-based
+// rules with an AggregateKeyType setting of IP or FORWARDED_IP.
+type WAFUnsupportedAggregateKeyTypeException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFUnsupportedAggregateKeyTypeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFUnsupportedAggregateKeyTypeException) GoString() string {
+	return s.String()
+}
+
+func newErrorWAFUnsupportedAggregateKeyTypeException(v protocol.ResponseMetadata) error {
+	return &WAFUnsupportedAggregateKeyTypeException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WAFUnsupportedAggregateKeyTypeException) Code() string {
+	return "WAFUnsupportedAggregateKeyTypeException"
+}
+
+// Message returns the exception's message.
+func (s *WAFUnsupportedAggregateKeyTypeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WAFUnsupportedAggregateKeyTypeException) OrigErr() error {
+	return nil
+}
+
+func (s *WAFUnsupportedAggregateKeyTypeException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WAFUnsupportedAggregateKeyTypeException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WAFUnsupportedAggregateKeyTypeException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A web ACL defines a collection of rules to use to inspect and control web
 // requests. Each rule has an action defined (allow, block, or count) for requests
 // that match the statement of the rule. In the web ACL, you assign a default
@@ -23884,10 +24778,13 @@ type XssMatchStatement struct {
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
-	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, WAF performs all transformations
-	// on the content of the request component identified by FieldToMatch, starting
-	// from the lowest priority setting, before inspecting the content for a match.
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
 	//
 	// TextTransformations is a required field
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
@@ -25462,6 +26359,12 @@ const (
 
 	// ParameterExceptionFieldAssociatedResourceType is a ParameterExceptionField enum value
 	ParameterExceptionFieldAssociatedResourceType = "ASSOCIATED_RESOURCE_TYPE"
+
+	// ParameterExceptionFieldScopeDown is a ParameterExceptionField enum value
+	ParameterExceptionFieldScopeDown = "SCOPE_DOWN"
+
+	// ParameterExceptionFieldCustomKeys is a ParameterExceptionField enum value
+	ParameterExceptionFieldCustomKeys = "CUSTOM_KEYS"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -25534,6 +26437,8 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldTokenDomain,
 		ParameterExceptionFieldAtpRuleSetResponseInspection,
 		ParameterExceptionFieldAssociatedResourceType,
+		ParameterExceptionFieldScopeDown,
+		ParameterExceptionFieldCustomKeys,
 	}
 }
 
@@ -25603,6 +26508,12 @@ const (
 
 	// RateBasedStatementAggregateKeyTypeForwardedIp is a RateBasedStatementAggregateKeyType enum value
 	RateBasedStatementAggregateKeyTypeForwardedIp = "FORWARDED_IP"
+
+	// RateBasedStatementAggregateKeyTypeCustomKeys is a RateBasedStatementAggregateKeyType enum value
+	RateBasedStatementAggregateKeyTypeCustomKeys = "CUSTOM_KEYS"
+
+	// RateBasedStatementAggregateKeyTypeConstant is a RateBasedStatementAggregateKeyType enum value
+	RateBasedStatementAggregateKeyTypeConstant = "CONSTANT"
 )
 
 // RateBasedStatementAggregateKeyType_Values returns all elements of the RateBasedStatementAggregateKeyType enum
@@ -25610,6 +26521,8 @@ func RateBasedStatementAggregateKeyType_Values() []string {
 	return []string{
 		RateBasedStatementAggregateKeyTypeIp,
 		RateBasedStatementAggregateKeyTypeForwardedIp,
+		RateBasedStatementAggregateKeyTypeCustomKeys,
+		RateBasedStatementAggregateKeyTypeConstant,
 	}
 }
 

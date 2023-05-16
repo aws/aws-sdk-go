@@ -3427,6 +3427,9 @@ type DeleteSecretInput struct {
 	// deleted. If you delete a secret and then immediately create a secret with
 	// the same name, use appropriate back off and retry logic.
 	//
+	// If you forcibly delete an already deleted or nonexistent secret, the operation
+	// does not return ResourceNotFoundException.
+	//
 	// Use this parameter with caution. This parameter causes the operation to skip
 	// the normal recovery window before the permanent deletion that Secrets Manager
 	// would normally impose with the RecoveryWindowInDays parameter. If you delete
@@ -3647,9 +3650,8 @@ type DescribeSecretOutput struct {
 	// The name of the secret.
 	Name *string `min:"1" type:"string"`
 
-	// The next date and time that Secrets Manager will rotate the secret, rounded
-	// to the nearest hour. If the secret isn't configured for rotation, Secrets
-	// Manager returns null.
+	// The next rotation is scheduled to occur on or before this date. If the secret
+	// isn't configured for rotation, Secrets Manager returns null.
 	NextRotationDate *time.Time `type:"timestamp"`
 
 	// The ID of the service that created this secret. For more information, see
@@ -6500,9 +6502,8 @@ type SecretListEntry struct {
 	// in the folder prod.
 	Name *string `min:"1" type:"string"`
 
-	// The next date and time that Secrets Manager will attempt to rotate the secret,
-	// rounded to the nearest hour. This value is null if the secret is not set
-	// up for rotation.
+	// The next rotation is scheduled to occur on or before this date. If the secret
+	// isn't configured for rotation, Secrets Manager returns null.
 	NextRotationDate *time.Time `type:"timestamp"`
 
 	// Returns the name of the service that created the secret.

@@ -4926,7 +4926,8 @@
       "members":{
         "Name":{"shape":"NameString"},
         "RegexString":{"shape":"NameString"},
-        "ContextWords":{"shape":"ContextWords"}
+        "ContextWords":{"shape":"ContextWords"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "CreateCustomEntityTypeResponse":{
@@ -8772,7 +8773,8 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"PaginationToken"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"PageSize"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "ListCustomEntityTypesResponse":{

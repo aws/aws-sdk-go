@@ -12938,7 +12938,7 @@ type NewTransitVirtualInterfaceAllocation struct {
 	CustomerAddress *string `locationName:"customerAddress" type:"string"`
 
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
-	// and 9001. The default value is 1500.
+	// and 8500. The default value is 1500
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
 	// The tags associated with the transitive virtual interface.
@@ -14435,7 +14435,7 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	Location *string `locationName:"location" type:"string"`
 
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
-	// and 9001. The default value is 1500.
+	// and 8500. The default value is 1500
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
 	// The ID of the Amazon Web Services account that owns the virtual interface.
@@ -14780,7 +14780,7 @@ type VirtualInterface struct {
 	Location *string `locationName:"location" type:"string"`
 
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
-	// and 9001. The default value is 1500.
+	// and 8500. The default value is 1500
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
 	// The ID of the Amazon Web Services account that owns the virtual interface.

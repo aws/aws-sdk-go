@@ -419,7 +419,8 @@
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
-        {"shape":"WAFInvalidOperationException"}
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFUnsupportedAggregateKeyTypeException"}
       ]
     },
     "GetRegexPatternSet":{
@@ -2362,6 +2363,12 @@
         "LabelName":{"shape":"LabelName"}
       }
     },
+    "LabelNamespace":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[0-9A-Za-z_\\-:]+:$"
+    },
     "LabelSummaries":{
       "type":"list",
       "member":{"shape":"LabelSummary"}
@@ -2883,7 +2890,9 @@
         "CHALLENGE_CONFIG",
         "TOKEN_DOMAIN",
         "ATP_RULE_SET_RESPONSE_INSPECTION",
-        "ASSOCIATED_RESOURCE_TYPE"
+        "ASSOCIATED_RESOURCE_TYPE",
+        "SCOPE_DOWN",
+        "CUSTOM_KEYS"
       ]
     },
     "ParameterExceptionParameter":{
@@ -3000,15 +3009,37 @@
         "Limit":{"shape":"RateLimit"},
         "AggregateKeyType":{"shape":"RateBasedStatementAggregateKeyType"},
         "ScopeDownStatement":{"shape":"Statement"},
-        "ForwardedIPConfig":{"shape":"ForwardedIPConfig"}
+        "ForwardedIPConfig":{"shape":"ForwardedIPConfig"},
+        "CustomKeys":{"shape":"RateBasedStatementCustomKeys"}
       }
     },
     "RateBasedStatementAggregateKeyType":{
       "type":"string",
       "enum":[
         "IP",
-        "FORWARDED_IP"
+        "FORWARDED_IP",
+        "CUSTOM_KEYS",
+        "CONSTANT"
       ]
+    },
+    "RateBasedStatementCustomKey":{
+      "type":"structure",
+      "members":{
+        "Header":{"shape":"RateLimitHeader"},
+        "Cookie":{"shape":"RateLimitCookie"},
+        "QueryArgument":{"shape":"RateLimitQueryArgument"},
+        "QueryString":{"shape":"RateLimitQueryString"},
+        "HTTPMethod":{"shape":"RateLimitHTTPMethod"},
+        "ForwardedIP":{"shape":"RateLimitForwardedIP"},
+        "IP":{"shape":"RateLimitIP"},
+        "LabelNamespace":{"shape":"RateLimitLabelNamespace"}
+      }
+    },
+    "RateBasedStatementCustomKeys":{
+      "type":"list",
+      "member":{"shape":"RateBasedStatementCustomKey"},
+      "max":5,
+      "min":1
     },
     "RateBasedStatementManagedKeysIPSet":{
       "type":"structure",
@@ -3021,6 +3052,68 @@
       "type":"long",
       "max":2000000000,
       "min":100
+    },
+    "RateLimitCookie":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "TextTransformations"
+      ],
+      "members":{
+        "Name":{"shape":"FieldToMatchData"},
+        "TextTransformations":{"shape":"TextTransformations"}
+      }
+    },
+    "RateLimitForwardedIP":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RateLimitHTTPMethod":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RateLimitHeader":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "TextTransformations"
+      ],
+      "members":{
+        "Name":{"shape":"FieldToMatchData"},
+        "TextTransformations":{"shape":"TextTransformations"}
+      }
+    },
+    "RateLimitIP":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RateLimitLabelNamespace":{
+      "type":"structure",
+      "required":["Namespace"],
+      "members":{
+        "Namespace":{"shape":"LabelNamespace"}
+      }
+    },
+    "RateLimitQueryArgument":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "TextTransformations"
+      ],
+      "members":{
+        "Name":{"shape":"FieldToMatchData"},
+        "TextTransformations":{"shape":"TextTransformations"}
+      }
+    },
+    "RateLimitQueryString":{
+      "type":"structure",
+      "required":["TextTransformations"],
+      "members":{
+        "TextTransformations":{"shape":"TextTransformations"}
+      }
     },
     "RedactedFields":{
       "type":"list",
@@ -3992,6 +4085,13 @@
       "fault":true
     },
     "WAFUnavailableEntityException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "WAFUnsupportedAggregateKeyTypeException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}
