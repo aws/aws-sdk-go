@@ -5962,6 +5962,9 @@ const (
 
 	// DatasourcePackageEksAudit is a DatasourcePackage enum value
 	DatasourcePackageEksAudit = "EKS_AUDIT"
+
+	// DatasourcePackageAsffSecurityhubFinding is a DatasourcePackage enum value
+	DatasourcePackageAsffSecurityhubFinding = "ASFF_SECURITYHUB_FINDING"
 )
 
 // DatasourcePackage_Values returns all elements of the DatasourcePackage enum
@@ -5969,6 +5972,7 @@ func DatasourcePackage_Values() []string {
 	return []string{
 		DatasourcePackageDetectiveCore,
 		DatasourcePackageEksAudit,
+		DatasourcePackageAsffSecurityhubFinding,
 	}
 }
 

@@ -29921,6 +29921,9 @@ type CreateCustomEntityTypeInput struct {
 	//
 	// RegexString is a required field
 	RegexString *string `min:"1" type:"string" required:"true"`
+
+	// A list of tags applied to the custom entity type.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -29981,6 +29984,12 @@ func (s *CreateCustomEntityTypeInput) SetName(v string) *CreateCustomEntityTypeI
 // SetRegexString sets the RegexString field's value.
 func (s *CreateCustomEntityTypeInput) SetRegexString(v string) *CreateCustomEntityTypeInput {
 	s.RegexString = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCustomEntityTypeInput) SetTags(v map[string]*string) *CreateCustomEntityTypeInput {
+	s.Tags = v
 	return s
 }
 
@@ -52849,6 +52858,9 @@ type ListCustomEntityTypesInput struct {
 
 	// A paginated token to offset the results.
 	NextToken *string `type:"string"`
+
+	// A list of key-value pair tags.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -52891,6 +52903,12 @@ func (s *ListCustomEntityTypesInput) SetMaxResults(v int64) *ListCustomEntityTyp
 // SetNextToken sets the NextToken field's value.
 func (s *ListCustomEntityTypesInput) SetNextToken(v string) *ListCustomEntityTypesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListCustomEntityTypesInput) SetTags(v map[string]*string) *ListCustomEntityTypesInput {
+	s.Tags = v
 	return s
 }
 

@@ -11777,11 +11777,47 @@
           "ap-northeast-2" : { },
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
-          "ca-central-1" : { },
+          "ca-central-1" : {
+            "variants" : [ {
+              "hostname" : "profile-fips.ca-central-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
           "eu-central-1" : { },
           "eu-west-2" : { },
-          "us-east-1" : { },
-          "us-west-2" : { }
+          "fips-ca-central-1" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "deprecated" : true,
+            "hostname" : "profile-fips.ca-central-1.amazonaws.com"
+          },
+          "fips-us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "deprecated" : true,
+            "hostname" : "profile-fips.us-east-1.amazonaws.com"
+          },
+          "fips-us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "deprecated" : true,
+            "hostname" : "profile-fips.us-west-2.amazonaws.com"
+          },
+          "us-east-1" : {
+            "variants" : [ {
+              "hostname" : "profile-fips.us-east-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-west-2" : {
+            "variants" : [ {
+              "hostname" : "profile-fips.us-west-2.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          }
         }
       },
       "projects.iot1click" : {
@@ -23522,6 +23558,23 @@
           "us-iso-west-1" : { }
         }
       },
+      "rbin" : {
+        "endpoints" : {
+          "fips-us-iso-east-1" : {
+            "credentialScope" : {
+              "region" : "us-iso-east-1"
+            },
+            "deprecated" : true,
+            "hostname" : "rbin-fips.us-iso-east-1.c2s.ic.gov"
+          },
+          "us-iso-east-1" : {
+            "variants" : [ {
+              "hostname" : "rbin-fips.us-iso-east-1.c2s.ic.gov",
+              "tags" : [ "fips" ]
+            } ]
+          }
+        }
+      },
       "rds" : {
         "endpoints" : {
           "us-iso-east-1" : { },
@@ -23979,6 +24032,23 @@
       "ram" : {
         "endpoints" : {
           "us-isob-east-1" : { }
+        }
+      },
+      "rbin" : {
+        "endpoints" : {
+          "fips-us-isob-east-1" : {
+            "credentialScope" : {
+              "region" : "us-isob-east-1"
+            },
+            "deprecated" : true,
+            "hostname" : "rbin-fips.us-isob-east-1.sc2s.sgov.gov"
+          },
+          "us-isob-east-1" : {
+            "variants" : [ {
+              "hostname" : "rbin-fips.us-isob-east-1.sc2s.sgov.gov",
+              "tags" : [ "fips" ]
+            } ]
+          }
         }
       },
       "rds" : {

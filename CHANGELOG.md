@@ -1,3 +1,16 @@
+Release v1.44.264 (2023-05-16)
+===
+
+### Service Client Updates
+* `service/detective`: Updates service API
+* `service/directconnect`: Updates service documentation
+  * This release includes an update to the mtu value for CreateTransitVirtualInterface from 9001 mtu to 8500 mtu.
+* `service/glue`: Updates service API and documentation
+  * Add Support for Tags for Custom Entity Types
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.263 (2023-05-15)
 ===
 
