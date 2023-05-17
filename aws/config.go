@@ -597,6 +597,10 @@ func mergeInConfig(dst *Config, other *Config) {
 		dst.SleepDelay = other.SleepDelay
 	}
 
+	if other.DisableRestProtocolURICleaning != nil {
+		dst.DisableRestProtocolURICleaning = other.DisableRestProtocolURICleaning
+	}
+	
 	if other.EnforceShouldRetryCheck != nil {
 		dst.EnforceShouldRetryCheck = other.EnforceShouldRetryCheck
 	}
