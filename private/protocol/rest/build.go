@@ -9,7 +9,6 @@ import (
 	"math"
 	"net/http"
 	"net/url"
-	"path"
 	"reflect"
 	"strconv"
 	"strings"
@@ -77,10 +76,6 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 	// stored in RawPath that will be used by the Go client.
 	r.HTTPRequest.URL.RawPath = r.HTTPRequest.URL.Path
 
-	// for services including iotdataplane, topic needs to be preserved while encoded into url
-	topic := ""
-	var err error
-
 	for i := 0; i < v.NumField(); i++ {
 		m := v.Field(i)
 		if n := v.Type().Field(i).Name; n[0:1] == strings.ToLower(n[0:1]) {
@@ -93,13 +88,6 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 			if name == "" {
 				name = field.Name
 			}
-			if name == "topic" {
-				topic, err = convertType(m, field.Tag)
-				if err != nil {
-					return
-				}
-			}
-
 			if kind := m.Kind(); kind == reflect.Ptr {
 				m = m.Elem()
 			} else if kind == reflect.Interface {
@@ -122,6 +110,7 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 				m = m.Convert(byteSliceType)
 			}
 
+			var err error
 			switch field.Tag.Get("location") {
 			case "headers": // header maps
 				err = buildHeaderMap(&r.HTTPRequest.Header, m, field.Tag)
@@ -144,9 +133,6 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 	}
 
 	r.HTTPRequest.URL.RawQuery = query.Encode()
-	if !aws.BoolValue(r.Config.DisableRestProtocolURICleaning) {
-		cleanPath(r.HTTPRequest.URL, topic)
-	}
 }
 
 func buildBody(r *request.Request, v reflect.Value) {
@@ -252,30 +238,6 @@ func buildQueryString(query url.Values, v reflect.Value, name string, tag reflec
 	}
 
 	return nil
-}
-
-func cleanPath(u *url.URL, topic string) {
-	hasSlash := strings.HasSuffix(u.Path, "/")
-
-	// clean up path, removing duplicate `/`
-	u.Path = path.Clean(u.Path)
-	u.RawPath = path.Clean(u.RawPath)
-
-	if hasSlash && !strings.HasSuffix(u.Path, "/") {
-		u.Path += "/"
-		u.RawPath += "/"
-	}
-
-	// restore topic if exists
-	if topic != "" {
-		start := strings.Index(u.Path, "topics/")
-		end := strings.Index(u.Path, "?qos")
-		if end == -1 {
-			end = len(u.Path)
-		}
-		runes := []rune(u.Path)
-		u.Path = string(runes[:start+7]) + topic + string(runes[end:])
-	}
 }
 
 // EscapePath escapes part of a URL path in Amazon style

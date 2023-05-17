@@ -265,6 +265,8 @@ type Config struct {
 	//    	Bucket: aws.String("bucketname"),
 	//    	Key: aws.String("//foo//bar//moo"),
 	//    })
+	// Deprecated: DisableRestProtocolURICleaning exists for historical compatibility of
+	// http request path cleaning setting and should not be used.
 	DisableRestProtocolURICleaning *bool
 
 	// EnableEndpointDiscovery will allow for endpoint discovery on operations that

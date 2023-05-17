@@ -14,17 +14,35 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-func TestCleanPath(t *testing.T) {
+func TestBuildURI(t *testing.T) {
+	in := struct {
+		Topic *string `location:"uri" locationName:"topic" type:"string" required:"true"`
+	}{
+		Topic: aws.String("///devices/123/test"),
+	}
+
 	uri := &url.URL{
-		Path:   "//foo//bar",
+		Path:   "/topics/{topic}",
 		Scheme: "https",
 		Host:   "host",
 	}
-	cleanPath(uri, "")
 
-	expected := "https://host/foo/bar"
-	if a, e := uri.String(), expected; a != e {
-		t.Errorf("expect %q URI, got %q", e, a)
+	req := &request.Request{
+		HTTPRequest: &http.Request{
+			URL: uri,
+		},
+		Params: &in,
+	}
+
+	Build(req)
+
+	expectedPath := "/topics////devices/123/test"
+	expectedRawPath := "/topics/%2F%2F%2Fdevices%2F123%2Ftest"
+	if a, e := uri.Path, expectedPath; a != e {
+		t.Errorf("expect %q Path, got %q", e, a)
+	}
+	if a, e := uri.RawPath, expectedRawPath; a != e {
+		t.Errorf("expect %q RawPath, got %q", e, a)
 	}
 }
 
