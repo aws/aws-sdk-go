@@ -12,6 +12,12 @@
       "limit_key": "maxResults",
       "result_key": "annotationStores"
     },
+    "ListMultipartReadSetUploads": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "uploads"
+    },
     "ListReadSetActivationJobs": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -29,6 +35,12 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "importJobs"
+    },
+    "ListReadSetUploadParts": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "parts"
     },
     "ListReadSets": {
       "input_token": "nextToken",

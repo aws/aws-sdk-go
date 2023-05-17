@@ -1,9 +1,79 @@
+Release v1.44.264 (2023-05-16)
+===
+
+### Service Client Updates
+* `service/detective`: Updates service API
+* `service/directconnect`: Updates service documentation
+  * This release includes an update to the mtu value for CreateTransitVirtualInterface from 9001 mtu to 8500 mtu.
+* `service/glue`: Updates service API and documentation
+  * Add Support for Tags for Custom Entity Types
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+* `service/wafv2`: Updates service API and documentation
+
+Release v1.44.263 (2023-05-15)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * You can now define custom spark properties at start of the session for use cases like cluster encryption, table formats, and general Spark tuning.
+* `service/kafka`: Updates service API
+* `service/rekognition`: Updates service API and documentation
+  * This release adds a new EyeDirection attribute in Amazon Rekognition DetectFaces and IndexFaces APIs which predicts the yaw and pitch angles of a person's eye gaze direction for each face detected in the image.
+* `service/rolesanywhere`: Updates service API and documentation
+* `service/transfer`: Updates service API and documentation
+  * This release introduces the ability to require both password and SSH key when users authenticate to your Transfer Family servers that use the SFTP protocol.
+
+Release v1.44.262 (2023-05-11)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service documentation
+* `service/elasticache`: Updates service API and documentation
+  * Added support to modify the cluster mode configuration for the existing ElastiCache ReplicationGroups. Customers can now modify the configuration from cluster mode disabled to cluster mode enabled.
+* `service/es`: Updates service API and documentation
+  * This release fixes DescribePackages API error with null filter value parameter.
+* `service/health`: Updates service documentation
+  * Add support for regional endpoints
+* `service/ivs-realtime`: Updates service API, documentation, and paginators
+* `service/omics`: Updates service API, documentation, and paginators
+* `service/opensearch`: Updates service API
+* `service/route53resolver`: Adds new service
+* `service/support`: Updates service API and documentation
+  * This release adds 2 new Support APIs, DescribeCreateCaseOptions and DescribeSupportedLanguages. You can use these new APIs to get available support languages.
+
+Release v1.44.261 (2023-05-10)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API and documentation
+  * EMR Studio now supports programmatically executing a Notebooks on an EMR on EKS cluster.  In addition, notebooks can now be executed by specifying its location in S3.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Amazon Relational Database Service (RDS) updates for the new Aurora I/O-Optimized storage type for Amazon Aurora DB clusters
+* `service/swf`: Updates service API and documentation
+  * This release adds a new API parameter to exclude old history events from decision tasks.
+
+### SDK Bugs
+
+* `service/sms`: Remove deprecated services (SMS) integration tests.
+  * SMS integration tests will fail because SMS deprecated their service.
+
+Release v1.44.260 (2023-05-09)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API, documentation, and examples
+* `service/glue`: Updates service API and documentation
+  * This release adds AmazonRedshift Source and Target nodes in addition to DynamicTransform OutputSchemas
+* `service/sagemaker`: Updates service API and documentation
+  * This release includes support for (1) Provisioned Concurrency for Amazon SageMaker Serverless Inference and (2) UpdateEndpointWeightsAndCapacities API for Serverless endpoints.
+
 Release v1.44.259 (2023-05-08)
 ===
 
 ### Service Client Updates
 * `service/glue`: Updates service API and documentation
-  * We don't do release notes https://w.amazon.com/bin/view/AWSDocs/common-tasks/release-notes
+  * Support large worker types G.4x and G.8x for Glue Spark”
 * `service/guardduty`: Updates service API and documentation
   * Add AccessDeniedException 403 Error message code to support 3 Tagging related APIs
 * `service/iotsitewise`: Updates service API and documentation

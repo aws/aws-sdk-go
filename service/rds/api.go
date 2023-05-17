@@ -2055,7 +2055,7 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *reques
 //     DBClusterIdentifier doesn't refer to an existing DB cluster.
 //
 //   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
-//     Storage of the StorageType specified can't be associated with the DB instance.
+//     The specified StorageType can't be associated with the DB instance.
 //
 //   - ErrCodeAuthorizationNotFoundFault "AuthorizationNotFound"
 //     The specified CIDR IP range or Amazon EC2 security group might not be authorized
@@ -2233,7 +2233,7 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 //     read replica of the same source instance.
 //
 //   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
-//     Storage of the StorageType specified can't be associated with the DB instance.
+//     The specified StorageType can't be associated with the DB instance.
 //
 //   - ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
 //     An error occurred accessing an Amazon Web Services KMS key.
@@ -10830,6 +10830,10 @@ func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.
 //   - ErrCodeDomainNotFoundFault "DomainNotFoundFault"
 //     Domain doesn't refer to an existing Active Directory domain.
 //
+//   - ErrCodeStorageTypeNotAvailableFault "StorageTypeNotAvailableFault"
+//     The aurora-iopt1 storage type isn't available, because you modified the DB
+//     cluster to use this storage type less than one month ago.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBCluster
 func (c *RDS) ModifyDBCluster(input *ModifyDBClusterInput) (*ModifyDBClusterOutput, error) {
 	req, out := c.ModifyDBClusterRequest(input)
@@ -11262,7 +11266,7 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *reques
 //     The DB upgrade failed because a resource the DB depends on can't be modified.
 //
 //   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
-//     Storage of the StorageType specified can't be associated with the DB instance.
+//     The specified StorageType can't be associated with the DB instance.
 //
 //   - ErrCodeAuthorizationNotFoundFault "AuthorizationNotFound"
 //     The specified CIDR IP range or Amazon EC2 security group might not be authorized
@@ -13570,6 +13574,9 @@ func (c *RDS) RestoreDBClusterFromS3Request(input *RestoreDBClusterFromS3Input) 
 //     be able to resolve this error by updating your subnet group to use different
 //     Availability Zones that have more storage available.
 //
+//   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
+//     The specified StorageType can't be associated with the DB instance.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBClusterFromS3
 func (c *RDS) RestoreDBClusterFromS3(input *RestoreDBClusterFromS3Input) (*RestoreDBClusterFromS3Output, error) {
 	req, out := c.RestoreDBClusterFromS3Request(input)
@@ -14030,7 +14037,7 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 //     The specified option group could not be found.
 //
 //   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
-//     Storage of the StorageType specified can't be associated with the DB instance.
+//     The specified StorageType can't be associated with the DB instance.
 //
 //   - ErrCodeAuthorizationNotFoundFault "AuthorizationNotFound"
 //     The specified CIDR IP range or Amazon EC2 security group might not be authorized
@@ -14191,7 +14198,7 @@ func (c *RDS) RestoreDBInstanceFromS3Request(input *RestoreDBInstanceFromS3Input
 //     The specified option group could not be found.
 //
 //   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
-//     Storage of the StorageType specified can't be associated with the DB instance.
+//     The specified StorageType can't be associated with the DB instance.
 //
 //   - ErrCodeAuthorizationNotFoundFault "AuthorizationNotFound"
 //     The specified CIDR IP range or Amazon EC2 security group might not be authorized
@@ -14348,7 +14355,7 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 //     The specified option group could not be found.
 //
 //   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
-//     Storage of the StorageType specified can't be associated with the DB instance.
+//     The specified StorageType can't be associated with the DB instance.
 //
 //   - ErrCodeAuthorizationNotFoundFault "AuthorizationNotFound"
 //     The specified CIDR IP range or Amazon EC2 security group might not be authorized
@@ -14891,7 +14898,7 @@ func (c *RDS) StartDBInstanceAutomatedBackupsReplicationRequest(input *StartDBIn
 //     quota is the same as your DB Instance quota.
 //
 //   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
-//     Storage of the StorageType specified can't be associated with the DB instance.
+//     The specified StorageType can't be associated with the DB instance.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StartDBInstanceAutomatedBackupsReplication
 func (c *RDS) StartDBInstanceAutomatedBackupsReplication(input *StartDBInstanceAutomatedBackupsReplicationInput) (*StartDBInstanceAutomatedBackupsReplicationOutput, error) {
@@ -17391,6 +17398,9 @@ type ClusterPendingModifiedValues struct {
 	// A list of the log types whose configuration is still pending. In other words,
 	// these log types are in the process of being activated or deactivated.
 	PendingCloudwatchLogsExports *PendingCloudwatchLogsExports `type:"structure"`
+
+	// The storage type for the DB cluster.
+	StorageType *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -17456,6 +17466,12 @@ func (s *ClusterPendingModifiedValues) SetMasterUserPassword(v string) *ClusterP
 // SetPendingCloudwatchLogsExports sets the PendingCloudwatchLogsExports field's value.
 func (s *ClusterPendingModifiedValues) SetPendingCloudwatchLogsExports(v *PendingCloudwatchLogsExports) *ClusterPendingModifiedValues {
 	s.PendingCloudwatchLogsExports = v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *ClusterPendingModifiedValues) SetStorageType(v string) *ClusterPendingModifiedValues {
+	s.StorageType = &v
 	return s
 }
 
@@ -19799,16 +19815,12 @@ type CreateDBClusterInput struct {
 	//
 	// The serverless engine mode only applies for Aurora Serverless v1 DB clusters.
 	//
-	// Limitations and requirements apply to some DB engine modes. For more information,
+	// For information about limitations and requirements for Serverless DB clusters,
 	// see the following sections in the Amazon Aurora User Guide:
 	//
 	//    * Limitations of Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.limitations)
 	//
 	//    * Requirements for Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html)
-	//
-	//    * Limitations of parallel query (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-parallel-query.html#aurora-mysql-parallel-query-limitations)
-	//
-	//    * Limitations of Aurora global databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.limitations)
 	//
 	// Valid for: Aurora DB clusters only
 	EngineMode *string `type:"string"`
@@ -20227,13 +20239,15 @@ type CreateDBClusterInput struct {
 	//
 	// This setting is required to create a Multi-AZ DB cluster.
 	//
-	// Valid values: io1
+	// When specified for a Multi-AZ DB cluster, a value for the Iops parameter
+	// is required.
 	//
-	// When specified, a value for the Iops parameter is required.
+	// Valid values: aurora, aurora-iopt1 (Aurora DB clusters); io1 (Multi-AZ DB
+	// clusters)
 	//
-	// Default: io1
+	// Default: aurora (Aurora DB clusters); io1 (Multi-AZ DB clusters)
 	//
-	// Valid for: Multi-AZ DB clusters only
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	StorageType *string `type:"string"`
 
 	// Tags to assign to the DB cluster.
@@ -24727,8 +24741,7 @@ type DBCluster struct {
 	// The name of the database engine to be used for this DB cluster.
 	Engine *string `type:"string"`
 
-	// The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery,
-	// global, or multimaster.
+	// The DB engine mode of the DB cluster, either provisioned or serverless.
 	//
 	// For more information, see CreateDBCluster (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html).
 	EngineMode *string `type:"string"`
@@ -24764,6 +24777,12 @@ type DBCluster struct {
 	// A value that indicates whether the mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
+
+	// The next time you can modify the DB cluster to use the aurora-iopt1 storage
+	// type.
+	//
+	// This setting is only for Aurora DB clusters.
+	IOOptimizedNextAllowedModificationTime *time.Time `type:"timestamp"`
 
 	// The Provisioned IOPS (I/O operations per second) value.
 	//
@@ -24941,8 +24960,6 @@ type DBCluster struct {
 	StorageEncrypted *bool `type:"boolean"`
 
 	// The storage type associated with the DB cluster.
-	//
-	// This setting is only for non-Aurora Multi-AZ DB clusters.
 	StorageType *string `type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
@@ -25226,6 +25243,12 @@ func (s *DBCluster) SetHttpEndpointEnabled(v bool) *DBCluster {
 // SetIAMDatabaseAuthenticationEnabled sets the IAMDatabaseAuthenticationEnabled field's value.
 func (s *DBCluster) SetIAMDatabaseAuthenticationEnabled(v bool) *DBCluster {
 	s.IAMDatabaseAuthenticationEnabled = &v
+	return s
+}
+
+// SetIOOptimizedNextAllowedModificationTime sets the IOOptimizedNextAllowedModificationTime field's value.
+func (s *DBCluster) SetIOOptimizedNextAllowedModificationTime(v time.Time) *DBCluster {
+	s.IOOptimizedNextAllowedModificationTime = &v
 	return s
 }
 
@@ -25894,6 +25917,11 @@ type DBClusterSnapshot struct {
 	// Specifies whether the DB cluster snapshot is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// The storage type associated with the DB cluster snapshot.
+	//
+	// This setting is only for Aurora DB clusters.
+	StorageType *string `type:"string"`
+
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
 	// in the Amazon RDS User Guide.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
@@ -26043,6 +26071,12 @@ func (s *DBClusterSnapshot) SetStatus(v string) *DBClusterSnapshot {
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *DBClusterSnapshot) SetStorageEncrypted(v bool) *DBClusterSnapshot {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DBClusterSnapshot) SetStorageType(v string) *DBClusterSnapshot {
+	s.StorageType = &v
 	return s
 }
 
@@ -26726,11 +26760,10 @@ type DBInstance struct {
 	// True if mapping of Amazon Web Services Identity and Access Management (IAM)
 	// accounts to database accounts is enabled, and otherwise false.
 	//
-	// IAM database authentication can be enabled for the following database engines:
-	//
-	//    * For MySQL 5.7, minor version 5.7.16 or higher.
-	//
-	//    * For Amazon Aurora, all versions of Aurora MySQL and Aurora PostgreSQL.
+	// For a list of engine versions that support IAM database authentication, see
+	// IAM database authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RDS_Fea_Regions_DB-eng.Feature.IamDatabaseAuthentication.html)
+	// in the Amazon RDS User Guide and IAM database authentication in Aurora (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.IAMdbauth.html)
+	// in the Amazon Aurora User Guide.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
 	// Provides the date and time the DB instance was created.
@@ -31661,8 +31694,7 @@ type DescribeDBClusterBacktracksInput struct {
 	// Constraints:
 	//
 	//    * Must contain a valid universally unique identifier (UUID). For more
-	//    information about UUIDs, see A Universally Unique Identifier (UUID) URN
-	//    Namespace (http://www.ietf.org/rfc/rfc4122.txt).
+	//    information about UUIDs, see Universally unique identifier (https://en.wikipedia.org/wiki/Universally_unique_identifier).
 	//
 	// Example: 123e4567-e89b-12d3-a456-426655440000
 	BacktrackIdentifier *string `type:"string"`
@@ -40636,13 +40668,15 @@ type ModifyDBClusterInput struct {
 
 	// Specifies the storage type to be associated with the DB cluster.
 	//
-	// Valid values: io1
+	// When specified for a Multi-AZ DB cluster, a value for the Iops parameter
+	// is required.
 	//
-	// When specified, a value for the Iops parameter is required.
+	// Valid values: aurora, aurora-iopt1 (Aurora DB clusters); io1 (Multi-AZ DB
+	// clusters)
 	//
-	// Default: io1
+	// Default: aurora (Aurora DB clusters); io1 (Multi-AZ DB clusters)
 	//
-	// Valid for: Multi-AZ DB clusters only
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	StorageType *string `type:"string"`
 
 	// A list of VPC security groups that the DB cluster will belong to.
@@ -41578,11 +41612,11 @@ type ModifyDBInstanceInput struct {
 	// A value that indicates whether to manage the master user password with Amazon
 	// Web Services Secrets Manager.
 	//
-	// If the DB cluster doesn't manage the master user password with Amazon Web
+	// If the DB instance doesn't manage the master user password with Amazon Web
 	// Services Secrets Manager, you can turn on this management. In this case,
 	// you can't specify MasterUserPassword.
 	//
-	// If the DB cluster already manages the master user password with Amazon Web
+	// If the DB instance already manages the master user password with Amazon Web
 	// Services Secrets Manager, and you specify that the master user password is
 	// not managed with Amazon Web Services Secrets Manager, then you must specify
 	// MasterUserPassword. In this case, RDS deletes the secret and uses the new
@@ -47319,6 +47353,15 @@ type RestoreDBClusterFromS3Input struct {
 	// A value that indicates whether the restored DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// Specifies the storage type to be associated with the DB cluster.
+	//
+	// Valid values: aurora, aurora-iopt1
+	//
+	// Default: aurora
+	//
+	// Valid for: Aurora DB clusters only
+	StorageType *string `type:"string"`
+
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -47571,6 +47614,12 @@ func (s *RestoreDBClusterFromS3Input) SetSourceEngineVersion(v string) *RestoreD
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *RestoreDBClusterFromS3Input) SetStorageEncrypted(v bool) *RestoreDBClusterFromS3Input {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *RestoreDBClusterFromS3Input) SetStorageType(v string) *RestoreDBClusterFromS3Input {
+	s.StorageType = &v
 	return s
 }
 
@@ -47982,14 +48031,15 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
-	// Specifies the storage type to be associated with the each DB instance in
-	// the Multi-AZ DB cluster.
+	// Specifies the storage type to be associated with the DB cluster.
 	//
-	// Valid values: io1
+	// When specified for a Multi-AZ DB cluster, a value for the Iops parameter
+	// is required.
 	//
-	// When specified, a value for the Iops parameter is required.
+	// Valid values: aurora, aurora-iopt1 (Aurora DB clusters); io1 (Multi-AZ DB
+	// clusters)
 	//
-	// Default: io1
+	// Default: aurora (Aurora DB clusters); io1 (Multi-AZ DB clusters)
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	StorageType *string `type:"string"`
@@ -48572,16 +48622,17 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// SourceDBClusterIdentifier is a required field
 	SourceDBClusterIdentifier *string `type:"string" required:"true"`
 
-	// Specifies the storage type to be associated with the each DB instance in
-	// the Multi-AZ DB cluster.
+	// Specifies the storage type to be associated with the DB cluster.
 	//
-	// Valid values: io1
+	// When specified for a Multi-AZ DB cluster, a value for the Iops parameter
+	// is required.
 	//
-	// When specified, a value for the Iops parameter is required.
+	// Valid values: aurora, aurora-iopt1 (Aurora DB clusters); io1 (Multi-AZ DB
+	// clusters)
 	//
-	// Default: io1
+	// Default: aurora (Aurora DB clusters); io1 (Multi-AZ DB clusters)
 	//
-	// Valid for: Multi-AZ DB clusters only
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	StorageType *string `type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)

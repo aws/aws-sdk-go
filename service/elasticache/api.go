@@ -8140,7 +8140,7 @@ type CacheCluster struct {
 
 	// The network type associated with the cluster, either ipv4 | ipv6. IPv6 is
 	// supported for workloads using Redis engine version 6.2 onward or Memcached
-	// engine version 1.6.6 on all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	// engine version 1.6.6 on all instances built on the Nitro system (http://aws.amazon.com/ec2/nitro/).
 	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
 
 	// Returns the destination, format and type of the logs.
@@ -8148,7 +8148,7 @@ type CacheCluster struct {
 
 	// Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads
 	// using Redis engine version 6.2 onward or Memcached engine version 1.6.6 on
-	// all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	// all instances built on the Nitro system (http://aws.amazon.com/ec2/nitro/).
 	NetworkType *string `type:"string" enum:"NetworkType"`
 
 	// Describes a notification topic and its status. Notification topics are used
@@ -8463,7 +8463,7 @@ type CacheEngineVersion struct {
 	// The name of the cache parameter group family associated with this cache engine.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis7
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// The name of the cache engine.
@@ -8930,7 +8930,7 @@ type CacheParameterGroup struct {
 	// is compatible with.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis7
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// The name of the cache parameter group.
@@ -9218,7 +9218,7 @@ type CacheSubnetGroup struct {
 
 	// Either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads using Redis
 	// engine version 6.2 onward or Memcached engine version 1.6.6 on all instances
-	// built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	// built on the Nitro system (http://aws.amazon.com/ec2/nitro/).
 	SupportedNetworkTypes []*string `type:"list" enum:"NetworkType"`
 
 	// The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet
@@ -9774,7 +9774,7 @@ type CreateCacheClusterInput struct {
 	// The network type you choose when modifying a cluster, either ipv4 | ipv6.
 	// IPv6 is supported for workloads using Redis engine version 6.2 onward or
 	// Memcached engine version 1.6.6 on all instances built on the Nitro system
-	// (https://aws.amazon.com/ec2/nitro/).
+	// (http://aws.amazon.com/ec2/nitro/).
 	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
 
 	// Specifies the destination, format and type of the logs.
@@ -9782,7 +9782,7 @@ type CreateCacheClusterInput struct {
 
 	// Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads
 	// using Redis engine version 6.2 onward or Memcached engine version 1.6.6 on
-	// all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	// all instances built on the Nitro system (http://aws.amazon.com/ec2/nitro/).
 	NetworkType *string `type:"string" enum:"NetworkType"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
@@ -9904,9 +9904,6 @@ type CreateCacheClusterInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A flag that enables in-transit encryption when set to true.
-	//
-	// Only available when creating a cache cluster in an Amazon VPC using Memcached
-	// version 1.6.12 or later.
 	TransitEncryptionEnabled *bool `type:"boolean"`
 }
 
@@ -10160,7 +10157,7 @@ type CreateCacheParameterGroupInput struct {
 	// can be used with.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis7
 	//
 	// CacheParameterGroupFamily is a required field
 	CacheParameterGroupFamily *string `type:"string" required:"true"`
@@ -10753,6 +10750,14 @@ type CreateReplicationGroupInput struct {
 	// see Subnets and Subnet Groups (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/SubnetGroups.html).
 	CacheSubnetGroupName *string `type:"string"`
 
+	// Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you
+	// must first set the cluster mode to Compatible. Compatible mode allows your
+	// Redis clients to connect using both cluster mode enabled and cluster mode
+	// disabled. After you migrate all Redis clients to use cluster mode enabled,
+	// you can then complete cluster mode configuration and set the cluster mode
+	// to Enabled.
+	ClusterMode *string `type:"string" enum:"ClusterMode"`
+
 	// Enables data tiering. Data tiering is only supported for replication groups
 	// using the r6gd node type. This parameter must be set to true when using r6gd
 	// nodes. For more information, see Data tiering (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/data-tiering.html).
@@ -10780,7 +10785,7 @@ type CreateReplicationGroupInput struct {
 	// The network type you choose when creating a replication group, either ipv4
 	// | ipv6. IPv6 is supported for workloads using Redis engine version 6.2 onward
 	// or Memcached engine version 1.6.6 on all instances built on the Nitro system
-	// (https://aws.amazon.com/ec2/nitro/).
+	// (http://aws.amazon.com/ec2/nitro/).
 	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
 
 	// The ID of the KMS key used to encrypt the disk in the cluster.
@@ -10795,7 +10800,7 @@ type CreateReplicationGroupInput struct {
 
 	// Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads
 	// using Redis engine version 6.2 onward or Memcached engine version 1.6.6 on
-	// all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	// all instances built on the Nitro system (http://aws.amazon.com/ec2/nitro/).
 	NetworkType *string `type:"string" enum:"NetworkType"`
 
 	// A list of node group (shard) configuration options. Each node group (shard)
@@ -10985,8 +10990,10 @@ type CreateReplicationGroupInput struct {
 	// connections only.
 	//
 	// Setting TransitEncryptionMode to required is a two-step process that requires
-	// you to first set the TransitEncryptionMode to preferred first, after that
-	// you can set TransitEncryptionMode to required.
+	// you to first set the TransitEncryptionMode to preferred, after that you can
+	// set TransitEncryptionMode to required.
+	//
+	// This process will not trigger the replacement of the replication group.
 	TransitEncryptionMode *string `type:"string" enum:"TransitEncryptionMode"`
 
 	// The user group to associate with the replication group.
@@ -11085,6 +11092,12 @@ func (s *CreateReplicationGroupInput) SetCacheSecurityGroupNames(v []*string) *C
 // SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
 func (s *CreateReplicationGroupInput) SetCacheSubnetGroupName(v string) *CreateReplicationGroupInput {
 	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetClusterMode sets the ClusterMode field's value.
+func (s *CreateReplicationGroupInput) SetClusterMode(v string) *CreateReplicationGroupInput {
+	s.ClusterMode = &v
 	return s
 }
 
@@ -15484,7 +15497,7 @@ type EngineDefaults struct {
 	// default parameters apply.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.x
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.x | redis7
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// Provides an identifier to allow retrieval of paginated results.
@@ -16784,7 +16797,7 @@ type ModifyCacheClusterInput struct {
 	// The network type you choose when modifying a cluster, either ipv4 | ipv6.
 	// IPv6 is supported for workloads using Redis engine version 6.2 onward or
 	// Memcached engine version 1.6.6 on all instances built on the Nitro system
-	// (https://aws.amazon.com/ec2/nitro/).
+	// (http://aws.amazon.com/ec2/nitro/).
 	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
 
 	// Specifies the destination, format and type of the logs.
@@ -17501,6 +17514,14 @@ type ModifyReplicationGroupInput struct {
 	// not be Default.
 	CacheSecurityGroupNames []*string `locationNameList:"CacheSecurityGroupName" type:"list"`
 
+	// Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you
+	// must first set the cluster mode to Compatible. Compatible mode allows your
+	// Redis clients to connect using both cluster mode enabled and cluster mode
+	// disabled. After you migrate all Redis clients to use cluster mode enabled,
+	// you can then complete cluster mode configuration and set the cluster mode
+	// to Enabled.
+	ClusterMode *string `type:"string" enum:"ClusterMode"`
+
 	// The upgraded version of the cache engine to be run on the clusters in the
 	// replication group.
 	//
@@ -17514,7 +17535,7 @@ type ModifyReplicationGroupInput struct {
 	// The network type you choose when modifying a cluster, either ipv4 | ipv6.
 	// IPv6 is supported for workloads using Redis engine version 6.2 onward or
 	// Memcached engine version 1.6.6 on all instances built on the Nitro system
-	// (https://aws.amazon.com/ec2/nitro/).
+	// (http://aws.amazon.com/ec2/nitro/).
 	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
 
 	// Specifies the destination, format and type of the logs.
@@ -17625,8 +17646,8 @@ type ModifyReplicationGroupInput struct {
 	// to required to allow encrypted connections only.
 	//
 	// Setting TransitEncryptionMode to required is a two-step process that requires
-	// you to first set the TransitEncryptionMode to preferred first, after that
-	// you can set TransitEncryptionMode to required.
+	// you to first set the TransitEncryptionMode to preferred, after that you can
+	// set TransitEncryptionMode to required.
 	TransitEncryptionMode *string `type:"string" enum:"TransitEncryptionMode"`
 
 	// The ID of the user group you are associating with the replication group.
@@ -17713,6 +17734,12 @@ func (s *ModifyReplicationGroupInput) SetCacheParameterGroupName(v string) *Modi
 // SetCacheSecurityGroupNames sets the CacheSecurityGroupNames field's value.
 func (s *ModifyReplicationGroupInput) SetCacheSecurityGroupNames(v []*string) *ModifyReplicationGroupInput {
 	s.CacheSecurityGroupNames = v
+	return s
+}
+
+// SetClusterMode sets the ClusterMode field's value.
+func (s *ModifyReplicationGroupInput) SetClusterMode(v string) *ModifyReplicationGroupInput {
+	s.ClusterMode = &v
 	return s
 }
 
@@ -19868,6 +19895,14 @@ type ReplicationGroup struct {
 	// Valid values: true | false
 	ClusterEnabled *bool `type:"boolean"`
 
+	// Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you
+	// must first set the cluster mode to Compatible. Compatible mode allows your
+	// Redis clients to connect using both cluster mode enabled and cluster mode
+	// disabled. After you migrate all Redis clients to use cluster mode enabled,
+	// you can then complete cluster mode configuration and set the cluster mode
+	// to Enabled.
+	ClusterMode *string `type:"string" enum:"ClusterMode"`
+
 	// The configuration endpoint for this replication group. Use the configuration
 	// endpoint to connect to this replication group.
 	ConfigurationEndpoint *Endpoint `type:"structure"`
@@ -19887,7 +19922,7 @@ type ReplicationGroup struct {
 	// The network type you choose when modifying a cluster, either ipv4 | ipv6.
 	// IPv6 is supported for workloads using Redis engine version 6.2 onward or
 	// Memcached engine version 1.6.6 on all instances built on the Nitro system
-	// (https://aws.amazon.com/ec2/nitro/).
+	// (http://aws.amazon.com/ec2/nitro/).
 	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
 
 	// The ID of the KMS key used to encrypt the disk in the cluster.
@@ -19908,7 +19943,7 @@ type ReplicationGroup struct {
 
 	// Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads
 	// using Redis engine version 6.2 onward or Memcached engine version 1.6.6 on
-	// all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	// all instances built on the Nitro system (http://aws.amazon.com/ec2/nitro/).
 	NetworkType *string `type:"string" enum:"NetworkType"`
 
 	// A list of node groups in this replication group. For Redis (cluster mode
@@ -20033,6 +20068,12 @@ func (s *ReplicationGroup) SetCacheNodeType(v string) *ReplicationGroup {
 // SetClusterEnabled sets the ClusterEnabled field's value.
 func (s *ReplicationGroup) SetClusterEnabled(v bool) *ReplicationGroup {
 	s.ClusterEnabled = &v
+	return s
+}
+
+// SetClusterMode sets the ClusterMode field's value.
+func (s *ReplicationGroup) SetClusterMode(v string) *ReplicationGroup {
+	s.ClusterMode = &v
 	return s
 }
 
@@ -20179,6 +20220,14 @@ type ReplicationGroupPendingModifiedValues struct {
 	// Indicates the status of automatic failover for this Redis replication group.
 	AutomaticFailoverStatus *string `type:"string" enum:"PendingAutomaticFailoverStatus"`
 
+	// Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you
+	// must first set the cluster mode to Compatible. Compatible mode allows your
+	// Redis clients to connect using both cluster mode enabled and cluster mode
+	// disabled. After you migrate all Redis clients to use cluster mode enabled,
+	// you can then complete cluster mode configuration and set the cluster mode
+	// to Enabled.
+	ClusterMode *string `type:"string" enum:"ClusterMode"`
+
 	// The log delivery configurations being modified
 	LogDeliveryConfigurations []*PendingLogDeliveryConfiguration `locationName:"PendingLogDeliveryConfiguration" type:"list"`
 
@@ -20227,6 +20276,12 @@ func (s *ReplicationGroupPendingModifiedValues) SetAuthTokenStatus(v string) *Re
 // SetAutomaticFailoverStatus sets the AutomaticFailoverStatus field's value.
 func (s *ReplicationGroupPendingModifiedValues) SetAutomaticFailoverStatus(v string) *ReplicationGroupPendingModifiedValues {
 	s.AutomaticFailoverStatus = &v
+	return s
+}
+
+// SetClusterMode sets the ClusterMode field's value.
+func (s *ReplicationGroupPendingModifiedValues) SetClusterMode(v string) *ReplicationGroupPendingModifiedValues {
+	s.ClusterMode = &v
 	return s
 }
 
@@ -21563,7 +21618,7 @@ type Subnet struct {
 
 	// Either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads using Redis
 	// engine version 6.2 onward or Memcached engine version 1.6.6 on all instances
-	// built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	// built on the Nitro system (http://aws.amazon.com/ec2/nitro/).
 	SupportedNetworkTypes []*string `type:"list" enum:"NetworkType"`
 }
 
@@ -22497,6 +22552,26 @@ func ChangeType_Values() []string {
 	return []string{
 		ChangeTypeImmediate,
 		ChangeTypeRequiresReboot,
+	}
+}
+
+const (
+	// ClusterModeEnabled is a ClusterMode enum value
+	ClusterModeEnabled = "enabled"
+
+	// ClusterModeDisabled is a ClusterMode enum value
+	ClusterModeDisabled = "disabled"
+
+	// ClusterModeCompatible is a ClusterMode enum value
+	ClusterModeCompatible = "compatible"
+)
+
+// ClusterMode_Values returns all elements of the ClusterMode enum
+func ClusterMode_Values() []string {
+	return []string{
+		ClusterModeEnabled,
+		ClusterModeDisabled,
+		ClusterModeCompatible,
 	}
 }
 

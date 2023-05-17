@@ -1951,7 +1951,8 @@
         "Url":{"shape":"Url"},
         "InvocationRole":{"shape":"Role"},
         "DirectoryId":{"shape":"DirectoryId"},
-        "Function":{"shape":"Function"}
+        "Function":{"shape":"Function"},
+        "SftpAuthenticationMethods":{"shape":"SftpAuthenticationMethods"}
       }
     },
     "IdentityProviderType":{
@@ -2775,6 +2776,15 @@
       "enum":[
         "DEFAULT",
         "ENABLE_NO_OP"
+      ]
+    },
+    "SftpAuthenticationMethods":{
+      "type":"string",
+      "enum":[
+        "PASSWORD",
+        "PUBLIC_KEY",
+        "PUBLIC_KEY_OR_PASSWORD",
+        "PUBLIC_KEY_AND_PASSWORD"
       ]
     },
     "SigningAlg":{

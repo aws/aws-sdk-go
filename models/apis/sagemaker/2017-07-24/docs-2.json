@@ -617,9 +617,9 @@
     "AppSecurityGroupManagement": {
       "base": null,
       "refs": {
-        "CreateDomainRequest$AppSecurityGroupManagement": "<p>The entity that creates and manages the required security groups for inter-app communication in <code>VPCOnly</code> mode. Required when <code>CreateDomain.AppNetworkAccessType</code> is <code>VPCOnly</code> and <code>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</code> is provided.</p>",
+        "CreateDomainRequest$AppSecurityGroupManagement": "<p>The entity that creates and manages the required security groups for inter-app communication in <code>VPCOnly</code> mode. Required when <code>CreateDomain.AppNetworkAccessType</code> is <code>VPCOnly</code> and <code>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</code> is provided. If setting up the domain for use with RStudio, this value must be set to <code>Service</code>.</p>",
         "DescribeDomainResponse$AppSecurityGroupManagement": "<p>The entity that creates and manages the required security groups for inter-app communication in <code>VPCOnly</code> mode. Required when <code>CreateDomain.AppNetworkAccessType</code> is <code>VPCOnly</code> and <code>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</code> is provided.</p>",
-        "UpdateDomainRequest$AppSecurityGroupManagement": "<p>The entity that creates and manages the required security groups for inter-app communication in <code>VPCOnly</code> mode. Required when <code>CreateDomain.AppNetworkAccessType</code> is <code>VPCOnly</code> and <code>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</code> is provided.</p>"
+        "UpdateDomainRequest$AppSecurityGroupManagement": "<p>The entity that creates and manages the required security groups for inter-app communication in <code>VPCOnly</code> mode. Required when <code>CreateDomain.AppNetworkAccessType</code> is <code>VPCOnly</code> and <code>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</code> is provided. If setting up the domain for use with RStudio, this value must be set to <code>Service</code>.</p>"
       }
     },
     "AppSortKey": {
@@ -10812,6 +10812,12 @@
         "ProductionVariantSummary$DesiredServerlessConfig": "<p>The serverless configuration requested for the endpoint update.</p>"
       }
     },
+    "ProductionVariantServerlessUpdateConfig": {
+      "base": "<p>Specifies the serverless update concurrency configuration for an endpoint variant.</p>",
+      "refs": {
+        "DesiredWeightAndCapacity$ServerlessUpdateConfig": "<p>Specifies the serverless update concurrency configuration for an endpoint variant.</p>"
+      }
+    },
     "ProductionVariantStatus": {
       "base": "<p>Describes the status of the production variant.</p>",
       "refs": {
@@ -11140,7 +11146,7 @@
     "RStudioServerProDomainSettingsForUpdate": {
       "base": "<p>A collection of settings that update the current configuration for the <code>RStudioServerPro</code> Domain-level app.</p>",
       "refs": {
-        "DomainSettingsForUpdate$RStudioServerProDomainSettingsForUpdate": "<p>A collection of <code>RStudioServerPro</code> Domain-level app settings to update.</p>"
+        "DomainSettingsForUpdate$RStudioServerProDomainSettingsForUpdate": "<p>A collection of <code>RStudioServerPro</code> Domain-level app settings to update. A single <code>RStudioServerPro</code> application is created for a domain.</p>"
       }
     },
     "RStudioServerProUserGroup": {
@@ -11962,13 +11968,21 @@
     "ServerlessMaxConcurrency": {
       "base": null,
       "refs": {
-        "ProductionVariantServerlessConfig$MaxConcurrency": "<p>The maximum number of concurrent invocations your serverless endpoint can process.</p>"
+        "ProductionVariantServerlessConfig$MaxConcurrency": "<p>The maximum number of concurrent invocations your serverless endpoint can process.</p>",
+        "ProductionVariantServerlessUpdateConfig$MaxConcurrency": "<p>The updated maximum number of concurrent invocations your serverless endpoint can process.</p>"
       }
     },
     "ServerlessMemorySizeInMB": {
       "base": null,
       "refs": {
         "ProductionVariantServerlessConfig$MemorySizeInMB": "<p>The memory size of your serverless endpoint. Valid values are in 1 GB increments: 1024 MB, 2048 MB, 3072 MB, 4096 MB, 5120 MB, or 6144 MB.</p>"
+      }
+    },
+    "ServerlessProvisionedConcurrency": {
+      "base": null,
+      "refs": {
+        "ProductionVariantServerlessConfig$ProvisionedConcurrency": "<p>The amount of provisioned concurrency to allocate for the serverless endpoint. Should be less than or equal to <code>MaxConcurrency</code>.</p>",
+        "ProductionVariantServerlessUpdateConfig$ProvisionedConcurrency": "<p>The updated amount of provisioned concurrency to allocate for the serverless endpoint. Should be less than or equal to <code>MaxConcurrency</code>.</p>"
       }
     },
     "ServiceCatalogEntityId": {

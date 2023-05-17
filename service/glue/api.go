@@ -21160,6 +21160,418 @@ func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies an Amazon Redshift data store.
+type AmazonRedshiftAdvancedOption struct {
+	_ struct{} `type:"structure"`
+
+	// The key when specifying a key-value pair.
+	Key *string `type:"string"`
+
+	// The value when specifying a key-value pair.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonRedshiftAdvancedOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonRedshiftAdvancedOption) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *AmazonRedshiftAdvancedOption) SetKey(v string) *AmazonRedshiftAdvancedOption {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AmazonRedshiftAdvancedOption) SetValue(v string) *AmazonRedshiftAdvancedOption {
+	s.Value = &v
+	return s
+}
+
+// Specifies an Amazon Redshift node.
+type AmazonRedshiftNodeData struct {
+	_ struct{} `type:"structure"`
+
+	// The access type for the Redshift connection. Can be a direct connection or
+	// catalog connections.
+	AccessType *string `type:"string"`
+
+	// Specifies how writing to a Redshift cluser will occur.
+	Action *string `type:"string"`
+
+	// Optional values when connecting to the Redshift cluster.
+	AdvancedOptions []*AmazonRedshiftAdvancedOption `type:"list"`
+
+	// The name of the Glue Data Catalog database when working with a data catalog.
+	CatalogDatabase *Option `type:"structure"`
+
+	// The Redshift schema name when working with a data catalog.
+	CatalogRedshiftSchema *string `type:"string"`
+
+	// The database table to read from.
+	CatalogRedshiftTable *string `type:"string"`
+
+	// The Glue Data Catalog table name when working with a data catalog.
+	CatalogTable *Option `type:"structure"`
+
+	// The Glue connection to the Redshift cluster.
+	Connection *Option `type:"structure"`
+
+	// Specifies the name of the connection that is associated with the catalog
+	// table used.
+	CrawlerConnection *string `type:"string"`
+
+	// Optional. The role name use when connection to S3. The IAM role ill default
+	// to the role on the job when left blank.
+	IamRole *Option `type:"structure"`
+
+	// The action used when to detemine how a MERGE in a Redshift sink will be handled.
+	MergeAction *string `type:"string"`
+
+	// The SQL used in a custom merge to deal with matching records.
+	MergeClause *string `type:"string"`
+
+	// The action used when to detemine how a MERGE in a Redshift sink will be handled
+	// when an existing record matches a new record.
+	MergeWhenMatched *string `type:"string"`
+
+	// The action used when to detemine how a MERGE in a Redshift sink will be handled
+	// when an existing record doesn't match a new record.
+	MergeWhenNotMatched *string `type:"string"`
+
+	// The SQL used before a MERGE or APPEND with upsert is run.
+	PostAction *string `type:"string"`
+
+	// The SQL used before a MERGE or APPEND with upsert is run.
+	PreAction *string `type:"string"`
+
+	// The SQL used to fetch the data from a Redshift sources when the SourceType
+	// is 'query'.
+	SampleQuery *string `type:"string"`
+
+	// The Redshift schema name when working with a direct connection.
+	Schema *Option `type:"structure"`
+
+	// The list of column names used to determine a matching record when doing a
+	// MERGE or APPEND with upsert.
+	SelectedColumns []*Option `type:"list"`
+
+	// The source type to specify whether a specific table is the source or a custom
+	// query.
+	SourceType *string `type:"string"`
+
+	// The name of the temporary staging table that is used when doing a MERGE or
+	// APPEND with upsert.
+	StagingTable *string `type:"string"`
+
+	// The Redshift table name when working with a direct connection.
+	Table *Option `type:"structure"`
+
+	// Specifies the prefix to a table.
+	TablePrefix *string `type:"string"`
+
+	// The array of schema output for a given node.
+	TableSchema []*Option `type:"list"`
+
+	// The Amazon S3 path where temporary data can be staged when copying out of
+	// the database.
+	TempDir *string `type:"string"`
+
+	// The action used on Redshift sinks when doing an APPEND.
+	Upsert *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonRedshiftNodeData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonRedshiftNodeData) GoString() string {
+	return s.String()
+}
+
+// SetAccessType sets the AccessType field's value.
+func (s *AmazonRedshiftNodeData) SetAccessType(v string) *AmazonRedshiftNodeData {
+	s.AccessType = &v
+	return s
+}
+
+// SetAction sets the Action field's value.
+func (s *AmazonRedshiftNodeData) SetAction(v string) *AmazonRedshiftNodeData {
+	s.Action = &v
+	return s
+}
+
+// SetAdvancedOptions sets the AdvancedOptions field's value.
+func (s *AmazonRedshiftNodeData) SetAdvancedOptions(v []*AmazonRedshiftAdvancedOption) *AmazonRedshiftNodeData {
+	s.AdvancedOptions = v
+	return s
+}
+
+// SetCatalogDatabase sets the CatalogDatabase field's value.
+func (s *AmazonRedshiftNodeData) SetCatalogDatabase(v *Option) *AmazonRedshiftNodeData {
+	s.CatalogDatabase = v
+	return s
+}
+
+// SetCatalogRedshiftSchema sets the CatalogRedshiftSchema field's value.
+func (s *AmazonRedshiftNodeData) SetCatalogRedshiftSchema(v string) *AmazonRedshiftNodeData {
+	s.CatalogRedshiftSchema = &v
+	return s
+}
+
+// SetCatalogRedshiftTable sets the CatalogRedshiftTable field's value.
+func (s *AmazonRedshiftNodeData) SetCatalogRedshiftTable(v string) *AmazonRedshiftNodeData {
+	s.CatalogRedshiftTable = &v
+	return s
+}
+
+// SetCatalogTable sets the CatalogTable field's value.
+func (s *AmazonRedshiftNodeData) SetCatalogTable(v *Option) *AmazonRedshiftNodeData {
+	s.CatalogTable = v
+	return s
+}
+
+// SetConnection sets the Connection field's value.
+func (s *AmazonRedshiftNodeData) SetConnection(v *Option) *AmazonRedshiftNodeData {
+	s.Connection = v
+	return s
+}
+
+// SetCrawlerConnection sets the CrawlerConnection field's value.
+func (s *AmazonRedshiftNodeData) SetCrawlerConnection(v string) *AmazonRedshiftNodeData {
+	s.CrawlerConnection = &v
+	return s
+}
+
+// SetIamRole sets the IamRole field's value.
+func (s *AmazonRedshiftNodeData) SetIamRole(v *Option) *AmazonRedshiftNodeData {
+	s.IamRole = v
+	return s
+}
+
+// SetMergeAction sets the MergeAction field's value.
+func (s *AmazonRedshiftNodeData) SetMergeAction(v string) *AmazonRedshiftNodeData {
+	s.MergeAction = &v
+	return s
+}
+
+// SetMergeClause sets the MergeClause field's value.
+func (s *AmazonRedshiftNodeData) SetMergeClause(v string) *AmazonRedshiftNodeData {
+	s.MergeClause = &v
+	return s
+}
+
+// SetMergeWhenMatched sets the MergeWhenMatched field's value.
+func (s *AmazonRedshiftNodeData) SetMergeWhenMatched(v string) *AmazonRedshiftNodeData {
+	s.MergeWhenMatched = &v
+	return s
+}
+
+// SetMergeWhenNotMatched sets the MergeWhenNotMatched field's value.
+func (s *AmazonRedshiftNodeData) SetMergeWhenNotMatched(v string) *AmazonRedshiftNodeData {
+	s.MergeWhenNotMatched = &v
+	return s
+}
+
+// SetPostAction sets the PostAction field's value.
+func (s *AmazonRedshiftNodeData) SetPostAction(v string) *AmazonRedshiftNodeData {
+	s.PostAction = &v
+	return s
+}
+
+// SetPreAction sets the PreAction field's value.
+func (s *AmazonRedshiftNodeData) SetPreAction(v string) *AmazonRedshiftNodeData {
+	s.PreAction = &v
+	return s
+}
+
+// SetSampleQuery sets the SampleQuery field's value.
+func (s *AmazonRedshiftNodeData) SetSampleQuery(v string) *AmazonRedshiftNodeData {
+	s.SampleQuery = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *AmazonRedshiftNodeData) SetSchema(v *Option) *AmazonRedshiftNodeData {
+	s.Schema = v
+	return s
+}
+
+// SetSelectedColumns sets the SelectedColumns field's value.
+func (s *AmazonRedshiftNodeData) SetSelectedColumns(v []*Option) *AmazonRedshiftNodeData {
+	s.SelectedColumns = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *AmazonRedshiftNodeData) SetSourceType(v string) *AmazonRedshiftNodeData {
+	s.SourceType = &v
+	return s
+}
+
+// SetStagingTable sets the StagingTable field's value.
+func (s *AmazonRedshiftNodeData) SetStagingTable(v string) *AmazonRedshiftNodeData {
+	s.StagingTable = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *AmazonRedshiftNodeData) SetTable(v *Option) *AmazonRedshiftNodeData {
+	s.Table = v
+	return s
+}
+
+// SetTablePrefix sets the TablePrefix field's value.
+func (s *AmazonRedshiftNodeData) SetTablePrefix(v string) *AmazonRedshiftNodeData {
+	s.TablePrefix = &v
+	return s
+}
+
+// SetTableSchema sets the TableSchema field's value.
+func (s *AmazonRedshiftNodeData) SetTableSchema(v []*Option) *AmazonRedshiftNodeData {
+	s.TableSchema = v
+	return s
+}
+
+// SetTempDir sets the TempDir field's value.
+func (s *AmazonRedshiftNodeData) SetTempDir(v string) *AmazonRedshiftNodeData {
+	s.TempDir = &v
+	return s
+}
+
+// SetUpsert sets the Upsert field's value.
+func (s *AmazonRedshiftNodeData) SetUpsert(v bool) *AmazonRedshiftNodeData {
+	s.Upsert = &v
+	return s
+}
+
+// Specifies an Amazon Redshift source.
+type AmazonRedshiftSource struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the data of the Amazon Reshift source node.
+	Data *AmazonRedshiftNodeData `type:"structure"`
+
+	// The name of the Amazon Redshift source.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonRedshiftSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonRedshiftSource) GoString() string {
+	return s.String()
+}
+
+// SetData sets the Data field's value.
+func (s *AmazonRedshiftSource) SetData(v *AmazonRedshiftNodeData) *AmazonRedshiftSource {
+	s.Data = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AmazonRedshiftSource) SetName(v string) *AmazonRedshiftSource {
+	s.Name = &v
+	return s
+}
+
+// Specifies an Amazon Redshift target.
+type AmazonRedshiftTarget struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the data of the Amazon Reshift target node.
+	Data *AmazonRedshiftNodeData `type:"structure"`
+
+	// The nodes that are inputs to the data target.
+	Inputs []*string `min:"1" type:"list"`
+
+	// The name of the Amazon Redshift target.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonRedshiftTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonRedshiftTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonRedshiftTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonRedshiftTarget"}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetData sets the Data field's value.
+func (s *AmazonRedshiftTarget) SetData(v *AmazonRedshiftNodeData) *AmazonRedshiftTarget {
+	s.Data = v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *AmazonRedshiftTarget) SetInputs(v []*string) *AmazonRedshiftTarget {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AmazonRedshiftTarget) SetName(v string) *AmazonRedshiftTarget {
+	s.Name = &v
+	return s
+}
+
 // Specifies a transform that maps data property keys in the data source to
 // data property keys in the data target. You can rename keys, modify the data
 // types for keys, and choose which keys to drop from the dataset.
@@ -25306,6 +25718,12 @@ type CodeGenConfigurationNode struct {
 	// aggregated value by specified function.
 	Aggregate *Aggregate `type:"structure"`
 
+	// Specifies a target that writes to a data source in Amazon Redshift.
+	AmazonRedshiftSource *AmazonRedshiftSource `type:"structure"`
+
+	// Specifies a target that writes to a data target in Amazon Redshift.
+	AmazonRedshiftTarget *AmazonRedshiftTarget `type:"structure"`
+
 	// Specifies a transform that maps data property keys in the data source to
 	// data property keys in the data target. You can rename keys, modify the data
 	// types for keys, and choose which keys to drop from the dataset.
@@ -25543,6 +25961,11 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.Aggregate != nil {
 		if err := s.Aggregate.Validate(); err != nil {
 			invalidParams.AddNested("Aggregate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AmazonRedshiftTarget != nil {
+		if err := s.AmazonRedshiftTarget.Validate(); err != nil {
+			invalidParams.AddNested("AmazonRedshiftTarget", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.ApplyMapping != nil {
@@ -25865,6 +26288,18 @@ func (s *CodeGenConfigurationNode) Validate() error {
 // SetAggregate sets the Aggregate field's value.
 func (s *CodeGenConfigurationNode) SetAggregate(v *Aggregate) *CodeGenConfigurationNode {
 	s.Aggregate = v
+	return s
+}
+
+// SetAmazonRedshiftSource sets the AmazonRedshiftSource field's value.
+func (s *CodeGenConfigurationNode) SetAmazonRedshiftSource(v *AmazonRedshiftSource) *CodeGenConfigurationNode {
+	s.AmazonRedshiftSource = v
+	return s
+}
+
+// SetAmazonRedshiftTarget sets the AmazonRedshiftTarget field's value.
+func (s *CodeGenConfigurationNode) SetAmazonRedshiftTarget(v *AmazonRedshiftTarget) *CodeGenConfigurationNode {
+	s.AmazonRedshiftTarget = v
 	return s
 }
 
@@ -29486,6 +29921,9 @@ type CreateCustomEntityTypeInput struct {
 	//
 	// RegexString is a required field
 	RegexString *string `min:"1" type:"string" required:"true"`
+
+	// A list of tags applied to the custom entity type.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -29546,6 +29984,12 @@ func (s *CreateCustomEntityTypeInput) SetName(v string) *CreateCustomEntityTypeI
 // SetRegexString sets the RegexString field's value.
 func (s *CreateCustomEntityTypeInput) SetRegexString(v string) *CreateCustomEntityTypeInput {
 	s.RegexString = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCustomEntityTypeInput) SetTags(v map[string]*string) *CreateCustomEntityTypeInput {
+	s.Tags = v
 	return s
 }
 
@@ -38402,6 +38846,9 @@ type DynamicTransform struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// Specifies the data schema for the dynamic transform.
+	OutputSchemas []*GlueSchema `type:"list"`
+
 	// Specifies the parameters of the dynamic transform.
 	Parameters []*TransformConfigParameter `type:"list"`
 
@@ -38459,6 +38906,16 @@ func (s *DynamicTransform) Validate() error {
 	if s.TransformName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TransformName"))
 	}
+	if s.OutputSchemas != nil {
+		for i, v := range s.OutputSchemas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSchemas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Parameters != nil {
 		for i, v := range s.Parameters {
 			if v == nil {
@@ -38491,6 +38948,12 @@ func (s *DynamicTransform) SetInputs(v []*string) *DynamicTransform {
 // SetName sets the Name field's value.
 func (s *DynamicTransform) SetName(v string) *DynamicTransform {
 	s.Name = &v
+	return s
+}
+
+// SetOutputSchemas sets the OutputSchemas field's value.
+func (s *DynamicTransform) SetOutputSchemas(v []*GlueSchema) *DynamicTransform {
+	s.OutputSchemas = v
 	return s
 }
 
@@ -52395,6 +52858,9 @@ type ListCustomEntityTypesInput struct {
 
 	// A paginated token to offset the results.
 	NextToken *string `type:"string"`
+
+	// A list of key-value pair tags.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -52437,6 +52903,12 @@ func (s *ListCustomEntityTypesInput) SetMaxResults(v int64) *ListCustomEntityTyp
 // SetNextToken sets the NextToken field's value.
 func (s *ListCustomEntityTypesInput) SetNextToken(v string) *ListCustomEntityTypesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListCustomEntityTypesInput) SetTags(v map[string]*string) *ListCustomEntityTypesInput {
+	s.Tags = v
 	return s
 }
 
@@ -55728,6 +56200,56 @@ func (s *OperationTimeoutException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *OperationTimeoutException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Specifies an option value.
+type Option struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the description of the option.
+	Description *string `type:"string"`
+
+	// Specifies the label of the option.
+	Label *string `type:"string"`
+
+	// Specifies the value of the option.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Option) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Option) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Option) SetDescription(v string) *Option {
+	s.Description = &v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *Option) SetLabel(v string) *Option {
+	s.Label = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Option) SetValue(v string) *Option {
+	s.Value = &v
+	return s
 }
 
 // Specifies an Oracle data source in the Glue Data Catalog.

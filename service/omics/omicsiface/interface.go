@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon Omics.
 //	func myFunc(svc omicsiface.OmicsAPI) bool {
-//	    // Make svc.BatchDeleteReadSet request
+//	    // Make svc.AbortMultipartReadSetUpload request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockOmicsClient struct {
 //	    omicsiface.OmicsAPI
 //	}
-//	func (m *mockOmicsClient) BatchDeleteReadSet(input *omics.BatchDeleteReadSetInput) (*omics.BatchDeleteReadSetOutput, error) {
+//	func (m *mockOmicsClient) AbortMultipartReadSetUpload(input *omics.AbortMultipartReadSetUploadInput) (*omics.AbortMultipartReadSetUploadOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type OmicsAPI interface {
+	AbortMultipartReadSetUpload(*omics.AbortMultipartReadSetUploadInput) (*omics.AbortMultipartReadSetUploadOutput, error)
+	AbortMultipartReadSetUploadWithContext(aws.Context, *omics.AbortMultipartReadSetUploadInput, ...request.Option) (*omics.AbortMultipartReadSetUploadOutput, error)
+	AbortMultipartReadSetUploadRequest(*omics.AbortMultipartReadSetUploadInput) (*request.Request, *omics.AbortMultipartReadSetUploadOutput)
+
 	BatchDeleteReadSet(*omics.BatchDeleteReadSetInput) (*omics.BatchDeleteReadSetOutput, error)
 	BatchDeleteReadSetWithContext(aws.Context, *omics.BatchDeleteReadSetInput, ...request.Option) (*omics.BatchDeleteReadSetOutput, error)
 	BatchDeleteReadSetRequest(*omics.BatchDeleteReadSetInput) (*request.Request, *omics.BatchDeleteReadSetOutput)
@@ -76,9 +80,17 @@ type OmicsAPI interface {
 	CancelVariantImportJobWithContext(aws.Context, *omics.CancelVariantImportJobInput, ...request.Option) (*omics.CancelVariantImportJobOutput, error)
 	CancelVariantImportJobRequest(*omics.CancelVariantImportJobInput) (*request.Request, *omics.CancelVariantImportJobOutput)
 
+	CompleteMultipartReadSetUpload(*omics.CompleteMultipartReadSetUploadInput) (*omics.CompleteMultipartReadSetUploadOutput, error)
+	CompleteMultipartReadSetUploadWithContext(aws.Context, *omics.CompleteMultipartReadSetUploadInput, ...request.Option) (*omics.CompleteMultipartReadSetUploadOutput, error)
+	CompleteMultipartReadSetUploadRequest(*omics.CompleteMultipartReadSetUploadInput) (*request.Request, *omics.CompleteMultipartReadSetUploadOutput)
+
 	CreateAnnotationStore(*omics.CreateAnnotationStoreInput) (*omics.CreateAnnotationStoreOutput, error)
 	CreateAnnotationStoreWithContext(aws.Context, *omics.CreateAnnotationStoreInput, ...request.Option) (*omics.CreateAnnotationStoreOutput, error)
 	CreateAnnotationStoreRequest(*omics.CreateAnnotationStoreInput) (*request.Request, *omics.CreateAnnotationStoreOutput)
+
+	CreateMultipartReadSetUpload(*omics.CreateMultipartReadSetUploadInput) (*omics.CreateMultipartReadSetUploadOutput, error)
+	CreateMultipartReadSetUploadWithContext(aws.Context, *omics.CreateMultipartReadSetUploadInput, ...request.Option) (*omics.CreateMultipartReadSetUploadOutput, error)
+	CreateMultipartReadSetUploadRequest(*omics.CreateMultipartReadSetUploadInput) (*request.Request, *omics.CreateMultipartReadSetUploadOutput)
 
 	CreateReferenceStore(*omics.CreateReferenceStoreInput) (*omics.CreateReferenceStoreOutput, error)
 	CreateReferenceStoreWithContext(aws.Context, *omics.CreateReferenceStoreInput, ...request.Option) (*omics.CreateReferenceStoreOutput, error)
@@ -218,6 +230,13 @@ type OmicsAPI interface {
 	ListAnnotationStoresPages(*omics.ListAnnotationStoresInput, func(*omics.ListAnnotationStoresOutput, bool) bool) error
 	ListAnnotationStoresPagesWithContext(aws.Context, *omics.ListAnnotationStoresInput, func(*omics.ListAnnotationStoresOutput, bool) bool, ...request.Option) error
 
+	ListMultipartReadSetUploads(*omics.ListMultipartReadSetUploadsInput) (*omics.ListMultipartReadSetUploadsOutput, error)
+	ListMultipartReadSetUploadsWithContext(aws.Context, *omics.ListMultipartReadSetUploadsInput, ...request.Option) (*omics.ListMultipartReadSetUploadsOutput, error)
+	ListMultipartReadSetUploadsRequest(*omics.ListMultipartReadSetUploadsInput) (*request.Request, *omics.ListMultipartReadSetUploadsOutput)
+
+	ListMultipartReadSetUploadsPages(*omics.ListMultipartReadSetUploadsInput, func(*omics.ListMultipartReadSetUploadsOutput, bool) bool) error
+	ListMultipartReadSetUploadsPagesWithContext(aws.Context, *omics.ListMultipartReadSetUploadsInput, func(*omics.ListMultipartReadSetUploadsOutput, bool) bool, ...request.Option) error
+
 	ListReadSetActivationJobs(*omics.ListReadSetActivationJobsInput) (*omics.ListReadSetActivationJobsOutput, error)
 	ListReadSetActivationJobsWithContext(aws.Context, *omics.ListReadSetActivationJobsInput, ...request.Option) (*omics.ListReadSetActivationJobsOutput, error)
 	ListReadSetActivationJobsRequest(*omics.ListReadSetActivationJobsInput) (*request.Request, *omics.ListReadSetActivationJobsOutput)
@@ -238,6 +257,13 @@ type OmicsAPI interface {
 
 	ListReadSetImportJobsPages(*omics.ListReadSetImportJobsInput, func(*omics.ListReadSetImportJobsOutput, bool) bool) error
 	ListReadSetImportJobsPagesWithContext(aws.Context, *omics.ListReadSetImportJobsInput, func(*omics.ListReadSetImportJobsOutput, bool) bool, ...request.Option) error
+
+	ListReadSetUploadParts(*omics.ListReadSetUploadPartsInput) (*omics.ListReadSetUploadPartsOutput, error)
+	ListReadSetUploadPartsWithContext(aws.Context, *omics.ListReadSetUploadPartsInput, ...request.Option) (*omics.ListReadSetUploadPartsOutput, error)
+	ListReadSetUploadPartsRequest(*omics.ListReadSetUploadPartsInput) (*request.Request, *omics.ListReadSetUploadPartsOutput)
+
+	ListReadSetUploadPartsPages(*omics.ListReadSetUploadPartsInput, func(*omics.ListReadSetUploadPartsOutput, bool) bool) error
+	ListReadSetUploadPartsPagesWithContext(aws.Context, *omics.ListReadSetUploadPartsInput, func(*omics.ListReadSetUploadPartsOutput, bool) bool, ...request.Option) error
 
 	ListReadSets(*omics.ListReadSetsInput) (*omics.ListReadSetsOutput, error)
 	ListReadSetsWithContext(aws.Context, *omics.ListReadSetsInput, ...request.Option) (*omics.ListReadSetsOutput, error)
@@ -371,6 +397,10 @@ type OmicsAPI interface {
 	UpdateWorkflow(*omics.UpdateWorkflowInput) (*omics.UpdateWorkflowOutput, error)
 	UpdateWorkflowWithContext(aws.Context, *omics.UpdateWorkflowInput, ...request.Option) (*omics.UpdateWorkflowOutput, error)
 	UpdateWorkflowRequest(*omics.UpdateWorkflowInput) (*request.Request, *omics.UpdateWorkflowOutput)
+
+	UploadReadSetPart(*omics.UploadReadSetPartInput) (*omics.UploadReadSetPartOutput, error)
+	UploadReadSetPartWithContext(aws.Context, *omics.UploadReadSetPartInput, ...request.Option) (*omics.UploadReadSetPartOutput, error)
+	UploadReadSetPartRequest(*omics.UploadReadSetPartInput) (*request.Request, *omics.UploadReadSetPartOutput)
 
 	WaitUntilAnnotationImportJobCreated(*omics.GetAnnotationImportJobInput) error
 	WaitUntilAnnotationImportJobCreatedWithContext(aws.Context, *omics.GetAnnotationImportJobInput, ...request.WaiterOption) error

@@ -1881,6 +1881,14 @@
         "locationName":"ClusterId"
       }
     },
+    "ClusterMode":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled",
+        "compatible"
+      ]
+    },
     "ClusterQuotaForCustomerExceededFault":{
       "type":"structure",
       "members":{
@@ -2100,7 +2108,8 @@
         "DataTieringEnabled":{"shape":"BooleanOptional"},
         "NetworkType":{"shape":"NetworkType"},
         "IpDiscovery":{"shape":"IpDiscovery"},
-        "TransitEncryptionMode":{"shape":"TransitEncryptionMode"}
+        "TransitEncryptionMode":{"shape":"TransitEncryptionMode"},
+        "ClusterMode":{"shape":"ClusterMode"}
       }
     },
     "CreateReplicationGroupResult":{
@@ -3207,7 +3216,8 @@
         "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"},
         "IpDiscovery":{"shape":"IpDiscovery"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
-        "TransitEncryptionMode":{"shape":"TransitEncryptionMode"}
+        "TransitEncryptionMode":{"shape":"TransitEncryptionMode"},
+        "ClusterMode":{"shape":"ClusterMode"}
       }
     },
     "ModifyReplicationGroupResult":{
@@ -3743,7 +3753,8 @@
         "AutoMinorVersionUpgrade":{"shape":"Boolean"},
         "NetworkType":{"shape":"NetworkType"},
         "IpDiscovery":{"shape":"IpDiscovery"},
-        "TransitEncryptionMode":{"shape":"TransitEncryptionMode"}
+        "TransitEncryptionMode":{"shape":"TransitEncryptionMode"},
+        "ClusterMode":{"shape":"ClusterMode"}
       },
       "wrapper":true
     },
@@ -3827,7 +3838,8 @@
         "UserGroups":{"shape":"UserGroupsUpdateStatus"},
         "LogDeliveryConfigurations":{"shape":"PendingLogDeliveryConfigurationList"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
-        "TransitEncryptionMode":{"shape":"TransitEncryptionMode"}
+        "TransitEncryptionMode":{"shape":"TransitEncryptionMode"},
+        "ClusterMode":{"shape":"ClusterMode"}
       }
     },
     "ReservedCacheNode":{

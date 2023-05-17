@@ -1263,6 +1263,7 @@
         "AGE_RANGE",
         "BEARD",
         "EMOTIONS",
+        "EYE_DIRECTION",
         "EYEGLASSES",
         "EYES_OPEN",
         "GENDER",
@@ -2289,6 +2290,14 @@
       "min":1,
       "pattern":"[a-zA-Z0-9_.\\-:]+"
     },
+    "EyeDirection":{
+      "type":"structure",
+      "members":{
+        "Yaw":{"shape":"Degree"},
+        "Pitch":{"shape":"Degree"},
+        "Confidence":{"shape":"Percent"}
+      }
+    },
     "EyeOpen":{
       "type":"structure",
       "members":{
@@ -2339,7 +2348,8 @@
         "Pose":{"shape":"Pose"},
         "Quality":{"shape":"ImageQuality"},
         "Confidence":{"shape":"Percent"},
-        "FaceOccluded":{"shape":"FaceOccluded"}
+        "FaceOccluded":{"shape":"FaceOccluded"},
+        "EyeDirection":{"shape":"EyeDirection"}
       }
     },
     "FaceDetailList":{

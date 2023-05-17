@@ -517,7 +517,8 @@
       "type":"string",
       "enum":[
         "DETECTIVE_CORE",
-        "EKS_AUDIT"
+        "EKS_AUDIT",
+        "ASFF_SECURITYHUB_FINDING"
       ]
     },
     "DatasourcePackageIngestDetail":{
