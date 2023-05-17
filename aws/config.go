@@ -252,21 +252,8 @@ type Config struct {
 	// and specify a Retryer instead.
 	SleepDelay func(time.Duration)
 
-	// DisableRestProtocolURICleaning will not clean the URL path when making rest protocol requests.
-	// Will default to false. This would only be used for empty directory names in s3 requests.
-	//
-	// Example:
-	//    sess := session.Must(session.NewSession(&aws.Config{
-	//         DisableRestProtocolURICleaning: aws.Bool(true),
-	//    }))
-	//
-	//    svc := s3.New(sess)
-	//    out, err := svc.GetObject(&s3.GetObjectInput {
-	//    	Bucket: aws.String("bucketname"),
-	//    	Key: aws.String("//foo//bar//moo"),
-	//    })
-	// Deprecated: DisableRestProtocolURICleaning exists for historical compatibility of
-	// http request path cleaning setting and should not be used.
+	// Deprecated: This setting no longer has any effect.
+	// RESTful paths are no longer cleaned after request serialization.
 	DisableRestProtocolURICleaning *bool
 
 	// EnableEndpointDiscovery will allow for endpoint discovery on operations that
@@ -499,13 +486,6 @@ func (c *Config) WithLowerCaseHeaderMaps(t bool) *Config {
 	return c
 }
 
-// WithDisableRestProtocolURICleaning sets a config DisableRestProtocolURICleaning value
-// returning a Config pointer for chaining.
-func (c *Config) WithDisableRestProtocolURICleaning(t bool) *Config {
-	c.DisableRestProtocolURICleaning = &t
-	return c
-}
-
 // MergeIn merges the passed in configs into the existing config object.
 func (c *Config) MergeIn(cfgs ...*Config) {
 	for _, other := range cfgs {
@@ -608,10 +588,6 @@ func mergeInConfig(dst *Config, other *Config) {
 
 	if other.SleepDelay != nil {
 		dst.SleepDelay = other.SleepDelay
-	}
-
-	if other.DisableRestProtocolURICleaning != nil {
-		dst.DisableRestProtocolURICleaning = other.DisableRestProtocolURICleaning
 	}
 
 	if other.EnforceShouldRetryCheck != nil {
