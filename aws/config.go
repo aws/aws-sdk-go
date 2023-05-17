@@ -486,6 +486,13 @@ func (c *Config) WithLowerCaseHeaderMaps(t bool) *Config {
 	return c
 }
 
+// Deprecated: This setting no longer has any effect.
+// RESTful paths are no longer cleaned after request serialization.
+func (c *Config) WithDisableRestProtocolURICleaning(t bool) *Config {
+	c.DisableRestProtocolURICleaning = &t
+	return c
+}
+
 // MergeIn merges the passed in configs into the existing config object.
 func (c *Config) MergeIn(cfgs ...*Config) {
 	for _, other := range cfgs {
