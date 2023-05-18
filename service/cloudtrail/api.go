@@ -91,6 +91,13 @@ func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, 
 //
 //     The following is the format of a channel ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890
 //
+//   - EventDataStoreARNInvalidException
+//     The specified event data store ARN is not valid or does not map to an event
+//     data store in your account.
+//
+//   - ChannelARNInvalidException
+//     This exception is thrown when the specified value of ChannelARN is not valid.
+//
 //   - ResourceTypeNotSupportedException
 //     This exception is thrown when the specified resource type is not supported
 //     by CloudTrail.
@@ -538,8 +545,8 @@ func (c *CloudTrail) CreateEventDataStoreRequest(input *CreateEventDataStoreInpu
 //     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 //   - NotOrganizationMasterAccountException
@@ -737,8 +744,8 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 //   - NotOrganizationMasterAccountException
@@ -994,8 +1001,8 @@ func (c *CloudTrail) DeleteEventDataStoreRequest(input *DeleteEventDataStoreInpu
 //     deleted because it is in use by a channel.
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeleteEventDataStore
@@ -1236,8 +1243,8 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 //     role.
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeleteTrail
@@ -1340,8 +1347,8 @@ func (c *CloudTrail) DeregisterOrganizationDelegatedAdminRequest(input *Deregist
 //     minutes, and then try the operation again.
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 //   - InvalidParameterException
@@ -1838,9 +1845,9 @@ func (c *CloudTrail) GetEventSelectorsRequest(input *GetEventSelectorsInput) (re
 // For more information about logging management and data events, see the following
 // topics in the CloudTrail User Guide:
 //
-//   - Logging management events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)
+//   - Logging management events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)
 //
-//   - Logging data events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
+//   - Logging data events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3628,6 +3635,13 @@ func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request
 //
 //     The following is the format of a channel ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890
 //
+//   - EventDataStoreARNInvalidException
+//     The specified event data store ARN is not valid or does not map to an event
+//     data store in your account.
+//
+//   - ChannelARNInvalidException
+//     This exception is thrown when the specified value of ChannelARN is not valid.
+//
 //   - ResourceTypeNotSupportedException
 //     This exception is thrown when the specified resource type is not supported
 //     by CloudTrail.
@@ -4116,7 +4130,11 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 //
 // Configures an event selector or advanced event selectors for your trail.
 // Use event selectors or advanced event selectors to specify management and
-// data event settings for your trail. By default, trails created without specific
+// data event settings for your trail. If you want your trail to log Insights
+// events, be sure the event selector enables logging of the Insights event
+// types you want configured for your trail. For more information about logging
+// Insights events, see Logging Insights events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-insights-events-with-cloudtrail.html)
+// in the CloudTrail User Guide. By default, trails created without specific
 // event selectors are configured to log all read and write management events,
 // and no data events.
 //
@@ -4145,8 +4163,8 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 // thrown.
 //
 // You can configure up to five event selectors for each trail. For more information,
-// see Logging management events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html),
-// Logging data events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html),
+// see Logging management events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html),
+// Logging data events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html),
 // and Quotas in CloudTrail (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html)
 // in the CloudTrail User Guide.
 //
@@ -4155,7 +4173,7 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 // on a trail. You can use either AdvancedEventSelectors or EventSelectors,
 // but not both. If you apply AdvancedEventSelectors to a trail, any existing
 // EventSelectors are overwritten. For more information about advanced event
-// selectors, see Logging data events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
+// selectors, see Logging data events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
 // in the CloudTrail User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4229,6 +4247,13 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 //   - Specify a valid value for a parameter. For example, specifying the ReadWriteType
 //     parameter with a value of read-only is not valid.
 //
+//   - ConflictException
+//     This exception is thrown when the specified resource is not ready for an
+//     operation. This can occur when you try to run an operation on a resource
+//     before CloudTrail has time to fully load the resource, or because another
+//     operation is modifying the resource. If this exception occurs, wait a few
+//     minutes, and then try the operation again.
+//
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
 //
@@ -4247,8 +4272,8 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 //     role.
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/PutEventSelectors
@@ -4321,6 +4346,11 @@ func (c *CloudTrail) PutInsightSelectorsRequest(input *PutInsightSelectorsInput)
 // to turn off Insights event logging, by passing an empty list of insight types.
 // The valid Insights event types in this release are ApiErrorRateInsight and
 // ApiCallRateInsight.
+//
+// To log CloudTrail Insights events on API call volume, the trail must log
+// write management events. To log CloudTrail Insights events on API error rate,
+// the trail must log read or write management events. You can call GetEventSelectors
+// on a trail to check whether the trail logs management events.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4602,8 +4632,8 @@ func (c *CloudTrail) RegisterOrganizationDelegatedAdminRequest(input *RegisterOr
 //     of an organization.
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 //   - InvalidParameterException
@@ -4742,6 +4772,13 @@ func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Req
 //     The following is the format of an event data store ARN: arn:aws:cloudtrail:us-east-2:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE
 //
 //     The following is the format of a channel ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890
+//
+//   - EventDataStoreARNInvalidException
+//     The specified event data store ARN is not valid or does not map to an event
+//     data store in your account.
+//
+//   - ChannelARNInvalidException
+//     This exception is thrown when the specified value of ChannelARN is not valid.
 //
 //   - ResourceTypeNotSupportedException
 //     This exception is thrown when the specified resource type is not supported
@@ -4901,8 +4938,8 @@ func (c *CloudTrail) RestoreEventDataStoreRequest(input *RestoreEventDataStoreIn
 //     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 //   - OrganizationsNotInUseException
@@ -5209,8 +5246,8 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request
 //     role.
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StartLogging
@@ -5573,8 +5610,8 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.R
 //     role.
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StopLogging
@@ -5845,8 +5882,8 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 //   - OrganizationsNotInUseException
@@ -6088,8 +6125,8 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 //
 //   - InsufficientDependencyServiceAccessPermissionException
-//     This exception is thrown when the IAM user or role that is used to create
-//     the organization resource lacks one or more required permissions for creating
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
 //
 //   - OrganizationsNotInUseException
@@ -6649,7 +6686,7 @@ func (s AddTagsOutput) GoString() string {
 // Advanced event selectors let you create fine-grained selectors for the following
 // CloudTrail event record ﬁelds. They help you control costs by logging only
 // those events that are important to you. For more information about advanced
-// event selectors, see Logging data events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
+// event selectors, see Logging data events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
 // in the CloudTrail User Guide.
 //
 //   - readOnly
@@ -6778,12 +6815,13 @@ type AdvancedFieldSelector struct {
 	//
 	//    * resources.type - This ﬁeld is required for CloudTrail data events.
 	//    resources.type can only use the Equals operator, and the value can be
-	//    one of the following: AWS::CloudTrail::Channel AWS::S3::Object AWS::Lambda::Function
-	//    AWS::DynamoDB::Table AWS::S3Outposts::Object AWS::ManagedBlockchain::Node
-	//    AWS::S3ObjectLambda::AccessPoint AWS::EC2::Snapshot AWS::S3::AccessPoint
-	//    AWS::DynamoDB::Stream AWS::Glue::Table AWS::FinSpace::Environment AWS::SageMaker::ExperimentTrialComponent
-	//    AWS::SageMaker::FeatureGroup You can have only one resources.type ﬁeld
-	//    per selector. To log data events on more than one resource type, add another
+	//    one of the following: AWS::DynamoDB::Table AWS::Lambda::Function AWS::S3::Object
+	//    AWS::CloudTrail::Channel AWS::Cognito::IdentityPool AWS::DynamoDB::Stream
+	//    AWS::EC2::Snapshot AWS::FinSpace::Environment AWS::Glue::Table AWS::GuardDuty::Detector
+	//    AWS::KendraRanking::ExecutionPlan AWS::ManagedBlockchain::Node AWS::SageMaker::ExperimentTrialComponent
+	//    AWS::SageMaker::FeatureGroup AWS::S3::AccessPoint AWS::S3ObjectLambda::AccessPoint
+	//    AWS::S3Outposts::Object You can have only one resources.type ﬁeld per
+	//    selector. To log data events on more than one resource type, add another
 	//    selector.
 	//
 	//    * resources.ARN - You can use any operator with resources.ARN, but if
@@ -6796,42 +6834,51 @@ type AdvancedFieldSelector struct {
 	//    is intentional; do not exclude it. Replace the text between less than
 	//    and greater than symbols (<>) with resource-specific information. arn:<partition>:s3:::<bucket_name>/
 	//    arn:<partition>:s3:::<bucket_name>/<object_path>/ When resources.type
-	//    equals AWS::S3::AccessPoint, and the operator is set to Equals or NotEquals,
-	//    the ARN must be in one of the following formats. To log events on all
-	//    objects in an S3 access point, we recommend that you use only the access
-	//    point ARN, don’t include the object path, and use the StartsWith or
-	//    NotStartsWith operators. arn:<partition>:s3:<region>:<account_ID>:accesspoint/<access_point_name>
-	//    arn:<partition>:s3:<region>:<account_ID>:accesspoint/<access_point_name>/object/<object_path>
+	//    equals AWS::DynamoDB::Table, and the operator is set to Equals or NotEquals,
+	//    the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table/<table_name>
 	//    When resources.type equals AWS::Lambda::Function, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:lambda:<region>:<account_ID>:function:<function_name>
-	//    When resources.type equals AWS::DynamoDB::Table, and the operator is set
-	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table/<table_name>
 	//    When resources.type equals AWS::CloudTrail::Channel, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:cloudtrail:<region>:<account_ID>:channel/<channel_UUID>
-	//    When resources.type equals AWS::S3Outposts::Object, and the operator is
-	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:s3-outposts:<region>:<account_ID>:<object_path>
-	//    When resources.type equals AWS::ManagedBlockchain::Node, and the operator
+	//    When resources.type equals AWS::Cognito::IdentityPool, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
-	//    arn:<partition>:managedblockchain:<region>:<account_ID>:nodes/<node_ID>
-	//    When resources.type equals AWS::S3ObjectLambda::AccessPoint, and the operator
-	//    is set to Equals or NotEquals, the ARN must be in the following format:
-	//    arn:<partition>:s3-object-lambda:<region>:<account_ID>:accesspoint/<access_point_name>
-	//    When resources.type equals AWS::EC2::Snapshot, and the operator is set
-	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:ec2:<region>::snapshot/<snapshot_ID>
+	//    arn:<partition>:cognito-identity:<region>:<account_ID>:identitypool/<identity_pool_ID>
 	//    When resources.type equals AWS::DynamoDB::Stream, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table/<table_name>/stream/<date_time>
-	//    When resources.type equals AWS::Glue::Table, and the operator is set to
-	//    Equals or NotEquals, the ARN must be in the following format: arn:<partition>:glue:<region>:<account_ID>:table/<database_name>/<table_name>
+	//    When resources.type equals AWS::EC2::Snapshot, and the operator is set
+	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:ec2:<region>::snapshot/<snapshot_ID>
 	//    When resources.type equals AWS::FinSpace::Environment, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:finspace:<region>:<account_ID>:environment/<environment_ID>
+	//    When resources.type equals AWS::Glue::Table, and the operator is set to
+	//    Equals or NotEquals, the ARN must be in the following format: arn:<partition>:glue:<region>:<account_ID>:table/<database_name>/<table_name>
+	//    When resources.type equals AWS::GuardDuty::Detector, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:guardduty:<region>:<account_ID>:detector/<detector_ID>
+	//    When resources.type equals AWS::KendraRanking::ExecutionPlan, and the
+	//    operator is set to Equals or NotEquals, the ARN must be in the following
+	//    format: arn:<partition>:kendra-ranking:<region>:<account_ID>:rescore-execution-plan/<rescore_execution_plan_ID>
+	//    When resources.type equals AWS::ManagedBlockchain::Node, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:managedblockchain:<region>:<account_ID>:nodes/<node_ID>
 	//    When resources.type equals AWS::SageMaker::ExperimentTrialComponent, and
 	//    the operator is set to Equals or NotEquals, the ARN must be in the following
 	//    format: arn:<partition>:sagemaker:<region>:<account_ID>:experiment-trial-component/<experiment_trial_component_name>
 	//    When resources.type equals AWS::SageMaker::FeatureGroup, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:sagemaker:<region>:<account_ID>:feature-group/<feature_group_name>
+	//    When resources.type equals AWS::S3::AccessPoint, and the operator is set
+	//    to Equals or NotEquals, the ARN must be in one of the following formats.
+	//    To log events on all objects in an S3 access point, we recommend that
+	//    you use only the access point ARN, don’t include the object path, and
+	//    use the StartsWith or NotStartsWith operators. arn:<partition>:s3:<region>:<account_ID>:accesspoint/<access_point_name>
+	//    arn:<partition>:s3:<region>:<account_ID>:accesspoint/<access_point_name>/object/<object_path>
+	//    When resources.type equals AWS::S3ObjectLambda::AccessPoint, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:s3-object-lambda:<region>:<account_ID>:accesspoint/<access_point_name>
+	//    When resources.type equals AWS::S3Outposts::Object, and the operator is
+	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:s3-outposts:<region>:<account_ID>:<object_path>
 	//
 	// Field is a required field
 	Field *string `min:"1" type:"string" required:"true"`
@@ -8624,11 +8671,11 @@ type DataResource struct {
 	// The resource type in which you want to log data events. You can specify the
 	// following basic event selector resource types:
 	//
-	//    * AWS::S3::Object
+	//    * AWS::DynamoDB::Table
 	//
 	//    * AWS::Lambda::Function
 	//
-	//    * AWS::DynamoDB::Table
+	//    * AWS::S3::Object
 	//
 	// The following resource types are also available through advanced event selectors.
 	// Basic event selector resource types are valid in advanced event selectors,
@@ -8637,25 +8684,31 @@ type DataResource struct {
 	//
 	//    * AWS::CloudTrail::Channel
 	//
-	//    * AWS::S3Outposts::Object
-	//
-	//    * AWS::ManagedBlockchain::Node
-	//
-	//    * AWS::S3ObjectLambda::AccessPoint
-	//
-	//    * AWS::EC2::Snapshot
-	//
-	//    * AWS::S3::AccessPoint
+	//    * AWS::Cognito::IdentityPool
 	//
 	//    * AWS::DynamoDB::Stream
 	//
-	//    * AWS::Glue::Table
+	//    * AWS::EC2::Snapshot
 	//
 	//    * AWS::FinSpace::Environment
+	//
+	//    * AWS::Glue::Table
+	//
+	//    * AWS::GuardDuty::Detector
+	//
+	//    * AWS::KendraRanking::ExecutionPlan
+	//
+	//    * AWS::ManagedBlockchain::Node
 	//
 	//    * AWS::SageMaker::ExperimentTrialComponent
 	//
 	//    * AWS::SageMaker::FeatureGroup
+	//
+	//    * AWS::S3::AccessPoint
+	//
+	//    * AWS::S3ObjectLambda::AccessPoint
+	//
+	//    * AWS::S3Outposts::Object
 	Type *string `type:"string"`
 
 	// An array of Amazon Resource Name (ARN) strings or partial ARN strings for
@@ -12054,13 +12107,19 @@ func (s *InsightNotEnabledException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A JSON string that contains a list of insight types that are logged on a
+// A JSON string that contains a list of Insights types that are logged on a
 // trail.
 type InsightSelector struct {
 	_ struct{} `type:"structure"`
 
-	// The type of insights to log on a trail. ApiCallRateInsight and ApiErrorRateInsight
-	// are valid insight types.
+	// The type of Insights events to log on a trail. ApiCallRateInsight and ApiErrorRateInsight
+	// are valid Insight types.
+	//
+	// The ApiCallRateInsight Insights type analyzes write-only management API calls
+	// that are aggregated per minute against a baseline API call volume.
+	//
+	// The ApiErrorRateInsight Insights type analyzes management API calls that
+	// result in error codes. The error is shown if the API call is unsuccessful.
 	InsightType *string `type:"string" enum:"InsightType"`
 }
 
@@ -12088,8 +12147,8 @@ func (s *InsightSelector) SetInsightType(v string) *InsightSelector {
 	return s
 }
 
-// This exception is thrown when the IAM user or role that is used to create
-// the organization resource lacks one or more required permissions for creating
+// This exception is thrown when the IAM identity that is used to create the
+// organization resource lacks one or more required permissions for creating
 // an organization resource in a required service.
 type InsufficientDependencyServiceAccessPermissionException struct {
 	_            struct{}                  `type:"structure"`
@@ -15924,7 +15983,7 @@ type PutEventSelectorsInput struct {
 	// can use either AdvancedEventSelectors or EventSelectors, but not both. If
 	// you apply AdvancedEventSelectors to a trail, any existing EventSelectors
 	// are overwritten. For more information about advanced event selectors, see
-	// Logging data events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
+	// Logging data events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
 	// in the CloudTrail User Guide.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
@@ -16072,7 +16131,13 @@ type PutInsightSelectorsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A JSON string that contains the insight types you want to log on a trail.
-	// ApiCallRateInsight and ApiErrorRateInsight are valid insight types.
+	// ApiCallRateInsight and ApiErrorRateInsight are valid Insight types.
+	//
+	// The ApiCallRateInsight Insights type analyzes write-only management API calls
+	// that are aggregated per minute against a baseline API call volume.
+	//
+	// The ApiErrorRateInsight Insights type analyzes management API calls that
+	// result in error codes. The error is shown if the API call is unsuccessful.
 	//
 	// InsightSelectors is a required field
 	InsightSelectors []*InsightSelector `type:"list" required:"true"`

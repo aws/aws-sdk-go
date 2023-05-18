@@ -140,6 +140,10 @@ type ConnectAPI interface {
 	CreateParticipantWithContext(aws.Context, *connect.CreateParticipantInput, ...request.Option) (*connect.CreateParticipantOutput, error)
 	CreateParticipantRequest(*connect.CreateParticipantInput) (*request.Request, *connect.CreateParticipantOutput)
 
+	CreatePrompt(*connect.CreatePromptInput) (*connect.CreatePromptOutput, error)
+	CreatePromptWithContext(aws.Context, *connect.CreatePromptInput, ...request.Option) (*connect.CreatePromptOutput, error)
+	CreatePromptRequest(*connect.CreatePromptInput) (*request.Request, *connect.CreatePromptOutput)
+
 	CreateQueue(*connect.CreateQueueInput) (*connect.CreateQueueOutput, error)
 	CreateQueueWithContext(aws.Context, *connect.CreateQueueInput, ...request.Option) (*connect.CreateQueueOutput, error)
 	CreateQueueRequest(*connect.CreateQueueInput) (*request.Request, *connect.CreateQueueOutput)
@@ -215,6 +219,10 @@ type ConnectAPI interface {
 	DeleteIntegrationAssociation(*connect.DeleteIntegrationAssociationInput) (*connect.DeleteIntegrationAssociationOutput, error)
 	DeleteIntegrationAssociationWithContext(aws.Context, *connect.DeleteIntegrationAssociationInput, ...request.Option) (*connect.DeleteIntegrationAssociationOutput, error)
 	DeleteIntegrationAssociationRequest(*connect.DeleteIntegrationAssociationInput) (*request.Request, *connect.DeleteIntegrationAssociationOutput)
+
+	DeletePrompt(*connect.DeletePromptInput) (*connect.DeletePromptOutput, error)
+	DeletePromptWithContext(aws.Context, *connect.DeletePromptInput, ...request.Option) (*connect.DeletePromptOutput, error)
+	DeletePromptRequest(*connect.DeletePromptInput) (*request.Request, *connect.DeletePromptOutput)
 
 	DeleteQuickConnect(*connect.DeleteQuickConnectInput) (*connect.DeleteQuickConnectOutput, error)
 	DeleteQuickConnectWithContext(aws.Context, *connect.DeleteQuickConnectInput, ...request.Option) (*connect.DeleteQuickConnectOutput, error)
@@ -295,6 +303,10 @@ type ConnectAPI interface {
 	DescribePhoneNumber(*connect.DescribePhoneNumberInput) (*connect.DescribePhoneNumberOutput, error)
 	DescribePhoneNumberWithContext(aws.Context, *connect.DescribePhoneNumberInput, ...request.Option) (*connect.DescribePhoneNumberOutput, error)
 	DescribePhoneNumberRequest(*connect.DescribePhoneNumberInput) (*request.Request, *connect.DescribePhoneNumberOutput)
+
+	DescribePrompt(*connect.DescribePromptInput) (*connect.DescribePromptOutput, error)
+	DescribePromptWithContext(aws.Context, *connect.DescribePromptInput, ...request.Option) (*connect.DescribePromptOutput, error)
+	DescribePromptRequest(*connect.DescribePromptInput) (*request.Request, *connect.DescribePromptOutput)
 
 	DescribeQueue(*connect.DescribeQueueInput) (*connect.DescribeQueueOutput, error)
 	DescribeQueueWithContext(aws.Context, *connect.DescribeQueueInput, ...request.Option) (*connect.DescribeQueueOutput, error)
@@ -411,6 +423,10 @@ type ConnectAPI interface {
 
 	GetMetricDataV2Pages(*connect.GetMetricDataV2Input, func(*connect.GetMetricDataV2Output, bool) bool) error
 	GetMetricDataV2PagesWithContext(aws.Context, *connect.GetMetricDataV2Input, func(*connect.GetMetricDataV2Output, bool) bool, ...request.Option) error
+
+	GetPromptFile(*connect.GetPromptFileInput) (*connect.GetPromptFileOutput, error)
+	GetPromptFileWithContext(aws.Context, *connect.GetPromptFileInput, ...request.Option) (*connect.GetPromptFileOutput, error)
+	GetPromptFileRequest(*connect.GetPromptFileInput) (*request.Request, *connect.GetPromptFileOutput)
 
 	GetTaskTemplate(*connect.GetTaskTemplateInput) (*connect.GetTaskTemplateOutput, error)
 	GetTaskTemplateWithContext(aws.Context, *connect.GetTaskTemplateInput, ...request.Option) (*connect.GetTaskTemplateOutput, error)
@@ -843,6 +859,10 @@ type ConnectAPI interface {
 	UpdatePhoneNumber(*connect.UpdatePhoneNumberInput) (*connect.UpdatePhoneNumberOutput, error)
 	UpdatePhoneNumberWithContext(aws.Context, *connect.UpdatePhoneNumberInput, ...request.Option) (*connect.UpdatePhoneNumberOutput, error)
 	UpdatePhoneNumberRequest(*connect.UpdatePhoneNumberInput) (*request.Request, *connect.UpdatePhoneNumberOutput)
+
+	UpdatePrompt(*connect.UpdatePromptInput) (*connect.UpdatePromptOutput, error)
+	UpdatePromptWithContext(aws.Context, *connect.UpdatePromptInput, ...request.Option) (*connect.UpdatePromptOutput, error)
+	UpdatePromptRequest(*connect.UpdatePromptInput) (*request.Request, *connect.UpdatePromptOutput)
 
 	UpdateQueueHoursOfOperation(*connect.UpdateQueueHoursOfOperationInput) (*connect.UpdateQueueHoursOfOperationOutput, error)
 	UpdateQueueHoursOfOperationWithContext(aws.Context, *connect.UpdateQueueHoursOfOperationInput, ...request.Option) (*connect.UpdateQueueHoursOfOperationOutput, error)

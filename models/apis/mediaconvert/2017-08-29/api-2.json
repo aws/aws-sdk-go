@@ -6808,7 +6808,7 @@
           "locationName": "kantarLicenseId"
         },
         "KantarServerUrl": {
-          "shape": "__stringPatternHttpsKantarmediaComFr",
+          "shape": "__stringPatternHttpsKantarmedia",
           "locationName": "kantarServerUrl"
         },
         "LogDestination": {
@@ -8364,7 +8364,8 @@
         "D_10",
         "XDCAM",
         "OP1A",
-        "XAVC"
+        "XAVC",
+        "XDCAM_RDD9"
       ]
     },
     "MxfSettings": {
@@ -11769,9 +11770,9 @@
       "type": "string",
       "pattern": "^https:\\/\\/"
     },
-    "__stringPatternHttpsKantarmediaComFr": {
+    "__stringPatternHttpsKantarmedia": {
       "type": "string",
-      "pattern": "^https:\\/\\/.*.kantarmedia.(com|fr)$"
+      "pattern": "^https:\\/\\/.*.kantarmedia.*$"
     },
     "__stringPatternIdentityAZaZ26AZaZ09163": {
       "type": "string",

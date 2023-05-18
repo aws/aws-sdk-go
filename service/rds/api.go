@@ -43016,6 +43016,10 @@ type ModifyDBSnapshotInput struct {
 	//
 	// Oracle
 	//
+	//    * 19.0.0.0.ru-2022-01.rur-2022-01.r1 (supported for 12.2.0.1 DB snapshots)
+	//
+	//    * 19.0.0.0.ru-2022-07.rur-2022-07.r1 (supported for 12.1.0.2 DB snapshots)
+	//
 	//    * 12.1.0.2.v8 (supported for 12.1.0.1 DB snapshots)
 	//
 	//    * 11.2.0.4.v12 (supported for 11.2.0.2 DB snapshots)

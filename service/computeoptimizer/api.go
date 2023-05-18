@@ -5282,6 +5282,50 @@ func (s *ExportLambdaFunctionRecommendationsOutput) SetS3Destination(v *S3Destin
 	return s
 }
 
+// Describes Compute Optimizer's integration status with your chosen external
+// metric provider. For example, Datadog.
+type ExternalMetricStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The status code for Compute Optimizer's integration with an external metrics
+	// provider.
+	StatusCode *string `locationName:"statusCode" type:"string" enum:"ExternalMetricStatusCode"`
+
+	// The reason for Compute Optimizer's integration status with your external
+	// metric provider.
+	StatusReason *string `locationName:"statusReason" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalMetricStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalMetricStatus) GoString() string {
+	return s.String()
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *ExternalMetricStatus) SetStatusCode(v string) *ExternalMetricStatus {
+	s.StatusCode = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *ExternalMetricStatus) SetStatusReason(v string) *ExternalMetricStatus {
+	s.StatusReason = &v
+	return s
+}
+
 // Describes the external metrics preferences for EC2 rightsizing recommendations.
 type ExternalMetricsPreference struct {
 	_ struct{} `type:"structure"`
@@ -7087,6 +7131,10 @@ type InstanceRecommendation struct {
 	// instance.
 	EffectiveRecommendationPreferences *EffectiveRecommendationPreferences `locationName:"effectiveRecommendationPreferences" type:"structure"`
 
+	// An object that describes Compute Optimizer's integration status with your
+	// external metrics provider.
+	ExternalMetricStatus *ExternalMetricStatus `locationName:"externalMetricStatus" type:"structure"`
+
 	// The finding classification of the instance.
 	//
 	// Findings for instances include:
@@ -7315,6 +7363,12 @@ func (s *InstanceRecommendation) SetCurrentPerformanceRisk(v string) *InstanceRe
 // SetEffectiveRecommendationPreferences sets the EffectiveRecommendationPreferences field's value.
 func (s *InstanceRecommendation) SetEffectiveRecommendationPreferences(v *EffectiveRecommendationPreferences) *InstanceRecommendation {
 	s.EffectiveRecommendationPreferences = v
+	return s
+}
+
+// SetExternalMetricStatus sets the ExternalMetricStatus field's value.
+func (s *InstanceRecommendation) SetExternalMetricStatus(v *ExternalMetricStatus) *InstanceRecommendation {
+	s.ExternalMetricStatus = v
 	return s
 }
 
@@ -11061,6 +11115,12 @@ const (
 
 	// ExportableInstanceFieldTags is a ExportableInstanceField enum value
 	ExportableInstanceFieldTags = "Tags"
+
+	// ExportableInstanceFieldExternalMetricStatusCode is a ExportableInstanceField enum value
+	ExportableInstanceFieldExternalMetricStatusCode = "ExternalMetricStatusCode"
+
+	// ExportableInstanceFieldExternalMetricStatusReason is a ExportableInstanceField enum value
+	ExportableInstanceFieldExternalMetricStatusReason = "ExternalMetricStatusReason"
 )
 
 // ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
@@ -11121,6 +11181,8 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource,
 		ExportableInstanceFieldInstanceState,
 		ExportableInstanceFieldTags,
+		ExportableInstanceFieldExternalMetricStatusCode,
+		ExportableInstanceFieldExternalMetricStatusReason,
 	}
 }
 
@@ -11365,6 +11427,54 @@ func ExportableVolumeField_Values() []string {
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue,
 		ExportableVolumeFieldRootVolume,
 		ExportableVolumeFieldTags,
+	}
+}
+
+const (
+	// ExternalMetricStatusCodeNoExternalMetricSet is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeNoExternalMetricSet = "NO_EXTERNAL_METRIC_SET"
+
+	// ExternalMetricStatusCodeIntegrationSuccess is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeIntegrationSuccess = "INTEGRATION_SUCCESS"
+
+	// ExternalMetricStatusCodeDatadogIntegrationError is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeDatadogIntegrationError = "DATADOG_INTEGRATION_ERROR"
+
+	// ExternalMetricStatusCodeDynatraceIntegrationError is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeDynatraceIntegrationError = "DYNATRACE_INTEGRATION_ERROR"
+
+	// ExternalMetricStatusCodeNewrelicIntegrationError is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeNewrelicIntegrationError = "NEWRELIC_INTEGRATION_ERROR"
+
+	// ExternalMetricStatusCodeInstanaIntegrationError is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeInstanaIntegrationError = "INSTANA_INTEGRATION_ERROR"
+
+	// ExternalMetricStatusCodeInsufficientDatadogMetrics is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeInsufficientDatadogMetrics = "INSUFFICIENT_DATADOG_METRICS"
+
+	// ExternalMetricStatusCodeInsufficientDynatraceMetrics is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeInsufficientDynatraceMetrics = "INSUFFICIENT_DYNATRACE_METRICS"
+
+	// ExternalMetricStatusCodeInsufficientNewrelicMetrics is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeInsufficientNewrelicMetrics = "INSUFFICIENT_NEWRELIC_METRICS"
+
+	// ExternalMetricStatusCodeInsufficientInstanaMetrics is a ExternalMetricStatusCode enum value
+	ExternalMetricStatusCodeInsufficientInstanaMetrics = "INSUFFICIENT_INSTANA_METRICS"
+)
+
+// ExternalMetricStatusCode_Values returns all elements of the ExternalMetricStatusCode enum
+func ExternalMetricStatusCode_Values() []string {
+	return []string{
+		ExternalMetricStatusCodeNoExternalMetricSet,
+		ExternalMetricStatusCodeIntegrationSuccess,
+		ExternalMetricStatusCodeDatadogIntegrationError,
+		ExternalMetricStatusCodeDynatraceIntegrationError,
+		ExternalMetricStatusCodeNewrelicIntegrationError,
+		ExternalMetricStatusCodeInstanaIntegrationError,
+		ExternalMetricStatusCodeInsufficientDatadogMetrics,
+		ExternalMetricStatusCodeInsufficientDynatraceMetrics,
+		ExternalMetricStatusCodeInsufficientNewrelicMetrics,
+		ExternalMetricStatusCodeInsufficientInstanaMetrics,
 	}
 }
 
