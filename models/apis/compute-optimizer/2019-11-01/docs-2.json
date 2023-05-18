@@ -606,6 +606,24 @@
         "ExportEBSVolumeRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
       }
     },
+    "ExternalMetricStatus": {
+      "base": "<p> Describes Compute Optimizer's integration status with your chosen external metric provider. For example, Datadog. </p>",
+      "refs": {
+        "InstanceRecommendation$externalMetricStatus": "<p> An object that describes Compute Optimizer's integration status with your external metrics provider. </p>"
+      }
+    },
+    "ExternalMetricStatusCode": {
+      "base": null,
+      "refs": {
+        "ExternalMetricStatus$statusCode": "<p> The status code for Compute Optimizer's integration with an external metrics provider. </p>"
+      }
+    },
+    "ExternalMetricStatusReason": {
+      "base": null,
+      "refs": {
+        "ExternalMetricStatus$statusReason": "<p> The reason for Compute Optimizer's integration status with your external metric provider. </p>"
+      }
+    },
     "ExternalMetricsPreference": {
       "base": "<p> Describes the external metrics preferences for EC2 rightsizing recommendations. </p>",
       "refs": {

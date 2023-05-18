@@ -24,6 +24,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"CloudTrailARNInvalidException"},
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"ChannelARNInvalidException"},
         {"shape":"ResourceTypeNotSupportedException"},
         {"shape":"TagsLimitExceededException"},
         {"shape":"InvalidTrailNameException"},
@@ -567,6 +569,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"CloudTrailARNInvalidException"},
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"ChannelARNInvalidException"},
         {"shape":"ResourceTypeNotSupportedException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"InactiveEventDataStoreException"},
@@ -625,6 +629,7 @@
         {"shape":"CloudTrailARNInvalidException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"InvalidEventSelectorsException"},
+        {"shape":"ConflictException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"NotOrganizationMasterAccountException"},
@@ -712,6 +717,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"CloudTrailARNInvalidException"},
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"ChannelARNInvalidException"},
         {"shape":"ResourceTypeNotSupportedException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"InvalidTagParameterException"},

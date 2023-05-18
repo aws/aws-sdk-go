@@ -238,13 +238,6 @@
         "Property$EoCloudCover": "<p>The structure representing EoCloudCover property filter containing a lower bound and upper bound.</p>"
       }
     },
-    "EojDataSourceConfigInput": {
-      "base": "<p>Union representing different data sources to be used as input for an Earth Observation job.</p>",
-      "refs": {
-        "InputConfigInput$DataSourceConfig": "<p>The location of the input data.&gt;</p>",
-        "InputConfigOutput$DataSourceConfig": "<p>The location of the input data.</p>"
-      }
-    },
     "ExecutionRoleArn": {
       "base": null,
       "refs": {
@@ -484,7 +477,6 @@
         "ExportS3DataInput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
         "GetEarthObservationJobOutput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
         "GetVectorEnrichmentJobOutput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
-        "S3DataInput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
         "StartEarthObservationJobInput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
         "StartEarthObservationJobOutput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
         "StartVectorEnrichmentJobInput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
@@ -605,12 +597,6 @@
       "base": "<p>The input structure for Map Matching operation type.</p>",
       "refs": {
         "VectorEnrichmentJobConfig$MapMatchingConfig": "<p>The input structure for Map Matching operation type.</p>"
-      }
-    },
-    "MetadataProvider": {
-      "base": null,
-      "refs": {
-        "S3DataInput$MetadataProvider": "<p>Metadata provider from whom the Amazon S3 data has been acquired.</p>"
       }
     },
     "MultiPolygonGeometryInput": {
@@ -774,17 +760,10 @@
         "VectorEnrichmentJobConfig$ReverseGeocodingConfig": "<p>The input structure for Reverse Geocoding operation type.</p>"
       }
     },
-    "S3DataInput": {
-      "base": "<p>Path to Amazon S3 storage location for input data.</p>",
-      "refs": {
-        "EojDataSourceConfigInput$S3Data": "<p>The input structure for S3Data; representing the Amazon S3 location of the input data objects.</p>"
-      }
-    },
     "S3Uri": {
       "base": null,
       "refs": {
         "ExportS3DataInput$S3Uri": "<p>The URL to the Amazon S3 data input.</p>",
-        "S3DataInput$S3Uri": "<p>The URL to the Amazon S3 input.</p>",
         "VectorEnrichmentJobS3Data$S3Uri": "<p>The URL to the Amazon S3 data for the Vector Enrichment job.</p>",
         "ZonalStatisticsConfigInput$ZoneS3Path": "<p>The Amazon S3 path pointing to the GeoJSON containing the polygonal zones.</p>"
       }

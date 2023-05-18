@@ -2774,55 +2774,6 @@ func (s *EoCloudCoverInput_) SetUpperBound(v float64) *EoCloudCoverInput_ {
 	return s
 }
 
-// Union representing different data sources to be used as input for an Earth
-// Observation job.
-type EojDataSourceConfigInput_ struct {
-	_ struct{} `type:"structure"`
-
-	// The input structure for S3Data; representing the Amazon S3 location of the
-	// input data objects.
-	S3Data *S3DataInput_ `type:"structure"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s EojDataSourceConfigInput_) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s EojDataSourceConfigInput_) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *EojDataSourceConfigInput_) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "EojDataSourceConfigInput_"}
-	if s.S3Data != nil {
-		if err := s.S3Data.Validate(); err != nil {
-			invalidParams.AddNested("S3Data", err.(request.ErrInvalidParams))
-		}
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetS3Data sets the S3Data field's value.
-func (s *EojDataSourceConfigInput_) SetS3Data(v *S3DataInput_) *EojDataSourceConfigInput_ {
-	s.S3Data = v
-	return s
-}
-
 type ExportEarthObservationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4343,9 +4294,6 @@ func (s *GetVectorEnrichmentJobOutput) SetType(v string) *GetVectorEnrichmentJob
 type InputConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The location of the input data.>
-	DataSourceConfig *EojDataSourceConfigInput_ `type:"structure"`
-
 	// The Amazon Resource Name (ARN) of the previous Earth Observation job.
 	PreviousEarthObservationJobArn *string `type:"string"`
 
@@ -4375,11 +4323,6 @@ func (s InputConfigInput_) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *InputConfigInput_) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InputConfigInput_"}
-	if s.DataSourceConfig != nil {
-		if err := s.DataSourceConfig.Validate(); err != nil {
-			invalidParams.AddNested("DataSourceConfig", err.(request.ErrInvalidParams))
-		}
-	}
 	if s.RasterDataCollectionQuery != nil {
 		if err := s.RasterDataCollectionQuery.Validate(); err != nil {
 			invalidParams.AddNested("RasterDataCollectionQuery", err.(request.ErrInvalidParams))
@@ -4390,12 +4333,6 @@ func (s *InputConfigInput_) Validate() error {
 		return invalidParams
 	}
 	return nil
-}
-
-// SetDataSourceConfig sets the DataSourceConfig field's value.
-func (s *InputConfigInput_) SetDataSourceConfig(v *EojDataSourceConfigInput_) *InputConfigInput_ {
-	s.DataSourceConfig = v
-	return s
 }
 
 // SetPreviousEarthObservationJobArn sets the PreviousEarthObservationJobArn field's value.
@@ -4413,9 +4350,6 @@ func (s *InputConfigInput_) SetRasterDataCollectionQuery(v *RasterDataCollection
 // The InputConfig for an EarthObservationJob response.
 type InputConfigOutput_ struct {
 	_ struct{} `type:"structure"`
-
-	// The location of the input data.
-	DataSourceConfig *EojDataSourceConfigInput_ `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the previous Earth Observation job.
 	PreviousEarthObservationJobArn *string `type:"string"`
@@ -4442,12 +4376,6 @@ func (s InputConfigOutput_) String() string {
 // value will be replaced with "sensitive".
 func (s InputConfigOutput_) GoString() string {
 	return s.String()
-}
-
-// SetDataSourceConfig sets the DataSourceConfig field's value.
-func (s *InputConfigOutput_) SetDataSourceConfig(v *EojDataSourceConfigInput_) *InputConfigOutput_ {
-	s.DataSourceConfig = v
-	return s
 }
 
 // SetPreviousEarthObservationJobArn sets the PreviousEarthObservationJobArn field's value.
@@ -6911,76 +6839,6 @@ func (s *ReverseGeocodingConfig) SetYAttributeName(v string) *ReverseGeocodingCo
 	return s
 }
 
-// Path to Amazon S3 storage location for input data.
-type S3DataInput_ struct {
-	_ struct{} `type:"structure"`
-
-	// The Key Management Service key ID for server-side encryption.
-	KmsKeyId *string `type:"string"`
-
-	// Metadata provider from whom the Amazon S3 data has been acquired.
-	//
-	// MetadataProvider is a required field
-	MetadataProvider *string `type:"string" required:"true" enum:"MetadataProvider"`
-
-	// The URL to the Amazon S3 input.
-	//
-	// S3Uri is a required field
-	S3Uri *string `type:"string" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s S3DataInput_) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s S3DataInput_) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *S3DataInput_) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "S3DataInput_"}
-	if s.MetadataProvider == nil {
-		invalidParams.Add(request.NewErrParamRequired("MetadataProvider"))
-	}
-	if s.S3Uri == nil {
-		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetKmsKeyId sets the KmsKeyId field's value.
-func (s *S3DataInput_) SetKmsKeyId(v string) *S3DataInput_ {
-	s.KmsKeyId = &v
-	return s
-}
-
-// SetMetadataProvider sets the MetadataProvider field's value.
-func (s *S3DataInput_) SetMetadataProvider(v string) *S3DataInput_ {
-	s.MetadataProvider = &v
-	return s
-}
-
-// SetS3Uri sets the S3Uri field's value.
-func (s *S3DataInput_) SetS3Uri(v string) *S3DataInput_ {
-	s.S3Uri = &v
-	return s
-}
-
 type SearchRasterDataCollectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7256,7 +7114,9 @@ type StartEarthObservationJobInput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// job.
-	ExecutionRoleArn *string `min:"20" type:"string"`
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// Input configuration information for the Earth Observation job.
 	//
@@ -7303,6 +7163,9 @@ func (s *StartEarthObservationJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartEarthObservationJobInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
 	}
 	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
@@ -7395,7 +7258,9 @@ type StartEarthObservationJobOutput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// job.
-	ExecutionRoleArn *string `min:"20" type:"string"`
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// Input configuration information for the Earth Observation job.
 	InputConfig *InputConfigOutput_ `type:"structure"`
@@ -9358,18 +9223,6 @@ const (
 func LogicalOperator_Values() []string {
 	return []string{
 		LogicalOperatorAnd,
-	}
-}
-
-const (
-	// MetadataProviderPlanetOrder is a MetadataProvider enum value
-	MetadataProviderPlanetOrder = "PLANET_ORDER"
-)
-
-// MetadataProvider_Values returns all elements of the MetadataProvider enum
-func MetadataProvider_Values() []string {
-	return []string{
-		MetadataProviderPlanetOrder,
 	}
 }
 

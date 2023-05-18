@@ -1,3 +1,31 @@
+Release v1.44.265 (2023-05-18)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * Removing SparkProperties from EngineConfiguration object for StartSession API call
+* `service/cloudtrail`: Updates service API and documentation
+  * Add ConflictException to PutEventSelectors, add (Channel/EDS)ARNInvalidException to Tag APIs. These exceptions provide customers with more specific error messages instead of internal errors.
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Add support for i4g.large, i4g.xlarge, i4g.2xlarge, i4g.4xlarge, i4g.8xlarge and i4g.16xlarge instances powered by AWS Graviton2 processors that deliver up to 15% better compute performance than our other storage-optimized instances.
+* `service/ecs`: Updates service documentation
+  * Documentation only release to address various tickets.
+* `service/mediaconvert`: Updates service API and documentation
+  * This release introduces a new MXF Profile for XDCAM which is strictly compliant with the SMPTE RDD 9 standard and improved handling of output name modifiers.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * RDS documentation update for the EngineVersion parameter of ModifyDBSnapshot
+* `service/sagemaker-geospatial`: Updates service API and documentation
+* `service/sts`: Updates service API
+  * API updates for the AWS Security Token Service
+
+### SDK Bugs
+* `rest`: Remove unnecessary path normalization behavior.
+  * This behavior would incorrectly mutate request paths with URI-encoded characters, potentially resulting in misrouted requests.
+* `config`: Deprecate `DisableRestProtocolURICleaning` config setting.
+  * This setting no longer has any effect. REST-protocol paths will now never be normalized after serialization.
+
 Release v1.44.264 (2023-05-16)
 ===
 

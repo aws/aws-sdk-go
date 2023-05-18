@@ -24180,7 +24180,7 @@
         "DeviceName":{"shape":"String"},
         "Format":{"shape":"String"},
         "SnapshotId":{"shape":"SnapshotId"},
-        "Url":{"shape":"String"},
+        "Url":{"shape":"SensitiveUrl"},
         "UserBucket":{"shape":"UserBucket"}
       }
     },
@@ -27067,7 +27067,13 @@
         "inf2.8xlarge",
         "inf2.24xlarge",
         "inf2.48xlarge",
-        "trn1n.32xlarge"
+        "trn1n.32xlarge",
+        "i4g.large",
+        "i4g.xlarge",
+        "i4g.2xlarge",
+        "i4g.4xlarge",
+        "i4g.8xlarge",
+        "i4g.16xlarge"
       ]
     },
     "InstanceTypeHypervisor":{
@@ -35811,7 +35817,7 @@
         "RamDiskId":{"shape":"RamdiskId"},
         "DisableApiTermination":{"shape":"Boolean"},
         "InstanceInitiatedShutdownBehavior":{"shape":"ShutdownBehavior"},
-        "UserData":{"shape":"String"},
+        "UserData":{"shape":"SensitiveUserData"},
         "TagSpecifications":{
           "shape":"LaunchTemplateTagSpecificationRequestList",
           "locationName":"TagSpecification"
@@ -35847,8 +35853,7 @@
         "PrivateDnsNameOptions":{"shape":"LaunchTemplatePrivateDnsNameOptionsRequest"},
         "MaintenanceOptions":{"shape":"LaunchTemplateInstanceMaintenanceOptionsRequest"},
         "DisableApiStop":{"shape":"Boolean"}
-      },
-      "sensitive":true
+      }
     },
     "RequestSpotFleetRequest":{
       "type":"structure",
@@ -38275,6 +38280,10 @@
         "DryRun":{"shape":"Boolean"}
       }
     },
+    "SensitiveUrl":{
+      "type":"string",
+      "sensitive":true
+    },
     "SensitiveUserData":{
       "type":"string",
       "sensitive":true
@@ -38605,7 +38614,7 @@
           "locationName":"statusMessage"
         },
         "Url":{
-          "shape":"String",
+          "shape":"SensitiveUrl",
           "locationName":"url"
         },
         "UserBucket":{
@@ -38626,7 +38635,7 @@
       "members":{
         "Description":{"shape":"String"},
         "Format":{"shape":"String"},
-        "Url":{"shape":"String"},
+        "Url":{"shape":"SensitiveUrl"},
         "UserBucket":{"shape":"UserBucket"}
       }
     },
@@ -38783,7 +38792,7 @@
           "locationName":"statusMessage"
         },
         "Url":{
-          "shape":"String",
+          "shape":"SensitiveUrl",
           "locationName":"url"
         },
         "UserBucket":{

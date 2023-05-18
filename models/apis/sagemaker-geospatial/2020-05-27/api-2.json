@@ -605,13 +605,6 @@
         "UpperBound":{"shape":"Float"}
       }
     },
-    "EojDataSourceConfigInput":{
-      "type":"structure",
-      "members":{
-        "S3Data":{"shape":"S3DataInput"}
-      },
-      "union":true
-    },
     "ExecutionRoleArn":{
       "type":"string",
       "max":2048,
@@ -980,7 +973,6 @@
     "InputConfigInput":{
       "type":"structure",
       "members":{
-        "DataSourceConfig":{"shape":"EojDataSourceConfigInput"},
         "PreviousEarthObservationJobArn":{"shape":"EarthObservationJobArn"},
         "RasterDataCollectionQuery":{"shape":"RasterDataCollectionQueryInput"}
       }
@@ -988,7 +980,6 @@
     "InputConfigOutput":{
       "type":"structure",
       "members":{
-        "DataSourceConfig":{"shape":"EojDataSourceConfigInput"},
         "PreviousEarthObservationJobArn":{"shape":"EarthObservationJobArn"},
         "RasterDataCollectionQuery":{"shape":"RasterDataCollectionQueryOutput"}
       }
@@ -1230,10 +1221,6 @@
         "YAttributeName":{"shape":"String"}
       }
     },
-    "MetadataProvider":{
-      "type":"string",
-      "enum":["PLANET_ORDER"]
-    },
     "MultiPolygonGeometryInput":{
       "type":"structure",
       "required":["Coordinates"],
@@ -1467,18 +1454,6 @@
         "YAttributeName":{"shape":"String"}
       }
     },
-    "S3DataInput":{
-      "type":"structure",
-      "required":[
-        "MetadataProvider",
-        "S3Uri"
-      ],
-      "members":{
-        "KmsKeyId":{"shape":"KmsKey"},
-        "MetadataProvider":{"shape":"MetadataProvider"},
-        "S3Uri":{"shape":"S3Uri"}
-      }
-    },
     "S3Uri":{
       "type":"string",
       "pattern":"^s3://([^/]+)/?(.*)$"
@@ -1534,6 +1509,7 @@
     "StartEarthObservationJobInput":{
       "type":"structure",
       "required":[
+        "ExecutionRoleArn",
         "InputConfig",
         "JobConfig",
         "Name"
@@ -1567,6 +1543,7 @@
         "Arn",
         "CreationTime",
         "DurationInSeconds",
+        "ExecutionRoleArn",
         "JobConfig",
         "Name",
         "Status"

@@ -17535,11 +17535,21 @@
       "refs": {
       }
     },
+    "SensitiveUrl": {
+      "base": null,
+      "refs": {
+        "ImageDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. The URL can either be a https URL (https://..) or an Amazon S3 URL (s3://..)</p>",
+        "SnapshotDetail$Url": "<p>The URL used to access the disk image.</p>",
+        "SnapshotDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. It can either be a https URL (https://..) or an Amazon S3 URL (s3://..).</p>",
+        "SnapshotTaskDetail$Url": "<p>The URL of the disk image from which the snapshot is created.</p>"
+      }
+    },
     "SensitiveUserData": {
       "base": null,
       "refs": {
         "KeyPair$KeyMaterial": "<p>An unencrypted PEM encoded RSA or ED25519 private key.</p>",
         "LaunchSpecification$UserData": "<p>The base64-encoded user data that instances use when starting up. User data is limited to 16 KB.</p>",
+        "RequestLaunchTemplateData$UserData": "<p>The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html\">Run commands on your Linux instance at launch</a> (Linux) or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instancedata-add-user-data.html\">Work with instance user data</a> (Windows) in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you are creating the launch template for use with Batch, the user data must be provided in the <a href=\"https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive\"> MIME multi-part archive format</a>. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html\">Amazon EC2 user data in launch templates</a> in the <i>Batch User Guide</i>.</p>",
         "RequestSpotLaunchSpecification$UserData": "<p>The base64-encoded user data that instances use when starting up. User data is limited to 16 KB.</p>",
         "ResponseLaunchTemplateData$UserData": "<p>The user data for the instance. </p>",
         "SpotFleetLaunchSpecification$UserData": "<p>The base64-encoded user data that instances use when starting up. User data is limited to 16 KB.</p>"
@@ -19034,7 +19044,6 @@
         "ImageDiskContainer$Description": "<p>The description of the disk image.</p>",
         "ImageDiskContainer$DeviceName": "<p>The block device mapping for the disk.</p>",
         "ImageDiskContainer$Format": "<p>The format of the disk image being imported.</p> <p>Valid values: <code>OVA</code> | <code>VHD</code> | <code>VHDX</code> | <code>VMDK</code> | <code>RAW</code> </p>",
-        "ImageDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. The URL can either be a https URL (https://..) or an Amazon S3 URL (s3://..)</p>",
         "ImageRecycleBinInfo$ImageId": "<p>The ID of the AMI.</p>",
         "ImageRecycleBinInfo$Name": "<p>The name of the AMI.</p>",
         "ImageRecycleBinInfo$Description": "<p>The description of the AMI.</p>",
@@ -19601,7 +19610,6 @@
         "ReportInstanceStatusRequest$Description": "<p>Descriptive text about the health state of your instance.</p>",
         "RequestIpamResourceTag$Key": "<p>The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p>",
         "RequestIpamResourceTag$Value": "<p>The value for the tag.</p>",
-        "RequestLaunchTemplateData$UserData": "<p>The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html\">Run commands on your Linux instance at launch</a> (Linux) or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instancedata-add-user-data.html\">Work with instance user data</a> (Windows) in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you are creating the launch template for use with Batch, the user data must be provided in the <a href=\"https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive\"> MIME multi-part archive format</a>. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html\">Amazon EC2 user data in launch templates</a> in the <i>Batch User Guide</i>.</p>",
         "RequestSpotFleetResponse$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
         "RequestSpotInstancesRequest$AvailabilityZoneGroup": "<p>The user-specified name for a logical grouping of requests.</p> <p>When you specify an Availability Zone group in a Spot Instance request, all Spot Instances in the request are launched in the same Availability Zone. Instance proximity is maintained with this parameter, but the choice of Availability Zone is not. The group applies only to requests for Spot Instances of the same instance type. Any additional Spot Instance requests that are specified with the same Availability Zone group name are launched in that same Availability Zone, as long as at least one instance from the group is still active.</p> <p>If there is no active instance running in the Availability Zone group that you specify for a new Spot Instance request (all instances are terminated, the request is expired, or the maximum price you specified falls below current Spot price), then Amazon EC2 launches the instance in any Availability Zone where the constraint can be met. Consequently, the subsequent set of Spot Instances could be placed in a different zone from the original request, even if you specified the same Availability Zone group.</p> <p>Default: Instances are launched in any available Availability Zone.</p>",
         "RequestSpotInstancesRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
@@ -19774,10 +19782,8 @@
         "SnapshotDetail$SnapshotId": "<p>The snapshot ID of the disk being imported.</p>",
         "SnapshotDetail$Status": "<p>A brief status of the snapshot creation.</p>",
         "SnapshotDetail$StatusMessage": "<p>A detailed status message for the snapshot creation.</p>",
-        "SnapshotDetail$Url": "<p>The URL used to access the disk image.</p>",
         "SnapshotDiskContainer$Description": "<p>The description of the disk image being imported.</p>",
         "SnapshotDiskContainer$Format": "<p>The format of the disk image being imported.</p> <p>Valid values: <code>VHD</code> | <code>VMDK</code> | <code>RAW</code> </p>",
-        "SnapshotDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. It can either be a https URL (https://..) or an Amazon S3 URL (s3://..).</p>",
         "SnapshotInfo$Description": "<p>Description specified by the CreateSnapshotRequest that has been applied to all snapshots.</p>",
         "SnapshotInfo$VolumeId": "<p>Source volume from which this snapshot was created.</p>",
         "SnapshotInfo$Progress": "<p>Progress this snapshot has made towards completing.</p>",
@@ -19794,7 +19800,6 @@
         "SnapshotTaskDetail$SnapshotId": "<p>The snapshot ID of the disk being imported.</p>",
         "SnapshotTaskDetail$Status": "<p>A brief status for the import snapshot task.</p>",
         "SnapshotTaskDetail$StatusMessage": "<p>A detailed status message for the import snapshot task.</p>",
-        "SnapshotTaskDetail$Url": "<p>The URL of the disk image from which the snapshot is created.</p>",
         "SnapshotTierStatus$OwnerId": "<p>The ID of the Amazon Web Services account that owns the snapshot.</p>",
         "SnapshotTierStatus$LastTieringOperationStatusDetail": "<p>A message describing the status of the last archive or restore process.</p>",
         "SpotDatafeedSubscription$Bucket": "<p>The name of the Amazon S3 bucket where the Spot Instance data feed is located.</p>",

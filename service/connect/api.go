@@ -1993,6 +1993,102 @@ func (c *Connect) CreateParticipantWithContext(ctx aws.Context, input *CreatePar
 	return out, req.Send()
 }
 
+const opCreatePrompt = "CreatePrompt"
+
+// CreatePromptRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePrompt operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePrompt for more information on using the CreatePrompt
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePromptRequest method.
+//	req, resp := client.CreatePromptRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreatePrompt
+func (c *Connect) CreatePromptRequest(input *CreatePromptInput) (req *request.Request, output *CreatePromptOutput) {
+	op := &request.Operation{
+		Name:       opCreatePrompt,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/prompts/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreatePromptInput{}
+	}
+
+	output = &CreatePromptOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePrompt API operation for Amazon Connect Service.
+//
+// Creates a prompt. For more information about prompts, such as supported file
+// types and maximum length, see Create prompts (https://docs.aws.amazon.com/connect/latest/adminguide/prompts.html)
+// in the Amazon Connect Administrator's Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreatePrompt for usage and error information.
+//
+// Returned Error Types:
+//
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreatePrompt
+func (c *Connect) CreatePrompt(input *CreatePromptInput) (*CreatePromptOutput, error) {
+	req, out := c.CreatePromptRequest(input)
+	return out, req.Send()
+}
+
+// CreatePromptWithContext is the same as CreatePrompt with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePrompt for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreatePromptWithContext(ctx aws.Context, input *CreatePromptInput, opts ...request.Option) (*CreatePromptOutput, error) {
+	req, out := c.CreatePromptRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateQueue = "CreateQueue"
 
 // CreateQueueRequest generates a "aws/request.Request" representing the
@@ -3829,6 +3925,98 @@ func (c *Connect) DeleteIntegrationAssociation(input *DeleteIntegrationAssociati
 // for more information on using Contexts.
 func (c *Connect) DeleteIntegrationAssociationWithContext(ctx aws.Context, input *DeleteIntegrationAssociationInput, opts ...request.Option) (*DeleteIntegrationAssociationOutput, error) {
 	req, out := c.DeleteIntegrationAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePrompt = "DeletePrompt"
+
+// DeletePromptRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePrompt operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePrompt for more information on using the DeletePrompt
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePromptRequest method.
+//	req, resp := client.DeletePromptRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeletePrompt
+func (c *Connect) DeletePromptRequest(input *DeletePromptInput) (req *request.Request, output *DeletePromptOutput) {
+	op := &request.Operation{
+		Name:       opDeletePrompt,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prompts/{InstanceId}/{PromptId}",
+	}
+
+	if input == nil {
+		input = &DeletePromptInput{}
+	}
+
+	output = &DeletePromptOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePrompt API operation for Amazon Connect Service.
+//
+// Deletes a prompt.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeletePrompt for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeletePrompt
+func (c *Connect) DeletePrompt(input *DeletePromptInput) (*DeletePromptOutput, error) {
+	req, out := c.DeletePromptRequest(input)
+	return out, req.Send()
+}
+
+// DeletePromptWithContext is the same as DeletePrompt with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePrompt for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeletePromptWithContext(ctx aws.Context, input *DeletePromptInput, opts ...request.Option) (*DeletePromptOutput, error) {
+	req, out := c.DeletePromptRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5709,6 +5897,97 @@ func (c *Connect) DescribePhoneNumber(input *DescribePhoneNumberInput) (*Describ
 // for more information on using Contexts.
 func (c *Connect) DescribePhoneNumberWithContext(ctx aws.Context, input *DescribePhoneNumberInput, opts ...request.Option) (*DescribePhoneNumberOutput, error) {
 	req, out := c.DescribePhoneNumberRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribePrompt = "DescribePrompt"
+
+// DescribePromptRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePrompt operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePrompt for more information on using the DescribePrompt
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribePromptRequest method.
+//	req, resp := client.DescribePromptRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribePrompt
+func (c *Connect) DescribePromptRequest(input *DescribePromptInput) (req *request.Request, output *DescribePromptOutput) {
+	op := &request.Operation{
+		Name:       opDescribePrompt,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prompts/{InstanceId}/{PromptId}",
+	}
+
+	if input == nil {
+		input = &DescribePromptInput{}
+	}
+
+	output = &DescribePromptOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePrompt API operation for Amazon Connect Service.
+//
+// Describes the prompt.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribePrompt for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribePrompt
+func (c *Connect) DescribePrompt(input *DescribePromptInput) (*DescribePromptOutput, error) {
+	req, out := c.DescribePromptRequest(input)
+	return out, req.Send()
+}
+
+// DescribePromptWithContext is the same as DescribePrompt with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePrompt for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribePromptWithContext(ctx aws.Context, input *DescribePromptInput, opts ...request.Option) (*DescribePromptOutput, error) {
+	req, out := c.DescribePromptRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8376,6 +8655,97 @@ func (c *Connect) GetMetricDataV2PagesWithContext(ctx aws.Context, input *GetMet
 	}
 
 	return p.Err()
+}
+
+const opGetPromptFile = "GetPromptFile"
+
+// GetPromptFileRequest generates a "aws/request.Request" representing the
+// client's request for the GetPromptFile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPromptFile for more information on using the GetPromptFile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPromptFileRequest method.
+//	req, resp := client.GetPromptFileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetPromptFile
+func (c *Connect) GetPromptFileRequest(input *GetPromptFileInput) (req *request.Request, output *GetPromptFileOutput) {
+	op := &request.Operation{
+		Name:       opGetPromptFile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prompts/{InstanceId}/{PromptId}/file",
+	}
+
+	if input == nil {
+		input = &GetPromptFileInput{}
+	}
+
+	output = &GetPromptFileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPromptFile API operation for Amazon Connect Service.
+//
+// Gets the prompt file.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation GetPromptFile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetPromptFile
+func (c *Connect) GetPromptFile(input *GetPromptFileInput) (*GetPromptFileOutput, error) {
+	req, out := c.GetPromptFileRequest(input)
+	return out, req.Send()
+}
+
+// GetPromptFileWithContext is the same as GetPromptFile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPromptFile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) GetPromptFileWithContext(ctx aws.Context, input *GetPromptFileInput, opts ...request.Option) (*GetPromptFileOutput, error) {
+	req, out := c.GetPromptFileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetTaskTemplate = "GetTaskTemplate"
@@ -18132,6 +18502,97 @@ func (c *Connect) UpdatePhoneNumberWithContext(ctx aws.Context, input *UpdatePho
 	return out, req.Send()
 }
 
+const opUpdatePrompt = "UpdatePrompt"
+
+// UpdatePromptRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePrompt operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePrompt for more information on using the UpdatePrompt
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePromptRequest method.
+//	req, resp := client.UpdatePromptRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePrompt
+func (c *Connect) UpdatePromptRequest(input *UpdatePromptInput) (req *request.Request, output *UpdatePromptOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePrompt,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prompts/{InstanceId}/{PromptId}",
+	}
+
+	if input == nil {
+		input = &UpdatePromptInput{}
+	}
+
+	output = &UpdatePromptOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePrompt API operation for Amazon Connect Service.
+//
+// Updates a prompt.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdatePrompt for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePrompt
+func (c *Connect) UpdatePrompt(input *UpdatePromptInput) (*UpdatePromptOutput, error) {
+	req, out := c.UpdatePromptRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePromptWithContext is the same as UpdatePrompt with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePrompt for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdatePromptWithContext(ctx aws.Context, input *UpdatePromptInput, opts ...request.Option) (*UpdatePromptOutput, error) {
+	req, out := c.UpdatePromptRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateQueueHoursOfOperation = "UpdateQueueHoursOfOperation"
 
 // UpdateQueueHoursOfOperationRequest generates a "aws/request.Request" representing the
@@ -24488,6 +24949,156 @@ func (s *CreateParticipantOutput) SetParticipantId(v string) *CreateParticipantO
 	return s
 }
 
+type CreatePromptInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the prompt.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the prompt.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The URI for the S3 bucket where the prompt is stored.
+	//
+	// S3Uri is a required field
+	S3Uri *string `min:"1" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePromptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePromptInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+	if s.S3Uri != nil && len(*s.S3Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Uri", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePromptInput) SetDescription(v string) *CreatePromptInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreatePromptInput) SetInstanceId(v string) *CreatePromptInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePromptInput) SetName(v string) *CreatePromptInput {
+	s.Name = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *CreatePromptInput) SetS3Uri(v string) *CreatePromptInput {
+	s.S3Uri = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePromptInput) SetTags(v map[string]*string) *CreatePromptInput {
+	s.Tags = v
+	return s
+}
+
+type CreatePromptOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prompt.
+	PromptARN *string `type:"string"`
+
+	// A unique identifier for the prompt.
+	PromptId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptOutput) GoString() string {
+	return s.String()
+}
+
+// SetPromptARN sets the PromptARN field's value.
+func (s *CreatePromptOutput) SetPromptARN(v string) *CreatePromptOutput {
+	s.PromptARN = &v
+	return s
+}
+
+// SetPromptId sets the PromptId field's value.
+func (s *CreatePromptOutput) SetPromptId(v string) *CreatePromptOutput {
+	s.PromptId = &v
+	return s
+}
+
 type CreateQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27580,6 +28191,96 @@ func (s DeleteIntegrationAssociationOutput) GoString() string {
 	return s.String()
 }
 
+type DeletePromptInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the prompt.
+	//
+	// PromptId is a required field
+	PromptId *string `location:"uri" locationName:"PromptId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePromptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePromptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePromptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePromptInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.PromptId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptId"))
+	}
+	if s.PromptId != nil && len(*s.PromptId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeletePromptInput) SetInstanceId(v string) *DeletePromptInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPromptId sets the PromptId field's value.
+func (s *DeletePromptInput) SetPromptId(v string) *DeletePromptInput {
+	s.PromptId = &v
+	return s
+}
+
+type DeletePromptOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePromptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePromptOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteQuickConnectInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -29515,6 +30216,105 @@ func (s DescribePhoneNumberOutput) GoString() string {
 // SetClaimedPhoneNumberSummary sets the ClaimedPhoneNumberSummary field's value.
 func (s *DescribePhoneNumberOutput) SetClaimedPhoneNumberSummary(v *ClaimedPhoneNumberSummary) *DescribePhoneNumberOutput {
 	s.ClaimedPhoneNumberSummary = v
+	return s
+}
+
+type DescribePromptInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the prompt.
+	//
+	// PromptId is a required field
+	PromptId *string `location:"uri" locationName:"PromptId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePromptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePromptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePromptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePromptInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.PromptId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptId"))
+	}
+	if s.PromptId != nil && len(*s.PromptId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribePromptInput) SetInstanceId(v string) *DescribePromptInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPromptId sets the PromptId field's value.
+func (s *DescribePromptInput) SetPromptId(v string) *DescribePromptInput {
+	s.PromptId = &v
+	return s
+}
+
+type DescribePromptOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the prompt.
+	Prompt *Prompt `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePromptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePromptOutput) GoString() string {
+	return s.String()
+}
+
+// SetPrompt sets the Prompt field's value.
+func (s *DescribePromptOutput) SetPrompt(v *Prompt) *DescribePromptOutput {
+	s.Prompt = v
 	return s
 }
 
@@ -35483,6 +36283,106 @@ func (s *GetMetricDataV2Output) SetMetricResults(v []*MetricResultV2) *GetMetric
 // SetNextToken sets the NextToken field's value.
 func (s *GetMetricDataV2Output) SetNextToken(v string) *GetMetricDataV2Output {
 	s.NextToken = &v
+	return s
+}
+
+type GetPromptFileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the prompt.
+	//
+	// PromptId is a required field
+	PromptId *string `location:"uri" locationName:"PromptId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPromptFileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPromptFileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPromptFileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPromptFileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.PromptId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptId"))
+	}
+	if s.PromptId != nil && len(*s.PromptId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetPromptFileInput) SetInstanceId(v string) *GetPromptFileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPromptId sets the PromptId field's value.
+func (s *GetPromptFileInput) SetPromptId(v string) *GetPromptFileInput {
+	s.PromptId = &v
+	return s
+}
+
+type GetPromptFileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A generated URL to the prompt that can be given to an unauthorized user so
+	// they can access the prompt in S3.
+	PromptPresignedUrl *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPromptFileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPromptFileOutput) GoString() string {
+	return s.String()
+}
+
+// SetPromptPresignedUrl sets the PromptPresignedUrl field's value.
+func (s *GetPromptFileOutput) SetPromptPresignedUrl(v string) *GetPromptFileOutput {
+	s.PromptPresignedUrl = &v
 	return s
 }
 
@@ -43781,6 +44681,75 @@ func (s ProblemDetail) GoString() string {
 // SetMessage sets the Message field's value.
 func (s *ProblemDetail) SetMessage(v string) *ProblemDetail {
 	s.Message = &v
+	return s
+}
+
+// Information about a prompt.
+type Prompt struct {
+	_ struct{} `type:"structure"`
+
+	// A description for the prompt.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the prompt.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the prompt.
+	PromptARN *string `type:"string"`
+
+	// A unique identifier for the prompt.
+	PromptId *string `min:"1" type:"string"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Prompt) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Prompt) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Prompt) SetDescription(v string) *Prompt {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Prompt) SetName(v string) *Prompt {
+	s.Name = &v
+	return s
+}
+
+// SetPromptARN sets the PromptARN field's value.
+func (s *Prompt) SetPromptARN(v string) *Prompt {
+	s.PromptARN = &v
+	return s
+}
+
+// SetPromptId sets the PromptId field's value.
+func (s *Prompt) SetPromptId(v string) *Prompt {
+	s.PromptId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Prompt) SetTags(v map[string]*string) *Prompt {
+	s.Tags = v
 	return s
 }
 
@@ -53147,6 +54116,150 @@ func (s *UpdatePhoneNumberOutput) SetPhoneNumberArn(v string) *UpdatePhoneNumber
 // SetPhoneNumberId sets the PhoneNumberId field's value.
 func (s *UpdatePhoneNumberOutput) SetPhoneNumberId(v string) *UpdatePhoneNumberOutput {
 	s.PhoneNumberId = &v
+	return s
+}
+
+type UpdatePromptInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the prompt.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the prompt.
+	Name *string `min:"1" type:"string"`
+
+	// A unique identifier for the prompt.
+	//
+	// PromptId is a required field
+	PromptId *string `location:"uri" locationName:"PromptId" min:"1" type:"string" required:"true"`
+
+	// The URI for the S3 bucket where the prompt is stored.
+	S3Uri *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePromptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePromptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePromptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePromptInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PromptId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptId"))
+	}
+	if s.PromptId != nil && len(*s.PromptId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptId", 1))
+	}
+	if s.S3Uri != nil && len(*s.S3Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePromptInput) SetDescription(v string) *UpdatePromptInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdatePromptInput) SetInstanceId(v string) *UpdatePromptInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePromptInput) SetName(v string) *UpdatePromptInput {
+	s.Name = &v
+	return s
+}
+
+// SetPromptId sets the PromptId field's value.
+func (s *UpdatePromptInput) SetPromptId(v string) *UpdatePromptInput {
+	s.PromptId = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *UpdatePromptInput) SetS3Uri(v string) *UpdatePromptInput {
+	s.S3Uri = &v
+	return s
+}
+
+type UpdatePromptOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prompt.
+	PromptARN *string `type:"string"`
+
+	// A unique identifier for the prompt.
+	PromptId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePromptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePromptOutput) GoString() string {
+	return s.String()
+}
+
+// SetPromptARN sets the PromptARN field's value.
+func (s *UpdatePromptOutput) SetPromptARN(v string) *UpdatePromptOutput {
+	s.PromptARN = &v
+	return s
+}
+
+// SetPromptId sets the PromptId field's value.
+func (s *UpdatePromptOutput) SetPromptId(v string) *UpdatePromptOutput {
+	s.PromptId = &v
 	return s
 }
 
