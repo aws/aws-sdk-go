@@ -953,6 +953,22 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "PutDedicatedIpPoolScalingAttributes":{
+      "name":"PutDedicatedIpPoolScalingAttributes",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/dedicated-ip-pools/{PoolName}/scaling"
+      },
+      "input":{"shape":"PutDedicatedIpPoolScalingAttributesRequest"},
+      "output":{"shape":"PutDedicatedIpPoolScalingAttributesResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ],
+      "idempotent":true
+    },
     "PutDedicatedIpWarmupAttributes":{
       "name":"PutDedicatedIpWarmupAttributes",
       "http":{
@@ -3602,6 +3618,26 @@
       }
     },
     "PutDedicatedIpInPoolResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutDedicatedIpPoolScalingAttributesRequest":{
+      "type":"structure",
+      "required":[
+        "PoolName",
+        "ScalingMode"
+      ],
+      "members":{
+        "PoolName":{
+          "shape":"PoolName",
+          "location":"uri",
+          "locationName":"PoolName"
+        },
+        "ScalingMode":{"shape":"ScalingMode"}
+      }
+    },
+    "PutDedicatedIpPoolScalingAttributesResponse":{
       "type":"structure",
       "members":{
       }

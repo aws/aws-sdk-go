@@ -363,6 +363,10 @@ type SESV2API interface {
 	PutDedicatedIpInPoolWithContext(aws.Context, *sesv2.PutDedicatedIpInPoolInput, ...request.Option) (*sesv2.PutDedicatedIpInPoolOutput, error)
 	PutDedicatedIpInPoolRequest(*sesv2.PutDedicatedIpInPoolInput) (*request.Request, *sesv2.PutDedicatedIpInPoolOutput)
 
+	PutDedicatedIpPoolScalingAttributes(*sesv2.PutDedicatedIpPoolScalingAttributesInput) (*sesv2.PutDedicatedIpPoolScalingAttributesOutput, error)
+	PutDedicatedIpPoolScalingAttributesWithContext(aws.Context, *sesv2.PutDedicatedIpPoolScalingAttributesInput, ...request.Option) (*sesv2.PutDedicatedIpPoolScalingAttributesOutput, error)
+	PutDedicatedIpPoolScalingAttributesRequest(*sesv2.PutDedicatedIpPoolScalingAttributesInput) (*request.Request, *sesv2.PutDedicatedIpPoolScalingAttributesOutput)
+
 	PutDedicatedIpWarmupAttributes(*sesv2.PutDedicatedIpWarmupAttributesInput) (*sesv2.PutDedicatedIpWarmupAttributesOutput, error)
 	PutDedicatedIpWarmupAttributesWithContext(aws.Context, *sesv2.PutDedicatedIpWarmupAttributesInput, ...request.Option) (*sesv2.PutDedicatedIpWarmupAttributesOutput, error)
 	PutDedicatedIpWarmupAttributesRequest(*sesv2.PutDedicatedIpWarmupAttributesInput) (*request.Request, *sesv2.PutDedicatedIpWarmupAttributesOutput)

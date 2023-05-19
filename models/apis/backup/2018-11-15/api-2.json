@@ -3250,7 +3250,10 @@
     "RecoveryPointMember":{
       "type":"structure",
       "members":{
-        "RecoveryPointArn":{"shape":"ARN"}
+        "RecoveryPointArn":{"shape":"ARN"},
+        "ResourceArn":{"shape":"ARN"},
+        "ResourceType":{"shape":"ResourceType"},
+        "BackupVaultName":{"shape":"BackupVaultName"}
       }
     },
     "RecoveryPointSelection":{

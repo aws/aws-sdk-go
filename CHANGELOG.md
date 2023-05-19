@@ -1,3 +1,12 @@
+Release v1.44.266 (2023-05-19)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/connectcases`: Updates service API
+* `service/mediapackagev2`: Adds new service
+* `service/sesv2`: Updates service API, documentation, and examples
+
 Release v1.44.265 (2023-05-18)
 ===
 

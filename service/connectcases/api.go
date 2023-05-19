@@ -9939,6 +9939,9 @@ const (
 
 	// FieldTypeSingleSelect is a FieldType enum value
 	FieldTypeSingleSelect = "SingleSelect"
+
+	// FieldTypeUrl is a FieldType enum value
+	FieldTypeUrl = "Url"
 )
 
 // FieldType_Values returns all elements of the FieldType enum
@@ -9949,6 +9952,7 @@ func FieldType_Values() []string {
 		FieldTypeBoolean,
 		FieldTypeDateTime,
 		FieldTypeSingleSelect,
+		FieldTypeUrl,
 	}
 }
 

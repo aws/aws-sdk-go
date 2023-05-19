@@ -68,6 +68,7 @@
     "PutConfigurationSetTrackingOptions": "<p>Specify a custom domain to use for open and click tracking elements in email that you send.</p>",
     "PutConfigurationSetVdmOptions": "<p>Specify VDM preferences for email that you send using the configuration set.</p> <p>You can execute this operation no more than once per second.</p>",
     "PutDedicatedIpInPool": "<p>Move a dedicated IP address to an existing dedicated IP pool.</p> <note> <p>The dedicated IP address that you specify must already exist, and must be associated with your Amazon Web Services account. </p> <p>The dedicated IP pool you specify must already exist. You can create a new pool by using the <code>CreateDedicatedIpPool</code> operation.</p> </note>",
+    "PutDedicatedIpPoolScalingAttributes": "<p>Used to convert a dedicated IP pool to a different scaling mode.</p> <note> <p> <code>MANAGED</code> pools cannot be converted to <code>STANDARD</code> scaling mode.</p> </note>",
     "PutDedicatedIpWarmupAttributes": "<p/>",
     "PutDeliverabilityDashboardOption": "<p>Enable or disable the Deliverability dashboard. When you enable the Deliverability dashboard, you gain access to reputation, deliverability, and other metrics for the domains that you use to send email. You also gain the ability to perform predictive inbox placement tests.</p> <p>When you use the Deliverability dashboard, you pay a monthly subscription charge, in addition to any other fees that you accrue by using Amazon SES and other Amazon Web Services services. For more information about the features and cost of a Deliverability dashboard subscription, see <a href=\"http://aws.amazon.com/ses/pricing/\">Amazon SES Pricing</a>.</p>",
     "PutEmailIdentityConfigurationSetAttributes": "<p>Used to associate a configuration set with an email identity.</p>",
@@ -873,8 +874,8 @@
         "DeleteSuppressedDestinationRequest$EmailAddress": "<p>The suppressed email destination to remove from the account suppression list.</p>",
         "DeliverabilityTestReport$FromEmailAddress": "<p>The sender address that you specified for the predictive inbox placement test.</p>",
         "EmailAddressList$member": null,
-        "GetContactRequest$EmailAddress": "<p>The contact's email addres.</p>",
-        "GetContactResponse$EmailAddress": "<p>The contact's email addres.</p>",
+        "GetContactRequest$EmailAddress": "<p>The contact's email address.</p>",
+        "GetContactResponse$EmailAddress": "<p>The contact's email address.</p>",
         "GetCustomVerificationEmailTemplateResponse$FromEmailAddress": "<p>The email address that the custom verification email is sent from.</p>",
         "GetSuppressedDestinationRequest$EmailAddress": "<p>The email address that's on the account suppression list.</p>",
         "PutSuppressedDestinationRequest$EmailAddress": "<p>The email address that should be added to the suppression list for your account.</p>",
@@ -885,7 +886,7 @@
         "SendEmailRequest$FeedbackForwardingEmailAddress": "<p>The address that you want bounce and complaint notifications to be sent to.</p>",
         "SuppressedDestination$EmailAddress": "<p>The email address that is on the suppression list for your account.</p>",
         "SuppressedDestinationSummary$EmailAddress": "<p>The email address that's on the suppression list for your account.</p>",
-        "UpdateContactRequest$EmailAddress": "<p>The contact's email addres.</p>",
+        "UpdateContactRequest$EmailAddress": "<p>The contact's email address.</p>",
         "UpdateCustomVerificationEmailTemplateRequest$FromEmailAddress": "<p>The email address that the custom verification email is sent from.</p>"
       }
     },
@@ -1956,7 +1957,8 @@
         "GetDedicatedIpPoolRequest$PoolName": "<p>The name of the dedicated IP pool to retrieve.</p>",
         "GetDedicatedIpsRequest$PoolName": "<p>The name of the IP pool that the dedicated IP address is associated with.</p>",
         "ListOfDedicatedIpPools$member": null,
-        "PutDedicatedIpInPoolRequest$DestinationPoolName": "<p>The name of the IP pool that you want to add the dedicated IP address to. You have to specify an IP pool that already exists.</p>"
+        "PutDedicatedIpInPoolRequest$DestinationPoolName": "<p>The name of the IP pool that you want to add the dedicated IP address to. You have to specify an IP pool that already exists.</p>",
+        "PutDedicatedIpPoolScalingAttributesRequest$PoolName": "<p>The name of the dedicated IP pool.</p>"
       }
     },
     "PrivateKey": {
@@ -2088,6 +2090,16 @@
       }
     },
     "PutDedicatedIpInPoolResponse": {
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
+    "PutDedicatedIpPoolScalingAttributesRequest": {
+      "base": "<p>A request to convert a dedicated IP pool to a different scaling mode.</p>",
+      "refs": {
+      }
+    },
+    "PutDedicatedIpPoolScalingAttributesResponse": {
       "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
       "refs": {
       }
@@ -2308,7 +2320,8 @@
       "base": null,
       "refs": {
         "CreateDedicatedIpPoolRequest$ScalingMode": "<p>The type of scaling mode.</p>",
-        "DedicatedIpPool$ScalingMode": "<p>The type of the dedicated IP pool.</p> <ul> <li> <p> <code>STANDARD</code> – A dedicated IP pool where the customer can control which IPs are part of the pool.</p> </li> <li> <p> <code>MANAGED</code> – A dedicated IP pool where the reputation and number of IPs is automatically managed by Amazon SES.</p> </li> </ul>"
+        "DedicatedIpPool$ScalingMode": "<p>The type of the dedicated IP pool.</p> <ul> <li> <p> <code>STANDARD</code> – A dedicated IP pool where you can control which IPs are part of the pool.</p> </li> <li> <p> <code>MANAGED</code> – A dedicated IP pool where the reputation and number of IPs are automatically managed by Amazon SES.</p> </li> </ul>",
+        "PutDedicatedIpPoolScalingAttributesRequest$ScalingMode": "<p>The scaling mode to apply to the dedicated IP pool.</p> <note> <p>Changing the scaling mode from <code>MANAGED</code> to <code>STANDARD</code> is not supported.</p> </note>"
       }
     },
     "Selector": {
