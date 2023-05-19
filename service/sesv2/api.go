@@ -6664,6 +6664,97 @@ func (c *SESV2) PutDedicatedIpInPoolWithContext(ctx aws.Context, input *PutDedic
 	return out, req.Send()
 }
 
+const opPutDedicatedIpPoolScalingAttributes = "PutDedicatedIpPoolScalingAttributes"
+
+// PutDedicatedIpPoolScalingAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the PutDedicatedIpPoolScalingAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutDedicatedIpPoolScalingAttributes for more information on using the PutDedicatedIpPoolScalingAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutDedicatedIpPoolScalingAttributesRequest method.
+//	req, resp := client.PutDedicatedIpPoolScalingAttributesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutDedicatedIpPoolScalingAttributes
+func (c *SESV2) PutDedicatedIpPoolScalingAttributesRequest(input *PutDedicatedIpPoolScalingAttributesInput) (req *request.Request, output *PutDedicatedIpPoolScalingAttributesOutput) {
+	op := &request.Operation{
+		Name:       opPutDedicatedIpPoolScalingAttributes,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/dedicated-ip-pools/{PoolName}/scaling",
+	}
+
+	if input == nil {
+		input = &PutDedicatedIpPoolScalingAttributesInput{}
+	}
+
+	output = &PutDedicatedIpPoolScalingAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutDedicatedIpPoolScalingAttributes API operation for Amazon Simple Email Service.
+//
+// Used to convert a dedicated IP pool to a different scaling mode.
+//
+// MANAGED pools cannot be converted to STANDARD scaling mode.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutDedicatedIpPoolScalingAttributes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutDedicatedIpPoolScalingAttributes
+func (c *SESV2) PutDedicatedIpPoolScalingAttributes(input *PutDedicatedIpPoolScalingAttributesInput) (*PutDedicatedIpPoolScalingAttributesOutput, error) {
+	req, out := c.PutDedicatedIpPoolScalingAttributesRequest(input)
+	return out, req.Send()
+}
+
+// PutDedicatedIpPoolScalingAttributesWithContext is the same as PutDedicatedIpPoolScalingAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutDedicatedIpPoolScalingAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) PutDedicatedIpPoolScalingAttributesWithContext(ctx aws.Context, input *PutDedicatedIpPoolScalingAttributesInput, opts ...request.Option) (*PutDedicatedIpPoolScalingAttributesOutput, error) {
+	req, out := c.PutDedicatedIpPoolScalingAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutDedicatedIpWarmupAttributes = "PutDedicatedIpWarmupAttributes"
 
 // PutDedicatedIpWarmupAttributesRequest generates a "aws/request.Request" representing the
@@ -11626,11 +11717,11 @@ type DedicatedIpPool struct {
 
 	// The type of the dedicated IP pool.
 	//
-	//    * STANDARD – A dedicated IP pool where the customer can control which
-	//    IPs are part of the pool.
+	//    * STANDARD – A dedicated IP pool where you can control which IPs are
+	//    part of the pool.
 	//
 	//    * MANAGED – A dedicated IP pool where the reputation and number of IPs
-	//    is automatically managed by Amazon SES.
+	//    are automatically managed by Amazon SES.
 	//
 	// ScalingMode is a required field
 	ScalingMode *string `type:"string" required:"true" enum:"ScalingMode"`
@@ -14135,7 +14226,7 @@ type GetContactInput struct {
 	// ContactListName is a required field
 	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
 
-	// The contact's email addres.
+	// The contact's email address.
 	//
 	// EmailAddress is a required field
 	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`
@@ -14331,7 +14422,7 @@ type GetContactOutput struct {
 	// A timestamp noting when the contact was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The contact's email addres.
+	// The contact's email address.
 	EmailAddress *string `type:"string"`
 
 	// A timestamp noting the last time the contact's information was updated.
@@ -19734,6 +19825,96 @@ func (s PutDedicatedIpInPoolOutput) GoString() string {
 	return s.String()
 }
 
+// A request to convert a dedicated IP pool to a different scaling mode.
+type PutDedicatedIpPoolScalingAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dedicated IP pool.
+	//
+	// PoolName is a required field
+	PoolName *string `location:"uri" locationName:"PoolName" type:"string" required:"true"`
+
+	// The scaling mode to apply to the dedicated IP pool.
+	//
+	// Changing the scaling mode from MANAGED to STANDARD is not supported.
+	//
+	// ScalingMode is a required field
+	ScalingMode *string `type:"string" required:"true" enum:"ScalingMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDedicatedIpPoolScalingAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDedicatedIpPoolScalingAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutDedicatedIpPoolScalingAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutDedicatedIpPoolScalingAttributesInput"}
+	if s.PoolName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolName"))
+	}
+	if s.PoolName != nil && len(*s.PoolName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PoolName", 1))
+	}
+	if s.ScalingMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScalingMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *PutDedicatedIpPoolScalingAttributesInput) SetPoolName(v string) *PutDedicatedIpPoolScalingAttributesInput {
+	s.PoolName = &v
+	return s
+}
+
+// SetScalingMode sets the ScalingMode field's value.
+func (s *PutDedicatedIpPoolScalingAttributesInput) SetScalingMode(v string) *PutDedicatedIpPoolScalingAttributesInput {
+	s.ScalingMode = &v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type PutDedicatedIpPoolScalingAttributesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDedicatedIpPoolScalingAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDedicatedIpPoolScalingAttributesOutput) GoString() string {
+	return s.String()
+}
+
 // A request to change the warm-up attributes for a dedicated IP address. This
 // operation is useful when you want to resume the warm-up process for an existing
 // IP address.
@@ -22790,7 +22971,7 @@ type UpdateContactInput struct {
 	// ContactListName is a required field
 	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
 
-	// The contact's email addres.
+	// The contact's email address.
 	//
 	// EmailAddress is a required field
 	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`

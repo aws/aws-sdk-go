@@ -1213,7 +1213,8 @@
         "Number",
         "Boolean",
         "DateTime",
-        "SingleSelect"
+        "SingleSelect",
+        "Url"
       ]
     },
     "FieldValue":{

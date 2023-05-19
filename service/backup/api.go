@@ -17821,9 +17821,20 @@ func (s *RecoveryPointCreator) SetBackupRuleId(v string) *RecoveryPointCreator {
 type RecoveryPointMember struct {
 	_ struct{} `type:"structure"`
 
+	// This is the name of the backup vault (the logical container in which backups
+	// are stored).
+	BackupVaultName *string `type:"string"`
+
 	// This is the Amazon Resource Name (ARN) of the parent (composite) recovery
 	// point.
 	RecoveryPointArn *string `type:"string"`
+
+	// This is the Amazon Resource Name (ARN) that uniquely identifies a saved resource.
+	ResourceArn *string `type:"string"`
+
+	// This is the Amazon Web Services resource type that is saved as a recovery
+	// point.
+	ResourceType *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -17844,9 +17855,27 @@ func (s RecoveryPointMember) GoString() string {
 	return s.String()
 }
 
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *RecoveryPointMember) SetBackupVaultName(v string) *RecoveryPointMember {
+	s.BackupVaultName = &v
+	return s
+}
+
 // SetRecoveryPointArn sets the RecoveryPointArn field's value.
 func (s *RecoveryPointMember) SetRecoveryPointArn(v string) *RecoveryPointMember {
 	s.RecoveryPointArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *RecoveryPointMember) SetResourceArn(v string) *RecoveryPointMember {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *RecoveryPointMember) SetResourceType(v string) *RecoveryPointMember {
+	s.ResourceType = &v
 	return s
 }
 
@@ -18662,6 +18691,14 @@ type Rule struct {
 	// A value in minutes after a backup is scheduled before a job will be canceled
 	// if it doesn't start successfully. This value is optional. If this value is
 	// included, it must be at least 60 minutes to avoid errors.
+	//
+	// During the start window, the backup job status remains in CREATED status
+	// until it has successfully begun or until the start window time has run out.
+	// If within the start window time Backup receives an error that allows the
+	// job to be retried, Backup will automatically retry to begin the job at least
+	// every 10 minutes until the backup successfully begins (the job status changes
+	// to RUNNING) or until the job status changes to EXPIRED (which is expected
+	// to occur when the start window time is over).
 	StartWindowMinutes *int64 `type:"long"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
@@ -18803,6 +18840,14 @@ type RuleInput struct {
 	// A value in minutes after a backup is scheduled before a job will be canceled
 	// if it doesn't start successfully. This value is optional. If this value is
 	// included, it must be at least 60 minutes to avoid errors.
+	//
+	// During the start window, the backup job status remains in CREATED status
+	// until it has successfully begun or until the start window time has run out.
+	// If within the start window time Backup receives an error that allows the
+	// job to be retried, Backup will automatically retry to begin the job at least
+	// every 10 minutes until the backup successfully begins (the job status changes
+	// to RUNNING) or until the job status changes to EXPIRED (which is expected
+	// to occur when the start window time is over).
 	StartWindowMinutes *int64 `type:"long"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
@@ -19281,6 +19326,14 @@ type StartBackupJobInput struct {
 	// if it doesn't start successfully. This value is optional, and the default
 	// is 8 hours. If this value is included, it must be at least 60 minutes to
 	// avoid errors.
+	//
+	// During the start window, the backup job status remains in CREATED status
+	// until it has successfully begun or until the start window time has run out.
+	// If within the start window time Backup receives an error that allows the
+	// job to be retried, Backup will automatically retry to begin the job at least
+	// every 10 minutes until the backup successfully begins (the job status changes
+	// to RUNNING) or until the job status changes to EXPIRED (which is expected
+	// to occur when the start window time is over).
 	StartWindowMinutes *int64 `type:"long"`
 }
 
@@ -19777,6 +19830,8 @@ type StartRestoreJobInput struct {
 	//
 	//    * DocumentDB for Amazon DocumentDB (with MongoDB compatibility)
 	//
+	//    * CloudFormation for CloudFormation
+	//
 	//    * DynamoDB for Amazon DynamoDB
 	//
 	//    * EBS for Amazon Elastic Block Store
@@ -19791,9 +19846,13 @@ type StartRestoreJobInput struct {
 	//
 	//    * RDS for Amazon Relational Database Service
 	//
+	//    * Redshift for Amazon Redshift
+	//
 	//    * Storage Gateway for Storage Gateway
 	//
 	//    * S3 for Amazon S3
+	//
+	//    * Timestream for Amazon Timestream
 	//
 	//    * VirtualMachine for virtual machines
 	ResourceType *string `type:"string"`
