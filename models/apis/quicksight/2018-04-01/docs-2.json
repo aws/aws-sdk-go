@@ -53,6 +53,8 @@
     "DescribeAnalysis": "<p>Provides a summary of the metadata for an analysis.</p>",
     "DescribeAnalysisDefinition": "<p>Provides a detailed description of the definition of an analysis.</p> <note> <p>If you do not need to know details about the content of an Analysis, for instance if you are trying to check the status of a recently created or updated Analysis, use the <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeAnalysis.html\"> <code>DescribeAnalysis</code> </a> instead. </p> </note>",
     "DescribeAnalysisPermissions": "<p>Provides the read and write permissions for an analysis.</p>",
+    "DescribeAssetBundleExportJob": "<p>Describes an existing export job.</p> <p>Poll job descriptions after a job starts to know the status of the job. When a job succeeds, a URL is provided to download the exported assets' data from. Download URLs are valid for five minutes after they are generated. You can call the <code>DescribeAssetBundleExportJob</code> API for a new download URL as needed.</p> <p>Job descriptions are available for 14 days after the job starts.</p>",
+    "DescribeAssetBundleImportJob": "<p>Describes an existing import job.</p> <p>Poll job descriptions after starting a job to know when it has succeeded or failed. Job descriptions are available for 14 days after job starts.</p>",
     "DescribeDashboard": "<p>Provides a summary for a dashboard.</p>",
     "DescribeDashboardDefinition": "<p>Provides a detailed description of the definition of a dashboard.</p> <note> <p>If you do not need to know details about the content of a dashboard, for instance if you are trying to check the status of a recently created or updated dashboard, use the <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeDashboard.html\"> <code>DescribeDashboard</code> </a> instead. </p> </note>",
     "DescribeDashboardPermissions": "<p>Describes read and write permissions for a dashboard.</p>",
@@ -89,6 +91,8 @@
     "GetDashboardEmbedUrl": "<p>Generates a temporary session URL and authorization code(bearer token) that you can use to embed an Amazon QuickSight read-only dashboard in your website or application. Before you use this command, make sure that you have configured the dashboards and permissions. </p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user's browser. The following rules apply to the generated URL:</p> <ul> <li> <p>They must be used together.</p> </li> <li> <p>They can be used one time only.</p> </li> <li> <p>They are valid for 5 minutes after you run this command.</p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> <li> <p>The resulting user session is valid for 15 minutes (default) up to 10 hours (maximum). You can use the optional <code>SessionLifetimeInMinutes</code> parameter to customize session duration.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-deprecated.html\">Embedding Analytics Using GetDashboardEmbedUrl</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
     "GetSessionEmbedUrl": "<p>Generates a session URL and authorization code that you can use to embed the Amazon Amazon QuickSight console in your web server code. Use <code>GetSessionEmbedUrl</code> where you want to provide an authoring portal that allows users to create data sources, datasets, analyses, and dashboards. The users who access an embedded Amazon QuickSight console need belong to the author or admin security cohort. If you want to restrict permissions to some of these features, add a custom permissions profile to the user with the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html\">UpdateUser</a> </code> API operation. Use <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_RegisterUser.html\">RegisterUser</a> </code> API operation to add a new user with a custom permission profile attached. For more information, see the following sections in the <i>Amazon QuickSight User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedding Analytics</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html\">Customizing Access to the Amazon QuickSight Console</a> </p> </li> </ul>",
     "ListAnalyses": "<p>Lists Amazon QuickSight analyses that exist in the specified Amazon Web Services account.</p>",
+    "ListAssetBundleExportJobs": "<p>Lists all asset bundle export jobs that have been taken place in the last 14 days. Jobs created more than 14 days ago are deleted forever and are not returned. If you are using the same job ID for multiple jobs, <code>ListAssetBundleExportJobs</code> only returns the most recent job that uses the repeated job ID.</p>",
+    "ListAssetBundleImportJobs": "<p>Lists all asset bundle import jobs that have taken place in the last 14 days. Jobs created more than 14 days ago are deleted forever and are not returned. If you are using the same job ID for multiple jobs, <code>ListAssetBundleImportJobs</code> only returns the most recent job that uses the repeated job ID.</p>",
     "ListDashboardVersions": "<p>Lists all the versions of the dashboards in the Amazon QuickSight subscription.</p>",
     "ListDashboards": "<p>Lists dashboards in an Amazon Web Services account.</p>",
     "ListDataSets": "<p>Lists all of the datasets belonging to the current Amazon Web Services account in an Amazon Web Services Region.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/*</code>.</p>",
@@ -123,6 +127,8 @@
     "SearchDataSources": "<p>Use the <code>SearchDataSources</code> operation to search for data sources that belong to an account.</p>",
     "SearchFolders": "<p>Searches the subfolders in a folder.</p>",
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
+    "StartAssetBundleExportJob": "<p>Starts an Asset Bundle export job.</p> <p>An Asset Bundle export job exports specified Amazon QuickSight assets. You can also choose to export any asset dependencies in the same job. Export jobs run asynchronously and can be polled with a <code>DescribeAssetBundleExportJob</code> API call. When a job is successfully completed, a download URL that contains the exported assets is returned. The URL is valid for 5 minutes and can be refreshed with a <code>DescribeAssetBundleExportJob</code> API call. Each Amazon QuickSight account can run up to 10 export jobs concurrently.</p> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>",
+    "StartAssetBundleImportJob": "<p>Starts an Asset Bundle import job.</p> <p>An Asset Bundle import job imports specified Amazon QuickSight assets into an Amazon QuickSight account. You can also choose to import a naming prefix and specified configuration overrides. The assets that are contained in the bundle file that you provide are used to create or update a new or existing asset in your Amazon QuickSight account. Each Amazon QuickSight account can run up to 10 import jobs concurrently.</p> <p>The API caller must have the necessary <code>\"create\"</code>, <code>\"describe\"</code>, and <code>\"update\"</code> permissions in their IAM role to access each resource type that is contained in the bundle file before the resources can be imported.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, and topic. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, the only customization that you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
@@ -454,6 +460,18 @@
         "AnalysisSourceTemplate$Arn": "<p>The Amazon Resource Name (ARN) of the source template of an analysis.</p>",
         "AnalysisSummary$Arn": "<p>The Amazon Resource Name (ARN) for the analysis.</p>",
         "ArnList$member": null,
+        "AssetBundleExportJobAnalysisOverrideProperties$Arn": "<p>The ARN of the specific <code>Analysis</code> resource whose override properties are configured in this structure.</p>",
+        "AssetBundleExportJobDashboardOverrideProperties$Arn": "<p>The ARN of the specific <code>Dashboard</code> resource whose override properties are configured in this structure.</p>",
+        "AssetBundleExportJobDataSetOverrideProperties$Arn": "<p>The ARN of the specific <code>DataSet</code> resource whose override properties are configured in this structure.</p>",
+        "AssetBundleExportJobDataSourceOverrideProperties$Arn": "<p>The ARN of the specific <code>DataSource</code> resource whose override properties are configured in this structure.</p>",
+        "AssetBundleExportJobError$Arn": "<p>The ARN of the resource whose processing caused an error.</p>",
+        "AssetBundleExportJobRefreshScheduleOverrideProperties$Arn": "<p>The ARN of the specific <code>RefreshSchedule</code> resource whose override properties are configured in this structure.</p>",
+        "AssetBundleExportJobSummary$Arn": "<p>The ARN of the export job.</p>",
+        "AssetBundleExportJobThemeOverrideProperties$Arn": "<p>The ARN of the specific <code>Theme</code> resource whose override properties are configured in this structure.</p>",
+        "AssetBundleExportJobVPCConnectionOverrideProperties$Arn": "<p>The ARN of the specific <code>VPCConnection</code> resource whose override properties are configured in this structure.</p>",
+        "AssetBundleImportJobError$Arn": "<p>The ARN of the resource whose processing caused an error.</p>",
+        "AssetBundleImportJobSummary$Arn": "<p>The ARN of the import job.</p>",
+        "AssetBundleResourceArns$member": null,
         "CancelIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
         "CreateAccountCustomizationResponse$Arn": "<p>The Amazon Resource Name (ARN) for the customization that you created for this Amazon Web Services account.</p>",
         "CreateAnalysisRequest$ThemeArn": "<p>The ARN for the theme to apply to the analysis that you're creating. To see the theme in the Amazon QuickSight console, make sure that you have access to it.</p>",
@@ -515,6 +533,8 @@
         "DescribeAccountCustomizationResponse$Arn": "<p>The Amazon Resource Name (ARN) of the customization that's associated with this Amazon Web Services account.</p>",
         "DescribeAnalysisDefinitionResponse$ThemeArn": "<p>The ARN of the theme of the analysis.</p>",
         "DescribeAnalysisPermissionsResponse$AnalysisArn": "<p>The Amazon Resource Name (ARN) of the analysis whose permissions you're describing.</p>",
+        "DescribeAssetBundleExportJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the export job.</p>",
+        "DescribeAssetBundleImportJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the import job.</p>",
         "DescribeDashboardDefinitionResponse$ThemeArn": "<p>The ARN of the theme of the dashboard.</p>",
         "DescribeDashboardPermissionsResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
         "DescribeDataSetPermissionsResponse$DataSetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
@@ -550,6 +570,8 @@
         "RestoreAnalysisResponse$Arn": "<p>The Amazon Resource Name (ARN) of the analysis that you're restoring.</p>",
         "RowLevelPermissionDataSet$Arn": "<p>The Amazon Resource Name (ARN) of the dataset that contains permissions for RLS.</p>",
         "S3Source$DataSourceArn": "<p>The Amazon Resource Name (ARN) for the data source.</p>",
+        "StartAssetBundleExportJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the export job.</p>",
+        "StartAssetBundleImportJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the import job.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to tag.</p>",
         "Template$Arn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "TemplateAlias$Arn": "<p>The Amazon Resource Name (ARN) of the template alias.</p>",
@@ -609,6 +631,400 @@
       "base": null,
       "refs": {
         "GenerateEmbedUrlForAnonymousUserRequest$AuthorizedResourceArns": "<p>The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that the user is authorized to access during the lifetime of the session. If you choose <code>Dashboard</code> embedding experience, pass the list of dashboard ARNs in the account that you want the user to be able to view. Currently, you can pass up to 25 dashboard ARNs in each API call.</p>"
+      }
+    },
+    "AssetBundleCloudFormationOverridePropertyConfiguration": {
+      "base": "<p>An optional collection of CloudFormation property configurations that control how the export job is generated.</p>",
+      "refs": {
+        "DescribeAssetBundleExportJobResponse$CloudFormationOverridePropertyConfiguration": "<p>The CloudFormation override property configuration for the export job.</p>",
+        "StartAssetBundleExportJobRequest$CloudFormationOverridePropertyConfiguration": "<p>An optional collection of structures that generate CloudFormation parameters to override the existing resource property values when the resource is exported to a new CloudFormation template.</p> <p>Use this field if the <code>ExportFormat</code> field of a <code>StartAssetBundleExportJobRequest</code> API call is set to <code>CLOUDFORMATION_JSON</code>.</p>"
+      }
+    },
+    "AssetBundleExportFormat": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobSummary$ExportFormat": "<p>The format for the export job.</p>",
+        "DescribeAssetBundleExportJobResponse$ExportFormat": "<p>The format of the export.</p>",
+        "StartAssetBundleExportJobRequest$ExportFormat": "<p>The export data format.</p>"
+      }
+    },
+    "AssetBundleExportJobAnalysisOverrideProperties": {
+      "base": "<p>Controls how a specific <code>Analysis</code> resource is parameterized in the returned CloudFormation template.</p>",
+      "refs": {
+        "AssetBundleExportJobAnalysisOverridePropertiesList$member": null
+      }
+    },
+    "AssetBundleExportJobAnalysisOverridePropertiesList": {
+      "base": null,
+      "refs": {
+        "AssetBundleCloudFormationOverridePropertyConfiguration$Analyses": "<p>An optional list of structures that control how <code>Analysis</code> resources are parameterized in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobAnalysisPropertyToOverride": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobAnalysisPropertyToOverrideList$member": null
+      }
+    },
+    "AssetBundleExportJobAnalysisPropertyToOverrideList": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobAnalysisOverrideProperties$Properties": "<p>A list of <code>Analysis</code> resource properties to generate variables for in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobDashboardOverrideProperties": {
+      "base": "<p>Controls how a specific <code>Dashboard</code> resource is parameterized in the returned CloudFormation template.</p>",
+      "refs": {
+        "AssetBundleExportJobDashboardOverridePropertiesList$member": null
+      }
+    },
+    "AssetBundleExportJobDashboardOverridePropertiesList": {
+      "base": null,
+      "refs": {
+        "AssetBundleCloudFormationOverridePropertyConfiguration$Dashboards": "<p>An optional list of structures that control how <code>Dashboard</code> resources are parameterized in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobDashboardPropertyToOverride": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobDashboardPropertyToOverrideList$member": null
+      }
+    },
+    "AssetBundleExportJobDashboardPropertyToOverrideList": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobDashboardOverrideProperties$Properties": "<p>A list of <code>Dashboard</code> resource properties to generate variables for in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobDataSetOverrideProperties": {
+      "base": "<p>Controls how a specific <code>DataSet</code> resource is parameterized in the returned CloudFormation template.</p>",
+      "refs": {
+        "AssetBundleExportJobDataSetOverridePropertiesList$member": null
+      }
+    },
+    "AssetBundleExportJobDataSetOverridePropertiesList": {
+      "base": null,
+      "refs": {
+        "AssetBundleCloudFormationOverridePropertyConfiguration$DataSets": "<p>An optional list of structures that control how <code>DataSet</code> resources are parameterized in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobDataSetPropertyToOverride": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobDataSetPropertyToOverrideList$member": null
+      }
+    },
+    "AssetBundleExportJobDataSetPropertyToOverrideList": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobDataSetOverrideProperties$Properties": "<p>A list of <code>DataSet</code> resource properties to generate variables for in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobDataSourceOverrideProperties": {
+      "base": "<p>Controls how a specific <code>DataSource</code> resource is parameterized in the returned CloudFormation template.</p>",
+      "refs": {
+        "AssetBundleExportJobDataSourceOverridePropertiesList$member": null
+      }
+    },
+    "AssetBundleExportJobDataSourceOverridePropertiesList": {
+      "base": null,
+      "refs": {
+        "AssetBundleCloudFormationOverridePropertyConfiguration$DataSources": "<p>An optional list of structures that control how <code>DataSource</code> resources are parameterized in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobDataSourcePropertyToOverride": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobDataSourcePropertyToOverrideList$member": null
+      }
+    },
+    "AssetBundleExportJobDataSourcePropertyToOverrideList": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobDataSourceOverrideProperties$Properties": "<p>A list of <code>DataSource</code> resource properties to generate variables for in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobError": {
+      "base": "<p>Describes an error that occurred during an Asset Bundle export job.</p>",
+      "refs": {
+        "AssetBundleExportJobErrorList$member": null
+      }
+    },
+    "AssetBundleExportJobErrorList": {
+      "base": null,
+      "refs": {
+        "DescribeAssetBundleExportJobResponse$Errors": "<p>An array of error records that describes any failures that occurred during the export job processing.</p> <p>Error records accumulate while the job runs. The complete set of error records is available after the job has completed and failed.</p>"
+      }
+    },
+    "AssetBundleExportJobRefreshScheduleOverrideProperties": {
+      "base": "<p>Controls how a specific <code>RefreshSchedule</code> resource is parameterized in the returned CloudFormation template.</p>",
+      "refs": {
+        "AssetBundleExportJobRefreshScheduleOverridePropertiesList$member": null
+      }
+    },
+    "AssetBundleExportJobRefreshScheduleOverridePropertiesList": {
+      "base": null,
+      "refs": {
+        "AssetBundleCloudFormationOverridePropertyConfiguration$RefreshSchedules": "<p>An optional list of structures that control how <code>RefreshSchedule</code> resources are parameterized in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobRefreshSchedulePropertyToOverride": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobRefreshSchedulePropertyToOverrideList$member": null
+      }
+    },
+    "AssetBundleExportJobRefreshSchedulePropertyToOverrideList": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobRefreshScheduleOverrideProperties$Properties": "<p>A list of <code>RefreshSchedule</code> resource properties to generate variables for in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobResourceIdOverrideConfiguration": {
+      "base": "<p>An optional structure that configures resource ID overrides for the export job.</p>",
+      "refs": {
+        "AssetBundleCloudFormationOverridePropertyConfiguration$ResourceIdOverrideConfiguration": "<p>An optional list of structures that control how resource IDs are parameterized in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobStatus": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobSummary$JobStatus": "<p>The current status of the export job.</p>",
+        "DescribeAssetBundleExportJobResponse$JobStatus": "<p>Indicates tha status of a job through its queueing and execution.</p> <p>Poll this <code>DescribeAssetBundleExportApi</code> until <code>JobStatus</code> is either <code>SUCCESSFUL</code> or <code>FAILED</code>.</p>"
+      }
+    },
+    "AssetBundleExportJobSummary": {
+      "base": "<p>A summary of the export job that includes details of the job's configuration and its current status.</p>",
+      "refs": {
+        "AssetBundleExportJobSummaryList$member": null
+      }
+    },
+    "AssetBundleExportJobSummaryList": {
+      "base": null,
+      "refs": {
+        "ListAssetBundleExportJobsResponse$AssetBundleExportJobSummaryList": "<p>A list of export job summaries.</p>"
+      }
+    },
+    "AssetBundleExportJobThemeOverrideProperties": {
+      "base": "<p>Controls how a specific <code>Theme</code> resource is parameterized in the returned CloudFormation template.</p>",
+      "refs": {
+        "AssetBundleExportJobThemeOverridePropertiesList$member": null
+      }
+    },
+    "AssetBundleExportJobThemeOverridePropertiesList": {
+      "base": null,
+      "refs": {
+        "AssetBundleCloudFormationOverridePropertyConfiguration$Themes": "<p>An optional list of structures that control how <code>Theme</code> resources are parameterized in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobThemePropertyToOverride": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobThemePropertyToOverrideList$member": null
+      }
+    },
+    "AssetBundleExportJobThemePropertyToOverrideList": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobThemeOverrideProperties$Properties": "<p>A list of <code>Theme</code> resource properties to generate variables for in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobVPCConnectionOverrideProperties": {
+      "base": "<p>Controls how a specific <code>VPCConnection</code> resource is parameterized in the outputted CloudFormation template.</p>",
+      "refs": {
+        "AssetBundleExportJobVPCConnectionOverridePropertiesList$member": null
+      }
+    },
+    "AssetBundleExportJobVPCConnectionOverridePropertiesList": {
+      "base": null,
+      "refs": {
+        "AssetBundleCloudFormationOverridePropertyConfiguration$VPCConnections": "<p>An optional list of structures that control how <code>VPCConnection</code> resources are parameterized in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleExportJobVPCConnectionPropertyToOverride": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobVPCConnectionPropertyToOverrideList$member": null
+      }
+    },
+    "AssetBundleExportJobVPCConnectionPropertyToOverrideList": {
+      "base": null,
+      "refs": {
+        "AssetBundleExportJobVPCConnectionOverrideProperties$Properties": "<p>A list of <code>VPCConnection</code> resource properties to generate variables for in the returned CloudFormation template.</p>"
+      }
+    },
+    "AssetBundleImportBodyBlob": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportSource$Body": "<p>The bytes of the Base64 encoded asset bundle import zip file. This file can't exceed 20MB.</p> <p>If you are calling the APIs from the Amazon Web Services Java, JavaScript, Python, or PHP SDKs, the SDK encodes Base64 automatically to allow the direct setting of the zip file's bytes. If you are using a SDK of a different language or are receiving related errors, try to Base64 encode your data.</p>"
+      }
+    },
+    "AssetBundleImportFailureAction": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobSummary$FailureAction": "<p>The failure action for the import job.</p>",
+        "DescribeAssetBundleImportJobResponse$FailureAction": "<p>The failure action for the import job.</p>",
+        "StartAssetBundleImportJobRequest$FailureAction": "<p>The failure action for the import job.</p> <p>If you choose <code>ROLLBACK</code>, failed import jobs will attempt to undo any asset changes caused by the failed job.</p> <p>If you choose <code>DO_NOTHING</code>, failed import jobs will not attempt to roll back any asset changes caused by the failed job, possibly leaving the Amazon QuickSight account in an inconsistent state.</p>"
+      }
+    },
+    "AssetBundleImportJobAnalysisOverrideParameters": {
+      "base": "<p>The override parameters for a single analysis that is being imported.</p>",
+      "refs": {
+        "AssetBundleImportJobAnalysisOverrideParametersList$member": null
+      }
+    },
+    "AssetBundleImportJobAnalysisOverrideParametersList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideParameters$Analyses": "<p>A list of overrides for any <code>Analysis</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobDashboardOverrideParameters": {
+      "base": "<p>The override parameters for a single dashboard that is being imported.</p>",
+      "refs": {
+        "AssetBundleImportJobDashboardOverrideParametersList$member": null
+      }
+    },
+    "AssetBundleImportJobDashboardOverrideParametersList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideParameters$Dashboards": "<p>A list of overrides for any <code>Dashboard</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobDataSetOverrideParameters": {
+      "base": "<p>The override parameters for a single dataset that is being imported.</p>",
+      "refs": {
+        "AssetBundleImportJobDataSetOverrideParametersList$member": null
+      }
+    },
+    "AssetBundleImportJobDataSetOverrideParametersList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideParameters$DataSets": "<p>A list of overrides for any <code>DataSet</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobDataSourceCredentialPair": {
+      "base": "<p>A username and password credential pair to use to import a data source resource.</p>",
+      "refs": {
+        "AssetBundleImportJobDataSourceCredentials$CredentialPair": "<p>A username and password credential pair to be used to create the imported data source. Leave this field blank if you are using an Secrets Manager Secret to provide credentials.</p>"
+      }
+    },
+    "AssetBundleImportJobDataSourceCredentials": {
+      "base": "<p>The login credentials to use to import a data source resource.</p>",
+      "refs": {
+        "AssetBundleImportJobDataSourceOverrideParameters$Credentials": "<p>An optional structure that provides the credentials to be used to create the imported data source.</p>"
+      }
+    },
+    "AssetBundleImportJobDataSourceOverrideParameters": {
+      "base": "<p>The override parameters for a single data source that is being imported.</p>",
+      "refs": {
+        "AssetBundleImportJobDataSourceOverrideParametersList$member": null
+      }
+    },
+    "AssetBundleImportJobDataSourceOverrideParametersList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideParameters$DataSources": "<p> A list of overrides for any <code>DataSource</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobError": {
+      "base": "<p>Describes an error that occurred within an Asset Bundle import execution.</p>",
+      "refs": {
+        "AssetBundleImportJobErrorList$member": null
+      }
+    },
+    "AssetBundleImportJobErrorList": {
+      "base": null,
+      "refs": {
+        "DescribeAssetBundleImportJobResponse$Errors": "<p>An array of error records that describes any failures that occurred during the export job processing.</p> <p>Error records accumulate while the job is still running. The complete set of error records is available after the job has completed and failed.</p>",
+        "DescribeAssetBundleImportJobResponse$RollbackErrors": "<p>An array of error records that describes any failures that occurred while an import job was attempting a rollback.</p> <p>Error records accumulate while the job is still running. The complete set of error records is available after the job has completed and failed.</p>"
+      }
+    },
+    "AssetBundleImportJobOverrideParameters": {
+      "base": "<p>A list of overrides that modify the asset bundle resource configuration before the resource is imported.</p>",
+      "refs": {
+        "DescribeAssetBundleImportJobResponse$OverrideParameters": "<p>Optional overrides to be applied to the resource configuration before import.</p>",
+        "StartAssetBundleImportJobRequest$OverrideParameters": "<p>Optional overrides to be applied to the resource configuration before import.</p>"
+      }
+    },
+    "AssetBundleImportJobRefreshScheduleOverrideParameters": {
+      "base": "<p>A list of overrides for a specific <code>RefreshsSchedule</code> resource that is present in the asset bundle that is imported.</p>",
+      "refs": {
+        "AssetBundleImportJobRefreshScheduleOverrideParametersList$member": null
+      }
+    },
+    "AssetBundleImportJobRefreshScheduleOverrideParametersList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideParameters$RefreshSchedules": "<p>A list of overrides for any <code>RefreshSchedule</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobResourceIdOverrideConfiguration": {
+      "base": "<p>An optional structure that configures resource ID overrides for the import job</p>",
+      "refs": {
+        "AssetBundleImportJobOverrideParameters$ResourceIdOverrideConfiguration": "<p>An optional structure that configures resource ID overrides to be applied within the import job.</p>"
+      }
+    },
+    "AssetBundleImportJobStatus": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobSummary$JobStatus": "<p>The current status of the import job.</p>",
+        "DescribeAssetBundleImportJobResponse$JobStatus": "<p>Indicates tha status of a job through its queueing and execution.</p> <p>Poll this <code>DescribeAssetBundleImport</code> API until <code>JobStatus</code> returns one of the following values.</p> <ul> <li> <p> <code>SUCCESSFUL</code> </p> </li> <li> <p> <code>FAILED</code> </p> </li> <li> <p> <code>FAILED_ROLLBACK_COMPLETED</code> </p> </li> <li> <p> <code>FAILED_ROLLBACK_ERROR</code> </p> </li> </ul>"
+      }
+    },
+    "AssetBundleImportJobSummary": {
+      "base": "<p>A summary of the import job that includes details of the requested job's configuration and its current status.</p>",
+      "refs": {
+        "AssetBundleImportJobSummaryList$member": null
+      }
+    },
+    "AssetBundleImportJobSummaryList": {
+      "base": null,
+      "refs": {
+        "ListAssetBundleImportJobsResponse$AssetBundleImportJobSummaryList": "<p>A list of import job summaries.</p>"
+      }
+    },
+    "AssetBundleImportJobThemeOverrideParameters": {
+      "base": "<p>The override parameters for a single theme that is imported.</p>",
+      "refs": {
+        "AssetBundleImportJobThemeOverrideParametersList$member": null
+      }
+    },
+    "AssetBundleImportJobThemeOverrideParametersList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideParameters$Themes": "<p>A list of overrides for any <code>Theme</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobVPCConnectionOverrideParameters": {
+      "base": "<p>The override parameters for a single VPC connection that is imported.</p>",
+      "refs": {
+        "AssetBundleImportJobVPCConnectionOverrideParametersList$member": null
+      }
+    },
+    "AssetBundleImportJobVPCConnectionOverrideParametersList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideParameters$VPCConnections": "<p>A list of overrides for any <code>VPCConnection</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportSource": {
+      "base": "<p>The source of the asset bundle zip file that contains the data that you want to import.</p>",
+      "refs": {
+        "StartAssetBundleImportJobRequest$AssetBundleImportSource": "<p>The source of the asset bundle zip file that contains the data that you want to import.</p>"
+      }
+    },
+    "AssetBundleImportSourceDescription": {
+      "base": "<p>A description of the import source that you provide at the start of an import job. This value is set to either <code>Body</code> or <code>S3Uri</code> depending on how the <code>StartAssetBundleImportJobRequest</code> is configured.</p>",
+      "refs": {
+        "DescribeAssetBundleImportJobResponse$AssetBundleImportSource": "<p>The source of the asset bundle zip file that contains the data that is imported by the job.</p>"
+      }
+    },
+    "AssetBundleResourceArns": {
+      "base": null,
+      "refs": {
+        "DescribeAssetBundleExportJobResponse$ResourceArns": "<p>A list of resource ARNs that exported with the job.</p>",
+        "StartAssetBundleExportJobRequest$ResourceArns": "<p>An array of resource ARNs to export. The following resources are supported.</p> <ul> <li> <p> <code>Analysis</code> </p> </li> <li> <p> <code>Dashboard</code> </p> </li> <li> <p> <code>DataSet</code> </p> </li> <li> <p> <code>DataSource</code> </p> </li> <li> <p> <code>RefreshSchedule</code> </p> </li> <li> <p> <code>Theme</code> </p> </li> <li> <p> <code>VPCConnection</code> </p> </li> </ul> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>"
       }
     },
     "AssignmentStatus": {
@@ -718,6 +1134,10 @@
         "DescribeAnalysisDefinitionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis. You must be using the Amazon Web Services account that the analysis is in.</p>",
         "DescribeAnalysisPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis whose permissions you're describing. You must be using the Amazon Web Services account that the analysis is in.</p>",
         "DescribeAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis. You must be using the Amazon Web Services account that the analysis is in.</p>",
+        "DescribeAssetBundleExportJobRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account the export job is executed in. </p>",
+        "DescribeAssetBundleExportJobResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that the export job was executed in. </p>",
+        "DescribeAssetBundleImportJobRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account the import job was executed in. </p>",
+        "DescribeAssetBundleImportJobResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account the import job was executed in. </p>",
         "DescribeDashboardDefinitionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing.</p>",
         "DescribeDashboardPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing permissions for.</p>",
         "DescribeDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing.</p>",
@@ -755,6 +1175,8 @@
         "GetSessionEmbedUrlRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account associated with your Amazon QuickSight subscription.</p>",
         "IAMPolicyAssignment$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "ListAnalysesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analyses.</p>",
+        "ListAssetBundleExportJobsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that the export jobs were executed in. </p>",
+        "ListAssetBundleImportJobsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that the import jobs were executed in.</p>",
         "ListDashboardVersionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're listing versions for.</p>",
         "ListDashboardsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboards that you're listing.</p>",
         "ListDataSetsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
@@ -788,6 +1210,8 @@
         "SearchDataSourcesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "SearchFoldersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
         "SearchGroupsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
+        "StartAssetBundleExportJobRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account to export assets from.</p>",
+        "StartAssetBundleImportJobRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account to import assets into. </p>",
         "UpdateAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountCustomizationResponse$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountSettingsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight settings that you want to list.</p>",
@@ -1038,6 +1462,8 @@
       "refs": {
         "AccountSettings$PublicSharingEnabled": "<p>A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account. For more information about turning on public sharing, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html\">UpdatePublicSharingSettings</a>.</p>",
         "AccountSettings$TerminationProtectionEnabled": "<p>A boolean value that determines whether or not an Amazon QuickSight account can be deleted. A <code>True</code> value doesn't allow the account to be deleted and results in an error message if a user tries to make a <code>DeleteAccountSubsctiption</code> request. A <code>False</code> value will allow the ccount to be deleted. </p>",
+        "AssetBundleExportJobResourceIdOverrideConfiguration$PrefixForAllResources": "<p>An option to request a CloudFormation variable for a prefix to be prepended to each resource's ID before import. The prefix is only added to the asset IDs and does not change the name of the asset.</p>",
+        "AssetBundleExportJobSummary$IncludeAllDependencies": "<p>The flag that determines the inclusion of resource dependencies in the returned asset bundle.</p>",
         "BookmarksConfigurations$Enabled": "<p>A Boolean value that determines whether a user can bookmark an embedded dashboard.</p>",
         "BorderStyle$Show": "<p>The option to enable display of borders for visuals.</p>",
         "DataSetSummary$RowLevelPermissionTagConfigurationApplied": "<p>Whether or not the row level permission tags are applied.</p>",
@@ -1045,6 +1471,7 @@
         "DataSetUsageConfiguration$DisableUseAsDirectQuerySource": "<p>An option that controls whether a child dataset of a direct query can use this dataset as a source.</p>",
         "DataSetUsageConfiguration$DisableUseAsImportedSource": "<p>An option that controls whether a child dataset that's stored in QuickSight can use this dataset as a source.</p>",
         "DeleteAnalysisRequest$ForceDeleteWithoutRecovery": "<p>This option defaults to the value <code>NoForceDeleteWithoutRecovery</code>. To immediately delete the analysis, add the <code>ForceDeleteWithoutRecovery</code> option. You can't restore an analysis after it's deleted. </p>",
+        "DescribeAssetBundleExportJobResponse$IncludeAllDependencies": "<p>The include dependencies flag.</p>",
         "DisplayFormatOptions$UseBlankCellFormat": "<p>A Boolean value that indicates whether to use blank cell format.</p>",
         "DisplayFormatOptions$UseGrouping": "<p>A Boolean value that indicates whether to use grouping.</p>",
         "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
@@ -1057,6 +1484,7 @@
         "NumericRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
         "SignupResponse$IAMUser": "<p>A Boolean that is <code>TRUE</code> if the Amazon QuickSight uses IAM as an authentication method.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
+        "StartAssetBundleExportJobRequest$IncludeAllDependencies": "<p>A Boolean that determines whether all dependencies of each resource ARN are recursively exported with the job. For example, say you provided a Dashboard ARN to the <code>ResourceArns</code> parameter. If you set <code>IncludeAllDependencies</code> to <code>TRUE</code>, any theme, dataset, and dataource resource that is a dependency of the dashboard is also exported.</p>",
         "StatePersistenceConfigurations$Enabled": "<p>Determines if a Amazon QuickSight dashboard's state persistence settings are turned on or off.</p>",
         "TimeRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
         "TimeRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
@@ -1370,7 +1798,7 @@
     "ClusterMarker": {
       "base": "<p>The cluster marker that is a part of the cluster marker configuration.</p>",
       "refs": {
-        "ClusterMarkerConfiguration$ClusterMarker": "<p>The cluster marker that is a part of the cluster marker configuration</p>"
+        "ClusterMarkerConfiguration$ClusterMarker": "<p>The cluster marker that is a part of the cluster marker configuration.</p>"
       }
     },
     "ClusterMarkerConfiguration": {
@@ -2650,6 +3078,7 @@
     "DataSourceParameters": {
       "base": "<p>The parameters that Amazon QuickSight uses to connect to your underlying data source. This is a variant type structure. For this structure to be valid, only one of the attributes can be non-null.</p>",
       "refs": {
+        "AssetBundleImportJobDataSourceOverrideParameters$DataSourceParameters": null,
         "CreateDataSourceRequest$DataSourceParameters": "<p>The parameters that Amazon QuickSight uses to connect to your underlying source.</p>",
         "DataSource$DataSourceParameters": "<p>The parameters that Amazon QuickSight uses to connect to your underlying source. This is a variant type structure. For this structure to be valid, only one of the attributes can be non-null.</p>",
         "DataSourceParametersList$member": null,
@@ -2898,6 +3327,13 @@
       "base": null,
       "refs": {
         "ScheduleRefreshOnEntity$DayOfWeek": "<p>The day of the week that you want to schedule a refresh on.</p>"
+      }
+    },
+    "DbUsername": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobDataSourceCredentialPair$Username": "<p>The username for the data source connection.</p>",
+        "CredentialPair$Username": "<p>User name.</p>"
       }
     },
     "DecimalDatasetParameter": {
@@ -3322,6 +3758,26 @@
       "refs": {
       }
     },
+    "DescribeAssetBundleExportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAssetBundleExportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAssetBundleImportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAssetBundleImportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDashboardDefinitionRequest": {
       "base": null,
       "refs": {
@@ -3705,6 +4161,7 @@
     "DnsResolverList": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobVPCConnectionOverrideParameters$DnsResolvers": "<p>An optional override of dns resolvers to be used by the VPC connection.</p>",
         "CreateVPCConnectionRequest$DnsResolvers": "<p>A list of IP addresses of DNS resolver endpoints for the VPC connection.</p>",
         "UpdateVPCConnectionRequest$DnsResolvers": "<p>A list of IP addresses of DNS resolver endpoints for the VPC connection.</p>"
       }
@@ -4663,6 +5120,30 @@
         "GeospatialWindowOptions$Bounds": "<p>The bounds options (north, south, west, east) of the geospatial window options.</p>"
       }
     },
+    "GeospatialHeatmapColorScale": {
+      "base": "<p>The color scale specification for the heatmap point style.</p>",
+      "refs": {
+        "GeospatialHeatmapConfiguration$HeatmapColor": "<p>The color scale specification for the heatmap point style.</p>"
+      }
+    },
+    "GeospatialHeatmapConfiguration": {
+      "base": "<p>The heatmap configuration of the geospatial point style.</p>",
+      "refs": {
+        "GeospatialPointStyleOptions$HeatmapConfiguration": "<p>The heatmap configuration of the geospatial point style.</p>"
+      }
+    },
+    "GeospatialHeatmapDataColor": {
+      "base": "<p>The color to be used in the heatmap point style.</p>",
+      "refs": {
+        "GeospatialHeatmapDataColorList$member": null
+      }
+    },
+    "GeospatialHeatmapDataColorList": {
+      "base": null,
+      "refs": {
+        "GeospatialHeatmapColorScale$Colors": "<p>The list of colors to be used in heatmap point style.</p>"
+      }
+    },
     "GeospatialMapAggregatedFieldWells": {
       "base": "<p>The aggregated field wells for a geospatial map.</p>",
       "refs": {
@@ -4995,6 +5476,7 @@
         "DataPathColor$Color": "<p>The color that needs to be applied to the element.</p>",
         "FontConfiguration$FontColor": "<p>Determines the color of the text.</p>",
         "FunnelChartDataLabelOptions$LabelColor": "<p>The color of the data label text.</p>",
+        "GeospatialHeatmapDataColor$Color": "<p>The hex color to be used in the heatmap point style.</p>",
         "GradientStop$Color": "<p>Determines the color.</p>",
         "LineChartMarkerStyleSettings$MarkerColor": "<p>Color of marker in the series.</p>",
         "RadarChartConfiguration$AlternateBandEvenColor": "<p>The color of the even-numbered alternate bands of a radar chart.</p>",
@@ -5756,6 +6238,26 @@
       "refs": {
       }
     },
+    "ListAssetBundleExportJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssetBundleExportJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssetBundleImportJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssetBundleImportJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListControlDisplayOptions": {
       "base": "<p>The display options of a control.</p>",
       "refs": {
@@ -6165,6 +6667,8 @@
       "base": null,
       "refs": {
         "ListAnalysesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListAssetBundleExportJobsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "ListAssetBundleImportJobsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListDashboardVersionsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListDashboardsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListDataSetsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
@@ -6484,13 +6988,23 @@
       "base": null,
       "refs": {
         "AnalysisError$Message": "<p>The message associated with the analysis error.</p>",
+        "AssetBundleExportJobError$Type": "<p>The specific error type of the error that occurred.</p>",
+        "AssetBundleExportJobError$Message": "<p>A description of the error.</p>",
+        "AssetBundleImportJobError$Type": "<p>The specific error type or the error that occurred.</p>",
+        "AssetBundleImportJobError$Message": "<p>A description of the error.</p>",
         "DashboardError$Message": "<p>Message.</p>",
         "DataSetReference$DataSetPlaceholder": "<p>Dataset placeholder.</p>",
         "DateTimeParameter$Name": "<p>A display name for the date-time parameter.</p>",
         "DecimalParameter$Name": "<p>A display name for the decimal parameter.</p>",
+        "DescribeAssetBundleExportJobResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeAssetBundleImportJobResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "Entity$Path": "<p>The hierarchical path of the entity within the analysis, template, or dashboard definition tree.</p>",
         "IntegerParameter$Name": "<p>The name of the integer parameter.</p>",
+        "ListAssetBundleExportJobsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListAssetBundleImportJobsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ReferenceLineCustomLabelConfiguration$CustomLabel": "<p>The string text of the custom label.</p>",
+        "StartAssetBundleExportJobResponse$RequestId": "<p>The Amazon Web Services response ID for this operation.</p>",
+        "StartAssetBundleImportJobResponse$RequestId": "<p>The Amazon Web Services response ID for this operation.</p>",
         "StringParameter$Name": "<p>A display name for a string parameter.</p>",
         "TemplateError$Message": "<p>Description of the error type.</p>",
         "ThemeError$Message": "<p>The error message.</p>"
@@ -6839,6 +7353,7 @@
     "Password": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobDataSourceCredentialPair$Password": "<p>The password for the data source connection.</p>",
         "CredentialPair$Password": "<p>Password.</p>"
       }
     },
@@ -7639,6 +8154,12 @@
     "ResourceId": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobAnalysisOverrideParameters$AnalysisId": "<p>The ID of the analysis that you ant to apply overrides to.</p>",
+        "AssetBundleImportJobDashboardOverrideParameters$DashboardId": "<p>The ID of the dashboard that you want to apply overrides to.</p>",
+        "AssetBundleImportJobDataSetOverrideParameters$DataSetId": "<p>The ID of the dataset to apply overrides to.</p>",
+        "AssetBundleImportJobDataSourceOverrideParameters$DataSourceId": "<p>The ID of the data source to apply overrides to.</p>",
+        "AssetBundleImportJobRefreshScheduleOverrideParameters$DataSetId": "<p>A partial identifier for the specific <code>RefreshSchedule</code> resource that is being overridden. This structure is used together with the <code>ScheduleID</code> structure.</p>",
+        "AssetBundleImportJobThemeOverrideParameters$ThemeId": "<p>The ID of the theme to apply overrides to.</p>",
         "CreateDataSetRequest$DataSetId": "<p>An ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "CreateDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "CreateDataSetResponse$IngestionId": "<p>The ID of the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE.</p>",
@@ -7682,6 +8203,12 @@
     "ResourceName": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobAnalysisOverrideParameters$Name": "<p>A new name for the analysis.</p>",
+        "AssetBundleImportJobDashboardOverrideParameters$Name": "<p>A new name for the dashboard.</p>",
+        "AssetBundleImportJobDataSetOverrideParameters$Name": "<p>A new name for the dataset.</p>",
+        "AssetBundleImportJobDataSourceOverrideParameters$Name": "<p>A new name for the data source.</p>",
+        "AssetBundleImportJobThemeOverrideParameters$Name": "<p>A new name for the theme.</p>",
+        "AssetBundleImportJobVPCConnectionOverrideParameters$Name": "<p>A new name for the VPC connection.</p>",
         "CreateDataSetRequest$Name": "<p>The display name for the dataset.</p>",
         "CreateDataSourceRequest$Name": "<p>A display name for the data source.</p>",
         "CreateVPCConnectionRequest$Name": "<p>The display name for the VPC connection.</p>",
@@ -7819,6 +8346,7 @@
     "RoleArn": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobVPCConnectionOverrideParameters$RoleArn": "<p>An optional override of the role ARN to be used by the VPC connection.</p>",
         "AthenaParameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific Athena data source. For example, say an account administrator has turned off all Athena access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow Athena access for the single Athena data source that is specified in the structure, even if the account-wide role forbidding Athena access is still active.</p>",
         "CreateVPCConnectionRequest$RoleArn": "<p>The IAM role to associate with the VPC connection.</p>",
         "S3Parameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific S3 data source. For example, say an account administrator has turned off all S3 access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow S3 access for the single S3 data source that is specified in the structure, even if the account-wide role forbidding S3 access is still active.</p>",
@@ -7952,6 +8480,13 @@
       "base": "<p>A physical table type for an S3 data source.</p>",
       "refs": {
         "PhysicalTable$S3Source": "<p>A physical table type for as S3 data source.</p>"
+      }
+    },
+    "S3Uri": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportSource$S3Uri": "<p>The Amazon S3 uri for an asset bundle import file that exists in an Amazon S3 bucket that the caller has read access to. The file must be a zip format file and can't exceed 20MB.</p>",
+        "AssetBundleImportSourceDescription$S3Uri": "<p>The Amazon S3 uri that you provided at the start of the import job.</p>"
       }
     },
     "SameSheetTargetVisualConfiguration": {
@@ -8107,6 +8642,7 @@
     "SecretArn": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobDataSourceCredentials$SecretArn": "<p>The ARN of the Secrets Manager Secret to be used to create the imported data source leave this field blank if you aren't using a Secret in place of a credential pair.</p>",
         "DataSource$SecretArn": "<p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>",
         "DataSourceCredentials$SecretArn": "<p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>"
       }
@@ -8171,6 +8707,7 @@
     "SecurityGroupIdList": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobVPCConnectionOverrideParameters$SecurityGroupIds": "<p>A new security group ID for the VPC connection you are importing. This field is required if you are importing the VPC connection from another Amazon Web Services account or region.</p>",
         "CreateVPCConnectionRequest$SecurityGroupIds": "<p>A list of security group IDs for the VPC connection.</p>",
         "UpdateVPCConnectionRequest$SecurityGroupIds": "<p>A list of security group IDs for the VPC connection.</p>",
         "VPCConnection$SecurityGroupIds": "<p>The Amazon EC2 security group IDs associated with the VPC connection.</p>",
@@ -8570,6 +9107,8 @@
         "Analysis$AnalysisId": "<p>The ID of the analysis.</p>",
         "AnalysisSummary$AnalysisId": "<p>The ID of the analysis. This ID displays in the URL.</p>",
         "AnonymousUserDashboardEmbeddingConfiguration$InitialDashboardId": "<p>The dashboard ID for the dashboard that you want the user to see first. This ID is included in the output URL. When the URL in response is accessed, Amazon QuickSight renders this dashboard.</p> <p>The Amazon Resource Name (ARN) of this dashboard must be included in the <code>AuthorizedResourceArns</code> parameter. Otherwise, the request will fail with <code>InvalidParameterValueException</code>.</p>",
+        "AssetBundleExportJobSummary$AssetBundleExportJobId": "<p>The ID of the export job.</p>",
+        "AssetBundleImportJobSummary$AssetBundleImportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
         "BarChartVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers.</p>",
         "BodySectionConfiguration$SectionId": "<p>The unique identifier of a body section.</p>",
         "BoxPlotVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers..</p>",
@@ -8609,6 +9148,10 @@
         "DescribeAnalysisPermissionsRequest$AnalysisId": "<p>The ID of the analysis whose permissions you're describing. The ID is part of the analysis URL.</p>",
         "DescribeAnalysisPermissionsResponse$AnalysisId": "<p>The ID of the analysis whose permissions you're describing.</p>",
         "DescribeAnalysisRequest$AnalysisId": "<p>The ID of the analysis that you're describing. The ID is part of the URL of the analysis.</p>",
+        "DescribeAssetBundleExportJobRequest$AssetBundleExportJobId": "<p>The ID of the job that you want described. The job ID is set when you start a new job with a <code>StartAssetBundleExportJob</code> API call.</p>",
+        "DescribeAssetBundleExportJobResponse$AssetBundleExportJobId": "<p>The ID of the job. The job ID is set when you start a new job with a <code>StartAssetBundleExportJob</code> API call.</p>",
+        "DescribeAssetBundleImportJobRequest$AssetBundleImportJobId": "<p>The ID of the job. The job ID is set when you start a new job with a <code>StartAssetBundleImportJob</code> API call.</p>",
+        "DescribeAssetBundleImportJobResponse$AssetBundleImportJobId": "<p>The ID of the job. The job ID is set when you start a new job with a <code>StartAssetBundleImportJob</code> API call.</p>",
         "DescribeDashboardDefinitionRequest$DashboardId": "<p>The ID for the dashboard.</p>",
         "DescribeDashboardDefinitionResponse$DashboardId": "<p>The ID of the dashboard described.</p>",
         "DescribeDashboardPermissionsRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAM policy.</p>",
@@ -8687,6 +9230,10 @@
         "SheetDefinition$SheetId": "<p>The unique identifier of a sheet.</p>",
         "SheetTextBox$SheetTextBoxId": "<p>The unique identifier for a text box. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have text boxes that share identifiers.</p>",
         "SheetVisualScopingConfiguration$SheetId": "<p>The selected sheet that the filter is applied to.</p>",
+        "StartAssetBundleExportJobRequest$AssetBundleExportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
+        "StartAssetBundleExportJobResponse$AssetBundleExportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
+        "StartAssetBundleImportJobRequest$AssetBundleImportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
+        "StartAssetBundleImportJobResponse$AssetBundleImportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
         "TableVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers..</p>",
         "TargetVisualList$member": null,
         "Template$TemplateId": "<p>The ID for the template. This is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
@@ -8831,9 +9378,30 @@
     "SslProperties": {
       "base": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying data source.</p>",
       "refs": {
+        "AssetBundleImportJobDataSourceOverrideParameters$SslProperties": null,
         "CreateDataSourceRequest$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>",
         "DataSource$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>",
         "UpdateDataSourceRequest$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>"
+      }
+    },
+    "StartAssetBundleExportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartAssetBundleExportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartAssetBundleImportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartAssetBundleImportJobResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "StatePersistenceConfigurations": {
@@ -8904,6 +9472,8 @@
         "DescribeAnalysisDefinitionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAnalysisPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeAssetBundleExportJobResponse$Status": "<p>The HTTP status of the response.</p>",
+        "DescribeAssetBundleImportJobResponse$Status": "<p>The HTTP status of the response.</p>",
         "DescribeDashboardDefinitionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDashboardPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDashboardResponse$Status": "<p>The HTTP status of this request.</p>",
@@ -8940,6 +9510,8 @@
         "GetDashboardEmbedUrlResponse$Status": "<p>The HTTP status of the request.</p>",
         "GetSessionEmbedUrlResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListAnalysesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListAssetBundleExportJobsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListAssetBundleImportJobsResponse$Status": "<p>The HTTP status of the response.</p>",
         "ListDashboardVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListDashboardsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListDataSetsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8974,6 +9546,8 @@
         "SearchDataSourcesResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchFoldersResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "StartAssetBundleExportJobResponse$Status": "<p>The HTTP status of the response.</p>",
+        "StartAssetBundleImportJobResponse$Status": "<p>The HTTP status of the response.</p>",
         "TagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UntagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -9020,6 +9594,9 @@
         "AccountSettings$NotificationEmail": "<p>The main notification email for your Amazon QuickSight subscription.</p>",
         "ActionList$member": null,
         "AnalysisSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_USER</code>, that you want to use as a filter, for example <code>\"Value\"</code>. An example is <code>\"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p>",
+        "AssetBundleImportJobRefreshScheduleOverrideParameters$ScheduleId": "<p>A partial identifier for the specific <code>RefreshSchedule</code> resource being overridden. This structure is used together with the <code>DataSetId</code> structure.</p>",
+        "AssetBundleImportJobResourceIdOverrideConfiguration$PrefixForAllResources": "<p>An option to request a CloudFormation variable for a prefix to be prepended to each resource's ID before import. The prefix is only added to the asset IDs and does not change the name of the asset.</p>",
+        "AssetBundleImportSourceDescription$Body": "<p>A HTTPS download URL for the provided asset bundle that you optionally provided at the start of the import job. This URL is valid for 5 minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed. The downloaded asset bundle is a <code>.qs</code> zip file.</p>",
         "AxisLabelOptions$CustomLabel": "<p>The text for the axis label.</p>",
         "CancelIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
         "CancelIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -9108,6 +9685,7 @@
         "DescribeAnalysisDefinitionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAnalysisPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAnalysisResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeAssetBundleExportJobResponse$DownloadUrl": "<p>The URL to download the exported asset bundle data from.</p> <p>This URL is available only after the job has succeeded. This URL is valid for 5 minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed.</p> <p>The downloaded asset bundle is a zip file named <code>assetbundle-{jobId}.qs</code>. The file has a <code>.qs</code> extension.</p> <p>This URL can't be used in a <code>StartAssetBundleImportJob</code> API call and should only be used for download purposes.</p>",
         "DescribeDashboardDefinitionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDashboardPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -9177,6 +9755,10 @@
         "ListAnalysesRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListAnalysesResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListAnalysesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListAssetBundleExportJobsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListAssetBundleExportJobsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListAssetBundleImportJobsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListAssetBundleImportJobsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListDashboardVersionsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListDashboardVersionsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListDashboardVersionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -9465,6 +10047,7 @@
     "SubnetIdList": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobVPCConnectionOverrideParameters$SubnetIds": "<p>A list of new subnet IDs for the VPC connection you are importing. This field is required if you are importing the VPC connection from another Amazon Web Services account or region.</p>",
         "CreateVPCConnectionRequest$SubnetIds": "<p>A list of subnet IDs for the VPC connection.</p>",
         "UpdateVPCConnectionRequest$SubnetIds": "<p>A list of subnet IDs for the VPC connection.</p>"
       }
@@ -10131,6 +10714,9 @@
         "Analysis$LastUpdatedTime": "<p>The time that the analysis was last updated.</p>",
         "AnalysisSummary$CreatedTime": "<p>The time that the analysis was created.</p>",
         "AnalysisSummary$LastUpdatedTime": "<p>The time that the analysis was last updated.</p>",
+        "AssetBundleExportJobSummary$CreatedTime": "<p>The time that the export job was created.</p>",
+        "AssetBundleImportJobRefreshScheduleOverrideParameters$StartAfterDateTime": "<p>An override for the <code>StartAfterDateTime</code> of a <code>RefreshSchedule</code> to ensure that the <code>StartAfterDateTime</code> is set to a time that takes place in the future.</p>",
+        "AssetBundleImportJobSummary$CreatedTime": "<p>The time that the import job was created.</p>",
         "Dashboard$CreatedTime": "<p>The time that this dashboard was created.</p>",
         "Dashboard$LastPublishedTime": "<p>The last time that this dashboard was published.</p>",
         "Dashboard$LastUpdatedTime": "<p>The last time that this dashboard was updated.</p>",
@@ -10148,6 +10734,8 @@
         "DataSourceSummary$CreatedTime": "<p>The date and time that the data source was created. This value is expressed in MM-DD-YYYY HH:MM:SS format.</p>",
         "DataSourceSummary$LastUpdatedTime": "<p>The date and time the data source was last updated. This value is expressed in MM-DD-YYYY HH:MM:SS format.</p>",
         "DeleteAnalysisResponse$DeletionTime": "<p>The date and time that the analysis is scheduled to be deleted.</p>",
+        "DescribeAssetBundleExportJobResponse$CreatedTime": "<p>The time that the export job was created.</p>",
+        "DescribeAssetBundleImportJobResponse$CreatedTime": "<p>The time that the import job was created.</p>",
         "Folder$CreatedTime": "<p>The time that the folder was created.</p>",
         "Folder$LastUpdatedTime": "<p>The time that the folder was last updated.</p>",
         "FolderSummary$CreatedTime": "<p>The time that the folder was created.</p>",
@@ -10999,12 +11587,6 @@
         "User$Role": "<p>The Amazon QuickSight role for the user. The user role can be one of the following:.</p> <ul> <li> <p> <code>READER</code>: A user who has read-only access to dashboards.</p> </li> <li> <p> <code>AUTHOR</code>: A user who can create data sources, datasets, analyses, and dashboards.</p> </li> <li> <p> <code>ADMIN</code>: A user who is an author, who can also manage Amazon Amazon QuickSight settings.</p> </li> <li> <p> <code>RESTRICTED_READER</code>: This role isn't currently available for use.</p> </li> <li> <p> <code>RESTRICTED_AUTHOR</code>: This role isn't currently available for use.</p> </li> </ul>"
       }
     },
-    "Username": {
-      "base": null,
-      "refs": {
-        "CredentialPair$Username": "<p>User name.</p>"
-      }
-    },
     "VPCConnection": {
       "base": "<p>The structure of a VPC connection.</p>",
       "refs": {
@@ -11031,6 +11613,7 @@
     "VPCConnectionResourceIdUnrestricted": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobVPCConnectionOverrideParameters$VPCConnectionId": "<p>The ID of the VPC Connection to apply overrides to.</p>",
         "DeleteVPCConnectionRequest$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
         "DeleteVPCConnectionResponse$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
         "DescribeVPCConnectionRequest$VPCConnectionId": "<p>The ID of the VPC connection that you're creating. This ID is a unique identifier for each Amazon Web Services Region in an Amazon Web Services account.</p>",
@@ -11365,6 +11948,7 @@
     "VpcConnectionProperties": {
       "base": "<p>VPC connection properties.</p>",
       "refs": {
+        "AssetBundleImportJobDataSourceOverrideParameters$VpcConnectionProperties": null,
         "CreateDataSourceRequest$VpcConnectionProperties": "<p>Use this parameter only when you want Amazon QuickSight to use a VPC connection when connecting to your underlying source.</p>",
         "DataSource$VpcConnectionProperties": "<p>The VPC connection information. You need to use this parameter only when you want Amazon QuickSight to use a VPC connection when connecting to your underlying source.</p>",
         "UpdateDataSourceRequest$VpcConnectionProperties": "<p>Use this parameter only when you want Amazon QuickSight to use a VPC connection when connecting to your underlying source.</p>"
