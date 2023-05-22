@@ -14,55 +14,17 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-func TestBuildURI(t *testing.T) {
-	cases := map[string]struct {
-		Topic         *string
-		ExpectPath    string
-		ExpectRawPath string
-	}{
-		"path without prefix slash": {
-			Topic:         aws.String("devices/123/test"),
-			ExpectPath:    "/topics/devices/123/test",
-			ExpectRawPath: "/topics/devices%2F123%2Ftest",
-		},
-		"path containing single prefix slashes": {
-			Topic:         aws.String("/devices/123/test"),
-			ExpectPath:    "/topics//devices/123/test",
-			ExpectRawPath: "/topics/%2Fdevices%2F123%2Ftest",
-		},
-		"path containing prefix multi-slashes": {
-			Topic:         aws.String("///devices/123/test"),
-			ExpectPath:    "/topics////devices/123/test",
-			ExpectRawPath: "/topics/%2F%2F%2Fdevices%2F123%2Ftest",
-		},
+func TestCleanPath(t *testing.T) {
+	uri := &url.URL{
+		Path:   "//foo//bar",
+		Scheme: "https",
+		Host:   "host",
 	}
+	cleanPath(uri)
 
-	for _, c := range cases {
-		uri := &url.URL{
-			Path:   "/topics/{topic}",
-			Scheme: "https",
-			Host:   "host",
-		}
-
-		req := &request.Request{
-			HTTPRequest: &http.Request{
-				URL: uri,
-			},
-			Params: &struct {
-				Topic *string `location:"uri" locationName:"topic" type:"string" required:"true"`
-			}{
-				c.Topic,
-			},
-		}
-
-		Build(req)
-
-		if a, e := uri.Path, c.ExpectPath; a != e {
-			t.Errorf("expect %q Path, got %q", e, a)
-		}
-		if a, e := uri.RawPath, c.ExpectRawPath; a != e {
-			t.Errorf("expect %q RawPath, got %q", e, a)
-		}
+	expected := "https://host/foo/bar"
+	if a, e := uri.String(), expected; a != e {
+		t.Errorf("expect %q URI, got %q", e, a)
 	}
 }
 
