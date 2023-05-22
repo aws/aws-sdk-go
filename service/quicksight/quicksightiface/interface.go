@@ -264,6 +264,14 @@ type QuickSightAPI interface {
 	DescribeAnalysisPermissionsWithContext(aws.Context, *quicksight.DescribeAnalysisPermissionsInput, ...request.Option) (*quicksight.DescribeAnalysisPermissionsOutput, error)
 	DescribeAnalysisPermissionsRequest(*quicksight.DescribeAnalysisPermissionsInput) (*request.Request, *quicksight.DescribeAnalysisPermissionsOutput)
 
+	DescribeAssetBundleExportJob(*quicksight.DescribeAssetBundleExportJobInput) (*quicksight.DescribeAssetBundleExportJobOutput, error)
+	DescribeAssetBundleExportJobWithContext(aws.Context, *quicksight.DescribeAssetBundleExportJobInput, ...request.Option) (*quicksight.DescribeAssetBundleExportJobOutput, error)
+	DescribeAssetBundleExportJobRequest(*quicksight.DescribeAssetBundleExportJobInput) (*request.Request, *quicksight.DescribeAssetBundleExportJobOutput)
+
+	DescribeAssetBundleImportJob(*quicksight.DescribeAssetBundleImportJobInput) (*quicksight.DescribeAssetBundleImportJobOutput, error)
+	DescribeAssetBundleImportJobWithContext(aws.Context, *quicksight.DescribeAssetBundleImportJobInput, ...request.Option) (*quicksight.DescribeAssetBundleImportJobOutput, error)
+	DescribeAssetBundleImportJobRequest(*quicksight.DescribeAssetBundleImportJobInput) (*request.Request, *quicksight.DescribeAssetBundleImportJobOutput)
+
 	DescribeDashboard(*quicksight.DescribeDashboardInput) (*quicksight.DescribeDashboardOutput, error)
 	DescribeDashboardWithContext(aws.Context, *quicksight.DescribeDashboardInput, ...request.Option) (*quicksight.DescribeDashboardOutput, error)
 	DescribeDashboardRequest(*quicksight.DescribeDashboardInput) (*request.Request, *quicksight.DescribeDashboardOutput)
@@ -410,6 +418,20 @@ type QuickSightAPI interface {
 
 	ListAnalysesPages(*quicksight.ListAnalysesInput, func(*quicksight.ListAnalysesOutput, bool) bool) error
 	ListAnalysesPagesWithContext(aws.Context, *quicksight.ListAnalysesInput, func(*quicksight.ListAnalysesOutput, bool) bool, ...request.Option) error
+
+	ListAssetBundleExportJobs(*quicksight.ListAssetBundleExportJobsInput) (*quicksight.ListAssetBundleExportJobsOutput, error)
+	ListAssetBundleExportJobsWithContext(aws.Context, *quicksight.ListAssetBundleExportJobsInput, ...request.Option) (*quicksight.ListAssetBundleExportJobsOutput, error)
+	ListAssetBundleExportJobsRequest(*quicksight.ListAssetBundleExportJobsInput) (*request.Request, *quicksight.ListAssetBundleExportJobsOutput)
+
+	ListAssetBundleExportJobsPages(*quicksight.ListAssetBundleExportJobsInput, func(*quicksight.ListAssetBundleExportJobsOutput, bool) bool) error
+	ListAssetBundleExportJobsPagesWithContext(aws.Context, *quicksight.ListAssetBundleExportJobsInput, func(*quicksight.ListAssetBundleExportJobsOutput, bool) bool, ...request.Option) error
+
+	ListAssetBundleImportJobs(*quicksight.ListAssetBundleImportJobsInput) (*quicksight.ListAssetBundleImportJobsOutput, error)
+	ListAssetBundleImportJobsWithContext(aws.Context, *quicksight.ListAssetBundleImportJobsInput, ...request.Option) (*quicksight.ListAssetBundleImportJobsOutput, error)
+	ListAssetBundleImportJobsRequest(*quicksight.ListAssetBundleImportJobsInput) (*request.Request, *quicksight.ListAssetBundleImportJobsOutput)
+
+	ListAssetBundleImportJobsPages(*quicksight.ListAssetBundleImportJobsInput, func(*quicksight.ListAssetBundleImportJobsOutput, bool) bool) error
+	ListAssetBundleImportJobsPagesWithContext(aws.Context, *quicksight.ListAssetBundleImportJobsInput, func(*quicksight.ListAssetBundleImportJobsOutput, bool) bool, ...request.Option) error
 
 	ListDashboardVersions(*quicksight.ListDashboardVersionsInput) (*quicksight.ListDashboardVersionsOutput, error)
 	ListDashboardVersionsWithContext(aws.Context, *quicksight.ListDashboardVersionsInput, ...request.Option) (*quicksight.ListDashboardVersionsOutput, error)
@@ -597,6 +619,14 @@ type QuickSightAPI interface {
 	SearchGroups(*quicksight.SearchGroupsInput) (*quicksight.SearchGroupsOutput, error)
 	SearchGroupsWithContext(aws.Context, *quicksight.SearchGroupsInput, ...request.Option) (*quicksight.SearchGroupsOutput, error)
 	SearchGroupsRequest(*quicksight.SearchGroupsInput) (*request.Request, *quicksight.SearchGroupsOutput)
+
+	StartAssetBundleExportJob(*quicksight.StartAssetBundleExportJobInput) (*quicksight.StartAssetBundleExportJobOutput, error)
+	StartAssetBundleExportJobWithContext(aws.Context, *quicksight.StartAssetBundleExportJobInput, ...request.Option) (*quicksight.StartAssetBundleExportJobOutput, error)
+	StartAssetBundleExportJobRequest(*quicksight.StartAssetBundleExportJobInput) (*request.Request, *quicksight.StartAssetBundleExportJobOutput)
+
+	StartAssetBundleImportJob(*quicksight.StartAssetBundleImportJobInput) (*quicksight.StartAssetBundleImportJobOutput, error)
+	StartAssetBundleImportJobWithContext(aws.Context, *quicksight.StartAssetBundleImportJobInput, ...request.Option) (*quicksight.StartAssetBundleImportJobOutput, error)
+	StartAssetBundleImportJobRequest(*quicksight.StartAssetBundleImportJobInput) (*request.Request, *quicksight.StartAssetBundleImportJobOutput)
 
 	TagResource(*quicksight.TagResourceInput) (*quicksight.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *quicksight.TagResourceInput, ...request.Option) (*quicksight.TagResourceOutput, error)

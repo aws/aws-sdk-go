@@ -984,7 +984,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingParameterValueException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"}
       ],
       "idempotent":true
     },
@@ -3522,7 +3523,8 @@
         "Metadata":{"shape":"Metadata"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "IdempotencyToken":{"shape":"string"},
-        "ResourceType":{"shape":"ResourceType"}
+        "ResourceType":{"shape":"ResourceType"},
+        "CopySourceTagsToRestoredResource":{"shape":"boolean"}
       }
     },
     "StartRestoreJobOutput":{

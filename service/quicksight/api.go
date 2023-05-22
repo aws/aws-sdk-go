@@ -5407,6 +5407,192 @@ func (c *QuickSight) DescribeAnalysisPermissionsWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDescribeAssetBundleExportJob = "DescribeAssetBundleExportJob"
+
+// DescribeAssetBundleExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAssetBundleExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAssetBundleExportJob for more information on using the DescribeAssetBundleExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeAssetBundleExportJobRequest method.
+//	req, resp := client.DescribeAssetBundleExportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAssetBundleExportJob
+func (c *QuickSight) DescribeAssetBundleExportJobRequest(input *DescribeAssetBundleExportJobInput) (req *request.Request, output *DescribeAssetBundleExportJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAssetBundleExportJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/asset-bundle-export-jobs/{AssetBundleExportJobId}",
+	}
+
+	if input == nil {
+		input = &DescribeAssetBundleExportJobInput{}
+	}
+
+	output = &DescribeAssetBundleExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAssetBundleExportJob API operation for Amazon QuickSight.
+//
+// Describes an existing export job.
+//
+// Poll job descriptions after a job starts to know the status of the job. When
+// a job succeeds, a URL is provided to download the exported assets' data from.
+// Download URLs are valid for five minutes after they are generated. You can
+// call the DescribeAssetBundleExportJob API for a new download URL as needed.
+//
+// Job descriptions are available for 14 days after the job starts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeAssetBundleExportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAssetBundleExportJob
+func (c *QuickSight) DescribeAssetBundleExportJob(input *DescribeAssetBundleExportJobInput) (*DescribeAssetBundleExportJobOutput, error) {
+	req, out := c.DescribeAssetBundleExportJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAssetBundleExportJobWithContext is the same as DescribeAssetBundleExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAssetBundleExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeAssetBundleExportJobWithContext(ctx aws.Context, input *DescribeAssetBundleExportJobInput, opts ...request.Option) (*DescribeAssetBundleExportJobOutput, error) {
+	req, out := c.DescribeAssetBundleExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAssetBundleImportJob = "DescribeAssetBundleImportJob"
+
+// DescribeAssetBundleImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAssetBundleImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAssetBundleImportJob for more information on using the DescribeAssetBundleImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeAssetBundleImportJobRequest method.
+//	req, resp := client.DescribeAssetBundleImportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAssetBundleImportJob
+func (c *QuickSight) DescribeAssetBundleImportJobRequest(input *DescribeAssetBundleImportJobInput) (req *request.Request, output *DescribeAssetBundleImportJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAssetBundleImportJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/asset-bundle-import-jobs/{AssetBundleImportJobId}",
+	}
+
+	if input == nil {
+		input = &DescribeAssetBundleImportJobInput{}
+	}
+
+	output = &DescribeAssetBundleImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAssetBundleImportJob API operation for Amazon QuickSight.
+//
+// Describes an existing import job.
+//
+// Poll job descriptions after starting a job to know when it has succeeded
+// or failed. Job descriptions are available for 14 days after job starts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeAssetBundleImportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAssetBundleImportJob
+func (c *QuickSight) DescribeAssetBundleImportJob(input *DescribeAssetBundleImportJobInput) (*DescribeAssetBundleImportJobOutput, error) {
+	req, out := c.DescribeAssetBundleImportJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAssetBundleImportJobWithContext is the same as DescribeAssetBundleImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAssetBundleImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeAssetBundleImportJobWithContext(ctx aws.Context, input *DescribeAssetBundleImportJobInput, opts ...request.Option) (*DescribeAssetBundleImportJobOutput, error) {
+	req, out := c.DescribeAssetBundleImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDashboard = "DescribeDashboard"
 
 // DescribeDashboardRequest generates a "aws/request.Request" representing the
@@ -9205,6 +9391,322 @@ func (c *QuickSight) ListAnalysesPagesWithContext(ctx aws.Context, input *ListAn
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAnalysesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAssetBundleExportJobs = "ListAssetBundleExportJobs"
+
+// ListAssetBundleExportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssetBundleExportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAssetBundleExportJobs for more information on using the ListAssetBundleExportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAssetBundleExportJobsRequest method.
+//	req, resp := client.ListAssetBundleExportJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListAssetBundleExportJobs
+func (c *QuickSight) ListAssetBundleExportJobsRequest(input *ListAssetBundleExportJobsInput) (req *request.Request, output *ListAssetBundleExportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListAssetBundleExportJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/asset-bundle-export-jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAssetBundleExportJobsInput{}
+	}
+
+	output = &ListAssetBundleExportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAssetBundleExportJobs API operation for Amazon QuickSight.
+//
+// Lists all asset bundle export jobs that have been taken place in the last
+// 14 days. Jobs created more than 14 days ago are deleted forever and are not
+// returned. If you are using the same job ID for multiple jobs, ListAssetBundleExportJobs
+// only returns the most recent job that uses the repeated job ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListAssetBundleExportJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListAssetBundleExportJobs
+func (c *QuickSight) ListAssetBundleExportJobs(input *ListAssetBundleExportJobsInput) (*ListAssetBundleExportJobsOutput, error) {
+	req, out := c.ListAssetBundleExportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListAssetBundleExportJobsWithContext is the same as ListAssetBundleExportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAssetBundleExportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListAssetBundleExportJobsWithContext(ctx aws.Context, input *ListAssetBundleExportJobsInput, opts ...request.Option) (*ListAssetBundleExportJobsOutput, error) {
+	req, out := c.ListAssetBundleExportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAssetBundleExportJobsPages iterates over the pages of a ListAssetBundleExportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssetBundleExportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAssetBundleExportJobs operation.
+//	pageNum := 0
+//	err := client.ListAssetBundleExportJobsPages(params,
+//	    func(page *quicksight.ListAssetBundleExportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListAssetBundleExportJobsPages(input *ListAssetBundleExportJobsInput, fn func(*ListAssetBundleExportJobsOutput, bool) bool) error {
+	return c.ListAssetBundleExportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAssetBundleExportJobsPagesWithContext same as ListAssetBundleExportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListAssetBundleExportJobsPagesWithContext(ctx aws.Context, input *ListAssetBundleExportJobsInput, fn func(*ListAssetBundleExportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAssetBundleExportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAssetBundleExportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAssetBundleExportJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAssetBundleImportJobs = "ListAssetBundleImportJobs"
+
+// ListAssetBundleImportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssetBundleImportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAssetBundleImportJobs for more information on using the ListAssetBundleImportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAssetBundleImportJobsRequest method.
+//	req, resp := client.ListAssetBundleImportJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListAssetBundleImportJobs
+func (c *QuickSight) ListAssetBundleImportJobsRequest(input *ListAssetBundleImportJobsInput) (req *request.Request, output *ListAssetBundleImportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListAssetBundleImportJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/asset-bundle-import-jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAssetBundleImportJobsInput{}
+	}
+
+	output = &ListAssetBundleImportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAssetBundleImportJobs API operation for Amazon QuickSight.
+//
+// Lists all asset bundle import jobs that have taken place in the last 14 days.
+// Jobs created more than 14 days ago are deleted forever and are not returned.
+// If you are using the same job ID for multiple jobs, ListAssetBundleImportJobs
+// only returns the most recent job that uses the repeated job ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListAssetBundleImportJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListAssetBundleImportJobs
+func (c *QuickSight) ListAssetBundleImportJobs(input *ListAssetBundleImportJobsInput) (*ListAssetBundleImportJobsOutput, error) {
+	req, out := c.ListAssetBundleImportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListAssetBundleImportJobsWithContext is the same as ListAssetBundleImportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAssetBundleImportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListAssetBundleImportJobsWithContext(ctx aws.Context, input *ListAssetBundleImportJobsInput, opts ...request.Option) (*ListAssetBundleImportJobsOutput, error) {
+	req, out := c.ListAssetBundleImportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAssetBundleImportJobsPages iterates over the pages of a ListAssetBundleImportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssetBundleImportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAssetBundleImportJobs operation.
+//	pageNum := 0
+//	err := client.ListAssetBundleImportJobsPages(params,
+//	    func(page *quicksight.ListAssetBundleImportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListAssetBundleImportJobsPages(input *ListAssetBundleImportJobsInput, fn func(*ListAssetBundleImportJobsOutput, bool) bool) error {
+	return c.ListAssetBundleImportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAssetBundleImportJobsPagesWithContext same as ListAssetBundleImportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListAssetBundleImportJobsPagesWithContext(ctx aws.Context, input *ListAssetBundleImportJobsInput, fn func(*ListAssetBundleImportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAssetBundleImportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAssetBundleImportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAssetBundleImportJobsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -13607,6 +14109,236 @@ func (c *QuickSight) SearchGroups(input *SearchGroupsInput) (*SearchGroupsOutput
 // for more information on using Contexts.
 func (c *QuickSight) SearchGroupsWithContext(ctx aws.Context, input *SearchGroupsInput, opts ...request.Option) (*SearchGroupsOutput, error) {
 	req, out := c.SearchGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartAssetBundleExportJob = "StartAssetBundleExportJob"
+
+// StartAssetBundleExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartAssetBundleExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartAssetBundleExportJob for more information on using the StartAssetBundleExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartAssetBundleExportJobRequest method.
+//	req, resp := client.StartAssetBundleExportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/StartAssetBundleExportJob
+func (c *QuickSight) StartAssetBundleExportJobRequest(input *StartAssetBundleExportJobInput) (req *request.Request, output *StartAssetBundleExportJobOutput) {
+	op := &request.Operation{
+		Name:       opStartAssetBundleExportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/asset-bundle-export-jobs/export",
+	}
+
+	if input == nil {
+		input = &StartAssetBundleExportJobInput{}
+	}
+
+	output = &StartAssetBundleExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartAssetBundleExportJob API operation for Amazon QuickSight.
+//
+// Starts an Asset Bundle export job.
+//
+// An Asset Bundle export job exports specified Amazon QuickSight assets. You
+// can also choose to export any asset dependencies in the same job. Export
+// jobs run asynchronously and can be polled with a DescribeAssetBundleExportJob
+// API call. When a job is successfully completed, a download URL that contains
+// the exported assets is returned. The URL is valid for 5 minutes and can be
+// refreshed with a DescribeAssetBundleExportJob API call. Each Amazon QuickSight
+// account can run up to 10 export jobs concurrently.
+//
+// The API caller must have the necessary permissions in their IAM role to access
+// each resource before the resources can be exported.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation StartAssetBundleExportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/StartAssetBundleExportJob
+func (c *QuickSight) StartAssetBundleExportJob(input *StartAssetBundleExportJobInput) (*StartAssetBundleExportJobOutput, error) {
+	req, out := c.StartAssetBundleExportJobRequest(input)
+	return out, req.Send()
+}
+
+// StartAssetBundleExportJobWithContext is the same as StartAssetBundleExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartAssetBundleExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) StartAssetBundleExportJobWithContext(ctx aws.Context, input *StartAssetBundleExportJobInput, opts ...request.Option) (*StartAssetBundleExportJobOutput, error) {
+	req, out := c.StartAssetBundleExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartAssetBundleImportJob = "StartAssetBundleImportJob"
+
+// StartAssetBundleImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartAssetBundleImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartAssetBundleImportJob for more information on using the StartAssetBundleImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartAssetBundleImportJobRequest method.
+//	req, resp := client.StartAssetBundleImportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/StartAssetBundleImportJob
+func (c *QuickSight) StartAssetBundleImportJobRequest(input *StartAssetBundleImportJobInput) (req *request.Request, output *StartAssetBundleImportJobOutput) {
+	op := &request.Operation{
+		Name:       opStartAssetBundleImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/asset-bundle-import-jobs/import",
+	}
+
+	if input == nil {
+		input = &StartAssetBundleImportJobInput{}
+	}
+
+	output = &StartAssetBundleImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartAssetBundleImportJob API operation for Amazon QuickSight.
+//
+// Starts an Asset Bundle import job.
+//
+// An Asset Bundle import job imports specified Amazon QuickSight assets into
+// an Amazon QuickSight account. You can also choose to import a naming prefix
+// and specified configuration overrides. The assets that are contained in the
+// bundle file that you provide are used to create or update a new or existing
+// asset in your Amazon QuickSight account. Each Amazon QuickSight account can
+// run up to 10 import jobs concurrently.
+//
+// The API caller must have the necessary "create", "describe", and "update"
+// permissions in their IAM role to access each resource type that is contained
+// in the bundle file before the resources can be imported.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation StartAssetBundleImportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/StartAssetBundleImportJob
+func (c *QuickSight) StartAssetBundleImportJob(input *StartAssetBundleImportJobInput) (*StartAssetBundleImportJobOutput, error) {
+	req, out := c.StartAssetBundleImportJobRequest(input)
+	return out, req.Send()
+}
+
+// StartAssetBundleImportJobWithContext is the same as StartAssetBundleImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartAssetBundleImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) StartAssetBundleImportJobWithContext(ctx aws.Context, input *StartAssetBundleImportJobInput, opts ...request.Option) (*StartAssetBundleImportJobOutput, error) {
+	req, out := c.StartAssetBundleImportJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -18567,6 +19299,1940 @@ func (s *ArcOptions) SetArcThickness(v string) *ArcOptions {
 	return s
 }
 
+// An optional collection of CloudFormation property configurations that control
+// how the export job is generated.
+type AssetBundleCloudFormationOverridePropertyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An optional list of structures that control how Analysis resources are parameterized
+	// in the returned CloudFormation template.
+	Analyses []*AssetBundleExportJobAnalysisOverrideProperties `min:"1" type:"list"`
+
+	// An optional list of structures that control how Dashboard resources are parameterized
+	// in the returned CloudFormation template.
+	Dashboards []*AssetBundleExportJobDashboardOverrideProperties `min:"1" type:"list"`
+
+	// An optional list of structures that control how DataSet resources are parameterized
+	// in the returned CloudFormation template.
+	DataSets []*AssetBundleExportJobDataSetOverrideProperties `min:"1" type:"list"`
+
+	// An optional list of structures that control how DataSource resources are
+	// parameterized in the returned CloudFormation template.
+	DataSources []*AssetBundleExportJobDataSourceOverrideProperties `min:"1" type:"list"`
+
+	// An optional list of structures that control how RefreshSchedule resources
+	// are parameterized in the returned CloudFormation template.
+	RefreshSchedules []*AssetBundleExportJobRefreshScheduleOverrideProperties `min:"1" type:"list"`
+
+	// An optional list of structures that control how resource IDs are parameterized
+	// in the returned CloudFormation template.
+	ResourceIdOverrideConfiguration *AssetBundleExportJobResourceIdOverrideConfiguration `type:"structure"`
+
+	// An optional list of structures that control how Theme resources are parameterized
+	// in the returned CloudFormation template.
+	Themes []*AssetBundleExportJobThemeOverrideProperties `min:"1" type:"list"`
+
+	// An optional list of structures that control how VPCConnection resources are
+	// parameterized in the returned CloudFormation template.
+	VPCConnections []*AssetBundleExportJobVPCConnectionOverrideProperties `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleCloudFormationOverridePropertyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleCloudFormationOverridePropertyConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleCloudFormationOverridePropertyConfiguration"}
+	if s.Analyses != nil && len(s.Analyses) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Analyses", 1))
+	}
+	if s.Dashboards != nil && len(s.Dashboards) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Dashboards", 1))
+	}
+	if s.DataSets != nil && len(s.DataSets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSets", 1))
+	}
+	if s.DataSources != nil && len(s.DataSources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSources", 1))
+	}
+	if s.RefreshSchedules != nil && len(s.RefreshSchedules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RefreshSchedules", 1))
+	}
+	if s.Themes != nil && len(s.Themes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Themes", 1))
+	}
+	if s.VPCConnections != nil && len(s.VPCConnections) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnections", 1))
+	}
+	if s.Analyses != nil {
+		for i, v := range s.Analyses {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Analyses", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Dashboards != nil {
+		for i, v := range s.Dashboards {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dashboards", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DataSets != nil {
+		for i, v := range s.DataSets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DataSources != nil {
+		for i, v := range s.DataSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RefreshSchedules != nil {
+		for i, v := range s.RefreshSchedules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RefreshSchedules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Themes != nil {
+		for i, v := range s.Themes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Themes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VPCConnections != nil {
+		for i, v := range s.VPCConnections {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VPCConnections", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyses sets the Analyses field's value.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) SetAnalyses(v []*AssetBundleExportJobAnalysisOverrideProperties) *AssetBundleCloudFormationOverridePropertyConfiguration {
+	s.Analyses = v
+	return s
+}
+
+// SetDashboards sets the Dashboards field's value.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) SetDashboards(v []*AssetBundleExportJobDashboardOverrideProperties) *AssetBundleCloudFormationOverridePropertyConfiguration {
+	s.Dashboards = v
+	return s
+}
+
+// SetDataSets sets the DataSets field's value.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) SetDataSets(v []*AssetBundleExportJobDataSetOverrideProperties) *AssetBundleCloudFormationOverridePropertyConfiguration {
+	s.DataSets = v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) SetDataSources(v []*AssetBundleExportJobDataSourceOverrideProperties) *AssetBundleCloudFormationOverridePropertyConfiguration {
+	s.DataSources = v
+	return s
+}
+
+// SetRefreshSchedules sets the RefreshSchedules field's value.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) SetRefreshSchedules(v []*AssetBundleExportJobRefreshScheduleOverrideProperties) *AssetBundleCloudFormationOverridePropertyConfiguration {
+	s.RefreshSchedules = v
+	return s
+}
+
+// SetResourceIdOverrideConfiguration sets the ResourceIdOverrideConfiguration field's value.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) SetResourceIdOverrideConfiguration(v *AssetBundleExportJobResourceIdOverrideConfiguration) *AssetBundleCloudFormationOverridePropertyConfiguration {
+	s.ResourceIdOverrideConfiguration = v
+	return s
+}
+
+// SetThemes sets the Themes field's value.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) SetThemes(v []*AssetBundleExportJobThemeOverrideProperties) *AssetBundleCloudFormationOverridePropertyConfiguration {
+	s.Themes = v
+	return s
+}
+
+// SetVPCConnections sets the VPCConnections field's value.
+func (s *AssetBundleCloudFormationOverridePropertyConfiguration) SetVPCConnections(v []*AssetBundleExportJobVPCConnectionOverrideProperties) *AssetBundleCloudFormationOverridePropertyConfiguration {
+	s.VPCConnections = v
+	return s
+}
+
+// Controls how a specific Analysis resource is parameterized in the returned
+// CloudFormation template.
+type AssetBundleExportJobAnalysisOverrideProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the specific Analysis resource whose override properties are configured
+	// in this structure.
+	Arn *string `type:"string"`
+
+	// A list of Analysis resource properties to generate variables for in the returned
+	// CloudFormation template.
+	//
+	// Properties is a required field
+	Properties []*string `min:"1" type:"list" required:"true" enum:"AssetBundleExportJobAnalysisPropertyToOverride"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobAnalysisOverrideProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobAnalysisOverrideProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleExportJobAnalysisOverrideProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobAnalysisOverrideProperties"}
+	if s.Properties == nil {
+		invalidParams.Add(request.NewErrParamRequired("Properties"))
+	}
+	if s.Properties != nil && len(s.Properties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Properties", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobAnalysisOverrideProperties) SetArn(v string) *AssetBundleExportJobAnalysisOverrideProperties {
+	s.Arn = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *AssetBundleExportJobAnalysisOverrideProperties) SetProperties(v []*string) *AssetBundleExportJobAnalysisOverrideProperties {
+	s.Properties = v
+	return s
+}
+
+// Controls how a specific Dashboard resource is parameterized in the returned
+// CloudFormation template.
+type AssetBundleExportJobDashboardOverrideProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the specific Dashboard resource whose override properties are
+	// configured in this structure.
+	Arn *string `type:"string"`
+
+	// A list of Dashboard resource properties to generate variables for in the
+	// returned CloudFormation template.
+	//
+	// Properties is a required field
+	Properties []*string `min:"1" type:"list" required:"true" enum:"AssetBundleExportJobDashboardPropertyToOverride"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobDashboardOverrideProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobDashboardOverrideProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleExportJobDashboardOverrideProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobDashboardOverrideProperties"}
+	if s.Properties == nil {
+		invalidParams.Add(request.NewErrParamRequired("Properties"))
+	}
+	if s.Properties != nil && len(s.Properties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Properties", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobDashboardOverrideProperties) SetArn(v string) *AssetBundleExportJobDashboardOverrideProperties {
+	s.Arn = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *AssetBundleExportJobDashboardOverrideProperties) SetProperties(v []*string) *AssetBundleExportJobDashboardOverrideProperties {
+	s.Properties = v
+	return s
+}
+
+// Controls how a specific DataSet resource is parameterized in the returned
+// CloudFormation template.
+type AssetBundleExportJobDataSetOverrideProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the specific DataSet resource whose override properties are configured
+	// in this structure.
+	Arn *string `type:"string"`
+
+	// A list of DataSet resource properties to generate variables for in the returned
+	// CloudFormation template.
+	//
+	// Properties is a required field
+	Properties []*string `min:"1" type:"list" required:"true" enum:"AssetBundleExportJobDataSetPropertyToOverride"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobDataSetOverrideProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobDataSetOverrideProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleExportJobDataSetOverrideProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobDataSetOverrideProperties"}
+	if s.Properties == nil {
+		invalidParams.Add(request.NewErrParamRequired("Properties"))
+	}
+	if s.Properties != nil && len(s.Properties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Properties", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobDataSetOverrideProperties) SetArn(v string) *AssetBundleExportJobDataSetOverrideProperties {
+	s.Arn = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *AssetBundleExportJobDataSetOverrideProperties) SetProperties(v []*string) *AssetBundleExportJobDataSetOverrideProperties {
+	s.Properties = v
+	return s
+}
+
+// Controls how a specific DataSource resource is parameterized in the returned
+// CloudFormation template.
+type AssetBundleExportJobDataSourceOverrideProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the specific DataSource resource whose override properties are
+	// configured in this structure.
+	Arn *string `type:"string"`
+
+	// A list of DataSource resource properties to generate variables for in the
+	// returned CloudFormation template.
+	//
+	// Properties is a required field
+	Properties []*string `min:"1" type:"list" required:"true" enum:"AssetBundleExportJobDataSourcePropertyToOverride"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobDataSourceOverrideProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobDataSourceOverrideProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleExportJobDataSourceOverrideProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobDataSourceOverrideProperties"}
+	if s.Properties == nil {
+		invalidParams.Add(request.NewErrParamRequired("Properties"))
+	}
+	if s.Properties != nil && len(s.Properties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Properties", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobDataSourceOverrideProperties) SetArn(v string) *AssetBundleExportJobDataSourceOverrideProperties {
+	s.Arn = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *AssetBundleExportJobDataSourceOverrideProperties) SetProperties(v []*string) *AssetBundleExportJobDataSourceOverrideProperties {
+	s.Properties = v
+	return s
+}
+
+// Describes an error that occurred during an Asset Bundle export job.
+type AssetBundleExportJobError struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource whose processing caused an error.
+	Arn *string `type:"string"`
+
+	// A description of the error.
+	Message *string `type:"string"`
+
+	// The specific error type of the error that occurred.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobError) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobError) SetArn(v string) *AssetBundleExportJobError {
+	s.Arn = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AssetBundleExportJobError) SetMessage(v string) *AssetBundleExportJobError {
+	s.Message = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AssetBundleExportJobError) SetType(v string) *AssetBundleExportJobError {
+	s.Type = &v
+	return s
+}
+
+// Controls how a specific RefreshSchedule resource is parameterized in the
+// returned CloudFormation template.
+type AssetBundleExportJobRefreshScheduleOverrideProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the specific RefreshSchedule resource whose override properties
+	// are configured in this structure.
+	Arn *string `type:"string"`
+
+	// A list of RefreshSchedule resource properties to generate variables for in
+	// the returned CloudFormation template.
+	//
+	// Properties is a required field
+	Properties []*string `min:"1" type:"list" required:"true" enum:"AssetBundleExportJobRefreshSchedulePropertyToOverride"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobRefreshScheduleOverrideProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobRefreshScheduleOverrideProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleExportJobRefreshScheduleOverrideProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobRefreshScheduleOverrideProperties"}
+	if s.Properties == nil {
+		invalidParams.Add(request.NewErrParamRequired("Properties"))
+	}
+	if s.Properties != nil && len(s.Properties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Properties", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobRefreshScheduleOverrideProperties) SetArn(v string) *AssetBundleExportJobRefreshScheduleOverrideProperties {
+	s.Arn = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *AssetBundleExportJobRefreshScheduleOverrideProperties) SetProperties(v []*string) *AssetBundleExportJobRefreshScheduleOverrideProperties {
+	s.Properties = v
+	return s
+}
+
+// An optional structure that configures resource ID overrides for the export
+// job.
+type AssetBundleExportJobResourceIdOverrideConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An option to request a CloudFormation variable for a prefix to be prepended
+	// to each resource's ID before import. The prefix is only added to the asset
+	// IDs and does not change the name of the asset.
+	PrefixForAllResources *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobResourceIdOverrideConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobResourceIdOverrideConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetPrefixForAllResources sets the PrefixForAllResources field's value.
+func (s *AssetBundleExportJobResourceIdOverrideConfiguration) SetPrefixForAllResources(v bool) *AssetBundleExportJobResourceIdOverrideConfiguration {
+	s.PrefixForAllResources = &v
+	return s
+}
+
+// A summary of the export job that includes details of the job's configuration
+// and its current status.
+type AssetBundleExportJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the export job.
+	Arn *string `type:"string"`
+
+	// The ID of the export job.
+	AssetBundleExportJobId *string `min:"1" type:"string"`
+
+	// The time that the export job was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The format for the export job.
+	ExportFormat *string `type:"string" enum:"AssetBundleExportFormat"`
+
+	// The flag that determines the inclusion of resource dependencies in the returned
+	// asset bundle.
+	IncludeAllDependencies *bool `type:"boolean"`
+
+	// The current status of the export job.
+	JobStatus *string `type:"string" enum:"AssetBundleExportJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobSummary) SetArn(v string) *AssetBundleExportJobSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetAssetBundleExportJobId sets the AssetBundleExportJobId field's value.
+func (s *AssetBundleExportJobSummary) SetAssetBundleExportJobId(v string) *AssetBundleExportJobSummary {
+	s.AssetBundleExportJobId = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *AssetBundleExportJobSummary) SetCreatedTime(v time.Time) *AssetBundleExportJobSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetExportFormat sets the ExportFormat field's value.
+func (s *AssetBundleExportJobSummary) SetExportFormat(v string) *AssetBundleExportJobSummary {
+	s.ExportFormat = &v
+	return s
+}
+
+// SetIncludeAllDependencies sets the IncludeAllDependencies field's value.
+func (s *AssetBundleExportJobSummary) SetIncludeAllDependencies(v bool) *AssetBundleExportJobSummary {
+	s.IncludeAllDependencies = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *AssetBundleExportJobSummary) SetJobStatus(v string) *AssetBundleExportJobSummary {
+	s.JobStatus = &v
+	return s
+}
+
+// Controls how a specific Theme resource is parameterized in the returned CloudFormation
+// template.
+type AssetBundleExportJobThemeOverrideProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the specific Theme resource whose override properties are configured
+	// in this structure.
+	Arn *string `type:"string"`
+
+	// A list of Theme resource properties to generate variables for in the returned
+	// CloudFormation template.
+	//
+	// Properties is a required field
+	Properties []*string `min:"1" type:"list" required:"true" enum:"AssetBundleExportJobThemePropertyToOverride"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobThemeOverrideProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobThemeOverrideProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleExportJobThemeOverrideProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobThemeOverrideProperties"}
+	if s.Properties == nil {
+		invalidParams.Add(request.NewErrParamRequired("Properties"))
+	}
+	if s.Properties != nil && len(s.Properties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Properties", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobThemeOverrideProperties) SetArn(v string) *AssetBundleExportJobThemeOverrideProperties {
+	s.Arn = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *AssetBundleExportJobThemeOverrideProperties) SetProperties(v []*string) *AssetBundleExportJobThemeOverrideProperties {
+	s.Properties = v
+	return s
+}
+
+// Controls how a specific VPCConnection resource is parameterized in the outputted
+// CloudFormation template.
+type AssetBundleExportJobVPCConnectionOverrideProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the specific VPCConnection resource whose override properties
+	// are configured in this structure.
+	Arn *string `type:"string"`
+
+	// A list of VPCConnection resource properties to generate variables for in
+	// the returned CloudFormation template.
+	//
+	// Properties is a required field
+	Properties []*string `min:"1" type:"list" required:"true" enum:"AssetBundleExportJobVPCConnectionPropertyToOverride"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobVPCConnectionOverrideProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobVPCConnectionOverrideProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleExportJobVPCConnectionOverrideProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobVPCConnectionOverrideProperties"}
+	if s.Properties == nil {
+		invalidParams.Add(request.NewErrParamRequired("Properties"))
+	}
+	if s.Properties != nil && len(s.Properties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Properties", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobVPCConnectionOverrideProperties) SetArn(v string) *AssetBundleExportJobVPCConnectionOverrideProperties {
+	s.Arn = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *AssetBundleExportJobVPCConnectionOverrideProperties) SetProperties(v []*string) *AssetBundleExportJobVPCConnectionOverrideProperties {
+	s.Properties = v
+	return s
+}
+
+// The override parameters for a single analysis that is being imported.
+type AssetBundleImportJobAnalysisOverrideParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the analysis that you ant to apply overrides to.
+	//
+	// AnalysisId is a required field
+	AnalysisId *string `type:"string" required:"true"`
+
+	// A new name for the analysis.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobAnalysisOverrideParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobAnalysisOverrideParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobAnalysisOverrideParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobAnalysisOverrideParameters"}
+	if s.AnalysisId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisId"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisId sets the AnalysisId field's value.
+func (s *AssetBundleImportJobAnalysisOverrideParameters) SetAnalysisId(v string) *AssetBundleImportJobAnalysisOverrideParameters {
+	s.AnalysisId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AssetBundleImportJobAnalysisOverrideParameters) SetName(v string) *AssetBundleImportJobAnalysisOverrideParameters {
+	s.Name = &v
+	return s
+}
+
+// The override parameters for a single dashboard that is being imported.
+type AssetBundleImportJobDashboardOverrideParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the dashboard that you want to apply overrides to.
+	//
+	// DashboardId is a required field
+	DashboardId *string `type:"string" required:"true"`
+
+	// A new name for the dashboard.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDashboardOverrideParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDashboardOverrideParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDashboardOverrideParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDashboardOverrideParameters"}
+	if s.DashboardId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardId"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDashboardId sets the DashboardId field's value.
+func (s *AssetBundleImportJobDashboardOverrideParameters) SetDashboardId(v string) *AssetBundleImportJobDashboardOverrideParameters {
+	s.DashboardId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AssetBundleImportJobDashboardOverrideParameters) SetName(v string) *AssetBundleImportJobDashboardOverrideParameters {
+	s.Name = &v
+	return s
+}
+
+// The override parameters for a single dataset that is being imported.
+type AssetBundleImportJobDataSetOverrideParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the dataset to apply overrides to.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// A new name for the dataset.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSetOverrideParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSetOverrideParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDataSetOverrideParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDataSetOverrideParameters"}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *AssetBundleImportJobDataSetOverrideParameters) SetDataSetId(v string) *AssetBundleImportJobDataSetOverrideParameters {
+	s.DataSetId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AssetBundleImportJobDataSetOverrideParameters) SetName(v string) *AssetBundleImportJobDataSetOverrideParameters {
+	s.Name = &v
+	return s
+}
+
+// A username and password credential pair to use to import a data source resource.
+type AssetBundleImportJobDataSourceCredentialPair struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The password for the data source connection.
+	//
+	// Password is a required field
+	Password *string `min:"1" type:"string" required:"true"`
+
+	// The username for the data source connection.
+	//
+	// Username is a required field
+	Username *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceCredentialPair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceCredentialPair) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDataSourceCredentialPair) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDataSourceCredentialPair"}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPassword sets the Password field's value.
+func (s *AssetBundleImportJobDataSourceCredentialPair) SetPassword(v string) *AssetBundleImportJobDataSourceCredentialPair {
+	s.Password = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *AssetBundleImportJobDataSourceCredentialPair) SetUsername(v string) *AssetBundleImportJobDataSourceCredentialPair {
+	s.Username = &v
+	return s
+}
+
+// The login credentials to use to import a data source resource.
+type AssetBundleImportJobDataSourceCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// A username and password credential pair to be used to create the imported
+	// data source. Leave this field blank if you are using an Secrets Manager Secret
+	// to provide credentials.
+	//
+	// CredentialPair is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssetBundleImportJobDataSourceCredentials's
+	// String and GoString methods.
+	CredentialPair *AssetBundleImportJobDataSourceCredentialPair `type:"structure" sensitive:"true"`
+
+	// The ARN of the Secrets Manager Secret to be used to create the imported data
+	// source leave this field blank if you aren't using a Secret in place of a
+	// credential pair.
+	SecretArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceCredentials) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDataSourceCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDataSourceCredentials"}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.CredentialPair != nil {
+		if err := s.CredentialPair.Validate(); err != nil {
+			invalidParams.AddNested("CredentialPair", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCredentialPair sets the CredentialPair field's value.
+func (s *AssetBundleImportJobDataSourceCredentials) SetCredentialPair(v *AssetBundleImportJobDataSourceCredentialPair) *AssetBundleImportJobDataSourceCredentials {
+	s.CredentialPair = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *AssetBundleImportJobDataSourceCredentials) SetSecretArn(v string) *AssetBundleImportJobDataSourceCredentials {
+	s.SecretArn = &v
+	return s
+}
+
+// The override parameters for a single data source that is being imported.
+type AssetBundleImportJobDataSourceOverrideParameters struct {
+	_ struct{} `type:"structure"`
+
+	// An optional structure that provides the credentials to be used to create
+	// the imported data source.
+	Credentials *AssetBundleImportJobDataSourceCredentials `type:"structure"`
+
+	// The ID of the data source to apply overrides to.
+	//
+	// DataSourceId is a required field
+	DataSourceId *string `type:"string" required:"true"`
+
+	// The parameters that Amazon QuickSight uses to connect to your underlying
+	// data source. This is a variant type structure. For this structure to be valid,
+	// only one of the attributes can be non-null.
+	DataSourceParameters *DataSourceParameters `type:"structure"`
+
+	// A new name for the data source.
+	Name *string `min:"1" type:"string"`
+
+	// Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects
+	// to your underlying data source.
+	SslProperties *SslProperties `type:"structure"`
+
+	// VPC connection properties.
+	VpcConnectionProperties *VpcConnectionProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceOverrideParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceOverrideParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDataSourceOverrideParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDataSourceOverrideParameters"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Credentials != nil {
+		if err := s.Credentials.Validate(); err != nil {
+			invalidParams.AddNested("Credentials", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataSourceParameters != nil {
+		if err := s.DataSourceParameters.Validate(); err != nil {
+			invalidParams.AddNested("DataSourceParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VpcConnectionProperties != nil {
+		if err := s.VpcConnectionProperties.Validate(); err != nil {
+			invalidParams.AddNested("VpcConnectionProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *AssetBundleImportJobDataSourceOverrideParameters) SetCredentials(v *AssetBundleImportJobDataSourceCredentials) *AssetBundleImportJobDataSourceOverrideParameters {
+	s.Credentials = v
+	return s
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *AssetBundleImportJobDataSourceOverrideParameters) SetDataSourceId(v string) *AssetBundleImportJobDataSourceOverrideParameters {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetDataSourceParameters sets the DataSourceParameters field's value.
+func (s *AssetBundleImportJobDataSourceOverrideParameters) SetDataSourceParameters(v *DataSourceParameters) *AssetBundleImportJobDataSourceOverrideParameters {
+	s.DataSourceParameters = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AssetBundleImportJobDataSourceOverrideParameters) SetName(v string) *AssetBundleImportJobDataSourceOverrideParameters {
+	s.Name = &v
+	return s
+}
+
+// SetSslProperties sets the SslProperties field's value.
+func (s *AssetBundleImportJobDataSourceOverrideParameters) SetSslProperties(v *SslProperties) *AssetBundleImportJobDataSourceOverrideParameters {
+	s.SslProperties = v
+	return s
+}
+
+// SetVpcConnectionProperties sets the VpcConnectionProperties field's value.
+func (s *AssetBundleImportJobDataSourceOverrideParameters) SetVpcConnectionProperties(v *VpcConnectionProperties) *AssetBundleImportJobDataSourceOverrideParameters {
+	s.VpcConnectionProperties = v
+	return s
+}
+
+// Describes an error that occurred within an Asset Bundle import execution.
+type AssetBundleImportJobError struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource whose processing caused an error.
+	Arn *string `type:"string"`
+
+	// A description of the error.
+	Message *string `type:"string"`
+
+	// The specific error type or the error that occurred.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobError) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleImportJobError) SetArn(v string) *AssetBundleImportJobError {
+	s.Arn = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AssetBundleImportJobError) SetMessage(v string) *AssetBundleImportJobError {
+	s.Message = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AssetBundleImportJobError) SetType(v string) *AssetBundleImportJobError {
+	s.Type = &v
+	return s
+}
+
+// A list of overrides that modify the asset bundle resource configuration before
+// the resource is imported.
+type AssetBundleImportJobOverrideParameters struct {
+	_ struct{} `type:"structure"`
+
+	// A list of overrides for any Analysis resources that are present in the asset
+	// bundle that is imported.
+	Analyses []*AssetBundleImportJobAnalysisOverrideParameters `min:"1" type:"list"`
+
+	// A list of overrides for any Dashboard resources that are present in the asset
+	// bundle that is imported.
+	Dashboards []*AssetBundleImportJobDashboardOverrideParameters `min:"1" type:"list"`
+
+	// A list of overrides for any DataSet resources that are present in the asset
+	// bundle that is imported.
+	DataSets []*AssetBundleImportJobDataSetOverrideParameters `min:"1" type:"list"`
+
+	// A list of overrides for any DataSource resources that are present in the
+	// asset bundle that is imported.
+	DataSources []*AssetBundleImportJobDataSourceOverrideParameters `min:"1" type:"list"`
+
+	// A list of overrides for any RefreshSchedule resources that are present in
+	// the asset bundle that is imported.
+	RefreshSchedules []*AssetBundleImportJobRefreshScheduleOverrideParameters `min:"1" type:"list"`
+
+	// An optional structure that configures resource ID overrides to be applied
+	// within the import job.
+	ResourceIdOverrideConfiguration *AssetBundleImportJobResourceIdOverrideConfiguration `type:"structure"`
+
+	// A list of overrides for any Theme resources that are present in the asset
+	// bundle that is imported.
+	Themes []*AssetBundleImportJobThemeOverrideParameters `min:"1" type:"list"`
+
+	// A list of overrides for any VPCConnection resources that are present in the
+	// asset bundle that is imported.
+	VPCConnections []*AssetBundleImportJobVPCConnectionOverrideParameters `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobOverrideParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobOverrideParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobOverrideParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobOverrideParameters"}
+	if s.Analyses != nil && len(s.Analyses) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Analyses", 1))
+	}
+	if s.Dashboards != nil && len(s.Dashboards) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Dashboards", 1))
+	}
+	if s.DataSets != nil && len(s.DataSets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSets", 1))
+	}
+	if s.DataSources != nil && len(s.DataSources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSources", 1))
+	}
+	if s.RefreshSchedules != nil && len(s.RefreshSchedules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RefreshSchedules", 1))
+	}
+	if s.Themes != nil && len(s.Themes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Themes", 1))
+	}
+	if s.VPCConnections != nil && len(s.VPCConnections) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnections", 1))
+	}
+	if s.Analyses != nil {
+		for i, v := range s.Analyses {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Analyses", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Dashboards != nil {
+		for i, v := range s.Dashboards {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dashboards", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DataSets != nil {
+		for i, v := range s.DataSets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DataSources != nil {
+		for i, v := range s.DataSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RefreshSchedules != nil {
+		for i, v := range s.RefreshSchedules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RefreshSchedules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Themes != nil {
+		for i, v := range s.Themes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Themes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VPCConnections != nil {
+		for i, v := range s.VPCConnections {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VPCConnections", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyses sets the Analyses field's value.
+func (s *AssetBundleImportJobOverrideParameters) SetAnalyses(v []*AssetBundleImportJobAnalysisOverrideParameters) *AssetBundleImportJobOverrideParameters {
+	s.Analyses = v
+	return s
+}
+
+// SetDashboards sets the Dashboards field's value.
+func (s *AssetBundleImportJobOverrideParameters) SetDashboards(v []*AssetBundleImportJobDashboardOverrideParameters) *AssetBundleImportJobOverrideParameters {
+	s.Dashboards = v
+	return s
+}
+
+// SetDataSets sets the DataSets field's value.
+func (s *AssetBundleImportJobOverrideParameters) SetDataSets(v []*AssetBundleImportJobDataSetOverrideParameters) *AssetBundleImportJobOverrideParameters {
+	s.DataSets = v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *AssetBundleImportJobOverrideParameters) SetDataSources(v []*AssetBundleImportJobDataSourceOverrideParameters) *AssetBundleImportJobOverrideParameters {
+	s.DataSources = v
+	return s
+}
+
+// SetRefreshSchedules sets the RefreshSchedules field's value.
+func (s *AssetBundleImportJobOverrideParameters) SetRefreshSchedules(v []*AssetBundleImportJobRefreshScheduleOverrideParameters) *AssetBundleImportJobOverrideParameters {
+	s.RefreshSchedules = v
+	return s
+}
+
+// SetResourceIdOverrideConfiguration sets the ResourceIdOverrideConfiguration field's value.
+func (s *AssetBundleImportJobOverrideParameters) SetResourceIdOverrideConfiguration(v *AssetBundleImportJobResourceIdOverrideConfiguration) *AssetBundleImportJobOverrideParameters {
+	s.ResourceIdOverrideConfiguration = v
+	return s
+}
+
+// SetThemes sets the Themes field's value.
+func (s *AssetBundleImportJobOverrideParameters) SetThemes(v []*AssetBundleImportJobThemeOverrideParameters) *AssetBundleImportJobOverrideParameters {
+	s.Themes = v
+	return s
+}
+
+// SetVPCConnections sets the VPCConnections field's value.
+func (s *AssetBundleImportJobOverrideParameters) SetVPCConnections(v []*AssetBundleImportJobVPCConnectionOverrideParameters) *AssetBundleImportJobOverrideParameters {
+	s.VPCConnections = v
+	return s
+}
+
+// A list of overrides for a specific RefreshsSchedule resource that is present
+// in the asset bundle that is imported.
+type AssetBundleImportJobRefreshScheduleOverrideParameters struct {
+	_ struct{} `type:"structure"`
+
+	// A partial identifier for the specific RefreshSchedule resource that is being
+	// overridden. This structure is used together with the ScheduleID structure.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// A partial identifier for the specific RefreshSchedule resource being overridden.
+	// This structure is used together with the DataSetId structure.
+	//
+	// ScheduleId is a required field
+	ScheduleId *string `type:"string" required:"true"`
+
+	// An override for the StartAfterDateTime of a RefreshSchedule to ensure that
+	// the StartAfterDateTime is set to a time that takes place in the future.
+	StartAfterDateTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobRefreshScheduleOverrideParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobRefreshScheduleOverrideParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobRefreshScheduleOverrideParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobRefreshScheduleOverrideParameters"}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.ScheduleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *AssetBundleImportJobRefreshScheduleOverrideParameters) SetDataSetId(v string) *AssetBundleImportJobRefreshScheduleOverrideParameters {
+	s.DataSetId = &v
+	return s
+}
+
+// SetScheduleId sets the ScheduleId field's value.
+func (s *AssetBundleImportJobRefreshScheduleOverrideParameters) SetScheduleId(v string) *AssetBundleImportJobRefreshScheduleOverrideParameters {
+	s.ScheduleId = &v
+	return s
+}
+
+// SetStartAfterDateTime sets the StartAfterDateTime field's value.
+func (s *AssetBundleImportJobRefreshScheduleOverrideParameters) SetStartAfterDateTime(v time.Time) *AssetBundleImportJobRefreshScheduleOverrideParameters {
+	s.StartAfterDateTime = &v
+	return s
+}
+
+// An optional structure that configures resource ID overrides for the import
+// job
+type AssetBundleImportJobResourceIdOverrideConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An option to request a CloudFormation variable for a prefix to be prepended
+	// to each resource's ID before import. The prefix is only added to the asset
+	// IDs and does not change the name of the asset.
+	PrefixForAllResources *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobResourceIdOverrideConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobResourceIdOverrideConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetPrefixForAllResources sets the PrefixForAllResources field's value.
+func (s *AssetBundleImportJobResourceIdOverrideConfiguration) SetPrefixForAllResources(v string) *AssetBundleImportJobResourceIdOverrideConfiguration {
+	s.PrefixForAllResources = &v
+	return s
+}
+
+// A summary of the import job that includes details of the requested job's
+// configuration and its current status.
+type AssetBundleImportJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the import job.
+	Arn *string `type:"string"`
+
+	// The ID of the job. This ID is unique while the job is running. After the
+	// job is completed, you can reuse this ID for another job.
+	AssetBundleImportJobId *string `min:"1" type:"string"`
+
+	// The time that the import job was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The failure action for the import job.
+	FailureAction *string `type:"string" enum:"AssetBundleImportFailureAction"`
+
+	// The current status of the import job.
+	JobStatus *string `type:"string" enum:"AssetBundleImportJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleImportJobSummary) SetArn(v string) *AssetBundleImportJobSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetAssetBundleImportJobId sets the AssetBundleImportJobId field's value.
+func (s *AssetBundleImportJobSummary) SetAssetBundleImportJobId(v string) *AssetBundleImportJobSummary {
+	s.AssetBundleImportJobId = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *AssetBundleImportJobSummary) SetCreatedTime(v time.Time) *AssetBundleImportJobSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetFailureAction sets the FailureAction field's value.
+func (s *AssetBundleImportJobSummary) SetFailureAction(v string) *AssetBundleImportJobSummary {
+	s.FailureAction = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *AssetBundleImportJobSummary) SetJobStatus(v string) *AssetBundleImportJobSummary {
+	s.JobStatus = &v
+	return s
+}
+
+// The override parameters for a single theme that is imported.
+type AssetBundleImportJobThemeOverrideParameters struct {
+	_ struct{} `type:"structure"`
+
+	// A new name for the theme.
+	Name *string `min:"1" type:"string"`
+
+	// The ID of the theme to apply overrides to.
+	//
+	// ThemeId is a required field
+	ThemeId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobThemeOverrideParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobThemeOverrideParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobThemeOverrideParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobThemeOverrideParameters"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ThemeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThemeId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AssetBundleImportJobThemeOverrideParameters) SetName(v string) *AssetBundleImportJobThemeOverrideParameters {
+	s.Name = &v
+	return s
+}
+
+// SetThemeId sets the ThemeId field's value.
+func (s *AssetBundleImportJobThemeOverrideParameters) SetThemeId(v string) *AssetBundleImportJobThemeOverrideParameters {
+	s.ThemeId = &v
+	return s
+}
+
+// The override parameters for a single VPC connection that is imported.
+type AssetBundleImportJobVPCConnectionOverrideParameters struct {
+	_ struct{} `type:"structure"`
+
+	// An optional override of dns resolvers to be used by the VPC connection.
+	DnsResolvers []*string `type:"list"`
+
+	// A new name for the VPC connection.
+	Name *string `min:"1" type:"string"`
+
+	// An optional override of the role ARN to be used by the VPC connection.
+	RoleArn *string `min:"20" type:"string"`
+
+	// A new security group ID for the VPC connection you are importing. This field
+	// is required if you are importing the VPC connection from another Amazon Web
+	// Services account or region.
+	SecurityGroupIds []*string `min:"1" type:"list"`
+
+	// A list of new subnet IDs for the VPC connection you are importing. This field
+	// is required if you are importing the VPC connection from another Amazon Web
+	// Services account or region.
+	SubnetIds []*string `min:"2" type:"list"`
+
+	// The ID of the VPC Connection to apply overrides to.
+	//
+	// VPCConnectionId is a required field
+	VPCConnectionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobVPCConnectionOverrideParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobVPCConnectionOverrideParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobVPCConnectionOverrideParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobVPCConnectionOverrideParameters"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.SubnetIds != nil && len(s.SubnetIds) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 2))
+	}
+	if s.VPCConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VPCConnectionId"))
+	}
+	if s.VPCConnectionId != nil && len(*s.VPCConnectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnectionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDnsResolvers sets the DnsResolvers field's value.
+func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetDnsResolvers(v []*string) *AssetBundleImportJobVPCConnectionOverrideParameters {
+	s.DnsResolvers = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetName(v string) *AssetBundleImportJobVPCConnectionOverrideParameters {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetRoleArn(v string) *AssetBundleImportJobVPCConnectionOverrideParameters {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetSecurityGroupIds(v []*string) *AssetBundleImportJobVPCConnectionOverrideParameters {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetSubnetIds(v []*string) *AssetBundleImportJobVPCConnectionOverrideParameters {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetVPCConnectionId(v string) *AssetBundleImportJobVPCConnectionOverrideParameters {
+	s.VPCConnectionId = &v
+	return s
+}
+
+// The source of the asset bundle zip file that contains the data that you want
+// to import.
+type AssetBundleImportSource struct {
+	_ struct{} `type:"structure"`
+
+	// The bytes of the Base64 encoded asset bundle import zip file. This file can't
+	// exceed 20MB.
+	//
+	// If you are calling the APIs from the Amazon Web Services Java, JavaScript,
+	// Python, or PHP SDKs, the SDK encodes Base64 automatically to allow the direct
+	// setting of the zip file's bytes. If you are using a SDK of a different language
+	// or are receiving related errors, try to Base64 encode your data.
+	//
+	// Body is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssetBundleImportSource's
+	// String and GoString methods.
+	//
+	// Body is automatically base64 encoded/decoded by the SDK.
+	Body []byte `type:"blob" sensitive:"true"`
+
+	// The Amazon S3 uri for an asset bundle import file that exists in an Amazon
+	// S3 bucket that the caller has read access to. The file must be a zip format
+	// file and can't exceed 20MB.
+	S3Uri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportSource) GoString() string {
+	return s.String()
+}
+
+// SetBody sets the Body field's value.
+func (s *AssetBundleImportSource) SetBody(v []byte) *AssetBundleImportSource {
+	s.Body = v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *AssetBundleImportSource) SetS3Uri(v string) *AssetBundleImportSource {
+	s.S3Uri = &v
+	return s
+}
+
+// A description of the import source that you provide at the start of an import
+// job. This value is set to either Body or S3Uri depending on how the StartAssetBundleImportJobRequest
+// is configured.
+type AssetBundleImportSourceDescription struct {
+	_ struct{} `type:"structure"`
+
+	// A HTTPS download URL for the provided asset bundle that you optionally provided
+	// at the start of the import job. This URL is valid for 5 minutes after issuance.
+	// Call DescribeAssetBundleExportJob again for a fresh URL if needed. The downloaded
+	// asset bundle is a .qs zip file.
+	Body *string `type:"string"`
+
+	// The Amazon S3 uri that you provided at the start of the import job.
+	S3Uri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportSourceDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportSourceDescription) GoString() string {
+	return s.String()
+}
+
+// SetBody sets the Body field's value.
+func (s *AssetBundleImportSourceDescription) SetBody(v string) *AssetBundleImportSourceDescription {
+	s.Body = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *AssetBundleImportSourceDescription) SetS3Uri(v string) *AssetBundleImportSourceDescription {
+	s.S3Uri = &v
+	return s
+}
+
 // Parameters for Amazon Athena.
 type AthenaParameters struct {
 	_ struct{} `type:"structure"`
@@ -22080,7 +24746,7 @@ func (s *ClusterMarker) SetSimpleClusterMarker(v *SimpleClusterMarker) *ClusterM
 type ClusterMarkerConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster marker that is a part of the cluster marker configuration
+	// The cluster marker that is a part of the cluster marker configuration.
 	ClusterMarker *ClusterMarker `type:"structure"`
 }
 
@@ -39629,6 +42295,449 @@ func (s *DescribeAnalysisPermissionsOutput) SetStatus(v int64) *DescribeAnalysis
 	return s
 }
 
+type DescribeAssetBundleExportJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the job that you want described. The job ID is set when you start
+	// a new job with a StartAssetBundleExportJob API call.
+	//
+	// AssetBundleExportJobId is a required field
+	AssetBundleExportJobId *string `location:"uri" locationName:"AssetBundleExportJobId" min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account the export job is executed in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAssetBundleExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAssetBundleExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAssetBundleExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAssetBundleExportJobInput"}
+	if s.AssetBundleExportJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetBundleExportJobId"))
+	}
+	if s.AssetBundleExportJobId != nil && len(*s.AssetBundleExportJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetBundleExportJobId", 1))
+	}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetBundleExportJobId sets the AssetBundleExportJobId field's value.
+func (s *DescribeAssetBundleExportJobInput) SetAssetBundleExportJobId(v string) *DescribeAssetBundleExportJobInput {
+	s.AssetBundleExportJobId = &v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeAssetBundleExportJobInput) SetAwsAccountId(v string) *DescribeAssetBundleExportJobInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+type DescribeAssetBundleExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the export job.
+	Arn *string `type:"string"`
+
+	// The ID of the job. The job ID is set when you start a new job with a StartAssetBundleExportJob
+	// API call.
+	AssetBundleExportJobId *string `min:"1" type:"string"`
+
+	// The ID of the Amazon Web Services account that the export job was executed
+	// in.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// The CloudFormation override property configuration for the export job.
+	CloudFormationOverridePropertyConfiguration *AssetBundleCloudFormationOverridePropertyConfiguration `type:"structure"`
+
+	// The time that the export job was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The URL to download the exported asset bundle data from.
+	//
+	// This URL is available only after the job has succeeded. This URL is valid
+	// for 5 minutes after issuance. Call DescribeAssetBundleExportJob again for
+	// a fresh URL if needed.
+	//
+	// The downloaded asset bundle is a zip file named assetbundle-{jobId}.qs. The
+	// file has a .qs extension.
+	//
+	// This URL can't be used in a StartAssetBundleImportJob API call and should
+	// only be used for download purposes.
+	DownloadUrl *string `type:"string"`
+
+	// An array of error records that describes any failures that occurred during
+	// the export job processing.
+	//
+	// Error records accumulate while the job runs. The complete set of error records
+	// is available after the job has completed and failed.
+	Errors []*AssetBundleExportJobError `type:"list"`
+
+	// The format of the export.
+	ExportFormat *string `type:"string" enum:"AssetBundleExportFormat"`
+
+	// The include dependencies flag.
+	IncludeAllDependencies *bool `type:"boolean"`
+
+	// Indicates tha status of a job through its queueing and execution.
+	//
+	// Poll this DescribeAssetBundleExportApi until JobStatus is either SUCCESSFUL
+	// or FAILED.
+	JobStatus *string `type:"string" enum:"AssetBundleExportJobStatus"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// A list of resource ARNs that exported with the job.
+	ResourceArns []*string `min:"1" type:"list"`
+
+	// The HTTP status of the response.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAssetBundleExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAssetBundleExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetArn(v string) *DescribeAssetBundleExportJobOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAssetBundleExportJobId sets the AssetBundleExportJobId field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetAssetBundleExportJobId(v string) *DescribeAssetBundleExportJobOutput {
+	s.AssetBundleExportJobId = &v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetAwsAccountId(v string) *DescribeAssetBundleExportJobOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetCloudFormationOverridePropertyConfiguration sets the CloudFormationOverridePropertyConfiguration field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetCloudFormationOverridePropertyConfiguration(v *AssetBundleCloudFormationOverridePropertyConfiguration) *DescribeAssetBundleExportJobOutput {
+	s.CloudFormationOverridePropertyConfiguration = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetCreatedTime(v time.Time) *DescribeAssetBundleExportJobOutput {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDownloadUrl sets the DownloadUrl field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetDownloadUrl(v string) *DescribeAssetBundleExportJobOutput {
+	s.DownloadUrl = &v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetErrors(v []*AssetBundleExportJobError) *DescribeAssetBundleExportJobOutput {
+	s.Errors = v
+	return s
+}
+
+// SetExportFormat sets the ExportFormat field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetExportFormat(v string) *DescribeAssetBundleExportJobOutput {
+	s.ExportFormat = &v
+	return s
+}
+
+// SetIncludeAllDependencies sets the IncludeAllDependencies field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetIncludeAllDependencies(v bool) *DescribeAssetBundleExportJobOutput {
+	s.IncludeAllDependencies = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetJobStatus(v string) *DescribeAssetBundleExportJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetRequestId(v string) *DescribeAssetBundleExportJobOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetResourceArns sets the ResourceArns field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetResourceArns(v []*string) *DescribeAssetBundleExportJobOutput {
+	s.ResourceArns = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetStatus(v int64) *DescribeAssetBundleExportJobOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeAssetBundleImportJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the job. The job ID is set when you start a new job with a StartAssetBundleImportJob
+	// API call.
+	//
+	// AssetBundleImportJobId is a required field
+	AssetBundleImportJobId *string `location:"uri" locationName:"AssetBundleImportJobId" min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account the import job was executed in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAssetBundleImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAssetBundleImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAssetBundleImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAssetBundleImportJobInput"}
+	if s.AssetBundleImportJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetBundleImportJobId"))
+	}
+	if s.AssetBundleImportJobId != nil && len(*s.AssetBundleImportJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetBundleImportJobId", 1))
+	}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetBundleImportJobId sets the AssetBundleImportJobId field's value.
+func (s *DescribeAssetBundleImportJobInput) SetAssetBundleImportJobId(v string) *DescribeAssetBundleImportJobInput {
+	s.AssetBundleImportJobId = &v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeAssetBundleImportJobInput) SetAwsAccountId(v string) *DescribeAssetBundleImportJobInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+type DescribeAssetBundleImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the import job.
+	Arn *string `type:"string"`
+
+	// The ID of the job. The job ID is set when you start a new job with a StartAssetBundleImportJob
+	// API call.
+	AssetBundleImportJobId *string `min:"1" type:"string"`
+
+	// The source of the asset bundle zip file that contains the data that is imported
+	// by the job.
+	AssetBundleImportSource *AssetBundleImportSourceDescription `type:"structure"`
+
+	// The ID of the Amazon Web Services account the import job was executed in.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// The time that the import job was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// An array of error records that describes any failures that occurred during
+	// the export job processing.
+	//
+	// Error records accumulate while the job is still running. The complete set
+	// of error records is available after the job has completed and failed.
+	Errors []*AssetBundleImportJobError `type:"list"`
+
+	// The failure action for the import job.
+	FailureAction *string `type:"string" enum:"AssetBundleImportFailureAction"`
+
+	// Indicates tha status of a job through its queueing and execution.
+	//
+	// Poll this DescribeAssetBundleImport API until JobStatus returns one of the
+	// following values.
+	//
+	//    * SUCCESSFUL
+	//
+	//    * FAILED
+	//
+	//    * FAILED_ROLLBACK_COMPLETED
+	//
+	//    * FAILED_ROLLBACK_ERROR
+	JobStatus *string `type:"string" enum:"AssetBundleImportJobStatus"`
+
+	// Optional overrides to be applied to the resource configuration before import.
+	OverrideParameters *AssetBundleImportJobOverrideParameters `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// An array of error records that describes any failures that occurred while
+	// an import job was attempting a rollback.
+	//
+	// Error records accumulate while the job is still running. The complete set
+	// of error records is available after the job has completed and failed.
+	RollbackErrors []*AssetBundleImportJobError `type:"list"`
+
+	// The HTTP status of the response.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAssetBundleImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAssetBundleImportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetArn(v string) *DescribeAssetBundleImportJobOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAssetBundleImportJobId sets the AssetBundleImportJobId field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetAssetBundleImportJobId(v string) *DescribeAssetBundleImportJobOutput {
+	s.AssetBundleImportJobId = &v
+	return s
+}
+
+// SetAssetBundleImportSource sets the AssetBundleImportSource field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetAssetBundleImportSource(v *AssetBundleImportSourceDescription) *DescribeAssetBundleImportJobOutput {
+	s.AssetBundleImportSource = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetAwsAccountId(v string) *DescribeAssetBundleImportJobOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetCreatedTime(v time.Time) *DescribeAssetBundleImportJobOutput {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetErrors(v []*AssetBundleImportJobError) *DescribeAssetBundleImportJobOutput {
+	s.Errors = v
+	return s
+}
+
+// SetFailureAction sets the FailureAction field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetFailureAction(v string) *DescribeAssetBundleImportJobOutput {
+	s.FailureAction = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetJobStatus(v string) *DescribeAssetBundleImportJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetOverrideParameters sets the OverrideParameters field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetOverrideParameters(v *AssetBundleImportJobOverrideParameters) *DescribeAssetBundleImportJobOutput {
+	s.OverrideParameters = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetRequestId(v string) *DescribeAssetBundleImportJobOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetRollbackErrors sets the RollbackErrors field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetRollbackErrors(v []*AssetBundleImportJobError) *DescribeAssetBundleImportJobOutput {
+	s.RollbackErrors = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetStatus(v int64) *DescribeAssetBundleImportJobOutput {
+	s.Status = &v
+	return s
+}
+
 type DescribeDashboardDefinitionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -50722,6 +53831,155 @@ func (s *GeospatialCoordinateBounds) SetWest(v float64) *GeospatialCoordinateBou
 	return s
 }
 
+// The color scale specification for the heatmap point style.
+type GeospatialHeatmapColorScale struct {
+	_ struct{} `type:"structure"`
+
+	// The list of colors to be used in heatmap point style.
+	Colors []*GeospatialHeatmapDataColor `min:"2" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeospatialHeatmapColorScale) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeospatialHeatmapColorScale) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GeospatialHeatmapColorScale) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GeospatialHeatmapColorScale"}
+	if s.Colors != nil && len(s.Colors) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Colors", 2))
+	}
+	if s.Colors != nil {
+		for i, v := range s.Colors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Colors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColors sets the Colors field's value.
+func (s *GeospatialHeatmapColorScale) SetColors(v []*GeospatialHeatmapDataColor) *GeospatialHeatmapColorScale {
+	s.Colors = v
+	return s
+}
+
+// The heatmap configuration of the geospatial point style.
+type GeospatialHeatmapConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The color scale specification for the heatmap point style.
+	HeatmapColor *GeospatialHeatmapColorScale `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeospatialHeatmapConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeospatialHeatmapConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GeospatialHeatmapConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GeospatialHeatmapConfiguration"}
+	if s.HeatmapColor != nil {
+		if err := s.HeatmapColor.Validate(); err != nil {
+			invalidParams.AddNested("HeatmapColor", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHeatmapColor sets the HeatmapColor field's value.
+func (s *GeospatialHeatmapConfiguration) SetHeatmapColor(v *GeospatialHeatmapColorScale) *GeospatialHeatmapConfiguration {
+	s.HeatmapColor = v
+	return s
+}
+
+// The color to be used in the heatmap point style.
+type GeospatialHeatmapDataColor struct {
+	_ struct{} `type:"structure"`
+
+	// The hex color to be used in the heatmap point style.
+	//
+	// Color is a required field
+	Color *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeospatialHeatmapDataColor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeospatialHeatmapDataColor) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GeospatialHeatmapDataColor) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GeospatialHeatmapDataColor"}
+	if s.Color == nil {
+		invalidParams.Add(request.NewErrParamRequired("Color"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColor sets the Color field's value.
+func (s *GeospatialHeatmapDataColor) SetColor(v string) *GeospatialHeatmapDataColor {
+	s.Color = &v
+	return s
+}
+
 // The aggregated field wells for a geospatial map.
 type GeospatialMapAggregatedFieldWells struct {
 	_ struct{} `type:"structure"`
@@ -50864,6 +54122,11 @@ func (s *GeospatialMapConfiguration) Validate() error {
 	if s.FieldWells != nil {
 		if err := s.FieldWells.Validate(); err != nil {
 			invalidParams.AddNested("FieldWells", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PointStyleOptions != nil {
+		if err := s.PointStyleOptions.Validate(); err != nil {
+			invalidParams.AddNested("PointStyleOptions", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tooltip != nil {
@@ -51154,6 +54417,9 @@ type GeospatialPointStyleOptions struct {
 	// The cluster marker configuration of the geospatial point style.
 	ClusterMarkerConfiguration *ClusterMarkerConfiguration `type:"structure"`
 
+	// The heatmap configuration of the geospatial point style.
+	HeatmapConfiguration *GeospatialHeatmapConfiguration `type:"structure"`
+
 	// The selected point styles (point, cluster) of the geospatial map.
 	SelectedPointStyle *string `type:"string" enum:"GeospatialSelectedPointStyle"`
 }
@@ -51176,9 +54442,30 @@ func (s GeospatialPointStyleOptions) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GeospatialPointStyleOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GeospatialPointStyleOptions"}
+	if s.HeatmapConfiguration != nil {
+		if err := s.HeatmapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("HeatmapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetClusterMarkerConfiguration sets the ClusterMarkerConfiguration field's value.
 func (s *GeospatialPointStyleOptions) SetClusterMarkerConfiguration(v *ClusterMarkerConfiguration) *GeospatialPointStyleOptions {
 	s.ClusterMarkerConfiguration = v
+	return s
+}
+
+// SetHeatmapConfiguration sets the HeatmapConfiguration field's value.
+func (s *GeospatialPointStyleOptions) SetHeatmapConfiguration(v *GeospatialHeatmapConfiguration) *GeospatialPointStyleOptions {
+	s.HeatmapConfiguration = v
 	return s
 }
 
@@ -57137,6 +60424,264 @@ func (s *ListAnalysesOutput) SetRequestId(v string) *ListAnalysesOutput {
 
 // SetStatus sets the Status field's value.
 func (s *ListAnalysesOutput) SetStatus(v int64) *ListAnalysesOutput {
+	s.Status = &v
+	return s
+}
+
+type ListAssetBundleExportJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that the export jobs were executed
+	// in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetBundleExportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetBundleExportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssetBundleExportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssetBundleExportJobsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListAssetBundleExportJobsInput) SetAwsAccountId(v string) *ListAssetBundleExportJobsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAssetBundleExportJobsInput) SetMaxResults(v int64) *ListAssetBundleExportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetBundleExportJobsInput) SetNextToken(v string) *ListAssetBundleExportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAssetBundleExportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of export job summaries.
+	AssetBundleExportJobSummaryList []*AssetBundleExportJobSummary `type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetBundleExportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetBundleExportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssetBundleExportJobSummaryList sets the AssetBundleExportJobSummaryList field's value.
+func (s *ListAssetBundleExportJobsOutput) SetAssetBundleExportJobSummaryList(v []*AssetBundleExportJobSummary) *ListAssetBundleExportJobsOutput {
+	s.AssetBundleExportJobSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetBundleExportJobsOutput) SetNextToken(v string) *ListAssetBundleExportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListAssetBundleExportJobsOutput) SetRequestId(v string) *ListAssetBundleExportJobsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListAssetBundleExportJobsOutput) SetStatus(v int64) *ListAssetBundleExportJobsOutput {
+	s.Status = &v
+	return s
+}
+
+type ListAssetBundleImportJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that the import jobs were executed
+	// in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetBundleImportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetBundleImportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssetBundleImportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssetBundleImportJobsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListAssetBundleImportJobsInput) SetAwsAccountId(v string) *ListAssetBundleImportJobsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAssetBundleImportJobsInput) SetMaxResults(v int64) *ListAssetBundleImportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetBundleImportJobsInput) SetNextToken(v string) *ListAssetBundleImportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAssetBundleImportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of import job summaries.
+	AssetBundleImportJobSummaryList []*AssetBundleImportJobSummary `type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the response.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetBundleImportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetBundleImportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssetBundleImportJobSummaryList sets the AssetBundleImportJobSummaryList field's value.
+func (s *ListAssetBundleImportJobsOutput) SetAssetBundleImportJobSummaryList(v []*AssetBundleImportJobSummary) *ListAssetBundleImportJobsOutput {
+	s.AssetBundleImportJobSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetBundleImportJobsOutput) SetNextToken(v string) *ListAssetBundleImportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListAssetBundleImportJobsOutput) SetRequestId(v string) *ListAssetBundleImportJobsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListAssetBundleImportJobsOutput) SetStatus(v int64) *ListAssetBundleImportJobsOutput {
 	s.Status = &v
 	return s
 }
@@ -76275,6 +79820,383 @@ func (s *SslProperties) SetDisableSsl(v bool) *SslProperties {
 	return s
 }
 
+type StartAssetBundleExportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the job. This ID is unique while the job is running. After the
+	// job is completed, you can reuse this ID for another job.
+	//
+	// AssetBundleExportJobId is a required field
+	AssetBundleExportJobId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account to export assets from.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// An optional collection of structures that generate CloudFormation parameters
+	// to override the existing resource property values when the resource is exported
+	// to a new CloudFormation template.
+	//
+	// Use this field if the ExportFormat field of a StartAssetBundleExportJobRequest
+	// API call is set to CLOUDFORMATION_JSON.
+	CloudFormationOverridePropertyConfiguration *AssetBundleCloudFormationOverridePropertyConfiguration `type:"structure"`
+
+	// The export data format.
+	//
+	// ExportFormat is a required field
+	ExportFormat *string `type:"string" required:"true" enum:"AssetBundleExportFormat"`
+
+	// A Boolean that determines whether all dependencies of each resource ARN are
+	// recursively exported with the job. For example, say you provided a Dashboard
+	// ARN to the ResourceArns parameter. If you set IncludeAllDependencies to TRUE,
+	// any theme, dataset, and dataource resource that is a dependency of the dashboard
+	// is also exported.
+	IncludeAllDependencies *bool `type:"boolean"`
+
+	// An array of resource ARNs to export. The following resources are supported.
+	//
+	//    * Analysis
+	//
+	//    * Dashboard
+	//
+	//    * DataSet
+	//
+	//    * DataSource
+	//
+	//    * RefreshSchedule
+	//
+	//    * Theme
+	//
+	//    * VPCConnection
+	//
+	// The API caller must have the necessary permissions in their IAM role to access
+	// each resource before the resources can be exported.
+	//
+	// ResourceArns is a required field
+	ResourceArns []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssetBundleExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssetBundleExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartAssetBundleExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartAssetBundleExportJobInput"}
+	if s.AssetBundleExportJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetBundleExportJobId"))
+	}
+	if s.AssetBundleExportJobId != nil && len(*s.AssetBundleExportJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetBundleExportJobId", 1))
+	}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.ExportFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportFormat"))
+	}
+	if s.ResourceArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArns"))
+	}
+	if s.ResourceArns != nil && len(s.ResourceArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArns", 1))
+	}
+	if s.CloudFormationOverridePropertyConfiguration != nil {
+		if err := s.CloudFormationOverridePropertyConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CloudFormationOverridePropertyConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetBundleExportJobId sets the AssetBundleExportJobId field's value.
+func (s *StartAssetBundleExportJobInput) SetAssetBundleExportJobId(v string) *StartAssetBundleExportJobInput {
+	s.AssetBundleExportJobId = &v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *StartAssetBundleExportJobInput) SetAwsAccountId(v string) *StartAssetBundleExportJobInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetCloudFormationOverridePropertyConfiguration sets the CloudFormationOverridePropertyConfiguration field's value.
+func (s *StartAssetBundleExportJobInput) SetCloudFormationOverridePropertyConfiguration(v *AssetBundleCloudFormationOverridePropertyConfiguration) *StartAssetBundleExportJobInput {
+	s.CloudFormationOverridePropertyConfiguration = v
+	return s
+}
+
+// SetExportFormat sets the ExportFormat field's value.
+func (s *StartAssetBundleExportJobInput) SetExportFormat(v string) *StartAssetBundleExportJobInput {
+	s.ExportFormat = &v
+	return s
+}
+
+// SetIncludeAllDependencies sets the IncludeAllDependencies field's value.
+func (s *StartAssetBundleExportJobInput) SetIncludeAllDependencies(v bool) *StartAssetBundleExportJobInput {
+	s.IncludeAllDependencies = &v
+	return s
+}
+
+// SetResourceArns sets the ResourceArns field's value.
+func (s *StartAssetBundleExportJobInput) SetResourceArns(v []*string) *StartAssetBundleExportJobInput {
+	s.ResourceArns = v
+	return s
+}
+
+type StartAssetBundleExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the export job.
+	Arn *string `type:"string"`
+
+	// The ID of the job. This ID is unique while the job is running. After the
+	// job is completed, you can reuse this ID for another job.
+	AssetBundleExportJobId *string `min:"1" type:"string"`
+
+	// The Amazon Web Services response ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the response.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssetBundleExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssetBundleExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartAssetBundleExportJobOutput) SetArn(v string) *StartAssetBundleExportJobOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAssetBundleExportJobId sets the AssetBundleExportJobId field's value.
+func (s *StartAssetBundleExportJobOutput) SetAssetBundleExportJobId(v string) *StartAssetBundleExportJobOutput {
+	s.AssetBundleExportJobId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *StartAssetBundleExportJobOutput) SetRequestId(v string) *StartAssetBundleExportJobOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartAssetBundleExportJobOutput) SetStatus(v int64) *StartAssetBundleExportJobOutput {
+	s.Status = &v
+	return s
+}
+
+type StartAssetBundleImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the job. This ID is unique while the job is running. After the
+	// job is completed, you can reuse this ID for another job.
+	//
+	// AssetBundleImportJobId is a required field
+	AssetBundleImportJobId *string `min:"1" type:"string" required:"true"`
+
+	// The source of the asset bundle zip file that contains the data that you want
+	// to import.
+	//
+	// AssetBundleImportSource is a required field
+	AssetBundleImportSource *AssetBundleImportSource `type:"structure" required:"true"`
+
+	// The ID of the Amazon Web Services account to import assets into.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The failure action for the import job.
+	//
+	// If you choose ROLLBACK, failed import jobs will attempt to undo any asset
+	// changes caused by the failed job.
+	//
+	// If you choose DO_NOTHING, failed import jobs will not attempt to roll back
+	// any asset changes caused by the failed job, possibly leaving the Amazon QuickSight
+	// account in an inconsistent state.
+	FailureAction *string `type:"string" enum:"AssetBundleImportFailureAction"`
+
+	// Optional overrides to be applied to the resource configuration before import.
+	OverrideParameters *AssetBundleImportJobOverrideParameters `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssetBundleImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssetBundleImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartAssetBundleImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartAssetBundleImportJobInput"}
+	if s.AssetBundleImportJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetBundleImportJobId"))
+	}
+	if s.AssetBundleImportJobId != nil && len(*s.AssetBundleImportJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetBundleImportJobId", 1))
+	}
+	if s.AssetBundleImportSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetBundleImportSource"))
+	}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.OverrideParameters != nil {
+		if err := s.OverrideParameters.Validate(); err != nil {
+			invalidParams.AddNested("OverrideParameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetBundleImportJobId sets the AssetBundleImportJobId field's value.
+func (s *StartAssetBundleImportJobInput) SetAssetBundleImportJobId(v string) *StartAssetBundleImportJobInput {
+	s.AssetBundleImportJobId = &v
+	return s
+}
+
+// SetAssetBundleImportSource sets the AssetBundleImportSource field's value.
+func (s *StartAssetBundleImportJobInput) SetAssetBundleImportSource(v *AssetBundleImportSource) *StartAssetBundleImportJobInput {
+	s.AssetBundleImportSource = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *StartAssetBundleImportJobInput) SetAwsAccountId(v string) *StartAssetBundleImportJobInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFailureAction sets the FailureAction field's value.
+func (s *StartAssetBundleImportJobInput) SetFailureAction(v string) *StartAssetBundleImportJobInput {
+	s.FailureAction = &v
+	return s
+}
+
+// SetOverrideParameters sets the OverrideParameters field's value.
+func (s *StartAssetBundleImportJobInput) SetOverrideParameters(v *AssetBundleImportJobOverrideParameters) *StartAssetBundleImportJobInput {
+	s.OverrideParameters = v
+	return s
+}
+
+type StartAssetBundleImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the import job.
+	Arn *string `type:"string"`
+
+	// The ID of the job. This ID is unique while the job is running. After the
+	// job is completed, you can reuse this ID for another job.
+	AssetBundleImportJobId *string `min:"1" type:"string"`
+
+	// The Amazon Web Services response ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the response.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssetBundleImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssetBundleImportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartAssetBundleImportJobOutput) SetArn(v string) *StartAssetBundleImportJobOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAssetBundleImportJobId sets the AssetBundleImportJobId field's value.
+func (s *StartAssetBundleImportJobOutput) SetAssetBundleImportJobId(v string) *StartAssetBundleImportJobOutput {
+	s.AssetBundleImportJobId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *StartAssetBundleImportJobOutput) SetRequestId(v string) *StartAssetBundleImportJobOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartAssetBundleImportJobOutput) SetStatus(v int64) *StartAssetBundleImportJobOutput {
+	s.Status = &v
+	return s
+}
+
 // The state perssitence configuration of an embedded dashboard.
 type StatePersistenceConfigurations struct {
 	_ struct{} `type:"structure"`
@@ -92743,6 +96665,254 @@ func ArcThicknessOptions_Values() []string {
 }
 
 const (
+	// AssetBundleExportFormatCloudformationJson is a AssetBundleExportFormat enum value
+	AssetBundleExportFormatCloudformationJson = "CLOUDFORMATION_JSON"
+
+	// AssetBundleExportFormatQuicksightJson is a AssetBundleExportFormat enum value
+	AssetBundleExportFormatQuicksightJson = "QUICKSIGHT_JSON"
+)
+
+// AssetBundleExportFormat_Values returns all elements of the AssetBundleExportFormat enum
+func AssetBundleExportFormat_Values() []string {
+	return []string{
+		AssetBundleExportFormatCloudformationJson,
+		AssetBundleExportFormatQuicksightJson,
+	}
+}
+
+const (
+	// AssetBundleExportJobAnalysisPropertyToOverrideName is a AssetBundleExportJobAnalysisPropertyToOverride enum value
+	AssetBundleExportJobAnalysisPropertyToOverrideName = "Name"
+)
+
+// AssetBundleExportJobAnalysisPropertyToOverride_Values returns all elements of the AssetBundleExportJobAnalysisPropertyToOverride enum
+func AssetBundleExportJobAnalysisPropertyToOverride_Values() []string {
+	return []string{
+		AssetBundleExportJobAnalysisPropertyToOverrideName,
+	}
+}
+
+const (
+	// AssetBundleExportJobDashboardPropertyToOverrideName is a AssetBundleExportJobDashboardPropertyToOverride enum value
+	AssetBundleExportJobDashboardPropertyToOverrideName = "Name"
+)
+
+// AssetBundleExportJobDashboardPropertyToOverride_Values returns all elements of the AssetBundleExportJobDashboardPropertyToOverride enum
+func AssetBundleExportJobDashboardPropertyToOverride_Values() []string {
+	return []string{
+		AssetBundleExportJobDashboardPropertyToOverrideName,
+	}
+}
+
+const (
+	// AssetBundleExportJobDataSetPropertyToOverrideName is a AssetBundleExportJobDataSetPropertyToOverride enum value
+	AssetBundleExportJobDataSetPropertyToOverrideName = "Name"
+)
+
+// AssetBundleExportJobDataSetPropertyToOverride_Values returns all elements of the AssetBundleExportJobDataSetPropertyToOverride enum
+func AssetBundleExportJobDataSetPropertyToOverride_Values() []string {
+	return []string{
+		AssetBundleExportJobDataSetPropertyToOverrideName,
+	}
+}
+
+const (
+	// AssetBundleExportJobDataSourcePropertyToOverrideName is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideName = "Name"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideDisableSsl is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideDisableSsl = "DisableSsl"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideSecretArn is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideSecretArn = "SecretArn"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideUsername is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideUsername = "Username"
+
+	// AssetBundleExportJobDataSourcePropertyToOverridePassword is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverridePassword = "Password"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideDomain is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideDomain = "Domain"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideWorkGroup is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideWorkGroup = "WorkGroup"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideHost is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideHost = "Host"
+
+	// AssetBundleExportJobDataSourcePropertyToOverridePort is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverridePort = "Port"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideDatabase is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideDatabase = "Database"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideDataSetName is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideDataSetName = "DataSetName"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideCatalog is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideCatalog = "Catalog"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideInstanceId is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideInstanceId = "InstanceId"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideClusterId is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideClusterId = "ClusterId"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideManifestFileLocation is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideManifestFileLocation = "ManifestFileLocation"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideWarehouse is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideWarehouse = "Warehouse"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideRoleArn is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideRoleArn = "RoleArn"
+)
+
+// AssetBundleExportJobDataSourcePropertyToOverride_Values returns all elements of the AssetBundleExportJobDataSourcePropertyToOverride enum
+func AssetBundleExportJobDataSourcePropertyToOverride_Values() []string {
+	return []string{
+		AssetBundleExportJobDataSourcePropertyToOverrideName,
+		AssetBundleExportJobDataSourcePropertyToOverrideDisableSsl,
+		AssetBundleExportJobDataSourcePropertyToOverrideSecretArn,
+		AssetBundleExportJobDataSourcePropertyToOverrideUsername,
+		AssetBundleExportJobDataSourcePropertyToOverridePassword,
+		AssetBundleExportJobDataSourcePropertyToOverrideDomain,
+		AssetBundleExportJobDataSourcePropertyToOverrideWorkGroup,
+		AssetBundleExportJobDataSourcePropertyToOverrideHost,
+		AssetBundleExportJobDataSourcePropertyToOverridePort,
+		AssetBundleExportJobDataSourcePropertyToOverrideDatabase,
+		AssetBundleExportJobDataSourcePropertyToOverrideDataSetName,
+		AssetBundleExportJobDataSourcePropertyToOverrideCatalog,
+		AssetBundleExportJobDataSourcePropertyToOverrideInstanceId,
+		AssetBundleExportJobDataSourcePropertyToOverrideClusterId,
+		AssetBundleExportJobDataSourcePropertyToOverrideManifestFileLocation,
+		AssetBundleExportJobDataSourcePropertyToOverrideWarehouse,
+		AssetBundleExportJobDataSourcePropertyToOverrideRoleArn,
+	}
+}
+
+const (
+	// AssetBundleExportJobRefreshSchedulePropertyToOverrideStartAfterDateTime is a AssetBundleExportJobRefreshSchedulePropertyToOverride enum value
+	AssetBundleExportJobRefreshSchedulePropertyToOverrideStartAfterDateTime = "StartAfterDateTime"
+)
+
+// AssetBundleExportJobRefreshSchedulePropertyToOverride_Values returns all elements of the AssetBundleExportJobRefreshSchedulePropertyToOverride enum
+func AssetBundleExportJobRefreshSchedulePropertyToOverride_Values() []string {
+	return []string{
+		AssetBundleExportJobRefreshSchedulePropertyToOverrideStartAfterDateTime,
+	}
+}
+
+const (
+	// AssetBundleExportJobStatusQueuedForImmediateExecution is a AssetBundleExportJobStatus enum value
+	AssetBundleExportJobStatusQueuedForImmediateExecution = "QUEUED_FOR_IMMEDIATE_EXECUTION"
+
+	// AssetBundleExportJobStatusInProgress is a AssetBundleExportJobStatus enum value
+	AssetBundleExportJobStatusInProgress = "IN_PROGRESS"
+
+	// AssetBundleExportJobStatusSuccessful is a AssetBundleExportJobStatus enum value
+	AssetBundleExportJobStatusSuccessful = "SUCCESSFUL"
+
+	// AssetBundleExportJobStatusFailed is a AssetBundleExportJobStatus enum value
+	AssetBundleExportJobStatusFailed = "FAILED"
+)
+
+// AssetBundleExportJobStatus_Values returns all elements of the AssetBundleExportJobStatus enum
+func AssetBundleExportJobStatus_Values() []string {
+	return []string{
+		AssetBundleExportJobStatusQueuedForImmediateExecution,
+		AssetBundleExportJobStatusInProgress,
+		AssetBundleExportJobStatusSuccessful,
+		AssetBundleExportJobStatusFailed,
+	}
+}
+
+const (
+	// AssetBundleExportJobThemePropertyToOverrideName is a AssetBundleExportJobThemePropertyToOverride enum value
+	AssetBundleExportJobThemePropertyToOverrideName = "Name"
+)
+
+// AssetBundleExportJobThemePropertyToOverride_Values returns all elements of the AssetBundleExportJobThemePropertyToOverride enum
+func AssetBundleExportJobThemePropertyToOverride_Values() []string {
+	return []string{
+		AssetBundleExportJobThemePropertyToOverrideName,
+	}
+}
+
+const (
+	// AssetBundleExportJobVPCConnectionPropertyToOverrideName is a AssetBundleExportJobVPCConnectionPropertyToOverride enum value
+	AssetBundleExportJobVPCConnectionPropertyToOverrideName = "Name"
+
+	// AssetBundleExportJobVPCConnectionPropertyToOverrideDnsResolvers is a AssetBundleExportJobVPCConnectionPropertyToOverride enum value
+	AssetBundleExportJobVPCConnectionPropertyToOverrideDnsResolvers = "DnsResolvers"
+
+	// AssetBundleExportJobVPCConnectionPropertyToOverrideRoleArn is a AssetBundleExportJobVPCConnectionPropertyToOverride enum value
+	AssetBundleExportJobVPCConnectionPropertyToOverrideRoleArn = "RoleArn"
+)
+
+// AssetBundleExportJobVPCConnectionPropertyToOverride_Values returns all elements of the AssetBundleExportJobVPCConnectionPropertyToOverride enum
+func AssetBundleExportJobVPCConnectionPropertyToOverride_Values() []string {
+	return []string{
+		AssetBundleExportJobVPCConnectionPropertyToOverrideName,
+		AssetBundleExportJobVPCConnectionPropertyToOverrideDnsResolvers,
+		AssetBundleExportJobVPCConnectionPropertyToOverrideRoleArn,
+	}
+}
+
+const (
+	// AssetBundleImportFailureActionDoNothing is a AssetBundleImportFailureAction enum value
+	AssetBundleImportFailureActionDoNothing = "DO_NOTHING"
+
+	// AssetBundleImportFailureActionRollback is a AssetBundleImportFailureAction enum value
+	AssetBundleImportFailureActionRollback = "ROLLBACK"
+)
+
+// AssetBundleImportFailureAction_Values returns all elements of the AssetBundleImportFailureAction enum
+func AssetBundleImportFailureAction_Values() []string {
+	return []string{
+		AssetBundleImportFailureActionDoNothing,
+		AssetBundleImportFailureActionRollback,
+	}
+}
+
+const (
+	// AssetBundleImportJobStatusQueuedForImmediateExecution is a AssetBundleImportJobStatus enum value
+	AssetBundleImportJobStatusQueuedForImmediateExecution = "QUEUED_FOR_IMMEDIATE_EXECUTION"
+
+	// AssetBundleImportJobStatusInProgress is a AssetBundleImportJobStatus enum value
+	AssetBundleImportJobStatusInProgress = "IN_PROGRESS"
+
+	// AssetBundleImportJobStatusSuccessful is a AssetBundleImportJobStatus enum value
+	AssetBundleImportJobStatusSuccessful = "SUCCESSFUL"
+
+	// AssetBundleImportJobStatusFailed is a AssetBundleImportJobStatus enum value
+	AssetBundleImportJobStatusFailed = "FAILED"
+
+	// AssetBundleImportJobStatusFailedRollbackInProgress is a AssetBundleImportJobStatus enum value
+	AssetBundleImportJobStatusFailedRollbackInProgress = "FAILED_ROLLBACK_IN_PROGRESS"
+
+	// AssetBundleImportJobStatusFailedRollbackCompleted is a AssetBundleImportJobStatus enum value
+	AssetBundleImportJobStatusFailedRollbackCompleted = "FAILED_ROLLBACK_COMPLETED"
+
+	// AssetBundleImportJobStatusFailedRollbackError is a AssetBundleImportJobStatus enum value
+	AssetBundleImportJobStatusFailedRollbackError = "FAILED_ROLLBACK_ERROR"
+)
+
+// AssetBundleImportJobStatus_Values returns all elements of the AssetBundleImportJobStatus enum
+func AssetBundleImportJobStatus_Values() []string {
+	return []string{
+		AssetBundleImportJobStatusQueuedForImmediateExecution,
+		AssetBundleImportJobStatusInProgress,
+		AssetBundleImportJobStatusSuccessful,
+		AssetBundleImportJobStatusFailed,
+		AssetBundleImportJobStatusFailedRollbackInProgress,
+		AssetBundleImportJobStatusFailedRollbackCompleted,
+		AssetBundleImportJobStatusFailedRollbackError,
+	}
+}
+
+const (
 	// AssignmentStatusEnabled is a AssignmentStatus enum value
 	AssignmentStatusEnabled = "ENABLED"
 
@@ -94224,6 +98394,9 @@ const (
 
 	// GeospatialSelectedPointStyleCluster is a GeospatialSelectedPointStyle enum value
 	GeospatialSelectedPointStyleCluster = "CLUSTER"
+
+	// GeospatialSelectedPointStyleHeatmap is a GeospatialSelectedPointStyle enum value
+	GeospatialSelectedPointStyleHeatmap = "HEATMAP"
 )
 
 // GeospatialSelectedPointStyle_Values returns all elements of the GeospatialSelectedPointStyle enum
@@ -94231,6 +98404,7 @@ func GeospatialSelectedPointStyle_Values() []string {
 	return []string{
 		GeospatialSelectedPointStylePoint,
 		GeospatialSelectedPointStyleCluster,
+		GeospatialSelectedPointStyleHeatmap,
 	}
 }
 

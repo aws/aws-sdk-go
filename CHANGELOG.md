@@ -1,3 +1,19 @@
+Release v1.44.267 (2023-05-22)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/pinpoint`: Updates service documentation
+  * Amazon Pinpoint is deprecating the tags parameter in the UpdateSegment, UpdateCampaign, UpdateEmailTemplate, UpdateSmsTemplate, UpdatePushTemplate, UpdateInAppTemplate and UpdateVoiceTemplate. Amazon Pinpoint will end support tags parameter by May 22, 2023.
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * Add support for Asset Bundle, Geospatial Heatmaps.
+
+### SDK Bugs
+* `rest`: Revert removing unnecessary path normalization behavior.
+  * This behavior would mutate request paths with URI-encoded characters, potentially resulting in misrouted requests.
+* `config`: Revert deprecating `DisableRestProtocolURICleaning` config setting.
+  * This setting will have an effect again. REST-protocol paths will now be normalized after serialization.
+
 Release v1.44.266 (2023-05-19)
 ===
 

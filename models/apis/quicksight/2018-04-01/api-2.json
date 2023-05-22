@@ -938,6 +938,34 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DescribeAssetBundleExportJob":{
+      "name":"DescribeAssetBundleExportJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/asset-bundle-export-jobs/{AssetBundleExportJobId}"
+      },
+      "input":{"shape":"DescribeAssetBundleExportJobRequest"},
+      "output":{"shape":"DescribeAssetBundleExportJobResponse"},
+      "errors":[
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeAssetBundleImportJob":{
+      "name":"DescribeAssetBundleImportJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/asset-bundle-import-jobs/{AssetBundleImportJobId}"
+      },
+      "input":{"shape":"DescribeAssetBundleImportJobRequest"},
+      "output":{"shape":"DescribeAssetBundleImportJobResponse"},
+      "errors":[
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeDashboard":{
       "name":"DescribeDashboard",
       "http":{
@@ -1564,6 +1592,38 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListAssetBundleExportJobs":{
+      "name":"ListAssetBundleExportJobs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/asset-bundle-export-jobs"
+      },
+      "input":{"shape":"ListAssetBundleExportJobsRequest"},
+      "output":{"shape":"ListAssetBundleExportJobsResponse"},
+      "errors":[
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListAssetBundleImportJobs":{
+      "name":"ListAssetBundleImportJobs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/asset-bundle-import-jobs"
+      },
+      "input":{"shape":"ListAssetBundleImportJobsRequest"},
+      "output":{"shape":"ListAssetBundleImportJobsResponse"},
+      "errors":[
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListDashboardVersions":{
       "name":"ListDashboardVersions",
       "http":{
@@ -2160,6 +2220,42 @@
         {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "StartAssetBundleExportJob":{
+      "name":"StartAssetBundleExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/asset-bundle-export-jobs/export"
+      },
+      "input":{"shape":"StartAssetBundleExportJobRequest"},
+      "output":{"shape":"StartAssetBundleExportJobResponse"},
+      "errors":[
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "StartAssetBundleImportJob":{
+      "name":"StartAssetBundleImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/asset-bundle-import-jobs/import"
+      },
+      "input":{"shape":"StartAssetBundleImportJobRequest"},
+      "output":{"shape":"StartAssetBundleImportJobResponse"},
+      "errors":[
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "TagResource":{
@@ -3060,6 +3156,477 @@
     "ArnList":{
       "type":"list",
       "member":{"shape":"Arn"}
+    },
+    "AssetBundleCloudFormationOverridePropertyConfiguration":{
+      "type":"structure",
+      "members":{
+        "ResourceIdOverrideConfiguration":{"shape":"AssetBundleExportJobResourceIdOverrideConfiguration"},
+        "VPCConnections":{"shape":"AssetBundleExportJobVPCConnectionOverridePropertiesList"},
+        "RefreshSchedules":{"shape":"AssetBundleExportJobRefreshScheduleOverridePropertiesList"},
+        "DataSources":{"shape":"AssetBundleExportJobDataSourceOverridePropertiesList"},
+        "DataSets":{"shape":"AssetBundleExportJobDataSetOverridePropertiesList"},
+        "Themes":{"shape":"AssetBundleExportJobThemeOverridePropertiesList"},
+        "Analyses":{"shape":"AssetBundleExportJobAnalysisOverridePropertiesList"},
+        "Dashboards":{"shape":"AssetBundleExportJobDashboardOverridePropertiesList"}
+      }
+    },
+    "AssetBundleExportFormat":{
+      "type":"string",
+      "enum":[
+        "CLOUDFORMATION_JSON",
+        "QUICKSIGHT_JSON"
+      ]
+    },
+    "AssetBundleExportJobAnalysisOverrideProperties":{
+      "type":"structure",
+      "required":["Properties"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Properties":{"shape":"AssetBundleExportJobAnalysisPropertyToOverrideList"}
+      }
+    },
+    "AssetBundleExportJobAnalysisOverridePropertiesList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobAnalysisOverrideProperties"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleExportJobAnalysisPropertyToOverride":{
+      "type":"string",
+      "enum":["Name"]
+    },
+    "AssetBundleExportJobAnalysisPropertyToOverrideList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobAnalysisPropertyToOverride"},
+      "max":10,
+      "min":1
+    },
+    "AssetBundleExportJobDashboardOverrideProperties":{
+      "type":"structure",
+      "required":["Properties"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Properties":{"shape":"AssetBundleExportJobDashboardPropertyToOverrideList"}
+      }
+    },
+    "AssetBundleExportJobDashboardOverridePropertiesList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobDashboardOverrideProperties"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleExportJobDashboardPropertyToOverride":{
+      "type":"string",
+      "enum":["Name"]
+    },
+    "AssetBundleExportJobDashboardPropertyToOverrideList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobDashboardPropertyToOverride"},
+      "max":10,
+      "min":1
+    },
+    "AssetBundleExportJobDataSetOverrideProperties":{
+      "type":"structure",
+      "required":["Properties"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Properties":{"shape":"AssetBundleExportJobDataSetPropertyToOverrideList"}
+      }
+    },
+    "AssetBundleExportJobDataSetOverridePropertiesList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobDataSetOverrideProperties"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleExportJobDataSetPropertyToOverride":{
+      "type":"string",
+      "enum":["Name"]
+    },
+    "AssetBundleExportJobDataSetPropertyToOverrideList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobDataSetPropertyToOverride"},
+      "max":10,
+      "min":1
+    },
+    "AssetBundleExportJobDataSourceOverrideProperties":{
+      "type":"structure",
+      "required":["Properties"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Properties":{"shape":"AssetBundleExportJobDataSourcePropertyToOverrideList"}
+      }
+    },
+    "AssetBundleExportJobDataSourceOverridePropertiesList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobDataSourceOverrideProperties"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleExportJobDataSourcePropertyToOverride":{
+      "type":"string",
+      "enum":[
+        "Name",
+        "DisableSsl",
+        "SecretArn",
+        "Username",
+        "Password",
+        "Domain",
+        "WorkGroup",
+        "Host",
+        "Port",
+        "Database",
+        "DataSetName",
+        "Catalog",
+        "InstanceId",
+        "ClusterId",
+        "ManifestFileLocation",
+        "Warehouse",
+        "RoleArn"
+      ]
+    },
+    "AssetBundleExportJobDataSourcePropertyToOverrideList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobDataSourcePropertyToOverride"},
+      "max":10,
+      "min":1
+    },
+    "AssetBundleExportJobError":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Type":{"shape":"NonEmptyString"},
+        "Message":{"shape":"NonEmptyString"}
+      }
+    },
+    "AssetBundleExportJobErrorList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobError"}
+    },
+    "AssetBundleExportJobRefreshScheduleOverrideProperties":{
+      "type":"structure",
+      "required":["Properties"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Properties":{"shape":"AssetBundleExportJobRefreshSchedulePropertyToOverrideList"}
+      }
+    },
+    "AssetBundleExportJobRefreshScheduleOverridePropertiesList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobRefreshScheduleOverrideProperties"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleExportJobRefreshSchedulePropertyToOverride":{
+      "type":"string",
+      "enum":["StartAfterDateTime"]
+    },
+    "AssetBundleExportJobRefreshSchedulePropertyToOverrideList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobRefreshSchedulePropertyToOverride"},
+      "max":10,
+      "min":1
+    },
+    "AssetBundleExportJobResourceIdOverrideConfiguration":{
+      "type":"structure",
+      "members":{
+        "PrefixForAllResources":{"shape":"Boolean"}
+      }
+    },
+    "AssetBundleExportJobStatus":{
+      "type":"string",
+      "enum":[
+        "QUEUED_FOR_IMMEDIATE_EXECUTION",
+        "IN_PROGRESS",
+        "SUCCESSFUL",
+        "FAILED"
+      ]
+    },
+    "AssetBundleExportJobSummary":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{"shape":"AssetBundleExportJobStatus"},
+        "Arn":{"shape":"Arn"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "AssetBundleExportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "IncludeAllDependencies":{"shape":"Boolean"},
+        "ExportFormat":{"shape":"AssetBundleExportFormat"}
+      }
+    },
+    "AssetBundleExportJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobSummary"}
+    },
+    "AssetBundleExportJobThemeOverrideProperties":{
+      "type":"structure",
+      "required":["Properties"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Properties":{"shape":"AssetBundleExportJobThemePropertyToOverrideList"}
+      }
+    },
+    "AssetBundleExportJobThemeOverridePropertiesList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobThemeOverrideProperties"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleExportJobThemePropertyToOverride":{
+      "type":"string",
+      "enum":["Name"]
+    },
+    "AssetBundleExportJobThemePropertyToOverrideList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobThemePropertyToOverride"},
+      "max":10,
+      "min":1
+    },
+    "AssetBundleExportJobVPCConnectionOverrideProperties":{
+      "type":"structure",
+      "required":["Properties"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Properties":{"shape":"AssetBundleExportJobVPCConnectionPropertyToOverrideList"}
+      }
+    },
+    "AssetBundleExportJobVPCConnectionOverridePropertiesList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobVPCConnectionOverrideProperties"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleExportJobVPCConnectionPropertyToOverride":{
+      "type":"string",
+      "enum":[
+        "Name",
+        "DnsResolvers",
+        "RoleArn"
+      ]
+    },
+    "AssetBundleExportJobVPCConnectionPropertyToOverrideList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleExportJobVPCConnectionPropertyToOverride"},
+      "max":10,
+      "min":1
+    },
+    "AssetBundleImportBodyBlob":{
+      "type":"blob",
+      "max":20971520,
+      "min":0,
+      "sensitive":true
+    },
+    "AssetBundleImportFailureAction":{
+      "type":"string",
+      "enum":[
+        "DO_NOTHING",
+        "ROLLBACK"
+      ]
+    },
+    "AssetBundleImportJobAnalysisOverrideParameters":{
+      "type":"structure",
+      "required":["AnalysisId"],
+      "members":{
+        "AnalysisId":{"shape":"ResourceId"},
+        "Name":{"shape":"ResourceName"}
+      }
+    },
+    "AssetBundleImportJobAnalysisOverrideParametersList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobAnalysisOverrideParameters"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleImportJobDashboardOverrideParameters":{
+      "type":"structure",
+      "required":["DashboardId"],
+      "members":{
+        "DashboardId":{"shape":"ResourceId"},
+        "Name":{"shape":"ResourceName"}
+      }
+    },
+    "AssetBundleImportJobDashboardOverrideParametersList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobDashboardOverrideParameters"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleImportJobDataSetOverrideParameters":{
+      "type":"structure",
+      "required":["DataSetId"],
+      "members":{
+        "DataSetId":{"shape":"ResourceId"},
+        "Name":{"shape":"ResourceName"}
+      }
+    },
+    "AssetBundleImportJobDataSetOverrideParametersList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobDataSetOverrideParameters"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleImportJobDataSourceCredentialPair":{
+      "type":"structure",
+      "required":[
+        "Username",
+        "Password"
+      ],
+      "members":{
+        "Username":{"shape":"DbUsername"},
+        "Password":{"shape":"Password"}
+      },
+      "sensitive":true
+    },
+    "AssetBundleImportJobDataSourceCredentials":{
+      "type":"structure",
+      "members":{
+        "CredentialPair":{"shape":"AssetBundleImportJobDataSourceCredentialPair"},
+        "SecretArn":{"shape":"SecretArn"}
+      }
+    },
+    "AssetBundleImportJobDataSourceOverrideParameters":{
+      "type":"structure",
+      "required":["DataSourceId"],
+      "members":{
+        "DataSourceId":{"shape":"ResourceId"},
+        "Name":{"shape":"ResourceName"},
+        "DataSourceParameters":{"shape":"DataSourceParameters"},
+        "VpcConnectionProperties":{"shape":"VpcConnectionProperties"},
+        "SslProperties":{"shape":"SslProperties"},
+        "Credentials":{"shape":"AssetBundleImportJobDataSourceCredentials"}
+      }
+    },
+    "AssetBundleImportJobDataSourceOverrideParametersList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobDataSourceOverrideParameters"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleImportJobError":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Type":{"shape":"NonEmptyString"},
+        "Message":{"shape":"NonEmptyString"}
+      }
+    },
+    "AssetBundleImportJobErrorList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobError"}
+    },
+    "AssetBundleImportJobOverrideParameters":{
+      "type":"structure",
+      "members":{
+        "ResourceIdOverrideConfiguration":{"shape":"AssetBundleImportJobResourceIdOverrideConfiguration"},
+        "VPCConnections":{"shape":"AssetBundleImportJobVPCConnectionOverrideParametersList"},
+        "RefreshSchedules":{"shape":"AssetBundleImportJobRefreshScheduleOverrideParametersList"},
+        "DataSources":{"shape":"AssetBundleImportJobDataSourceOverrideParametersList"},
+        "DataSets":{"shape":"AssetBundleImportJobDataSetOverrideParametersList"},
+        "Themes":{"shape":"AssetBundleImportJobThemeOverrideParametersList"},
+        "Analyses":{"shape":"AssetBundleImportJobAnalysisOverrideParametersList"},
+        "Dashboards":{"shape":"AssetBundleImportJobDashboardOverrideParametersList"}
+      }
+    },
+    "AssetBundleImportJobRefreshScheduleOverrideParameters":{
+      "type":"structure",
+      "required":[
+        "DataSetId",
+        "ScheduleId"
+      ],
+      "members":{
+        "DataSetId":{"shape":"ResourceId"},
+        "ScheduleId":{"shape":"String"},
+        "StartAfterDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "AssetBundleImportJobRefreshScheduleOverrideParametersList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobRefreshScheduleOverrideParameters"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleImportJobResourceIdOverrideConfiguration":{
+      "type":"structure",
+      "members":{
+        "PrefixForAllResources":{"shape":"String"}
+      }
+    },
+    "AssetBundleImportJobStatus":{
+      "type":"string",
+      "enum":[
+        "QUEUED_FOR_IMMEDIATE_EXECUTION",
+        "IN_PROGRESS",
+        "SUCCESSFUL",
+        "FAILED",
+        "FAILED_ROLLBACK_IN_PROGRESS",
+        "FAILED_ROLLBACK_COMPLETED",
+        "FAILED_ROLLBACK_ERROR"
+      ]
+    },
+    "AssetBundleImportJobSummary":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{"shape":"AssetBundleImportJobStatus"},
+        "Arn":{"shape":"Arn"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "AssetBundleImportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "FailureAction":{"shape":"AssetBundleImportFailureAction"}
+      }
+    },
+    "AssetBundleImportJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobSummary"}
+    },
+    "AssetBundleImportJobThemeOverrideParameters":{
+      "type":"structure",
+      "required":["ThemeId"],
+      "members":{
+        "ThemeId":{"shape":"ResourceId"},
+        "Name":{"shape":"ResourceName"}
+      }
+    },
+    "AssetBundleImportJobThemeOverrideParametersList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobThemeOverrideParameters"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleImportJobVPCConnectionOverrideParameters":{
+      "type":"structure",
+      "required":["VPCConnectionId"],
+      "members":{
+        "VPCConnectionId":{"shape":"VPCConnectionResourceIdUnrestricted"},
+        "Name":{"shape":"ResourceName"},
+        "SubnetIds":{"shape":"SubnetIdList"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIdList"},
+        "DnsResolvers":{"shape":"DnsResolverList"},
+        "RoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "AssetBundleImportJobVPCConnectionOverrideParametersList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobVPCConnectionOverrideParameters"},
+      "max":50,
+      "min":1
+    },
+    "AssetBundleImportSource":{
+      "type":"structure",
+      "members":{
+        "Body":{"shape":"AssetBundleImportBodyBlob"},
+        "S3Uri":{"shape":"S3Uri"}
+      }
+    },
+    "AssetBundleImportSourceDescription":{
+      "type":"structure",
+      "members":{
+        "Body":{"shape":"String"},
+        "S3Uri":{"shape":"S3Uri"}
+      }
+    },
+    "AssetBundleResourceArns":{
+      "type":"list",
+      "member":{"shape":"Arn"},
+      "max":100,
+      "min":1
     },
     "AssignmentStatus":{
       "type":"string",
@@ -5071,7 +5638,7 @@
         "Password"
       ],
       "members":{
-        "Username":{"shape":"Username"},
+        "Username":{"shape":"DbUsername"},
         "Password":{"shape":"Password"},
         "AlternateDataSourceParameters":{"shape":"DataSourceParametersList"}
       }
@@ -6179,6 +6746,11 @@
         "FRIDAY",
         "SATURDAY"
       ]
+    },
+    "DbUsername":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "DecimalDatasetParameter":{
       "type":"structure",
@@ -7293,6 +7865,85 @@
           "location":"statusCode"
         },
         "RequestId":{"shape":"String"}
+      }
+    },
+    "DescribeAssetBundleExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "AssetBundleExportJobId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "AssetBundleExportJobId":{
+          "shape":"ShortRestrictiveResourceId",
+          "location":"uri",
+          "locationName":"AssetBundleExportJobId"
+        }
+      }
+    },
+    "DescribeAssetBundleExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{"shape":"AssetBundleExportJobStatus"},
+        "DownloadUrl":{"shape":"String"},
+        "Errors":{"shape":"AssetBundleExportJobErrorList"},
+        "Arn":{"shape":"Arn"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "AssetBundleExportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "AwsAccountId":{"shape":"AwsAccountId"},
+        "ResourceArns":{"shape":"AssetBundleResourceArns"},
+        "IncludeAllDependencies":{"shape":"Boolean"},
+        "ExportFormat":{"shape":"AssetBundleExportFormat"},
+        "CloudFormationOverridePropertyConfiguration":{"shape":"AssetBundleCloudFormationOverridePropertyConfiguration"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "DescribeAssetBundleImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "AssetBundleImportJobId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "AssetBundleImportJobId":{
+          "shape":"ShortRestrictiveResourceId",
+          "location":"uri",
+          "locationName":"AssetBundleImportJobId"
+        }
+      }
+    },
+    "DescribeAssetBundleImportJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{"shape":"AssetBundleImportJobStatus"},
+        "Errors":{"shape":"AssetBundleImportJobErrorList"},
+        "RollbackErrors":{"shape":"AssetBundleImportJobErrorList"},
+        "Arn":{"shape":"Arn"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "AssetBundleImportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "AwsAccountId":{"shape":"AwsAccountId"},
+        "AssetBundleImportSource":{"shape":"AssetBundleImportSourceDescription"},
+        "OverrideParameters":{"shape":"AssetBundleImportJobOverrideParameters"},
+        "FailureAction":{"shape":"AssetBundleImportFailureAction"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
       }
     },
     "DescribeDashboardDefinitionRequest":{
@@ -9592,6 +10243,31 @@
         "East":{"shape":"Longitude"}
       }
     },
+    "GeospatialHeatmapColorScale":{
+      "type":"structure",
+      "members":{
+        "Colors":{"shape":"GeospatialHeatmapDataColorList"}
+      }
+    },
+    "GeospatialHeatmapConfiguration":{
+      "type":"structure",
+      "members":{
+        "HeatmapColor":{"shape":"GeospatialHeatmapColorScale"}
+      }
+    },
+    "GeospatialHeatmapDataColor":{
+      "type":"structure",
+      "required":["Color"],
+      "members":{
+        "Color":{"shape":"HexColor"}
+      }
+    },
+    "GeospatialHeatmapDataColorList":{
+      "type":"list",
+      "member":{"shape":"GeospatialHeatmapDataColor"},
+      "max":2,
+      "min":2
+    },
     "GeospatialMapAggregatedFieldWells":{
       "type":"structure",
       "members":{
@@ -9640,14 +10316,16 @@
       "type":"structure",
       "members":{
         "SelectedPointStyle":{"shape":"GeospatialSelectedPointStyle"},
-        "ClusterMarkerConfiguration":{"shape":"ClusterMarkerConfiguration"}
+        "ClusterMarkerConfiguration":{"shape":"ClusterMarkerConfiguration"},
+        "HeatmapConfiguration":{"shape":"GeospatialHeatmapConfiguration"}
       }
     },
     "GeospatialSelectedPointStyle":{
       "type":"string",
       "enum":[
         "POINT",
-        "CLUSTER"
+        "CLUSTER",
+        "HEATMAP"
       ]
     },
     "GeospatialWindowOptions":{
@@ -10916,6 +11594,74 @@
           "location":"statusCode"
         },
         "RequestId":{"shape":"String"}
+      }
+    },
+    "ListAssetBundleExportJobsRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListAssetBundleExportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "AssetBundleExportJobSummaryList":{"shape":"AssetBundleExportJobSummaryList"},
+        "NextToken":{"shape":"String"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "ListAssetBundleImportJobsRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListAssetBundleImportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "AssetBundleImportJobSummaryList":{"shape":"AssetBundleImportJobSummaryList"},
+        "NextToken":{"shape":"String"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
       }
     },
     "ListControlDisplayOptions":{
@@ -14132,6 +14878,10 @@
         "InputColumns":{"shape":"InputColumnList"}
       }
     },
+    "S3Uri":{
+      "type":"string",
+      "pattern":"^(https|s3)://([^/]+)/?(.*)$"
+    },
     "SameSheetTargetVisualConfiguration":{
       "type":"structure",
       "members":{
@@ -15040,6 +15790,70 @@
       "type":"structure",
       "members":{
         "DisableSsl":{"shape":"Boolean"}
+      }
+    },
+    "StartAssetBundleExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "AssetBundleExportJobId",
+        "ResourceArns",
+        "ExportFormat"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "AssetBundleExportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "ResourceArns":{"shape":"AssetBundleResourceArns"},
+        "IncludeAllDependencies":{"shape":"Boolean"},
+        "ExportFormat":{"shape":"AssetBundleExportFormat"},
+        "CloudFormationOverridePropertyConfiguration":{"shape":"AssetBundleCloudFormationOverridePropertyConfiguration"}
+      }
+    },
+    "StartAssetBundleExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "AssetBundleExportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "StartAssetBundleImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "AssetBundleImportJobId",
+        "AssetBundleImportSource"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "AssetBundleImportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "AssetBundleImportSource":{"shape":"AssetBundleImportSource"},
+        "OverrideParameters":{"shape":"AssetBundleImportJobOverrideParameters"},
+        "FailureAction":{"shape":"AssetBundleImportFailureAction"}
+      }
+    },
+    "StartAssetBundleImportJobResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "AssetBundleImportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
       }
     },
     "StatePersistenceConfigurations":{
@@ -17694,11 +18508,6 @@
         "RESTRICTED_AUTHOR",
         "RESTRICTED_READER"
       ]
-    },
-    "Username":{
-      "type":"string",
-      "max":64,
-      "min":1
     },
     "VPCConnection":{
       "type":"structure",

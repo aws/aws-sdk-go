@@ -6718,6 +6718,10 @@ func (c *Backup) StartRestoreJobRequest(input *StartRestoreJobInput) (req *reque
 //   - ServiceUnavailableException
 //     The request failed due to a temporary failure of the server.
 //
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a parameter is of the wrong type.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/StartRestoreJob
 func (c *Backup) StartRestoreJob(input *StartRestoreJobInput) (*StartRestoreJobOutput, error) {
 	req, out := c.StartRestoreJobRequest(input)
@@ -11563,9 +11567,13 @@ type DescribeRecoveryPointOutput struct {
 	// met, the next instance of a backup rule running will result in a new continuous
 	// recovery point being created. The recovery points with STOPPED status do
 	// not need to be deleted.
+	//
+	// For SAP HANA on Amazon EC2 STOPPED status occurs due to user action, application
+	// misconfiguration, or backup failure. To ensure that future continuous backups
+	// succeed, refer to the recovery point status and check SAP HANA for details.
 	Status *string `type:"string" enum:"RecoveryPointStatus"`
 
-	// A status message explaining the reason for the recovery point deletion failure.
+	// A status message explaining the status of the recovery point.
 	StatusMessage *string `type:"string"`
 
 	// Specifies the storage class of the recovery point. Valid values are WARM
@@ -19767,6 +19775,12 @@ func (s *StartReportJobOutput) SetReportJobId(v string) *StartReportJobOutput {
 type StartRestoreJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// This is an optional parameter. If this equals True, tags included in the
+	// backup will be copied to the restored resource.
+	//
+	// This can only be applied to backups created through Backup.
+	CopySourceTagsToRestoredResource *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of the IAM role that Backup uses to create
 	// the target resource; for example: arn:aws:iam::123456789012:role/S3Access.
 	IamRoleArn *string `type:"string"`
@@ -19890,6 +19904,12 @@ func (s *StartRestoreJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCopySourceTagsToRestoredResource sets the CopySourceTagsToRestoredResource field's value.
+func (s *StartRestoreJobInput) SetCopySourceTagsToRestoredResource(v bool) *StartRestoreJobInput {
+	s.CopySourceTagsToRestoredResource = &v
+	return s
 }
 
 // SetIamRoleArn sets the IamRoleArn field's value.
