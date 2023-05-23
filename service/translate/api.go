@@ -1429,8 +1429,8 @@ func (c *Translate) StartTextTranslationJobRequest(input *StartTextTranslationJo
 //
 //   - UnsupportedLanguagePairException
 //     Amazon Translate does not support translation from the language of the source
-//     text into the requested target language. For more information, see Error
-//     messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
+//     text into the requested target language. For more information, see Supported
+//     languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 //
 //   - InvalidRequestException
 //     The request that you made is not valid. Check your request to determine why
@@ -1735,8 +1735,8 @@ func (c *Translate) TextRequest(input *TextInput) (req *request.Request, output 
 //
 //   - UnsupportedLanguagePairException
 //     Amazon Translate does not support translation from the language of the source
-//     text into the requested target language. For more information, see Error
-//     messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
+//     text into the requested target language. For more information, see Supported
+//     languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 //
 //   - DetectedLanguageLowConfidenceException
 //     The confidence that Amazon Comprehend accurately detected the source language
@@ -1774,6 +1774,121 @@ func (c *Translate) Text(input *TextInput) (*TextOutput, error) {
 // for more information on using Contexts.
 func (c *Translate) TextWithContext(ctx aws.Context, input *TextInput, opts ...request.Option) (*TextOutput, error) {
 	req, out := c.TextRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTranslateDocument = "TranslateDocument"
+
+// TranslateDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the TranslateDocument operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TranslateDocument for more information on using the TranslateDocument
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TranslateDocumentRequest method.
+//	req, resp := client.TranslateDocumentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/TranslateDocument
+func (c *Translate) TranslateDocumentRequest(input *TranslateDocumentInput) (req *request.Request, output *TranslateDocumentOutput) {
+	op := &request.Operation{
+		Name:       opTranslateDocument,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TranslateDocumentInput{}
+	}
+
+	output = &TranslateDocumentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// TranslateDocument API operation for Amazon Translate.
+//
+// Translates the input document from the source language to the target language.
+// This synchronous operation supports plain text or HTML for the input document.
+// TranslateDocument supports translations from English to any supported language,
+// and from any supported language to English. Therefore, specify either the
+// source language code or the target language code as “en” (English).
+//
+// TranslateDocument does not support language auto-detection.
+//
+// If you set the Formality parameter, the request will fail if the target language
+// does not support formality. For a list of target languages that support formality,
+// see Setting formality (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation TranslateDocument for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request that you made is not valid. Check your request to determine why
+//     it's not valid and then retry the request.
+//
+//   - LimitExceededException
+//     The specified limit has been exceeded. Review your request and retry it with
+//     a quantity below the stated limit.
+//
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again.
+//
+//   - ResourceNotFoundException
+//     The resource you are looking for has not been found. Review the resource
+//     you're looking for and see if a different resource will accomplish your needs
+//     before retrying the revised request.
+//
+//   - UnsupportedLanguagePairException
+//     Amazon Translate does not support translation from the language of the source
+//     text into the requested target language. For more information, see Supported
+//     languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ServiceUnavailableException
+//     The Amazon Translate service is temporarily unavailable. Wait a bit and then
+//     retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/TranslateDocument
+func (c *Translate) TranslateDocument(input *TranslateDocumentInput) (*TranslateDocumentOutput, error) {
+	req, out := c.TranslateDocumentRequest(input)
+	return out, req.Send()
+}
+
+// TranslateDocumentWithContext is the same as TranslateDocument with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TranslateDocument for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) TranslateDocumentWithContext(ctx aws.Context, input *TranslateDocumentInput, opts ...request.Option) (*TranslateDocumentOutput, error) {
+	req, out := c.TranslateDocumentRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2636,6 +2751,82 @@ func (s *DetectedLanguageLowConfidenceException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *DetectedLanguageLowConfidenceException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The content and content type of a document.
+type Document struct {
+	_ struct{} `type:"structure"`
+
+	// The Contentfield type is Binary large object (blob). This object contains
+	// the document content converted into base64-encoded binary data. If you use
+	// one of the AWS SDKs, the SDK performs the Base64-encoding on this field before
+	// sending the request.
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Document's
+	// String and GoString methods.
+	//
+	// Content is automatically base64 encoded/decoded by the SDK.
+	//
+	// Content is a required field
+	Content []byte `type:"blob" required:"true" sensitive:"true"`
+
+	// Describes the format of the document. You can specify one of the following:
+	//
+	//    * text/html - The input data consists of HTML content. Amazon Translate
+	//    translates only the text in the HTML element.
+	//
+	//    * text/plain - The input data consists of unformatted text. Amazon Translate
+	//    translates every character in the content.
+	//
+	// ContentType is a required field
+	ContentType *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Document) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Document) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Document) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Document"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *Document) SetContent(v []byte) *Document {
+	s.Content = v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *Document) SetContentType(v string) *Document {
+	s.ContentType = &v
+	return s
 }
 
 // The encryption key used to encrypt this object.
@@ -5534,9 +5725,8 @@ type TextInput struct {
 	// and phrases.
 	Settings *TranslationSettings `type:"structure"`
 
-	// The language code for the language of the source text. The language must
-	// be a language supported by Amazon Translate. For a list of language codes,
-	// see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
+	// The language code for the language of the source text. For a list of language
+	// codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// To have Amazon Translate determine the source language of your text, you
 	// can specify auto in the SourceLanguageCode field. If you specify auto, Amazon
@@ -5550,15 +5740,21 @@ type TextInput struct {
 	// SourceLanguageCode is a required field
 	SourceLanguageCode *string `min:"2" type:"string" required:"true"`
 
-	// The language code requested for the language of the target text. The language
-	// must be a language supported by Amazon Translate.
+	// The language code requested for the language of the target text. For a list
+	// of language codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// TargetLanguageCode is a required field
 	TargetLanguageCode *string `min:"2" type:"string" required:"true"`
 
-	// The name of the terminology list file to be used in the TranslateText request.
-	// You can use 1 terminology list at most in a TranslateText request. Terminology
-	// lists can contain a maximum of 256 terms.
+	// The name of a terminology list file to add to the translation job. This file
+	// provides source terms and the desired translation for each term. A terminology
+	// list can contain a maximum of 256 terms. You can use one custom terminology
+	// resource in your translation request.
+	//
+	// Use the ListTerminologies operation to get the available terminology lists.
+	//
+	// For more information about custom terminology lists, see Custom terminology
+	// (https://docs.aws.amazon.com/translate/latest/dg/how-custom-terminology.html).
 	TerminologyNames []*string `type:"list"`
 
 	// The text to translate. The text string can be a maximum of 10,000 bytes long.
@@ -5647,7 +5843,7 @@ func (s *TextInput) SetText(v string) *TextInput {
 type TextOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Settings that configure the translation output.
+	// Optional settings that modify the translation output.
 	AppliedSettings *TranslationSettings `type:"structure"`
 
 	// The names of the custom terminologies applied to the input text by Amazon
@@ -5899,7 +6095,7 @@ type TextTranslationJobProperties struct {
 	// translation job.
 	ParallelDataNames []*string `type:"list"`
 
-	// Settings that configure the translation output.
+	// Settings that modify the translation output.
 	Settings *TranslationSettings `type:"structure"`
 
 	// The language code of the language of the source text. The language must be
@@ -6158,8 +6354,243 @@ func (s *TooManyTagsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Optional settings that configure the translation output. Use these settings
-// for real time translations and asynchronous translation jobs.
+type TranslateDocumentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The content and content type for the document to be translated. The document
+	// size must not exceed 100 KB.
+	//
+	// Document is a required field
+	Document *Document `type:"structure" required:"true"`
+
+	// Settings to configure your translation output, including the option to set
+	// the formality level of the output text and the option to mask profane words
+	// and phrases.
+	Settings *TranslationSettings `type:"structure"`
+
+	// The language code for the language of the source text. Do not use auto, because
+	// TranslateDocument does not support language auto-detection. For a list of
+	// supported language codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
+	//
+	// SourceLanguageCode is a required field
+	SourceLanguageCode *string `min:"2" type:"string" required:"true"`
+
+	// The language code requested for the translated document. For a list of supported
+	// language codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
+	//
+	// TargetLanguageCode is a required field
+	TargetLanguageCode *string `min:"2" type:"string" required:"true"`
+
+	// The name of a terminology list file to add to the translation job. This file
+	// provides source terms and the desired translation for each term. A terminology
+	// list can contain a maximum of 256 terms. You can use one custom terminology
+	// resource in your translation request.
+	//
+	// Use the ListTerminologies operation to get the available terminology lists.
+	//
+	// For more information about custom terminology lists, see Custom terminology
+	// (https://docs.aws.amazon.com/translate/latest/dg/how-custom-terminology.html).
+	TerminologyNames []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranslateDocumentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranslateDocumentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TranslateDocumentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TranslateDocumentInput"}
+	if s.Document == nil {
+		invalidParams.Add(request.NewErrParamRequired("Document"))
+	}
+	if s.SourceLanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLanguageCode"))
+	}
+	if s.SourceLanguageCode != nil && len(*s.SourceLanguageCode) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLanguageCode", 2))
+	}
+	if s.TargetLanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetLanguageCode"))
+	}
+	if s.TargetLanguageCode != nil && len(*s.TargetLanguageCode) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetLanguageCode", 2))
+	}
+	if s.Document != nil {
+		if err := s.Document.Validate(); err != nil {
+			invalidParams.AddNested("Document", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocument sets the Document field's value.
+func (s *TranslateDocumentInput) SetDocument(v *Document) *TranslateDocumentInput {
+	s.Document = v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *TranslateDocumentInput) SetSettings(v *TranslationSettings) *TranslateDocumentInput {
+	s.Settings = v
+	return s
+}
+
+// SetSourceLanguageCode sets the SourceLanguageCode field's value.
+func (s *TranslateDocumentInput) SetSourceLanguageCode(v string) *TranslateDocumentInput {
+	s.SourceLanguageCode = &v
+	return s
+}
+
+// SetTargetLanguageCode sets the TargetLanguageCode field's value.
+func (s *TranslateDocumentInput) SetTargetLanguageCode(v string) *TranslateDocumentInput {
+	s.TargetLanguageCode = &v
+	return s
+}
+
+// SetTerminologyNames sets the TerminologyNames field's value.
+func (s *TranslateDocumentInput) SetTerminologyNames(v []*string) *TranslateDocumentInput {
+	s.TerminologyNames = v
+	return s
+}
+
+type TranslateDocumentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Settings to configure your translation output, including the option to set
+	// the formality level of the output text and the option to mask profane words
+	// and phrases.
+	AppliedSettings *TranslationSettings `type:"structure"`
+
+	// The names of the custom terminologies applied to the input text by Amazon
+	// Translate to produce the translated text document.
+	AppliedTerminologies []*AppliedTerminology `type:"list"`
+
+	// The language code of the source document.
+	//
+	// SourceLanguageCode is a required field
+	SourceLanguageCode *string `min:"2" type:"string" required:"true"`
+
+	// The language code of the translated document.
+	//
+	// TargetLanguageCode is a required field
+	TargetLanguageCode *string `min:"2" type:"string" required:"true"`
+
+	// The document containing the translated content. The document format matches
+	// the source document format.
+	//
+	// TranslatedDocument is a required field
+	TranslatedDocument *TranslatedDocument `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranslateDocumentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranslateDocumentOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppliedSettings sets the AppliedSettings field's value.
+func (s *TranslateDocumentOutput) SetAppliedSettings(v *TranslationSettings) *TranslateDocumentOutput {
+	s.AppliedSettings = v
+	return s
+}
+
+// SetAppliedTerminologies sets the AppliedTerminologies field's value.
+func (s *TranslateDocumentOutput) SetAppliedTerminologies(v []*AppliedTerminology) *TranslateDocumentOutput {
+	s.AppliedTerminologies = v
+	return s
+}
+
+// SetSourceLanguageCode sets the SourceLanguageCode field's value.
+func (s *TranslateDocumentOutput) SetSourceLanguageCode(v string) *TranslateDocumentOutput {
+	s.SourceLanguageCode = &v
+	return s
+}
+
+// SetTargetLanguageCode sets the TargetLanguageCode field's value.
+func (s *TranslateDocumentOutput) SetTargetLanguageCode(v string) *TranslateDocumentOutput {
+	s.TargetLanguageCode = &v
+	return s
+}
+
+// SetTranslatedDocument sets the TranslatedDocument field's value.
+func (s *TranslateDocumentOutput) SetTranslatedDocument(v *TranslatedDocument) *TranslateDocumentOutput {
+	s.TranslatedDocument = v
+	return s
+}
+
+// The translated content.
+type TranslatedDocument struct {
+	_ struct{} `type:"structure"`
+
+	// The document containing the translated content.
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TranslatedDocument's
+	// String and GoString methods.
+	//
+	// Content is automatically base64 encoded/decoded by the SDK.
+	//
+	// Content is a required field
+	Content []byte `type:"blob" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranslatedDocument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranslatedDocument) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *TranslatedDocument) SetContent(v []byte) *TranslatedDocument {
+	s.Content = v
+	return s
+}
+
+// Settings to configure your translation output, including the option to set
+// the formality level of the output text and the option to mask profane words
+// and phrases.
 type TranslationSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -6295,8 +6726,8 @@ func (s *UnsupportedDisplayLanguageCodeException) RequestID() string {
 }
 
 // Amazon Translate does not support translation from the language of the source
-// text into the requested target language. For more information, see Error
-// messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
+// text into the requested target language. For more information, see Supported
+// languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 type UnsupportedLanguagePairException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

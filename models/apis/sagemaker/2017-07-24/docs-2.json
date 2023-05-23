@@ -6622,10 +6622,10 @@
     "InputDataConfig": {
       "base": null,
       "refs": {
-        "CreateTrainingJobRequest$InputDataConfig": "<p>An array of <code>Channel</code> objects. Each channel is a named input source. <code>InputDataConfig</code> describes the input data and its location. </p> <p>Algorithms can accept input data from one or more channels. For example, an algorithm might have two channels of input data, <code>training_data</code> and <code>validation_data</code>. The configuration for each channel provides the S3, EFS, or FSx location where the input data is stored. It also provides information about the stored data: the MIME type, compression method, and whether the data is wrapped in RecordIO format. </p> <p>Depending on the input mode that the algorithm supports, SageMaker either copies input data files from an S3 bucket to a local directory in the Docker container, or makes it available as input streams. For example, if you specify an EFS location, input data files are available as input streams. They do not need to be downloaded.</p>",
+        "CreateTrainingJobRequest$InputDataConfig": "<p>An array of <code>Channel</code> objects. Each channel is a named input source. <code>InputDataConfig</code> describes the input data and its location. </p> <p>Algorithms can accept input data from one or more channels. For example, an algorithm might have two channels of input data, <code>training_data</code> and <code>validation_data</code>. The configuration for each channel provides the S3, EFS, or FSx location where the input data is stored. It also provides information about the stored data: the MIME type, compression method, and whether the data is wrapped in RecordIO format. </p> <p>Depending on the input mode that the algorithm supports, SageMaker either copies input data files from an S3 bucket to a local directory in the Docker container, or makes it available as input streams. For example, if you specify an EFS location, input data files are available as input streams. They do not need to be downloaded.</p> <p>Your input must be in the same Amazon Web Services region as your training job.</p>",
         "DescribeTrainingJobResponse$InputDataConfig": "<p>An array of <code>Channel</code> objects that describes each data input channel. </p>",
         "HyperParameterTrainingJobDefinition$InputDataConfig": "<p>An array of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Channel.html\">Channel</a> objects that specify the input for the training jobs that the tuning job launches.</p>",
-        "TrainingJob$InputDataConfig": "<p>An array of <code>Channel</code> objects that describes each data input channel.</p>",
+        "TrainingJob$InputDataConfig": "<p>An array of <code>Channel</code> objects that describes each data input channel.</p> <p>Your input must be in the same Amazon Web Services region as your training job.</p>",
         "TrainingJobDefinition$InputDataConfig": "<p>An array of <code>Channel</code> objects, each of which specifies an input source.</p>"
       }
     },
@@ -6739,6 +6739,20 @@
       "base": null,
       "refs": {
         "PipelineExecutionStep$AttemptCount": "<p>The current attempt of the execution step. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-retry-policy.html\">Retry Policy for SageMaker Pipelines steps</a>.</p>"
+      }
+    },
+    "InvocationEndTime": {
+      "base": null,
+      "refs": {
+        "InferenceRecommendation$InvocationEndTime": "<p>A timestamp that shows when the benchmark completed.</p>",
+        "RecommendationJobInferenceBenchmark$InvocationEndTime": "<p>A timestamp that shows when the benchmark completed.</p>"
+      }
+    },
+    "InvocationStartTime": {
+      "base": null,
+      "refs": {
+        "InferenceRecommendation$InvocationStartTime": "<p>A timestamp that shows when the benchmark started.</p>",
+        "RecommendationJobInferenceBenchmark$InvocationStartTime": "<p>A timestamp that shows when the benchmark started.</p>"
       }
     },
     "InvocationsMaxRetries": {
@@ -8745,6 +8759,8 @@
         "DescribeModelInput$ModelName": "<p>The name of the model.</p>",
         "DescribeModelOutput$ModelName": "<p>Name of the SageMaker model.</p>",
         "DescribeTransformJobResponse$ModelName": "<p>The name of the model used in the transform job.</p>",
+        "InferenceRecommendationsJob$ModelName": "<p>The name of the created model.</p>",
+        "ListInferenceRecommendationsJobsRequest$ModelNameEquals": "<p>A filter that returns only jobs that were created for this model.</p>",
         "Model$ModelName": "<p>The name of the model.</p>",
         "ModelSummary$ModelName": "<p>The name of the model that you want a summary for.</p>",
         "ModelVariantConfig$ModelName": "<p>The name of the Amazon SageMaker Model entity.</p>",
@@ -8775,6 +8791,8 @@
         "CreateModelPackageOutput$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the new model package.</p>",
         "DescribeCompilationJobResponse$ModelPackageVersionArn": "<p>The Amazon Resource Name (ARN) of the versioned model package that was provided to SageMaker Neo when you initiated a compilation job.</p>",
         "DescribeModelPackageOutput$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
+        "InferenceRecommendationsJob$ModelPackageVersionArn": "<p>The Amazon Resource Name (ARN) of a versioned model package.</p>",
+        "ListInferenceRecommendationsJobsRequest$ModelPackageVersionArnEquals": "<p>A filter that returns only jobs that were created for this versioned model package.</p>",
         "ModelPackage$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
         "ModelPackageArnList$member": null,
         "ModelPackageSummaries$key": null,
@@ -11713,7 +11731,7 @@
       }
     },
     "S3DataSource": {
-      "base": "<p>Describes the S3 data source.</p>",
+      "base": "<p>Describes the S3 data source.</p> <p>Your input bucket must be in the same Amazon Web Services region as your training job.</p>",
       "refs": {
         "DataSource$S3DataSource": "<p>The S3 location of the data source that is associated with a channel.</p>"
       }
@@ -11757,6 +11775,7 @@
         "EdgeOutputConfig$S3OutputLocation": "<p>The Amazon Simple Storage (S3) bucker URI.</p>",
         "FileSource$S3Uri": "<p>The Amazon S3 URI for the file source.</p>",
         "FlowDefinitionOutputConfig$S3OutputPath": "<p>The Amazon S3 path where the object containing human output will be made available.</p> <p>To learn more about the format of Amazon A2I output data, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-output-data.html\">Amazon A2I Output Data</a>.</p>",
+        "InferenceRecommendationsJob$SamplePayloadUrl": "<p>The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix).</p>",
         "InputConfig$S3Uri": "<p>The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix).</p>",
         "LabelingJobOutput$OutputDatasetS3Uri": "<p>The Amazon S3 bucket location of the manifest file for labeled data. </p>",
         "LabelingJobOutputConfig$S3OutputPath": "<p>The Amazon S3 location to write output data.</p>",
@@ -11782,7 +11801,7 @@
         "ProfilerRuleConfiguration$S3OutputPath": "<p>Path to Amazon S3 storage location for rules.</p>",
         "RecommendationJobCompiledOutputConfig$S3OutputUri": "<p>Identifies the Amazon S3 bucket where you want SageMaker to store the compiled model artifacts.</p>",
         "RedshiftDatasetDefinition$OutputS3Uri": "<p>The location in Amazon S3 where the Redshift query results are stored.</p>",
-        "S3DataSource$S3Uri": "<p>Depending on the value specified for the <code>S3DataType</code>, identifies either a key name prefix or a manifest. For example: </p> <ul> <li> <p> A key name prefix might look like this: <code>s3://bucketname/exampleprefix</code> </p> </li> <li> <p> A manifest might look like this: <code>s3://bucketname/example.manifest</code> </p> <p> A manifest is an S3 object which is a JSON file consisting of an array of elements. The first element is a prefix which is followed by one or more suffixes. SageMaker appends the suffix elements to the prefix to get a full set of <code>S3Uri</code>. Note that the prefix must be a valid non-empty <code>S3Uri</code> that precludes users from specifying a manifest whose individual <code>S3Uri</code> is sourced from different S3 buckets.</p> <p> The following code example shows a valid manifest format: </p> <p> <code>[ {\"prefix\": \"s3://customer_bucket/some/prefix/\"},</code> </p> <p> <code> \"relative/path/to/custdata-1\",</code> </p> <p> <code> \"relative/path/custdata-2\",</code> </p> <p> <code> ...</code> </p> <p> <code> \"relative/path/custdata-N\"</code> </p> <p> <code>]</code> </p> <p> This JSON is equivalent to the following <code>S3Uri</code> list:</p> <p> <code>s3://customer_bucket/some/prefix/relative/path/to/custdata-1</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-2</code> </p> <p> <code>...</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-N</code> </p> <p>The complete set of <code>S3Uri</code> in this manifest is the input data for the channel for this data source. The object that each <code>S3Uri</code> points to must be readable by the IAM role that SageMaker uses to perform tasks on your behalf. </p> </li> </ul>",
+        "S3DataSource$S3Uri": "<p>Depending on the value specified for the <code>S3DataType</code>, identifies either a key name prefix or a manifest. For example: </p> <ul> <li> <p> A key name prefix might look like this: <code>s3://bucketname/exampleprefix</code> </p> </li> <li> <p> A manifest might look like this: <code>s3://bucketname/example.manifest</code> </p> <p> A manifest is an S3 object which is a JSON file consisting of an array of elements. The first element is a prefix which is followed by one or more suffixes. SageMaker appends the suffix elements to the prefix to get a full set of <code>S3Uri</code>. Note that the prefix must be a valid non-empty <code>S3Uri</code> that precludes users from specifying a manifest whose individual <code>S3Uri</code> is sourced from different S3 buckets.</p> <p> The following code example shows a valid manifest format: </p> <p> <code>[ {\"prefix\": \"s3://customer_bucket/some/prefix/\"},</code> </p> <p> <code> \"relative/path/to/custdata-1\",</code> </p> <p> <code> \"relative/path/custdata-2\",</code> </p> <p> <code> ...</code> </p> <p> <code> \"relative/path/custdata-N\"</code> </p> <p> <code>]</code> </p> <p> This JSON is equivalent to the following <code>S3Uri</code> list:</p> <p> <code>s3://customer_bucket/some/prefix/relative/path/to/custdata-1</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-2</code> </p> <p> <code>...</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-N</code> </p> <p>The complete set of <code>S3Uri</code> in this manifest is the input data for the channel for this data source. The object that each <code>S3Uri</code> points to must be readable by the IAM role that SageMaker uses to perform tasks on your behalf. </p> </li> </ul> <p>Your input bucket must be located in same Amazon Web Services region as your training job.</p>",
         "S3StorageConfig$S3Uri": "<p>The S3 URI, or location in Amazon S3, of <code>OfflineStore</code>.</p> <p>S3 URIs have a format similar to the following: <code>s3://example-bucket/prefix/</code>.</p>",
         "S3StorageConfig$ResolvedOutputS3Uri": "<p>The S3 path where offline records are written.</p>",
         "SharingSettings$S3OutputPath": "<p>When <code>NotebookOutputOption</code> is <code>Allowed</code>, the Amazon S3 bucket used to store the shared notebook snapshots.</p>",
@@ -14412,7 +14431,7 @@
         "ClarifyShapBaselineConfig$ShapBaselineUri": "<p>The uniform resource identifier (URI) of the S3 bucket where the SHAP baseline file is stored. The format of the SHAP baseline file should be the same format as the format of the training dataset. For example, if the training dataset is in CSV format, and each record in the training dataset has four features, and all features are numerical, then the baseline file should also have this same format. Each record should contain only the features. If you are using a virtual private cloud (VPC), the <code>ShapBaselineUri</code> should be accessible to the VPC. For more information about setting up endpoints with Amazon Virtual Private Cloud, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html\">Give SageMaker access to Resources in your Amazon Virtual Private Cloud</a>.</p>",
         "ContainerDefinition$ModelDataUrl": "<p>The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for SageMaker built-in algorithms, but not if you use your own algorithms. For more information on built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Common Parameters</a>. </p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the model or endpoint you are creating.</p> </note> <p>If you provide a value for this parameter, SageMaker uses Amazon Web Services Security Token Service to download model artifacts from the S3 path you provide. Amazon Web Services STS is activated in your Amazon Web Services account by default. If you previously deactivated Amazon Web Services STS for a region, you need to reactivate Amazon Web Services STS for that region. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and Deactivating Amazon Web Services STS in an Amazon Web Services Region</a> in the <i>Amazon Web Services Identity and Access Management User Guide</i>.</p> <important> <p>If you use a built-in algorithm to create a model, SageMaker requires that you provide a S3 path to the model artifacts in <code>ModelDataUrl</code>.</p> </important>",
         "ModelPackageContainerDefinition$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the model package.</p> </note>",
-        "SourceAlgorithm$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the algorithm.</p> </note>"
+        "SourceAlgorithm$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same Amazon Web Services region as the algorithm.</p> </note>"
       }
     },
     "UserContext": {

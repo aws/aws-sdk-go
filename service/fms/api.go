@@ -1250,6 +1250,12 @@ func (c *FMS) GetAdminScopeRequest(input *GetAdminScopeInput) (req *request.Requ
 //     The operation failed because of a system problem, even though the request
 //     was valid. Retry your request.
 //
+//   - LimitExceededException
+//     The operation exceeds a resource limit, for example, the maximum number of
+//     policy objects that you can create for an Amazon Web Services account. For
+//     more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//     in the WAF Developer Guide.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/GetAdminScope
 func (c *FMS) GetAdminScope(input *GetAdminScopeInput) (*GetAdminScopeOutput, error) {
 	req, out := c.GetAdminScopeRequest(input)
@@ -2194,6 +2200,12 @@ func (c *FMS) ListAdminAccountsForOrganizationRequest(input *ListAdminAccountsFo
 //   - InternalErrorException
 //     The operation failed because of a system problem, even though the request
 //     was valid. Retry your request.
+//
+//   - LimitExceededException
+//     The operation exceeds a resource limit, for example, the maximum number of
+//     policy objects that you can create for an Amazon Web Services account. For
+//     more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//     in the WAF Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListAdminAccountsForOrganization
 func (c *FMS) ListAdminAccountsForOrganization(input *ListAdminAccountsForOrganizationInput) (*ListAdminAccountsForOrganizationOutput, error) {
