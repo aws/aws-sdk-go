@@ -136,6 +136,10 @@ type TranslateAPI interface {
 	TextWithContext(aws.Context, *translate.TextInput, ...request.Option) (*translate.TextOutput, error)
 	TextRequest(*translate.TextInput) (*request.Request, *translate.TextOutput)
 
+	TranslateDocument(*translate.TranslateDocumentInput) (*translate.TranslateDocumentOutput, error)
+	TranslateDocumentWithContext(aws.Context, *translate.TranslateDocumentInput, ...request.Option) (*translate.TranslateDocumentOutput, error)
+	TranslateDocumentRequest(*translate.TranslateDocumentInput) (*request.Request, *translate.TranslateDocumentOutput)
+
 	UntagResource(*translate.UntagResourceInput) (*translate.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *translate.UntagResourceInput, ...request.Option) (*translate.UntagResourceOutput, error)
 	UntagResourceRequest(*translate.UntagResourceInput) (*request.Request, *translate.UntagResourceOutput)

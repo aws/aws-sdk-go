@@ -11879,7 +11879,9 @@
         "Metrics":{"shape":"RecommendationMetrics"},
         "EndpointConfiguration":{"shape":"EndpointOutputConfiguration"},
         "ModelConfiguration":{"shape":"ModelConfiguration"},
-        "RecommendationId":{"shape":"String"}
+        "RecommendationId":{"shape":"String"},
+        "InvocationEndTime":{"shape":"InvocationEndTime"},
+        "InvocationStartTime":{"shape":"InvocationStartTime"}
       }
     },
     "InferenceRecommendations":{
@@ -11910,7 +11912,10 @@
         "CompletionTime":{"shape":"Timestamp"},
         "RoleArn":{"shape":"RoleArn"},
         "LastModifiedTime":{"shape":"LastModifiedTime"},
-        "FailureReason":{"shape":"FailureReason"}
+        "FailureReason":{"shape":"FailureReason"},
+        "ModelName":{"shape":"ModelName"},
+        "SamplePayloadUrl":{"shape":"S3Uri"},
+        "ModelPackageVersionArn":{"shape":"ModelPackageArn"}
       }
     },
     "InferenceRecommendationsJobStep":{
@@ -12139,6 +12144,8 @@
       "min":0
     },
     "IntegerValue":{"type":"integer"},
+    "InvocationEndTime":{"type":"timestamp"},
+    "InvocationStartTime":{"type":"timestamp"},
     "InvocationsMaxRetries":{
       "type":"integer",
       "max":3,
@@ -13272,7 +13279,9 @@
         "SortBy":{"shape":"ListInferenceRecommendationsJobsSortBy"},
         "SortOrder":{"shape":"SortOrder"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "ModelNameEquals":{"shape":"ModelName"},
+        "ModelPackageVersionArnEquals":{"shape":"ModelPackageArn"}
       }
     },
     "ListInferenceRecommendationsJobsResponse":{
@@ -17450,7 +17459,9 @@
         "EndpointConfiguration":{"shape":"EndpointOutputConfiguration"},
         "ModelConfiguration":{"shape":"ModelConfiguration"},
         "FailureReason":{"shape":"RecommendationFailureReason"},
-        "EndpointMetrics":{"shape":"InferenceMetrics"}
+        "EndpointMetrics":{"shape":"InferenceMetrics"},
+        "InvocationEndTime":{"shape":"InvocationEndTime"},
+        "InvocationStartTime":{"shape":"InvocationStartTime"}
       }
     },
     "RecommendationJobInputConfig":{

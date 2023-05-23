@@ -1,3 +1,12 @@
+Release v1.44.268 (2023-05-23)
+===
+
+### Service Client Updates
+* `service/fms`: Updates service API
+* `service/sagemaker`: Updates service API and documentation
+  * Added ModelNameEquals, ModelPackageVersionArnEquals in request and ModelName, SamplePayloadUrl, ModelPackageVersionArn in response of ListInferenceRecommendationsJobs API. Added Invocation timestamps in response of DescribeInferenceRecommendationsJob API & ListInferenceRecommendationsJobSteps API.
+* `service/translate`: Updates service API and documentation
+
 Release v1.44.267 (2023-05-22)
 ===
 

@@ -241,6 +241,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "TranslateDocument":{
+      "name":"TranslateDocument",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TranslateDocumentRequest"},
+      "output":{"shape":"TranslateDocumentResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedLanguagePairException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "TranslateText":{
       "name":"TranslateText",
       "http":{
@@ -432,6 +450,22 @@
         "zh",
         "zh-TW"
       ]
+    },
+    "Document":{
+      "type":"structure",
+      "required":[
+        "Content",
+        "ContentType"
+      ],
+      "members":{
+        "Content":{"shape":"DocumentContent"},
+        "ContentType":{"shape":"ContentType"}
+      }
+    },
+    "DocumentContent":{
+      "type":"blob",
+      "max":102400,
+      "sensitive":true
     },
     "EncryptionKey":{
       "type":"structure",
@@ -1073,6 +1107,36 @@
       },
       "exception":true
     },
+    "TranslateDocumentRequest":{
+      "type":"structure",
+      "required":[
+        "Document",
+        "SourceLanguageCode",
+        "TargetLanguageCode"
+      ],
+      "members":{
+        "Document":{"shape":"Document"},
+        "TerminologyNames":{"shape":"ResourceNameList"},
+        "SourceLanguageCode":{"shape":"LanguageCodeString"},
+        "TargetLanguageCode":{"shape":"LanguageCodeString"},
+        "Settings":{"shape":"TranslationSettings"}
+      }
+    },
+    "TranslateDocumentResponse":{
+      "type":"structure",
+      "required":[
+        "TranslatedDocument",
+        "SourceLanguageCode",
+        "TargetLanguageCode"
+      ],
+      "members":{
+        "TranslatedDocument":{"shape":"TranslatedDocument"},
+        "SourceLanguageCode":{"shape":"LanguageCodeString"},
+        "TargetLanguageCode":{"shape":"LanguageCodeString"},
+        "AppliedTerminologies":{"shape":"AppliedTerminologyList"},
+        "AppliedSettings":{"shape":"TranslationSettings"}
+      }
+    },
     "TranslateTextRequest":{
       "type":"structure",
       "required":[
@@ -1102,6 +1166,17 @@
         "AppliedTerminologies":{"shape":"AppliedTerminologyList"},
         "AppliedSettings":{"shape":"TranslationSettings"}
       }
+    },
+    "TranslatedDocument":{
+      "type":"structure",
+      "required":["Content"],
+      "members":{
+        "Content":{"shape":"TranslatedDocumentContent"}
+      }
+    },
+    "TranslatedDocumentContent":{
+      "type":"blob",
+      "sensitive":true
     },
     "TranslatedTextString":{
       "type":"string",

@@ -196,7 +196,8 @@
         {"shape":"InvalidOperationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "GetAppsList":{
@@ -340,7 +341,8 @@
       "errors":[
         {"shape":"InvalidOperationException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "ListAdminsManagingAccount":{
