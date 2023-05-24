@@ -28,6 +28,40 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "AssociateMergedGraphqlApi":{
+      "name":"AssociateMergedGraphqlApi",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations"
+      },
+      "input":{"shape":"AssociateMergedGraphqlApiRequest"},
+      "output":{"shape":"AssociateMergedGraphqlApiResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "AssociateSourceGraphqlApi":{
+      "name":"AssociateSourceGraphqlApi",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations"
+      },
+      "input":{"shape":"AssociateSourceGraphqlApiRequest"},
+      "output":{"shape":"AssociateSourceGraphqlApiResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "CreateApiCache":{
       "name":"CreateApiCache",
       "http":{
@@ -300,6 +334,38 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "DisassociateMergedGraphqlApi":{
+      "name":"DisassociateMergedGraphqlApi",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations/{associationId}"
+      },
+      "input":{"shape":"DisassociateMergedGraphqlApiRequest"},
+      "output":{"shape":"DisassociateMergedGraphqlApiResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "DisassociateSourceGraphqlApi":{
+      "name":"DisassociateSourceGraphqlApi",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}"
+      },
+      "input":{"shape":"DisassociateSourceGraphqlApiRequest"},
+      "output":{"shape":"DisassociateSourceGraphqlApiResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "EvaluateCode":{
       "name":"EvaluateCode",
       "http":{
@@ -480,6 +546,21 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "GetSourceApiAssociation":{
+      "name":"GetSourceApiAssociation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}"
+      },
+      "input":{"shape":"GetSourceApiAssociationRequest"},
+      "output":{"shape":"GetSourceApiAssociationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "GetType":{
       "name":"GetType",
       "http":{
@@ -599,6 +680,21 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListSourceApiAssociations":{
+      "name":"ListSourceApiAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/apis/{apiId}/sourceApiAssociations"
+      },
+      "input":{"shape":"ListSourceApiAssociationsRequest"},
+      "output":{"shape":"ListSourceApiAssociationsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -632,6 +728,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListTypesByAssociation":{
+      "name":"ListTypesByAssociation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/types"
+      },
+      "input":{"shape":"ListTypesByAssociationRequest"},
+      "output":{"shape":"ListTypesByAssociationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "StartSchemaCreation":{
       "name":"StartSchemaCreation",
       "http":{
@@ -646,6 +758,22 @@
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "StartSchemaMerge":{
+      "name":"StartSchemaMerge",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/merge"
+      },
+      "input":{"shape":"StartSchemaMergeRequest"},
+      "output":{"shape":"StartSchemaMergeResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "TagResource":{
@@ -793,6 +921,22 @@
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "UpdateSourceApiAssociation":{
+      "name":"UpdateSourceApiAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}"
+      },
+      "input":{"shape":"UpdateSourceApiAssociationRequest"},
+      "output":{"shape":"UpdateSourceApiAssociationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "UpdateType":{
@@ -958,6 +1102,52 @@
       "type":"structure",
       "members":{
         "apiAssociation":{"shape":"ApiAssociation"}
+      }
+    },
+    "AssociateMergedGraphqlApiRequest":{
+      "type":"structure",
+      "required":[
+        "sourceApiIdentifier",
+        "mergedApiIdentifier"
+      ],
+      "members":{
+        "sourceApiIdentifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"sourceApiIdentifier"
+        },
+        "mergedApiIdentifier":{"shape":"String"},
+        "description":{"shape":"String"},
+        "sourceApiAssociationConfig":{"shape":"SourceApiAssociationConfig"}
+      }
+    },
+    "AssociateMergedGraphqlApiResponse":{
+      "type":"structure",
+      "members":{
+        "sourceApiAssociation":{"shape":"SourceApiAssociation"}
+      }
+    },
+    "AssociateSourceGraphqlApiRequest":{
+      "type":"structure",
+      "required":[
+        "mergedApiIdentifier",
+        "sourceApiIdentifier"
+      ],
+      "members":{
+        "mergedApiIdentifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"mergedApiIdentifier"
+        },
+        "sourceApiIdentifier":{"shape":"String"},
+        "description":{"shape":"String"},
+        "sourceApiAssociationConfig":{"shape":"SourceApiAssociationConfig"}
+      }
+    },
+    "AssociateSourceGraphqlApiResponse":{
+      "type":"structure",
+      "members":{
+        "sourceApiAssociation":{"shape":"SourceApiAssociation"}
       }
     },
     "AssociationStatus":{
@@ -1251,7 +1441,10 @@
         "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"},
         "xrayEnabled":{"shape":"Boolean"},
         "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"},
-        "visibility":{"shape":"GraphQLApiVisibility"}
+        "visibility":{"shape":"GraphQLApiVisibility"},
+        "apiType":{"shape":"GraphQLApiType"},
+        "mergedApiExecutionRoleArn":{"shape":"String"},
+        "ownerContact":{"shape":"String"}
       }
     },
     "CreateGraphqlApiResponse":{
@@ -1354,6 +1547,7 @@
       "type":"list",
       "member":{"shape":"DataSource"}
     },
+    "Date":{"type":"timestamp"},
     "DefaultAction":{
       "type":"string",
       "enum":[
@@ -1563,6 +1757,56 @@
     "DisassociateApiResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DisassociateMergedGraphqlApiRequest":{
+      "type":"structure",
+      "required":[
+        "sourceApiIdentifier",
+        "associationId"
+      ],
+      "members":{
+        "sourceApiIdentifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"sourceApiIdentifier"
+        },
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        }
+      }
+    },
+    "DisassociateMergedGraphqlApiResponse":{
+      "type":"structure",
+      "members":{
+        "sourceApiAssociationStatus":{"shape":"SourceApiAssociationStatus"}
+      }
+    },
+    "DisassociateSourceGraphqlApiRequest":{
+      "type":"structure",
+      "required":[
+        "mergedApiIdentifier",
+        "associationId"
+      ],
+      "members":{
+        "mergedApiIdentifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"mergedApiIdentifier"
+        },
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        }
+      }
+    },
+    "DisassociateSourceGraphqlApiResponse":{
+      "type":"structure",
+      "members":{
+        "sourceApiAssociationStatus":{"shape":"SourceApiAssociationStatus"}
       }
     },
     "DomainName":{
@@ -1925,6 +2169,31 @@
         "details":{"shape":"String"}
       }
     },
+    "GetSourceApiAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "mergedApiIdentifier",
+        "associationId"
+      ],
+      "members":{
+        "mergedApiIdentifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"mergedApiIdentifier"
+        },
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        }
+      }
+    },
+    "GetSourceApiAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "sourceApiAssociation":{"shape":"SourceApiAssociation"}
+      }
+    },
     "GetTypeRequest":{
       "type":"structure",
       "required":[
@@ -1955,6 +2224,13 @@
       "members":{
         "type":{"shape":"Type"}
       }
+    },
+    "GraphQLApiType":{
+      "type":"string",
+      "enum":[
+        "GRAPHQL",
+        "MERGED"
+      ]
     },
     "GraphQLApiVisibility":{
       "type":"string",
@@ -1988,7 +2264,11 @@
         "wafWebAclArn":{"shape":"String"},
         "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"},
         "dns":{"shape":"MapOfStringToString"},
-        "visibility":{"shape":"GraphQLApiVisibility"}
+        "visibility":{"shape":"GraphQLApiVisibility"},
+        "apiType":{"shape":"GraphQLApiType"},
+        "mergedApiExecutionRoleArn":{"shape":"String"},
+        "owner":{"shape":"String"},
+        "ownerContact":{"shape":"String"}
       }
     },
     "GraphqlApis":{
@@ -2159,6 +2439,16 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "apiType":{
+          "shape":"GraphQLApiType",
+          "location":"querystring",
+          "locationName":"apiType"
+        },
+        "owner":{
+          "shape":"Ownership",
+          "location":"querystring",
+          "locationName":"owner"
         }
       }
     },
@@ -2241,6 +2531,34 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListSourceApiAssociationsRequest":{
+      "type":"structure",
+      "required":["apiId"],
+      "members":{
+        "apiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"apiId"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListSourceApiAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "sourceApiAssociationSummaries":{"shape":"SourceApiAssociationSummaryList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -2256,6 +2574,48 @@
       "type":"structure",
       "members":{
         "tags":{"shape":"TagMap"}
+      }
+    },
+    "ListTypesByAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "mergedApiIdentifier",
+        "associationId",
+        "format"
+      ],
+      "members":{
+        "mergedApiIdentifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"mergedApiIdentifier"
+        },
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        },
+        "format":{
+          "shape":"TypeDefinitionFormat",
+          "location":"querystring",
+          "locationName":"format"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListTypesByAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "types":{"shape":"TypeList"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListTypesRequest":{
@@ -2332,6 +2692,13 @@
       "max":25,
       "min":0
     },
+    "MergeType":{
+      "type":"string",
+      "enum":[
+        "MANUAL_MERGE",
+        "AUTO_MERGE"
+      ]
+    },
     "NotFoundException":{
       "type":"structure",
       "members":{
@@ -2366,6 +2733,13 @@
       "enum":[
         "SDL",
         "JSON"
+      ]
+    },
+    "Ownership":{
+      "type":"string",
+      "enum":[
+        "CURRENT_ACCOUNT",
+        "OTHER_ACCOUNTS"
       ]
     },
     "PaginationToken":{
@@ -2457,6 +2831,57 @@
         "NOT_APPLICABLE"
       ]
     },
+    "SourceApiAssociation":{
+      "type":"structure",
+      "members":{
+        "associationId":{"shape":"String"},
+        "associationArn":{"shape":"String"},
+        "sourceApiId":{"shape":"String"},
+        "sourceApiArn":{"shape":"String"},
+        "mergedApiArn":{"shape":"String"},
+        "mergedApiId":{"shape":"String"},
+        "description":{"shape":"String"},
+        "sourceApiAssociationConfig":{"shape":"SourceApiAssociationConfig"},
+        "sourceApiAssociationStatus":{"shape":"SourceApiAssociationStatus"},
+        "sourceApiAssociationStatusDetail":{"shape":"String"},
+        "lastSuccessfulMergeDate":{"shape":"Date"}
+      }
+    },
+    "SourceApiAssociationConfig":{
+      "type":"structure",
+      "members":{
+        "mergeType":{"shape":"MergeType"}
+      }
+    },
+    "SourceApiAssociationStatus":{
+      "type":"string",
+      "enum":[
+        "MERGE_SCHEDULED",
+        "MERGE_FAILED",
+        "MERGE_SUCCESS",
+        "MERGE_IN_PROGRESS",
+        "AUTO_MERGE_SCHEDULE_FAILED",
+        "DELETION_SCHEDULED",
+        "DELETION_IN_PROGRESS",
+        "DELETION_FAILED"
+      ]
+    },
+    "SourceApiAssociationSummary":{
+      "type":"structure",
+      "members":{
+        "associationId":{"shape":"String"},
+        "associationArn":{"shape":"String"},
+        "sourceApiId":{"shape":"String"},
+        "sourceApiArn":{"shape":"String"},
+        "mergedApiId":{"shape":"String"},
+        "mergedApiArn":{"shape":"String"},
+        "description":{"shape":"String"}
+      }
+    },
+    "SourceApiAssociationSummaryList":{
+      "type":"list",
+      "member":{"shape":"SourceApiAssociationSummary"}
+    },
     "StartSchemaCreationRequest":{
       "type":"structure",
       "required":[
@@ -2476,6 +2901,31 @@
       "type":"structure",
       "members":{
         "status":{"shape":"SchemaStatus"}
+      }
+    },
+    "StartSchemaMergeRequest":{
+      "type":"structure",
+      "required":[
+        "associationId",
+        "mergedApiIdentifier"
+      ],
+      "members":{
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        },
+        "mergedApiIdentifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"mergedApiIdentifier"
+        }
+      }
+    },
+    "StartSchemaMergeResponse":{
+      "type":"structure",
+      "members":{
+        "sourceApiAssociationStatus":{"shape":"SourceApiAssociationStatus"}
       }
     },
     "String":{"type":"string"},
@@ -2757,7 +3207,9 @@
         "openIDConnectConfig":{"shape":"OpenIDConnectConfig"},
         "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"},
         "xrayEnabled":{"shape":"Boolean"},
-        "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"}
+        "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"},
+        "mergedApiExecutionRoleArn":{"shape":"String"},
+        "ownerContact":{"shape":"String"}
       }
     },
     "UpdateGraphqlApiResponse":{
@@ -2805,6 +3257,33 @@
       "type":"structure",
       "members":{
         "resolver":{"shape":"Resolver"}
+      }
+    },
+    "UpdateSourceApiAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "associationId",
+        "mergedApiIdentifier"
+      ],
+      "members":{
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        },
+        "mergedApiIdentifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"mergedApiIdentifier"
+        },
+        "description":{"shape":"String"},
+        "sourceApiAssociationConfig":{"shape":"SourceApiAssociationConfig"}
+      }
+    },
+    "UpdateSourceApiAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "sourceApiAssociation":{"shape":"SourceApiAssociation"}
       }
     },
     "UpdateTypeRequest":{

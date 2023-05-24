@@ -24163,7 +24163,7 @@ type CreateEvaluationFormInput struct {
 	// section.
 	//
 	// Items is a required field
-	Items []*EvaluationFormItem `type:"list" required:"true"`
+	Items []*EvaluationFormItem `min:"1" type:"list" required:"true"`
 
 	// A scoring strategy of the evaluation form.
 	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
@@ -24171,7 +24171,7 @@ type CreateEvaluationFormInput struct {
 	// A title of the evaluation form.
 	//
 	// Title is a required field
-	Title *string `type:"string" required:"true"`
+	Title *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -24204,8 +24204,14 @@ func (s *CreateEvaluationFormInput) Validate() error {
 	if s.Items == nil {
 		invalidParams.Add(request.NewErrParamRequired("Items"))
 	}
+	if s.Items != nil && len(s.Items) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Items", 1))
+	}
 	if s.Title == nil {
 		invalidParams.Add(request.NewErrParamRequired("Title"))
+	}
+	if s.Title != nil && len(*s.Title) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
 	}
 	if s.Items != nil {
 		for i, v := range s.Items {
@@ -32918,7 +32924,7 @@ type EvaluationForm struct {
 	// section.
 	//
 	// Items is a required field
-	Items []*EvaluationFormItem `type:"list" required:"true"`
+	Items []*EvaluationFormItem `min:"1" type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the user who last updated the evaluation
 	// form.
@@ -32951,7 +32957,7 @@ type EvaluationForm struct {
 	// A title of the evaluation form.
 	//
 	// Title is a required field
-	Title *string `type:"string" required:"true"`
+	Title *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -33083,7 +33089,7 @@ type EvaluationFormContent struct {
 	// section.
 	//
 	// Items is a required field
-	Items []*EvaluationFormItem `type:"list" required:"true"`
+	Items []*EvaluationFormItem `min:"1" type:"list" required:"true"`
 
 	// A scoring strategy of the evaluation form.
 	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
@@ -33091,7 +33097,7 @@ type EvaluationFormContent struct {
 	// A title of the evaluation form.
 	//
 	// Title is a required field
-	Title *string `type:"string" required:"true"`
+	Title *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -33463,7 +33469,7 @@ type EvaluationFormQuestion struct {
 	// form.
 	//
 	// RefId is a required field
-	RefId *string `type:"string" required:"true"`
+	RefId *string `min:"1" type:"string" required:"true"`
 
 	// The title of the question.
 	//
@@ -33500,6 +33506,9 @@ func (s *EvaluationFormQuestion) Validate() error {
 	}
 	if s.RefId == nil {
 		invalidParams.Add(request.NewErrParamRequired("RefId"))
+	}
+	if s.RefId != nil && len(*s.RefId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RefId", 1))
 	}
 	if s.Title == nil {
 		invalidParams.Add(request.NewErrParamRequired("Title"))
@@ -33692,13 +33701,15 @@ type EvaluationFormSection struct {
 	Instructions *string `type:"string"`
 
 	// The items of the section.
-	Items []*EvaluationFormItem `type:"list"`
+	//
+	// Items is a required field
+	Items []*EvaluationFormItem `min:"1" type:"list" required:"true"`
 
 	// The identifier of the section. An identifier must be unique within the evaluation
 	// form.
 	//
 	// RefId is a required field
-	RefId *string `type:"string" required:"true"`
+	RefId *string `min:"1" type:"string" required:"true"`
 
 	// The title of the section.
 	//
@@ -33730,8 +33741,17 @@ func (s EvaluationFormSection) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *EvaluationFormSection) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormSection"}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.Items != nil && len(s.Items) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Items", 1))
+	}
 	if s.RefId == nil {
 		invalidParams.Add(request.NewErrParamRequired("RefId"))
+	}
+	if s.RefId != nil && len(*s.RefId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RefId", 1))
 	}
 	if s.Title == nil {
 		invalidParams.Add(request.NewErrParamRequired("Title"))
@@ -33792,7 +33812,7 @@ type EvaluationFormSingleSelectQuestionAutomation struct {
 
 	// The identifier of the default answer option, when none of the automation
 	// options match the criteria.
-	DefaultOptionRefId *string `type:"string"`
+	DefaultOptionRefId *string `min:"1" type:"string"`
 
 	// The automation options of the single select question.
 	//
@@ -33821,6 +33841,9 @@ func (s EvaluationFormSingleSelectQuestionAutomation) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *EvaluationFormSingleSelectQuestionAutomation) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormSingleSelectQuestionAutomation"}
+	if s.DefaultOptionRefId != nil && len(*s.DefaultOptionRefId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DefaultOptionRefId", 1))
+	}
 	if s.Options == nil {
 		invalidParams.Add(request.NewErrParamRequired("Options"))
 	}
@@ -33915,7 +33938,7 @@ type EvaluationFormSingleSelectQuestionOption struct {
 	// the question.
 	//
 	// RefId is a required field
-	RefId *string `type:"string" required:"true"`
+	RefId *string `min:"1" type:"string" required:"true"`
 
 	// The score assigned to the answer option.
 	Score *int64 `type:"integer"`
@@ -33949,6 +33972,9 @@ func (s *EvaluationFormSingleSelectQuestionOption) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormSingleSelectQuestionOption"}
 	if s.RefId == nil {
 		invalidParams.Add(request.NewErrParamRequired("RefId"))
+	}
+	if s.RefId != nil && len(*s.RefId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RefId", 1))
 	}
 	if s.Text == nil {
 		invalidParams.Add(request.NewErrParamRequired("Text"))
@@ -34120,7 +34146,7 @@ type EvaluationFormSummary struct {
 	// A title of the evaluation form.
 	//
 	// Title is a required field
-	Title *string `type:"string" required:"true"`
+	Title *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -34498,7 +34524,7 @@ type EvaluationSummary struct {
 	// A title of the evaluation form.
 	//
 	// EvaluationFormTitle is a required field
-	EvaluationFormTitle *string `type:"string" required:"true"`
+	EvaluationFormTitle *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for the contact evaluation.
 	//
@@ -48999,7 +49025,7 @@ type SingleSelectQuestionRuleCategoryAutomation struct {
 	// The identifier of the answer option.
 	//
 	// OptionRefId is a required field
-	OptionRefId *string `type:"string" required:"true"`
+	OptionRefId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -49034,6 +49060,9 @@ func (s *SingleSelectQuestionRuleCategoryAutomation) Validate() error {
 	}
 	if s.OptionRefId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OptionRefId"))
+	}
+	if s.OptionRefId != nil && len(*s.OptionRefId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OptionRefId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -53287,7 +53316,7 @@ type UpdateEvaluationFormInput struct {
 	// section.
 	//
 	// Items is a required field
-	Items []*EvaluationFormItem `type:"list" required:"true"`
+	Items []*EvaluationFormItem `min:"1" type:"list" required:"true"`
 
 	// A scoring strategy of the evaluation form.
 	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
@@ -53295,7 +53324,7 @@ type UpdateEvaluationFormInput struct {
 	// A title of the evaluation form.
 	//
 	// Title is a required field
-	Title *string `type:"string" required:"true"`
+	Title *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -53340,8 +53369,14 @@ func (s *UpdateEvaluationFormInput) Validate() error {
 	if s.Items == nil {
 		invalidParams.Add(request.NewErrParamRequired("Items"))
 	}
+	if s.Items != nil && len(s.Items) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Items", 1))
+	}
 	if s.Title == nil {
 		invalidParams.Add(request.NewErrParamRequired("Title"))
+	}
+	if s.Title != nil && len(*s.Title) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
 	}
 	if s.Items != nil {
 		for i, v := range s.Items {

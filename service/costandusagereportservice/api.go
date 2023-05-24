@@ -1199,6 +1199,9 @@ const (
 	// AWSRegionApSouth1 is a AWSRegion enum value
 	AWSRegionApSouth1 = "ap-south-1"
 
+	// AWSRegionApSouth2 is a AWSRegion enum value
+	AWSRegionApSouth2 = "ap-south-2"
+
 	// AWSRegionApSoutheast1 is a AWSRegion enum value
 	AWSRegionApSoutheast1 = "ap-southeast-1"
 
@@ -1222,6 +1225,9 @@ const (
 
 	// AWSRegionEuCentral1 is a AWSRegion enum value
 	AWSRegionEuCentral1 = "eu-central-1"
+
+	// AWSRegionEuCentral2 is a AWSRegion enum value
+	AWSRegionEuCentral2 = "eu-central-2"
 
 	// AWSRegionEuWest1 is a AWSRegion enum value
 	AWSRegionEuWest1 = "eu-west-1"
@@ -1275,6 +1281,7 @@ func AWSRegion_Values() []string {
 		AWSRegionAfSouth1,
 		AWSRegionApEast1,
 		AWSRegionApSouth1,
+		AWSRegionApSouth2,
 		AWSRegionApSoutheast1,
 		AWSRegionApSoutheast2,
 		AWSRegionApSoutheast3,
@@ -1283,6 +1290,7 @@ func AWSRegion_Values() []string {
 		AWSRegionApNortheast3,
 		AWSRegionCaCentral1,
 		AWSRegionEuCentral1,
+		AWSRegionEuCentral2,
 		AWSRegionEuWest1,
 		AWSRegionEuWest2,
 		AWSRegionEuWest3,
@@ -1380,12 +1388,16 @@ func ReportVersioning_Values() []string {
 const (
 	// SchemaElementResources is a SchemaElement enum value
 	SchemaElementResources = "RESOURCES"
+
+	// SchemaElementSplitCostAllocationData is a SchemaElement enum value
+	SchemaElementSplitCostAllocationData = "SPLIT_COST_ALLOCATION_DATA"
 )
 
 // SchemaElement_Values returns all elements of the SchemaElement enum
 func SchemaElement_Values() []string {
 	return []string{
 		SchemaElementResources,
+		SchemaElementSplitCostAllocationData,
 	}
 }
 

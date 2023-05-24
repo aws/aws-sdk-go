@@ -3303,6 +3303,13 @@
         "UpdateEndpointInput$DeploymentConfig": "<p>The deployment configuration for an endpoint, which contains the desired deployment strategy and rollback configurations.</p>"
       }
     },
+    "DeploymentRecommendation": {
+      "base": "<p>A set of recommended deployment configurations for the model.</p>",
+      "refs": {
+        "DescribeModelOutput$DeploymentRecommendation": "<p>A set of recommended deployment configurations for the model.</p>",
+        "Model$DeploymentRecommendation": "<p>A set of recommended deployment configurations for the model.</p>"
+      }
+    },
     "DeploymentStage": {
       "base": "<p>Contains information about a stage in an edge deployment plan.</p>",
       "refs": {
@@ -4858,7 +4865,8 @@
       "refs": {
         "AutoMLContainerDefinition$Environment": "<p>The environment variables to set in the container. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ContainerDefinition.html\"> ContainerDefinition</a>.</p>",
         "ContainerDefinition$Environment": "<p>The environment variables to set in the Docker container. Each key and value in the <code>Environment</code> string to string map can have length of up to 1024. We support up to 16 entries in the map. </p>",
-        "ModelPackageContainerDefinition$Environment": "<p>The environment variables to set in the Docker container. Each key and value in the <code>Environment</code> string to string map can have length of up to 1024. We support up to 16 entries in the map.</p>"
+        "ModelPackageContainerDefinition$Environment": "<p>The environment variables to set in the Docker container. Each key and value in the <code>Environment</code> string to string map can have length of up to 1024. We support up to 16 entries in the map.</p>",
+        "RealTimeInferenceRecommendation$Environment": "<p>The recommended environment variables to set in the model container for Real-Time Inference.</p>"
       }
     },
     "EnvironmentParameter": {
@@ -10796,6 +10804,7 @@
         "EndpointOutputConfiguration$InstanceType": "<p>The instance type recommended by Amazon SageMaker Inference Recommender.</p>",
         "PendingProductionVariantSummary$InstanceType": "<p>The type of instances associated with the variant.</p>",
         "ProductionVariant$InstanceType": "<p>The ML compute instance type.</p>",
+        "RealTimeInferenceRecommendation$InstanceType": "<p>The recommended instance type for Real-Time Inference.</p>",
         "RealtimeInferenceInstanceTypes$member": null
       }
     },
@@ -11185,6 +11194,18 @@
         "ModelInfrastructureConfig$RealTimeInferenceConfig": "<p>The infrastructure configuration for deploying the model to real-time inference.</p>"
       }
     },
+    "RealTimeInferenceRecommendation": {
+      "base": "<p>The recommended configuration to use for Real-Time Inference.</p>",
+      "refs": {
+        "RealTimeInferenceRecommendations$member": null
+      }
+    },
+    "RealTimeInferenceRecommendations": {
+      "base": null,
+      "refs": {
+        "DeploymentRecommendation$RealTimeInferenceRecommendations": "<p>A list of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_RealTimeInferenceRecommendation.html\">RealTimeInferenceRecommendation</a> items.</p>"
+      }
+    },
     "RealtimeInferenceInstanceTypes": {
       "base": null,
       "refs": {
@@ -11353,6 +11374,12 @@
       "refs": {
         "InferenceRecommendation$Metrics": "<p>The metrics used to decide what recommendation to make.</p>",
         "RecommendationJobInferenceBenchmark$Metrics": null
+      }
+    },
+    "RecommendationStatus": {
+      "base": null,
+      "refs": {
+        "DeploymentRecommendation$RecommendationStatus": "<p>Status of the deployment recommendation. <code>NOT_APPLICABLE</code> means that SageMaker is unable to provide a default recommendation for the model using the information provided.</p>"
       }
     },
     "RecommendationStepType": {
@@ -12557,6 +12584,7 @@
         "RStudioServerProDomainSettings$RStudioPackageManagerUrl": "<p>A URL pointing to an RStudio Package Manager server.</p>",
         "RStudioServerProDomainSettingsForUpdate$RStudioConnectUrl": "<p>A URL pointing to an RStudio Connect server.</p>",
         "RStudioServerProDomainSettingsForUpdate$RStudioPackageManagerUrl": "<p>A URL pointing to an RStudio Package Manager server.</p>",
+        "RealTimeInferenceRecommendation$RecommendationId": "<p>The recommendation ID which uniquely identifies each recommendation.</p>",
         "RecommendationJobContainerConfig$Domain": "<p>The machine learning domain of the model and its components.</p> <p>Valid Values: <code>COMPUTER_VISION | NATURAL_LANGUAGE_PROCESSING | MACHINE_LEARNING</code> </p>",
         "RecommendationJobContainerConfig$Task": "<p>The machine learning task that the model accomplishes.</p> <p>Valid Values: <code>IMAGE_CLASSIFICATION | OBJECT_DETECTION | TEXT_GENERATION | IMAGE_SEGMENTATION | FILL_MASK | CLASSIFICATION | REGRESSION | OTHER</code> </p>",
         "RecommendationJobContainerConfig$Framework": "<p>The machine learning framework of the container image.</p> <p>Valid Values: <code>TENSORFLOW | PYTORCH | XGBOOST | SAGEMAKER-SCIKIT-LEARN</code> </p>",
