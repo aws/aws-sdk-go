@@ -11,12 +11,10 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 	"time"
-
-	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
 func TestSSOTokenProvider(t *testing.T) {
@@ -108,8 +106,8 @@ func TestSSOTokenProvider(t *testing.T) {
 					},
 				}
 
-				if diff := cmp.Diff(expect, actual, tokenCmpOptions...); diff != "" {
-					return fmt.Errorf("expect token file match\n%s", diff)
+				if !reflect.DeepEqual(expect, actual) {
+					return fmt.Errorf("expect token file %v but got actual %v", expect, actual)
 				}
 				return nil
 			},
@@ -158,8 +156,8 @@ func TestSSOTokenProvider(t *testing.T) {
 					},
 				}
 
-				if diff := cmp.Diff(expect, actual, tokenCmpOptions...); diff != "" {
-					return fmt.Errorf("expect token file match\n%s", diff)
+				if !reflect.DeepEqual(expect, actual) {
+					return fmt.Errorf("expect token file %v but got actual %v", expect, actual)
 				}
 				return nil
 			},
@@ -194,8 +192,8 @@ func TestSSOTokenProvider(t *testing.T) {
 				t.Fatalf("expect no error, got %v", err)
 			}
 
-			if diff := cmp.Diff(c.expectToken, token, tokenCmpOptions...); diff != "" {
-				t.Errorf("expect token match\n%s", diff)
+			if !reflect.DeepEqual(c.expectToken, token) {
+				t.Errorf("expect %v, got %v", c.expectToken, token)
 			}
 
 			if c.postRetrieve != nil {
@@ -217,11 +215,8 @@ func (c *mockCreateTokenAPIClient) CreateToken(input *ssooidc.CreateTokenInput) 
 	*ssooidc.CreateTokenOutput, error,
 ) {
 	if c.expectInput != nil {
-		opts := cmp.Options{
-			cmpopts.IgnoreUnexported(ssooidc.CreateTokenInput{}),
-		}
-		if diff := cmp.Diff(c.expectInput, input, opts...); diff != "" {
-			return nil, fmt.Errorf("expect input match\n%s", diff)
+		if !reflect.DeepEqual(c.expectInput, input) {
+			return nil, fmt.Errorf("expect token file %v but got actual %v", c.expectInput, input)
 		}
 	}
 
