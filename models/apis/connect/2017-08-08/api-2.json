@@ -595,7 +595,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"},
         {"shape":"ResourceConflictException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteContactFlow":{
       "name":"DeleteContactFlow",
@@ -644,7 +645,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"},
         {"shape":"ResourceConflictException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteHoursOfOperation":{
       "name":"DeleteHoursOfOperation",
@@ -5972,7 +5974,7 @@
       "type":"list",
       "member":{"shape":"EvaluationFormItem"},
       "max":100,
-      "min":0
+      "min":1
     },
     "EvaluationFormNumericQuestionAutomation":{
       "type":"structure",
@@ -6090,7 +6092,8 @@
       "type":"structure",
       "required":[
         "Title",
-        "RefId"
+        "RefId",
+        "Items"
       ],
       "members":{
         "Title":{"shape":"EvaluationFormSectionTitle"},
@@ -6199,7 +6202,7 @@
     "EvaluationFormTitle":{
       "type":"string",
       "max":128,
-      "min":0
+      "min":1
     },
     "EvaluationFormVersionIsLocked":{"type":"boolean"},
     "EvaluationFormVersionStatus":{
@@ -9350,7 +9353,7 @@
     "ReferenceId":{
       "type":"string",
       "max":40,
-      "min":0
+      "min":1
     },
     "ReferenceKey":{
       "type":"string",
@@ -9478,7 +9481,7 @@
     },
     "ResourceId":{
       "type":"string",
-      "max":50,
+      "max":500,
       "min":1
     },
     "ResourceInUseException":{

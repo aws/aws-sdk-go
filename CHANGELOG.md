@@ -1,3 +1,19 @@
+Release v1.44.269 (2023-05-24)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/connect`: Updates service API
+* `service/cur`: Updates service API
+  * Add support for split cost allocation data on a report.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker now provides an instantaneous deployment recommendation through the DescribeModel API
+
+### SDK Bugs
+
+* `service/sms`: Remove deprecated services (SMS) integration tests.
+  * SMS integration tests will fail because SMS deprecated their service.
+
 Release v1.44.268 (2023-05-23)
 ===
 

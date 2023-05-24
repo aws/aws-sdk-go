@@ -3,6 +3,8 @@
   "service": "<p>AppSync provides API actions for creating and interacting with data sources using GraphQL from your application.</p>",
   "operations": {
     "AssociateApi": "<p>Maps an endpoint to your custom domain.</p>",
+    "AssociateMergedGraphqlApi": "<p>Creates an association between a Merged API and source API using the source API's identifier.</p>",
+    "AssociateSourceGraphqlApi": "<p>Creates an association between a Merged API and source API using the Merged API's identifier.</p>",
     "CreateApiCache": "<p>Creates a cache for the GraphQL API.</p>",
     "CreateApiKey": "<p>Creates a unique key that you can distribute to clients who invoke your API.</p>",
     "CreateDataSource": "<p>Creates a <code>DataSource</code> object.</p>",
@@ -20,6 +22,8 @@
     "DeleteResolver": "<p>Deletes a <code>Resolver</code> object.</p>",
     "DeleteType": "<p>Deletes a <code>Type</code> object.</p>",
     "DisassociateApi": "<p>Removes an <code>ApiAssociation</code> object from a custom domain.</p>",
+    "DisassociateMergedGraphqlApi": "<p>Deletes an association between a Merged API and source API using the source API's identifier and the association ID.</p>",
+    "DisassociateSourceGraphqlApi": "<p>Deletes an association between a Merged API and source API using the Merged API's identifier and the association ID.</p>",
     "EvaluateCode": "<p>Evaluates the given code and returns the response. The code definition requirements depend on the specified runtime. For <code>APPSYNC_JS</code> runtimes, the code defines the request and response functions. The request function takes the incoming request after a GraphQL operation is parsed and converts it into a request configuration for the selected data source operation. The response function interprets responses from the data source and maps it to the shape of the GraphQL field output type. </p>",
     "EvaluateMappingTemplate": "<p>Evaluates a given template and returns the response. The mapping template can be a request or response template.</p> <p>Request templates take the incoming request after a GraphQL operation is parsed and convert it into a request configuration for the selected data source operation. Response templates interpret responses from the data source and map it to the shape of the GraphQL field output type.</p> <p>Mapping templates are written in the Apache Velocity Template Language (VTL).</p>",
     "FlushApiCache": "<p>Flushes an <code>ApiCache</code> object.</p>",
@@ -32,6 +36,7 @@
     "GetIntrospectionSchema": "<p>Retrieves the introspection schema for a GraphQL API.</p>",
     "GetResolver": "<p>Retrieves a <code>Resolver</code> object.</p>",
     "GetSchemaCreationStatus": "<p>Retrieves the current status of a schema creation operation.</p>",
+    "GetSourceApiAssociation": "<p>Retrieves a <code>SourceApiAssociation</code> object.</p>",
     "GetType": "<p>Retrieves a <code>Type</code> object.</p>",
     "ListApiKeys": "<p>Lists the API keys for a given API.</p> <note> <p>API keys are deleted automatically 60 days after they expire. However, they may still be included in the response until they have actually been deleted. You can safely call <code>DeleteApiKey</code> to manually delete a key before it's automatically deleted.</p> </note>",
     "ListDataSources": "<p>Lists the data sources for a given API.</p>",
@@ -40,9 +45,12 @@
     "ListGraphqlApis": "<p>Lists your GraphQL APIs.</p>",
     "ListResolvers": "<p>Lists the resolvers for a given API and type.</p>",
     "ListResolversByFunction": "<p>List the resolvers that are associated with a specific function.</p>",
+    "ListSourceApiAssociations": "<p>Lists the <code>SourceApiAssociationSummary</code> data.</p>",
     "ListTagsForResource": "<p>Lists the tags for a resource.</p>",
     "ListTypes": "<p>Lists the types for a given API.</p>",
+    "ListTypesByAssociation": "<p>Lists <code>Type</code> objects by the source API association ID.</p>",
     "StartSchemaCreation": "<p>Adds a new schema to your GraphQL API.</p> <p>This operation is asynchronous. Use to determine when it has completed.</p>",
+    "StartSchemaMerge": "<p>Initiates a merge operation. Returns a status that shows the result of the merge operation.</p>",
     "TagResource": "<p>Tags a resource with user-supplied tags.</p>",
     "UntagResource": "<p>Untags a resource.</p>",
     "UpdateApiCache": "<p>Updates the cache for the GraphQL API.</p>",
@@ -52,6 +60,7 @@
     "UpdateFunction": "<p>Updates a <code>Function</code> object.</p>",
     "UpdateGraphqlApi": "<p>Updates a <code>GraphqlApi</code> object.</p>",
     "UpdateResolver": "<p>Updates a <code>Resolver</code> object.</p>",
+    "UpdateSourceApiAssociation": "<p>Updates some of the configuration choices of a particular source API association.</p>",
     "UpdateType": "<p>Updates a <code>Type</code> object.</p>"
   },
   "shapes": {
@@ -158,6 +167,26 @@
       }
     },
     "AssociateApiResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateMergedGraphqlApiRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateMergedGraphqlApiResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSourceGraphqlApiRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSourceGraphqlApiResponse": {
       "base": null,
       "refs": {
       }
@@ -443,6 +472,12 @@
         "ListDataSourcesResponse$dataSources": "<p>The <code>DataSource</code> objects.</p>"
       }
     },
+    "Date": {
+      "base": null,
+      "refs": {
+        "SourceApiAssociation$lastSuccessfulMergeDate": "<p>The datetime value of the last successful merge of the source API association. The result will be in UTC format and your local time zone.</p>"
+      }
+    },
     "DefaultAction": {
       "base": null,
       "refs": {
@@ -549,6 +584,26 @@
       }
     },
     "DisassociateApiResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateMergedGraphqlApiRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateMergedGraphqlApiResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateSourceGraphqlApiRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateSourceGraphqlApiResponse": {
       "base": null,
       "refs": {
       }
@@ -782,6 +837,16 @@
       "refs": {
       }
     },
+    "GetSourceApiAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSourceApiAssociationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetTypeRequest": {
       "base": null,
       "refs": {
@@ -790,6 +855,14 @@
     "GetTypeResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "GraphQLApiType": {
+      "base": null,
+      "refs": {
+        "CreateGraphqlApiRequest$apiType": "<p>The value that indicates whether the GraphQL API is a standard API (<code>GRAPHQL</code>) or merged API (<code>MERGED</code>).</p>",
+        "GraphqlApi$apiType": "<p>The value that indicates whether the GraphQL API is a standard API (<code>GRAPHQL</code>) or merged API (<code>MERGED</code>).</p>",
+        "ListGraphqlApisRequest$apiType": "<p>The value that indicates whether the GraphQL API is a standard API (<code>GRAPHQL</code>) or merged API (<code>MERGED</code>).</p>"
       }
     },
     "GraphQLApiVisibility": {
@@ -930,12 +1003,32 @@
       "refs": {
       }
     },
+    "ListSourceApiAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSourceApiAssociationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
       }
     },
     "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTypesByAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTypesByAssociationResponse": {
       "base": null,
       "refs": {
       }
@@ -1027,7 +1120,15 @@
         "ListGraphqlApisRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>",
         "ListResolversByFunctionRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>",
         "ListResolversRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>",
+        "ListSourceApiAssociationsRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>",
+        "ListTypesByAssociationRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>",
         "ListTypesRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>"
+      }
+    },
+    "MergeType": {
+      "base": null,
+      "refs": {
+        "SourceApiAssociationConfig$mergeType": "<p>The property that indicates which merging option is enabled in the source API association.</p> <p>Valid merge types are <code>MANUAL_MERGE</code> (default) and <code>AUTO_MERGE</code>. Manual merges are the default behavior and require the user to trigger any changes from the source APIs to the merged API manually. Auto merges subscribe the merged API to the changes performed on the source APIs so that any change in the source APIs are also made to the merged API. Auto merges use <code>MergedApiExecutionRoleArn</code> to perform merge operations.</p>"
       }
     },
     "NotFoundException": {
@@ -1058,6 +1159,12 @@
         "GetIntrospectionSchemaRequest$format": "<p>The schema format: SDL or JSON.</p>"
       }
     },
+    "Ownership": {
+      "base": null,
+      "refs": {
+        "ListGraphqlApisRequest$owner": "<p>The account owner of the GraphQL API.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
@@ -1065,8 +1172,8 @@
         "ListApiKeysResponse$nextToken": "<p>An identifier to pass in the next request to this operation to return the next set of items in the list.</p>",
         "ListDataSourcesRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
         "ListDataSourcesResponse$nextToken": "<p>An identifier to pass in the next request to this operation to return the next set of items in the list.</p>",
-        "ListDomainNamesRequest$nextToken": "<p>The API token.</p>",
-        "ListDomainNamesResponse$nextToken": "<p>The API token.</p>",
+        "ListDomainNamesRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
+        "ListDomainNamesResponse$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
         "ListFunctionsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
         "ListFunctionsResponse$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
         "ListGraphqlApisRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
@@ -1075,6 +1182,10 @@
         "ListResolversByFunctionResponse$nextToken": "<p>An identifier that you can use to return the next set of items in the list.</p>",
         "ListResolversRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
         "ListResolversResponse$nextToken": "<p>An identifier to pass in the next request to this operation to return the next set of items in the list.</p>",
+        "ListSourceApiAssociationsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
+        "ListSourceApiAssociationsResponse$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
+        "ListTypesByAssociationRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
+        "ListTypesByAssociationResponse$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
         "ListTypesRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
         "ListTypesResponse$nextToken": "<p>An identifier to pass in the next request to this operation to return the next set of items in the list.</p>"
       }
@@ -1189,12 +1300,61 @@
         "StartSchemaCreationResponse$status": "<p>The current state of the schema (PROCESSING, FAILED, SUCCESS, or NOT_APPLICABLE). When the schema is in the ACTIVE state, you can add data.</p>"
       }
     },
+    "SourceApiAssociation": {
+      "base": "<p>Describes the configuration of a source API. A source API is a GraphQL API that is linked to a merged API. There can be multiple source APIs attached to each merged API. When linked to a merged API, the source API's schema, data sources, and resolvers will be combined with other linked source API data to form a new, singular API. </p> <p>Source APIs can originate from your account or from other accounts via Amazon Web Services Resource Access Manager. For more information about sharing resources from other accounts, see <a href=\"https://docs.aws.amazon.com/ram/latest/userguide/what-is.html\">What is Amazon Web Services Resource Access Manager?</a> in the <i>Amazon Web Services Resource Access Manager</i> guide.</p>",
+      "refs": {
+        "AssociateMergedGraphqlApiResponse$sourceApiAssociation": "<p>The <code>SourceApiAssociation</code> object data.</p>",
+        "AssociateSourceGraphqlApiResponse$sourceApiAssociation": "<p>The <code>SourceApiAssociation</code> object data.</p>",
+        "GetSourceApiAssociationResponse$sourceApiAssociation": "<p>The <code>SourceApiAssociation</code> object data.</p>",
+        "UpdateSourceApiAssociationResponse$sourceApiAssociation": "<p>The <code>SourceApiAssociation</code> object data.</p>"
+      }
+    },
+    "SourceApiAssociationConfig": {
+      "base": "<p>Describes properties used to specify configurations related to a source API.</p>",
+      "refs": {
+        "AssociateMergedGraphqlApiRequest$sourceApiAssociationConfig": "<p>The <code>SourceApiAssociationConfig</code> object data.</p>",
+        "AssociateSourceGraphqlApiRequest$sourceApiAssociationConfig": "<p>The <code>SourceApiAssociationConfig</code> object data.</p>",
+        "SourceApiAssociation$sourceApiAssociationConfig": "<p>The <code>SourceApiAssociationConfig</code> object data.</p>",
+        "UpdateSourceApiAssociationRequest$sourceApiAssociationConfig": "<p>The <code>SourceApiAssociationConfig</code> object data.</p>"
+      }
+    },
+    "SourceApiAssociationStatus": {
+      "base": null,
+      "refs": {
+        "DisassociateMergedGraphqlApiResponse$sourceApiAssociationStatus": "<p>The state of the source API association.</p>",
+        "DisassociateSourceGraphqlApiResponse$sourceApiAssociationStatus": "<p>The state of the source API association.</p>",
+        "SourceApiAssociation$sourceApiAssociationStatus": "<p>The state of the source API association.</p>",
+        "StartSchemaMergeResponse$sourceApiAssociationStatus": "<p>The state of the source API association.</p>"
+      }
+    },
+    "SourceApiAssociationSummary": {
+      "base": "<p>Describes the ARNs and IDs of associations, Merged APIs, and source APIs.</p>",
+      "refs": {
+        "SourceApiAssociationSummaryList$member": null
+      }
+    },
+    "SourceApiAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListSourceApiAssociationsResponse$sourceApiAssociationSummaries": "<p>The <code>SourceApiAssociationSummary</code> object data.</p>"
+      }
+    },
     "StartSchemaCreationRequest": {
       "base": null,
       "refs": {
       }
     },
     "StartSchemaCreationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSchemaMergeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSchemaMergeResponse": {
       "base": null,
       "refs": {
       }
@@ -1212,6 +1372,12 @@
         "ApiLimitExceededException$message": null,
         "AppSyncRuntime$runtimeVersion": "<p>The <code>version</code> of the runtime to use. Currently, the only allowed version is <code>1.0.0</code>.</p>",
         "AssociateApiRequest$apiId": "<p>The API ID. Private APIs can not be associated with custom domains.</p>",
+        "AssociateMergedGraphqlApiRequest$sourceApiIdentifier": "<p>The identifier of the AppSync Source API. This is generated by the AppSync service. In most cases, source APIs (especially in your account) only require the API ID value or ARN of the source API. However, source APIs from other accounts (cross-account use cases) strictly require the full resource ARN of the source API.</p>",
+        "AssociateMergedGraphqlApiRequest$mergedApiIdentifier": "<p>The identifier of the AppSync Merged API. This is generated by the AppSync service. In most cases, Merged APIs (especially in your account) only require the API ID value or ARN of the merged API. However, Merged APIs in other accounts (cross-account use cases) strictly require the full resource ARN of the merged API.</p>",
+        "AssociateMergedGraphqlApiRequest$description": "<p>The description field.</p>",
+        "AssociateSourceGraphqlApiRequest$mergedApiIdentifier": "<p>The identifier of the AppSync Merged API. This is generated by the AppSync service. In most cases, Merged APIs (especially in your account) only require the API ID value or ARN of the merged API. However, Merged APIs in other accounts (cross-account use cases) strictly require the full resource ARN of the merged API.</p>",
+        "AssociateSourceGraphqlApiRequest$sourceApiIdentifier": "<p>The identifier of the AppSync Source API. This is generated by the AppSync service. In most cases, source APIs (especially in your account) only require the API ID value or ARN of the source API. However, source APIs from other accounts (cross-account use cases) strictly require the full resource ARN of the source API.</p>",
+        "AssociateSourceGraphqlApiRequest$description": "<p>The description field.</p>",
         "AwsIamConfig$signingRegion": "<p>The signing Amazon Web Services Region for IAM authorization.</p>",
         "AwsIamConfig$signingServiceName": "<p>The signing service name for IAM authorization.</p>",
         "CachingKeys$member": null,
@@ -1230,6 +1396,8 @@
         "CreateFunctionRequest$description": "<p>The <code>Function</code> description.</p>",
         "CreateFunctionRequest$functionVersion": "<p>The <code>version</code> of the request mapping template. Currently, the supported value is 2018-05-29. Note that when using VTL and mapping templates, the <code>functionVersion</code> is required.</p>",
         "CreateGraphqlApiRequest$name": "<p>A user-supplied name for the <code>GraphqlApi</code>.</p>",
+        "CreateGraphqlApiRequest$mergedApiExecutionRoleArn": "<p>The Identity and Access Management service role ARN for a merged API. The AppSync service assumes this role on behalf of the Merged API to validate access to source APIs at runtime and to prompt the <code>AUTO_MERGE</code> to update the merged API endpoint with the source API changes automatically.</p>",
+        "CreateGraphqlApiRequest$ownerContact": "<p>The owner contact information for an API resource.</p> <p>This field accepts any string input with a length of 0 - 256 characters.</p>",
         "CreateResolverRequest$apiId": "<p>The ID for the GraphQL API for which the resolver is being created.</p>",
         "CreateTypeRequest$apiId": "<p>The API ID.</p>",
         "CreateTypeRequest$definition": "<p>The type definition, in GraphQL Schema Definition Language (SDL) format.</p> <p>For more information, see the <a href=\"http://graphql.org/learn/schema/\">GraphQL SDL documentation</a>.</p>",
@@ -1245,6 +1413,10 @@
         "DeleteResolverRequest$apiId": "<p>The API ID.</p>",
         "DeleteTypeRequest$apiId": "<p>The API ID.</p>",
         "DeltaSyncConfig$deltaSyncTableName": "<p>The Delta Sync table name.</p>",
+        "DisassociateMergedGraphqlApiRequest$sourceApiIdentifier": "<p>The identifier of the AppSync Source API. This is generated by the AppSync service. In most cases, source APIs (especially in your account) only require the API ID value or ARN of the source API. However, source APIs from other accounts (cross-account use cases) strictly require the full resource ARN of the source API.</p>",
+        "DisassociateMergedGraphqlApiRequest$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
+        "DisassociateSourceGraphqlApiRequest$mergedApiIdentifier": "<p>The identifier of the AppSync Merged API. This is generated by the AppSync service. In most cases, Merged APIs (especially in your account) only require the API ID value or ARN of the merged API. However, Merged APIs in other accounts (cross-account use cases) strictly require the full resource ARN of the merged API.</p>",
+        "DisassociateSourceGraphqlApiRequest$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
         "DomainNameConfig$appsyncDomainName": "<p>The domain name that AppSync provides.</p>",
         "DomainNameConfig$hostedZoneId": "<p>The ID of your Amazon Route 53 hosted zone.</p>",
         "DynamodbDataSourceConfig$tableName": "<p>The table name.</p>",
@@ -1267,10 +1439,15 @@
         "GetResolverRequest$apiId": "<p>The API ID.</p>",
         "GetSchemaCreationStatusRequest$apiId": "<p>The API ID.</p>",
         "GetSchemaCreationStatusResponse$details": "<p>Detailed information about the status of the schema creation operation.</p>",
+        "GetSourceApiAssociationRequest$mergedApiIdentifier": "<p>The identifier of the AppSync Merged API. This is generated by the AppSync service. In most cases, Merged APIs (especially in your account) only require the API ID value or ARN of the merged API. However, Merged APIs in other accounts (cross-account use cases) strictly require the full resource ARN of the merged API.</p>",
+        "GetSourceApiAssociationRequest$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
         "GetTypeRequest$apiId": "<p>The API ID.</p>",
         "GraphqlApi$apiId": "<p>The API ID.</p>",
         "GraphqlApi$arn": "<p>The Amazon Resource Name (ARN).</p>",
         "GraphqlApi$wafWebAclArn": "<p>The ARN of the WAF access control list (ACL) associated with this <code>GraphqlApi</code>, if one exists.</p>",
+        "GraphqlApi$mergedApiExecutionRoleArn": "<p>The Identity and Access Management service role ARN for a merged API. The AppSync service assumes this role on behalf of the Merged API to validate access to source APIs at runtime and to prompt the <code>AUTO_MERGE</code> to update the merged API endpoint with the source API changes automatically.</p>",
+        "GraphqlApi$owner": "<p>The account owner of the GraphQL API.</p>",
+        "GraphqlApi$ownerContact": "<p>The owner contact information for an API resource.</p> <p>This field accepts any string input with a length of 0 - 256 characters.</p>",
         "HttpDataSourceConfig$endpoint": "<p>The HTTP URL endpoint. You can specify either the domain name or IP, and port combination, and the URL scheme must be HTTP or HTTPS. If you don't specify the port, AppSync uses the default port 80 for the HTTP endpoint and port 443 for HTTPS endpoints.</p>",
         "InternalFailureException$message": null,
         "LambdaAuthorizerConfig$authorizerUri": "<p>The Amazon Resource Name (ARN) of the Lambda function to be called for authorization. This can be a standard Lambda ARN, a version ARN (<code>.../v3</code>), or an alias ARN. </p> <p> <b>Note</b>: This Lambda function must have the following resource-based policy assigned to it. When configuring Lambda authorizers in the console, this is done for you. To use the Command Line Interface (CLI), run the following:</p> <p> <code>aws lambda add-permission --function-name \"arn:aws:lambda:us-east-2:111122223333:function:my-function\" --statement-id \"appsync\" --principal appsync.amazonaws.com --action lambda:InvokeFunction</code> </p>",
@@ -1285,6 +1462,9 @@
         "ListResolversByFunctionRequest$functionId": "<p>The function ID.</p>",
         "ListResolversRequest$apiId": "<p>The API ID.</p>",
         "ListResolversRequest$typeName": "<p>The type name.</p>",
+        "ListSourceApiAssociationsRequest$apiId": "<p>The API ID.</p>",
+        "ListTypesByAssociationRequest$mergedApiIdentifier": "<p>The identifier of the AppSync Merged API. This is generated by the AppSync service. In most cases, Merged APIs (especially in your account) only require the API ID value or ARN of the merged API. However, Merged APIs in other accounts (cross-account use cases) strictly require the full resource ARN of the merged API.</p>",
+        "ListTypesByAssociationRequest$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
         "ListTypesRequest$apiId": "<p>The API ID.</p>",
         "LogConfig$cloudWatchLogsRoleArn": "<p>The service role that AppSync assumes to publish to CloudWatch logs in your account.</p>",
         "Logs$member": null,
@@ -1301,7 +1481,24 @@
         "RdsHttpEndpointConfig$schema": "<p>Logical schema name.</p>",
         "RdsHttpEndpointConfig$awsSecretStoreArn": "<p>Amazon Web Services secret store Amazon Resource Name (ARN) for database credentials.</p>",
         "Resolver$resolverArn": "<p>The resolver Amazon Resource Name (ARN).</p>",
+        "SourceApiAssociation$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
+        "SourceApiAssociation$associationArn": "<p>The Amazon Resource Name (ARN) of the source API association.</p>",
+        "SourceApiAssociation$sourceApiId": "<p>The ID of the AppSync source API.</p>",
+        "SourceApiAssociation$sourceApiArn": "<p>The Amazon Resource Name (ARN) of the AppSync source API.</p>",
+        "SourceApiAssociation$mergedApiArn": "<p>The Amazon Resource Name (ARN) of the AppSync Merged API.</p>",
+        "SourceApiAssociation$mergedApiId": "<p>The ID of the AppSync Merged API.</p>",
+        "SourceApiAssociation$description": "<p>The description field.</p>",
+        "SourceApiAssociation$sourceApiAssociationStatusDetail": "<p>The detailed message related to the current state of the source API association.</p>",
+        "SourceApiAssociationSummary$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
+        "SourceApiAssociationSummary$associationArn": "<p>The Amazon Resource Name (ARN) of the source API association.</p>",
+        "SourceApiAssociationSummary$sourceApiId": "<p>The ID of the AppSync source API.</p>",
+        "SourceApiAssociationSummary$sourceApiArn": "<p>The Amazon Resource Name (ARN) of the AppSync Source API.</p>",
+        "SourceApiAssociationSummary$mergedApiId": "<p>The ID of the AppSync Merged API.</p>",
+        "SourceApiAssociationSummary$mergedApiArn": "<p>The Amazon Resource Name (ARN) of the AppSync Merged API.</p>",
+        "SourceApiAssociationSummary$description": "<p>The description field.</p>",
         "StartSchemaCreationRequest$apiId": "<p>The API ID.</p>",
+        "StartSchemaMergeRequest$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
+        "StartSchemaMergeRequest$mergedApiIdentifier": "<p>The identifier of the AppSync Merged API. This is generated by the AppSync service. In most cases, Merged APIs (especially in your account) only require the API ID value or ARN of the merged API. However, Merged APIs in other accounts (cross-account use cases) strictly require the full resource ARN of the merged API.</p>",
         "Type$description": "<p>The type description.</p>",
         "Type$arn": "<p>The type Amazon Resource Name (ARN).</p>",
         "Type$definition": "<p>The type definition.</p>",
@@ -1318,7 +1515,12 @@
         "UpdateFunctionRequest$functionVersion": "<p>The <code>version</code> of the request mapping template. Currently, the supported value is 2018-05-29. Note that when using VTL and mapping templates, the <code>functionVersion</code> is required.</p>",
         "UpdateGraphqlApiRequest$apiId": "<p>The API ID.</p>",
         "UpdateGraphqlApiRequest$name": "<p>The new name for the <code>GraphqlApi</code> object.</p>",
+        "UpdateGraphqlApiRequest$mergedApiExecutionRoleArn": "<p>The Identity and Access Management service role ARN for a merged API. The AppSync service assumes this role on behalf of the Merged API to validate access to source APIs at runtime and to prompt the <code>AUTO_MERGE</code> to update the merged API endpoint with the source API changes automatically.</p>",
+        "UpdateGraphqlApiRequest$ownerContact": "<p>The owner contact information for an API resource.</p> <p>This field accepts any string input with a length of 0 - 256 characters.</p>",
         "UpdateResolverRequest$apiId": "<p>The API ID.</p>",
+        "UpdateSourceApiAssociationRequest$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
+        "UpdateSourceApiAssociationRequest$mergedApiIdentifier": "<p>The identifier of the AppSync Merged API. This is generated by the AppSync service. In most cases, Merged APIs (especially in your account) only require the API ID value or ARN of the merged API. However, Merged APIs in other accounts (cross-account use cases) strictly require the full resource ARN of the merged API.</p>",
+        "UpdateSourceApiAssociationRequest$description": "<p>The description field.</p>",
         "UpdateTypeRequest$apiId": "<p>The API ID.</p>",
         "UpdateTypeRequest$definition": "<p>The new definition.</p>",
         "UserPoolConfig$userPoolId": "<p>The user pool ID.</p>",
@@ -1401,6 +1603,7 @@
       "refs": {
         "CreateTypeRequest$format": "<p>The type format: SDL or JSON.</p>",
         "GetTypeRequest$format": "<p>The type format: SDL or JSON.</p>",
+        "ListTypesByAssociationRequest$format": "<p>The format type.</p>",
         "ListTypesRequest$format": "<p>The type format: SDL or JSON.</p>",
         "Type$format": "<p>The type format: SDL or JSON.</p>",
         "UpdateTypeRequest$format": "<p>The new type format: SDL or JSON.</p>"
@@ -1409,6 +1612,7 @@
     "TypeList": {
       "base": null,
       "refs": {
+        "ListTypesByAssociationResponse$types": "<p>The <code>Type</code> objects.</p>",
         "ListTypesResponse$types": "<p>The <code>Type</code> objects.</p>"
       }
     },
@@ -1493,6 +1697,16 @@
       }
     },
     "UpdateResolverResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSourceApiAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSourceApiAssociationResponse": {
       "base": null,
       "refs": {
       }
