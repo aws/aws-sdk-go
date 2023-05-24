@@ -4,6 +4,7 @@ package appsync
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -97,6 +98,202 @@ func (c *AppSync) AssociateApi(input *AssociateApiInput) (*AssociateApiOutput, e
 // for more information on using Contexts.
 func (c *AppSync) AssociateApiWithContext(ctx aws.Context, input *AssociateApiInput, opts ...request.Option) (*AssociateApiOutput, error) {
 	req, out := c.AssociateApiRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateMergedGraphqlApi = "AssociateMergedGraphqlApi"
+
+// AssociateMergedGraphqlApiRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateMergedGraphqlApi operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateMergedGraphqlApi for more information on using the AssociateMergedGraphqlApi
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateMergedGraphqlApiRequest method.
+//	req, resp := client.AssociateMergedGraphqlApiRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/AssociateMergedGraphqlApi
+func (c *AppSync) AssociateMergedGraphqlApiRequest(input *AssociateMergedGraphqlApiInput) (req *request.Request, output *AssociateMergedGraphqlApiOutput) {
+	op := &request.Operation{
+		Name:       opAssociateMergedGraphqlApi,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations",
+	}
+
+	if input == nil {
+		input = &AssociateMergedGraphqlApiInput{}
+	}
+
+	output = &AssociateMergedGraphqlApiOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateMergedGraphqlApi API operation for AWS AppSync.
+//
+// Creates an association between a Merged API and source API using the source
+// API's identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation AssociateMergedGraphqlApi for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - LimitExceededException
+//     The request exceeded a limit. Try your request again.
+//
+//   - ConcurrentModificationException
+//     Another modification is in progress at this time and it must complete before
+//     you can make your change.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/AssociateMergedGraphqlApi
+func (c *AppSync) AssociateMergedGraphqlApi(input *AssociateMergedGraphqlApiInput) (*AssociateMergedGraphqlApiOutput, error) {
+	req, out := c.AssociateMergedGraphqlApiRequest(input)
+	return out, req.Send()
+}
+
+// AssociateMergedGraphqlApiWithContext is the same as AssociateMergedGraphqlApi with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateMergedGraphqlApi for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) AssociateMergedGraphqlApiWithContext(ctx aws.Context, input *AssociateMergedGraphqlApiInput, opts ...request.Option) (*AssociateMergedGraphqlApiOutput, error) {
+	req, out := c.AssociateMergedGraphqlApiRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateSourceGraphqlApi = "AssociateSourceGraphqlApi"
+
+// AssociateSourceGraphqlApiRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateSourceGraphqlApi operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateSourceGraphqlApi for more information on using the AssociateSourceGraphqlApi
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateSourceGraphqlApiRequest method.
+//	req, resp := client.AssociateSourceGraphqlApiRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/AssociateSourceGraphqlApi
+func (c *AppSync) AssociateSourceGraphqlApiRequest(input *AssociateSourceGraphqlApiInput) (req *request.Request, output *AssociateSourceGraphqlApiOutput) {
+	op := &request.Operation{
+		Name:       opAssociateSourceGraphqlApi,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations",
+	}
+
+	if input == nil {
+		input = &AssociateSourceGraphqlApiInput{}
+	}
+
+	output = &AssociateSourceGraphqlApiOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateSourceGraphqlApi API operation for AWS AppSync.
+//
+// Creates an association between a Merged API and source API using the Merged
+// API's identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation AssociateSourceGraphqlApi for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - LimitExceededException
+//     The request exceeded a limit. Try your request again.
+//
+//   - ConcurrentModificationException
+//     Another modification is in progress at this time and it must complete before
+//     you can make your change.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/AssociateSourceGraphqlApi
+func (c *AppSync) AssociateSourceGraphqlApi(input *AssociateSourceGraphqlApiInput) (*AssociateSourceGraphqlApiOutput, error) {
+	req, out := c.AssociateSourceGraphqlApiRequest(input)
+	return out, req.Send()
+}
+
+// AssociateSourceGraphqlApiWithContext is the same as AssociateSourceGraphqlApi with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateSourceGraphqlApi for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) AssociateSourceGraphqlApiWithContext(ctx aws.Context, input *AssociateSourceGraphqlApiInput, opts ...request.Option) (*AssociateSourceGraphqlApiOutput, error) {
+	req, out := c.AssociateSourceGraphqlApiRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1709,6 +1906,196 @@ func (c *AppSync) DisassociateApiWithContext(ctx aws.Context, input *Disassociat
 	return out, req.Send()
 }
 
+const opDisassociateMergedGraphqlApi = "DisassociateMergedGraphqlApi"
+
+// DisassociateMergedGraphqlApiRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateMergedGraphqlApi operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateMergedGraphqlApi for more information on using the DisassociateMergedGraphqlApi
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateMergedGraphqlApiRequest method.
+//	req, resp := client.DisassociateMergedGraphqlApiRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DisassociateMergedGraphqlApi
+func (c *AppSync) DisassociateMergedGraphqlApiRequest(input *DisassociateMergedGraphqlApiInput) (req *request.Request, output *DisassociateMergedGraphqlApiOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateMergedGraphqlApi,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations/{associationId}",
+	}
+
+	if input == nil {
+		input = &DisassociateMergedGraphqlApiInput{}
+	}
+
+	output = &DisassociateMergedGraphqlApiOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateMergedGraphqlApi API operation for AWS AppSync.
+//
+// Deletes an association between a Merged API and source API using the source
+// API's identifier and the association ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation DisassociateMergedGraphqlApi for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - ConcurrentModificationException
+//     Another modification is in progress at this time and it must complete before
+//     you can make your change.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DisassociateMergedGraphqlApi
+func (c *AppSync) DisassociateMergedGraphqlApi(input *DisassociateMergedGraphqlApiInput) (*DisassociateMergedGraphqlApiOutput, error) {
+	req, out := c.DisassociateMergedGraphqlApiRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateMergedGraphqlApiWithContext is the same as DisassociateMergedGraphqlApi with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateMergedGraphqlApi for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) DisassociateMergedGraphqlApiWithContext(ctx aws.Context, input *DisassociateMergedGraphqlApiInput, opts ...request.Option) (*DisassociateMergedGraphqlApiOutput, error) {
+	req, out := c.DisassociateMergedGraphqlApiRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateSourceGraphqlApi = "DisassociateSourceGraphqlApi"
+
+// DisassociateSourceGraphqlApiRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateSourceGraphqlApi operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateSourceGraphqlApi for more information on using the DisassociateSourceGraphqlApi
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateSourceGraphqlApiRequest method.
+//	req, resp := client.DisassociateSourceGraphqlApiRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DisassociateSourceGraphqlApi
+func (c *AppSync) DisassociateSourceGraphqlApiRequest(input *DisassociateSourceGraphqlApiInput) (req *request.Request, output *DisassociateSourceGraphqlApiOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateSourceGraphqlApi,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
+	}
+
+	if input == nil {
+		input = &DisassociateSourceGraphqlApiInput{}
+	}
+
+	output = &DisassociateSourceGraphqlApiOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateSourceGraphqlApi API operation for AWS AppSync.
+//
+// Deletes an association between a Merged API and source API using the Merged
+// API's identifier and the association ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation DisassociateSourceGraphqlApi for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - ConcurrentModificationException
+//     Another modification is in progress at this time and it must complete before
+//     you can make your change.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DisassociateSourceGraphqlApi
+func (c *AppSync) DisassociateSourceGraphqlApi(input *DisassociateSourceGraphqlApiInput) (*DisassociateSourceGraphqlApiOutput, error) {
+	req, out := c.DisassociateSourceGraphqlApiRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateSourceGraphqlApiWithContext is the same as DisassociateSourceGraphqlApi with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateSourceGraphqlApi for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) DisassociateSourceGraphqlApiWithContext(ctx aws.Context, input *DisassociateSourceGraphqlApiInput, opts ...request.Option) (*DisassociateSourceGraphqlApiOutput, error) {
+	req, out := c.DisassociateSourceGraphqlApiRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opEvaluateCode = "EvaluateCode"
 
 // EvaluateCodeRequest generates a "aws/request.Request" representing the
@@ -2804,6 +3191,96 @@ func (c *AppSync) GetSchemaCreationStatusWithContext(ctx aws.Context, input *Get
 	return out, req.Send()
 }
 
+const opGetSourceApiAssociation = "GetSourceApiAssociation"
+
+// GetSourceApiAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetSourceApiAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSourceApiAssociation for more information on using the GetSourceApiAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSourceApiAssociationRequest method.
+//	req, resp := client.GetSourceApiAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetSourceApiAssociation
+func (c *AppSync) GetSourceApiAssociationRequest(input *GetSourceApiAssociationInput) (req *request.Request, output *GetSourceApiAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetSourceApiAssociation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
+	}
+
+	if input == nil {
+		input = &GetSourceApiAssociationInput{}
+	}
+
+	output = &GetSourceApiAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSourceApiAssociation API operation for AWS AppSync.
+//
+// Retrieves a SourceApiAssociation object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation GetSourceApiAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetSourceApiAssociation
+func (c *AppSync) GetSourceApiAssociation(input *GetSourceApiAssociationInput) (*GetSourceApiAssociationOutput, error) {
+	req, out := c.GetSourceApiAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetSourceApiAssociationWithContext is the same as GetSourceApiAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSourceApiAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) GetSourceApiAssociationWithContext(ctx aws.Context, input *GetSourceApiAssociationInput, opts ...request.Option) (*GetSourceApiAssociationOutput, error) {
+	req, out := c.GetSourceApiAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetType = "GetType"
 
 // GetTypeRequest generates a "aws/request.Request" representing the
@@ -3525,6 +4002,96 @@ func (c *AppSync) ListResolversByFunctionWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opListSourceApiAssociations = "ListSourceApiAssociations"
+
+// ListSourceApiAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSourceApiAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSourceApiAssociations for more information on using the ListSourceApiAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSourceApiAssociationsRequest method.
+//	req, resp := client.ListSourceApiAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListSourceApiAssociations
+func (c *AppSync) ListSourceApiAssociationsRequest(input *ListSourceApiAssociationsInput) (req *request.Request, output *ListSourceApiAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListSourceApiAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apis/{apiId}/sourceApiAssociations",
+	}
+
+	if input == nil {
+		input = &ListSourceApiAssociationsInput{}
+	}
+
+	output = &ListSourceApiAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSourceApiAssociations API operation for AWS AppSync.
+//
+// Lists the SourceApiAssociationSummary data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation ListSourceApiAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListSourceApiAssociations
+func (c *AppSync) ListSourceApiAssociations(input *ListSourceApiAssociationsInput) (*ListSourceApiAssociationsOutput, error) {
+	req, out := c.ListSourceApiAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListSourceApiAssociationsWithContext is the same as ListSourceApiAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSourceApiAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListSourceApiAssociationsWithContext(ctx aws.Context, input *ListSourceApiAssociationsInput, opts ...request.Option) (*ListSourceApiAssociationsOutput, error) {
+	req, out := c.ListSourceApiAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -3715,6 +4282,100 @@ func (c *AppSync) ListTypesWithContext(ctx aws.Context, input *ListTypesInput, o
 	return out, req.Send()
 }
 
+const opListTypesByAssociation = "ListTypesByAssociation"
+
+// ListTypesByAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the ListTypesByAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTypesByAssociation for more information on using the ListTypesByAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTypesByAssociationRequest method.
+//	req, resp := client.ListTypesByAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListTypesByAssociation
+func (c *AppSync) ListTypesByAssociationRequest(input *ListTypesByAssociationInput) (req *request.Request, output *ListTypesByAssociationOutput) {
+	op := &request.Operation{
+		Name:       opListTypesByAssociation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/types",
+	}
+
+	if input == nil {
+		input = &ListTypesByAssociationInput{}
+	}
+
+	output = &ListTypesByAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTypesByAssociation API operation for AWS AppSync.
+//
+// Lists Type objects by the source API association ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation ListTypesByAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - ConcurrentModificationException
+//     Another modification is in progress at this time and it must complete before
+//     you can make your change.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListTypesByAssociation
+func (c *AppSync) ListTypesByAssociation(input *ListTypesByAssociationInput) (*ListTypesByAssociationOutput, error) {
+	req, out := c.ListTypesByAssociationRequest(input)
+	return out, req.Send()
+}
+
+// ListTypesByAssociationWithContext is the same as ListTypesByAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTypesByAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListTypesByAssociationWithContext(ctx aws.Context, input *ListTypesByAssociationInput, opts ...request.Option) (*ListTypesByAssociationOutput, error) {
+	req, out := c.ListTypesByAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartSchemaCreation = "StartSchemaCreation"
 
 // StartSchemaCreationRequest generates a "aws/request.Request" representing the
@@ -3806,6 +4467,101 @@ func (c *AppSync) StartSchemaCreation(input *StartSchemaCreationInput) (*StartSc
 // for more information on using Contexts.
 func (c *AppSync) StartSchemaCreationWithContext(ctx aws.Context, input *StartSchemaCreationInput, opts ...request.Option) (*StartSchemaCreationOutput, error) {
 	req, out := c.StartSchemaCreationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartSchemaMerge = "StartSchemaMerge"
+
+// StartSchemaMergeRequest generates a "aws/request.Request" representing the
+// client's request for the StartSchemaMerge operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSchemaMerge for more information on using the StartSchemaMerge
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSchemaMergeRequest method.
+//	req, resp := client.StartSchemaMergeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/StartSchemaMerge
+func (c *AppSync) StartSchemaMergeRequest(input *StartSchemaMergeInput) (req *request.Request, output *StartSchemaMergeOutput) {
+	op := &request.Operation{
+		Name:       opStartSchemaMerge,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/merge",
+	}
+
+	if input == nil {
+		input = &StartSchemaMergeInput{}
+	}
+
+	output = &StartSchemaMergeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSchemaMerge API operation for AWS AppSync.
+//
+// Initiates a merge operation. Returns a status that shows the result of the
+// merge operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation StartSchemaMerge for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - ConcurrentModificationException
+//     Another modification is in progress at this time and it must complete before
+//     you can make your change.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/StartSchemaMerge
+func (c *AppSync) StartSchemaMerge(input *StartSchemaMergeInput) (*StartSchemaMergeOutput, error) {
+	req, out := c.StartSchemaMergeRequest(input)
+	return out, req.Send()
+}
+
+// StartSchemaMergeWithContext is the same as StartSchemaMerge with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSchemaMerge for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) StartSchemaMergeWithContext(ctx aws.Context, input *StartSchemaMergeInput, opts ...request.Option) (*StartSchemaMergeOutput, error) {
+	req, out := c.StartSchemaMergeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4660,6 +5416,100 @@ func (c *AppSync) UpdateResolver(input *UpdateResolverInput) (*UpdateResolverOut
 // for more information on using Contexts.
 func (c *AppSync) UpdateResolverWithContext(ctx aws.Context, input *UpdateResolverInput, opts ...request.Option) (*UpdateResolverOutput, error) {
 	req, out := c.UpdateResolverRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSourceApiAssociation = "UpdateSourceApiAssociation"
+
+// UpdateSourceApiAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSourceApiAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSourceApiAssociation for more information on using the UpdateSourceApiAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSourceApiAssociationRequest method.
+//	req, resp := client.UpdateSourceApiAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateSourceApiAssociation
+func (c *AppSync) UpdateSourceApiAssociationRequest(input *UpdateSourceApiAssociationInput) (req *request.Request, output *UpdateSourceApiAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSourceApiAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
+	}
+
+	if input == nil {
+		input = &UpdateSourceApiAssociationInput{}
+	}
+
+	output = &UpdateSourceApiAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSourceApiAssociation API operation for AWS AppSync.
+//
+// Updates some of the configuration choices of a particular source API association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation UpdateSourceApiAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - ConcurrentModificationException
+//     Another modification is in progress at this time and it must complete before
+//     you can make your change.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateSourceApiAssociation
+func (c *AppSync) UpdateSourceApiAssociation(input *UpdateSourceApiAssociationInput) (*UpdateSourceApiAssociationOutput, error) {
+	req, out := c.UpdateSourceApiAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSourceApiAssociationWithContext is the same as UpdateSourceApiAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSourceApiAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) UpdateSourceApiAssociationWithContext(ctx aws.Context, input *UpdateSourceApiAssociationInput, opts ...request.Option) (*UpdateSourceApiAssociationOutput, error) {
+	req, out := c.UpdateSourceApiAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5559,6 +6409,246 @@ func (s AssociateApiOutput) GoString() string {
 // SetApiAssociation sets the ApiAssociation field's value.
 func (s *AssociateApiOutput) SetApiAssociation(v *ApiAssociation) *AssociateApiOutput {
 	s.ApiAssociation = v
+	return s
+}
+
+type AssociateMergedGraphqlApiInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description field.
+	Description *string `locationName:"description" type:"string"`
+
+	// The identifier of the AppSync Merged API. This is generated by the AppSync
+	// service. In most cases, Merged APIs (especially in your account) only require
+	// the API ID value or ARN of the merged API. However, Merged APIs in other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the merged API.
+	//
+	// MergedApiIdentifier is a required field
+	MergedApiIdentifier *string `locationName:"mergedApiIdentifier" type:"string" required:"true"`
+
+	// The SourceApiAssociationConfig object data.
+	SourceApiAssociationConfig *SourceApiAssociationConfig `locationName:"sourceApiAssociationConfig" type:"structure"`
+
+	// The identifier of the AppSync Source API. This is generated by the AppSync
+	// service. In most cases, source APIs (especially in your account) only require
+	// the API ID value or ARN of the source API. However, source APIs from other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the source API.
+	//
+	// SourceApiIdentifier is a required field
+	SourceApiIdentifier *string `location:"uri" locationName:"sourceApiIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateMergedGraphqlApiInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateMergedGraphqlApiInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateMergedGraphqlApiInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateMergedGraphqlApiInput"}
+	if s.MergedApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MergedApiIdentifier"))
+	}
+	if s.SourceApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceApiIdentifier"))
+	}
+	if s.SourceApiIdentifier != nil && len(*s.SourceApiIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceApiIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *AssociateMergedGraphqlApiInput) SetDescription(v string) *AssociateMergedGraphqlApiInput {
+	s.Description = &v
+	return s
+}
+
+// SetMergedApiIdentifier sets the MergedApiIdentifier field's value.
+func (s *AssociateMergedGraphqlApiInput) SetMergedApiIdentifier(v string) *AssociateMergedGraphqlApiInput {
+	s.MergedApiIdentifier = &v
+	return s
+}
+
+// SetSourceApiAssociationConfig sets the SourceApiAssociationConfig field's value.
+func (s *AssociateMergedGraphqlApiInput) SetSourceApiAssociationConfig(v *SourceApiAssociationConfig) *AssociateMergedGraphqlApiInput {
+	s.SourceApiAssociationConfig = v
+	return s
+}
+
+// SetSourceApiIdentifier sets the SourceApiIdentifier field's value.
+func (s *AssociateMergedGraphqlApiInput) SetSourceApiIdentifier(v string) *AssociateMergedGraphqlApiInput {
+	s.SourceApiIdentifier = &v
+	return s
+}
+
+type AssociateMergedGraphqlApiOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SourceApiAssociation object data.
+	SourceApiAssociation *SourceApiAssociation `locationName:"sourceApiAssociation" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateMergedGraphqlApiOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateMergedGraphqlApiOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceApiAssociation sets the SourceApiAssociation field's value.
+func (s *AssociateMergedGraphqlApiOutput) SetSourceApiAssociation(v *SourceApiAssociation) *AssociateMergedGraphqlApiOutput {
+	s.SourceApiAssociation = v
+	return s
+}
+
+type AssociateSourceGraphqlApiInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description field.
+	Description *string `locationName:"description" type:"string"`
+
+	// The identifier of the AppSync Merged API. This is generated by the AppSync
+	// service. In most cases, Merged APIs (especially in your account) only require
+	// the API ID value or ARN of the merged API. However, Merged APIs in other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the merged API.
+	//
+	// MergedApiIdentifier is a required field
+	MergedApiIdentifier *string `location:"uri" locationName:"mergedApiIdentifier" type:"string" required:"true"`
+
+	// The SourceApiAssociationConfig object data.
+	SourceApiAssociationConfig *SourceApiAssociationConfig `locationName:"sourceApiAssociationConfig" type:"structure"`
+
+	// The identifier of the AppSync Source API. This is generated by the AppSync
+	// service. In most cases, source APIs (especially in your account) only require
+	// the API ID value or ARN of the source API. However, source APIs from other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the source API.
+	//
+	// SourceApiIdentifier is a required field
+	SourceApiIdentifier *string `locationName:"sourceApiIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateSourceGraphqlApiInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateSourceGraphqlApiInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateSourceGraphqlApiInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateSourceGraphqlApiInput"}
+	if s.MergedApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MergedApiIdentifier"))
+	}
+	if s.MergedApiIdentifier != nil && len(*s.MergedApiIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MergedApiIdentifier", 1))
+	}
+	if s.SourceApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceApiIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *AssociateSourceGraphqlApiInput) SetDescription(v string) *AssociateSourceGraphqlApiInput {
+	s.Description = &v
+	return s
+}
+
+// SetMergedApiIdentifier sets the MergedApiIdentifier field's value.
+func (s *AssociateSourceGraphqlApiInput) SetMergedApiIdentifier(v string) *AssociateSourceGraphqlApiInput {
+	s.MergedApiIdentifier = &v
+	return s
+}
+
+// SetSourceApiAssociationConfig sets the SourceApiAssociationConfig field's value.
+func (s *AssociateSourceGraphqlApiInput) SetSourceApiAssociationConfig(v *SourceApiAssociationConfig) *AssociateSourceGraphqlApiInput {
+	s.SourceApiAssociationConfig = v
+	return s
+}
+
+// SetSourceApiIdentifier sets the SourceApiIdentifier field's value.
+func (s *AssociateSourceGraphqlApiInput) SetSourceApiIdentifier(v string) *AssociateSourceGraphqlApiInput {
+	s.SourceApiIdentifier = &v
+	return s
+}
+
+type AssociateSourceGraphqlApiOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SourceApiAssociation object data.
+	SourceApiAssociation *SourceApiAssociation `locationName:"sourceApiAssociation" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateSourceGraphqlApiOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateSourceGraphqlApiOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceApiAssociation sets the SourceApiAssociation field's value.
+func (s *AssociateSourceGraphqlApiOutput) SetSourceApiAssociation(v *SourceApiAssociation) *AssociateSourceGraphqlApiOutput {
+	s.SourceApiAssociation = v
 	return s
 }
 
@@ -6907,6 +7997,10 @@ type CreateGraphqlApiInput struct {
 	// A list of additional authentication providers for the GraphqlApi API.
 	AdditionalAuthenticationProviders []*AdditionalAuthenticationProvider `locationName:"additionalAuthenticationProviders" type:"list"`
 
+	// The value that indicates whether the GraphQL API is a standard API (GRAPHQL)
+	// or merged API (MERGED).
+	ApiType *string `locationName:"apiType" type:"string" enum:"GraphQLApiType"`
+
 	// The authentication type: API key, Identity and Access Management (IAM), OpenID
 	// Connect (OIDC), Amazon Cognito user pools, or Lambda.
 	//
@@ -6919,6 +8013,12 @@ type CreateGraphqlApiInput struct {
 	// The Amazon CloudWatch Logs configuration.
 	LogConfig *LogConfig `locationName:"logConfig" type:"structure"`
 
+	// The Identity and Access Management service role ARN for a merged API. The
+	// AppSync service assumes this role on behalf of the Merged API to validate
+	// access to source APIs at runtime and to prompt the AUTO_MERGE to update the
+	// merged API endpoint with the source API changes automatically.
+	MergedApiExecutionRoleArn *string `locationName:"mergedApiExecutionRoleArn" type:"string"`
+
 	// A user-supplied name for the GraphqlApi.
 	//
 	// Name is a required field
@@ -6926,6 +8026,11 @@ type CreateGraphqlApiInput struct {
 
 	// The OIDC configuration.
 	OpenIDConnectConfig *OpenIDConnectConfig `locationName:"openIDConnectConfig" type:"structure"`
+
+	// The owner contact information for an API resource.
+	//
+	// This field accepts any string input with a length of 0 - 256 characters.
+	OwnerContact *string `locationName:"ownerContact" type:"string"`
 
 	// A TagMap object.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
@@ -7015,6 +8120,12 @@ func (s *CreateGraphqlApiInput) SetAdditionalAuthenticationProviders(v []*Additi
 	return s
 }
 
+// SetApiType sets the ApiType field's value.
+func (s *CreateGraphqlApiInput) SetApiType(v string) *CreateGraphqlApiInput {
+	s.ApiType = &v
+	return s
+}
+
 // SetAuthenticationType sets the AuthenticationType field's value.
 func (s *CreateGraphqlApiInput) SetAuthenticationType(v string) *CreateGraphqlApiInput {
 	s.AuthenticationType = &v
@@ -7033,6 +8144,12 @@ func (s *CreateGraphqlApiInput) SetLogConfig(v *LogConfig) *CreateGraphqlApiInpu
 	return s
 }
 
+// SetMergedApiExecutionRoleArn sets the MergedApiExecutionRoleArn field's value.
+func (s *CreateGraphqlApiInput) SetMergedApiExecutionRoleArn(v string) *CreateGraphqlApiInput {
+	s.MergedApiExecutionRoleArn = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateGraphqlApiInput) SetName(v string) *CreateGraphqlApiInput {
 	s.Name = &v
@@ -7042,6 +8159,12 @@ func (s *CreateGraphqlApiInput) SetName(v string) *CreateGraphqlApiInput {
 // SetOpenIDConnectConfig sets the OpenIDConnectConfig field's value.
 func (s *CreateGraphqlApiInput) SetOpenIDConnectConfig(v *OpenIDConnectConfig) *CreateGraphqlApiInput {
 	s.OpenIDConnectConfig = v
+	return s
+}
+
+// SetOwnerContact sets the OwnerContact field's value.
+func (s *CreateGraphqlApiInput) SetOwnerContact(v string) *CreateGraphqlApiInput {
+	s.OwnerContact = &v
 	return s
 }
 
@@ -8402,6 +9525,208 @@ func (s DisassociateApiOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DisassociateApiOutput) GoString() string {
 	return s.String()
+}
+
+type DisassociateMergedGraphqlApiInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID generated by the AppSync service for the source API association.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// The identifier of the AppSync Source API. This is generated by the AppSync
+	// service. In most cases, source APIs (especially in your account) only require
+	// the API ID value or ARN of the source API. However, source APIs from other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the source API.
+	//
+	// SourceApiIdentifier is a required field
+	SourceApiIdentifier *string `location:"uri" locationName:"sourceApiIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateMergedGraphqlApiInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateMergedGraphqlApiInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateMergedGraphqlApiInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateMergedGraphqlApiInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.SourceApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceApiIdentifier"))
+	}
+	if s.SourceApiIdentifier != nil && len(*s.SourceApiIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceApiIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DisassociateMergedGraphqlApiInput) SetAssociationId(v string) *DisassociateMergedGraphqlApiInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetSourceApiIdentifier sets the SourceApiIdentifier field's value.
+func (s *DisassociateMergedGraphqlApiInput) SetSourceApiIdentifier(v string) *DisassociateMergedGraphqlApiInput {
+	s.SourceApiIdentifier = &v
+	return s
+}
+
+type DisassociateMergedGraphqlApiOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the source API association.
+	SourceApiAssociationStatus *string `locationName:"sourceApiAssociationStatus" type:"string" enum:"SourceApiAssociationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateMergedGraphqlApiOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateMergedGraphqlApiOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceApiAssociationStatus sets the SourceApiAssociationStatus field's value.
+func (s *DisassociateMergedGraphqlApiOutput) SetSourceApiAssociationStatus(v string) *DisassociateMergedGraphqlApiOutput {
+	s.SourceApiAssociationStatus = &v
+	return s
+}
+
+type DisassociateSourceGraphqlApiInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID generated by the AppSync service for the source API association.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// The identifier of the AppSync Merged API. This is generated by the AppSync
+	// service. In most cases, Merged APIs (especially in your account) only require
+	// the API ID value or ARN of the merged API. However, Merged APIs in other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the merged API.
+	//
+	// MergedApiIdentifier is a required field
+	MergedApiIdentifier *string `location:"uri" locationName:"mergedApiIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateSourceGraphqlApiInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateSourceGraphqlApiInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateSourceGraphqlApiInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateSourceGraphqlApiInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.MergedApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MergedApiIdentifier"))
+	}
+	if s.MergedApiIdentifier != nil && len(*s.MergedApiIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MergedApiIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DisassociateSourceGraphqlApiInput) SetAssociationId(v string) *DisassociateSourceGraphqlApiInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetMergedApiIdentifier sets the MergedApiIdentifier field's value.
+func (s *DisassociateSourceGraphqlApiInput) SetMergedApiIdentifier(v string) *DisassociateSourceGraphqlApiInput {
+	s.MergedApiIdentifier = &v
+	return s
+}
+
+type DisassociateSourceGraphqlApiOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the source API association.
+	SourceApiAssociationStatus *string `locationName:"sourceApiAssociationStatus" type:"string" enum:"SourceApiAssociationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateSourceGraphqlApiOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateSourceGraphqlApiOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceApiAssociationStatus sets the SourceApiAssociationStatus field's value.
+func (s *DisassociateSourceGraphqlApiOutput) SetSourceApiAssociationStatus(v string) *DisassociateSourceGraphqlApiOutput {
+	s.SourceApiAssociationStatus = &v
+	return s
 }
 
 // Describes a configuration for a custom domain.
@@ -10054,6 +11379,107 @@ func (s *GetSchemaCreationStatusOutput) SetStatus(v string) *GetSchemaCreationSt
 	return s
 }
 
+type GetSourceApiAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID generated by the AppSync service for the source API association.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// The identifier of the AppSync Merged API. This is generated by the AppSync
+	// service. In most cases, Merged APIs (especially in your account) only require
+	// the API ID value or ARN of the merged API. However, Merged APIs in other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the merged API.
+	//
+	// MergedApiIdentifier is a required field
+	MergedApiIdentifier *string `location:"uri" locationName:"mergedApiIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSourceApiAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSourceApiAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSourceApiAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSourceApiAssociationInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.MergedApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MergedApiIdentifier"))
+	}
+	if s.MergedApiIdentifier != nil && len(*s.MergedApiIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MergedApiIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *GetSourceApiAssociationInput) SetAssociationId(v string) *GetSourceApiAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetMergedApiIdentifier sets the MergedApiIdentifier field's value.
+func (s *GetSourceApiAssociationInput) SetMergedApiIdentifier(v string) *GetSourceApiAssociationInput {
+	s.MergedApiIdentifier = &v
+	return s
+}
+
+type GetSourceApiAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SourceApiAssociation object data.
+	SourceApiAssociation *SourceApiAssociation `locationName:"sourceApiAssociation" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSourceApiAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSourceApiAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceApiAssociation sets the SourceApiAssociation field's value.
+func (s *GetSourceApiAssociationOutput) SetSourceApiAssociation(v *SourceApiAssociation) *GetSourceApiAssociationOutput {
+	s.SourceApiAssociation = v
+	return s
+}
+
 type GetTypeInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -10239,6 +11665,10 @@ type GraphqlApi struct {
 	// The API ID.
 	ApiId *string `locationName:"apiId" type:"string"`
 
+	// The value that indicates whether the GraphQL API is a standard API (GRAPHQL)
+	// or merged API (MERGED).
+	ApiType *string `locationName:"apiType" type:"string" enum:"GraphQLApiType"`
+
 	// The Amazon Resource Name (ARN).
 	Arn *string `locationName:"arn" type:"string"`
 
@@ -10254,11 +11684,25 @@ type GraphqlApi struct {
 	// The Amazon CloudWatch Logs configuration.
 	LogConfig *LogConfig `locationName:"logConfig" type:"structure"`
 
+	// The Identity and Access Management service role ARN for a merged API. The
+	// AppSync service assumes this role on behalf of the Merged API to validate
+	// access to source APIs at runtime and to prompt the AUTO_MERGE to update the
+	// merged API endpoint with the source API changes automatically.
+	MergedApiExecutionRoleArn *string `locationName:"mergedApiExecutionRoleArn" type:"string"`
+
 	// The API name.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The OpenID Connect configuration.
 	OpenIDConnectConfig *OpenIDConnectConfig `locationName:"openIDConnectConfig" type:"structure"`
+
+	// The account owner of the GraphQL API.
+	Owner *string `locationName:"owner" type:"string"`
+
+	// The owner contact information for an API resource.
+	//
+	// This field accepts any string input with a length of 0 - 256 characters.
+	OwnerContact *string `locationName:"ownerContact" type:"string"`
 
 	// The tags.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
@@ -10312,6 +11756,12 @@ func (s *GraphqlApi) SetApiId(v string) *GraphqlApi {
 	return s
 }
 
+// SetApiType sets the ApiType field's value.
+func (s *GraphqlApi) SetApiType(v string) *GraphqlApi {
+	s.ApiType = &v
+	return s
+}
+
 // SetArn sets the Arn field's value.
 func (s *GraphqlApi) SetArn(v string) *GraphqlApi {
 	s.Arn = &v
@@ -10342,6 +11792,12 @@ func (s *GraphqlApi) SetLogConfig(v *LogConfig) *GraphqlApi {
 	return s
 }
 
+// SetMergedApiExecutionRoleArn sets the MergedApiExecutionRoleArn field's value.
+func (s *GraphqlApi) SetMergedApiExecutionRoleArn(v string) *GraphqlApi {
+	s.MergedApiExecutionRoleArn = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *GraphqlApi) SetName(v string) *GraphqlApi {
 	s.Name = &v
@@ -10351,6 +11807,18 @@ func (s *GraphqlApi) SetName(v string) *GraphqlApi {
 // SetOpenIDConnectConfig sets the OpenIDConnectConfig field's value.
 func (s *GraphqlApi) SetOpenIDConnectConfig(v *OpenIDConnectConfig) *GraphqlApi {
 	s.OpenIDConnectConfig = v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *GraphqlApi) SetOwner(v string) *GraphqlApi {
+	s.Owner = &v
+	return s
+}
+
+// SetOwnerContact sets the OwnerContact field's value.
+func (s *GraphqlApi) SetOwnerContact(v string) *GraphqlApi {
+	s.OwnerContact = &v
 	return s
 }
 
@@ -10968,7 +12436,8 @@ type ListDomainNamesInput struct {
 	// The maximum number of results that you want the request to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// The API token.
+	// An identifier that was returned from the previous call to this operation,
+	// which you can use to return the next set of items in the list.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11021,7 +12490,8 @@ type ListDomainNamesOutput struct {
 	// Lists configurations for multiple domain names.
 	DomainNameConfigs []*DomainNameConfig `locationName:"domainNameConfigs" type:"list"`
 
-	// The API token.
+	// An identifier that was returned from the previous call to this operation,
+	// which you can use to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11170,12 +12640,19 @@ func (s *ListFunctionsOutput) SetNextToken(v string) *ListFunctionsOutput {
 type ListGraphqlApisInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The value that indicates whether the GraphQL API is a standard API (GRAPHQL)
+	// or merged API (MERGED).
+	ApiType *string `location:"querystring" locationName:"apiType" type:"string" enum:"GraphQLApiType"`
+
 	// The maximum number of results that you want the request to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which you can use to return the next set of items in the list.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The account owner of the GraphQL API.
+	Owner *string `location:"querystring" locationName:"owner" type:"string" enum:"Ownership"`
 }
 
 // String returns the string representation.
@@ -11209,6 +12686,12 @@ func (s *ListGraphqlApisInput) Validate() error {
 	return nil
 }
 
+// SetApiType sets the ApiType field's value.
+func (s *ListGraphqlApisInput) SetApiType(v string) *ListGraphqlApisInput {
+	s.ApiType = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListGraphqlApisInput) SetMaxResults(v int64) *ListGraphqlApisInput {
 	s.MaxResults = &v
@@ -11218,6 +12701,12 @@ func (s *ListGraphqlApisInput) SetMaxResults(v int64) *ListGraphqlApisInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListGraphqlApisInput) SetNextToken(v string) *ListGraphqlApisInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ListGraphqlApisInput) SetOwner(v string) *ListGraphqlApisInput {
+	s.Owner = &v
 	return s
 }
 
@@ -11519,6 +13008,118 @@ func (s *ListResolversOutput) SetResolvers(v []*Resolver) *ListResolversOutput {
 	return s
 }
 
+type ListSourceApiAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The API ID.
+	//
+	// ApiId is a required field
+	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
+
+	// The maximum number of results that you want the request to return.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which you can use to return the next set of items in the list.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSourceApiAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSourceApiAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSourceApiAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSourceApiAssociationsInput"}
+	if s.ApiId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiId"))
+	}
+	if s.ApiId != nil && len(*s.ApiId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApiId", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *ListSourceApiAssociationsInput) SetApiId(v string) *ListSourceApiAssociationsInput {
+	s.ApiId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSourceApiAssociationsInput) SetMaxResults(v int64) *ListSourceApiAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSourceApiAssociationsInput) SetNextToken(v string) *ListSourceApiAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSourceApiAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which you can use to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The SourceApiAssociationSummary object data.
+	SourceApiAssociationSummaries []*SourceApiAssociationSummary `locationName:"sourceApiAssociationSummaries" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSourceApiAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSourceApiAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSourceApiAssociationsOutput) SetNextToken(v string) *ListSourceApiAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSourceApiAssociationSummaries sets the SourceApiAssociationSummaries field's value.
+func (s *ListSourceApiAssociationsOutput) SetSourceApiAssociationSummaries(v []*SourceApiAssociationSummary) *ListSourceApiAssociationsOutput {
+	s.SourceApiAssociationSummaries = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -11596,6 +13197,153 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+type ListTypesByAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID generated by the AppSync service for the source API association.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// The format type.
+	//
+	// Format is a required field
+	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"TypeDefinitionFormat"`
+
+	// The maximum number of results that you want the request to return.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// The identifier of the AppSync Merged API. This is generated by the AppSync
+	// service. In most cases, Merged APIs (especially in your account) only require
+	// the API ID value or ARN of the merged API. However, Merged APIs in other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the merged API.
+	//
+	// MergedApiIdentifier is a required field
+	MergedApiIdentifier *string `location:"uri" locationName:"mergedApiIdentifier" type:"string" required:"true"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which you can use to return the next set of items in the list.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTypesByAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTypesByAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTypesByAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTypesByAssociationInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.MergedApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MergedApiIdentifier"))
+	}
+	if s.MergedApiIdentifier != nil && len(*s.MergedApiIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MergedApiIdentifier", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *ListTypesByAssociationInput) SetAssociationId(v string) *ListTypesByAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *ListTypesByAssociationInput) SetFormat(v string) *ListTypesByAssociationInput {
+	s.Format = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTypesByAssociationInput) SetMaxResults(v int64) *ListTypesByAssociationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMergedApiIdentifier sets the MergedApiIdentifier field's value.
+func (s *ListTypesByAssociationInput) SetMergedApiIdentifier(v string) *ListTypesByAssociationInput {
+	s.MergedApiIdentifier = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTypesByAssociationInput) SetNextToken(v string) *ListTypesByAssociationInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListTypesByAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which you can use to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The Type objects.
+	Types []*Type `locationName:"types" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTypesByAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTypesByAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTypesByAssociationOutput) SetNextToken(v string) *ListTypesByAssociationOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTypes sets the Types field's value.
+func (s *ListTypesByAssociationOutput) SetTypes(v []*Type) *ListTypesByAssociationOutput {
+	s.Types = v
 	return s
 }
 
@@ -12308,6 +14056,265 @@ func (s *Resolver) SetTypeName(v string) *Resolver {
 	return s
 }
 
+// Describes the configuration of a source API. A source API is a GraphQL API
+// that is linked to a merged API. There can be multiple source APIs attached
+// to each merged API. When linked to a merged API, the source API's schema,
+// data sources, and resolvers will be combined with other linked source API
+// data to form a new, singular API.
+//
+// Source APIs can originate from your account or from other accounts via Amazon
+// Web Services Resource Access Manager. For more information about sharing
+// resources from other accounts, see What is Amazon Web Services Resource Access
+// Manager? (https://docs.aws.amazon.com/ram/latest/userguide/what-is.html)
+// in the Amazon Web Services Resource Access Manager guide.
+type SourceApiAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the source API association.
+	AssociationArn *string `locationName:"associationArn" type:"string"`
+
+	// The ID generated by the AppSync service for the source API association.
+	AssociationId *string `locationName:"associationId" type:"string"`
+
+	// The description field.
+	Description *string `locationName:"description" type:"string"`
+
+	// The datetime value of the last successful merge of the source API association.
+	// The result will be in UTC format and your local time zone.
+	LastSuccessfulMergeDate *time.Time `locationName:"lastSuccessfulMergeDate" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the AppSync Merged API.
+	MergedApiArn *string `locationName:"mergedApiArn" type:"string"`
+
+	// The ID of the AppSync Merged API.
+	MergedApiId *string `locationName:"mergedApiId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the AppSync source API.
+	SourceApiArn *string `locationName:"sourceApiArn" type:"string"`
+
+	// The SourceApiAssociationConfig object data.
+	SourceApiAssociationConfig *SourceApiAssociationConfig `locationName:"sourceApiAssociationConfig" type:"structure"`
+
+	// The state of the source API association.
+	SourceApiAssociationStatus *string `locationName:"sourceApiAssociationStatus" type:"string" enum:"SourceApiAssociationStatus"`
+
+	// The detailed message related to the current state of the source API association.
+	SourceApiAssociationStatusDetail *string `locationName:"sourceApiAssociationStatusDetail" type:"string"`
+
+	// The ID of the AppSync source API.
+	SourceApiId *string `locationName:"sourceApiId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceApiAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceApiAssociation) GoString() string {
+	return s.String()
+}
+
+// SetAssociationArn sets the AssociationArn field's value.
+func (s *SourceApiAssociation) SetAssociationArn(v string) *SourceApiAssociation {
+	s.AssociationArn = &v
+	return s
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *SourceApiAssociation) SetAssociationId(v string) *SourceApiAssociation {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SourceApiAssociation) SetDescription(v string) *SourceApiAssociation {
+	s.Description = &v
+	return s
+}
+
+// SetLastSuccessfulMergeDate sets the LastSuccessfulMergeDate field's value.
+func (s *SourceApiAssociation) SetLastSuccessfulMergeDate(v time.Time) *SourceApiAssociation {
+	s.LastSuccessfulMergeDate = &v
+	return s
+}
+
+// SetMergedApiArn sets the MergedApiArn field's value.
+func (s *SourceApiAssociation) SetMergedApiArn(v string) *SourceApiAssociation {
+	s.MergedApiArn = &v
+	return s
+}
+
+// SetMergedApiId sets the MergedApiId field's value.
+func (s *SourceApiAssociation) SetMergedApiId(v string) *SourceApiAssociation {
+	s.MergedApiId = &v
+	return s
+}
+
+// SetSourceApiArn sets the SourceApiArn field's value.
+func (s *SourceApiAssociation) SetSourceApiArn(v string) *SourceApiAssociation {
+	s.SourceApiArn = &v
+	return s
+}
+
+// SetSourceApiAssociationConfig sets the SourceApiAssociationConfig field's value.
+func (s *SourceApiAssociation) SetSourceApiAssociationConfig(v *SourceApiAssociationConfig) *SourceApiAssociation {
+	s.SourceApiAssociationConfig = v
+	return s
+}
+
+// SetSourceApiAssociationStatus sets the SourceApiAssociationStatus field's value.
+func (s *SourceApiAssociation) SetSourceApiAssociationStatus(v string) *SourceApiAssociation {
+	s.SourceApiAssociationStatus = &v
+	return s
+}
+
+// SetSourceApiAssociationStatusDetail sets the SourceApiAssociationStatusDetail field's value.
+func (s *SourceApiAssociation) SetSourceApiAssociationStatusDetail(v string) *SourceApiAssociation {
+	s.SourceApiAssociationStatusDetail = &v
+	return s
+}
+
+// SetSourceApiId sets the SourceApiId field's value.
+func (s *SourceApiAssociation) SetSourceApiId(v string) *SourceApiAssociation {
+	s.SourceApiId = &v
+	return s
+}
+
+// Describes properties used to specify configurations related to a source API.
+type SourceApiAssociationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The property that indicates which merging option is enabled in the source
+	// API association.
+	//
+	// Valid merge types are MANUAL_MERGE (default) and AUTO_MERGE. Manual merges
+	// are the default behavior and require the user to trigger any changes from
+	// the source APIs to the merged API manually. Auto merges subscribe the merged
+	// API to the changes performed on the source APIs so that any change in the
+	// source APIs are also made to the merged API. Auto merges use MergedApiExecutionRoleArn
+	// to perform merge operations.
+	MergeType *string `locationName:"mergeType" type:"string" enum:"MergeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceApiAssociationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceApiAssociationConfig) GoString() string {
+	return s.String()
+}
+
+// SetMergeType sets the MergeType field's value.
+func (s *SourceApiAssociationConfig) SetMergeType(v string) *SourceApiAssociationConfig {
+	s.MergeType = &v
+	return s
+}
+
+// Describes the ARNs and IDs of associations, Merged APIs, and source APIs.
+type SourceApiAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the source API association.
+	AssociationArn *string `locationName:"associationArn" type:"string"`
+
+	// The ID generated by the AppSync service for the source API association.
+	AssociationId *string `locationName:"associationId" type:"string"`
+
+	// The description field.
+	Description *string `locationName:"description" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the AppSync Merged API.
+	MergedApiArn *string `locationName:"mergedApiArn" type:"string"`
+
+	// The ID of the AppSync Merged API.
+	MergedApiId *string `locationName:"mergedApiId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the AppSync Source API.
+	SourceApiArn *string `locationName:"sourceApiArn" type:"string"`
+
+	// The ID of the AppSync source API.
+	SourceApiId *string `locationName:"sourceApiId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceApiAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceApiAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetAssociationArn sets the AssociationArn field's value.
+func (s *SourceApiAssociationSummary) SetAssociationArn(v string) *SourceApiAssociationSummary {
+	s.AssociationArn = &v
+	return s
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *SourceApiAssociationSummary) SetAssociationId(v string) *SourceApiAssociationSummary {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SourceApiAssociationSummary) SetDescription(v string) *SourceApiAssociationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetMergedApiArn sets the MergedApiArn field's value.
+func (s *SourceApiAssociationSummary) SetMergedApiArn(v string) *SourceApiAssociationSummary {
+	s.MergedApiArn = &v
+	return s
+}
+
+// SetMergedApiId sets the MergedApiId field's value.
+func (s *SourceApiAssociationSummary) SetMergedApiId(v string) *SourceApiAssociationSummary {
+	s.MergedApiId = &v
+	return s
+}
+
+// SetSourceApiArn sets the SourceApiArn field's value.
+func (s *SourceApiAssociationSummary) SetSourceApiArn(v string) *SourceApiAssociationSummary {
+	s.SourceApiArn = &v
+	return s
+}
+
+// SetSourceApiId sets the SourceApiId field's value.
+func (s *SourceApiAssociationSummary) SetSourceApiId(v string) *SourceApiAssociationSummary {
+	s.SourceApiId = &v
+	return s
+}
+
 type StartSchemaCreationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12401,6 +14408,107 @@ func (s StartSchemaCreationOutput) GoString() string {
 // SetStatus sets the Status field's value.
 func (s *StartSchemaCreationOutput) SetStatus(v string) *StartSchemaCreationOutput {
 	s.Status = &v
+	return s
+}
+
+type StartSchemaMergeInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID generated by the AppSync service for the source API association.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// The identifier of the AppSync Merged API. This is generated by the AppSync
+	// service. In most cases, Merged APIs (especially in your account) only require
+	// the API ID value or ARN of the merged API. However, Merged APIs in other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the merged API.
+	//
+	// MergedApiIdentifier is a required field
+	MergedApiIdentifier *string `location:"uri" locationName:"mergedApiIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSchemaMergeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSchemaMergeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSchemaMergeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSchemaMergeInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.MergedApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MergedApiIdentifier"))
+	}
+	if s.MergedApiIdentifier != nil && len(*s.MergedApiIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MergedApiIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *StartSchemaMergeInput) SetAssociationId(v string) *StartSchemaMergeInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetMergedApiIdentifier sets the MergedApiIdentifier field's value.
+func (s *StartSchemaMergeInput) SetMergedApiIdentifier(v string) *StartSchemaMergeInput {
+	s.MergedApiIdentifier = &v
+	return s
+}
+
+type StartSchemaMergeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the source API association.
+	SourceApiAssociationStatus *string `locationName:"sourceApiAssociationStatus" type:"string" enum:"SourceApiAssociationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSchemaMergeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSchemaMergeOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceApiAssociationStatus sets the SourceApiAssociationStatus field's value.
+func (s *StartSchemaMergeOutput) SetSourceApiAssociationStatus(v string) *StartSchemaMergeOutput {
+	s.SourceApiAssociationStatus = &v
 	return s
 }
 
@@ -13621,6 +15729,12 @@ type UpdateGraphqlApiInput struct {
 	// The Amazon CloudWatch Logs configuration for the GraphqlApi object.
 	LogConfig *LogConfig `locationName:"logConfig" type:"structure"`
 
+	// The Identity and Access Management service role ARN for a merged API. The
+	// AppSync service assumes this role on behalf of the Merged API to validate
+	// access to source APIs at runtime and to prompt the AUTO_MERGE to update the
+	// merged API endpoint with the source API changes automatically.
+	MergedApiExecutionRoleArn *string `locationName:"mergedApiExecutionRoleArn" type:"string"`
+
 	// The new name for the GraphqlApi object.
 	//
 	// Name is a required field
@@ -13628,6 +15742,11 @@ type UpdateGraphqlApiInput struct {
 
 	// The OpenID Connect configuration for the GraphqlApi object.
 	OpenIDConnectConfig *OpenIDConnectConfig `locationName:"openIDConnectConfig" type:"structure"`
+
+	// The owner contact information for an API resource.
+	//
+	// This field accepts any string input with a length of 0 - 256 characters.
+	OwnerContact *string `locationName:"ownerContact" type:"string"`
 
 	// The new Amazon Cognito user pool configuration for the ~GraphqlApi object.
 	UserPoolConfig *UserPoolConfig `locationName:"userPoolConfig" type:"structure"`
@@ -13733,6 +15852,12 @@ func (s *UpdateGraphqlApiInput) SetLogConfig(v *LogConfig) *UpdateGraphqlApiInpu
 	return s
 }
 
+// SetMergedApiExecutionRoleArn sets the MergedApiExecutionRoleArn field's value.
+func (s *UpdateGraphqlApiInput) SetMergedApiExecutionRoleArn(v string) *UpdateGraphqlApiInput {
+	s.MergedApiExecutionRoleArn = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateGraphqlApiInput) SetName(v string) *UpdateGraphqlApiInput {
 	s.Name = &v
@@ -13742,6 +15867,12 @@ func (s *UpdateGraphqlApiInput) SetName(v string) *UpdateGraphqlApiInput {
 // SetOpenIDConnectConfig sets the OpenIDConnectConfig field's value.
 func (s *UpdateGraphqlApiInput) SetOpenIDConnectConfig(v *OpenIDConnectConfig) *UpdateGraphqlApiInput {
 	s.OpenIDConnectConfig = v
+	return s
+}
+
+// SetOwnerContact sets the OwnerContact field's value.
+func (s *UpdateGraphqlApiInput) SetOwnerContact(v string) *UpdateGraphqlApiInput {
+	s.OwnerContact = &v
 	return s
 }
 
@@ -14031,6 +16162,125 @@ func (s UpdateResolverOutput) GoString() string {
 // SetResolver sets the Resolver field's value.
 func (s *UpdateResolverOutput) SetResolver(v *Resolver) *UpdateResolverOutput {
 	s.Resolver = v
+	return s
+}
+
+type UpdateSourceApiAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID generated by the AppSync service for the source API association.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// The description field.
+	Description *string `locationName:"description" type:"string"`
+
+	// The identifier of the AppSync Merged API. This is generated by the AppSync
+	// service. In most cases, Merged APIs (especially in your account) only require
+	// the API ID value or ARN of the merged API. However, Merged APIs in other
+	// accounts (cross-account use cases) strictly require the full resource ARN
+	// of the merged API.
+	//
+	// MergedApiIdentifier is a required field
+	MergedApiIdentifier *string `location:"uri" locationName:"mergedApiIdentifier" type:"string" required:"true"`
+
+	// The SourceApiAssociationConfig object data.
+	SourceApiAssociationConfig *SourceApiAssociationConfig `locationName:"sourceApiAssociationConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceApiAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceApiAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSourceApiAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSourceApiAssociationInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.MergedApiIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MergedApiIdentifier"))
+	}
+	if s.MergedApiIdentifier != nil && len(*s.MergedApiIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MergedApiIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *UpdateSourceApiAssociationInput) SetAssociationId(v string) *UpdateSourceApiAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateSourceApiAssociationInput) SetDescription(v string) *UpdateSourceApiAssociationInput {
+	s.Description = &v
+	return s
+}
+
+// SetMergedApiIdentifier sets the MergedApiIdentifier field's value.
+func (s *UpdateSourceApiAssociationInput) SetMergedApiIdentifier(v string) *UpdateSourceApiAssociationInput {
+	s.MergedApiIdentifier = &v
+	return s
+}
+
+// SetSourceApiAssociationConfig sets the SourceApiAssociationConfig field's value.
+func (s *UpdateSourceApiAssociationInput) SetSourceApiAssociationConfig(v *SourceApiAssociationConfig) *UpdateSourceApiAssociationInput {
+	s.SourceApiAssociationConfig = v
+	return s
+}
+
+type UpdateSourceApiAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SourceApiAssociation object data.
+	SourceApiAssociation *SourceApiAssociation `locationName:"sourceApiAssociation" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceApiAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceApiAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceApiAssociation sets the SourceApiAssociation field's value.
+func (s *UpdateSourceApiAssociationOutput) SetSourceApiAssociation(v *SourceApiAssociation) *UpdateSourceApiAssociationOutput {
+	s.SourceApiAssociation = v
 	return s
 }
 
@@ -14544,6 +16794,22 @@ func FieldLogLevel_Values() []string {
 }
 
 const (
+	// GraphQLApiTypeGraphql is a GraphQLApiType enum value
+	GraphQLApiTypeGraphql = "GRAPHQL"
+
+	// GraphQLApiTypeMerged is a GraphQLApiType enum value
+	GraphQLApiTypeMerged = "MERGED"
+)
+
+// GraphQLApiType_Values returns all elements of the GraphQLApiType enum
+func GraphQLApiType_Values() []string {
+	return []string{
+		GraphQLApiTypeGraphql,
+		GraphQLApiTypeMerged,
+	}
+}
+
+const (
 	// GraphQLApiVisibilityGlobal is a GraphQLApiVisibility enum value
 	GraphQLApiVisibilityGlobal = "GLOBAL"
 
@@ -14560,6 +16826,22 @@ func GraphQLApiVisibility_Values() []string {
 }
 
 const (
+	// MergeTypeManualMerge is a MergeType enum value
+	MergeTypeManualMerge = "MANUAL_MERGE"
+
+	// MergeTypeAutoMerge is a MergeType enum value
+	MergeTypeAutoMerge = "AUTO_MERGE"
+)
+
+// MergeType_Values returns all elements of the MergeType enum
+func MergeType_Values() []string {
+	return []string{
+		MergeTypeManualMerge,
+		MergeTypeAutoMerge,
+	}
+}
+
+const (
 	// OutputTypeSdl is a OutputType enum value
 	OutputTypeSdl = "SDL"
 
@@ -14572,6 +16854,22 @@ func OutputType_Values() []string {
 	return []string{
 		OutputTypeSdl,
 		OutputTypeJson,
+	}
+}
+
+const (
+	// OwnershipCurrentAccount is a Ownership enum value
+	OwnershipCurrentAccount = "CURRENT_ACCOUNT"
+
+	// OwnershipOtherAccounts is a Ownership enum value
+	OwnershipOtherAccounts = "OTHER_ACCOUNTS"
+)
+
+// Ownership_Values returns all elements of the Ownership enum
+func Ownership_Values() []string {
+	return []string{
+		OwnershipCurrentAccount,
+		OwnershipOtherAccounts,
 	}
 }
 
@@ -14644,6 +16942,46 @@ func SchemaStatus_Values() []string {
 		SchemaStatusFailed,
 		SchemaStatusSuccess,
 		SchemaStatusNotApplicable,
+	}
+}
+
+const (
+	// SourceApiAssociationStatusMergeScheduled is a SourceApiAssociationStatus enum value
+	SourceApiAssociationStatusMergeScheduled = "MERGE_SCHEDULED"
+
+	// SourceApiAssociationStatusMergeFailed is a SourceApiAssociationStatus enum value
+	SourceApiAssociationStatusMergeFailed = "MERGE_FAILED"
+
+	// SourceApiAssociationStatusMergeSuccess is a SourceApiAssociationStatus enum value
+	SourceApiAssociationStatusMergeSuccess = "MERGE_SUCCESS"
+
+	// SourceApiAssociationStatusMergeInProgress is a SourceApiAssociationStatus enum value
+	SourceApiAssociationStatusMergeInProgress = "MERGE_IN_PROGRESS"
+
+	// SourceApiAssociationStatusAutoMergeScheduleFailed is a SourceApiAssociationStatus enum value
+	SourceApiAssociationStatusAutoMergeScheduleFailed = "AUTO_MERGE_SCHEDULE_FAILED"
+
+	// SourceApiAssociationStatusDeletionScheduled is a SourceApiAssociationStatus enum value
+	SourceApiAssociationStatusDeletionScheduled = "DELETION_SCHEDULED"
+
+	// SourceApiAssociationStatusDeletionInProgress is a SourceApiAssociationStatus enum value
+	SourceApiAssociationStatusDeletionInProgress = "DELETION_IN_PROGRESS"
+
+	// SourceApiAssociationStatusDeletionFailed is a SourceApiAssociationStatus enum value
+	SourceApiAssociationStatusDeletionFailed = "DELETION_FAILED"
+)
+
+// SourceApiAssociationStatus_Values returns all elements of the SourceApiAssociationStatus enum
+func SourceApiAssociationStatus_Values() []string {
+	return []string{
+		SourceApiAssociationStatusMergeScheduled,
+		SourceApiAssociationStatusMergeFailed,
+		SourceApiAssociationStatusMergeSuccess,
+		SourceApiAssociationStatusMergeInProgress,
+		SourceApiAssociationStatusAutoMergeScheduleFailed,
+		SourceApiAssociationStatusDeletionScheduled,
+		SourceApiAssociationStatusDeletionInProgress,
+		SourceApiAssociationStatusDeletionFailed,
 	}
 }
 

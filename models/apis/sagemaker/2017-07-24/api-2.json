@@ -7546,6 +7546,14 @@
         "AutoRollbackConfiguration":{"shape":"AutoRollbackConfig"}
       }
     },
+    "DeploymentRecommendation":{
+      "type":"structure",
+      "required":["RecommendationStatus"],
+      "members":{
+        "RecommendationStatus":{"shape":"RecommendationStatus"},
+        "RealTimeInferenceRecommendations":{"shape":"RealTimeInferenceRecommendations"}
+      }
+    },
     "DeploymentStage":{
       "type":"structure",
       "required":[
@@ -8754,7 +8762,8 @@
         "VpcConfig":{"shape":"VpcConfig"},
         "CreationTime":{"shape":"Timestamp"},
         "ModelArn":{"shape":"ModelArn"},
-        "EnableNetworkIsolation":{"shape":"Boolean"}
+        "EnableNetworkIsolation":{"shape":"Boolean"},
+        "DeploymentRecommendation":{"shape":"DeploymentRecommendation"}
       }
     },
     "DescribeModelPackageGroupInput":{
@@ -14349,7 +14358,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "ModelArn":{"shape":"ModelArn"},
         "EnableNetworkIsolation":{"shape":"Boolean"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DeploymentRecommendation":{"shape":"DeploymentRecommendation"}
       }
     },
     "ModelApprovalStatus":{
@@ -17406,6 +17416,24 @@
         "InstanceCount":{"shape":"TaskCount"}
       }
     },
+    "RealTimeInferenceRecommendation":{
+      "type":"structure",
+      "required":[
+        "RecommendationId",
+        "InstanceType"
+      ],
+      "members":{
+        "RecommendationId":{"shape":"String"},
+        "InstanceType":{"shape":"ProductionVariantInstanceType"},
+        "Environment":{"shape":"EnvironmentMap"}
+      }
+    },
+    "RealTimeInferenceRecommendations":{
+      "type":"list",
+      "member":{"shape":"RealTimeInferenceRecommendation"},
+      "max":3,
+      "min":0
+    },
     "RealtimeInferenceInstanceTypes":{
       "type":"list",
       "member":{"shape":"ProductionVariantInstanceType"}
@@ -17588,6 +17616,15 @@
         "CpuUtilization":{"shape":"UtilizationMetric"},
         "MemoryUtilization":{"shape":"UtilizationMetric"}
       }
+    },
+    "RecommendationStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED",
+        "NOT_APPLICABLE"
+      ]
     },
     "RecommendationStepType":{
       "type":"string",
