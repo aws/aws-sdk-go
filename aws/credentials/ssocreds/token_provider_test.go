@@ -15,7 +15,6 @@ import (
 	"testing"
 	"time"
 
-	smithybearer "github.com/aws/smithy-go/auth/bearer"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 )
@@ -41,7 +40,7 @@ func TestSSOTokenProvider(t *testing.T) {
 		cacheFilePath string
 		optFns        []func(*SSOTokenProviderOptions)
 
-		expectToken smithybearer.Token
+		expectToken Token
 		expectErr   string
 	}{
 		"no cache file": {
@@ -74,7 +73,7 @@ func TestSSOTokenProvider(t *testing.T) {
 		},
 		"valid sso token": {
 			cacheFilePath: filepath.Join("testdata", "valid_token.json"),
-			expectToken: smithybearer.Token{
+			expectToken: Token{
 				Value:     "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
 				CanExpire: true,
 				Expires:   time.Date(2044, 4, 4, 7, 0, 1, 0, time.UTC),
@@ -128,7 +127,7 @@ func TestSSOTokenProvider(t *testing.T) {
 					RefreshToken: aws.String("updated refresh token"),
 				},
 			},
-			expectToken: smithybearer.Token{
+			expectToken: Token{
 				Value:     "updated access token",
 				CanExpire: true,
 				Expires:   time.Date(2021, 12, 21, 12, 31, 1, 0, time.UTC),

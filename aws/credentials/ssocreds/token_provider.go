@@ -3,13 +3,11 @@ package ssocreds
 import (
 	"context"
 	"fmt"
-	"github.com/aws/smithy-go/ptr"
 	"os"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ssooidc"
-	"github.com/aws/smithy-go/auth/bearer"
 )
 
 // CreateTokenAPIClient provides the interface for the SSOTokenProvider's API
@@ -34,10 +32,9 @@ type SSOTokenProviderOptions struct {
 // already cached SSO Tokens. This utility cannot perform the initial SSO
 // create token.
 //
-// The SSOTokenProvider is not safe to use concurrently. It must be wrapped in
-// a utility such as smithy-go's auth/bearer#TokenCache. The SDK's
+// The SSOTokenProvider is not safe to use concurrently. The SDK's
 // config.LoadDefaultConfig will automatically wrap the SSOTokenProvider with
-// the smithy-go TokenCache, if the external configuration loaded configured
+// the , if the external configuration loaded configured
 // for an SSO session.
 //
 // The initial SSO create token should be preformed with the AWS CLI before the
@@ -54,8 +51,6 @@ type SSOTokenProviderOptions struct {
 type SSOTokenProvider struct {
 	options SSOTokenProviderOptions
 }
-
-var _ bearer.TokenProvider = (*SSOTokenProvider)(nil)
 
 // NewSSOTokenProvider returns an initialized SSOTokenProvider that will
 // periodically refresh the SSO token cached stored in the cachedTokenFilepath.
@@ -86,21 +81,21 @@ func NewSSOTokenProvider(client CreateTokenAPIClient, cachedTokenFilepath string
 //
 // A utility such as the AWS CLI must be used to initially create the SSO
 // session and cached token file. https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html
-func (p SSOTokenProvider) RetrieveBearerToken(ctx context.Context) (bearer.Token, error) {
+func (p SSOTokenProvider) RetrieveBearerToken(ctx context.Context) (Token, error) {
 	cachedToken, err := loadCachedAccessToken(p.options.CachedTokenFilepath)
 	if err != nil {
-		return bearer.Token{}, err
+		return Token{}, err
 	}
 
 	if cachedToken.ExpiresAt != nil && nowTime().After(time.Time(*cachedToken.ExpiresAt)) {
 		cachedToken, err = p.refreshToken(cachedToken)
 		if err != nil {
-			return bearer.Token{}, fmt.Errorf("refresh cached SSO token failed, %w", err)
+			return Token{}, fmt.Errorf("refresh cached SSO token failed, %w", err)
 		}
 	}
 
-	expiresAt := ptr.ToTime((*time.Time)(cachedToken.ExpiresAt))
-	return bearer.Token{
+	expiresAt := ToTime((*time.Time)(cachedToken.ExpiresAt))
+	return Token{
 		Value:     cachedToken.AccessToken,
 		CanExpire: !expiresAt.IsZero(),
 		Expires:   expiresAt,
@@ -138,4 +133,12 @@ func (p SSOTokenProvider) refreshToken(token cachedToken) (cachedToken, error) {
 	}
 
 	return token, nil
+}
+
+func ToTime(p *time.Time) (v time.Time) {
+	if p == nil {
+		return v
+	}
+
+	return *p
 }

@@ -1,7 +1,6 @@
 package ssocreds
 
 import (
-	"github.com/aws/smithy-go/ptr"
 	"github.com/google/go-cmp/cmp"
 	"io/ioutil"
 	"os"
@@ -93,7 +92,7 @@ func TestLoadCachedToken(t *testing.T) {
 			expectToken: cachedToken{
 				tokenKnownFields: tokenKnownFields{
 					AccessToken:  "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
-					ExpiresAt:    (*rfc3339)(ptr.Time(time.Date(2044, 4, 4, 7, 0, 1, 0, time.UTC))),
+					ExpiresAt:    (*rfc3339)(Time(time.Date(2044, 4, 4, 7, 0, 1, 0, time.UTC))),
 					ClientID:     "client id",
 					ClientSecret: "client secret",
 					RefreshToken: "refresh token",
@@ -153,7 +152,7 @@ func TestStoreCachedToken(t *testing.T) {
 			token: cachedToken{
 				tokenKnownFields: tokenKnownFields{
 					AccessToken:  "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
-					ExpiresAt:    (*rfc3339)(ptr.Time(time.Date(2044, 4, 4, 7, 0, 1, 0, time.UTC))),
+					ExpiresAt:    (*rfc3339)(Time(time.Date(2044, 4, 4, 7, 0, 1, 0, time.UTC))),
 					ClientID:     "client id",
 					ClientSecret: "client secret",
 					RefreshToken: "refresh token",
@@ -185,4 +184,9 @@ func TestStoreCachedToken(t *testing.T) {
 			}
 		})
 	}
+}
+
+// Time returns a pointer value for the time.Time value passed in.
+func Time(v time.Time) *time.Time {
+	return &v
 }
