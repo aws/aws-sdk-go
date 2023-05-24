@@ -30,7 +30,7 @@ func StandardCachedTokenFilepath(key string) (string, error) {
 	}
 	hash := sha1.New()
 	if _, err := hash.Write([]byte(key)); err != nil {
-		return "", fmt.Errorf("unable to compute cached token filepath key SHA1 hash, %w", err)
+		return "", fmt.Errorf("unable to compute cached token filepath key SHA1 hash, %v", err)
 	}
 
 	cacheFilename := strings.ToLower(hex.EncodeToString(hash.Sum(nil))) + ".json"
@@ -111,7 +111,7 @@ func (t *cachedToken) UnmarshalJSON(b []byte) error {
 		}
 
 		if err != nil {
-			return fmt.Errorf("field %q, %w", k, err)
+			return fmt.Errorf("field %q, %v", k, err)
 		}
 	}
 
@@ -145,12 +145,12 @@ func getTokenFieldRFC3339(v interface{}, value **rfc3339) error {
 func loadCachedAccessToken(filename string) (cachedToken, error) {
 	fileBytes, err := ioutil.ReadFile(filename)
 	if err != nil {
-		return cachedToken{}, fmt.Errorf("failed to read cached SSO token file, %w", err)
+		return cachedToken{}, fmt.Errorf("failed to read cached SSO token file, %v", err)
 	}
 
 	var t cachedToken
 	if err := json.Unmarshal(fileBytes, &t); err != nil {
-		return cachedToken{}, fmt.Errorf("failed to parse cached SSO token file, %w", err)
+		return cachedToken{}, fmt.Errorf("failed to parse cached SSO token file, %v", err)
 	}
 
 	if len(t.AccessToken) == 0 || t.ExpiresAt == nil || time.Time(*t.ExpiresAt).IsZero() {
@@ -168,7 +168,7 @@ func storeCachedToken(filename string, t cachedToken, fileMode os.FileMode) (err
 	}
 
 	if err := os.Rename(tmpFilename, filename); err != nil {
-		return fmt.Errorf("failed to replace old cached SSO token file, %w", err)
+		return fmt.Errorf("failed to replace old cached SSO token file, %v", err)
 	}
 
 	return nil
@@ -178,20 +178,20 @@ func writeCacheFile(filename string, fileMode os.FileMode, t cachedToken) (err e
 	var f *os.File
 	f, err = os.OpenFile(filename, os.O_CREATE|os.O_TRUNC|os.O_RDWR, fileMode)
 	if err != nil {
-		return fmt.Errorf("failed to create cached SSO token file %w", err)
+		return fmt.Errorf("failed to create cached SSO token file %v", err)
 	}
 
 	defer func() {
 		closeErr := f.Close()
 		if err == nil && closeErr != nil {
-			err = fmt.Errorf("failed to close cached SSO token file, %w", closeErr)
+			err = fmt.Errorf("failed to close cached SSO token file, %v", closeErr)
 		}
 	}()
 
 	encoder := json.NewEncoder(f)
 
 	if err = encoder.Encode(t); err != nil {
-		return fmt.Errorf("failed to serialize cached SSO token, %w", err)
+		return fmt.Errorf("failed to serialize cached SSO token, %v", err)
 	}
 
 	return nil
@@ -219,7 +219,7 @@ func (r *rfc3339) UnmarshalJSON(bytes []byte) error {
 func parseRFC3339(v string) (rfc3339, error) {
 	parsed, err := time.Parse(time.RFC3339, v)
 	if err != nil {
-		return rfc3339{}, fmt.Errorf("expected RFC3339 timestamp: %w", err)
+		return rfc3339{}, fmt.Errorf("expected RFC3339 timestamp: %v", err)
 	}
 
 	return rfc3339(parsed), nil

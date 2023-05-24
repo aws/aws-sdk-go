@@ -90,7 +90,7 @@ func (p SSOTokenProvider) RetrieveBearerToken(ctx context.Context) (Token, error
 	if cachedToken.ExpiresAt != nil && nowTime().After(time.Time(*cachedToken.ExpiresAt)) {
 		cachedToken, err = p.refreshToken(cachedToken)
 		if err != nil {
-			return Token{}, fmt.Errorf("refresh cached SSO token failed, %w", err)
+			return Token{}, fmt.Errorf("refresh cached SSO token failed, %v", err)
 		}
 	}
 
@@ -114,7 +114,7 @@ func (p SSOTokenProvider) refreshToken(token cachedToken) (cachedToken, error) {
 		GrantType:    aws.String("refresh_token"),
 	})
 	if err != nil {
-		return cachedToken{}, fmt.Errorf("unable to refresh SSO token, %w", err)
+		return cachedToken{}, fmt.Errorf("unable to refresh SSO token, %v", err)
 	}
 
 	expiresAt := nowTime().Add(time.Duration(*createResult.ExpiresIn) * time.Second)
@@ -125,11 +125,11 @@ func (p SSOTokenProvider) refreshToken(token cachedToken) (cachedToken, error) {
 
 	fileInfo, err := os.Stat(p.options.CachedTokenFilepath)
 	if err != nil {
-		return cachedToken{}, fmt.Errorf("failed to stat cached SSO token file %w", err)
+		return cachedToken{}, fmt.Errorf("failed to stat cached SSO token file %v", err)
 	}
 
 	if err = storeCachedToken(p.options.CachedTokenFilepath, token, fileInfo.Mode()); err != nil {
-		return cachedToken{}, fmt.Errorf("unable to cache refreshed SSO token, %w", err)
+		return cachedToken{}, fmt.Errorf("unable to cache refreshed SSO token, %v", err)
 	}
 
 	return token, nil
