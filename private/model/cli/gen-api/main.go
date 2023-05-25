@@ -162,7 +162,7 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Fprintf(os.Stderr, "Error generating %s\n%s\n%s\n",
-				pkgDir, r, debug.Stack())
+				    pkgDir, r, string(debug.Stack()))
 			os.Exit(1)
 		}
 	}()
