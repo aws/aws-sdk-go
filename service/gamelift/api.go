@@ -191,6 +191,8 @@ func (c *GameLift) ClaimGameServerRequest(input *ClaimGameServerInput) (req *req
 // a game server ID, although this approach bypasses Amazon GameLift FleetIQ
 // placement optimization. Optionally, include game data to pass to the game
 // server at the start of a game session, such as a game map or player information.
+// Filter options may be included to further restrict how a game server is chosen,
+// such as only allowing game servers on ACTIVE instances to be claimed.
 //
 // When a game server is successfully claimed, connection information is returned.
 // A claimed game server's utilization status remains AVAILABLE while the claim
@@ -207,9 +209,8 @@ func (c *GameLift) ClaimGameServerRequest(input *ClaimGameServerInput) (req *req
 //
 //   - If the game server claim status is CLAIMED.
 //
-// When claiming a specific game server, this request will succeed even if the
-// game server is running on an instance in DRAINING status. To avoid this,
-// first check the instance status by calling DescribeGameServerInstances (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameServerInstances.html) .
+//   - If the game server is running on an instance in DRAINING status and
+//     provided filter option does not allow placing on DRAINING instances.
 //
 // # Learn more
 //
@@ -443,19 +444,19 @@ func (c *GameLift) CreateBuildRequest(input *CreateBuildInput) (req *request.Req
 // When setting up a new game build for Amazon GameLift, we recommend using
 // the CLI command upload-build (https://docs.aws.amazon.com/cli/latest/reference/gamelift/upload-build.html)
 // . This helper command combines two tasks: (1) it uploads your build files
-// from a file directory to a Amazon GameLift Amazon S3 location, and (2) it
+// from a file directory to an Amazon GameLift Amazon S3 location, and (2) it
 // creates a new build resource.
 //
-// You can use the operation in the following scenarios:
+// You can use the CreateBuild operation in the following scenarios:
 //
-//   - To create a new game build with build files that are in an Amazon S3
-//     location under an Amazon Web Services account that you control. To use
-//     this option, you give Amazon GameLift access to the Amazon S3 bucket.
-//     With permissions in place, specify a build name, operating system, and
-//     the Amazon S3 storage location of your game build.
+//   - Create a new game build with build files that are in an Amazon S3 location
+//     under an Amazon Web Services account that you control. To use this option,
+//     you give Amazon GameLift access to the Amazon S3 bucket. With permissions
+//     in place, specify a build name, operating system, and the Amazon S3 storage
+//     location of your game build.
 //
-//   - To directly upload your build files to a Amazon GameLift Amazon S3 location.
-//     To use this option, specify a build name and operating system. This operation
+//   - Upload your build files to a Amazon GameLift Amazon S3 location. To
+//     use this option, specify a build name and operating system. This operation
 //     creates a new build resource and also returns an Amazon S3 location with
 //     temporary access credentials. Use the credentials to manually upload your
 //     build files to the specified Amazon S3 location. For more information,
@@ -8040,10 +8041,10 @@ func (c *GameLift) GetGameSessionLogUrlRequest(input *GetGameSessionLogUrlInput)
 
 // GetGameSessionLogUrl API operation for Amazon GameLift.
 //
-// Retrieves the location of stored game session logs for a specified game session.
-// When a game session is terminated, Amazon GameLift automatically stores the
-// logs in Amazon S3 and retains them for 14 days. Use this URL to download
-// the logs.
+// Retrieves the location of stored game session logs for a specified game session
+// on Amazon GameLift managed fleets. When a game session is terminated, Amazon
+// GameLift automatically stores the logs in Amazon S3 and retains them for
+// 14 days. Use this URL to download the logs.
 //
 // See the Amazon Web Services Service Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_gamelift)
 // page for maximum log file sizes. Log files that exceed this limit are not
@@ -13643,8 +13644,46 @@ func (s *CertificateConfiguration) SetCertificateType(v string) *CertificateConf
 	return s
 }
 
+// This data type is used with the Amazon GameLift FleetIQ and game server groups.
+//
+// Filters which game servers may be claimed when calling ClaimGameServer.
+type ClaimFilterOption struct {
+	_ struct{} `type:"structure"`
+
+	// List of instance statuses that game servers may be claimed on. If provided,
+	// the list must contain the ACTIVE status.
+	InstanceStatuses []*string `type:"list" enum:"FilterInstanceStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimFilterOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimFilterOption) GoString() string {
+	return s.String()
+}
+
+// SetInstanceStatuses sets the InstanceStatuses field's value.
+func (s *ClaimFilterOption) SetInstanceStatuses(v []*string) *ClaimFilterOption {
+	s.InstanceStatuses = v
+	return s
+}
+
 type ClaimGameServerInput struct {
 	_ struct{} `type:"structure"`
+
+	// Object that restricts how a claimed game server is chosen.
+	FilterOption *ClaimFilterOption `type:"structure"`
 
 	// A set of custom game server properties, formatted as a single string value.
 	// This data is passed to a game client or service when it requests information
@@ -13703,6 +13742,12 @@ func (s *ClaimGameServerInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilterOption sets the FilterOption field's value.
+func (s *ClaimGameServerInput) SetFilterOption(v *ClaimFilterOption) *ClaimGameServerInput {
+	s.FilterOption = v
+	return s
 }
 
 // SetGameServerData sets the GameServerData field's value.
@@ -14100,12 +14145,16 @@ type CreateBuildInput struct {
 	// unique. You can change this value later.
 	Name *string `min:"1" type:"string"`
 
-	// The operating system that you built the game server binaries to run on. This
-	// value determines the type of fleet resources that you can use for this build.
-	// If your game build contains multiple executables, they all must run on the
-	// same operating system. If an operating system isn't specified when creating
-	// a build, Amazon GameLift uses the default value (WINDOWS_2012). This value
-	// can't be changed later.
+	// The operating system that your game server binaries run on. This value determines
+	// the type of fleet resources that you use for this build. If your game build
+	// contains multiple executables, they all must run on the same operating system.
+	// You must specify a valid operating system in this request. There is no default
+	// value. You can't change a build's operating system later.
+	//
+	// If you have active fleets using the Windows Server 2012 operating system,
+	// you can continue to create new builds using this OS until October 10, 2023,
+	// when Microsoft ends its support. All others must use Windows Server 2016
+	// when creating new Windows-based builds.
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
 
 	// A server SDK version you used when integrating your game server build with
@@ -15445,7 +15494,7 @@ type CreateGameSessionQueueInput struct {
 
 	// The maximum time, in seconds, that a new game session placement request remains
 	// in the queue. When a request exceeds this time, the game session placement
-	// changes to a TIMED_OUT status.
+	// changes to a TIMED_OUT status. By default, this property is set to 600.
 	TimeoutInSeconds *int64 `type:"integer"`
 }
 
@@ -23488,7 +23537,7 @@ type GameSessionQueue struct {
 
 	// The maximum time, in seconds, that a new game session placement request remains
 	// in the queue. When a request exceeds this time, the game session placement
-	// changes to a TIMED_OUT status.
+	// changes to a TIMED_OUT status. By default, this property is set to 600.
 	TimeoutInSeconds *int64 `type:"integer"`
 }
 
@@ -31906,7 +31955,7 @@ type UpdateGameSessionQueueInput struct {
 
 	// The maximum time, in seconds, that a new game session placement request remains
 	// in the queue. When a request exceeds this time, the game session placement
-	// changes to a TIMED_OUT status.
+	// changes to a TIMED_OUT status. By default, this property is set to 600.
 	TimeoutInSeconds *int64 `type:"integer"`
 }
 
@@ -33622,6 +33671,22 @@ func EventCode_Values() []string {
 		EventCodeFleetVpcPeeringDeleted,
 		EventCodeInstanceInterrupted,
 		EventCodeInstanceRecycled,
+	}
+}
+
+const (
+	// FilterInstanceStatusActive is a FilterInstanceStatus enum value
+	FilterInstanceStatusActive = "ACTIVE"
+
+	// FilterInstanceStatusDraining is a FilterInstanceStatus enum value
+	FilterInstanceStatusDraining = "DRAINING"
+)
+
+// FilterInstanceStatus_Values returns all elements of the FilterInstanceStatus enum
+func FilterInstanceStatus_Values() []string {
+	return []string{
+		FilterInstanceStatusActive,
+		FilterInstanceStatusDraining,
 	}
 }
 
