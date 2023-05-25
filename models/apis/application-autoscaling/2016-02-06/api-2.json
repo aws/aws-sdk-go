@@ -509,7 +509,8 @@
         "ElastiCacheReplicaEngineCPUUtilization",
         "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage",
         "NeptuneReaderAverageCPUUtilization",
-        "SageMakerVariantProvisionedConcurrencyUtilization"
+        "SageMakerVariantProvisionedConcurrencyUtilization",
+        "ElastiCacheDatabaseCapacityUsageCountedForEvictPercentage"
       ]
     },
     "MetricUnit":{"type":"string"},

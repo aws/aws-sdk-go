@@ -4478,11 +4478,39 @@
         "Descending"
       ]
     },
+    "AutoParameter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ValueHint"
+      ],
+      "members":{
+        "Name":{"shape":"ParameterKey"},
+        "ValueHint":{"shape":"ParameterValue"}
+      }
+    },
+    "AutoParameters":{
+      "type":"list",
+      "member":{"shape":"AutoParameter"},
+      "max":100,
+      "min":0
+    },
     "AutoRollbackConfig":{
       "type":"structure",
       "members":{
         "Alarms":{"shape":"AlarmList"}
       }
+    },
+    "Autotune":{
+      "type":"structure",
+      "required":["Mode"],
+      "members":{
+        "Mode":{"shape":"AutotuneMode"}
+      }
+    },
+    "AutotuneMode":{
+      "type":"string",
+      "enum":["Enabled"]
     },
     "AwsManagedHumanLoopRequestSource":{
       "type":"string",
@@ -6066,7 +6094,8 @@
         "TrainingJobDefinition":{"shape":"HyperParameterTrainingJobDefinition"},
         "TrainingJobDefinitions":{"shape":"HyperParameterTrainingJobDefinitions"},
         "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "Autotune":{"shape":"Autotune"}
       }
     },
     "CreateHyperParameterTuningJobResponse":{
@@ -8418,7 +8447,8 @@
         "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
         "FailureReason":{"shape":"FailureReason"},
         "TuningJobCompletionDetails":{"shape":"HyperParameterTuningJobCompletionDetails"},
-        "ConsumedResources":{"shape":"HyperParameterTuningJobConsumedResources"}
+        "ConsumedResources":{"shape":"HyperParameterTuningJobConsumedResources"},
+        "Autotune":{"shape":"Autotune"}
       }
     },
     "DescribeImageRequest":{
@@ -16138,7 +16168,8 @@
       "members":{
         "IntegerParameterRanges":{"shape":"IntegerParameterRanges"},
         "ContinuousParameterRanges":{"shape":"ContinuousParameterRanges"},
-        "CategoricalParameterRanges":{"shape":"CategoricalParameterRanges"}
+        "CategoricalParameterRanges":{"shape":"CategoricalParameterRanges"},
+        "AutoParameters":{"shape":"AutoParameters"}
       }
     },
     "ParameterType":{

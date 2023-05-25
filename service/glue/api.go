@@ -21160,14 +21160,14 @@ func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies an Amazon Redshift data store.
+// Specifies an optional value when connecting to the Redshift cluster.
 type AmazonRedshiftAdvancedOption struct {
 	_ struct{} `type:"structure"`
 
-	// The key when specifying a key-value pair.
+	// The key for the additional connection option.
 	Key *string `type:"string"`
 
-	// The value when specifying a key-value pair.
+	// The value for the additional connection option.
 	Value *string `type:"string"`
 }
 
@@ -25786,6 +25786,10 @@ type CodeGenConfigurationNode struct {
 	// Specifies your data quality evaluation criteria.
 	EvaluateDataQuality *EvaluateDataQuality `type:"structure"`
 
+	// Specifies your data quality evaluation criteria. Allows multiple input data
+	// and returns a collection of Dynamic Frames.
+	EvaluateDataQualityMultiFrame *EvaluateDataQualityMultiFrame `type:"structure"`
+
 	// Specifies a transform that locates records in the dataset that have missing
 	// values and adds a new field with a value determined by imputation. The input
 	// data set is used to train the machine learning model that determines what
@@ -26056,6 +26060,11 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.EvaluateDataQuality != nil {
 		if err := s.EvaluateDataQuality.Validate(); err != nil {
 			invalidParams.AddNested("EvaluateDataQuality", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EvaluateDataQualityMultiFrame != nil {
+		if err := s.EvaluateDataQualityMultiFrame.Validate(); err != nil {
+			invalidParams.AddNested("EvaluateDataQualityMultiFrame", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.FillMissingValues != nil {
@@ -26408,6 +26417,12 @@ func (s *CodeGenConfigurationNode) SetDynamoDBCatalogSource(v *DynamoDBCatalogSo
 // SetEvaluateDataQuality sets the EvaluateDataQuality field's value.
 func (s *CodeGenConfigurationNode) SetEvaluateDataQuality(v *EvaluateDataQuality) *CodeGenConfigurationNode {
 	s.EvaluateDataQuality = v
+	return s
+}
+
+// SetEvaluateDataQualityMultiFrame sets the EvaluateDataQualityMultiFrame field's value.
+func (s *CodeGenConfigurationNode) SetEvaluateDataQualityMultiFrame(v *EvaluateDataQualityMultiFrame) *CodeGenConfigurationNode {
+	s.EvaluateDataQualityMultiFrame = v
 	return s
 }
 
@@ -34343,6 +34358,9 @@ type DataQualityRuleResult struct {
 	// A description of the data quality rule.
 	Description *string `type:"string"`
 
+	// A map of metrics associated with the evaluation of the rule.
+	EvaluatedMetrics map[string]*float64 `type:"map"`
+
 	// An evaluation message.
 	EvaluationMessage *string `type:"string"`
 
@@ -34374,6 +34392,12 @@ func (s DataQualityRuleResult) GoString() string {
 // SetDescription sets the Description field's value.
 func (s *DataQualityRuleResult) SetDescription(v string) *DataQualityRuleResult {
 	s.Description = &v
+	return s
+}
+
+// SetEvaluatedMetrics sets the EvaluatedMetrics field's value.
+func (s *DataQualityRuleResult) SetEvaluatedMetrics(v map[string]*float64) *DataQualityRuleResult {
+	s.EvaluatedMetrics = v
 	return s
 }
 
@@ -34719,6 +34743,9 @@ func (s *DataQualityRulesetListDetails) SetTargetTable(v *DataQualityTargetTable
 type DataQualityTargetTable struct {
 	_ struct{} `type:"structure"`
 
+	// The catalog id where the Glue table exists.
+	CatalogId *string `min:"1" type:"string"`
+
 	// The name of the database where the Glue table exists.
 	//
 	// DatabaseName is a required field
@@ -34751,6 +34778,9 @@ func (s DataQualityTargetTable) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataQualityTargetTable) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataQualityTargetTable"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
@@ -34768,6 +34798,12 @@ func (s *DataQualityTargetTable) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DataQualityTargetTable) SetCatalogId(v string) *DataQualityTargetTable {
+	s.CatalogId = &v
+	return s
 }
 
 // SetDatabaseName sets the DatabaseName field's value.
@@ -39595,6 +39631,125 @@ func (s *EvaluateDataQuality) SetStopJobOnFailureOptions(v *DQStopJobOnFailureOp
 	return s
 }
 
+// Specifies your data quality evaluation criteria.
+type EvaluateDataQualityMultiFrame struct {
+	_ struct{} `type:"structure"`
+
+	// The aliases of all data sources except primary.
+	AdditionalDataSources map[string]*string `type:"map"`
+
+	// Options to configure runtime behavior of the transform.
+	AdditionalOptions map[string]*string `type:"map"`
+
+	// The inputs of your data quality evaluation. The first input in this list
+	// is the primary data source.
+	//
+	// Inputs is a required field
+	Inputs []*string `min:"1" type:"list" required:"true"`
+
+	// The name of the data quality evaluation.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Options to configure how your results are published.
+	PublishingOptions *DQResultsPublishingOptions `type:"structure"`
+
+	// The ruleset for your data quality evaluation.
+	//
+	// Ruleset is a required field
+	Ruleset *string `min:"1" type:"string" required:"true"`
+
+	// Options to configure how your job will stop if your data quality evaluation
+	// fails.
+	StopJobOnFailureOptions *DQStopJobOnFailureOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateDataQualityMultiFrame) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateDataQualityMultiFrame) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluateDataQualityMultiFrame) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluateDataQualityMultiFrame"}
+	if s.Inputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Inputs"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Ruleset == nil {
+		invalidParams.Add(request.NewErrParamRequired("Ruleset"))
+	}
+	if s.Ruleset != nil && len(*s.Ruleset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ruleset", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalDataSources sets the AdditionalDataSources field's value.
+func (s *EvaluateDataQualityMultiFrame) SetAdditionalDataSources(v map[string]*string) *EvaluateDataQualityMultiFrame {
+	s.AdditionalDataSources = v
+	return s
+}
+
+// SetAdditionalOptions sets the AdditionalOptions field's value.
+func (s *EvaluateDataQualityMultiFrame) SetAdditionalOptions(v map[string]*string) *EvaluateDataQualityMultiFrame {
+	s.AdditionalOptions = v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *EvaluateDataQualityMultiFrame) SetInputs(v []*string) *EvaluateDataQualityMultiFrame {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EvaluateDataQualityMultiFrame) SetName(v string) *EvaluateDataQualityMultiFrame {
+	s.Name = &v
+	return s
+}
+
+// SetPublishingOptions sets the PublishingOptions field's value.
+func (s *EvaluateDataQualityMultiFrame) SetPublishingOptions(v *DQResultsPublishingOptions) *EvaluateDataQualityMultiFrame {
+	s.PublishingOptions = v
+	return s
+}
+
+// SetRuleset sets the Ruleset field's value.
+func (s *EvaluateDataQualityMultiFrame) SetRuleset(v string) *EvaluateDataQualityMultiFrame {
+	s.Ruleset = &v
+	return s
+}
+
+// SetStopJobOnFailureOptions sets the StopJobOnFailureOptions field's value.
+func (s *EvaluateDataQualityMultiFrame) SetStopJobOnFailureOptions(v *DQStopJobOnFailureOptions) *EvaluateDataQualityMultiFrame {
+	s.StopJobOnFailureOptions = v
+	return s
+}
+
 // Evaluation metrics provide an estimate of the quality of your machine learning
 // transform.
 type EvaluationMetrics struct {
@@ -42654,6 +42809,10 @@ func (s *GetDataQualityRulesetEvaluationRunInput) SetRunId(v string) *GetDataQua
 type GetDataQualityRulesetEvaluationRunOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A map of reference strings to additional data sources you can specify for
+	// an evaluation run.
+	AdditionalDataSources map[string]*DataSource `type:"map"`
+
 	// Additional run options you can specify for an evaluation run.
 	AdditionalRunOptions *DataQualityEvaluationRunAdditionalRunOptions `type:"structure"`
 
@@ -42716,6 +42875,12 @@ func (s GetDataQualityRulesetEvaluationRunOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetDataQualityRulesetEvaluationRunOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalDataSources sets the AdditionalDataSources field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetAdditionalDataSources(v map[string]*DataSource) *GetDataQualityRulesetEvaluationRunOutput {
+	s.AdditionalDataSources = v
+	return s
 }
 
 // SetAdditionalRunOptions sets the AdditionalRunOptions field's value.
@@ -64508,6 +64673,10 @@ func (s *StartDataQualityRuleRecommendationRunOutput) SetRunId(v string) *StartD
 type StartDataQualityRulesetEvaluationRunInput struct {
 	_ struct{} `type:"structure"`
 
+	// A map of reference strings to additional data sources you can specify for
+	// an evaluation run.
+	AdditionalDataSources map[string]*DataSource `type:"map"`
+
 	// Additional run options you can specify for an evaluation run.
 	AdditionalRunOptions *DataQualityEvaluationRunAdditionalRunOptions `type:"structure"`
 
@@ -64578,6 +64747,16 @@ func (s *StartDataQualityRulesetEvaluationRunInput) Validate() error {
 	if s.Timeout != nil && *s.Timeout < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Timeout", 1))
 	}
+	if s.AdditionalDataSources != nil {
+		for i, v := range s.AdditionalDataSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdditionalDataSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.DataSource != nil {
 		if err := s.DataSource.Validate(); err != nil {
 			invalidParams.AddNested("DataSource", err.(request.ErrInvalidParams))
@@ -64588,6 +64767,12 @@ func (s *StartDataQualityRulesetEvaluationRunInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalDataSources sets the AdditionalDataSources field's value.
+func (s *StartDataQualityRulesetEvaluationRunInput) SetAdditionalDataSources(v map[string]*DataSource) *StartDataQualityRulesetEvaluationRunInput {
+	s.AdditionalDataSources = v
+	return s
 }
 
 // SetAdditionalRunOptions sets the AdditionalRunOptions field's value.
@@ -72442,6 +72627,18 @@ func (s *XMLClassifier) SetRowTag(v string) *XMLClassifier {
 func (s *XMLClassifier) SetVersion(v int64) *XMLClassifier {
 	s.Version = &v
 	return s
+}
+
+const (
+	// AdditionalOptionKeysPerformanceTuningCaching is a AdditionalOptionKeys enum value
+	AdditionalOptionKeysPerformanceTuningCaching = "performanceTuning.caching"
+)
+
+// AdditionalOptionKeys_Values returns all elements of the AdditionalOptionKeys enum
+func AdditionalOptionKeys_Values() []string {
+	return []string{
+		AdditionalOptionKeysPerformanceTuningCaching,
+	}
 }
 
 const (

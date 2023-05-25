@@ -1,3 +1,23 @@
+Release v1.44.270 (2023-05-25)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/codepipeline`: Updates service API and documentation
+  * Add PollingDisabledAt time information in PipelineMetadata object of GetPipeline API.
+* `service/gamelift`: Updates service API and documentation
+  * GameLift FleetIQ users can now filter game server claim requests to exclude servers on instances that are draining.
+* `service/glue`: Updates service API and documentation
+  * Added ability to create data quality rulesets for shared, cross-account Glue Data Catalog tables. Added support for dataset comparison rules through a new parameter called AdditionalDataSources. Enhanced the data quality results with a map containing profiled metric values.
+* `service/migration-hub-refactor-spaces`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Automatic Model Tuning now supports enabling Autotune for tuning jobs which can choose tuning job configurations.
+
+### SDK Bugs
+
+* `service/s3`: Populate X-Amz-Content-Sha256 header when using s3 outpost arn
+  * Using an outpost ARN results in a different signing name from the resolved endpoint. This signing name was not included in the signer logic to indicate the `X-Amz-Content-Sha256` header should be added to the request which is required by S3.
+
 Release v1.44.269 (2023-05-24)
 ===
 

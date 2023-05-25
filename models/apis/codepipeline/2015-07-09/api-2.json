@@ -2056,7 +2056,8 @@
       "members":{
         "pipelineArn":{"shape":"PipelineArn"},
         "created":{"shape":"Timestamp"},
-        "updated":{"shape":"Timestamp"}
+        "updated":{"shape":"Timestamp"},
+        "pollingDisabledAt":{"shape":"Timestamp"}
       }
     },
     "PipelineName":{
