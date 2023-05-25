@@ -3,5 +3,5 @@
 ### SDK Enhancements
 
 ### SDK Bugs
-* `ssocreds`: Add sso token provider logic.
-  * This new feature will be used to support sso-session section config
+* `aws/credentials/ssocreds`: Implement SSO token provider and support for `sso-session` in AWS shared config.
+  * Fixes [4649](https://github.com/aws/aws-sdk-go/issues/4649)
