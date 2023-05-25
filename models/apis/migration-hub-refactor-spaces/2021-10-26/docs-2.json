@@ -83,7 +83,7 @@
       "base": null,
       "refs": {
         "ApiGatewayProxyConfig$EndpointType": "<p>The type of API Gateway endpoint created. </p>",
-        "ApiGatewayProxyInput$EndpointType": "<p>The type of endpoint to use for the API Gateway proxy. If no value is specified in the request, the value is set to <code>REGIONAL</code> by default.</p> <p>If the value is set to <code>PRIVATE</code> in the request, this creates a private API endpoint that is isolated from the public internet. The private endpoint can only be accessed by using Amazon Virtual Private Cloud (Amazon VPC) endpoints for Amazon API Gateway that have been granted access. </p>",
+        "ApiGatewayProxyInput$EndpointType": "<p>The type of endpoint to use for the API Gateway proxy. If no value is specified in the request, the value is set to <code>REGIONAL</code> by default.</p> <p>If the value is set to <code>PRIVATE</code> in the request, this creates a private API endpoint that is isolated from the public internet. The private endpoint can only be accessed by using Amazon Virtual Private Cloud (Amazon VPC) interface endpoints for the Amazon API Gateway that has been granted access. For more information about creating a private connection with Refactor Spaces and interface endpoint (Amazon Web Services PrivateLink) availability, see <a href=\"https://docs.aws.amazon.com/migrationhub-refactor-spaces/latest/userguide/vpc-interface-endpoints.html\">Access Refactor Spaces using an interface endpoint (Amazon Web Services PrivateLink)</a>.</p>",
         "ApiGatewayProxySummary$EndpointType": "<p>The type of API Gateway endpoint created. </p>"
       }
     },
@@ -176,8 +176,11 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "GetRouteResponse$AppendSourcePath": "<p>If set to <code>true</code>, this option appends the source path to the service URL endpoint.</p>",
         "GetRouteResponse$IncludeChildPaths": "<p>Indicates whether to match all subpaths of the given source path. If this value is <code>false</code>, requests must match the source path exactly before they are forwarded to this route's service. </p>",
+        "RouteSummary$AppendSourcePath": "<p>If set to <code>true</code>, this option appends the source path to the service URL endpoint.</p>",
         "RouteSummary$IncludeChildPaths": "<p>Indicates whether to match all subpaths of the given source path. If this value is <code>false</code>, requests must match the source path exactly before they are forwarded to this route's service.</p>",
+        "UriPathRouteInput$AppendSourcePath": "<p>If set to <code>true</code>, this option appends the source path to the service URL endpoint.</p>",
         "UriPathRouteInput$IncludeChildPaths": "<p>Indicates whether to match all subpaths of the given source path. If this value is <code>false</code>, requests must match the source path exactly before they are forwarded to this route's service. </p>"
       }
     },
@@ -1017,9 +1020,9 @@
     "UriPath": {
       "base": null,
       "refs": {
-        "GetRouteResponse$SourcePath": "<p>The path to use to match traffic. Paths must start with <code>/</code> and are relative to the base of the application. </p>",
-        "RouteSummary$SourcePath": "<p>The path to use to match traffic. Paths must start with <code>/</code> and are relative to the base of the application.</p>",
-        "UriPathRouteInput$SourcePath": "<p>The path to use to match traffic. Paths must start with <code>/</code> and are relative to the base of the application.</p>"
+        "GetRouteResponse$SourcePath": "<p>This is the path that Refactor Spaces uses to match traffic. Paths must start with <code>/</code> and are relative to the base of the application. To use path parameters in the source path, add a variable in curly braces. For example, the resource path {user} represents a path parameter called 'user'.</p>",
+        "RouteSummary$SourcePath": "<p>This is the path that Refactor Spaces uses to match traffic. Paths must start with <code>/</code> and are relative to the base of the application. To use path parameters in the source path, add a variable in curly braces. For example, the resource path {user} represents a path parameter called 'user'.</p>",
+        "UriPathRouteInput$SourcePath": "<p>This is the path that Refactor Spaces uses to match traffic. Paths must start with <code>/</code> and are relative to the base of the application. To use path parameters in the source path, add a variable in curly braces. For example, the resource path {user} represents a path parameter called 'user'.</p>"
       }
     },
     "UriPathRouteInput": {

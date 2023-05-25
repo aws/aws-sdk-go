@@ -3195,6 +3195,10 @@
       "type":"list",
       "member":{"shape":"Action"}
     },
+    "AdditionalOptionKeys":{
+      "type":"string",
+      "enum":["performanceTuning.caching"]
+    },
     "AdditionalOptions":{
       "type":"map",
       "key":{"shape":"EnclosedInStringProperty"},
@@ -4263,7 +4267,8 @@
         "S3DeltaCatalogTarget":{"shape":"S3DeltaCatalogTarget"},
         "S3DeltaDirectTarget":{"shape":"S3DeltaDirectTarget"},
         "AmazonRedshiftSource":{"shape":"AmazonRedshiftSource"},
-        "AmazonRedshiftTarget":{"shape":"AmazonRedshiftTarget"}
+        "AmazonRedshiftTarget":{"shape":"AmazonRedshiftTarget"},
+        "EvaluateDataQualityMultiFrame":{"shape":"EvaluateDataQualityMultiFrame"}
       }
     },
     "CodeGenConfigurationNodes":{
@@ -5454,6 +5459,16 @@
       "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
+    "DQAdditionalOptions":{
+      "type":"map",
+      "key":{"shape":"AdditionalOptionKeys"},
+      "value":{"shape":"GenericString"}
+    },
+    "DQDLAliases":{
+      "type":"map",
+      "key":{"shape":"NodeName"},
+      "value":{"shape":"EnclosedInStringProperty"}
+    },
     "DQDLString":{
       "type":"string",
       "max":65536,
@@ -5614,7 +5629,8 @@
         "Name":{"shape":"NameString"},
         "Description":{"shape":"DescriptionString"},
         "EvaluationMessage":{"shape":"DescriptionString"},
-        "Result":{"shape":"DataQualityRuleResultStatus"}
+        "Result":{"shape":"DataQualityRuleResultStatus"},
+        "EvaluatedMetrics":{"shape":"EvaluatedMetricsMap"}
       }
     },
     "DataQualityRuleResultStatus":{
@@ -5694,7 +5710,8 @@
       ],
       "members":{
         "TableName":{"shape":"NameString"},
-        "DatabaseName":{"shape":"NameString"}
+        "DatabaseName":{"shape":"NameString"},
+        "CatalogId":{"shape":"NameString"}
       }
     },
     "DataSource":{
@@ -5703,6 +5720,11 @@
       "members":{
         "GlueTable":{"shape":"GlueTable"}
       }
+    },
+    "DataSourceMap":{
+      "type":"map",
+      "key":{"shape":"NameString"},
+      "value":{"shape":"DataSource"}
     },
     "Database":{
       "type":"structure",
@@ -6517,6 +6539,28 @@
         "StopJobOnFailureOptions":{"shape":"DQStopJobOnFailureOptions"}
       }
     },
+    "EvaluateDataQualityMultiFrame":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Inputs",
+        "Ruleset"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Inputs":{"shape":"ManyInputs"},
+        "AdditionalDataSources":{"shape":"DQDLAliases"},
+        "Ruleset":{"shape":"DQDLString"},
+        "PublishingOptions":{"shape":"DQResultsPublishingOptions"},
+        "AdditionalOptions":{"shape":"DQAdditionalOptions"},
+        "StopJobOnFailureOptions":{"shape":"DQStopJobOnFailureOptions"}
+      }
+    },
+    "EvaluatedMetricsMap":{
+      "type":"map",
+      "key":{"shape":"NameString"},
+      "value":{"shape":"NullableDouble"}
+    },
     "EvaluationMetrics":{
       "type":"structure",
       "required":["TransformType"],
@@ -7105,7 +7149,8 @@
         "CompletedOn":{"shape":"Timestamp"},
         "ExecutionTime":{"shape":"ExecutionTime"},
         "RulesetNames":{"shape":"RulesetNames"},
-        "ResultIds":{"shape":"DataQualityResultIdList"}
+        "ResultIds":{"shape":"DataQualityResultIdList"},
+        "AdditionalDataSources":{"shape":"DataSourceMap"}
       }
     },
     "GetDataQualityRulesetRequest":{
@@ -11107,7 +11152,8 @@
         "Timeout":{"shape":"Timeout"},
         "ClientToken":{"shape":"HashString"},
         "AdditionalRunOptions":{"shape":"DataQualityEvaluationRunAdditionalRunOptions"},
-        "RulesetNames":{"shape":"RulesetNames"}
+        "RulesetNames":{"shape":"RulesetNames"},
+        "AdditionalDataSources":{"shape":"DataSourceMap"}
       }
     },
     "StartDataQualityRulesetEvaluationRunResponse":{

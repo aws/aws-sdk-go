@@ -1158,6 +1158,7 @@
     "GetRouteResponse":{
       "type":"structure",
       "members":{
+        "AppendSourcePath":{"shape":"Boolean"},
         "ApplicationId":{"shape":"ApplicationId"},
         "Arn":{"shape":"ResourceArn"},
         "CreatedByAccountId":{"shape":"AccountId"},
@@ -1595,6 +1596,7 @@
     "RouteSummary":{
       "type":"structure",
       "members":{
+        "AppendSourcePath":{"shape":"Boolean"},
         "ApplicationId":{"shape":"ApplicationId"},
         "Arn":{"shape":"ResourceArn"},
         "CreatedByAccountId":{"shape":"AccountId"},
@@ -1845,7 +1847,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"^(/[a-zA-Z0-9._-]+)+$"
+      "pattern":"^(/([a-zA-Z0-9._:-]+|\\{[a-zA-Z0-9._:-]+\\}))+$"
     },
     "UriPathRouteInput":{
       "type":"structure",
@@ -1855,6 +1857,7 @@
       ],
       "members":{
         "ActivationState":{"shape":"RouteActivationState"},
+        "AppendSourcePath":{"shape":"Boolean"},
         "IncludeChildPaths":{"shape":"Boolean"},
         "Methods":{"shape":"HttpMethods"},
         "SourcePath":{"shape":"UriPath"}

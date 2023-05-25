@@ -2805,8 +2805,12 @@ type ApiGatewayProxyInput_ struct {
 	//
 	// If the value is set to PRIVATE in the request, this creates a private API
 	// endpoint that is isolated from the public internet. The private endpoint
-	// can only be accessed by using Amazon Virtual Private Cloud (Amazon VPC) endpoints
-	// for Amazon API Gateway that have been granted access.
+	// can only be accessed by using Amazon Virtual Private Cloud (Amazon VPC) interface
+	// endpoints for the Amazon API Gateway that has been granted access. For more
+	// information about creating a private connection with Refactor Spaces and
+	// interface endpoint (Amazon Web Services PrivateLink) availability, see Access
+	// Refactor Spaces using an interface endpoint (Amazon Web Services PrivateLink)
+	// (https://docs.aws.amazon.com/migrationhub-refactor-spaces/latest/userguide/vpc-interface-endpoints.html).
 	EndpointType *string `type:"string" enum:"ApiGatewayEndpointType"`
 
 	// The name of the API Gateway stage. The name defaults to prod.
@@ -5882,6 +5886,9 @@ func (s *GetRouteInput) SetRouteIdentifier(v string) *GetRouteInput {
 type GetRouteOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If set to true, this option appends the source path to the service URL endpoint.
+	AppendSourcePath *bool `type:"boolean"`
+
 	// The ID of the application that the route belongs to.
 	ApplicationId *string `min:"14" type:"string"`
 
@@ -5934,8 +5941,10 @@ type GetRouteOutput struct {
 	// The unique identifier of the service.
 	ServiceId *string `min:"14" type:"string"`
 
-	// The path to use to match traffic. Paths must start with / and are relative
-	// to the base of the application.
+	// This is the path that Refactor Spaces uses to match traffic. Paths must start
+	// with / and are relative to the base of the application. To use path parameters
+	// in the source path, add a variable in curly braces. For example, the resource
+	// path {user} represents a path parameter called 'user'.
 	SourcePath *string `min:"1" type:"string"`
 
 	// The current state of the route.
@@ -5966,6 +5975,12 @@ func (s GetRouteOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetRouteOutput) GoString() string {
 	return s.String()
+}
+
+// SetAppendSourcePath sets the AppendSourcePath field's value.
+func (s *GetRouteOutput) SetAppendSourcePath(v bool) *GetRouteOutput {
+	s.AppendSourcePath = &v
+	return s
 }
 
 // SetApplicationId sets the ApplicationId field's value.
@@ -7420,6 +7435,9 @@ func (s *ResourceNotFoundException) RequestID() string {
 type RouteSummary struct {
 	_ struct{} `type:"structure"`
 
+	// If set to true, this option appends the source path to the service URL endpoint.
+	AppendSourcePath *bool `type:"boolean"`
+
 	// The unique identifier of the application.
 	ApplicationId *string `min:"14" type:"string"`
 
@@ -7466,8 +7484,10 @@ type RouteSummary struct {
 	// The unique identifier of the service.
 	ServiceId *string `min:"14" type:"string"`
 
-	// The path to use to match traffic. Paths must start with / and are relative
-	// to the base of the application.
+	// This is the path that Refactor Spaces uses to match traffic. Paths must start
+	// with / and are relative to the base of the application. To use path parameters
+	// in the source path, add a variable in curly braces. For example, the resource
+	// path {user} represents a path parameter called 'user'.
 	SourcePath *string `min:"1" type:"string"`
 
 	// The current state of the route.
@@ -7497,6 +7517,12 @@ func (s RouteSummary) String() string {
 // value will be replaced with "sensitive".
 func (s RouteSummary) GoString() string {
 	return s.String()
+}
+
+// SetAppendSourcePath sets the AppendSourcePath field's value.
+func (s *RouteSummary) SetAppendSourcePath(v bool) *RouteSummary {
+	s.AppendSourcePath = &v
+	return s
 }
 
 // SetApplicationId sets the ApplicationId field's value.
@@ -8305,6 +8331,9 @@ type UriPathRouteInput_ struct {
 	// ActivationState is a required field
 	ActivationState *string `type:"string" required:"true" enum:"RouteActivationState"`
 
+	// If set to true, this option appends the source path to the service URL endpoint.
+	AppendSourcePath *bool `type:"boolean"`
+
 	// Indicates whether to match all subpaths of the given source path. If this
 	// value is false, requests must match the source path exactly before they are
 	// forwarded to this route's service.
@@ -8315,8 +8344,10 @@ type UriPathRouteInput_ struct {
 	// service.
 	Methods []*string `type:"list" enum:"HttpMethod"`
 
-	// The path to use to match traffic. Paths must start with / and are relative
-	// to the base of the application.
+	// This is the path that Refactor Spaces uses to match traffic. Paths must start
+	// with / and are relative to the base of the application. To use path parameters
+	// in the source path, add a variable in curly braces. For example, the resource
+	// path {user} represents a path parameter called 'user'.
 	//
 	// SourcePath is a required field
 	SourcePath *string `min:"1" type:"string" required:"true"`
@@ -8362,6 +8393,12 @@ func (s *UriPathRouteInput_) Validate() error {
 // SetActivationState sets the ActivationState field's value.
 func (s *UriPathRouteInput_) SetActivationState(v string) *UriPathRouteInput_ {
 	s.ActivationState = &v
+	return s
+}
+
+// SetAppendSourcePath sets the AppendSourcePath field's value.
+func (s *UriPathRouteInput_) SetAppendSourcePath(v bool) *UriPathRouteInput_ {
+	s.AppendSourcePath = &v
 	return s
 }
 
