@@ -142,7 +142,7 @@ func getTokenFieldRFC3339(v interface{}, value **rfc3339) error {
 	return nil
 }
 
-func loadCachedAccessToken(filename string) (cachedToken, error) {
+func loadCachedToken(filename string) (cachedToken, error) {
 	fileBytes, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return cachedToken{}, fmt.Errorf("failed to read cached SSO token file, %v", err)
@@ -201,19 +201,14 @@ type rfc3339 time.Time
 
 func (r *rfc3339) UnmarshalJSON(bytes []byte) error {
 	var value string
+	var err error
 
-	if err := json.Unmarshal(bytes, &value); err != nil {
+	if err = json.Unmarshal(bytes, &value); err != nil {
 		return err
 	}
 
-	parse, err := time.Parse(time.RFC3339, value)
-	if err != nil {
-		return fmt.Errorf("expected RFC3339 timestamp: %v", err)
-	}
-
-	*r = rfc3339(parse)
-
-	return nil
+	*r, err = parseRFC3339(value)
+	return err
 }
 
 func parseRFC3339(v string) (rfc3339, error) {

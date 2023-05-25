@@ -1,7 +1,7 @@
-package ssocreds
+package bearer
 
 import (
-	"context"
+	"github.com/aws/aws-sdk-go/aws"
 	"time"
 )
 
@@ -24,16 +24,16 @@ func (t Token) Expired(now time.Time) bool {
 
 // TokenProvider provides interface for retrieving bearer tokens.
 type TokenProvider interface {
-	RetrieveBearerToken(context.Context) (Token, error)
+	RetrieveBearerToken(aws.Context) (Token, error)
 }
 
 // TokenProviderFunc provides a helper utility to wrap a function as a type
 // that implements the TokenProvider interface.
-type TokenProviderFunc func(context.Context) (Token, error)
+type TokenProviderFunc func(aws.Context) (Token, error)
 
 // RetrieveBearerToken calls the wrapped function, returning the Token or
 // error.
-func (fn TokenProviderFunc) RetrieveBearerToken(ctx context.Context) (Token, error) {
+func (fn TokenProviderFunc) RetrieveBearerToken(ctx aws.Context) (Token, error) {
 	return fn(ctx)
 }
 
@@ -44,6 +44,6 @@ type StaticTokenProvider struct {
 }
 
 // RetrieveBearerToken returns the static token specified.
-func (s StaticTokenProvider) RetrieveBearerToken(context.Context) (Token, error) {
+func (s StaticTokenProvider) RetrieveBearerToken(aws.Context) (Token, error) {
 	return s.Token, nil
 }

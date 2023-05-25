@@ -105,7 +105,7 @@ func TestLoadCachedToken(t *testing.T) {
 
 	for name, c := range cases {
 		t.Run(name, func(t *testing.T) {
-			actualToken, err := loadCachedAccessToken(c.filename)
+			actualToken, err := loadCachedToken(c.filename)
 			if c.expectErr != "" {
 				if err == nil {
 					t.Fatalf("expect %v error, got none", c.expectErr)
@@ -170,7 +170,7 @@ func TestStoreCachedToken(t *testing.T) {
 				t.Fatalf("expect no error, got %v", err)
 			}
 
-			actual, err := loadCachedAccessToken(c.filename)
+			actual, err := loadCachedToken(c.filename)
 			if err != nil {
 				t.Fatalf("failed to load stored token, %v", err)
 			}

@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials/bearer"
 	"github.com/aws/aws-sdk-go/service/ssooidc"
 )
 
@@ -31,11 +32,6 @@ type SSOTokenProviderOptions struct {
 // Bearer Authentication. The SSOTokenProvider can only be used to refresh
 // already cached SSO Tokens. This utility cannot perform the initial SSO
 // create token.
-//
-// The SSOTokenProvider is not safe to use concurrently. The SDK's
-// config.LoadDefaultConfig will automatically wrap the SSOTokenProvider with
-// the , if the external configuration loaded configured
-// for an SSO session.
 //
 // The initial SSO create token should be preformed with the AWS CLI before the
 // Go application using the SSOTokenProvider will need to retrieve the SSO
@@ -81,21 +77,21 @@ func NewSSOTokenProvider(client CreateTokenAPIClient, cachedTokenFilepath string
 //
 // A utility such as the AWS CLI must be used to initially create the SSO
 // session and cached token file. https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html
-func (p SSOTokenProvider) RetrieveBearerToken(ctx context.Context) (Token, error) {
-	cachedToken, err := loadCachedAccessToken(p.options.CachedTokenFilepath)
+func (p SSOTokenProvider) RetrieveBearerToken(ctx context.Context) (bearer.Token, error) {
+	cachedToken, err := loadCachedToken(p.options.CachedTokenFilepath)
 	if err != nil {
-		return Token{}, err
+		return bearer.Token{}, err
 	}
 
 	if cachedToken.ExpiresAt != nil && nowTime().After(time.Time(*cachedToken.ExpiresAt)) {
 		cachedToken, err = p.refreshToken(cachedToken)
 		if err != nil {
-			return Token{}, fmt.Errorf("refresh cached SSO token failed, %v", err)
+			return bearer.Token{}, fmt.Errorf("refresh cached SSO token failed, %v", err)
 		}
 	}
 
-	expiresAt := ToTime((*time.Time)(cachedToken.ExpiresAt))
-	return Token{
+	expiresAt := toTime((*time.Time)(cachedToken.ExpiresAt))
+	return bearer.Token{
 		Value:     cachedToken.AccessToken,
 		CanExpire: !expiresAt.IsZero(),
 		Expires:   expiresAt,
@@ -135,7 +131,7 @@ func (p SSOTokenProvider) refreshToken(token cachedToken) (cachedToken, error) {
 	return token, nil
 }
 
-func ToTime(p *time.Time) (v time.Time) {
+func toTime(p *time.Time) (v time.Time) {
 	if p == nil {
 		return v
 	}

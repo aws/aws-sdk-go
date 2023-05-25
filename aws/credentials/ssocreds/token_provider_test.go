@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials/bearer"
 	"github.com/aws/aws-sdk-go/service/ssooidc"
 	"io/ioutil"
 	"os"
@@ -38,7 +39,7 @@ func TestSSOTokenProvider(t *testing.T) {
 		cacheFilePath string
 		optFns        []func(*SSOTokenProviderOptions)
 
-		expectToken Token
+		expectToken bearer.Token
 		expectErr   string
 	}{
 		"no cache file": {
@@ -71,7 +72,7 @@ func TestSSOTokenProvider(t *testing.T) {
 		},
 		"valid sso token": {
 			cacheFilePath: filepath.Join("testdata", "valid_token.json"),
-			expectToken: Token{
+			expectToken: bearer.Token{
 				Value:     "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
 				CanExpire: true,
 				Expires:   time.Date(2044, 4, 4, 7, 0, 1, 0, time.UTC),
@@ -87,7 +88,7 @@ func TestSSOTokenProvider(t *testing.T) {
 				return os.WriteFile(filepath.Join(tempDir, "expired_token.json"), testFile, 0600)
 			},
 			postRetrieve: func() error {
-				actual, err := loadCachedAccessToken(filepath.Join(tempDir, "expired_token.json"))
+				actual, err := loadCachedToken(filepath.Join(tempDir, "expired_token.json"))
 				if err != nil {
 					return err
 
@@ -125,7 +126,7 @@ func TestSSOTokenProvider(t *testing.T) {
 					RefreshToken: aws.String("updated refresh token"),
 				},
 			},
-			expectToken: Token{
+			expectToken: bearer.Token{
 				Value:     "updated access token",
 				CanExpire: true,
 				Expires:   time.Date(2021, 12, 21, 12, 31, 1, 0, time.UTC),
@@ -140,7 +141,7 @@ func TestSSOTokenProvider(t *testing.T) {
 				return os.WriteFile(filepath.Join(tempDir, "expired_token.json"), testFile, 0600)
 			},
 			postRetrieve: func() error {
-				actual, err := loadCachedAccessToken(filepath.Join(tempDir, "expired_token.json"))
+				actual, err := loadCachedToken(filepath.Join(tempDir, "expired_token.json"))
 				if err != nil {
 					return err
 
