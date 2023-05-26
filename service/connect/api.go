@@ -58456,6 +58456,9 @@ const (
 
 	// ContactInitiationMethodMonitor is a ContactInitiationMethod enum value
 	ContactInitiationMethodMonitor = "MONITOR"
+
+	// ContactInitiationMethodExternalOutbound is a ContactInitiationMethod enum value
+	ContactInitiationMethodExternalOutbound = "EXTERNAL_OUTBOUND"
 )
 
 // ContactInitiationMethod_Values returns all elements of the ContactInitiationMethod enum
@@ -58469,6 +58472,7 @@ func ContactInitiationMethod_Values() []string {
 		ContactInitiationMethodApi,
 		ContactInitiationMethodDisconnect,
 		ContactInitiationMethodMonitor,
+		ContactInitiationMethodExternalOutbound,
 	}
 }
 
