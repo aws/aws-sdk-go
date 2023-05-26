@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-var osUserHomeDur = shareddefaults.UserHomeDir
+var resolvedOsUserHomeDir = shareddefaults.UserHomeDir
 
 // StandardCachedTokenFilepath returns the filepath for the cached SSO token file, or
 // error if unable get derive the path. Key that will be used to compute a SHA1
@@ -24,7 +24,7 @@ var osUserHomeDur = shareddefaults.UserHomeDir
 //
 //	~/.aws/sso/cache/<sha1-hex-encoded-key>.json
 func StandardCachedTokenFilepath(key string) (string, error) {
-	homeDir := osUserHomeDur()
+	homeDir := resolvedOsUserHomeDir()
 	if len(homeDir) == 0 {
 		return "", fmt.Errorf("unable to get USER's home directory for cached token")
 	}

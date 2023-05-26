@@ -11,9 +11,9 @@ import (
 )
 
 func TestStandardSSOCacheTokenFilepath(t *testing.T) {
-	origHomeDur := osUserHomeDur
+	origHomeDur := resolvedOsUserHomeDir
 	defer func() {
-		osUserHomeDur = origHomeDur
+		resolvedOsUserHomeDir = origHomeDur
 	}()
 
 	cases := map[string]struct {
@@ -41,7 +41,7 @@ func TestStandardSSOCacheTokenFilepath(t *testing.T) {
 
 	for name, c := range cases {
 		t.Run(name, func(t *testing.T) {
-			osUserHomeDur = c.osUserHomeDir
+			resolvedOsUserHomeDir = c.osUserHomeDir
 
 			actual, err := StandardCachedTokenFilepath(c.key)
 			if c.expectErr != "" {

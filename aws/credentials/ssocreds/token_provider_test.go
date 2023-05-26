@@ -7,7 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials/bearer"
+	"github.com/aws/aws-sdk-go/aws/bearer"
 	"github.com/aws/aws-sdk-go/service/ssooidc"
 	"io/ioutil"
 	"os"
