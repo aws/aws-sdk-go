@@ -1,7 +1,6 @@
 package ssocreds
 
 import (
-	"context"
 	"fmt"
 	"os"
 	"time"
@@ -77,7 +76,7 @@ func NewSSOTokenProvider(client CreateTokenAPIClient, cachedTokenFilepath string
 //
 // A utility such as the AWS CLI must be used to initially create the SSO
 // session and cached token file. https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html
-func (p SSOTokenProvider) RetrieveBearerToken(ctx context.Context) (bearer.Token, error) {
+func (p SSOTokenProvider) RetrieveBearerToken(ctx aws.Context) (bearer.Token, error) {
 	cachedToken, err := loadCachedToken(p.options.CachedTokenFilepath)
 	if err != nil {
 		return bearer.Token{}, err

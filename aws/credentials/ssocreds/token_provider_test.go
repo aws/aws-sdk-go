@@ -4,7 +4,6 @@
 package ssocreds
 
 import (
-	"context"
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/bearer"
@@ -179,7 +178,7 @@ func TestSSOTokenProvider(t *testing.T) {
 			}
 			provider := NewSSOTokenProvider(c.client, c.cacheFilePath, c.optFns...)
 
-			token, err := provider.RetrieveBearerToken(context.Background())
+			token, err := provider.RetrieveBearerToken(aws.BackgroundContext())
 			if c.expectErr != "" {
 				if err == nil {
 					t.Fatalf("expect %v error, got none", c.expectErr)
