@@ -1,3 +1,12 @@
+Release v1.44.271 (2023-05-26)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/iotwireless`: Updates service API and documentation
+* `service/sagemaker`: Updates service API
+  * Added ml.p4d and ml.inf1 as supported instance type families for SageMaker Notebook Instances.
+
 Release v1.44.270 (2023-05-25)
 ===
 

@@ -12762,15 +12762,17 @@ type CreateFuotaTaskInput struct {
 	// FirmwareUpdateRole is a required field
 	FirmwareUpdateRole *string `min:"1" type:"string" required:"true"`
 
-	// The interval of sending fragments in milliseconds. Currently the interval
-	// will be rounded to the nearest second. Note that this interval only controls
-	// the timing when the cloud sends the fragments down. The actual delay of receiving
-	// fragments at device side depends on the device's class and the communication
+	// The interval for sending fragments in milliseconds, rounded to the nearest
+	// second.
+	//
+	// This interval only determines the timing for when the Cloud sends down the
+	// fragments to yor device. There can be a delay for when your device will receive
+	// these fragments. This delay depends on the device's class and the communication
 	// delay with the cloud.
 	FragmentIntervalMS *int64 `min:"1" type:"integer"`
 
-	// The size of each fragment in bytes. Currently only supported in fuota tasks
-	// with multicast groups.
+	// The size of each fragment in bytes. This parameter is supported only for
+	// FUOTA tasks with multicast groups.
 	FragmentSizeBytes *int64 `min:"1" type:"integer"`
 
 	// The LoRaWAN information used with a FUOTA task.
@@ -12779,10 +12781,10 @@ type CreateFuotaTaskInput struct {
 	// The name of a FUOTA task.
 	Name *string `type:"string"`
 
-	// The percentage of added redundant fragments. For example, if firmware file
-	// is 100 bytes and fragment size is 10 bytes, with RedundancyPercent set to
-	// 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 *
-	// 50%) = 15.
+	// The percentage of the added fragments that are redundant. For example, if
+	// the size of the firmware image file is 100 bytes and the fragment size is
+	// 10 bytes, with RedundancyPercent set to 50(%), the final number of encoded
+	// fragments is (100 / 10) + (100 / 10 * 50%) = 15.
 	RedundancyPercent *int64 `type:"integer"`
 
 	// The tag to attach to the specified resource. Tags are metadata that you can
@@ -13100,6 +13102,10 @@ type CreateNetworkAnalyzerConfigurationInput struct {
 	// The description of the new resource.
 	Description *string `type:"string"`
 
+	// Multicast Group resources to add to the network analyzer configruation. Provide
+	// the MulticastGroupId of the resource to add in the input array.
+	MulticastGroups []*string `type:"list"`
+
 	// Name of the network analyzer configuration.
 	//
 	// Name is a required field
@@ -13177,6 +13183,12 @@ func (s *CreateNetworkAnalyzerConfigurationInput) SetClientRequestToken(v string
 // SetDescription sets the Description field's value.
 func (s *CreateNetworkAnalyzerConfigurationInput) SetDescription(v string) *CreateNetworkAnalyzerConfigurationInput {
 	s.Description = &v
+	return s
+}
+
+// SetMulticastGroups sets the MulticastGroups field's value.
+func (s *CreateNetworkAnalyzerConfigurationInput) SetMulticastGroups(v []*string) *CreateNetworkAnalyzerConfigurationInput {
+	s.MulticastGroups = v
 	return s
 }
 
@@ -16557,15 +16569,17 @@ type GetFuotaTaskOutput struct {
 	// The firmware update role that is to be used with a FUOTA task.
 	FirmwareUpdateRole *string `min:"1" type:"string"`
 
-	// The interval of sending fragments in milliseconds. Currently the interval
-	// will be rounded to the nearest second. Note that this interval only controls
-	// the timing when the cloud sends the fragments down. The actual delay of receiving
-	// fragments at device side depends on the device's class and the communication
+	// The interval for sending fragments in milliseconds, rounded to the nearest
+	// second.
+	//
+	// This interval only determines the timing for when the Cloud sends down the
+	// fragments to yor device. There can be a delay for when your device will receive
+	// these fragments. This delay depends on the device's class and the communication
 	// delay with the cloud.
 	FragmentIntervalMS *int64 `min:"1" type:"integer"`
 
-	// The size of each fragment in bytes. Currently only supported in fuota tasks
-	// with multicast groups.
+	// The size of each fragment in bytes. This parameter is supported only for
+	// FUOTA tasks with multicast groups.
 	FragmentSizeBytes *int64 `min:"1" type:"integer"`
 
 	// The ID of a FUOTA task.
@@ -16577,10 +16591,10 @@ type GetFuotaTaskOutput struct {
 	// The name of a FUOTA task.
 	Name *string `type:"string"`
 
-	// The percentage of added redundant fragments. For example, if firmware file
-	// is 100 bytes and fragment size is 10 bytes, with RedundancyPercent set to
-	// 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 *
-	// 50%) = 15.
+	// The percentage of the added fragments that are redundant. For example, if
+	// the size of the firmware image file is 100 bytes and the fragment size is
+	// 10 bytes, with RedundancyPercent set to 50(%), the final number of encoded
+	// fragments is (100 / 10) + (100 / 10 * 50%) = 15.
 	RedundancyPercent *int64 `type:"integer"`
 
 	// The status of a FUOTA task.
@@ -17023,6 +17037,10 @@ type GetNetworkAnalyzerConfigurationOutput struct {
 	// The description of the new resource.
 	Description *string `type:"string"`
 
+	// List of multicast group resources that have been added to the network analyzer
+	// configuration.
+	MulticastGroups []*string `type:"list"`
+
 	// Name of the network analyzer configuration.
 	Name *string `min:"1" type:"string"`
 
@@ -17065,6 +17083,12 @@ func (s *GetNetworkAnalyzerConfigurationOutput) SetArn(v string) *GetNetworkAnal
 // SetDescription sets the Description field's value.
 func (s *GetNetworkAnalyzerConfigurationOutput) SetDescription(v string) *GetNetworkAnalyzerConfigurationOutput {
 	s.Description = &v
+	return s
+}
+
+// SetMulticastGroups sets the MulticastGroups field's value.
+func (s *GetNetworkAnalyzerConfigurationOutput) SetMulticastGroups(v []*string) *GetNetworkAnalyzerConfigurationOutput {
+	s.MulticastGroups = v
 	return s
 }
 
@@ -18527,6 +18551,8 @@ type GetWirelessDeviceStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time when the most recent uplink was received.
+	//
+	// This value is only valid for 3 months.
 	LastUplinkReceivedAt *string `type:"string"`
 
 	// Information about the wireless device's operations.
@@ -18956,6 +18982,8 @@ type GetWirelessGatewayStatisticsOutput struct {
 	ConnectionStatus *string `type:"string" enum:"ConnectionStatus"`
 
 	// The date and time when the most recent uplink was received.
+	//
+	// This value is only valid for 3 months.
 	LastUplinkReceivedAt *string `type:"string"`
 
 	// The ID of the wireless gateway.
@@ -19160,6 +19188,8 @@ type GetWirelessGatewayTaskOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time when the most recent uplink was received.
+	//
+	// This value is only valid for 3 months.
 	LastUplinkReceivedAt *string `type:"string"`
 
 	// The status of the request.
@@ -27354,6 +27384,11 @@ type TraceContent struct {
 	// to INFO for more detailed logs.
 	LogLevel *string `type:"string" enum:"LogLevel"`
 
+	// FrameInfo of your multicast group resources for the trace content. Use FrameInfo
+	// to debug the multicast communication between your LoRaWAN end devices and
+	// the network server.
+	MulticastFrameInfo *string `type:"string" enum:"MulticastFrameInfo"`
+
 	// FrameInfo of your wireless device resources for the trace content. Use FrameInfo
 	// to debug the communication between your LoRaWAN end devices and the network
 	// server.
@@ -27381,6 +27416,12 @@ func (s TraceContent) GoString() string {
 // SetLogLevel sets the LogLevel field's value.
 func (s *TraceContent) SetLogLevel(v string) *TraceContent {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMulticastFrameInfo sets the MulticastFrameInfo field's value.
+func (s *TraceContent) SetMulticastFrameInfo(v string) *TraceContent {
+	s.MulticastFrameInfo = &v
 	return s
 }
 
@@ -27822,15 +27863,17 @@ type UpdateFuotaTaskInput struct {
 	// The firmware update role that is to be used with a FUOTA task.
 	FirmwareUpdateRole *string `min:"1" type:"string"`
 
-	// The interval of sending fragments in milliseconds. Currently the interval
-	// will be rounded to the nearest second. Note that this interval only controls
-	// the timing when the cloud sends the fragments down. The actual delay of receiving
-	// fragments at device side depends on the device's class and the communication
+	// The interval for sending fragments in milliseconds, rounded to the nearest
+	// second.
+	//
+	// This interval only determines the timing for when the Cloud sends down the
+	// fragments to yor device. There can be a delay for when your device will receive
+	// these fragments. This delay depends on the device's class and the communication
 	// delay with the cloud.
 	FragmentIntervalMS *int64 `min:"1" type:"integer"`
 
-	// The size of each fragment in bytes. Currently only supported in fuota tasks
-	// with multicast groups.
+	// The size of each fragment in bytes. This parameter is supported only for
+	// FUOTA tasks with multicast groups.
 	FragmentSizeBytes *int64 `min:"1" type:"integer"`
 
 	// The ID of a FUOTA task.
@@ -27844,10 +27887,10 @@ type UpdateFuotaTaskInput struct {
 	// The name of a FUOTA task.
 	Name *string `type:"string"`
 
-	// The percentage of added redundant fragments. For example, if firmware file
-	// is 100 bytes and fragment size is 10 bytes, with RedundancyPercent set to
-	// 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 *
-	// 50%) = 15.
+	// The percentage of the added fragments that are redundant. For example, if
+	// the size of the firmware image file is 100 bytes and the fragment size is
+	// 10 bytes, with RedundancyPercent set to 50(%), the final number of encoded
+	// fragments is (100 / 10) + (100 / 10 * 50%) = 15.
 	RedundancyPercent *int64 `type:"integer"`
 }
 
@@ -28185,6 +28228,14 @@ type UpdateNetworkAnalyzerConfigurationInput struct {
 	// The description of the new resource.
 	Description *string `type:"string"`
 
+	// Multicast group resources to add to the network analyzer configuration. Provide
+	// the MulticastGroupId of the resource to add in the input array.
+	MulticastGroupsToAdd []*string `type:"list"`
+
+	// Multicast group resources to remove from the network analyzer configuration.
+	// Provide the MulticastGroupId of the resource to remove in the input array.
+	MulticastGroupsToRemove []*string `type:"list"`
+
 	// Trace content for your wireless gateway and wireless device resources.
 	TraceContent *TraceContent `type:"structure"`
 
@@ -28248,6 +28299,18 @@ func (s *UpdateNetworkAnalyzerConfigurationInput) SetConfigurationName(v string)
 // SetDescription sets the Description field's value.
 func (s *UpdateNetworkAnalyzerConfigurationInput) SetDescription(v string) *UpdateNetworkAnalyzerConfigurationInput {
 	s.Description = &v
+	return s
+}
+
+// SetMulticastGroupsToAdd sets the MulticastGroupsToAdd field's value.
+func (s *UpdateNetworkAnalyzerConfigurationInput) SetMulticastGroupsToAdd(v []*string) *UpdateNetworkAnalyzerConfigurationInput {
+	s.MulticastGroupsToAdd = v
+	return s
+}
+
+// SetMulticastGroupsToRemove sets the MulticastGroupsToRemove field's value.
+func (s *UpdateNetworkAnalyzerConfigurationInput) SetMulticastGroupsToRemove(v []*string) *UpdateNetworkAnalyzerConfigurationInput {
+	s.MulticastGroupsToRemove = v
 	return s
 }
 
@@ -29930,6 +29993,8 @@ type WirelessDeviceStatistics struct {
 	Id *string `type:"string"`
 
 	// The date and time when the most recent uplink was received.
+	//
+	// Theis value is only valid for 3 months.
 	LastUplinkReceivedAt *string `type:"string"`
 
 	// LoRaWAN device info.
@@ -30199,6 +30264,8 @@ type WirelessGatewayStatistics struct {
 	Id *string `type:"string"`
 
 	// The date and time when the most recent uplink was received.
+	//
+	// This value is only valid for 3 months.
 	LastUplinkReceivedAt *string `type:"string"`
 
 	// LoRaWAN gateway info.
@@ -30725,6 +30792,25 @@ func MessageType_Values() []string {
 		MessageTypeCustomCommandIdGet,
 		MessageTypeCustomCommandIdSet,
 		MessageTypeCustomCommandIdResp,
+	}
+}
+
+// FrameInfo of your multicast group resources for the trace content. Use FrameInfo
+// to debug the multicast communication between your LoRaWAN end devices and
+// the network server.
+const (
+	// MulticastFrameInfoEnabled is a MulticastFrameInfo enum value
+	MulticastFrameInfoEnabled = "ENABLED"
+
+	// MulticastFrameInfoDisabled is a MulticastFrameInfo enum value
+	MulticastFrameInfoDisabled = "DISABLED"
+)
+
+// MulticastFrameInfo_Values returns all elements of the MulticastFrameInfo enum
+func MulticastFrameInfo_Values() []string {
+	return []string{
+		MulticastFrameInfoEnabled,
+		MulticastFrameInfoDisabled,
 	}
 }
 

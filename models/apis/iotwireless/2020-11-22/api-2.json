@@ -2430,7 +2430,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "MulticastGroups":{"shape":"NetworkAnalyzerMulticastGroupList"}
       }
     },
     "CreateNetworkAnalyzerConfigurationResponse":{
@@ -3507,7 +3508,8 @@
         "WirelessGateways":{"shape":"WirelessGatewayList"},
         "Description":{"shape":"Description"},
         "Arn":{"shape":"NetworkAnalyzerConfigurationArn"},
-        "Name":{"shape":"NetworkAnalyzerConfigurationName"}
+        "Name":{"shape":"NetworkAnalyzerConfigurationName"},
+        "MulticastGroups":{"shape":"NetworkAnalyzerMulticastGroupList"}
       }
     },
     "GetPartnerAccountRequest":{
@@ -4997,6 +4999,13 @@
       "type":"string",
       "max":256
     },
+    "MulticastFrameInfo":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "MulticastGroup":{
       "type":"structure",
       "members":{
@@ -5076,6 +5085,12 @@
         "Arn":{"shape":"NetworkAnalyzerConfigurationArn"},
         "Name":{"shape":"NetworkAnalyzerConfigurationName"}
       }
+    },
+    "NetworkAnalyzerMulticastGroupList":{
+      "type":"list",
+      "member":{"shape":"MulticastGroupId"},
+      "max":10,
+      "min":0
     },
     "NetworkId":{
       "type":"integer",
@@ -6087,7 +6102,8 @@
       "type":"structure",
       "members":{
         "WirelessDeviceFrameInfo":{"shape":"WirelessDeviceFrameInfo"},
-        "LogLevel":{"shape":"LogLevel"}
+        "LogLevel":{"shape":"LogLevel"},
+        "MulticastFrameInfo":{"shape":"MulticastFrameInfo"}
       }
     },
     "TransmissionInterval":{
@@ -6277,7 +6293,9 @@
         "WirelessDevicesToRemove":{"shape":"WirelessDeviceList"},
         "WirelessGatewaysToAdd":{"shape":"WirelessGatewayList"},
         "WirelessGatewaysToRemove":{"shape":"WirelessGatewayList"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "MulticastGroupsToAdd":{"shape":"NetworkAnalyzerMulticastGroupList"},
+        "MulticastGroupsToRemove":{"shape":"NetworkAnalyzerMulticastGroupList"}
       }
     },
     "UpdateNetworkAnalyzerConfigurationResponse":{
