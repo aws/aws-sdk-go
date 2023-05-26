@@ -1325,7 +1325,7 @@
       }
     },
     "FragmentIntervalMS": {
-      "base": "<p>The interval of sending fragments in milliseconds. Currently the interval will be rounded to the nearest second. Note that this interval only controls the timing when the cloud sends the fragments down. The actual delay of receiving fragments at device side depends on the device's class and the communication delay with the cloud.</p>",
+      "base": "<p>The interval for sending fragments in milliseconds, rounded to the nearest second.</p> <note> <p>This interval only determines the timing for when the Cloud sends down the fragments to yor device. There can be a delay for when your device will receive these fragments. This delay depends on the device's class and the communication delay with the cloud.</p> </note>",
       "refs": {
         "CreateFuotaTaskRequest$FragmentIntervalMS": null,
         "GetFuotaTaskResponse$FragmentIntervalMS": null,
@@ -1333,7 +1333,7 @@
       }
     },
     "FragmentSizeBytes": {
-      "base": "<p>The size of each fragment in bytes. Currently only supported in fuota tasks with multicast groups.</p>",
+      "base": "<p>The size of each fragment in bytes. This parameter is supported only for FUOTA tasks with multicast groups.</p>",
       "refs": {
         "CreateFuotaTaskRequest$FragmentSizeBytes": null,
         "GetFuotaTaskResponse$FragmentSizeBytes": null,
@@ -1789,13 +1789,13 @@
       "refs": {
         "DownlinkQueueMessage$ReceivedAt": "<p>The time at which Iot Wireless received the downlink message.</p>",
         "GetPositionResponse$Timestamp": "<p>The timestamp at which the device's position was determined.</p>",
-        "GetWirelessDeviceStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
-        "GetWirelessGatewayStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
-        "GetWirelessGatewayTaskResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
+        "GetWirelessDeviceStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p> <note> <p>This value is only valid for 3 months.</p> </note>",
+        "GetWirelessGatewayStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p> <note> <p>This value is only valid for 3 months.</p> </note>",
+        "GetWirelessGatewayTaskResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p> <note> <p>This value is only valid for 3 months.</p> </note>",
         "GetWirelessGatewayTaskResponse$TaskCreatedAt": "<p>The date and time when the task was created.</p>",
         "LoRaWANDeviceMetadata$Timestamp": "<p>The date and time of the metadata.</p>",
-        "WirelessDeviceStatistics$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
-        "WirelessGatewayStatistics$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>"
+        "WirelessDeviceStatistics$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p> <note> <p>Theis value is only valid for 3 months.</p> </note>",
+        "WirelessGatewayStatistics$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p> <note> <p>This value is only valid for 3 months.</p> </note>"
       }
     },
     "Identifier": {
@@ -2478,6 +2478,12 @@
         "WirelessDeviceStatistics$MulticastDeviceStatus": "<p>The status of the wireless device in the multicast group.</p>"
       }
     },
+    "MulticastFrameInfo": {
+      "base": "<p> <code>FrameInfo</code> of your multicast group resources for the trace content. Use FrameInfo to debug the multicast communication between your LoRaWAN end devices and the network server.</p>",
+      "refs": {
+        "TraceContent$MulticastFrameInfo": null
+      }
+    },
     "MulticastGroup": {
       "base": "<p>A multicast group.</p>",
       "refs": {
@@ -2514,6 +2520,7 @@
         "ListWirelessDevicesRequest$MulticastGroupId": null,
         "MulticastGroup$Id": null,
         "MulticastGroupByFuotaTask$Id": null,
+        "NetworkAnalyzerMulticastGroupList$member": null,
         "SendDataToMulticastGroupRequest$Id": null,
         "StartBulkAssociateWirelessDeviceWithMulticastGroupRequest$Id": null,
         "StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest$Id": null,
@@ -2609,6 +2616,15 @@
       "base": "<p>Network analyzer configurations.</p>",
       "refs": {
         "NetworkAnalyzerConfigurationList$member": null
+      }
+    },
+    "NetworkAnalyzerMulticastGroupList": {
+      "base": null,
+      "refs": {
+        "CreateNetworkAnalyzerConfigurationRequest$MulticastGroups": "<p>Multicast Group resources to add to the network analyzer configruation. Provide the <code>MulticastGroupId</code> of the resource to add in the input array.</p>",
+        "GetNetworkAnalyzerConfigurationResponse$MulticastGroups": "<p>List of multicast group resources that have been added to the network analyzer configuration.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$MulticastGroupsToAdd": "<p>Multicast group resources to add to the network analyzer configuration. Provide the <code>MulticastGroupId</code> of the resource to add in the input array.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$MulticastGroupsToRemove": "<p>Multicast group resources to remove from the network analyzer configuration. Provide the <code>MulticastGroupId</code> of the resource to remove in the input array.</p>"
       }
     },
     "NetworkId": {
@@ -3029,7 +3045,7 @@
       }
     },
     "RedundancyPercent": {
-      "base": "<p>The percentage of added redundant fragments. For example, if firmware file is 100 bytes and fragment size is 10 bytes, with <code>RedundancyPercent</code> set to 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 * 50%) = 15.</p>",
+      "base": "<p>The percentage of the added fragments that are redundant. For example, if the size of the firmware image file is 100 bytes and the fragment size is 10 bytes, with <code>RedundancyPercent</code> set to 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 * 50%) = 15.</p>",
       "refs": {
         "CreateFuotaTaskRequest$RedundancyPercent": null,
         "GetFuotaTaskResponse$RedundancyPercent": null,
