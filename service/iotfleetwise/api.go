@@ -881,7 +881,7 @@ func (c *IoTFleetWise) CreateVehicleRequest(input *CreateVehicleInput) (req *req
 // Vehicles created from the same vehicle model consist of the same signals
 // inherited from the vehicle model.
 //
-// If you have an existing Amazon Web Services IoT Thing, you can use Amazon
+// If you have an existing Amazon Web Services IoT thing, you can use Amazon
 // Web Services IoT FleetWise to create a vehicle and collect data from your
 // thing.
 //
@@ -4751,18 +4751,35 @@ func (c *IoTFleetWise) RegisterAccountRequest(input *RegisterAccountInput) (req 
 
 // RegisterAccount API operation for AWS IoT FleetWise.
 //
-// Registers your Amazon Web Services account, IAM, and Amazon Timestream resources
-// so Amazon Web Services IoT FleetWise can transfer your vehicle data to the
-// Amazon Web Services Cloud. For more information, including step-by-step procedures,
-// see Setting up Amazon Web Services IoT FleetWise (https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html).
+// This API operation contains deprecated parameters. Register your account
+// again without the Timestream resources parameter so that Amazon Web Services
+// IoT FleetWise can remove the Timestream metadata stored. You should then
+// pass the data destination into the CreateCampaign (https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_CreateCampaign.html)
+// API operation.
 //
-// An Amazon Web Services account is not the same thing as a "user account".
-// An Amazon Web Services user (https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users)
-// is an identity that you create using Identity and Access Management (IAM)
-// and takes the form of either an IAM user (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html)
-// or an IAM role, both with credentials (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html).
-// A single Amazon Web Services account can, and typically does, contain many
-// users and roles.
+// You must delete any existing campaigns that include an empty data destination
+// before you register your account again. For more information, see the DeleteCampaign
+// (https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_DeleteCampaign.html)
+// API operation.
+//
+// If you want to delete the Timestream inline policy from the service-linked
+// role, such as to mitigate an overly permissive policy, you must first delete
+// any existing campaigns. Then delete the service-linked role and register
+// your account again to enable CloudWatch metrics. For more information, see
+// DeleteServiceLinkedRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html)
+// in the Identity and Access Management API Reference.
+//
+//	<p>Registers your Amazon Web Services account, IAM, and Amazon Timestream
+//	resources so Amazon Web Services IoT FleetWise can transfer your vehicle
+//	data to the Amazon Web Services Cloud. For more information, including
+//	step-by-step procedures, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html">Setting
+//	up Amazon Web Services IoT FleetWise</a>. </p> <note> <p>An Amazon Web
+//	Services account is <b>not</b> the same thing as a "user." An <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users">Amazon
+//	Web Services user</a> is an identity that you create using Identity and
+//	Access Management (IAM) and takes the form of either an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html">IAM
+//	user</a> or an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
+//	role, both with credentials</a>. A single Amazon Web Services account
+//	can, and typically does, contain many users and roles.</p> </note>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5688,10 +5705,16 @@ type Actuator struct {
 	// Deprecated: assignedValue is no longer in use
 	AssignedValue *string `locationName:"assignedValue" deprecated:"true" type:"string"`
 
+	// A comment in addition to the description.
+	Comment *string `locationName:"comment" min:"1" type:"string"`
+
 	// The specified data type of the actuator.
 	//
 	// DataType is a required field
 	DataType *string `locationName:"dataType" type:"string" required:"true" enum:"NodeDataType"`
+
+	// The deprecation message for the node or the branch that was moved or deleted.
+	DeprecationMessage *string `locationName:"deprecationMessage" min:"1" type:"string"`
 
 	// A brief description of the actuator.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -5733,8 +5756,14 @@ func (s Actuator) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Actuator) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Actuator"}
+	if s.Comment != nil && len(*s.Comment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Comment", 1))
+	}
 	if s.DataType == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataType"))
+	}
+	if s.DeprecationMessage != nil && len(*s.DeprecationMessage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeprecationMessage", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
@@ -5761,9 +5790,21 @@ func (s *Actuator) SetAssignedValue(v string) *Actuator {
 	return s
 }
 
+// SetComment sets the Comment field's value.
+func (s *Actuator) SetComment(v string) *Actuator {
+	s.Comment = &v
+	return s
+}
+
 // SetDataType sets the DataType field's value.
 func (s *Actuator) SetDataType(v string) *Actuator {
 	s.DataType = &v
+	return s
+}
+
+// SetDeprecationMessage sets the DeprecationMessage field's value.
+func (s *Actuator) SetDeprecationMessage(v string) *Actuator {
+	s.DeprecationMessage = &v
 	return s
 }
 
@@ -5898,6 +5939,9 @@ type Attribute struct {
 	// Deprecated: assignedValue is no longer in use
 	AssignedValue *string `locationName:"assignedValue" deprecated:"true" type:"string"`
 
+	// A comment in addition to the description.
+	Comment *string `locationName:"comment" min:"1" type:"string"`
+
 	// The specified data type of the attribute.
 	//
 	// DataType is a required field
@@ -5905,6 +5949,9 @@ type Attribute struct {
 
 	// The default value of the attribute.
 	DefaultValue *string `locationName:"defaultValue" type:"string"`
+
+	// The deprecation message for the node or the branch that was moved or deleted.
+	DeprecationMessage *string `locationName:"deprecationMessage" min:"1" type:"string"`
 
 	// A brief description of the attribute.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -5946,8 +5993,14 @@ func (s Attribute) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Attribute) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Attribute"}
+	if s.Comment != nil && len(*s.Comment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Comment", 1))
+	}
 	if s.DataType == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataType"))
+	}
+	if s.DeprecationMessage != nil && len(*s.DeprecationMessage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeprecationMessage", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
@@ -5974,6 +6027,12 @@ func (s *Attribute) SetAssignedValue(v string) *Attribute {
 	return s
 }
 
+// SetComment sets the Comment field's value.
+func (s *Attribute) SetComment(v string) *Attribute {
+	s.Comment = &v
+	return s
+}
+
 // SetDataType sets the DataType field's value.
 func (s *Attribute) SetDataType(v string) *Attribute {
 	s.DataType = &v
@@ -5983,6 +6042,12 @@ func (s *Attribute) SetDataType(v string) *Attribute {
 // SetDefaultValue sets the DefaultValue field's value.
 func (s *Attribute) SetDefaultValue(v string) *Attribute {
 	s.DefaultValue = &v
+	return s
+}
+
+// SetDeprecationMessage sets the DeprecationMessage field's value.
+func (s *Attribute) SetDeprecationMessage(v string) *Attribute {
+	s.DeprecationMessage = &v
 	return s
 }
 
@@ -6225,6 +6290,12 @@ func (s *BatchUpdateVehicleOutput) SetVehicles(v []*UpdateVehicleResponseItem) *
 type Branch struct {
 	_ struct{} `type:"structure"`
 
+	// A comment in addition to the description.
+	Comment *string `locationName:"comment" min:"1" type:"string"`
+
+	// The deprecation message for the node or the branch that was moved or deleted.
+	DeprecationMessage *string `locationName:"deprecationMessage" min:"1" type:"string"`
+
 	// A brief description of the branch.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
@@ -6256,6 +6327,12 @@ func (s Branch) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Branch) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Branch"}
+	if s.Comment != nil && len(*s.Comment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Comment", 1))
+	}
+	if s.DeprecationMessage != nil && len(*s.DeprecationMessage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeprecationMessage", 1))
+	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
@@ -6267,6 +6344,18 @@ func (s *Branch) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetComment sets the Comment field's value.
+func (s *Branch) SetComment(v string) *Branch {
+	s.Comment = &v
+	return s
+}
+
+// SetDeprecationMessage sets the DeprecationMessage field's value.
+func (s *Branch) SetDeprecationMessage(v string) *Branch {
+	s.DeprecationMessage = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -6579,12 +6668,19 @@ type CanSignal struct {
 	// The name of the signal.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// Indicates where data appears in the CAN message.
+	// The offset used to calculate the signal value. Combined with factor, the
+	// calculation is value = raw_value * factor + offset.
 	//
 	// Offset is a required field
 	Offset *float64 `locationName:"offset" type:"double" required:"true"`
 
-	// Indicates the beginning of the CAN message.
+	// Indicates the beginning of the CAN signal. This should always be the least
+	// significant bit (LSB).
+	//
+	// This value might be different from the value in a DBC file. For little endian
+	// signals, startBit is the same value as in the DBC file. For big endian signals
+	// in a DBC file, the start bit is the most significant bit (MSB). You will
+	// have to calculate the LSB instead and pass it as the startBit.
 	//
 	// StartBit is a required field
 	StartBit *int64 `locationName:"startBit" type:"integer" required:"true"`
@@ -6992,6 +7088,17 @@ type CreateCampaignInput struct {
 	// Default: SNAPPY
 	Compression *string `locationName:"compression" type:"string" enum:"Compression"`
 
+	// The destination where the campaign sends data. You can choose to send data
+	// to be stored in Amazon S3 or Amazon Timestream.
+	//
+	// Amazon S3 optimizes the cost of data storage and provides additional mechanisms
+	// to use vehicle data, such as data lakes, centralized data storage, data processing
+	// pipelines, and analytics.
+	//
+	// You can use Amazon Timestream to access and analyze time series data, and
+	// Timestream to query vehicle data so that you can identify trends and patterns.
+	DataDestinationConfigs []*DataDestinationConfig `locationName:"dataDestinationConfigs" min:"1" type:"list"`
+
 	// (Optional) A list of vehicle attributes to associate with a campaign.
 	//
 	// Enrich the data with specified vehicle attributes. For example, add make
@@ -7013,8 +7120,8 @@ type CreateCampaignInput struct {
 	DiagnosticsMode *string `locationName:"diagnosticsMode" type:"string" enum:"DiagnosticsMode"`
 
 	// (Optional) The time the campaign expires, in seconds since epoch (January
-	// 1, 1970 at midnight UTC time). Vehicle data won't be collected after the
-	// campaign expires.
+	// 1, 1970 at midnight UTC time). Vehicle data isn't collected after the campaign
+	// expires.
 	//
 	// Default: 253402214400 (December 31, 9999, 00:00:00 UTC)
 	ExpiryTime *time.Time `locationName:"expiryTime" type:"timestamp"`
@@ -7095,6 +7202,9 @@ func (s *CreateCampaignInput) Validate() error {
 	if s.CollectionScheme == nil {
 		invalidParams.Add(request.NewErrParamRequired("CollectionScheme"))
 	}
+	if s.DataDestinationConfigs != nil && len(s.DataDestinationConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataDestinationConfigs", 1))
+	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
@@ -7113,6 +7223,16 @@ func (s *CreateCampaignInput) Validate() error {
 	if s.CollectionScheme != nil {
 		if err := s.CollectionScheme.Validate(); err != nil {
 			invalidParams.AddNested("CollectionScheme", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataDestinationConfigs != nil {
+		for i, v := range s.DataDestinationConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataDestinationConfigs", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.SignalsToCollect != nil {
@@ -7151,6 +7271,12 @@ func (s *CreateCampaignInput) SetCollectionScheme(v *CollectionScheme) *CreateCa
 // SetCompression sets the Compression field's value.
 func (s *CreateCampaignInput) SetCompression(v string) *CreateCampaignInput {
 	s.Compression = &v
+	return s
+}
+
+// SetDataDestinationConfigs sets the DataDestinationConfigs field's value.
+func (s *CreateCampaignInput) SetDataDestinationConfigs(v []*DataDestinationConfig) *CreateCampaignInput {
+	s.DataDestinationConfigs = v
 	return s
 }
 
@@ -7949,6 +8075,9 @@ type CreateVehicleInput struct {
 
 	// Static information about a vehicle in a key-value pair. For example: "engineType"
 	// : "1.3 L R2"
+	//
+	// A campaign must include the keys (attribute names) in dataExtraDimensions
+	// for them to display in Amazon Timestream.
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
 	// The ARN of a decoder manifest.
@@ -8270,6 +8399,69 @@ func (s *CreateVehicleResponseItem) SetThingArn(v string) *CreateVehicleResponse
 // SetVehicleName sets the VehicleName field's value.
 func (s *CreateVehicleResponseItem) SetVehicleName(v string) *CreateVehicleResponseItem {
 	s.VehicleName = &v
+	return s
+}
+
+// The destination where the Amazon Web Services IoT FleetWise campaign sends
+// data. You can send data to be stored in Amazon S3 or Amazon Timestream.
+type DataDestinationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket where the Amazon Web Services IoT FleetWise campaign
+	// sends data.
+	S3Config *S3Config `locationName:"s3Config" type:"structure"`
+
+	// The Amazon Timestream table where the campaign sends data.
+	TimestreamConfig *TimestreamConfig `locationName:"timestreamConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataDestinationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataDestinationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataDestinationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataDestinationConfig"}
+	if s.S3Config != nil {
+		if err := s.S3Config.Validate(); err != nil {
+			invalidParams.AddNested("S3Config", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimestreamConfig != nil {
+		if err := s.TimestreamConfig.Validate(); err != nil {
+			invalidParams.AddNested("TimestreamConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Config sets the S3Config field's value.
+func (s *DataDestinationConfig) SetS3Config(v *S3Config) *DataDestinationConfig {
+	s.S3Config = v
+	return s
+}
+
+// SetTimestreamConfig sets the TimestreamConfig field's value.
+func (s *DataDestinationConfig) SetTimestreamConfig(v *TimestreamConfig) *DataDestinationConfig {
+	s.TimestreamConfig = v
 	return s
 }
 
@@ -9169,9 +9361,9 @@ func (s *FleetSummary) SetSignalCatalogArn(v string) *FleetSummary {
 	return s
 }
 
-// Vehicle Signal Specification (VSS) is a precise language used to describe
-// and model signals in vehicle networks. The JSON file collects signal specificiations
-// in a VSS format.
+// Vehicle Signal Specification (VSS) (https://www.w3.org/auto/wg/wiki/Vehicle_Signal_Specification_(VSS)/Vehicle_Data_Spec)
+// is a precise language used to describe and model signals in vehicle networks.
+// The JSON file collects signal specificiations in a VSS format.
 type FormattedVss struct {
 	_ struct{} `type:"structure"`
 
@@ -9270,6 +9462,17 @@ type GetCampaignOutput struct {
 	// at midnight UTC time).
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
+	// The destination where the campaign sends data. You can choose to send data
+	// to be stored in Amazon S3 or Amazon Timestream.
+	//
+	// Amazon S3 optimizes the cost of data storage and provides additional mechanisms
+	// to use vehicle data, such as data lakes, centralized data storage, data processing
+	// pipelines, and analytics.
+	//
+	// You can use Amazon Timestream to access and analyze time series data, and
+	// Timestream to query vehicle data so that you can identify trends and patterns.
+	DataDestinationConfigs []*DataDestinationConfig `locationName:"dataDestinationConfigs" min:"1" type:"list"`
+
 	// A list of vehicle attributes associated with the campaign.
 	DataExtraDimensions []*string `locationName:"dataExtraDimensions" type:"list"`
 
@@ -9360,6 +9563,12 @@ func (s *GetCampaignOutput) SetCompression(v string) *GetCampaignOutput {
 // SetCreationTime sets the CreationTime field's value.
 func (s *GetCampaignOutput) SetCreationTime(v time.Time) *GetCampaignOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetDataDestinationConfigs sets the DataDestinationConfigs field's value.
+func (s *GetCampaignOutput) SetDataDestinationConfigs(v []*DataDestinationConfig) *GetCampaignOutput {
+	s.DataDestinationConfigs = v
 	return s
 }
 
@@ -9994,9 +10203,7 @@ type GetRegisterAccountStatusOutput struct {
 
 	// Information about the registered Amazon Timestream resources or errors, if
 	// any.
-	//
-	// TimestreamRegistrationResponse is a required field
-	TimestreamRegistrationResponse *TimestreamRegistrationResponse `locationName:"timestreamRegistrationResponse" type:"structure" required:"true"`
+	TimestreamRegistrationResponse *TimestreamRegistrationResponse `locationName:"timestreamRegistrationResponse" type:"structure"`
 }
 
 // String returns the string representation.
@@ -13210,7 +13417,8 @@ type ObdSignal struct {
 	// ByteLength is a required field
 	ByteLength *int64 `locationName:"byteLength" min:"1" type:"integer" required:"true"`
 
-	// Indicates where data appears in the message.
+	// The offset used to calculate the signal value. Combined with scaling, the
+	// calculation is value = raw_value * scaling + offset.
 	//
 	// Offset is a required field
 	Offset *float64 `locationName:"offset" type:"double" required:"true"`
@@ -13438,8 +13646,8 @@ type RegisterAccountInput struct {
 	// The registered Amazon Timestream resources that Amazon Web Services IoT FleetWise
 	// edge agent software can transfer your vehicle data to.
 	//
-	// TimestreamResources is a required field
-	TimestreamResources *TimestreamResources `locationName:"timestreamResources" type:"structure" required:"true"`
+	// Deprecated: Amazon Timestream metadata is now passed in the CreateCampaign API.
+	TimestreamResources *TimestreamResources `locationName:"timestreamResources" deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -13463,9 +13671,6 @@ func (s RegisterAccountInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RegisterAccountInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RegisterAccountInput"}
-	if s.TimestreamResources == nil {
-		invalidParams.Add(request.NewErrParamRequired("TimestreamResources"))
-	}
 	if s.IamResources != nil {
 		if err := s.IamResources.Validate(); err != nil {
 			invalidParams.AddNested("IamResources", err.(request.ErrInvalidParams))
@@ -13524,9 +13729,7 @@ type RegisterAccountOutput struct {
 
 	// The registered Amazon Timestream resources that Amazon Web Services IoT FleetWise
 	// edge agent software can transfer your vehicle data to.
-	//
-	// TimestreamResources is a required field
-	TimestreamResources *TimestreamResources `locationName:"timestreamResources" type:"structure" required:"true"`
+	TimestreamResources *TimestreamResources `locationName:"timestreamResources" type:"structure"`
 }
 
 // String returns the string representation.
@@ -13651,6 +13854,107 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The Amazon S3 bucket where the Amazon Web Services IoT FleetWise campaign
+// sends data. Amazon S3 is an object storage service that stores data as objects
+// within buckets. For more information, see Creating, configuring, and working
+// with Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html)
+// in the Amazon Simple Storage Service User Guide.
+type S3Config struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon S3 bucket.
+	//
+	// BucketArn is a required field
+	BucketArn *string `locationName:"bucketArn" min:"16" type:"string" required:"true"`
+
+	// Specify the format that files are saved in the Amazon S3 bucket. You can
+	// save files in an Apache Parquet or JSON format.
+	//
+	//    * Parquet - Store data in a columnar storage file format. Parquet is optimal
+	//    for fast data retrieval and can reduce costs. This option is selected
+	//    by default.
+	//
+	//    * JSON - Store data in a standard text-based JSON file format.
+	DataFormat *string `locationName:"dataFormat" type:"string" enum:"DataFormat"`
+
+	// (Optional) Enter an S3 bucket prefix. The prefix is the string of characters
+	// after the bucket name and before the object name. You can use the prefix
+	// to organize data stored in Amazon S3 buckets. For more information, see Organizing
+	// objects using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html)
+	// in the Amazon Simple Storage Service User Guide.
+	//
+	// By default, Amazon Web Services IoT FleetWise sets the prefix processed-data/year=YY/month=MM/date=DD/hour=HH/
+	// (in UTC) to data it delivers to Amazon S3. You can enter a prefix to append
+	// it to this default prefix. For example, if you enter the prefix vehicles,
+	// the prefix will be vehicles/processed-data/year=YY/month=MM/date=DD/hour=HH/.
+	Prefix *string `locationName:"prefix" min:"1" type:"string"`
+
+	// By default, stored data is compressed as a .gzip file. Compressed files have
+	// a reduced file size, which can optimize the cost of data storage.
+	StorageCompressionFormat *string `locationName:"storageCompressionFormat" type:"string" enum:"StorageCompressionFormat"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Config) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Config) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Config) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Config"}
+	if s.BucketArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketArn"))
+	}
+	if s.BucketArn != nil && len(*s.BucketArn) < 16 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketArn", 16))
+	}
+	if s.Prefix != nil && len(*s.Prefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Prefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketArn sets the BucketArn field's value.
+func (s *S3Config) SetBucketArn(v string) *S3Config {
+	s.BucketArn = &v
+	return s
+}
+
+// SetDataFormat sets the DataFormat field's value.
+func (s *S3Config) SetDataFormat(v string) *S3Config {
+	s.DataFormat = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *S3Config) SetPrefix(v string) *S3Config {
+	s.Prefix = &v
+	return s
+}
+
+// SetStorageCompressionFormat sets the StorageCompressionFormat field's value.
+func (s *S3Config) SetStorageCompressionFormat(v string) *S3Config {
+	s.StorageCompressionFormat = &v
+	return s
+}
+
 // An input component that reports the environmental condition of a vehicle.
 //
 // You can collect data about fluid levels, temperatures, vibrations, or battery
@@ -13661,10 +13965,16 @@ type Sensor struct {
 	// A list of possible values a sensor can take.
 	AllowedValues []*string `locationName:"allowedValues" type:"list"`
 
+	// A comment in addition to the description.
+	Comment *string `locationName:"comment" min:"1" type:"string"`
+
 	// The specified data type of the sensor.
 	//
 	// DataType is a required field
 	DataType *string `locationName:"dataType" type:"string" required:"true" enum:"NodeDataType"`
+
+	// The deprecation message for the node or the branch that was moved or deleted.
+	DeprecationMessage *string `locationName:"deprecationMessage" min:"1" type:"string"`
 
 	// A brief description of a sensor.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -13706,8 +14016,14 @@ func (s Sensor) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Sensor) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Sensor"}
+	if s.Comment != nil && len(*s.Comment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Comment", 1))
+	}
 	if s.DataType == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataType"))
+	}
+	if s.DeprecationMessage != nil && len(*s.DeprecationMessage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeprecationMessage", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
@@ -13728,9 +14044,21 @@ func (s *Sensor) SetAllowedValues(v []*string) *Sensor {
 	return s
 }
 
+// SetComment sets the Comment field's value.
+func (s *Sensor) SetComment(v string) *Sensor {
+	s.Comment = &v
+	return s
+}
+
 // SetDataType sets the DataType field's value.
 func (s *Sensor) SetDataType(v string) *Sensor {
 	s.DataType = &v
+	return s
+}
+
+// SetDeprecationMessage sets the DeprecationMessage field's value.
+func (s *Sensor) SetDeprecationMessage(v string) *Sensor {
+	s.DeprecationMessage = &v
 	return s
 }
 
@@ -14299,6 +14627,79 @@ func (s *TimeBasedCollectionScheme) SetPeriodMs(v int64) *TimeBasedCollectionSch
 	return s
 }
 
+// The Amazon Timestream table where the Amazon Web Services IoT FleetWise campaign
+// sends data. Timestream stores and organizes data to optimize query processing
+// time and to reduce storage costs. For more information, see Data modeling
+// (https://docs.aws.amazon.com/timestream/latest/developerguide/data-modeling.html)
+// in the Amazon Timestream Developer Guide.
+type TimestreamConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the task execution role that grants Amazon
+	// Web Services IoT FleetWise permission to deliver data to the Amazon Timestream
+	// table.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" min:"20" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Timestream table.
+	//
+	// TimestreamTableArn is a required field
+	TimestreamTableArn *string `locationName:"timestreamTableArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimestreamConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimestreamConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimestreamConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimestreamConfig"}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
+	}
+	if s.TimestreamTableArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimestreamTableArn"))
+	}
+	if s.TimestreamTableArn != nil && len(*s.TimestreamTableArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("TimestreamTableArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *TimestreamConfig) SetExecutionRoleArn(v string) *TimestreamConfig {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetTimestreamTableArn sets the TimestreamTableArn field's value.
+func (s *TimestreamConfig) SetTimestreamTableArn(v string) *TimestreamConfig {
+	s.TimestreamTableArn = &v
+	return s
+}
+
 // Information about the registered Amazon Timestream resources or errors, if
 // any.
 type TimestreamRegistrationResponse struct {
@@ -14544,9 +14945,12 @@ type UpdateCampaignInput struct {
 	//
 	//    * APPROVE - To approve delivering a data collection scheme to vehicles.
 	//
-	//    * SUSPEND - To suspend collecting signal data.
+	//    * SUSPEND - To suspend collecting signal data. The campaign is deleted
+	//    from vehicles and all vehicles in the suspended campaign will stop sending
+	//    data.
 	//
-	//    * RESUME - To resume collecting signal data.
+	//    * RESUME - To reactivate the SUSPEND campaign. The campaign is redeployed
+	//    to all vehicles and the vehicles will resume sending data.
 	//
 	//    * UPDATE - To update a campaign.
 	//
@@ -15953,6 +16357,22 @@ func Compression_Values() []string {
 }
 
 const (
+	// DataFormatJson is a DataFormat enum value
+	DataFormatJson = "JSON"
+
+	// DataFormatParquet is a DataFormat enum value
+	DataFormatParquet = "PARQUET"
+)
+
+// DataFormat_Values returns all elements of the DataFormat enum
+func DataFormat_Values() []string {
+	return []string{
+		DataFormatJson,
+		DataFormatParquet,
+	}
+}
+
+const (
 	// DiagnosticsModeOff is a DiagnosticsMode enum value
 	DiagnosticsModeOff = "OFF"
 
@@ -16257,6 +16677,22 @@ func SpoolingMode_Values() []string {
 	return []string{
 		SpoolingModeOff,
 		SpoolingModeToDisk,
+	}
+}
+
+const (
+	// StorageCompressionFormatNone is a StorageCompressionFormat enum value
+	StorageCompressionFormatNone = "NONE"
+
+	// StorageCompressionFormatGzip is a StorageCompressionFormat enum value
+	StorageCompressionFormatGzip = "GZIP"
+)
+
+// StorageCompressionFormat_Values returns all elements of the StorageCompressionFormat enum
+func StorageCompressionFormat_Values() []string {
+	return []string{
+		StorageCompressionFormatNone,
+		StorageCompressionFormatGzip,
 	}
 }
 

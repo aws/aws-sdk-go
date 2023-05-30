@@ -42,7 +42,7 @@ func (c *SecurityLake) CreateAwsLogSourceRequest(input *CreateAwsLogSourceInput)
 	op := &request.Operation{
 		Name:       opCreateAwsLogSource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/v1/logsources/aws",
+		HTTPPath:   "/v1/datalake/logsources/aws",
 	}
 
 	if input == nil {
@@ -60,17 +60,8 @@ func (c *SecurityLake) CreateAwsLogSourceRequest(input *CreateAwsLogSourceInput)
 // Enables source types for member accounts in required Amazon Web Services
 // Regions, based on the parameters you specify. You can choose any source type
 // in any Region for either accounts that are part of a trusted organization
-// or standalone accounts. At least one of the three dimensions is a mandatory
-// input to this API. However, you can supply any combination of the three dimensions
-// to this API.
-//
-// By default, a dimension refers to the entire set. When you don't provide
-// a dimension, Security Lake assumes that the missing dimension refers to the
-// entire set. This is overridden when you supply any one of the inputs. For
-// instance, when you do not specify members, the API enables all Security Lake
-// member accounts for all sources. Similarly, when you do not specify Regions,
-// Security Lake is enabled for all the Regions where Security Lake is available
-// as a service.
+// or standalone accounts. Once you add an Amazon Web Service as a source, Security
+// Lake starts collecting logs and events from it,
 //
 // You can use this API only to enable natively supported Amazon Web Services
 // as a source. Use CreateCustomLogSource to enable data collection from a custom
@@ -85,19 +76,16 @@ func (c *SecurityLake) CreateAwsLogSourceRequest(input *CreateAwsLogSourceInput)
 //
 // Returned Error Types:
 //
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - S3Exception
-//     Provides an extension of the AmazonServiceException for errors reported by
-//     Amazon S3 while processing a request. In particular, this class provides
-//     access to the Amazon S3 extended request ID. If Amazon S3 is incorrectly
-//     handling a request and you need to contact Amazon, this extended request
-//     ID may provide useful debugging information.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -106,13 +94,14 @@ func (c *SecurityLake) CreateAwsLogSourceRequest(input *CreateAwsLogSourceInput)
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateAwsLogSource
 func (c *SecurityLake) CreateAwsLogSource(input *CreateAwsLogSourceInput) (*CreateAwsLogSourceOutput, error) {
@@ -165,7 +154,7 @@ func (c *SecurityLake) CreateCustomLogSourceRequest(input *CreateCustomLogSource
 	op := &request.Operation{
 		Name:       opCreateCustomLogSource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/v1/logsources/custom",
+		HTTPPath:   "/v1/datalake/logsources/custom",
 	}
 
 	if input == nil {
@@ -185,7 +174,8 @@ func (c *SecurityLake) CreateCustomLogSourceRequest(input *CreateCustomLogSource
 // the appropriate IAM role to invoke Glue crawler, use this API to add a custom
 // source name in Security Lake. This operation creates a partition in the Amazon
 // S3 bucket for Security Lake as the target location for log files from the
-// custom source in addition to an associated Glue table and an Glue crawler.
+// custom source. In addition, this operation also creates an associated Glue
+// table and an Glue crawler.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -196,16 +186,16 @@ func (c *SecurityLake) CreateCustomLogSourceRequest(input *CreateCustomLogSource
 //
 // Returned Error Types:
 //
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - ConflictSourceNamesException
-//     There was a conflict when you attempted to modify a Security Lake source
-//     name.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -214,17 +204,14 @@ func (c *SecurityLake) CreateCustomLogSourceRequest(input *CreateCustomLogSource
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - BucketNotFoundException
-//     Amazon Security Lake generally returns 404 errors if the requested object
-//     is missing from the bucket.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
-//
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateCustomLogSource
 func (c *SecurityLake) CreateCustomLogSource(input *CreateCustomLogSourceInput) (*CreateCustomLogSourceOutput, error) {
@@ -248,61 +235,58 @@ func (c *SecurityLake) CreateCustomLogSourceWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-const opCreateDatalake = "CreateDatalake"
+const opCreateDataLake = "CreateDataLake"
 
-// CreateDatalakeRequest generates a "aws/request.Request" representing the
-// client's request for the CreateDatalake operation. The "output" return
+// CreateDataLakeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataLake operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See CreateDatalake for more information on using the CreateDatalake
+// See CreateDataLake for more information on using the CreateDataLake
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the CreateDatalakeRequest method.
-//	req, resp := client.CreateDatalakeRequest(params)
+//	// Example sending a request using the CreateDataLakeRequest method.
+//	req, resp := client.CreateDataLakeRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalake
-func (c *SecurityLake) CreateDatalakeRequest(input *CreateDatalakeInput) (req *request.Request, output *CreateDatalakeOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDataLake
+func (c *SecurityLake) CreateDataLakeRequest(input *CreateDataLakeInput) (req *request.Request, output *CreateDataLakeOutput) {
 	op := &request.Operation{
-		Name:       opCreateDatalake,
+		Name:       opCreateDataLake,
 		HTTPMethod: "POST",
 		HTTPPath:   "/v1/datalake",
 	}
 
 	if input == nil {
-		input = &CreateDatalakeInput{}
+		input = &CreateDataLakeInput{}
 	}
 
-	output = &CreateDatalakeOutput{}
+	output = &CreateDataLakeOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// CreateDatalake API operation for Amazon Security Lake.
+// CreateDataLake API operation for Amazon Security Lake.
 //
 // Initializes an Amazon Security Lake instance with the provided (or default)
 // configuration. You can enable Security Lake in Amazon Web Services Regions
-// with customized settings before enabling log collection in Regions. You can
-// either use the enableAll parameter to specify all Regions or specify the
-// Regions where you want to enable Security Lake. To specify particular Regions,
-// use the Regions parameter and then configure these Regions using the configurations
-// parameter. If you have already enabled Security Lake in a Region when you
-// call this command, the command will update the Region if you provide new
-// configuration parameters. If you have not already enabled Security Lake in
-// the Region when you call this API, it will set up the data lake in the Region
-// with the specified configurations.
+// with customized settings before enabling log collection in Regions. By default,
+// the CreateDataLake Security Lake in all Regions. To specify particular Regions,
+// configure these Regions using the configurations parameter. If you have already
+// enabled Security Lake in a Region when you call this command, the command
+// will update the Region if you provide new configuration parameters. If you
+// have not already enabled Security Lake in the Region when you call this API,
+// it will set up the data lake in the Region with the specified configurations.
 //
 // When you enable Security Lake, it starts ingesting security data after the
 // CreateAwsLogSource call. This includes ingesting security data from sources,
@@ -317,30 +301,20 @@ func (c *SecurityLake) CreateDatalakeRequest(input *CreateDatalakeInput) (req *r
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation CreateDatalake for usage and error information.
+// API operation CreateDataLake for usage and error information.
 //
 // Returned Error Types:
 //
-//   - ServiceQuotaExceededException
-//     You have exceeded your service quota. To perform the requested action, remove
-//     some of the relevant resources, or use Service Quotas to request a service
-//     quota increase.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
 //
-//   - ConflictException
-//     Occurs when a conflict with a previous successful write is detected. This
-//     generally occurs when the previous write did not have time to propagate to
-//     the host serving the current request. A retry (with appropriate backoff logic)
-//     is the recommended response to this exception.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - ThrottlingException
-//     The limit on the number of requests per second was exceeded.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -349,74 +323,185 @@ func (c *SecurityLake) CreateDatalakeRequest(input *CreateDatalakeInput) (req *r
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalake
-func (c *SecurityLake) CreateDatalake(input *CreateDatalakeInput) (*CreateDatalakeOutput, error) {
-	req, out := c.CreateDatalakeRequest(input)
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDataLake
+func (c *SecurityLake) CreateDataLake(input *CreateDataLakeInput) (*CreateDataLakeOutput, error) {
+	req, out := c.CreateDataLakeRequest(input)
 	return out, req.Send()
 }
 
-// CreateDatalakeWithContext is the same as CreateDatalake with the addition of
+// CreateDataLakeWithContext is the same as CreateDataLake with the addition of
 // the ability to pass a context and additional request options.
 //
-// See CreateDatalake for details on how to use this API operation.
+// See CreateDataLake for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) CreateDatalakeWithContext(ctx aws.Context, input *CreateDatalakeInput, opts ...request.Option) (*CreateDatalakeOutput, error) {
-	req, out := c.CreateDatalakeRequest(input)
+func (c *SecurityLake) CreateDataLakeWithContext(ctx aws.Context, input *CreateDataLakeInput, opts ...request.Option) (*CreateDataLakeOutput, error) {
+	req, out := c.CreateDataLakeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-const opCreateDatalakeAutoEnable = "CreateDatalakeAutoEnable"
+const opCreateDataLakeExceptionSubscription = "CreateDataLakeExceptionSubscription"
 
-// CreateDatalakeAutoEnableRequest generates a "aws/request.Request" representing the
-// client's request for the CreateDatalakeAutoEnable operation. The "output" return
+// CreateDataLakeExceptionSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataLakeExceptionSubscription operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See CreateDatalakeAutoEnable for more information on using the CreateDatalakeAutoEnable
+// See CreateDataLakeExceptionSubscription for more information on using the CreateDataLakeExceptionSubscription
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the CreateDatalakeAutoEnableRequest method.
-//	req, resp := client.CreateDatalakeAutoEnableRequest(params)
+//	// Example sending a request using the CreateDataLakeExceptionSubscriptionRequest method.
+//	req, resp := client.CreateDataLakeExceptionSubscriptionRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalakeAutoEnable
-func (c *SecurityLake) CreateDatalakeAutoEnableRequest(input *CreateDatalakeAutoEnableInput) (req *request.Request, output *CreateDatalakeAutoEnableOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDataLakeExceptionSubscription
+func (c *SecurityLake) CreateDataLakeExceptionSubscriptionRequest(input *CreateDataLakeExceptionSubscriptionInput) (req *request.Request, output *CreateDataLakeExceptionSubscriptionOutput) {
 	op := &request.Operation{
-		Name:       opCreateDatalakeAutoEnable,
+		Name:       opCreateDataLakeExceptionSubscription,
 		HTTPMethod: "POST",
-		HTTPPath:   "/v1/datalake/autoenable",
+		HTTPPath:   "/v1/datalake/exceptions/subscription",
 	}
 
 	if input == nil {
-		input = &CreateDatalakeAutoEnableInput{}
+		input = &CreateDataLakeExceptionSubscriptionInput{}
 	}
 
-	output = &CreateDatalakeAutoEnableOutput{}
+	output = &CreateDataLakeExceptionSubscriptionOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// CreateDatalakeAutoEnable API operation for Amazon Security Lake.
+// CreateDataLakeExceptionSubscription API operation for Amazon Security Lake.
+//
+// Creates the specified notification subscription in Amazon Security Lake for
+// the organization you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Security Lake's
+// API operation CreateDataLakeExceptionSubscription for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - InternalServerException
+//     Internal service exceptions are sometimes caused by transient issues. Before
+//     you start troubleshooting, perform the operation again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Access denied errors
+//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
+//     request. An explicit denial occurs when a policy contains a Deny statement
+//     for the specific Amazon Web Services action. An implicit denial occurs when
+//     there is no applicable Deny statement and also no applicable Allow statement.
+//
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDataLakeExceptionSubscription
+func (c *SecurityLake) CreateDataLakeExceptionSubscription(input *CreateDataLakeExceptionSubscriptionInput) (*CreateDataLakeExceptionSubscriptionOutput, error) {
+	req, out := c.CreateDataLakeExceptionSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// CreateDataLakeExceptionSubscriptionWithContext is the same as CreateDataLakeExceptionSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataLakeExceptionSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityLake) CreateDataLakeExceptionSubscriptionWithContext(ctx aws.Context, input *CreateDataLakeExceptionSubscriptionInput, opts ...request.Option) (*CreateDataLakeExceptionSubscriptionOutput, error) {
+	req, out := c.CreateDataLakeExceptionSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDataLakeOrganizationConfiguration = "CreateDataLakeOrganizationConfiguration"
+
+// CreateDataLakeOrganizationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataLakeOrganizationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataLakeOrganizationConfiguration for more information on using the CreateDataLakeOrganizationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateDataLakeOrganizationConfigurationRequest method.
+//	req, resp := client.CreateDataLakeOrganizationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDataLakeOrganizationConfiguration
+func (c *SecurityLake) CreateDataLakeOrganizationConfigurationRequest(input *CreateDataLakeOrganizationConfigurationInput) (req *request.Request, output *CreateDataLakeOrganizationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataLakeOrganizationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/datalake/organization/configuration",
+	}
+
+	if input == nil {
+		input = &CreateDataLakeOrganizationConfigurationInput{}
+	}
+
+	output = &CreateDataLakeOrganizationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateDataLakeOrganizationConfiguration API operation for Amazon Security Lake.
 //
 // Automatically enables Amazon Security Lake for new member accounts in your
 // organization. Security Lake is not automatically enabled for any existing
@@ -427,16 +512,20 @@ func (c *SecurityLake) CreateDatalakeAutoEnableRequest(input *CreateDatalakeAuto
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation CreateDatalakeAutoEnable for usage and error information.
+// API operation CreateDataLakeOrganizationConfiguration for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -445,222 +534,32 @@ func (c *SecurityLake) CreateDatalakeAutoEnableRequest(input *CreateDatalakeAuto
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalakeAutoEnable
-func (c *SecurityLake) CreateDatalakeAutoEnable(input *CreateDatalakeAutoEnableInput) (*CreateDatalakeAutoEnableOutput, error) {
-	req, out := c.CreateDatalakeAutoEnableRequest(input)
-	return out, req.Send()
-}
-
-// CreateDatalakeAutoEnableWithContext is the same as CreateDatalakeAutoEnable with the addition of
-// the ability to pass a context and additional request options.
-//
-// See CreateDatalakeAutoEnable for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SecurityLake) CreateDatalakeAutoEnableWithContext(ctx aws.Context, input *CreateDatalakeAutoEnableInput, opts ...request.Option) (*CreateDatalakeAutoEnableOutput, error) {
-	req, out := c.CreateDatalakeAutoEnableRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opCreateDatalakeDelegatedAdmin = "CreateDatalakeDelegatedAdmin"
-
-// CreateDatalakeDelegatedAdminRequest generates a "aws/request.Request" representing the
-// client's request for the CreateDatalakeDelegatedAdmin operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See CreateDatalakeDelegatedAdmin for more information on using the CreateDatalakeDelegatedAdmin
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//	// Example sending a request using the CreateDatalakeDelegatedAdminRequest method.
-//	req, resp := client.CreateDatalakeDelegatedAdminRequest(params)
-//
-//	err := req.Send()
-//	if err == nil { // resp is now filled
-//	    fmt.Println(resp)
-//	}
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalakeDelegatedAdmin
-func (c *SecurityLake) CreateDatalakeDelegatedAdminRequest(input *CreateDatalakeDelegatedAdminInput) (req *request.Request, output *CreateDatalakeDelegatedAdminOutput) {
-	op := &request.Operation{
-		Name:       opCreateDatalakeDelegatedAdmin,
-		HTTPMethod: "POST",
-		HTTPPath:   "/v1/datalake/delegate",
-	}
-
-	if input == nil {
-		input = &CreateDatalakeDelegatedAdminInput{}
-	}
-
-	output = &CreateDatalakeDelegatedAdminOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// CreateDatalakeDelegatedAdmin API operation for Amazon Security Lake.
-//
-// Designates the Amazon Security Lake delegated administrator account for the
-// organization. This API can only be called by the organization management
-// account. The organization management account cannot be the delegated administrator
-// account.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Security Lake's
-// API operation CreateDatalakeDelegatedAdmin for usage and error information.
-//
-// Returned Error Types:
-//
-//   - InternalServerException
-//     Internal service exceptions are sometimes caused by transient issues. Before
-//     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action. Access denied errors
-//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
-//     request. An explicit denial occurs when a policy contains a Deny statement
-//     for the specific Amazon Web Services action. An implicit denial occurs when
-//     there is no applicable Deny statement and also no applicable Allow statement.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalakeDelegatedAdmin
-func (c *SecurityLake) CreateDatalakeDelegatedAdmin(input *CreateDatalakeDelegatedAdminInput) (*CreateDatalakeDelegatedAdminOutput, error) {
-	req, out := c.CreateDatalakeDelegatedAdminRequest(input)
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDataLakeOrganizationConfiguration
+func (c *SecurityLake) CreateDataLakeOrganizationConfiguration(input *CreateDataLakeOrganizationConfigurationInput) (*CreateDataLakeOrganizationConfigurationOutput, error) {
+	req, out := c.CreateDataLakeOrganizationConfigurationRequest(input)
 	return out, req.Send()
 }
 
-// CreateDatalakeDelegatedAdminWithContext is the same as CreateDatalakeDelegatedAdmin with the addition of
+// CreateDataLakeOrganizationConfigurationWithContext is the same as CreateDataLakeOrganizationConfiguration with the addition of
 // the ability to pass a context and additional request options.
 //
-// See CreateDatalakeDelegatedAdmin for details on how to use this API operation.
+// See CreateDataLakeOrganizationConfiguration for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) CreateDatalakeDelegatedAdminWithContext(ctx aws.Context, input *CreateDatalakeDelegatedAdminInput, opts ...request.Option) (*CreateDatalakeDelegatedAdminOutput, error) {
-	req, out := c.CreateDatalakeDelegatedAdminRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opCreateDatalakeExceptionsSubscription = "CreateDatalakeExceptionsSubscription"
-
-// CreateDatalakeExceptionsSubscriptionRequest generates a "aws/request.Request" representing the
-// client's request for the CreateDatalakeExceptionsSubscription operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See CreateDatalakeExceptionsSubscription for more information on using the CreateDatalakeExceptionsSubscription
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//	// Example sending a request using the CreateDatalakeExceptionsSubscriptionRequest method.
-//	req, resp := client.CreateDatalakeExceptionsSubscriptionRequest(params)
-//
-//	err := req.Send()
-//	if err == nil { // resp is now filled
-//	    fmt.Println(resp)
-//	}
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalakeExceptionsSubscription
-func (c *SecurityLake) CreateDatalakeExceptionsSubscriptionRequest(input *CreateDatalakeExceptionsSubscriptionInput) (req *request.Request, output *CreateDatalakeExceptionsSubscriptionOutput) {
-	op := &request.Operation{
-		Name:       opCreateDatalakeExceptionsSubscription,
-		HTTPMethod: "POST",
-		HTTPPath:   "/v1/datalake/exceptions/subscription",
-	}
-
-	if input == nil {
-		input = &CreateDatalakeExceptionsSubscriptionInput{}
-	}
-
-	output = &CreateDatalakeExceptionsSubscriptionOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// CreateDatalakeExceptionsSubscription API operation for Amazon Security Lake.
-//
-// Creates the specified notification subscription in Amazon Security Lake for
-// the organization you specify.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Security Lake's
-// API operation CreateDatalakeExceptionsSubscription for usage and error information.
-//
-// Returned Error Types:
-//
-//   - InternalServerException
-//     Internal service exceptions are sometimes caused by transient issues. Before
-//     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action. Access denied errors
-//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
-//     request. An explicit denial occurs when a policy contains a Deny statement
-//     for the specific Amazon Web Services action. An implicit denial occurs when
-//     there is no applicable Deny statement and also no applicable Allow statement.
-//
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalakeExceptionsSubscription
-func (c *SecurityLake) CreateDatalakeExceptionsSubscription(input *CreateDatalakeExceptionsSubscriptionInput) (*CreateDatalakeExceptionsSubscriptionOutput, error) {
-	req, out := c.CreateDatalakeExceptionsSubscriptionRequest(input)
-	return out, req.Send()
-}
-
-// CreateDatalakeExceptionsSubscriptionWithContext is the same as CreateDatalakeExceptionsSubscription with the addition of
-// the ability to pass a context and additional request options.
-//
-// See CreateDatalakeExceptionsSubscription for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SecurityLake) CreateDatalakeExceptionsSubscriptionWithContext(ctx aws.Context, input *CreateDatalakeExceptionsSubscriptionInput, opts ...request.Option) (*CreateDatalakeExceptionsSubscriptionOutput, error) {
-	req, out := c.CreateDatalakeExceptionsSubscriptionRequest(input)
+func (c *SecurityLake) CreateDataLakeOrganizationConfigurationWithContext(ctx aws.Context, input *CreateDataLakeOrganizationConfigurationInput, opts ...request.Option) (*CreateDataLakeOrganizationConfigurationOutput, error) {
+	req, out := c.CreateDataLakeOrganizationConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -722,15 +621,16 @@ func (c *SecurityLake) CreateSubscriberRequest(input *CreateSubscriberInput) (re
 //
 // Returned Error Types:
 //
-//   - ConflictSubscriptionException
-//     A conflicting subscription exception operation is in progress.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -739,21 +639,14 @@ func (c *SecurityLake) CreateSubscriberRequest(input *CreateSubscriberInput) (re
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - BucketNotFoundException
-//     Amazon Security Lake generally returns 404 errors if the requested object
-//     is missing from the bucket.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
-//
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-//   - InvalidInputException
-//     The request was rejected because a value that's not valid or is out of range
-//     was supplied for an input parameter.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateSubscriber
 func (c *SecurityLake) CreateSubscriber(input *CreateSubscriberInput) (*CreateSubscriberOutput, error) {
@@ -777,48 +670,48 @@ func (c *SecurityLake) CreateSubscriberWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
-const opCreateSubscriptionNotificationConfiguration = "CreateSubscriptionNotificationConfiguration"
+const opCreateSubscriberNotification = "CreateSubscriberNotification"
 
-// CreateSubscriptionNotificationConfigurationRequest generates a "aws/request.Request" representing the
-// client's request for the CreateSubscriptionNotificationConfiguration operation. The "output" return
+// CreateSubscriberNotificationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSubscriberNotification operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See CreateSubscriptionNotificationConfiguration for more information on using the CreateSubscriptionNotificationConfiguration
+// See CreateSubscriberNotification for more information on using the CreateSubscriberNotification
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the CreateSubscriptionNotificationConfigurationRequest method.
-//	req, resp := client.CreateSubscriptionNotificationConfigurationRequest(params)
+//	// Example sending a request using the CreateSubscriberNotificationRequest method.
+//	req, resp := client.CreateSubscriberNotificationRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateSubscriptionNotificationConfiguration
-func (c *SecurityLake) CreateSubscriptionNotificationConfigurationRequest(input *CreateSubscriptionNotificationConfigurationInput) (req *request.Request, output *CreateSubscriptionNotificationConfigurationOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateSubscriberNotification
+func (c *SecurityLake) CreateSubscriberNotificationRequest(input *CreateSubscriberNotificationInput) (req *request.Request, output *CreateSubscriberNotificationOutput) {
 	op := &request.Operation{
-		Name:       opCreateSubscriptionNotificationConfiguration,
+		Name:       opCreateSubscriberNotification,
 		HTTPMethod: "POST",
-		HTTPPath:   "/subscription-notifications/{subscriptionId}",
+		HTTPPath:   "/v1/subscribers/{subscriberId}/notification",
 	}
 
 	if input == nil {
-		input = &CreateSubscriptionNotificationConfigurationInput{}
+		input = &CreateSubscriberNotificationInput{}
 	}
 
-	output = &CreateSubscriptionNotificationConfigurationOutput{}
+	output = &CreateSubscriberNotificationOutput{}
 	req = c.newRequest(op, input, output)
 	return
 }
 
-// CreateSubscriptionNotificationConfiguration API operation for Amazon Security Lake.
+// CreateSubscriberNotification API operation for Amazon Security Lake.
 //
 // Notifies the subscriber when new data is written to the data lake for the
 // sources that the subscriber consumes in Security Lake. You can create only
@@ -829,19 +722,20 @@ func (c *SecurityLake) CreateSubscriptionNotificationConfigurationRequest(input 
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation CreateSubscriptionNotificationConfiguration for usage and error information.
+// API operation CreateSubscriberNotification for usage and error information.
 //
 // Returned Error Types:
 //
-//   - ConcurrentModificationException
-//     More than one process tried to modify a resource at the same time.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -850,35 +744,32 @@ func (c *SecurityLake) CreateSubscriptionNotificationConfigurationRequest(input 
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   - InvalidInputException
-//     The request was rejected because a value that's not valid or is out of range
-//     was supplied for an input parameter.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateSubscriptionNotificationConfiguration
-func (c *SecurityLake) CreateSubscriptionNotificationConfiguration(input *CreateSubscriptionNotificationConfigurationInput) (*CreateSubscriptionNotificationConfigurationOutput, error) {
-	req, out := c.CreateSubscriptionNotificationConfigurationRequest(input)
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateSubscriberNotification
+func (c *SecurityLake) CreateSubscriberNotification(input *CreateSubscriberNotificationInput) (*CreateSubscriberNotificationOutput, error) {
+	req, out := c.CreateSubscriberNotificationRequest(input)
 	return out, req.Send()
 }
 
-// CreateSubscriptionNotificationConfigurationWithContext is the same as CreateSubscriptionNotificationConfiguration with the addition of
+// CreateSubscriberNotificationWithContext is the same as CreateSubscriberNotification with the addition of
 // the ability to pass a context and additional request options.
 //
-// See CreateSubscriptionNotificationConfiguration for details on how to use this API operation.
+// See CreateSubscriberNotification for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) CreateSubscriptionNotificationConfigurationWithContext(ctx aws.Context, input *CreateSubscriptionNotificationConfigurationInput, opts ...request.Option) (*CreateSubscriptionNotificationConfigurationOutput, error) {
-	req, out := c.CreateSubscriptionNotificationConfigurationRequest(input)
+func (c *SecurityLake) CreateSubscriberNotificationWithContext(ctx aws.Context, input *CreateSubscriberNotificationInput, opts ...request.Option) (*CreateSubscriberNotificationOutput, error) {
+	req, out := c.CreateSubscriberNotificationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -913,7 +804,7 @@ func (c *SecurityLake) DeleteAwsLogSourceRequest(input *DeleteAwsLogSourceInput)
 	op := &request.Operation{
 		Name:       opDeleteAwsLogSource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/v1/logsources/aws/delete",
+		HTTPPath:   "/v1/datalake/logsources/aws/delete",
 	}
 
 	if input == nil {
@@ -928,25 +819,14 @@ func (c *SecurityLake) DeleteAwsLogSourceRequest(input *DeleteAwsLogSourceInput)
 // DeleteAwsLogSource API operation for Amazon Security Lake.
 //
 // Removes a natively supported Amazon Web Service as an Amazon Security Lake
-// source. When you remove the source, Security Lake stops collecting data from
-// that source, and subscribers can no longer consume new data from the source.
-// Subscribers can still consume data that Security Lake collected from the
-// source before disablement.
+// source. You can remove a source for one or more Regions. When you remove
+// the source, Security Lake stops collecting data from that source in the specified
+// Regions and accounts, and subscribers can no longer consume new data from
+// the source. However, subscribers can still consume data that Security Lake
+// collected from the source before removal.
 //
 // You can choose any source type in any Amazon Web Services Region for either
 // accounts that are part of a trusted organization or standalone accounts.
-// At least one of the three dimensions is a mandatory input to this API. However,
-// you can supply any combination of the three dimensions to this API.
-//
-// By default, a dimension refers to the entire set. This is overridden when
-// you supply any one of the inputs. For instance, when you do not specify members,
-// the API disables all Security Lake member accounts for sources. Similarly,
-// when you do not specify Regions, Security Lake is disabled for all the Regions
-// where Security Lake is available as a service.
-//
-// When you don't provide a dimension, Security Lake assumes that the missing
-// dimension refers to the entire set. For example, if you don't provide specific
-// accounts, the API applies to the entire set of accounts in your organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -957,12 +837,16 @@ func (c *SecurityLake) DeleteAwsLogSourceRequest(input *DeleteAwsLogSourceInput)
 //
 // Returned Error Types:
 //
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -971,10 +855,14 @@ func (c *SecurityLake) DeleteAwsLogSourceRequest(input *DeleteAwsLogSourceInput)
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteAwsLogSource
 func (c *SecurityLake) DeleteAwsLogSource(input *DeleteAwsLogSourceInput) (*DeleteAwsLogSourceOutput, error) {
@@ -1027,7 +915,7 @@ func (c *SecurityLake) DeleteCustomLogSourceRequest(input *DeleteCustomLogSource
 	op := &request.Operation{
 		Name:       opDeleteCustomLogSource,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/v1/logsources/custom",
+		HTTPPath:   "/v1/datalake/logsources/custom/{sourceName}",
 	}
 
 	if input == nil {
@@ -1036,12 +924,14 @@ func (c *SecurityLake) DeleteCustomLogSourceRequest(input *DeleteCustomLogSource
 
 	output = &DeleteCustomLogSourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // DeleteCustomLogSource API operation for Amazon Security Lake.
 //
-// Removes a custom log source from Amazon Security Lake.
+// Removes a custom log source from Amazon Security Lake, to stop sending data
+// from the custom source to Security Lake.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1052,16 +942,16 @@ func (c *SecurityLake) DeleteCustomLogSourceRequest(input *DeleteCustomLogSource
 //
 // Returned Error Types:
 //
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - ConflictSourceNamesException
-//     There was a conflict when you attempted to modify a Security Lake source
-//     name.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -1070,17 +960,14 @@ func (c *SecurityLake) DeleteCustomLogSourceRequest(input *DeleteCustomLogSource
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - BucketNotFoundException
-//     Amazon Security Lake generally returns 404 errors if the requested object
-//     is missing from the bucket.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
-//
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteCustomLogSource
 func (c *SecurityLake) DeleteCustomLogSource(input *DeleteCustomLogSourceInput) (*DeleteCustomLogSourceOutput, error) {
@@ -1104,75 +991,87 @@ func (c *SecurityLake) DeleteCustomLogSourceWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-const opDeleteDatalake = "DeleteDatalake"
+const opDeleteDataLake = "DeleteDataLake"
 
-// DeleteDatalakeRequest generates a "aws/request.Request" representing the
-// client's request for the DeleteDatalake operation. The "output" return
+// DeleteDataLakeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataLake operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See DeleteDatalake for more information on using the DeleteDatalake
+// See DeleteDataLake for more information on using the DeleteDataLake
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the DeleteDatalakeRequest method.
-//	req, resp := client.DeleteDatalakeRequest(params)
+//	// Example sending a request using the DeleteDataLakeRequest method.
+//	req, resp := client.DeleteDataLakeRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalake
-func (c *SecurityLake) DeleteDatalakeRequest(input *DeleteDatalakeInput) (req *request.Request, output *DeleteDatalakeOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDataLake
+func (c *SecurityLake) DeleteDataLakeRequest(input *DeleteDataLakeInput) (req *request.Request, output *DeleteDataLakeOutput) {
 	op := &request.Operation{
-		Name:       opDeleteDatalake,
-		HTTPMethod: "DELETE",
-		HTTPPath:   "/v1/datalake",
+		Name:       opDeleteDataLake,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/datalake/delete",
 	}
 
 	if input == nil {
-		input = &DeleteDatalakeInput{}
+		input = &DeleteDataLakeInput{}
 	}
 
-	output = &DeleteDatalakeOutput{}
+	output = &DeleteDataLakeOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// DeleteDatalake API operation for Amazon Security Lake.
+// DeleteDataLake API operation for Amazon Security Lake.
 //
-// When you delete Amazon Security Lake from your account, Security Lake is
-// disabled in all Amazon Web Services Regions. Also, this API automatically
-// takes steps to remove the account from Security Lake .
+// When you disable Amazon Security Lake from your account, Security Lake is
+// disabled in all Amazon Web Services Regions and it stops collecting data
+// from your sources. Also, this API automatically takes steps to remove the
+// account from Security Lake. However, Security Lake retains all of your existing
+// settings and the resources that it created in your Amazon Web Services account
+// in the current Amazon Web Services Region.
 //
-// This operation disables security data collection from sources, deletes data
-// stored, and stops making data accessible to subscribers. Security Lake also
-// deletes all the existing settings and resources that it stores or maintains
-// for your Amazon Web Services account in the current Region, including security
-// log and event data. The DeleteDatalake operation does not delete the Amazon
-// S3 bucket, which is owned by your Amazon Web Services account. For more information,
-// see the Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html).
+// The DeleteDataLake operation does not delete the data that is stored in your
+// Amazon S3 bucket, which is owned by your Amazon Web Services account. For
+// more information, see the Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation DeleteDatalake for usage and error information.
+// API operation DeleteDataLake for usage and error information.
 //
 // Returned Error Types:
 //
-//   - ServiceQuotaExceededException
-//     You have exceeded your service quota. To perform the requested action, remove
-//     some of the relevant resources, or use Service Quotas to request a service
-//     quota increase.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - InternalServerException
+//     Internal service exceptions are sometimes caused by transient issues. Before
+//     you start troubleshooting, perform the operation again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Access denied errors
+//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
+//     request. An explicit denial occurs when a policy contains a Deny statement
+//     for the specific Amazon Web Services action. An implicit denial occurs when
+//     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -1180,288 +1079,74 @@ func (c *SecurityLake) DeleteDatalakeRequest(input *DeleteDatalakeInput) (req *r
 //     the host serving the current request. A retry (with appropriate backoff logic)
 //     is the recommended response to this exception.
 //
-//   - InternalServerException
-//     Internal service exceptions are sometimes caused by transient issues. Before
-//     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action. Access denied errors
-//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
-//     request. An explicit denial occurs when a policy contains a Deny statement
-//     for the specific Amazon Web Services action. An implicit denial occurs when
-//     there is no applicable Deny statement and also no applicable Allow statement.
-//
-//   - ResourceNotFoundException
-//     The resource could not be found.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalake
-func (c *SecurityLake) DeleteDatalake(input *DeleteDatalakeInput) (*DeleteDatalakeOutput, error) {
-	req, out := c.DeleteDatalakeRequest(input)
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDataLake
+func (c *SecurityLake) DeleteDataLake(input *DeleteDataLakeInput) (*DeleteDataLakeOutput, error) {
+	req, out := c.DeleteDataLakeRequest(input)
 	return out, req.Send()
 }
 
-// DeleteDatalakeWithContext is the same as DeleteDatalake with the addition of
+// DeleteDataLakeWithContext is the same as DeleteDataLake with the addition of
 // the ability to pass a context and additional request options.
 //
-// See DeleteDatalake for details on how to use this API operation.
+// See DeleteDataLake for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) DeleteDatalakeWithContext(ctx aws.Context, input *DeleteDatalakeInput, opts ...request.Option) (*DeleteDatalakeOutput, error) {
-	req, out := c.DeleteDatalakeRequest(input)
+func (c *SecurityLake) DeleteDataLakeWithContext(ctx aws.Context, input *DeleteDataLakeInput, opts ...request.Option) (*DeleteDataLakeOutput, error) {
+	req, out := c.DeleteDataLakeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-const opDeleteDatalakeAutoEnable = "DeleteDatalakeAutoEnable"
+const opDeleteDataLakeExceptionSubscription = "DeleteDataLakeExceptionSubscription"
 
-// DeleteDatalakeAutoEnableRequest generates a "aws/request.Request" representing the
-// client's request for the DeleteDatalakeAutoEnable operation. The "output" return
+// DeleteDataLakeExceptionSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataLakeExceptionSubscription operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See DeleteDatalakeAutoEnable for more information on using the DeleteDatalakeAutoEnable
+// See DeleteDataLakeExceptionSubscription for more information on using the DeleteDataLakeExceptionSubscription
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the DeleteDatalakeAutoEnableRequest method.
-//	req, resp := client.DeleteDatalakeAutoEnableRequest(params)
+//	// Example sending a request using the DeleteDataLakeExceptionSubscriptionRequest method.
+//	req, resp := client.DeleteDataLakeExceptionSubscriptionRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalakeAutoEnable
-func (c *SecurityLake) DeleteDatalakeAutoEnableRequest(input *DeleteDatalakeAutoEnableInput) (req *request.Request, output *DeleteDatalakeAutoEnableOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDataLakeExceptionSubscription
+func (c *SecurityLake) DeleteDataLakeExceptionSubscriptionRequest(input *DeleteDataLakeExceptionSubscriptionInput) (req *request.Request, output *DeleteDataLakeExceptionSubscriptionOutput) {
 	op := &request.Operation{
-		Name:       opDeleteDatalakeAutoEnable,
-		HTTPMethod: "POST",
-		HTTPPath:   "/v1/datalake/autoenable/delete",
-	}
-
-	if input == nil {
-		input = &DeleteDatalakeAutoEnableInput{}
-	}
-
-	output = &DeleteDatalakeAutoEnableOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// DeleteDatalakeAutoEnable API operation for Amazon Security Lake.
-//
-// DeleteDatalakeAutoEnable removes automatic enablement of configuration settings
-// for new member accounts (but keeps settings for the delegated administrator)
-// from Amazon Security Lake. You must run this API using credentials of the
-// delegated administrator. When you run this API, new member accounts that
-// are added after the organization enables Security Lake won't contribute to
-// the data lake.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Security Lake's
-// API operation DeleteDatalakeAutoEnable for usage and error information.
-//
-// Returned Error Types:
-//
-//   - InternalServerException
-//     Internal service exceptions are sometimes caused by transient issues. Before
-//     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action. Access denied errors
-//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
-//     request. An explicit denial occurs when a policy contains a Deny statement
-//     for the specific Amazon Web Services action. An implicit denial occurs when
-//     there is no applicable Deny statement and also no applicable Allow statement.
-//
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalakeAutoEnable
-func (c *SecurityLake) DeleteDatalakeAutoEnable(input *DeleteDatalakeAutoEnableInput) (*DeleteDatalakeAutoEnableOutput, error) {
-	req, out := c.DeleteDatalakeAutoEnableRequest(input)
-	return out, req.Send()
-}
-
-// DeleteDatalakeAutoEnableWithContext is the same as DeleteDatalakeAutoEnable with the addition of
-// the ability to pass a context and additional request options.
-//
-// See DeleteDatalakeAutoEnable for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SecurityLake) DeleteDatalakeAutoEnableWithContext(ctx aws.Context, input *DeleteDatalakeAutoEnableInput, opts ...request.Option) (*DeleteDatalakeAutoEnableOutput, error) {
-	req, out := c.DeleteDatalakeAutoEnableRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opDeleteDatalakeDelegatedAdmin = "DeleteDatalakeDelegatedAdmin"
-
-// DeleteDatalakeDelegatedAdminRequest generates a "aws/request.Request" representing the
-// client's request for the DeleteDatalakeDelegatedAdmin operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See DeleteDatalakeDelegatedAdmin for more information on using the DeleteDatalakeDelegatedAdmin
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//	// Example sending a request using the DeleteDatalakeDelegatedAdminRequest method.
-//	req, resp := client.DeleteDatalakeDelegatedAdminRequest(params)
-//
-//	err := req.Send()
-//	if err == nil { // resp is now filled
-//	    fmt.Println(resp)
-//	}
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalakeDelegatedAdmin
-func (c *SecurityLake) DeleteDatalakeDelegatedAdminRequest(input *DeleteDatalakeDelegatedAdminInput) (req *request.Request, output *DeleteDatalakeDelegatedAdminOutput) {
-	op := &request.Operation{
-		Name:       opDeleteDatalakeDelegatedAdmin,
-		HTTPMethod: "DELETE",
-		HTTPPath:   "/v1/datalake/delegate/{account}",
-	}
-
-	if input == nil {
-		input = &DeleteDatalakeDelegatedAdminInput{}
-	}
-
-	output = &DeleteDatalakeDelegatedAdminOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// DeleteDatalakeDelegatedAdmin API operation for Amazon Security Lake.
-//
-// Deletes the Amazon Security Lake delegated administrator account for the
-// organization. This API can only be called by the organization management
-// account. The organization management account cannot be the delegated administrator
-// account.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Security Lake's
-// API operation DeleteDatalakeDelegatedAdmin for usage and error information.
-//
-// Returned Error Types:
-//
-//   - InternalServerException
-//     Internal service exceptions are sometimes caused by transient issues. Before
-//     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - ThrottlingException
-//     The limit on the number of requests per second was exceeded.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action. Access denied errors
-//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
-//     request. An explicit denial occurs when a policy contains a Deny statement
-//     for the specific Amazon Web Services action. An implicit denial occurs when
-//     there is no applicable Deny statement and also no applicable Allow statement.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalakeDelegatedAdmin
-func (c *SecurityLake) DeleteDatalakeDelegatedAdmin(input *DeleteDatalakeDelegatedAdminInput) (*DeleteDatalakeDelegatedAdminOutput, error) {
-	req, out := c.DeleteDatalakeDelegatedAdminRequest(input)
-	return out, req.Send()
-}
-
-// DeleteDatalakeDelegatedAdminWithContext is the same as DeleteDatalakeDelegatedAdmin with the addition of
-// the ability to pass a context and additional request options.
-//
-// See DeleteDatalakeDelegatedAdmin for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SecurityLake) DeleteDatalakeDelegatedAdminWithContext(ctx aws.Context, input *DeleteDatalakeDelegatedAdminInput, opts ...request.Option) (*DeleteDatalakeDelegatedAdminOutput, error) {
-	req, out := c.DeleteDatalakeDelegatedAdminRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opDeleteDatalakeExceptionsSubscription = "DeleteDatalakeExceptionsSubscription"
-
-// DeleteDatalakeExceptionsSubscriptionRequest generates a "aws/request.Request" representing the
-// client's request for the DeleteDatalakeExceptionsSubscription operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See DeleteDatalakeExceptionsSubscription for more information on using the DeleteDatalakeExceptionsSubscription
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//	// Example sending a request using the DeleteDatalakeExceptionsSubscriptionRequest method.
-//	req, resp := client.DeleteDatalakeExceptionsSubscriptionRequest(params)
-//
-//	err := req.Send()
-//	if err == nil { // resp is now filled
-//	    fmt.Println(resp)
-//	}
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalakeExceptionsSubscription
-func (c *SecurityLake) DeleteDatalakeExceptionsSubscriptionRequest(input *DeleteDatalakeExceptionsSubscriptionInput) (req *request.Request, output *DeleteDatalakeExceptionsSubscriptionOutput) {
-	op := &request.Operation{
-		Name:       opDeleteDatalakeExceptionsSubscription,
+		Name:       opDeleteDataLakeExceptionSubscription,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/v1/datalake/exceptions/subscription",
 	}
 
 	if input == nil {
-		input = &DeleteDatalakeExceptionsSubscriptionInput{}
+		input = &DeleteDataLakeExceptionSubscriptionInput{}
 	}
 
-	output = &DeleteDatalakeExceptionsSubscriptionOutput{}
+	output = &DeleteDataLakeExceptionSubscriptionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// DeleteDatalakeExceptionsSubscription API operation for Amazon Security Lake.
+// DeleteDataLakeExceptionSubscription API operation for Amazon Security Lake.
 //
 // Deletes the specified notification subscription in Amazon Security Lake for
 // the organization you specify.
@@ -1471,16 +1156,20 @@ func (c *SecurityLake) DeleteDatalakeExceptionsSubscriptionRequest(input *Delete
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation DeleteDatalakeExceptionsSubscription for usage and error information.
+// API operation DeleteDataLakeExceptionSubscription for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -1489,28 +1178,141 @@ func (c *SecurityLake) DeleteDatalakeExceptionsSubscriptionRequest(input *Delete
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalakeExceptionsSubscription
-func (c *SecurityLake) DeleteDatalakeExceptionsSubscription(input *DeleteDatalakeExceptionsSubscriptionInput) (*DeleteDatalakeExceptionsSubscriptionOutput, error) {
-	req, out := c.DeleteDatalakeExceptionsSubscriptionRequest(input)
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDataLakeExceptionSubscription
+func (c *SecurityLake) DeleteDataLakeExceptionSubscription(input *DeleteDataLakeExceptionSubscriptionInput) (*DeleteDataLakeExceptionSubscriptionOutput, error) {
+	req, out := c.DeleteDataLakeExceptionSubscriptionRequest(input)
 	return out, req.Send()
 }
 
-// DeleteDatalakeExceptionsSubscriptionWithContext is the same as DeleteDatalakeExceptionsSubscription with the addition of
+// DeleteDataLakeExceptionSubscriptionWithContext is the same as DeleteDataLakeExceptionSubscription with the addition of
 // the ability to pass a context and additional request options.
 //
-// See DeleteDatalakeExceptionsSubscription for details on how to use this API operation.
+// See DeleteDataLakeExceptionSubscription for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) DeleteDatalakeExceptionsSubscriptionWithContext(ctx aws.Context, input *DeleteDatalakeExceptionsSubscriptionInput, opts ...request.Option) (*DeleteDatalakeExceptionsSubscriptionOutput, error) {
-	req, out := c.DeleteDatalakeExceptionsSubscriptionRequest(input)
+func (c *SecurityLake) DeleteDataLakeExceptionSubscriptionWithContext(ctx aws.Context, input *DeleteDataLakeExceptionSubscriptionInput, opts ...request.Option) (*DeleteDataLakeExceptionSubscriptionOutput, error) {
+	req, out := c.DeleteDataLakeExceptionSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDataLakeOrganizationConfiguration = "DeleteDataLakeOrganizationConfiguration"
+
+// DeleteDataLakeOrganizationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataLakeOrganizationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataLakeOrganizationConfiguration for more information on using the DeleteDataLakeOrganizationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteDataLakeOrganizationConfigurationRequest method.
+//	req, resp := client.DeleteDataLakeOrganizationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDataLakeOrganizationConfiguration
+func (c *SecurityLake) DeleteDataLakeOrganizationConfigurationRequest(input *DeleteDataLakeOrganizationConfigurationInput) (req *request.Request, output *DeleteDataLakeOrganizationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataLakeOrganizationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/datalake/organization/configuration/delete",
+	}
+
+	if input == nil {
+		input = &DeleteDataLakeOrganizationConfigurationInput{}
+	}
+
+	output = &DeleteDataLakeOrganizationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDataLakeOrganizationConfiguration API operation for Amazon Security Lake.
+//
+// Removes automatic the enablement of configuration settings for new member
+// accounts (but retains the settings for the delegated administrator) from
+// Amazon Security Lake. You must run this API using the credentials of the
+// delegated administrator. When you run this API, new member accounts that
+// are added after the organization enables Security Lake won't contribute to
+// the data lake.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Security Lake's
+// API operation DeleteDataLakeOrganizationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - InternalServerException
+//     Internal service exceptions are sometimes caused by transient issues. Before
+//     you start troubleshooting, perform the operation again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Access denied errors
+//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
+//     request. An explicit denial occurs when a policy contains a Deny statement
+//     for the specific Amazon Web Services action. An implicit denial occurs when
+//     there is no applicable Deny statement and also no applicable Allow statement.
+//
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDataLakeOrganizationConfiguration
+func (c *SecurityLake) DeleteDataLakeOrganizationConfiguration(input *DeleteDataLakeOrganizationConfigurationInput) (*DeleteDataLakeOrganizationConfigurationOutput, error) {
+	req, out := c.DeleteDataLakeOrganizationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDataLakeOrganizationConfigurationWithContext is the same as DeleteDataLakeOrganizationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataLakeOrganizationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityLake) DeleteDataLakeOrganizationConfigurationWithContext(ctx aws.Context, input *DeleteDataLakeOrganizationConfigurationInput, opts ...request.Option) (*DeleteDataLakeOrganizationConfigurationOutput, error) {
+	req, out := c.DeleteDataLakeOrganizationConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1545,7 +1347,7 @@ func (c *SecurityLake) DeleteSubscriberRequest(input *DeleteSubscriberInput) (re
 	op := &request.Operation{
 		Name:       opDeleteSubscriber,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/v1/subscribers",
+		HTTPPath:   "/v1/subscribers/{subscriberId}",
 	}
 
 	if input == nil {
@@ -1560,9 +1362,11 @@ func (c *SecurityLake) DeleteSubscriberRequest(input *DeleteSubscriberInput) (re
 
 // DeleteSubscriber API operation for Amazon Security Lake.
 //
-// Deletes the subscription permission for accounts that are already enabled
-// in Amazon Security Lake. You can delete a subscriber and remove access to
-// data in the current Amazon Web Services Region.
+// Deletes the subscription permission and all notification settings for accounts
+// that are already enabled in Amazon Security Lake. When you run DeleteSubscriber,
+// the subscriber will no longer consume data from Security Lake and the subscriber
+// is removed. This operation deletes the subscriber and removes access to data
+// in the current Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1573,15 +1377,16 @@ func (c *SecurityLake) DeleteSubscriberRequest(input *DeleteSubscriberInput) (re
 //
 // Returned Error Types:
 //
-//   - ConcurrentModificationException
-//     More than one process tried to modify a resource at the same time.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -1590,21 +1395,14 @@ func (c *SecurityLake) DeleteSubscriberRequest(input *DeleteSubscriberInput) (re
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - BucketNotFoundException
-//     Amazon Security Lake generally returns 404 errors if the requested object
-//     is missing from the bucket.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
-//
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-//   - InvalidInputException
-//     The request was rejected because a value that's not valid or is out of range
-//     was supplied for an input parameter.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteSubscriber
 func (c *SecurityLake) DeleteSubscriber(input *DeleteSubscriberInput) (*DeleteSubscriberOutput, error) {
@@ -1628,49 +1426,49 @@ func (c *SecurityLake) DeleteSubscriberWithContext(ctx aws.Context, input *Delet
 	return out, req.Send()
 }
 
-const opDeleteSubscriptionNotificationConfiguration = "DeleteSubscriptionNotificationConfiguration"
+const opDeleteSubscriberNotification = "DeleteSubscriberNotification"
 
-// DeleteSubscriptionNotificationConfigurationRequest generates a "aws/request.Request" representing the
-// client's request for the DeleteSubscriptionNotificationConfiguration operation. The "output" return
+// DeleteSubscriberNotificationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSubscriberNotification operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See DeleteSubscriptionNotificationConfiguration for more information on using the DeleteSubscriptionNotificationConfiguration
+// See DeleteSubscriberNotification for more information on using the DeleteSubscriberNotification
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the DeleteSubscriptionNotificationConfigurationRequest method.
-//	req, resp := client.DeleteSubscriptionNotificationConfigurationRequest(params)
+//	// Example sending a request using the DeleteSubscriberNotificationRequest method.
+//	req, resp := client.DeleteSubscriberNotificationRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteSubscriptionNotificationConfiguration
-func (c *SecurityLake) DeleteSubscriptionNotificationConfigurationRequest(input *DeleteSubscriptionNotificationConfigurationInput) (req *request.Request, output *DeleteSubscriptionNotificationConfigurationOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteSubscriberNotification
+func (c *SecurityLake) DeleteSubscriberNotificationRequest(input *DeleteSubscriberNotificationInput) (req *request.Request, output *DeleteSubscriberNotificationOutput) {
 	op := &request.Operation{
-		Name:       opDeleteSubscriptionNotificationConfiguration,
+		Name:       opDeleteSubscriberNotification,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/subscription-notifications/{subscriptionId}",
+		HTTPPath:   "/v1/subscribers/{subscriberId}/notification",
 	}
 
 	if input == nil {
-		input = &DeleteSubscriptionNotificationConfigurationInput{}
+		input = &DeleteSubscriberNotificationInput{}
 	}
 
-	output = &DeleteSubscriptionNotificationConfigurationOutput{}
+	output = &DeleteSubscriberNotificationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// DeleteSubscriptionNotificationConfiguration API operation for Amazon Security Lake.
+// DeleteSubscriberNotification API operation for Amazon Security Lake.
 //
 // Deletes the specified notification subscription in Amazon Security Lake for
 // the organization you specify.
@@ -1680,19 +1478,20 @@ func (c *SecurityLake) DeleteSubscriptionNotificationConfigurationRequest(input 
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation DeleteSubscriptionNotificationConfiguration for usage and error information.
+// API operation DeleteSubscriberNotification for usage and error information.
 //
 // Returned Error Types:
 //
-//   - ConcurrentModificationException
-//     More than one process tried to modify a resource at the same time.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -1701,103 +1500,105 @@ func (c *SecurityLake) DeleteSubscriptionNotificationConfigurationRequest(input 
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   - InvalidInputException
-//     The request was rejected because a value that's not valid or is out of range
-//     was supplied for an input parameter.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteSubscriptionNotificationConfiguration
-func (c *SecurityLake) DeleteSubscriptionNotificationConfiguration(input *DeleteSubscriptionNotificationConfigurationInput) (*DeleteSubscriptionNotificationConfigurationOutput, error) {
-	req, out := c.DeleteSubscriptionNotificationConfigurationRequest(input)
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteSubscriberNotification
+func (c *SecurityLake) DeleteSubscriberNotification(input *DeleteSubscriberNotificationInput) (*DeleteSubscriberNotificationOutput, error) {
+	req, out := c.DeleteSubscriberNotificationRequest(input)
 	return out, req.Send()
 }
 
-// DeleteSubscriptionNotificationConfigurationWithContext is the same as DeleteSubscriptionNotificationConfiguration with the addition of
+// DeleteSubscriberNotificationWithContext is the same as DeleteSubscriberNotification with the addition of
 // the ability to pass a context and additional request options.
 //
-// See DeleteSubscriptionNotificationConfiguration for details on how to use this API operation.
+// See DeleteSubscriberNotification for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) DeleteSubscriptionNotificationConfigurationWithContext(ctx aws.Context, input *DeleteSubscriptionNotificationConfigurationInput, opts ...request.Option) (*DeleteSubscriptionNotificationConfigurationOutput, error) {
-	req, out := c.DeleteSubscriptionNotificationConfigurationRequest(input)
+func (c *SecurityLake) DeleteSubscriberNotificationWithContext(ctx aws.Context, input *DeleteSubscriberNotificationInput, opts ...request.Option) (*DeleteSubscriberNotificationOutput, error) {
+	req, out := c.DeleteSubscriberNotificationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-const opGetDatalake = "GetDatalake"
+const opDeregisterDataLakeDelegatedAdministrator = "DeregisterDataLakeDelegatedAdministrator"
 
-// GetDatalakeRequest generates a "aws/request.Request" representing the
-// client's request for the GetDatalake operation. The "output" return
+// DeregisterDataLakeDelegatedAdministratorRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterDataLakeDelegatedAdministrator operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See GetDatalake for more information on using the GetDatalake
+// See DeregisterDataLakeDelegatedAdministrator for more information on using the DeregisterDataLakeDelegatedAdministrator
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the GetDatalakeRequest method.
-//	req, resp := client.GetDatalakeRequest(params)
+//	// Example sending a request using the DeregisterDataLakeDelegatedAdministratorRequest method.
+//	req, resp := client.DeregisterDataLakeDelegatedAdministratorRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalake
-func (c *SecurityLake) GetDatalakeRequest(input *GetDatalakeInput) (req *request.Request, output *GetDatalakeOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeregisterDataLakeDelegatedAdministrator
+func (c *SecurityLake) DeregisterDataLakeDelegatedAdministratorRequest(input *DeregisterDataLakeDelegatedAdministratorInput) (req *request.Request, output *DeregisterDataLakeDelegatedAdministratorOutput) {
 	op := &request.Operation{
-		Name:       opGetDatalake,
-		HTTPMethod: "GET",
-		HTTPPath:   "/v1/datalake",
+		Name:       opDeregisterDataLakeDelegatedAdministrator,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/datalake/delegate",
 	}
 
 	if input == nil {
-		input = &GetDatalakeInput{}
+		input = &DeregisterDataLakeDelegatedAdministratorInput{}
 	}
 
-	output = &GetDatalakeOutput{}
+	output = &DeregisterDataLakeDelegatedAdministratorOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// GetDatalake API operation for Amazon Security Lake.
+// DeregisterDataLakeDelegatedAdministrator API operation for Amazon Security Lake.
 //
-// Retrieves the Amazon Security Lake configuration object for the specified
-// Amazon Web Services account ID. You can use the GetDatalake API to know whether
-// Security Lake is enabled for the current Region. This API does not take input
-// parameters.
+// Deletes the Amazon Security Lake delegated administrator account for the
+// organization. This API can only be called by the organization management
+// account. The organization management account cannot be the delegated administrator
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation GetDatalake for usage and error information.
+// API operation DeregisterDataLakeDelegatedAdministrator for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -1806,78 +1607,183 @@ func (c *SecurityLake) GetDatalakeRequest(input *GetDatalakeInput) (req *request
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalake
-func (c *SecurityLake) GetDatalake(input *GetDatalakeInput) (*GetDatalakeOutput, error) {
-	req, out := c.GetDatalakeRequest(input)
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeregisterDataLakeDelegatedAdministrator
+func (c *SecurityLake) DeregisterDataLakeDelegatedAdministrator(input *DeregisterDataLakeDelegatedAdministratorInput) (*DeregisterDataLakeDelegatedAdministratorOutput, error) {
+	req, out := c.DeregisterDataLakeDelegatedAdministratorRequest(input)
 	return out, req.Send()
 }
 
-// GetDatalakeWithContext is the same as GetDatalake with the addition of
+// DeregisterDataLakeDelegatedAdministratorWithContext is the same as DeregisterDataLakeDelegatedAdministrator with the addition of
 // the ability to pass a context and additional request options.
 //
-// See GetDatalake for details on how to use this API operation.
+// See DeregisterDataLakeDelegatedAdministrator for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) GetDatalakeWithContext(ctx aws.Context, input *GetDatalakeInput, opts ...request.Option) (*GetDatalakeOutput, error) {
-	req, out := c.GetDatalakeRequest(input)
+func (c *SecurityLake) DeregisterDataLakeDelegatedAdministratorWithContext(ctx aws.Context, input *DeregisterDataLakeDelegatedAdministratorInput, opts ...request.Option) (*DeregisterDataLakeDelegatedAdministratorOutput, error) {
+	req, out := c.DeregisterDataLakeDelegatedAdministratorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-const opGetDatalakeAutoEnable = "GetDatalakeAutoEnable"
+const opGetDataLakeExceptionSubscription = "GetDataLakeExceptionSubscription"
 
-// GetDatalakeAutoEnableRequest generates a "aws/request.Request" representing the
-// client's request for the GetDatalakeAutoEnable operation. The "output" return
+// GetDataLakeExceptionSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataLakeExceptionSubscription operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See GetDatalakeAutoEnable for more information on using the GetDatalakeAutoEnable
+// See GetDataLakeExceptionSubscription for more information on using the GetDataLakeExceptionSubscription
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the GetDatalakeAutoEnableRequest method.
-//	req, resp := client.GetDatalakeAutoEnableRequest(params)
+//	// Example sending a request using the GetDataLakeExceptionSubscriptionRequest method.
+//	req, resp := client.GetDataLakeExceptionSubscriptionRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeAutoEnable
-func (c *SecurityLake) GetDatalakeAutoEnableRequest(input *GetDatalakeAutoEnableInput) (req *request.Request, output *GetDatalakeAutoEnableOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDataLakeExceptionSubscription
+func (c *SecurityLake) GetDataLakeExceptionSubscriptionRequest(input *GetDataLakeExceptionSubscriptionInput) (req *request.Request, output *GetDataLakeExceptionSubscriptionOutput) {
 	op := &request.Operation{
-		Name:       opGetDatalakeAutoEnable,
+		Name:       opGetDataLakeExceptionSubscription,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v1/datalake/autoenable",
+		HTTPPath:   "/v1/datalake/exceptions/subscription",
 	}
 
 	if input == nil {
-		input = &GetDatalakeAutoEnableInput{}
+		input = &GetDataLakeExceptionSubscriptionInput{}
 	}
 
-	output = &GetDatalakeAutoEnableOutput{}
+	output = &GetDataLakeExceptionSubscriptionOutput{}
 	req = c.newRequest(op, input, output)
 	return
 }
 
-// GetDatalakeAutoEnable API operation for Amazon Security Lake.
+// GetDataLakeExceptionSubscription API operation for Amazon Security Lake.
+//
+// Retrieves the details of exception notifications for the account in Amazon
+// Security Lake.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Security Lake's
+// API operation GetDataLakeExceptionSubscription for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - InternalServerException
+//     Internal service exceptions are sometimes caused by transient issues. Before
+//     you start troubleshooting, perform the operation again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Access denied errors
+//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
+//     request. An explicit denial occurs when a policy contains a Deny statement
+//     for the specific Amazon Web Services action. An implicit denial occurs when
+//     there is no applicable Deny statement and also no applicable Allow statement.
+//
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDataLakeExceptionSubscription
+func (c *SecurityLake) GetDataLakeExceptionSubscription(input *GetDataLakeExceptionSubscriptionInput) (*GetDataLakeExceptionSubscriptionOutput, error) {
+	req, out := c.GetDataLakeExceptionSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// GetDataLakeExceptionSubscriptionWithContext is the same as GetDataLakeExceptionSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataLakeExceptionSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityLake) GetDataLakeExceptionSubscriptionWithContext(ctx aws.Context, input *GetDataLakeExceptionSubscriptionInput, opts ...request.Option) (*GetDataLakeExceptionSubscriptionOutput, error) {
+	req, out := c.GetDataLakeExceptionSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDataLakeOrganizationConfiguration = "GetDataLakeOrganizationConfiguration"
+
+// GetDataLakeOrganizationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataLakeOrganizationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataLakeOrganizationConfiguration for more information on using the GetDataLakeOrganizationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataLakeOrganizationConfigurationRequest method.
+//	req, resp := client.GetDataLakeOrganizationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDataLakeOrganizationConfiguration
+func (c *SecurityLake) GetDataLakeOrganizationConfigurationRequest(input *GetDataLakeOrganizationConfigurationInput) (req *request.Request, output *GetDataLakeOrganizationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetDataLakeOrganizationConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/datalake/organization/configuration",
+	}
+
+	if input == nil {
+		input = &GetDataLakeOrganizationConfigurationInput{}
+	}
+
+	output = &GetDataLakeOrganizationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataLakeOrganizationConfiguration API operation for Amazon Security Lake.
 //
 // Retrieves the configuration that will be automatically set up for accounts
 // added to the organization after the organization has onboarded to Amazon
@@ -1888,16 +1794,20 @@ func (c *SecurityLake) GetDatalakeAutoEnableRequest(input *GetDatalakeAutoEnable
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation GetDatalakeAutoEnable for usage and error information.
+// API operation GetDataLakeOrganizationConfiguration for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -1906,275 +1816,85 @@ func (c *SecurityLake) GetDatalakeAutoEnableRequest(input *GetDatalakeAutoEnable
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeAutoEnable
-func (c *SecurityLake) GetDatalakeAutoEnable(input *GetDatalakeAutoEnableInput) (*GetDatalakeAutoEnableOutput, error) {
-	req, out := c.GetDatalakeAutoEnableRequest(input)
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDataLakeOrganizationConfiguration
+func (c *SecurityLake) GetDataLakeOrganizationConfiguration(input *GetDataLakeOrganizationConfigurationInput) (*GetDataLakeOrganizationConfigurationOutput, error) {
+	req, out := c.GetDataLakeOrganizationConfigurationRequest(input)
 	return out, req.Send()
 }
 
-// GetDatalakeAutoEnableWithContext is the same as GetDatalakeAutoEnable with the addition of
+// GetDataLakeOrganizationConfigurationWithContext is the same as GetDataLakeOrganizationConfiguration with the addition of
 // the ability to pass a context and additional request options.
 //
-// See GetDatalakeAutoEnable for details on how to use this API operation.
+// See GetDataLakeOrganizationConfiguration for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) GetDatalakeAutoEnableWithContext(ctx aws.Context, input *GetDatalakeAutoEnableInput, opts ...request.Option) (*GetDatalakeAutoEnableOutput, error) {
-	req, out := c.GetDatalakeAutoEnableRequest(input)
+func (c *SecurityLake) GetDataLakeOrganizationConfigurationWithContext(ctx aws.Context, input *GetDataLakeOrganizationConfigurationInput, opts ...request.Option) (*GetDataLakeOrganizationConfigurationOutput, error) {
+	req, out := c.GetDataLakeOrganizationConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-const opGetDatalakeExceptionsExpiry = "GetDatalakeExceptionsExpiry"
+const opGetDataLakeSources = "GetDataLakeSources"
 
-// GetDatalakeExceptionsExpiryRequest generates a "aws/request.Request" representing the
-// client's request for the GetDatalakeExceptionsExpiry operation. The "output" return
+// GetDataLakeSourcesRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataLakeSources operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See GetDatalakeExceptionsExpiry for more information on using the GetDatalakeExceptionsExpiry
+// See GetDataLakeSources for more information on using the GetDataLakeSources
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the GetDatalakeExceptionsExpiryRequest method.
-//	req, resp := client.GetDatalakeExceptionsExpiryRequest(params)
+//	// Example sending a request using the GetDataLakeSourcesRequest method.
+//	req, resp := client.GetDataLakeSourcesRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeExceptionsExpiry
-func (c *SecurityLake) GetDatalakeExceptionsExpiryRequest(input *GetDatalakeExceptionsExpiryInput) (req *request.Request, output *GetDatalakeExceptionsExpiryOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDataLakeSources
+func (c *SecurityLake) GetDataLakeSourcesRequest(input *GetDataLakeSourcesInput) (req *request.Request, output *GetDataLakeSourcesOutput) {
 	op := &request.Operation{
-		Name:       opGetDatalakeExceptionsExpiry,
-		HTTPMethod: "GET",
-		HTTPPath:   "/v1/datalake/exceptions/expiry",
-	}
-
-	if input == nil {
-		input = &GetDatalakeExceptionsExpiryInput{}
-	}
-
-	output = &GetDatalakeExceptionsExpiryOutput{}
-	req = c.newRequest(op, input, output)
-	return
-}
-
-// GetDatalakeExceptionsExpiry API operation for Amazon Security Lake.
-//
-// Retrieves the expiration period and time-to-live (TTL) for which the exception
-// message will remain. Exceptions are stored by default, for 2 weeks from when
-// a record was created in Amazon Security Lake. This API does not take input
-// parameters.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Security Lake's
-// API operation GetDatalakeExceptionsExpiry for usage and error information.
-//
-// Returned Error Types:
-//
-//   - InternalServerException
-//     Internal service exceptions are sometimes caused by transient issues. Before
-//     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action. Access denied errors
-//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
-//     request. An explicit denial occurs when a policy contains a Deny statement
-//     for the specific Amazon Web Services action. An implicit denial occurs when
-//     there is no applicable Deny statement and also no applicable Allow statement.
-//
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeExceptionsExpiry
-func (c *SecurityLake) GetDatalakeExceptionsExpiry(input *GetDatalakeExceptionsExpiryInput) (*GetDatalakeExceptionsExpiryOutput, error) {
-	req, out := c.GetDatalakeExceptionsExpiryRequest(input)
-	return out, req.Send()
-}
-
-// GetDatalakeExceptionsExpiryWithContext is the same as GetDatalakeExceptionsExpiry with the addition of
-// the ability to pass a context and additional request options.
-//
-// See GetDatalakeExceptionsExpiry for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SecurityLake) GetDatalakeExceptionsExpiryWithContext(ctx aws.Context, input *GetDatalakeExceptionsExpiryInput, opts ...request.Option) (*GetDatalakeExceptionsExpiryOutput, error) {
-	req, out := c.GetDatalakeExceptionsExpiryRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opGetDatalakeExceptionsSubscription = "GetDatalakeExceptionsSubscription"
-
-// GetDatalakeExceptionsSubscriptionRequest generates a "aws/request.Request" representing the
-// client's request for the GetDatalakeExceptionsSubscription operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See GetDatalakeExceptionsSubscription for more information on using the GetDatalakeExceptionsSubscription
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//	// Example sending a request using the GetDatalakeExceptionsSubscriptionRequest method.
-//	req, resp := client.GetDatalakeExceptionsSubscriptionRequest(params)
-//
-//	err := req.Send()
-//	if err == nil { // resp is now filled
-//	    fmt.Println(resp)
-//	}
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeExceptionsSubscription
-func (c *SecurityLake) GetDatalakeExceptionsSubscriptionRequest(input *GetDatalakeExceptionsSubscriptionInput) (req *request.Request, output *GetDatalakeExceptionsSubscriptionOutput) {
-	op := &request.Operation{
-		Name:       opGetDatalakeExceptionsSubscription,
-		HTTPMethod: "GET",
-		HTTPPath:   "/v1/datalake/exceptions/subscription",
-	}
-
-	if input == nil {
-		input = &GetDatalakeExceptionsSubscriptionInput{}
-	}
-
-	output = &GetDatalakeExceptionsSubscriptionOutput{}
-	req = c.newRequest(op, input, output)
-	return
-}
-
-// GetDatalakeExceptionsSubscription API operation for Amazon Security Lake.
-//
-// Retrieves the details of exception notifications for the account in Amazon
-// Security Lake.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Security Lake's
-// API operation GetDatalakeExceptionsSubscription for usage and error information.
-//
-// Returned Error Types:
-//
-//   - InternalServerException
-//     Internal service exceptions are sometimes caused by transient issues. Before
-//     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action. Access denied errors
-//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
-//     request. An explicit denial occurs when a policy contains a Deny statement
-//     for the specific Amazon Web Services action. An implicit denial occurs when
-//     there is no applicable Deny statement and also no applicable Allow statement.
-//
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeExceptionsSubscription
-func (c *SecurityLake) GetDatalakeExceptionsSubscription(input *GetDatalakeExceptionsSubscriptionInput) (*GetDatalakeExceptionsSubscriptionOutput, error) {
-	req, out := c.GetDatalakeExceptionsSubscriptionRequest(input)
-	return out, req.Send()
-}
-
-// GetDatalakeExceptionsSubscriptionWithContext is the same as GetDatalakeExceptionsSubscription with the addition of
-// the ability to pass a context and additional request options.
-//
-// See GetDatalakeExceptionsSubscription for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SecurityLake) GetDatalakeExceptionsSubscriptionWithContext(ctx aws.Context, input *GetDatalakeExceptionsSubscriptionInput, opts ...request.Option) (*GetDatalakeExceptionsSubscriptionOutput, error) {
-	req, out := c.GetDatalakeExceptionsSubscriptionRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opGetDatalakeStatus = "GetDatalakeStatus"
-
-// GetDatalakeStatusRequest generates a "aws/request.Request" representing the
-// client's request for the GetDatalakeStatus operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See GetDatalakeStatus for more information on using the GetDatalakeStatus
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//	// Example sending a request using the GetDatalakeStatusRequest method.
-//	req, resp := client.GetDatalakeStatusRequest(params)
-//
-//	err := req.Send()
-//	if err == nil { // resp is now filled
-//	    fmt.Println(resp)
-//	}
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeStatus
-func (c *SecurityLake) GetDatalakeStatusRequest(input *GetDatalakeStatusInput) (req *request.Request, output *GetDatalakeStatusOutput) {
-	op := &request.Operation{
-		Name:       opGetDatalakeStatus,
+		Name:       opGetDataLakeSources,
 		HTTPMethod: "POST",
-		HTTPPath:   "/v1/datalake/status",
+		HTTPPath:   "/v1/datalake/sources",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
-			LimitToken:      "maxAccountResults",
+			LimitToken:      "maxResults",
 			TruncationToken: "",
 		},
 	}
 
 	if input == nil {
-		input = &GetDatalakeStatusInput{}
+		input = &GetDataLakeSourcesInput{}
 	}
 
-	output = &GetDatalakeStatusOutput{}
+	output = &GetDataLakeSourcesOutput{}
 	req = c.newRequest(op, input, output)
 	return
 }
 
-// GetDatalakeStatus API operation for Amazon Security Lake.
+// GetDataLakeSources API operation for Amazon Security Lake.
 //
 // Retrieves a snapshot of the current Region, including whether Amazon Security
 // Lake is enabled for those accounts and which sources Security Lake is collecting
@@ -2185,16 +1905,20 @@ func (c *SecurityLake) GetDatalakeStatusRequest(input *GetDatalakeStatusInput) (
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation GetDatalakeStatus for usage and error information.
+// API operation GetDataLakeSources for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -2203,69 +1927,73 @@ func (c *SecurityLake) GetDatalakeStatusRequest(input *GetDatalakeStatusInput) (
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeStatus
-func (c *SecurityLake) GetDatalakeStatus(input *GetDatalakeStatusInput) (*GetDatalakeStatusOutput, error) {
-	req, out := c.GetDatalakeStatusRequest(input)
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDataLakeSources
+func (c *SecurityLake) GetDataLakeSources(input *GetDataLakeSourcesInput) (*GetDataLakeSourcesOutput, error) {
+	req, out := c.GetDataLakeSourcesRequest(input)
 	return out, req.Send()
 }
 
-// GetDatalakeStatusWithContext is the same as GetDatalakeStatus with the addition of
+// GetDataLakeSourcesWithContext is the same as GetDataLakeSources with the addition of
 // the ability to pass a context and additional request options.
 //
-// See GetDatalakeStatus for details on how to use this API operation.
+// See GetDataLakeSources for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) GetDatalakeStatusWithContext(ctx aws.Context, input *GetDatalakeStatusInput, opts ...request.Option) (*GetDatalakeStatusOutput, error) {
-	req, out := c.GetDatalakeStatusRequest(input)
+func (c *SecurityLake) GetDataLakeSourcesWithContext(ctx aws.Context, input *GetDataLakeSourcesInput, opts ...request.Option) (*GetDataLakeSourcesOutput, error) {
+	req, out := c.GetDataLakeSourcesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-// GetDatalakeStatusPages iterates over the pages of a GetDatalakeStatus operation,
+// GetDataLakeSourcesPages iterates over the pages of a GetDataLakeSources operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
 //
-// See GetDatalakeStatus method for more information on how to use this operation.
+// See GetDataLakeSources method for more information on how to use this operation.
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//	// Example iterating over at most 3 pages of a GetDatalakeStatus operation.
+//	// Example iterating over at most 3 pages of a GetDataLakeSources operation.
 //	pageNum := 0
-//	err := client.GetDatalakeStatusPages(params,
-//	    func(page *securitylake.GetDatalakeStatusOutput, lastPage bool) bool {
+//	err := client.GetDataLakeSourcesPages(params,
+//	    func(page *securitylake.GetDataLakeSourcesOutput, lastPage bool) bool {
 //	        pageNum++
 //	        fmt.Println(page)
 //	        return pageNum <= 3
 //	    })
-func (c *SecurityLake) GetDatalakeStatusPages(input *GetDatalakeStatusInput, fn func(*GetDatalakeStatusOutput, bool) bool) error {
-	return c.GetDatalakeStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+func (c *SecurityLake) GetDataLakeSourcesPages(input *GetDataLakeSourcesInput, fn func(*GetDataLakeSourcesOutput, bool) bool) error {
+	return c.GetDataLakeSourcesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
 
-// GetDatalakeStatusPagesWithContext same as GetDatalakeStatusPages except
+// GetDataLakeSourcesPagesWithContext same as GetDataLakeSourcesPages except
 // it takes a Context and allows setting request options on the pages.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) GetDatalakeStatusPagesWithContext(ctx aws.Context, input *GetDatalakeStatusInput, fn func(*GetDatalakeStatusOutput, bool) bool, opts ...request.Option) error {
+func (c *SecurityLake) GetDataLakeSourcesPagesWithContext(ctx aws.Context, input *GetDataLakeSourcesInput, fn func(*GetDataLakeSourcesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy *GetDatalakeStatusInput
+			var inCpy *GetDataLakeSourcesInput
 			if input != nil {
 				tmp := *input
 				inCpy = &tmp
 			}
-			req, _ := c.GetDatalakeStatusRequest(inCpy)
+			req, _ := c.GetDataLakeSourcesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2273,7 +2001,7 @@ func (c *SecurityLake) GetDatalakeStatusPagesWithContext(ctx aws.Context, input 
 	}
 
 	for p.Next() {
-		if !fn(p.Page().(*GetDatalakeStatusOutput), !p.HasNextPage()) {
+		if !fn(p.Page().(*GetDataLakeSourcesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2310,7 +2038,7 @@ func (c *SecurityLake) GetSubscriberRequest(input *GetSubscriberInput) (req *req
 	op := &request.Operation{
 		Name:       opGetSubscriber,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v1/subscribers/{id}",
+		HTTPPath:   "/v1/subscribers/{subscriberId}",
 	}
 
 	if input == nil {
@@ -2336,6 +2064,13 @@ func (c *SecurityLake) GetSubscriberRequest(input *GetSubscriberInput) (req *req
 //
 // Returned Error Types:
 //
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
@@ -2347,17 +2082,14 @@ func (c *SecurityLake) GetSubscriberRequest(input *GetSubscriberInput) (req *req
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-//   - InvalidInputException
-//     The request was rejected because a value that's not valid or is out of range
-//     was supplied for an input parameter.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetSubscriber
 func (c *SecurityLake) GetSubscriber(input *GetSubscriberInput) (*GetSubscriberOutput, error) {
@@ -2381,54 +2113,54 @@ func (c *SecurityLake) GetSubscriberWithContext(ctx aws.Context, input *GetSubsc
 	return out, req.Send()
 }
 
-const opListDatalakeExceptions = "ListDatalakeExceptions"
+const opListDataLakeExceptions = "ListDataLakeExceptions"
 
-// ListDatalakeExceptionsRequest generates a "aws/request.Request" representing the
-// client's request for the ListDatalakeExceptions operation. The "output" return
+// ListDataLakeExceptionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataLakeExceptions operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See ListDatalakeExceptions for more information on using the ListDatalakeExceptions
+// See ListDataLakeExceptions for more information on using the ListDataLakeExceptions
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the ListDatalakeExceptionsRequest method.
-//	req, resp := client.ListDatalakeExceptionsRequest(params)
+//	// Example sending a request using the ListDataLakeExceptionsRequest method.
+//	req, resp := client.ListDataLakeExceptionsRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListDatalakeExceptions
-func (c *SecurityLake) ListDatalakeExceptionsRequest(input *ListDatalakeExceptionsInput) (req *request.Request, output *ListDatalakeExceptionsOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListDataLakeExceptions
+func (c *SecurityLake) ListDataLakeExceptionsRequest(input *ListDataLakeExceptionsInput) (req *request.Request, output *ListDataLakeExceptionsOutput) {
 	op := &request.Operation{
-		Name:       opListDatalakeExceptions,
+		Name:       opListDataLakeExceptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/v1/datalake/exceptions",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
-			LimitToken:      "maxFailures",
+			LimitToken:      "maxResults",
 			TruncationToken: "",
 		},
 	}
 
 	if input == nil {
-		input = &ListDatalakeExceptionsInput{}
+		input = &ListDataLakeExceptionsInput{}
 	}
 
-	output = &ListDatalakeExceptionsOutput{}
+	output = &ListDataLakeExceptionsOutput{}
 	req = c.newRequest(op, input, output)
 	return
 }
 
-// ListDatalakeExceptions API operation for Amazon Security Lake.
+// ListDataLakeExceptions API operation for Amazon Security Lake.
 //
 // Lists the Amazon Security Lake exceptions that you can use to find the source
 // of problems and fix them.
@@ -2438,16 +2170,20 @@ func (c *SecurityLake) ListDatalakeExceptionsRequest(input *ListDatalakeExceptio
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation ListDatalakeExceptions for usage and error information.
+// API operation ListDataLakeExceptions for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -2456,69 +2192,73 @@ func (c *SecurityLake) ListDatalakeExceptionsRequest(input *ListDatalakeExceptio
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListDatalakeExceptions
-func (c *SecurityLake) ListDatalakeExceptions(input *ListDatalakeExceptionsInput) (*ListDatalakeExceptionsOutput, error) {
-	req, out := c.ListDatalakeExceptionsRequest(input)
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListDataLakeExceptions
+func (c *SecurityLake) ListDataLakeExceptions(input *ListDataLakeExceptionsInput) (*ListDataLakeExceptionsOutput, error) {
+	req, out := c.ListDataLakeExceptionsRequest(input)
 	return out, req.Send()
 }
 
-// ListDatalakeExceptionsWithContext is the same as ListDatalakeExceptions with the addition of
+// ListDataLakeExceptionsWithContext is the same as ListDataLakeExceptions with the addition of
 // the ability to pass a context and additional request options.
 //
-// See ListDatalakeExceptions for details on how to use this API operation.
+// See ListDataLakeExceptions for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) ListDatalakeExceptionsWithContext(ctx aws.Context, input *ListDatalakeExceptionsInput, opts ...request.Option) (*ListDatalakeExceptionsOutput, error) {
-	req, out := c.ListDatalakeExceptionsRequest(input)
+func (c *SecurityLake) ListDataLakeExceptionsWithContext(ctx aws.Context, input *ListDataLakeExceptionsInput, opts ...request.Option) (*ListDataLakeExceptionsOutput, error) {
+	req, out := c.ListDataLakeExceptionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-// ListDatalakeExceptionsPages iterates over the pages of a ListDatalakeExceptions operation,
+// ListDataLakeExceptionsPages iterates over the pages of a ListDataLakeExceptions operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
 //
-// See ListDatalakeExceptions method for more information on how to use this operation.
+// See ListDataLakeExceptions method for more information on how to use this operation.
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//	// Example iterating over at most 3 pages of a ListDatalakeExceptions operation.
+//	// Example iterating over at most 3 pages of a ListDataLakeExceptions operation.
 //	pageNum := 0
-//	err := client.ListDatalakeExceptionsPages(params,
-//	    func(page *securitylake.ListDatalakeExceptionsOutput, lastPage bool) bool {
+//	err := client.ListDataLakeExceptionsPages(params,
+//	    func(page *securitylake.ListDataLakeExceptionsOutput, lastPage bool) bool {
 //	        pageNum++
 //	        fmt.Println(page)
 //	        return pageNum <= 3
 //	    })
-func (c *SecurityLake) ListDatalakeExceptionsPages(input *ListDatalakeExceptionsInput, fn func(*ListDatalakeExceptionsOutput, bool) bool) error {
-	return c.ListDatalakeExceptionsPagesWithContext(aws.BackgroundContext(), input, fn)
+func (c *SecurityLake) ListDataLakeExceptionsPages(input *ListDataLakeExceptionsInput, fn func(*ListDataLakeExceptionsOutput, bool) bool) error {
+	return c.ListDataLakeExceptionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
 
-// ListDatalakeExceptionsPagesWithContext same as ListDatalakeExceptionsPages except
+// ListDataLakeExceptionsPagesWithContext same as ListDataLakeExceptionsPages except
 // it takes a Context and allows setting request options on the pages.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) ListDatalakeExceptionsPagesWithContext(ctx aws.Context, input *ListDatalakeExceptionsInput, fn func(*ListDatalakeExceptionsOutput, bool) bool, opts ...request.Option) error {
+func (c *SecurityLake) ListDataLakeExceptionsPagesWithContext(ctx aws.Context, input *ListDataLakeExceptionsInput, fn func(*ListDataLakeExceptionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy *ListDatalakeExceptionsInput
+			var inCpy *ListDataLakeExceptionsInput
 			if input != nil {
 				tmp := *input
 				inCpy = &tmp
 			}
-			req, _ := c.ListDatalakeExceptionsRequest(inCpy)
+			req, _ := c.ListDataLakeExceptionsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2526,12 +2266,117 @@ func (c *SecurityLake) ListDatalakeExceptionsPagesWithContext(ctx aws.Context, i
 	}
 
 	for p.Next() {
-		if !fn(p.Page().(*ListDatalakeExceptionsOutput), !p.HasNextPage()) {
+		if !fn(p.Page().(*ListDataLakeExceptionsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
 
 	return p.Err()
+}
+
+const opListDataLakes = "ListDataLakes"
+
+// ListDataLakesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataLakes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataLakes for more information on using the ListDataLakes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDataLakesRequest method.
+//	req, resp := client.ListDataLakesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListDataLakes
+func (c *SecurityLake) ListDataLakesRequest(input *ListDataLakesInput) (req *request.Request, output *ListDataLakesOutput) {
+	op := &request.Operation{
+		Name:       opListDataLakes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/datalakes",
+	}
+
+	if input == nil {
+		input = &ListDataLakesInput{}
+	}
+
+	output = &ListDataLakesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataLakes API operation for Amazon Security Lake.
+//
+// Retrieves the Amazon Security Lake configuration object for the specified
+// Amazon Web Services account ID. You can use the ListDataLakes API to know
+// whether Security Lake is enabled for any region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Security Lake's
+// API operation ListDataLakes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - InternalServerException
+//     Internal service exceptions are sometimes caused by transient issues. Before
+//     you start troubleshooting, perform the operation again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Access denied errors
+//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
+//     request. An explicit denial occurs when a policy contains a Deny statement
+//     for the specific Amazon Web Services action. An implicit denial occurs when
+//     there is no applicable Deny statement and also no applicable Allow statement.
+//
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListDataLakes
+func (c *SecurityLake) ListDataLakes(input *ListDataLakesInput) (*ListDataLakesOutput, error) {
+	req, out := c.ListDataLakesRequest(input)
+	return out, req.Send()
+}
+
+// ListDataLakesWithContext is the same as ListDataLakes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataLakes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityLake) ListDataLakesWithContext(ctx aws.Context, input *ListDataLakesInput, opts ...request.Option) (*ListDataLakesOutput, error) {
+	req, out := c.ListDataLakesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListLogSources = "ListLogSources"
@@ -2563,7 +2408,7 @@ func (c *SecurityLake) ListLogSourcesRequest(input *ListLogSourcesInput) (req *r
 	op := &request.Operation{
 		Name:       opListLogSources,
 		HTTPMethod: "POST",
-		HTTPPath:   "/v1/logsources/list",
+		HTTPPath:   "/v1/datalake/logsources/list",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
@@ -2594,12 +2439,16 @@ func (c *SecurityLake) ListLogSourcesRequest(input *ListLogSourcesInput) (req *r
 //
 // Returned Error Types:
 //
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -2608,13 +2457,14 @@ func (c *SecurityLake) ListLogSourcesRequest(input *ListLogSourcesInput) (req *r
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListLogSources
 func (c *SecurityLake) ListLogSources(input *ListLogSourcesInput) (*ListLogSourcesOutput, error) {
@@ -2751,12 +2601,16 @@ func (c *SecurityLake) ListSubscribersRequest(input *ListSubscribersInput) (req 
 //
 // Returned Error Types:
 //
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -2765,17 +2619,14 @@ func (c *SecurityLake) ListSubscribersRequest(input *ListSubscribersInput) (req 
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
-//
-//   - InvalidInputException
-//     The request was rejected because a value that's not valid or is out of range
-//     was supplied for an input parameter.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListSubscribers
 func (c *SecurityLake) ListSubscribers(input *ListSubscribersInput) (*ListSubscribersOutput, error) {
@@ -2850,49 +2701,155 @@ func (c *SecurityLake) ListSubscribersPagesWithContext(ctx aws.Context, input *L
 	return p.Err()
 }
 
-const opUpdateDatalake = "UpdateDatalake"
+const opRegisterDataLakeDelegatedAdministrator = "RegisterDataLakeDelegatedAdministrator"
 
-// UpdateDatalakeRequest generates a "aws/request.Request" representing the
-// client's request for the UpdateDatalake operation. The "output" return
+// RegisterDataLakeDelegatedAdministratorRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterDataLakeDelegatedAdministrator operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See UpdateDatalake for more information on using the UpdateDatalake
+// See RegisterDataLakeDelegatedAdministrator for more information on using the RegisterDataLakeDelegatedAdministrator
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the UpdateDatalakeRequest method.
-//	req, resp := client.UpdateDatalakeRequest(params)
+//	// Example sending a request using the RegisterDataLakeDelegatedAdministratorRequest method.
+//	req, resp := client.RegisterDataLakeDelegatedAdministratorRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDatalake
-func (c *SecurityLake) UpdateDatalakeRequest(input *UpdateDatalakeInput) (req *request.Request, output *UpdateDatalakeOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/RegisterDataLakeDelegatedAdministrator
+func (c *SecurityLake) RegisterDataLakeDelegatedAdministratorRequest(input *RegisterDataLakeDelegatedAdministratorInput) (req *request.Request, output *RegisterDataLakeDelegatedAdministratorOutput) {
 	op := &request.Operation{
-		Name:       opUpdateDatalake,
-		HTTPMethod: "PUT",
-		HTTPPath:   "/v1/datalake",
+		Name:       opRegisterDataLakeDelegatedAdministrator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/datalake/delegate",
 	}
 
 	if input == nil {
-		input = &UpdateDatalakeInput{}
+		input = &RegisterDataLakeDelegatedAdministratorInput{}
 	}
 
-	output = &UpdateDatalakeOutput{}
+	output = &RegisterDataLakeDelegatedAdministratorOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// UpdateDatalake API operation for Amazon Security Lake.
+// RegisterDataLakeDelegatedAdministrator API operation for Amazon Security Lake.
+//
+// Designates the Amazon Security Lake delegated administrator account for the
+// organization. This API can only be called by the organization management
+// account. The organization management account cannot be the delegated administrator
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Security Lake's
+// API operation RegisterDataLakeDelegatedAdministrator for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - InternalServerException
+//     Internal service exceptions are sometimes caused by transient issues. Before
+//     you start troubleshooting, perform the operation again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Access denied errors
+//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
+//     request. An explicit denial occurs when a policy contains a Deny statement
+//     for the specific Amazon Web Services action. An implicit denial occurs when
+//     there is no applicable Deny statement and also no applicable Allow statement.
+//
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/RegisterDataLakeDelegatedAdministrator
+func (c *SecurityLake) RegisterDataLakeDelegatedAdministrator(input *RegisterDataLakeDelegatedAdministratorInput) (*RegisterDataLakeDelegatedAdministratorOutput, error) {
+	req, out := c.RegisterDataLakeDelegatedAdministratorRequest(input)
+	return out, req.Send()
+}
+
+// RegisterDataLakeDelegatedAdministratorWithContext is the same as RegisterDataLakeDelegatedAdministrator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterDataLakeDelegatedAdministrator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityLake) RegisterDataLakeDelegatedAdministratorWithContext(ctx aws.Context, input *RegisterDataLakeDelegatedAdministratorInput, opts ...request.Option) (*RegisterDataLakeDelegatedAdministratorOutput, error) {
+	req, out := c.RegisterDataLakeDelegatedAdministratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateDataLake = "UpdateDataLake"
+
+// UpdateDataLakeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDataLake operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDataLake for more information on using the UpdateDataLake
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateDataLakeRequest method.
+//	req, resp := client.UpdateDataLakeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDataLake
+func (c *SecurityLake) UpdateDataLakeRequest(input *UpdateDataLakeInput) (req *request.Request, output *UpdateDataLakeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDataLake,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/datalake",
+	}
+
+	if input == nil {
+		input = &UpdateDataLakeInput{}
+	}
+
+	output = &UpdateDataLakeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDataLake API operation for Amazon Security Lake.
 //
 // Specifies where to store your security data and for how long. You can add
 // a rollup Region to consolidate data from multiple Amazon Web Services Regions.
@@ -2902,116 +2859,20 @@ func (c *SecurityLake) UpdateDatalakeRequest(input *UpdateDatalakeInput) (req *r
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation UpdateDatalake for usage and error information.
+// API operation UpdateDataLake for usage and error information.
 //
 // Returned Error Types:
 //
-//   - EventBridgeException
-//     Represents an error interacting with the Amazon EventBridge service.
-//
-//   - InternalServerException
-//     Internal service exceptions are sometimes caused by transient issues. Before
-//     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action. Access denied errors
-//     appear when Amazon Security Lake explicitly or implicitly denies an authorization
-//     request. An explicit denial occurs when a policy contains a Deny statement
-//     for the specific Amazon Web Services action. An implicit denial occurs when
-//     there is no applicable Deny statement and also no applicable Allow statement.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
 //
 //   - ResourceNotFoundException
 //     The resource could not be found.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDatalake
-func (c *SecurityLake) UpdateDatalake(input *UpdateDatalakeInput) (*UpdateDatalakeOutput, error) {
-	req, out := c.UpdateDatalakeRequest(input)
-	return out, req.Send()
-}
-
-// UpdateDatalakeWithContext is the same as UpdateDatalake with the addition of
-// the ability to pass a context and additional request options.
-//
-// See UpdateDatalake for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SecurityLake) UpdateDatalakeWithContext(ctx aws.Context, input *UpdateDatalakeInput, opts ...request.Option) (*UpdateDatalakeOutput, error) {
-	req, out := c.UpdateDatalakeRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opUpdateDatalakeExceptionsExpiry = "UpdateDatalakeExceptionsExpiry"
-
-// UpdateDatalakeExceptionsExpiryRequest generates a "aws/request.Request" representing the
-// client's request for the UpdateDatalakeExceptionsExpiry operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See UpdateDatalakeExceptionsExpiry for more information on using the UpdateDatalakeExceptionsExpiry
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//	// Example sending a request using the UpdateDatalakeExceptionsExpiryRequest method.
-//	req, resp := client.UpdateDatalakeExceptionsExpiryRequest(params)
-//
-//	err := req.Send()
-//	if err == nil { // resp is now filled
-//	    fmt.Println(resp)
-//	}
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDatalakeExceptionsExpiry
-func (c *SecurityLake) UpdateDatalakeExceptionsExpiryRequest(input *UpdateDatalakeExceptionsExpiryInput) (req *request.Request, output *UpdateDatalakeExceptionsExpiryOutput) {
-	op := &request.Operation{
-		Name:       opUpdateDatalakeExceptionsExpiry,
-		HTTPMethod: "PUT",
-		HTTPPath:   "/v1/datalake/exceptions/expiry",
-	}
-
-	if input == nil {
-		input = &UpdateDatalakeExceptionsExpiryInput{}
-	}
-
-	output = &UpdateDatalakeExceptionsExpiryOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// UpdateDatalakeExceptionsExpiry API operation for Amazon Security Lake.
-//
-// Update the expiration period for the exception message to your preferred
-// time, and control the time-to-live (TTL) for the exception message to remain.
-// Exceptions are stored by default for 2 weeks from when a record was created
-// in Amazon Security Lake.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Security Lake's
-// API operation UpdateDatalakeExceptionsExpiry for usage and error information.
-//
-// Returned Error Types:
-//
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -3020,76 +2881,80 @@ func (c *SecurityLake) UpdateDatalakeExceptionsExpiryRequest(input *UpdateDatala
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDatalakeExceptionsExpiry
-func (c *SecurityLake) UpdateDatalakeExceptionsExpiry(input *UpdateDatalakeExceptionsExpiryInput) (*UpdateDatalakeExceptionsExpiryOutput, error) {
-	req, out := c.UpdateDatalakeExceptionsExpiryRequest(input)
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDataLake
+func (c *SecurityLake) UpdateDataLake(input *UpdateDataLakeInput) (*UpdateDataLakeOutput, error) {
+	req, out := c.UpdateDataLakeRequest(input)
 	return out, req.Send()
 }
 
-// UpdateDatalakeExceptionsExpiryWithContext is the same as UpdateDatalakeExceptionsExpiry with the addition of
+// UpdateDataLakeWithContext is the same as UpdateDataLake with the addition of
 // the ability to pass a context and additional request options.
 //
-// See UpdateDatalakeExceptionsExpiry for details on how to use this API operation.
+// See UpdateDataLake for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) UpdateDatalakeExceptionsExpiryWithContext(ctx aws.Context, input *UpdateDatalakeExceptionsExpiryInput, opts ...request.Option) (*UpdateDatalakeExceptionsExpiryOutput, error) {
-	req, out := c.UpdateDatalakeExceptionsExpiryRequest(input)
+func (c *SecurityLake) UpdateDataLakeWithContext(ctx aws.Context, input *UpdateDataLakeInput, opts ...request.Option) (*UpdateDataLakeOutput, error) {
+	req, out := c.UpdateDataLakeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-const opUpdateDatalakeExceptionsSubscription = "UpdateDatalakeExceptionsSubscription"
+const opUpdateDataLakeExceptionSubscription = "UpdateDataLakeExceptionSubscription"
 
-// UpdateDatalakeExceptionsSubscriptionRequest generates a "aws/request.Request" representing the
-// client's request for the UpdateDatalakeExceptionsSubscription operation. The "output" return
+// UpdateDataLakeExceptionSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDataLakeExceptionSubscription operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See UpdateDatalakeExceptionsSubscription for more information on using the UpdateDatalakeExceptionsSubscription
+// See UpdateDataLakeExceptionSubscription for more information on using the UpdateDataLakeExceptionSubscription
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the UpdateDatalakeExceptionsSubscriptionRequest method.
-//	req, resp := client.UpdateDatalakeExceptionsSubscriptionRequest(params)
+//	// Example sending a request using the UpdateDataLakeExceptionSubscriptionRequest method.
+//	req, resp := client.UpdateDataLakeExceptionSubscriptionRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDatalakeExceptionsSubscription
-func (c *SecurityLake) UpdateDatalakeExceptionsSubscriptionRequest(input *UpdateDatalakeExceptionsSubscriptionInput) (req *request.Request, output *UpdateDatalakeExceptionsSubscriptionOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDataLakeExceptionSubscription
+func (c *SecurityLake) UpdateDataLakeExceptionSubscriptionRequest(input *UpdateDataLakeExceptionSubscriptionInput) (req *request.Request, output *UpdateDataLakeExceptionSubscriptionOutput) {
 	op := &request.Operation{
-		Name:       opUpdateDatalakeExceptionsSubscription,
+		Name:       opUpdateDataLakeExceptionSubscription,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/v1/datalake/exceptions/subscription",
 	}
 
 	if input == nil {
-		input = &UpdateDatalakeExceptionsSubscriptionInput{}
+		input = &UpdateDataLakeExceptionSubscriptionInput{}
 	}
 
-	output = &UpdateDatalakeExceptionsSubscriptionOutput{}
+	output = &UpdateDataLakeExceptionSubscriptionOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// UpdateDatalakeExceptionsSubscription API operation for Amazon Security Lake.
+// UpdateDataLakeExceptionSubscription API operation for Amazon Security Lake.
 //
 // Updates the specified notification subscription in Amazon Security Lake for
 // the organization you specify.
@@ -3099,16 +2964,20 @@ func (c *SecurityLake) UpdateDatalakeExceptionsSubscriptionRequest(input *Update
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation UpdateDatalakeExceptionsSubscription for usage and error information.
+// API operation UpdateDataLakeExceptionSubscription for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -3117,28 +2986,32 @@ func (c *SecurityLake) UpdateDatalakeExceptionsSubscriptionRequest(input *Update
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDatalakeExceptionsSubscription
-func (c *SecurityLake) UpdateDatalakeExceptionsSubscription(input *UpdateDatalakeExceptionsSubscriptionInput) (*UpdateDatalakeExceptionsSubscriptionOutput, error) {
-	req, out := c.UpdateDatalakeExceptionsSubscriptionRequest(input)
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDataLakeExceptionSubscription
+func (c *SecurityLake) UpdateDataLakeExceptionSubscription(input *UpdateDataLakeExceptionSubscriptionInput) (*UpdateDataLakeExceptionSubscriptionOutput, error) {
+	req, out := c.UpdateDataLakeExceptionSubscriptionRequest(input)
 	return out, req.Send()
 }
 
-// UpdateDatalakeExceptionsSubscriptionWithContext is the same as UpdateDatalakeExceptionsSubscription with the addition of
+// UpdateDataLakeExceptionSubscriptionWithContext is the same as UpdateDataLakeExceptionSubscription with the addition of
 // the ability to pass a context and additional request options.
 //
-// See UpdateDatalakeExceptionsSubscription for details on how to use this API operation.
+// See UpdateDataLakeExceptionSubscription for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) UpdateDatalakeExceptionsSubscriptionWithContext(ctx aws.Context, input *UpdateDatalakeExceptionsSubscriptionInput, opts ...request.Option) (*UpdateDatalakeExceptionsSubscriptionOutput, error) {
-	req, out := c.UpdateDatalakeExceptionsSubscriptionRequest(input)
+func (c *SecurityLake) UpdateDataLakeExceptionSubscriptionWithContext(ctx aws.Context, input *UpdateDataLakeExceptionSubscriptionInput, opts ...request.Option) (*UpdateDataLakeExceptionSubscriptionOutput, error) {
+	req, out := c.UpdateDataLakeExceptionSubscriptionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3173,7 +3046,7 @@ func (c *SecurityLake) UpdateSubscriberRequest(input *UpdateSubscriberInput) (re
 	op := &request.Operation{
 		Name:       opUpdateSubscriber,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/v1/subscribers/{id}",
+		HTTPPath:   "/v1/subscribers/{subscriberId}",
 	}
 
 	if input == nil {
@@ -3200,18 +3073,16 @@ func (c *SecurityLake) UpdateSubscriberRequest(input *UpdateSubscriberInput) (re
 //
 // Returned Error Types:
 //
-//   - ConflictSubscriptionException
-//     A conflicting subscription exception operation is in progress.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
 //
-//   - ConcurrentModificationException
-//     More than one process tried to modify a resource at the same time.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -3220,14 +3091,14 @@ func (c *SecurityLake) UpdateSubscriberRequest(input *UpdateSubscriberInput) (re
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - InvalidInputException
-//     The request was rejected because a value that's not valid or is out of range
-//     was supplied for an input parameter.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateSubscriber
 func (c *SecurityLake) UpdateSubscriber(input *UpdateSubscriberInput) (*UpdateSubscriberOutput, error) {
@@ -3251,48 +3122,48 @@ func (c *SecurityLake) UpdateSubscriberWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
-const opUpdateSubscriptionNotificationConfiguration = "UpdateSubscriptionNotificationConfiguration"
+const opUpdateSubscriberNotification = "UpdateSubscriberNotification"
 
-// UpdateSubscriptionNotificationConfigurationRequest generates a "aws/request.Request" representing the
-// client's request for the UpdateSubscriptionNotificationConfiguration operation. The "output" return
+// UpdateSubscriberNotificationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSubscriberNotification operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See UpdateSubscriptionNotificationConfiguration for more information on using the UpdateSubscriptionNotificationConfiguration
+// See UpdateSubscriberNotification for more information on using the UpdateSubscriberNotification
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
-//	// Example sending a request using the UpdateSubscriptionNotificationConfigurationRequest method.
-//	req, resp := client.UpdateSubscriptionNotificationConfigurationRequest(params)
+//	// Example sending a request using the UpdateSubscriberNotificationRequest method.
+//	req, resp := client.UpdateSubscriberNotificationRequest(params)
 //
 //	err := req.Send()
 //	if err == nil { // resp is now filled
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateSubscriptionNotificationConfiguration
-func (c *SecurityLake) UpdateSubscriptionNotificationConfigurationRequest(input *UpdateSubscriptionNotificationConfigurationInput) (req *request.Request, output *UpdateSubscriptionNotificationConfigurationOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateSubscriberNotification
+func (c *SecurityLake) UpdateSubscriberNotificationRequest(input *UpdateSubscriberNotificationInput) (req *request.Request, output *UpdateSubscriberNotificationOutput) {
 	op := &request.Operation{
-		Name:       opUpdateSubscriptionNotificationConfiguration,
+		Name:       opUpdateSubscriberNotification,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/subscription-notifications/{subscriptionId}",
+		HTTPPath:   "/v1/subscribers/{subscriberId}/notification",
 	}
 
 	if input == nil {
-		input = &UpdateSubscriptionNotificationConfigurationInput{}
+		input = &UpdateSubscriberNotificationInput{}
 	}
 
-	output = &UpdateSubscriptionNotificationConfigurationOutput{}
+	output = &UpdateSubscriberNotificationOutput{}
 	req = c.newRequest(op, input, output)
 	return
 }
 
-// UpdateSubscriptionNotificationConfiguration API operation for Amazon Security Lake.
+// UpdateSubscriberNotification API operation for Amazon Security Lake.
 //
 // Updates an existing notification method for the subscription (SQS or HTTPs
 // endpoint) or switches the notification subscription endpoint for a subscriber.
@@ -3302,19 +3173,20 @@ func (c *SecurityLake) UpdateSubscriptionNotificationConfigurationRequest(input 
 // the error.
 //
 // See the AWS API reference guide for Amazon Security Lake's
-// API operation UpdateSubscriptionNotificationConfiguration for usage and error information.
+// API operation UpdateSubscriberNotification for usage and error information.
 //
 // Returned Error Types:
 //
-//   - ConcurrentModificationException
-//     More than one process tried to modify a resource at the same time.
+//   - BadRequestException
+//     The request is malformed or contains an error such as an invalid parameter
+//     value or a missing required parameter.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 //   - InternalServerException
 //     Internal service exceptions are sometimes caused by transient issues. Before
 //     you start troubleshooting, perform the operation again.
-//
-//   - ValidationException
-//     Your signing certificate could not be validated.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -3323,35 +3195,32 @@ func (c *SecurityLake) UpdateSubscriptionNotificationConfigurationRequest(input 
 //     for the specific Amazon Web Services action. An implicit denial occurs when
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
-//   - ResourceNotFoundException
-//     The resource could not be found.
+//   - ConflictException
+//     Occurs when a conflict with a previous successful write is detected. This
+//     generally occurs when the previous write did not have time to propagate to
+//     the host serving the current request. A retry (with appropriate backoff logic)
+//     is the recommended response to this exception.
 //
-//   - AccountNotFoundException
-//     Amazon Security Lake cannot find an Amazon Web Services account with the
-//     accountID that you specified, or the account whose credentials you used to
-//     make this request isn't a member of an organization.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   - InvalidInputException
-//     The request was rejected because a value that's not valid or is out of range
-//     was supplied for an input parameter.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateSubscriptionNotificationConfiguration
-func (c *SecurityLake) UpdateSubscriptionNotificationConfiguration(input *UpdateSubscriptionNotificationConfigurationInput) (*UpdateSubscriptionNotificationConfigurationOutput, error) {
-	req, out := c.UpdateSubscriptionNotificationConfigurationRequest(input)
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateSubscriberNotification
+func (c *SecurityLake) UpdateSubscriberNotification(input *UpdateSubscriberNotificationInput) (*UpdateSubscriberNotificationOutput, error) {
+	req, out := c.UpdateSubscriberNotificationRequest(input)
 	return out, req.Send()
 }
 
-// UpdateSubscriptionNotificationConfigurationWithContext is the same as UpdateSubscriptionNotificationConfiguration with the addition of
+// UpdateSubscriberNotificationWithContext is the same as UpdateSubscriberNotification with the addition of
 // the ability to pass a context and additional request options.
 //
-// See UpdateSubscriptionNotificationConfiguration for details on how to use this API operation.
+// See UpdateSubscriberNotification for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SecurityLake) UpdateSubscriptionNotificationConfigurationWithContext(ctx aws.Context, input *UpdateSubscriptionNotificationConfigurationInput, opts ...request.Option) (*UpdateSubscriptionNotificationConfigurationOutput, error) {
-	req, out := c.UpdateSubscriptionNotificationConfigurationRequest(input)
+func (c *SecurityLake) UpdateSubscriberNotificationWithContext(ctx aws.Context, input *UpdateSubscriberNotificationInput, opts ...request.Option) (*UpdateSubscriberNotificationOutput, error) {
+	req, out := c.UpdateSubscriberNotificationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3429,95 +3298,19 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Amazon Security Lake cannot find an Amazon Web Services account with the
-// accountID that you specified, or the account whose credentials you used to
-// make this request isn't a member of an organization.
-type AccountNotFoundException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s AccountNotFoundException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s AccountNotFoundException) GoString() string {
-	return s.String()
-}
-
-func newErrorAccountNotFoundException(v protocol.ResponseMetadata) error {
-	return &AccountNotFoundException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *AccountNotFoundException) Code() string {
-	return "AccountNotFoundException"
-}
-
-// Message returns the exception's message.
-func (s *AccountNotFoundException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *AccountNotFoundException) OrigErr() error {
-	return nil
-}
-
-func (s *AccountNotFoundException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *AccountNotFoundException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *AccountNotFoundException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// Amazon Security Lake collects logs and events from supported Amazon Web Services
-// and custom sources. For the list of supported Amazon Web Services, see the
-// Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html).
-type AccountSources struct {
+// The AWS identity.
+type AwsIdentity struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Security Lake account for which logs are collected.
+	// The external ID used to estalish trust relationship with the AWS identity.
 	//
-	// Account is a required field
-	Account *string `locationName:"account" type:"string" required:"true"`
+	// ExternalId is a required field
+	ExternalId *string `locationName:"externalId" min:"2" type:"string" required:"true"`
 
-	// Initializes a new instance of the Event class.
-	EventClass *string `locationName:"eventClass" type:"string" enum:"OcsfEventClass"`
-
-	// The log status for the Security Lake account.
-	LogsStatus []*LogsStatus `locationName:"logsStatus" type:"list"`
-
-	// The supported Amazon Web Services from which logs and events are collected.
-	// Amazon Security Lake supports log and event collection for natively supported
-	// Amazon Web Services.
+	// The AWS identity principal.
 	//
-	// SourceType is a required field
-	SourceType *string `locationName:"sourceType" type:"string" required:"true"`
+	// Principal is a required field
+	Principal *string `locationName:"principal" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3525,7 +3318,7 @@ type AccountSources struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s AccountSources) String() string {
+func (s AwsIdentity) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -3534,77 +3327,21 @@ func (s AccountSources) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s AccountSources) GoString() string {
-	return s.String()
-}
-
-// SetAccount sets the Account field's value.
-func (s *AccountSources) SetAccount(v string) *AccountSources {
-	s.Account = &v
-	return s
-}
-
-// SetEventClass sets the EventClass field's value.
-func (s *AccountSources) SetEventClass(v string) *AccountSources {
-	s.EventClass = &v
-	return s
-}
-
-// SetLogsStatus sets the LogsStatus field's value.
-func (s *AccountSources) SetLogsStatus(v []*LogsStatus) *AccountSources {
-	s.LogsStatus = v
-	return s
-}
-
-// SetSourceType sets the SourceType field's value.
-func (s *AccountSources) SetSourceType(v string) *AccountSources {
-	s.SourceType = &v
-	return s
-}
-
-// Automatically enable new organization accounts as member accounts from an
-// Amazon Security Lake administrator account.
-type AutoEnableNewRegionConfiguration struct {
-	_ struct{} `type:"structure"`
-
-	// The Amazon Web Services Regions where Security Lake is automatically enabled.
-	//
-	// Region is a required field
-	Region *string `locationName:"region" type:"string" required:"true" enum:"Region"`
-
-	// The Amazon Web Services sources that are automatically enabled in Security
-	// Lake.
-	//
-	// Sources is a required field
-	Sources []*string `locationName:"sources" type:"list" required:"true" enum:"AwsLogSourceType"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s AutoEnableNewRegionConfiguration) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s AutoEnableNewRegionConfiguration) GoString() string {
+func (s AwsIdentity) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *AutoEnableNewRegionConfiguration) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "AutoEnableNewRegionConfiguration"}
-	if s.Region == nil {
-		invalidParams.Add(request.NewErrParamRequired("Region"))
+func (s *AwsIdentity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AwsIdentity"}
+	if s.ExternalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExternalId"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.ExternalId != nil && len(*s.ExternalId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalId", 2))
+	}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3613,21 +3350,148 @@ func (s *AutoEnableNewRegionConfiguration) Validate() error {
 	return nil
 }
 
-// SetRegion sets the Region field's value.
-func (s *AutoEnableNewRegionConfiguration) SetRegion(v string) *AutoEnableNewRegionConfiguration {
-	s.Region = &v
+// SetExternalId sets the ExternalId field's value.
+func (s *AwsIdentity) SetExternalId(v string) *AwsIdentity {
+	s.ExternalId = &v
 	return s
 }
 
-// SetSources sets the Sources field's value.
-func (s *AutoEnableNewRegionConfiguration) SetSources(v []*string) *AutoEnableNewRegionConfiguration {
-	s.Sources = v
+// SetPrincipal sets the Principal field's value.
+func (s *AwsIdentity) SetPrincipal(v string) *AwsIdentity {
+	s.Principal = &v
 	return s
 }
 
-// Amazon Security Lake generally returns 404 errors if the requested object
-// is missing from the bucket.
-type BucketNotFoundException struct {
+// The Security Lake logs source configuration file describes the information
+// needed to generate Security Lake logs.
+type AwsLogSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the Amazon Web Services account information where you want to enable
+	// Security Lake.
+	Accounts []*string `locationName:"accounts" type:"list"`
+
+	// Specify the Regions where you want to enable Security Lake.
+	//
+	// Regions is a required field
+	Regions []*string `locationName:"regions" type:"list" required:"true"`
+
+	// The name for a Amazon Web Services source. This must be a Regionally unique
+	// value.
+	//
+	// SourceName is a required field
+	SourceName *string `locationName:"sourceName" type:"string" required:"true" enum:"AwsLogSourceName"`
+
+	// The version for a Amazon Web Services source. This must be a Regionally unique
+	// value.
+	SourceVersion *string `locationName:"sourceVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsLogSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsLogSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AwsLogSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AwsLogSourceConfiguration"}
+	if s.Regions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Regions"))
+	}
+	if s.SourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccounts sets the Accounts field's value.
+func (s *AwsLogSourceConfiguration) SetAccounts(v []*string) *AwsLogSourceConfiguration {
+	s.Accounts = v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *AwsLogSourceConfiguration) SetRegions(v []*string) *AwsLogSourceConfiguration {
+	s.Regions = v
+	return s
+}
+
+// SetSourceName sets the SourceName field's value.
+func (s *AwsLogSourceConfiguration) SetSourceName(v string) *AwsLogSourceConfiguration {
+	s.SourceName = &v
+	return s
+}
+
+// SetSourceVersion sets the SourceVersion field's value.
+func (s *AwsLogSourceConfiguration) SetSourceVersion(v string) *AwsLogSourceConfiguration {
+	s.SourceVersion = &v
+	return s
+}
+
+// Amazon Security Lake can collect logs and events from natively-supported
+// Amazon Web Services services.
+type AwsLogSourceResource struct {
+	_ struct{} `type:"structure"`
+
+	// The name for a Amazon Web Services source. This must be a Regionally unique
+	// value.
+	SourceName *string `locationName:"sourceName" type:"string" enum:"AwsLogSourceName"`
+
+	// The version for a Amazon Web Services source. This must be a Regionally unique
+	// value.
+	SourceVersion *string `locationName:"sourceVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsLogSourceResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsLogSourceResource) GoString() string {
+	return s.String()
+}
+
+// SetSourceName sets the SourceName field's value.
+func (s *AwsLogSourceResource) SetSourceName(v string) *AwsLogSourceResource {
+	s.SourceName = &v
+	return s
+}
+
+// SetSourceVersion sets the SourceVersion field's value.
+func (s *AwsLogSourceResource) SetSourceVersion(v string) *AwsLogSourceResource {
+	s.SourceVersion = &v
+	return s
+}
+
+// The request is malformed or contains an error such as an invalid parameter
+// value or a missing required parameter.
+type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
@@ -3639,7 +3503,7 @@ type BucketNotFoundException struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s BucketNotFoundException) String() string {
+func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -3648,23 +3512,23 @@ func (s BucketNotFoundException) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s BucketNotFoundException) GoString() string {
+func (s BadRequestException) GoString() string {
 	return s.String()
 }
 
-func newErrorBucketNotFoundException(v protocol.ResponseMetadata) error {
-	return &BucketNotFoundException{
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
 		RespMetadata: v,
 	}
 }
 
 // Code returns the exception type name.
-func (s *BucketNotFoundException) Code() string {
-	return "BucketNotFoundException"
+func (s *BadRequestException) Code() string {
+	return "BadRequestException"
 }
 
 // Message returns the exception's message.
-func (s *BucketNotFoundException) Message() string {
+func (s *BadRequestException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -3672,85 +3536,21 @@ func (s *BucketNotFoundException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *BucketNotFoundException) OrigErr() error {
+func (s *BadRequestException) OrigErr() error {
 	return nil
 }
 
-func (s *BucketNotFoundException) Error() string {
+func (s *BadRequestException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s *BucketNotFoundException) StatusCode() int {
+func (s *BadRequestException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s *BucketNotFoundException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// More than one process tried to modify a resource at the same time.
-type ConcurrentModificationException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ConcurrentModificationException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ConcurrentModificationException) GoString() string {
-	return s.String()
-}
-
-func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
-	return &ConcurrentModificationException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *ConcurrentModificationException) Code() string {
-	return "ConcurrentModificationException"
-}
-
-// Message returns the exception's message.
-func (s *ConcurrentModificationException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *ConcurrentModificationException) OrigErr() error {
-	return nil
-}
-
-func (s *ConcurrentModificationException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *ConcurrentModificationException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *ConcurrentModificationException) RequestID() string {
+func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -3764,15 +3564,11 @@ type ConflictException struct {
 
 	Message_ *string `locationName:"message" type:"string"`
 
-	// A conflict occurred when prompting for the Resource ID.
-	//
-	// ResourceId is a required field
-	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
+	// The resource name.
+	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The resource type.
-	//
-	// ResourceType is a required field
-	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
+	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
 // String returns the string representation.
@@ -3831,155 +3627,14 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// There was a conflict when you attempted to modify a Security Lake source
-// name.
-type ConflictSourceNamesException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ConflictSourceNamesException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ConflictSourceNamesException) GoString() string {
-	return s.String()
-}
-
-func newErrorConflictSourceNamesException(v protocol.ResponseMetadata) error {
-	return &ConflictSourceNamesException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *ConflictSourceNamesException) Code() string {
-	return "ConflictSourceNamesException"
-}
-
-// Message returns the exception's message.
-func (s *ConflictSourceNamesException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *ConflictSourceNamesException) OrigErr() error {
-	return nil
-}
-
-func (s *ConflictSourceNamesException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *ConflictSourceNamesException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *ConflictSourceNamesException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// A conflicting subscription exception operation is in progress.
-type ConflictSubscriptionException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ConflictSubscriptionException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ConflictSubscriptionException) GoString() string {
-	return s.String()
-}
-
-func newErrorConflictSubscriptionException(v protocol.ResponseMetadata) error {
-	return &ConflictSubscriptionException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *ConflictSubscriptionException) Code() string {
-	return "ConflictSubscriptionException"
-}
-
-// Message returns the exception's message.
-func (s *ConflictSubscriptionException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *ConflictSubscriptionException) OrigErr() error {
-	return nil
-}
-
-func (s *ConflictSubscriptionException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *ConflictSubscriptionException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *ConflictSubscriptionException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
 type CreateAwsLogSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enables data collection from specific Amazon Web Services sources in all
-	// specific accounts and specific Regions.
-	EnableAllDimensions map[string]map[string][]*string `locationName:"enableAllDimensions" type:"map"`
-
-	// Enables data collection from all Amazon Web Services sources in specific
-	// accounts or Regions.
-	EnableSingleDimension []*string `locationName:"enableSingleDimension" type:"list"`
-
-	// Enables data collection from specific Amazon Web Services sources in specific
-	// accounts or Regions.
-	EnableTwoDimensions map[string][]*string `locationName:"enableTwoDimensions" type:"map"`
-
-	// Specifies the input order to enable dimensions in Security Lake, namely Region,
-	// source type, and member account.
+	// Specify the natively-supported Amazon Web Services service to add as a source
+	// in Security Lake.
 	//
-	// InputOrder is a required field
-	InputOrder []*string `locationName:"inputOrder" type:"list" required:"true" enum:"Dimension"`
+	// Sources is a required field
+	Sources []*AwsLogSourceConfiguration `locationName:"sources" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -4003,8 +3658,18 @@ func (s CreateAwsLogSourceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateAwsLogSourceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateAwsLogSourceInput"}
-	if s.InputOrder == nil {
-		invalidParams.Add(request.NewErrParamRequired("InputOrder"))
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4013,27 +3678,9 @@ func (s *CreateAwsLogSourceInput) Validate() error {
 	return nil
 }
 
-// SetEnableAllDimensions sets the EnableAllDimensions field's value.
-func (s *CreateAwsLogSourceInput) SetEnableAllDimensions(v map[string]map[string][]*string) *CreateAwsLogSourceInput {
-	s.EnableAllDimensions = v
-	return s
-}
-
-// SetEnableSingleDimension sets the EnableSingleDimension field's value.
-func (s *CreateAwsLogSourceInput) SetEnableSingleDimension(v []*string) *CreateAwsLogSourceInput {
-	s.EnableSingleDimension = v
-	return s
-}
-
-// SetEnableTwoDimensions sets the EnableTwoDimensions field's value.
-func (s *CreateAwsLogSourceInput) SetEnableTwoDimensions(v map[string][]*string) *CreateAwsLogSourceInput {
-	s.EnableTwoDimensions = v
-	return s
-}
-
-// SetInputOrder sets the InputOrder field's value.
-func (s *CreateAwsLogSourceInput) SetInputOrder(v []*string) *CreateAwsLogSourceInput {
-	s.InputOrder = v
+// SetSources sets the Sources field's value.
+func (s *CreateAwsLogSourceInput) SetSources(v []*AwsLogSourceConfiguration) *CreateAwsLogSourceInput {
+	s.Sources = v
 	return s
 }
 
@@ -4044,10 +3691,6 @@ type CreateAwsLogSourceOutput struct {
 	// as a Security Lake source failed. The failure occurred as these accounts
 	// are not part of an organization.
 	Failed []*string `locationName:"failed" type:"list"`
-
-	// Lists the accounts that are in the process of enabling a natively supported
-	// Amazon Web Service as a Security Lake source.
-	Processing []*string `locationName:"processing" type:"list"`
 }
 
 // String returns the string representation.
@@ -4074,42 +3717,84 @@ func (s *CreateAwsLogSourceOutput) SetFailed(v []*string) *CreateAwsLogSourceOut
 	return s
 }
 
-// SetProcessing sets the Processing field's value.
-func (s *CreateAwsLogSourceOutput) SetProcessing(v []*string) *CreateAwsLogSourceOutput {
-	s.Processing = v
-	return s
-}
-
 type CreateCustomLogSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name for a third-party custom source. This must be a Regionally unique
-	// value.
-	//
-	// CustomSourceName is a required field
-	CustomSourceName *string `locationName:"customSourceName" type:"string" required:"true"`
+	// The configuration for the third-party custom source.
+	Configuration *CustomLogSourceConfiguration `locationName:"configuration" type:"structure"`
 
-	// The Open Cybersecurity Schema Framework (OCSF) event class which describes
-	// the type of data that the custom source will send to Security Lake.
+	// The Open Cybersecurity Schema Framework (OCSF) event classes which describes
+	// the type of data that the custom source will send to Security Lake. The supported
+	// event classes are:
 	//
-	// EventClass is a required field
-	EventClass *string `locationName:"eventClass" type:"string" required:"true" enum:"OcsfEventClass"`
+	//    * ACCESS_ACTIVITY
+	//
+	//    * FILE_ACTIVITY
+	//
+	//    * KERNEL_ACTIVITY
+	//
+	//    * KERNEL_EXTENSION
+	//
+	//    * MEMORY_ACTIVITY
+	//
+	//    * MODULE_ACTIVITY
+	//
+	//    * PROCESS_ACTIVITY
+	//
+	//    * REGISTRY_KEY_ACTIVITY
+	//
+	//    * REGISTRY_VALUE_ACTIVITY
+	//
+	//    * RESOURCE_ACTIVITY
+	//
+	//    * SCHEDULED_JOB_ACTIVITY
+	//
+	//    * SECURITY_FINDING
+	//
+	//    * ACCOUNT_CHANGE
+	//
+	//    * AUTHENTICATION
+	//
+	//    * AUTHORIZATION
+	//
+	//    * ENTITY_MANAGEMENT_AUDIT
+	//
+	//    * DHCP_ACTIVITY
+	//
+	//    * NETWORK_ACTIVITY
+	//
+	//    * DNS_ACTIVITY
+	//
+	//    * FTP_ACTIVITY
+	//
+	//    * HTTP_ACTIVITY
+	//
+	//    * RDP_ACTIVITY
+	//
+	//    * SMB_ACTIVITY
+	//
+	//    * SSH_ACTIVITY
+	//
+	//    * CONFIG_STATE
+	//
+	//    * INVENTORY_INFO
+	//
+	//    * EMAIL_ACTIVITY
+	//
+	//    * API_ACTIVITY
+	//
+	//    * CLOUD_API
+	EventClasses []*string `locationName:"eventClasses" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-	// role to be used by the Glue crawler. The recommended IAM policies are:
+	// Specify the name for a third-party custom source. This must be a Regionally
+	// unique value.
 	//
-	//    * The managed policy AWSGlueServiceRole
-	//
-	//    * A custom policy granting access to your Amazon S3 Data Lake
-	//
-	// GlueInvocationRoleArn is a required field
-	GlueInvocationRoleArn *string `locationName:"glueInvocationRoleArn" type:"string" required:"true"`
+	// SourceName is a required field
+	SourceName *string `locationName:"sourceName" min:"1" type:"string" required:"true"`
 
-	// The Amazon Web Services account ID of the custom source that will write logs
-	// and events into the Amazon S3 Data Lake.
-	//
-	// LogProviderAccountId is a required field
-	LogProviderAccountId *string `locationName:"logProviderAccountId" min:"12" type:"string" required:"true"`
+	// Specify the source version for the third-party custom source, to limit log
+	// collection to a specific version of custom data source.
+	SourceVersion *string `locationName:"sourceVersion" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -4133,20 +3818,19 @@ func (s CreateCustomLogSourceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateCustomLogSourceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCustomLogSourceInput"}
-	if s.CustomSourceName == nil {
-		invalidParams.Add(request.NewErrParamRequired("CustomSourceName"))
+	if s.SourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceName"))
 	}
-	if s.EventClass == nil {
-		invalidParams.Add(request.NewErrParamRequired("EventClass"))
+	if s.SourceName != nil && len(*s.SourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceName", 1))
 	}
-	if s.GlueInvocationRoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("GlueInvocationRoleArn"))
+	if s.SourceVersion != nil && len(*s.SourceVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceVersion", 1))
 	}
-	if s.LogProviderAccountId == nil {
-		invalidParams.Add(request.NewErrParamRequired("LogProviderAccountId"))
-	}
-	if s.LogProviderAccountId != nil && len(*s.LogProviderAccountId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("LogProviderAccountId", 12))
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4155,61 +3839,35 @@ func (s *CreateCustomLogSourceInput) Validate() error {
 	return nil
 }
 
-// SetCustomSourceName sets the CustomSourceName field's value.
-func (s *CreateCustomLogSourceInput) SetCustomSourceName(v string) *CreateCustomLogSourceInput {
-	s.CustomSourceName = &v
+// SetConfiguration sets the Configuration field's value.
+func (s *CreateCustomLogSourceInput) SetConfiguration(v *CustomLogSourceConfiguration) *CreateCustomLogSourceInput {
+	s.Configuration = v
 	return s
 }
 
-// SetEventClass sets the EventClass field's value.
-func (s *CreateCustomLogSourceInput) SetEventClass(v string) *CreateCustomLogSourceInput {
-	s.EventClass = &v
+// SetEventClasses sets the EventClasses field's value.
+func (s *CreateCustomLogSourceInput) SetEventClasses(v []*string) *CreateCustomLogSourceInput {
+	s.EventClasses = v
 	return s
 }
 
-// SetGlueInvocationRoleArn sets the GlueInvocationRoleArn field's value.
-func (s *CreateCustomLogSourceInput) SetGlueInvocationRoleArn(v string) *CreateCustomLogSourceInput {
-	s.GlueInvocationRoleArn = &v
+// SetSourceName sets the SourceName field's value.
+func (s *CreateCustomLogSourceInput) SetSourceName(v string) *CreateCustomLogSourceInput {
+	s.SourceName = &v
 	return s
 }
 
-// SetLogProviderAccountId sets the LogProviderAccountId field's value.
-func (s *CreateCustomLogSourceInput) SetLogProviderAccountId(v string) *CreateCustomLogSourceInput {
-	s.LogProviderAccountId = &v
+// SetSourceVersion sets the SourceVersion field's value.
+func (s *CreateCustomLogSourceInput) SetSourceVersion(v string) *CreateCustomLogSourceInput {
+	s.SourceVersion = &v
 	return s
 }
 
 type CreateCustomLogSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The location of the partition in the Amazon S3 bucket for Security Lake.
-	//
-	// CustomDataLocation is a required field
-	CustomDataLocation *string `locationName:"customDataLocation" type:"string" required:"true"`
-
-	// The name of the Glue crawler.
-	//
-	// GlueCrawlerName is a required field
-	GlueCrawlerName *string `locationName:"glueCrawlerName" type:"string" required:"true"`
-
-	// The Glue database where results are written, such as: arn:aws:daylight:us-east-1::database/sometable/*.
-	//
-	// GlueDatabaseName is a required field
-	GlueDatabaseName *string `locationName:"glueDatabaseName" type:"string" required:"true"`
-
-	// The table name of the Glue crawler.
-	//
-	// GlueTableName is a required field
-	GlueTableName *string `locationName:"glueTableName" type:"string" required:"true"`
-
-	// The ARN of the IAM role to be used by the entity putting logs into your custom
-	// source partition. Security Lake will apply the correct access policies to
-	// this role, but you must first manually create the trust policy for this role.
-	// The IAM role name must start with the text 'Security Lake'. The IAM role
-	// must trust the logProviderAccountId to assume the role.
-	//
-	// LogProviderAccessRoleArn is a required field
-	LogProviderAccessRoleArn *string `locationName:"logProviderAccessRoleArn" type:"string" required:"true"`
+	// The created third-party custom source.
+	Source *CustomLogSourceResource `locationName:"source" type:"structure"`
 }
 
 // String returns the string representation.
@@ -4230,185 +3888,17 @@ func (s CreateCustomLogSourceOutput) GoString() string {
 	return s.String()
 }
 
-// SetCustomDataLocation sets the CustomDataLocation field's value.
-func (s *CreateCustomLogSourceOutput) SetCustomDataLocation(v string) *CreateCustomLogSourceOutput {
-	s.CustomDataLocation = &v
+// SetSource sets the Source field's value.
+func (s *CreateCustomLogSourceOutput) SetSource(v *CustomLogSourceResource) *CreateCustomLogSourceOutput {
+	s.Source = v
 	return s
 }
 
-// SetGlueCrawlerName sets the GlueCrawlerName field's value.
-func (s *CreateCustomLogSourceOutput) SetGlueCrawlerName(v string) *CreateCustomLogSourceOutput {
-	s.GlueCrawlerName = &v
-	return s
-}
-
-// SetGlueDatabaseName sets the GlueDatabaseName field's value.
-func (s *CreateCustomLogSourceOutput) SetGlueDatabaseName(v string) *CreateCustomLogSourceOutput {
-	s.GlueDatabaseName = &v
-	return s
-}
-
-// SetGlueTableName sets the GlueTableName field's value.
-func (s *CreateCustomLogSourceOutput) SetGlueTableName(v string) *CreateCustomLogSourceOutput {
-	s.GlueTableName = &v
-	return s
-}
-
-// SetLogProviderAccessRoleArn sets the LogProviderAccessRoleArn field's value.
-func (s *CreateCustomLogSourceOutput) SetLogProviderAccessRoleArn(v string) *CreateCustomLogSourceOutput {
-	s.LogProviderAccessRoleArn = &v
-	return s
-}
-
-type CreateDatalakeAutoEnableInput struct {
+type CreateDataLakeExceptionSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enable Security Lake with the specified configuration settings to begin collecting
-	// security data for new accounts in your organization.
-	//
-	// ConfigurationForNewAccounts is a required field
-	ConfigurationForNewAccounts []*AutoEnableNewRegionConfiguration `locationName:"configurationForNewAccounts" type:"list" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s CreateDatalakeAutoEnableInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s CreateDatalakeAutoEnableInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *CreateDatalakeAutoEnableInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "CreateDatalakeAutoEnableInput"}
-	if s.ConfigurationForNewAccounts == nil {
-		invalidParams.Add(request.NewErrParamRequired("ConfigurationForNewAccounts"))
-	}
-	if s.ConfigurationForNewAccounts != nil {
-		for i, v := range s.ConfigurationForNewAccounts {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ConfigurationForNewAccounts", i), err.(request.ErrInvalidParams))
-			}
-		}
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetConfigurationForNewAccounts sets the ConfigurationForNewAccounts field's value.
-func (s *CreateDatalakeAutoEnableInput) SetConfigurationForNewAccounts(v []*AutoEnableNewRegionConfiguration) *CreateDatalakeAutoEnableInput {
-	s.ConfigurationForNewAccounts = v
-	return s
-}
-
-type CreateDatalakeAutoEnableOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s CreateDatalakeAutoEnableOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s CreateDatalakeAutoEnableOutput) GoString() string {
-	return s.String()
-}
-
-type CreateDatalakeDelegatedAdminInput struct {
-	_ struct{} `type:"structure"`
-
-	// The Amazon Web Services account ID of the Security Lake delegated administrator.
-	//
-	// Account is a required field
-	Account *string `locationName:"account" type:"string" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s CreateDatalakeDelegatedAdminInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s CreateDatalakeDelegatedAdminInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *CreateDatalakeDelegatedAdminInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "CreateDatalakeDelegatedAdminInput"}
-	if s.Account == nil {
-		invalidParams.Add(request.NewErrParamRequired("Account"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetAccount sets the Account field's value.
-func (s *CreateDatalakeDelegatedAdminInput) SetAccount(v string) *CreateDatalakeDelegatedAdminInput {
-	s.Account = &v
-	return s
-}
-
-type CreateDatalakeDelegatedAdminOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s CreateDatalakeDelegatedAdminOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s CreateDatalakeDelegatedAdminOutput) GoString() string {
-	return s.String()
-}
-
-type CreateDatalakeExceptionsSubscriptionInput struct {
-	_ struct{} `type:"structure"`
+	// The expiration period and time-to-live (TTL).
+	ExceptionTimeToLive *int64 `locationName:"exceptionTimeToLive" min:"1" type:"long"`
 
 	// The Amazon Web Services account where you want to receive exception notifications.
 	//
@@ -4418,7 +3908,7 @@ type CreateDatalakeExceptionsSubscriptionInput struct {
 	// The subscription protocol to which exception notifications are posted.
 	//
 	// SubscriptionProtocol is a required field
-	SubscriptionProtocol *string `locationName:"subscriptionProtocol" type:"string" required:"true" enum:"SubscriptionProtocolType"`
+	SubscriptionProtocol *string `locationName:"subscriptionProtocol" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -4426,7 +3916,7 @@ type CreateDatalakeExceptionsSubscriptionInput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateDatalakeExceptionsSubscriptionInput) String() string {
+func (s CreateDataLakeExceptionSubscriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -4435,13 +3925,16 @@ func (s CreateDatalakeExceptionsSubscriptionInput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateDatalakeExceptionsSubscriptionInput) GoString() string {
+func (s CreateDataLakeExceptionSubscriptionInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *CreateDatalakeExceptionsSubscriptionInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "CreateDatalakeExceptionsSubscriptionInput"}
+func (s *CreateDataLakeExceptionSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataLakeExceptionSubscriptionInput"}
+	if s.ExceptionTimeToLive != nil && *s.ExceptionTimeToLive < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ExceptionTimeToLive", 1))
+	}
 	if s.NotificationEndpoint == nil {
 		invalidParams.Add(request.NewErrParamRequired("NotificationEndpoint"))
 	}
@@ -4455,19 +3948,25 @@ func (s *CreateDatalakeExceptionsSubscriptionInput) Validate() error {
 	return nil
 }
 
+// SetExceptionTimeToLive sets the ExceptionTimeToLive field's value.
+func (s *CreateDataLakeExceptionSubscriptionInput) SetExceptionTimeToLive(v int64) *CreateDataLakeExceptionSubscriptionInput {
+	s.ExceptionTimeToLive = &v
+	return s
+}
+
 // SetNotificationEndpoint sets the NotificationEndpoint field's value.
-func (s *CreateDatalakeExceptionsSubscriptionInput) SetNotificationEndpoint(v string) *CreateDatalakeExceptionsSubscriptionInput {
+func (s *CreateDataLakeExceptionSubscriptionInput) SetNotificationEndpoint(v string) *CreateDataLakeExceptionSubscriptionInput {
 	s.NotificationEndpoint = &v
 	return s
 }
 
 // SetSubscriptionProtocol sets the SubscriptionProtocol field's value.
-func (s *CreateDatalakeExceptionsSubscriptionInput) SetSubscriptionProtocol(v string) *CreateDatalakeExceptionsSubscriptionInput {
+func (s *CreateDataLakeExceptionSubscriptionInput) SetSubscriptionProtocol(v string) *CreateDataLakeExceptionSubscriptionInput {
 	s.SubscriptionProtocol = &v
 	return s
 }
 
-type CreateDatalakeExceptionsSubscriptionOutput struct {
+type CreateDataLakeExceptionSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
@@ -4476,7 +3975,7 @@ type CreateDatalakeExceptionsSubscriptionOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateDatalakeExceptionsSubscriptionOutput) String() string {
+func (s CreateDataLakeExceptionSubscriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -4485,30 +3984,24 @@ func (s CreateDatalakeExceptionsSubscriptionOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateDatalakeExceptionsSubscriptionOutput) GoString() string {
+func (s CreateDataLakeExceptionSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
-type CreateDatalakeInput struct {
+type CreateDataLakeInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specify the Region or Regions that will contribute data to the rollup region.
-	Configurations map[string]*LakeConfigurationRequest `locationName:"configurations" type:"map"`
-
-	// Enable Security Lake in all Regions.
-	EnableAll *bool `locationName:"enableAll" type:"boolean"`
+	//
+	// Configurations is a required field
+	Configurations []*DataLakeConfiguration `locationName:"configurations" type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) used to create and update the Glue table.
 	// This table contains partitions generated by the ingestion and normalization
 	// of Amazon Web Services log sources and custom sources.
-	MetaStoreManagerRoleArn *string `locationName:"metaStoreManagerRoleArn" type:"string"`
-
-	// Enable Security Lake in the specified Regions. To enable Security Lake in
-	// specific Amazon Web Services Regions, such as us-east-1 or ap-northeast-3,
-	// provide the Region codes. For a list of Region codes, see Amazon Security
-	// Lake endpoints (https://docs.aws.amazon.com/general/latest/gr/securitylake.html)
-	// in the Amazon Web Services General Reference.
-	Regions []*string `locationName:"regions" type:"list" enum:"Region"`
+	//
+	// MetaStoreManagerRoleArn is a required field
+	MetaStoreManagerRoleArn *string `locationName:"metaStoreManagerRoleArn" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -4516,7 +4009,7 @@ type CreateDatalakeInput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateDatalakeInput) String() string {
+func (s CreateDataLakeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -4525,13 +4018,19 @@ func (s CreateDatalakeInput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateDatalakeInput) GoString() string {
+func (s CreateDataLakeInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *CreateDatalakeInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "CreateDatalakeInput"}
+func (s *CreateDataLakeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataLakeInput"}
+	if s.Configurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configurations"))
+	}
+	if s.MetaStoreManagerRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetaStoreManagerRoleArn"))
+	}
 	if s.Configurations != nil {
 		for i, v := range s.Configurations {
 			if v == nil {
@@ -4550,31 +4049,25 @@ func (s *CreateDatalakeInput) Validate() error {
 }
 
 // SetConfigurations sets the Configurations field's value.
-func (s *CreateDatalakeInput) SetConfigurations(v map[string]*LakeConfigurationRequest) *CreateDatalakeInput {
+func (s *CreateDataLakeInput) SetConfigurations(v []*DataLakeConfiguration) *CreateDataLakeInput {
 	s.Configurations = v
 	return s
 }
 
-// SetEnableAll sets the EnableAll field's value.
-func (s *CreateDatalakeInput) SetEnableAll(v bool) *CreateDatalakeInput {
-	s.EnableAll = &v
-	return s
-}
-
 // SetMetaStoreManagerRoleArn sets the MetaStoreManagerRoleArn field's value.
-func (s *CreateDatalakeInput) SetMetaStoreManagerRoleArn(v string) *CreateDatalakeInput {
+func (s *CreateDataLakeInput) SetMetaStoreManagerRoleArn(v string) *CreateDataLakeInput {
 	s.MetaStoreManagerRoleArn = &v
 	return s
 }
 
-// SetRegions sets the Regions field's value.
-func (s *CreateDatalakeInput) SetRegions(v []*string) *CreateDatalakeInput {
-	s.Regions = v
-	return s
-}
-
-type CreateDatalakeOutput struct {
+type CreateDataLakeOrganizationConfigurationInput struct {
 	_ struct{} `type:"structure"`
+
+	// Enable Security Lake with the specified configuration settings, to begin
+	// collecting security data for new accounts in your organization.
+	//
+	// AutoEnableNewAccount is a required field
+	AutoEnableNewAccount []*DataLakeAutoEnableNewAccountConfiguration `locationName:"autoEnableNewAccount" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -4582,7 +4075,7 @@ type CreateDatalakeOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateDatalakeOutput) String() string {
+func (s CreateDataLakeOrganizationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -4591,8 +4084,90 @@ func (s CreateDatalakeOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateDatalakeOutput) GoString() string {
+func (s CreateDataLakeOrganizationConfigurationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataLakeOrganizationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataLakeOrganizationConfigurationInput"}
+	if s.AutoEnableNewAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoEnableNewAccount"))
+	}
+	if s.AutoEnableNewAccount != nil {
+		for i, v := range s.AutoEnableNewAccount {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AutoEnableNewAccount", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoEnableNewAccount sets the AutoEnableNewAccount field's value.
+func (s *CreateDataLakeOrganizationConfigurationInput) SetAutoEnableNewAccount(v []*DataLakeAutoEnableNewAccountConfiguration) *CreateDataLakeOrganizationConfigurationInput {
+	s.AutoEnableNewAccount = v
+	return s
+}
+
+type CreateDataLakeOrganizationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataLakeOrganizationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataLakeOrganizationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type CreateDataLakeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The created Security Lake configuration object.
+	DataLakes []*DataLakeResource `locationName:"dataLakes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataLakeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataLakeOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataLakes sets the DataLakes field's value.
+func (s *CreateDataLakeOutput) SetDataLakes(v []*DataLakeResource) *CreateDataLakeOutput {
+	s.DataLakes = v
+	return s
 }
 
 type CreateSubscriberInput struct {
@@ -4601,28 +4176,20 @@ type CreateSubscriberInput struct {
 	// The Amazon S3 or Lake Formation access type.
 	AccessTypes []*string `locationName:"accessTypes" type:"list" enum:"AccessType"`
 
-	// The Amazon Web Services account ID used to access your data.
-	//
-	// AccountId is a required field
-	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
-
-	// The external ID of the subscriber. This lets the user that is assuming the
-	// role assert the circumstances in which they are operating. It also provides
-	// a way for the account owner to permit the role to be assumed only under specific
-	// circumstances.
-	//
-	// ExternalId is a required field
-	ExternalId *string `locationName:"externalId" type:"string" required:"true"`
-
 	// The supported Amazon Web Services from which logs and events are collected.
 	// Security Lake supports log and event collection for natively supported Amazon
 	// Web Services.
 	//
-	// SourceTypes is a required field
-	SourceTypes []*SourceType `locationName:"sourceTypes" type:"list" required:"true"`
+	// Sources is a required field
+	Sources []*LogSourceResource `locationName:"sources" type:"list" required:"true"`
 
 	// The description for your subscriber account in Security Lake.
 	SubscriberDescription *string `locationName:"subscriberDescription" type:"string"`
+
+	// The AWS identity used to access your data.
+	//
+	// SubscriberIdentity is a required field
+	SubscriberIdentity *AwsIdentity `locationName:"subscriberIdentity" type:"structure" required:"true"`
 
 	// The name of your Security Lake subscriber account.
 	//
@@ -4651,20 +4218,29 @@ func (s CreateSubscriberInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateSubscriberInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateSubscriberInput"}
-	if s.AccountId == nil {
-		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
 	}
-	if s.AccountId != nil && len(*s.AccountId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
-	}
-	if s.ExternalId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ExternalId"))
-	}
-	if s.SourceTypes == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceTypes"))
+	if s.SubscriberIdentity == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriberIdentity"))
 	}
 	if s.SubscriberName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubscriberName"))
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SubscriberIdentity != nil {
+		if err := s.SubscriberIdentity.Validate(); err != nil {
+			invalidParams.AddNested("SubscriberIdentity", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4679,21 +4255,9 @@ func (s *CreateSubscriberInput) SetAccessTypes(v []*string) *CreateSubscriberInp
 	return s
 }
 
-// SetAccountId sets the AccountId field's value.
-func (s *CreateSubscriberInput) SetAccountId(v string) *CreateSubscriberInput {
-	s.AccountId = &v
-	return s
-}
-
-// SetExternalId sets the ExternalId field's value.
-func (s *CreateSubscriberInput) SetExternalId(v string) *CreateSubscriberInput {
-	s.ExternalId = &v
-	return s
-}
-
-// SetSourceTypes sets the SourceTypes field's value.
-func (s *CreateSubscriberInput) SetSourceTypes(v []*SourceType) *CreateSubscriberInput {
-	s.SourceTypes = v
+// SetSources sets the Sources field's value.
+func (s *CreateSubscriberInput) SetSources(v []*LogSourceResource) *CreateSubscriberInput {
+	s.Sources = v
 	return s
 }
 
@@ -4703,38 +4267,123 @@ func (s *CreateSubscriberInput) SetSubscriberDescription(v string) *CreateSubscr
 	return s
 }
 
+// SetSubscriberIdentity sets the SubscriberIdentity field's value.
+func (s *CreateSubscriberInput) SetSubscriberIdentity(v *AwsIdentity) *CreateSubscriberInput {
+	s.SubscriberIdentity = v
+	return s
+}
+
 // SetSubscriberName sets the SubscriberName field's value.
 func (s *CreateSubscriberInput) SetSubscriberName(v string) *CreateSubscriberInput {
 	s.SubscriberName = &v
 	return s
 }
 
+type CreateSubscriberNotificationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the configuration using which you want to create the subscriber notification.
+	//
+	// Configuration is a required field
+	Configuration *NotificationConfiguration `locationName:"configuration" type:"structure" required:"true"`
+
+	// The subscriber ID for the notification subscription.
+	//
+	// SubscriberId is a required field
+	SubscriberId *string `location:"uri" locationName:"subscriberId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSubscriberNotificationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSubscriberNotificationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSubscriberNotificationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSubscriberNotificationInput"}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+	if s.SubscriberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriberId"))
+	}
+	if s.SubscriberId != nil && len(*s.SubscriberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubscriberId", 1))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *CreateSubscriberNotificationInput) SetConfiguration(v *NotificationConfiguration) *CreateSubscriberNotificationInput {
+	s.Configuration = v
+	return s
+}
+
+// SetSubscriberId sets the SubscriberId field's value.
+func (s *CreateSubscriberNotificationInput) SetSubscriberId(v string) *CreateSubscriberNotificationInput {
+	s.SubscriberId = &v
+	return s
+}
+
+type CreateSubscriberNotificationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The subscriber endpoint to which exception messages are posted.
+	SubscriberEndpoint *string `locationName:"subscriberEndpoint" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSubscriberNotificationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSubscriberNotificationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSubscriberEndpoint sets the SubscriberEndpoint field's value.
+func (s *CreateSubscriberNotificationOutput) SetSubscriberEndpoint(v string) *CreateSubscriberNotificationOutput {
+	s.SubscriberEndpoint = &v
+	return s
+}
+
 type CreateSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource
-	// share. Before accepting the RAM resource share invitation, you can view details
-	// related to the RAM resource share.
-	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
-
-	// The name of the resource share.
-	ResourceShareName *string `locationName:"resourceShareName" type:"string"`
-
-	// The Amazon Resource Name (ARN) created by you to provide to the subscriber.
-	// For more information about ARNs and how to use them in policies, see Amazon
-	// Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/subscriber-management.html).
-	RoleArn *string `locationName:"roleArn" type:"string"`
-
-	// The ARN for the Amazon S3 bucket.
-	S3BucketArn *string `locationName:"s3BucketArn" type:"string"`
-
-	// The ARN for the Amazon Simple Notification Service.
-	SnsArn *string `locationName:"snsArn" type:"string"`
-
-	// The subscriptionId created by the CreateSubscriber API call.
-	//
-	// SubscriptionId is a required field
-	SubscriptionId *string `locationName:"subscriptionId" type:"string" required:"true"`
+	// Retrieve information about the subscriber created using the CreateSubscriber
+	// API.
+	Subscriber *SubscriberResource `locationName:"subscriber" type:"structure"`
 }
 
 // String returns the string representation.
@@ -4755,72 +4404,24 @@ func (s CreateSubscriberOutput) GoString() string {
 	return s.String()
 }
 
-// SetResourceShareArn sets the ResourceShareArn field's value.
-func (s *CreateSubscriberOutput) SetResourceShareArn(v string) *CreateSubscriberOutput {
-	s.ResourceShareArn = &v
+// SetSubscriber sets the Subscriber field's value.
+func (s *CreateSubscriberOutput) SetSubscriber(v *SubscriberResource) *CreateSubscriberOutput {
+	s.Subscriber = v
 	return s
 }
 
-// SetResourceShareName sets the ResourceShareName field's value.
-func (s *CreateSubscriberOutput) SetResourceShareName(v string) *CreateSubscriberOutput {
-	s.ResourceShareName = &v
-	return s
-}
-
-// SetRoleArn sets the RoleArn field's value.
-func (s *CreateSubscriberOutput) SetRoleArn(v string) *CreateSubscriberOutput {
-	s.RoleArn = &v
-	return s
-}
-
-// SetS3BucketArn sets the S3BucketArn field's value.
-func (s *CreateSubscriberOutput) SetS3BucketArn(v string) *CreateSubscriberOutput {
-	s.S3BucketArn = &v
-	return s
-}
-
-// SetSnsArn sets the SnsArn field's value.
-func (s *CreateSubscriberOutput) SetSnsArn(v string) *CreateSubscriberOutput {
-	s.SnsArn = &v
-	return s
-}
-
-// SetSubscriptionId sets the SubscriptionId field's value.
-func (s *CreateSubscriberOutput) SetSubscriptionId(v string) *CreateSubscriberOutput {
-	s.SubscriptionId = &v
-	return s
-}
-
-type CreateSubscriptionNotificationConfigurationInput struct {
+// The attributes of a third-party custom source.
+type CustomLogSourceAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// Create an Amazon Simple Queue Service queue.
-	CreateSqs *bool `locationName:"createSqs" type:"boolean"`
+	// The ARN of the Glue crawler.
+	CrawlerArn *string `locationName:"crawlerArn" min:"1" type:"string"`
 
-	// The key name for the notification subscription.
-	HttpsApiKeyName *string `locationName:"httpsApiKeyName" type:"string"`
+	// The ARN of the Glue database where results are written, such as: arn:aws:daylight:us-east-1::database/sometable/*.
+	DatabaseArn *string `locationName:"databaseArn" min:"1" type:"string"`
 
-	// The key value for the notification subscription.
-	HttpsApiKeyValue *string `locationName:"httpsApiKeyValue" type:"string"`
-
-	// The HTTPS method used for the notification subscription.
-	HttpsMethod *string `locationName:"httpsMethod" type:"string" enum:"HttpsMethod"`
-
-	// The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role
-	// that you created. For more information about ARNs and how to use them in
-	// policies, see Managing data access (https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html)
-	// and Amazon Web Services Managed Policies (https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html)
-	// in the Amazon Security Lake User Guide.
-	RoleArn *string `locationName:"roleArn" type:"string"`
-
-	// The subscription endpoint in Security Lake. If you prefer notification with
-	// an HTTPs endpoint, populate this field.
-	SubscriptionEndpoint *string `locationName:"subscriptionEndpoint" type:"string"`
-
-	// The subscription ID for the notification subscription.
-	//
-	// SubscriptionId is a required field
-	SubscriptionId *string `location:"uri" locationName:"subscriptionId" type:"string" required:"true"`
+	// The ARN of the Glue table.
+	TableArn *string `locationName:"tableArn" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -4828,7 +4429,7 @@ type CreateSubscriptionNotificationConfigurationInput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateSubscriptionNotificationConfigurationInput) String() string {
+func (s CustomLogSourceAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -4837,18 +4438,21 @@ func (s CreateSubscriptionNotificationConfigurationInput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateSubscriptionNotificationConfigurationInput) GoString() string {
+func (s CustomLogSourceAttributes) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *CreateSubscriptionNotificationConfigurationInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "CreateSubscriptionNotificationConfigurationInput"}
-	if s.SubscriptionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("SubscriptionId"))
+func (s *CustomLogSourceAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomLogSourceAttributes"}
+	if s.CrawlerArn != nil && len(*s.CrawlerArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CrawlerArn", 1))
 	}
-	if s.SubscriptionId != nil && len(*s.SubscriptionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SubscriptionId", 1))
+	if s.DatabaseArn != nil && len(*s.DatabaseArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseArn", 1))
+	}
+	if s.TableArn != nil && len(*s.TableArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4857,53 +4461,37 @@ func (s *CreateSubscriptionNotificationConfigurationInput) Validate() error {
 	return nil
 }
 
-// SetCreateSqs sets the CreateSqs field's value.
-func (s *CreateSubscriptionNotificationConfigurationInput) SetCreateSqs(v bool) *CreateSubscriptionNotificationConfigurationInput {
-	s.CreateSqs = &v
+// SetCrawlerArn sets the CrawlerArn field's value.
+func (s *CustomLogSourceAttributes) SetCrawlerArn(v string) *CustomLogSourceAttributes {
+	s.CrawlerArn = &v
 	return s
 }
 
-// SetHttpsApiKeyName sets the HttpsApiKeyName field's value.
-func (s *CreateSubscriptionNotificationConfigurationInput) SetHttpsApiKeyName(v string) *CreateSubscriptionNotificationConfigurationInput {
-	s.HttpsApiKeyName = &v
+// SetDatabaseArn sets the DatabaseArn field's value.
+func (s *CustomLogSourceAttributes) SetDatabaseArn(v string) *CustomLogSourceAttributes {
+	s.DatabaseArn = &v
 	return s
 }
 
-// SetHttpsApiKeyValue sets the HttpsApiKeyValue field's value.
-func (s *CreateSubscriptionNotificationConfigurationInput) SetHttpsApiKeyValue(v string) *CreateSubscriptionNotificationConfigurationInput {
-	s.HttpsApiKeyValue = &v
+// SetTableArn sets the TableArn field's value.
+func (s *CustomLogSourceAttributes) SetTableArn(v string) *CustomLogSourceAttributes {
+	s.TableArn = &v
 	return s
 }
 
-// SetHttpsMethod sets the HttpsMethod field's value.
-func (s *CreateSubscriptionNotificationConfigurationInput) SetHttpsMethod(v string) *CreateSubscriptionNotificationConfigurationInput {
-	s.HttpsMethod = &v
-	return s
-}
-
-// SetRoleArn sets the RoleArn field's value.
-func (s *CreateSubscriptionNotificationConfigurationInput) SetRoleArn(v string) *CreateSubscriptionNotificationConfigurationInput {
-	s.RoleArn = &v
-	return s
-}
-
-// SetSubscriptionEndpoint sets the SubscriptionEndpoint field's value.
-func (s *CreateSubscriptionNotificationConfigurationInput) SetSubscriptionEndpoint(v string) *CreateSubscriptionNotificationConfigurationInput {
-	s.SubscriptionEndpoint = &v
-	return s
-}
-
-// SetSubscriptionId sets the SubscriptionId field's value.
-func (s *CreateSubscriptionNotificationConfigurationInput) SetSubscriptionId(v string) *CreateSubscriptionNotificationConfigurationInput {
-	s.SubscriptionId = &v
-	return s
-}
-
-type CreateSubscriptionNotificationConfigurationOutput struct {
+// The configuration for the third-party custom source.
+type CustomLogSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the Amazon Resource Name (ARN) of the queue.
-	QueueArn *string `locationName:"queueArn" type:"string"`
+	// The configuration for the Glue Crawler for the third-party custom source.
+	//
+	// CrawlerConfiguration is a required field
+	CrawlerConfiguration *CustomLogSourceCrawlerConfiguration `locationName:"crawlerConfiguration" type:"structure" required:"true"`
+
+	// The identity of the log provider for the third-party custom source.
+	//
+	// ProviderIdentity is a required field
+	ProviderIdentity *AwsIdentity `locationName:"providerIdentity" type:"structure" required:"true"`
 }
 
 // String returns the string representation.
@@ -4911,7 +4499,7 @@ type CreateSubscriptionNotificationConfigurationOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateSubscriptionNotificationConfigurationOutput) String() string {
+func (s CustomLogSourceConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -4920,35 +4508,1054 @@ func (s CreateSubscriptionNotificationConfigurationOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s CreateSubscriptionNotificationConfigurationOutput) GoString() string {
+func (s CustomLogSourceConfiguration) GoString() string {
 	return s.String()
 }
 
-// SetQueueArn sets the QueueArn field's value.
-func (s *CreateSubscriptionNotificationConfigurationOutput) SetQueueArn(v string) *CreateSubscriptionNotificationConfigurationOutput {
-	s.QueueArn = &v
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomLogSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomLogSourceConfiguration"}
+	if s.CrawlerConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("CrawlerConfiguration"))
+	}
+	if s.ProviderIdentity == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProviderIdentity"))
+	}
+	if s.CrawlerConfiguration != nil {
+		if err := s.CrawlerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CrawlerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProviderIdentity != nil {
+		if err := s.ProviderIdentity.Validate(); err != nil {
+			invalidParams.AddNested("ProviderIdentity", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlerConfiguration sets the CrawlerConfiguration field's value.
+func (s *CustomLogSourceConfiguration) SetCrawlerConfiguration(v *CustomLogSourceCrawlerConfiguration) *CustomLogSourceConfiguration {
+	s.CrawlerConfiguration = v
+	return s
+}
+
+// SetProviderIdentity sets the ProviderIdentity field's value.
+func (s *CustomLogSourceConfiguration) SetProviderIdentity(v *AwsIdentity) *CustomLogSourceConfiguration {
+	s.ProviderIdentity = v
+	return s
+}
+
+// The configuration for the Glue Crawler for the third-party custom source.
+type CustomLogSourceCrawlerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role to be used by the Glue crawler. The recommended IAM policies are:
+	//
+	//    * The managed policy AWSGlueServiceRole
+	//
+	//    * A custom policy granting access to your Amazon S3 Data Lake
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomLogSourceCrawlerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomLogSourceCrawlerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomLogSourceCrawlerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomLogSourceCrawlerConfiguration"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CustomLogSourceCrawlerConfiguration) SetRoleArn(v string) *CustomLogSourceCrawlerConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// The details of the log provider for a third-party custom source.
+type CustomLogSourceProvider struct {
+	_ struct{} `type:"structure"`
+
+	// The location of the partition in the Amazon S3 bucket for Security Lake.
+	Location *string `locationName:"location" type:"string"`
+
+	// The ARN of the IAM role to be used by the entity putting logs into your custom
+	// source partition. Security Lake will apply the correct access policies to
+	// this role, but you must first manually create the trust policy for this role.
+	// The IAM role name must start with the text 'Security Lake'. The IAM role
+	// must trust the logProviderAccountId to assume the role.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomLogSourceProvider) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomLogSourceProvider) GoString() string {
+	return s.String()
+}
+
+// SetLocation sets the Location field's value.
+func (s *CustomLogSourceProvider) SetLocation(v string) *CustomLogSourceProvider {
+	s.Location = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CustomLogSourceProvider) SetRoleArn(v string) *CustomLogSourceProvider {
+	s.RoleArn = &v
+	return s
+}
+
+// Amazon Security Lake can collect logs and events from third-party custom
+// sources.
+type CustomLogSourceResource struct {
+	_ struct{} `type:"structure"`
+
+	// The attributes of a third-party custom source.
+	Attributes *CustomLogSourceAttributes `locationName:"attributes" type:"structure"`
+
+	// The details of the log provider for a third-party custom source.
+	Provider *CustomLogSourceProvider `locationName:"provider" type:"structure"`
+
+	// The name for a third-party custom source. This must be a Regionally unique
+	// value.
+	SourceName *string `locationName:"sourceName" min:"1" type:"string"`
+
+	// The version for a third-party custom source. This must be a Regionally unique
+	// value.
+	SourceVersion *string `locationName:"sourceVersion" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomLogSourceResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomLogSourceResource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomLogSourceResource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomLogSourceResource"}
+	if s.SourceName != nil && len(*s.SourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceName", 1))
+	}
+	if s.SourceVersion != nil && len(*s.SourceVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceVersion", 1))
+	}
+	if s.Attributes != nil {
+		if err := s.Attributes.Validate(); err != nil {
+			invalidParams.AddNested("Attributes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *CustomLogSourceResource) SetAttributes(v *CustomLogSourceAttributes) *CustomLogSourceResource {
+	s.Attributes = v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *CustomLogSourceResource) SetProvider(v *CustomLogSourceProvider) *CustomLogSourceResource {
+	s.Provider = v
+	return s
+}
+
+// SetSourceName sets the SourceName field's value.
+func (s *CustomLogSourceResource) SetSourceName(v string) *CustomLogSourceResource {
+	s.SourceName = &v
+	return s
+}
+
+// SetSourceVersion sets the SourceVersion field's value.
+func (s *CustomLogSourceResource) SetSourceVersion(v string) *CustomLogSourceResource {
+	s.SourceVersion = &v
+	return s
+}
+
+// Automatically enable new organization accounts as member accounts from an
+// Amazon Security Lake administrator account.
+type DataLakeAutoEnableNewAccountConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services Regions where Security Lake is automatically enabled.
+	//
+	// Region is a required field
+	Region *string `locationName:"region" type:"string" required:"true"`
+
+	// The Amazon Web Services sources that are automatically enabled in Security
+	// Lake.
+	//
+	// Sources is a required field
+	Sources []*AwsLogSourceResource `locationName:"sources" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeAutoEnableNewAccountConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeAutoEnableNewAccountConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataLakeAutoEnableNewAccountConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataLakeAutoEnableNewAccountConfiguration"}
+	if s.Region == nil {
+		invalidParams.Add(request.NewErrParamRequired("Region"))
+	}
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRegion sets the Region field's value.
+func (s *DataLakeAutoEnableNewAccountConfiguration) SetRegion(v string) *DataLakeAutoEnableNewAccountConfiguration {
+	s.Region = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *DataLakeAutoEnableNewAccountConfiguration) SetSources(v []*AwsLogSourceResource) *DataLakeAutoEnableNewAccountConfiguration {
+	s.Sources = v
+	return s
+}
+
+// Provides details of Amazon Security Lake object.
+type DataLakeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Provides encryption details of Amazon Security Lake object.
+	EncryptionConfiguration *DataLakeEncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
+
+	// Provides lifecycle details of Amazon Security Lake object.
+	LifecycleConfiguration *DataLakeLifecycleConfiguration `locationName:"lifecycleConfiguration" type:"structure"`
+
+	// The Amazon Web Services Regions where Security Lake is automatically enabled.
+	//
+	// Region is a required field
+	Region *string `locationName:"region" type:"string" required:"true"`
+
+	// Provides replication details of Amazon Security Lake object.
+	ReplicationConfiguration *DataLakeReplicationConfiguration `locationName:"replicationConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataLakeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataLakeConfiguration"}
+	if s.Region == nil {
+		invalidParams.Add(request.NewErrParamRequired("Region"))
+	}
+	if s.LifecycleConfiguration != nil {
+		if err := s.LifecycleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LifecycleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *DataLakeConfiguration) SetEncryptionConfiguration(v *DataLakeEncryptionConfiguration) *DataLakeConfiguration {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetLifecycleConfiguration sets the LifecycleConfiguration field's value.
+func (s *DataLakeConfiguration) SetLifecycleConfiguration(v *DataLakeLifecycleConfiguration) *DataLakeConfiguration {
+	s.LifecycleConfiguration = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DataLakeConfiguration) SetRegion(v string) *DataLakeConfiguration {
+	s.Region = &v
+	return s
+}
+
+// SetReplicationConfiguration sets the ReplicationConfiguration field's value.
+func (s *DataLakeConfiguration) SetReplicationConfiguration(v *DataLakeReplicationConfiguration) *DataLakeConfiguration {
+	s.ReplicationConfiguration = v
+	return s
+}
+
+// Provides encryption details of Amazon Security Lake object.
+type DataLakeEncryptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The id of KMS encryption key used by Amazon Security Lake to encrypt the
+	// Security Lake object.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeEncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeEncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DataLakeEncryptionConfiguration) SetKmsKeyId(v string) *DataLakeEncryptionConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// The details for a Security Lake exception
+type DataLakeException struct {
+	_ struct{} `type:"structure"`
+
+	// The underlying exception of a Security Lake exception.
+	Exception *string `locationName:"exception" type:"string"`
+
+	// The Amazon Web Services Regions where the exception occurred.
+	Region *string `locationName:"region" type:"string"`
+
+	// List of all remediation steps for a Security Lake exception.
+	Remediation *string `locationName:"remediation" type:"string"`
+
+	// This error can occur if you configure the wrong timestamp format, or if the
+	// subset of entries used for validation had errors or missing values.
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeException) GoString() string {
+	return s.String()
+}
+
+// SetException sets the Exception field's value.
+func (s *DataLakeException) SetException(v string) *DataLakeException {
+	s.Exception = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DataLakeException) SetRegion(v string) *DataLakeException {
+	s.Region = &v
+	return s
+}
+
+// SetRemediation sets the Remediation field's value.
+func (s *DataLakeException) SetRemediation(v string) *DataLakeException {
+	s.Remediation = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *DataLakeException) SetTimestamp(v time.Time) *DataLakeException {
+	s.Timestamp = &v
+	return s
+}
+
+// Provides lifecycle details of Amazon Security Lake object.
+type DataLakeLifecycleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Provides data expiration details of Amazon Security Lake object.
+	Expiration *DataLakeLifecycleExpiration `locationName:"expiration" type:"structure"`
+
+	// Provides data storage transition details of Amazon Security Lake object.
+	Transitions []*DataLakeLifecycleTransition `locationName:"transitions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeLifecycleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeLifecycleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataLakeLifecycleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataLakeLifecycleConfiguration"}
+	if s.Expiration != nil {
+		if err := s.Expiration.Validate(); err != nil {
+			invalidParams.AddNested("Expiration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Transitions != nil {
+		for i, v := range s.Transitions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Transitions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *DataLakeLifecycleConfiguration) SetExpiration(v *DataLakeLifecycleExpiration) *DataLakeLifecycleConfiguration {
+	s.Expiration = v
+	return s
+}
+
+// SetTransitions sets the Transitions field's value.
+func (s *DataLakeLifecycleConfiguration) SetTransitions(v []*DataLakeLifecycleTransition) *DataLakeLifecycleConfiguration {
+	s.Transitions = v
+	return s
+}
+
+// Provide expiration lifecycle details of Amazon Security Lake object.
+type DataLakeLifecycleExpiration struct {
+	_ struct{} `type:"structure"`
+
+	// Number of days before data expires in the Amazon Security Lake object.
+	Days *int64 `locationName:"days" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeLifecycleExpiration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeLifecycleExpiration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataLakeLifecycleExpiration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataLakeLifecycleExpiration"}
+	if s.Days != nil && *s.Days < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Days", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDays sets the Days field's value.
+func (s *DataLakeLifecycleExpiration) SetDays(v int64) *DataLakeLifecycleExpiration {
+	s.Days = &v
+	return s
+}
+
+// Provide transition lifecycle details of Amazon Security Lake object.
+type DataLakeLifecycleTransition struct {
+	_ struct{} `type:"structure"`
+
+	// Number of days before data transitions to a different S3 Storage Class in
+	// the Amazon Security Lake object.
+	Days *int64 `locationName:"days" min:"1" type:"integer"`
+
+	// The range of storage classes that you can choose from based on the data access,
+	// resiliency, and cost requirements of your workloads.
+	StorageClass *string `locationName:"storageClass" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeLifecycleTransition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeLifecycleTransition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataLakeLifecycleTransition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataLakeLifecycleTransition"}
+	if s.Days != nil && *s.Days < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Days", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDays sets the Days field's value.
+func (s *DataLakeLifecycleTransition) SetDays(v int64) *DataLakeLifecycleTransition {
+	s.Days = &v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *DataLakeLifecycleTransition) SetStorageClass(v string) *DataLakeLifecycleTransition {
+	s.StorageClass = &v
+	return s
+}
+
+// Provides replication details of Amazon Security Lake object.
+type DataLakeReplicationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Replication enables automatic, asynchronous copying of objects across Amazon
+	// S3 buckets. Amazon S3 buckets that are configured for object replication
+	// can be owned by the same Amazon Web Services account or by different accounts.
+	// You can replicate objects to a single destination bucket or to multiple destination
+	// buckets. The destination buckets can be in different Amazon Web Services
+	// Regions or within the same Region as the source bucket.
+	//
+	// Set up one or more rollup Regions by providing the Region or Regions that
+	// should contribute to the central rollup Region.
+	Regions []*string `locationName:"regions" type:"list"`
+
+	// Replication settings for the Amazon S3 buckets. This parameter uses the Identity
+	// and Access Management (IAM) role you created that is managed by Security
+	// Lake, to ensure the replication setting is correct.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeReplicationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeReplicationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetRegions sets the Regions field's value.
+func (s *DataLakeReplicationConfiguration) SetRegions(v []*string) *DataLakeReplicationConfiguration {
+	s.Regions = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DataLakeReplicationConfiguration) SetRoleArn(v string) *DataLakeReplicationConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// Provides details of Amazon Security Lake object.
+type DataLakeResource struct {
+	_ struct{} `type:"structure"`
+
+	// Retrieves the status of the configuration operation for an account in Amazon
+	// Security Lake.
+	CreateStatus *string `locationName:"createStatus" type:"string" enum:"DataLakeStatus"`
+
+	// The Amazon Resource Name (ARN) created by you to provide to the subscriber.
+	// For more information about ARNs and how to use them in policies, see the
+	// Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/subscriber-management.html).
+	//
+	// DataLakeArn is a required field
+	DataLakeArn *string `locationName:"dataLakeArn" min:"1" type:"string" required:"true"`
+
+	// Provides encryption details of Amazon Security Lake object.
+	EncryptionConfiguration *DataLakeEncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
+
+	// Provides lifecycle details of Amazon Security Lake object.
+	LifecycleConfiguration *DataLakeLifecycleConfiguration `locationName:"lifecycleConfiguration" type:"structure"`
+
+	// The Amazon Web Services Regions where Security Lake is enabled.
+	//
+	// Region is a required field
+	Region *string `locationName:"region" type:"string" required:"true"`
+
+	// Provides replication details of Amazon Security Lake object.
+	ReplicationConfiguration *DataLakeReplicationConfiguration `locationName:"replicationConfiguration" type:"structure"`
+
+	// The ARN for the Amazon Security Lake Amazon S3 bucket.
+	S3BucketArn *string `locationName:"s3BucketArn" type:"string"`
+
+	// The status of the last UpdateDataLake or DeleteDataLake API request.
+	UpdateStatus *DataLakeUpdateStatus `locationName:"updateStatus" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeResource) GoString() string {
+	return s.String()
+}
+
+// SetCreateStatus sets the CreateStatus field's value.
+func (s *DataLakeResource) SetCreateStatus(v string) *DataLakeResource {
+	s.CreateStatus = &v
+	return s
+}
+
+// SetDataLakeArn sets the DataLakeArn field's value.
+func (s *DataLakeResource) SetDataLakeArn(v string) *DataLakeResource {
+	s.DataLakeArn = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *DataLakeResource) SetEncryptionConfiguration(v *DataLakeEncryptionConfiguration) *DataLakeResource {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetLifecycleConfiguration sets the LifecycleConfiguration field's value.
+func (s *DataLakeResource) SetLifecycleConfiguration(v *DataLakeLifecycleConfiguration) *DataLakeResource {
+	s.LifecycleConfiguration = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DataLakeResource) SetRegion(v string) *DataLakeResource {
+	s.Region = &v
+	return s
+}
+
+// SetReplicationConfiguration sets the ReplicationConfiguration field's value.
+func (s *DataLakeResource) SetReplicationConfiguration(v *DataLakeReplicationConfiguration) *DataLakeResource {
+	s.ReplicationConfiguration = v
+	return s
+}
+
+// SetS3BucketArn sets the S3BucketArn field's value.
+func (s *DataLakeResource) SetS3BucketArn(v string) *DataLakeResource {
+	s.S3BucketArn = &v
+	return s
+}
+
+// SetUpdateStatus sets the UpdateStatus field's value.
+func (s *DataLakeResource) SetUpdateStatus(v *DataLakeUpdateStatus) *DataLakeResource {
+	s.UpdateStatus = v
+	return s
+}
+
+// Amazon Security Lake collects logs and events from supported Amazon Web Services
+// and custom sources. For the list of supported Amazon Web Services, see the
+// Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html).
+type DataLakeSource struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Security Lake account for which logs are collected.
+	Account *string `locationName:"account" type:"string"`
+
+	// The Open Cybersecurity Schema Framework (OCSF) event classes which describes
+	// the type of data that the custom source will send to Security Lake. The supported
+	// event classes are:
+	//
+	//    * ACCESS_ACTIVITY
+	//
+	//    * FILE_ACTIVITY
+	//
+	//    * KERNEL_ACTIVITY
+	//
+	//    * KERNEL_EXTENSION
+	//
+	//    * MEMORY_ACTIVITY
+	//
+	//    * MODULE_ACTIVITY
+	//
+	//    * PROCESS_ACTIVITY
+	//
+	//    * REGISTRY_KEY_ACTIVITY
+	//
+	//    * REGISTRY_VALUE_ACTIVITY
+	//
+	//    * RESOURCE_ACTIVITY
+	//
+	//    * SCHEDULED_JOB_ACTIVITY
+	//
+	//    * SECURITY_FINDING
+	//
+	//    * ACCOUNT_CHANGE
+	//
+	//    * AUTHENTICATION
+	//
+	//    * AUTHORIZATION
+	//
+	//    * ENTITY_MANAGEMENT_AUDIT
+	//
+	//    * DHCP_ACTIVITY
+	//
+	//    * NETWORK_ACTIVITY
+	//
+	//    * DNS_ACTIVITY
+	//
+	//    * FTP_ACTIVITY
+	//
+	//    * HTTP_ACTIVITY
+	//
+	//    * RDP_ACTIVITY
+	//
+	//    * SMB_ACTIVITY
+	//
+	//    * SSH_ACTIVITY
+	//
+	//    * CONFIG_STATE
+	//
+	//    * INVENTORY_INFO
+	//
+	//    * EMAIL_ACTIVITY
+	//
+	//    * API_ACTIVITY
+	//
+	//    * CLOUD_API
+	EventClasses []*string `locationName:"eventClasses" type:"list"`
+
+	// The supported Amazon Web Services from which logs and events are collected.
+	// Amazon Security Lake supports log and event collection for natively supported
+	// Amazon Web Services.
+	SourceName *string `locationName:"sourceName" type:"string"`
+
+	// The log status for the Security Lake account.
+	SourceStatuses []*DataLakeSourceStatus `locationName:"sourceStatuses" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeSource) GoString() string {
+	return s.String()
+}
+
+// SetAccount sets the Account field's value.
+func (s *DataLakeSource) SetAccount(v string) *DataLakeSource {
+	s.Account = &v
+	return s
+}
+
+// SetEventClasses sets the EventClasses field's value.
+func (s *DataLakeSource) SetEventClasses(v []*string) *DataLakeSource {
+	s.EventClasses = v
+	return s
+}
+
+// SetSourceName sets the SourceName field's value.
+func (s *DataLakeSource) SetSourceName(v string) *DataLakeSource {
+	s.SourceName = &v
+	return s
+}
+
+// SetSourceStatuses sets the SourceStatuses field's value.
+func (s *DataLakeSource) SetSourceStatuses(v []*DataLakeSourceStatus) *DataLakeSource {
+	s.SourceStatuses = v
+	return s
+}
+
+// Retrieves the Logs status for the Amazon Security Lake account.
+type DataLakeSourceStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Defines path the stored logs are available which has information on your
+	// systems, applications, and services.
+	Resource *string `locationName:"resource" type:"string"`
+
+	// The health status of services, including error codes and patterns.
+	Status *string `locationName:"status" type:"string" enum:"SourceCollectionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeSourceStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeSourceStatus) GoString() string {
+	return s.String()
+}
+
+// SetResource sets the Resource field's value.
+func (s *DataLakeSourceStatus) SetResource(v string) *DataLakeSourceStatus {
+	s.Resource = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataLakeSourceStatus) SetStatus(v string) *DataLakeSourceStatus {
+	s.Status = &v
+	return s
+}
+
+// The details of the last UpdateDataLake or DeleteDataLake API request which
+// failed.
+type DataLakeUpdateException struct {
+	_ struct{} `type:"structure"`
+
+	// The reason code for the exception of the last UpdateDataLake or DeleteDataLake
+	// API request.
+	Code *string `locationName:"code" type:"string"`
+
+	// The reason for the exception of the last UpdateDataLakeor DeleteDataLake
+	// API request.
+	Reason *string `locationName:"reason" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeUpdateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeUpdateException) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *DataLakeUpdateException) SetCode(v string) *DataLakeUpdateException {
+	s.Code = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *DataLakeUpdateException) SetReason(v string) *DataLakeUpdateException {
+	s.Reason = &v
+	return s
+}
+
+// The status of the last UpdateDataLake or DeleteDataLake API request. This
+// is set to Completed after the configuration is updated, or removed if deletion
+// of the data lake is successful.
+type DataLakeUpdateStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the last UpdateDataLakeor DeleteDataLake API request which
+	// failed.
+	Exception *DataLakeUpdateException `locationName:"exception" type:"structure"`
+
+	// The unique ID for the last UpdateDataLake or DeleteDataLake API request.
+	RequestId *string `locationName:"requestId" type:"string"`
+
+	// The status of the last UpdateDataLake or DeleteDataLake API request that
+	// was requested.
+	Status *string `locationName:"status" type:"string" enum:"DataLakeStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeUpdateStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataLakeUpdateStatus) GoString() string {
+	return s.String()
+}
+
+// SetException sets the Exception field's value.
+func (s *DataLakeUpdateStatus) SetException(v *DataLakeUpdateException) *DataLakeUpdateStatus {
+	s.Exception = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DataLakeUpdateStatus) SetRequestId(v string) *DataLakeUpdateStatus {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataLakeUpdateStatus) SetStatus(v string) *DataLakeUpdateStatus {
+	s.Status = &v
 	return s
 }
 
 type DeleteAwsLogSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Removes the specific Amazon Web Services sources from specific accounts and
-	// specific Regions.
-	DisableAllDimensions map[string]map[string][]*string `locationName:"disableAllDimensions" type:"map"`
-
-	// Removes all Amazon Web Services sources from specific accounts or Regions.
-	DisableSingleDimension []*string `locationName:"disableSingleDimension" type:"list"`
-
-	// Remove a specific Amazon Web Services source from specific accounts or Regions.
-	DisableTwoDimensions map[string][]*string `locationName:"disableTwoDimensions" type:"map"`
-
-	// This is a mandatory input. Specify the input order to disable dimensions
-	// in Security Lake, namely Region (Amazon Web Services Region code, source
-	// type, and member (account ID of a specific Amazon Web Services account).
+	// Specify the natively-supported Amazon Web Services service to remove as a
+	// source in Security Lake.
 	//
-	// InputOrder is a required field
-	InputOrder []*string `locationName:"inputOrder" type:"list" required:"true" enum:"Dimension"`
+	// Sources is a required field
+	Sources []*AwsLogSourceConfiguration `locationName:"sources" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -4972,8 +5579,18 @@ func (s DeleteAwsLogSourceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteAwsLogSourceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteAwsLogSourceInput"}
-	if s.InputOrder == nil {
-		invalidParams.Add(request.NewErrParamRequired("InputOrder"))
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4982,27 +5599,9 @@ func (s *DeleteAwsLogSourceInput) Validate() error {
 	return nil
 }
 
-// SetDisableAllDimensions sets the DisableAllDimensions field's value.
-func (s *DeleteAwsLogSourceInput) SetDisableAllDimensions(v map[string]map[string][]*string) *DeleteAwsLogSourceInput {
-	s.DisableAllDimensions = v
-	return s
-}
-
-// SetDisableSingleDimension sets the DisableSingleDimension field's value.
-func (s *DeleteAwsLogSourceInput) SetDisableSingleDimension(v []*string) *DeleteAwsLogSourceInput {
-	s.DisableSingleDimension = v
-	return s
-}
-
-// SetDisableTwoDimensions sets the DisableTwoDimensions field's value.
-func (s *DeleteAwsLogSourceInput) SetDisableTwoDimensions(v map[string][]*string) *DeleteAwsLogSourceInput {
-	s.DisableTwoDimensions = v
-	return s
-}
-
-// SetInputOrder sets the InputOrder field's value.
-func (s *DeleteAwsLogSourceInput) SetInputOrder(v []*string) *DeleteAwsLogSourceInput {
-	s.InputOrder = v
+// SetSources sets the Sources field's value.
+func (s *DeleteAwsLogSourceInput) SetSources(v []*AwsLogSourceConfiguration) *DeleteAwsLogSourceInput {
+	s.Sources = v
 	return s
 }
 
@@ -5012,9 +5611,6 @@ type DeleteAwsLogSourceOutput struct {
 	// Deletion of the Amazon Web Services sources failed as the account is not
 	// a part of the organization.
 	Failed []*string `locationName:"failed" type:"list"`
-
-	// Deletion of the Amazon Web Services sources is in progress.
-	Processing []*string `locationName:"processing" type:"list"`
 }
 
 // String returns the string representation.
@@ -5041,19 +5637,17 @@ func (s *DeleteAwsLogSourceOutput) SetFailed(v []*string) *DeleteAwsLogSourceOut
 	return s
 }
 
-// SetProcessing sets the Processing field's value.
-func (s *DeleteAwsLogSourceOutput) SetProcessing(v []*string) *DeleteAwsLogSourceOutput {
-	s.Processing = v
-	return s
-}
-
 type DeleteCustomLogSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The custom source name for the custom log source.
+	// The source name of custom log source that you want to delete.
 	//
-	// CustomSourceName is a required field
-	CustomSourceName *string `location:"querystring" locationName:"customSourceName" type:"string" required:"true"`
+	// SourceName is a required field
+	SourceName *string `location:"uri" locationName:"sourceName" min:"1" type:"string" required:"true"`
+
+	// The source version for the third-party custom source. You can limit the custom
+	// source removal to the specified source version.
+	SourceVersion *string `location:"querystring" locationName:"sourceVersion" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -5077,8 +5671,14 @@ func (s DeleteCustomLogSourceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteCustomLogSourceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomLogSourceInput"}
-	if s.CustomSourceName == nil {
-		invalidParams.Add(request.NewErrParamRequired("CustomSourceName"))
+	if s.SourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceName"))
+	}
+	if s.SourceName != nil && len(*s.SourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceName", 1))
+	}
+	if s.SourceVersion != nil && len(*s.SourceVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceVersion", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5087,19 +5687,20 @@ func (s *DeleteCustomLogSourceInput) Validate() error {
 	return nil
 }
 
-// SetCustomSourceName sets the CustomSourceName field's value.
-func (s *DeleteCustomLogSourceInput) SetCustomSourceName(v string) *DeleteCustomLogSourceInput {
-	s.CustomSourceName = &v
+// SetSourceName sets the SourceName field's value.
+func (s *DeleteCustomLogSourceInput) SetSourceName(v string) *DeleteCustomLogSourceInput {
+	s.SourceName = &v
+	return s
+}
+
+// SetSourceVersion sets the SourceVersion field's value.
+func (s *DeleteCustomLogSourceInput) SetSourceVersion(v string) *DeleteCustomLogSourceInput {
+	s.SourceVersion = &v
 	return s
 }
 
 type DeleteCustomLogSourceOutput struct {
 	_ struct{} `type:"structure"`
-
-	// The location of the partition in the Amazon S3 bucket for Security Lake.
-	//
-	// CustomDataLocation is a required field
-	CustomDataLocation *string `locationName:"customDataLocation" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5120,20 +5721,8 @@ func (s DeleteCustomLogSourceOutput) GoString() string {
 	return s.String()
 }
 
-// SetCustomDataLocation sets the CustomDataLocation field's value.
-func (s *DeleteCustomLogSourceOutput) SetCustomDataLocation(v string) *DeleteCustomLogSourceOutput {
-	s.CustomDataLocation = &v
-	return s
-}
-
-type DeleteDatalakeAutoEnableInput struct {
-	_ struct{} `type:"structure"`
-
-	// Remove automatic enablement of configuration settings for new member accounts
-	// in Security Lake.
-	//
-	// RemoveFromConfigurationForNewAccounts is a required field
-	RemoveFromConfigurationForNewAccounts []*AutoEnableNewRegionConfiguration `locationName:"removeFromConfigurationForNewAccounts" type:"list" required:"true"`
+type DeleteDataLakeExceptionSubscriptionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5141,7 +5730,7 @@ type DeleteDatalakeAutoEnableInput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s DeleteDatalakeAutoEnableInput) String() string {
+func (s DeleteDataLakeExceptionSubscriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -5150,23 +5739,119 @@ func (s DeleteDatalakeAutoEnableInput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s DeleteDatalakeAutoEnableInput) GoString() string {
+func (s DeleteDataLakeExceptionSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+type DeleteDataLakeExceptionSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataLakeExceptionSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataLakeExceptionSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteDataLakeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Regions where Security Lake is enabled.
+	//
+	// Regions is a required field
+	Regions []*string `locationName:"regions" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataLakeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataLakeInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *DeleteDatalakeAutoEnableInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "DeleteDatalakeAutoEnableInput"}
-	if s.RemoveFromConfigurationForNewAccounts == nil {
-		invalidParams.Add(request.NewErrParamRequired("RemoveFromConfigurationForNewAccounts"))
+func (s *DeleteDataLakeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataLakeInput"}
+	if s.Regions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Regions"))
 	}
-	if s.RemoveFromConfigurationForNewAccounts != nil {
-		for i, v := range s.RemoveFromConfigurationForNewAccounts {
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRegions sets the Regions field's value.
+func (s *DeleteDataLakeInput) SetRegions(v []*string) *DeleteDataLakeInput {
+	s.Regions = v
+	return s
+}
+
+type DeleteDataLakeOrganizationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Removes the automatic enablement of configuration settings for new member
+	// accounts in Security Lake.
+	//
+	// AutoEnableNewAccount is a required field
+	AutoEnableNewAccount []*DataLakeAutoEnableNewAccountConfiguration `locationName:"autoEnableNewAccount" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataLakeOrganizationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataLakeOrganizationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataLakeOrganizationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataLakeOrganizationConfigurationInput"}
+	if s.AutoEnableNewAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoEnableNewAccount"))
+	}
+	if s.AutoEnableNewAccount != nil {
+		for i, v := range s.AutoEnableNewAccount {
 			if v == nil {
 				continue
 			}
 			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RemoveFromConfigurationForNewAccounts", i), err.(request.ErrInvalidParams))
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AutoEnableNewAccount", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -5177,13 +5862,13 @@ func (s *DeleteDatalakeAutoEnableInput) Validate() error {
 	return nil
 }
 
-// SetRemoveFromConfigurationForNewAccounts sets the RemoveFromConfigurationForNewAccounts field's value.
-func (s *DeleteDatalakeAutoEnableInput) SetRemoveFromConfigurationForNewAccounts(v []*AutoEnableNewRegionConfiguration) *DeleteDatalakeAutoEnableInput {
-	s.RemoveFromConfigurationForNewAccounts = v
+// SetAutoEnableNewAccount sets the AutoEnableNewAccount field's value.
+func (s *DeleteDataLakeOrganizationConfigurationInput) SetAutoEnableNewAccount(v []*DataLakeAutoEnableNewAccountConfiguration) *DeleteDataLakeOrganizationConfigurationInput {
+	s.AutoEnableNewAccount = v
 	return s
 }
 
-type DeleteDatalakeAutoEnableOutput struct {
+type DeleteDataLakeOrganizationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
@@ -5192,7 +5877,7 @@ type DeleteDatalakeAutoEnableOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s DeleteDatalakeAutoEnableOutput) String() string {
+func (s DeleteDataLakeOrganizationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -5201,60 +5886,11 @@ func (s DeleteDatalakeAutoEnableOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s DeleteDatalakeAutoEnableOutput) GoString() string {
+func (s DeleteDataLakeOrganizationConfigurationOutput) GoString() string {
 	return s.String()
 }
 
-type DeleteDatalakeDelegatedAdminInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
-
-	// The account ID the Security Lake delegated administrator.
-	//
-	// Account is a required field
-	Account *string `location:"uri" locationName:"account" type:"string" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeDelegatedAdminInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeDelegatedAdminInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *DeleteDatalakeDelegatedAdminInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "DeleteDatalakeDelegatedAdminInput"}
-	if s.Account == nil {
-		invalidParams.Add(request.NewErrParamRequired("Account"))
-	}
-	if s.Account != nil && len(*s.Account) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Account", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetAccount sets the Account field's value.
-func (s *DeleteDatalakeDelegatedAdminInput) SetAccount(v string) *DeleteDatalakeDelegatedAdminInput {
-	s.Account = &v
-	return s
-}
-
-type DeleteDatalakeDelegatedAdminOutput struct {
+type DeleteDataLakeOutput struct {
 	_ struct{} `type:"structure"`
 }
 
@@ -5263,7 +5899,7 @@ type DeleteDatalakeDelegatedAdminOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s DeleteDatalakeDelegatedAdminOutput) String() string {
+func (s DeleteDataLakeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -5272,106 +5908,7 @@ func (s DeleteDatalakeDelegatedAdminOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s DeleteDatalakeDelegatedAdminOutput) GoString() string {
-	return s.String()
-}
-
-type DeleteDatalakeExceptionsSubscriptionInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeExceptionsSubscriptionInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeExceptionsSubscriptionInput) GoString() string {
-	return s.String()
-}
-
-type DeleteDatalakeExceptionsSubscriptionOutput struct {
-	_ struct{} `type:"structure"`
-
-	// Retrieves the status of the delete Security Lake operation for an account.
-	//
-	// Status is a required field
-	Status *string `locationName:"status" type:"string" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeExceptionsSubscriptionOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeExceptionsSubscriptionOutput) GoString() string {
-	return s.String()
-}
-
-// SetStatus sets the Status field's value.
-func (s *DeleteDatalakeExceptionsSubscriptionOutput) SetStatus(v string) *DeleteDatalakeExceptionsSubscriptionOutput {
-	s.Status = &v
-	return s
-}
-
-type DeleteDatalakeInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeInput) GoString() string {
-	return s.String()
-}
-
-type DeleteDatalakeOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteDatalakeOutput) GoString() string {
+func (s DeleteDataLakeOutput) GoString() string {
 	return s.String()
 }
 
@@ -5381,8 +5918,8 @@ type DeleteSubscriberInput struct {
 	// A value created by Security Lake that uniquely identifies your DeleteSubscriber
 	// API request.
 	//
-	// Id is a required field
-	Id *string `location:"querystring" locationName:"id" type:"string" required:"true"`
+	// SubscriberId is a required field
+	SubscriberId *string `location:"uri" locationName:"subscriberId" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5406,8 +5943,11 @@ func (s DeleteSubscriberInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteSubscriberInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteSubscriberInput"}
-	if s.Id == nil {
-		invalidParams.Add(request.NewErrParamRequired("Id"))
+	if s.SubscriberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriberId"))
+	}
+	if s.SubscriberId != nil && len(*s.SubscriberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubscriberId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5416,10 +5956,81 @@ func (s *DeleteSubscriberInput) Validate() error {
 	return nil
 }
 
-// SetId sets the Id field's value.
-func (s *DeleteSubscriberInput) SetId(v string) *DeleteSubscriberInput {
-	s.Id = &v
+// SetSubscriberId sets the SubscriberId field's value.
+func (s *DeleteSubscriberInput) SetSubscriberId(v string) *DeleteSubscriberInput {
+	s.SubscriberId = &v
 	return s
+}
+
+type DeleteSubscriberNotificationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Security Lake subscriber account.
+	//
+	// SubscriberId is a required field
+	SubscriberId *string `location:"uri" locationName:"subscriberId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSubscriberNotificationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSubscriberNotificationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSubscriberNotificationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSubscriberNotificationInput"}
+	if s.SubscriberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriberId"))
+	}
+	if s.SubscriberId != nil && len(*s.SubscriberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubscriberId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSubscriberId sets the SubscriberId field's value.
+func (s *DeleteSubscriberNotificationInput) SetSubscriberId(v string) *DeleteSubscriberNotificationInput {
+	s.SubscriberId = &v
+	return s
+}
+
+type DeleteSubscriberNotificationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSubscriberNotificationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSubscriberNotificationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSubscriberOutput struct {
@@ -5444,13 +6055,8 @@ func (s DeleteSubscriberOutput) GoString() string {
 	return s.String()
 }
 
-type DeleteSubscriptionNotificationConfigurationInput struct {
+type DeregisterDataLakeDelegatedAdministratorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
-
-	// The ID of the Security Lake subscriber account.
-	//
-	// SubscriptionId is a required field
-	SubscriptionId *string `location:"uri" locationName:"subscriptionId" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5458,7 +6064,7 @@ type DeleteSubscriptionNotificationConfigurationInput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s DeleteSubscriptionNotificationConfigurationInput) String() string {
+func (s DeregisterDataLakeDelegatedAdministratorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -5467,18 +6073,200 @@ func (s DeleteSubscriptionNotificationConfigurationInput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s DeleteSubscriptionNotificationConfigurationInput) GoString() string {
+func (s DeregisterDataLakeDelegatedAdministratorInput) GoString() string {
+	return s.String()
+}
+
+type DeregisterDataLakeDelegatedAdministratorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterDataLakeDelegatedAdministratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterDataLakeDelegatedAdministratorOutput) GoString() string {
+	return s.String()
+}
+
+type GetDataLakeExceptionSubscriptionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeExceptionSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeExceptionSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+type GetDataLakeExceptionSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The expiration period and time-to-live (TTL).
+	ExceptionTimeToLive *int64 `locationName:"exceptionTimeToLive" type:"long"`
+
+	// The Amazon Web Services account where you receive exception notifications.
+	NotificationEndpoint *string `locationName:"notificationEndpoint" type:"string"`
+
+	// The subscription protocol to which exception notifications are posted.
+	SubscriptionProtocol *string `locationName:"subscriptionProtocol" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeExceptionSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeExceptionSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetExceptionTimeToLive sets the ExceptionTimeToLive field's value.
+func (s *GetDataLakeExceptionSubscriptionOutput) SetExceptionTimeToLive(v int64) *GetDataLakeExceptionSubscriptionOutput {
+	s.ExceptionTimeToLive = &v
+	return s
+}
+
+// SetNotificationEndpoint sets the NotificationEndpoint field's value.
+func (s *GetDataLakeExceptionSubscriptionOutput) SetNotificationEndpoint(v string) *GetDataLakeExceptionSubscriptionOutput {
+	s.NotificationEndpoint = &v
+	return s
+}
+
+// SetSubscriptionProtocol sets the SubscriptionProtocol field's value.
+func (s *GetDataLakeExceptionSubscriptionOutput) SetSubscriptionProtocol(v string) *GetDataLakeExceptionSubscriptionOutput {
+	s.SubscriptionProtocol = &v
+	return s
+}
+
+type GetDataLakeOrganizationConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeOrganizationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeOrganizationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetDataLakeOrganizationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for new accounts.
+	AutoEnableNewAccount []*DataLakeAutoEnableNewAccountConfiguration `locationName:"autoEnableNewAccount" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeOrganizationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeOrganizationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAutoEnableNewAccount sets the AutoEnableNewAccount field's value.
+func (s *GetDataLakeOrganizationConfigurationOutput) SetAutoEnableNewAccount(v []*DataLakeAutoEnableNewAccountConfiguration) *GetDataLakeOrganizationConfigurationOutput {
+	s.AutoEnableNewAccount = v
+	return s
+}
+
+type GetDataLakeSourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID for which a static snapshot of the current
+	// Amazon Web Services Region, including enabled accounts and log sources, is
+	// retrieved.
+	Accounts []*string `locationName:"accounts" type:"list"`
+
+	// The maximum limit of accounts for which the static snapshot of the current
+	// Region, including enabled accounts and log sources, is retrieved.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Lists if there are more results available. The value of nextToken is a unique
+	// pagination token for each page. Repeat the call using the returned token
+	// to retrieve the next page. Keep all other arguments unchanged.
+	//
+	// Each pagination token expires after 24 hours. Using an expired pagination
+	// token will return an HTTP 400 InvalidToken error.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeSourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakeSourcesInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *DeleteSubscriptionNotificationConfigurationInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "DeleteSubscriptionNotificationConfigurationInput"}
-	if s.SubscriptionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("SubscriptionId"))
-	}
-	if s.SubscriptionId != nil && len(*s.SubscriptionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SubscriptionId", 1))
+func (s *GetDataLakeSourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataLakeSourcesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5487,481 +6275,34 @@ func (s *DeleteSubscriptionNotificationConfigurationInput) Validate() error {
 	return nil
 }
 
-// SetSubscriptionId sets the SubscriptionId field's value.
-func (s *DeleteSubscriptionNotificationConfigurationInput) SetSubscriptionId(v string) *DeleteSubscriptionNotificationConfigurationInput {
-	s.SubscriptionId = &v
+// SetAccounts sets the Accounts field's value.
+func (s *GetDataLakeSourcesInput) SetAccounts(v []*string) *GetDataLakeSourcesInput {
+	s.Accounts = v
 	return s
 }
 
-type DeleteSubscriptionNotificationConfigurationOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteSubscriptionNotificationConfigurationOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DeleteSubscriptionNotificationConfigurationOutput) GoString() string {
-	return s.String()
-}
-
-// Represents an error interacting with the Amazon EventBridge service.
-type EventBridgeException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s EventBridgeException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s EventBridgeException) GoString() string {
-	return s.String()
-}
-
-func newErrorEventBridgeException(v protocol.ResponseMetadata) error {
-	return &EventBridgeException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *EventBridgeException) Code() string {
-	return "EventBridgeException"
-}
-
-// Message returns the exception's message.
-func (s *EventBridgeException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *EventBridgeException) OrigErr() error {
-	return nil
-}
-
-func (s *EventBridgeException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *EventBridgeException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *EventBridgeException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// List of all failures.
-type Failures struct {
-	_ struct{} `type:"structure"`
-
-	// List of all exception messages.
-	//
-	// ExceptionMessage is a required field
-	ExceptionMessage *string `locationName:"exceptionMessage" type:"string" required:"true"`
-
-	// List of all remediation steps for failures.
-	//
-	// Remediation is a required field
-	Remediation *string `locationName:"remediation" type:"string" required:"true"`
-
-	// This error can occur if you configure the wrong timestamp format, or if the
-	// subset of entries used for validation had errors or missing values.
-	//
-	// Timestamp is a required field
-	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s Failures) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s Failures) GoString() string {
-	return s.String()
-}
-
-// SetExceptionMessage sets the ExceptionMessage field's value.
-func (s *Failures) SetExceptionMessage(v string) *Failures {
-	s.ExceptionMessage = &v
-	return s
-}
-
-// SetRemediation sets the Remediation field's value.
-func (s *Failures) SetRemediation(v string) *Failures {
-	s.Remediation = &v
-	return s
-}
-
-// SetTimestamp sets the Timestamp field's value.
-func (s *Failures) SetTimestamp(v time.Time) *Failures {
-	s.Timestamp = &v
-	return s
-}
-
-// Response element for actions that make changes, namely create, update, or
-// delete actions.
-type FailuresResponse struct {
-	_ struct{} `type:"structure"`
-
-	// List of all failures.
-	Failures []*Failures `locationName:"failures" type:"list"`
-
-	// List of Amazon Web Services Regions where the failure occurred.
-	Region *string `locationName:"region" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s FailuresResponse) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s FailuresResponse) GoString() string {
-	return s.String()
-}
-
-// SetFailures sets the Failures field's value.
-func (s *FailuresResponse) SetFailures(v []*Failures) *FailuresResponse {
-	s.Failures = v
-	return s
-}
-
-// SetRegion sets the Region field's value.
-func (s *FailuresResponse) SetRegion(v string) *FailuresResponse {
-	s.Region = &v
-	return s
-}
-
-type GetDatalakeAutoEnableInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeAutoEnableInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeAutoEnableInput) GoString() string {
-	return s.String()
-}
-
-type GetDatalakeAutoEnableOutput struct {
-	_ struct{} `type:"structure"`
-
-	// The configuration for new accounts.
-	//
-	// AutoEnableNewAccounts is a required field
-	AutoEnableNewAccounts []*AutoEnableNewRegionConfiguration `locationName:"autoEnableNewAccounts" type:"list" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeAutoEnableOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeAutoEnableOutput) GoString() string {
-	return s.String()
-}
-
-// SetAutoEnableNewAccounts sets the AutoEnableNewAccounts field's value.
-func (s *GetDatalakeAutoEnableOutput) SetAutoEnableNewAccounts(v []*AutoEnableNewRegionConfiguration) *GetDatalakeAutoEnableOutput {
-	s.AutoEnableNewAccounts = v
-	return s
-}
-
-type GetDatalakeExceptionsExpiryInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeExceptionsExpiryInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeExceptionsExpiryInput) GoString() string {
-	return s.String()
-}
-
-type GetDatalakeExceptionsExpiryOutput struct {
-	_ struct{} `type:"structure"`
-
-	// The expiration period and time-to-live (TTL).
-	//
-	// ExceptionMessageExpiry is a required field
-	ExceptionMessageExpiry *int64 `locationName:"exceptionMessageExpiry" type:"long" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeExceptionsExpiryOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeExceptionsExpiryOutput) GoString() string {
-	return s.String()
-}
-
-// SetExceptionMessageExpiry sets the ExceptionMessageExpiry field's value.
-func (s *GetDatalakeExceptionsExpiryOutput) SetExceptionMessageExpiry(v int64) *GetDatalakeExceptionsExpiryOutput {
-	s.ExceptionMessageExpiry = &v
-	return s
-}
-
-type GetDatalakeExceptionsSubscriptionInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeExceptionsSubscriptionInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeExceptionsSubscriptionInput) GoString() string {
-	return s.String()
-}
-
-type GetDatalakeExceptionsSubscriptionOutput struct {
-	_ struct{} `type:"structure"`
-
-	// Retrieves the exception notification subscription information.
-	//
-	// ProtocolAndNotificationEndpoint is a required field
-	ProtocolAndNotificationEndpoint *ProtocolAndNotificationEndpoint `locationName:"protocolAndNotificationEndpoint" type:"structure" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeExceptionsSubscriptionOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeExceptionsSubscriptionOutput) GoString() string {
-	return s.String()
-}
-
-// SetProtocolAndNotificationEndpoint sets the ProtocolAndNotificationEndpoint field's value.
-func (s *GetDatalakeExceptionsSubscriptionOutput) SetProtocolAndNotificationEndpoint(v *ProtocolAndNotificationEndpoint) *GetDatalakeExceptionsSubscriptionOutput {
-	s.ProtocolAndNotificationEndpoint = v
-	return s
-}
-
-type GetDatalakeInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeInput) GoString() string {
-	return s.String()
-}
-
-type GetDatalakeOutput struct {
-	_ struct{} `type:"structure"`
-
-	// Retrieves the Security Lake configuration object.
-	//
-	// Configurations is a required field
-	Configurations map[string]*LakeConfigurationResponse `locationName:"configurations" type:"map" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeOutput) GoString() string {
-	return s.String()
-}
-
-// SetConfigurations sets the Configurations field's value.
-func (s *GetDatalakeOutput) SetConfigurations(v map[string]*LakeConfigurationResponse) *GetDatalakeOutput {
-	s.Configurations = v
-	return s
-}
-
-type GetDatalakeStatusInput struct {
-	_ struct{} `type:"structure"`
-
-	// The Amazon Web Services account ID for which a static snapshot of the current
-	// Amazon Web Services Region, including enabled accounts and log sources, is
-	// retrieved.
-	AccountSet []*string `locationName:"accountSet" type:"list"`
-
-	// The maximum limit of accounts for which the static snapshot of the current
-	// Region, including enabled accounts and log sources, is retrieved.
-	MaxAccountResults *int64 `locationName:"maxAccountResults" type:"integer"`
-
-	// Lists if there are more results available. The value of nextToken is a unique
-	// pagination token for each page. Repeat the call using the returned token
-	// to retrieve the next page. Keep all other arguments unchanged.
-	//
-	// Each pagination token expires after 24 hours. Using an expired pagination
-	// token will return an HTTP 400 InvalidToken error.
-	NextToken *string `locationName:"nextToken" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeStatusInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s GetDatalakeStatusInput) GoString() string {
-	return s.String()
-}
-
-// SetAccountSet sets the AccountSet field's value.
-func (s *GetDatalakeStatusInput) SetAccountSet(v []*string) *GetDatalakeStatusInput {
-	s.AccountSet = v
-	return s
-}
-
-// SetMaxAccountResults sets the MaxAccountResults field's value.
-func (s *GetDatalakeStatusInput) SetMaxAccountResults(v int64) *GetDatalakeStatusInput {
-	s.MaxAccountResults = &v
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetDataLakeSourcesInput) SetMaxResults(v int64) *GetDataLakeSourcesInput {
+	s.MaxResults = &v
 	return s
 }
 
 // SetNextToken sets the NextToken field's value.
-func (s *GetDatalakeStatusInput) SetNextToken(v string) *GetDatalakeStatusInput {
+func (s *GetDataLakeSourcesInput) SetNextToken(v string) *GetDataLakeSourcesInput {
 	s.NextToken = &v
 	return s
 }
 
-type GetDatalakeStatusOutput struct {
+type GetDataLakeSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) created by you to provide to the subscriber.
+	// For more information about ARNs and how to use them in policies, see the
+	// Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/subscriber-management.html).
+	DataLakeArn *string `locationName:"dataLakeArn" min:"1" type:"string"`
+
 	// The list of enabled accounts and enabled sources.
-	//
-	// AccountSourcesList is a required field
-	AccountSourcesList []*AccountSources `locationName:"accountSourcesList" type:"list" required:"true"`
+	DataLakeSources []*DataLakeSource `locationName:"dataLakeSources" type:"list"`
 
 	// Lists if there are more results available. The value of nextToken is a unique
 	// pagination token for each page. Repeat the call using the returned token
@@ -5977,7 +6318,7 @@ type GetDatalakeStatusOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s GetDatalakeStatusOutput) String() string {
+func (s GetDataLakeSourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -5986,18 +6327,24 @@ func (s GetDatalakeStatusOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s GetDatalakeStatusOutput) GoString() string {
+func (s GetDataLakeSourcesOutput) GoString() string {
 	return s.String()
 }
 
-// SetAccountSourcesList sets the AccountSourcesList field's value.
-func (s *GetDatalakeStatusOutput) SetAccountSourcesList(v []*AccountSources) *GetDatalakeStatusOutput {
-	s.AccountSourcesList = v
+// SetDataLakeArn sets the DataLakeArn field's value.
+func (s *GetDataLakeSourcesOutput) SetDataLakeArn(v string) *GetDataLakeSourcesOutput {
+	s.DataLakeArn = &v
+	return s
+}
+
+// SetDataLakeSources sets the DataLakeSources field's value.
+func (s *GetDataLakeSourcesOutput) SetDataLakeSources(v []*DataLakeSource) *GetDataLakeSourcesOutput {
+	s.DataLakeSources = v
 	return s
 }
 
 // SetNextToken sets the NextToken field's value.
-func (s *GetDatalakeStatusOutput) SetNextToken(v string) *GetDatalakeStatusOutput {
+func (s *GetDataLakeSourcesOutput) SetNextToken(v string) *GetDataLakeSourcesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -6008,8 +6355,8 @@ type GetSubscriberInput struct {
 	// A value created by Amazon Security Lake that uniquely identifies your GetSubscriber
 	// API request.
 	//
-	// Id is a required field
-	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+	// SubscriberId is a required field
+	SubscriberId *string `location:"uri" locationName:"subscriberId" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6033,11 +6380,11 @@ func (s GetSubscriberInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetSubscriberInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetSubscriberInput"}
-	if s.Id == nil {
-		invalidParams.Add(request.NewErrParamRequired("Id"))
+	if s.SubscriberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriberId"))
 	}
-	if s.Id != nil && len(*s.Id) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	if s.SubscriberId != nil && len(*s.SubscriberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubscriberId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6046,16 +6393,16 @@ func (s *GetSubscriberInput) Validate() error {
 	return nil
 }
 
-// SetId sets the Id field's value.
-func (s *GetSubscriberInput) SetId(v string) *GetSubscriberInput {
-	s.Id = &v
+// SetSubscriberId sets the SubscriberId field's value.
+func (s *GetSubscriberInput) SetSubscriberId(v string) *GetSubscriberInput {
+	s.SubscriberId = &v
 	return s
 }
 
 type GetSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The subscription information for the specified subscription ID.
+	// The subscriber information for the specified subscriber ID.
 	Subscriber *SubscriberResource `locationName:"subscriber" type:"structure"`
 }
 
@@ -6083,6 +6430,99 @@ func (s *GetSubscriberOutput) SetSubscriber(v *SubscriberResource) *GetSubscribe
 	return s
 }
 
+// The configurations for HTTPS subscriber notification.
+type HttpsNotificationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The key name for the notification subscription.
+	AuthorizationApiKeyName *string `locationName:"authorizationApiKeyName" type:"string"`
+
+	// The key value for the notification subscription.
+	AuthorizationApiKeyValue *string `locationName:"authorizationApiKeyValue" type:"string"`
+
+	// The subscription endpoint in Security Lake. If you prefer notification with
+	// an HTTPs endpoint, populate this field.
+	//
+	// Endpoint is a required field
+	Endpoint *string `locationName:"endpoint" type:"string" required:"true"`
+
+	// The HTTPS method used for the notification subscription.
+	HttpMethod *string `locationName:"httpMethod" type:"string" enum:"HttpMethod"`
+
+	// The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role
+	// that you created. For more information about ARNs and how to use them in
+	// policies, see Managing data access (https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html)
+	// and Amazon Web Services Managed Policies (https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html)
+	// in the Amazon Security Lake User Guide.
+	//
+	// TargetRoleArn is a required field
+	TargetRoleArn *string `locationName:"targetRoleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HttpsNotificationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HttpsNotificationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpsNotificationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpsNotificationConfiguration"}
+	if s.Endpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("Endpoint"))
+	}
+	if s.TargetRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetRoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizationApiKeyName sets the AuthorizationApiKeyName field's value.
+func (s *HttpsNotificationConfiguration) SetAuthorizationApiKeyName(v string) *HttpsNotificationConfiguration {
+	s.AuthorizationApiKeyName = &v
+	return s
+}
+
+// SetAuthorizationApiKeyValue sets the AuthorizationApiKeyValue field's value.
+func (s *HttpsNotificationConfiguration) SetAuthorizationApiKeyValue(v string) *HttpsNotificationConfiguration {
+	s.AuthorizationApiKeyValue = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *HttpsNotificationConfiguration) SetEndpoint(v string) *HttpsNotificationConfiguration {
+	s.Endpoint = &v
+	return s
+}
+
+// SetHttpMethod sets the HttpMethod field's value.
+func (s *HttpsNotificationConfiguration) SetHttpMethod(v string) *HttpsNotificationConfiguration {
+	s.HttpMethod = &v
+	return s
+}
+
+// SetTargetRoleArn sets the TargetRoleArn field's value.
+func (s *HttpsNotificationConfiguration) SetTargetRoleArn(v string) *HttpsNotificationConfiguration {
+	s.TargetRoleArn = &v
+	return s
+}
+
 // Internal service exceptions are sometimes caused by transient issues. Before
 // you start troubleshooting, perform the operation again.
 type InternalServerException struct {
@@ -6090,9 +6530,6 @@ type InternalServerException struct {
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
-
-	// Retry the request after the specified time.
-	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
 }
 
 // String returns the string representation.
@@ -6138,7 +6575,7 @@ func (s *InternalServerException) OrigErr() error {
 }
 
 func (s *InternalServerException) Error() string {
-	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -6151,331 +6588,11 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request was rejected because a value that's not valid or is out of range
-// was supplied for an input parameter.
-type InvalidInputException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s InvalidInputException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s InvalidInputException) GoString() string {
-	return s.String()
-}
-
-func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
-	return &InvalidInputException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *InvalidInputException) Code() string {
-	return "InvalidInputException"
-}
-
-// Message returns the exception's message.
-func (s *InvalidInputException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *InvalidInputException) OrigErr() error {
-	return nil
-}
-
-func (s *InvalidInputException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *InvalidInputException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *InvalidInputException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// Provides details of Amazon Security Lake configuration object.
-type LakeConfigurationRequest struct {
-	_ struct{} `type:"structure"`
-
-	// The type of encryption key used by Amazon Security Lake to encrypt the Security
-	// Lake configuration object.
-	EncryptionKey *string `locationName:"encryptionKey" type:"string"`
-
-	// Replication enables automatic, asynchronous copying of objects across Amazon
-	// S3 buckets. Amazon S3 buckets that are configured for object replication
-	// can be owned by the same Amazon Web Services account or by different accounts.
-	// You can replicate objects to a single destination bucket or to multiple destination
-	// buckets. The destination buckets can be in different Amazon Web Services
-	// Regions or within the same Region as the source bucket.
-	//
-	// Set up one or more rollup Regions by providing the Region or Regions that
-	// should contribute to the central rollup Region.
-	ReplicationDestinationRegions []*string `locationName:"replicationDestinationRegions" type:"list" enum:"Region"`
-
-	// Replication settings for the Amazon S3 buckets. This parameter uses the Identity
-	// and Access Management (IAM) role you created that is managed by Security
-	// Lake, to ensure the replication setting is correct.
-	ReplicationRoleArn *string `locationName:"replicationRoleArn" type:"string"`
-
-	// Retention settings for the destination Amazon S3 buckets.
-	RetentionSettings []*RetentionSetting `locationName:"retentionSettings" type:"list"`
-
-	// A tag is a label that you assign to an Amazon Web Services resource. Each
-	// tag consists of a key and an optional value, both of which you define.
-	TagsMap map[string]*string `locationName:"tagsMap" type:"map"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s LakeConfigurationRequest) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s LakeConfigurationRequest) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *LakeConfigurationRequest) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "LakeConfigurationRequest"}
-	if s.RetentionSettings != nil {
-		for i, v := range s.RetentionSettings {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RetentionSettings", i), err.(request.ErrInvalidParams))
-			}
-		}
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetEncryptionKey sets the EncryptionKey field's value.
-func (s *LakeConfigurationRequest) SetEncryptionKey(v string) *LakeConfigurationRequest {
-	s.EncryptionKey = &v
-	return s
-}
-
-// SetReplicationDestinationRegions sets the ReplicationDestinationRegions field's value.
-func (s *LakeConfigurationRequest) SetReplicationDestinationRegions(v []*string) *LakeConfigurationRequest {
-	s.ReplicationDestinationRegions = v
-	return s
-}
-
-// SetReplicationRoleArn sets the ReplicationRoleArn field's value.
-func (s *LakeConfigurationRequest) SetReplicationRoleArn(v string) *LakeConfigurationRequest {
-	s.ReplicationRoleArn = &v
-	return s
-}
-
-// SetRetentionSettings sets the RetentionSettings field's value.
-func (s *LakeConfigurationRequest) SetRetentionSettings(v []*RetentionSetting) *LakeConfigurationRequest {
-	s.RetentionSettings = v
-	return s
-}
-
-// SetTagsMap sets the TagsMap field's value.
-func (s *LakeConfigurationRequest) SetTagsMap(v map[string]*string) *LakeConfigurationRequest {
-	s.TagsMap = v
-	return s
-}
-
-// Provides details of Amazon Security Lake lake configuration object.
-type LakeConfigurationResponse struct {
-	_ struct{} `type:"structure"`
-
-	// The type of encryption key used by secure the Security Lake configuration
-	// object.
-	EncryptionKey *string `locationName:"encryptionKey" type:"string"`
-
-	// Replication enables automatic, asynchronous copying of objects across Amazon
-	// S3 buckets. Amazon S3 buckets that are configured for object replication
-	// can be owned by the same Amazon Web Services account or by different accounts.
-	// You can replicate objects to a single destination bucket or to multiple destination
-	// buckets. The destination buckets can be in different Amazon Web Services
-	// Regions or within the same Region as the source bucket.
-	//
-	// Set up one or more rollup Regions by providing the Region or Regions that
-	// should contribute to the central rollup Region.
-	ReplicationDestinationRegions []*string `locationName:"replicationDestinationRegions" type:"list" enum:"Region"`
-
-	// Replication settings for the Amazon S3 buckets. This parameter uses the IAM
-	// role you created that is managed by Security Lake, to ensure the replication
-	// setting is correct.
-	ReplicationRoleArn *string `locationName:"replicationRoleArn" type:"string"`
-
-	// Retention settings for the destination Amazon S3 buckets.
-	RetentionSettings []*RetentionSetting `locationName:"retentionSettings" type:"list"`
-
-	// Amazon Resource Names (ARNs) uniquely identify Amazon Web Services resources.
-	// Security Lake requires an ARN when you need to specify a resource unambiguously
-	// across all of Amazon Web Services, such as in IAM policies, Amazon Relational
-	// Database Service (Amazon RDS) tags, and API calls.
-	S3BucketArn *string `locationName:"s3BucketArn" type:"string"`
-
-	// Retrieves the status of the configuration operation for an account in Amazon
-	// Security Lake.
-	Status *string `locationName:"status" type:"string" enum:"SettingsStatus"`
-
-	// A tag is a label that you assign to an Amazon Web Services resource. Each
-	// tag consists of a key and an optional value, both of which you define.
-	TagsMap map[string]*string `locationName:"tagsMap" type:"map"`
-
-	// The status of the last UpdateDatalake or DeleteDatalake API request.
-	UpdateStatus *UpdateStatus `locationName:"updateStatus" type:"structure"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s LakeConfigurationResponse) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s LakeConfigurationResponse) GoString() string {
-	return s.String()
-}
-
-// SetEncryptionKey sets the EncryptionKey field's value.
-func (s *LakeConfigurationResponse) SetEncryptionKey(v string) *LakeConfigurationResponse {
-	s.EncryptionKey = &v
-	return s
-}
-
-// SetReplicationDestinationRegions sets the ReplicationDestinationRegions field's value.
-func (s *LakeConfigurationResponse) SetReplicationDestinationRegions(v []*string) *LakeConfigurationResponse {
-	s.ReplicationDestinationRegions = v
-	return s
-}
-
-// SetReplicationRoleArn sets the ReplicationRoleArn field's value.
-func (s *LakeConfigurationResponse) SetReplicationRoleArn(v string) *LakeConfigurationResponse {
-	s.ReplicationRoleArn = &v
-	return s
-}
-
-// SetRetentionSettings sets the RetentionSettings field's value.
-func (s *LakeConfigurationResponse) SetRetentionSettings(v []*RetentionSetting) *LakeConfigurationResponse {
-	s.RetentionSettings = v
-	return s
-}
-
-// SetS3BucketArn sets the S3BucketArn field's value.
-func (s *LakeConfigurationResponse) SetS3BucketArn(v string) *LakeConfigurationResponse {
-	s.S3BucketArn = &v
-	return s
-}
-
-// SetStatus sets the Status field's value.
-func (s *LakeConfigurationResponse) SetStatus(v string) *LakeConfigurationResponse {
-	s.Status = &v
-	return s
-}
-
-// SetTagsMap sets the TagsMap field's value.
-func (s *LakeConfigurationResponse) SetTagsMap(v map[string]*string) *LakeConfigurationResponse {
-	s.TagsMap = v
-	return s
-}
-
-// SetUpdateStatus sets the UpdateStatus field's value.
-func (s *LakeConfigurationResponse) SetUpdateStatus(v *UpdateStatus) *LakeConfigurationResponse {
-	s.UpdateStatus = v
-	return s
-}
-
-// The details of the last UpdateDatalake or DeleteDatalake API request which
-// failed.
-type LastUpdateFailure struct {
-	_ struct{} `type:"structure"`
-
-	// The reason code for the failure of the last UpdateDatalake or DeleteDatalake
-	// API request.
-	Code *string `locationName:"code" type:"string"`
-
-	// The reason for the failure of the last UpdateDatalakeor DeleteDatalake API
-	// request.
-	Reason *string `locationName:"reason" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s LastUpdateFailure) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s LastUpdateFailure) GoString() string {
-	return s.String()
-}
-
-// SetCode sets the Code field's value.
-func (s *LastUpdateFailure) SetCode(v string) *LastUpdateFailure {
-	s.Code = &v
-	return s
-}
-
-// SetReason sets the Reason field's value.
-func (s *LastUpdateFailure) SetReason(v string) *LastUpdateFailure {
-	s.Reason = &v
-	return s
-}
-
-type ListDatalakeExceptionsInput struct {
+type ListDataLakeExceptionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// List the maximum number of failures in Security Lake.
-	MaxFailures *int64 `locationName:"maxFailures" type:"integer"`
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// List if there are more results available. The value of nextToken is a unique
 	// pagination token for each page. Repeat the call using the returned token
@@ -6486,7 +6603,7 @@ type ListDatalakeExceptionsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// List the Amazon Web Services Regions from which exceptions are retrieved.
-	RegionSet []*string `locationName:"regionSet" type:"list" enum:"Region"`
+	Regions []*string `locationName:"regions" type:"list"`
 }
 
 // String returns the string representation.
@@ -6494,7 +6611,7 @@ type ListDatalakeExceptionsInput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ListDatalakeExceptionsInput) String() string {
+func (s ListDataLakeExceptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -6503,30 +6620,46 @@ func (s ListDatalakeExceptionsInput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ListDatalakeExceptionsInput) GoString() string {
+func (s ListDataLakeExceptionsInput) GoString() string {
 	return s.String()
 }
 
-// SetMaxFailures sets the MaxFailures field's value.
-func (s *ListDatalakeExceptionsInput) SetMaxFailures(v int64) *ListDatalakeExceptionsInput {
-	s.MaxFailures = &v
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataLakeExceptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataLakeExceptionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataLakeExceptionsInput) SetMaxResults(v int64) *ListDataLakeExceptionsInput {
+	s.MaxResults = &v
 	return s
 }
 
 // SetNextToken sets the NextToken field's value.
-func (s *ListDatalakeExceptionsInput) SetNextToken(v string) *ListDatalakeExceptionsInput {
+func (s *ListDataLakeExceptionsInput) SetNextToken(v string) *ListDataLakeExceptionsInput {
 	s.NextToken = &v
 	return s
 }
 
-// SetRegionSet sets the RegionSet field's value.
-func (s *ListDatalakeExceptionsInput) SetRegionSet(v []*string) *ListDatalakeExceptionsInput {
-	s.RegionSet = v
+// SetRegions sets the Regions field's value.
+func (s *ListDataLakeExceptionsInput) SetRegions(v []*string) *ListDataLakeExceptionsInput {
+	s.Regions = v
 	return s
 }
 
-type ListDatalakeExceptionsOutput struct {
+type ListDataLakeExceptionsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Lists the failures that cannot be retried in the current Region.
+	Exceptions []*DataLakeException `locationName:"exceptions" type:"list"`
 
 	// List if there are more results available. The value of nextToken is a unique
 	// pagination token for each page. Repeat the call using the returned token
@@ -6535,11 +6668,6 @@ type ListDatalakeExceptionsOutput struct {
 	// Each pagination token expires after 24 hours. Using an expired pagination
 	// token will return an HTTP 400 InvalidToken error.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	// Lists the failures that cannot be retried in the current Region.
-	//
-	// NonRetryableFailures is a required field
-	NonRetryableFailures []*FailuresResponse `locationName:"nonRetryableFailures" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -6547,7 +6675,7 @@ type ListDatalakeExceptionsOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ListDatalakeExceptionsOutput) String() string {
+func (s ListDataLakeExceptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -6556,48 +6684,102 @@ func (s ListDatalakeExceptionsOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ListDatalakeExceptionsOutput) GoString() string {
+func (s ListDataLakeExceptionsOutput) GoString() string {
 	return s.String()
 }
 
+// SetExceptions sets the Exceptions field's value.
+func (s *ListDataLakeExceptionsOutput) SetExceptions(v []*DataLakeException) *ListDataLakeExceptionsOutput {
+	s.Exceptions = v
+	return s
+}
+
 // SetNextToken sets the NextToken field's value.
-func (s *ListDatalakeExceptionsOutput) SetNextToken(v string) *ListDatalakeExceptionsOutput {
+func (s *ListDataLakeExceptionsOutput) SetNextToken(v string) *ListDataLakeExceptionsOutput {
 	s.NextToken = &v
 	return s
 }
 
-// SetNonRetryableFailures sets the NonRetryableFailures field's value.
-func (s *ListDatalakeExceptionsOutput) SetNonRetryableFailures(v []*FailuresResponse) *ListDatalakeExceptionsOutput {
-	s.NonRetryableFailures = v
+type ListDataLakesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The list of regions where Security Lake is enabled.
+	Regions []*string `location:"querystring" locationName:"regions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataLakesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataLakesInput) GoString() string {
+	return s.String()
+}
+
+// SetRegions sets the Regions field's value.
+func (s *ListDataLakesInput) SetRegions(v []*string) *ListDataLakesInput {
+	s.Regions = v
+	return s
+}
+
+type ListDataLakesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Retrieves the Security Lake configuration object.
+	DataLakes []*DataLakeResource `locationName:"dataLakes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataLakesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataLakesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataLakes sets the DataLakes field's value.
+func (s *ListDataLakesOutput) SetDataLakes(v []*DataLakeResource) *ListDataLakesOutput {
+	s.DataLakes = v
 	return s
 }
 
 type ListLogSourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the log sources in input order, namely Region, source type, and member
-	// account.
-	InputOrder []*string `locationName:"inputOrder" type:"list" enum:"Dimension"`
-
-	// List the view of log sources for enabled Amazon Security Lake accounts for
-	// specific Amazon Web Services sources from specific accounts and specific
-	// Regions.
-	ListAllDimensions map[string]map[string][]*string `locationName:"listAllDimensions" type:"map"`
-
-	// List the view of log sources for enabled Security Lake accounts for all Amazon
-	// Web Services sources from specific accounts or specific Regions.
-	ListSingleDimension []*string `locationName:"listSingleDimension" type:"list"`
-
-	// Lists the view of log sources for enabled Security Lake accounts for specific
-	// Amazon Web Services sources from specific accounts or specific Regions.
-	ListTwoDimensions map[string][]*string `locationName:"listTwoDimensions" type:"map"`
+	// The list of Amazon Web Services accounts for which log sources are displayed.
+	Accounts []*string `locationName:"accounts" type:"list"`
 
 	// The maximum number of accounts for which the log sources are displayed.
-	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// If nextToken is returned, there are more results available. You can repeat
 	// the call using the returned token to retrieve the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of regions for which log sources are displayed.
+	Regions []*string `locationName:"regions" type:"list"`
+
+	// The list of sources for which log sources are displayed.
+	Sources []*LogSourceResource `locationName:"sources" type:"list"`
 }
 
 // String returns the string representation.
@@ -6618,27 +6800,32 @@ func (s ListLogSourcesInput) GoString() string {
 	return s.String()
 }
 
-// SetInputOrder sets the InputOrder field's value.
-func (s *ListLogSourcesInput) SetInputOrder(v []*string) *ListLogSourcesInput {
-	s.InputOrder = v
-	return s
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLogSourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLogSourcesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
-// SetListAllDimensions sets the ListAllDimensions field's value.
-func (s *ListLogSourcesInput) SetListAllDimensions(v map[string]map[string][]*string) *ListLogSourcesInput {
-	s.ListAllDimensions = v
-	return s
-}
-
-// SetListSingleDimension sets the ListSingleDimension field's value.
-func (s *ListLogSourcesInput) SetListSingleDimension(v []*string) *ListLogSourcesInput {
-	s.ListSingleDimension = v
-	return s
-}
-
-// SetListTwoDimensions sets the ListTwoDimensions field's value.
-func (s *ListLogSourcesInput) SetListTwoDimensions(v map[string][]*string) *ListLogSourcesInput {
-	s.ListTwoDimensions = v
+// SetAccounts sets the Accounts field's value.
+func (s *ListLogSourcesInput) SetAccounts(v []*string) *ListLogSourcesInput {
+	s.Accounts = v
 	return s
 }
 
@@ -6654,6 +6841,18 @@ func (s *ListLogSourcesInput) SetNextToken(v string) *ListLogSourcesInput {
 	return s
 }
 
+// SetRegions sets the Regions field's value.
+func (s *ListLogSourcesInput) SetRegions(v []*string) *ListLogSourcesInput {
+	s.Regions = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *ListLogSourcesInput) SetSources(v []*LogSourceResource) *ListLogSourcesInput {
+	s.Sources = v
+	return s
+}
+
 type ListLogSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6661,10 +6860,8 @@ type ListLogSourcesOutput struct {
 	// the call using the returned token to retrieve the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Lists the log sources by Regions for enabled Security Lake accounts.
-	//
-	// RegionSourceTypesAccountsList is a required field
-	RegionSourceTypesAccountsList []map[string]map[string][]*string `locationName:"regionSourceTypesAccountsList" type:"list" required:"true"`
+	// The list of log sources in your organization that send data to the data lake.
+	Sources []*LogSource `locationName:"sources" type:"list"`
 }
 
 // String returns the string representation.
@@ -6691,9 +6888,9 @@ func (s *ListLogSourcesOutput) SetNextToken(v string) *ListLogSourcesOutput {
 	return s
 }
 
-// SetRegionSourceTypesAccountsList sets the RegionSourceTypesAccountsList field's value.
-func (s *ListLogSourcesOutput) SetRegionSourceTypesAccountsList(v []map[string]map[string][]*string) *ListLogSourcesOutput {
-	s.RegionSourceTypesAccountsList = v
+// SetSources sets the Sources field's value.
+func (s *ListLogSourcesOutput) SetSources(v []*LogSource) *ListLogSourcesOutput {
+	s.Sources = v
 	return s
 }
 
@@ -6701,7 +6898,7 @@ type ListSubscribersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of accounts for which the configuration is displayed.
-	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// If nextToken is returned, there are more results available. You can repeat
 	// the call using the returned token to retrieve the next page.
@@ -6726,6 +6923,19 @@ func (s ListSubscribersInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSubscribersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSubscribersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListSubscribersInput) SetMaxResults(v int64) *ListSubscribersInput {
 	s.MaxResults = &v
@@ -6746,9 +6956,7 @@ type ListSubscribersOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The subscribers available for the specified Security Lake account ID.
-	//
-	// Subscribers is a required field
-	Subscribers []*SubscriberResource `locationName:"subscribers" type:"list" required:"true"`
+	Subscribers []*SubscriberResource `locationName:"subscribers" type:"list"`
 }
 
 // String returns the string representation.
@@ -6781,20 +6989,19 @@ func (s *ListSubscribersOutput) SetSubscribers(v []*SubscriberResource) *ListSub
 	return s
 }
 
-// Retrieves the Logs status for the Amazon Security Lake account.
-type LogsStatus struct {
+// Amazon Security Lake can collect logs and events from natively-supported
+// Amazon Web Services services and custom sources.
+type LogSource struct {
 	_ struct{} `type:"structure"`
 
-	// The health status of services, including error codes and patterns.
-	//
-	// HealthStatus is a required field
-	HealthStatus *string `locationName:"healthStatus" type:"string" required:"true" enum:"SourceStatus"`
+	// Specify the account from which you want to collect logs.
+	Account *string `locationName:"account" min:"12" type:"string"`
 
-	// Defines path the stored logs are available which has information on your
-	// systems, applications, and services.
-	//
-	// PathToLogs is a required field
-	PathToLogs *string `locationName:"pathToLogs" type:"string" required:"true"`
+	// Specify the Regions from which you want to collect logs.
+	Region *string `locationName:"region" type:"string"`
+
+	// Specify the sources from which you want to collect logs.
+	Sources []*LogSourceResource `locationName:"sources" type:"list"`
 }
 
 // String returns the string representation.
@@ -6802,7 +7009,7 @@ type LogsStatus struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s LogsStatus) String() string {
+func (s LogSource) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -6811,32 +7018,41 @@ func (s LogsStatus) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s LogsStatus) GoString() string {
+func (s LogSource) GoString() string {
 	return s.String()
 }
 
-// SetHealthStatus sets the HealthStatus field's value.
-func (s *LogsStatus) SetHealthStatus(v string) *LogsStatus {
-	s.HealthStatus = &v
+// SetAccount sets the Account field's value.
+func (s *LogSource) SetAccount(v string) *LogSource {
+	s.Account = &v
 	return s
 }
 
-// SetPathToLogs sets the PathToLogs field's value.
-func (s *LogsStatus) SetPathToLogs(v string) *LogsStatus {
-	s.PathToLogs = &v
+// SetRegion sets the Region field's value.
+func (s *LogSource) SetRegion(v string) *LogSource {
+	s.Region = &v
 	return s
 }
 
-// Protocol used in Amazon Security Lake that dictates how notifications are
-// posted at the endpoint.
-type ProtocolAndNotificationEndpoint struct {
+// SetSources sets the Sources field's value.
+func (s *LogSource) SetSources(v []*LogSourceResource) *LogSource {
+	s.Sources = v
+	return s
+}
+
+// The supported source types from which logs and events are collected in Amazon
+// Security Lake. For the list of supported Amazon Web Services, see the Amazon
+// Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html).
+type LogSourceResource struct {
 	_ struct{} `type:"structure"`
 
-	// The account that is subscribed to receive exception notifications.
-	Endpoint *string `locationName:"endpoint" type:"string"`
+	// Amazon Security Lake supports log and event collection for natively supported
+	// Amazon Web Services.
+	AwsLogSource *AwsLogSourceResource `locationName:"awsLogSource" type:"structure"`
 
-	// The protocol to which notification messages are posted.
-	Protocol *string `locationName:"protocol" type:"string"`
+	// Amazon Security Lake supports custom source types. For a detailed list, see
+	// the Amazon Security Lake User Guide.
+	CustomLogSource *CustomLogSourceResource `locationName:"customLogSource" type:"structure"`
 }
 
 // String returns the string representation.
@@ -6844,7 +7060,7 @@ type ProtocolAndNotificationEndpoint struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ProtocolAndNotificationEndpoint) String() string {
+func (s LogSourceResource) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -6853,20 +7069,161 @@ func (s ProtocolAndNotificationEndpoint) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ProtocolAndNotificationEndpoint) GoString() string {
+func (s LogSourceResource) GoString() string {
 	return s.String()
 }
 
-// SetEndpoint sets the Endpoint field's value.
-func (s *ProtocolAndNotificationEndpoint) SetEndpoint(v string) *ProtocolAndNotificationEndpoint {
-	s.Endpoint = &v
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LogSourceResource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LogSourceResource"}
+	if s.CustomLogSource != nil {
+		if err := s.CustomLogSource.Validate(); err != nil {
+			invalidParams.AddNested("CustomLogSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsLogSource sets the AwsLogSource field's value.
+func (s *LogSourceResource) SetAwsLogSource(v *AwsLogSourceResource) *LogSourceResource {
+	s.AwsLogSource = v
 	return s
 }
 
-// SetProtocol sets the Protocol field's value.
-func (s *ProtocolAndNotificationEndpoint) SetProtocol(v string) *ProtocolAndNotificationEndpoint {
-	s.Protocol = &v
+// SetCustomLogSource sets the CustomLogSource field's value.
+func (s *LogSourceResource) SetCustomLogSource(v *CustomLogSourceResource) *LogSourceResource {
+	s.CustomLogSource = v
 	return s
+}
+
+// Specify the configurations you want to use for subscriber notification to
+// notify the subscriber when new data is written to the data lake for sources
+// that the subscriber consumes in Security Lake.
+type NotificationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configurations for HTTPS subscriber notification.
+	HttpsNotificationConfiguration *HttpsNotificationConfiguration `locationName:"httpsNotificationConfiguration" type:"structure"`
+
+	// The configurations for SQS subscriber notification.
+	SqsNotificationConfiguration *SqsNotificationConfiguration `locationName:"sqsNotificationConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotificationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotificationConfiguration"}
+	if s.HttpsNotificationConfiguration != nil {
+		if err := s.HttpsNotificationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("HttpsNotificationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHttpsNotificationConfiguration sets the HttpsNotificationConfiguration field's value.
+func (s *NotificationConfiguration) SetHttpsNotificationConfiguration(v *HttpsNotificationConfiguration) *NotificationConfiguration {
+	s.HttpsNotificationConfiguration = v
+	return s
+}
+
+// SetSqsNotificationConfiguration sets the SqsNotificationConfiguration field's value.
+func (s *NotificationConfiguration) SetSqsNotificationConfiguration(v *SqsNotificationConfiguration) *NotificationConfiguration {
+	s.SqsNotificationConfiguration = v
+	return s
+}
+
+type RegisterDataLakeDelegatedAdministratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the Security Lake delegated administrator.
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterDataLakeDelegatedAdministratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterDataLakeDelegatedAdministratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterDataLakeDelegatedAdministratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterDataLakeDelegatedAdministratorInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RegisterDataLakeDelegatedAdministratorInput) SetAccountId(v string) *RegisterDataLakeDelegatedAdministratorInput {
+	s.AccountId = &v
+	return s
+}
+
+type RegisterDataLakeDelegatedAdministratorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterDataLakeDelegatedAdministratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterDataLakeDelegatedAdministratorOutput) GoString() string {
+	return s.String()
 }
 
 // The resource could not be found.
@@ -6876,15 +7233,11 @@ type ResourceNotFoundException struct {
 
 	Message_ *string `locationName:"message" type:"string"`
 
-	// The ID of the resource for which the type of resource could not be found.
-	//
-	// ResourceId is a required field
-	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
+	// The name of the resource that could not be found.
+	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The type of the resource that could not be found.
-	//
-	// ResourceType is a required field
-	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
+	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
 // String returns the string representation.
@@ -6943,19 +7296,9 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Retention settings for the destination Amazon S3 buckets in Amazon Security
-// Lake.
-type RetentionSetting struct {
+// The configurations for SQS subscriber notification.
+type SqsNotificationConfiguration struct {
 	_ struct{} `type:"structure"`
-
-	// The retention period specifies a fixed period of time during which the Security
-	// Lake object remains locked. You can specify the retention period in days
-	// for one or more sources.
-	RetentionPeriod *int64 `locationName:"retentionPeriod" min:"1" type:"integer"`
-
-	// The range of storage classes that you can choose from based on the data access,
-	// resiliency, and cost requirements of your workloads.
-	StorageClass *string `locationName:"storageClass" type:"string" enum:"StorageClass"`
 }
 
 // String returns the string representation.
@@ -6963,7 +7306,7 @@ type RetentionSetting struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s RetentionSetting) String() string {
+func (s SqsNotificationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -6972,233 +7315,8 @@ func (s RetentionSetting) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s RetentionSetting) GoString() string {
+func (s SqsNotificationConfiguration) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *RetentionSetting) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "RetentionSetting"}
-	if s.RetentionPeriod != nil && *s.RetentionPeriod < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("RetentionPeriod", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetRetentionPeriod sets the RetentionPeriod field's value.
-func (s *RetentionSetting) SetRetentionPeriod(v int64) *RetentionSetting {
-	s.RetentionPeriod = &v
-	return s
-}
-
-// SetStorageClass sets the StorageClass field's value.
-func (s *RetentionSetting) SetStorageClass(v string) *RetentionSetting {
-	s.StorageClass = &v
-	return s
-}
-
-// Provides an extension of the AmazonServiceException for errors reported by
-// Amazon S3 while processing a request. In particular, this class provides
-// access to the Amazon S3 extended request ID. If Amazon S3 is incorrectly
-// handling a request and you need to contact Amazon, this extended request
-// ID may provide useful debugging information.
-type S3Exception struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s S3Exception) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s S3Exception) GoString() string {
-	return s.String()
-}
-
-func newErrorS3Exception(v protocol.ResponseMetadata) error {
-	return &S3Exception{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *S3Exception) Code() string {
-	return "S3Exception"
-}
-
-// Message returns the exception's message.
-func (s *S3Exception) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *S3Exception) OrigErr() error {
-	return nil
-}
-
-func (s *S3Exception) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *S3Exception) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *S3Exception) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// You have exceeded your service quota. To perform the requested action, remove
-// some of the relevant resources, or use Service Quotas to request a service
-// quota increase.
-type ServiceQuotaExceededException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-
-	// That the rate of requests to Security Lake is exceeding the request quotas
-	// for your Amazon Web Services account.
-	//
-	// QuotaCode is a required field
-	QuotaCode *string `locationName:"quotaCode" type:"string" required:"true"`
-
-	// The ID of the resource that exceeds the service quota.
-	//
-	// ResourceId is a required field
-	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
-
-	// The type of the resource that exceeds the service quota.
-	//
-	// ResourceType is a required field
-	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
-
-	// The code for the service in Service Quotas.
-	//
-	// ServiceCode is a required field
-	ServiceCode *string `locationName:"serviceCode" type:"string" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ServiceQuotaExceededException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ServiceQuotaExceededException) GoString() string {
-	return s.String()
-}
-
-func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
-	return &ServiceQuotaExceededException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *ServiceQuotaExceededException) Code() string {
-	return "ServiceQuotaExceededException"
-}
-
-// Message returns the exception's message.
-func (s *ServiceQuotaExceededException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *ServiceQuotaExceededException) OrigErr() error {
-	return nil
-}
-
-func (s *ServiceQuotaExceededException) Error() string {
-	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *ServiceQuotaExceededException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *ServiceQuotaExceededException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// The supported source types from which logs and events are collected in Amazon
-// Security Lake. For the list of supported Amazon Web Services, see the Amazon
-// Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html).
-type SourceType struct {
-	_ struct{} `type:"structure"`
-
-	// Amazon Security Lake supports log and event collection for natively supported
-	// Amazon Web Services.
-	AwsSourceType *string `locationName:"awsSourceType" type:"string" enum:"AwsLogSourceType"`
-
-	// Amazon Security Lake supports custom source types. For a detailed list, see
-	// the Amazon Security Lake User Guide.
-	CustomSourceType *string `locationName:"customSourceType" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s SourceType) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s SourceType) GoString() string {
-	return s.String()
-}
-
-// SetAwsSourceType sets the AwsSourceType field's value.
-func (s *SourceType) SetAwsSourceType(v string) *SourceType {
-	s.AwsSourceType = &v
-	return s
-}
-
-// SetCustomSourceType sets the CustomSourceType field's value.
-func (s *SourceType) SetCustomSourceType(v string) *SourceType {
-	s.CustomSourceType = &v
-	return s
 }
 
 // Provides details about the Amazon Security Lake account subscription. Subscribers
@@ -7216,20 +7334,8 @@ type SubscriberResource struct {
 	// type is defined as LAKEFORMATION.
 	AccessTypes []*string `locationName:"accessTypes" type:"list" enum:"AccessType"`
 
-	// The Amazon Web Services account ID you are using to create your Amazon Security
-	// Lake account.
-	//
-	// AccountId is a required field
-	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
-
-	// The date and time when the subscription was created.
+	// The date and time when the subscriber was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
-
-	// The external ID of the subscriber. The external ID lets the user that is
-	// assuming the role assert the circumstances in which they are operating. It
-	// also provides a way for the account owner to permit the role to be assumed
-	// only under specific circumstances.
-	ExternalId *string `locationName:"externalId" type:"string"`
 
 	// The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource
 	// share. Before accepting the RAM resource share invitation, you can view details
@@ -7248,38 +7354,44 @@ type SubscriberResource struct {
 	// The ARN for the Amazon S3 bucket.
 	S3BucketArn *string `locationName:"s3BucketArn" type:"string"`
 
-	// The ARN for the Amazon Simple Notification Service.
-	SnsArn *string `locationName:"snsArn" type:"string"`
-
 	// Amazon Security Lake supports log and event collection for natively supported
 	// Amazon Web Services. For more information, see the Amazon Security Lake User
 	// Guide.
 	//
-	// SourceTypes is a required field
-	SourceTypes []*SourceType `locationName:"sourceTypes" type:"list" required:"true"`
+	// Sources is a required field
+	Sources []*LogSourceResource `locationName:"sources" type:"list" required:"true"`
+
+	// The subscriber ARN of the Amazon Security Lake subscriber account.
+	//
+	// SubscriberArn is a required field
+	SubscriberArn *string `locationName:"subscriberArn" min:"1" type:"string" required:"true"`
 
 	// The subscriber descriptions for a subscriber account. The description for
-	// a subscriber includes subscriberName, accountID, externalID, and subscriptionId.
+	// a subscriber includes subscriberName, accountID, externalID, and subscriberId.
 	SubscriberDescription *string `locationName:"subscriberDescription" type:"string"`
 
-	// The name of your Amazon Security Lake subscriber account.
-	SubscriberName *string `locationName:"subscriberName" type:"string"`
+	// The subscriber endpoint to which exception messages are posted.
+	SubscriberEndpoint *string `locationName:"subscriberEndpoint" type:"string"`
 
-	// The subscription endpoint to which exception messages are posted.
-	SubscriptionEndpoint *string `locationName:"subscriptionEndpoint" type:"string"`
-
-	// The subscription ID of the Amazon Security Lake subscriber account.
+	// The subscriber ID of the Amazon Security Lake subscriber account.
 	//
-	// SubscriptionId is a required field
-	SubscriptionId *string `locationName:"subscriptionId" type:"string" required:"true"`
+	// SubscriberId is a required field
+	SubscriberId *string `locationName:"subscriberId" type:"string" required:"true"`
 
-	// The subscription protocol to which exception messages are posted.
-	SubscriptionProtocol *string `locationName:"subscriptionProtocol" type:"string" enum:"EndpointProtocol"`
+	// The AWS identity used to access your data.
+	//
+	// SubscriberIdentity is a required field
+	SubscriberIdentity *AwsIdentity `locationName:"subscriberIdentity" type:"structure" required:"true"`
 
-	// The subscription status of the Amazon Security Lake subscriber account.
-	SubscriptionStatus *string `locationName:"subscriptionStatus" type:"string" enum:"SubscriptionStatus"`
+	// The name of your Amazon Security Lake subscriber account.
+	//
+	// SubscriberName is a required field
+	SubscriberName *string `locationName:"subscriberName" type:"string" required:"true"`
 
-	// The date and time when the subscription was created.
+	// The subscriber status of the Amazon Security Lake subscriber account.
+	SubscriberStatus *string `locationName:"subscriberStatus" type:"string" enum:"SubscriberStatus"`
+
+	// The date and time when the subscriber was last updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -7307,21 +7419,9 @@ func (s *SubscriberResource) SetAccessTypes(v []*string) *SubscriberResource {
 	return s
 }
 
-// SetAccountId sets the AccountId field's value.
-func (s *SubscriberResource) SetAccountId(v string) *SubscriberResource {
-	s.AccountId = &v
-	return s
-}
-
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *SubscriberResource) SetCreatedAt(v time.Time) *SubscriberResource {
 	s.CreatedAt = &v
-	return s
-}
-
-// SetExternalId sets the ExternalId field's value.
-func (s *SubscriberResource) SetExternalId(v string) *SubscriberResource {
-	s.ExternalId = &v
 	return s
 }
 
@@ -7349,15 +7449,15 @@ func (s *SubscriberResource) SetS3BucketArn(v string) *SubscriberResource {
 	return s
 }
 
-// SetSnsArn sets the SnsArn field's value.
-func (s *SubscriberResource) SetSnsArn(v string) *SubscriberResource {
-	s.SnsArn = &v
+// SetSources sets the Sources field's value.
+func (s *SubscriberResource) SetSources(v []*LogSourceResource) *SubscriberResource {
+	s.Sources = v
 	return s
 }
 
-// SetSourceTypes sets the SourceTypes field's value.
-func (s *SubscriberResource) SetSourceTypes(v []*SourceType) *SubscriberResource {
-	s.SourceTypes = v
+// SetSubscriberArn sets the SubscriberArn field's value.
+func (s *SubscriberResource) SetSubscriberArn(v string) *SubscriberResource {
+	s.SubscriberArn = &v
 	return s
 }
 
@@ -7367,33 +7467,33 @@ func (s *SubscriberResource) SetSubscriberDescription(v string) *SubscriberResou
 	return s
 }
 
+// SetSubscriberEndpoint sets the SubscriberEndpoint field's value.
+func (s *SubscriberResource) SetSubscriberEndpoint(v string) *SubscriberResource {
+	s.SubscriberEndpoint = &v
+	return s
+}
+
+// SetSubscriberId sets the SubscriberId field's value.
+func (s *SubscriberResource) SetSubscriberId(v string) *SubscriberResource {
+	s.SubscriberId = &v
+	return s
+}
+
+// SetSubscriberIdentity sets the SubscriberIdentity field's value.
+func (s *SubscriberResource) SetSubscriberIdentity(v *AwsIdentity) *SubscriberResource {
+	s.SubscriberIdentity = v
+	return s
+}
+
 // SetSubscriberName sets the SubscriberName field's value.
 func (s *SubscriberResource) SetSubscriberName(v string) *SubscriberResource {
 	s.SubscriberName = &v
 	return s
 }
 
-// SetSubscriptionEndpoint sets the SubscriptionEndpoint field's value.
-func (s *SubscriberResource) SetSubscriptionEndpoint(v string) *SubscriberResource {
-	s.SubscriptionEndpoint = &v
-	return s
-}
-
-// SetSubscriptionId sets the SubscriptionId field's value.
-func (s *SubscriberResource) SetSubscriptionId(v string) *SubscriberResource {
-	s.SubscriptionId = &v
-	return s
-}
-
-// SetSubscriptionProtocol sets the SubscriptionProtocol field's value.
-func (s *SubscriberResource) SetSubscriptionProtocol(v string) *SubscriberResource {
-	s.SubscriptionProtocol = &v
-	return s
-}
-
-// SetSubscriptionStatus sets the SubscriptionStatus field's value.
-func (s *SubscriberResource) SetSubscriptionStatus(v string) *SubscriberResource {
-	s.SubscriptionStatus = &v
+// SetSubscriberStatus sets the SubscriberStatus field's value.
+func (s *SubscriberResource) SetSubscriberStatus(v string) *SubscriberResource {
+	s.SubscriberStatus = &v
 	return s
 }
 
@@ -7477,79 +7577,11 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-type UpdateDatalakeExceptionsExpiryInput struct {
+type UpdateDataLakeExceptionSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The time-to-live (TTL) for the exception message to remain.
-	//
-	// ExceptionMessageExpiry is a required field
-	ExceptionMessageExpiry *int64 `locationName:"exceptionMessageExpiry" min:"1" type:"long" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateDatalakeExceptionsExpiryInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateDatalakeExceptionsExpiryInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *UpdateDatalakeExceptionsExpiryInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "UpdateDatalakeExceptionsExpiryInput"}
-	if s.ExceptionMessageExpiry == nil {
-		invalidParams.Add(request.NewErrParamRequired("ExceptionMessageExpiry"))
-	}
-	if s.ExceptionMessageExpiry != nil && *s.ExceptionMessageExpiry < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("ExceptionMessageExpiry", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetExceptionMessageExpiry sets the ExceptionMessageExpiry field's value.
-func (s *UpdateDatalakeExceptionsExpiryInput) SetExceptionMessageExpiry(v int64) *UpdateDatalakeExceptionsExpiryInput {
-	s.ExceptionMessageExpiry = &v
-	return s
-}
-
-type UpdateDatalakeExceptionsExpiryOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateDatalakeExceptionsExpiryOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateDatalakeExceptionsExpiryOutput) GoString() string {
-	return s.String()
-}
-
-type UpdateDatalakeExceptionsSubscriptionInput struct {
-	_ struct{} `type:"structure"`
+	ExceptionTimeToLive *int64 `locationName:"exceptionTimeToLive" min:"1" type:"long"`
 
 	// The account that is subscribed to receive exception notifications.
 	//
@@ -7559,7 +7591,7 @@ type UpdateDatalakeExceptionsSubscriptionInput struct {
 	// The subscription protocol to which exception messages are posted.
 	//
 	// SubscriptionProtocol is a required field
-	SubscriptionProtocol *string `locationName:"subscriptionProtocol" type:"string" required:"true" enum:"SubscriptionProtocolType"`
+	SubscriptionProtocol *string `locationName:"subscriptionProtocol" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -7567,7 +7599,7 @@ type UpdateDatalakeExceptionsSubscriptionInput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s UpdateDatalakeExceptionsSubscriptionInput) String() string {
+func (s UpdateDataLakeExceptionSubscriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -7576,13 +7608,16 @@ func (s UpdateDatalakeExceptionsSubscriptionInput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s UpdateDatalakeExceptionsSubscriptionInput) GoString() string {
+func (s UpdateDataLakeExceptionSubscriptionInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *UpdateDatalakeExceptionsSubscriptionInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "UpdateDatalakeExceptionsSubscriptionInput"}
+func (s *UpdateDataLakeExceptionSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDataLakeExceptionSubscriptionInput"}
+	if s.ExceptionTimeToLive != nil && *s.ExceptionTimeToLive < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ExceptionTimeToLive", 1))
+	}
 	if s.NotificationEndpoint == nil {
 		invalidParams.Add(request.NewErrParamRequired("NotificationEndpoint"))
 	}
@@ -7596,19 +7631,25 @@ func (s *UpdateDatalakeExceptionsSubscriptionInput) Validate() error {
 	return nil
 }
 
+// SetExceptionTimeToLive sets the ExceptionTimeToLive field's value.
+func (s *UpdateDataLakeExceptionSubscriptionInput) SetExceptionTimeToLive(v int64) *UpdateDataLakeExceptionSubscriptionInput {
+	s.ExceptionTimeToLive = &v
+	return s
+}
+
 // SetNotificationEndpoint sets the NotificationEndpoint field's value.
-func (s *UpdateDatalakeExceptionsSubscriptionInput) SetNotificationEndpoint(v string) *UpdateDatalakeExceptionsSubscriptionInput {
+func (s *UpdateDataLakeExceptionSubscriptionInput) SetNotificationEndpoint(v string) *UpdateDataLakeExceptionSubscriptionInput {
 	s.NotificationEndpoint = &v
 	return s
 }
 
 // SetSubscriptionProtocol sets the SubscriptionProtocol field's value.
-func (s *UpdateDatalakeExceptionsSubscriptionInput) SetSubscriptionProtocol(v string) *UpdateDatalakeExceptionsSubscriptionInput {
+func (s *UpdateDataLakeExceptionSubscriptionInput) SetSubscriptionProtocol(v string) *UpdateDataLakeExceptionSubscriptionInput {
 	s.SubscriptionProtocol = &v
 	return s
 }
 
-type UpdateDatalakeExceptionsSubscriptionOutput struct {
+type UpdateDataLakeExceptionSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
@@ -7617,7 +7658,7 @@ type UpdateDatalakeExceptionsSubscriptionOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s UpdateDatalakeExceptionsSubscriptionOutput) String() string {
+func (s UpdateDataLakeExceptionSubscriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -7626,17 +7667,17 @@ func (s UpdateDatalakeExceptionsSubscriptionOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s UpdateDatalakeExceptionsSubscriptionOutput) GoString() string {
+func (s UpdateDataLakeExceptionSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
-type UpdateDatalakeInput struct {
+type UpdateDataLakeInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specify the Region or Regions that will contribute data to the rollup region.
 	//
 	// Configurations is a required field
-	Configurations map[string]*LakeConfigurationRequest `locationName:"configurations" type:"map" required:"true"`
+	Configurations []*DataLakeConfiguration `locationName:"configurations" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -7644,7 +7685,7 @@ type UpdateDatalakeInput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s UpdateDatalakeInput) String() string {
+func (s UpdateDataLakeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -7653,13 +7694,13 @@ func (s UpdateDatalakeInput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s UpdateDatalakeInput) GoString() string {
+func (s UpdateDataLakeInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *UpdateDatalakeInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "UpdateDatalakeInput"}
+func (s *UpdateDataLakeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDataLakeInput"}
 	if s.Configurations == nil {
 		invalidParams.Add(request.NewErrParamRequired("Configurations"))
 	}
@@ -7681,13 +7722,16 @@ func (s *UpdateDatalakeInput) Validate() error {
 }
 
 // SetConfigurations sets the Configurations field's value.
-func (s *UpdateDatalakeInput) SetConfigurations(v map[string]*LakeConfigurationRequest) *UpdateDatalakeInput {
+func (s *UpdateDataLakeInput) SetConfigurations(v []*DataLakeConfiguration) *UpdateDataLakeInput {
 	s.Configurations = v
 	return s
 }
 
-type UpdateDatalakeOutput struct {
+type UpdateDataLakeOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The created Security Lake configuration object.
+	DataLakes []*DataLakeResource `locationName:"dataLakes" type:"list"`
 }
 
 // String returns the string representation.
@@ -7695,7 +7739,7 @@ type UpdateDatalakeOutput struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s UpdateDatalakeOutput) String() string {
+func (s UpdateDataLakeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -7704,84 +7748,34 @@ func (s UpdateDatalakeOutput) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s UpdateDatalakeOutput) GoString() string {
+func (s UpdateDataLakeOutput) GoString() string {
 	return s.String()
 }
 
-// The status of the last UpdateDatalake or DeleteDatalake API request. This
-// is set to Completed after the configuration is updated, or removed if deletion
-// of the data lake is successful.
-type UpdateStatus struct {
-	_ struct{} `type:"structure"`
-
-	// The details of the last UpdateDatalakeor DeleteDatalake API request which
-	// failed.
-	LastUpdateFailure *LastUpdateFailure `locationName:"lastUpdateFailure" type:"structure"`
-
-	// The unique ID for the UpdateDatalake or DeleteDatalake API request.
-	LastUpdateRequestId *string `locationName:"lastUpdateRequestId" type:"string"`
-
-	// The status of the last UpdateDatalake or DeleteDatalake API request that
-	// was requested.
-	LastUpdateStatus *string `locationName:"lastUpdateStatus" type:"string" enum:"SettingsStatus"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateStatus) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateStatus) GoString() string {
-	return s.String()
-}
-
-// SetLastUpdateFailure sets the LastUpdateFailure field's value.
-func (s *UpdateStatus) SetLastUpdateFailure(v *LastUpdateFailure) *UpdateStatus {
-	s.LastUpdateFailure = v
-	return s
-}
-
-// SetLastUpdateRequestId sets the LastUpdateRequestId field's value.
-func (s *UpdateStatus) SetLastUpdateRequestId(v string) *UpdateStatus {
-	s.LastUpdateRequestId = &v
-	return s
-}
-
-// SetLastUpdateStatus sets the LastUpdateStatus field's value.
-func (s *UpdateStatus) SetLastUpdateStatus(v string) *UpdateStatus {
-	s.LastUpdateStatus = &v
+// SetDataLakes sets the DataLakes field's value.
+func (s *UpdateDataLakeOutput) SetDataLakes(v []*DataLakeResource) *UpdateDataLakeOutput {
+	s.DataLakes = v
 	return s
 }
 
 type UpdateSubscriberInput struct {
 	_ struct{} `type:"structure"`
 
-	// The external ID of the Security Lake account.
-	ExternalId *string `locationName:"externalId" type:"string"`
-
-	// A value created by Security Lake that uniquely identifies your subscription.
-	//
-	// Id is a required field
-	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
-
 	// The supported Amazon Web Services from which logs and events are collected.
 	// For the list of supported Amazon Web Services, see the Amazon Security Lake
 	// User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html).
-	//
-	// SourceTypes is a required field
-	SourceTypes []*SourceType `locationName:"sourceTypes" type:"list" required:"true"`
+	Sources []*LogSourceResource `locationName:"sources" type:"list"`
 
 	// The description of the Security Lake account subscriber.
 	SubscriberDescription *string `locationName:"subscriberDescription" type:"string"`
+
+	// A value created by Security Lake that uniquely identifies your subscription.
+	//
+	// SubscriberId is a required field
+	SubscriberId *string `location:"uri" locationName:"subscriberId" type:"string" required:"true"`
+
+	// The AWS identity used to access your data.
+	SubscriberIdentity *AwsIdentity `locationName:"subscriberIdentity" type:"structure"`
 
 	// The name of the Security Lake account subscriber.
 	SubscriberName *string `locationName:"subscriberName" type:"string"`
@@ -7808,14 +7802,26 @@ func (s UpdateSubscriberInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateSubscriberInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateSubscriberInput"}
-	if s.Id == nil {
-		invalidParams.Add(request.NewErrParamRequired("Id"))
+	if s.SubscriberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriberId"))
 	}
-	if s.Id != nil && len(*s.Id) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	if s.SubscriberId != nil && len(*s.SubscriberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubscriberId", 1))
 	}
-	if s.SourceTypes == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceTypes"))
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SubscriberIdentity != nil {
+		if err := s.SubscriberIdentity.Validate(); err != nil {
+			invalidParams.AddNested("SubscriberIdentity", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7824,21 +7830,9 @@ func (s *UpdateSubscriberInput) Validate() error {
 	return nil
 }
 
-// SetExternalId sets the ExternalId field's value.
-func (s *UpdateSubscriberInput) SetExternalId(v string) *UpdateSubscriberInput {
-	s.ExternalId = &v
-	return s
-}
-
-// SetId sets the Id field's value.
-func (s *UpdateSubscriberInput) SetId(v string) *UpdateSubscriberInput {
-	s.Id = &v
-	return s
-}
-
-// SetSourceTypes sets the SourceTypes field's value.
-func (s *UpdateSubscriberInput) SetSourceTypes(v []*SourceType) *UpdateSubscriberInput {
-	s.SourceTypes = v
+// SetSources sets the Sources field's value.
+func (s *UpdateSubscriberInput) SetSources(v []*LogSourceResource) *UpdateSubscriberInput {
+	s.Sources = v
 	return s
 }
 
@@ -7848,16 +7842,127 @@ func (s *UpdateSubscriberInput) SetSubscriberDescription(v string) *UpdateSubscr
 	return s
 }
 
+// SetSubscriberId sets the SubscriberId field's value.
+func (s *UpdateSubscriberInput) SetSubscriberId(v string) *UpdateSubscriberInput {
+	s.SubscriberId = &v
+	return s
+}
+
+// SetSubscriberIdentity sets the SubscriberIdentity field's value.
+func (s *UpdateSubscriberInput) SetSubscriberIdentity(v *AwsIdentity) *UpdateSubscriberInput {
+	s.SubscriberIdentity = v
+	return s
+}
+
 // SetSubscriberName sets the SubscriberName field's value.
 func (s *UpdateSubscriberInput) SetSubscriberName(v string) *UpdateSubscriberInput {
 	s.SubscriberName = &v
 	return s
 }
 
+type UpdateSubscriberNotificationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for subscriber notification.
+	//
+	// Configuration is a required field
+	Configuration *NotificationConfiguration `locationName:"configuration" type:"structure" required:"true"`
+
+	// The subscription ID for which the subscription notification is specified.
+	//
+	// SubscriberId is a required field
+	SubscriberId *string `location:"uri" locationName:"subscriberId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriberNotificationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriberNotificationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSubscriberNotificationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSubscriberNotificationInput"}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+	if s.SubscriberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriberId"))
+	}
+	if s.SubscriberId != nil && len(*s.SubscriberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubscriberId", 1))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *UpdateSubscriberNotificationInput) SetConfiguration(v *NotificationConfiguration) *UpdateSubscriberNotificationInput {
+	s.Configuration = v
+	return s
+}
+
+// SetSubscriberId sets the SubscriberId field's value.
+func (s *UpdateSubscriberNotificationInput) SetSubscriberId(v string) *UpdateSubscriberNotificationInput {
+	s.SubscriberId = &v
+	return s
+}
+
+type UpdateSubscriberNotificationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The subscriber endpoint to which exception messages are posted.
+	SubscriberEndpoint *string `locationName:"subscriberEndpoint" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriberNotificationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriberNotificationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSubscriberEndpoint sets the SubscriberEndpoint field's value.
+func (s *UpdateSubscriberNotificationOutput) SetSubscriberEndpoint(v string) *UpdateSubscriberNotificationOutput {
+	s.SubscriberEndpoint = &v
+	return s
+}
+
 type UpdateSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The account of the subscriber.
+	// The updated subscriber information.
 	Subscriber *SubscriberResource `locationName:"subscriber" type:"structure"`
 }
 
@@ -7885,262 +7990,6 @@ func (s *UpdateSubscriberOutput) SetSubscriber(v *SubscriberResource) *UpdateSub
 	return s
 }
 
-type UpdateSubscriptionNotificationConfigurationInput struct {
-	_ struct{} `type:"structure"`
-
-	// Create a new subscription notification for the specified subscription ID
-	// in Amazon Security Lake.
-	CreateSqs *bool `locationName:"createSqs" type:"boolean"`
-
-	// The key name for the subscription notification.
-	HttpsApiKeyName *string `locationName:"httpsApiKeyName" type:"string"`
-
-	// The key value for the subscription notification.
-	HttpsApiKeyValue *string `locationName:"httpsApiKeyValue" type:"string"`
-
-	// The HTTPS method used for the subscription notification.
-	HttpsMethod *string `locationName:"httpsMethod" type:"string" enum:"HttpsMethod"`
-
-	// The Amazon Resource Name (ARN) specifying the role of the subscriber. For
-	// more information about ARNs and how to use them in policies, see, see the
-	// Managing data access (https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html)
-	// and Amazon Web Services Managed Policies (https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html)in
-	// the Amazon Security Lake User Guide.
-	RoleArn *string `locationName:"roleArn" type:"string"`
-
-	// The subscription endpoint in Security Lake.
-	SubscriptionEndpoint *string `locationName:"subscriptionEndpoint" type:"string"`
-
-	// The subscription ID for which the subscription notification is specified.
-	//
-	// SubscriptionId is a required field
-	SubscriptionId *string `location:"uri" locationName:"subscriptionId" type:"string" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateSubscriptionNotificationConfigurationInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateSubscriptionNotificationConfigurationInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *UpdateSubscriptionNotificationConfigurationInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "UpdateSubscriptionNotificationConfigurationInput"}
-	if s.SubscriptionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("SubscriptionId"))
-	}
-	if s.SubscriptionId != nil && len(*s.SubscriptionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SubscriptionId", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetCreateSqs sets the CreateSqs field's value.
-func (s *UpdateSubscriptionNotificationConfigurationInput) SetCreateSqs(v bool) *UpdateSubscriptionNotificationConfigurationInput {
-	s.CreateSqs = &v
-	return s
-}
-
-// SetHttpsApiKeyName sets the HttpsApiKeyName field's value.
-func (s *UpdateSubscriptionNotificationConfigurationInput) SetHttpsApiKeyName(v string) *UpdateSubscriptionNotificationConfigurationInput {
-	s.HttpsApiKeyName = &v
-	return s
-}
-
-// SetHttpsApiKeyValue sets the HttpsApiKeyValue field's value.
-func (s *UpdateSubscriptionNotificationConfigurationInput) SetHttpsApiKeyValue(v string) *UpdateSubscriptionNotificationConfigurationInput {
-	s.HttpsApiKeyValue = &v
-	return s
-}
-
-// SetHttpsMethod sets the HttpsMethod field's value.
-func (s *UpdateSubscriptionNotificationConfigurationInput) SetHttpsMethod(v string) *UpdateSubscriptionNotificationConfigurationInput {
-	s.HttpsMethod = &v
-	return s
-}
-
-// SetRoleArn sets the RoleArn field's value.
-func (s *UpdateSubscriptionNotificationConfigurationInput) SetRoleArn(v string) *UpdateSubscriptionNotificationConfigurationInput {
-	s.RoleArn = &v
-	return s
-}
-
-// SetSubscriptionEndpoint sets the SubscriptionEndpoint field's value.
-func (s *UpdateSubscriptionNotificationConfigurationInput) SetSubscriptionEndpoint(v string) *UpdateSubscriptionNotificationConfigurationInput {
-	s.SubscriptionEndpoint = &v
-	return s
-}
-
-// SetSubscriptionId sets the SubscriptionId field's value.
-func (s *UpdateSubscriptionNotificationConfigurationInput) SetSubscriptionId(v string) *UpdateSubscriptionNotificationConfigurationInput {
-	s.SubscriptionId = &v
-	return s
-}
-
-type UpdateSubscriptionNotificationConfigurationOutput struct {
-	_ struct{} `type:"structure"`
-
-	// Returns the ARN of the queue.
-	QueueArn *string `locationName:"queueArn" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateSubscriptionNotificationConfigurationOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s UpdateSubscriptionNotificationConfigurationOutput) GoString() string {
-	return s.String()
-}
-
-// SetQueueArn sets the QueueArn field's value.
-func (s *UpdateSubscriptionNotificationConfigurationOutput) SetQueueArn(v string) *UpdateSubscriptionNotificationConfigurationOutput {
-	s.QueueArn = &v
-	return s
-}
-
-// Your signing certificate could not be validated.
-type ValidationException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	// The list of parameters that failed to validate.
-	FieldList []*ValidationExceptionField `locationName:"fieldList" type:"list"`
-
-	Message_ *string `locationName:"message" type:"string"`
-
-	// The reason for the validation exception.
-	//
-	// Reason is a required field
-	Reason *string `locationName:"reason" type:"string" required:"true" enum:"ValidationExceptionReason"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ValidationException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ValidationException) GoString() string {
-	return s.String()
-}
-
-func newErrorValidationException(v protocol.ResponseMetadata) error {
-	return &ValidationException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *ValidationException) Code() string {
-	return "ValidationException"
-}
-
-// Message returns the exception's message.
-func (s *ValidationException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *ValidationException) OrigErr() error {
-	return nil
-}
-
-func (s *ValidationException) Error() string {
-	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *ValidationException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *ValidationException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// The input fails to meet the constraints specified in Amazon Security Lake.
-type ValidationExceptionField struct {
-	_ struct{} `type:"structure"`
-
-	// Describes the error encountered.
-	//
-	// Message is a required field
-	Message *string `locationName:"message" type:"string" required:"true"`
-
-	// Name of the validation exception.
-	//
-	// Name is a required field
-	Name *string `locationName:"name" type:"string" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ValidationExceptionField) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ValidationExceptionField) GoString() string {
-	return s.String()
-}
-
-// SetMessage sets the Message field's value.
-func (s *ValidationExceptionField) SetMessage(v string) *ValidationExceptionField {
-	s.Message = &v
-	return s
-}
-
-// SetName sets the Name field's value.
-func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
-	s.Name = &v
-	return s
-}
-
 const (
 	// AccessTypeLakeformation is a AccessType enum value
 	AccessTypeLakeformation = "LAKEFORMATION"
@@ -8158,425 +8007,117 @@ func AccessType_Values() []string {
 }
 
 const (
-	// AwsLogSourceTypeRoute53 is a AwsLogSourceType enum value
-	AwsLogSourceTypeRoute53 = "ROUTE53"
+	// AwsLogSourceNameRoute53 is a AwsLogSourceName enum value
+	AwsLogSourceNameRoute53 = "ROUTE53"
 
-	// AwsLogSourceTypeVpcFlow is a AwsLogSourceType enum value
-	AwsLogSourceTypeVpcFlow = "VPC_FLOW"
+	// AwsLogSourceNameVpcFlow is a AwsLogSourceName enum value
+	AwsLogSourceNameVpcFlow = "VPC_FLOW"
 
-	// AwsLogSourceTypeCloudTrail is a AwsLogSourceType enum value
-	AwsLogSourceTypeCloudTrail = "CLOUD_TRAIL"
+	// AwsLogSourceNameShFindings is a AwsLogSourceName enum value
+	AwsLogSourceNameShFindings = "SH_FINDINGS"
 
-	// AwsLogSourceTypeShFindings is a AwsLogSourceType enum value
-	AwsLogSourceTypeShFindings = "SH_FINDINGS"
+	// AwsLogSourceNameCloudTrailMgmt is a AwsLogSourceName enum value
+	AwsLogSourceNameCloudTrailMgmt = "CLOUD_TRAIL_MGMT"
+
+	// AwsLogSourceNameLambdaExecution is a AwsLogSourceName enum value
+	AwsLogSourceNameLambdaExecution = "LAMBDA_EXECUTION"
+
+	// AwsLogSourceNameS3Data is a AwsLogSourceName enum value
+	AwsLogSourceNameS3Data = "S3_DATA"
 )
 
-// AwsLogSourceType_Values returns all elements of the AwsLogSourceType enum
-func AwsLogSourceType_Values() []string {
+// AwsLogSourceName_Values returns all elements of the AwsLogSourceName enum
+func AwsLogSourceName_Values() []string {
 	return []string{
-		AwsLogSourceTypeRoute53,
-		AwsLogSourceTypeVpcFlow,
-		AwsLogSourceTypeCloudTrail,
-		AwsLogSourceTypeShFindings,
+		AwsLogSourceNameRoute53,
+		AwsLogSourceNameVpcFlow,
+		AwsLogSourceNameShFindings,
+		AwsLogSourceNameCloudTrailMgmt,
+		AwsLogSourceNameLambdaExecution,
+		AwsLogSourceNameS3Data,
 	}
 }
 
 const (
-	// DimensionRegion is a Dimension enum value
-	DimensionRegion = "REGION"
+	// DataLakeStatusInitialized is a DataLakeStatus enum value
+	DataLakeStatusInitialized = "INITIALIZED"
 
-	// DimensionSourceType is a Dimension enum value
-	DimensionSourceType = "SOURCE_TYPE"
+	// DataLakeStatusPending is a DataLakeStatus enum value
+	DataLakeStatusPending = "PENDING"
 
-	// DimensionMember is a Dimension enum value
-	DimensionMember = "MEMBER"
+	// DataLakeStatusCompleted is a DataLakeStatus enum value
+	DataLakeStatusCompleted = "COMPLETED"
+
+	// DataLakeStatusFailed is a DataLakeStatus enum value
+	DataLakeStatusFailed = "FAILED"
 )
 
-// Dimension_Values returns all elements of the Dimension enum
-func Dimension_Values() []string {
+// DataLakeStatus_Values returns all elements of the DataLakeStatus enum
+func DataLakeStatus_Values() []string {
 	return []string{
-		DimensionRegion,
-		DimensionSourceType,
-		DimensionMember,
+		DataLakeStatusInitialized,
+		DataLakeStatusPending,
+		DataLakeStatusCompleted,
+		DataLakeStatusFailed,
 	}
 }
 
 const (
-	// EndpointProtocolHttps is a EndpointProtocol enum value
-	EndpointProtocolHttps = "HTTPS"
+	// HttpMethodPost is a HttpMethod enum value
+	HttpMethodPost = "POST"
 
-	// EndpointProtocolSqs is a EndpointProtocol enum value
-	EndpointProtocolSqs = "SQS"
+	// HttpMethodPut is a HttpMethod enum value
+	HttpMethodPut = "PUT"
 )
 
-// EndpointProtocol_Values returns all elements of the EndpointProtocol enum
-func EndpointProtocol_Values() []string {
+// HttpMethod_Values returns all elements of the HttpMethod enum
+func HttpMethod_Values() []string {
 	return []string{
-		EndpointProtocolHttps,
-		EndpointProtocolSqs,
+		HttpMethodPost,
+		HttpMethodPut,
 	}
 }
 
 const (
-	// HttpsMethodPost is a HttpsMethod enum value
-	HttpsMethodPost = "POST"
+	// SourceCollectionStatusCollecting is a SourceCollectionStatus enum value
+	SourceCollectionStatusCollecting = "COLLECTING"
 
-	// HttpsMethodPut is a HttpsMethod enum value
-	HttpsMethodPut = "PUT"
+	// SourceCollectionStatusMisconfigured is a SourceCollectionStatus enum value
+	SourceCollectionStatusMisconfigured = "MISCONFIGURED"
+
+	// SourceCollectionStatusNotCollecting is a SourceCollectionStatus enum value
+	SourceCollectionStatusNotCollecting = "NOT_COLLECTING"
 )
 
-// HttpsMethod_Values returns all elements of the HttpsMethod enum
-func HttpsMethod_Values() []string {
+// SourceCollectionStatus_Values returns all elements of the SourceCollectionStatus enum
+func SourceCollectionStatus_Values() []string {
 	return []string{
-		HttpsMethodPost,
-		HttpsMethodPut,
+		SourceCollectionStatusCollecting,
+		SourceCollectionStatusMisconfigured,
+		SourceCollectionStatusNotCollecting,
 	}
 }
 
 const (
-	// OcsfEventClassAccessActivity is a OcsfEventClass enum value
-	OcsfEventClassAccessActivity = "ACCESS_ACTIVITY"
+	// SubscriberStatusActive is a SubscriberStatus enum value
+	SubscriberStatusActive = "ACTIVE"
 
-	// OcsfEventClassFileActivity is a OcsfEventClass enum value
-	OcsfEventClassFileActivity = "FILE_ACTIVITY"
+	// SubscriberStatusDeactivated is a SubscriberStatus enum value
+	SubscriberStatusDeactivated = "DEACTIVATED"
 
-	// OcsfEventClassKernelActivity is a OcsfEventClass enum value
-	OcsfEventClassKernelActivity = "KERNEL_ACTIVITY"
+	// SubscriberStatusPending is a SubscriberStatus enum value
+	SubscriberStatusPending = "PENDING"
 
-	// OcsfEventClassKernelExtension is a OcsfEventClass enum value
-	OcsfEventClassKernelExtension = "KERNEL_EXTENSION"
-
-	// OcsfEventClassMemoryActivity is a OcsfEventClass enum value
-	OcsfEventClassMemoryActivity = "MEMORY_ACTIVITY"
-
-	// OcsfEventClassModuleActivity is a OcsfEventClass enum value
-	OcsfEventClassModuleActivity = "MODULE_ACTIVITY"
-
-	// OcsfEventClassProcessActivity is a OcsfEventClass enum value
-	OcsfEventClassProcessActivity = "PROCESS_ACTIVITY"
-
-	// OcsfEventClassRegistryKeyActivity is a OcsfEventClass enum value
-	OcsfEventClassRegistryKeyActivity = "REGISTRY_KEY_ACTIVITY"
-
-	// OcsfEventClassRegistryValueActivity is a OcsfEventClass enum value
-	OcsfEventClassRegistryValueActivity = "REGISTRY_VALUE_ACTIVITY"
-
-	// OcsfEventClassResourceActivity is a OcsfEventClass enum value
-	OcsfEventClassResourceActivity = "RESOURCE_ACTIVITY"
-
-	// OcsfEventClassScheduledJobActivity is a OcsfEventClass enum value
-	OcsfEventClassScheduledJobActivity = "SCHEDULED_JOB_ACTIVITY"
-
-	// OcsfEventClassSecurityFinding is a OcsfEventClass enum value
-	OcsfEventClassSecurityFinding = "SECURITY_FINDING"
-
-	// OcsfEventClassAccountChange is a OcsfEventClass enum value
-	OcsfEventClassAccountChange = "ACCOUNT_CHANGE"
-
-	// OcsfEventClassAuthentication is a OcsfEventClass enum value
-	OcsfEventClassAuthentication = "AUTHENTICATION"
-
-	// OcsfEventClassAuthorization is a OcsfEventClass enum value
-	OcsfEventClassAuthorization = "AUTHORIZATION"
-
-	// OcsfEventClassEntityManagementAudit is a OcsfEventClass enum value
-	OcsfEventClassEntityManagementAudit = "ENTITY_MANAGEMENT_AUDIT"
-
-	// OcsfEventClassDhcpActivity is a OcsfEventClass enum value
-	OcsfEventClassDhcpActivity = "DHCP_ACTIVITY"
-
-	// OcsfEventClassNetworkActivity is a OcsfEventClass enum value
-	OcsfEventClassNetworkActivity = "NETWORK_ACTIVITY"
-
-	// OcsfEventClassDnsActivity is a OcsfEventClass enum value
-	OcsfEventClassDnsActivity = "DNS_ACTIVITY"
-
-	// OcsfEventClassFtpActivity is a OcsfEventClass enum value
-	OcsfEventClassFtpActivity = "FTP_ACTIVITY"
-
-	// OcsfEventClassHttpActivity is a OcsfEventClass enum value
-	OcsfEventClassHttpActivity = "HTTP_ACTIVITY"
-
-	// OcsfEventClassRdpActivity is a OcsfEventClass enum value
-	OcsfEventClassRdpActivity = "RDP_ACTIVITY"
-
-	// OcsfEventClassSmbActivity is a OcsfEventClass enum value
-	OcsfEventClassSmbActivity = "SMB_ACTIVITY"
-
-	// OcsfEventClassSshActivity is a OcsfEventClass enum value
-	OcsfEventClassSshActivity = "SSH_ACTIVITY"
-
-	// OcsfEventClassCloudApi is a OcsfEventClass enum value
-	OcsfEventClassCloudApi = "CLOUD_API"
-
-	// OcsfEventClassContainerLifecycle is a OcsfEventClass enum value
-	OcsfEventClassContainerLifecycle = "CONTAINER_LIFECYCLE"
-
-	// OcsfEventClassDatabaseLifecycle is a OcsfEventClass enum value
-	OcsfEventClassDatabaseLifecycle = "DATABASE_LIFECYCLE"
-
-	// OcsfEventClassConfigState is a OcsfEventClass enum value
-	OcsfEventClassConfigState = "CONFIG_STATE"
-
-	// OcsfEventClassCloudStorage is a OcsfEventClass enum value
-	OcsfEventClassCloudStorage = "CLOUD_STORAGE"
-
-	// OcsfEventClassInventoryInfo is a OcsfEventClass enum value
-	OcsfEventClassInventoryInfo = "INVENTORY_INFO"
-
-	// OcsfEventClassRfbActivity is a OcsfEventClass enum value
-	OcsfEventClassRfbActivity = "RFB_ACTIVITY"
-
-	// OcsfEventClassSmtpActivity is a OcsfEventClass enum value
-	OcsfEventClassSmtpActivity = "SMTP_ACTIVITY"
-
-	// OcsfEventClassVirtualMachineActivity is a OcsfEventClass enum value
-	OcsfEventClassVirtualMachineActivity = "VIRTUAL_MACHINE_ACTIVITY"
+	// SubscriberStatusReady is a SubscriberStatus enum value
+	SubscriberStatusReady = "READY"
 )
 
-// OcsfEventClass_Values returns all elements of the OcsfEventClass enum
-func OcsfEventClass_Values() []string {
+// SubscriberStatus_Values returns all elements of the SubscriberStatus enum
+func SubscriberStatus_Values() []string {
 	return []string{
-		OcsfEventClassAccessActivity,
-		OcsfEventClassFileActivity,
-		OcsfEventClassKernelActivity,
-		OcsfEventClassKernelExtension,
-		OcsfEventClassMemoryActivity,
-		OcsfEventClassModuleActivity,
-		OcsfEventClassProcessActivity,
-		OcsfEventClassRegistryKeyActivity,
-		OcsfEventClassRegistryValueActivity,
-		OcsfEventClassResourceActivity,
-		OcsfEventClassScheduledJobActivity,
-		OcsfEventClassSecurityFinding,
-		OcsfEventClassAccountChange,
-		OcsfEventClassAuthentication,
-		OcsfEventClassAuthorization,
-		OcsfEventClassEntityManagementAudit,
-		OcsfEventClassDhcpActivity,
-		OcsfEventClassNetworkActivity,
-		OcsfEventClassDnsActivity,
-		OcsfEventClassFtpActivity,
-		OcsfEventClassHttpActivity,
-		OcsfEventClassRdpActivity,
-		OcsfEventClassSmbActivity,
-		OcsfEventClassSshActivity,
-		OcsfEventClassCloudApi,
-		OcsfEventClassContainerLifecycle,
-		OcsfEventClassDatabaseLifecycle,
-		OcsfEventClassConfigState,
-		OcsfEventClassCloudStorage,
-		OcsfEventClassInventoryInfo,
-		OcsfEventClassRfbActivity,
-		OcsfEventClassSmtpActivity,
-		OcsfEventClassVirtualMachineActivity,
-	}
-}
-
-const (
-	// RegionUsEast1 is a Region enum value
-	RegionUsEast1 = "us-east-1"
-
-	// RegionUsWest2 is a Region enum value
-	RegionUsWest2 = "us-west-2"
-
-	// RegionEuCentral1 is a Region enum value
-	RegionEuCentral1 = "eu-central-1"
-
-	// RegionUsEast2 is a Region enum value
-	RegionUsEast2 = "us-east-2"
-
-	// RegionEuWest1 is a Region enum value
-	RegionEuWest1 = "eu-west-1"
-
-	// RegionApNortheast1 is a Region enum value
-	RegionApNortheast1 = "ap-northeast-1"
-
-	// RegionApSoutheast2 is a Region enum value
-	RegionApSoutheast2 = "ap-southeast-2"
-)
-
-// Region_Values returns all elements of the Region enum
-func Region_Values() []string {
-	return []string{
-		RegionUsEast1,
-		RegionUsWest2,
-		RegionEuCentral1,
-		RegionUsEast2,
-		RegionEuWest1,
-		RegionApNortheast1,
-		RegionApSoutheast2,
-	}
-}
-
-const (
-	// SettingsStatusInitialized is a SettingsStatus enum value
-	SettingsStatusInitialized = "INITIALIZED"
-
-	// SettingsStatusPending is a SettingsStatus enum value
-	SettingsStatusPending = "PENDING"
-
-	// SettingsStatusCompleted is a SettingsStatus enum value
-	SettingsStatusCompleted = "COMPLETED"
-
-	// SettingsStatusFailed is a SettingsStatus enum value
-	SettingsStatusFailed = "FAILED"
-)
-
-// SettingsStatus_Values returns all elements of the SettingsStatus enum
-func SettingsStatus_Values() []string {
-	return []string{
-		SettingsStatusInitialized,
-		SettingsStatusPending,
-		SettingsStatusCompleted,
-		SettingsStatusFailed,
-	}
-}
-
-const (
-	// SourceStatusActive is a SourceStatus enum value
-	SourceStatusActive = "ACTIVE"
-
-	// SourceStatusDeactivated is a SourceStatus enum value
-	SourceStatusDeactivated = "DEACTIVATED"
-
-	// SourceStatusPending is a SourceStatus enum value
-	SourceStatusPending = "PENDING"
-)
-
-// SourceStatus_Values returns all elements of the SourceStatus enum
-func SourceStatus_Values() []string {
-	return []string{
-		SourceStatusActive,
-		SourceStatusDeactivated,
-		SourceStatusPending,
-	}
-}
-
-const (
-	// StorageClassStandardIa is a StorageClass enum value
-	StorageClassStandardIa = "STANDARD_IA"
-
-	// StorageClassOnezoneIa is a StorageClass enum value
-	StorageClassOnezoneIa = "ONEZONE_IA"
-
-	// StorageClassIntelligentTiering is a StorageClass enum value
-	StorageClassIntelligentTiering = "INTELLIGENT_TIERING"
-
-	// StorageClassGlacierIr is a StorageClass enum value
-	StorageClassGlacierIr = "GLACIER_IR"
-
-	// StorageClassGlacier is a StorageClass enum value
-	StorageClassGlacier = "GLACIER"
-
-	// StorageClassDeepArchive is a StorageClass enum value
-	StorageClassDeepArchive = "DEEP_ARCHIVE"
-
-	// StorageClassExpire is a StorageClass enum value
-	StorageClassExpire = "EXPIRE"
-)
-
-// StorageClass_Values returns all elements of the StorageClass enum
-func StorageClass_Values() []string {
-	return []string{
-		StorageClassStandardIa,
-		StorageClassOnezoneIa,
-		StorageClassIntelligentTiering,
-		StorageClassGlacierIr,
-		StorageClassGlacier,
-		StorageClassDeepArchive,
-		StorageClassExpire,
-	}
-}
-
-const (
-	// SubscriptionProtocolTypeHttp is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeHttp = "HTTP"
-
-	// SubscriptionProtocolTypeHttps is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeHttps = "HTTPS"
-
-	// SubscriptionProtocolTypeEmail is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeEmail = "EMAIL"
-
-	// SubscriptionProtocolTypeEmailJson is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeEmailJson = "EMAIL_JSON"
-
-	// SubscriptionProtocolTypeSms is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeSms = "SMS"
-
-	// SubscriptionProtocolTypeSqs is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeSqs = "SQS"
-
-	// SubscriptionProtocolTypeLambda is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeLambda = "LAMBDA"
-
-	// SubscriptionProtocolTypeApp is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeApp = "APP"
-
-	// SubscriptionProtocolTypeFirehose is a SubscriptionProtocolType enum value
-	SubscriptionProtocolTypeFirehose = "FIREHOSE"
-)
-
-// SubscriptionProtocolType_Values returns all elements of the SubscriptionProtocolType enum
-func SubscriptionProtocolType_Values() []string {
-	return []string{
-		SubscriptionProtocolTypeHttp,
-		SubscriptionProtocolTypeHttps,
-		SubscriptionProtocolTypeEmail,
-		SubscriptionProtocolTypeEmailJson,
-		SubscriptionProtocolTypeSms,
-		SubscriptionProtocolTypeSqs,
-		SubscriptionProtocolTypeLambda,
-		SubscriptionProtocolTypeApp,
-		SubscriptionProtocolTypeFirehose,
-	}
-}
-
-const (
-	// SubscriptionStatusActive is a SubscriptionStatus enum value
-	SubscriptionStatusActive = "ACTIVE"
-
-	// SubscriptionStatusDeactivated is a SubscriptionStatus enum value
-	SubscriptionStatusDeactivated = "DEACTIVATED"
-
-	// SubscriptionStatusPending is a SubscriptionStatus enum value
-	SubscriptionStatusPending = "PENDING"
-
-	// SubscriptionStatusReady is a SubscriptionStatus enum value
-	SubscriptionStatusReady = "READY"
-)
-
-// SubscriptionStatus_Values returns all elements of the SubscriptionStatus enum
-func SubscriptionStatus_Values() []string {
-	return []string{
-		SubscriptionStatusActive,
-		SubscriptionStatusDeactivated,
-		SubscriptionStatusPending,
-		SubscriptionStatusReady,
-	}
-}
-
-const (
-	// ValidationExceptionReasonUnknownOperation is a ValidationExceptionReason enum value
-	ValidationExceptionReasonUnknownOperation = "unknownOperation"
-
-	// ValidationExceptionReasonCannotParse is a ValidationExceptionReason enum value
-	ValidationExceptionReasonCannotParse = "cannotParse"
-
-	// ValidationExceptionReasonFieldValidationFailed is a ValidationExceptionReason enum value
-	ValidationExceptionReasonFieldValidationFailed = "fieldValidationFailed"
-
-	// ValidationExceptionReasonOther is a ValidationExceptionReason enum value
-	ValidationExceptionReasonOther = "other"
-)
-
-// ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
-func ValidationExceptionReason_Values() []string {
-	return []string{
-		ValidationExceptionReasonUnknownOperation,
-		ValidationExceptionReasonCannotParse,
-		ValidationExceptionReasonFieldValidationFailed,
-		ValidationExceptionReasonOther,
+		SubscriberStatusActive,
+		SubscriberStatusDeactivated,
+		SubscriberStatusPending,
+		SubscriberStatusReady,
 	}
 }

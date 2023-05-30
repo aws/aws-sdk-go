@@ -1940,6 +1940,13 @@
         "IsCaller":{"shape":"Boolean"}
       }
     },
+    "CallLegType":{
+      "type":"string",
+      "enum":[
+        "Caller",
+        "Callee"
+      ]
+    },
     "CallingName":{
       "type":"string",
       "pattern":"^$|^[a-zA-Z0-9 ]{2,15}$",
@@ -4010,7 +4017,8 @@
         },
         "TransactionId":{"shape":"NonEmptyString256"},
         "VoiceProfileDomainId":{"shape":"NonEmptyString256"},
-        "ClientRequestToken":{"shape":"ClientRequestId"}
+        "ClientRequestToken":{"shape":"ClientRequestId"},
+        "CallLeg":{"shape":"CallLegType"}
       }
     },
     "StartSpeakerSearchTaskResponse":{

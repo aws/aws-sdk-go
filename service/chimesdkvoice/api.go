@@ -19606,6 +19606,9 @@ func (s *SpeakerSearchTask) SetUpdatedTimestamp(v time.Time) *SpeakerSearchTask 
 type StartSpeakerSearchTaskInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies which call leg to stream for speaker search.
+	CallLeg *string `type:"string" enum:"CallLegType"`
+
 	// The unique identifier for the client request. Use a different token for different
 	// speaker search tasks.
 	ClientRequestToken *string `type:"string"`
@@ -19670,6 +19673,12 @@ func (s *StartSpeakerSearchTaskInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCallLeg sets the CallLeg field's value.
+func (s *StartSpeakerSearchTaskInput) SetCallLeg(v string) *StartSpeakerSearchTaskInput {
+	s.CallLeg = &v
+	return s
 }
 
 // SetClientRequestToken sets the ClientRequestToken field's value.
@@ -22863,6 +22872,22 @@ func AlexaSkillStatus_Values() []string {
 	return []string{
 		AlexaSkillStatusActive,
 		AlexaSkillStatusInactive,
+	}
+}
+
+const (
+	// CallLegTypeCaller is a CallLegType enum value
+	CallLegTypeCaller = "Caller"
+
+	// CallLegTypeCallee is a CallLegType enum value
+	CallLegTypeCallee = "Callee"
+)
+
+// CallLegType_Values returns all elements of the CallLegType enum
+func CallLegType_Values() []string {
+	return []string{
+		CallLegTypeCaller,
+		CallLegTypeCallee,
 	}
 }
 

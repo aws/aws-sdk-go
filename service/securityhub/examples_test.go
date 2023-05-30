@@ -100,8 +100,9 @@ func ExampleSecurityHub_BatchDisableStandards_shared00() {
 	fmt.Println(result)
 }
 
-// To import security findings from a third party provider to Security Hub
-// The following example imports findings from a third party provider to Security Hub.
+// To enable security standards
+// The following example enables the security standard specified by the StandardArn.
+// You can use this operation to enable one or more Security Hub standards.
 func ExampleSecurityHub_BatchEnableStandards_shared00() {
 	svc := securityhub.New(session.New())
 	input := &securityhub.BatchEnableStandardsInput{
@@ -124,6 +125,88 @@ func ExampleSecurityHub_BatchEnableStandards_shared00() {
 				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
 			case securityhub.ErrCodeLimitExceededException:
 				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To get security control details
+// The following example gets details for the specified controls in the current AWS
+// account and AWS Region.
+func ExampleSecurityHub_BatchGetSecurityControls_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.BatchGetSecurityControlsInput{
+		SecurityControlIds: []*string{
+			aws.String("ACM.1"),
+			aws.String("APIGateway.1"),
+		},
+	}
+
+	result, err := svc.BatchGetSecurityControls(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To get enablement status of a batch of controls
+// The following example retrieves the enablement status of the specified controls in
+// the specified standards.
+func ExampleSecurityHub_BatchGetStandardsControlAssociations_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.BatchGetStandardsControlAssociationsInput{
+		StandardsControlAssociationIds: []*securityhub.StandardsControlAssociationId{
+			{
+				SecurityControlId: aws.String("CloudTrail.1"),
+				StandardsArn:      aws.String("arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"),
+			},
+			{
+				SecurityControlId: aws.String("CloudWatch.12"),
+				StandardsArn:      aws.String("arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"),
+			},
+		},
+	}
+
+	result, err := svc.BatchGetStandardsControlAssociations(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -257,6 +340,55 @@ func ExampleSecurityHub_BatchUpdateFindings_shared00() {
 				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
 			case securityhub.ErrCodeInvalidAccessException:
 				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To update enablement status of a batch of controls
+// The following example disables CloudWatch.12 in CIS AWS Foundations Benchmark v1.2.0.
+// The example returns an error for CloudTrail.1 because an invalid standard ARN is
+// provided.
+func ExampleSecurityHub_BatchUpdateStandardsControlAssociations_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.BatchUpdateStandardsControlAssociationsInput{
+		StandardsControlAssociationUpdates: []*securityhub.StandardsControlAssociationUpdate{
+			{
+				AssociationStatus: aws.String("DISABLED"),
+				SecurityControlId: aws.String("CloudTrail.1"),
+				StandardsArn:      aws.String("arn:aws:securityhub:::ruleset/sample-standard/v/1.1.0"),
+				UpdatedReason:     aws.String("Not relevant to environment"),
+			},
+			{
+				AssociationStatus: aws.String("DISABLED"),
+				SecurityControlId: aws.String("CloudWatch.12"),
+				StandardsArn:      aws.String("arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"),
+				UpdatedReason:     aws.String("Not relevant to environment"),
+			},
+		},
+	}
+
+	result, err := svc.BatchUpdateStandardsControlAssociations(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
