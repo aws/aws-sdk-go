@@ -18,26 +18,12 @@ const (
 	// there is no applicable Deny statement and also no applicable Allow statement.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
-	// ErrCodeAccountNotFoundException for service response error code
-	// "AccountNotFoundException".
+	// ErrCodeBadRequestException for service response error code
+	// "BadRequestException".
 	//
-	// Amazon Security Lake cannot find an Amazon Web Services account with the
-	// accountID that you specified, or the account whose credentials you used to
-	// make this request isn't a member of an organization.
-	ErrCodeAccountNotFoundException = "AccountNotFoundException"
-
-	// ErrCodeBucketNotFoundException for service response error code
-	// "BucketNotFoundException".
-	//
-	// Amazon Security Lake generally returns 404 errors if the requested object
-	// is missing from the bucket.
-	ErrCodeBucketNotFoundException = "BucketNotFoundException"
-
-	// ErrCodeConcurrentModificationException for service response error code
-	// "ConcurrentModificationException".
-	//
-	// More than one process tried to modify a resource at the same time.
-	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
+	// The request is malformed or contains an error such as an invalid parameter
+	// value or a missing required parameter.
+	ErrCodeBadRequestException = "BadRequestException"
 
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
@@ -48,25 +34,6 @@ const (
 	// is the recommended response to this exception.
 	ErrCodeConflictException = "ConflictException"
 
-	// ErrCodeConflictSourceNamesException for service response error code
-	// "ConflictSourceNamesException".
-	//
-	// There was a conflict when you attempted to modify a Security Lake source
-	// name.
-	ErrCodeConflictSourceNamesException = "ConflictSourceNamesException"
-
-	// ErrCodeConflictSubscriptionException for service response error code
-	// "ConflictSubscriptionException".
-	//
-	// A conflicting subscription exception operation is in progress.
-	ErrCodeConflictSubscriptionException = "ConflictSubscriptionException"
-
-	// ErrCodeEventBridgeException for service response error code
-	// "EventBridgeException".
-	//
-	// Represents an error interacting with the Amazon EventBridge service.
-	ErrCodeEventBridgeException = "EventBridgeException"
-
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
@@ -74,64 +41,24 @@ const (
 	// you start troubleshooting, perform the operation again.
 	ErrCodeInternalServerException = "InternalServerException"
 
-	// ErrCodeInvalidInputException for service response error code
-	// "InvalidInputException".
-	//
-	// The request was rejected because a value that's not valid or is out of range
-	// was supplied for an input parameter.
-	ErrCodeInvalidInputException = "InvalidInputException"
-
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
 	// The resource could not be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
-	// ErrCodeS3Exception for service response error code
-	// "S3Exception".
-	//
-	// Provides an extension of the AmazonServiceException for errors reported by
-	// Amazon S3 while processing a request. In particular, this class provides
-	// access to the Amazon S3 extended request ID. If Amazon S3 is incorrectly
-	// handling a request and you need to contact Amazon, this extended request
-	// ID may provide useful debugging information.
-	ErrCodeS3Exception = "S3Exception"
-
-	// ErrCodeServiceQuotaExceededException for service response error code
-	// "ServiceQuotaExceededException".
-	//
-	// You have exceeded your service quota. To perform the requested action, remove
-	// some of the relevant resources, or use Service Quotas to request a service
-	// quota increase.
-	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
-
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
 	// The limit on the number of requests per second was exceeded.
 	ErrCodeThrottlingException = "ThrottlingException"
-
-	// ErrCodeValidationException for service response error code
-	// "ValidationException".
-	//
-	// Your signing certificate could not be validated.
-	ErrCodeValidationException = "ValidationException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":           newErrorAccessDeniedException,
-	"AccountNotFoundException":        newErrorAccountNotFoundException,
-	"BucketNotFoundException":         newErrorBucketNotFoundException,
-	"ConcurrentModificationException": newErrorConcurrentModificationException,
-	"ConflictException":               newErrorConflictException,
-	"ConflictSourceNamesException":    newErrorConflictSourceNamesException,
-	"ConflictSubscriptionException":   newErrorConflictSubscriptionException,
-	"EventBridgeException":            newErrorEventBridgeException,
-	"InternalServerException":         newErrorInternalServerException,
-	"InvalidInputException":           newErrorInvalidInputException,
-	"ResourceNotFoundException":       newErrorResourceNotFoundException,
-	"S3Exception":                     newErrorS3Exception,
-	"ServiceQuotaExceededException":   newErrorServiceQuotaExceededException,
-	"ThrottlingException":             newErrorThrottlingException,
-	"ValidationException":             newErrorValidationException,
+	"AccessDeniedException":     newErrorAccessDeniedException,
+	"BadRequestException":       newErrorBadRequestException,
+	"ConflictException":         newErrorConflictException,
+	"InternalServerException":   newErrorInternalServerException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"ThrottlingException":       newErrorThrottlingException,
 }

@@ -7853,6 +7853,574 @@ func (s *AvailabilityZone) SetZoneName(v string) *AvailabilityZone {
 	return s
 }
 
+// Provides details about an Amazon MQ message broker. A message broker allows
+// software applications and components to communicate using various programming
+// languages, operating systems, and formal messaging protocols.
+type AwsAmazonMqBrokerDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication strategy used to secure the broker. The default is SIMPLE.
+	AuthenticationStrategy *string `type:"string"`
+
+	// Whether automatically upgrade new minor versions for brokers, as new versions
+	// are released and supported by Amazon MQ. Automatic upgrades occur during
+	// the scheduled maintenance window of the broker or after a manual broker reboot.
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the broker.
+	BrokerArn *string `type:"string"`
+
+	// The unique ID that Amazon MQ generates for the broker.
+	BrokerId *string `type:"string"`
+
+	// The broker's name.
+	BrokerName *string `type:"string"`
+
+	// The broker's deployment mode.
+	DeploymentMode *string `type:"string"`
+
+	// Encryption options for the broker. Doesn’t apply to RabbitMQ brokers.
+	EncryptionOptions *AwsAmazonMqBrokerEncryptionOptionsDetails `type:"structure"`
+
+	// The type of broker engine.
+	EngineType *string `type:"string"`
+
+	// The version of the broker engine.
+	EngineVersion *string `type:"string"`
+
+	// The broker's instance type.
+	HostInstanceType *string `type:"string"`
+
+	// The metadata of the Lightweight Directory Access Protocol (LDAP) server used
+	// to authenticate and authorize connections to the broker. This is an optional
+	// failover server.
+	LdapServerMetadata *AwsAmazonMqBrokerLdapServerMetadataDetails `type:"structure"`
+
+	// Turns on Amazon CloudWatch logging for brokers.
+	Logs *AwsAmazonMqBrokerLogsDetails `type:"structure"`
+
+	// The scheduled time period (UTC) during which Amazon MQ begins to apply pending
+	// updates or patches to the broker.
+	MaintenanceWindowStartTime *AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails `type:"structure"`
+
+	// Permits connections from applications outside of the VPC that hosts the broker's
+	// subnets.
+	PubliclyAccessible *bool `type:"boolean"`
+
+	// The list of rules (one minimum, 125 maximum) that authorize connections to
+	// brokers.
+	SecurityGroups []*string `type:"list"`
+
+	// The broker's storage type.
+	StorageType *string `type:"string"`
+
+	// The list of groups that define which subnets and IP ranges the broker can
+	// use from different Availability Zones.
+	SubnetIds []*string `type:"list"`
+
+	// The list of all broker usernames for the specified broker. Doesn't apply
+	// to RabbitMQ brokers.
+	Users []*AwsAmazonMqBrokerUsersDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerDetails) GoString() string {
+	return s.String()
+}
+
+// SetAuthenticationStrategy sets the AuthenticationStrategy field's value.
+func (s *AwsAmazonMqBrokerDetails) SetAuthenticationStrategy(v string) *AwsAmazonMqBrokerDetails {
+	s.AuthenticationStrategy = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *AwsAmazonMqBrokerDetails) SetAutoMinorVersionUpgrade(v bool) *AwsAmazonMqBrokerDetails {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetBrokerArn sets the BrokerArn field's value.
+func (s *AwsAmazonMqBrokerDetails) SetBrokerArn(v string) *AwsAmazonMqBrokerDetails {
+	s.BrokerArn = &v
+	return s
+}
+
+// SetBrokerId sets the BrokerId field's value.
+func (s *AwsAmazonMqBrokerDetails) SetBrokerId(v string) *AwsAmazonMqBrokerDetails {
+	s.BrokerId = &v
+	return s
+}
+
+// SetBrokerName sets the BrokerName field's value.
+func (s *AwsAmazonMqBrokerDetails) SetBrokerName(v string) *AwsAmazonMqBrokerDetails {
+	s.BrokerName = &v
+	return s
+}
+
+// SetDeploymentMode sets the DeploymentMode field's value.
+func (s *AwsAmazonMqBrokerDetails) SetDeploymentMode(v string) *AwsAmazonMqBrokerDetails {
+	s.DeploymentMode = &v
+	return s
+}
+
+// SetEncryptionOptions sets the EncryptionOptions field's value.
+func (s *AwsAmazonMqBrokerDetails) SetEncryptionOptions(v *AwsAmazonMqBrokerEncryptionOptionsDetails) *AwsAmazonMqBrokerDetails {
+	s.EncryptionOptions = v
+	return s
+}
+
+// SetEngineType sets the EngineType field's value.
+func (s *AwsAmazonMqBrokerDetails) SetEngineType(v string) *AwsAmazonMqBrokerDetails {
+	s.EngineType = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *AwsAmazonMqBrokerDetails) SetEngineVersion(v string) *AwsAmazonMqBrokerDetails {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetHostInstanceType sets the HostInstanceType field's value.
+func (s *AwsAmazonMqBrokerDetails) SetHostInstanceType(v string) *AwsAmazonMqBrokerDetails {
+	s.HostInstanceType = &v
+	return s
+}
+
+// SetLdapServerMetadata sets the LdapServerMetadata field's value.
+func (s *AwsAmazonMqBrokerDetails) SetLdapServerMetadata(v *AwsAmazonMqBrokerLdapServerMetadataDetails) *AwsAmazonMqBrokerDetails {
+	s.LdapServerMetadata = v
+	return s
+}
+
+// SetLogs sets the Logs field's value.
+func (s *AwsAmazonMqBrokerDetails) SetLogs(v *AwsAmazonMqBrokerLogsDetails) *AwsAmazonMqBrokerDetails {
+	s.Logs = v
+	return s
+}
+
+// SetMaintenanceWindowStartTime sets the MaintenanceWindowStartTime field's value.
+func (s *AwsAmazonMqBrokerDetails) SetMaintenanceWindowStartTime(v *AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails) *AwsAmazonMqBrokerDetails {
+	s.MaintenanceWindowStartTime = v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *AwsAmazonMqBrokerDetails) SetPubliclyAccessible(v bool) *AwsAmazonMqBrokerDetails {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *AwsAmazonMqBrokerDetails) SetSecurityGroups(v []*string) *AwsAmazonMqBrokerDetails {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *AwsAmazonMqBrokerDetails) SetStorageType(v string) *AwsAmazonMqBrokerDetails {
+	s.StorageType = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *AwsAmazonMqBrokerDetails) SetSubnetIds(v []*string) *AwsAmazonMqBrokerDetails {
+	s.SubnetIds = v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *AwsAmazonMqBrokerDetails) SetUsers(v []*AwsAmazonMqBrokerUsersDetails) *AwsAmazonMqBrokerDetails {
+	s.Users = v
+	return s
+}
+
+// Provides details about broker encryption options.
+type AwsAmazonMqBrokerEncryptionOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The KMS key that’s used to encrypt your data at rest. If not provided,
+	// Amazon MQ will use a default KMS key to encrypt your data.
+	KmsKeyId *string `type:"string"`
+
+	// Specifies that an KMS key should be used for at-rest encryption. Set to true
+	// by default if no value is provided (for example, for RabbitMQ brokers).
+	UseAwsOwnedKey *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerEncryptionOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerEncryptionOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsAmazonMqBrokerEncryptionOptionsDetails) SetKmsKeyId(v string) *AwsAmazonMqBrokerEncryptionOptionsDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetUseAwsOwnedKey sets the UseAwsOwnedKey field's value.
+func (s *AwsAmazonMqBrokerEncryptionOptionsDetails) SetUseAwsOwnedKey(v bool) *AwsAmazonMqBrokerEncryptionOptionsDetails {
+	s.UseAwsOwnedKey = &v
+	return s
+}
+
+// The metadata of the Lightweight Directory Access Protocol (LDAP) server used
+// to authenticate and authorize connections to the broker. This is an optional
+// failover server.
+type AwsAmazonMqBrokerLdapServerMetadataDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the location of the LDAP server, such as Amazon Web Services Directory
+	// Service for Microsoft Active Directory.
+	Hosts []*string `type:"list"`
+
+	// The distinguished name of the node in the directory information tree (DIT)
+	// to search for roles or groups.
+	RoleBase *string `type:"string"`
+
+	// The group name attribute in a role entry whose value is the name of that
+	// role.
+	RoleName *string `type:"string"`
+
+	// The LDAP search filter used to find roles within the roleBase.
+	RoleSearchMatching *string `type:"string"`
+
+	// The directory search scope for the role. If set to true, the scope is to
+	// search the entire subtree.
+	RoleSearchSubtree *bool `type:"boolean"`
+
+	// A username for the service account, which is an account in your LDAP server
+	// that has access to initiate a connection.
+	ServiceAccountUsername *string `type:"string"`
+
+	// Selects a particular subtree of the directory information tree (DIT) to search
+	// for user entries.
+	UserBase *string `type:"string"`
+
+	// The name of the LDAP attribute in the user's directory entry for the user's
+	// group membership.
+	UserRoleName *string `type:"string"`
+
+	// The LDAP search filter used to find users within the userBase.
+	UserSearchMatching *string `type:"string"`
+
+	// The directory search scope for the user. If set to true, the scope is to
+	// search the entire subtree.
+	UserSearchSubtree *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerLdapServerMetadataDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerLdapServerMetadataDetails) GoString() string {
+	return s.String()
+}
+
+// SetHosts sets the Hosts field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetHosts(v []*string) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.Hosts = v
+	return s
+}
+
+// SetRoleBase sets the RoleBase field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetRoleBase(v string) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.RoleBase = &v
+	return s
+}
+
+// SetRoleName sets the RoleName field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetRoleName(v string) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.RoleName = &v
+	return s
+}
+
+// SetRoleSearchMatching sets the RoleSearchMatching field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetRoleSearchMatching(v string) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.RoleSearchMatching = &v
+	return s
+}
+
+// SetRoleSearchSubtree sets the RoleSearchSubtree field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetRoleSearchSubtree(v bool) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.RoleSearchSubtree = &v
+	return s
+}
+
+// SetServiceAccountUsername sets the ServiceAccountUsername field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetServiceAccountUsername(v string) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.ServiceAccountUsername = &v
+	return s
+}
+
+// SetUserBase sets the UserBase field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetUserBase(v string) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.UserBase = &v
+	return s
+}
+
+// SetUserRoleName sets the UserRoleName field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetUserRoleName(v string) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.UserRoleName = &v
+	return s
+}
+
+// SetUserSearchMatching sets the UserSearchMatching field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetUserSearchMatching(v string) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.UserSearchMatching = &v
+	return s
+}
+
+// SetUserSearchSubtree sets the UserSearchSubtree field's value.
+func (s *AwsAmazonMqBrokerLdapServerMetadataDetails) SetUserSearchSubtree(v bool) *AwsAmazonMqBrokerLdapServerMetadataDetails {
+	s.UserSearchSubtree = &v
+	return s
+}
+
+// Provides information about logs to be activated for the specified broker.
+type AwsAmazonMqBrokerLogsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Activates audit logging. Every user management action made using JMX or the
+	// ActiveMQ Web Console is logged. Doesn't apply to RabbitMQ brokers.
+	Audit *bool `type:"boolean"`
+
+	// The location of the CloudWatch Logs log group where audit logs are sent.
+	AuditLogGroup *string `type:"string"`
+
+	// Activates general logging.
+	General *bool `type:"boolean"`
+
+	// The location of the CloudWatch Logs log group where general logs are sent.
+	GeneralLogGroup *string `type:"string"`
+
+	// The list of information about logs that are to be turned on for the specified
+	// broker.
+	Pending *AwsAmazonMqBrokerLogsPendingDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerLogsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerLogsDetails) GoString() string {
+	return s.String()
+}
+
+// SetAudit sets the Audit field's value.
+func (s *AwsAmazonMqBrokerLogsDetails) SetAudit(v bool) *AwsAmazonMqBrokerLogsDetails {
+	s.Audit = &v
+	return s
+}
+
+// SetAuditLogGroup sets the AuditLogGroup field's value.
+func (s *AwsAmazonMqBrokerLogsDetails) SetAuditLogGroup(v string) *AwsAmazonMqBrokerLogsDetails {
+	s.AuditLogGroup = &v
+	return s
+}
+
+// SetGeneral sets the General field's value.
+func (s *AwsAmazonMqBrokerLogsDetails) SetGeneral(v bool) *AwsAmazonMqBrokerLogsDetails {
+	s.General = &v
+	return s
+}
+
+// SetGeneralLogGroup sets the GeneralLogGroup field's value.
+func (s *AwsAmazonMqBrokerLogsDetails) SetGeneralLogGroup(v string) *AwsAmazonMqBrokerLogsDetails {
+	s.GeneralLogGroup = &v
+	return s
+}
+
+// SetPending sets the Pending field's value.
+func (s *AwsAmazonMqBrokerLogsDetails) SetPending(v *AwsAmazonMqBrokerLogsPendingDetails) *AwsAmazonMqBrokerLogsDetails {
+	s.Pending = v
+	return s
+}
+
+// Provides information about logs to be activated for the specified broker.
+type AwsAmazonMqBrokerLogsPendingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Activates audit logging. Every user management action made using JMX or the
+	// ActiveMQ Web Console is logged. Doesn't apply to RabbitMQ brokers.
+	Audit *bool `type:"boolean"`
+
+	// Activates general logging.
+	General *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerLogsPendingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerLogsPendingDetails) GoString() string {
+	return s.String()
+}
+
+// SetAudit sets the Audit field's value.
+func (s *AwsAmazonMqBrokerLogsPendingDetails) SetAudit(v bool) *AwsAmazonMqBrokerLogsPendingDetails {
+	s.Audit = &v
+	return s
+}
+
+// SetGeneral sets the General field's value.
+func (s *AwsAmazonMqBrokerLogsPendingDetails) SetGeneral(v bool) *AwsAmazonMqBrokerLogsPendingDetails {
+	s.General = &v
+	return s
+}
+
+// The scheduled time period (UTC) during which Amazon MQ begins to apply pending
+// updates or patches to the broker.
+type AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The day of the week on which the maintenance window falls.
+	DayOfWeek *string `type:"string"`
+
+	// The time, in 24-hour format, on which the maintenance window falls.
+	TimeOfDay *string `type:"string"`
+
+	// The time zone in either the Country/City format or the UTC offset format.
+	// UTC is the default format.
+	TimeZone *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails) GoString() string {
+	return s.String()
+}
+
+// SetDayOfWeek sets the DayOfWeek field's value.
+func (s *AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails) SetDayOfWeek(v string) *AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails {
+	s.DayOfWeek = &v
+	return s
+}
+
+// SetTimeOfDay sets the TimeOfDay field's value.
+func (s *AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails) SetTimeOfDay(v string) *AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails {
+	s.TimeOfDay = &v
+	return s
+}
+
+// SetTimeZone sets the TimeZone field's value.
+func (s *AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails) SetTimeZone(v string) *AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails {
+	s.TimeZone = &v
+	return s
+}
+
+// Provides details about the broker usernames for the specified broker. Doesn't
+// apply to RabbitMQ brokers.
+type AwsAmazonMqBrokerUsersDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The type of change pending for the broker user.
+	PendingChange *string `type:"string"`
+
+	// The username of the broker user.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerUsersDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAmazonMqBrokerUsersDetails) GoString() string {
+	return s.String()
+}
+
+// SetPendingChange sets the PendingChange field's value.
+func (s *AwsAmazonMqBrokerUsersDetails) SetPendingChange(v string) *AwsAmazonMqBrokerUsersDetails {
+	s.PendingChange = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *AwsAmazonMqBrokerUsersDetails) SetUsername(v string) *AwsAmazonMqBrokerUsersDetails {
+	s.Username = &v
+	return s
+}
+
 // Provided if ActionType is AWS_API_CALL. It provides details about the API
 // call that was detected.
 type AwsApiCallAction struct {
@@ -8960,6 +9528,437 @@ func (s *AwsApiGatewayV2StageDetails) SetStageName(v string) *AwsApiGatewayV2Sta
 // SetStageVariables sets the StageVariables field's value.
 func (s *AwsApiGatewayV2StageDetails) SetStageVariables(v map[string]*string) *AwsApiGatewayV2StageDetails {
 	s.StageVariables = v
+	return s
+}
+
+// A list of additional authentication providers for the GraphqlApi API.
+type AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The type of security configuration for your GraphQL API: API key, Identity
+	// and Access Management (IAM), OpenID Connect (OIDC), Amazon Cognito user pools,
+	// or Lambda.
+	AuthenticationType *string `type:"string"`
+
+	// The configuration for Lambda function authorization.
+	LambdaAuthorizerConfig *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails `type:"structure"`
+
+	// The OpenID Connect configuration.
+	OpenIdConnectConfig *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails `type:"structure"`
+
+	// The Amazon Cognito user pools configuration.
+	UserPoolConfig *AwsAppSyncGraphQlApiUserPoolConfigDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails) GoString() string {
+	return s.String()
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails) SetAuthenticationType(v string) *AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
+func (s *AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails) SetLambdaAuthorizerConfig(v *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails) *AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails {
+	s.LambdaAuthorizerConfig = v
+	return s
+}
+
+// SetOpenIdConnectConfig sets the OpenIdConnectConfig field's value.
+func (s *AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails) SetOpenIdConnectConfig(v *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) *AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails {
+	s.OpenIdConnectConfig = v
+	return s
+}
+
+// SetUserPoolConfig sets the UserPoolConfig field's value.
+func (s *AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails) SetUserPoolConfig(v *AwsAppSyncGraphQlApiUserPoolConfigDetails) *AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails {
+	s.UserPoolConfig = v
+	return s
+}
+
+// Provides details about an AppSync Graph QL API, which lets you query multiple
+// databases, microservices, and APIs from a single GraphQL endpoint.
+type AwsAppSyncGraphQlApiDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of additional authentication providers for the GraphQL API.
+	AdditionalAuthenticationProviders []*AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails `type:"list"`
+
+	// The unique identifier for the API.
+	ApiId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the API.
+	Arn *string `type:"string"`
+
+	// The type of security configuration for your GraphQL API: API key, Identity
+	// and Access Management (IAM), OpenID Connect (OIDC), Amazon Cognito user pools,
+	// or Lambda.
+	AuthenticationType *string `type:"string"`
+
+	// The unique identifier for the API.
+	Id *string `type:"string"`
+
+	// Specifies the configuration for Lambda function authorization.
+	LambdaAuthorizerConfig *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails `type:"structure"`
+
+	// The Amazon CloudWatch Logs configuration.
+	LogConfig *AwsAppSyncGraphQlApiLogConfigDetails `type:"structure"`
+
+	// The API name.
+	Name *string `type:"string"`
+
+	// Specifies the authorization configuration for using an OpenID Connect compliant
+	// service with an AppSync GraphQL API endpoint.
+	OpenIdConnectConfig *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails `type:"structure"`
+
+	// The Amazon Cognito user pools configuration.
+	UserPoolConfig *AwsAppSyncGraphQlApiUserPoolConfigDetails `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the WAF web access control list (web ACL)
+	// associated with this GraphQL API, if one exists.
+	WafWebAclArn *string `type:"string"`
+
+	// Indicates whether to use X-Ray tracing for the GraphQL API.
+	XrayEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiDetails) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalAuthenticationProviders sets the AdditionalAuthenticationProviders field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetAdditionalAuthenticationProviders(v []*AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails) *AwsAppSyncGraphQlApiDetails {
+	s.AdditionalAuthenticationProviders = v
+	return s
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetApiId(v string) *AwsAppSyncGraphQlApiDetails {
+	s.ApiId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetArn(v string) *AwsAppSyncGraphQlApiDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetAuthenticationType(v string) *AwsAppSyncGraphQlApiDetails {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetId(v string) *AwsAppSyncGraphQlApiDetails {
+	s.Id = &v
+	return s
+}
+
+// SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetLambdaAuthorizerConfig(v *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails) *AwsAppSyncGraphQlApiDetails {
+	s.LambdaAuthorizerConfig = v
+	return s
+}
+
+// SetLogConfig sets the LogConfig field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetLogConfig(v *AwsAppSyncGraphQlApiLogConfigDetails) *AwsAppSyncGraphQlApiDetails {
+	s.LogConfig = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetName(v string) *AwsAppSyncGraphQlApiDetails {
+	s.Name = &v
+	return s
+}
+
+// SetOpenIdConnectConfig sets the OpenIdConnectConfig field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetOpenIdConnectConfig(v *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) *AwsAppSyncGraphQlApiDetails {
+	s.OpenIdConnectConfig = v
+	return s
+}
+
+// SetUserPoolConfig sets the UserPoolConfig field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetUserPoolConfig(v *AwsAppSyncGraphQlApiUserPoolConfigDetails) *AwsAppSyncGraphQlApiDetails {
+	s.UserPoolConfig = v
+	return s
+}
+
+// SetWafWebAclArn sets the WafWebAclArn field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetWafWebAclArn(v string) *AwsAppSyncGraphQlApiDetails {
+	s.WafWebAclArn = &v
+	return s
+}
+
+// SetXrayEnabled sets the XrayEnabled field's value.
+func (s *AwsAppSyncGraphQlApiDetails) SetXrayEnabled(v bool) *AwsAppSyncGraphQlApiDetails {
+	s.XrayEnabled = &v
+	return s
+}
+
+// Specifies the authorization configuration for using an Lambda function with
+// your AppSync GraphQL API endpoint.
+type AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of seconds a response should be cached for. The default is 5 minutes
+	// (300 seconds).
+	AuthorizerResultTtlInSeconds *int64 `type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the Lambda function to be called for authorization.
+	// This can be a standard Lambda ARN, a version ARN (.../v3), or an alias ARN.
+	AuthorizerUri *string `type:"string"`
+
+	// A regular expression for validation of tokens before the Lambda function
+	// is called.
+	IdentityValidationExpression *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizerResultTtlInSeconds sets the AuthorizerResultTtlInSeconds field's value.
+func (s *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails) SetAuthorizerResultTtlInSeconds(v int64) *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails {
+	s.AuthorizerResultTtlInSeconds = &v
+	return s
+}
+
+// SetAuthorizerUri sets the AuthorizerUri field's value.
+func (s *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails) SetAuthorizerUri(v string) *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails {
+	s.AuthorizerUri = &v
+	return s
+}
+
+// SetIdentityValidationExpression sets the IdentityValidationExpression field's value.
+func (s *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails) SetIdentityValidationExpression(v string) *AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails {
+	s.IdentityValidationExpression = &v
+	return s
+}
+
+// Specifies the logging configuration when writing GraphQL operations and tracing
+// to Amazon CloudWatch for an AppSync GraphQL API.
+type AwsAppSyncGraphQlApiLogConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the service role that AppSync assumes to
+	// publish to CloudWatch Logs in your account.
+	CloudWatchLogsRoleArn *string `type:"string"`
+
+	// Set to TRUE to exclude sections that contain information such as headers,
+	// context, and evaluated mapping templates, regardless of logging level.
+	ExcludeVerboseContent *bool `type:"boolean"`
+
+	// The field logging level.
+	FieldLogLevel *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiLogConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiLogConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsRoleArn sets the CloudWatchLogsRoleArn field's value.
+func (s *AwsAppSyncGraphQlApiLogConfigDetails) SetCloudWatchLogsRoleArn(v string) *AwsAppSyncGraphQlApiLogConfigDetails {
+	s.CloudWatchLogsRoleArn = &v
+	return s
+}
+
+// SetExcludeVerboseContent sets the ExcludeVerboseContent field's value.
+func (s *AwsAppSyncGraphQlApiLogConfigDetails) SetExcludeVerboseContent(v bool) *AwsAppSyncGraphQlApiLogConfigDetails {
+	s.ExcludeVerboseContent = &v
+	return s
+}
+
+// SetFieldLogLevel sets the FieldLogLevel field's value.
+func (s *AwsAppSyncGraphQlApiLogConfigDetails) SetFieldLogLevel(v string) *AwsAppSyncGraphQlApiLogConfigDetails {
+	s.FieldLogLevel = &v
+	return s
+}
+
+// Specifies the authorization configuration for using an OpenID Connect compliant
+// service with your AppSync GraphQL API endpoint.
+type AwsAppSyncGraphQlApiOpenIdConnectConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of milliseconds that a token is valid after being authenticated.
+	AuthTtL *int64 `type:"long"`
+
+	// The client identifier of the relying party at the OpenID identity provider.
+	// This identifier is typically obtained when the relying party is registered
+	// with the OpenID identity provider. You can specify a regular expression so
+	// that AppSync can validate against multiple client identifiers at a time.
+	ClientId *string `type:"string"`
+
+	// The number of milliseconds that a token is valid after it's issued to a user.
+	IatTtL *int64 `type:"long"`
+
+	// The issuer for the OIDC configuration. The issuer returned by discovery must
+	// exactly match the value of iss in the ID token.
+	Issuer *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetAuthTtL sets the AuthTtL field's value.
+func (s *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) SetAuthTtL(v int64) *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails {
+	s.AuthTtL = &v
+	return s
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) SetClientId(v string) *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails {
+	s.ClientId = &v
+	return s
+}
+
+// SetIatTtL sets the IatTtL field's value.
+func (s *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) SetIatTtL(v int64) *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails {
+	s.IatTtL = &v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) SetIssuer(v string) *AwsAppSyncGraphQlApiOpenIdConnectConfigDetails {
+	s.Issuer = &v
+	return s
+}
+
+// Specifies the authorization configuration for using Amazon Cognito user pools
+// with your AppSync GraphQL API endpoint.
+type AwsAppSyncGraphQlApiUserPoolConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A regular expression for validating the incoming Amazon Cognito user pools
+	// app client ID. If this value isn't set, no filtering is applied.
+	AppIdClientRegex *string `type:"string"`
+
+	// The Amazon Web Services Region in which the user pool was created.
+	AwsRegion *string `type:"string"`
+
+	// The action that you want your GraphQL API to take when a request that uses
+	// Amazon Cognito user pools authentication doesn't match the Amazon Cognito
+	// user pools configuration.
+	DefaultAction *string `type:"string"`
+
+	// The user pool ID.
+	UserPoolId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiUserPoolConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAppSyncGraphQlApiUserPoolConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetAppIdClientRegex sets the AppIdClientRegex field's value.
+func (s *AwsAppSyncGraphQlApiUserPoolConfigDetails) SetAppIdClientRegex(v string) *AwsAppSyncGraphQlApiUserPoolConfigDetails {
+	s.AppIdClientRegex = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *AwsAppSyncGraphQlApiUserPoolConfigDetails) SetAwsRegion(v string) *AwsAppSyncGraphQlApiUserPoolConfigDetails {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetDefaultAction sets the DefaultAction field's value.
+func (s *AwsAppSyncGraphQlApiUserPoolConfigDetails) SetDefaultAction(v string) *AwsAppSyncGraphQlApiUserPoolConfigDetails {
+	s.DefaultAction = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *AwsAppSyncGraphQlApiUserPoolConfigDetails) SetUserPoolId(v string) *AwsAppSyncGraphQlApiUserPoolConfigDetails {
+	s.UserPoolId = &v
 	return s
 }
 
@@ -26054,6 +27053,574 @@ func (s *AwsElbv2LoadBalancerDetails) SetVpcId(v string) *AwsElbv2LoadBalancerDe
 	return s
 }
 
+// A schema defines the structure of events that are sent to Amazon EventBridge.
+// Schema registries are containers for schemas. They collect and organize schemas
+// so that your schemas are in logical groups.
+type AwsEventSchemasRegistryDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the registry to be created.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the registry.
+	RegistryArn *string `type:"string"`
+
+	// The name of the schema registry.
+	RegistryName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventSchemasRegistryDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventSchemasRegistryDetails) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsEventSchemasRegistryDetails) SetDescription(v string) *AwsEventSchemasRegistryDetails {
+	s.Description = &v
+	return s
+}
+
+// SetRegistryArn sets the RegistryArn field's value.
+func (s *AwsEventSchemasRegistryDetails) SetRegistryArn(v string) *AwsEventSchemasRegistryDetails {
+	s.RegistryArn = &v
+	return s
+}
+
+// SetRegistryName sets the RegistryName field's value.
+func (s *AwsEventSchemasRegistryDetails) SetRegistryName(v string) *AwsEventSchemasRegistryDetails {
+	s.RegistryName = &v
+	return s
+}
+
+// An object that contains information on the status of CloudTrail as a data
+// source for the detector.
+type AwsGuardDutyDetectorDataSourcesCloudTrailDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether CloudTrail is activated as a data source for the detector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesCloudTrailDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesCloudTrailDetails) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsGuardDutyDetectorDataSourcesCloudTrailDetails) SetStatus(v string) *AwsGuardDutyDetectorDataSourcesCloudTrailDetails {
+	s.Status = &v
+	return s
+}
+
+// Describes which data sources are activated for the detector.
+type AwsGuardDutyDetectorDataSourcesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information on the status of CloudTrail as a data
+	// source for the detector.
+	CloudTrail *AwsGuardDutyDetectorDataSourcesCloudTrailDetails `type:"structure"`
+
+	// An object that contains information on the status of DNS logs as a data source
+	// for the detector.
+	DnsLogs *AwsGuardDutyDetectorDataSourcesDnsLogsDetails `type:"structure"`
+
+	// An object that contains information on the status of VPC Flow Logs as a data
+	// source for the detector.
+	FlowLogs *AwsGuardDutyDetectorDataSourcesFlowLogsDetails `type:"structure"`
+
+	// An object that contains information on the status of Kubernetes data sources
+	// for the detector.
+	Kubernetes *AwsGuardDutyDetectorDataSourcesKubernetesDetails `type:"structure"`
+
+	// An object that contains information on the status of Malware Protection as
+	// a data source for the detector.
+	MalwareProtection *AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails `type:"structure"`
+
+	// An object that contains information on the status of S3 Data event logs as
+	// a data source for the detector.
+	S3Logs *AwsGuardDutyDetectorDataSourcesS3LogsDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudTrail sets the CloudTrail field's value.
+func (s *AwsGuardDutyDetectorDataSourcesDetails) SetCloudTrail(v *AwsGuardDutyDetectorDataSourcesCloudTrailDetails) *AwsGuardDutyDetectorDataSourcesDetails {
+	s.CloudTrail = v
+	return s
+}
+
+// SetDnsLogs sets the DnsLogs field's value.
+func (s *AwsGuardDutyDetectorDataSourcesDetails) SetDnsLogs(v *AwsGuardDutyDetectorDataSourcesDnsLogsDetails) *AwsGuardDutyDetectorDataSourcesDetails {
+	s.DnsLogs = v
+	return s
+}
+
+// SetFlowLogs sets the FlowLogs field's value.
+func (s *AwsGuardDutyDetectorDataSourcesDetails) SetFlowLogs(v *AwsGuardDutyDetectorDataSourcesFlowLogsDetails) *AwsGuardDutyDetectorDataSourcesDetails {
+	s.FlowLogs = v
+	return s
+}
+
+// SetKubernetes sets the Kubernetes field's value.
+func (s *AwsGuardDutyDetectorDataSourcesDetails) SetKubernetes(v *AwsGuardDutyDetectorDataSourcesKubernetesDetails) *AwsGuardDutyDetectorDataSourcesDetails {
+	s.Kubernetes = v
+	return s
+}
+
+// SetMalwareProtection sets the MalwareProtection field's value.
+func (s *AwsGuardDutyDetectorDataSourcesDetails) SetMalwareProtection(v *AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails) *AwsGuardDutyDetectorDataSourcesDetails {
+	s.MalwareProtection = v
+	return s
+}
+
+// SetS3Logs sets the S3Logs field's value.
+func (s *AwsGuardDutyDetectorDataSourcesDetails) SetS3Logs(v *AwsGuardDutyDetectorDataSourcesS3LogsDetails) *AwsGuardDutyDetectorDataSourcesDetails {
+	s.S3Logs = v
+	return s
+}
+
+// An object that contains information on the status of DNS logs as a data source
+// for the detector.
+type AwsGuardDutyDetectorDataSourcesDnsLogsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether DNS logs is enabled as a data source for the detector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesDnsLogsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesDnsLogsDetails) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsGuardDutyDetectorDataSourcesDnsLogsDetails) SetStatus(v string) *AwsGuardDutyDetectorDataSourcesDnsLogsDetails {
+	s.Status = &v
+	return s
+}
+
+// An object that contains information on the status of VPC Flow Logs as a data
+// source for the detector.
+type AwsGuardDutyDetectorDataSourcesFlowLogsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether VPC Flow Logs are activated as a data source for the detector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesFlowLogsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesFlowLogsDetails) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsGuardDutyDetectorDataSourcesFlowLogsDetails) SetStatus(v string) *AwsGuardDutyDetectorDataSourcesFlowLogsDetails {
+	s.Status = &v
+	return s
+}
+
+// An object that contains information on the status of Kubernetes audit logs
+// as a data source for the detector.
+type AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether Kubernetes audit logs are activated as a data source for
+	// the detector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails) SetStatus(v string) *AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails {
+	s.Status = &v
+	return s
+}
+
+// An object that contains information on the status of Kubernetes data sources
+// for the detector.
+type AwsGuardDutyDetectorDataSourcesKubernetesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether Kubernetes audit logs are activated as a data source for
+	// the detector.
+	AuditLogs *AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesKubernetesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesKubernetesDetails) GoString() string {
+	return s.String()
+}
+
+// SetAuditLogs sets the AuditLogs field's value.
+func (s *AwsGuardDutyDetectorDataSourcesKubernetesDetails) SetAuditLogs(v *AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails) *AwsGuardDutyDetectorDataSourcesKubernetesDetails {
+	s.AuditLogs = v
+	return s
+}
+
+// An object that contains information on the status of Malware Protection as
+// a data source for the detector.
+type AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the configuration of Malware Protection for EC2 instances with
+	// findings.
+	ScanEc2InstanceWithFindings *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails `type:"structure"`
+
+	// The GuardDuty Malware Protection service role.
+	ServiceRole *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails) GoString() string {
+	return s.String()
+}
+
+// SetScanEc2InstanceWithFindings sets the ScanEc2InstanceWithFindings field's value.
+func (s *AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails) SetScanEc2InstanceWithFindings(v *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails) *AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails {
+	s.ScanEc2InstanceWithFindings = v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails) SetServiceRole(v string) *AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails {
+	s.ServiceRole = &v
+	return s
+}
+
+// Describes the configuration of Malware Protection for EC2 instances with
+// findings.
+type AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the configuration of scanning EBS volumes (Malware Protection)
+	// as a data source.
+	EbsVolumes *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails) GoString() string {
+	return s.String()
+}
+
+// SetEbsVolumes sets the EbsVolumes field's value.
+func (s *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails) SetEbsVolumes(v *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails) *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails {
+	s.EbsVolumes = v
+	return s
+}
+
+// Describes the configuration of scanning EBS volumes (Malware Protection)
+// as a data source.
+type AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the reason why scanning EBS volumes (Malware Protection) isn’t
+	// activated as a data source.
+	Reason *string `type:"string"`
+
+	// Describes whether scanning EBS volumes is activated as a data source for
+	// the detector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails) GoString() string {
+	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails) SetReason(v string) *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails) SetStatus(v string) *AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails {
+	s.Status = &v
+	return s
+}
+
+// An object that contains information on the status of S3 data event logs as
+// a data source for the detector.
+type AwsGuardDutyDetectorDataSourcesS3LogsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A value that describes whether S3 data event logs are automatically enabled
+	// for new members of an organization.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesS3LogsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDataSourcesS3LogsDetails) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsGuardDutyDetectorDataSourcesS3LogsDetails) SetStatus(v string) *AwsGuardDutyDetectorDataSourcesS3LogsDetails {
+	s.Status = &v
+	return s
+}
+
+// Provides details about an Amazon GuardDuty detector. A detector is an object
+// that represents the GuardDuty service. A detector is required for GuardDuty
+// to become operational.
+type AwsGuardDutyDetectorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Describes which data sources are activated for the detector.
+	DataSources *AwsGuardDutyDetectorDataSourcesDetails `type:"structure"`
+
+	// Describes which features are activated for the detector.
+	Features []*AwsGuardDutyDetectorFeaturesDetails `type:"list"`
+
+	// The publishing frequency of the finding.
+	FindingPublishingFrequency *string `type:"string"`
+
+	// The GuardDuty service role.
+	ServiceRole *string `type:"string"`
+
+	// The activation status of the detector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorDetails) GoString() string {
+	return s.String()
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *AwsGuardDutyDetectorDetails) SetDataSources(v *AwsGuardDutyDetectorDataSourcesDetails) *AwsGuardDutyDetectorDetails {
+	s.DataSources = v
+	return s
+}
+
+// SetFeatures sets the Features field's value.
+func (s *AwsGuardDutyDetectorDetails) SetFeatures(v []*AwsGuardDutyDetectorFeaturesDetails) *AwsGuardDutyDetectorDetails {
+	s.Features = v
+	return s
+}
+
+// SetFindingPublishingFrequency sets the FindingPublishingFrequency field's value.
+func (s *AwsGuardDutyDetectorDetails) SetFindingPublishingFrequency(v string) *AwsGuardDutyDetectorDetails {
+	s.FindingPublishingFrequency = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *AwsGuardDutyDetectorDetails) SetServiceRole(v string) *AwsGuardDutyDetectorDetails {
+	s.ServiceRole = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsGuardDutyDetectorDetails) SetStatus(v string) *AwsGuardDutyDetectorDetails {
+	s.Status = &v
+	return s
+}
+
+// Describes which features are activated for the detector.
+type AwsGuardDutyDetectorFeaturesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the name of the feature that is activated for the detector.
+	Name *string `type:"string"`
+
+	// Indicates the status of the feature that is activated for the detector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorFeaturesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsGuardDutyDetectorFeaturesDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsGuardDutyDetectorFeaturesDetails) SetName(v string) *AwsGuardDutyDetectorFeaturesDetails {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsGuardDutyDetectorFeaturesDetails) SetStatus(v string) *AwsGuardDutyDetectorFeaturesDetails {
+	s.Status = &v
+	return s
+}
+
 // IAM access key details related to a finding.
 type AwsIamAccessKeyDetails struct {
 	_ struct{} `type:"structure"`
@@ -37479,6 +39046,259 @@ func (s *AwsSsmPatchComplianceDetails) SetPatch(v *AwsSsmPatch) *AwsSsmPatchComp
 	return s
 }
 
+// Provides details about an Step Functions state machine, which is a workflow
+// consisting of a series of event- driven steps.
+type AwsStepFunctionStateMachineDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A user-defined or an auto-generated string that identifies a Map state. This
+	// parameter is present only if the stateMachineArn specified in input is a
+	// qualified state machine ARN.
+	Label *string `type:"string"`
+
+	// Used to set CloudWatch Logs options.
+	LoggingConfiguration *AwsStepFunctionStateMachineLoggingConfigurationDetails `type:"structure"`
+
+	// The name of the state machine.
+	Name *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the IAM role used when creating this state
+	// machine.
+	RoleArn *string `type:"string"`
+
+	// The ARN that identifies the state machine.
+	StateMachineArn *string `type:"string"`
+
+	// The current status of the state machine.
+	Status *string `type:"string"`
+
+	// Specifies whether X-Ray tracing is enabled.
+	TracingConfiguration *AwsStepFunctionStateMachineTracingConfigurationDetails `type:"structure"`
+
+	// The type of the state machine (STANDARD or EXPRESS).
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineDetails) GoString() string {
+	return s.String()
+}
+
+// SetLabel sets the Label field's value.
+func (s *AwsStepFunctionStateMachineDetails) SetLabel(v string) *AwsStepFunctionStateMachineDetails {
+	s.Label = &v
+	return s
+}
+
+// SetLoggingConfiguration sets the LoggingConfiguration field's value.
+func (s *AwsStepFunctionStateMachineDetails) SetLoggingConfiguration(v *AwsStepFunctionStateMachineLoggingConfigurationDetails) *AwsStepFunctionStateMachineDetails {
+	s.LoggingConfiguration = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsStepFunctionStateMachineDetails) SetName(v string) *AwsStepFunctionStateMachineDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AwsStepFunctionStateMachineDetails) SetRoleArn(v string) *AwsStepFunctionStateMachineDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStateMachineArn sets the StateMachineArn field's value.
+func (s *AwsStepFunctionStateMachineDetails) SetStateMachineArn(v string) *AwsStepFunctionStateMachineDetails {
+	s.StateMachineArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsStepFunctionStateMachineDetails) SetStatus(v string) *AwsStepFunctionStateMachineDetails {
+	s.Status = &v
+	return s
+}
+
+// SetTracingConfiguration sets the TracingConfiguration field's value.
+func (s *AwsStepFunctionStateMachineDetails) SetTracingConfiguration(v *AwsStepFunctionStateMachineTracingConfigurationDetails) *AwsStepFunctionStateMachineDetails {
+	s.TracingConfiguration = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsStepFunctionStateMachineDetails) SetType(v string) *AwsStepFunctionStateMachineDetails {
+	s.Type = &v
+	return s
+}
+
+// An object describing a CloudWatch log group. For more information, see Amazon
+// Web Services::Logs::LogGroup (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html)
+// in the CloudFormation User Guide.
+type AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (ends with :*) of the CloudWatch Logs log group to which you want
+	// your logs emitted.
+	LogGroupArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails) SetLogGroupArn(v string) *AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails {
+	s.LogGroupArn = &v
+	return s
+}
+
+// An array of objects that describes where your execution history events will
+// be logged.
+type AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An object describing a CloudWatch Logs log group. For more information, see
+	// Amazon Web Services::Logs::LogGroup (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html)
+	// in the CloudFormation User Guide.
+	CloudWatchLogsLogGroup *AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsLogGroup sets the CloudWatchLogsLogGroup field's value.
+func (s *AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails) SetCloudWatchLogsLogGroup(v *AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails) *AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails {
+	s.CloudWatchLogsLogGroup = v
+	return s
+}
+
+// The LoggingConfiguration data type is used to set CloudWatch Logs options.
+type AwsStepFunctionStateMachineLoggingConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describes where your execution history events will
+	// be logged.
+	Destinations []*AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails `type:"list"`
+
+	// Determines whether execution data is included in your log. When set to false,
+	// data is excluded.
+	IncludeExecutionData *bool `type:"boolean"`
+
+	// Defines which category of execution history events are logged.
+	Level *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineLoggingConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineLoggingConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *AwsStepFunctionStateMachineLoggingConfigurationDetails) SetDestinations(v []*AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails) *AwsStepFunctionStateMachineLoggingConfigurationDetails {
+	s.Destinations = v
+	return s
+}
+
+// SetIncludeExecutionData sets the IncludeExecutionData field's value.
+func (s *AwsStepFunctionStateMachineLoggingConfigurationDetails) SetIncludeExecutionData(v bool) *AwsStepFunctionStateMachineLoggingConfigurationDetails {
+	s.IncludeExecutionData = &v
+	return s
+}
+
+// SetLevel sets the Level field's value.
+func (s *AwsStepFunctionStateMachineLoggingConfigurationDetails) SetLevel(v string) *AwsStepFunctionStateMachineLoggingConfigurationDetails {
+	s.Level = &v
+	return s
+}
+
+// Specifies whether X-Ray tracing is enabled.
+type AwsStepFunctionStateMachineTracingConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// When set to true, X-Ray tracing is enabled.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineTracingConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsStepFunctionStateMachineTracingConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsStepFunctionStateMachineTracingConfigurationDetails) SetEnabled(v bool) *AwsStepFunctionStateMachineTracingConfigurationDetails {
+	s.Enabled = &v
+	return s
+}
+
 // Details about a rate-based rule for global resources. A rate-based rule provides
 // settings to indicate when to allow, block, or count a request. Rate-based
 // rules include the number of requests that arrive over a specified period
@@ -43591,11 +45411,12 @@ type FindingHistoryRecord struct {
 	// or an Security Hub customer may call BatchUpdateFindings (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html).
 	UpdateSource *FindingHistoryUpdateSource `type:"structure"`
 
-	// An ISO 8601-formatted timestamp that indicates when the security findings
-	// provider last updated the finding record. A correctly formatted example is
-	// 2020-05-21T20:16:34.724Z. The value cannot contain spaces, and date and time
-	// should be separated by T. For more information, see RFC 3339 section 5.6,
-	// Internet Date/Time Format (https://www.rfc-editor.org/rfc/rfc3339#section-5.6).
+	// An ISO 8601-formatted timestamp that indicates when Security Hub processed
+	// the updated finding record.
+	//
+	// A correctly formatted example is 2020-05-21T20:16:34.724Z. The value cannot
+	// contain spaces, and date and time should be separated by T. For more information,
+	// see RFC 3339 section 5.6, Internet Date/Time Format (https://www.rfc-editor.org/rfc/rfc3339#section-5.6).
 	UpdateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// An array of objects that provides details about the finding change event,
@@ -48779,6 +50600,11 @@ func (s *ResourceConflictException) RequestID() string {
 type ResourceDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Provides details about AppSync message broker. A message broker allows software
+	// applications and components to communicate using various programming languages,
+	// operating systems, and formal messaging protocols.
+	AwsAmazonMqBroker *AwsAmazonMqBrokerDetails `type:"structure"`
+
 	// Provides information about a REST API in version 1 of Amazon API Gateway.
 	AwsApiGatewayRestApi *AwsApiGatewayRestApiDetails `type:"structure"`
 
@@ -48790,6 +50616,10 @@ type ResourceDetails struct {
 
 	// Provides information about a version 2 stage for Amazon API Gateway.
 	AwsApiGatewayV2Stage *AwsApiGatewayV2StageDetails `type:"structure"`
+
+	// Provides details about an AppSync Graph QL API, which lets you query multiple
+	// databases, microservices, and APIs from a single GraphQL endpoint.
+	AwsAppSyncGraphQlApi *AwsAppSyncGraphQlApiDetails `type:"structure"`
 
 	// Details for an autoscaling group.
 	AwsAutoScalingAutoScalingGroup *AwsAutoScalingAutoScalingGroupDetails `type:"structure"`
@@ -48921,6 +50751,16 @@ type ResourceDetails struct {
 	// Details about a load balancer.
 	AwsElbv2LoadBalancer *AwsElbv2LoadBalancerDetails `type:"structure"`
 
+	// A schema defines the structure of events that are sent to Amazon EventBridge.
+	// Schema registries are containers for schemas. They collect and organize schemas
+	// so that your schemas are in logical groups.
+	AwsEventSchemasRegistry *AwsEventSchemasRegistryDetails `type:"structure"`
+
+	// Provides details about an Amazon GuardDuty detector. A detector is an object
+	// that represents the GuardDuty service. A detector is required for GuardDuty
+	// to become operational.
+	AwsGuardDutyDetector *AwsGuardDutyDetectorDetails `type:"structure"`
+
 	// Details about an IAM access key related to a finding.
 	AwsIamAccessKey *AwsIamAccessKeyDetails `type:"structure"`
 
@@ -49006,6 +50846,10 @@ type ResourceDetails struct {
 	// patch baseline that was used to patch the instance.
 	AwsSsmPatchCompliance *AwsSsmPatchComplianceDetails `type:"structure"`
 
+	// Provides details about an Step Functions state machine, which is a workflow
+	// consisting of a series of event-driven steps.
+	AwsStepFunctionStateMachine *AwsStepFunctionStateMachineDetails `type:"structure"`
+
 	// Details about a rate-based rule for global resources.
 	AwsWafRateBasedRule *AwsWafRateBasedRuleDetails `type:"structure"`
 
@@ -49088,6 +50932,12 @@ func (s *ResourceDetails) Validate() error {
 	return nil
 }
 
+// SetAwsAmazonMqBroker sets the AwsAmazonMqBroker field's value.
+func (s *ResourceDetails) SetAwsAmazonMqBroker(v *AwsAmazonMqBrokerDetails) *ResourceDetails {
+	s.AwsAmazonMqBroker = v
+	return s
+}
+
 // SetAwsApiGatewayRestApi sets the AwsApiGatewayRestApi field's value.
 func (s *ResourceDetails) SetAwsApiGatewayRestApi(v *AwsApiGatewayRestApiDetails) *ResourceDetails {
 	s.AwsApiGatewayRestApi = v
@@ -49109,6 +50959,12 @@ func (s *ResourceDetails) SetAwsApiGatewayV2Api(v *AwsApiGatewayV2ApiDetails) *R
 // SetAwsApiGatewayV2Stage sets the AwsApiGatewayV2Stage field's value.
 func (s *ResourceDetails) SetAwsApiGatewayV2Stage(v *AwsApiGatewayV2StageDetails) *ResourceDetails {
 	s.AwsApiGatewayV2Stage = v
+	return s
+}
+
+// SetAwsAppSyncGraphQlApi sets the AwsAppSyncGraphQlApi field's value.
+func (s *ResourceDetails) SetAwsAppSyncGraphQlApi(v *AwsAppSyncGraphQlApiDetails) *ResourceDetails {
+	s.AwsAppSyncGraphQlApi = v
 	return s
 }
 
@@ -49346,6 +51202,18 @@ func (s *ResourceDetails) SetAwsElbv2LoadBalancer(v *AwsElbv2LoadBalancerDetails
 	return s
 }
 
+// SetAwsEventSchemasRegistry sets the AwsEventSchemasRegistry field's value.
+func (s *ResourceDetails) SetAwsEventSchemasRegistry(v *AwsEventSchemasRegistryDetails) *ResourceDetails {
+	s.AwsEventSchemasRegistry = v
+	return s
+}
+
+// SetAwsGuardDutyDetector sets the AwsGuardDutyDetector field's value.
+func (s *ResourceDetails) SetAwsGuardDutyDetector(v *AwsGuardDutyDetectorDetails) *ResourceDetails {
+	s.AwsGuardDutyDetector = v
+	return s
+}
+
 // SetAwsIamAccessKey sets the AwsIamAccessKey field's value.
 func (s *ResourceDetails) SetAwsIamAccessKey(v *AwsIamAccessKeyDetails) *ResourceDetails {
 	s.AwsIamAccessKey = v
@@ -49511,6 +51379,12 @@ func (s *ResourceDetails) SetAwsSqsQueue(v *AwsSqsQueueDetails) *ResourceDetails
 // SetAwsSsmPatchCompliance sets the AwsSsmPatchCompliance field's value.
 func (s *ResourceDetails) SetAwsSsmPatchCompliance(v *AwsSsmPatchComplianceDetails) *ResourceDetails {
 	s.AwsSsmPatchCompliance = v
+	return s
+}
+
+// SetAwsStepFunctionStateMachine sets the AwsStepFunctionStateMachine field's value.
+func (s *ResourceDetails) SetAwsStepFunctionStateMachine(v *AwsStepFunctionStateMachineDetails) *ResourceDetails {
+	s.AwsStepFunctionStateMachine = v
 	return s
 }
 

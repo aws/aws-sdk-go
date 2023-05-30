@@ -290,6 +290,7 @@
         {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"tracking."},
@@ -1101,7 +1102,9 @@
     },
     "ApiKeyAction":{
       "type":"string",
-      "pattern":"^geo:GetMap\\*$"
+      "max":200,
+      "min":5,
+      "pattern":"^geo:\\w*\\*?$"
     },
     "ApiKeyFilter":{
       "type":"structure",
@@ -1124,7 +1127,7 @@
     "ApiKeyRestrictionsAllowActionsList":{
       "type":"list",
       "member":{"shape":"ApiKeyAction"},
-      "max":1,
+      "max":5,
       "min":1
     },
     "ApiKeyRestrictionsAllowReferersList":{
@@ -1705,6 +1708,18 @@
       "type":"string",
       "pattern":"^[A-Z]{3}$"
     },
+    "CountryCode3":{
+      "type":"string",
+      "max":3,
+      "min":3,
+      "pattern":"^[A-Z]{3}$"
+    },
+    "CountryCode3OrEmpty":{
+      "type":"string",
+      "max":3,
+      "min":0,
+      "pattern":"^[A-Z]{3}$|^$"
+    },
     "CountryCodeList":{
       "type":"list",
       "member":{"shape":"CountryCode"},
@@ -1833,7 +1848,7 @@
       ],
       "members":{
         "CreateTime":{"shape":"Timestamp"},
-        "IndexArn":{"shape":"Arn"},
+        "IndexArn":{"shape":"GeoArn"},
         "IndexName":{"shape":"ResourceName"}
       }
     },
@@ -1863,7 +1878,7 @@
         "CreateTime"
       ],
       "members":{
-        "CalculatorArn":{"shape":"Arn"},
+        "CalculatorArn":{"shape":"GeoArn"},
         "CalculatorName":{"shape":"ResourceName"},
         "CreateTime":{"shape":"Timestamp"}
       }
@@ -2143,7 +2158,7 @@
         "DataSource":{"shape":"String"},
         "DataSourceConfiguration":{"shape":"DataSourceConfiguration"},
         "Description":{"shape":"ResourceDescription"},
-        "IndexArn":{"shape":"Arn"},
+        "IndexArn":{"shape":"GeoArn"},
         "IndexName":{"shape":"ResourceName"},
         "PricingPlan":{
           "shape":"PricingPlan",
@@ -2176,7 +2191,7 @@
         "UpdateTime"
       ],
       "members":{
-        "CalculatorArn":{"shape":"Arn"},
+        "CalculatorArn":{"shape":"GeoArn"},
         "CalculatorName":{"shape":"ResourceName"},
         "CreateTime":{"shape":"Timestamp"},
         "DataSource":{"shape":"String"},
@@ -3175,7 +3190,14 @@
       "type":"structure",
       "required":["Style"],
       "members":{
+        "PoliticalView":{"shape":"CountryCode3"},
         "Style":{"shape":"MapStyle"}
+      }
+    },
+    "MapConfigurationUpdate":{
+      "type":"structure",
+      "members":{
+        "PoliticalView":{"shape":"CountryCode3OrEmpty"}
       }
     },
     "MapStyle":{
@@ -3871,6 +3893,7 @@
       "type":"structure",
       "required":["MapName"],
       "members":{
+        "ConfigurationUpdate":{"shape":"MapConfigurationUpdate"},
         "Description":{"shape":"ResourceDescription"},
         "MapName":{
           "shape":"ResourceName",
@@ -3923,7 +3946,7 @@
         "UpdateTime"
       ],
       "members":{
-        "IndexArn":{"shape":"Arn"},
+        "IndexArn":{"shape":"GeoArn"},
         "IndexName":{"shape":"ResourceName"},
         "UpdateTime":{"shape":"Timestamp"}
       }
@@ -3953,7 +3976,7 @@
         "UpdateTime"
       ],
       "members":{
-        "CalculatorArn":{"shape":"Arn"},
+        "CalculatorArn":{"shape":"GeoArn"},
         "CalculatorName":{"shape":"ResourceName"},
         "UpdateTime":{"shape":"Timestamp"}
       }

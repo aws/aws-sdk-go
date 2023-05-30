@@ -8466,7 +8466,8 @@
       "members":{
         "Name":{"shape":"GenericString"},
         "ScriptLocation":{"shape":"ScriptLocationString"},
-        "PythonVersion":{"shape":"PythonVersionString"}
+        "PythonVersion":{"shape":"PythonVersionString"},
+        "Runtime":{"shape":"RuntimeNameString"}
       }
     },
     "JobList":{
@@ -10270,6 +10271,11 @@
       "members":{
         "Id":{"shape":"IntegerValue"}
       }
+    },
+    "RuntimeNameString":{
+      "type":"string",
+      "max":64,
+      "pattern":".*"
     },
     "S3CatalogDeltaSource":{
       "type":"structure",
@@ -12470,7 +12476,8 @@
         "G.2X",
         "G.025X",
         "G.4X",
-        "G.8X"
+        "G.8X",
+        "Z.2X"
       ]
     },
     "Workflow":{

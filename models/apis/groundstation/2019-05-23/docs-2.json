@@ -16,7 +16,7 @@
     "GetAgentConfiguration": "<note> <p> For use by AWS Ground Station Agent and shouldn't be called directly.</p> </note> <p>Gets the latest configuration information for a registered agent.</p>",
     "GetConfig": "<p>Returns <code>Config</code> information.</p> <p>Only one <code>Config</code> response can be returned.</p>",
     "GetDataflowEndpointGroup": "<p>Returns the dataflow endpoint group.</p>",
-    "GetMinuteUsage": "<p>Returns the number of minutes used by account.</p>",
+    "GetMinuteUsage": "<p>Returns the number of reserved minutes used by account.</p>",
     "GetMissionProfile": "<p>Returns a mission profile.</p>",
     "GetSatellite": "<p>Returns a satellite.</p>",
     "ListConfigs": "<p>Returns a list of <code>Config</code> objects.</p>",

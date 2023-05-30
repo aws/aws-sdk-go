@@ -1188,6 +1188,87 @@
       "type":"list",
       "member":{"shape":"AvailabilityZone"}
     },
+    "AwsAmazonMqBrokerDetails":{
+      "type":"structure",
+      "members":{
+        "AuthenticationStrategy":{"shape":"NonEmptyString"},
+        "AutoMinorVersionUpgrade":{"shape":"Boolean"},
+        "BrokerArn":{"shape":"NonEmptyString"},
+        "BrokerName":{"shape":"NonEmptyString"},
+        "DeploymentMode":{"shape":"NonEmptyString"},
+        "EncryptionOptions":{"shape":"AwsAmazonMqBrokerEncryptionOptionsDetails"},
+        "EngineType":{"shape":"NonEmptyString"},
+        "EngineVersion":{"shape":"NonEmptyString"},
+        "HostInstanceType":{"shape":"NonEmptyString"},
+        "BrokerId":{"shape":"NonEmptyString"},
+        "LdapServerMetadata":{"shape":"AwsAmazonMqBrokerLdapServerMetadataDetails"},
+        "Logs":{"shape":"AwsAmazonMqBrokerLogsDetails"},
+        "MaintenanceWindowStartTime":{"shape":"AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails"},
+        "PubliclyAccessible":{"shape":"Boolean"},
+        "SecurityGroups":{"shape":"StringList"},
+        "StorageType":{"shape":"NonEmptyString"},
+        "SubnetIds":{"shape":"StringList"},
+        "Users":{"shape":"AwsAmazonMqBrokerUsersList"}
+      }
+    },
+    "AwsAmazonMqBrokerEncryptionOptionsDetails":{
+      "type":"structure",
+      "members":{
+        "KmsKeyId":{"shape":"NonEmptyString"},
+        "UseAwsOwnedKey":{"shape":"Boolean"}
+      }
+    },
+    "AwsAmazonMqBrokerLdapServerMetadataDetails":{
+      "type":"structure",
+      "members":{
+        "Hosts":{"shape":"StringList"},
+        "RoleBase":{"shape":"NonEmptyString"},
+        "RoleName":{"shape":"NonEmptyString"},
+        "RoleSearchMatching":{"shape":"NonEmptyString"},
+        "RoleSearchSubtree":{"shape":"Boolean"},
+        "ServiceAccountUsername":{"shape":"NonEmptyString"},
+        "UserBase":{"shape":"NonEmptyString"},
+        "UserRoleName":{"shape":"NonEmptyString"},
+        "UserSearchMatching":{"shape":"NonEmptyString"},
+        "UserSearchSubtree":{"shape":"Boolean"}
+      }
+    },
+    "AwsAmazonMqBrokerLogsDetails":{
+      "type":"structure",
+      "members":{
+        "Audit":{"shape":"Boolean"},
+        "General":{"shape":"Boolean"},
+        "AuditLogGroup":{"shape":"NonEmptyString"},
+        "GeneralLogGroup":{"shape":"NonEmptyString"},
+        "Pending":{"shape":"AwsAmazonMqBrokerLogsPendingDetails"}
+      }
+    },
+    "AwsAmazonMqBrokerLogsPendingDetails":{
+      "type":"structure",
+      "members":{
+        "Audit":{"shape":"Boolean"},
+        "General":{"shape":"Boolean"}
+      }
+    },
+    "AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails":{
+      "type":"structure",
+      "members":{
+        "DayOfWeek":{"shape":"NonEmptyString"},
+        "TimeOfDay":{"shape":"NonEmptyString"},
+        "TimeZone":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsAmazonMqBrokerUsersDetails":{
+      "type":"structure",
+      "members":{
+        "PendingChange":{"shape":"NonEmptyString"},
+        "Username":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsAmazonMqBrokerUsersList":{
+      "type":"list",
+      "member":{"shape":"AwsAmazonMqBrokerUsersDetails"}
+    },
     "AwsApiCallAction":{
       "type":"structure",
       "members":{
@@ -1326,6 +1407,70 @@
         "AutoDeploy":{"shape":"Boolean"},
         "LastDeploymentStatusMessage":{"shape":"NonEmptyString"},
         "ApiGatewayManaged":{"shape":"Boolean"}
+      }
+    },
+    "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails":{
+      "type":"structure",
+      "members":{
+        "AuthenticationType":{"shape":"NonEmptyString"},
+        "LambdaAuthorizerConfig":{"shape":"AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails"},
+        "OpenIdConnectConfig":{"shape":"AwsAppSyncGraphQlApiOpenIdConnectConfigDetails"},
+        "UserPoolConfig":{"shape":"AwsAppSyncGraphQlApiUserPoolConfigDetails"}
+      }
+    },
+    "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersList":{
+      "type":"list",
+      "member":{"shape":"AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails"}
+    },
+    "AwsAppSyncGraphQlApiDetails":{
+      "type":"structure",
+      "members":{
+        "ApiId":{"shape":"NonEmptyString"},
+        "Id":{"shape":"NonEmptyString"},
+        "OpenIdConnectConfig":{"shape":"AwsAppSyncGraphQlApiOpenIdConnectConfigDetails"},
+        "Name":{"shape":"NonEmptyString"},
+        "LambdaAuthorizerConfig":{"shape":"AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails"},
+        "XrayEnabled":{"shape":"Boolean"},
+        "Arn":{"shape":"NonEmptyString"},
+        "UserPoolConfig":{"shape":"AwsAppSyncGraphQlApiUserPoolConfigDetails"},
+        "AuthenticationType":{"shape":"NonEmptyString"},
+        "LogConfig":{"shape":"AwsAppSyncGraphQlApiLogConfigDetails"},
+        "AdditionalAuthenticationProviders":{"shape":"AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersList"},
+        "WafWebAclArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails":{
+      "type":"structure",
+      "members":{
+        "AuthorizerResultTtlInSeconds":{"shape":"Integer"},
+        "AuthorizerUri":{"shape":"NonEmptyString"},
+        "IdentityValidationExpression":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsAppSyncGraphQlApiLogConfigDetails":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLogsRoleArn":{"shape":"NonEmptyString"},
+        "ExcludeVerboseContent":{"shape":"Boolean"},
+        "FieldLogLevel":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsAppSyncGraphQlApiOpenIdConnectConfigDetails":{
+      "type":"structure",
+      "members":{
+        "AuthTtL":{"shape":"Long"},
+        "ClientId":{"shape":"NonEmptyString"},
+        "IatTtL":{"shape":"Long"},
+        "Issuer":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsAppSyncGraphQlApiUserPoolConfigDetails":{
+      "type":"structure",
+      "members":{
+        "AppIdClientRegex":{"shape":"NonEmptyString"},
+        "AwsRegion":{"shape":"NonEmptyString"},
+        "DefaultAction":{"shape":"NonEmptyString"},
+        "UserPoolId":{"shape":"NonEmptyString"}
       }
     },
     "AwsAutoScalingAutoScalingGroupAvailabilityZonesList":{
@@ -4016,6 +4161,102 @@
         "LoadBalancerAttributes":{"shape":"AwsElbv2LoadBalancerAttributes"}
       }
     },
+    "AwsEventSchemasRegistryDetails":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"NonEmptyString"},
+        "RegistryArn":{"shape":"NonEmptyString"},
+        "RegistryName":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesCloudTrailDetails":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesDetails":{
+      "type":"structure",
+      "members":{
+        "CloudTrail":{"shape":"AwsGuardDutyDetectorDataSourcesCloudTrailDetails"},
+        "DnsLogs":{"shape":"AwsGuardDutyDetectorDataSourcesDnsLogsDetails"},
+        "FlowLogs":{"shape":"AwsGuardDutyDetectorDataSourcesFlowLogsDetails"},
+        "Kubernetes":{"shape":"AwsGuardDutyDetectorDataSourcesKubernetesDetails"},
+        "MalwareProtection":{"shape":"AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails"},
+        "S3Logs":{"shape":"AwsGuardDutyDetectorDataSourcesS3LogsDetails"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesDnsLogsDetails":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesFlowLogsDetails":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesKubernetesDetails":{
+      "type":"structure",
+      "members":{
+        "AuditLogs":{"shape":"AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails":{
+      "type":"structure",
+      "members":{
+        "ScanEc2InstanceWithFindings":{"shape":"AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails"},
+        "ServiceRole":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails":{
+      "type":"structure",
+      "members":{
+        "EbsVolumes":{"shape":"AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails":{
+      "type":"structure",
+      "members":{
+        "Reason":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesS3LogsDetails":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorDetails":{
+      "type":"structure",
+      "members":{
+        "DataSources":{"shape":"AwsGuardDutyDetectorDataSourcesDetails"},
+        "Features":{"shape":"AwsGuardDutyDetectorFeaturesList"},
+        "FindingPublishingFrequency":{"shape":"NonEmptyString"},
+        "ServiceRole":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorFeaturesDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsGuardDutyDetectorFeaturesList":{
+      "type":"list",
+      "member":{"shape":"AwsGuardDutyDetectorFeaturesDetails"}
+    },
     "AwsIamAccessKeyDetails":{
       "type":"structure",
       "members":{
@@ -5707,6 +5948,49 @@
       "type":"structure",
       "members":{
         "Patch":{"shape":"AwsSsmPatch"}
+      }
+    },
+    "AwsStepFunctionStateMachineDetails":{
+      "type":"structure",
+      "members":{
+        "Label":{"shape":"NonEmptyString"},
+        "LoggingConfiguration":{"shape":"AwsStepFunctionStateMachineLoggingConfigurationDetails"},
+        "Name":{"shape":"NonEmptyString"},
+        "RoleArn":{"shape":"NonEmptyString"},
+        "StateMachineArn":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"},
+        "TracingConfiguration":{"shape":"AwsStepFunctionStateMachineTracingConfigurationDetails"},
+        "Type":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails":{
+      "type":"structure",
+      "members":{
+        "LogGroupArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLogsLogGroup":{"shape":"AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails"}
+      }
+    },
+    "AwsStepFunctionStateMachineLoggingConfigurationDestinationsList":{
+      "type":"list",
+      "member":{"shape":"AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails"}
+    },
+    "AwsStepFunctionStateMachineLoggingConfigurationDetails":{
+      "type":"structure",
+      "members":{
+        "Destinations":{"shape":"AwsStepFunctionStateMachineLoggingConfigurationDestinationsList"},
+        "IncludeExecutionData":{"shape":"Boolean"},
+        "Level":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsStepFunctionStateMachineTracingConfigurationDetails":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "AwsWafRateBasedRuleDetails":{
@@ -7961,7 +8245,12 @@
         "AwsSageMakerNotebookInstance":{"shape":"AwsSageMakerNotebookInstanceDetails"},
         "AwsWafv2WebAcl":{"shape":"AwsWafv2WebAclDetails"},
         "AwsWafv2RuleGroup":{"shape":"AwsWafv2RuleGroupDetails"},
-        "AwsEc2RouteTable":{"shape":"AwsEc2RouteTableDetails"}
+        "AwsEc2RouteTable":{"shape":"AwsEc2RouteTableDetails"},
+        "AwsAmazonMqBroker":{"shape":"AwsAmazonMqBrokerDetails"},
+        "AwsAppSyncGraphQlApi":{"shape":"AwsAppSyncGraphQlApiDetails"},
+        "AwsEventSchemasRegistry":{"shape":"AwsEventSchemasRegistryDetails"},
+        "AwsGuardDutyDetector":{"shape":"AwsGuardDutyDetectorDetails"},
+        "AwsStepFunctionStateMachine":{"shape":"AwsStepFunctionStateMachineDetails"}
       }
     },
     "ResourceList":{

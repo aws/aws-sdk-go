@@ -14079,6 +14079,9 @@ const (
 
 	// AuthenticationTypeNoPassword is a AuthenticationType enum value
 	AuthenticationTypeNoPassword = "no-password"
+
+	// AuthenticationTypeIam is a AuthenticationType enum value
+	AuthenticationTypeIam = "iam"
 )
 
 // AuthenticationType_Values returns all elements of the AuthenticationType enum
@@ -14086,6 +14089,7 @@ func AuthenticationType_Values() []string {
 	return []string{
 		AuthenticationTypePassword,
 		AuthenticationTypeNoPassword,
+		AuthenticationTypeIam,
 	}
 }
 
@@ -14108,12 +14112,16 @@ func DataTieringStatus_Values() []string {
 const (
 	// InputAuthenticationTypePassword is a InputAuthenticationType enum value
 	InputAuthenticationTypePassword = "password"
+
+	// InputAuthenticationTypeIam is a InputAuthenticationType enum value
+	InputAuthenticationTypeIam = "iam"
 )
 
 // InputAuthenticationType_Values returns all elements of the InputAuthenticationType enum
 func InputAuthenticationType_Values() []string {
 	return []string{
 		InputAuthenticationTypePassword,
+		InputAuthenticationTypeIam,
 	}
 }
 
