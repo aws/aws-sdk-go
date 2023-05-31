@@ -4,7 +4,6 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"path/filepath"
 	"strings"
@@ -121,25 +120,6 @@ func getCacheFileName(url string) (string, error) {
 		return "", err
 	}
 	return strings.ToLower(hex.EncodeToString(hash.Sum(nil))) + ".json", nil
-}
-
-type rfc3339 time.Time
-
-func (r *rfc3339) UnmarshalJSON(bytes []byte) error {
-	var value string
-
-	if err := json.Unmarshal(bytes, &value); err != nil {
-		return err
-	}
-
-	parse, err := time.Parse(time.RFC3339, value)
-	if err != nil {
-		return fmt.Errorf("expected RFC3339 timestamp: %v", err)
-	}
-
-	*r = rfc3339(parse)
-
-	return nil
 }
 
 type token struct {
