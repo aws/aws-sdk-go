@@ -1213,6 +1213,15 @@
       "member":{"shape":"CategoricalValue"},
       "max":100
     },
+    "ColumnName":{
+      "type":"string",
+      "max":150
+    },
+    "ColumnNamesList":{
+      "type":"list",
+      "member":{"shape":"ColumnName"},
+      "max":50
+    },
     "ContinuousHyperParameterRange":{
       "type":"structure",
       "members":{
@@ -2077,6 +2086,12 @@
       "type":"string",
       "max":256
     },
+    "ExcludedDatasetColumns":{
+      "type":"map",
+      "key":{"shape":"DatasetType"},
+      "value":{"shape":"ColumnNamesList"},
+      "max":3
+    },
     "FailureReason":{"type":"string"},
     "FeatureTransformation":{
       "type":"structure",
@@ -2694,7 +2709,8 @@
       "type":"structure",
       "members":{
         "itemExplorationConfig":{"shape":"HyperParameters"},
-        "minRecommendationRequestsPerSecond":{"shape":"TransactionsPerSecond"}
+        "minRecommendationRequestsPerSecond":{"shape":"TransactionsPerSecond"},
+        "trainingDataConfig":{"shape":"TrainingDataConfig"}
       }
     },
     "RecommenderSummary":{
@@ -2801,7 +2817,8 @@
         "algorithmHyperParameters":{"shape":"HyperParameters"},
         "featureTransformationParameters":{"shape":"FeatureTransformationParameters"},
         "autoMLConfig":{"shape":"AutoMLConfig"},
-        "optimizationObjective":{"shape":"OptimizationObjective"}
+        "optimizationObjective":{"shape":"OptimizationObjective"},
+        "trainingDataConfig":{"shape":"TrainingDataConfig"}
       }
     },
     "SolutionSummary":{
@@ -2961,6 +2978,12 @@
     "TrackingId":{
       "type":"string",
       "max":256
+    },
+    "TrainingDataConfig":{
+      "type":"structure",
+      "members":{
+        "excludedDatasetColumns":{"shape":"ExcludedDatasetColumns"}
+      }
     },
     "TrainingHours":{
       "type":"double",

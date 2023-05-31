@@ -268,6 +268,54 @@
         "AwsElbv2LoadBalancerDetails$AvailabilityZones": "<p>The Availability Zones for the load balancer.</p>"
       }
     },
+    "AwsAmazonMqBrokerDetails": {
+      "base": "<p> Provides details about an Amazon MQ message broker. A message broker allows software applications and components to communicate using various programming languages, operating systems, and formal messaging protocols. </p>",
+      "refs": {
+        "ResourceDetails$AwsAmazonMqBroker": "<p> Provides details about AppSync message broker. A message broker allows software applications and components to communicate using various programming languages, operating systems, and formal messaging protocols. </p>"
+      }
+    },
+    "AwsAmazonMqBrokerEncryptionOptionsDetails": {
+      "base": "<p> Provides details about broker encryption options. </p>",
+      "refs": {
+        "AwsAmazonMqBrokerDetails$EncryptionOptions": "<p> Encryption options for the broker. Doesn’t apply to RabbitMQ brokers. </p>"
+      }
+    },
+    "AwsAmazonMqBrokerLdapServerMetadataDetails": {
+      "base": "<p> The metadata of the Lightweight Directory Access Protocol (LDAP) server used to authenticate and authorize connections to the broker. This is an optional failover server. </p>",
+      "refs": {
+        "AwsAmazonMqBrokerDetails$LdapServerMetadata": "<p> The metadata of the Lightweight Directory Access Protocol (LDAP) server used to authenticate and authorize connections to the broker. This is an optional failover server. </p>"
+      }
+    },
+    "AwsAmazonMqBrokerLogsDetails": {
+      "base": "<p> Provides information about logs to be activated for the specified broker. </p>",
+      "refs": {
+        "AwsAmazonMqBrokerDetails$Logs": "<p> Turns on Amazon CloudWatch logging for brokers. </p>"
+      }
+    },
+    "AwsAmazonMqBrokerLogsPendingDetails": {
+      "base": "<p> Provides information about logs to be activated for the specified broker. </p>",
+      "refs": {
+        "AwsAmazonMqBrokerLogsDetails$Pending": "<p> The list of information about logs that are to be turned on for the specified broker. </p>"
+      }
+    },
+    "AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails": {
+      "base": "<p> The scheduled time period (UTC) during which Amazon MQ begins to apply pending updates or patches to the broker. </p>",
+      "refs": {
+        "AwsAmazonMqBrokerDetails$MaintenanceWindowStartTime": "<p> The scheduled time period (UTC) during which Amazon MQ begins to apply pending updates or patches to the broker. </p>"
+      }
+    },
+    "AwsAmazonMqBrokerUsersDetails": {
+      "base": "<p> Provides details about the broker usernames for the specified broker. Doesn't apply to RabbitMQ brokers. </p>",
+      "refs": {
+        "AwsAmazonMqBrokerUsersList$member": null
+      }
+    },
+    "AwsAmazonMqBrokerUsersList": {
+      "base": null,
+      "refs": {
+        "AwsAmazonMqBrokerDetails$Users": "<p> The list of all broker usernames for the specified broker. Doesn't apply to RabbitMQ brokers. </p>"
+      }
+    },
     "AwsApiCallAction": {
       "base": "<p>Provided if <code>ActionType</code> is <code>AWS_API_CALL</code>. It provides details about the API call that was detected.</p>",
       "refs": {
@@ -340,6 +388,51 @@
       "base": "<p>Contains information about a version 2 stage for Amazon API Gateway.</p>",
       "refs": {
         "ResourceDetails$AwsApiGatewayV2Stage": "<p>Provides information about a version 2 stage for Amazon API Gateway.</p>"
+      }
+    },
+    "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails": {
+      "base": "<p> A list of additional authentication providers for the GraphqlApi API. </p>",
+      "refs": {
+        "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersList$member": null
+      }
+    },
+    "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersList": {
+      "base": null,
+      "refs": {
+        "AwsAppSyncGraphQlApiDetails$AdditionalAuthenticationProviders": "<p> A list of additional authentication providers for the GraphQL API. </p>"
+      }
+    },
+    "AwsAppSyncGraphQlApiDetails": {
+      "base": "<p> Provides details about an AppSync Graph QL API, which lets you query multiple databases, microservices, and APIs from a single GraphQL endpoint. </p>",
+      "refs": {
+        "ResourceDetails$AwsAppSyncGraphQlApi": "<p> Provides details about an AppSync Graph QL API, which lets you query multiple databases, microservices, and APIs from a single GraphQL endpoint. </p>"
+      }
+    },
+    "AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails": {
+      "base": "<p> Specifies the authorization configuration for using an Lambda function with your AppSync GraphQL API endpoint. </p>",
+      "refs": {
+        "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails$LambdaAuthorizerConfig": "<p> The configuration for Lambda function authorization. </p>",
+        "AwsAppSyncGraphQlApiDetails$LambdaAuthorizerConfig": "<p> Specifies the configuration for Lambda function authorization. </p>"
+      }
+    },
+    "AwsAppSyncGraphQlApiLogConfigDetails": {
+      "base": "<p> Specifies the logging configuration when writing GraphQL operations and tracing to Amazon CloudWatch for an AppSync GraphQL API. </p>",
+      "refs": {
+        "AwsAppSyncGraphQlApiDetails$LogConfig": "<p> The Amazon CloudWatch Logs configuration. </p>"
+      }
+    },
+    "AwsAppSyncGraphQlApiOpenIdConnectConfigDetails": {
+      "base": "<p> Specifies the authorization configuration for using an OpenID Connect compliant service with your AppSync GraphQL API endpoint. </p>",
+      "refs": {
+        "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails$OpenIdConnectConfig": "<p> The OpenID Connect configuration. </p>",
+        "AwsAppSyncGraphQlApiDetails$OpenIdConnectConfig": "<p> Specifies the authorization configuration for using an OpenID Connect compliant service with an AppSync GraphQL API endpoint. </p>"
+      }
+    },
+    "AwsAppSyncGraphQlApiUserPoolConfigDetails": {
+      "base": "<p> Specifies the authorization configuration for using Amazon Cognito user pools with your AppSync GraphQL API endpoint. </p>",
+      "refs": {
+        "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails$UserPoolConfig": "<p> The Amazon Cognito user pools configuration. </p>",
+        "AwsAppSyncGraphQlApiDetails$UserPoolConfig": "<p> The Amazon Cognito user pools configuration. </p>"
       }
     },
     "AwsAutoScalingAutoScalingGroupAvailabilityZonesList": {
@@ -2335,6 +2428,90 @@
         "ResourceDetails$AwsElbv2LoadBalancer": "<p>Details about a load balancer.</p>"
       }
     },
+    "AwsEventSchemasRegistryDetails": {
+      "base": "<p> A schema defines the structure of events that are sent to Amazon EventBridge. Schema registries are containers for schemas. They collect and organize schemas so that your schemas are in logical groups. </p>",
+      "refs": {
+        "ResourceDetails$AwsEventSchemasRegistry": "<p> A schema defines the structure of events that are sent to Amazon EventBridge. Schema registries are containers for schemas. They collect and organize schemas so that your schemas are in logical groups. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesCloudTrailDetails": {
+      "base": "<p> An object that contains information on the status of CloudTrail as a data source for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesDetails$CloudTrail": "<p> An object that contains information on the status of CloudTrail as a data source for the detector. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesDetails": {
+      "base": "<p> Describes which data sources are activated for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDetails$DataSources": "<p> Describes which data sources are activated for the detector. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesDnsLogsDetails": {
+      "base": "<p> An object that contains information on the status of DNS logs as a data source for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesDetails$DnsLogs": "<p> An object that contains information on the status of DNS logs as a data source for the detector. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesFlowLogsDetails": {
+      "base": "<p> An object that contains information on the status of VPC Flow Logs as a data source for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesDetails$FlowLogs": "<p> An object that contains information on the status of VPC Flow Logs as a data source for the detector. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails": {
+      "base": "<p> An object that contains information on the status of Kubernetes audit logs as a data source for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesKubernetesDetails$AuditLogs": "<p> Describes whether Kubernetes audit logs are activated as a data source for the detector. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesKubernetesDetails": {
+      "base": "<p> An object that contains information on the status of Kubernetes data sources for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesDetails$Kubernetes": "<p> An object that contains information on the status of Kubernetes data sources for the detector. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails": {
+      "base": "<p> An object that contains information on the status of Malware Protection as a data source for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesDetails$MalwareProtection": "<p> An object that contains information on the status of Malware Protection as a data source for the detector. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails": {
+      "base": "<p> Describes the configuration of Malware Protection for EC2 instances with findings. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails$ScanEc2InstanceWithFindings": "<p> Describes the configuration of Malware Protection for EC2 instances with findings. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails": {
+      "base": "<p> Describes the configuration of scanning EBS volumes (Malware Protection) as a data source. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails$EbsVolumes": "<p> Describes the configuration of scanning EBS volumes (Malware Protection) as a data source. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDataSourcesS3LogsDetails": {
+      "base": "<p> An object that contains information on the status of S3 data event logs as a data source for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorDataSourcesDetails$S3Logs": "<p> An object that contains information on the status of S3 Data event logs as a data source for the detector. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorDetails": {
+      "base": "<p> Provides details about an Amazon GuardDuty detector. A detector is an object that represents the GuardDuty service. A detector is required for GuardDuty to become operational. </p>",
+      "refs": {
+        "ResourceDetails$AwsGuardDutyDetector": "<p> Provides details about an Amazon GuardDuty detector. A detector is an object that represents the GuardDuty service. A detector is required for GuardDuty to become operational. </p>"
+      }
+    },
+    "AwsGuardDutyDetectorFeaturesDetails": {
+      "base": "<p> Describes which features are activated for the detector. </p>",
+      "refs": {
+        "AwsGuardDutyDetectorFeaturesList$member": null
+      }
+    },
+    "AwsGuardDutyDetectorFeaturesList": {
+      "base": null,
+      "refs": {
+        "AwsGuardDutyDetectorDetails$Features": "<p> Describes which features are activated for the detector. </p>"
+      }
+    },
     "AwsIamAccessKeyDetails": {
       "base": "<p>IAM access key details related to a finding.</p>",
       "refs": {
@@ -3406,6 +3583,42 @@
         "ResourceDetails$AwsSsmPatchCompliance": "<p>Provides information about the state of a patch on an instance based on the patch baseline that was used to patch the instance.</p>"
       }
     },
+    "AwsStepFunctionStateMachineDetails": {
+      "base": "<p> Provides details about an Step Functions state machine, which is a workflow consisting of a series of event- driven steps. </p>",
+      "refs": {
+        "ResourceDetails$AwsStepFunctionStateMachine": "<p> Provides details about an Step Functions state machine, which is a workflow consisting of a series of event-driven steps. </p>"
+      }
+    },
+    "AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails": {
+      "base": "<p> An object describing a CloudWatch log group. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html\"> Amazon Web Services::Logs::LogGroup</a> in the <i>CloudFormation User Guide</i>. </p>",
+      "refs": {
+        "AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails$CloudWatchLogsLogGroup": "<p> An object describing a CloudWatch Logs log group. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html\"> Amazon Web Services::Logs::LogGroup</a> in the <i>CloudFormation User Guide</i>. </p>"
+      }
+    },
+    "AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails": {
+      "base": "<p> An array of objects that describes where your execution history events will be logged. </p>",
+      "refs": {
+        "AwsStepFunctionStateMachineLoggingConfigurationDestinationsList$member": null
+      }
+    },
+    "AwsStepFunctionStateMachineLoggingConfigurationDestinationsList": {
+      "base": null,
+      "refs": {
+        "AwsStepFunctionStateMachineLoggingConfigurationDetails$Destinations": "<p> An array of objects that describes where your execution history events will be logged. </p>"
+      }
+    },
+    "AwsStepFunctionStateMachineLoggingConfigurationDetails": {
+      "base": "<p> The <code>LoggingConfiguration</code> data type is used to set CloudWatch Logs options. </p>",
+      "refs": {
+        "AwsStepFunctionStateMachineDetails$LoggingConfiguration": "<p> Used to set CloudWatch Logs options. </p>"
+      }
+    },
+    "AwsStepFunctionStateMachineTracingConfigurationDetails": {
+      "base": "<p> Specifies whether X-Ray tracing is enabled. </p>",
+      "refs": {
+        "AwsStepFunctionStateMachineDetails$TracingConfiguration": "<p> Specifies whether X-Ray tracing is enabled. </p>"
+      }
+    },
     "AwsWafRateBasedRuleDetails": {
       "base": "<p>Details about a rate-based rule for global resources. A rate-based rule provides settings to indicate when to allow, block, or count a request. Rate-based rules include the number of requests that arrive over a specified period of time.</p>",
       "refs": {
@@ -3782,6 +3995,15 @@
       "base": null,
       "refs": {
         "AssociationSetDetails$Main": "<p> Indicates whether this is the main route table. </p>",
+        "AwsAmazonMqBrokerDetails$AutoMinorVersionUpgrade": "<p> Whether automatically upgrade new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot. </p>",
+        "AwsAmazonMqBrokerDetails$PubliclyAccessible": "<p> Permits connections from applications outside of the VPC that hosts the broker's subnets. </p>",
+        "AwsAmazonMqBrokerEncryptionOptionsDetails$UseAwsOwnedKey": "<p> Specifies that an KMS key should be used for at-rest encryption. Set to <code>true</code> by default if no value is provided (for example, for RabbitMQ brokers). </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$RoleSearchSubtree": "<p> The directory search scope for the role. If set to <code>true</code>, the scope is to search the entire subtree. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$UserSearchSubtree": "<p> The directory search scope for the user. If set to true, the scope is to search the entire subtree. </p>",
+        "AwsAmazonMqBrokerLogsDetails$Audit": "<p> Activates audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged. Doesn't apply to RabbitMQ brokers. </p>",
+        "AwsAmazonMqBrokerLogsDetails$General": "<p> Activates general logging. </p>",
+        "AwsAmazonMqBrokerLogsPendingDetails$Audit": "<p> Activates audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged. Doesn't apply to RabbitMQ brokers. </p>",
+        "AwsAmazonMqBrokerLogsPendingDetails$General": "<p> Activates general logging. </p>",
         "AwsApiGatewayCanarySettings$UseStageCache": "<p>Indicates whether the canary deployment uses the stage cache.</p>",
         "AwsApiGatewayMethodSettings$MetricsEnabled": "<p>Indicates whether CloudWatch metrics are enabled for the method. </p>",
         "AwsApiGatewayMethodSettings$DataTraceEnabled": "<p>Indicates whether data trace logging is enabled for the method. Data trace logging affects the log entries that are pushed to CloudWatch Logs.</p>",
@@ -3794,6 +4016,8 @@
         "AwsApiGatewayV2RouteSettings$DataTraceEnabled": "<p>Indicates whether data trace logging is enabled. Data trace logging affects the log entries that are pushed to CloudWatch Logs. Supported only for WebSocket APIs.</p>",
         "AwsApiGatewayV2StageDetails$AutoDeploy": "<p>Indicates whether updates to an API automatically trigger a new deployment.</p>",
         "AwsApiGatewayV2StageDetails$ApiGatewayManaged": "<p>Indicates whether the stage is managed by API Gateway.</p>",
+        "AwsAppSyncGraphQlApiDetails$XrayEnabled": "<p> Indicates whether to use X-Ray tracing for the GraphQL API. </p>",
+        "AwsAppSyncGraphQlApiLogConfigDetails$ExcludeVerboseContent": "<p> Set to <code>TRUE</code> to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging level. </p>",
         "AwsAutoScalingAutoScalingGroupDetails$CapacityRebalance": "<p>Indicates whether capacity rebalancing is enabled. </p>",
         "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails$NoDevice": "<p>Whether to suppress the device that is included in the block device mapping of the Amazon Machine Image (AMI).</p> <p>If <code>NoDevice</code> is <code>true</code>, then you cannot specify <code>Ebs</code>.&gt;</p>",
         "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$DeleteOnTermination": "<p>Whether to delete the volume when the instance is terminated.</p>",
@@ -3942,6 +4166,8 @@
         "AwsSecretsManagerSecretDetails$RotationEnabled": "<p>Whether rotation is enabled.</p>",
         "AwsSecretsManagerSecretDetails$Deleted": "<p>Whether the secret is deleted.</p>",
         "AwsSecurityFinding$Sample": "<p>Indicates whether the finding is a sample finding.</p>",
+        "AwsStepFunctionStateMachineLoggingConfigurationDetails$IncludeExecutionData": "<p> Determines whether execution data is included in your log. When set to false, data is excluded. </p>",
+        "AwsStepFunctionStateMachineTracingConfigurationDetails$Enabled": "<p> When set to true, X-Ray tracing is enabled. </p>",
         "AwsWafRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings. </p>",
         "AwsWafRegionalRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings.</p>",
         "AwsWafRegionalRulePredicateListDetails$Negated": "<p>Specifies if you want WAF to allow, block, or count requests based on the settings in the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, or <code>SizeConstraintSet</code>. </p>",
@@ -4725,6 +4951,7 @@
         "AwsApiGatewayMethodSettings$CacheTtlInSeconds": "<p>Specifies the time to live (TTL), in seconds, for cached responses. The higher the TTL, the longer the response is cached.</p>",
         "AwsApiGatewayRestApiDetails$MinimumCompressionSize": "<p>The minimum size in bytes of a payload before compression is enabled.</p> <p>If <code>null</code>, then compression is disabled.</p> <p>If 0, then all payloads are compressed.</p>",
         "AwsApiGatewayV2RouteSettings$ThrottlingBurstLimit": "<p>The throttling burst limit.</p>",
+        "AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails$AuthorizerResultTtlInSeconds": "<p> The number of seconds a response should be cached for. The default is 5 minutes (300 seconds). </p>",
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before it checks the health status of an EC2 instance that has come into service.</p>",
         "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails$OnDemandBaseCapacity": "<p>The minimum amount of the Auto Scaling group's capacity that must be fulfilled by On-Demand Instances.</p>",
         "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails$OnDemandPercentageAboveBaseCapacity": "<p>The percentage of On-Demand Instances and Spot Instances for additional capacity beyond <code>OnDemandBaseCapacity</code>.</p>",
@@ -5149,6 +5376,8 @@
     "Long": {
       "base": null,
       "refs": {
+        "AwsAppSyncGraphQlApiOpenIdConnectConfigDetails$AuthTtL": "<p> The number of milliseconds that a token is valid after being authenticated. </p>",
+        "AwsAppSyncGraphQlApiOpenIdConnectConfigDetails$IatTtL": "<p> The number of milliseconds that a token is valid after it's issued to a user. </p>",
         "AwsBackupBackupPlanLifecycleDetails$DeleteAfterDays": "<p>Specifies the number of days after creation that a recovery point is deleted. Must be greater than 90 days plus <code>MoveToColdStorageAfterDays</code>. </p>",
         "AwsBackupBackupPlanLifecycleDetails$MoveToColdStorageAfterDays": "<p>Specifies the number of days after creation that a recovery point is moved to cold storage. </p>",
         "AwsBackupBackupPlanRuleDetails$StartWindowMinutes": "<p>A value in minutes after a backup is scheduled before a job will be canceled if it doesn't start successfully. </p>",
@@ -5367,6 +5596,30 @@
         "AssociationStateDetails$StatusMessage": "<p> The status message, if applicable. </p>",
         "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
         "AvailabilityZone$SubnetId": "<p>The ID of the subnet. You can specify one subnet per Availability Zone.</p>",
+        "AwsAmazonMqBrokerDetails$AuthenticationStrategy": "<p> The authentication strategy used to secure the broker. The default is <code>SIMPLE</code>. </p>",
+        "AwsAmazonMqBrokerDetails$BrokerArn": "<p> The Amazon Resource Name (ARN) of the broker. </p>",
+        "AwsAmazonMqBrokerDetails$BrokerName": "<p>The broker's name. </p>",
+        "AwsAmazonMqBrokerDetails$DeploymentMode": "<p> The broker's deployment mode. </p>",
+        "AwsAmazonMqBrokerDetails$EngineType": "<p> The type of broker engine. </p>",
+        "AwsAmazonMqBrokerDetails$EngineVersion": "<p> The version of the broker engine. </p>",
+        "AwsAmazonMqBrokerDetails$HostInstanceType": "<p> The broker's instance type. </p>",
+        "AwsAmazonMqBrokerDetails$BrokerId": "<p> The unique ID that Amazon MQ generates for the broker. </p>",
+        "AwsAmazonMqBrokerDetails$StorageType": "<p> The broker's storage type. </p>",
+        "AwsAmazonMqBrokerEncryptionOptionsDetails$KmsKeyId": "<p> The KMS key that’s used to encrypt your data at rest. If not provided, Amazon MQ will use a default KMS key to encrypt your data. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$RoleBase": "<p> The distinguished name of the node in the directory information tree (DIT) to search for roles or groups. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$RoleName": "<p> The group name attribute in a role entry whose value is the name of that role. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$RoleSearchMatching": "<p> The LDAP search filter used to find roles within the <code>roleBase</code>. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$ServiceAccountUsername": "<p> A username for the service account, which is an account in your LDAP server that has access to initiate a connection. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$UserBase": "<p> Selects a particular subtree of the directory information tree (DIT) to search for user entries. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$UserRoleName": "<p> The name of the LDAP attribute in the user's directory entry for the user's group membership. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$UserSearchMatching": "<p> The LDAP search filter used to find users within the <code>userBase</code>. </p>",
+        "AwsAmazonMqBrokerLogsDetails$AuditLogGroup": "<p> The location of the CloudWatch Logs log group where audit logs are sent. </p>",
+        "AwsAmazonMqBrokerLogsDetails$GeneralLogGroup": "<p> The location of the CloudWatch Logs log group where general logs are sent. </p>",
+        "AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails$DayOfWeek": "<p> The day of the week on which the maintenance window falls. </p>",
+        "AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails$TimeOfDay": "<p> The time, in 24-hour format, on which the maintenance window falls. </p>",
+        "AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails$TimeZone": "<p> The time zone in either the Country/City format or the UTC offset format. UTC is the default format. </p>",
+        "AwsAmazonMqBrokerUsersDetails$PendingChange": "<p> The type of change pending for the broker user. </p>",
+        "AwsAmazonMqBrokerUsersDetails$Username": "<p> The username of the broker user. </p>",
         "AwsApiCallAction$Api": "<p>The name of the API method that was issued.</p>",
         "AwsApiCallAction$ServiceName": "<p>The name of the Amazon Web Services service that the API method belongs to.</p>",
         "AwsApiCallAction$CallerType": "<p>Indicates whether the API call originated from a remote IP address (<code>remoteip</code>) or from a DNS domain (<code>domain</code>).</p>",
@@ -5413,6 +5666,23 @@
         "AwsApiGatewayV2StageDetails$LastUpdatedDate": "<p>Indicates when the stage was most recently updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsApiGatewayV2StageDetails$StageName": "<p>The name of the stage.</p>",
         "AwsApiGatewayV2StageDetails$LastDeploymentStatusMessage": "<p>The status of the last deployment of a stage. Supported only if the stage has automatic deployment enabled.</p>",
+        "AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails$AuthenticationType": "<p> The type of security configuration for your GraphQL API: API key, Identity and Access Management (IAM), OpenID Connect (OIDC), Amazon Cognito user pools, or Lambda. </p>",
+        "AwsAppSyncGraphQlApiDetails$ApiId": "<p> The unique identifier for the API. </p>",
+        "AwsAppSyncGraphQlApiDetails$Id": "<p>The unique identifier for the API.</p>",
+        "AwsAppSyncGraphQlApiDetails$Name": "<p> The API name. </p>",
+        "AwsAppSyncGraphQlApiDetails$Arn": "<p> The Amazon Resource Name (ARN) of the API. </p>",
+        "AwsAppSyncGraphQlApiDetails$AuthenticationType": "<p> The type of security configuration for your GraphQL API: API key, Identity and Access Management (IAM), OpenID Connect (OIDC), Amazon Cognito user pools, or Lambda. </p>",
+        "AwsAppSyncGraphQlApiDetails$WafWebAclArn": "<p> The Amazon Resource Name (ARN) of the WAF web access control list (web ACL) associated with this GraphQL API, if one exists. </p>",
+        "AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails$AuthorizerUri": "<p> The Amazon Resource Name (ARN) of the Lambda function to be called for authorization. This can be a standard Lambda ARN, a version ARN (.../v3), or an alias ARN. </p>",
+        "AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails$IdentityValidationExpression": "<p> A regular expression for validation of tokens before the Lambda function is called. </p>",
+        "AwsAppSyncGraphQlApiLogConfigDetails$CloudWatchLogsRoleArn": "<p> The Amazon Resource Name (ARN) of the service role that AppSync assumes to publish to CloudWatch Logs in your account. </p>",
+        "AwsAppSyncGraphQlApiLogConfigDetails$FieldLogLevel": "<p> The field logging level. </p>",
+        "AwsAppSyncGraphQlApiOpenIdConnectConfigDetails$ClientId": "<p> The client identifier of the relying party at the OpenID identity provider. This identifier is typically obtained when the relying party is registered with the OpenID identity provider. You can specify a regular expression so that AppSync can validate against multiple client identifiers at a time. </p>",
+        "AwsAppSyncGraphQlApiOpenIdConnectConfigDetails$Issuer": "<p> The issuer for the OIDC configuration. The issuer returned by discovery must exactly match the value of <code>iss</code> in the ID token. </p>",
+        "AwsAppSyncGraphQlApiUserPoolConfigDetails$AppIdClientRegex": "<p> A regular expression for validating the incoming Amazon Cognito user pools app client ID. If this value isn't set, no filtering is applied. </p>",
+        "AwsAppSyncGraphQlApiUserPoolConfigDetails$AwsRegion": "<p> The Amazon Web Services Region in which the user pool was created. </p>",
+        "AwsAppSyncGraphQlApiUserPoolConfigDetails$DefaultAction": "<p> The action that you want your GraphQL API to take when a request that uses Amazon Cognito user pools authentication doesn't match the Amazon Cognito user pools configuration. </p>",
+        "AwsAppSyncGraphQlApiUserPoolConfigDetails$UserPoolId": "<p> The user pool ID. </p>",
         "AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails$Value": "<p>The name of the Availability Zone.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$LaunchConfigurationName": "<p>The name of the launch configuration.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckType": "<p>The service to use for the health checks. Valid values are <code>EC2</code> or <code>ELB</code>.</p>",
@@ -6006,6 +6276,22 @@
         "AwsElbv2LoadBalancerDetails$Scheme": "<p>The nodes of an Internet-facing load balancer have public IP addresses.</p>",
         "AwsElbv2LoadBalancerDetails$Type": "<p>The type of load balancer.</p>",
         "AwsElbv2LoadBalancerDetails$VpcId": "<p>The ID of the VPC for the load balancer.</p>",
+        "AwsEventSchemasRegistryDetails$Description": "<p> A description of the registry to be created. </p>",
+        "AwsEventSchemasRegistryDetails$RegistryArn": "<p> The Amazon Resource Name (ARN) of the registry. </p>",
+        "AwsEventSchemasRegistryDetails$RegistryName": "<p> The name of the schema registry. </p>",
+        "AwsGuardDutyDetectorDataSourcesCloudTrailDetails$Status": "<p> Specifies whether CloudTrail is activated as a data source for the detector. </p>",
+        "AwsGuardDutyDetectorDataSourcesDnsLogsDetails$Status": "<p> Describes whether DNS logs is enabled as a data source for the detector. </p>",
+        "AwsGuardDutyDetectorDataSourcesFlowLogsDetails$Status": "<p> Describes whether VPC Flow Logs are activated as a data source for the detector. </p>",
+        "AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails$Status": "<p> Describes whether Kubernetes audit logs are activated as a data source for the detector. </p>",
+        "AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails$ServiceRole": "<p> The GuardDuty Malware Protection service role. </p>",
+        "AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails$Reason": "<p> Specifies the reason why scanning EBS volumes (Malware Protection) isn’t activated as a data source. </p>",
+        "AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails$Status": "<p> Describes whether scanning EBS volumes is activated as a data source for the detector. </p>",
+        "AwsGuardDutyDetectorDataSourcesS3LogsDetails$Status": "<p> A value that describes whether S3 data event logs are automatically enabled for new members of an organization. </p>",
+        "AwsGuardDutyDetectorDetails$FindingPublishingFrequency": "<p> The publishing frequency of the finding. </p>",
+        "AwsGuardDutyDetectorDetails$ServiceRole": "<p> The GuardDuty service role. </p>",
+        "AwsGuardDutyDetectorDetails$Status": "<p> The activation status of the detector. </p>",
+        "AwsGuardDutyDetectorFeaturesDetails$Name": "<p> Indicates the name of the feature that is activated for the detector. </p>",
+        "AwsGuardDutyDetectorFeaturesDetails$Status": "<p> Indicates the status of the feature that is activated for the detector. </p>",
         "AwsIamAccessKeyDetails$UserName": "<p>The user associated with the IAM access key related to a finding.</p> <p>The <code>UserName</code> parameter has been replaced with the <code>PrincipalName</code> parameter because access keys can also be assigned to principals that are not IAM users.</p>",
         "AwsIamAccessKeyDetails$CreatedAt": "<p>Indicates when the IAM access key was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsIamAccessKeyDetails$PrincipalId": "<p>The ID of the principal associated with an access key.</p>",
@@ -6432,6 +6718,14 @@
         "AwsSsmComplianceSummary$PatchBaselineId": "<p>The identifier of the patch baseline. The patch baseline lists the patches that are approved for installation.</p>",
         "AwsSsmComplianceSummary$OverallSeverity": "<p>The highest severity for the patches. Valid values are as follows:</p> <ul> <li> <p> <code>CRITICAL</code> </p> </li> <li> <p> <code>HIGH</code> </p> </li> <li> <p> <code>MEDIUM</code> </p> </li> <li> <p> <code>LOW</code> </p> </li> <li> <p> <code>INFORMATIONAL</code> </p> </li> <li> <p> <code>UNSPECIFIED</code> </p> </li> </ul>",
         "AwsSsmComplianceSummary$PatchGroup": "<p>The identifier of the patch group for which compliance was determined. A patch group uses tags to group EC2 instances that should have the same patch compliance.</p>",
+        "AwsStepFunctionStateMachineDetails$Label": "<p> A user-defined or an auto-generated string that identifies a <code>Map</code> state. This parameter is present only if the <code>stateMachineArn</code> specified in input is a qualified state machine ARN. </p>",
+        "AwsStepFunctionStateMachineDetails$Name": "<p> The name of the state machine. </p>",
+        "AwsStepFunctionStateMachineDetails$RoleArn": "<p> The Amazon Resource Name (ARN) of the IAM role used when creating this state machine. </p>",
+        "AwsStepFunctionStateMachineDetails$StateMachineArn": "<p> The ARN that identifies the state machine. </p>",
+        "AwsStepFunctionStateMachineDetails$Status": "<p> The current status of the state machine. </p>",
+        "AwsStepFunctionStateMachineDetails$Type": "<p> The type of the state machine (STANDARD or EXPRESS). </p>",
+        "AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails$LogGroupArn": "<p>The ARN (ends with <code>:*</code>) of the CloudWatch Logs log group to which you want your logs emitted.</p>",
+        "AwsStepFunctionStateMachineLoggingConfigurationDetails$Level": "<p> Defines which category of execution history events are logged. </p>",
         "AwsWafRateBasedRuleDetails$MetricName": "<p>The name of the metrics for the rate-based rule.</p>",
         "AwsWafRateBasedRuleDetails$Name": "<p>The name of the rate-based rule.</p>",
         "AwsWafRateBasedRuleDetails$RateKey": "<p>The field that WAF uses to determine whether requests are likely arriving from single source and are subject to rate monitoring.</p>",
@@ -7737,6 +8031,9 @@
     "StringList": {
       "base": null,
       "refs": {
+        "AwsAmazonMqBrokerDetails$SecurityGroups": "<p> The list of rules (one minimum, 125 maximum) that authorize connections to brokers. </p>",
+        "AwsAmazonMqBrokerDetails$SubnetIds": "<p> The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. </p>",
+        "AwsAmazonMqBrokerLdapServerMetadataDetails$Hosts": "<p> Specifies the location of the LDAP server, such as Amazon Web Services Directory Service for Microsoft Active Directory. </p>",
         "AwsAutoScalingAutoScalingGroupDetails$LoadBalancerNames": "<p>The list of load balancers associated with the group.</p>",
         "AwsCertificateManagerCertificateDetails$InUseBy": "<p>The list of ARNs for the Amazon Web Services resources that use the certificate.</p>",
         "AwsCertificateManagerCertificateDetails$SubjectAlternativeNames": "<p>One or more domain names (subject alternative names) included in the certificate. This list contains the domain names that are bound to the public key that is contained in the certificate.</p> <p>The subject alternative names include the canonical domain name (CN) of the certificate and additional domain names that can be used to connect to the website.</p>",
@@ -7850,7 +8147,7 @@
     "Timestamp": {
       "base": null,
       "refs": {
-        "FindingHistoryRecord$UpdateTime": "<p> An ISO 8601-formatted timestamp that indicates when the security findings provider last updated the finding record. A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. </p>",
+        "FindingHistoryRecord$UpdateTime": "<p> An ISO 8601-formatted timestamp that indicates when Security Hub processed the updated finding record.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. </p>",
         "GetFindingHistoryRequest$StartTime": "<p> An ISO 8601-formatted timestamp that indicates the start time of the requested finding history. A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p> <p>If you provide values for both <code>StartTime</code> and <code>EndTime</code>, Security Hub returns finding history for the specified time period. If you provide a value for <code>StartTime</code> but not for <code>EndTime</code>, Security Hub returns finding history from the <code>StartTime</code> to the time at which the API is called. If you provide a value for <code>EndTime</code> but not for <code>StartTime</code>, Security Hub returns finding history from the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_AwsSecurityFindingFilters.html#securityhub-Type-AwsSecurityFindingFilters-CreatedAt\">CreatedAt</a> timestamp of the finding to the <code>EndTime</code>. If you provide neither <code>StartTime</code> nor <code>EndTime</code>, Security Hub returns finding history from the CreatedAt timestamp of the finding to the time at which the API is called. In all of these scenarios, the response is limited to 100 results, and the maximum time period is limited to 90 days. </p>",
         "GetFindingHistoryRequest$EndTime": "<p> An ISO 8601-formatted timestamp that indicates the end time of the requested finding history. A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p> <p>If you provide values for both <code>StartTime</code> and <code>EndTime</code>, Security Hub returns finding history for the specified time period. If you provide a value for <code>StartTime</code> but not for <code>EndTime</code>, Security Hub returns finding history from the <code>StartTime</code> to the time at which the API is called. If you provide a value for <code>EndTime</code> but not for <code>StartTime</code>, Security Hub returns finding history from the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_AwsSecurityFindingFilters.html#securityhub-Type-AwsSecurityFindingFilters-CreatedAt\">CreatedAt</a> timestamp of the finding to the <code>EndTime</code>. If you provide neither <code>StartTime</code> nor <code>EndTime</code>, Security Hub returns finding history from the CreatedAt timestamp of the finding to the time at which the API is called. In all of these scenarios, the response is limited to 100 results, and the maximum time period is limited to 90 days.</p>",
         "Invitation$InvitedAt": "<p>The timestamp of when the invitation was sent.</p>",

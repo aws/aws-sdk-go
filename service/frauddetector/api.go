@@ -12662,6 +12662,53 @@ func (s *Event) SetLabelTimestamp(v string) *Event {
 	return s
 }
 
+// The event orchestration status.
+type EventOrchestration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if event orchestration is enabled through Amazon EventBridge.
+	//
+	// EventBridgeEnabled is a required field
+	EventBridgeEnabled *bool `locationName:"eventBridgeEnabled" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventOrchestration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventOrchestration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventOrchestration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventOrchestration"}
+	if s.EventBridgeEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventBridgeEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventBridgeEnabled sets the EventBridgeEnabled field's value.
+func (s *EventOrchestration) SetEventBridgeEnabled(v bool) *EventOrchestration {
+	s.EventBridgeEnabled = &v
+	return s
+}
+
 // Information about the summary of an event prediction.
 type EventPredictionSummary struct {
 	_ struct{} `type:"structure"`
@@ -12761,6 +12808,9 @@ type EventType struct {
 	// and improve fraud predictions.
 	EventIngestion *string `locationName:"eventIngestion" type:"string" enum:"EventIngestion"`
 
+	// The event orchestration status.
+	EventOrchestration *EventOrchestration `locationName:"eventOrchestration" type:"structure"`
+
 	// The event type event variables.
 	EventVariables []*string `locationName:"eventVariables" type:"list"`
 
@@ -12822,6 +12872,12 @@ func (s *EventType) SetEntityTypes(v []*string) *EventType {
 // SetEventIngestion sets the EventIngestion field's value.
 func (s *EventType) SetEventIngestion(v string) *EventType {
 	s.EventIngestion = &v
+	return s
+}
+
+// SetEventOrchestration sets the EventOrchestration field's value.
+func (s *EventType) SetEventOrchestration(v *EventOrchestration) *EventType {
+	s.EventOrchestration = v
 	return s
 }
 
@@ -16268,7 +16324,7 @@ type LabelSchema struct {
 	//    * Use FRAUD if you want to categorize all unlabeled events as “Fraud”.
 	//    This is recommended when most of the events in your dataset are fraudulent.
 	//
-	//    * Use LEGIT f you want to categorize all unlabeled events as “Legit”.
+	//    * Use LEGIT if you want to categorize all unlabeled events as “Legit”.
 	//    This is recommended when most of the events in your dataset are legitimate.
 	//
 	//    * Use AUTO if you want Amazon Fraud Detector to decide how to use the
@@ -17906,8 +17962,12 @@ type PutEventTypeInput struct {
 	// EntityTypes is a required field
 	EntityTypes []*string `locationName:"entityTypes" min:"1" type:"list" required:"true"`
 
-	// Specifies if ingenstion is enabled or disabled.
+	// Specifies if ingestion is enabled or disabled.
 	EventIngestion *string `locationName:"eventIngestion" type:"string" enum:"EventIngestion"`
+
+	// Enables or disables event orchestration. If enabled, you can send event predictions
+	// to select AWS services for downstream processing of the events.
+	EventOrchestration *EventOrchestration `locationName:"eventOrchestration" type:"structure"`
 
 	// The event type variables.
 	//
@@ -17968,6 +18028,11 @@ func (s *PutEventTypeInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.EventOrchestration != nil {
+		if err := s.EventOrchestration.Validate(); err != nil {
+			invalidParams.AddNested("EventOrchestration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -18000,6 +18065,12 @@ func (s *PutEventTypeInput) SetEntityTypes(v []*string) *PutEventTypeInput {
 // SetEventIngestion sets the EventIngestion field's value.
 func (s *PutEventTypeInput) SetEventIngestion(v string) *PutEventTypeInput {
 	s.EventIngestion = &v
+	return s
+}
+
+// SetEventOrchestration sets the EventOrchestration field's value.
+func (s *PutEventTypeInput) SetEventOrchestration(v *EventOrchestration) *PutEventTypeInput {
+	s.EventOrchestration = v
 	return s
 }
 
@@ -18304,6 +18375,7 @@ type PutLabelInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// A collection of key and value pairs.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -19689,7 +19761,7 @@ type UncertaintyRange struct {
 	// LowerBoundValue is a required field
 	LowerBoundValue *float64 `locationName:"lowerBoundValue" type:"float" required:"true"`
 
-	// The lower bound value of the area under curve (auc).
+	// The upper bound value of the area under curve (auc).
 	//
 	// UpperBoundValue is a required field
 	UpperBoundValue *float64 `locationName:"upperBoundValue" type:"float" required:"true"`

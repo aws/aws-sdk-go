@@ -1805,7 +1805,8 @@
         "Method":{"shape":"Method"},
         "JsonBody":{"shape":"JsonBody"},
         "Headers":{"shape":"Headers"},
-        "Cookies":{"shape":"Cookies"}
+        "Cookies":{"shape":"Cookies"},
+        "HeaderOrder":{"shape":"HeaderOrder"}
       }
     },
     "FieldToMatchData":{
@@ -2180,6 +2181,13 @@
       "member":{"shape":"FieldToMatchData"},
       "max":199,
       "min":1
+    },
+    "HeaderOrder":{
+      "type":"structure",
+      "required":["OversizeHandling"],
+      "members":{
+        "OversizeHandling":{"shape":"OversizeHandling"}
+      }
     },
     "HeaderValue":{"type":"string"},
     "Headers":{

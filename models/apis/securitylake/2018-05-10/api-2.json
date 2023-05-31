@@ -16,104 +16,91 @@
       "name":"CreateAwsLogSource",
       "http":{
         "method":"POST",
-        "requestUri":"/v1/logsources/aws",
+        "requestUri":"/v1/datalake/logsources/aws",
         "responseCode":200
       },
       "input":{"shape":"CreateAwsLogSourceRequest"},
       "output":{"shape":"CreateAwsLogSourceResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"S3Exception"},
-        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateCustomLogSource":{
       "name":"CreateCustomLogSource",
       "http":{
         "method":"POST",
-        "requestUri":"/v1/logsources/custom",
+        "requestUri":"/v1/datalake/logsources/custom",
         "responseCode":200
       },
       "input":{"shape":"CreateCustomLogSourceRequest"},
       "output":{"shape":"CreateCustomLogSourceResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConflictSourceNamesException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"BucketNotFoundException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"}
-      ]
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
     },
-    "CreateDatalake":{
-      "name":"CreateDatalake",
+    "CreateDataLake":{
+      "name":"CreateDataLake",
       "http":{
         "method":"POST",
         "requestUri":"/v1/datalake",
         "responseCode":200
       },
-      "input":{"shape":"CreateDatalakeRequest"},
-      "output":{"shape":"CreateDatalakeResponse"},
+      "input":{"shape":"CreateDataLakeRequest"},
+      "output":{"shape":"CreateDataLakeResponse"},
       "errors":[
-        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ThrottlingException"}
       ]
     },
-    "CreateDatalakeAutoEnable":{
-      "name":"CreateDatalakeAutoEnable",
-      "http":{
-        "method":"POST",
-        "requestUri":"/v1/datalake/autoenable",
-        "responseCode":200
-      },
-      "input":{"shape":"CreateDatalakeAutoEnableRequest"},
-      "output":{"shape":"CreateDatalakeAutoEnableResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
-      ]
-    },
-    "CreateDatalakeDelegatedAdmin":{
-      "name":"CreateDatalakeDelegatedAdmin",
-      "http":{
-        "method":"POST",
-        "requestUri":"/v1/datalake/delegate",
-        "responseCode":200
-      },
-      "input":{"shape":"CreateDatalakeDelegatedAdminRequest"},
-      "output":{"shape":"CreateDatalakeDelegatedAdminResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"}
-      ]
-    },
-    "CreateDatalakeExceptionsSubscription":{
-      "name":"CreateDatalakeExceptionsSubscription",
+    "CreateDataLakeExceptionSubscription":{
+      "name":"CreateDataLakeExceptionSubscription",
       "http":{
         "method":"POST",
         "requestUri":"/v1/datalake/exceptions/subscription",
         "responseCode":200
       },
-      "input":{"shape":"CreateDatalakeExceptionsSubscriptionRequest"},
-      "output":{"shape":"CreateDatalakeExceptionsSubscriptionResponse"},
+      "input":{"shape":"CreateDataLakeExceptionSubscriptionRequest"},
+      "output":{"shape":"CreateDataLakeExceptionSubscriptionResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "CreateDataLakeOrganizationConfiguration":{
+      "name":"CreateDataLakeOrganizationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/datalake/organization/configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateDataLakeOrganizationConfigurationRequest"},
+      "output":{"shape":"CreateDataLakeOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateSubscriber":{
@@ -126,309 +113,306 @@
       "input":{"shape":"CreateSubscriberRequest"},
       "output":{"shape":"CreateSubscriberResponse"},
       "errors":[
-        {"shape":"ConflictSubscriptionException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"BucketNotFoundException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"},
-        {"shape":"InvalidInputException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
-    "CreateSubscriptionNotificationConfiguration":{
-      "name":"CreateSubscriptionNotificationConfiguration",
+    "CreateSubscriberNotification":{
+      "name":"CreateSubscriberNotification",
       "http":{
         "method":"POST",
-        "requestUri":"/subscription-notifications/{subscriptionId}",
+        "requestUri":"/v1/subscribers/{subscriberId}/notification",
         "responseCode":200
       },
-      "input":{"shape":"CreateSubscriptionNotificationConfigurationRequest"},
-      "output":{"shape":"CreateSubscriptionNotificationConfigurationResponse"},
+      "input":{"shape":"CreateSubscriberNotificationRequest"},
+      "output":{"shape":"CreateSubscriberNotificationResponse"},
       "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"},
-        {"shape":"InvalidInputException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteAwsLogSource":{
       "name":"DeleteAwsLogSource",
       "http":{
         "method":"POST",
-        "requestUri":"/v1/logsources/aws/delete",
+        "requestUri":"/v1/datalake/logsources/aws/delete",
         "responseCode":200
       },
       "input":{"shape":"DeleteAwsLogSourceRequest"},
       "output":{"shape":"DeleteAwsLogSourceResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteCustomLogSource":{
       "name":"DeleteCustomLogSource",
       "http":{
         "method":"DELETE",
-        "requestUri":"/v1/logsources/custom",
+        "requestUri":"/v1/datalake/logsources/custom/{sourceName}",
         "responseCode":200
       },
       "input":{"shape":"DeleteCustomLogSourceRequest"},
       "output":{"shape":"DeleteCustomLogSourceResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConflictSourceNamesException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"BucketNotFoundException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"}
-      ],
-      "idempotent":true
-    },
-    "DeleteDatalake":{
-      "name":"DeleteDatalake",
-      "http":{
-        "method":"DELETE",
-        "requestUri":"/v1/datalake",
-        "responseCode":200
-      },
-      "input":{"shape":"DeleteDatalakeRequest"},
-      "output":{"shape":"DeleteDatalakeResponse"},
-      "errors":[
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
-    "DeleteDatalakeAutoEnable":{
-      "name":"DeleteDatalakeAutoEnable",
+    "DeleteDataLake":{
+      "name":"DeleteDataLake",
       "http":{
         "method":"POST",
-        "requestUri":"/v1/datalake/autoenable/delete",
+        "requestUri":"/v1/datalake/delete",
         "responseCode":200
       },
-      "input":{"shape":"DeleteDatalakeAutoEnableRequest"},
-      "output":{"shape":"DeleteDatalakeAutoEnableResponse"},
+      "input":{"shape":"DeleteDataLakeRequest"},
+      "output":{"shape":"DeleteDataLakeResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
-      ]
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
     },
-    "DeleteDatalakeDelegatedAdmin":{
-      "name":"DeleteDatalakeDelegatedAdmin",
-      "http":{
-        "method":"DELETE",
-        "requestUri":"/v1/datalake/delegate/{account}",
-        "responseCode":200
-      },
-      "input":{"shape":"DeleteDatalakeDelegatedAdminRequest"},
-      "output":{"shape":"DeleteDatalakeDelegatedAdminResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"}
-      ]
-    },
-    "DeleteDatalakeExceptionsSubscription":{
-      "name":"DeleteDatalakeExceptionsSubscription",
+    "DeleteDataLakeExceptionSubscription":{
+      "name":"DeleteDataLakeExceptionSubscription",
       "http":{
         "method":"DELETE",
         "requestUri":"/v1/datalake/exceptions/subscription",
         "responseCode":200
       },
-      "input":{"shape":"DeleteDatalakeExceptionsSubscriptionRequest"},
-      "output":{"shape":"DeleteDatalakeExceptionsSubscriptionResponse"},
+      "input":{"shape":"DeleteDataLakeExceptionSubscriptionRequest"},
+      "output":{"shape":"DeleteDataLakeExceptionSubscriptionResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteDataLakeOrganizationConfiguration":{
+      "name":"DeleteDataLakeOrganizationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/datalake/organization/configuration/delete",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteDataLakeOrganizationConfigurationRequest"},
+      "output":{"shape":"DeleteDataLakeOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteSubscriber":{
       "name":"DeleteSubscriber",
       "http":{
         "method":"DELETE",
-        "requestUri":"/v1/subscribers",
+        "requestUri":"/v1/subscribers/{subscriberId}",
         "responseCode":200
       },
       "input":{"shape":"DeleteSubscriberRequest"},
       "output":{"shape":"DeleteSubscriberResponse"},
       "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"BucketNotFoundException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"},
-        {"shape":"InvalidInputException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
-    "DeleteSubscriptionNotificationConfiguration":{
-      "name":"DeleteSubscriptionNotificationConfiguration",
+    "DeleteSubscriberNotification":{
+      "name":"DeleteSubscriberNotification",
       "http":{
         "method":"DELETE",
-        "requestUri":"/subscription-notifications/{subscriptionId}",
+        "requestUri":"/v1/subscribers/{subscriberId}/notification",
         "responseCode":200
       },
-      "input":{"shape":"DeleteSubscriptionNotificationConfigurationRequest"},
-      "output":{"shape":"DeleteSubscriptionNotificationConfigurationResponse"},
+      "input":{"shape":"DeleteSubscriberNotificationRequest"},
+      "output":{"shape":"DeleteSubscriberNotificationResponse"},
       "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"},
-        {"shape":"InvalidInputException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
-    "GetDatalake":{
-      "name":"GetDatalake",
+    "DeregisterDataLakeDelegatedAdministrator":{
+      "name":"DeregisterDataLakeDelegatedAdministrator",
       "http":{
-        "method":"GET",
-        "requestUri":"/v1/datalake",
+        "method":"DELETE",
+        "requestUri":"/v1/datalake/delegate",
         "responseCode":200
       },
-      "input":{"shape":"GetDatalakeRequest"},
-      "output":{"shape":"GetDatalakeResponse"},
+      "input":{"shape":"DeregisterDataLakeDelegatedAdministratorRequest"},
+      "output":{"shape":"DeregisterDataLakeDelegatedAdministratorResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"}
-      ]
-    },
-    "GetDatalakeAutoEnable":{
-      "name":"GetDatalakeAutoEnable",
-      "http":{
-        "method":"GET",
-        "requestUri":"/v1/datalake/autoenable",
-        "responseCode":200
-      },
-      "input":{"shape":"GetDatalakeAutoEnableRequest"},
-      "output":{"shape":"GetDatalakeAutoEnableResponse"},
-      "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
-      ]
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
     },
-    "GetDatalakeExceptionsExpiry":{
-      "name":"GetDatalakeExceptionsExpiry",
-      "http":{
-        "method":"GET",
-        "requestUri":"/v1/datalake/exceptions/expiry",
-        "responseCode":200
-      },
-      "input":{"shape":"GetDatalakeExceptionsExpiryRequest"},
-      "output":{"shape":"GetDatalakeExceptionsExpiryResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
-      ]
-    },
-    "GetDatalakeExceptionsSubscription":{
-      "name":"GetDatalakeExceptionsSubscription",
+    "GetDataLakeExceptionSubscription":{
+      "name":"GetDataLakeExceptionSubscription",
       "http":{
         "method":"GET",
         "requestUri":"/v1/datalake/exceptions/subscription",
         "responseCode":200
       },
-      "input":{"shape":"GetDatalakeExceptionsSubscriptionRequest"},
-      "output":{"shape":"GetDatalakeExceptionsSubscriptionResponse"},
+      "input":{"shape":"GetDataLakeExceptionSubscriptionRequest"},
+      "output":{"shape":"GetDataLakeExceptionSubscriptionResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
-    "GetDatalakeStatus":{
-      "name":"GetDatalakeStatus",
+    "GetDataLakeOrganizationConfiguration":{
+      "name":"GetDataLakeOrganizationConfiguration",
       "http":{
-        "method":"POST",
-        "requestUri":"/v1/datalake/status",
+        "method":"GET",
+        "requestUri":"/v1/datalake/organization/configuration",
         "responseCode":200
       },
-      "input":{"shape":"GetDatalakeStatusRequest"},
-      "output":{"shape":"GetDatalakeStatusResponse"},
+      "input":{"shape":"GetDataLakeOrganizationConfigurationRequest"},
+      "output":{"shape":"GetDataLakeOrganizationConfigurationResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetDataLakeSources":{
+      "name":"GetDataLakeSources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/datalake/sources",
+        "responseCode":200
+      },
+      "input":{"shape":"GetDataLakeSourcesRequest"},
+      "output":{"shape":"GetDataLakeSourcesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetSubscriber":{
       "name":"GetSubscriber",
       "http":{
         "method":"GET",
-        "requestUri":"/v1/subscribers/{id}",
+        "requestUri":"/v1/subscribers/{subscriberId}",
         "responseCode":200
       },
       "input":{"shape":"GetSubscriberRequest"},
       "output":{"shape":"GetSubscriberResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"},
-        {"shape":"InvalidInputException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
-    "ListDatalakeExceptions":{
-      "name":"ListDatalakeExceptions",
+    "ListDataLakeExceptions":{
+      "name":"ListDataLakeExceptions",
       "http":{
         "method":"POST",
         "requestUri":"/v1/datalake/exceptions",
         "responseCode":200
       },
-      "input":{"shape":"ListDatalakeExceptionsRequest"},
-      "output":{"shape":"ListDatalakeExceptionsResponse"},
+      "input":{"shape":"ListDataLakeExceptionsRequest"},
+      "output":{"shape":"ListDataLakeExceptionsResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListDataLakes":{
+      "name":"ListDataLakes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/datalakes",
+        "responseCode":200
+      },
+      "input":{"shape":"ListDataLakesRequest"},
+      "output":{"shape":"ListDataLakesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListLogSources":{
       "name":"ListLogSources",
       "http":{
         "method":"POST",
-        "requestUri":"/v1/logsources/list",
+        "requestUri":"/v1/datalake/logsources/list",
         "responseCode":200
       },
       "input":{"shape":"ListLogSourcesRequest"},
       "output":{"shape":"ListLogSourcesResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListSubscribers":{
@@ -441,108 +425,112 @@
       "input":{"shape":"ListSubscribersRequest"},
       "output":{"shape":"ListSubscribersResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"},
-        {"shape":"InvalidInputException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
-    "UpdateDatalake":{
-      "name":"UpdateDatalake",
+    "RegisterDataLakeDelegatedAdministrator":{
+      "name":"RegisterDataLakeDelegatedAdministrator",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/datalake/delegate",
+        "responseCode":200
+      },
+      "input":{"shape":"RegisterDataLakeDelegatedAdministratorRequest"},
+      "output":{"shape":"RegisterDataLakeDelegatedAdministratorResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "UpdateDataLake":{
+      "name":"UpdateDataLake",
       "http":{
         "method":"PUT",
         "requestUri":"/v1/datalake",
         "responseCode":200
       },
-      "input":{"shape":"UpdateDatalakeRequest"},
-      "output":{"shape":"UpdateDatalakeResponse"},
+      "input":{"shape":"UpdateDataLakeRequest"},
+      "output":{"shape":"UpdateDataLakeResponse"},
       "errors":[
-        {"shape":"EventBridgeException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
-    "UpdateDatalakeExceptionsExpiry":{
-      "name":"UpdateDatalakeExceptionsExpiry",
-      "http":{
-        "method":"PUT",
-        "requestUri":"/v1/datalake/exceptions/expiry",
-        "responseCode":200
-      },
-      "input":{"shape":"UpdateDatalakeExceptionsExpiryRequest"},
-      "output":{"shape":"UpdateDatalakeExceptionsExpiryResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
-      ]
-    },
-    "UpdateDatalakeExceptionsSubscription":{
-      "name":"UpdateDatalakeExceptionsSubscription",
+    "UpdateDataLakeExceptionSubscription":{
+      "name":"UpdateDataLakeExceptionSubscription",
       "http":{
         "method":"PUT",
         "requestUri":"/v1/datalake/exceptions/subscription",
         "responseCode":200
       },
-      "input":{"shape":"UpdateDatalakeExceptionsSubscriptionRequest"},
-      "output":{"shape":"UpdateDatalakeExceptionsSubscriptionResponse"},
+      "input":{"shape":"UpdateDataLakeExceptionSubscriptionRequest"},
+      "output":{"shape":"UpdateDataLakeExceptionSubscriptionResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"}
-      ]
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
     },
     "UpdateSubscriber":{
       "name":"UpdateSubscriber",
       "http":{
         "method":"PUT",
-        "requestUri":"/v1/subscribers/{id}",
+        "requestUri":"/v1/subscribers/{subscriberId}",
         "responseCode":200
       },
       "input":{"shape":"UpdateSubscriberRequest"},
       "output":{"shape":"UpdateSubscriberResponse"},
       "errors":[
-        {"shape":"ConflictSubscriptionException"},
-        {"shape":"ConcurrentModificationException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"AccountNotFoundException"},
-        {"shape":"InvalidInputException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
-    "UpdateSubscriptionNotificationConfiguration":{
-      "name":"UpdateSubscriptionNotificationConfiguration",
+    "UpdateSubscriberNotification":{
+      "name":"UpdateSubscriberNotification",
       "http":{
         "method":"PUT",
-        "requestUri":"/subscription-notifications/{subscriptionId}",
+        "requestUri":"/v1/subscribers/{subscriberId}/notification",
         "responseCode":200
       },
-      "input":{"shape":"UpdateSubscriptionNotificationConfigurationRequest"},
-      "output":{"shape":"UpdateSubscriptionNotificationConfigurationResponse"},
+      "input":{"shape":"UpdateSubscriberNotificationRequest"},
+      "output":{"shape":"UpdateSubscriberNotificationResponse"},
       "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccountNotFoundException"},
-        {"shape":"InvalidInputException"}
-      ]
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
     "AccessDeniedException":{
       "type":"structure",
-      "required":["message"],
       "members":{
         "errorCode":{"shape":"String"},
         "message":{"shape":"String"}
@@ -566,115 +554,96 @@
     },
     "AccountList":{
       "type":"list",
-      "member":{"shape":"String"}
+      "member":{"shape":"AwsAccountId"}
     },
-    "AccountNotFoundException":{
-      "type":"structure",
-      "required":["message"],
-      "members":{
-        "message":{"shape":"String"}
-      },
-      "error":{
-        "httpStatusCode":403,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "AccountSources":{
-      "type":"structure",
-      "required":[
-        "account",
-        "sourceType"
-      ],
-      "members":{
-        "account":{"shape":"String"},
-        "eventClass":{"shape":"OcsfEventClass"},
-        "logsStatus":{"shape":"LogsStatusList"},
-        "sourceType":{"shape":"String"}
-      }
-    },
-    "AccountSourcesList":{
-      "type":"list",
-      "member":{"shape":"AccountSources"}
-    },
-    "AllDimensionsMap":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"TwoDimensionsMap"}
-    },
-    "AutoEnableNewRegionConfiguration":{
-      "type":"structure",
-      "required":[
-        "region",
-        "sources"
-      ],
-      "members":{
-        "region":{"shape":"Region"},
-        "sources":{"shape":"AwsSourceTypeList"}
-      }
-    },
-    "AutoEnableNewRegionConfigurationList":{
-      "type":"list",
-      "member":{"shape":"AutoEnableNewRegionConfiguration"}
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^arn:aws:securitylake:[A-za-z0-9_/.\\-]{0,63}:[A-za-z0-9_/.\\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\\-]{0,127}$"
     },
     "AwsAccountId":{
       "type":"string",
       "max":12,
       "min":12,
-      "pattern":"^\\d+$"
+      "pattern":"^[0-9]{12}$"
     },
-    "AwsLogSourceType":{
+    "AwsIdentity":{
+      "type":"structure",
+      "required":[
+        "externalId",
+        "principal"
+      ],
+      "members":{
+        "externalId":{"shape":"ExternalId"},
+        "principal":{"shape":"AwsPrincipal"}
+      }
+    },
+    "AwsLogSourceConfiguration":{
+      "type":"structure",
+      "required":[
+        "regions",
+        "sourceName"
+      ],
+      "members":{
+        "accounts":{"shape":"AccountList"},
+        "regions":{"shape":"RegionList"},
+        "sourceName":{"shape":"AwsLogSourceName"},
+        "sourceVersion":{"shape":"AwsLogSourceVersion"}
+      }
+    },
+    "AwsLogSourceConfigurationList":{
+      "type":"list",
+      "member":{"shape":"AwsLogSourceConfiguration"},
+      "max":50,
+      "min":0
+    },
+    "AwsLogSourceName":{
       "type":"string",
       "enum":[
         "ROUTE53",
         "VPC_FLOW",
-        "CLOUD_TRAIL",
-        "SH_FINDINGS"
+        "SH_FINDINGS",
+        "CLOUD_TRAIL_MGMT",
+        "LAMBDA_EXECUTION",
+        "S3_DATA"
       ]
     },
-    "AwsSourceTypeList":{
-      "type":"list",
-      "member":{"shape":"AwsLogSourceType"}
-    },
-    "Boolean":{
-      "type":"boolean",
-      "box":true
-    },
-    "BucketNotFoundException":{
+    "AwsLogSourceResource":{
       "type":"structure",
-      "required":["message"],
+      "members":{
+        "sourceName":{"shape":"AwsLogSourceName"},
+        "sourceVersion":{"shape":"AwsLogSourceVersion"}
+      }
+    },
+    "AwsLogSourceResourceList":{
+      "type":"list",
+      "member":{"shape":"AwsLogSourceResource"}
+    },
+    "AwsLogSourceVersion":{
+      "type":"string",
+      "pattern":"^(latest|[0-9]\\.[0-9])$"
+    },
+    "AwsPrincipal":{
+      "type":"string",
+      "pattern":"^([0-9]{12}|[a-z0-9\\.\\-]*\\.(amazonaws|amazon)\\.com)$"
+    },
+    "BadRequestException":{
+      "type":"structure",
       "members":{
         "message":{"shape":"String"}
       },
       "error":{
-        "httpStatusCode":409,
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
     },
-    "ConcurrentModificationException":{
-      "type":"structure",
-      "required":["message"],
-      "members":{
-        "message":{"shape":"String"}
-      },
-      "error":{
-        "httpStatusCode":409,
-        "senderFault":true
-      },
-      "exception":true,
-      "retryable":{"throttling":false}
-    },
     "ConflictException":{
       "type":"structure",
-      "required":[
-        "message",
-        "resourceId",
-        "resourceType"
-      ],
       "members":{
         "message":{"shape":"String"},
-        "resourceId":{"shape":"String"},
+        "resourceName":{"shape":"String"},
         "resourceType":{"shape":"String"}
       },
       "error":{
@@ -683,147 +652,119 @@
       },
       "exception":true
     },
-    "ConflictSourceNamesException":{
-      "type":"structure",
-      "required":["message"],
-      "members":{
-        "message":{"shape":"String"}
-      },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "ConflictSubscriptionException":{
-      "type":"structure",
-      "required":["message"],
-      "members":{
-        "message":{"shape":"String"}
-      },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
     "CreateAwsLogSourceRequest":{
       "type":"structure",
-      "required":["inputOrder"],
+      "required":["sources"],
       "members":{
-        "enableAllDimensions":{"shape":"AllDimensionsMap"},
-        "enableSingleDimension":{"shape":"InputSet"},
-        "enableTwoDimensions":{"shape":"TwoDimensionsMap"},
-        "inputOrder":{"shape":"DimensionSet"}
+        "sources":{"shape":"AwsLogSourceConfigurationList"}
       }
     },
     "CreateAwsLogSourceResponse":{
       "type":"structure",
       "members":{
-        "failed":{"shape":"AccountList"},
-        "processing":{"shape":"AccountList"}
+        "failed":{"shape":"AccountList"}
       }
     },
     "CreateCustomLogSourceRequest":{
       "type":"structure",
-      "required":[
-        "customSourceName",
-        "eventClass",
-        "glueInvocationRoleArn",
-        "logProviderAccountId"
-      ],
+      "required":["sourceName"],
       "members":{
-        "customSourceName":{"shape":"CustomSourceType"},
-        "eventClass":{"shape":"OcsfEventClass"},
-        "glueInvocationRoleArn":{"shape":"RoleArn"},
-        "logProviderAccountId":{"shape":"AwsAccountId"}
+        "configuration":{"shape":"CustomLogSourceConfiguration"},
+        "eventClasses":{"shape":"OcsfEventClassList"},
+        "sourceName":{"shape":"CustomLogSourceName"},
+        "sourceVersion":{"shape":"CustomLogSourceVersion"}
       }
     },
     "CreateCustomLogSourceResponse":{
       "type":"structure",
-      "required":[
-        "customDataLocation",
-        "glueCrawlerName",
-        "glueDatabaseName",
-        "glueTableName",
-        "logProviderAccessRoleArn"
-      ],
       "members":{
-        "customDataLocation":{"shape":"String"},
-        "glueCrawlerName":{"shape":"String"},
-        "glueDatabaseName":{"shape":"String"},
-        "glueTableName":{"shape":"String"},
-        "logProviderAccessRoleArn":{"shape":"String"}
+        "source":{"shape":"CustomLogSourceResource"}
       }
     },
-    "CreateDatalakeAutoEnableRequest":{
-      "type":"structure",
-      "required":["configurationForNewAccounts"],
-      "members":{
-        "configurationForNewAccounts":{"shape":"AutoEnableNewRegionConfigurationList"}
-      }
-    },
-    "CreateDatalakeAutoEnableResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "CreateDatalakeDelegatedAdminRequest":{
-      "type":"structure",
-      "required":["account"],
-      "members":{
-        "account":{"shape":"SafeString"}
-      }
-    },
-    "CreateDatalakeDelegatedAdminResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "CreateDatalakeExceptionsSubscriptionRequest":{
+    "CreateDataLakeExceptionSubscriptionRequest":{
       "type":"structure",
       "required":[
         "notificationEndpoint",
         "subscriptionProtocol"
       ],
       "members":{
+        "exceptionTimeToLive":{"shape":"CreateDataLakeExceptionSubscriptionRequestExceptionTimeToLiveLong"},
         "notificationEndpoint":{"shape":"SafeString"},
-        "subscriptionProtocol":{"shape":"SubscriptionProtocolType"}
+        "subscriptionProtocol":{"shape":"SubscriptionProtocol"}
       }
     },
-    "CreateDatalakeExceptionsSubscriptionResponse":{
+    "CreateDataLakeExceptionSubscriptionRequestExceptionTimeToLiveLong":{
+      "type":"long",
+      "box":true,
+      "min":1
+    },
+    "CreateDataLakeExceptionSubscriptionResponse":{
       "type":"structure",
       "members":{
       }
     },
-    "CreateDatalakeRequest":{
+    "CreateDataLakeOrganizationConfigurationRequest":{
       "type":"structure",
+      "required":["autoEnableNewAccount"],
       "members":{
-        "configurations":{"shape":"LakeConfigurationRequestMap"},
-        "enableAll":{"shape":"Boolean"},
-        "metaStoreManagerRoleArn":{"shape":"RoleArn"},
-        "regions":{"shape":"RegionSet"}
+        "autoEnableNewAccount":{"shape":"DataLakeAutoEnableNewAccountConfigurationList"}
       }
     },
-    "CreateDatalakeResponse":{
+    "CreateDataLakeOrganizationConfigurationResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "CreateDataLakeRequest":{
+      "type":"structure",
+      "required":[
+        "configurations",
+        "metaStoreManagerRoleArn"
+      ],
+      "members":{
+        "configurations":{"shape":"DataLakeConfigurationList"},
+        "metaStoreManagerRoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "CreateDataLakeResponse":{
+      "type":"structure",
+      "members":{
+        "dataLakes":{"shape":"DataLakeResourceList"}
+      }
+    },
+    "CreateSubscriberNotificationRequest":{
+      "type":"structure",
+      "required":[
+        "configuration",
+        "subscriberId"
+      ],
+      "members":{
+        "configuration":{"shape":"NotificationConfiguration"},
+        "subscriberId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"subscriberId"
+        }
+      }
+    },
+    "CreateSubscriberNotificationResponse":{
+      "type":"structure",
+      "members":{
+        "subscriberEndpoint":{"shape":"SafeString"}
       }
     },
     "CreateSubscriberRequest":{
       "type":"structure",
       "required":[
-        "accountId",
-        "externalId",
-        "sourceTypes",
+        "sources",
+        "subscriberIdentity",
         "subscriberName"
       ],
       "members":{
         "accessTypes":{"shape":"AccessTypeList"},
-        "accountId":{"shape":"AwsAccountId"},
-        "externalId":{"shape":"SafeString"},
-        "sourceTypes":{"shape":"SourceTypeList"},
+        "sources":{"shape":"LogSourceResourceList"},
         "subscriberDescription":{"shape":"DescriptionString"},
+        "subscriberIdentity":{"shape":"AwsIdentity"},
         "subscriberName":{"shape":"CreateSubscriberRequestSubscriberNameString"}
       }
     },
@@ -834,140 +775,315 @@
     },
     "CreateSubscriberResponse":{
       "type":"structure",
-      "required":["subscriptionId"],
       "members":{
-        "resourceShareArn":{"shape":"ResourceShareArn"},
-        "resourceShareName":{"shape":"ResourceShareName"},
-        "roleArn":{"shape":"RoleArn"},
-        "s3BucketArn":{"shape":"S3BucketArn"},
-        "snsArn":{"shape":"SnsTopicArn"},
-        "subscriptionId":{"shape":"UUID"}
+        "subscriber":{"shape":"SubscriberResource"}
       }
     },
-    "CreateSubscriptionNotificationConfigurationRequest":{
-      "type":"structure",
-      "required":["subscriptionId"],
-      "members":{
-        "createSqs":{"shape":"Boolean"},
-        "httpsApiKeyName":{"shape":"String"},
-        "httpsApiKeyValue":{"shape":"String"},
-        "httpsMethod":{"shape":"HttpsMethod"},
-        "roleArn":{"shape":"RoleArn"},
-        "subscriptionEndpoint":{"shape":"CreateSubscriptionNotificationConfigurationRequestSubscriptionEndpointString"},
-        "subscriptionId":{
-          "shape":"UUID",
-          "location":"uri",
-          "locationName":"subscriptionId"
-        }
-      }
-    },
-    "CreateSubscriptionNotificationConfigurationRequestSubscriptionEndpointString":{
-      "type":"string",
-      "pattern":"^(arn:aws:.+$|https?://.+$)"
-    },
-    "CreateSubscriptionNotificationConfigurationResponse":{
+    "CustomLogSourceAttributes":{
       "type":"structure",
       "members":{
-        "queueArn":{"shape":"SafeString"}
+        "crawlerArn":{"shape":"AmazonResourceName"},
+        "databaseArn":{"shape":"AmazonResourceName"},
+        "tableArn":{"shape":"AmazonResourceName"}
       }
     },
-    "CustomSourceType":{
+    "CustomLogSourceConfiguration":{
+      "type":"structure",
+      "required":[
+        "crawlerConfiguration",
+        "providerIdentity"
+      ],
+      "members":{
+        "crawlerConfiguration":{"shape":"CustomLogSourceCrawlerConfiguration"},
+        "providerIdentity":{"shape":"AwsIdentity"}
+      }
+    },
+    "CustomLogSourceCrawlerConfiguration":{
+      "type":"structure",
+      "required":["roleArn"],
+      "members":{
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "CustomLogSourceName":{
       "type":"string",
+      "max":64,
+      "min":1,
       "pattern":"^[\\\\\\w\\-_:/.]*$"
+    },
+    "CustomLogSourceProvider":{
+      "type":"structure",
+      "members":{
+        "location":{"shape":"S3URI"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "CustomLogSourceResource":{
+      "type":"structure",
+      "members":{
+        "attributes":{"shape":"CustomLogSourceAttributes"},
+        "provider":{"shape":"CustomLogSourceProvider"},
+        "sourceName":{"shape":"CustomLogSourceName"},
+        "sourceVersion":{"shape":"CustomLogSourceVersion"}
+      }
+    },
+    "CustomLogSourceVersion":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"^[A-Za-z0-9\\-\\.\\_]*$"
+    },
+    "DataLakeAutoEnableNewAccountConfiguration":{
+      "type":"structure",
+      "required":[
+        "region",
+        "sources"
+      ],
+      "members":{
+        "region":{"shape":"Region"},
+        "sources":{"shape":"AwsLogSourceResourceList"}
+      }
+    },
+    "DataLakeAutoEnableNewAccountConfigurationList":{
+      "type":"list",
+      "member":{"shape":"DataLakeAutoEnableNewAccountConfiguration"}
+    },
+    "DataLakeConfiguration":{
+      "type":"structure",
+      "required":["region"],
+      "members":{
+        "encryptionConfiguration":{"shape":"DataLakeEncryptionConfiguration"},
+        "lifecycleConfiguration":{"shape":"DataLakeLifecycleConfiguration"},
+        "region":{"shape":"Region"},
+        "replicationConfiguration":{"shape":"DataLakeReplicationConfiguration"}
+      }
+    },
+    "DataLakeConfigurationList":{
+      "type":"list",
+      "member":{"shape":"DataLakeConfiguration"}
+    },
+    "DataLakeEncryptionConfiguration":{
+      "type":"structure",
+      "members":{
+        "kmsKeyId":{"shape":"String"}
+      }
+    },
+    "DataLakeException":{
+      "type":"structure",
+      "members":{
+        "exception":{"shape":"SafeString"},
+        "region":{"shape":"Region"},
+        "remediation":{"shape":"SafeString"},
+        "timestamp":{"shape":"SyntheticTimestamp_date_time"}
+      }
+    },
+    "DataLakeExceptionList":{
+      "type":"list",
+      "member":{"shape":"DataLakeException"}
+    },
+    "DataLakeLifecycleConfiguration":{
+      "type":"structure",
+      "members":{
+        "expiration":{"shape":"DataLakeLifecycleExpiration"},
+        "transitions":{"shape":"DataLakeLifecycleTransitionList"}
+      }
+    },
+    "DataLakeLifecycleExpiration":{
+      "type":"structure",
+      "members":{
+        "days":{"shape":"DataLakeLifecycleExpirationDaysInteger"}
+      }
+    },
+    "DataLakeLifecycleExpirationDaysInteger":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
+    "DataLakeLifecycleTransition":{
+      "type":"structure",
+      "members":{
+        "days":{"shape":"DataLakeLifecycleTransitionDaysInteger"},
+        "storageClass":{"shape":"DataLakeStorageClass"}
+      }
+    },
+    "DataLakeLifecycleTransitionDaysInteger":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
+    "DataLakeLifecycleTransitionList":{
+      "type":"list",
+      "member":{"shape":"DataLakeLifecycleTransition"}
+    },
+    "DataLakeReplicationConfiguration":{
+      "type":"structure",
+      "members":{
+        "regions":{"shape":"RegionList"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "DataLakeResource":{
+      "type":"structure",
+      "required":[
+        "dataLakeArn",
+        "region"
+      ],
+      "members":{
+        "createStatus":{"shape":"DataLakeStatus"},
+        "dataLakeArn":{"shape":"AmazonResourceName"},
+        "encryptionConfiguration":{"shape":"DataLakeEncryptionConfiguration"},
+        "lifecycleConfiguration":{"shape":"DataLakeLifecycleConfiguration"},
+        "region":{"shape":"Region"},
+        "replicationConfiguration":{"shape":"DataLakeReplicationConfiguration"},
+        "s3BucketArn":{"shape":"S3BucketArn"},
+        "updateStatus":{"shape":"DataLakeUpdateStatus"}
+      }
+    },
+    "DataLakeResourceList":{
+      "type":"list",
+      "member":{"shape":"DataLakeResource"}
+    },
+    "DataLakeSource":{
+      "type":"structure",
+      "members":{
+        "account":{"shape":"String"},
+        "eventClasses":{"shape":"OcsfEventClassList"},
+        "sourceName":{"shape":"String"},
+        "sourceStatuses":{"shape":"DataLakeSourceStatusList"}
+      }
+    },
+    "DataLakeSourceList":{
+      "type":"list",
+      "member":{"shape":"DataLakeSource"}
+    },
+    "DataLakeSourceStatus":{
+      "type":"structure",
+      "members":{
+        "resource":{"shape":"String"},
+        "status":{"shape":"SourceCollectionStatus"}
+      }
+    },
+    "DataLakeSourceStatusList":{
+      "type":"list",
+      "member":{"shape":"DataLakeSourceStatus"}
+    },
+    "DataLakeStatus":{
+      "type":"string",
+      "enum":[
+        "INITIALIZED",
+        "PENDING",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "DataLakeStorageClass":{"type":"string"},
+    "DataLakeUpdateException":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"String"},
+        "reason":{"shape":"String"}
+      }
+    },
+    "DataLakeUpdateStatus":{
+      "type":"structure",
+      "members":{
+        "exception":{"shape":"DataLakeUpdateException"},
+        "requestId":{"shape":"String"},
+        "status":{"shape":"DataLakeStatus"}
+      }
     },
     "DeleteAwsLogSourceRequest":{
       "type":"structure",
-      "required":["inputOrder"],
+      "required":["sources"],
       "members":{
-        "disableAllDimensions":{"shape":"AllDimensionsMap"},
-        "disableSingleDimension":{"shape":"InputSet"},
-        "disableTwoDimensions":{"shape":"TwoDimensionsMap"},
-        "inputOrder":{"shape":"DimensionSet"}
+        "sources":{"shape":"AwsLogSourceConfigurationList"}
       }
     },
     "DeleteAwsLogSourceResponse":{
       "type":"structure",
       "members":{
-        "failed":{"shape":"AccountList"},
-        "processing":{"shape":"AccountList"}
+        "failed":{"shape":"AccountList"}
       }
     },
     "DeleteCustomLogSourceRequest":{
       "type":"structure",
-      "required":["customSourceName"],
+      "required":["sourceName"],
       "members":{
-        "customSourceName":{
-          "shape":"String",
+        "sourceName":{
+          "shape":"CustomLogSourceName",
+          "location":"uri",
+          "locationName":"sourceName"
+        },
+        "sourceVersion":{
+          "shape":"CustomLogSourceVersion",
           "location":"querystring",
-          "locationName":"customSourceName"
+          "locationName":"sourceVersion"
         }
       }
     },
     "DeleteCustomLogSourceResponse":{
       "type":"structure",
-      "required":["customDataLocation"],
       "members":{
-        "customDataLocation":{"shape":"String"}
       }
     },
-    "DeleteDatalakeAutoEnableRequest":{
-      "type":"structure",
-      "required":["removeFromConfigurationForNewAccounts"],
-      "members":{
-        "removeFromConfigurationForNewAccounts":{"shape":"AutoEnableNewRegionConfigurationList"}
-      }
-    },
-    "DeleteDatalakeAutoEnableResponse":{
+    "DeleteDataLakeExceptionSubscriptionRequest":{
       "type":"structure",
       "members":{
       }
     },
-    "DeleteDatalakeDelegatedAdminRequest":{
+    "DeleteDataLakeExceptionSubscriptionResponse":{
       "type":"structure",
-      "required":["account"],
       "members":{
-        "account":{
-          "shape":"SafeString",
+      }
+    },
+    "DeleteDataLakeOrganizationConfigurationRequest":{
+      "type":"structure",
+      "required":["autoEnableNewAccount"],
+      "members":{
+        "autoEnableNewAccount":{"shape":"DataLakeAutoEnableNewAccountConfigurationList"}
+      }
+    },
+    "DeleteDataLakeOrganizationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteDataLakeRequest":{
+      "type":"structure",
+      "required":["regions"],
+      "members":{
+        "regions":{"shape":"RegionList"}
+      }
+    },
+    "DeleteDataLakeResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteSubscriberNotificationRequest":{
+      "type":"structure",
+      "required":["subscriberId"],
+      "members":{
+        "subscriberId":{
+          "shape":"UUID",
           "location":"uri",
-          "locationName":"account"
+          "locationName":"subscriberId"
         }
       }
     },
-    "DeleteDatalakeDelegatedAdminResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DeleteDatalakeExceptionsSubscriptionRequest":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DeleteDatalakeExceptionsSubscriptionResponse":{
-      "type":"structure",
-      "required":["status"],
-      "members":{
-        "status":{"shape":"SafeString"}
-      }
-    },
-    "DeleteDatalakeRequest":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DeleteDatalakeResponse":{
+    "DeleteSubscriberNotificationResponse":{
       "type":"structure",
       "members":{
       }
     },
     "DeleteSubscriberRequest":{
       "type":"structure",
-      "required":["id"],
+      "required":["subscriberId"],
       "members":{
-        "id":{
-          "shape":"String",
-          "location":"querystring",
-          "locationName":"id"
+        "subscriberId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"subscriberId"
         }
       }
     },
@@ -976,18 +1092,12 @@
       "members":{
       }
     },
-    "DeleteSubscriptionNotificationConfigurationRequest":{
+    "DeregisterDataLakeDelegatedAdministratorRequest":{
       "type":"structure",
-      "required":["subscriptionId"],
       "members":{
-        "subscriptionId":{
-          "shape":"UUID",
-          "location":"uri",
-          "locationName":"subscriptionId"
-        }
       }
     },
-    "DeleteSubscriptionNotificationConfigurationResponse":{
+    "DeregisterDataLakeDelegatedAdministratorResponse":{
       "type":"structure",
       "members":{
       }
@@ -996,137 +1106,60 @@
       "type":"string",
       "pattern":"^[\\\\\\w\\s\\-_:/,.@=+]*$"
     },
-    "Dimension":{
+    "ExternalId":{
       "type":"string",
-      "enum":[
-        "REGION",
-        "SOURCE_TYPE",
-        "MEMBER"
-      ]
+      "max":1224,
+      "min":2,
+      "pattern":"^[\\w+=,.@:\\/-]*$"
     },
-    "DimensionSet":{
-      "type":"list",
-      "member":{"shape":"Dimension"}
-    },
-    "EndpointProtocol":{
-      "type":"string",
-      "enum":[
-        "HTTPS",
-        "SQS"
-      ]
-    },
-    "EventBridgeException":{
-      "type":"structure",
-      "required":["message"],
-      "members":{
-        "message":{"shape":"String"}
-      },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "Failures":{
-      "type":"structure",
-      "required":[
-        "exceptionMessage",
-        "remediation",
-        "timestamp"
-      ],
-      "members":{
-        "exceptionMessage":{"shape":"SafeString"},
-        "remediation":{"shape":"SafeString"},
-        "timestamp":{"shape":"SyntheticTimestamp_date_time"}
-      }
-    },
-    "FailuresResponse":{
-      "type":"structure",
-      "members":{
-        "failures":{"shape":"Failureslist"},
-        "region":{"shape":"SafeString"}
-      }
-    },
-    "FailuresResponseList":{
-      "type":"list",
-      "member":{"shape":"FailuresResponse"}
-    },
-    "Failureslist":{
-      "type":"list",
-      "member":{"shape":"Failures"}
-    },
-    "GetDatalakeAutoEnableRequest":{
+    "GetDataLakeExceptionSubscriptionRequest":{
       "type":"structure",
       "members":{
       }
     },
-    "GetDatalakeAutoEnableResponse":{
-      "type":"structure",
-      "required":["autoEnableNewAccounts"],
-      "members":{
-        "autoEnableNewAccounts":{"shape":"AutoEnableNewRegionConfigurationList"}
-      }
-    },
-    "GetDatalakeExceptionsExpiryRequest":{
+    "GetDataLakeExceptionSubscriptionResponse":{
       "type":"structure",
       "members":{
+        "exceptionTimeToLive":{"shape":"Long"},
+        "notificationEndpoint":{"shape":"SafeString"},
+        "subscriptionProtocol":{"shape":"SubscriptionProtocol"}
       }
     },
-    "GetDatalakeExceptionsExpiryResponse":{
-      "type":"structure",
-      "required":["exceptionMessageExpiry"],
-      "members":{
-        "exceptionMessageExpiry":{"shape":"Long"}
-      }
-    },
-    "GetDatalakeExceptionsSubscriptionRequest":{
+    "GetDataLakeOrganizationConfigurationRequest":{
       "type":"structure",
       "members":{
       }
     },
-    "GetDatalakeExceptionsSubscriptionResponse":{
+    "GetDataLakeOrganizationConfigurationResponse":{
       "type":"structure",
-      "required":["protocolAndNotificationEndpoint"],
       "members":{
-        "protocolAndNotificationEndpoint":{"shape":"ProtocolAndNotificationEndpoint"}
+        "autoEnableNewAccount":{"shape":"DataLakeAutoEnableNewAccountConfigurationList"}
       }
     },
-    "GetDatalakeRequest":{
+    "GetDataLakeSourcesRequest":{
       "type":"structure",
       "members":{
+        "accounts":{"shape":"AccountList"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
-    "GetDatalakeResponse":{
-      "type":"structure",
-      "required":["configurations"],
-      "members":{
-        "configurations":{"shape":"LakeConfigurationResponseMap"}
-      }
-    },
-    "GetDatalakeStatusRequest":{
+    "GetDataLakeSourcesResponse":{
       "type":"structure",
       "members":{
-        "accountSet":{"shape":"InputSet"},
-        "maxAccountResults":{"shape":"Integer"},
-        "nextToken":{"shape":"SafeString"}
-      }
-    },
-    "GetDatalakeStatusResponse":{
-      "type":"structure",
-      "required":["accountSourcesList"],
-      "members":{
-        "accountSourcesList":{"shape":"AccountSourcesList"},
-        "nextToken":{"shape":"SafeString"}
+        "dataLakeArn":{"shape":"AmazonResourceName"},
+        "dataLakeSources":{"shape":"DataLakeSourceList"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "GetSubscriberRequest":{
       "type":"structure",
-      "required":["id"],
+      "required":["subscriberId"],
       "members":{
-        "id":{
-          "shape":"String",
+        "subscriberId":{
+          "shape":"UUID",
           "location":"uri",
-          "locationName":"id"
+          "locationName":"subscriberId"
         }
       }
     },
@@ -1136,16 +1169,30 @@
         "subscriber":{"shape":"SubscriberResource"}
       }
     },
-    "HttpsMethod":{
+    "HttpMethod":{
       "type":"string",
       "enum":[
         "POST",
         "PUT"
       ]
     },
-    "InputSet":{
-      "type":"list",
-      "member":{"shape":"SafeString"}
+    "HttpsNotificationConfiguration":{
+      "type":"structure",
+      "required":[
+        "endpoint",
+        "targetRoleArn"
+      ],
+      "members":{
+        "authorizationApiKeyName":{"shape":"String"},
+        "authorizationApiKeyValue":{"shape":"String"},
+        "endpoint":{"shape":"HttpsNotificationConfigurationEndpointString"},
+        "httpMethod":{"shape":"HttpMethod"},
+        "targetRoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "HttpsNotificationConfigurationEndpointString":{
+      "type":"string",
+      "pattern":"^https?://.+$"
     },
     "Integer":{
       "type":"integer",
@@ -1153,117 +1200,72 @@
     },
     "InternalServerException":{
       "type":"structure",
-      "required":["message"],
       "members":{
-        "message":{"shape":"String"},
-        "retryAfterSeconds":{
-          "shape":"Integer",
-          "location":"header",
-          "locationName":"Retry-After"
-        }
+        "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
     },
-    "InvalidInputException":{
-      "type":"structure",
-      "required":["message"],
-      "members":{
-        "message":{"shape":"String"}
-      },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "LakeConfigurationRequest":{
+    "ListDataLakeExceptionsRequest":{
       "type":"structure",
       "members":{
-        "encryptionKey":{"shape":"String"},
-        "replicationDestinationRegions":{"shape":"RegionSet"},
-        "replicationRoleArn":{"shape":"RoleArn"},
-        "retentionSettings":{"shape":"RetentionSettingList"},
-        "tagsMap":{"shape":"TagsMap"}
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"},
+        "regions":{"shape":"RegionList"}
       }
     },
-    "LakeConfigurationRequestMap":{
-      "type":"map",
-      "key":{"shape":"Region"},
-      "value":{"shape":"LakeConfigurationRequest"}
-    },
-    "LakeConfigurationResponse":{
+    "ListDataLakeExceptionsResponse":{
       "type":"structure",
       "members":{
-        "encryptionKey":{"shape":"String"},
-        "replicationDestinationRegions":{"shape":"RegionSet"},
-        "replicationRoleArn":{"shape":"RoleArn"},
-        "retentionSettings":{"shape":"RetentionSettingList"},
-        "s3BucketArn":{"shape":"S3BucketArn"},
-        "status":{"shape":"settingsStatus"},
-        "tagsMap":{"shape":"TagsMap"},
-        "updateStatus":{"shape":"UpdateStatus"}
+        "exceptions":{"shape":"DataLakeExceptionList"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
-    "LakeConfigurationResponseMap":{
-      "type":"map",
-      "key":{"shape":"Region"},
-      "value":{"shape":"LakeConfigurationResponse"}
-    },
-    "LastUpdateFailure":{
+    "ListDataLakesRequest":{
       "type":"structure",
       "members":{
-        "code":{"shape":"String"},
-        "reason":{"shape":"String"}
+        "regions":{
+          "shape":"RegionList",
+          "location":"querystring",
+          "locationName":"regions"
+        }
       }
     },
-    "ListDatalakeExceptionsRequest":{
+    "ListDataLakesResponse":{
       "type":"structure",
       "members":{
-        "maxFailures":{"shape":"Integer"},
-        "nextToken":{"shape":"SafeString"},
-        "regionSet":{"shape":"RegionSet"}
-      }
-    },
-    "ListDatalakeExceptionsResponse":{
-      "type":"structure",
-      "required":["nonRetryableFailures"],
-      "members":{
-        "nextToken":{"shape":"SafeString"},
-        "nonRetryableFailures":{"shape":"FailuresResponseList"}
+        "dataLakes":{"shape":"DataLakeResourceList"}
       }
     },
     "ListLogSourcesRequest":{
       "type":"structure",
       "members":{
-        "inputOrder":{"shape":"DimensionSet"},
-        "listAllDimensions":{"shape":"AllDimensionsMap"},
-        "listSingleDimension":{"shape":"InputSet"},
-        "listTwoDimensions":{"shape":"TwoDimensionsMap"},
-        "maxResults":{"shape":"Integer"},
-        "nextToken":{"shape":"SafeString"}
+        "accounts":{"shape":"AccountList"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"},
+        "regions":{"shape":"RegionList"},
+        "sources":{"shape":"LogSourceResourceList"}
       }
     },
     "ListLogSourcesResponse":{
       "type":"structure",
-      "required":["regionSourceTypesAccountsList"],
       "members":{
-        "nextToken":{"shape":"String"},
-        "regionSourceTypesAccountsList":{"shape":"RegionSourceTypesAccountsList"}
+        "nextToken":{"shape":"NextToken"},
+        "sources":{"shape":"LogSourceList"}
       }
     },
     "ListSubscribersRequest":{
       "type":"structure",
       "members":{
         "maxResults":{
-          "shape":"Integer",
+          "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         }
@@ -1271,106 +1273,90 @@
     },
     "ListSubscribersResponse":{
       "type":"structure",
-      "required":["subscribers"],
       "members":{
-        "nextToken":{"shape":"String"},
-        "subscribers":{"shape":"SubscriberList"}
+        "nextToken":{"shape":"NextToken"},
+        "subscribers":{"shape":"SubscriberResourceList"}
       }
     },
-    "LogsStatus":{
+    "LogSource":{
       "type":"structure",
-      "required":[
-        "healthStatus",
-        "pathToLogs"
-      ],
       "members":{
-        "healthStatus":{"shape":"SourceStatus"},
-        "pathToLogs":{"shape":"String"}
+        "account":{"shape":"AwsAccountId"},
+        "region":{"shape":"Region"},
+        "sources":{"shape":"LogSourceResourceList"}
       }
     },
-    "LogsStatusList":{
+    "LogSourceList":{
       "type":"list",
-      "member":{"shape":"LogsStatus"}
+      "member":{"shape":"LogSource"}
+    },
+    "LogSourceResource":{
+      "type":"structure",
+      "members":{
+        "awsLogSource":{"shape":"AwsLogSourceResource"},
+        "customLogSource":{"shape":"CustomLogSourceResource"}
+      },
+      "union":true
+    },
+    "LogSourceResourceList":{
+      "type":"list",
+      "member":{"shape":"LogSourceResource"}
     },
     "Long":{
       "type":"long",
       "box":true
     },
-    "OcsfEventClass":{
-      "type":"string",
-      "enum":[
-        "ACCESS_ACTIVITY",
-        "FILE_ACTIVITY",
-        "KERNEL_ACTIVITY",
-        "KERNEL_EXTENSION",
-        "MEMORY_ACTIVITY",
-        "MODULE_ACTIVITY",
-        "PROCESS_ACTIVITY",
-        "REGISTRY_KEY_ACTIVITY",
-        "REGISTRY_VALUE_ACTIVITY",
-        "RESOURCE_ACTIVITY",
-        "SCHEDULED_JOB_ACTIVITY",
-        "SECURITY_FINDING",
-        "ACCOUNT_CHANGE",
-        "AUTHENTICATION",
-        "AUTHORIZATION",
-        "ENTITY_MANAGEMENT_AUDIT",
-        "DHCP_ACTIVITY",
-        "NETWORK_ACTIVITY",
-        "DNS_ACTIVITY",
-        "FTP_ACTIVITY",
-        "HTTP_ACTIVITY",
-        "RDP_ACTIVITY",
-        "SMB_ACTIVITY",
-        "SSH_ACTIVITY",
-        "CLOUD_API",
-        "CONTAINER_LIFECYCLE",
-        "DATABASE_LIFECYCLE",
-        "CONFIG_STATE",
-        "CLOUD_STORAGE",
-        "INVENTORY_INFO",
-        "RFB_ACTIVITY",
-        "SMTP_ACTIVITY",
-        "VIRTUAL_MACHINE_ACTIVITY"
-      ]
+    "MaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
     },
-    "ProtocolAndNotificationEndpoint":{
+    "NextToken":{
+      "type":"string",
+      "pattern":"^[\\\\\\w\\-_:/.@=+]*$"
+    },
+    "NotificationConfiguration":{
       "type":"structure",
       "members":{
-        "endpoint":{"shape":"SafeString"},
-        "protocol":{"shape":"SafeString"}
-      }
+        "httpsNotificationConfiguration":{"shape":"HttpsNotificationConfiguration"},
+        "sqsNotificationConfiguration":{"shape":"SqsNotificationConfiguration"}
+      },
+      "union":true
+    },
+    "OcsfEventClass":{
+      "type":"string",
+      "pattern":"^[A-Z\\_0-9]*$"
+    },
+    "OcsfEventClassList":{
+      "type":"list",
+      "member":{"shape":"OcsfEventClass"}
     },
     "Region":{
       "type":"string",
-      "enum":[
-        "us-east-1",
-        "us-west-2",
-        "eu-central-1",
-        "us-east-2",
-        "eu-west-1",
-        "ap-northeast-1",
-        "ap-southeast-2"
-      ]
+      "pattern":"^(af|ap|ca|eu|me|sa|us)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\\d+$"
     },
-    "RegionSet":{
+    "RegionList":{
       "type":"list",
       "member":{"shape":"Region"}
     },
-    "RegionSourceTypesAccountsList":{
-      "type":"list",
-      "member":{"shape":"AllDimensionsMap"}
+    "RegisterDataLakeDelegatedAdministratorRequest":{
+      "type":"structure",
+      "required":["accountId"],
+      "members":{
+        "accountId":{"shape":"SafeString"}
+      }
+    },
+    "RegisterDataLakeDelegatedAdministratorResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "ResourceNotFoundException":{
       "type":"structure",
-      "required":[
-        "message",
-        "resourceId",
-        "resourceType"
-      ],
       "members":{
         "message":{"shape":"String"},
-        "resourceId":{"shape":"String"},
+        "resourceName":{"shape":"String"},
         "resourceType":{"shape":"String"}
       },
       "error":{
@@ -1384,145 +1370,67 @@
       "type":"string",
       "pattern":"^LakeFormation(?:-V[0-9]+)-([a-zA-Z0-9]+)-([\\\\\\w\\-_:/.@=+]*)$"
     },
-    "RetentionSetting":{
-      "type":"structure",
-      "members":{
-        "retentionPeriod":{"shape":"RetentionSettingRetentionPeriodInteger"},
-        "storageClass":{"shape":"StorageClass"}
-      }
-    },
-    "RetentionSettingList":{
-      "type":"list",
-      "member":{"shape":"RetentionSetting"}
-    },
-    "RetentionSettingRetentionPeriodInteger":{
-      "type":"integer",
-      "box":true,
-      "min":1
-    },
     "RoleArn":{
       "type":"string",
-      "pattern":"^arn:.*"
+      "pattern":"^arn:.*$"
     },
     "S3BucketArn":{"type":"string"},
-    "S3Exception":{
-      "type":"structure",
-      "required":["message"],
-      "members":{
-        "message":{"shape":"String"}
-      },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
+    "S3URI":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"^s3[an]?://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/[^/].*)+$"
     },
     "SafeString":{
       "type":"string",
       "pattern":"^[\\\\\\w\\-_:/.@=+]*$"
     },
-    "ServiceQuotaExceededException":{
-      "type":"structure",
-      "required":[
-        "message",
-        "quotaCode",
-        "resourceId",
-        "resourceType",
-        "serviceCode"
-      ],
-      "members":{
-        "message":{"shape":"String"},
-        "quotaCode":{"shape":"String"},
-        "resourceId":{"shape":"String"},
-        "resourceType":{"shape":"String"},
-        "serviceCode":{"shape":"String"}
-      },
-      "error":{
-        "httpStatusCode":402,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "SnsTopicArn":{"type":"string"},
-    "SourceStatus":{
+    "SourceCollectionStatus":{
       "type":"string",
       "enum":[
-        "ACTIVE",
-        "DEACTIVATED",
-        "PENDING"
+        "COLLECTING",
+        "MISCONFIGURED",
+        "NOT_COLLECTING"
       ]
     },
-    "SourceType":{
+    "SqsNotificationConfiguration":{
       "type":"structure",
       "members":{
-        "awsSourceType":{"shape":"AwsLogSourceType"},
-        "customSourceType":{"shape":"CustomSourceType"}
-      },
-      "union":true
-    },
-    "SourceTypeList":{
-      "type":"list",
-      "member":{"shape":"SourceType"}
-    },
-    "StorageClass":{
-      "type":"string",
-      "enum":[
-        "STANDARD_IA",
-        "ONEZONE_IA",
-        "INTELLIGENT_TIERING",
-        "GLACIER_IR",
-        "GLACIER",
-        "DEEP_ARCHIVE",
-        "EXPIRE"
-      ]
+      }
     },
     "String":{"type":"string"},
-    "SubscriberList":{
-      "type":"list",
-      "member":{"shape":"SubscriberResource"}
-    },
     "SubscriberResource":{
       "type":"structure",
       "required":[
-        "accountId",
-        "sourceTypes",
-        "subscriptionId"
+        "sources",
+        "subscriberArn",
+        "subscriberId",
+        "subscriberIdentity",
+        "subscriberName"
       ],
       "members":{
         "accessTypes":{"shape":"AccessTypeList"},
-        "accountId":{"shape":"AwsAccountId"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
-        "externalId":{"shape":"SafeString"},
         "resourceShareArn":{"shape":"ResourceShareArn"},
         "resourceShareName":{"shape":"ResourceShareName"},
         "roleArn":{"shape":"RoleArn"},
         "s3BucketArn":{"shape":"S3BucketArn"},
-        "snsArn":{"shape":"SnsTopicArn"},
-        "sourceTypes":{"shape":"SourceTypeList"},
+        "sources":{"shape":"LogSourceResourceList"},
+        "subscriberArn":{"shape":"AmazonResourceName"},
         "subscriberDescription":{"shape":"SafeString"},
+        "subscriberEndpoint":{"shape":"SafeString"},
+        "subscriberId":{"shape":"UUID"},
+        "subscriberIdentity":{"shape":"AwsIdentity"},
         "subscriberName":{"shape":"SafeString"},
-        "subscriptionEndpoint":{"shape":"String"},
-        "subscriptionId":{"shape":"UUID"},
-        "subscriptionProtocol":{"shape":"EndpointProtocol"},
-        "subscriptionStatus":{"shape":"SubscriptionStatus"},
+        "subscriberStatus":{"shape":"SubscriberStatus"},
         "updatedAt":{"shape":"SyntheticTimestamp_date_time"}
       }
     },
-    "SubscriptionProtocolType":{
-      "type":"string",
-      "enum":[
-        "HTTP",
-        "HTTPS",
-        "EMAIL",
-        "EMAIL_JSON",
-        "SMS",
-        "SQS",
-        "LAMBDA",
-        "APP",
-        "FIREHOSE"
-      ]
+    "SubscriberResourceList":{
+      "type":"list",
+      "member":{"shape":"SubscriberResource"}
     },
-    "SubscriptionStatus":{
+    "SubscriberStatus":{
       "type":"string",
       "enum":[
         "ACTIVE",
@@ -1531,18 +1439,16 @@
         "READY"
       ]
     },
+    "SubscriptionProtocol":{
+      "type":"string",
+      "pattern":"^[a-z\\-]*$"
+    },
     "SyntheticTimestamp_date_time":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
-    "TagsMap":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"String"}
-    },
     "ThrottlingException":{
       "type":"structure",
-      "required":["message"],
       "members":{
         "message":{"shape":"String"},
         "quotaCode":{"shape":"String"},
@@ -1560,83 +1466,78 @@
       "exception":true,
       "retryable":{"throttling":true}
     },
-    "TwoDimensionsMap":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"ValueSet"}
-    },
     "UUID":{
       "type":"string",
-      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     },
-    "UpdateDatalakeExceptionsExpiryRequest":{
-      "type":"structure",
-      "required":["exceptionMessageExpiry"],
-      "members":{
-        "exceptionMessageExpiry":{"shape":"UpdateDatalakeExceptionsExpiryRequestExceptionMessageExpiryLong"}
-      }
-    },
-    "UpdateDatalakeExceptionsExpiryRequestExceptionMessageExpiryLong":{
-      "type":"long",
-      "box":true,
-      "min":1
-    },
-    "UpdateDatalakeExceptionsExpiryResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "UpdateDatalakeExceptionsSubscriptionRequest":{
+    "UpdateDataLakeExceptionSubscriptionRequest":{
       "type":"structure",
       "required":[
         "notificationEndpoint",
         "subscriptionProtocol"
       ],
       "members":{
+        "exceptionTimeToLive":{"shape":"UpdateDataLakeExceptionSubscriptionRequestExceptionTimeToLiveLong"},
         "notificationEndpoint":{"shape":"SafeString"},
-        "subscriptionProtocol":{"shape":"SubscriptionProtocolType"}
+        "subscriptionProtocol":{"shape":"SubscriptionProtocol"}
       }
     },
-    "UpdateDatalakeExceptionsSubscriptionResponse":{
+    "UpdateDataLakeExceptionSubscriptionRequestExceptionTimeToLiveLong":{
+      "type":"long",
+      "box":true,
+      "min":1
+    },
+    "UpdateDataLakeExceptionSubscriptionResponse":{
       "type":"structure",
       "members":{
       }
     },
-    "UpdateDatalakeRequest":{
+    "UpdateDataLakeRequest":{
       "type":"structure",
       "required":["configurations"],
       "members":{
-        "configurations":{"shape":"LakeConfigurationRequestMap"}
+        "configurations":{"shape":"DataLakeConfigurationList"}
       }
     },
-    "UpdateDatalakeResponse":{
+    "UpdateDataLakeResponse":{
       "type":"structure",
       "members":{
+        "dataLakes":{"shape":"DataLakeResourceList"}
       }
     },
-    "UpdateStatus":{
+    "UpdateSubscriberNotificationRequest":{
+      "type":"structure",
+      "required":[
+        "configuration",
+        "subscriberId"
+      ],
+      "members":{
+        "configuration":{"shape":"NotificationConfiguration"},
+        "subscriberId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"subscriberId"
+        }
+      }
+    },
+    "UpdateSubscriberNotificationResponse":{
       "type":"structure",
       "members":{
-        "lastUpdateFailure":{"shape":"LastUpdateFailure"},
-        "lastUpdateRequestId":{"shape":"String"},
-        "lastUpdateStatus":{"shape":"settingsStatus"}
+        "subscriberEndpoint":{"shape":"SafeString"}
       }
     },
     "UpdateSubscriberRequest":{
       "type":"structure",
-      "required":[
-        "id",
-        "sourceTypes"
-      ],
+      "required":["subscriberId"],
       "members":{
-        "externalId":{"shape":"SafeString"},
-        "id":{
-          "shape":"String",
-          "location":"uri",
-          "locationName":"id"
-        },
-        "sourceTypes":{"shape":"SourceTypeList"},
+        "sources":{"shape":"LogSourceResourceList"},
         "subscriberDescription":{"shape":"DescriptionString"},
+        "subscriberId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"subscriberId"
+        },
+        "subscriberIdentity":{"shape":"AwsIdentity"},
         "subscriberName":{"shape":"UpdateSubscriberRequestSubscriberNameString"}
       }
     },
@@ -1651,87 +1552,6 @@
       "members":{
         "subscriber":{"shape":"SubscriberResource"}
       }
-    },
-    "UpdateSubscriptionNotificationConfigurationRequest":{
-      "type":"structure",
-      "required":["subscriptionId"],
-      "members":{
-        "createSqs":{"shape":"Boolean"},
-        "httpsApiKeyName":{"shape":"String"},
-        "httpsApiKeyValue":{"shape":"String"},
-        "httpsMethod":{"shape":"HttpsMethod"},
-        "roleArn":{"shape":"RoleArn"},
-        "subscriptionEndpoint":{"shape":"UpdateSubscriptionNotificationConfigurationRequestSubscriptionEndpointString"},
-        "subscriptionId":{
-          "shape":"UUID",
-          "location":"uri",
-          "locationName":"subscriptionId"
-        }
-      }
-    },
-    "UpdateSubscriptionNotificationConfigurationRequestSubscriptionEndpointString":{
-      "type":"string",
-      "pattern":"^(arn:aws:.+$|https?://.+$)"
-    },
-    "UpdateSubscriptionNotificationConfigurationResponse":{
-      "type":"structure",
-      "members":{
-        "queueArn":{"shape":"SafeString"}
-      }
-    },
-    "ValidationException":{
-      "type":"structure",
-      "required":[
-        "message",
-        "reason"
-      ],
-      "members":{
-        "fieldList":{"shape":"ValidationExceptionFieldList"},
-        "message":{"shape":"String"},
-        "reason":{"shape":"ValidationExceptionReason"}
-      },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "ValidationExceptionField":{
-      "type":"structure",
-      "required":[
-        "message",
-        "name"
-      ],
-      "members":{
-        "message":{"shape":"String"},
-        "name":{"shape":"String"}
-      }
-    },
-    "ValidationExceptionFieldList":{
-      "type":"list",
-      "member":{"shape":"ValidationExceptionField"}
-    },
-    "ValidationExceptionReason":{
-      "type":"string",
-      "enum":[
-        "unknownOperation",
-        "cannotParse",
-        "fieldValidationFailed",
-        "other"
-      ]
-    },
-    "ValueSet":{
-      "type":"list",
-      "member":{"shape":"String"}
-    },
-    "settingsStatus":{
-      "type":"string",
-      "enum":[
-        "INITIALIZED",
-        "PENDING",
-        "COMPLETED",
-        "FAILED"
-      ]
     }
   }
 }

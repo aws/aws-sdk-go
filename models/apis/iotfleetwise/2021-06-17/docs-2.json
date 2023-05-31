@@ -10,7 +10,7 @@
     "CreateFleet": "<p> Creates a fleet that represents a group of vehicles. </p> <note> <p>You must create both a signal catalog and vehicles before you can create a fleet. </p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleets.html\">Fleets</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.</p>",
     "CreateModelManifest": "<p> Creates a vehicle model (model manifest) that specifies signals (attributes, branches, sensors, and actuators). </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/vehicle-models.html\">Vehicle models</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.</p>",
     "CreateSignalCatalog": "<p> Creates a collection of standardized signals that can be reused to create vehicle models.</p>",
-    "CreateVehicle": "<p> Creates a vehicle, which is an instance of a vehicle model (model manifest). Vehicles created from the same vehicle model consist of the same signals inherited from the vehicle model.</p> <note> <p> If you have an existing Amazon Web Services IoT Thing, you can use Amazon Web Services IoT FleetWise to create a vehicle and collect data from your thing. </p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/create-vehicle-cli.html\">Create a vehicle (AWS CLI)</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.</p>",
+    "CreateVehicle": "<p> Creates a vehicle, which is an instance of a vehicle model (model manifest). Vehicles created from the same vehicle model consist of the same signals inherited from the vehicle model.</p> <note> <p> If you have an existing Amazon Web Services IoT thing, you can use Amazon Web Services IoT FleetWise to create a vehicle and collect data from your thing. </p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/create-vehicle-cli.html\">Create a vehicle (AWS CLI)</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.</p>",
     "DeleteCampaign": "<p> Deletes a data collection campaign. Deleting a campaign suspends all data collection and removes it from any vehicles. </p>",
     "DeleteDecoderManifest": "<p> Deletes a decoder manifest. You can't delete a decoder manifest if it has vehicles associated with it. </p> <note> <p>If the decoder manifest is successfully deleted, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body.</p> </note>",
     "DeleteFleet": "<p> Deletes a fleet. Before you delete a fleet, all vehicles must be dissociated from the fleet. For more information, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/delete-fleet-cli.html\">Delete a fleet (AWS CLI)</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.</p> <note> <p>If the fleet is successfully deleted, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body.</p> </note>",
@@ -43,7 +43,7 @@
     "ListVehicles": "<p> Retrieves a list of summaries of created vehicles. </p> <note> <p>This API operation uses pagination. Specify the <code>nextToken</code> parameter in the request to return more results.</p> </note>",
     "ListVehiclesInFleet": "<p> Retrieves a list of summaries of all vehicles associated with a fleet. </p> <note> <p>This API operation uses pagination. Specify the <code>nextToken</code> parameter in the request to return more results.</p> </note>",
     "PutLoggingOptions": "<p>Creates or updates the logging option.</p>",
-    "RegisterAccount": "<p>Registers your Amazon Web Services account, IAM, and Amazon Timestream resources so Amazon Web Services IoT FleetWise can transfer your vehicle data to the Amazon Web Services Cloud. For more information, including step-by-step procedures, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html\">Setting up Amazon Web Services IoT FleetWise</a>. </p> <note> <p>An Amazon Web Services account is <b>not</b> the same thing as a \"user account\". An <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users\">Amazon Web Services user</a> is an identity that you create using Identity and Access Management (IAM) and takes the form of either an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html\">IAM user</a> or an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html\">IAM role, both with credentials</a>. A single Amazon Web Services account can, and typically does, contain many users and roles.</p> </note>",
+    "RegisterAccount": "<important> <p>This API operation contains deprecated parameters. Register your account again without the Timestream resources parameter so that Amazon Web Services IoT FleetWise can remove the Timestream metadata stored. You should then pass the data destination into the <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_CreateCampaign.html\">CreateCampaign</a> API operation.</p> <p>You must delete any existing campaigns that include an empty data destination before you register your account again. For more information, see the <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_DeleteCampaign.html\">DeleteCampaign</a> API operation.</p> <p>If you want to delete the Timestream inline policy from the service-linked role, such as to mitigate an overly permissive policy, you must first delete any existing campaigns. Then delete the service-linked role and register your account again to enable CloudWatch metrics. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html\">DeleteServiceLinkedRole</a> in the <i>Identity and Access Management API Reference</i>.</p> </important> <pre><code> &lt;p&gt;Registers your Amazon Web Services account, IAM, and Amazon Timestream resources so Amazon Web Services IoT FleetWise can transfer your vehicle data to the Amazon Web Services Cloud. For more information, including step-by-step procedures, see &lt;a href=&quot;https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html&quot;&gt;Setting up Amazon Web Services IoT FleetWise&lt;/a&gt;. &lt;/p&gt; &lt;note&gt; &lt;p&gt;An Amazon Web Services account is &lt;b&gt;not&lt;/b&gt; the same thing as a &quot;user.&quot; An &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users&quot;&gt;Amazon Web Services user&lt;/a&gt; is an identity that you create using Identity and Access Management (IAM) and takes the form of either an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html&quot;&gt;IAM user&lt;/a&gt; or an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html&quot;&gt;IAM role, both with credentials&lt;/a&gt;. A single Amazon Web Services account can, and typically does, contain many users and roles.&lt;/p&gt; &lt;/note&gt; </code></pre>",
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata which can be used to manage a resource.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
     "UpdateCampaign": "<p> Updates a campaign. </p>",
@@ -275,12 +275,31 @@
         "createVehicleResponses$member": null
       }
     },
+    "DataDestinationConfig": {
+      "base": "<p>The destination where the Amazon Web Services IoT FleetWise campaign sends data. You can send data to be stored in Amazon S3 or Amazon Timestream.</p>",
+      "refs": {
+        "DataDestinationConfigs$member": null
+      }
+    },
+    "DataDestinationConfigs": {
+      "base": null,
+      "refs": {
+        "CreateCampaignRequest$dataDestinationConfigs": "<p>The destination where the campaign sends data. You can choose to send data to be stored in Amazon S3 or Amazon Timestream.</p> <p>Amazon S3 optimizes the cost of data storage and provides additional mechanisms to use vehicle data, such as data lakes, centralized data storage, data processing pipelines, and analytics. </p> <p>You can use Amazon Timestream to access and analyze time series data, and Timestream to query vehicle data so that you can identify trends and patterns.</p>",
+        "GetCampaignResponse$dataDestinationConfigs": "<p>The destination where the campaign sends data. You can choose to send data to be stored in Amazon S3 or Amazon Timestream.</p> <p>Amazon S3 optimizes the cost of data storage and provides additional mechanisms to use vehicle data, such as data lakes, centralized data storage, data processing pipelines, and analytics. </p> <p>You can use Amazon Timestream to access and analyze time series data, and Timestream to query vehicle data so that you can identify trends and patterns.</p>"
+      }
+    },
     "DataExtraDimensionNodePathList": {
       "base": null,
       "refs": {
         "CreateCampaignRequest$dataExtraDimensions": "<p> (Optional) A list of vehicle attributes to associate with a campaign. </p> <p>Enrich the data with specified vehicle attributes. For example, add <code>make</code> and <code>model</code> to the campaign, and Amazon Web Services IoT FleetWise will associate the data with those attributes as dimensions in Amazon Timestream. You can then query the data against <code>make</code> and <code>model</code>.</p> <p>Default: An empty array</p>",
         "GetCampaignResponse$dataExtraDimensions": "<p> A list of vehicle attributes associated with the campaign. </p>",
         "UpdateCampaignRequest$dataExtraDimensions": "<p> A list of vehicle attributes to associate with a signal. </p> <p>Default: An empty array</p>"
+      }
+    },
+    "DataFormat": {
+      "base": null,
+      "refs": {
+        "S3Config$dataFormat": "<p>Specify the format that files are saved in the Amazon S3 bucket. You can save files in an Apache Parquet or JSON format.</p> <ul> <li> <p>Parquet - Store data in a columnar storage file format. Parquet is optimal for fast data retrieval and can reduce costs. This option is selected by default.</p> </li> <li> <p>JSON - Store data in a standard text-based JSON file format.</p> </li> </ul>"
       }
     },
     "DecoderManifestSummary": {
@@ -378,7 +397,7 @@
       }
     },
     "FormattedVss": {
-      "base": "<p>Vehicle Signal Specification (VSS) is a precise language used to describe and model signals in vehicle networks. The JSON file collects signal specificiations in a VSS format.</p>",
+      "base": "<p> <a href=\"https://www.w3.org/auto/wg/wiki/Vehicle_Signal_Specification_(VSS)/Vehicle_Data_Spec\">Vehicle Signal Specification (VSS)</a> is a precise language used to describe and model signals in vehicle networks. The JSON file collects signal specificiations in a VSS format.</p>",
       "refs": {
         "ImportSignalCatalogRequest$vss": "<p>The contents of the Vehicle Signal Specification (VSS) configuration. VSS is a precise language used to describe and model signals in vehicle networks.</p>"
       }
@@ -491,7 +510,8 @@
     "IAMRoleArn": {
       "base": null,
       "refs": {
-        "IamResources$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM resource that allows Amazon Web Services IoT FleetWise to send data to Amazon Timestream. For example, <code>arn:aws:iam::123456789012:role/SERVICE-ROLE-ARN</code>. </p>"
+        "IamResources$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM resource that allows Amazon Web Services IoT FleetWise to send data to Amazon Timestream. For example, <code>arn:aws:iam::123456789012:role/SERVICE-ROLE-ARN</code>. </p>",
+        "TimestreamConfig$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the task execution role that grants Amazon Web Services IoT FleetWise permission to deliver data to the Amazon Timestream table.</p>"
       }
     },
     "IamRegistrationResponse": {
@@ -891,6 +911,12 @@
         "ObdInterface$obdStandard": "<p>The standard OBD II PID.</p>"
       }
     },
+    "Prefix": {
+      "base": null,
+      "refs": {
+        "S3Config$prefix": "<p>(Optional) Enter an S3 bucket prefix. The prefix is the string of characters after the bucket name and before the object name. You can use the prefix to organize data stored in Amazon S3 buckets. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html\">Organizing objects using prefixes</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p> <p>By default, Amazon Web Services IoT FleetWise sets the prefix <code>processed-data/year=YY/month=MM/date=DD/hour=HH/</code> (in UTC) to data it delivers to Amazon S3. You can enter a prefix to append it to this default prefix. For example, if you enter the prefix <code>vehicles</code>, the prefix will be <code>vehicles/processed-data/year=YY/month=MM/date=DD/hour=HH/</code>.</p>"
+      }
+    },
     "ProtocolName": {
       "base": null,
       "refs": {
@@ -942,6 +968,18 @@
       "refs": {
         "InternalServerException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the command.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the command.</p>"
+      }
+    },
+    "S3BucketArn": {
+      "base": null,
+      "refs": {
+        "S3Config$bucketArn": "<p>The Amazon Resource Name (ARN) of the Amazon S3 bucket.</p>"
+      }
+    },
+    "S3Config": {
+      "base": "<p>The Amazon S3 bucket where the Amazon Web Services IoT FleetWise campaign sends data. Amazon S3 is an object storage service that stores data as objects within buckets. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html\">Creating, configuring, and working with Amazon S3 buckets</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p>",
+      "refs": {
+        "DataDestinationConfig$s3Config": "<p>The Amazon S3 bucket where the Amazon Web Services IoT FleetWise campaign sends data.</p>"
       }
     },
     "Sensor": {
@@ -1001,6 +1039,12 @@
       "refs": {
         "CreateCampaignRequest$spoolingMode": "<p>(Optional) Whether to store collected data after a vehicle lost a connection with the cloud. After a connection is re-established, the data is automatically forwarded to Amazon Web Services IoT FleetWise. If you want to store collected data when a vehicle loses connection with the cloud, use <code>TO_DISK</code>. If it's not specified, <code>OFF</code> is used.</p> <p>Default: <code>OFF</code> </p>",
         "GetCampaignResponse$spoolingMode": "<p> Whether to store collected data after a vehicle lost a connection with the cloud. After a connection is re-established, the data is automatically forwarded to Amazon Web Services IoT FleetWise. </p>"
+      }
+    },
+    "StorageCompressionFormat": {
+      "base": null,
+      "refs": {
+        "S3Config$storageCompressionFormat": "<p>By default, stored data is compressed as a .gzip file. Compressed files have a reduced file size, which can optimize the cost of data storage.</p>"
       }
     },
     "String": {
@@ -1072,6 +1116,12 @@
         "CollectionScheme$timeBasedCollectionScheme": "<p>Information about a collection scheme that uses a time period to decide how often to collect data.</p>"
       }
     },
+    "TimestreamConfig": {
+      "base": "<p>The Amazon Timestream table where the Amazon Web Services IoT FleetWise campaign sends data. Timestream stores and organizes data to optimize query processing time and to reduce storage costs. For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/data-modeling.html\">Data modeling</a> in the <i>Amazon Timestream Developer Guide</i>.</p>",
+      "refs": {
+        "DataDestinationConfig$timestreamConfig": "<p>The Amazon Timestream table where the campaign sends data.</p>"
+      }
+    },
     "TimestreamDatabaseName": {
       "base": null,
       "refs": {
@@ -1090,6 +1140,12 @@
       "refs": {
         "RegisterAccountRequest$timestreamResources": null,
         "RegisterAccountResponse$timestreamResources": null
+      }
+    },
+    "TimestreamTableArn": {
+      "base": null,
+      "refs": {
+        "TimestreamConfig$timestreamTableArn": "<p>The Amazon Resource Name (ARN) of the Amazon Timestream table.</p>"
       }
     },
     "TimestreamTableName": {
@@ -1118,7 +1174,7 @@
     "UpdateCampaignAction": {
       "base": null,
       "refs": {
-        "UpdateCampaignRequest$action": "<p> Specifies how to update a campaign. The action can be one of the following:</p> <ul> <li> <p> <code>APPROVE</code> - To approve delivering a data collection scheme to vehicles. </p> </li> <li> <p> <code>SUSPEND</code> - To suspend collecting signal data. </p> </li> <li> <p> <code>RESUME</code> - To resume collecting signal data. </p> </li> <li> <p> <code>UPDATE</code> - To update a campaign. </p> </li> </ul>"
+        "UpdateCampaignRequest$action": "<p> Specifies how to update a campaign. The action can be one of the following:</p> <ul> <li> <p> <code>APPROVE</code> - To approve delivering a data collection scheme to vehicles. </p> </li> <li> <p> <code>SUSPEND</code> - To suspend collecting signal data. The campaign is deleted from vehicles and all vehicles in the suspended campaign will stop sending data.</p> </li> <li> <p> <code>RESUME</code> - To reactivate the <code>SUSPEND</code> campaign. The campaign is redeployed to all vehicles and the vehicles will resume sending data.</p> </li> <li> <p> <code>UPDATE</code> - To update a campaign. </p> </li> </ul>"
       }
     },
     "UpdateCampaignRequest": {
@@ -1349,7 +1405,7 @@
     "attributesMap": {
       "base": null,
       "refs": {
-        "CreateVehicleRequest$attributes": "<p>Static information about a vehicle in a key-value pair. For example: <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>",
+        "CreateVehicleRequest$attributes": "<p>Static information about a vehicle in a key-value pair. For example: <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p> <p>A campaign must include the keys (attribute names) in <code>dataExtraDimensions</code> for them to display in Amazon Timestream.</p>",
         "CreateVehicleRequestItem$attributes": "<p>Static information about a vehicle in a key-value pair. For example: <code>\"engine Type\"</code> : <code>\"v6\"</code> </p>",
         "GetVehicleResponse$attributes": "<p>Static information about a vehicle in a key-value pair. For example:</p> <p> <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>",
         "UpdateVehicleRequest$attributes": "<p>Static information about a vehicle in a key-value pair. For example:</p> <p> <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>",
@@ -1457,10 +1513,10 @@
         "Actuator$max": "<p>The specified possible maximum value of an actuator.</p>",
         "Attribute$min": "<p>The specified possible minimum value of the attribute.</p>",
         "Attribute$max": "<p>The specified possible maximum value of the attribute.</p>",
-        "CanSignal$offset": "<p>Indicates where data appears in the CAN message.</p>",
+        "CanSignal$offset": "<p>The offset used to calculate the signal value. Combined with factor, the calculation is <code>value = raw_value * factor + offset</code>.</p>",
         "CanSignal$factor": "<p>A multiplier used to decode the CAN message.</p>",
         "ObdSignal$scaling": "<p>A multiplier used to decode the message.</p>",
-        "ObdSignal$offset": "<p>Indicates where data appears in the message.</p>",
+        "ObdSignal$offset": "<p>The offset used to calculate the signal value. Combined with scaling, the calculation is <code>value = raw_value * scaling + offset</code>.</p>",
         "Sensor$min": "<p>The specified possible minimum value of the sensor.</p>",
         "Sensor$max": "<p>The specified possible maximum value of the sensor.</p>"
       }
@@ -1552,6 +1608,19 @@
         "SignalInformation$maxSampleCount": "<p>The maximum number of samples to collect.</p>"
       }
     },
+    "message": {
+      "base": null,
+      "refs": {
+        "Actuator$deprecationMessage": "<p>The deprecation message for the node or the branch that was moved or deleted.</p>",
+        "Actuator$comment": "<p>A comment in addition to the description.</p>",
+        "Attribute$deprecationMessage": "<p>The deprecation message for the node or the branch that was moved or deleted.</p>",
+        "Attribute$comment": "<p>A comment in addition to the description.</p>",
+        "Branch$deprecationMessage": "<p>The deprecation message for the node or the branch that was moved or deleted.</p>",
+        "Branch$comment": "<p>A comment in addition to the description.</p>",
+        "Sensor$deprecationMessage": "<p>The deprecation message for the node or the branch that was moved or deleted.</p>",
+        "Sensor$comment": "<p>A comment in addition to the description.</p>"
+      }
+    },
     "modelManifestSummaries": {
       "base": null,
       "refs": {
@@ -1593,7 +1662,7 @@
       "base": null,
       "refs": {
         "CanSignal$messageId": "<p>The ID of the message.</p>",
-        "CanSignal$startBit": "<p>Indicates the beginning of the CAN message.</p>",
+        "CanSignal$startBit": "<p>Indicates the beginning of the CAN signal. This should always be the least significant bit (LSB).</p> <p>This value might be different from the value in a DBC file. For little endian signals, <code>startBit</code> is the same value as in the DBC file. For big endian signals in a DBC file, the start bit is the most significant bit (MSB). You will have to calculate the LSB instead and pass it as the <code>startBit</code>.</p>",
         "CanSignal$length": "<p>How many bytes of data are in the message.</p>",
         "ObdInterface$requestMessageId": "<p>The ID of the message requesting vehicle data.</p>",
         "ObdInterface$pidRequestIntervalSeconds": "<p>The maximum number message requests per second.</p>",
@@ -1728,7 +1797,7 @@
         "CampaignSummary$creationTime": "<p>The time the campaign was created.</p>",
         "CampaignSummary$lastModificationTime": "<p>The last time the campaign was modified.</p>",
         "CreateCampaignRequest$startTime": "<p>(Optional) The time, in milliseconds, to deliver a campaign after it was approved. If it's not specified, <code>0</code> is used.</p> <p>Default: <code>0</code> </p>",
-        "CreateCampaignRequest$expiryTime": "<p> (Optional) The time the campaign expires, in seconds since epoch (January 1, 1970 at midnight UTC time). Vehicle data won't be collected after the campaign expires. </p> <p>Default: 253402214400 (December 31, 9999, 00:00:00 UTC)</p>",
+        "CreateCampaignRequest$expiryTime": "<p> (Optional) The time the campaign expires, in seconds since epoch (January 1, 1970 at midnight UTC time). Vehicle data isn't collected after the campaign expires. </p> <p>Default: 253402214400 (December 31, 9999, 00:00:00 UTC)</p>",
         "DecoderManifestSummary$creationTime": "<p>The time the decoder manifest was created in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",
         "DecoderManifestSummary$lastModificationTime": "<p>The time the decoder manifest was last updated in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",
         "FleetSummary$creationTime": "<p>The time the fleet was created, in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",
