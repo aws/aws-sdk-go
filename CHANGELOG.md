@@ -1,3 +1,17 @@
+Release v1.44.273 (2023-05-31)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/frauddetector`: Updates service API and documentation
+* `service/healthlake`: Updates service API and documentation
+* `service/m2`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for changing the engine for Oracle using the ModifyDbInstance API
+* `service/servicecatalog`: Updates service documentation
+  * Documentation updates for ServiceCatalog.
+* `service/workspaces-web`: Updates service API, documentation, and paginators
+
 Release v1.44.272 (2023-05-30)
 ===
 

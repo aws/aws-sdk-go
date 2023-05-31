@@ -31,6 +31,25 @@
       ],
       "idempotent":true
     },
+    "AssociateIpAccessSettings":{
+      "name":"AssociateIpAccessSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/portals/{portalArn+}/ipAccessSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateIpAccessSettingsRequest"},
+      "output":{"shape":"AssociateIpAccessSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
     "AssociateNetworkSettings":{
       "name":"AssociateNetworkSettings",
       "http":{
@@ -137,6 +156,24 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "CreateIpAccessSettings":{
+      "name":"CreateIpAccessSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ipAccessSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateIpAccessSettingsRequest"},
+      "output":{"shape":"CreateIpAccessSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
@@ -271,6 +308,24 @@
       ],
       "idempotent":true
     },
+    "DeleteIpAccessSettings":{
+      "name":"DeleteIpAccessSettings",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/ipAccessSettings/{ipAccessSettingsArn+}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteIpAccessSettingsRequest"},
+      "output":{"shape":"DeleteIpAccessSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
     "DeleteNetworkSettings":{
       "name":"DeleteNetworkSettings",
       "http":{
@@ -379,6 +434,24 @@
       ],
       "idempotent":true
     },
+    "DisassociateIpAccessSettings":{
+      "name":"DisassociateIpAccessSettings",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/portals/{portalArn+}/ipAccessSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociateIpAccessSettingsRequest"},
+      "output":{"shape":"DisassociateIpAccessSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
     "DisassociateNetworkSettings":{
       "name":"DisassociateNetworkSettings",
       "http":{
@@ -477,6 +550,23 @@
       },
       "input":{"shape":"GetIdentityProviderRequest"},
       "output":{"shape":"GetIdentityProviderResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "GetIpAccessSettings":{
+      "name":"GetIpAccessSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/ipAccessSettings/{ipAccessSettingsArn+}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetIpAccessSettingsRequest"},
+      "output":{"shape":"GetIpAccessSettingsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -629,6 +719,22 @@
       },
       "input":{"shape":"ListIdentityProvidersRequest"},
       "output":{"shape":"ListIdentityProvidersResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListIpAccessSettings":{
+      "name":"ListIpAccessSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/ipAccessSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"ListIpAccessSettingsRequest"},
+      "output":{"shape":"ListIpAccessSettingsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
@@ -820,6 +926,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "UpdateIpAccessSettings":{
+      "name":"UpdateIpAccessSettings",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/ipAccessSettings/{ipAccessSettingsArn+}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateIpAccessSettingsRequest"},
+      "output":{"shape":"UpdateIpAccessSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateNetworkSettings":{
       "name":"UpdateNetworkSettings",
       "http":{
@@ -851,7 +974,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -957,6 +1081,36 @@
       ],
       "members":{
         "browserSettingsArn":{"shape":"ARN"},
+        "portalArn":{"shape":"ARN"}
+      }
+    },
+    "AssociateIpAccessSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "ipAccessSettingsArn",
+        "portalArn"
+      ],
+      "members":{
+        "ipAccessSettingsArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"ipAccessSettingsArn"
+        },
+        "portalArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"portalArn"
+        }
+      }
+    },
+    "AssociateIpAccessSettingsResponse":{
+      "type":"structure",
+      "required":[
+        "ipAccessSettingsArn",
+        "portalArn"
+      ],
+      "members":{
+        "ipAccessSettingsArn":{"shape":"ARN"},
         "portalArn":{"shape":"ARN"}
       }
     },
@@ -1228,6 +1382,29 @@
         "identityProviderArn":{"shape":"ARN"}
       }
     },
+    "CreateIpAccessSettingsRequest":{
+      "type":"structure",
+      "required":["ipRules"],
+      "members":{
+        "additionalEncryptionContext":{"shape":"EncryptionContextMap"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "customerManagedKey":{"shape":"keyArn"},
+        "description":{"shape":"Description"},
+        "displayName":{"shape":"DisplayName"},
+        "ipRules":{"shape":"IpRuleList"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreateIpAccessSettingsResponse":{
+      "type":"structure",
+      "required":["ipAccessSettingsArn"],
+      "members":{
+        "ipAccessSettingsArn":{"shape":"ARN"}
+      }
+    },
     "CreateNetworkSettingsRequest":{
       "type":"structure",
       "required":[
@@ -1379,6 +1556,22 @@
       "members":{
       }
     },
+    "DeleteIpAccessSettingsRequest":{
+      "type":"structure",
+      "required":["ipAccessSettingsArn"],
+      "members":{
+        "ipAccessSettingsArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"ipAccessSettingsArn"
+        }
+      }
+    },
+    "DeleteIpAccessSettingsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteNetworkSettingsRequest":{
       "type":"structure",
       "required":["networkSettingsArn"],
@@ -1459,6 +1652,13 @@
       "members":{
       }
     },
+    "Description":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^.+$",
+      "sensitive":true
+    },
     "DisassociateBrowserSettingsRequest":{
       "type":"structure",
       "required":["portalArn"],
@@ -1471,6 +1671,22 @@
       }
     },
     "DisassociateBrowserSettingsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisassociateIpAccessSettingsRequest":{
+      "type":"structure",
+      "required":["portalArn"],
+      "members":{
+        "portalArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"portalArn"
+        }
+      }
+    },
+    "DisassociateIpAccessSettingsResponse":{
       "type":"structure",
       "members":{
       }
@@ -1598,6 +1814,23 @@
       "type":"structure",
       "members":{
         "identityProvider":{"shape":"IdentityProvider"}
+      }
+    },
+    "GetIpAccessSettingsRequest":{
+      "type":"structure",
+      "required":["ipAccessSettingsArn"],
+      "members":{
+        "ipAccessSettingsArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"ipAccessSettingsArn"
+        }
+      }
+    },
+    "GetIpAccessSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "ipAccessSettings":{"shape":"IpAccessSettings"}
       }
     },
     "GetNetworkSettingsRequest":{
@@ -1796,6 +2029,51 @@
       "exception":true,
       "fault":true
     },
+    "IpAccessSettings":{
+      "type":"structure",
+      "required":["ipAccessSettingsArn"],
+      "members":{
+        "associatedPortalArns":{"shape":"ArnList"},
+        "creationDate":{"shape":"Timestamp"},
+        "description":{"shape":"Description"},
+        "displayName":{"shape":"DisplayName"},
+        "ipAccessSettingsArn":{"shape":"ARN"},
+        "ipRules":{"shape":"IpRuleList"}
+      }
+    },
+    "IpAccessSettingsList":{
+      "type":"list",
+      "member":{"shape":"IpAccessSettingsSummary"}
+    },
+    "IpAccessSettingsSummary":{
+      "type":"structure",
+      "members":{
+        "creationDate":{"shape":"Timestamp"},
+        "description":{"shape":"Description"},
+        "displayName":{"shape":"DisplayName"},
+        "ipAccessSettingsArn":{"shape":"ARN"}
+      }
+    },
+    "IpRange":{
+      "type":"string",
+      "pattern":"^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(?:/([0-9]|[12][0-9]|3[0-2])|)$",
+      "sensitive":true
+    },
+    "IpRule":{
+      "type":"structure",
+      "required":["ipRange"],
+      "members":{
+        "description":{"shape":"Description"},
+        "ipRange":{"shape":"IpRange"}
+      }
+    },
+    "IpRuleList":{
+      "type":"list",
+      "member":{"shape":"IpRule"},
+      "max":100,
+      "min":1,
+      "sensitive":true
+    },
     "KinesisStreamArn":{
       "type":"string",
       "max":2048,
@@ -1849,6 +2127,28 @@
       "type":"structure",
       "members":{
         "identityProviders":{"shape":"IdentityProviderList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListIpAccessSettingsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListIpAccessSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "ipAccessSettings":{"shape":"IpAccessSettingsList"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -2049,6 +2349,7 @@
         "browserType":{"shape":"BrowserType"},
         "creationDate":{"shape":"Timestamp"},
         "displayName":{"shape":"DisplayName"},
+        "ipAccessSettingsArn":{"shape":"ARN"},
         "networkSettingsArn":{"shape":"ARN"},
         "portalArn":{"shape":"ARN"},
         "portalEndpoint":{"shape":"PortalEndpoint"},
@@ -2086,6 +2387,7 @@
         "browserType":{"shape":"BrowserType"},
         "creationDate":{"shape":"Timestamp"},
         "displayName":{"shape":"DisplayName"},
+        "ipAccessSettingsArn":{"shape":"ARN"},
         "networkSettingsArn":{"shape":"ARN"},
         "portalArn":{"shape":"ARN"},
         "portalEndpoint":{"shape":"PortalEndpoint"},
@@ -2356,6 +2658,31 @@
       "required":["identityProvider"],
       "members":{
         "identityProvider":{"shape":"IdentityProvider"}
+      }
+    },
+    "UpdateIpAccessSettingsRequest":{
+      "type":"structure",
+      "required":["ipAccessSettingsArn"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "description":{"shape":"Description"},
+        "displayName":{"shape":"DisplayName"},
+        "ipAccessSettingsArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"ipAccessSettingsArn"
+        },
+        "ipRules":{"shape":"IpRuleList"}
+      }
+    },
+    "UpdateIpAccessSettingsResponse":{
+      "type":"structure",
+      "required":["ipAccessSettings"],
+      "members":{
+        "ipAccessSettings":{"shape":"IpAccessSettings"}
       }
     },
     "UpdateNetworkSettingsRequest":{

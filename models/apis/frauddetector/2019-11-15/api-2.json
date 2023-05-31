@@ -2002,6 +2002,13 @@
         "DISABLED"
       ]
     },
+    "EventOrchestration":{
+      "type":"structure",
+      "required":["eventBridgeEnabled"],
+      "members":{
+        "eventBridgeEnabled":{"shape":"Boolean"}
+      }
+    },
     "EventPredictionSummary":{
       "type":"structure",
       "members":{
@@ -2031,7 +2038,8 @@
         "ingestedEventStatistics":{"shape":"IngestedEventStatistics"},
         "lastUpdatedTime":{"shape":"time"},
         "createdTime":{"shape":"time"},
-        "arn":{"shape":"fraudDetectorArn"}
+        "arn":{"shape":"fraudDetectorArn"},
+        "eventOrchestration":{"shape":"EventOrchestration"}
       },
       "sensitive":true
     },
@@ -2956,7 +2964,8 @@
         "labels":{"shape":"ListOfStrings"},
         "entityTypes":{"shape":"NonEmptyListOfStrings"},
         "eventIngestion":{"shape":"EventIngestion"},
-        "tags":{"shape":"tagList"}
+        "tags":{"shape":"tagList"},
+        "eventOrchestration":{"shape":"EventOrchestration"}
       }
     },
     "PutEventTypeResult":{

@@ -104,10 +104,13 @@
       "base": null,
       "refs": {
         "ApplicationSummary$applicationArn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
+        "ApplicationSummary$roleArn": "<p>The Amazon Resource Name (ARN) of the role associated with the application.</p>",
         "ArnList$member": null,
+        "CreateApplicationRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the role associated with the application.</p>",
         "CreateApplicationResponse$applicationArn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
         "EnvironmentSummary$environmentArn": "<p>The Amazon Resource Name (ARN) of a particular runtime environment.</p>",
         "GetApplicationResponse$applicationArn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
+        "GetApplicationResponse$roleArn": "<p>The Amazon Resource Name (ARN) of the role associated with the application.</p>",
         "GetEnvironmentResponse$environmentArn": "<p>The Amazon Resource Name (ARN) of the runtime environment.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -156,8 +159,8 @@
     "BatchJobIdentifier": {
       "base": "<p>Identifies a specific batch job.</p>",
       "refs": {
-        "BatchJobExecutionSummary$batchJobIdentifier": null,
-        "GetBatchJobExecutionResponse$batchJobIdentifier": null,
+        "BatchJobExecutionSummary$batchJobIdentifier": "<p>The unique identifier of this batch job.</p>",
+        "GetBatchJobExecutionResponse$batchJobIdentifier": "<p>The unique identifier of this batch job.</p>",
         "StartBatchJobRequest$batchJobIdentifier": "<p>The unique identifier of the batch job.</p>"
       }
     },
@@ -175,7 +178,7 @@
       }
     },
     "BatchParamKey": {
-      "base": "<p>Parameter key: the first character must be alphabetic. Can be of up to 8 alphanumeric characters.</p>",
+      "base": "<p>See https://www.ibm.com/docs/en/workload-automation/9.3.0?topic=zos-coding-variables-in-jcl to get details about limits for both keys and values: 8 for keys (variable names), 44 for values (variable values) In addition, keys will be only alphabetic characters and digits, without any space or special characters (dash, underscore, etc ...)</p> <p>Parameter key: the first character must be alphabetic. Can be of up to 8 alphanumeric characters.</p>",
       "refs": {
         "BatchJobParametersMap$key": null
       }
@@ -865,6 +868,18 @@
         "GetEnvironmentResponse$pendingMaintenance": "<p>Indicates the pending maintenance scheduled on this environment.</p>"
       }
     },
+    "PoAttributes": {
+      "base": "<p>The supported properties for a PO type data set.</p>",
+      "refs": {
+        "DatasetOrgAttributes$po": "<p>The details of a PO type data set.</p>"
+      }
+    },
+    "PoDetailAttributes": {
+      "base": "<p>The supported properties for a PO type data set.</p>",
+      "refs": {
+        "DatasetDetailOrgAttributes$po": "<p>The details of a PO type data set.</p>"
+      }
+    },
     "PortList": {
       "base": null,
       "refs": {
@@ -876,6 +891,18 @@
       "refs": {
         "VsamAttributes$primaryKey": "<p>The primary key of the data set.</p>",
         "VsamDetailAttributes$primaryKey": "<p>The primary key of the data set.</p>"
+      }
+    },
+    "PsAttributes": {
+      "base": "<p>The supported properties for a PS type data set.</p>",
+      "refs": {
+        "DatasetOrgAttributes$ps": "<p>The details of a PS type data set.</p>"
+      }
+    },
+    "PsDetailAttributes": {
+      "base": "<p>The supported properties for a PS type data set.</p>",
+      "refs": {
+        "DatasetDetailOrgAttributes$ps": "<p>The details of a PS type data set.</p>"
       }
     },
     "RecordLength": {
@@ -955,7 +982,7 @@
         "AccessDeniedException$message": null,
         "AlternateKey$name": "<p>The name of the alternate key.</p>",
         "ApplicationVersionSummary$statusReason": "<p>The reason for the reported status.</p>",
-        "BatchJobExecutionSummary$returnCode": "<p/>",
+        "BatchJobExecutionSummary$returnCode": "<p>The batch job return code from either the Blu Age or Micro Focus runtime engines. For more information, see <a href=\"https://www.ibm.com/docs/en/was/8.5.5?topic=model-batch-return-codes\">Batch return codes</a> in the <i>IBM WebSphere Application Server</i> documentation.</p>",
         "ConflictException$message": null,
         "ConflictException$resourceId": "<p>The ID of the conflicting resource.</p>",
         "ConflictException$resourceType": "<p>The type of the conflicting resource.</p>",
@@ -980,7 +1007,7 @@
         "GetApplicationResponse$kmsKeyId": "<p>The identifier of a customer managed key.</p>",
         "GetApplicationResponse$statusReason": "<p>The reason for the reported status.</p>",
         "GetApplicationVersionResponse$statusReason": "<p>The reason for the reported status.</p>",
-        "GetBatchJobExecutionResponse$returnCode": "<p/>",
+        "GetBatchJobExecutionResponse$returnCode": "<p>The batch job return code from either the Blu Age or Micro Focus runtime engines. For more information, see <a href=\"https://www.ibm.com/docs/en/was/8.5.5?topic=model-batch-return-codes\">Batch return codes</a> in the <i>IBM WebSphere Application Server</i> documentation.</p>",
         "GetBatchJobExecutionResponse$statusReason": "<p>The reason for the reported status.</p>",
         "GetDeploymentResponse$statusReason": "<p>The reason for the reported status.</p>",
         "GetEnvironmentResponse$kmsKeyId": "<p>The identifier of a customer managed key.</p>",
@@ -989,7 +1016,15 @@
         "InternalServerException$message": null,
         "ListBatchJobDefinitionsRequest$prefix": "<p>If the batch job definition is a FileBatchJobDefinition, the prefix allows you to search on the file names of FileBatchJobDefinitions.</p>",
         "PendingMaintenance$engineVersion": "<p>The specific runtime engine that the maintenance schedule applies to.</p>",
+        "PoAttributes$encoding": "<p>The character set encoding of the data set.</p>",
+        "PoAttributes$format": "<p>The format of the data set records.</p>",
+        "PoDetailAttributes$encoding": "<p>The character set encoding of the data set.</p>",
+        "PoDetailAttributes$format": "<p>The format of the data set records.</p>",
         "PrimaryKey$name": "<p>A name for the Primary Key.</p>",
+        "PsAttributes$encoding": "<p>The character set encoding of the data set.</p>",
+        "PsAttributes$format": "<p>The format of the data set records.</p>",
+        "PsDetailAttributes$encoding": "<p>The character set encoding of the data set.</p>",
+        "PsDetailAttributes$format": "<p>The format of the data set records.</p>",
         "ResourceNotFoundException$message": null,
         "ResourceNotFoundException$resourceId": "<p>The ID of the missing resource.</p>",
         "ResourceNotFoundException$resourceType": "<p>The type of the missing resource.</p>",
@@ -1032,6 +1067,7 @@
         "EnvironmentSummary$instanceType": "<p>The instance type of the runtime environment.</p>",
         "GetEnvironmentResponse$instanceType": "<p>The type of instance underlying the runtime environment.</p>",
         "LogGroupSummary$logType": "<p>The type of log.</p>",
+        "String20List$member": null,
         "UpdateEnvironmentRequest$instanceType": "<p>The instance type for the runtime environment to update.</p>",
         "VsamDetailAttributes$encoding": "<p>The character set used by the data set. Can be ASCII, EBCDIC, or unknown.</p>",
         "VsamDetailAttributes$recordFormat": "<p>The record format of the data set.</p>"
@@ -1057,6 +1093,12 @@
         "Definition$s3Location": "<p>The S3 bucket that contains the application definition.</p>",
         "ExternalLocation$s3Location": "<p>The URI of the Amazon S3 bucket.</p>",
         "GetDataSetDetailsResponse$location": "<p>The location where the data set is stored.</p>"
+      }
+    },
+    "String20List": {
+      "base": null,
+      "refs": {
+        "PoAttributes$memberFileExtensions": "<p>An array containing one or more filename extensions, allowing you to specify which files to be included as PDS member.</p>"
       }
     },
     "String50": {

@@ -3945,6 +3945,16 @@ func (c *ServiceCatalog) DisassociatePrincipalFromPortfolioRequest(input *Disass
 // be able to provision products in this portfolio using a role matching the
 // name of the associated principal.
 //
+// For more information, review associate-principal-with-portfolio (https://docs.aws.amazon.com/cli/latest/reference/servicecatalog/associate-principal-with-portfolio.html#options)
+// in the Amazon Web Services CLI Command Reference.
+//
+// If you disassociate a principal from a portfolio, with PrincipalType as IAM,
+// the same principal will still have access to the portfolio if it matches
+// one of the associated principals of type IAM_PATTERN. To fully remove access
+// for a principal, verify all the associated Principals of type IAM_PATTERN,
+// and then ensure you disassociate any IAM_PATTERN principals that match the
+// principal whose access you are removing.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9220,18 +9230,58 @@ type AssociatePrincipalWithPortfolioInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
-	// The ARN of the principal (user, role, or group). This field allows an ARN
-	// with no accountID if PrincipalType is IAM_PATTERN.
+	// The ARN of the principal (user, role, or group). The supported value is a
+	// fully defined IAM ARN (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns)
+	// if the PrincipalType is IAM. If the PrincipalType is IAM_PATTERN, the supported
+	// value is an IAM ARN without an AccountID in the following format:
 	//
-	// You can associate multiple IAM patterns even if the account has no principal
-	// with that name. This is useful in Principal Name Sharing if you want to share
-	// a principal without creating it in the account that owns the portfolio.
+	// arn:partition:iam:::resource-type/resource-id
+	//
+	// The resource-id can be either of the following:
+	//
+	//    * Fully formed, for example arn:aws:iam:::role/resource-name or arn:aws:iam:::role/resource-path/resource-name
+	//
+	//    * A wildcard ARN. The wildcard ARN accepts IAM_PATTERN values with a "*"
+	//    or "?" in the resource-id segment of the ARN, for example arn:partition:service:::resource-type/resource-path/resource-name.
+	//    The new symbols are exclusive to the resource-path and resource-name and
+	//    cannot be used to replace the resource-type or other ARN values.
+	//
+	// Examples of an acceptable wildcard ARN:
+	//
+	//    * arn:aws:iam:::role/ResourceName_*
+	//
+	//    * arn:aws:iam:::role/*/ResourceName_?
+	//
+	// Examples of an unacceptable wildcard ARN:
+	//
+	//    * arn:aws:iam:::*/ResourceName
+	//
+	// You can associate multiple IAM_PATTERNs even if the account has no principal
+	// with that name.
+	//
+	//    * The ARN path and principal name allow unlimited wildcard characters.
+	//
+	//    * The "?" wildcard character matches zero or one of any character. This
+	//    is similar to ".?" in regular regex context.
+	//
+	//    * The "*" wildcard character matches any number of any characters. This
+	//    is similar ".*" in regular regex context.
+	//
+	//    * In the IAM Principal ARNs format (arn:partition:iam:::resource-type/resource-path/resource-name),
+	//    valid resource-type values include user/, group/, or role/. The "?" and
+	//    "*" are allowed only after the resource-type, in the resource-id segment.
+	//    You can use special characters anywhere within the resource-id.
+	//
+	//    * The "*" also matches the "/" character, allowing paths to be formed
+	//    within the resource-id. For example, arn:aws:iam:::role/*/ResourceName_?
+	//    matches both arn:aws:iam:::role/pathA/pathB/ResourceName_1 and arn:aws:iam:::role/pathA/ResourceName_1.
 	//
 	// PrincipalARN is a required field
 	PrincipalARN *string `min:"1" type:"string" required:"true"`
 
 	// The principal type. The supported value is IAM if you use a fully defined
-	// ARN, or IAM_PATTERN if you use an ARN with no accountID.
+	// ARN, or IAM_PATTERN if you use an ARN with no accountID, with or without
+	// wildcard characters.
 	//
 	// PrincipalType is a required field
 	PrincipalType *string `type:"string" required:"true" enum:"PrincipalType"`
@@ -14669,13 +14719,14 @@ type DisassociatePrincipalFromPortfolioInput struct {
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
 	// The ARN of the principal (user, role, or group). This field allows an ARN
-	// with no accountID if PrincipalType is IAM_PATTERN.
+	// with no accountID with or without wildcard characters if PrincipalType is
+	// IAM_PATTERN.
 	//
 	// PrincipalARN is a required field
 	PrincipalARN *string `min:"1" type:"string" required:"true"`
 
 	// The supported value is IAM if you use a fully defined ARN, or IAM_PATTERN
-	// if you use no accountID.
+	// if you specify an IAM ARN with no AccountId, with or without wildcard characters.
 	PrincipalType *string `type:"string" enum:"PrincipalType"`
 }
 
@@ -19376,11 +19427,16 @@ type Principal struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the principal (user, role, or group). This field allows for an
-	// ARN with no accountID if the PrincipalType is an IAM_PATTERN.
+	// ARN with no accountID, with or without wildcard characters if the PrincipalType
+	// is an IAM_PATTERN.
+	//
+	// For more information, review associate-principal-with-portfolio (https://docs.aws.amazon.com/cli/latest/reference/servicecatalog/associate-principal-with-portfolio.html#options)
+	// in the Amazon Web Services CLI Command Reference.
 	PrincipalARN *string `min:"1" type:"string"`
 
 	// The principal type. The supported value is IAM if you use a fully defined
-	// ARN, or IAM_PATTERN if you use an ARN with no accountID.
+	// ARN, or IAM_PATTERN if you use an ARN with no accountID, with or without
+	// wildcard characters.
 	PrincipalType *string `type:"string" enum:"PrincipalType"`
 }
 

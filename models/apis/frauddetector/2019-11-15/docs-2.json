@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>This is the Amazon Fraud Detector API Reference. This guide is for developers who need detailed information about Amazon Fraud Detector API actions, data types, and errors. For more information about Amazon Fraud Detector features, see the <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/\">Amazon Fraud Detector User Guide</a>.</p> <p>We provide the Query API as well as AWS software development kits (SDK) for Amazon Fraud Detector in Java and Python programming languages.</p> <p>The Amazon Fraud Detector Query API provides HTTPS requests that use the HTTP verb GET or POST and a Query parameter <code>Action</code>. AWS SDK provides libraries, sample code, tutorials, and other resources for software developers who prefer to build applications using language-specific APIs instead of submitting a request over HTTP or HTTPS. These libraries provide basic functions that automatically take care of tasks such as cryptographically signing your requests, retrying requests, and handling error responses, so that it is easier for you to get started. For more information about the AWS SDKs, see <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/tools/\">Tools to build on AWS</a>. </p>",
+  "service": "<p>This is the Amazon Fraud Detector API Reference. This guide is for developers who need detailed information about Amazon Fraud Detector API actions, data types, and errors. For more information about Amazon Fraud Detector features, see the <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/\">Amazon Fraud Detector User Guide</a>.</p> <p>We provide the Query API as well as AWS software development kits (SDK) for Amazon Fraud Detector in Java and Python programming languages.</p> <p>The Amazon Fraud Detector Query API provides HTTPS requests that use the HTTP verb GET or POST and a Query parameter <code>Action</code>. AWS SDK provides libraries, sample code, tutorials, and other resources for software developers who prefer to build applications using language-specific APIs instead of submitting a request over HTTP or HTTPS. These libraries provide basic functions that automatically take care of tasks such as cryptographically signing your requests, retrying requests, and handling error responses, so that it is easier for you to get started. For more information about the AWS SDKs, go to <a href=\"https://aws.amazon.com/developer/tools/\">Tools to build on AWS</a> page, scroll down to the <b>SDK</b> section, and choose plus (+) sign to expand the section. </p>",
   "operations": {
     "BatchCreateVariable": "<p>Creates a batch of variables.</p>",
     "BatchGetVariable": "<p>Gets a batch of variables.</p>",
@@ -217,7 +217,8 @@
       "refs": {
         "EvaluatedExternalModel$useEventVariables": "<p> Indicates whether event variables were used to generate predictions. </p>",
         "EvaluatedRule$evaluated": "<p> Indicates whether the rule was evaluated. </p>",
-        "EvaluatedRule$matched": "<p> Indicates whether the rule matched. </p>"
+        "EvaluatedRule$matched": "<p> Indicates whether the rule matched. </p>",
+        "EventOrchestration$eventBridgeEnabled": "<p>Specifies if event orchestration is enabled through Amazon EventBridge.</p>"
       }
     },
     "CancelBatchImportJobRequest": {
@@ -649,7 +650,14 @@
       "base": null,
       "refs": {
         "EventType$eventIngestion": "<p>If <code>Enabled</code>, Amazon Fraud Detector stores event data when you generate a prediction and uses that data to update calculated variables in near real-time. Amazon Fraud Detector uses this data, known as <code>INGESTED_EVENTS</code>, to train your model and improve fraud predictions.</p>",
-        "PutEventTypeRequest$eventIngestion": "<p>Specifies if ingenstion is enabled or disabled.</p>"
+        "PutEventTypeRequest$eventIngestion": "<p>Specifies if ingestion is enabled or disabled.</p>"
+      }
+    },
+    "EventOrchestration": {
+      "base": "<p> The event orchestration status. </p>",
+      "refs": {
+        "EventType$eventOrchestration": "<p>The event orchestration status. </p>",
+        "PutEventTypeRequest$eventOrchestration": "<p>Enables or disables event orchestration. If enabled, you can send event predictions to select AWS services for downstream processing of the events.</p>"
       }
     },
     "EventPredictionSummary": {
@@ -1606,7 +1614,7 @@
     "UnlabeledEventsTreatment": {
       "base": null,
       "refs": {
-        "LabelSchema$unlabeledEventsTreatment": "<p>The action to take for unlabeled events.</p> <ul> <li> <p>Use <code>IGNORE</code> if you want the unlabeled events to be ignored. This is recommended when the majority of the events in the dataset are labeled.</p> </li> <li> <p>Use <code>FRAUD</code> if you want to categorize all unlabeled events as “Fraud”. This is recommended when most of the events in your dataset are fraudulent.</p> </li> <li> <p>Use <code>LEGIT</code> f you want to categorize all unlabeled events as “Legit”. This is recommended when most of the events in your dataset are legitimate.</p> </li> <li> <p>Use <code>AUTO</code> if you want Amazon Fraud Detector to decide how to use the unlabeled data. This is recommended when there is significant unlabeled events in the dataset.</p> </li> </ul> <p>By default, Amazon Fraud Detector ignores the unlabeled data.</p>"
+        "LabelSchema$unlabeledEventsTreatment": "<p>The action to take for unlabeled events.</p> <ul> <li> <p>Use <code>IGNORE</code> if you want the unlabeled events to be ignored. This is recommended when the majority of the events in the dataset are labeled.</p> </li> <li> <p>Use <code>FRAUD</code> if you want to categorize all unlabeled events as “Fraud”. This is recommended when most of the events in your dataset are fraudulent.</p> </li> <li> <p>Use <code>LEGIT</code> if you want to categorize all unlabeled events as “Legit”. This is recommended when most of the events in your dataset are legitimate.</p> </li> <li> <p>Use <code>AUTO</code> if you want Amazon Fraud Detector to decide how to use the unlabeled data. This is recommended when there is significant unlabeled events in the dataset.</p> </li> </ul> <p>By default, Amazon Fraud Detector ignores the unlabeled data.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -1926,7 +1934,7 @@
         "TFIModelPerformance$auc": "<p> The area under the curve (auc). This summarizes the total positive rate (tpr) and false positive rate (FPR) across all possible model score thresholds. </p>",
         "TrainingMetrics$auc": "<p>The area under the curve. This summarizes true positive rate (TPR) and false positive rate (FPR) across all possible model score thresholds. A model with no predictive power has an AUC of 0.5, whereas a perfect model has a score of 1.0.</p>",
         "UncertaintyRange$lowerBoundValue": "<p> The lower bound value of the area under curve (auc). </p>",
-        "UncertaintyRange$upperBoundValue": "<p> The lower bound value of the area under curve (auc). </p>",
+        "UncertaintyRange$upperBoundValue": "<p> The upper bound value of the area under curve (auc). </p>",
         "VariableImpactExplanation$logOddsImpact": "<p> The raw, uninterpreted value represented as log-odds of the fraud. These values are usually between -10 to +10, but range from - infinity to + infinity.</p> <ul> <li> <p>A positive value indicates that the variable drove the risk score up.</p> </li> <li> <p>A negative value indicates that the variable drove the risk score down.</p> </li> </ul>"
       }
     },
@@ -2373,7 +2381,7 @@
         "PutEntityTypeRequest$tags": "<p>A collection of key and value pairs.</p>",
         "PutEventTypeRequest$tags": "<p>A collection of key and value pairs.</p>",
         "PutExternalModelRequest$tags": "<p>A collection of key and value pairs.</p>",
-        "PutLabelRequest$tags": "<p/>",
+        "PutLabelRequest$tags": "<p>A collection of key and value pairs.</p>",
         "PutOutcomeRequest$tags": "<p>A collection of key and value pairs.</p>",
         "TagResourceRequest$tags": "<p>The tags to assign to the resource.</p>",
         "UpdateModelVersionRequest$tags": "<p>A collection of key and value pairs.</p>",
