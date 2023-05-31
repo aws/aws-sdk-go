@@ -390,6 +390,22 @@ func TestLoadSharedConfig(t *testing.T) {
 				UseFIPSEndpoint: endpoints.FIPSEndpointStateDisabled,
 			},
 		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "sso-session-success",
+			Expected: sharedConfig{
+				Profile:        "sso-session-success",
+				Region:         "us-east-1",
+				SSOAccountID:   "123456789012",
+				SSORoleName:    "testRole",
+				SSOSessionName: "sso-session-success-dev",
+				SSOSession: &SSOSession{
+					Name:        "sso-session-success-dev",
+					SSORegion:   "us-east-1",
+					SSOStartURL: "https://d-123456789a.awsapps.com/start",
+				},
+			},
+		},
 	}
 
 	for i, c := range cases {
@@ -505,6 +521,15 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 			Profile: "valid_arn_region",
 			Expected: sharedConfig{
 				S3UseARNRegion: true,
+			},
+		},
+		{
+			Profile: "sso-session-success",
+			Expected: sharedConfig{
+				Region:         "us-east-1",
+				SSOAccountID:   "123456789012",
+				SSORoleName:    "testRole",
+				SSOSessionName: "sso-session-success-dev",
 			},
 		},
 	}
