@@ -1,5 +1,5 @@
-//go:build go1.9
-// +build go1.9
+//go:build go1.16
+// +build go1.16
 
 package ssocreds
 
