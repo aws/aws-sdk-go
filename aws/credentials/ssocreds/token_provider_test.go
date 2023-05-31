@@ -6,7 +6,7 @@ package ssocreds
 import (
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/bearer"
+	"github.com/aws/aws-sdk-go/aws/auth/bearer"
 	"github.com/aws/aws-sdk-go/service/ssooidc"
 	"io/ioutil"
 	"os"
