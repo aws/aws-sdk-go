@@ -6383,8 +6383,8 @@ func (s *ActionCondition) SetAction(v string) *ActionCondition {
 // Inspect all of the elements that WAF has parsed and extracted from the web
 // request component that you've identified in your FieldToMatch specifications.
 //
-// This is used only in the FieldToMatch specification for some web request
-// component types.
+// This is used in the FieldToMatch specification for some web request component
+// types.
 //
 // JSON specification: "All": {}
 type All struct {
@@ -6411,8 +6411,8 @@ func (s All) GoString() string {
 
 // Inspect all query arguments of the web request.
 //
-// This is used only in the FieldToMatch specification for some web request
-// component types.
+// This is used in the FieldToMatch specification for some web request component
+// types.
 //
 // JSON specification: "AllQueryArguments": {}
 type AllQueryArguments struct {
@@ -6788,8 +6788,8 @@ type Body struct {
 	//
 	// The options for oversize handling are the following:
 	//
-	//    * CONTINUE - Inspect the body normally, according to the rule inspection
-	//    criteria.
+	//    * CONTINUE - Inspect the available body contents normally, according to
+	//    the rule inspection criteria.
 	//
 	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
 	//    the rule action to the request.
@@ -6894,6 +6894,10 @@ type ByteMatchStatement struct {
 	//
 	//    * UriPath: The value that you want WAF to search for in the URI path,
 	//    for example, /images/daily-ad.jpg.
+	//
+	//    * HeaderOrder: The comma-separated list of header names to match for.
+	//    WAF creates a string that contains the ordered list of header names, from
+	//    the headers in the web request, and then matches against that string.
 	//
 	// If SearchString includes alphabetic characters A-Z and a-z, note that the
 	// value is case sensitive.
@@ -7646,16 +7650,16 @@ type Cookies struct {
 	// MatchScope is a required field
 	MatchScope *string `type:"string" required:"true" enum:"MapMatchScope"`
 
-	// What WAF should do if the cookies of the request are larger than WAF can
-	// inspect. WAF does not support inspecting the entire contents of request cookies
-	// when they exceed 8 KB (8192 bytes) or 200 total cookies. The underlying host
-	// service forwards a maximum of 200 cookies and at most 8 KB of cookie contents
-	// to WAF.
+	// What WAF should do if the cookies of the request are more numerous or larger
+	// than WAF can inspect. WAF does not support inspecting the entire contents
+	// of request cookies when they exceed 8 KB (8192 bytes) or 200 total cookies.
+	// The underlying host service forwards a maximum of 200 cookies and at most
+	// 8 KB of cookie contents to WAF.
 	//
 	// The options for oversize handling are the following:
 	//
-	//    * CONTINUE - Inspect the cookies normally, according to the rule inspection
-	//    criteria.
+	//    * CONTINUE - Inspect the available cookies normally, according to the
+	//    rule inspection criteria.
 	//
 	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
 	//    the rule action to the request.
@@ -10429,6 +10433,14 @@ type FieldToMatch struct {
 	// from the underlying host service.
 	Cookies *Cookies `type:"structure"`
 
+	// Inspect a string containing the list of the request's header names, ordered
+	// as they appear in the web request that WAF receives for inspection. WAF generates
+	// the string and then uses that as the field to match component in its inspection.
+	// WAF separates the header names in the string using commas and no added spaces.
+	//
+	// Matches against the header order string are case insensitive.
+	HeaderOrder *HeaderOrder `type:"structure"`
+
 	// Inspect the request headers. You must configure scope and pattern matching
 	// filters in the Headers object, to define the set of headers to and the parts
 	// of the headers that WAF inspects.
@@ -10510,6 +10522,11 @@ func (s *FieldToMatch) Validate() error {
 			invalidParams.AddNested("Cookies", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.HeaderOrder != nil {
+		if err := s.HeaderOrder.Validate(); err != nil {
+			invalidParams.AddNested("HeaderOrder", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Headers != nil {
 		if err := s.Headers.Validate(); err != nil {
 			invalidParams.AddNested("Headers", err.(request.ErrInvalidParams))
@@ -10552,6 +10569,12 @@ func (s *FieldToMatch) SetBody(v *Body) *FieldToMatch {
 // SetCookies sets the Cookies field's value.
 func (s *FieldToMatch) SetCookies(v *Cookies) *FieldToMatch {
 	s.Cookies = v
+	return s
+}
+
+// SetHeaderOrder sets the HeaderOrder field's value.
+func (s *FieldToMatch) SetHeaderOrder(v *HeaderOrder) *FieldToMatch {
+	s.HeaderOrder = v
 	return s
 }
 
@@ -12882,6 +12905,72 @@ func (s *HeaderMatchPattern) SetIncludedHeaders(v []*string) *HeaderMatchPattern
 	return s
 }
 
+// Inspect a string containing the list of the request's header names, ordered
+// as they appear in the web request that WAF receives for inspection. WAF generates
+// the string and then uses that as the field to match component in its inspection.
+// WAF separates the header names in the string using commas and no added spaces.
+//
+// Matches against the header order string are case insensitive.
+type HeaderOrder struct {
+	_ struct{} `type:"structure"`
+
+	// What WAF should do if the headers of the request are more numerous or larger
+	// than WAF can inspect. WAF does not support inspecting the entire contents
+	// of request headers when they exceed 8 KB (8192 bytes) or 200 total headers.
+	// The underlying host service forwards a maximum of 200 headers and at most
+	// 8 KB of header contents to WAF.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the available headers normally, according to the
+	//    rule inspection criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// OversizeHandling is a required field
+	OversizeHandling *string `type:"string" required:"true" enum:"OversizeHandling"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HeaderOrder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HeaderOrder) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HeaderOrder) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HeaderOrder"}
+	if s.OversizeHandling == nil {
+		invalidParams.Add(request.NewErrParamRequired("OversizeHandling"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *HeaderOrder) SetOversizeHandling(v string) *HeaderOrder {
+	s.OversizeHandling = &v
+	return s
+}
+
 // Inspect all headers in the web request. You can specify the parts of the
 // headers to inspect and you can narrow the set of headers to inspect by including
 // or excluding specific keys.
@@ -12913,16 +13002,16 @@ type Headers struct {
 	// MatchScope is a required field
 	MatchScope *string `type:"string" required:"true" enum:"MapMatchScope"`
 
-	// What WAF should do if the headers of the request are larger than WAF can
-	// inspect. WAF does not support inspecting the entire contents of request headers
-	// when they exceed 8 KB (8192 bytes) or 200 total headers. The underlying host
-	// service forwards a maximum of 200 headers and at most 8 KB of header contents
-	// to WAF.
+	// What WAF should do if the headers of the request are more numerous or larger
+	// than WAF can inspect. WAF does not support inspecting the entire contents
+	// of request headers when they exceed 8 KB (8192 bytes) or 200 total headers.
+	// The underlying host service forwards a maximum of 200 headers and at most
+	// 8 KB of header contents to WAF.
 	//
 	// The options for oversize handling are the following:
 	//
-	//    * CONTINUE - Inspect the headers normally, according to the rule inspection
-	//    criteria.
+	//    * CONTINUE - Inspect the available headers normally, according to the
+	//    rule inspection criteria.
 	//
 	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
 	//    the rule action to the request.
@@ -13518,8 +13607,8 @@ type JsonBody struct {
 	//
 	// The options for oversize handling are the following:
 	//
-	//    * CONTINUE - Inspect the body normally, according to the rule inspection
-	//    criteria.
+	//    * CONTINUE - Inspect the available body contents normally, according to
+	//    the rule inspection criteria.
 	//
 	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
 	//    the rule action to the request.
@@ -16493,8 +16582,8 @@ func (s *ManagedRuleSetVersion) SetPublishTimestamp(v time.Time) *ManagedRuleSet
 // Inspect the HTTP method of the web request. The method indicates the type
 // of operation that the request is asking the origin to perform.
 //
-// This is used only in the FieldToMatch specification for some web request
-// component types.
+// This is used in the FieldToMatch specification for some web request component
+// types.
 //
 // JSON specification: "Method": {}
 type Method struct {
@@ -17299,8 +17388,8 @@ func (s PutPermissionPolicyOutput) GoString() string {
 // Inspect the query string of the web request. This is the part of a URL that
 // appears after a ? character, if any.
 //
-// This is used only in the FieldToMatch specification for some web request
-// component types.
+// This is used in the FieldToMatch specification for some web request component
+// types.
 //
 // JSON specification: "QueryString": {}
 type QueryString struct {
@@ -22892,8 +22981,8 @@ func (s *UpdateWebACLOutput) SetNextLockToken(v string) *UpdateWebACLOutput {
 // Inspect the path component of the URI of the web request. This is the part
 // of the web request that identifies a resource. For example, /images/daily-ad.jpg.
 //
-// This is used only in the FieldToMatch specification for some web request
-// component types.
+// This is used in the FieldToMatch specification for some web request component
+// types.
 //
 // JSON specification: "UriPath": {}
 type UriPath struct {
@@ -23043,6 +23132,12 @@ type VisibilityConfig struct {
 
 	// A boolean indicating whether the associated resource sends metrics to Amazon
 	// CloudWatch. For the list of available metrics, see WAF Metrics (https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics)
+	// in the WAF Developer Guide.
+	//
+	// For web ACLs, the metrics are for web requests that have the web ACL default
+	// action applied. WAF applies the default action to web requests that pass
+	// the inspection of all rules in the web ACL without being either allowed or
+	// blocked. For more information, see The web ACL default action (https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-default-action.html)
 	// in the WAF Developer Guide.
 	//
 	// CloudWatchMetricsEnabled is a required field

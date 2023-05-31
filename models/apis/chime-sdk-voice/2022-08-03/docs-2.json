@@ -227,6 +227,12 @@
         "VoiceToneAnalysisTask$CallDetails": "<p>The call details of a voice tone analysis task.</p>"
       }
     },
+    "CallLegType": {
+      "base": null,
+      "refs": {
+        "StartSpeakerSearchTaskRequest$CallLeg": "<p>Specifies which call leg to stream for speaker search.</p>"
+      }
+    },
     "CallingName": {
       "base": null,
       "refs": {

@@ -68,29 +68,25 @@ type SecurityLakeAPI interface {
 	CreateCustomLogSourceWithContext(aws.Context, *securitylake.CreateCustomLogSourceInput, ...request.Option) (*securitylake.CreateCustomLogSourceOutput, error)
 	CreateCustomLogSourceRequest(*securitylake.CreateCustomLogSourceInput) (*request.Request, *securitylake.CreateCustomLogSourceOutput)
 
-	CreateDatalake(*securitylake.CreateDatalakeInput) (*securitylake.CreateDatalakeOutput, error)
-	CreateDatalakeWithContext(aws.Context, *securitylake.CreateDatalakeInput, ...request.Option) (*securitylake.CreateDatalakeOutput, error)
-	CreateDatalakeRequest(*securitylake.CreateDatalakeInput) (*request.Request, *securitylake.CreateDatalakeOutput)
+	CreateDataLake(*securitylake.CreateDataLakeInput) (*securitylake.CreateDataLakeOutput, error)
+	CreateDataLakeWithContext(aws.Context, *securitylake.CreateDataLakeInput, ...request.Option) (*securitylake.CreateDataLakeOutput, error)
+	CreateDataLakeRequest(*securitylake.CreateDataLakeInput) (*request.Request, *securitylake.CreateDataLakeOutput)
 
-	CreateDatalakeAutoEnable(*securitylake.CreateDatalakeAutoEnableInput) (*securitylake.CreateDatalakeAutoEnableOutput, error)
-	CreateDatalakeAutoEnableWithContext(aws.Context, *securitylake.CreateDatalakeAutoEnableInput, ...request.Option) (*securitylake.CreateDatalakeAutoEnableOutput, error)
-	CreateDatalakeAutoEnableRequest(*securitylake.CreateDatalakeAutoEnableInput) (*request.Request, *securitylake.CreateDatalakeAutoEnableOutput)
+	CreateDataLakeExceptionSubscription(*securitylake.CreateDataLakeExceptionSubscriptionInput) (*securitylake.CreateDataLakeExceptionSubscriptionOutput, error)
+	CreateDataLakeExceptionSubscriptionWithContext(aws.Context, *securitylake.CreateDataLakeExceptionSubscriptionInput, ...request.Option) (*securitylake.CreateDataLakeExceptionSubscriptionOutput, error)
+	CreateDataLakeExceptionSubscriptionRequest(*securitylake.CreateDataLakeExceptionSubscriptionInput) (*request.Request, *securitylake.CreateDataLakeExceptionSubscriptionOutput)
 
-	CreateDatalakeDelegatedAdmin(*securitylake.CreateDatalakeDelegatedAdminInput) (*securitylake.CreateDatalakeDelegatedAdminOutput, error)
-	CreateDatalakeDelegatedAdminWithContext(aws.Context, *securitylake.CreateDatalakeDelegatedAdminInput, ...request.Option) (*securitylake.CreateDatalakeDelegatedAdminOutput, error)
-	CreateDatalakeDelegatedAdminRequest(*securitylake.CreateDatalakeDelegatedAdminInput) (*request.Request, *securitylake.CreateDatalakeDelegatedAdminOutput)
-
-	CreateDatalakeExceptionsSubscription(*securitylake.CreateDatalakeExceptionsSubscriptionInput) (*securitylake.CreateDatalakeExceptionsSubscriptionOutput, error)
-	CreateDatalakeExceptionsSubscriptionWithContext(aws.Context, *securitylake.CreateDatalakeExceptionsSubscriptionInput, ...request.Option) (*securitylake.CreateDatalakeExceptionsSubscriptionOutput, error)
-	CreateDatalakeExceptionsSubscriptionRequest(*securitylake.CreateDatalakeExceptionsSubscriptionInput) (*request.Request, *securitylake.CreateDatalakeExceptionsSubscriptionOutput)
+	CreateDataLakeOrganizationConfiguration(*securitylake.CreateDataLakeOrganizationConfigurationInput) (*securitylake.CreateDataLakeOrganizationConfigurationOutput, error)
+	CreateDataLakeOrganizationConfigurationWithContext(aws.Context, *securitylake.CreateDataLakeOrganizationConfigurationInput, ...request.Option) (*securitylake.CreateDataLakeOrganizationConfigurationOutput, error)
+	CreateDataLakeOrganizationConfigurationRequest(*securitylake.CreateDataLakeOrganizationConfigurationInput) (*request.Request, *securitylake.CreateDataLakeOrganizationConfigurationOutput)
 
 	CreateSubscriber(*securitylake.CreateSubscriberInput) (*securitylake.CreateSubscriberOutput, error)
 	CreateSubscriberWithContext(aws.Context, *securitylake.CreateSubscriberInput, ...request.Option) (*securitylake.CreateSubscriberOutput, error)
 	CreateSubscriberRequest(*securitylake.CreateSubscriberInput) (*request.Request, *securitylake.CreateSubscriberOutput)
 
-	CreateSubscriptionNotificationConfiguration(*securitylake.CreateSubscriptionNotificationConfigurationInput) (*securitylake.CreateSubscriptionNotificationConfigurationOutput, error)
-	CreateSubscriptionNotificationConfigurationWithContext(aws.Context, *securitylake.CreateSubscriptionNotificationConfigurationInput, ...request.Option) (*securitylake.CreateSubscriptionNotificationConfigurationOutput, error)
-	CreateSubscriptionNotificationConfigurationRequest(*securitylake.CreateSubscriptionNotificationConfigurationInput) (*request.Request, *securitylake.CreateSubscriptionNotificationConfigurationOutput)
+	CreateSubscriberNotification(*securitylake.CreateSubscriberNotificationInput) (*securitylake.CreateSubscriberNotificationOutput, error)
+	CreateSubscriberNotificationWithContext(aws.Context, *securitylake.CreateSubscriberNotificationInput, ...request.Option) (*securitylake.CreateSubscriberNotificationOutput, error)
+	CreateSubscriberNotificationRequest(*securitylake.CreateSubscriberNotificationInput) (*request.Request, *securitylake.CreateSubscriberNotificationOutput)
 
 	DeleteAwsLogSource(*securitylake.DeleteAwsLogSourceInput) (*securitylake.DeleteAwsLogSourceOutput, error)
 	DeleteAwsLogSourceWithContext(aws.Context, *securitylake.DeleteAwsLogSourceInput, ...request.Option) (*securitylake.DeleteAwsLogSourceOutput, error)
@@ -100,63 +96,59 @@ type SecurityLakeAPI interface {
 	DeleteCustomLogSourceWithContext(aws.Context, *securitylake.DeleteCustomLogSourceInput, ...request.Option) (*securitylake.DeleteCustomLogSourceOutput, error)
 	DeleteCustomLogSourceRequest(*securitylake.DeleteCustomLogSourceInput) (*request.Request, *securitylake.DeleteCustomLogSourceOutput)
 
-	DeleteDatalake(*securitylake.DeleteDatalakeInput) (*securitylake.DeleteDatalakeOutput, error)
-	DeleteDatalakeWithContext(aws.Context, *securitylake.DeleteDatalakeInput, ...request.Option) (*securitylake.DeleteDatalakeOutput, error)
-	DeleteDatalakeRequest(*securitylake.DeleteDatalakeInput) (*request.Request, *securitylake.DeleteDatalakeOutput)
+	DeleteDataLake(*securitylake.DeleteDataLakeInput) (*securitylake.DeleteDataLakeOutput, error)
+	DeleteDataLakeWithContext(aws.Context, *securitylake.DeleteDataLakeInput, ...request.Option) (*securitylake.DeleteDataLakeOutput, error)
+	DeleteDataLakeRequest(*securitylake.DeleteDataLakeInput) (*request.Request, *securitylake.DeleteDataLakeOutput)
 
-	DeleteDatalakeAutoEnable(*securitylake.DeleteDatalakeAutoEnableInput) (*securitylake.DeleteDatalakeAutoEnableOutput, error)
-	DeleteDatalakeAutoEnableWithContext(aws.Context, *securitylake.DeleteDatalakeAutoEnableInput, ...request.Option) (*securitylake.DeleteDatalakeAutoEnableOutput, error)
-	DeleteDatalakeAutoEnableRequest(*securitylake.DeleteDatalakeAutoEnableInput) (*request.Request, *securitylake.DeleteDatalakeAutoEnableOutput)
+	DeleteDataLakeExceptionSubscription(*securitylake.DeleteDataLakeExceptionSubscriptionInput) (*securitylake.DeleteDataLakeExceptionSubscriptionOutput, error)
+	DeleteDataLakeExceptionSubscriptionWithContext(aws.Context, *securitylake.DeleteDataLakeExceptionSubscriptionInput, ...request.Option) (*securitylake.DeleteDataLakeExceptionSubscriptionOutput, error)
+	DeleteDataLakeExceptionSubscriptionRequest(*securitylake.DeleteDataLakeExceptionSubscriptionInput) (*request.Request, *securitylake.DeleteDataLakeExceptionSubscriptionOutput)
 
-	DeleteDatalakeDelegatedAdmin(*securitylake.DeleteDatalakeDelegatedAdminInput) (*securitylake.DeleteDatalakeDelegatedAdminOutput, error)
-	DeleteDatalakeDelegatedAdminWithContext(aws.Context, *securitylake.DeleteDatalakeDelegatedAdminInput, ...request.Option) (*securitylake.DeleteDatalakeDelegatedAdminOutput, error)
-	DeleteDatalakeDelegatedAdminRequest(*securitylake.DeleteDatalakeDelegatedAdminInput) (*request.Request, *securitylake.DeleteDatalakeDelegatedAdminOutput)
-
-	DeleteDatalakeExceptionsSubscription(*securitylake.DeleteDatalakeExceptionsSubscriptionInput) (*securitylake.DeleteDatalakeExceptionsSubscriptionOutput, error)
-	DeleteDatalakeExceptionsSubscriptionWithContext(aws.Context, *securitylake.DeleteDatalakeExceptionsSubscriptionInput, ...request.Option) (*securitylake.DeleteDatalakeExceptionsSubscriptionOutput, error)
-	DeleteDatalakeExceptionsSubscriptionRequest(*securitylake.DeleteDatalakeExceptionsSubscriptionInput) (*request.Request, *securitylake.DeleteDatalakeExceptionsSubscriptionOutput)
+	DeleteDataLakeOrganizationConfiguration(*securitylake.DeleteDataLakeOrganizationConfigurationInput) (*securitylake.DeleteDataLakeOrganizationConfigurationOutput, error)
+	DeleteDataLakeOrganizationConfigurationWithContext(aws.Context, *securitylake.DeleteDataLakeOrganizationConfigurationInput, ...request.Option) (*securitylake.DeleteDataLakeOrganizationConfigurationOutput, error)
+	DeleteDataLakeOrganizationConfigurationRequest(*securitylake.DeleteDataLakeOrganizationConfigurationInput) (*request.Request, *securitylake.DeleteDataLakeOrganizationConfigurationOutput)
 
 	DeleteSubscriber(*securitylake.DeleteSubscriberInput) (*securitylake.DeleteSubscriberOutput, error)
 	DeleteSubscriberWithContext(aws.Context, *securitylake.DeleteSubscriberInput, ...request.Option) (*securitylake.DeleteSubscriberOutput, error)
 	DeleteSubscriberRequest(*securitylake.DeleteSubscriberInput) (*request.Request, *securitylake.DeleteSubscriberOutput)
 
-	DeleteSubscriptionNotificationConfiguration(*securitylake.DeleteSubscriptionNotificationConfigurationInput) (*securitylake.DeleteSubscriptionNotificationConfigurationOutput, error)
-	DeleteSubscriptionNotificationConfigurationWithContext(aws.Context, *securitylake.DeleteSubscriptionNotificationConfigurationInput, ...request.Option) (*securitylake.DeleteSubscriptionNotificationConfigurationOutput, error)
-	DeleteSubscriptionNotificationConfigurationRequest(*securitylake.DeleteSubscriptionNotificationConfigurationInput) (*request.Request, *securitylake.DeleteSubscriptionNotificationConfigurationOutput)
+	DeleteSubscriberNotification(*securitylake.DeleteSubscriberNotificationInput) (*securitylake.DeleteSubscriberNotificationOutput, error)
+	DeleteSubscriberNotificationWithContext(aws.Context, *securitylake.DeleteSubscriberNotificationInput, ...request.Option) (*securitylake.DeleteSubscriberNotificationOutput, error)
+	DeleteSubscriberNotificationRequest(*securitylake.DeleteSubscriberNotificationInput) (*request.Request, *securitylake.DeleteSubscriberNotificationOutput)
 
-	GetDatalake(*securitylake.GetDatalakeInput) (*securitylake.GetDatalakeOutput, error)
-	GetDatalakeWithContext(aws.Context, *securitylake.GetDatalakeInput, ...request.Option) (*securitylake.GetDatalakeOutput, error)
-	GetDatalakeRequest(*securitylake.GetDatalakeInput) (*request.Request, *securitylake.GetDatalakeOutput)
+	DeregisterDataLakeDelegatedAdministrator(*securitylake.DeregisterDataLakeDelegatedAdministratorInput) (*securitylake.DeregisterDataLakeDelegatedAdministratorOutput, error)
+	DeregisterDataLakeDelegatedAdministratorWithContext(aws.Context, *securitylake.DeregisterDataLakeDelegatedAdministratorInput, ...request.Option) (*securitylake.DeregisterDataLakeDelegatedAdministratorOutput, error)
+	DeregisterDataLakeDelegatedAdministratorRequest(*securitylake.DeregisterDataLakeDelegatedAdministratorInput) (*request.Request, *securitylake.DeregisterDataLakeDelegatedAdministratorOutput)
 
-	GetDatalakeAutoEnable(*securitylake.GetDatalakeAutoEnableInput) (*securitylake.GetDatalakeAutoEnableOutput, error)
-	GetDatalakeAutoEnableWithContext(aws.Context, *securitylake.GetDatalakeAutoEnableInput, ...request.Option) (*securitylake.GetDatalakeAutoEnableOutput, error)
-	GetDatalakeAutoEnableRequest(*securitylake.GetDatalakeAutoEnableInput) (*request.Request, *securitylake.GetDatalakeAutoEnableOutput)
+	GetDataLakeExceptionSubscription(*securitylake.GetDataLakeExceptionSubscriptionInput) (*securitylake.GetDataLakeExceptionSubscriptionOutput, error)
+	GetDataLakeExceptionSubscriptionWithContext(aws.Context, *securitylake.GetDataLakeExceptionSubscriptionInput, ...request.Option) (*securitylake.GetDataLakeExceptionSubscriptionOutput, error)
+	GetDataLakeExceptionSubscriptionRequest(*securitylake.GetDataLakeExceptionSubscriptionInput) (*request.Request, *securitylake.GetDataLakeExceptionSubscriptionOutput)
 
-	GetDatalakeExceptionsExpiry(*securitylake.GetDatalakeExceptionsExpiryInput) (*securitylake.GetDatalakeExceptionsExpiryOutput, error)
-	GetDatalakeExceptionsExpiryWithContext(aws.Context, *securitylake.GetDatalakeExceptionsExpiryInput, ...request.Option) (*securitylake.GetDatalakeExceptionsExpiryOutput, error)
-	GetDatalakeExceptionsExpiryRequest(*securitylake.GetDatalakeExceptionsExpiryInput) (*request.Request, *securitylake.GetDatalakeExceptionsExpiryOutput)
+	GetDataLakeOrganizationConfiguration(*securitylake.GetDataLakeOrganizationConfigurationInput) (*securitylake.GetDataLakeOrganizationConfigurationOutput, error)
+	GetDataLakeOrganizationConfigurationWithContext(aws.Context, *securitylake.GetDataLakeOrganizationConfigurationInput, ...request.Option) (*securitylake.GetDataLakeOrganizationConfigurationOutput, error)
+	GetDataLakeOrganizationConfigurationRequest(*securitylake.GetDataLakeOrganizationConfigurationInput) (*request.Request, *securitylake.GetDataLakeOrganizationConfigurationOutput)
 
-	GetDatalakeExceptionsSubscription(*securitylake.GetDatalakeExceptionsSubscriptionInput) (*securitylake.GetDatalakeExceptionsSubscriptionOutput, error)
-	GetDatalakeExceptionsSubscriptionWithContext(aws.Context, *securitylake.GetDatalakeExceptionsSubscriptionInput, ...request.Option) (*securitylake.GetDatalakeExceptionsSubscriptionOutput, error)
-	GetDatalakeExceptionsSubscriptionRequest(*securitylake.GetDatalakeExceptionsSubscriptionInput) (*request.Request, *securitylake.GetDatalakeExceptionsSubscriptionOutput)
+	GetDataLakeSources(*securitylake.GetDataLakeSourcesInput) (*securitylake.GetDataLakeSourcesOutput, error)
+	GetDataLakeSourcesWithContext(aws.Context, *securitylake.GetDataLakeSourcesInput, ...request.Option) (*securitylake.GetDataLakeSourcesOutput, error)
+	GetDataLakeSourcesRequest(*securitylake.GetDataLakeSourcesInput) (*request.Request, *securitylake.GetDataLakeSourcesOutput)
 
-	GetDatalakeStatus(*securitylake.GetDatalakeStatusInput) (*securitylake.GetDatalakeStatusOutput, error)
-	GetDatalakeStatusWithContext(aws.Context, *securitylake.GetDatalakeStatusInput, ...request.Option) (*securitylake.GetDatalakeStatusOutput, error)
-	GetDatalakeStatusRequest(*securitylake.GetDatalakeStatusInput) (*request.Request, *securitylake.GetDatalakeStatusOutput)
-
-	GetDatalakeStatusPages(*securitylake.GetDatalakeStatusInput, func(*securitylake.GetDatalakeStatusOutput, bool) bool) error
-	GetDatalakeStatusPagesWithContext(aws.Context, *securitylake.GetDatalakeStatusInput, func(*securitylake.GetDatalakeStatusOutput, bool) bool, ...request.Option) error
+	GetDataLakeSourcesPages(*securitylake.GetDataLakeSourcesInput, func(*securitylake.GetDataLakeSourcesOutput, bool) bool) error
+	GetDataLakeSourcesPagesWithContext(aws.Context, *securitylake.GetDataLakeSourcesInput, func(*securitylake.GetDataLakeSourcesOutput, bool) bool, ...request.Option) error
 
 	GetSubscriber(*securitylake.GetSubscriberInput) (*securitylake.GetSubscriberOutput, error)
 	GetSubscriberWithContext(aws.Context, *securitylake.GetSubscriberInput, ...request.Option) (*securitylake.GetSubscriberOutput, error)
 	GetSubscriberRequest(*securitylake.GetSubscriberInput) (*request.Request, *securitylake.GetSubscriberOutput)
 
-	ListDatalakeExceptions(*securitylake.ListDatalakeExceptionsInput) (*securitylake.ListDatalakeExceptionsOutput, error)
-	ListDatalakeExceptionsWithContext(aws.Context, *securitylake.ListDatalakeExceptionsInput, ...request.Option) (*securitylake.ListDatalakeExceptionsOutput, error)
-	ListDatalakeExceptionsRequest(*securitylake.ListDatalakeExceptionsInput) (*request.Request, *securitylake.ListDatalakeExceptionsOutput)
+	ListDataLakeExceptions(*securitylake.ListDataLakeExceptionsInput) (*securitylake.ListDataLakeExceptionsOutput, error)
+	ListDataLakeExceptionsWithContext(aws.Context, *securitylake.ListDataLakeExceptionsInput, ...request.Option) (*securitylake.ListDataLakeExceptionsOutput, error)
+	ListDataLakeExceptionsRequest(*securitylake.ListDataLakeExceptionsInput) (*request.Request, *securitylake.ListDataLakeExceptionsOutput)
 
-	ListDatalakeExceptionsPages(*securitylake.ListDatalakeExceptionsInput, func(*securitylake.ListDatalakeExceptionsOutput, bool) bool) error
-	ListDatalakeExceptionsPagesWithContext(aws.Context, *securitylake.ListDatalakeExceptionsInput, func(*securitylake.ListDatalakeExceptionsOutput, bool) bool, ...request.Option) error
+	ListDataLakeExceptionsPages(*securitylake.ListDataLakeExceptionsInput, func(*securitylake.ListDataLakeExceptionsOutput, bool) bool) error
+	ListDataLakeExceptionsPagesWithContext(aws.Context, *securitylake.ListDataLakeExceptionsInput, func(*securitylake.ListDataLakeExceptionsOutput, bool) bool, ...request.Option) error
+
+	ListDataLakes(*securitylake.ListDataLakesInput) (*securitylake.ListDataLakesOutput, error)
+	ListDataLakesWithContext(aws.Context, *securitylake.ListDataLakesInput, ...request.Option) (*securitylake.ListDataLakesOutput, error)
+	ListDataLakesRequest(*securitylake.ListDataLakesInput) (*request.Request, *securitylake.ListDataLakesOutput)
 
 	ListLogSources(*securitylake.ListLogSourcesInput) (*securitylake.ListLogSourcesOutput, error)
 	ListLogSourcesWithContext(aws.Context, *securitylake.ListLogSourcesInput, ...request.Option) (*securitylake.ListLogSourcesOutput, error)
@@ -172,25 +164,25 @@ type SecurityLakeAPI interface {
 	ListSubscribersPages(*securitylake.ListSubscribersInput, func(*securitylake.ListSubscribersOutput, bool) bool) error
 	ListSubscribersPagesWithContext(aws.Context, *securitylake.ListSubscribersInput, func(*securitylake.ListSubscribersOutput, bool) bool, ...request.Option) error
 
-	UpdateDatalake(*securitylake.UpdateDatalakeInput) (*securitylake.UpdateDatalakeOutput, error)
-	UpdateDatalakeWithContext(aws.Context, *securitylake.UpdateDatalakeInput, ...request.Option) (*securitylake.UpdateDatalakeOutput, error)
-	UpdateDatalakeRequest(*securitylake.UpdateDatalakeInput) (*request.Request, *securitylake.UpdateDatalakeOutput)
+	RegisterDataLakeDelegatedAdministrator(*securitylake.RegisterDataLakeDelegatedAdministratorInput) (*securitylake.RegisterDataLakeDelegatedAdministratorOutput, error)
+	RegisterDataLakeDelegatedAdministratorWithContext(aws.Context, *securitylake.RegisterDataLakeDelegatedAdministratorInput, ...request.Option) (*securitylake.RegisterDataLakeDelegatedAdministratorOutput, error)
+	RegisterDataLakeDelegatedAdministratorRequest(*securitylake.RegisterDataLakeDelegatedAdministratorInput) (*request.Request, *securitylake.RegisterDataLakeDelegatedAdministratorOutput)
 
-	UpdateDatalakeExceptionsExpiry(*securitylake.UpdateDatalakeExceptionsExpiryInput) (*securitylake.UpdateDatalakeExceptionsExpiryOutput, error)
-	UpdateDatalakeExceptionsExpiryWithContext(aws.Context, *securitylake.UpdateDatalakeExceptionsExpiryInput, ...request.Option) (*securitylake.UpdateDatalakeExceptionsExpiryOutput, error)
-	UpdateDatalakeExceptionsExpiryRequest(*securitylake.UpdateDatalakeExceptionsExpiryInput) (*request.Request, *securitylake.UpdateDatalakeExceptionsExpiryOutput)
+	UpdateDataLake(*securitylake.UpdateDataLakeInput) (*securitylake.UpdateDataLakeOutput, error)
+	UpdateDataLakeWithContext(aws.Context, *securitylake.UpdateDataLakeInput, ...request.Option) (*securitylake.UpdateDataLakeOutput, error)
+	UpdateDataLakeRequest(*securitylake.UpdateDataLakeInput) (*request.Request, *securitylake.UpdateDataLakeOutput)
 
-	UpdateDatalakeExceptionsSubscription(*securitylake.UpdateDatalakeExceptionsSubscriptionInput) (*securitylake.UpdateDatalakeExceptionsSubscriptionOutput, error)
-	UpdateDatalakeExceptionsSubscriptionWithContext(aws.Context, *securitylake.UpdateDatalakeExceptionsSubscriptionInput, ...request.Option) (*securitylake.UpdateDatalakeExceptionsSubscriptionOutput, error)
-	UpdateDatalakeExceptionsSubscriptionRequest(*securitylake.UpdateDatalakeExceptionsSubscriptionInput) (*request.Request, *securitylake.UpdateDatalakeExceptionsSubscriptionOutput)
+	UpdateDataLakeExceptionSubscription(*securitylake.UpdateDataLakeExceptionSubscriptionInput) (*securitylake.UpdateDataLakeExceptionSubscriptionOutput, error)
+	UpdateDataLakeExceptionSubscriptionWithContext(aws.Context, *securitylake.UpdateDataLakeExceptionSubscriptionInput, ...request.Option) (*securitylake.UpdateDataLakeExceptionSubscriptionOutput, error)
+	UpdateDataLakeExceptionSubscriptionRequest(*securitylake.UpdateDataLakeExceptionSubscriptionInput) (*request.Request, *securitylake.UpdateDataLakeExceptionSubscriptionOutput)
 
 	UpdateSubscriber(*securitylake.UpdateSubscriberInput) (*securitylake.UpdateSubscriberOutput, error)
 	UpdateSubscriberWithContext(aws.Context, *securitylake.UpdateSubscriberInput, ...request.Option) (*securitylake.UpdateSubscriberOutput, error)
 	UpdateSubscriberRequest(*securitylake.UpdateSubscriberInput) (*request.Request, *securitylake.UpdateSubscriberOutput)
 
-	UpdateSubscriptionNotificationConfiguration(*securitylake.UpdateSubscriptionNotificationConfigurationInput) (*securitylake.UpdateSubscriptionNotificationConfigurationOutput, error)
-	UpdateSubscriptionNotificationConfigurationWithContext(aws.Context, *securitylake.UpdateSubscriptionNotificationConfigurationInput, ...request.Option) (*securitylake.UpdateSubscriptionNotificationConfigurationOutput, error)
-	UpdateSubscriptionNotificationConfigurationRequest(*securitylake.UpdateSubscriptionNotificationConfigurationInput) (*request.Request, *securitylake.UpdateSubscriptionNotificationConfigurationOutput)
+	UpdateSubscriberNotification(*securitylake.UpdateSubscriberNotificationInput) (*securitylake.UpdateSubscriberNotificationOutput, error)
+	UpdateSubscriberNotificationWithContext(aws.Context, *securitylake.UpdateSubscriberNotificationInput, ...request.Option) (*securitylake.UpdateSubscriberNotificationOutput, error)
+	UpdateSubscriberNotificationRequest(*securitylake.UpdateSubscriberNotificationInput) (*request.Request, *securitylake.UpdateSubscriberNotificationOutput)
 }
 
 var _ SecurityLakeAPI = (*securitylake.SecurityLake)(nil)

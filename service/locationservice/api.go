@@ -1582,6 +1582,11 @@ func (c *LocationService) CreateTrackerRequest(input *CreateTrackerInput) (req *
 //   - ValidationException
 //     The input failed to meet the constraints specified by the AWS service.
 //
+//   - ServiceQuotaExceededException
+//     The operation was denied because the request would exceed the maximum quota
+//     (https://docs.aws.amazon.com/location/latest/developerguide/location-quotas.html)
+//     set for Amazon Location Service.
+//
 //   - ThrottlingException
 //     The request was denied because of request throttling.
 //
@@ -12506,7 +12511,12 @@ type GetMapGlyphsInput struct {
 	//    | Amazon Ember Bold,Noto Sans Bold | Amazon Ember Medium,Noto Sans Medium
 	//    | Amazon Ember Regular Italic,Noto Sans Italic | Amazon Ember Condensed
 	//    RC Regular,Noto Sans Regular | Amazon Ember Condensed RC Bold,Noto Sans
-	//    Bold
+	//    Bold | Amazon Ember Regular,Noto Sans Regular,Noto Sans Arabic Regular
+	//    | Amazon Ember Condensed RC Bold,Noto Sans Bold,Noto Sans Arabic Condensed
+	//    Bold | Amazon Ember Bold,Noto Sans Bold,Noto Sans Arabic Bold | Amazon
+	//    Ember Regular Italic,Noto Sans Italic,Noto Sans Arabic Regular | Amazon
+	//    Ember Condensed RC Regular,Noto Sans Regular,Noto Sans Arabic Condensed
+	//    Regular | Amazon Ember Medium,Noto Sans Medium,Noto Sans Arabic Medium
 	//
 	// The fonts used by the Open Data map styles are combined fonts that use Amazon
 	// Ember for most glyphs but Noto Sans for glyphs unsupported by Amazon Ember.
@@ -15265,6 +15275,17 @@ func (s *ListTrackersResponseEntry) SetUpdateTime(v time.Time) *ListTrackersResp
 type MapConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the political view for the style. Leave unset to not use a political
+	// view, or, for styles that support specific political views, you can choose
+	// a view, such as IND for the Indian view.
+	//
+	// Default is unset.
+	//
+	// Not all map resources or styles support political view styles. See Political
+	// views (https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views)
+	// for more information.
+	PoliticalView *string `min:"3" type:"string"`
+
 	// Specifies the map style selected from an available data provider.
 	//
 	// Valid Esri map styles (https://docs.aws.amazon.com/location/latest/developerguide/esri.html):
@@ -15286,14 +15307,14 @@ type MapConfiguration struct {
 	//    * VectorEsriTopographic – The Esri Light map style, which provides a
 	//    detailed vector basemap with a classic Esri map style.
 	//
-	//    * VectorEsriStreets – The Esri World Streets map style, which provides
-	//    a detailed vector basemap for the world symbolized with a classic Esri
-	//    street map style. The vector tile layer is similar in content and style
-	//    to the World Street Map raster map.
+	//    * VectorEsriStreets – The Esri Street Map style, which provides a detailed
+	//    vector basemap for the world symbolized with a classic Esri street map
+	//    style. The vector tile layer is similar in content and style to the World
+	//    Street Map raster map.
 	//
-	//    * VectorEsriNavigation – The Esri World Navigation map style, which
-	//    provides a detailed basemap for the world symbolized with a custom navigation
-	//    map style that's designed for use during the day in mobile devices.
+	//    * VectorEsriNavigation – The Esri Navigation map style, which provides
+	//    a detailed basemap for the world symbolized with a custom navigation map
+	//    style that's designed for use during the day in mobile devices.
 	//
 	// Valid HERE Technologies map styles (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html):
 	//
@@ -15383,6 +15404,9 @@ func (s MapConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MapConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MapConfiguration"}
+	if s.PoliticalView != nil && len(*s.PoliticalView) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("PoliticalView", 3))
+	}
 	if s.Style == nil {
 		invalidParams.Add(request.NewErrParamRequired("Style"))
 	}
@@ -15396,9 +15420,53 @@ func (s *MapConfiguration) Validate() error {
 	return nil
 }
 
+// SetPoliticalView sets the PoliticalView field's value.
+func (s *MapConfiguration) SetPoliticalView(v string) *MapConfiguration {
+	s.PoliticalView = &v
+	return s
+}
+
 // SetStyle sets the Style field's value.
 func (s *MapConfiguration) SetStyle(v string) *MapConfiguration {
 	s.Style = &v
+	return s
+}
+
+// Specifies the political view for the style.
+type MapConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the political view for the style. Set to an empty string to not
+	// use a political view, or, for styles that support specific political views,
+	// you can choose a view, such as IND for the Indian view.
+	//
+	// Not all map resources or styles support political view styles. See Political
+	// views (https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views)
+	// for more information.
+	PoliticalView *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// SetPoliticalView sets the PoliticalView field's value.
+func (s *MapConfigurationUpdate) SetPoliticalView(v string) *MapConfigurationUpdate {
+	s.PoliticalView = &v
 	return s
 }
 
@@ -18052,6 +18120,10 @@ func (s *UpdateKeyOutput) SetUpdateTime(v time.Time) *UpdateKeyOutput {
 type UpdateMapInput struct {
 	_ struct{} `type:"structure"`
 
+	// Updates the parts of the map configuration that can be updated, including
+	// the political view.
+	ConfigurationUpdate *MapConfigurationUpdate `type:"structure"`
+
 	// Updates the description for the map resource.
 	Description *string `type:"string"`
 
@@ -18098,6 +18170,12 @@ func (s *UpdateMapInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfigurationUpdate sets the ConfigurationUpdate field's value.
+func (s *UpdateMapInput) SetConfigurationUpdate(v *MapConfigurationUpdate) *UpdateMapInput {
+	s.ConfigurationUpdate = v
+	return s
 }
 
 // SetDescription sets the Description field's value.

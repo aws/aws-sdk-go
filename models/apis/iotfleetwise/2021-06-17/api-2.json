@@ -887,7 +887,9 @@
           "shape":"string",
           "deprecated":true,
           "deprecatedMessage":"assignedValue is no longer in use"
-        }
+        },
+        "deprecationMessage":{"shape":"message"},
+        "comment":{"shape":"message"}
       }
     },
     "AmazonResourceName":{
@@ -930,7 +932,9 @@
           "deprecated":true,
           "deprecatedMessage":"assignedValue is no longer in use"
         },
-        "defaultValue":{"shape":"string"}
+        "defaultValue":{"shape":"string"},
+        "deprecationMessage":{"shape":"message"},
+        "comment":{"shape":"message"}
       }
     },
     "BatchCreateVehicleRequest":{
@@ -966,7 +970,9 @@
       "required":["fullyQualifiedName"],
       "members":{
         "fullyQualifiedName":{"shape":"string"},
-        "description":{"shape":"description"}
+        "description":{"shape":"description"},
+        "deprecationMessage":{"shape":"message"},
+        "comment":{"shape":"message"}
       }
     },
     "CampaignStatus":{
@@ -1124,7 +1130,8 @@
         "signalsToCollect":{"shape":"SignalInformationList"},
         "collectionScheme":{"shape":"CollectionScheme"},
         "dataExtraDimensions":{"shape":"DataExtraDimensionNodePathList"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "dataDestinationConfigs":{"shape":"DataDestinationConfigs"}
       }
     },
     "CreateCampaignResponse":{
@@ -1287,11 +1294,32 @@
         "thingArn":{"shape":"arn"}
       }
     },
+    "DataDestinationConfig":{
+      "type":"structure",
+      "members":{
+        "s3Config":{"shape":"S3Config"},
+        "timestreamConfig":{"shape":"TimestreamConfig"}
+      },
+      "union":true
+    },
+    "DataDestinationConfigs":{
+      "type":"list",
+      "member":{"shape":"DataDestinationConfig"},
+      "max":1,
+      "min":1
+    },
     "DataExtraDimensionNodePathList":{
       "type":"list",
       "member":{"shape":"NodePath"},
       "max":5,
       "min":0
+    },
+    "DataFormat":{
+      "type":"string",
+      "enum":[
+        "JSON",
+        "PARQUET"
+      ]
     },
     "DecoderManifestSummary":{
       "type":"structure",
@@ -1503,7 +1531,8 @@
         "collectionScheme":{"shape":"CollectionScheme"},
         "dataExtraDimensions":{"shape":"DataExtraDimensionNodePathList"},
         "creationTime":{"shape":"timestamp"},
-        "lastModificationTime":{"shape":"timestamp"}
+        "lastModificationTime":{"shape":"timestamp"},
+        "dataDestinationConfigs":{"shape":"DataDestinationConfigs"}
       }
     },
     "GetDecoderManifestRequest":{
@@ -1603,7 +1632,6 @@
       "required":[
         "customerAccountId",
         "accountStatus",
-        "timestreamRegistrationResponse",
         "iamRegistrationResponse",
         "creationTime",
         "lastModificationTime"
@@ -2247,6 +2275,12 @@
       "max":50,
       "min":1
     },
+    "Prefix":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-_:./!*'()]+"
+    },
     "ProtocolName":{
       "type":"string",
       "max":50,
@@ -2271,9 +2305,12 @@
     },
     "RegisterAccountRequest":{
       "type":"structure",
-      "required":["timestreamResources"],
       "members":{
-        "timestreamResources":{"shape":"TimestreamResources"},
+        "timestreamResources":{
+          "shape":"TimestreamResources",
+          "deprecated":true,
+          "deprecatedMessage":"Amazon Timestream metadata is now passed in the CreateCampaign API."
+        },
         "iamResources":{
           "shape":"IamResources",
           "deprecated":true,
@@ -2285,7 +2322,6 @@
       "type":"structure",
       "required":[
         "registerAccountStatus",
-        "timestreamResources",
         "iamResources",
         "creationTime",
         "lastModificationTime"
@@ -2321,6 +2357,22 @@
       "exception":true
     },
     "RetryAfterSeconds":{"type":"integer"},
+    "S3BucketArn":{
+      "type":"string",
+      "max":100,
+      "min":16,
+      "pattern":"arn:(aws[a-zA-Z0-9-]*):s3:::.+"
+    },
+    "S3Config":{
+      "type":"structure",
+      "required":["bucketArn"],
+      "members":{
+        "bucketArn":{"shape":"S3BucketArn"},
+        "dataFormat":{"shape":"DataFormat"},
+        "storageCompressionFormat":{"shape":"StorageCompressionFormat"},
+        "prefix":{"shape":"Prefix"}
+      }
+    },
     "Sensor":{
       "type":"structure",
       "required":[
@@ -2334,7 +2386,9 @@
         "unit":{"shape":"string"},
         "allowedValues":{"shape":"listOfStrings"},
         "min":{"shape":"double"},
-        "max":{"shape":"double"}
+        "max":{"shape":"double"},
+        "deprecationMessage":{"shape":"message"},
+        "comment":{"shape":"message"}
       }
     },
     "SignalCatalogSummary":{
@@ -2410,6 +2464,13 @@
         "TO_DISK"
       ]
     },
+    "StorageCompressionFormat":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "GZIP"
+      ]
+    },
     "String":{"type":"string"},
     "Tag":{
       "type":"structure",
@@ -2478,6 +2539,17 @@
         "periodMs":{"shape":"collectionPeriodMs"}
       }
     },
+    "TimestreamConfig":{
+      "type":"structure",
+      "required":[
+        "timestreamTableArn",
+        "executionRoleArn"
+      ],
+      "members":{
+        "timestreamTableArn":{"shape":"TimestreamTableArn"},
+        "executionRoleArn":{"shape":"IAMRoleArn"}
+      }
+    },
     "TimestreamDatabaseName":{
       "type":"string",
       "max":255,
@@ -2510,6 +2582,12 @@
         "timestreamDatabaseName":{"shape":"TimestreamDatabaseName"},
         "timestreamTableName":{"shape":"TimestreamTableName"}
       }
+    },
+    "TimestreamTableArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:(aws[a-zA-Z0-9-]*):timestream:[a-zA-Z0-9-]+:[0-9]{12}:database/[a-zA-Z0-9_.-]+/table/[a-zA-Z0-9_.-]+"
     },
     "TimestreamTableName":{
       "type":"string",
@@ -2892,6 +2970,12 @@
       "box":true,
       "max":4294967295,
       "min":1
+    },
+    "message":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"[^\\u0000-\\u001F\\u007F]+"
     },
     "modelManifestSummaries":{
       "type":"list",
