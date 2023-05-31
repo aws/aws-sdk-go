@@ -1,188 +1,10 @@
 {
     "testCases": [
         {
-            "documentation": "For region ap-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.ap-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.ap-northeast-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-northeast-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.ap-northeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-northeast-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.ap-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-south-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.ap-southeast-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-southeast-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.ap-southeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-southeast-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.ca-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ca-central-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.eu-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-central-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.eu-north-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-north-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.eu-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.eu-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-west-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region fips with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "properties": {
-                        "authSchemes": [
-                            {
-                                "name": "sigv4",
-                                "signingName": "memorydb",
-                                "signingRegion": "us-west-1"
-                            }
-                        ]
-                    },
-                    "url": "https://memory-db-fips.us-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "fips",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.sa-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "sa-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.us-east-1.amazonaws.com"
+                    "url": "https://healthlake.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -195,7 +17,7 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.us-east-2.amazonaws.com"
+                    "url": "https://healthlake.us-east-2.amazonaws.com"
                 }
             },
             "params": {
@@ -205,23 +27,10 @@
             }
         },
         {
-            "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.us-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.us-west-2.amazonaws.com"
+                    "url": "https://healthlake.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -234,7 +43,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db-fips.us-east-1.api.aws"
+                    "url": "https://healthlake-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -247,7 +56,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db-fips.us-east-1.amazonaws.com"
+                    "url": "https://healthlake-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -260,7 +69,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.us-east-1.api.aws"
+                    "url": "https://healthlake.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -270,36 +79,10 @@
             }
         },
         {
-            "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.cn-north-1.amazonaws.com.cn"
-                }
-            },
-            "params": {
-                "Region": "cn-north-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region cn-northwest-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://memory-db.cn-northwest-1.amazonaws.com.cn"
-                }
-            },
-            "params": {
-                "Region": "cn-northwest-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://healthlake-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -312,7 +95,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://healthlake-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -325,7 +108,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://healthlake.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -335,10 +118,23 @@
             }
         },
         {
+            "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://healthlake.cn-north-1.amazonaws.com.cn"
+                }
+            },
+            "params": {
+                "Region": "cn-north-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db-fips.us-gov-east-1.api.aws"
+                    "url": "https://healthlake-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -351,7 +147,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://healthlake-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -364,7 +160,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.us-gov-east-1.api.aws"
+                    "url": "https://healthlake.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -377,7 +173,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.us-gov-east-1.amazonaws.com"
+                    "url": "https://healthlake.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -401,7 +197,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://healthlake-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -425,7 +221,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://healthlake.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -449,7 +245,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://healthlake-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -473,7 +269,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://memory-db.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://healthlake.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

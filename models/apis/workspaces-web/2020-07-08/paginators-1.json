@@ -10,6 +10,11 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListIpAccessSettings": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListNetworkSettings": {
       "input_token": "nextToken",
       "output_token": "nextToken",

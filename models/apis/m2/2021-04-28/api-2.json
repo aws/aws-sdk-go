@@ -650,6 +650,7 @@
         "environmentId":{"shape":"Identifier"},
         "lastStartTime":{"shape":"Timestamp"},
         "name":{"shape":"EntityName"},
+        "roleArn":{"shape":"Arn"},
         "status":{"shape":"ApplicationLifecycle"},
         "versionStatus":{"shape":"ApplicationVersionLifecycle"}
       }
@@ -686,7 +687,7 @@
     },
     "Arn":{
       "type":"string",
-      "pattern":"^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+=,@.-]{0,1023}$"
+      "pattern":"^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]|):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+=,@.-]{0,1023}$"
     },
     "ArnList":{
       "type":"list",
@@ -840,6 +841,7 @@
         "engineType":{"shape":"EngineType"},
         "kmsKeyId":{"shape":"String"},
         "name":{"shape":"EntityName"},
+        "roleArn":{"shape":"Arn"},
         "tags":{"shape":"TagMap"}
       }
     },
@@ -1046,6 +1048,8 @@
       "type":"structure",
       "members":{
         "gdg":{"shape":"GdgDetailAttributes"},
+        "po":{"shape":"PoDetailAttributes"},
+        "ps":{"shape":"PsDetailAttributes"},
         "vsam":{"shape":"VsamDetailAttributes"}
       },
       "union":true
@@ -1054,6 +1058,8 @@
       "type":"structure",
       "members":{
         "gdg":{"shape":"GdgAttributes"},
+        "po":{"shape":"PoAttributes"},
+        "ps":{"shape":"PsAttributes"},
         "vsam":{"shape":"VsamAttributes"}
       },
       "union":true
@@ -1353,6 +1359,7 @@
         "loadBalancerDnsName":{"shape":"String100"},
         "logGroups":{"shape":"LogGroupSummaries"},
         "name":{"shape":"EntityName"},
+        "roleArn":{"shape":"Arn"},
         "status":{"shape":"ApplicationLifecycle"},
         "statusReason":{"shape":"String"},
         "tags":{"shape":"TagMap"},
@@ -1998,6 +2005,29 @@
         "schedule":{"shape":"MaintenanceSchedule"}
       }
     },
+    "PoAttributes":{
+      "type":"structure",
+      "required":[
+        "format",
+        "memberFileExtensions"
+      ],
+      "members":{
+        "encoding":{"shape":"String"},
+        "format":{"shape":"String"},
+        "memberFileExtensions":{"shape":"String20List"}
+      }
+    },
+    "PoDetailAttributes":{
+      "type":"structure",
+      "required":[
+        "encoding",
+        "format"
+      ],
+      "members":{
+        "encoding":{"shape":"String"},
+        "format":{"shape":"String"}
+      }
+    },
     "PortList":{
       "type":"list",
       "member":{"shape":"Integer"},
@@ -2013,6 +2043,25 @@
         "length":{"shape":"Integer"},
         "name":{"shape":"String"},
         "offset":{"shape":"Integer"}
+      }
+    },
+    "PsAttributes":{
+      "type":"structure",
+      "required":["format"],
+      "members":{
+        "encoding":{"shape":"String"},
+        "format":{"shape":"String"}
+      }
+    },
+    "PsDetailAttributes":{
+      "type":"structure",
+      "required":[
+        "encoding",
+        "format"
+      ],
+      "members":{
+        "encoding":{"shape":"String"},
+        "format":{"shape":"String"}
       }
     },
     "RecordLength":{
@@ -2154,6 +2203,12 @@
     "String2000":{
       "type":"string",
       "pattern":"^\\S{1,2000}$"
+    },
+    "String20List":{
+      "type":"list",
+      "member":{"shape":"String20"},
+      "max":10,
+      "min":1
     },
     "String50":{
       "type":"string",
