@@ -3,7 +3,6 @@ package s3crypto
 import (
 	"bytes"
 	"encoding/hex"
-	"fmt"
 	"io"
 	"testing"
 )
@@ -454,7 +453,7 @@ func TestAESCBCEncryptDecrypt(t *testing.T) {
 
 		cbc, err := newAESCBC(cd, testCase.padder)
 		if err != nil {
-			t.Fatal(fmt.Sprintf("Case %d: Expected no error for cipher creation, but received: %v", i, err.Error()))
+			t.Fatalf("Case %d: Expected no error for cipher creation, but received: %v", i, err.Error())
 		}
 
 		plaintext := []byte(testCase.plaintext)
@@ -473,13 +472,13 @@ func TestAESCBCEncryptDecrypt(t *testing.T) {
 		}
 
 		if err != io.EOF {
-			t.Fatal(fmt.Sprintf("Case %d: Expected no error during io reading, but received: %v", i, err.Error()))
+			t.Fatalf("Case %d: Expected no error during io reading, but received: %v", i, err.Error())
 		}
 
 		expectedData, _ := hex.DecodeString(testCase.ciphertext)
-		if bytes.Compare(expectedData, ciphertext) != 0 {
+		if !bytes.Equal(expectedData, ciphertext) {
 			t.Log("\n", ciphertext, "\n", expectedData)
-			t.Fatal(fmt.Sprintf("Case %d: AES CBC encryption fails. Data is not the same", i))
+			t.Fatalf("Case %d: AES CBC encryption fails. Data is not the same", i)
 		}
 
 		plaindata := cbc.Decrypt(bytes.NewReader(ciphertext))
@@ -490,12 +489,12 @@ func TestAESCBCEncryptDecrypt(t *testing.T) {
 			plaintextDecrypted = append(plaintextDecrypted, b[:n]...)
 		}
 		if err != io.EOF {
-			t.Fatal(fmt.Sprintf("Case %d: Expected no error during io reading, but received: %v", i, err.Error()))
+			t.Fatalf("Case %d: Expected no error during io reading, but received: %v", i, err.Error())
 		}
 
-		if bytes.Compare(plaintext, plaintextDecrypted) != 0 {
+		if !bytes.Equal(plaintext, plaintextDecrypted) {
 			t.Log("\n", plaintext, "\n", plaintextDecrypted)
-			t.Fatal(fmt.Sprintf("Case %d: AES CBC decryption fails. Data is not the same", i))
+			t.Fatalf("Case %d: AES CBC decryption fails. Data is not the same", i)
 		}
 	}
 }

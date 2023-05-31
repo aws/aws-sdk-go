@@ -2,7 +2,6 @@ package s3crypto
 
 import (
 	"bytes"
-	"fmt"
 	"testing"
 )
 
@@ -15,10 +14,10 @@ func TestAESCBCPadding(t *testing.T) {
 			t.Fatal("Expected error to be nil but received " + err.Error())
 		}
 		if len(b) != len(expected) {
-			t.Fatal(fmt.Sprintf("Case %d: data is not of the same length", i))
+			t.Fatalf("Case %d: data is not of the same length", i)
 		}
-		if bytes.Compare(b, expected) != 0 {
-			t.Fatal(fmt.Sprintf("Expected %v but got %v", expected, b))
+		if !bytes.Equal(b, expected) {
+			t.Fatalf("Expected %v but got %v", expected, b)
 		}
 	}
 }
@@ -32,10 +31,10 @@ func TestAESCBCUnpadding(t *testing.T) {
 			t.Fatal("Error received, was expecting nil: " + err.Error())
 		}
 		if len(b) != len(expected) {
-			t.Fatal(fmt.Sprintf("Case %d: data is not of the same length", i))
+			t.Fatalf("Case %d: data is not of the same length", i)
 		}
-		if bytes.Compare(b, expected) != 0 {
-			t.Fatal(fmt.Sprintf("Expected %v but got %v", expected, b))
+		if !bytes.Equal(b, expected) {
+			t.Fatalf("Expected %v but got %v", expected, b)
 		}
 	}
 }

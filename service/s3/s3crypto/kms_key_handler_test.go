@@ -89,7 +89,7 @@ func TestKmsKeyHandler_DecryptKey(t *testing.T) {
 		if bytes.Contains(body, []byte(`"KeyId":"test"`)) {
 			t.Errorf("expected CMK to not be sent")
 		}
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 
@@ -130,7 +130,7 @@ func TestKmsKeyHandler_DecryptKey_WithCMK(t *testing.T) {
 			t.Errorf("expected CMK to be sent")
 		}
 
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 

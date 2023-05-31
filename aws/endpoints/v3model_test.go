@@ -931,7 +931,7 @@ func TestLogDeprecated(t *testing.T) {
 		partition{
 			ID: "aws",
 			RegionRegex: regionRegex{
-				Regexp: regexp.MustCompile("^(us|eu|ap|sa|ca)\\-\\w+\\-\\d+$"),
+				Regexp: regexp.MustCompile(`^(us|eu|ap|sa|ca)\-\w+\-\d+$`),
 			},
 			Defaults: map[defaultKey]endpoint{
 				{}: {
@@ -1099,7 +1099,7 @@ func TestPartitionVariantMerging(t *testing.T) {
 		DNSSuffix: "c2s.ic.gov",
 		RegionRegex: regionRegex{
 			Regexp: func() *regexp.Regexp {
-				reg, _ := regexp.Compile("^us\\-iso\\-\\w+\\-\\d+$")
+				reg, _ := regexp.Compile(`^us\-iso\-\w+\-\d+$`)
 				return reg
 			}(),
 		},

@@ -186,7 +186,7 @@ func NewErrParamRequired(field string) *ErrParamRequired {
 		errInvalidParam{
 			code:  ParamRequiredErrCode,
 			field: field,
-			msg:   fmt.Sprintf("missing required field"),
+			msg:   "missing required field",
 		},
 	}
 }

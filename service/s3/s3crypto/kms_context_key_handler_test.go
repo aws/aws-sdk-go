@@ -130,7 +130,7 @@ func TestKmsContextKeyHandler_DecryptKey(t *testing.T) {
 			return
 		}
 
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 
@@ -204,7 +204,7 @@ func TestKmsContextKeyHandler_DecryptKey_WithCMK(t *testing.T) {
 			t.Errorf("expected CMK to be sent")
 		}
 
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"thisKey","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"thisKey","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 

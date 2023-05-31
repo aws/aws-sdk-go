@@ -41,7 +41,7 @@ func AssertURL(t *testing.T, expect, actual string, msgAndArgs ...interface{}) b
 	return AssertQuery(t, expectURL.Query().Encode(), actualURL.Query().Encode(), msgAndArgs...)
 }
 
-var queryMapKey = regexp.MustCompile("(.*?)\\.[0-9]+\\.key")
+var queryMapKey = regexp.MustCompile(`(.*?)\.[0-9]+\.key`)
 
 // AssertQuery verifies the expect HTTP query string matches the actual.
 func AssertQuery(t *testing.T, expect, actual string, msgAndArgs ...interface{}) bool {
@@ -154,7 +154,7 @@ func objectsAreEqual(expected, actual interface{}) bool {
 
 // Equal asserts that two objects are equal.
 //
-//    assert.Equal(t, 123, 123, "123 and 123 should be equal")
+//	assert.Equal(t, 123, 123, "123 and 123 should be equal")
 //
 // Returns whether the assertion was successful (true) or not (false).
 //

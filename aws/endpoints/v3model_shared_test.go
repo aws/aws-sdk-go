@@ -18,7 +18,7 @@ var testPartitions = partitions{
 		DNSSuffix: "amazonaws.com",
 		RegionRegex: regionRegex{
 			Regexp: func() *regexp.Regexp {
-				reg, _ := regexp.Compile("^(us|eu|ap|sa|ca)\\-\\w+\\-\\d+$")
+				reg, _ := regexp.Compile(`^(us|eu|ap|sa|ca)\-\w+\-\d+$`)
 				return reg
 			}(),
 		},

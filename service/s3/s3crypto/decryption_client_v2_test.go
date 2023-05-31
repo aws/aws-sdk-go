@@ -46,7 +46,7 @@ func TestDecryptionClientV2_CheckDeprecatedFeatures(t *testing.T) {
 
 func TestDecryptionClientV2_GetObject(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, "hJUv7S6K2cHF64boS9ixHX0TZAjBZLT4ZpEO4XxkGnY=", `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, "hJUv7S6K2cHF64boS9ixHX0TZAjBZLT4ZpEO4XxkGnY=", `"}`)
 	}))
 	defer ts.Close()
 
@@ -105,14 +105,14 @@ func TestDecryptionClientV2_GetObject(t *testing.T) {
 		t.Fatalf("expected no error, got %v", err)
 	}
 
-	if bytes.Compare(expected, actual) != 0 {
+	if !bytes.Equal(expected, actual) {
 		t.Fatalf("expected content to match but it did not")
 	}
 }
 
 func TestDecryptionClientV2_GetObject_V1Interop_KMS_AESCBC(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, "7ItX9CTGNWWegC62RlaNu6EJ3+J9yGO7yAqDNU4CdeA=", `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, "7ItX9CTGNWWegC62RlaNu6EJ3+J9yGO7yAqDNU4CdeA=", `"}`)
 	}))
 	defer ts.Close()
 
@@ -171,14 +171,14 @@ func TestDecryptionClientV2_GetObject_V1Interop_KMS_AESCBC(t *testing.T) {
 		t.Fatalf("expected no error, got %v", err)
 	}
 
-	if bytes.Compare(expected, actual) != 0 {
+	if !bytes.Equal(expected, actual) {
 		t.Fatalf("expected content to match but it did not")
 	}
 }
 
 func TestDecryptionClientV2_GetObject_V1Interop_KMS_AESGCM(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, "Hrjrkkt/vQwMYtqvK6+MiXh3xiMvviL1Ks7w2mgsJgU=", `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, "Hrjrkkt/vQwMYtqvK6+MiXh3xiMvviL1Ks7w2mgsJgU=", `"}`)
 	}))
 	defer ts.Close()
 
@@ -237,7 +237,7 @@ func TestDecryptionClientV2_GetObject_V1Interop_KMS_AESGCM(t *testing.T) {
 		t.Fatalf("expected no error, got %v", err)
 	}
 
-	if bytes.Compare(expected, actual) != 0 {
+	if !bytes.Equal(expected, actual) {
 		t.Fatalf("expected content to match but it did not")
 	}
 }

@@ -278,7 +278,7 @@ func (e AssumeRoleTokenProviderNotSetError) Code() string {
 
 // Message is the description of the error
 func (e AssumeRoleTokenProviderNotSetError) Message() string {
-	return fmt.Sprintf("assume role with MFA enabled, but AssumeRoleTokenProvider session option not set.")
+	return "assume role with MFA enabled, but AssumeRoleTokenProvider session option not set."
 }
 
 // OrigErr is the underlying error that caused the failure.

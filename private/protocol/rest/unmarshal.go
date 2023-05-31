@@ -171,7 +171,7 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string, nor
 		out := map[string]*string{}
 		for k, v := range headers {
 			if awsStrings.HasPrefixFold(k, prefix) {
-				if normalize == true {
+				if normalize {
 					k = strings.ToLower(k)
 				} else {
 					k = http.CanonicalHeaderKey(k)

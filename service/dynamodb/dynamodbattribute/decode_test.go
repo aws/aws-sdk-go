@@ -166,7 +166,7 @@ func TestUnmarshal(t *testing.T) {
 			in:     &dynamodb.AttributeValue{N: aws.String("512")},
 			actual: new(uint8),
 			err: &UnmarshalTypeError{
-				Value: fmt.Sprintf("number overflow, 512"),
+				Value: "number overflow, 512",
 				Type:  reflect.TypeOf(uint8(0)),
 			},
 		},

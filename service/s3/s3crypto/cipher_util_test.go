@@ -92,7 +92,7 @@ func TestCEKFactory(t *testing.T) {
 	key, _ := hex.DecodeString("31bdadd96698c204aa9ce1448ea94ae1fb4a9a0b3c9d773b51bb1822666b8f22")
 	keyB64 := base64.URLEncoding.EncodeToString(key)
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 
@@ -153,7 +153,7 @@ func TestCEKFactoryNoCEK(t *testing.T) {
 	key, _ := hex.DecodeString("31bdadd96698c204aa9ce1448ea94ae1fb4a9a0b3c9d773b51bb1822666b8f22")
 	keyB64 := base64.URLEncoding.EncodeToString(key)
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 
@@ -217,7 +217,7 @@ func TestCEKFactoryCustomEntry(t *testing.T) {
 	key, _ := hex.DecodeString("31bdadd96698c204aa9ce1448ea94ae1fb4a9a0b3c9d773b51bb1822666b8f22")
 	keyB64 := base64.URLEncoding.EncodeToString(key)
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 

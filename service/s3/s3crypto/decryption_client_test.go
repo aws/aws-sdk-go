@@ -25,7 +25,7 @@ func TestGetObjectGCM(t *testing.T) {
 	keyB64 := base64.StdEncoding.EncodeToString(key)
 	// This is our KMS response
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 
@@ -94,7 +94,7 @@ func TestGetObjectCBC(t *testing.T) {
 	keyB64 := base64.StdEncoding.EncodeToString(key)
 	// This is our KMS response
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 
@@ -161,7 +161,7 @@ func TestGetObjectCBC2(t *testing.T) {
 	keyB64 := base64.StdEncoding.EncodeToString(key)
 	// This is our KMS response
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`)
 	}))
 	defer ts.Close()
 
@@ -245,7 +245,7 @@ func TestGetObjectWithContext(t *testing.T) {
 
 func TestDecryptionClient_GetObject_V2Artifact(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, "hJUv7S6K2cHF64boS9ixHX0TZAjBZLT4ZpEO4XxkGnY=", `"}`))
+		fmt.Fprintf(w, "%s%s%s\n", `{"KeyId":"test-key-id","Plaintext":"`, "hJUv7S6K2cHF64boS9ixHX0TZAjBZLT4ZpEO4XxkGnY=", `"}`)
 	}))
 	defer ts.Close()
 
@@ -291,7 +291,7 @@ func TestDecryptionClient_GetObject_V2Artifact(t *testing.T) {
 		t.Fatalf("expected no error, got %v", err)
 	}
 
-	if bytes.Compare(expected, actual) != 0 {
+	if !bytes.Equal(expected, actual) {
 		t.Fatalf("expected content to match but it did not")
 	}
 }

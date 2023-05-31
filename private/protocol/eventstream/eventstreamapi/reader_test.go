@@ -247,7 +247,7 @@ type exceptionType struct {
 }
 
 func (e exceptionType) Error() string {
-	return fmt.Sprintf("exception error message")
+	return "exception error message"
 }
 
 func (e *exceptionType) UnmarshalEvent(

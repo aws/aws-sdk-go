@@ -2,7 +2,6 @@ package s3crypto_test
 
 import (
 	"bytes"
-	"fmt"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
@@ -18,10 +17,10 @@ func padTest(size int, t *testing.T) {
 			t.Fatal("Expected error to be nil but received " + err.Error())
 		}
 		if len(b) != len(expected) {
-			t.Fatal(fmt.Sprintf("Case %d: data is not of the same length", i))
+			t.Fatalf("Case %d: data is not of the same length", i)
 		}
-		if bytes.Compare(b, expected) != 0 {
-			t.Fatal(fmt.Sprintf("Expected %v but got %v", expected, b))
+		if !bytes.Equal(b, expected) {
+			t.Fatalf("Expected %v but got %v", expected, b)
 		}
 	}
 }
@@ -36,10 +35,10 @@ func unpadTest(size int, t *testing.T) {
 			t.Fatal("Error received, was expecting nil: " + err.Error())
 		}
 		if len(b) != len(expected) {
-			t.Fatal(fmt.Sprintf("Case %d: data is not of the same length", i))
+			t.Fatalf("Case %d: data is not of the same length", i)
 		}
-		if bytes.Compare(b, expected) != 0 {
-			t.Fatal(fmt.Sprintf("Expected %v but got %v", expected, b))
+		if !bytes.Equal(b, expected) {
+			t.Fatalf("Expected %v but got %v", expected, b)
 		}
 	}
 }

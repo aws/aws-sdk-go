@@ -296,7 +296,7 @@ func convertType(v reflect.Value, tag reflect.StructTag) (str string, err error)
 				buff.WriteRune(',')
 			}
 			item := *sv
-			if strings.Index(item, `,`) != -1 || strings.Index(item, `"`) != -1 {
+			if strings.Contains(item, `,`) || strings.Contains(item, `"`) {
 				item = strconv.Quote(item)
 			}
 			buff.WriteString(item)

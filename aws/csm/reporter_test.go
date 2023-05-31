@@ -5,7 +5,6 @@ package csm_test
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"sort"
@@ -276,7 +275,7 @@ func (s *mockService) Request(i input) *request.Request {
 
 func BenchmarkWithCSM(b *testing.B) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(fmt.Sprintf("{}")))
+		w.Write([]byte("{}"))
 	}))
 	defer server.Close()
 
@@ -322,7 +321,7 @@ func BenchmarkWithCSM(b *testing.B) {
 
 func BenchmarkWithCSMNoUDPConnection(b *testing.B) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(fmt.Sprintf("{}")))
+		w.Write([]byte("{}"))
 	}))
 	defer server.Close()
 
@@ -369,7 +368,7 @@ func BenchmarkWithCSMNoUDPConnection(b *testing.B) {
 
 func BenchmarkWithoutCSM(b *testing.B) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(fmt.Sprintf("{}")))
+		w.Write([]byte("{}"))
 	}))
 	defer server.Close()
 

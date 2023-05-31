@@ -138,9 +138,7 @@ func StructToXML(e *xml.Encoder, node *Node, sorted bool) error {
 	attrs := node.Attr
 	if sorted {
 		sortedAttrs := make([]xml.Attr, len(attrs))
-		for _, k := range node.Attr {
-			sortedAttrs = append(sortedAttrs, k)
-		}
+		sortedAttrs = append(sortedAttrs, node.Attr...)
 		sort.Sort(xmlAttrSlice(sortedAttrs))
 		attrs = sortedAttrs
 	}
@@ -303,9 +301,7 @@ func sortFlattenedNodes(nodes []*Node) ([]*Node, error) {
 	// to sortedNodes
 	sort.Strings(sortedNodesWithConcreteValue)
 	for _, name := range sortedNodesWithConcreteValue {
-		for _, node := range concreteNodeMap[name] {
-			sortedNodes = append(sortedNodes, node)
-		}
+		sortedNodes = append(sortedNodes, concreteNodeMap[name]...)
 	}
 
 	// sort nested nodes with a list and append corresponding nodes
@@ -320,9 +316,7 @@ func sortFlattenedNodes(nodes []*Node) ([]*Node, error) {
 				return nodes, err
 			}
 			// append the identical but sorted nodes
-			for _, nestedNode := range nestedFlattenedList {
-				sortedNodes = append(sortedNodes, nestedNode)
-			}
+			sortedNodes = append(sortedNodes, nestedFlattenedList...)
 		} else {
 			// append the sorted nodes
 			sortedNodes = append(sortedNodes, flatListNodeMap[name][0])
