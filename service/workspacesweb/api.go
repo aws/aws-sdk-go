@@ -107,6 +107,100 @@ func (c *WorkSpacesWeb) AssociateBrowserSettingsWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opAssociateIpAccessSettings = "AssociateIpAccessSettings"
+
+// AssociateIpAccessSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateIpAccessSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateIpAccessSettings for more information on using the AssociateIpAccessSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateIpAccessSettingsRequest method.
+//	req, resp := client.AssociateIpAccessSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateIpAccessSettings
+func (c *WorkSpacesWeb) AssociateIpAccessSettingsRequest(input *AssociateIpAccessSettingsInput) (req *request.Request, output *AssociateIpAccessSettingsOutput) {
+	op := &request.Operation{
+		Name:       opAssociateIpAccessSettings,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/portals/{portalArn+}/ipAccessSettings",
+	}
+
+	if input == nil {
+		input = &AssociateIpAccessSettingsInput{}
+	}
+
+	output = &AssociateIpAccessSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateIpAccessSettings API operation for Amazon WorkSpaces Web.
+//
+// Associates an IP access settings resource with a web portal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation AssociateIpAccessSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - ResourceNotFoundException
+//     The resource cannot be found.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateIpAccessSettings
+func (c *WorkSpacesWeb) AssociateIpAccessSettings(input *AssociateIpAccessSettingsInput) (*AssociateIpAccessSettingsOutput, error) {
+	req, out := c.AssociateIpAccessSettingsRequest(input)
+	return out, req.Send()
+}
+
+// AssociateIpAccessSettingsWithContext is the same as AssociateIpAccessSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateIpAccessSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) AssociateIpAccessSettingsWithContext(ctx aws.Context, input *AssociateIpAccessSettingsInput, opts ...request.Option) (*AssociateIpAccessSettingsOutput, error) {
+	req, out := c.AssociateIpAccessSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateNetworkSettings = "AssociateNetworkSettings"
 
 // AssociateNetworkSettingsRequest generates a "aws/request.Request" representing the
@@ -672,6 +766,101 @@ func (c *WorkSpacesWeb) CreateIdentityProvider(input *CreateIdentityProviderInpu
 // for more information on using Contexts.
 func (c *WorkSpacesWeb) CreateIdentityProviderWithContext(ctx aws.Context, input *CreateIdentityProviderInput, opts ...request.Option) (*CreateIdentityProviderOutput, error) {
 	req, out := c.CreateIdentityProviderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateIpAccessSettings = "CreateIpAccessSettings"
+
+// CreateIpAccessSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateIpAccessSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateIpAccessSettings for more information on using the CreateIpAccessSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateIpAccessSettingsRequest method.
+//	req, resp := client.CreateIpAccessSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateIpAccessSettings
+func (c *WorkSpacesWeb) CreateIpAccessSettingsRequest(input *CreateIpAccessSettingsInput) (req *request.Request, output *CreateIpAccessSettingsOutput) {
+	op := &request.Operation{
+		Name:       opCreateIpAccessSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ipAccessSettings",
+	}
+
+	if input == nil {
+		input = &CreateIpAccessSettingsInput{}
+	}
+
+	output = &CreateIpAccessSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateIpAccessSettings API operation for Amazon WorkSpaces Web.
+//
+// Creates an IP access settings resource that can be associated with a web
+// portal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation CreateIpAccessSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateIpAccessSettings
+func (c *WorkSpacesWeb) CreateIpAccessSettings(input *CreateIpAccessSettingsInput) (*CreateIpAccessSettingsOutput, error) {
+	req, out := c.CreateIpAccessSettingsRequest(input)
+	return out, req.Send()
+}
+
+// CreateIpAccessSettingsWithContext is the same as CreateIpAccessSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateIpAccessSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) CreateIpAccessSettingsWithContext(ctx aws.Context, input *CreateIpAccessSettingsInput, opts ...request.Option) (*CreateIpAccessSettingsOutput, error) {
+	req, out := c.CreateIpAccessSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1344,6 +1533,98 @@ func (c *WorkSpacesWeb) DeleteIdentityProviderWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDeleteIpAccessSettings = "DeleteIpAccessSettings"
+
+// DeleteIpAccessSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIpAccessSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteIpAccessSettings for more information on using the DeleteIpAccessSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteIpAccessSettingsRequest method.
+//	req, resp := client.DeleteIpAccessSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteIpAccessSettings
+func (c *WorkSpacesWeb) DeleteIpAccessSettingsRequest(input *DeleteIpAccessSettingsInput) (req *request.Request, output *DeleteIpAccessSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteIpAccessSettings,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/ipAccessSettings/{ipAccessSettingsArn+}",
+	}
+
+	if input == nil {
+		input = &DeleteIpAccessSettingsInput{}
+	}
+
+	output = &DeleteIpAccessSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteIpAccessSettings API operation for Amazon WorkSpaces Web.
+//
+// Deletes IP access settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation DeleteIpAccessSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteIpAccessSettings
+func (c *WorkSpacesWeb) DeleteIpAccessSettings(input *DeleteIpAccessSettingsInput) (*DeleteIpAccessSettingsOutput, error) {
+	req, out := c.DeleteIpAccessSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DeleteIpAccessSettingsWithContext is the same as DeleteIpAccessSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteIpAccessSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) DeleteIpAccessSettingsWithContext(ctx aws.Context, input *DeleteIpAccessSettingsInput, opts ...request.Option) (*DeleteIpAccessSettingsOutput, error) {
+	req, out := c.DeleteIpAccessSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteNetworkSettings = "DeleteNetworkSettings"
 
 // DeleteNetworkSettingsRequest generates a "aws/request.Request" representing the
@@ -1896,6 +2177,98 @@ func (c *WorkSpacesWeb) DisassociateBrowserSettingsWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opDisassociateIpAccessSettings = "DisassociateIpAccessSettings"
+
+// DisassociateIpAccessSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateIpAccessSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateIpAccessSettings for more information on using the DisassociateIpAccessSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateIpAccessSettingsRequest method.
+//	req, resp := client.DisassociateIpAccessSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateIpAccessSettings
+func (c *WorkSpacesWeb) DisassociateIpAccessSettingsRequest(input *DisassociateIpAccessSettingsInput) (req *request.Request, output *DisassociateIpAccessSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateIpAccessSettings,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/portals/{portalArn+}/ipAccessSettings",
+	}
+
+	if input == nil {
+		input = &DisassociateIpAccessSettingsInput{}
+	}
+
+	output = &DisassociateIpAccessSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateIpAccessSettings API operation for Amazon WorkSpaces Web.
+//
+// Disassociates IP access settings from a web portal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation DisassociateIpAccessSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - ResourceNotFoundException
+//     The resource cannot be found.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateIpAccessSettings
+func (c *WorkSpacesWeb) DisassociateIpAccessSettings(input *DisassociateIpAccessSettingsInput) (*DisassociateIpAccessSettingsOutput, error) {
+	req, out := c.DisassociateIpAccessSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateIpAccessSettingsWithContext is the same as DisassociateIpAccessSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateIpAccessSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) DisassociateIpAccessSettingsWithContext(ctx aws.Context, input *DisassociateIpAccessSettingsInput, opts ...request.Option) (*DisassociateIpAccessSettingsOutput, error) {
+	req, out := c.DisassociateIpAccessSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateNetworkSettings = "DisassociateNetworkSettings"
 
 // DisassociateNetworkSettingsRequest generates a "aws/request.Request" representing the
@@ -2441,6 +2814,97 @@ func (c *WorkSpacesWeb) GetIdentityProvider(input *GetIdentityProviderInput) (*G
 // for more information on using Contexts.
 func (c *WorkSpacesWeb) GetIdentityProviderWithContext(ctx aws.Context, input *GetIdentityProviderInput, opts ...request.Option) (*GetIdentityProviderOutput, error) {
 	req, out := c.GetIdentityProviderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetIpAccessSettings = "GetIpAccessSettings"
+
+// GetIpAccessSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the GetIpAccessSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetIpAccessSettings for more information on using the GetIpAccessSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetIpAccessSettingsRequest method.
+//	req, resp := client.GetIpAccessSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetIpAccessSettings
+func (c *WorkSpacesWeb) GetIpAccessSettingsRequest(input *GetIpAccessSettingsInput) (req *request.Request, output *GetIpAccessSettingsOutput) {
+	op := &request.Operation{
+		Name:       opGetIpAccessSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/ipAccessSettings/{ipAccessSettingsArn+}",
+	}
+
+	if input == nil {
+		input = &GetIpAccessSettingsInput{}
+	}
+
+	output = &GetIpAccessSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetIpAccessSettings API operation for Amazon WorkSpaces Web.
+//
+// Gets the IP access settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation GetIpAccessSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - ResourceNotFoundException
+//     The resource cannot be found.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetIpAccessSettings
+func (c *WorkSpacesWeb) GetIpAccessSettings(input *GetIpAccessSettingsInput) (*GetIpAccessSettingsOutput, error) {
+	req, out := c.GetIpAccessSettingsRequest(input)
+	return out, req.Send()
+}
+
+// GetIpAccessSettingsWithContext is the same as GetIpAccessSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetIpAccessSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) GetIpAccessSettingsWithContext(ctx aws.Context, input *GetIpAccessSettingsInput, opts ...request.Option) (*GetIpAccessSettingsOutput, error) {
+	req, out := c.GetIpAccessSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3366,6 +3830,151 @@ func (c *WorkSpacesWeb) ListIdentityProvidersPagesWithContext(ctx aws.Context, i
 
 	for p.Next() {
 		if !fn(p.Page().(*ListIdentityProvidersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListIpAccessSettings = "ListIpAccessSettings"
+
+// ListIpAccessSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIpAccessSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIpAccessSettings for more information on using the ListIpAccessSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIpAccessSettingsRequest method.
+//	req, resp := client.ListIpAccessSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListIpAccessSettings
+func (c *WorkSpacesWeb) ListIpAccessSettingsRequest(input *ListIpAccessSettingsInput) (req *request.Request, output *ListIpAccessSettingsOutput) {
+	op := &request.Operation{
+		Name:       opListIpAccessSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/ipAccessSettings",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIpAccessSettingsInput{}
+	}
+
+	output = &ListIpAccessSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIpAccessSettings API operation for Amazon WorkSpaces Web.
+//
+// Retrieves a list of IP access settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation ListIpAccessSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListIpAccessSettings
+func (c *WorkSpacesWeb) ListIpAccessSettings(input *ListIpAccessSettingsInput) (*ListIpAccessSettingsOutput, error) {
+	req, out := c.ListIpAccessSettingsRequest(input)
+	return out, req.Send()
+}
+
+// ListIpAccessSettingsWithContext is the same as ListIpAccessSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIpAccessSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) ListIpAccessSettingsWithContext(ctx aws.Context, input *ListIpAccessSettingsInput, opts ...request.Option) (*ListIpAccessSettingsOutput, error) {
+	req, out := c.ListIpAccessSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIpAccessSettingsPages iterates over the pages of a ListIpAccessSettings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIpAccessSettings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIpAccessSettings operation.
+//	pageNum := 0
+//	err := client.ListIpAccessSettingsPages(params,
+//	    func(page *workspacesweb.ListIpAccessSettingsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *WorkSpacesWeb) ListIpAccessSettingsPages(input *ListIpAccessSettingsInput, fn func(*ListIpAccessSettingsOutput, bool) bool) error {
+	return c.ListIpAccessSettingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIpAccessSettingsPagesWithContext same as ListIpAccessSettingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) ListIpAccessSettingsPagesWithContext(ctx aws.Context, input *ListIpAccessSettingsInput, fn func(*ListIpAccessSettingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIpAccessSettingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIpAccessSettingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIpAccessSettingsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4706,6 +5315,97 @@ func (c *WorkSpacesWeb) UpdateIdentityProviderWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opUpdateIpAccessSettings = "UpdateIpAccessSettings"
+
+// UpdateIpAccessSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIpAccessSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIpAccessSettings for more information on using the UpdateIpAccessSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateIpAccessSettingsRequest method.
+//	req, resp := client.UpdateIpAccessSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateIpAccessSettings
+func (c *WorkSpacesWeb) UpdateIpAccessSettingsRequest(input *UpdateIpAccessSettingsInput) (req *request.Request, output *UpdateIpAccessSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIpAccessSettings,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/ipAccessSettings/{ipAccessSettingsArn+}",
+	}
+
+	if input == nil {
+		input = &UpdateIpAccessSettingsInput{}
+	}
+
+	output = &UpdateIpAccessSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateIpAccessSettings API operation for Amazon WorkSpaces Web.
+//
+// Updates IP access settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation UpdateIpAccessSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - ResourceNotFoundException
+//     The resource cannot be found.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateIpAccessSettings
+func (c *WorkSpacesWeb) UpdateIpAccessSettings(input *UpdateIpAccessSettingsInput) (*UpdateIpAccessSettingsOutput, error) {
+	req, out := c.UpdateIpAccessSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIpAccessSettingsWithContext is the same as UpdateIpAccessSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIpAccessSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) UpdateIpAccessSettingsWithContext(ctx aws.Context, input *UpdateIpAccessSettingsInput, opts ...request.Option) (*UpdateIpAccessSettingsOutput, error) {
+	req, out := c.UpdateIpAccessSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateNetworkSettings = "UpdateNetworkSettings"
 
 // UpdateNetworkSettingsRequest generates a "aws/request.Request" representing the
@@ -4865,6 +5565,9 @@ func (c *WorkSpacesWeb) UpdatePortalRequest(input *UpdatePortalInput) (req *requ
 //
 //   - ValidationException
 //     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdatePortal
 func (c *WorkSpacesWeb) UpdatePortal(input *UpdatePortalInput) (*UpdatePortalOutput, error) {
@@ -5334,6 +6037,116 @@ func (s *AssociateBrowserSettingsOutput) SetBrowserSettingsArn(v string) *Associ
 
 // SetPortalArn sets the PortalArn field's value.
 func (s *AssociateBrowserSettingsOutput) SetPortalArn(v string) *AssociateBrowserSettingsOutput {
+	s.PortalArn = &v
+	return s
+}
+
+type AssociateIpAccessSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the IP access settings.
+	//
+	// IpAccessSettingsArn is a required field
+	IpAccessSettingsArn *string `location:"querystring" locationName:"ipAccessSettingsArn" min:"20" type:"string" required:"true"`
+
+	// The ARN of the web portal.
+	//
+	// PortalArn is a required field
+	PortalArn *string `location:"uri" locationName:"portalArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateIpAccessSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateIpAccessSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateIpAccessSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateIpAccessSettingsInput"}
+	if s.IpAccessSettingsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpAccessSettingsArn"))
+	}
+	if s.IpAccessSettingsArn != nil && len(*s.IpAccessSettingsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("IpAccessSettingsArn", 20))
+	}
+	if s.PortalArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortalArn"))
+	}
+	if s.PortalArn != nil && len(*s.PortalArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PortalArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *AssociateIpAccessSettingsInput) SetIpAccessSettingsArn(v string) *AssociateIpAccessSettingsInput {
+	s.IpAccessSettingsArn = &v
+	return s
+}
+
+// SetPortalArn sets the PortalArn field's value.
+func (s *AssociateIpAccessSettingsInput) SetPortalArn(v string) *AssociateIpAccessSettingsInput {
+	s.PortalArn = &v
+	return s
+}
+
+type AssociateIpAccessSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the IP access settings resource.
+	//
+	// IpAccessSettingsArn is a required field
+	IpAccessSettingsArn *string `locationName:"ipAccessSettingsArn" min:"20" type:"string" required:"true"`
+
+	// The ARN of the web portal.
+	//
+	// PortalArn is a required field
+	PortalArn *string `locationName:"portalArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateIpAccessSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateIpAccessSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *AssociateIpAccessSettingsOutput) SetIpAccessSettingsArn(v string) *AssociateIpAccessSettingsOutput {
+	s.IpAccessSettingsArn = &v
+	return s
+}
+
+// SetPortalArn sets the PortalArn field's value.
+func (s *AssociateIpAccessSettingsOutput) SetPortalArn(v string) *AssociateIpAccessSettingsOutput {
 	s.PortalArn = &v
 	return s
 }
@@ -6402,6 +7215,193 @@ func (s *CreateIdentityProviderOutput) SetIdentityProviderArn(v string) *CreateI
 	return s
 }
 
+type CreateIpAccessSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Additional encryption context of the IP access settings.
+	AdditionalEncryptionContext map[string]*string `locationName:"additionalEncryptionContext" type:"map"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. Idempotency ensures that an API request completes only once.
+	// With an idempotent request, if the original request completes successfully,
+	// subsequent retries with the same client token returns the result from the
+	// original successful request.
+	//
+	// If you do not specify a client token, one is automatically generated by the
+	// AWS SDK.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The custom managed key of the IP access settings.
+	CustomerManagedKey *string `locationName:"customerManagedKey" min:"20" type:"string"`
+
+	// The description of the IP access settings.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateIpAccessSettingsInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The display name of the IP access settings.
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateIpAccessSettingsInput's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
+
+	// The IP rules of the IP access settings.
+	//
+	// IpRules is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateIpAccessSettingsInput's
+	// String and GoString methods.
+	//
+	// IpRules is a required field
+	IpRules []*IpRule `locationName:"ipRules" min:"1" type:"list" required:"true" sensitive:"true"`
+
+	// The tags to add to the browser settings resource. A tag is a key-value pair.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIpAccessSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIpAccessSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateIpAccessSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateIpAccessSettingsInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.CustomerManagedKey != nil && len(*s.CustomerManagedKey) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerManagedKey", 20))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
+	}
+	if s.IpRules == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpRules"))
+	}
+	if s.IpRules != nil && len(s.IpRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IpRules", 1))
+	}
+	if s.IpRules != nil {
+		for i, v := range s.IpRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "IpRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalEncryptionContext sets the AdditionalEncryptionContext field's value.
+func (s *CreateIpAccessSettingsInput) SetAdditionalEncryptionContext(v map[string]*string) *CreateIpAccessSettingsInput {
+	s.AdditionalEncryptionContext = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateIpAccessSettingsInput) SetClientToken(v string) *CreateIpAccessSettingsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCustomerManagedKey sets the CustomerManagedKey field's value.
+func (s *CreateIpAccessSettingsInput) SetCustomerManagedKey(v string) *CreateIpAccessSettingsInput {
+	s.CustomerManagedKey = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateIpAccessSettingsInput) SetDescription(v string) *CreateIpAccessSettingsInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateIpAccessSettingsInput) SetDisplayName(v string) *CreateIpAccessSettingsInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetIpRules sets the IpRules field's value.
+func (s *CreateIpAccessSettingsInput) SetIpRules(v []*IpRule) *CreateIpAccessSettingsInput {
+	s.IpRules = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateIpAccessSettingsInput) SetTags(v []*Tag) *CreateIpAccessSettingsInput {
+	s.Tags = v
+	return s
+}
+
+type CreateIpAccessSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the IP access settings resource.
+	//
+	// IpAccessSettingsArn is a required field
+	IpAccessSettingsArn *string `locationName:"ipAccessSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIpAccessSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIpAccessSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *CreateIpAccessSettingsOutput) SetIpAccessSettingsArn(v string) *CreateIpAccessSettingsOutput {
+	s.IpAccessSettingsArn = &v
+	return s
+}
+
 type CreateNetworkSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7311,6 +8311,77 @@ func (s DeleteIdentityProviderOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteIpAccessSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the IP access settings.
+	//
+	// IpAccessSettingsArn is a required field
+	IpAccessSettingsArn *string `location:"uri" locationName:"ipAccessSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIpAccessSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIpAccessSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIpAccessSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIpAccessSettingsInput"}
+	if s.IpAccessSettingsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpAccessSettingsArn"))
+	}
+	if s.IpAccessSettingsArn != nil && len(*s.IpAccessSettingsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("IpAccessSettingsArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *DeleteIpAccessSettingsInput) SetIpAccessSettingsArn(v string) *DeleteIpAccessSettingsInput {
+	s.IpAccessSettingsArn = &v
+	return s
+}
+
+type DeleteIpAccessSettingsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIpAccessSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIpAccessSettingsOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteNetworkSettingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7734,6 +8805,77 @@ func (s DisassociateBrowserSettingsOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DisassociateBrowserSettingsOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateIpAccessSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the web portal.
+	//
+	// PortalArn is a required field
+	PortalArn *string `location:"uri" locationName:"portalArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateIpAccessSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateIpAccessSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateIpAccessSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateIpAccessSettingsInput"}
+	if s.PortalArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortalArn"))
+	}
+	if s.PortalArn != nil && len(*s.PortalArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PortalArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPortalArn sets the PortalArn field's value.
+func (s *DisassociateIpAccessSettingsInput) SetPortalArn(v string) *DisassociateIpAccessSettingsInput {
+	s.PortalArn = &v
+	return s
+}
+
+type DisassociateIpAccessSettingsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateIpAccessSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateIpAccessSettingsOutput) GoString() string {
 	return s.String()
 }
 
@@ -8178,6 +9320,86 @@ func (s GetIdentityProviderOutput) GoString() string {
 // SetIdentityProvider sets the IdentityProvider field's value.
 func (s *GetIdentityProviderOutput) SetIdentityProvider(v *IdentityProvider) *GetIdentityProviderOutput {
 	s.IdentityProvider = v
+	return s
+}
+
+type GetIpAccessSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the IP access settings.
+	//
+	// IpAccessSettingsArn is a required field
+	IpAccessSettingsArn *string `location:"uri" locationName:"ipAccessSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIpAccessSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIpAccessSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIpAccessSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIpAccessSettingsInput"}
+	if s.IpAccessSettingsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpAccessSettingsArn"))
+	}
+	if s.IpAccessSettingsArn != nil && len(*s.IpAccessSettingsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("IpAccessSettingsArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *GetIpAccessSettingsInput) SetIpAccessSettingsArn(v string) *GetIpAccessSettingsInput {
+	s.IpAccessSettingsArn = &v
+	return s
+}
+
+type GetIpAccessSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The IP access settings.
+	IpAccessSettings *IpAccessSettings `locationName:"ipAccessSettings" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIpAccessSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIpAccessSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIpAccessSettings sets the IpAccessSettings field's value.
+func (s *GetIpAccessSettingsOutput) SetIpAccessSettings(v *IpAccessSettings) *GetIpAccessSettingsOutput {
+	s.IpAccessSettings = v
 	return s
 }
 
@@ -8984,6 +10206,232 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The IP access settings resource that can be associated with a web portal.
+type IpAccessSettings struct {
+	_ struct{} `type:"structure"`
+
+	// A list of web portal ARNs that this IP access settings resource is associated
+	// with.
+	AssociatedPortalArns []*string `locationName:"associatedPortalArns" type:"list"`
+
+	// The creation date timestamp of the IP access settings.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The description of the IP access settings.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpAccessSettings's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The display name of the IP access settings.
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpAccessSettings's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
+
+	// The ARN of the IP access settings resource.
+	//
+	// IpAccessSettingsArn is a required field
+	IpAccessSettingsArn *string `locationName:"ipAccessSettingsArn" min:"20" type:"string" required:"true"`
+
+	// The IP rules of the IP access settings.
+	//
+	// IpRules is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpAccessSettings's
+	// String and GoString methods.
+	IpRules []*IpRule `locationName:"ipRules" min:"1" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IpAccessSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IpAccessSettings) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedPortalArns sets the AssociatedPortalArns field's value.
+func (s *IpAccessSettings) SetAssociatedPortalArns(v []*string) *IpAccessSettings {
+	s.AssociatedPortalArns = v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *IpAccessSettings) SetCreationDate(v time.Time) *IpAccessSettings {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *IpAccessSettings) SetDescription(v string) *IpAccessSettings {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *IpAccessSettings) SetDisplayName(v string) *IpAccessSettings {
+	s.DisplayName = &v
+	return s
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *IpAccessSettings) SetIpAccessSettingsArn(v string) *IpAccessSettings {
+	s.IpAccessSettingsArn = &v
+	return s
+}
+
+// SetIpRules sets the IpRules field's value.
+func (s *IpAccessSettings) SetIpRules(v []*IpRule) *IpAccessSettings {
+	s.IpRules = v
+	return s
+}
+
+// The summary of IP access settings.
+type IpAccessSettingsSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date timestamp of the IP access settings.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The description of the IP access settings.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpAccessSettingsSummary's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The display name of the IP access settings.
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpAccessSettingsSummary's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
+
+	// The ARN of IP access settings.
+	IpAccessSettingsArn *string `locationName:"ipAccessSettingsArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IpAccessSettingsSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IpAccessSettingsSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *IpAccessSettingsSummary) SetCreationDate(v time.Time) *IpAccessSettingsSummary {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *IpAccessSettingsSummary) SetDescription(v string) *IpAccessSettingsSummary {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *IpAccessSettingsSummary) SetDisplayName(v string) *IpAccessSettingsSummary {
+	s.DisplayName = &v
+	return s
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *IpAccessSettingsSummary) SetIpAccessSettingsArn(v string) *IpAccessSettingsSummary {
+	s.IpAccessSettingsArn = &v
+	return s
+}
+
+// The IP rules of the IP access settings.
+type IpRule struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the IP rule.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpRule's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The IP range of the IP rule.
+	//
+	// IpRange is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpRule's
+	// String and GoString methods.
+	//
+	// IpRange is a required field
+	IpRange *string `locationName:"ipRange" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IpRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IpRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IpRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IpRule"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.IpRange == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpRange"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *IpRule) SetDescription(v string) *IpRule {
+	s.Description = &v
+	return s
+}
+
+// SetIpRange sets the IpRange field's value.
+func (s *IpRule) SetIpRange(v string) *IpRule {
+	s.IpRange = &v
+	return s
+}
+
 type ListBrowserSettingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -9189,6 +10637,102 @@ func (s *ListIdentityProvidersOutput) SetIdentityProviders(v []*IdentityProvider
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListIdentityProvidersOutput) SetNextToken(v string) *ListIdentityProvidersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIpAccessSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to be included in the next page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIpAccessSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIpAccessSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIpAccessSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIpAccessSettingsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIpAccessSettingsInput) SetMaxResults(v int64) *ListIpAccessSettingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIpAccessSettingsInput) SetNextToken(v string) *ListIpAccessSettingsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIpAccessSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The IP access settings.
+	IpAccessSettings []*IpAccessSettingsSummary `locationName:"ipAccessSettings" type:"list"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIpAccessSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIpAccessSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIpAccessSettings sets the IpAccessSettings field's value.
+func (s *ListIpAccessSettingsOutput) SetIpAccessSettings(v []*IpAccessSettingsSummary) *ListIpAccessSettingsOutput {
+	s.IpAccessSettings = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIpAccessSettingsOutput) SetNextToken(v string) *ListIpAccessSettingsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -10026,6 +11570,9 @@ type Portal struct {
 	// String and GoString methods.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
+	// The ARN of the IP access settings.
+	IpAccessSettingsArn *string `locationName:"ipAccessSettingsArn" min:"20" type:"string"`
+
 	// The ARN of the network settings that is associated with the web portal.
 	NetworkSettingsArn *string `locationName:"networkSettingsArn" min:"20" type:"string"`
 
@@ -10101,6 +11648,12 @@ func (s *Portal) SetCreationDate(v time.Time) *Portal {
 // SetDisplayName sets the DisplayName field's value.
 func (s *Portal) SetDisplayName(v string) *Portal {
 	s.DisplayName = &v
+	return s
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *Portal) SetIpAccessSettingsArn(v string) *Portal {
+	s.IpAccessSettingsArn = &v
 	return s
 }
 
@@ -10193,6 +11746,9 @@ type PortalSummary struct {
 	// String and GoString methods.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
+	// The ARN of the IP access settings.
+	IpAccessSettingsArn *string `locationName:"ipAccessSettingsArn" min:"20" type:"string"`
+
 	// The ARN of the network settings that is associated with the web portal.
 	NetworkSettingsArn *string `locationName:"networkSettingsArn" min:"20" type:"string"`
 
@@ -10265,6 +11821,12 @@ func (s *PortalSummary) SetCreationDate(v time.Time) *PortalSummary {
 // SetDisplayName sets the DisplayName field's value.
 func (s *PortalSummary) SetDisplayName(v string) *PortalSummary {
 	s.DisplayName = &v
+	return s
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *PortalSummary) SetIpAccessSettingsArn(v string) *PortalSummary {
+	s.IpAccessSettingsArn = &v
 	return s
 }
 
@@ -11222,6 +12784,165 @@ func (s UpdateIdentityProviderOutput) GoString() string {
 // SetIdentityProvider sets the IdentityProvider field's value.
 func (s *UpdateIdentityProviderOutput) SetIdentityProvider(v *IdentityProvider) *UpdateIdentityProviderOutput {
 	s.IdentityProvider = v
+	return s
+}
+
+type UpdateIpAccessSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. Idempotency ensures that an API request completes only once.
+	// With an idempotent request, if the original request completes successfully,
+	// subsequent retries with the same client token return the result from the
+	// original successful request.
+	//
+	// If you do not specify a client token, one is automatically generated by the
+	// AWS SDK.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The description of the IP access settings.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateIpAccessSettingsInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The display name of the IP access settings.
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateIpAccessSettingsInput's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
+
+	// The ARN of the IP access settings.
+	//
+	// IpAccessSettingsArn is a required field
+	IpAccessSettingsArn *string `location:"uri" locationName:"ipAccessSettingsArn" min:"20" type:"string" required:"true"`
+
+	// The updated IP rules of the IP access settings.
+	//
+	// IpRules is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateIpAccessSettingsInput's
+	// String and GoString methods.
+	IpRules []*IpRule `locationName:"ipRules" min:"1" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpAccessSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpAccessSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIpAccessSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIpAccessSettingsInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
+	}
+	if s.IpAccessSettingsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpAccessSettingsArn"))
+	}
+	if s.IpAccessSettingsArn != nil && len(*s.IpAccessSettingsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("IpAccessSettingsArn", 20))
+	}
+	if s.IpRules != nil && len(s.IpRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IpRules", 1))
+	}
+	if s.IpRules != nil {
+		for i, v := range s.IpRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "IpRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateIpAccessSettingsInput) SetClientToken(v string) *UpdateIpAccessSettingsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateIpAccessSettingsInput) SetDescription(v string) *UpdateIpAccessSettingsInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateIpAccessSettingsInput) SetDisplayName(v string) *UpdateIpAccessSettingsInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetIpAccessSettingsArn sets the IpAccessSettingsArn field's value.
+func (s *UpdateIpAccessSettingsInput) SetIpAccessSettingsArn(v string) *UpdateIpAccessSettingsInput {
+	s.IpAccessSettingsArn = &v
+	return s
+}
+
+// SetIpRules sets the IpRules field's value.
+func (s *UpdateIpAccessSettingsInput) SetIpRules(v []*IpRule) *UpdateIpAccessSettingsInput {
+	s.IpRules = v
+	return s
+}
+
+type UpdateIpAccessSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The IP access settings.
+	//
+	// IpAccessSettings is a required field
+	IpAccessSettings *IpAccessSettings `locationName:"ipAccessSettings" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpAccessSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpAccessSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIpAccessSettings sets the IpAccessSettings field's value.
+func (s *UpdateIpAccessSettingsOutput) SetIpAccessSettings(v *IpAccessSettings) *UpdateIpAccessSettingsOutput {
+	s.IpAccessSettings = v
 	return s
 }
 

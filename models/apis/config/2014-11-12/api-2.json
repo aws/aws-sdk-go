@@ -2856,6 +2856,12 @@
       "max":1000,
       "min":0
     },
+    "ExclusionByResourceTypes":{
+      "type":"structure",
+      "members":{
+        "resourceTypes":{"shape":"ResourceTypeList"}
+      }
+    },
     "ExecutionControls":{
       "type":"structure",
       "members":{
@@ -4319,8 +4325,24 @@
       "members":{
         "allSupported":{"shape":"AllSupported"},
         "includeGlobalResourceTypes":{"shape":"IncludeGlobalResourceTypes"},
-        "resourceTypes":{"shape":"ResourceTypeList"}
+        "resourceTypes":{"shape":"ResourceTypeList"},
+        "exclusionByResourceTypes":{"shape":"ExclusionByResourceTypes"},
+        "recordingStrategy":{"shape":"RecordingStrategy"}
       }
+    },
+    "RecordingStrategy":{
+      "type":"structure",
+      "members":{
+        "useOnly":{"shape":"RecordingStrategyType"}
+      }
+    },
+    "RecordingStrategyType":{
+      "type":"string",
+      "enum":[
+        "ALL_SUPPORTED_RESOURCE_TYPES",
+        "INCLUSION_BY_RESOURCE_TYPES",
+        "EXCLUSION_BY_RESOURCE_TYPES"
+      ]
     },
     "ReevaluateConfigRuleNames":{
       "type":"list",

@@ -3706,6 +3706,9 @@ type ApplicationSummary struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the role associated with the application.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
 	// The status of the application.
 	//
 	// Status is a required field
@@ -3790,6 +3793,12 @@ func (s *ApplicationSummary) SetLastStartTime(v time.Time) *ApplicationSummary {
 // SetName sets the Name field's value.
 func (s *ApplicationSummary) SetName(v string) *ApplicationSummary {
 	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ApplicationSummary) SetRoleArn(v string) *ApplicationSummary {
+	s.RoleArn = &v
 	return s
 }
 
@@ -3920,7 +3929,7 @@ type BatchJobExecutionSummary struct {
 	// ApplicationId is a required field
 	ApplicationId *string `locationName:"applicationId" type:"string" required:"true"`
 
-	// Identifies a specific batch job.
+	// The unique identifier of this batch job.
 	BatchJobIdentifier *BatchJobIdentifier `locationName:"batchJobIdentifier" type:"structure"`
 
 	// The timestamp when this batch job execution ended.
@@ -3940,6 +3949,9 @@ type BatchJobExecutionSummary struct {
 	// The type of a particular batch job execution.
 	JobType *string `locationName:"jobType" type:"string" enum:"BatchJobType"`
 
+	// The batch job return code from either the Blu Age or Micro Focus runtime
+	// engines. For more information, see Batch return codes (https://www.ibm.com/docs/en/was/8.5.5?topic=model-batch-return-codes)
+	// in the IBM WebSphere Application Server documentation.
 	ReturnCode *string `locationName:"returnCode" type:"string"`
 
 	// The timestamp when a particular batch job execution started.
@@ -4284,6 +4296,9 @@ type CreateApplicationInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the role associated with the application.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
 	// A list of tags to apply to the application.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
@@ -4363,6 +4378,12 @@ func (s *CreateApplicationInput) SetKmsKeyId(v string) *CreateApplicationInput {
 // SetName sets the Name field's value.
 func (s *CreateApplicationInput) SetName(v string) *CreateApplicationInput {
 	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateApplicationInput) SetRoleArn(v string) *CreateApplicationInput {
+	s.RoleArn = &v
 	return s
 }
 
@@ -5357,6 +5378,12 @@ type DatasetDetailOrgAttributes struct {
 	// The generation data group of the data set.
 	Gdg *GdgDetailAttributes `locationName:"gdg" type:"structure"`
 
+	// The details of a PO type data set.
+	Po *PoDetailAttributes `locationName:"po" type:"structure"`
+
+	// The details of a PS type data set.
+	Ps *PsDetailAttributes `locationName:"ps" type:"structure"`
+
 	// The details of a VSAM data set.
 	Vsam *VsamDetailAttributes `locationName:"vsam" type:"structure"`
 }
@@ -5385,6 +5412,18 @@ func (s *DatasetDetailOrgAttributes) SetGdg(v *GdgDetailAttributes) *DatasetDeta
 	return s
 }
 
+// SetPo sets the Po field's value.
+func (s *DatasetDetailOrgAttributes) SetPo(v *PoDetailAttributes) *DatasetDetailOrgAttributes {
+	s.Po = v
+	return s
+}
+
+// SetPs sets the Ps field's value.
+func (s *DatasetDetailOrgAttributes) SetPs(v *PsDetailAttributes) *DatasetDetailOrgAttributes {
+	s.Ps = v
+	return s
+}
+
 // SetVsam sets the Vsam field's value.
 func (s *DatasetDetailOrgAttributes) SetVsam(v *VsamDetailAttributes) *DatasetDetailOrgAttributes {
 	s.Vsam = v
@@ -5399,6 +5438,12 @@ type DatasetOrgAttributes struct {
 
 	// The generation data group of the data set.
 	Gdg *GdgAttributes `locationName:"gdg" type:"structure"`
+
+	// The details of a PO type data set.
+	Po *PoAttributes `locationName:"po" type:"structure"`
+
+	// The details of a PS type data set.
+	Ps *PsAttributes `locationName:"ps" type:"structure"`
 
 	// The details of a VSAM data set.
 	Vsam *VsamAttributes `locationName:"vsam" type:"structure"`
@@ -5425,6 +5470,16 @@ func (s DatasetOrgAttributes) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DatasetOrgAttributes) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DatasetOrgAttributes"}
+	if s.Po != nil {
+		if err := s.Po.Validate(); err != nil {
+			invalidParams.AddNested("Po", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Ps != nil {
+		if err := s.Ps.Validate(); err != nil {
+			invalidParams.AddNested("Ps", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Vsam != nil {
 		if err := s.Vsam.Validate(); err != nil {
 			invalidParams.AddNested("Vsam", err.(request.ErrInvalidParams))
@@ -5440,6 +5495,18 @@ func (s *DatasetOrgAttributes) Validate() error {
 // SetGdg sets the Gdg field's value.
 func (s *DatasetOrgAttributes) SetGdg(v *GdgAttributes) *DatasetOrgAttributes {
 	s.Gdg = v
+	return s
+}
+
+// SetPo sets the Po field's value.
+func (s *DatasetOrgAttributes) SetPo(v *PoAttributes) *DatasetOrgAttributes {
+	s.Po = v
+	return s
+}
+
+// SetPs sets the Ps field's value.
+func (s *DatasetOrgAttributes) SetPs(v *PsAttributes) *DatasetOrgAttributes {
+	s.Ps = v
 	return s
 }
 
@@ -6505,6 +6572,9 @@ type GetApplicationOutput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the role associated with the application.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
 	// The status of the application.
 	//
 	// Status is a required field
@@ -6626,6 +6696,12 @@ func (s *GetApplicationOutput) SetLogGroups(v []*LogGroupSummary) *GetApplicatio
 // SetName sets the Name field's value.
 func (s *GetApplicationOutput) SetName(v string) *GetApplicationOutput {
 	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GetApplicationOutput) SetRoleArn(v string) *GetApplicationOutput {
+	s.RoleArn = &v
 	return s
 }
 
@@ -6889,7 +6965,7 @@ type GetBatchJobExecutionOutput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `locationName:"applicationId" type:"string" required:"true"`
 
-	// Identifies a specific batch job.
+	// The unique identifier of this batch job.
 	BatchJobIdentifier *BatchJobIdentifier `locationName:"batchJobIdentifier" type:"structure"`
 
 	// The timestamp when the batch job execution ended.
@@ -6912,6 +6988,9 @@ type GetBatchJobExecutionOutput struct {
 	// The user for the job.
 	JobUser *string `locationName:"jobUser" type:"string"`
 
+	// The batch job return code from either the Blu Age or Micro Focus runtime
+	// engines. For more information, see Batch return codes (https://www.ibm.com/docs/en/was/8.5.5?topic=model-batch-return-codes)
+	// in the IBM WebSphere Application Server documentation.
 	ReturnCode *string `locationName:"returnCode" type:"string"`
 
 	// The timestamp when the batch job execution started.
@@ -9192,6 +9271,125 @@ func (s *PendingMaintenance) SetSchedule(v *MaintenanceSchedule) *PendingMainten
 	return s
 }
 
+// The supported properties for a PO type data set.
+type PoAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The character set encoding of the data set.
+	Encoding *string `locationName:"encoding" type:"string"`
+
+	// The format of the data set records.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true"`
+
+	// An array containing one or more filename extensions, allowing you to specify
+	// which files to be included as PDS member.
+	//
+	// MemberFileExtensions is a required field
+	MemberFileExtensions []*string `locationName:"memberFileExtensions" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PoAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PoAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PoAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PoAttributes"}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.MemberFileExtensions == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberFileExtensions"))
+	}
+	if s.MemberFileExtensions != nil && len(s.MemberFileExtensions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberFileExtensions", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncoding sets the Encoding field's value.
+func (s *PoAttributes) SetEncoding(v string) *PoAttributes {
+	s.Encoding = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *PoAttributes) SetFormat(v string) *PoAttributes {
+	s.Format = &v
+	return s
+}
+
+// SetMemberFileExtensions sets the MemberFileExtensions field's value.
+func (s *PoAttributes) SetMemberFileExtensions(v []*string) *PoAttributes {
+	s.MemberFileExtensions = v
+	return s
+}
+
+// The supported properties for a PO type data set.
+type PoDetailAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The character set encoding of the data set.
+	//
+	// Encoding is a required field
+	Encoding *string `locationName:"encoding" type:"string" required:"true"`
+
+	// The format of the data set records.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PoDetailAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PoDetailAttributes) GoString() string {
+	return s.String()
+}
+
+// SetEncoding sets the Encoding field's value.
+func (s *PoDetailAttributes) SetEncoding(v string) *PoDetailAttributes {
+	s.Encoding = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *PoDetailAttributes) SetFormat(v string) *PoDetailAttributes {
+	s.Format = &v
+	return s
+}
+
 // The primary key for a KSDS data set.
 type PrimaryKey struct {
 	_ struct{} `type:"structure"`
@@ -9261,6 +9459,107 @@ func (s *PrimaryKey) SetName(v string) *PrimaryKey {
 // SetOffset sets the Offset field's value.
 func (s *PrimaryKey) SetOffset(v int64) *PrimaryKey {
 	s.Offset = &v
+	return s
+}
+
+// The supported properties for a PS type data set.
+type PsAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The character set encoding of the data set.
+	Encoding *string `locationName:"encoding" type:"string"`
+
+	// The format of the data set records.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PsAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PsAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PsAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PsAttributes"}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncoding sets the Encoding field's value.
+func (s *PsAttributes) SetEncoding(v string) *PsAttributes {
+	s.Encoding = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *PsAttributes) SetFormat(v string) *PsAttributes {
+	s.Format = &v
+	return s
+}
+
+// The supported properties for a PS type data set.
+type PsDetailAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The character set encoding of the data set.
+	//
+	// Encoding is a required field
+	Encoding *string `locationName:"encoding" type:"string" required:"true"`
+
+	// The format of the data set records.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PsDetailAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PsDetailAttributes) GoString() string {
+	return s.String()
+}
+
+// SetEncoding sets the Encoding field's value.
+func (s *PsDetailAttributes) SetEncoding(v string) *PsDetailAttributes {
+	s.Encoding = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *PsDetailAttributes) SetFormat(v string) *PsDetailAttributes {
+	s.Format = &v
 	return s
 }
 

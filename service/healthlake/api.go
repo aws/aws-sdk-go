@@ -1221,7 +1221,7 @@ func (c *HealthLake) TagResourceRequest(input *TagResourceInput) (req *request.R
 
 // TagResource API operation for Amazon HealthLake.
 //
-// Adds a user specifed key and value tag to a Data Store.
+// Adds a user specified key and value tag to a Data Store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1486,6 +1486,10 @@ type CreateFHIRDatastoreInput struct {
 	// DatastoreTypeVersion is a required field
 	DatastoreTypeVersion *string `type:"string" required:"true" enum:"FHIRVersion"`
 
+	// The configuration of the identity provider that you want to use for your
+	// Data Store.
+	IdentityProviderConfiguration *IdentityProviderConfiguration `type:"structure"`
+
 	// Optional parameter to preload data upon creation of the Data Store. Currently,
 	// the only supported preloaded data is synthetic data generated from Synthea.
 	PreloadDataConfig *PreloadDataConfig `type:"structure"`
@@ -1527,6 +1531,11 @@ func (s *CreateFHIRDatastoreInput) Validate() error {
 	}
 	if s.DatastoreTypeVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatastoreTypeVersion"))
+	}
+	if s.IdentityProviderConfiguration != nil {
+		if err := s.IdentityProviderConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("IdentityProviderConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.PreloadDataConfig != nil {
 		if err := s.PreloadDataConfig.Validate(); err != nil {
@@ -1573,6 +1582,12 @@ func (s *CreateFHIRDatastoreInput) SetDatastoreTypeVersion(v string) *CreateFHIR
 	return s
 }
 
+// SetIdentityProviderConfiguration sets the IdentityProviderConfiguration field's value.
+func (s *CreateFHIRDatastoreInput) SetIdentityProviderConfiguration(v *IdentityProviderConfiguration) *CreateFHIRDatastoreInput {
+	s.IdentityProviderConfiguration = v
+	return s
+}
+
 // SetPreloadDataConfig sets the PreloadDataConfig field's value.
 func (s *CreateFHIRDatastoreInput) SetPreloadDataConfig(v *PreloadDataConfig) *CreateFHIRDatastoreInput {
 	s.PreloadDataConfig = v
@@ -1594,14 +1609,13 @@ func (s *CreateFHIRDatastoreInput) SetTags(v []*Tag) *CreateFHIRDatastoreInput {
 type CreateFHIRDatastoreOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The datastore ARN is generated during the creation of the Data Store and
+	// The Data Store ARN is generated during the creation of the Data Store and
 	// can be found in the output from the initial Data Store creation call.
 	//
 	// DatastoreArn is a required field
 	DatastoreArn *string `type:"string" required:"true"`
 
-	// The AWS endpoint for the created Data Store. For preview, only US-east-1
-	// endpoints are supported.
+	// The AWS endpoint for the created Data Store.
 	//
 	// DatastoreEndpoint is a required field
 	DatastoreEndpoint *string `min:"1" type:"string" required:"true"`
@@ -1735,7 +1749,7 @@ func (s *DatastoreFilter) SetDatastoreStatus(v string) *DatastoreFilter {
 	return s
 }
 
-// Displays the properties of the Data Store, including the ID, Arn, name, and
+// Displays the properties of the Data Store, including the ID, ARN, name, and
 // the status of the Data Store.
 type DatastoreProperties struct {
 	_ struct{} `type:"structure"`
@@ -1772,6 +1786,9 @@ type DatastoreProperties struct {
 	//
 	// DatastoreTypeVersion is a required field
 	DatastoreTypeVersion *string `type:"string" required:"true" enum:"FHIRVersion"`
+
+	// The identity provider that you selected when you created the Data Store.
+	IdentityProviderConfiguration *IdentityProviderConfiguration `type:"structure"`
 
 	// The preloaded data configuration for the Data Store. Only data preloaded
 	// from Synthea is supported.
@@ -1842,6 +1859,12 @@ func (s *DatastoreProperties) SetDatastoreTypeVersion(v string) *DatastoreProper
 	return s
 }
 
+// SetIdentityProviderConfiguration sets the IdentityProviderConfiguration field's value.
+func (s *DatastoreProperties) SetIdentityProviderConfiguration(v *IdentityProviderConfiguration) *DatastoreProperties {
+	s.IdentityProviderConfiguration = v
+	return s
+}
+
 // SetPreloadDataConfig sets the PreloadDataConfig field's value.
 func (s *DatastoreProperties) SetPreloadDataConfig(v *PreloadDataConfig) *DatastoreProperties {
 	s.PreloadDataConfig = v
@@ -1858,7 +1881,9 @@ type DeleteFHIRDatastoreInput struct {
 	_ struct{} `type:"structure"`
 
 	// The AWS-generated ID for the Data Store to be deleted.
-	DatastoreId *string `min:"1" type:"string"`
+	//
+	// DatastoreId is a required field
+	DatastoreId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -1882,6 +1907,9 @@ func (s DeleteFHIRDatastoreInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteFHIRDatastoreInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteFHIRDatastoreInput"}
+	if s.DatastoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatastoreId"))
+	}
 	if s.DatastoreId != nil && len(*s.DatastoreId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatastoreId", 1))
 	}
@@ -1967,9 +1995,10 @@ func (s *DeleteFHIRDatastoreOutput) SetDatastoreStatus(v string) *DeleteFHIRData
 type DescribeFHIRDatastoreInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated Data Store id. This is part of the ‘CreateFHIRDatastore’
-	// output.
-	DatastoreId *string `min:"1" type:"string"`
+	// The AWS-generated Data Store ID.
+	//
+	// DatastoreId is a required field
+	DatastoreId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -1993,6 +2022,9 @@ func (s DescribeFHIRDatastoreInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeFHIRDatastoreInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeFHIRDatastoreInput"}
+	if s.DatastoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatastoreId"))
+	}
 	if s.DatastoreId != nil && len(*s.DatastoreId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatastoreId", 1))
 	}
@@ -2362,6 +2394,104 @@ func (s *ExportJobProperties) SetSubmitTime(v time.Time) *ExportJobProperties {
 	return s
 }
 
+// The identity provider configuration that you gave when the Data Store was
+// created.
+type IdentityProviderConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The authorization strategy that you selected when you created the Data Store.
+	//
+	// AuthorizationStrategy is a required field
+	AuthorizationStrategy *string `type:"string" required:"true" enum:"AuthorizationStrategy"`
+
+	// If you enabled fine-grained authorization when you created the Data Store.
+	FineGrainedAuthorizationEnabled *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the Lambda function that you want to use
+	// to decode the access token created by the authorization server.
+	IdpLambdaArn *string `min:"49" type:"string"`
+
+	// The JSON metadata elements that you want to use in your identity provider
+	// configuration. Required elements are listed based on the launch specification
+	// of the SMART application. For more information on all possible elements,
+	// see Metadata (https://build.fhir.org/ig/HL7/smart-app-launch/conformance.html#metadata)
+	// in SMART's App Launch specification.
+	//
+	// authorization_endpoint: The URL to the OAuth2 authorization endpoint.
+	//
+	// grant_types_supported: An array of grant types that are supported at the
+	// token endpoint. You must provide at least one grant type option. Valid options
+	// are authorization_code and client_credentials.
+	//
+	// token_endpoint: The URL to the OAuth2 token endpoint.
+	//
+	// capabilities: An array of strings of the SMART capabilities that the authorization
+	// server supports.
+	//
+	// code_challenge_methods_supported: An array of strings of supported PKCE code
+	// challenge methods. You must include the S256 method in the array of PKCE
+	// code challenge methods.
+	Metadata *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdentityProviderConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdentityProviderConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdentityProviderConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdentityProviderConfiguration"}
+	if s.AuthorizationStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthorizationStrategy"))
+	}
+	if s.IdpLambdaArn != nil && len(*s.IdpLambdaArn) < 49 {
+		invalidParams.Add(request.NewErrParamMinLen("IdpLambdaArn", 49))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizationStrategy sets the AuthorizationStrategy field's value.
+func (s *IdentityProviderConfiguration) SetAuthorizationStrategy(v string) *IdentityProviderConfiguration {
+	s.AuthorizationStrategy = &v
+	return s
+}
+
+// SetFineGrainedAuthorizationEnabled sets the FineGrainedAuthorizationEnabled field's value.
+func (s *IdentityProviderConfiguration) SetFineGrainedAuthorizationEnabled(v bool) *IdentityProviderConfiguration {
+	s.FineGrainedAuthorizationEnabled = &v
+	return s
+}
+
+// SetIdpLambdaArn sets the IdpLambdaArn field's value.
+func (s *IdentityProviderConfiguration) SetIdpLambdaArn(v string) *IdentityProviderConfiguration {
+	s.IdpLambdaArn = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *IdentityProviderConfiguration) SetMetadata(v string) *IdentityProviderConfiguration {
+	s.Metadata = &v
+	return s
+}
+
 // Displays the properties of the import job, including the ID, Arn, Name, and
 // the status of the Data Store.
 type ImportJobProperties struct {
@@ -2396,7 +2526,7 @@ type ImportJobProperties struct {
 	JobOutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// The job status for an Import job. Possible statuses are SUBMITTED, IN_PROGRESS,
-	// COMPLETED, FAILED.
+	// COMPLETED_WITH_ERRORS, COMPLETED, FAILED.
 	//
 	// JobStatus is a required field
 	JobStatus *string `type:"string" required:"true" enum:"JobStatus"`
@@ -3788,7 +3918,7 @@ type Tag struct {
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The value portion of tag. Tag values are case sensitive.
+	// The value portion of a tag. Tag values are case sensitive.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -4155,6 +4285,22 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AuthorizationStrategySmartOnFhirV1 is a AuthorizationStrategy enum value
+	AuthorizationStrategySmartOnFhirV1 = "SMART_ON_FHIR_V1"
+
+	// AuthorizationStrategyAwsAuth is a AuthorizationStrategy enum value
+	AuthorizationStrategyAwsAuth = "AWS_AUTH"
+)
+
+// AuthorizationStrategy_Values returns all elements of the AuthorizationStrategy enum
+func AuthorizationStrategy_Values() []string {
+	return []string{
+		AuthorizationStrategySmartOnFhirV1,
+		AuthorizationStrategyAwsAuth,
+	}
+}
+
+const (
 	// CmkTypeCustomerManagedKmsKey is a CmkType enum value
 	CmkTypeCustomerManagedKmsKey = "CUSTOMER_MANAGED_KMS_KEY"
 
@@ -4221,6 +4367,18 @@ const (
 
 	// JobStatusFailed is a JobStatus enum value
 	JobStatusFailed = "FAILED"
+
+	// JobStatusCancelSubmitted is a JobStatus enum value
+	JobStatusCancelSubmitted = "CANCEL_SUBMITTED"
+
+	// JobStatusCancelInProgress is a JobStatus enum value
+	JobStatusCancelInProgress = "CANCEL_IN_PROGRESS"
+
+	// JobStatusCancelCompleted is a JobStatus enum value
+	JobStatusCancelCompleted = "CANCEL_COMPLETED"
+
+	// JobStatusCancelFailed is a JobStatus enum value
+	JobStatusCancelFailed = "CANCEL_FAILED"
 )
 
 // JobStatus_Values returns all elements of the JobStatus enum
@@ -4231,6 +4389,10 @@ func JobStatus_Values() []string {
 		JobStatusCompletedWithErrors,
 		JobStatusCompleted,
 		JobStatusFailed,
+		JobStatusCancelSubmitted,
+		JobStatusCancelInProgress,
+		JobStatusCancelCompleted,
+		JobStatusCancelFailed,
 	}
 }
 

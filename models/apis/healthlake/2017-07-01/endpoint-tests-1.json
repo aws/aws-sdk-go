@@ -1,75 +1,10 @@
 {
     "testCases": [
         {
-            "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://m2.ap-southeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-southeast-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://m2.ca-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ca-central-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://m2.eu-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-central-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://m2.eu-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://m2.sa-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "sa-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.us-east-1.amazonaws.com"
+                    "url": "https://healthlake.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -79,10 +14,23 @@
             }
         },
         {
+            "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://healthlake.us-east-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-2",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.us-west-2.amazonaws.com"
+                    "url": "https://healthlake.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -95,7 +43,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2-fips.us-east-1.api.aws"
+                    "url": "https://healthlake-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -108,7 +56,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2-fips.us-east-1.amazonaws.com"
+                    "url": "https://healthlake-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -121,7 +69,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.us-east-1.api.aws"
+                    "url": "https://healthlake.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -134,7 +82,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://healthlake-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -147,7 +95,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://healthlake-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -160,7 +108,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://healthlake.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -173,7 +121,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.cn-north-1.amazonaws.com.cn"
+                    "url": "https://healthlake.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -186,7 +134,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2-fips.us-gov-east-1.api.aws"
+                    "url": "https://healthlake-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -199,7 +147,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://healthlake-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -212,7 +160,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.us-gov-east-1.api.aws"
+                    "url": "https://healthlake.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -225,7 +173,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.us-gov-east-1.amazonaws.com"
+                    "url": "https://healthlake.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -249,7 +197,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://healthlake-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -273,7 +221,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://healthlake.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -297,7 +245,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://healthlake-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -321,7 +269,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://m2.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://healthlake.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

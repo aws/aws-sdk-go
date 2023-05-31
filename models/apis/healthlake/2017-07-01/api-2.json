@@ -223,6 +223,14 @@
       "min":1,
       "pattern":"^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:healthlake:[a-z0-9-]+:\\d{12}:datastore\\/fhir\\/.{32}"
     },
+    "AuthorizationStrategy":{
+      "type":"string",
+      "enum":[
+        "SMART_ON_FHIR_V1",
+        "AWS_AUTH"
+      ]
+    },
+    "Boolean":{"type":"boolean"},
     "BoundedLengthString":{
       "type":"string",
       "max":5000,
@@ -242,6 +250,7 @@
         "AWS_OWNED_KMS_KEY"
       ]
     },
+    "ConfigurationMetadata":{"type":"string"},
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -261,7 +270,8 @@
           "shape":"ClientTokenString",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "IdentityProviderConfiguration":{"shape":"IdentityProviderConfiguration"}
       }
     },
     "CreateFHIRDatastoreResponse":{
@@ -322,7 +332,8 @@
         "DatastoreTypeVersion":{"shape":"FHIRVersion"},
         "DatastoreEndpoint":{"shape":"String"},
         "SseConfiguration":{"shape":"SseConfiguration"},
-        "PreloadDataConfig":{"shape":"PreloadDataConfig"}
+        "PreloadDataConfig":{"shape":"PreloadDataConfig"},
+        "IdentityProviderConfiguration":{"shape":"IdentityProviderConfiguration"}
       }
     },
     "DatastorePropertiesList":{
@@ -340,6 +351,7 @@
     },
     "DeleteFHIRDatastoreRequest":{
       "type":"structure",
+      "required":["DatastoreId"],
       "members":{
         "DatastoreId":{"shape":"DatastoreId"}
       }
@@ -361,6 +373,7 @@
     },
     "DescribeFHIRDatastoreRequest":{
       "type":"structure",
+      "required":["DatastoreId"],
       "members":{
         "DatastoreId":{"shape":"DatastoreId"}
       }
@@ -449,6 +462,16 @@
       "min":20,
       "pattern":"arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+"
     },
+    "IdentityProviderConfiguration":{
+      "type":"structure",
+      "required":["AuthorizationStrategy"],
+      "members":{
+        "AuthorizationStrategy":{"shape":"AuthorizationStrategy"},
+        "FineGrainedAuthorizationEnabled":{"shape":"Boolean"},
+        "Metadata":{"shape":"ConfigurationMetadata"},
+        "IdpLambdaArn":{"shape":"LambdaArn"}
+      }
+    },
     "ImportJobProperties":{
       "type":"structure",
       "required":[
@@ -509,7 +532,11 @@
         "IN_PROGRESS",
         "COMPLETED_WITH_ERRORS",
         "COMPLETED",
-        "FAILED"
+        "FAILED",
+        "CANCEL_SUBMITTED",
+        "CANCEL_IN_PROGRESS",
+        "CANCEL_COMPLETED",
+        "CANCEL_FAILED"
       ]
     },
     "KmsEncryptionConfig":{
@@ -519,6 +546,12 @@
         "CmkType":{"shape":"CmkType"},
         "KmsKeyId":{"shape":"EncryptionKeyID"}
       }
+    },
+    "LambdaArn":{
+      "type":"string",
+      "max":256,
+      "min":49,
+      "pattern":"arn:aws:lambda:[a-z]{2}-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9\\-_\\.]+(:(\\$LATEST|[a-zA-Z0-9\\-_]+))?"
     },
     "ListFHIRDatastoresRequest":{
       "type":"structure",

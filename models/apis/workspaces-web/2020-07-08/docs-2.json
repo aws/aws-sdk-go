@@ -3,12 +3,14 @@
   "service": "<p>WorkSpaces Web is a low cost, fully managed WorkSpace built specifically to facilitate secure, web-based workloads. WorkSpaces Web makes it easy for customers to safely provide their employees with access to internal websites and SaaS web applications without the administrative burden of appliances or specialized client software. WorkSpaces Web provides simple policy tools tailored for user interactions, while offloading common tasks like capacity management, scaling, and maintaining browser images.</p>",
   "operations": {
     "AssociateBrowserSettings": "<p>Associates a browser settings resource with a web portal.</p>",
+    "AssociateIpAccessSettings": "<p>Associates an IP access settings resource with a web portal.</p>",
     "AssociateNetworkSettings": "<p>Associates a network settings resource with a web portal.</p>",
     "AssociateTrustStore": "<p>Associates a trust store with a web portal.</p>",
     "AssociateUserAccessLoggingSettings": "<p>Associates a user access logging settings resource with a web portal.</p>",
     "AssociateUserSettings": "<p>Associates a user settings resource with a web portal.</p>",
     "CreateBrowserSettings": "<p>Creates a browser settings resource that can be associated with a web portal. Once associated with a web portal, browser settings control how the browser will behave once a user starts a streaming session for the web portal. </p>",
     "CreateIdentityProvider": "<p>Creates an identity provider resource that is then associated with a web portal.</p>",
+    "CreateIpAccessSettings": "<p>Creates an IP access settings resource that can be associated with a web portal.</p>",
     "CreateNetworkSettings": "<p>Creates a network settings resource that can be associated with a web portal. Once associated with a web portal, network settings define how streaming instances will connect with your specified VPC. </p>",
     "CreatePortal": "<p>Creates a web portal.</p>",
     "CreateTrustStore": "<p>Creates a trust store that can be associated with a web portal. A trust store contains certificate authority (CA) certificates. Once associated with a web portal, the browser in a streaming session will recognize certificates that have been issued using any of the CAs in the trust store. If your organization has internal websites that use certificates issued by private CAs, you should add the private CA certificate to the trust store. </p>",
@@ -16,18 +18,21 @@
     "CreateUserSettings": "<p>Creates a user settings resource that can be associated with a web portal. Once associated with a web portal, user settings control how users can transfer data between a streaming session and the their local devices. </p>",
     "DeleteBrowserSettings": "<p>Deletes browser settings.</p>",
     "DeleteIdentityProvider": "<p>Deletes the identity provider.</p>",
+    "DeleteIpAccessSettings": "<p>Deletes IP access settings.</p>",
     "DeleteNetworkSettings": "<p>Deletes network settings.</p>",
     "DeletePortal": "<p>Deletes a web portal.</p>",
     "DeleteTrustStore": "<p>Deletes the trust store.</p>",
     "DeleteUserAccessLoggingSettings": "<p>Deletes user access logging settings.</p>",
     "DeleteUserSettings": "<p>Deletes user settings.</p>",
     "DisassociateBrowserSettings": "<p>Disassociates browser settings from a web portal.</p>",
+    "DisassociateIpAccessSettings": "<p>Disassociates IP access settings from a web portal.</p>",
     "DisassociateNetworkSettings": "<p>Disassociates network settings from a web portal.</p>",
     "DisassociateTrustStore": "<p>Disassociates a trust store from a web portal.</p>",
     "DisassociateUserAccessLoggingSettings": "<p>Disassociates user access logging settings from a web portal.</p>",
     "DisassociateUserSettings": "<p>Disassociates user settings from a web portal.</p>",
     "GetBrowserSettings": "<p>Gets browser settings.</p>",
     "GetIdentityProvider": "<p>Gets the identity provider.</p>",
+    "GetIpAccessSettings": "<p>Gets the IP access settings.</p>",
     "GetNetworkSettings": "<p>Gets the network settings.</p>",
     "GetPortal": "<p>Gets the web portal.</p>",
     "GetPortalServiceProviderMetadata": "<p>Gets the service provider metadata.</p>",
@@ -37,6 +42,7 @@
     "GetUserSettings": "<p>Gets user settings.</p>",
     "ListBrowserSettings": "<p>Retrieves a list of browser settings.</p>",
     "ListIdentityProviders": "<p>Retrieves a list of identity providers for a specific web portal.</p>",
+    "ListIpAccessSettings": "<p>Retrieves a list of IP access settings.</p>",
     "ListNetworkSettings": "<p>Retrieves a list of network settings.</p>",
     "ListPortals": "<p>Retrieves a list or web portals.</p>",
     "ListTagsForResource": "<p>Retrieves a list of tags for a resource.</p>",
@@ -48,6 +54,7 @@
     "UntagResource": "<p>Removes one or more tags from the specified resource.</p>",
     "UpdateBrowserSettings": "<p>Updates browser settings.</p>",
     "UpdateIdentityProvider": "<p>Updates the identity provider. </p>",
+    "UpdateIpAccessSettings": "<p>Updates IP access settings.</p>",
     "UpdateNetworkSettings": "<p>Updates network settings.</p>",
     "UpdatePortal": "<p>Updates a web portal.</p>",
     "UpdateTrustStore": "<p>Updates the trust store.</p>",
@@ -63,6 +70,10 @@
         "AssociateBrowserSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "AssociateBrowserSettingsResponse$browserSettingsArn": "<p>The ARN of the browser settings.</p>",
         "AssociateBrowserSettingsResponse$portalArn": "<p>The ARN of the web portal.</p>",
+        "AssociateIpAccessSettingsRequest$ipAccessSettingsArn": "<p>The ARN of the IP access settings.</p>",
+        "AssociateIpAccessSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
+        "AssociateIpAccessSettingsResponse$ipAccessSettingsArn": "<p>The ARN of the IP access settings resource.</p>",
+        "AssociateIpAccessSettingsResponse$portalArn": "<p>The ARN of the web portal.</p>",
         "AssociateNetworkSettingsRequest$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "AssociateNetworkSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "AssociateNetworkSettingsResponse$networkSettingsArn": "<p>The ARN of the network settings.</p>",
@@ -84,6 +95,7 @@
         "CreateBrowserSettingsResponse$browserSettingsArn": "<p>The ARN of the browser settings.</p>",
         "CreateIdentityProviderRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "CreateIdentityProviderResponse$identityProviderArn": "<p>The ARN of the identity provider.</p>",
+        "CreateIpAccessSettingsResponse$ipAccessSettingsArn": "<p>The ARN of the IP access settings resource.</p>",
         "CreateNetworkSettingsResponse$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "CreatePortalResponse$portalArn": "<p>The ARN of the web portal.</p>",
         "CreateTrustStoreResponse$trustStoreArn": "<p>The ARN of the trust store.</p>",
@@ -91,18 +103,21 @@
         "CreateUserSettingsResponse$userSettingsArn": "<p>The ARN of the user settings.</p>",
         "DeleteBrowserSettingsRequest$browserSettingsArn": "<p>The ARN of the browser settings.</p>",
         "DeleteIdentityProviderRequest$identityProviderArn": "<p>The ARN of the identity provider.</p>",
+        "DeleteIpAccessSettingsRequest$ipAccessSettingsArn": "<p>The ARN of the IP access settings.</p>",
         "DeleteNetworkSettingsRequest$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "DeletePortalRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DeleteTrustStoreRequest$trustStoreArn": "<p>The ARN of the trust store.</p>",
         "DeleteUserAccessLoggingSettingsRequest$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
         "DeleteUserSettingsRequest$userSettingsArn": "<p>The ARN of the user settings.</p>",
         "DisassociateBrowserSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
+        "DisassociateIpAccessSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DisassociateNetworkSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DisassociateTrustStoreRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DisassociateUserAccessLoggingSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DisassociateUserSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "GetBrowserSettingsRequest$browserSettingsArn": "<p>The ARN of the browser settings.</p>",
         "GetIdentityProviderRequest$identityProviderArn": "<p>The ARN of the identity provider.</p>",
+        "GetIpAccessSettingsRequest$ipAccessSettingsArn": "<p>The ARN of the IP access settings.</p>",
         "GetNetworkSettingsRequest$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "GetPortalRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "GetPortalServiceProviderMetadataRequest$portalArn": "<p>The ARN of the web portal.</p>",
@@ -114,6 +129,8 @@
         "GetUserSettingsRequest$userSettingsArn": "<p>The ARN of the user settings.</p>",
         "IdentityProvider$identityProviderArn": "<p>The ARN of the identity provider.</p>",
         "IdentityProviderSummary$identityProviderArn": "<p>The ARN of the identity provider.</p>",
+        "IpAccessSettings$ipAccessSettingsArn": "<p>The ARN of the IP access settings resource.</p>",
+        "IpAccessSettingsSummary$ipAccessSettingsArn": "<p>The ARN of IP access settings.</p>",
         "ListIdentityProvidersRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "ListTrustStoreCertificatesRequest$trustStoreArn": "<p>The ARN of the trust store</p>",
@@ -121,12 +138,14 @@
         "NetworkSettings$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "NetworkSettingsSummary$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "Portal$browserSettingsArn": "<p>The ARN of the browser settings that is associated with this web portal.</p>",
+        "Portal$ipAccessSettingsArn": "<p>The ARN of the IP access settings.</p>",
         "Portal$networkSettingsArn": "<p>The ARN of the network settings that is associated with the web portal.</p>",
         "Portal$portalArn": "<p>The ARN of the web portal.</p>",
         "Portal$trustStoreArn": "<p>The ARN of the trust store that is associated with the web portal.</p>",
         "Portal$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings that is associated with the web portal.</p>",
         "Portal$userSettingsArn": "<p>The ARN of the user settings that is associated with the web portal.</p>",
         "PortalSummary$browserSettingsArn": "<p>The ARN of the browser settings that is associated with the web portal.</p>",
+        "PortalSummary$ipAccessSettingsArn": "<p>The ARN of the IP access settings.</p>",
         "PortalSummary$networkSettingsArn": "<p>The ARN of the network settings that is associated with the web portal.</p>",
         "PortalSummary$portalArn": "<p>The ARN of the web portal.</p>",
         "PortalSummary$trustStoreArn": "<p>The ARN of the trust that is associated with this web portal.</p>",
@@ -139,6 +158,7 @@
         "UntagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "UpdateBrowserSettingsRequest$browserSettingsArn": "<p>The ARN of the browser settings.</p>",
         "UpdateIdentityProviderRequest$identityProviderArn": "<p>The ARN of the identity provider.</p>",
+        "UpdateIpAccessSettingsRequest$ipAccessSettingsArn": "<p>The ARN of the IP access settings.</p>",
         "UpdateNetworkSettingsRequest$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "UpdatePortalRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "UpdateTrustStoreRequest$trustStoreArn": "<p>The ARN of the trust store.</p>",
@@ -160,6 +180,7 @@
       "base": null,
       "refs": {
         "BrowserSettings$associatedPortalArns": "<p>A list of web portal ARNs that this browser settings is associated with.</p>",
+        "IpAccessSettings$associatedPortalArns": "<p>A list of web portal ARNs that this IP access settings resource is associated with.</p>",
         "NetworkSettings$associatedPortalArns": "<p>A list of web portal ARNs that this network settings is associated with.</p>",
         "TrustStore$associatedPortalArns": "<p>A list of web portal ARNs that this trust store is associated with.</p>",
         "UserAccessLoggingSettings$associatedPortalArns": "<p>A list of web portal ARNs that this user access logging settings is associated with.</p>",
@@ -172,6 +193,16 @@
       }
     },
     "AssociateBrowserSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateIpAccessSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateIpAccessSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -320,6 +351,7 @@
       "refs": {
         "CreateBrowserSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request.</p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK. </p>",
         "CreateIdentityProviderRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request.</p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
+        "CreateIpAccessSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "CreateNetworkSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "CreatePortalRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "CreateTrustStoreRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
@@ -328,6 +360,7 @@
         "TagResourceRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateBrowserSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateIdentityProviderRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
+        "UpdateIpAccessSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateNetworkSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateTrustStoreRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateUserAccessLoggingSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
@@ -355,6 +388,16 @@
       }
     },
     "CreateIdentityProviderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateIpAccessSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateIpAccessSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -429,6 +472,16 @@
       "refs": {
       }
     },
+    "DeleteIpAccessSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteIpAccessSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteNetworkSettingsRequest": {
       "base": null,
       "refs": {
@@ -479,12 +532,32 @@
       "refs": {
       }
     },
+    "Description": {
+      "base": null,
+      "refs": {
+        "CreateIpAccessSettingsRequest$description": "<p>The description of the IP access settings.</p>",
+        "IpAccessSettings$description": "<p>The description of the IP access settings.</p>",
+        "IpAccessSettingsSummary$description": "<p>The description of the IP access settings.</p>",
+        "IpRule$description": "<p>The description of the IP rule.</p>",
+        "UpdateIpAccessSettingsRequest$description": "<p>The description of the IP access settings.</p>"
+      }
+    },
     "DisassociateBrowserSettingsRequest": {
       "base": null,
       "refs": {
       }
     },
     "DisassociateBrowserSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateIpAccessSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateIpAccessSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -541,9 +614,13 @@
     "DisplayName": {
       "base": null,
       "refs": {
+        "CreateIpAccessSettingsRequest$displayName": "<p>The display name of the IP access settings.</p>",
         "CreatePortalRequest$displayName": "<p>The name of the web portal. This is not visible to users who log into the web portal.</p>",
+        "IpAccessSettings$displayName": "<p> The display name of the IP access settings.</p>",
+        "IpAccessSettingsSummary$displayName": "<p>The display name of the IP access settings.</p>",
         "Portal$displayName": "<p>The name of the web portal.</p>",
         "PortalSummary$displayName": "<p>The name of the web portal.</p>",
+        "UpdateIpAccessSettingsRequest$displayName": "<p>The display name of the IP access settings.</p>",
         "UpdatePortalRequest$displayName": "<p>The name of the web portal. This is not visible to users who log into the web portal.</p>"
       }
     },
@@ -576,6 +653,7 @@
       "base": null,
       "refs": {
         "CreateBrowserSettingsRequest$additionalEncryptionContext": "<p>Additional encryption context of the browser settings.</p>",
+        "CreateIpAccessSettingsRequest$additionalEncryptionContext": "<p>Additional encryption context of the IP access settings.</p>",
         "CreatePortalRequest$additionalEncryptionContext": "<p>The additional encryption context of the portal.</p>"
       }
     },
@@ -614,6 +692,16 @@
       }
     },
     "GetIdentityProviderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIpAccessSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIpAccessSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -747,6 +835,45 @@
       "refs": {
       }
     },
+    "IpAccessSettings": {
+      "base": "<p>The IP access settings resource that can be associated with a web portal. </p>",
+      "refs": {
+        "GetIpAccessSettingsResponse$ipAccessSettings": "<p>The IP access settings.</p>",
+        "UpdateIpAccessSettingsResponse$ipAccessSettings": "<p>The IP access settings.</p>"
+      }
+    },
+    "IpAccessSettingsList": {
+      "base": null,
+      "refs": {
+        "ListIpAccessSettingsResponse$ipAccessSettings": "<p>The IP access settings.</p>"
+      }
+    },
+    "IpAccessSettingsSummary": {
+      "base": "<p>The summary of IP access settings.</p>",
+      "refs": {
+        "IpAccessSettingsList$member": null
+      }
+    },
+    "IpRange": {
+      "base": "<p>A single IP address or an IP address range in CIDR notation</p>",
+      "refs": {
+        "IpRule$ipRange": "<p>The IP range of the IP rule.</p>"
+      }
+    },
+    "IpRule": {
+      "base": "<p>The IP rules of the IP access settings.</p>",
+      "refs": {
+        "IpRuleList$member": null
+      }
+    },
+    "IpRuleList": {
+      "base": null,
+      "refs": {
+        "CreateIpAccessSettingsRequest$ipRules": "<p>The IP rules of the IP access settings.</p>",
+        "IpAccessSettings$ipRules": "<p>The IP rules of the IP access settings.</p>",
+        "UpdateIpAccessSettingsRequest$ipRules": "<p>The updated IP rules of the IP access settings.</p>"
+      }
+    },
     "KinesisStreamArn": {
       "base": "<p>Kinesis stream ARN to which log events are published.</p>",
       "refs": {
@@ -772,6 +899,16 @@
       }
     },
     "ListIdentityProvidersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIpAccessSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIpAccessSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -851,6 +988,7 @@
       "refs": {
         "ListBrowserSettingsRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListIdentityProvidersRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
+        "ListIpAccessSettingsRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListNetworkSettingsRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListPortalsRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListTrustStoreCertificatesRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
@@ -885,6 +1023,8 @@
         "ListBrowserSettingsResponse$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "ListIdentityProvidersRequest$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "ListIdentityProvidersResponse$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
+        "ListIpAccessSettingsRequest$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
+        "ListIpAccessSettingsResponse$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "ListNetworkSettingsRequest$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "ListNetworkSettingsResponse$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "ListPortalsRequest$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation. </p>",
@@ -1065,6 +1205,7 @@
       "base": null,
       "refs": {
         "CreateBrowserSettingsRequest$tags": "<p>The tags to add to the browser settings resource. A tag is a key-value pair.</p>",
+        "CreateIpAccessSettingsRequest$tags": "<p>The tags to add to the browser settings resource. A tag is a key-value pair.</p>",
         "CreateNetworkSettingsRequest$tags": "<p>The tags to add to the network settings resource. A tag is a key-value pair.</p>",
         "CreatePortalRequest$tags": "<p>The tags to add to the web portal. A tag is a key-value pair.</p>",
         "CreateTrustStoreRequest$tags": "<p>The tags to add to the trust store. A tag is a key-value pair.</p>",
@@ -1102,6 +1243,8 @@
         "Certificate$notValidBefore": "<p>The certificate is not valid before this date.</p>",
         "CertificateSummary$notValidAfter": "<p>The certificate is not valid after this date.</p>",
         "CertificateSummary$notValidBefore": "<p>The certificate is not valid before this date.</p>",
+        "IpAccessSettings$creationDate": "<p>The creation date timestamp of the IP access settings.</p>",
+        "IpAccessSettingsSummary$creationDate": "<p>The creation date timestamp of the IP access settings.</p>",
         "Portal$creationDate": "<p>The creation date of the web portal.</p>",
         "PortalSummary$creationDate": "<p>The creation date of the web portal.</p>"
       }
@@ -1155,6 +1298,16 @@
       }
     },
     "UpdateIdentityProviderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIpAccessSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIpAccessSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -1283,6 +1436,7 @@
       "base": null,
       "refs": {
         "CreateBrowserSettingsRequest$customerManagedKey": "<p>The custom managed key of the browser settings.</p>",
+        "CreateIpAccessSettingsRequest$customerManagedKey": "<p>The custom managed key of the IP access settings.</p>",
         "CreatePortalRequest$customerManagedKey": "<p>The customer managed key of the web portal.</p>"
       }
     }
