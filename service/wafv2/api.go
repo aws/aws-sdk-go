@@ -10436,7 +10436,8 @@ type FieldToMatch struct {
 	// Inspect a string containing the list of the request's header names, ordered
 	// as they appear in the web request that WAF receives for inspection. WAF generates
 	// the string and then uses that as the field to match component in its inspection.
-	// WAF separates the header names in the string using commas and no added spaces.
+	// WAF separates the header names in the string using colons and no added spaces,
+	// for example Host:User-Agent:Accept:Authorization:Referer.
 	//
 	// Matches against the header order string are case insensitive.
 	HeaderOrder *HeaderOrder `type:"structure"`
@@ -12908,7 +12909,8 @@ func (s *HeaderMatchPattern) SetIncludedHeaders(v []*string) *HeaderMatchPattern
 // Inspect a string containing the list of the request's header names, ordered
 // as they appear in the web request that WAF receives for inspection. WAF generates
 // the string and then uses that as the field to match component in its inspection.
-// WAF separates the header names in the string using commas and no added spaces.
+// WAF separates the header names in the string using colons and no added spaces,
+// for example Host:User-Agent:Accept:Authorization:Referer.
 //
 // Matches against the header order string are case insensitive.
 type HeaderOrder struct {

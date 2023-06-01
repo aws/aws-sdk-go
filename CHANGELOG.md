@@ -1,3 +1,15 @@
+Release v1.44.274 (2023-06-01)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/appflow`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/sagemaker`: Updates service documentation
+  * Amazon Sagemaker Autopilot adds support for Parquet file input to NLP text classification jobs.
+* `service/wafv2`: Updates service documentation
+
 Release v1.44.273 (2023-05-31)
 ===
 

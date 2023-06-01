@@ -3,9 +3,11 @@
   "service": "<fullname>Amazon Connect Customer Profiles</fullname> <p>Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center. If you're new to Amazon Connect, you might find it helpful to review the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/\">Amazon Connect Administrator Guide</a>.</p>",
   "operations": {
     "AddProfileKey": "<p>Associates a new key value with a specific profile, such as a Contact Record ContactId.</p> <p>A profile object can have a single unique key and any number of additional keys that can be used to identify the profile that it belongs to.</p>",
+    "CreateCalculatedAttributeDefinition": "<p>Creates a new calculated attribute definition. After creation, new object data ingested into Customer Profiles will be included in the calculated attribute, which can be retrieved for a profile using the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetCalculatedAttributeForProfile.html\">GetCalculatedAttributeForProfile</a> API. Defining a calculated attribute makes it available for all profiles within a domain. Each calculated attribute can only reference one <code>ObjectType</code> and at most, two fields from that <code>ObjectType</code>.</p>",
     "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p>",
     "CreateIntegrationWorkflow": "<p> Creates an integration workflow. An integration workflow is an async process which ingests historic data and sets up an integration for ongoing updates. The supported Amazon AppFlow sources are Salesforce, ServiceNow, and Marketo. </p>",
     "CreateProfile": "<p>Creates a standard profile.</p> <p>A standard profile represents the following attributes for a customer profile in a domain.</p>",
+    "DeleteCalculatedAttributeDefinition": "<p>Deletes an existing calculated attribute definition. Note that deleting a default calculated attribute is possible, however once deleted, you will be unable to undo that action and will need to recreate it on your own using the CreateCalculatedAttributeDefinition API if you want it back.</p>",
     "DeleteDomain": "<p>Deletes a specific domain and all of its customer data, such as customer profile attributes and their related objects.</p>",
     "DeleteIntegration": "<p>Removes an integration from a specific domain.</p>",
     "DeleteProfile": "<p>Deletes the standard customer profile and all data pertaining to the profile.</p>",
@@ -14,6 +16,8 @@
     "DeleteProfileObjectType": "<p>Removes a ProfileObjectType from a specific domain as well as removes all the ProfileObjects of that type. It also disables integrations from this specific ProfileObjectType. In addition, it scrubs all of the fields of the standard profile that were populated from this ProfileObjectType.</p>",
     "DeleteWorkflow": "<p>Deletes the specified workflow and all its corresponding resources. This is an async process.</p>",
     "GetAutoMergingPreview": "<p>Tests the auto-merging settings of your Identity Resolution Job without merging your data. It randomly selects a sample of matching groups from the existing matching results, and applies the automerging settings that you provided. You can then view the number of profiles in the sample, the number of matches, and the number of profiles identified to be merged. This enables you to evaluate the accuracy of the attributes in your matching list. </p> <p>You can't view which profiles are matched and would be merged.</p> <important> <p>We strongly recommend you use this API to do a dry run of the automerging process before running the Identity Resolution Job. Include <b>at least</b> two matching attributes. If your matching list includes too few attributes (such as only <code>FirstName</code> or only <code>LastName</code>), there may be a large number of matches. This increases the chances of erroneous merges.</p> </important>",
+    "GetCalculatedAttributeDefinition": "<p>Provides more information on a calculated attribute definition for Customer Profiles.</p>",
+    "GetCalculatedAttributeForProfile": "<p>Retrieve a calculated attribute for a customer profile.</p>",
     "GetDomain": "<p>Returns information about a specific domain.</p>",
     "GetIdentityResolutionJob": "<p>Returns information about an Identity Resolution Job in a specific domain. </p> <p>Identity Resolution Jobs are set up using the Amazon Connect admin console. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/use-identity-resolution.html\">Use Identity Resolution to consolidate similar profiles</a>.</p>",
     "GetIntegration": "<p>Returns an integration for a domain.</p>",
@@ -23,6 +27,8 @@
     "GetWorkflow": "<p>Get details of specified workflow.</p>",
     "GetWorkflowSteps": "<p>Get granular list of steps in workflow.</p>",
     "ListAccountIntegrations": "<p>Lists all of the integrations associated to a specific URI in the AWS account.</p>",
+    "ListCalculatedAttributeDefinitions": "<p>Lists calculated attribute definitions for Customer Profiles</p>",
+    "ListCalculatedAttributesForProfile": "<p>Retrieve a list of calculated attributes for a customer profile.</p>",
     "ListDomains": "<p>Returns a list of all the domains for an AWS account that have been created.</p>",
     "ListIdentityResolutionJobs": "<p>Lists all of the Identity Resolution Jobs in your domain. The response sorts the list by <code>JobStartTime</code>.</p>",
     "ListIntegrations": "<p>Lists all of the integrations in your domain.</p>",
@@ -38,6 +44,7 @@
     "SearchProfiles": "<p>Searches for profiles within a specific domain using one or more predefined search keys (e.g., _fullName, _phone, _email, _account, etc.) and/or custom-defined search keys. A search key is a data type pair that consists of a <code>KeyName</code> and <code>Values</code> list.</p> <p>This operation supports searching for profiles with a minimum of 1 key-value(s) pair and up to 5 key-value(s) pairs using either <code>AND</code> or <code>OR</code> logic.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon Connect Customer Profiles resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p> <p>Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.</p> <p>You can use the TagResource action with a resource that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified Amazon Connect Customer Profiles resource. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p>",
+    "UpdateCalculatedAttributeDefinition": "<p>Updates an existing calculated attribute definition. When updating the Conditions, note that increasing the date range of a calculated attribute will not trigger inclusion of historical data greater than the current date range.</p>",
     "UpdateDomain": "<p>Updates the properties of a domain, including creating or selecting a dead letter queue or an encryption key.</p> <p>After a domain is created, the name can’t be changed.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p> <p>To add or remove tags on an existing Domain, see <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_TagResource.html\">TagResource</a>/<a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UntagResource.html\">UntagResource</a>.</p>",
     "UpdateProfile": "<p>Updates the properties of a profile. The ProfileId is required for updating a customer profile.</p> <p>When calling the UpdateProfile API, specifying an empty string value means that any existing value will be removed. Not specifying a string value means that any value already there will be kept.</p>"
   },
@@ -49,10 +56,12 @@
         "AddProfileKeyRequest$DomainName": "<p>The unique name of the domain.</p>",
         "AddProfileKeyResponse$KeyName": "<p>A searchable identifier of a customer profile.</p>",
         "AdditionalSearchKey$KeyName": "<p>A searchable identifier of a customer profile.</p>",
+        "CreateCalculatedAttributeDefinitionRequest$DomainName": "<p>The unique name of the domain.</p>",
         "CreateDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "CreateDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
         "CreateIntegrationWorkflowRequest$DomainName": "<p>The unique name of the domain.</p>",
         "CreateProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "DeleteCalculatedAttributeDefinitionRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteIntegrationRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteProfileKeyRequest$KeyName": "<p>A searchable identifier of a customer profile.</p>",
@@ -66,6 +75,8 @@
         "FoundByKeyValue$KeyName": "<p>A searchable identifier of a customer profile.</p>",
         "GetAutoMergingPreviewRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetAutoMergingPreviewResponse$DomainName": "<p>The unique name of the domain.</p>",
+        "GetCalculatedAttributeDefinitionRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "GetCalculatedAttributeForProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
         "GetIdentityResolutionJobRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -83,6 +94,8 @@
         "GetWorkflowStepsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "IdentityResolutionJob$DomainName": "<p>The unique name of the domain.</p>",
         "KeyMap$key": null,
+        "ListCalculatedAttributeDefinitionsRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "ListCalculatedAttributesForProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListDomainItem$DomainName": "<p>The unique name of the domain.</p>",
         "ListIdentityResolutionJobsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListIntegrationItem$DomainName": "<p>The unique name of the domain.</p>",
@@ -94,7 +107,7 @@
         "ListProfileObjectsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListWorkflowsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "MergeProfilesRequest$DomainName": "<p>The unique name of the domain.</p>",
-        "ObjectFilter$KeyName": "<p>A searchable identifier of a standard profile object. The predefined keys you can use to search for _asset include: _assetId, _assetName, _serialNumber. The predefined keys you can use to search for _case include: _caseId. The predefined keys you can use to search for _order include: _orderId.</p>",
+        "ObjectFilter$KeyName": "<p>A searchable identifier of a profile object. The predefined keys you can use to search for <code>_asset</code> include: <code>_assetId</code>, <code>_assetName</code>, and <code>_serialNumber</code>. The predefined keys you can use to search for <code>_case</code> include: <code>_caseId</code>. The predefined keys you can use to search for <code>_order</code> include: <code>_orderId</code>.</p>",
         "PutIntegrationRequest$DomainName": "<p>The unique name of the domain.</p>",
         "PutIntegrationResponse$DomainName": "<p>The unique name of the domain.</p>",
         "PutProfileObjectRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -103,6 +116,7 @@
         "PutProfileObjectTypeResponse$TemplateId": "<p>A unique identifier for the object template.</p>",
         "SearchProfilesRequest$DomainName": "<p>The unique name of the domain.</p>",
         "SearchProfilesRequest$KeyName": "<p>A searchable identifier of a customer profile. The predefined keys you can use to search include: _account, _profileId, _assetId, _caseId, _orderId, _fullName, _phone, _email, _ctrContactId, _marketoLeadId, _salesforceAccountId, _salesforceContactId, _salesforceAssetId, _zendeskUserId, _zendeskExternalId, _zendeskTicketId, _serviceNowSystemId, _serviceNowIncidentId, _segmentUserId, _shopifyCustomerId, _shopifyOrderId.</p>",
+        "UpdateCalculatedAttributeDefinitionRequest$DomainName": "<p>The unique name of the domain.</p>",
         "UpdateDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "UpdateDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
         "UpdateProfileRequest$DomainName": "<p>The unique name of the domain.</p>"
@@ -166,6 +180,27 @@
         "WorkflowStepItem$AppflowIntegration": "<p>Workflow step information specific to <code>APPFLOW_INTEGRATION</code> workflow.</p>"
       }
     },
+    "AttributeDetails": {
+      "base": "<p>Mathematical expression and a list of attribute items specified in that expression.</p>",
+      "refs": {
+        "CreateCalculatedAttributeDefinitionRequest$AttributeDetails": "<p>Mathematical expression and a list of attribute items specified in that expression.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$AttributeDetails": "<p>Mathematical expression and a list of attribute items specified in that expression.</p>",
+        "GetCalculatedAttributeDefinitionResponse$AttributeDetails": "<p>Mathematical expression and a list of attribute items specified in that expression.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$AttributeDetails": "<p>The mathematical expression and a list of attribute items specified in that expression.</p>"
+      }
+    },
+    "AttributeItem": {
+      "base": "<p>The details of a single attribute item specified in the mathematical expression.</p>",
+      "refs": {
+        "AttributeList$member": null
+      }
+    },
+    "AttributeList": {
+      "base": null,
+      "refs": {
+        "AttributeDetails$Attributes": "<p>A list of attribute items specified in the mathematical expression.</p>"
+      }
+    },
     "AttributeSourceIdMap": {
       "base": null,
       "refs": {
@@ -216,6 +251,28 @@
         "S3SourceProperties$BucketPrefix": "<p>The object key for the Amazon S3 bucket in which the source files are stored.</p>"
       }
     },
+    "CalculatedAttributeDefinitionsList": {
+      "base": null,
+      "refs": {
+        "ListCalculatedAttributeDefinitionsResponse$Items": "<p>The list of calculated attribute definitions.</p>"
+      }
+    },
+    "CalculatedAttributesForProfileList": {
+      "base": null,
+      "refs": {
+        "ListCalculatedAttributesForProfileResponse$Items": "<p>The list of calculated attributes.</p>"
+      }
+    },
+    "Conditions": {
+      "base": "<p>The conditions including range, object count, and threshold for the calculated attribute.</p>",
+      "refs": {
+        "CreateCalculatedAttributeDefinitionRequest$Conditions": "<p>The conditions including range, object count, and threshold for the calculated attribute.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$Conditions": "<p>The conditions including range, object count, and threshold for the calculated attribute.</p>",
+        "GetCalculatedAttributeDefinitionResponse$Conditions": "<p>The conditions including range, object count, and threshold for the calculated attribute.</p>",
+        "UpdateCalculatedAttributeDefinitionRequest$Conditions": "<p>The conditions including range, object count, and threshold for the calculated attribute.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$Conditions": "<p>The conditions including range, object count, and threshold for the calculated attribute.</p>"
+      }
+    },
     "ConflictResolution": {
       "base": "<p>How the auto-merging process should resolve conflicts between different profiles.</p>",
       "refs": {
@@ -247,6 +304,16 @@
       "refs": {
         "AutoMerging$Consolidation": "<p>A list of matching attributes that represent matching criteria. If two profiles meet at least one of the requirements in the matching attributes list, they will be merged.</p>",
         "GetAutoMergingPreviewRequest$Consolidation": "<p>A list of matching attributes that represent matching criteria.</p>"
+      }
+    },
+    "CreateCalculatedAttributeDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCalculatedAttributeDefinitionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateDomainRequest": {
@@ -297,6 +364,16 @@
       "base": null,
       "refs": {
         "IncrementalPullConfig$DatetimeTypeFieldName": "<p>A field that specifies the date time or timestamp field as the criteria to use when importing incremental records from the source.</p>"
+      }
+    },
+    "DeleteCalculatedAttributeDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCalculatedAttributeDefinitionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteDomainRequest": {
@@ -485,6 +562,26 @@
       "refs": {
       }
     },
+    "GetCalculatedAttributeDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCalculatedAttributeDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCalculatedAttributeForProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCalculatedAttributeForProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetDomainRequest": {
       "base": null,
       "refs": {
@@ -655,6 +752,38 @@
       }
     },
     "ListAccountIntegrationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCalculatedAttributeDefinitionItem": {
+      "base": "<p>The details of a single calculated attribute definition.</p>",
+      "refs": {
+        "CalculatedAttributeDefinitionsList$member": null
+      }
+    },
+    "ListCalculatedAttributeDefinitionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCalculatedAttributeDefinitionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCalculatedAttributeForProfileItem": {
+      "base": "<p>The details of a single calculated attribute for a profile.</p>",
+      "refs": {
+        "CalculatedAttributesForProfileList$member": null
+      }
+    },
+    "ListCalculatedAttributesForProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCalculatedAttributesForProfileResponse": {
       "base": null,
       "refs": {
       }
@@ -845,10 +974,16 @@
         "ZendeskSourceProperties$Object": "<p>The object specified in the Zendesk flow source.</p>"
       }
     },
-    "ObjectFilter": {
-      "base": "<p>The filter applied to ListProfileObjects response to include profile objects with the specified index values. This filter is only supported for ObjectTypeName _asset, _case and _order.</p>",
+    "ObjectCount": {
+      "base": null,
       "refs": {
-        "ListProfileObjectsRequest$ObjectFilter": "<p>Applies a filter to the response to include profile objects with the specified index values. This filter is only supported for ObjectTypeName _asset, _case and _order.</p>"
+        "Conditions$ObjectCount": "<p>The number of profile objects used for the calculated attribute.</p>"
+      }
+    },
+    "ObjectFilter": {
+      "base": "<p>The filter applied to <code>ListProfileObjects</code> response to include profile objects with the specified index values.</p>",
+      "refs": {
+        "ListProfileObjectsRequest$ObjectFilter": "<p>Applies a filter to the response to include profile objects with the specified index values.</p>"
       }
     },
     "ObjectTypeField": {
@@ -876,6 +1011,12 @@
         "ListIntegrationItem$ObjectTypeNames": "<p>A map in which each key is an event type from an external application such as Segment or Shopify, and each value is an <code>ObjectTypeName</code> (template) used to ingest the event. It supports the following event types: <code>SegmentIdentify</code>, <code>ShopifyCreateCustomers</code>, <code>ShopifyUpdateCustomers</code>, <code>ShopifyCreateDraftOrders</code>, <code>ShopifyUpdateDraftOrders</code>, <code>ShopifyCreateOrders</code>, and <code>ShopifyUpdatedOrders</code>.</p>",
         "PutIntegrationRequest$ObjectTypeNames": "<p>A map in which each key is an event type from an external application such as Segment or Shopify, and each value is an <code>ObjectTypeName</code> (template) used to ingest the event. It supports the following event types: <code>SegmentIdentify</code>, <code>ShopifyCreateCustomers</code>, <code>ShopifyUpdateCustomers</code>, <code>ShopifyCreateDraftOrders</code>, <code>ShopifyUpdateDraftOrders</code>, <code>ShopifyCreateOrders</code>, and <code>ShopifyUpdatedOrders</code>.</p>",
         "PutIntegrationResponse$ObjectTypeNames": "<p>A map in which each key is an event type from an external application such as Segment or Shopify, and each value is an <code>ObjectTypeName</code> (template) used to ingest the event. It supports the following event types: <code>SegmentIdentify</code>, <code>ShopifyCreateCustomers</code>, <code>ShopifyUpdateCustomers</code>, <code>ShopifyCreateDraftOrders</code>, <code>ShopifyUpdateDraftOrders</code>, <code>ShopifyCreateOrders</code>, and <code>ShopifyUpdatedOrders</code>.</p>"
+      }
+    },
+    "Operator": {
+      "base": null,
+      "refs": {
+        "Threshold$Operator": "<p>The operator of the threshold.</p>"
       }
     },
     "OperatorPropertiesKeys": {
@@ -968,6 +1109,12 @@
     "PutProfileObjectTypeResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Range": {
+      "base": "<p>The relative time period over which data is included in the aggregation.</p>",
+      "refs": {
+        "Conditions$Range": "<p>The relative time period over which data is included in the aggregation.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1094,6 +1241,15 @@
         "ObjectTypeKey$StandardIdentifiers": "<p>The types of keys that a ProfileObject can have. Each ProfileObject can have only 1 UNIQUE key but multiple PROFILE keys. PROFILE, ASSET, CASE, or ORDER means that this key can be used to tie an object to a PROFILE, ASSET, CASE, or ORDER respectively. UNIQUE means that it can be used to uniquely identify an object. If a key a is marked as SECONDARY, it will be used to search for profiles after all other PROFILE keys have been searched. A LOOKUP_ONLY key is only used to match a profile but is not persisted to be used for searching of the profile. A NEW_ONLY key is only used if the profile does not already exist before the object is ingested, otherwise it is only used for matching objects to profiles.</p>"
       }
     },
+    "Statistic": {
+      "base": null,
+      "refs": {
+        "CreateCalculatedAttributeDefinitionRequest$Statistic": "<p>The aggregation operation to perform for the calculated attribute.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$Statistic": "<p>The aggregation operation to perform for the calculated attribute.</p>",
+        "GetCalculatedAttributeDefinitionResponse$Statistic": "<p>The aggregation operation to perform for the calculated attribute.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$Statistic": "<p>The aggregation operation to perform for the calculated attribute.</p>"
+      }
+    },
     "Status": {
       "base": null,
       "refs": {
@@ -1127,12 +1283,16 @@
     "TagMap": {
       "base": null,
       "refs": {
+        "CreateCalculatedAttributeDefinitionRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateDomainRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateDomainResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateIntegrationWorkflowRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "GetCalculatedAttributeDefinitionResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "GetDomainResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "GetIntegrationResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "GetProfileObjectTypeResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "ListCalculatedAttributeDefinitionItem$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ListDomainItem$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ListIntegrationItem$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ListProfileObjectTypeItem$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
@@ -1142,6 +1302,7 @@
         "PutProfileObjectTypeRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "PutProfileObjectTypeResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "TagResourceRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "UpdateDomainRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "UpdateDomainResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>"
       }
@@ -1186,6 +1347,12 @@
         "FlowDefinition$Tasks": "<p>A list of tasks that Customer Profiles performs while transferring the data in the flow run.</p>"
       }
     },
+    "Threshold": {
+      "base": "<p>The threshold for the calculated attribute.</p>",
+      "refs": {
+        "Conditions$Threshold": "<p>The threshold for the calculated attribute.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>You exceeded the maximum number of requests.</p>",
       "refs": {
@@ -1215,6 +1382,12 @@
         "TriggerConfig$TriggerType": "<p>Specifies the type of flow trigger. It can be OnDemand, Scheduled, or Event.</p>"
       }
     },
+    "Unit": {
+      "base": null,
+      "refs": {
+        "Range$Unit": "<p>The unit of time.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -1240,6 +1413,16 @@
         "UpdateProfileRequest$Attributes": "<p>A key value pair of attributes of a customer profile.</p>"
       }
     },
+    "UpdateCalculatedAttributeDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCalculatedAttributeDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateDomainRequest": {
       "base": null,
       "refs": {
@@ -1258,6 +1441,12 @@
     "UpdateProfileResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Value": {
+      "base": null,
+      "refs": {
+        "Range$Value": "<p>The amount of time of the specified unit.</p>"
       }
     },
     "WorkflowAttributes": {
@@ -1318,6 +1507,12 @@
         "SearchProfilesRequest$AdditionalSearchKeys": "<p>A list of <code>AdditionalSearchKey</code> objects that are each searchable identifiers of a profile. Each <code>AdditionalSearchKey</code> object contains a <code>KeyName</code> and a list of <code>Values</code> associated with that specific key (i.e., a key-value(s) pair). These additional search keys will be used in conjunction with the <code>LogicalOperator</code> and the required <code>KeyName</code> and <code>Values</code> parameters to search for profiles that satisfy the search criteria. </p>"
       }
     },
+    "attributeName": {
+      "base": null,
+      "refs": {
+        "AttributeItem$Name": "<p>The name of an attribute defined in a profile object type.</p>"
+      }
+    },
     "boolean": {
       "base": null,
       "refs": {
@@ -1327,6 +1522,19 @@
         "PutProfileObjectTypeResponse$AllowProfileCreation": "<p>Indicates whether a profile should be created when data is received if one doesn’t exist for an object of this type. The default is <code>FALSE</code>. If the AllowProfileCreation flag is set to <code>FALSE</code>, then the service tries to fetch a standard profile and associate this object with the profile. If it is set to <code>TRUE</code>, and if no match is found, then the service creates a new standard profile.</p>",
         "SalesforceSourceProperties$EnableDynamicFieldUpdate": "<p>The flag that enables dynamic fetching of new (recently added) fields in the Salesforce objects while running a flow.</p>",
         "SalesforceSourceProperties$IncludeDeletedRecords": "<p>Indicates whether Amazon AppFlow includes deleted files in the flow run.</p>"
+      }
+    },
+    "displayName": {
+      "base": null,
+      "refs": {
+        "CreateCalculatedAttributeDefinitionRequest$DisplayName": "<p>The display name of the calculated attribute.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$DisplayName": "<p>The display name of the calculated attribute.</p>",
+        "GetCalculatedAttributeDefinitionResponse$DisplayName": "<p>The display name of the calculated attribute.</p>",
+        "GetCalculatedAttributeForProfileResponse$DisplayName": "<p>The display name of the calculated attribute.</p>",
+        "ListCalculatedAttributeDefinitionItem$DisplayName": "<p>The display name of the calculated attribute.</p>",
+        "ListCalculatedAttributeForProfileItem$DisplayName": "<p>The display name of the calculated attribute.</p>",
+        "UpdateCalculatedAttributeDefinitionRequest$DisplayName": "<p>The display name of the calculated attribute.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$DisplayName": "<p>The display name of the calculated attribute.</p>"
       }
     },
     "encryptionKey": {
@@ -1398,6 +1606,8 @@
         "GetMatchesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "GetWorkflowStepsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListAccountIntegrationsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
+        "ListCalculatedAttributeDefinitionsRequest$MaxResults": "<p>The maximum number of calculated attribute definitions returned per page.</p>",
+        "ListCalculatedAttributesForProfileRequest$MaxResults": "<p>The maximum number of calculated attributes returned per page.</p>",
         "ListDomainsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListIdentityResolutionJobsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListIntegrationsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
@@ -1540,6 +1750,7 @@
         "AppflowIntegrationWorkflowStep$ExecutionMessage": "<p>Message indicating execution of workflow step for <code>APPFLOW_INTEGRATION</code> workflow.</p>",
         "AppflowIntegrationWorkflowStep$BatchRecordsStartTime": "<p>Start datetime of records pulled in batch during execution of workflow step for <code>APPFLOW_INTEGRATION</code> workflow.</p>",
         "AppflowIntegrationWorkflowStep$BatchRecordsEndTime": "<p>End datetime of records pulled in batch during execution of workflow step for <code>APPFLOW_INTEGRATION</code> workflow.</p>",
+        "AttributeDetails$Expression": "<p>Mathematical expression that is performed on attribute items provided in the attribute list. Each element in the expression should follow the structure of \\\"{ObjectTypeName.AttributeName}\\\".</p>",
         "AttributeSourceIdMap$key": null,
         "Attributes$key": null,
         "Attributes$value": null,
@@ -1563,6 +1774,8 @@
         "DeleteIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "DeleteProfileObjectRequest$ProfileObjectUniqueKey": "<p>The unique identifier of the profile object generated by the service.</p>",
         "DeleteWorkflowRequest$WorkflowId": "<p>Unique identifier for the workflow.</p>",
+        "GetCalculatedAttributeForProfileResponse$IsDataPartial": "<p>Indicates whether the calculated attribute’s value is based on partial data. If data is partial, it is set to true.</p>",
+        "GetCalculatedAttributeForProfileResponse$Value": "<p>The value of the calculated attribute.</p>",
         "GetIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "GetIntegrationResponse$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "GetIntegrationResponse$WorkflowId": "<p>Unique identifier for the workflow.</p>",
@@ -1570,6 +1783,8 @@
         "GetProfileObjectTypeTemplateResponse$SourceLastUpdatedTimestampFormat": "<p>The format of your <code>sourceLastUpdatedTimestamp</code> that was previously set up.</p>",
         "GetWorkflowResponse$ErrorDescription": "<p>Workflow error messages during execution (if any).</p>",
         "ListAccountIntegrationsRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
+        "ListCalculatedAttributeForProfileItem$IsDataPartial": "<p>Indicates whether the calculated attribute’s value is based on partial data. If data is partial, it is set to true.</p>",
+        "ListCalculatedAttributeForProfileItem$Value": "<p>The value of the calculated attribute.</p>",
         "ListIntegrationItem$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "ListIntegrationItem$WorkflowId": "<p>Unique identifier for the workflow.</p>",
         "ListProfileObjectsItem$ProfileObjectUniqueKey": "<p>The unique identifier of the ProfileObject generated by the service.</p>",
@@ -1599,6 +1814,7 @@
         "PutProfileObjectResponse$ProfileObjectUniqueKey": "<p>The unique identifier of the profile object generated by the service.</p>",
         "PutProfileObjectTypeRequest$SourceLastUpdatedTimestampFormat": "<p>The format of your <code>sourceLastUpdatedTimestamp</code> that was previously set up. </p>",
         "PutProfileObjectTypeResponse$SourceLastUpdatedTimestampFormat": "<p>The format of your <code>sourceLastUpdatedTimestamp</code> that was previously set up in fields that were parsed using <a href=\"https://docs.oracle.com/javase/10/docs/api/java/text/SimpleDateFormat.html\">SimpleDateFormat</a>. If you have <code>sourceLastUpdatedTimestamp</code> in your field, you must set up <code>sourceLastUpdatedTimestampFormat</code>.</p>",
+        "Threshold$Value": "<p>The value of the threshold.</p>",
         "UpdateAttributes$key": null,
         "requestValueList$member": null
       }
@@ -1621,12 +1837,18 @@
     "text": {
       "base": null,
       "refs": {
+        "CreateCalculatedAttributeDefinitionRequest$Description": "<p>The description of the calculated attribute.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>",
+        "GetCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>",
         "GetProfileObjectTypeResponse$Description": "<p>The description of the profile object type.</p>",
+        "ListCalculatedAttributeDefinitionItem$Description": "<p>The threshold for the calculated attribute.</p>",
         "ListProfileObjectTypeItem$Description": "<p>Description of the profile object type.</p>",
         "ObjectTypeField$Source": "<p>A field of a ProfileObject. For example: _source.FirstName, where “_source” is a ProfileObjectType of a Zendesk user and “FirstName” is a field in that ObjectType.</p>",
         "ObjectTypeField$Target": "<p>The location of the data in the standard ProfileObject model. For example: _profile.Address.PostalCode.</p>",
         "PutProfileObjectTypeRequest$Description": "<p>Description of the profile object type.</p>",
-        "PutProfileObjectTypeResponse$Description": "<p>Description of the profile object type.</p>"
+        "PutProfileObjectTypeResponse$Description": "<p>Description of the profile object type.</p>",
+        "UpdateCalculatedAttributeDefinitionRequest$Description": "<p>The description of the calculated attribute.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>"
       }
     },
     "timestamp": {
@@ -1636,8 +1858,12 @@
         "AppflowIntegrationWorkflowStep$LastUpdatedAt": "<p>Last updated timestamp for workflow step for <code>APPFLOW_INTEGRATION</code> workflow.</p>",
         "Batch$StartTime": "<p>Start time of batch to split ingestion.</p>",
         "Batch$EndTime": "<p>End time of batch to split ingestion.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$CreatedAt": "<p>The timestamp of when the calculated attribute definition was created.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$LastUpdatedAt": "<p>The timestamp of when the calculated attribute definition was most recently edited.</p>",
         "CreateDomainResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "CreateDomainResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
+        "GetCalculatedAttributeDefinitionResponse$CreatedAt": "<p>The timestamp of when the calculated attribute definition was created.</p>",
+        "GetCalculatedAttributeDefinitionResponse$LastUpdatedAt": "<p>The timestamp of when the calculated attribute definition was most recently edited.</p>",
         "GetDomainResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "GetDomainResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
         "GetIdentityResolutionJobResponse$JobStartTime": "<p>The timestamp of when the Identity Resolution Job was started or will be started.</p>",
@@ -1653,6 +1879,8 @@
         "GetWorkflowResponse$LastUpdatedAt": "<p>The timestamp that represents when workflow execution last updated.</p>",
         "IdentityResolutionJob$JobStartTime": "<p>The timestamp of when the job was started or will be started.</p>",
         "IdentityResolutionJob$JobEndTime": "<p>The timestamp of when the job was completed.</p>",
+        "ListCalculatedAttributeDefinitionItem$CreatedAt": "<p>The threshold for the calculated attribute.</p>",
+        "ListCalculatedAttributeDefinitionItem$LastUpdatedAt": "<p>The timestamp of when the calculated attribute definition was most recently edited.</p>",
         "ListDomainItem$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "ListDomainItem$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
         "ListIntegrationItem$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
@@ -1667,6 +1895,8 @@
         "PutIntegrationResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
         "PutProfileObjectTypeResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "PutProfileObjectTypeResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$CreatedAt": "<p>The timestamp of when the calculated attribute definition was created.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$LastUpdatedAt": "<p>The timestamp of when the calculated attribute definition was most recently edited.</p>",
         "UpdateDomainResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "UpdateDomainResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>"
       }
@@ -1680,6 +1910,10 @@
         "GetWorkflowStepsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListAccountIntegrationsRequest$NextToken": "<p>The pagination token from the previous ListAccountIntegrations API call.</p>",
         "ListAccountIntegrationsResponse$NextToken": "<p>The pagination token from the previous ListAccountIntegrations API call.</p>",
+        "ListCalculatedAttributeDefinitionsRequest$NextToken": "<p>The pagination token from the previous call to ListCalculatedAttributeDefinitions.</p>",
+        "ListCalculatedAttributeDefinitionsResponse$NextToken": "<p>The pagination token from the previous call to ListCalculatedAttributeDefinitions.</p>",
+        "ListCalculatedAttributesForProfileRequest$NextToken": "<p>The pagination token from the previous call to ListCalculatedAttributesForProfile.</p>",
+        "ListCalculatedAttributesForProfileResponse$NextToken": "<p>The pagination token from the previous call to ListCalculatedAttributesForProfile.</p>",
         "ListDomainsRequest$NextToken": "<p>The pagination token from the previous ListDomain API call.</p>",
         "ListDomainsResponse$NextToken": "<p>The pagination token from the previous ListDomains API call.</p>",
         "ListIdentityResolutionJobsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -1701,12 +1935,21 @@
     "typeName": {
       "base": null,
       "refs": {
+        "CreateCalculatedAttributeDefinitionRequest$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
         "CreateIntegrationWorkflowRequest$ObjectTypeName": "<p>The name of the profile object type.</p>",
+        "DeleteCalculatedAttributeDefinitionRequest$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
         "DeleteProfileObjectRequest$ObjectTypeName": "<p>The name of the profile object type.</p>",
         "DeleteProfileObjectTypeRequest$ObjectTypeName": "<p>The name of the profile object type.</p>",
+        "GetCalculatedAttributeDefinitionRequest$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
+        "GetCalculatedAttributeDefinitionResponse$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
+        "GetCalculatedAttributeForProfileRequest$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
+        "GetCalculatedAttributeForProfileResponse$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
         "GetIntegrationResponse$ObjectTypeName": "<p>The name of the profile object type.</p>",
         "GetProfileObjectTypeRequest$ObjectTypeName": "<p>The name of the profile object type.</p>",
         "GetProfileObjectTypeResponse$ObjectTypeName": "<p>The name of the profile object type.</p>",
+        "ListCalculatedAttributeDefinitionItem$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
+        "ListCalculatedAttributeForProfileItem$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
         "ListIntegrationItem$ObjectTypeName": "<p>The name of the profile object type.</p>",
         "ListProfileObjectTypeItem$ObjectTypeName": "<p>The name of the profile object type.</p>",
         "ListProfileObjectsItem$ObjectTypeName": "<p>Specifies the kind of object being added to a profile, such as \"Salesforce-Account.\"</p>",
@@ -1716,7 +1959,9 @@
         "PutIntegrationResponse$ObjectTypeName": "<p>The name of the profile object type.</p>",
         "PutProfileObjectRequest$ObjectTypeName": "<p>The name of the profile object type.</p>",
         "PutProfileObjectTypeRequest$ObjectTypeName": "<p>The name of the profile object type.</p>",
-        "PutProfileObjectTypeResponse$ObjectTypeName": "<p>The name of the profile object type.</p>"
+        "PutProfileObjectTypeResponse$ObjectTypeName": "<p>The name of the profile object type.</p>",
+        "UpdateCalculatedAttributeDefinitionRequest$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$CalculatedAttributeName": "<p>The unique name of the calculated attribute.</p>"
       }
     },
     "uuid": {
@@ -1749,6 +1994,7 @@
         "FieldSourceProfileIds$ShippingAddress": "<p>A unique identifier for the shipping address field to be merged.</p>",
         "FieldSourceProfileIds$MailingAddress": "<p>A unique identifier for the mailing address field to be merged.</p>",
         "FieldSourceProfileIds$BillingAddress": "<p>A unique identifier for the billing type field to be merged.</p>",
+        "GetCalculatedAttributeForProfileRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
         "GetIdentityResolutionJobRequest$JobId": "<p>The unique identifier of the Identity Resolution Job.</p>",
         "GetIdentityResolutionJobResponse$JobId": "<p>The unique identifier of the Identity Resolution Job.</p>",
         "GetWorkflowRequest$WorkflowId": "<p>Unique identifier for the workflow.</p>",
@@ -1756,6 +2002,7 @@
         "GetWorkflowStepsRequest$WorkflowId": "<p>Unique identifier for the workflow.</p>",
         "GetWorkflowStepsResponse$WorkflowId": "<p>Unique identifier for the workflow.</p>",
         "IdentityResolutionJob$JobId": "<p>The unique identifier of the Identity Resolution Job.</p>",
+        "ListCalculatedAttributesForProfileRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
         "ListProfileObjectsRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
         "MergeProfilesRequest$MainProfileId": "<p>The identifier of the profile to be taken.</p>",
         "Profile$ProfileId": "<p>The unique identifier of a customer profile.</p>",
