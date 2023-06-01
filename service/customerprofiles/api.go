@@ -108,6 +108,103 @@ func (c *CustomerProfiles) AddProfileKeyWithContext(ctx aws.Context, input *AddP
 	return out, req.Send()
 }
 
+const opCreateCalculatedAttributeDefinition = "CreateCalculatedAttributeDefinition"
+
+// CreateCalculatedAttributeDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCalculatedAttributeDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCalculatedAttributeDefinition for more information on using the CreateCalculatedAttributeDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCalculatedAttributeDefinitionRequest method.
+//	req, resp := client.CreateCalculatedAttributeDefinitionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateCalculatedAttributeDefinition
+func (c *CustomerProfiles) CreateCalculatedAttributeDefinitionRequest(input *CreateCalculatedAttributeDefinitionInput) (req *request.Request, output *CreateCalculatedAttributeDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateCalculatedAttributeDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
+	}
+
+	if input == nil {
+		input = &CreateCalculatedAttributeDefinitionInput{}
+	}
+
+	output = &CreateCalculatedAttributeDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCalculatedAttributeDefinition API operation for Amazon Connect Customer Profiles.
+//
+// Creates a new calculated attribute definition. After creation, new object
+// data ingested into Customer Profiles will be included in the calculated attribute,
+// which can be retrieved for a profile using the GetCalculatedAttributeForProfile
+// (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetCalculatedAttributeForProfile.html)
+// API. Defining a calculated attribute makes it available for all profiles
+// within a domain. Each calculated attribute can only reference one ObjectType
+// and at most, two fields from that ObjectType.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation CreateCalculatedAttributeDefinition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateCalculatedAttributeDefinition
+func (c *CustomerProfiles) CreateCalculatedAttributeDefinition(input *CreateCalculatedAttributeDefinitionInput) (*CreateCalculatedAttributeDefinitionOutput, error) {
+	req, out := c.CreateCalculatedAttributeDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateCalculatedAttributeDefinitionWithContext is the same as CreateCalculatedAttributeDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCalculatedAttributeDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) CreateCalculatedAttributeDefinitionWithContext(ctx aws.Context, input *CreateCalculatedAttributeDefinitionInput, opts ...request.Option) (*CreateCalculatedAttributeDefinitionOutput, error) {
+	req, out := c.CreateCalculatedAttributeDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDomain = "CreateDomain"
 
 // CreateDomainRequest generates a "aws/request.Request" representing the
@@ -395,6 +492,101 @@ func (c *CustomerProfiles) CreateProfile(input *CreateProfileInput) (*CreateProf
 // for more information on using Contexts.
 func (c *CustomerProfiles) CreateProfileWithContext(ctx aws.Context, input *CreateProfileInput, opts ...request.Option) (*CreateProfileOutput, error) {
 	req, out := c.CreateProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCalculatedAttributeDefinition = "DeleteCalculatedAttributeDefinition"
+
+// DeleteCalculatedAttributeDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCalculatedAttributeDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCalculatedAttributeDefinition for more information on using the DeleteCalculatedAttributeDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCalculatedAttributeDefinitionRequest method.
+//	req, resp := client.DeleteCalculatedAttributeDefinitionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DeleteCalculatedAttributeDefinition
+func (c *CustomerProfiles) DeleteCalculatedAttributeDefinitionRequest(input *DeleteCalculatedAttributeDefinitionInput) (req *request.Request, output *DeleteCalculatedAttributeDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCalculatedAttributeDefinition,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
+	}
+
+	if input == nil {
+		input = &DeleteCalculatedAttributeDefinitionInput{}
+	}
+
+	output = &DeleteCalculatedAttributeDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCalculatedAttributeDefinition API operation for Amazon Connect Customer Profiles.
+//
+// Deletes an existing calculated attribute definition. Note that deleting a
+// default calculated attribute is possible, however once deleted, you will
+// be unable to undo that action and will need to recreate it on your own using
+// the CreateCalculatedAttributeDefinition API if you want it back.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation DeleteCalculatedAttributeDefinition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DeleteCalculatedAttributeDefinition
+func (c *CustomerProfiles) DeleteCalculatedAttributeDefinition(input *DeleteCalculatedAttributeDefinitionInput) (*DeleteCalculatedAttributeDefinitionOutput, error) {
+	req, out := c.DeleteCalculatedAttributeDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCalculatedAttributeDefinitionWithContext is the same as DeleteCalculatedAttributeDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCalculatedAttributeDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) DeleteCalculatedAttributeDefinitionWithContext(ctx aws.Context, input *DeleteCalculatedAttributeDefinitionInput, opts ...request.Option) (*DeleteCalculatedAttributeDefinitionOutput, error) {
+	req, out := c.DeleteCalculatedAttributeDefinitionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1142,6 +1334,189 @@ func (c *CustomerProfiles) GetAutoMergingPreview(input *GetAutoMergingPreviewInp
 // for more information on using Contexts.
 func (c *CustomerProfiles) GetAutoMergingPreviewWithContext(ctx aws.Context, input *GetAutoMergingPreviewInput, opts ...request.Option) (*GetAutoMergingPreviewOutput, error) {
 	req, out := c.GetAutoMergingPreviewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCalculatedAttributeDefinition = "GetCalculatedAttributeDefinition"
+
+// GetCalculatedAttributeDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the GetCalculatedAttributeDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCalculatedAttributeDefinition for more information on using the GetCalculatedAttributeDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCalculatedAttributeDefinitionRequest method.
+//	req, resp := client.GetCalculatedAttributeDefinitionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetCalculatedAttributeDefinition
+func (c *CustomerProfiles) GetCalculatedAttributeDefinitionRequest(input *GetCalculatedAttributeDefinitionInput) (req *request.Request, output *GetCalculatedAttributeDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opGetCalculatedAttributeDefinition,
+		HTTPMethod: "GET",
+		HTTPPath:   "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
+	}
+
+	if input == nil {
+		input = &GetCalculatedAttributeDefinitionInput{}
+	}
+
+	output = &GetCalculatedAttributeDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCalculatedAttributeDefinition API operation for Amazon Connect Customer Profiles.
+//
+// Provides more information on a calculated attribute definition for Customer
+// Profiles.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation GetCalculatedAttributeDefinition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetCalculatedAttributeDefinition
+func (c *CustomerProfiles) GetCalculatedAttributeDefinition(input *GetCalculatedAttributeDefinitionInput) (*GetCalculatedAttributeDefinitionOutput, error) {
+	req, out := c.GetCalculatedAttributeDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// GetCalculatedAttributeDefinitionWithContext is the same as GetCalculatedAttributeDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCalculatedAttributeDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) GetCalculatedAttributeDefinitionWithContext(ctx aws.Context, input *GetCalculatedAttributeDefinitionInput, opts ...request.Option) (*GetCalculatedAttributeDefinitionOutput, error) {
+	req, out := c.GetCalculatedAttributeDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCalculatedAttributeForProfile = "GetCalculatedAttributeForProfile"
+
+// GetCalculatedAttributeForProfileRequest generates a "aws/request.Request" representing the
+// client's request for the GetCalculatedAttributeForProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCalculatedAttributeForProfile for more information on using the GetCalculatedAttributeForProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCalculatedAttributeForProfileRequest method.
+//	req, resp := client.GetCalculatedAttributeForProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetCalculatedAttributeForProfile
+func (c *CustomerProfiles) GetCalculatedAttributeForProfileRequest(input *GetCalculatedAttributeForProfileInput) (req *request.Request, output *GetCalculatedAttributeForProfileOutput) {
+	op := &request.Operation{
+		Name:       opGetCalculatedAttributeForProfile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes/{CalculatedAttributeName}",
+	}
+
+	if input == nil {
+		input = &GetCalculatedAttributeForProfileInput{}
+	}
+
+	output = &GetCalculatedAttributeForProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCalculatedAttributeForProfile API operation for Amazon Connect Customer Profiles.
+//
+// Retrieve a calculated attribute for a customer profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation GetCalculatedAttributeForProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetCalculatedAttributeForProfile
+func (c *CustomerProfiles) GetCalculatedAttributeForProfile(input *GetCalculatedAttributeForProfileInput) (*GetCalculatedAttributeForProfileOutput, error) {
+	req, out := c.GetCalculatedAttributeForProfileRequest(input)
+	return out, req.Send()
+}
+
+// GetCalculatedAttributeForProfileWithContext is the same as GetCalculatedAttributeForProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCalculatedAttributeForProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) GetCalculatedAttributeForProfileWithContext(ctx aws.Context, input *GetCalculatedAttributeForProfileInput, opts ...request.Option) (*GetCalculatedAttributeForProfileOutput, error) {
+	req, out := c.GetCalculatedAttributeForProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2009,6 +2384,188 @@ func (c *CustomerProfiles) ListAccountIntegrations(input *ListAccountIntegration
 // for more information on using Contexts.
 func (c *CustomerProfiles) ListAccountIntegrationsWithContext(ctx aws.Context, input *ListAccountIntegrationsInput, opts ...request.Option) (*ListAccountIntegrationsOutput, error) {
 	req, out := c.ListAccountIntegrationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListCalculatedAttributeDefinitions = "ListCalculatedAttributeDefinitions"
+
+// ListCalculatedAttributeDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCalculatedAttributeDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCalculatedAttributeDefinitions for more information on using the ListCalculatedAttributeDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCalculatedAttributeDefinitionsRequest method.
+//	req, resp := client.ListCalculatedAttributeDefinitionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListCalculatedAttributeDefinitions
+func (c *CustomerProfiles) ListCalculatedAttributeDefinitionsRequest(input *ListCalculatedAttributeDefinitionsInput) (req *request.Request, output *ListCalculatedAttributeDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListCalculatedAttributeDefinitions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/domains/{DomainName}/calculated-attributes",
+	}
+
+	if input == nil {
+		input = &ListCalculatedAttributeDefinitionsInput{}
+	}
+
+	output = &ListCalculatedAttributeDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCalculatedAttributeDefinitions API operation for Amazon Connect Customer Profiles.
+//
+// # Lists calculated attribute definitions for Customer Profiles
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation ListCalculatedAttributeDefinitions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListCalculatedAttributeDefinitions
+func (c *CustomerProfiles) ListCalculatedAttributeDefinitions(input *ListCalculatedAttributeDefinitionsInput) (*ListCalculatedAttributeDefinitionsOutput, error) {
+	req, out := c.ListCalculatedAttributeDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListCalculatedAttributeDefinitionsWithContext is the same as ListCalculatedAttributeDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCalculatedAttributeDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) ListCalculatedAttributeDefinitionsWithContext(ctx aws.Context, input *ListCalculatedAttributeDefinitionsInput, opts ...request.Option) (*ListCalculatedAttributeDefinitionsOutput, error) {
+	req, out := c.ListCalculatedAttributeDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListCalculatedAttributesForProfile = "ListCalculatedAttributesForProfile"
+
+// ListCalculatedAttributesForProfileRequest generates a "aws/request.Request" representing the
+// client's request for the ListCalculatedAttributesForProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCalculatedAttributesForProfile for more information on using the ListCalculatedAttributesForProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCalculatedAttributesForProfileRequest method.
+//	req, resp := client.ListCalculatedAttributesForProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListCalculatedAttributesForProfile
+func (c *CustomerProfiles) ListCalculatedAttributesForProfileRequest(input *ListCalculatedAttributesForProfileInput) (req *request.Request, output *ListCalculatedAttributesForProfileOutput) {
+	op := &request.Operation{
+		Name:       opListCalculatedAttributesForProfile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes",
+	}
+
+	if input == nil {
+		input = &ListCalculatedAttributesForProfileInput{}
+	}
+
+	output = &ListCalculatedAttributesForProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCalculatedAttributesForProfile API operation for Amazon Connect Customer Profiles.
+//
+// Retrieve a list of calculated attributes for a customer profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation ListCalculatedAttributesForProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListCalculatedAttributesForProfile
+func (c *CustomerProfiles) ListCalculatedAttributesForProfile(input *ListCalculatedAttributesForProfileInput) (*ListCalculatedAttributesForProfileOutput, error) {
+	req, out := c.ListCalculatedAttributesForProfileRequest(input)
+	return out, req.Send()
+}
+
+// ListCalculatedAttributesForProfileWithContext is the same as ListCalculatedAttributesForProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCalculatedAttributesForProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) ListCalculatedAttributesForProfileWithContext(ctx aws.Context, input *ListCalculatedAttributesForProfileInput, opts ...request.Option) (*ListCalculatedAttributesForProfileOutput, error) {
+	req, out := c.ListCalculatedAttributesForProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3435,6 +3992,99 @@ func (c *CustomerProfiles) UntagResourceWithContext(ctx aws.Context, input *Unta
 	return out, req.Send()
 }
 
+const opUpdateCalculatedAttributeDefinition = "UpdateCalculatedAttributeDefinition"
+
+// UpdateCalculatedAttributeDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCalculatedAttributeDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCalculatedAttributeDefinition for more information on using the UpdateCalculatedAttributeDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateCalculatedAttributeDefinitionRequest method.
+//	req, resp := client.UpdateCalculatedAttributeDefinitionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/UpdateCalculatedAttributeDefinition
+func (c *CustomerProfiles) UpdateCalculatedAttributeDefinitionRequest(input *UpdateCalculatedAttributeDefinitionInput) (req *request.Request, output *UpdateCalculatedAttributeDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCalculatedAttributeDefinition,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
+	}
+
+	if input == nil {
+		input = &UpdateCalculatedAttributeDefinitionInput{}
+	}
+
+	output = &UpdateCalculatedAttributeDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCalculatedAttributeDefinition API operation for Amazon Connect Customer Profiles.
+//
+// Updates an existing calculated attribute definition. When updating the Conditions,
+// note that increasing the date range of a calculated attribute will not trigger
+// inclusion of historical data greater than the current date range.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation UpdateCalculatedAttributeDefinition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/UpdateCalculatedAttributeDefinition
+func (c *CustomerProfiles) UpdateCalculatedAttributeDefinition(input *UpdateCalculatedAttributeDefinitionInput) (*UpdateCalculatedAttributeDefinitionOutput, error) {
+	req, out := c.UpdateCalculatedAttributeDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCalculatedAttributeDefinitionWithContext is the same as UpdateCalculatedAttributeDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCalculatedAttributeDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) UpdateCalculatedAttributeDefinitionWithContext(ctx aws.Context, input *UpdateCalculatedAttributeDefinitionInput, opts ...request.Option) (*UpdateCalculatedAttributeDefinitionOutput, error) {
+	req, out := c.UpdateCalculatedAttributeDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDomain = "UpdateDomain"
 
 // UpdateDomainRequest generates a "aws/request.Request" representing the
@@ -4362,6 +5012,135 @@ func (s *AppflowIntegrationWorkflowStep) SetStatus(v string) *AppflowIntegration
 	return s
 }
 
+// Mathematical expression and a list of attribute items specified in that expression.
+type AttributeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of attribute items specified in the mathematical expression.
+	//
+	// Attributes is a required field
+	Attributes []*AttributeItem `min:"1" type:"list" required:"true"`
+
+	// Mathematical expression that is performed on attribute items provided in
+	// the attribute list. Each element in the expression should follow the structure
+	// of \"{ObjectTypeName.AttributeName}\".
+	//
+	// Expression is a required field
+	Expression *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttributeDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttributeDetails"}
+	if s.Attributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attributes"))
+	}
+	if s.Attributes != nil && len(s.Attributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Attributes", 1))
+	}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *AttributeDetails) SetAttributes(v []*AttributeItem) *AttributeDetails {
+	s.Attributes = v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *AttributeDetails) SetExpression(v string) *AttributeDetails {
+	s.Expression = &v
+	return s
+}
+
+// The details of a single attribute item specified in the mathematical expression.
+type AttributeItem struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an attribute defined in a profile object type.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttributeItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttributeItem"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AttributeItem) SetName(v string) *AttributeItem {
+	s.Name = &v
+	return s
+}
+
 // Configuration settings for how to perform the auto-merging of profiles.
 type AutoMerging struct {
 	_ struct{} `type:"structure"`
@@ -4578,6 +5357,80 @@ func (s *Batch) SetStartTime(v time.Time) *Batch {
 	return s
 }
 
+// The conditions including range, object count, and threshold for the calculated
+// attribute.
+type Conditions struct {
+	_ struct{} `type:"structure"`
+
+	// The number of profile objects used for the calculated attribute.
+	ObjectCount *int64 `min:"1" type:"integer"`
+
+	// The relative time period over which data is included in the aggregation.
+	Range *Range `type:"structure"`
+
+	// The threshold for the calculated attribute.
+	Threshold *Threshold `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Conditions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Conditions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Conditions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Conditions"}
+	if s.ObjectCount != nil && *s.ObjectCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ObjectCount", 1))
+	}
+	if s.Range != nil {
+		if err := s.Range.Validate(); err != nil {
+			invalidParams.AddNested("Range", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Threshold != nil {
+		if err := s.Threshold.Validate(); err != nil {
+			invalidParams.AddNested("Threshold", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetObjectCount sets the ObjectCount field's value.
+func (s *Conditions) SetObjectCount(v int64) *Conditions {
+	s.ObjectCount = &v
+	return s
+}
+
+// SetRange sets the Range field's value.
+func (s *Conditions) SetRange(v *Range) *Conditions {
+	s.Range = v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *Conditions) SetThreshold(v *Threshold) *Conditions {
+	s.Threshold = v
+	return s
+}
+
 // How the auto-merging process should resolve conflicts between different profiles.
 type ConflictResolution struct {
 	_ struct{} `type:"structure"`
@@ -4760,6 +5613,261 @@ func (s *Consolidation) Validate() error {
 // SetMatchingAttributesList sets the MatchingAttributesList field's value.
 func (s *Consolidation) SetMatchingAttributesList(v [][]*string) *Consolidation {
 	s.MatchingAttributesList = v
+	return s
+}
+
+type CreateCalculatedAttributeDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Mathematical expression and a list of attribute items specified in that expression.
+	//
+	// AttributeDetails is a required field
+	AttributeDetails *AttributeDetails `type:"structure" required:"true"`
+
+	// The unique name of the calculated attribute.
+	//
+	// CalculatedAttributeName is a required field
+	CalculatedAttributeName *string `location:"uri" locationName:"CalculatedAttributeName" min:"1" type:"string" required:"true"`
+
+	// The conditions including range, object count, and threshold for the calculated
+	// attribute.
+	Conditions *Conditions `type:"structure"`
+
+	// The description of the calculated attribute.
+	Description *string `min:"1" type:"string"`
+
+	// The display name of the calculated attribute.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The aggregation operation to perform for the calculated attribute.
+	//
+	// Statistic is a required field
+	Statistic *string `type:"string" required:"true" enum:"Statistic"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCalculatedAttributeDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCalculatedAttributeDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCalculatedAttributeDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCalculatedAttributeDefinitionInput"}
+	if s.AttributeDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeDetails"))
+	}
+	if s.CalculatedAttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatedAttributeName"))
+	}
+	if s.CalculatedAttributeName != nil && len(*s.CalculatedAttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatedAttributeName", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.Statistic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistic"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.AttributeDetails != nil {
+		if err := s.AttributeDetails.Validate(); err != nil {
+			invalidParams.AddNested("AttributeDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Conditions != nil {
+		if err := s.Conditions.Validate(); err != nil {
+			invalidParams.AddNested("Conditions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeDetails sets the AttributeDetails field's value.
+func (s *CreateCalculatedAttributeDefinitionInput) SetAttributeDetails(v *AttributeDetails) *CreateCalculatedAttributeDefinitionInput {
+	s.AttributeDetails = v
+	return s
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *CreateCalculatedAttributeDefinitionInput) SetCalculatedAttributeName(v string) *CreateCalculatedAttributeDefinitionInput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *CreateCalculatedAttributeDefinitionInput) SetConditions(v *Conditions) *CreateCalculatedAttributeDefinitionInput {
+	s.Conditions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCalculatedAttributeDefinitionInput) SetDescription(v string) *CreateCalculatedAttributeDefinitionInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateCalculatedAttributeDefinitionInput) SetDisplayName(v string) *CreateCalculatedAttributeDefinitionInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CreateCalculatedAttributeDefinitionInput) SetDomainName(v string) *CreateCalculatedAttributeDefinitionInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *CreateCalculatedAttributeDefinitionInput) SetStatistic(v string) *CreateCalculatedAttributeDefinitionInput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCalculatedAttributeDefinitionInput) SetTags(v map[string]*string) *CreateCalculatedAttributeDefinitionInput {
+	s.Tags = v
+	return s
+}
+
+type CreateCalculatedAttributeDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Mathematical expression and a list of attribute items specified in that expression.
+	AttributeDetails *AttributeDetails `type:"structure"`
+
+	// The unique name of the calculated attribute.
+	CalculatedAttributeName *string `min:"1" type:"string"`
+
+	// The conditions including range, object count, and threshold for the calculated
+	// attribute.
+	Conditions *Conditions `type:"structure"`
+
+	// The timestamp of when the calculated attribute definition was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The description of the calculated attribute.
+	Description *string `min:"1" type:"string"`
+
+	// The display name of the calculated attribute.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The timestamp of when the calculated attribute definition was most recently
+	// edited.
+	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// The aggregation operation to perform for the calculated attribute.
+	Statistic *string `type:"string" enum:"Statistic"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCalculatedAttributeDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCalculatedAttributeDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributeDetails sets the AttributeDetails field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetAttributeDetails(v *AttributeDetails) *CreateCalculatedAttributeDefinitionOutput {
+	s.AttributeDetails = v
+	return s
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetCalculatedAttributeName(v string) *CreateCalculatedAttributeDefinitionOutput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetConditions(v *Conditions) *CreateCalculatedAttributeDefinitionOutput {
+	s.Conditions = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetCreatedAt(v time.Time) *CreateCalculatedAttributeDefinitionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetDescription(v string) *CreateCalculatedAttributeDefinitionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetDisplayName(v string) *CreateCalculatedAttributeDefinitionOutput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetLastUpdatedAt(v time.Time) *CreateCalculatedAttributeDefinitionOutput {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetStatistic(v string) *CreateCalculatedAttributeDefinitionOutput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCalculatedAttributeDefinitionOutput) SetTags(v map[string]*string) *CreateCalculatedAttributeDefinitionOutput {
+	s.Tags = v
 	return s
 }
 
@@ -5527,6 +6635,94 @@ func (s CreateProfileOutput) GoString() string {
 func (s *CreateProfileOutput) SetProfileId(v string) *CreateProfileOutput {
 	s.ProfileId = &v
 	return s
+}
+
+type DeleteCalculatedAttributeDefinitionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the calculated attribute.
+	//
+	// CalculatedAttributeName is a required field
+	CalculatedAttributeName *string `location:"uri" locationName:"CalculatedAttributeName" min:"1" type:"string" required:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCalculatedAttributeDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCalculatedAttributeDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCalculatedAttributeDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCalculatedAttributeDefinitionInput"}
+	if s.CalculatedAttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatedAttributeName"))
+	}
+	if s.CalculatedAttributeName != nil && len(*s.CalculatedAttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatedAttributeName", 1))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *DeleteCalculatedAttributeDefinitionInput) SetCalculatedAttributeName(v string) *DeleteCalculatedAttributeDefinitionInput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DeleteCalculatedAttributeDefinitionInput) SetDomainName(v string) *DeleteCalculatedAttributeDefinitionInput {
+	s.DomainName = &v
+	return s
+}
+
+type DeleteCalculatedAttributeDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCalculatedAttributeDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCalculatedAttributeDefinitionOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDomainInput struct {
@@ -6944,6 +8140,319 @@ func (s *GetAutoMergingPreviewOutput) SetNumberOfProfilesInSample(v int64) *GetA
 // SetNumberOfProfilesWillBeMerged sets the NumberOfProfilesWillBeMerged field's value.
 func (s *GetAutoMergingPreviewOutput) SetNumberOfProfilesWillBeMerged(v int64) *GetAutoMergingPreviewOutput {
 	s.NumberOfProfilesWillBeMerged = &v
+	return s
+}
+
+type GetCalculatedAttributeDefinitionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the calculated attribute.
+	//
+	// CalculatedAttributeName is a required field
+	CalculatedAttributeName *string `location:"uri" locationName:"CalculatedAttributeName" min:"1" type:"string" required:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculatedAttributeDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculatedAttributeDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCalculatedAttributeDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCalculatedAttributeDefinitionInput"}
+	if s.CalculatedAttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatedAttributeName"))
+	}
+	if s.CalculatedAttributeName != nil && len(*s.CalculatedAttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatedAttributeName", 1))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *GetCalculatedAttributeDefinitionInput) SetCalculatedAttributeName(v string) *GetCalculatedAttributeDefinitionInput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *GetCalculatedAttributeDefinitionInput) SetDomainName(v string) *GetCalculatedAttributeDefinitionInput {
+	s.DomainName = &v
+	return s
+}
+
+type GetCalculatedAttributeDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Mathematical expression and a list of attribute items specified in that expression.
+	AttributeDetails *AttributeDetails `type:"structure"`
+
+	// The unique name of the calculated attribute.
+	CalculatedAttributeName *string `min:"1" type:"string"`
+
+	// The conditions including range, object count, and threshold for the calculated
+	// attribute.
+	Conditions *Conditions `type:"structure"`
+
+	// The timestamp of when the calculated attribute definition was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The description of the calculated attribute.
+	Description *string `min:"1" type:"string"`
+
+	// The display name of the calculated attribute.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The timestamp of when the calculated attribute definition was most recently
+	// edited.
+	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// The aggregation operation to perform for the calculated attribute.
+	Statistic *string `type:"string" enum:"Statistic"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculatedAttributeDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculatedAttributeDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributeDetails sets the AttributeDetails field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetAttributeDetails(v *AttributeDetails) *GetCalculatedAttributeDefinitionOutput {
+	s.AttributeDetails = v
+	return s
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetCalculatedAttributeName(v string) *GetCalculatedAttributeDefinitionOutput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetConditions(v *Conditions) *GetCalculatedAttributeDefinitionOutput {
+	s.Conditions = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetCreatedAt(v time.Time) *GetCalculatedAttributeDefinitionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetDescription(v string) *GetCalculatedAttributeDefinitionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetDisplayName(v string) *GetCalculatedAttributeDefinitionOutput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetLastUpdatedAt(v time.Time) *GetCalculatedAttributeDefinitionOutput {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetStatistic(v string) *GetCalculatedAttributeDefinitionOutput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetCalculatedAttributeDefinitionOutput) SetTags(v map[string]*string) *GetCalculatedAttributeDefinitionOutput {
+	s.Tags = v
+	return s
+}
+
+type GetCalculatedAttributeForProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the calculated attribute.
+	//
+	// CalculatedAttributeName is a required field
+	CalculatedAttributeName *string `location:"uri" locationName:"CalculatedAttributeName" min:"1" type:"string" required:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The unique identifier of a customer profile.
+	//
+	// ProfileId is a required field
+	ProfileId *string `location:"uri" locationName:"ProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculatedAttributeForProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculatedAttributeForProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCalculatedAttributeForProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCalculatedAttributeForProfileInput"}
+	if s.CalculatedAttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatedAttributeName"))
+	}
+	if s.CalculatedAttributeName != nil && len(*s.CalculatedAttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatedAttributeName", 1))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *GetCalculatedAttributeForProfileInput) SetCalculatedAttributeName(v string) *GetCalculatedAttributeForProfileInput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *GetCalculatedAttributeForProfileInput) SetDomainName(v string) *GetCalculatedAttributeForProfileInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *GetCalculatedAttributeForProfileInput) SetProfileId(v string) *GetCalculatedAttributeForProfileInput {
+	s.ProfileId = &v
+	return s
+}
+
+type GetCalculatedAttributeForProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the calculated attribute.
+	CalculatedAttributeName *string `min:"1" type:"string"`
+
+	// The display name of the calculated attribute.
+	DisplayName *string `min:"1" type:"string"`
+
+	// Indicates whether the calculated attribute’s value is based on partial
+	// data. If data is partial, it is set to true.
+	IsDataPartial *string `min:"1" type:"string"`
+
+	// The value of the calculated attribute.
+	Value *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculatedAttributeForProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculatedAttributeForProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *GetCalculatedAttributeForProfileOutput) SetCalculatedAttributeName(v string) *GetCalculatedAttributeForProfileOutput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *GetCalculatedAttributeForProfileOutput) SetDisplayName(v string) *GetCalculatedAttributeForProfileOutput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetIsDataPartial sets the IsDataPartial field's value.
+func (s *GetCalculatedAttributeForProfileOutput) SetIsDataPartial(v string) *GetCalculatedAttributeForProfileOutput {
+	s.IsDataPartial = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *GetCalculatedAttributeForProfileOutput) SetValue(v string) *GetCalculatedAttributeForProfileOutput {
+	s.Value = &v
 	return s
 }
 
@@ -8791,6 +10300,387 @@ func (s *ListAccountIntegrationsOutput) SetNextToken(v string) *ListAccountInteg
 	return s
 }
 
+// The details of a single calculated attribute definition.
+type ListCalculatedAttributeDefinitionItem struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the calculated attribute.
+	CalculatedAttributeName *string `min:"1" type:"string"`
+
+	// The threshold for the calculated attribute.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The threshold for the calculated attribute.
+	Description *string `min:"1" type:"string"`
+
+	// The display name of the calculated attribute.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The timestamp of when the calculated attribute definition was most recently
+	// edited.
+	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributeDefinitionItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributeDefinitionItem) GoString() string {
+	return s.String()
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *ListCalculatedAttributeDefinitionItem) SetCalculatedAttributeName(v string) *ListCalculatedAttributeDefinitionItem {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ListCalculatedAttributeDefinitionItem) SetCreatedAt(v time.Time) *ListCalculatedAttributeDefinitionItem {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ListCalculatedAttributeDefinitionItem) SetDescription(v string) *ListCalculatedAttributeDefinitionItem {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *ListCalculatedAttributeDefinitionItem) SetDisplayName(v string) *ListCalculatedAttributeDefinitionItem {
+	s.DisplayName = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *ListCalculatedAttributeDefinitionItem) SetLastUpdatedAt(v time.Time) *ListCalculatedAttributeDefinitionItem {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListCalculatedAttributeDefinitionItem) SetTags(v map[string]*string) *ListCalculatedAttributeDefinitionItem {
+	s.Tags = v
+	return s
+}
+
+type ListCalculatedAttributeDefinitionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The maximum number of calculated attribute definitions returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The pagination token from the previous call to ListCalculatedAttributeDefinitions.
+	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributeDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributeDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCalculatedAttributeDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCalculatedAttributeDefinitionsInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ListCalculatedAttributeDefinitionsInput) SetDomainName(v string) *ListCalculatedAttributeDefinitionsInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCalculatedAttributeDefinitionsInput) SetMaxResults(v int64) *ListCalculatedAttributeDefinitionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCalculatedAttributeDefinitionsInput) SetNextToken(v string) *ListCalculatedAttributeDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCalculatedAttributeDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of calculated attribute definitions.
+	Items []*ListCalculatedAttributeDefinitionItem `type:"list"`
+
+	// The pagination token from the previous call to ListCalculatedAttributeDefinitions.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributeDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributeDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListCalculatedAttributeDefinitionsOutput) SetItems(v []*ListCalculatedAttributeDefinitionItem) *ListCalculatedAttributeDefinitionsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCalculatedAttributeDefinitionsOutput) SetNextToken(v string) *ListCalculatedAttributeDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// The details of a single calculated attribute for a profile.
+type ListCalculatedAttributeForProfileItem struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the calculated attribute.
+	CalculatedAttributeName *string `min:"1" type:"string"`
+
+	// The display name of the calculated attribute.
+	DisplayName *string `min:"1" type:"string"`
+
+	// Indicates whether the calculated attribute’s value is based on partial
+	// data. If data is partial, it is set to true.
+	IsDataPartial *string `min:"1" type:"string"`
+
+	// The value of the calculated attribute.
+	Value *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributeForProfileItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributeForProfileItem) GoString() string {
+	return s.String()
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *ListCalculatedAttributeForProfileItem) SetCalculatedAttributeName(v string) *ListCalculatedAttributeForProfileItem {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *ListCalculatedAttributeForProfileItem) SetDisplayName(v string) *ListCalculatedAttributeForProfileItem {
+	s.DisplayName = &v
+	return s
+}
+
+// SetIsDataPartial sets the IsDataPartial field's value.
+func (s *ListCalculatedAttributeForProfileItem) SetIsDataPartial(v string) *ListCalculatedAttributeForProfileItem {
+	s.IsDataPartial = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ListCalculatedAttributeForProfileItem) SetValue(v string) *ListCalculatedAttributeForProfileItem {
+	s.Value = &v
+	return s
+}
+
+type ListCalculatedAttributesForProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The maximum number of calculated attributes returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The pagination token from the previous call to ListCalculatedAttributesForProfile.
+	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
+
+	// The unique identifier of a customer profile.
+	//
+	// ProfileId is a required field
+	ProfileId *string `location:"uri" locationName:"ProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributesForProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributesForProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCalculatedAttributesForProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCalculatedAttributesForProfileInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ListCalculatedAttributesForProfileInput) SetDomainName(v string) *ListCalculatedAttributesForProfileInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCalculatedAttributesForProfileInput) SetMaxResults(v int64) *ListCalculatedAttributesForProfileInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCalculatedAttributesForProfileInput) SetNextToken(v string) *ListCalculatedAttributesForProfileInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *ListCalculatedAttributesForProfileInput) SetProfileId(v string) *ListCalculatedAttributesForProfileInput {
+	s.ProfileId = &v
+	return s
+}
+
+type ListCalculatedAttributesForProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of calculated attributes.
+	Items []*ListCalculatedAttributeForProfileItem `type:"list"`
+
+	// The pagination token from the previous call to ListCalculatedAttributesForProfile.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributesForProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculatedAttributesForProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListCalculatedAttributesForProfileOutput) SetItems(v []*ListCalculatedAttributeForProfileItem) *ListCalculatedAttributesForProfileOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCalculatedAttributesForProfileOutput) SetNextToken(v string) *ListCalculatedAttributesForProfileOutput {
+	s.NextToken = &v
+	return s
+}
+
 // An object in a list that represents a domain.
 type ListDomainItem struct {
 	_ struct{} `type:"structure"`
@@ -9653,8 +11543,7 @@ type ListProfileObjectsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
 
 	// Applies a filter to the response to include profile objects with the specified
-	// index values. This filter is only supported for ObjectTypeName _asset, _case
-	// and _order.
+	// index values.
 	ObjectFilter *ObjectFilter `type:"structure"`
 
 	// The name of the profile object type.
@@ -10547,13 +12436,12 @@ func (s *MergeProfilesOutput) SetMessage(v string) *MergeProfilesOutput {
 }
 
 // The filter applied to ListProfileObjects response to include profile objects
-// with the specified index values. This filter is only supported for ObjectTypeName
-// _asset, _case and _order.
+// with the specified index values.
 type ObjectFilter struct {
 	_ struct{} `type:"structure"`
 
-	// A searchable identifier of a standard profile object. The predefined keys
-	// you can use to search for _asset include: _assetId, _assetName, _serialNumber.
+	// A searchable identifier of a profile object. The predefined keys you can
+	// use to search for _asset include: _assetId, _assetName, and _serialNumber.
 	// The predefined keys you can use to search for _case include: _caseId. The
 	// predefined keys you can use to search for _order include: _orderId.
 	//
@@ -11680,6 +13568,70 @@ func (s *PutProfileObjectTypeOutput) SetTemplateId(v string) *PutProfileObjectTy
 	return s
 }
 
+// The relative time period over which data is included in the aggregation.
+type Range struct {
+	_ struct{} `type:"structure"`
+
+	// The unit of time.
+	//
+	// Unit is a required field
+	Unit *string `type:"string" required:"true" enum:"Unit"`
+
+	// The amount of time of the specified unit.
+	//
+	// Value is a required field
+	Value *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Range) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Range) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Range) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Range"}
+	if s.Unit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Unit"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && *s.Value < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUnit sets the Unit field's value.
+func (s *Range) SetUnit(v string) *Range {
+	s.Unit = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Range) SetValue(v int64) *Range {
+	s.Value = &v
+	return s
+}
+
 // The requested resource does not exist, or access was denied.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -12705,6 +14657,70 @@ func (s *Task) SetTaskType(v string) *Task {
 	return s
 }
 
+// The threshold for the calculated attribute.
+type Threshold struct {
+	_ struct{} `type:"structure"`
+
+	// The operator of the threshold.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"Operator"`
+
+	// The value of the threshold.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Threshold) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Threshold) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Threshold) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Threshold"}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOperator sets the Operator field's value.
+func (s *Threshold) SetOperator(v string) *Threshold {
+	s.Operator = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Threshold) SetValue(v string) *Threshold {
+	s.Value = &v
+	return s
+}
+
 // You exceeded the maximum number of requests.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -13079,6 +15095,217 @@ func (s *UpdateAddress) SetProvince(v string) *UpdateAddress {
 // SetState sets the State field's value.
 func (s *UpdateAddress) SetState(v string) *UpdateAddress {
 	s.State = &v
+	return s
+}
+
+type UpdateCalculatedAttributeDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the calculated attribute.
+	//
+	// CalculatedAttributeName is a required field
+	CalculatedAttributeName *string `location:"uri" locationName:"CalculatedAttributeName" min:"1" type:"string" required:"true"`
+
+	// The conditions including range, object count, and threshold for the calculated
+	// attribute.
+	Conditions *Conditions `type:"structure"`
+
+	// The description of the calculated attribute.
+	Description *string `min:"1" type:"string"`
+
+	// The display name of the calculated attribute.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCalculatedAttributeDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCalculatedAttributeDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCalculatedAttributeDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCalculatedAttributeDefinitionInput"}
+	if s.CalculatedAttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatedAttributeName"))
+	}
+	if s.CalculatedAttributeName != nil && len(*s.CalculatedAttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatedAttributeName", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.Conditions != nil {
+		if err := s.Conditions.Validate(); err != nil {
+			invalidParams.AddNested("Conditions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *UpdateCalculatedAttributeDefinitionInput) SetCalculatedAttributeName(v string) *UpdateCalculatedAttributeDefinitionInput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *UpdateCalculatedAttributeDefinitionInput) SetConditions(v *Conditions) *UpdateCalculatedAttributeDefinitionInput {
+	s.Conditions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateCalculatedAttributeDefinitionInput) SetDescription(v string) *UpdateCalculatedAttributeDefinitionInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateCalculatedAttributeDefinitionInput) SetDisplayName(v string) *UpdateCalculatedAttributeDefinitionInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *UpdateCalculatedAttributeDefinitionInput) SetDomainName(v string) *UpdateCalculatedAttributeDefinitionInput {
+	s.DomainName = &v
+	return s
+}
+
+type UpdateCalculatedAttributeDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The mathematical expression and a list of attribute items specified in that
+	// expression.
+	AttributeDetails *AttributeDetails `type:"structure"`
+
+	// The unique name of the calculated attribute.
+	CalculatedAttributeName *string `min:"1" type:"string"`
+
+	// The conditions including range, object count, and threshold for the calculated
+	// attribute.
+	Conditions *Conditions `type:"structure"`
+
+	// The timestamp of when the calculated attribute definition was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The description of the calculated attribute.
+	Description *string `min:"1" type:"string"`
+
+	// The display name of the calculated attribute.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The timestamp of when the calculated attribute definition was most recently
+	// edited.
+	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// The aggregation operation to perform for the calculated attribute.
+	Statistic *string `type:"string" enum:"Statistic"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCalculatedAttributeDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCalculatedAttributeDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributeDetails sets the AttributeDetails field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetAttributeDetails(v *AttributeDetails) *UpdateCalculatedAttributeDefinitionOutput {
+	s.AttributeDetails = v
+	return s
+}
+
+// SetCalculatedAttributeName sets the CalculatedAttributeName field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetCalculatedAttributeName(v string) *UpdateCalculatedAttributeDefinitionOutput {
+	s.CalculatedAttributeName = &v
+	return s
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetConditions(v *Conditions) *UpdateCalculatedAttributeDefinitionOutput {
+	s.Conditions = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetCreatedAt(v time.Time) *UpdateCalculatedAttributeDefinitionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetDescription(v string) *UpdateCalculatedAttributeDefinitionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetDisplayName(v string) *UpdateCalculatedAttributeDefinitionOutput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetLastUpdatedAt(v time.Time) *UpdateCalculatedAttributeDefinitionOutput {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetStatistic(v string) *UpdateCalculatedAttributeDefinitionOutput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateCalculatedAttributeDefinitionOutput) SetTags(v map[string]*string) *UpdateCalculatedAttributeDefinitionOutput {
+	s.Tags = v
 	return s
 }
 
@@ -14003,6 +16230,30 @@ func MarketoConnectorOperator_Values() []string {
 }
 
 const (
+	// OperatorEqualTo is a Operator enum value
+	OperatorEqualTo = "EQUAL_TO"
+
+	// OperatorGreaterThan is a Operator enum value
+	OperatorGreaterThan = "GREATER_THAN"
+
+	// OperatorLessThan is a Operator enum value
+	OperatorLessThan = "LESS_THAN"
+
+	// OperatorNotEqualTo is a Operator enum value
+	OperatorNotEqualTo = "NOT_EQUAL_TO"
+)
+
+// Operator_Values returns all elements of the Operator enum
+func Operator_Values() []string {
+	return []string{
+		OperatorEqualTo,
+		OperatorGreaterThan,
+		OperatorLessThan,
+		OperatorNotEqualTo,
+	}
+}
+
+const (
 	// OperatorPropertiesKeysValue is a OperatorPropertiesKeys enum value
 	OperatorPropertiesKeysValue = "VALUE"
 
@@ -14427,6 +16678,46 @@ func StandardIdentifier_Values() []string {
 }
 
 const (
+	// StatisticFirstOccurrence is a Statistic enum value
+	StatisticFirstOccurrence = "FIRST_OCCURRENCE"
+
+	// StatisticLastOccurrence is a Statistic enum value
+	StatisticLastOccurrence = "LAST_OCCURRENCE"
+
+	// StatisticCount is a Statistic enum value
+	StatisticCount = "COUNT"
+
+	// StatisticSum is a Statistic enum value
+	StatisticSum = "SUM"
+
+	// StatisticMinimum is a Statistic enum value
+	StatisticMinimum = "MINIMUM"
+
+	// StatisticMaximum is a Statistic enum value
+	StatisticMaximum = "MAXIMUM"
+
+	// StatisticAverage is a Statistic enum value
+	StatisticAverage = "AVERAGE"
+
+	// StatisticMaxOccurrence is a Statistic enum value
+	StatisticMaxOccurrence = "MAX_OCCURRENCE"
+)
+
+// Statistic_Values returns all elements of the Statistic enum
+func Statistic_Values() []string {
+	return []string{
+		StatisticFirstOccurrence,
+		StatisticLastOccurrence,
+		StatisticCount,
+		StatisticSum,
+		StatisticMinimum,
+		StatisticMaximum,
+		StatisticAverage,
+		StatisticMaxOccurrence,
+	}
+}
+
+const (
 	// StatusNotStarted is a Status enum value
 	StatusNotStarted = "NOT_STARTED"
 
@@ -14515,6 +16806,18 @@ func TriggerType_Values() []string {
 		TriggerTypeScheduled,
 		TriggerTypeEvent,
 		TriggerTypeOnDemand,
+	}
+}
+
+const (
+	// UnitDays is a Unit enum value
+	UnitDays = "DAYS"
+)
+
+// Unit_Values returns all elements of the Unit enum
+func Unit_Values() []string {
+	return []string{
+		UnitDays,
 	}
 }
 

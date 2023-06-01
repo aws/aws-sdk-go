@@ -818,6 +818,25 @@
         "ScheduledTriggerProperties$dataPullMode": "<p> Specifies whether a scheduled flow has an incremental data transfer or a complete data transfer for each flow run. </p>"
       }
     },
+    "DataTransferApi": {
+      "base": "<p>The API of the connector application that Amazon AppFlow uses to transfer your data.</p>",
+      "refs": {
+        "CustomConnectorSourceProperties$dataTransferApi": "<p>The API of the connector application that Amazon AppFlow uses to transfer your data.</p>",
+        "SupportedDataTransferApis$member": null
+      }
+    },
+    "DataTransferApiType": {
+      "base": null,
+      "refs": {
+        "DataTransferApi$Type": "<p>You can specify one of the following types:</p> <dl> <dt>AUTOMATIC</dt> <dd> <p>The default. Optimizes a flow for datasets that fluctuate in size from small to large. For each flow run, Amazon AppFlow chooses to use the SYNC or ASYNC API type based on the amount of data that the run transfers.</p> </dd> <dt>SYNC</dt> <dd> <p>A synchronous API. This type of API optimizes a flow for small to medium-sized datasets.</p> </dd> <dt>ASYNC</dt> <dd> <p>An asynchronous API. This type of API optimizes a flow for large datasets.</p> </dd> </dl>"
+      }
+    },
+    "DataTransferApiTypeName": {
+      "base": null,
+      "refs": {
+        "DataTransferApi$Name": "<p>The name of the connector application API.</p>"
+      }
+    },
     "DatabaseName": {
       "base": null,
       "refs": {
@@ -2368,6 +2387,25 @@
       "base": null,
       "refs": {
         "ConnectorConfiguration$supportedApiVersions": "<p>A list of API versions that are supported by the connector.</p>"
+      }
+    },
+    "SupportedDataTransferApis": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$supportedDataTransferApis": "<p>The APIs of the connector application that Amazon AppFlow can use to transfer your data.</p>"
+      }
+    },
+    "SupportedDataTransferType": {
+      "base": null,
+      "refs": {
+        "SupportedDataTransferTypeList$member": null
+      }
+    },
+    "SupportedDataTransferTypeList": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$supportedDataTransferTypes": "<p>The data transfer types that the connector supports.</p> <dl> <dt>RECORD</dt> <dd> <p>Structured records.</p> </dd> <dt>FILE</dt> <dd> <p>Files or binary data.</p> </dd> </dl>",
+        "ConnectorDetail$supportedDataTransferTypes": "<p>The data transfer types that the connector supports.</p> <dl> <dt>RECORD</dt> <dd> <p>Structured records.</p> </dd> <dt>FILE</dt> <dd> <p>Files or binary data.</p> </dd> </dl>"
       }
     },
     "SupportedFieldTypeDetails": {

@@ -3409,6 +3409,21 @@ type ConnectorConfiguration struct {
 	// A list of API versions that are supported by the connector.
 	SupportedApiVersions []*string `locationName:"supportedApiVersions" type:"list"`
 
+	// The APIs of the connector application that Amazon AppFlow can use to transfer
+	// your data.
+	SupportedDataTransferApis []*DataTransferApi `locationName:"supportedDataTransferApis" type:"list"`
+
+	// The data transfer types that the connector supports.
+	//
+	// RECORD
+	//
+	// Structured records.
+	//
+	// FILE
+	//
+	// Files or binary data.
+	SupportedDataTransferTypes []*string `locationName:"supportedDataTransferTypes" type:"list" enum:"SupportedDataTransferType"`
+
 	// Lists the connectors that are available for use as destinations.
 	SupportedDestinationConnectors []*string `locationName:"supportedDestinationConnectors" type:"list" enum:"ConnectorType"`
 
@@ -3569,6 +3584,18 @@ func (s *ConnectorConfiguration) SetSupportedApiVersions(v []*string) *Connector
 	return s
 }
 
+// SetSupportedDataTransferApis sets the SupportedDataTransferApis field's value.
+func (s *ConnectorConfiguration) SetSupportedDataTransferApis(v []*DataTransferApi) *ConnectorConfiguration {
+	s.SupportedDataTransferApis = v
+	return s
+}
+
+// SetSupportedDataTransferTypes sets the SupportedDataTransferTypes field's value.
+func (s *ConnectorConfiguration) SetSupportedDataTransferTypes(v []*string) *ConnectorConfiguration {
+	s.SupportedDataTransferTypes = v
+	return s
+}
+
 // SetSupportedDestinationConnectors sets the SupportedDestinationConnectors field's value.
 func (s *ConnectorConfiguration) SetSupportedDestinationConnectors(v []*string) *ConnectorConfiguration {
 	s.SupportedDestinationConnectors = v
@@ -3635,6 +3662,17 @@ type ConnectorDetail struct {
 
 	// The user who registered the connector.
 	RegisteredBy *string `locationName:"registeredBy" type:"string"`
+
+	// The data transfer types that the connector supports.
+	//
+	// RECORD
+	//
+	// Structured records.
+	//
+	// FILE
+	//
+	// Files or binary data.
+	SupportedDataTransferTypes []*string `locationName:"supportedDataTransferTypes" type:"list" enum:"SupportedDataTransferType"`
 }
 
 // String returns the string representation.
@@ -3718,6 +3756,12 @@ func (s *ConnectorDetail) SetRegisteredAt(v time.Time) *ConnectorDetail {
 // SetRegisteredBy sets the RegisteredBy field's value.
 func (s *ConnectorDetail) SetRegisteredBy(v string) *ConnectorDetail {
 	s.RegisteredBy = &v
+	return s
+}
+
+// SetSupportedDataTransferTypes sets the SupportedDataTransferTypes field's value.
+func (s *ConnectorDetail) SetSupportedDataTransferTypes(v []*string) *ConnectorDetail {
+	s.SupportedDataTransferTypes = v
 	return s
 }
 
@@ -6070,6 +6114,10 @@ type CustomConnectorSourceProperties struct {
 	// Custom properties that are required to use the custom connector as a source.
 	CustomProperties map[string]*string `locationName:"customProperties" type:"map"`
 
+	// The API of the connector application that Amazon AppFlow uses to transfer
+	// your data.
+	DataTransferApi *DataTransferApi `locationName:"dataTransferApi" type:"structure"`
+
 	// The entity specified in the custom connector as a source in the flow.
 	//
 	// EntityName is a required field
@@ -6110,6 +6158,12 @@ func (s *CustomConnectorSourceProperties) Validate() error {
 // SetCustomProperties sets the CustomProperties field's value.
 func (s *CustomConnectorSourceProperties) SetCustomProperties(v map[string]*string) *CustomConnectorSourceProperties {
 	s.CustomProperties = v
+	return s
+}
+
+// SetDataTransferApi sets the DataTransferApi field's value.
+func (s *CustomConnectorSourceProperties) SetDataTransferApi(v *DataTransferApi) *CustomConnectorSourceProperties {
+	s.DataTransferApi = v
 	return s
 }
 
@@ -6197,6 +6251,63 @@ func (s CustomerProfilesMetadata) String() string {
 // value will be replaced with "sensitive".
 func (s CustomerProfilesMetadata) GoString() string {
 	return s.String()
+}
+
+// The API of the connector application that Amazon AppFlow uses to transfer
+// your data.
+type DataTransferApi struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connector application API.
+	Name *string `type:"string"`
+
+	// You can specify one of the following types:
+	//
+	// AUTOMATIC
+	//
+	// The default. Optimizes a flow for datasets that fluctuate in size from small
+	// to large. For each flow run, Amazon AppFlow chooses to use the SYNC or ASYNC
+	// API type based on the amount of data that the run transfers.
+	//
+	// SYNC
+	//
+	// A synchronous API. This type of API optimizes a flow for small to medium-sized
+	// datasets.
+	//
+	// ASYNC
+	//
+	// An asynchronous API. This type of API optimizes a flow for large datasets.
+	Type *string `type:"string" enum:"DataTransferApiType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataTransferApi) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataTransferApi) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DataTransferApi) SetName(v string) *DataTransferApi {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DataTransferApi) SetType(v string) *DataTransferApi {
+	s.Type = &v
+	return s
 }
 
 // The connector-specific credentials required by Datadog.
@@ -16694,6 +16805,26 @@ func DataPullMode_Values() []string {
 }
 
 const (
+	// DataTransferApiTypeSync is a DataTransferApiType enum value
+	DataTransferApiTypeSync = "SYNC"
+
+	// DataTransferApiTypeAsync is a DataTransferApiType enum value
+	DataTransferApiTypeAsync = "ASYNC"
+
+	// DataTransferApiTypeAutomatic is a DataTransferApiType enum value
+	DataTransferApiTypeAutomatic = "AUTOMATIC"
+)
+
+// DataTransferApiType_Values returns all elements of the DataTransferApiType enum
+func DataTransferApiType_Values() []string {
+	return []string{
+		DataTransferApiTypeSync,
+		DataTransferApiTypeAsync,
+		DataTransferApiTypeAutomatic,
+	}
+}
+
+const (
 	// DatadogConnectorOperatorProjection is a DatadogConnectorOperator enum value
 	DatadogConnectorOperatorProjection = "PROJECTION"
 
@@ -18114,6 +18245,22 @@ func SlackConnectorOperator_Values() []string {
 		SlackConnectorOperatorValidateNonNegative,
 		SlackConnectorOperatorValidateNumeric,
 		SlackConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// SupportedDataTransferTypeRecord is a SupportedDataTransferType enum value
+	SupportedDataTransferTypeRecord = "RECORD"
+
+	// SupportedDataTransferTypeFile is a SupportedDataTransferType enum value
+	SupportedDataTransferTypeFile = "FILE"
+)
+
+// SupportedDataTransferType_Values returns all elements of the SupportedDataTransferType enum
+func SupportedDataTransferType_Values() []string {
+	return []string{
+		SupportedDataTransferTypeRecord,
+		SupportedDataTransferTypeFile,
 	}
 }
 

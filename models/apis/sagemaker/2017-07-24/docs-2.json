@@ -2147,7 +2147,7 @@
       "base": null,
       "refs": {
         "AutoMLChannel$ContentType": "<p>The content type of the data from the input source. You can use <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p>",
-        "AutoMLJobChannel$ContentType": "<p>The content type of the data from the input source. The following are the allowed content types for different problems:</p> <ul> <li> <p>ImageClassification: <code>image/png</code>, <code>image/jpeg</code>, <code>image/*</code> </p> </li> <li> <p>TextClassification: <code>text/csv;header=present</code> </p> </li> </ul>",
+        "AutoMLJobChannel$ContentType": "<p>The content type of the data from the input source. The following are the allowed content types for different problems:</p> <ul> <li> <p>ImageClassification: <code>image/png</code>, <code>image/jpeg</code>, or <code>image/*</code>. The default value is <code>image/*</code>.</p> </li> <li> <p>TextClassification: <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p> </li> </ul>",
         "Channel$ContentType": "<p>The MIME type of the data.</p>",
         "ContentTypes$member": null,
         "FileSource$ContentType": "<p>The type of content stored in the file source.</p>",
@@ -3329,7 +3329,7 @@
       }
     },
     "DeploymentRecommendation": {
-      "base": "<p>A set of recommended deployment configurations for the model.</p>",
+      "base": "<p>A set of recommended deployment configurations for the model. To get more advanced recommendations, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateInferenceRecommendationsJob.html\">CreateInferenceRecommendationsJob</a> to create an inference recommendation job.</p>",
       "refs": {
         "DescribeModelOutput$DeploymentRecommendation": "<p>A set of recommended deployment configurations for the model.</p>",
         "Model$DeploymentRecommendation": "<p>A set of recommended deployment configurations for the model.</p>"
@@ -11186,7 +11186,7 @@
       }
     },
     "RStudioServerProAppSettings": {
-      "base": "<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app. <code>RStudioServerProAppSettings</code> cannot be updated. The <code>RStudioServerPro</code> app must be deleted and a new one created to make any changes.</p>",
+      "base": "<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app.</p>",
       "refs": {
         "UserSettings$RStudioServerProAppSettings": "<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app.</p>"
       }
@@ -11406,7 +11406,7 @@
     "RecommendationStatus": {
       "base": null,
       "refs": {
-        "DeploymentRecommendation$RecommendationStatus": "<p>Status of the deployment recommendation. <code>NOT_APPLICABLE</code> means that SageMaker is unable to provide a default recommendation for the model using the information provided.</p>"
+        "DeploymentRecommendation$RecommendationStatus": "<p>Status of the deployment recommendation. The status <code>NOT_APPLICABLE</code> means that SageMaker is unable to provide a default recommendation for the model using the information provided. If the deployment status is <code>IN_PROGRESS</code>, retry your API call after a few seconds to get a <code>COMPLETED</code> deployment recommendation.</p>"
       }
     },
     "RecommendationStepType": {

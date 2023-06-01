@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Alexa for Business helps you use Alexa in your organization. Alexa for Business provides you with the tools to manage Alexa devices, enroll your users, and assign skills, at scale. You can build your own context-aware voice skills using the Alexa Skills Kit and the Alexa for Business API operations. You can also make these available as private skills for your organization. Alexa for Business makes it efficient to voice-enable your products and services, thus providing context-aware voice experiences for your customers. Device makers building with the Alexa Voice Service (AVS) can create fully integrated solutions, register their products with Alexa for Business, and manage them as shared devices in their organization. </p>",
+  "service": "<p>Alexa for Business has been retired and is no longer supported.</p>",
   "operations": {
     "ApproveSkill": "<p>Associates a skill with the organization under the customer's AWS account. If a skill is private, the user implicitly accepts access to this skill during enablement.</p>",
     "AssociateContactWithAddressBook": "<p>Associates a contact with a given address book.</p>",
@@ -394,6 +394,7 @@
         "CreateEndOfMeetingReminder$Enabled": "<p>Whether an end of meeting reminder is enabled or not.</p>",
         "CreateInstantBooking$Enabled": "<p>Whether instant booking is enabled or not.</p>",
         "CreateMeetingRoomConfiguration$RoomUtilizationMetricsEnabled": "<p>Whether room utilization metrics are enabled or not.</p>",
+        "CreateProactiveJoin$EnabledByMotion": null,
         "CreateProfileRequest$SetupModeDisabled": "<p>Whether room profile setup is enabled.</p>",
         "CreateProfileRequest$PSTNEnabled": "<p>Whether PSTN calling is enabled.</p>",
         "CreateProfileRequest$DataRetentionOptIn": "<p>Whether data retention of the profile is enabled.</p>",
@@ -401,6 +402,7 @@
         "EndOfMeetingReminder$Enabled": "<p>Whether an end of meeting reminder is enabled or not.</p>",
         "InstantBooking$Enabled": "<p>Whether instant booking is enabled or not.</p>",
         "MeetingRoomConfiguration$RoomUtilizationMetricsEnabled": "<p>Whether room utilization metrics are enabled or not.</p>",
+        "ProactiveJoin$EnabledByMotion": null,
         "Profile$IsDefault": "<p>Retrieves if the profile is default or not.</p>",
         "Profile$SetupModeDisabled": "<p>The setup mode of a room profile.</p>",
         "Profile$PSTNEnabled": "<p>The PSTN setting of a room profile.</p>",
@@ -410,6 +412,7 @@
         "UpdateEndOfMeetingReminder$Enabled": "<p>Whether an end of meeting reminder is enabled or not.</p>",
         "UpdateInstantBooking$Enabled": "<p>Whether instant booking is enabled or not.</p>",
         "UpdateMeetingRoomConfiguration$RoomUtilizationMetricsEnabled": "<p>Whether room utilization metrics are enabled or not.</p>",
+        "UpdateProactiveJoin$EnabledByMotion": null,
         "UpdateProfileRequest$IsDefault": "<p>Sets the profile as default if selected. If this is missing, no update is done to the default status.</p>",
         "UpdateProfileRequest$SetupModeDisabled": "<p>Whether the setup mode of the profile is enabled.</p>",
         "UpdateProfileRequest$PSTNEnabled": "<p>Whether the PSTN setting of the room profile is enabled.</p>",
@@ -756,6 +759,12 @@
     "CreateNetworkProfileResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateProactiveJoin": {
+      "base": null,
+      "refs": {
+        "CreateMeetingRoomConfiguration$ProactiveJoin": null
       }
     },
     "CreateProfileRequest": {
@@ -1974,6 +1983,12 @@
         "DeveloperInfo$PrivacyPolicy": "<p>The URL of the privacy policy.</p>"
       }
     },
+    "ProactiveJoin": {
+      "base": null,
+      "refs": {
+        "MeetingRoomConfiguration$ProactiveJoin": null
+      }
+    },
     "ProductDescription": {
       "base": null,
       "refs": {
@@ -2828,6 +2843,12 @@
     "UpdateNetworkProfileResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateProactiveJoin": {
+      "base": null,
+      "refs": {
+        "UpdateMeetingRoomConfiguration$ProactiveJoin": null
       }
     },
     "UpdateProfileRequest": {
