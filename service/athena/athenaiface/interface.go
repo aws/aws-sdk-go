@@ -104,6 +104,10 @@ type AthenaAPI interface {
 	CreateWorkGroupWithContext(aws.Context, *athena.CreateWorkGroupInput, ...request.Option) (*athena.CreateWorkGroupOutput, error)
 	CreateWorkGroupRequest(*athena.CreateWorkGroupInput) (*request.Request, *athena.CreateWorkGroupOutput)
 
+	DeleteCapacityReservation(*athena.DeleteCapacityReservationInput) (*athena.DeleteCapacityReservationOutput, error)
+	DeleteCapacityReservationWithContext(aws.Context, *athena.DeleteCapacityReservationInput, ...request.Option) (*athena.DeleteCapacityReservationOutput, error)
+	DeleteCapacityReservationRequest(*athena.DeleteCapacityReservationInput) (*request.Request, *athena.DeleteCapacityReservationOutput)
+
 	DeleteDataCatalog(*athena.DeleteDataCatalogInput) (*athena.DeleteDataCatalogOutput, error)
 	DeleteDataCatalogWithContext(aws.Context, *athena.DeleteDataCatalogInput, ...request.Option) (*athena.DeleteDataCatalogOutput, error)
 	DeleteDataCatalogRequest(*athena.DeleteDataCatalogInput) (*request.Request, *athena.DeleteDataCatalogOutput)

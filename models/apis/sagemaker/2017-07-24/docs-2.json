@@ -2147,7 +2147,7 @@
       "base": null,
       "refs": {
         "AutoMLChannel$ContentType": "<p>The content type of the data from the input source. You can use <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p>",
-        "AutoMLJobChannel$ContentType": "<p>The content type of the data from the input source. The following are the allowed content types for different problems:</p> <ul> <li> <p>ImageClassification: <code>image/png</code>, <code>image/jpeg</code>, or <code>image/*</code>. The default value is <code>image/*</code>.</p> </li> <li> <p>TextClassification: <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p> </li> </ul>",
+        "AutoMLJobChannel$ContentType": "<p>The content type of the data from the input source. The following are the allowed content types for different problems:</p> <ul> <li> <p>ImageClassification: <code>image/png</code>, <code>image/jpeg</code>, <code>image/*</code> </p> </li> <li> <p>TextClassification: <code>text/csv;header=present</code> </p> </li> </ul>",
         "Channel$ContentType": "<p>The MIME type of the data.</p>",
         "ContentTypes$member": null,
         "FileSource$ContentType": "<p>The type of content stored in the file source.</p>",
@@ -10379,6 +10379,8 @@
         "PipelineExecutionSummary$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "RetryPipelineExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "RetryPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
+        "SelectiveExecutionConfig$SourcePipelineExecutionArn": "<p>The ARN from a reference execution of the current pipeline. Used to copy input collaterals needed for the selected steps to run. The execution status of the pipeline can be either <code>Failed</code> or <code>Success</code>.</p>",
+        "SelectiveExecutionResult$SourcePipelineExecutionArn": "<p>The ARN from an execution of the current pipeline.</p>",
         "SendPipelineExecutionStepFailureResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "SendPipelineExecutionStepSuccessResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StartPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
@@ -12018,6 +12020,32 @@
         "ShuffleConfig$Seed": "<p>Determines the shuffling order in <code>ShuffleConfig</code> value.</p>"
       }
     },
+    "SelectedStep": {
+      "base": "<p>A step selected to run in selective execution mode.</p>",
+      "refs": {
+        "SelectedStepList$member": null
+      }
+    },
+    "SelectedStepList": {
+      "base": null,
+      "refs": {
+        "SelectiveExecutionConfig$SelectedSteps": "<p>A list of pipeline steps to run. All step(s) in all path(s) between two selected steps should be included.</p>"
+      }
+    },
+    "SelectiveExecutionConfig": {
+      "base": "<p>The selective execution configuration applied to the pipeline run.</p>",
+      "refs": {
+        "DescribePipelineExecutionResponse$SelectiveExecutionConfig": "<p>The selective execution configuration applied to the pipeline run.</p>",
+        "PipelineExecution$SelectiveExecutionConfig": "<p>The selective execution configuration applied to the pipeline run.</p>",
+        "StartPipelineExecutionRequest$SelectiveExecutionConfig": "<p>The selective execution configuration applied to the pipeline run.</p>"
+      }
+    },
+    "SelectiveExecutionResult": {
+      "base": "<p>The ARN from an execution of the current pipeline.</p>",
+      "refs": {
+        "PipelineExecutionStep$SelectiveExecutionResult": "<p>The ARN from an execution of the current pipeline from which results are reused for this step.</p>"
+      }
+    },
     "SendPipelineExecutionStepFailureRequest": {
       "base": null,
       "refs": {
@@ -12719,6 +12747,7 @@
         "QueryProperties$key": null,
         "QueryProperties$value": null,
         "RegisterModelStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
+        "SelectedStep$StepName": "<p>The name of the pipeline step.</p>",
         "SendPipelineExecutionStepFailureRequest$FailureReason": "<p>A message describing why the step failed.</p>"
       }
     },

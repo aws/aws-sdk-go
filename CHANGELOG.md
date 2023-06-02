@@ -1,3 +1,15 @@
+Release v1.44.275 (2023-06-02)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * This release introduces the DeleteCapacityReservation API and the ability to manage capacity reservations using CloudFormation
+* `service/cloudtrail`: Updates service API and documentation
+  * This feature allows users to start and stop event ingestion on a CloudTrail Lake event data store.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds Selective Execution feature that allows SageMaker Pipelines users to run selected steps in a pipeline.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.274 (2023-06-01)
 ===
 
