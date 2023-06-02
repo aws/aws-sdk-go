@@ -19,7 +19,7 @@ const (
 	// This exception is also thrown when you call AddTags or RemoveTags on a trail,
 	// event data store, or channel with a resource ARN that is not valid.
 	//
-	// The following is the format of an event data store ARN: arn:aws:cloudtrail:us-east-2:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE
+	// The following is the format of an event data store ARN: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE
 	//
 	// The following is the format of a channel ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890
 	ErrCodeARNInvalidException = "CloudTrailARNInvalidException"
@@ -111,7 +111,7 @@ const (
 	// ErrCodeCloudWatchLogsDeliveryUnavailableException for service response error code
 	// "CloudWatchLogsDeliveryUnavailableException".
 	//
-	// Cannot set a CloudWatch Logs delivery for this region.
+	// Cannot set a CloudWatch Logs delivery for this Region.
 	ErrCodeCloudWatchLogsDeliveryUnavailableException = "CloudWatchLogsDeliveryUnavailableException"
 
 	// ErrCodeConflictException for service response error code
@@ -297,8 +297,8 @@ const (
 	// ErrCodeInvalidHomeRegionException for service response error code
 	// "InvalidHomeRegionException".
 	//
-	// This exception is thrown when an operation is called on a trail from a region
-	// other than the region in which the trail was created.
+	// This exception is thrown when an operation is called on a trail from a Region
+	// other than the Region in which the trail was created.
 	ErrCodeInvalidHomeRegionException = "InvalidHomeRegionException"
 
 	// ErrCodeInvalidImportSourceException for service response error code
@@ -449,8 +449,8 @@ const (
 	// "KmsKeyNotFoundException".
 	//
 	// This exception is thrown when the KMS key does not exist, when the S3 bucket
-	// and the KMS key are not in the same region, or when the KMS key associated
-	// with the Amazon SNS topic either does not exist or is not in the same region.
+	// and the KMS key are not in the same Region, or when the KMS key associated
+	// with the Amazon SNS topic either does not exist or is not in the same Region.
 	ErrCodeKmsKeyNotFoundException = "KmsKeyNotFoundException"
 
 	// ErrCodeMaxConcurrentQueriesException for service response error code

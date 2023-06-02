@@ -756,6 +756,27 @@
         {"shape":"OrganizationNotInAllFeaturesModeException"}
       ]
     },
+    "StartEventDataStoreIngestion":{
+      "name":"StartEventDataStoreIngestion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartEventDataStoreIngestionRequest"},
+      "output":{"shape":"StartEventDataStoreIngestionResponse"},
+      "errors":[
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"EventDataStoreNotFoundException"},
+        {"shape":"InvalidEventDataStoreStatusException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidEventDataStoreCategoryException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"NotOrganizationMasterAccountException"},
+        {"shape":"NoManagementAccountSLRExistsException"},
+        {"shape":"InsufficientDependencyServiceAccessPermissionException"}
+      ]
+    },
     "StartImport":{
       "name":"StartImport",
       "http":{
@@ -828,6 +849,27 @@
         {"shape":"NoManagementAccountSLRExistsException"}
       ],
       "idempotent":true
+    },
+    "StopEventDataStoreIngestion":{
+      "name":"StopEventDataStoreIngestion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopEventDataStoreIngestionRequest"},
+      "output":{"shape":"StopEventDataStoreIngestionResponse"},
+      "errors":[
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"EventDataStoreNotFoundException"},
+        {"shape":"InvalidEventDataStoreStatusException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidEventDataStoreCategoryException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"NotOrganizationMasterAccountException"},
+        {"shape":"NoManagementAccountSLRExistsException"},
+        {"shape":"InsufficientDependencyServiceAccessPermissionException"}
+      ]
     },
     "StopImport":{
       "name":"StopImport",
@@ -1189,7 +1231,8 @@
         "RetentionPeriod":{"shape":"RetentionPeriod"},
         "TerminationProtectionEnabled":{"shape":"TerminationProtectionEnabled"},
         "TagsList":{"shape":"TagsList"},
-        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"}
+        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
+        "StartIngestion":{"shape":"Boolean"}
       }
     },
     "CreateEventDataStoreResponse":{
@@ -1537,7 +1580,10 @@
       "enum":[
         "CREATED",
         "ENABLED",
-        "PENDING_DELETION"
+        "PENDING_DELETION",
+        "STARTING_INGESTION",
+        "STOPPING_INGESTION",
+        "STOPPED_INGESTION"
       ]
     },
     "EventDataStoreTerminationProtectedException":{
@@ -2652,6 +2698,18 @@
         "AdvancedEventSelectors":{"shape":"AdvancedEventSelectors"}
       }
     },
+    "StartEventDataStoreIngestionRequest":{
+      "type":"structure",
+      "required":["EventDataStore"],
+      "members":{
+        "EventDataStore":{"shape":"EventDataStoreArn"}
+      }
+    },
+    "StartEventDataStoreIngestionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "StartImportRequest":{
       "type":"structure",
       "members":{
@@ -2699,6 +2757,18 @@
       "type":"structure",
       "members":{
         "QueryId":{"shape":"UUID"}
+      }
+    },
+    "StopEventDataStoreIngestionRequest":{
+      "type":"structure",
+      "required":["EventDataStore"],
+      "members":{
+        "EventDataStore":{"shape":"EventDataStoreArn"}
+      }
+    },
+    "StopEventDataStoreIngestionResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "StopImportRequest":{

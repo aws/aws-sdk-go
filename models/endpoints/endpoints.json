@@ -23703,7 +23703,8 @@
       },
       "route53resolver" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "runtime.sagemaker" : {

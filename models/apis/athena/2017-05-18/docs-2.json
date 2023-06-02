@@ -5,7 +5,7 @@
     "BatchGetNamedQuery": "<p>Returns the details of a single named query or a list of up to 50 queries, which you provide as an array of query ID strings. Requires you to have access to the workgroup in which the queries were saved. Use <a>ListNamedQueriesInput</a> to get the list of named query IDs in the specified workgroup. If information could not be retrieved for a submitted query ID, information about the query ID submitted is listed under <a>UnprocessedNamedQueryId</a>. Named queries differ from executed queries. Use <a>BatchGetQueryExecutionInput</a> to get details about each unique query execution, and <a>ListQueryExecutionsInput</a> to get a list of query execution IDs.</p>",
     "BatchGetPreparedStatement": "<p>Returns the details of a single prepared statement or a list of up to 256 prepared statements for the array of prepared statement names that you provide. Requires you to have access to the workgroup to which the prepared statements belong. If a prepared statement cannot be retrieved for the name specified, the statement is listed in <code>UnprocessedPreparedStatementNames</code>.</p>",
     "BatchGetQueryExecution": "<p>Returns the details of a single query execution or a list of up to 50 query executions, which you provide as an array of query execution ID strings. Requires you to have access to the workgroup in which the queries ran. To get a list of query execution IDs, use <a>ListQueryExecutionsInput$WorkGroup</a>. Query executions differ from named (saved) queries. Use <a>BatchGetNamedQueryInput</a> to get details about named queries.</p>",
-    "CancelCapacityReservation": "<p>Cancels the capacity reservation with the specified name.</p>",
+    "CancelCapacityReservation": "<p>Cancels the capacity reservation with the specified name. Cancelled reservations remain in your account and will be deleted 45 days after cancellation. During the 45 days, you cannot re-purpose or reuse a reservation that has been cancelled, but you can refer to its tags and view it for historical reference. </p>",
     "CreateCapacityReservation": "<p>Creates a capacity reservation with the specified name and number of requested data processing units.</p>",
     "CreateDataCatalog": "<p>Creates (registers) a data catalog with the specified name and properties. Catalogs created are visible to all users of the same Amazon Web Services account.</p>",
     "CreateNamedQuery": "<p>Creates a named query in the specified workgroup. Requires that you have access to the workgroup.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
@@ -13,6 +13,7 @@
     "CreatePreparedStatement": "<p>Creates a prepared statement for use with SQL queries in Athena.</p>",
     "CreatePresignedNotebookUrl": "<p>Gets an authentication token and the URL at which the notebook can be accessed. During programmatic access, <code>CreatePresignedNotebookUrl</code> must be called every 10 minutes to refresh the authentication token. For information about granting programmatic access, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/setting-up.html#setting-up-grant-programmatic-access\">Grant programmatic access</a>.</p>",
     "CreateWorkGroup": "<p>Creates a workgroup with the specified name. A workgroup can be an Apache Spark enabled workgroup or an Athena SQL workgroup.</p>",
+    "DeleteCapacityReservation": "<p>Deletes a cancelled capacity reservation. A reservation must be cancelled before it can be deleted. A deleted reservation is immediately removed from your account and can no longer be referenced, including by its ARN. A deleted reservation cannot be called by <code>GetCapacityReservation</code>, and deleted reservations do not appear in the output of <code>ListCapacityReservations</code>.</p>",
     "DeleteDataCatalog": "<p>Deletes a data catalog.</p>",
     "DeleteNamedQuery": "<p>Deletes the named query if you have access to the workgroup in which the query was saved.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "DeleteNotebook": "<p>Deletes the specified notebook.</p>",
@@ -317,6 +318,7 @@
         "CapacityAssignmentConfiguration$CapacityReservationName": "<p>The name of the reservation that the capacity assignment configuration is for.</p>",
         "CapacityReservation$Name": "<p>The name of the capacity reservation.</p>",
         "CreateCapacityReservationInput$Name": "<p>The name of the capacity reservation to create.</p>",
+        "DeleteCapacityReservationInput$Name": "<p>The name of the capacity reservation to delete.</p>",
         "GetCapacityAssignmentConfigurationInput$CapacityReservationName": "<p>The name of the capacity reservation to retrieve the capacity assignment configuration for.</p>",
         "GetCapacityReservationInput$Name": "<p>The name of the capacity reservation.</p>",
         "PutCapacityAssignmentConfigurationInput$CapacityReservationName": "<p>The name of the capacity reservation to put a capacity assignment configuration for.</p>",
@@ -568,6 +570,16 @@
         "EngineConfiguration$DefaultExecutorDpuSize": "<p>The default number of DPUs to use for executors. An executor is the smallest unit of compute that a notebook session can request from Athena. The default is 1.</p>"
       }
     },
+    "DeleteCapacityReservationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCapacityReservationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteDataCatalogInput": {
       "base": null,
       "refs": {
@@ -723,7 +735,7 @@
     "ExecutionParameters": {
       "base": null,
       "refs": {
-        "QueryExecution$ExecutionParameters": "<p>A list of values for the parameters in a query. The values are applied sequentially to the parameters in the query in the order in which the parameters occur.</p>",
+        "QueryExecution$ExecutionParameters": "<p>A list of values for the parameters in a query. The values are applied sequentially to the parameters in the query in the order in which the parameters occur. The list of parameters is not returned in the response.</p>",
         "StartQueryExecutionInput$ExecutionParameters": "<p>A list of values for the parameters in a query. The values are applied sequentially to the parameters in the query in the order in which the parameters occur.</p>"
       }
     },

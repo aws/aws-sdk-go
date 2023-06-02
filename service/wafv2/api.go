@@ -1788,6 +1788,189 @@ func (c *WAFV2) DeleteWebACLWithContext(ctx aws.Context, input *DeleteWebACLInpu
 	return out, req.Send()
 }
 
+const opDescribeAllManagedProducts = "DescribeAllManagedProducts"
+
+// DescribeAllManagedProductsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAllManagedProducts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAllManagedProducts for more information on using the DescribeAllManagedProducts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeAllManagedProductsRequest method.
+//	req, resp := client.DescribeAllManagedProductsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeAllManagedProducts
+func (c *WAFV2) DescribeAllManagedProductsRequest(input *DescribeAllManagedProductsInput) (req *request.Request, output *DescribeAllManagedProductsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAllManagedProducts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAllManagedProductsInput{}
+	}
+
+	output = &DescribeAllManagedProductsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAllManagedProducts API operation for AWS WAFV2.
+//
+// Provides high-level information for the Amazon Web Services Managed Rules
+// rule groups and Amazon Web Services Marketplace managed rule groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation DescribeAllManagedProducts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeAllManagedProducts
+func (c *WAFV2) DescribeAllManagedProducts(input *DescribeAllManagedProductsInput) (*DescribeAllManagedProductsOutput, error) {
+	req, out := c.DescribeAllManagedProductsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAllManagedProductsWithContext is the same as DescribeAllManagedProducts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAllManagedProducts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) DescribeAllManagedProductsWithContext(ctx aws.Context, input *DescribeAllManagedProductsInput, opts ...request.Option) (*DescribeAllManagedProductsOutput, error) {
+	req, out := c.DescribeAllManagedProductsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeManagedProductsByVendor = "DescribeManagedProductsByVendor"
+
+// DescribeManagedProductsByVendorRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeManagedProductsByVendor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeManagedProductsByVendor for more information on using the DescribeManagedProductsByVendor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeManagedProductsByVendorRequest method.
+//	req, resp := client.DescribeManagedProductsByVendorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeManagedProductsByVendor
+func (c *WAFV2) DescribeManagedProductsByVendorRequest(input *DescribeManagedProductsByVendorInput) (req *request.Request, output *DescribeManagedProductsByVendorOutput) {
+	op := &request.Operation{
+		Name:       opDescribeManagedProductsByVendor,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeManagedProductsByVendorInput{}
+	}
+
+	output = &DescribeManagedProductsByVendorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeManagedProductsByVendor API operation for AWS WAFV2.
+//
+// Provides high-level information for the managed rule groups owned by a specific
+// vendor.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation DescribeManagedProductsByVendor for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeManagedProductsByVendor
+func (c *WAFV2) DescribeManagedProductsByVendor(input *DescribeManagedProductsByVendorInput) (*DescribeManagedProductsByVendorOutput, error) {
+	req, out := c.DescribeManagedProductsByVendorRequest(input)
+	return out, req.Send()
+}
+
+// DescribeManagedProductsByVendorWithContext is the same as DescribeManagedProductsByVendor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeManagedProductsByVendor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) DescribeManagedProductsByVendorWithContext(ctx aws.Context, input *DescribeManagedProductsByVendorInput, opts ...request.Option) (*DescribeManagedProductsByVendorOutput, error) {
+	req, out := c.DescribeManagedProductsByVendorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeManagedRuleGroup = "DescribeManagedRuleGroup"
 
 // DescribeManagedRuleGroupRequest generates a "aws/request.Request" representing the
@@ -10028,6 +10211,204 @@ func (s DeleteWebACLOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeAllManagedProductsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAllManagedProductsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAllManagedProductsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAllManagedProductsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAllManagedProductsInput"}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScope sets the Scope field's value.
+func (s *DescribeAllManagedProductsInput) SetScope(v string) *DescribeAllManagedProductsInput {
+	s.Scope = &v
+	return s
+}
+
+type DescribeAllManagedProductsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// High-level information for the Amazon Web Services Managed Rules rule groups
+	// and Amazon Web Services Marketplace managed rule groups.
+	ManagedProducts []*ManagedProductDescriptor `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAllManagedProductsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAllManagedProductsOutput) GoString() string {
+	return s.String()
+}
+
+// SetManagedProducts sets the ManagedProducts field's value.
+func (s *DescribeAllManagedProductsOutput) SetManagedProducts(v []*ManagedProductDescriptor) *DescribeAllManagedProductsOutput {
+	s.ManagedProducts = v
+	return s
+}
+
+type DescribeManagedProductsByVendorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+
+	// The name of the managed rule group vendor. You use this, along with the rule
+	// group name, to identify a rule group.
+	//
+	// VendorName is a required field
+	VendorName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeManagedProductsByVendorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeManagedProductsByVendorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeManagedProductsByVendorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeManagedProductsByVendorInput"}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+	if s.VendorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VendorName"))
+	}
+	if s.VendorName != nil && len(*s.VendorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VendorName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScope sets the Scope field's value.
+func (s *DescribeManagedProductsByVendorInput) SetScope(v string) *DescribeManagedProductsByVendorInput {
+	s.Scope = &v
+	return s
+}
+
+// SetVendorName sets the VendorName field's value.
+func (s *DescribeManagedProductsByVendorInput) SetVendorName(v string) *DescribeManagedProductsByVendorInput {
+	s.VendorName = &v
+	return s
+}
+
+type DescribeManagedProductsByVendorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// High-level information for the managed rule groups owned by the specified
+	// vendor.
+	ManagedProducts []*ManagedProductDescriptor `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeManagedProductsByVendorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeManagedProductsByVendorOutput) GoString() string {
+	return s.String()
+}
+
+// SetManagedProducts sets the ManagedProducts field's value.
+func (s *DescribeManagedProductsByVendorOutput) SetManagedProducts(v []*ManagedProductDescriptor) *DescribeManagedProductsByVendorOutput {
+	s.ManagedProducts = v
+	return s
+}
+
 type DescribeManagedRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10055,7 +10436,7 @@ type DescribeManagedRuleGroupInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 
 	// The name of the managed rule group vendor. You use this, along with the rule
-	// group name, to identify the rule group.
+	// group name, to identify a rule group.
 	//
 	// VendorName is a required field
 	VendorName *string `min:"1" type:"string" required:"true"`
@@ -10176,11 +10557,11 @@ type DescribeManagedRuleGroupOutput struct {
 	Rules []*RuleSummary `type:"list"`
 
 	// The Amazon resource name (ARN) of the Amazon Simple Notification Service
-	// SNS topic that's used to record changes to the managed rule group. You can
-	// subscribe to the SNS topic to receive notifications when the managed rule
-	// group is modified, such as for new versions and for version expiration. For
-	// more information, see the Amazon Simple Notification Service Developer Guide
-	// (https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
+	// SNS topic that's used to provide notification of changes to the managed rule
+	// group. You can subscribe to the SNS topic to receive notifications when the
+	// managed rule group is modified, such as for new versions and for version
+	// expiration. For more information, see the Amazon Simple Notification Service
+	// Developer Guide (https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
 	SnsTopicArn *string `min:"20" type:"string"`
 
 	// The managed rule group's version.
@@ -10436,8 +10817,7 @@ type FieldToMatch struct {
 	// Inspect a string containing the list of the request's header names, ordered
 	// as they appear in the web request that WAF receives for inspection. WAF generates
 	// the string and then uses that as the field to match component in its inspection.
-	// WAF separates the header names in the string using colons and no added spaces,
-	// for example Host:User-Agent:Accept:Authorization:Referer.
+	// WAF separates the header names in the string using commas and no added spaces.
 	//
 	// Matches against the header order string are case insensitive.
 	HeaderOrder *HeaderOrder `type:"structure"`
@@ -12909,8 +13289,7 @@ func (s *HeaderMatchPattern) SetIncludedHeaders(v []*string) *HeaderMatchPattern
 // Inspect a string containing the list of the request's header names, ordered
 // as they appear in the web request that WAF receives for inspection. WAF generates
 // the string and then uses that as the field to match component in its inspection.
-// WAF separates the header names in the string using colons and no added spaces,
-// for example Host:User-Agent:Accept:Authorization:Referer.
+// WAF separates the header names in the string using commas and no added spaces.
 //
 // Matches against the header order string are case insensitive.
 type HeaderOrder struct {
@@ -14166,7 +14545,7 @@ type ListAvailableManagedRuleGroupVersionsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 
 	// The name of the managed rule group vendor. You use this, along with the rule
-	// group name, to identify the rule group.
+	// group name, to identify a rule group.
 	//
 	// VendorName is a required field
 	VendorName *string `min:"1" type:"string" required:"true"`
@@ -15794,6 +16173,124 @@ func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
 	return s
 }
 
+// The properties of a managed product, such as an Amazon Web Services Managed
+// Rules rule group or an Amazon Web Services Marketplace managed rule group.
+type ManagedProductDescriptor struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the rule group provides an advanced set of protections,
+	// such as the the Amazon Web Services Managed Rules rule groups that are used
+	// for WAF intelligent threat mitigation.
+	IsAdvancedManagedRuleSet *bool `type:"boolean"`
+
+	// Indicates whether the rule group is versioned.
+	IsVersioningSupported *bool `type:"boolean"`
+
+	// The name of the managed rule group. For example, AWSManagedRulesAnonymousIpList
+	// or AWSManagedRulesATPRuleSet.
+	ManagedRuleSetName *string `min:"1" type:"string"`
+
+	// A short description of the managed rule group.
+	ProductDescription *string `min:"1" type:"string"`
+
+	// A unique identifier for the rule group. This ID is returned in the responses
+	// to create and list commands. You provide it to operations like update and
+	// delete.
+	ProductId *string `min:"1" type:"string"`
+
+	// For Amazon Web Services Marketplace managed rule groups only, the link to
+	// the rule group product page.
+	ProductLink *string `min:"1" type:"string"`
+
+	// The display name for the managed rule group. For example, Anonymous IP list
+	// or Account takeover prevention.
+	ProductTitle *string `min:"1" type:"string"`
+
+	// The Amazon resource name (ARN) of the Amazon Simple Notification Service
+	// SNS topic that's used to provide notification of changes to the managed rule
+	// group. You can subscribe to the SNS topic to receive notifications when the
+	// managed rule group is modified, such as for new versions and for version
+	// expiration. For more information, see the Amazon Simple Notification Service
+	// Developer Guide (https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
+	SnsTopicArn *string `min:"20" type:"string"`
+
+	// The name of the managed rule group vendor. You use this, along with the rule
+	// group name, to identify a rule group.
+	VendorName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedProductDescriptor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedProductDescriptor) GoString() string {
+	return s.String()
+}
+
+// SetIsAdvancedManagedRuleSet sets the IsAdvancedManagedRuleSet field's value.
+func (s *ManagedProductDescriptor) SetIsAdvancedManagedRuleSet(v bool) *ManagedProductDescriptor {
+	s.IsAdvancedManagedRuleSet = &v
+	return s
+}
+
+// SetIsVersioningSupported sets the IsVersioningSupported field's value.
+func (s *ManagedProductDescriptor) SetIsVersioningSupported(v bool) *ManagedProductDescriptor {
+	s.IsVersioningSupported = &v
+	return s
+}
+
+// SetManagedRuleSetName sets the ManagedRuleSetName field's value.
+func (s *ManagedProductDescriptor) SetManagedRuleSetName(v string) *ManagedProductDescriptor {
+	s.ManagedRuleSetName = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *ManagedProductDescriptor) SetProductDescription(v string) *ManagedProductDescriptor {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetProductId sets the ProductId field's value.
+func (s *ManagedProductDescriptor) SetProductId(v string) *ManagedProductDescriptor {
+	s.ProductId = &v
+	return s
+}
+
+// SetProductLink sets the ProductLink field's value.
+func (s *ManagedProductDescriptor) SetProductLink(v string) *ManagedProductDescriptor {
+	s.ProductLink = &v
+	return s
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *ManagedProductDescriptor) SetProductTitle(v string) *ManagedProductDescriptor {
+	s.ProductTitle = &v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *ManagedProductDescriptor) SetSnsTopicArn(v string) *ManagedProductDescriptor {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetVendorName sets the VendorName field's value.
+func (s *ManagedProductDescriptor) SetVendorName(v string) *ManagedProductDescriptor {
+	s.VendorName = &v
+	return s
+}
+
 // Additional information that's used by a managed rule group. Many managed
 // rule groups don't require this.
 //
@@ -16005,7 +16502,7 @@ type ManagedRuleGroupStatement struct {
 	ScopeDownStatement *Statement `type:"structure"`
 
 	// The name of the managed rule group vendor. You use this, along with the rule
-	// group name, to identify the rule group.
+	// group name, to identify a rule group.
 	//
 	// VendorName is a required field
 	VendorName *string `min:"1" type:"string" required:"true"`
@@ -16143,9 +16640,10 @@ func (s *ManagedRuleGroupStatement) SetVersion(v string) *ManagedRuleGroupStatem
 // High-level information about a managed rule group, returned by ListAvailableManagedRuleGroups.
 // This provides information like the name and vendor name, that you provide
 // when you add a ManagedRuleGroupStatement to a web ACL. Managed rule groups
-// include Amazon Web Services Managed Rules rule groups, which are free of
-// charge to WAF customers, and Amazon Web Services Marketplace managed rule
-// groups, which you can subscribe to through Amazon Web Services Marketplace.
+// include Amazon Web Services Managed Rules rule groups and Amazon Web Services
+// Marketplace managed rule groups. To use any Amazon Web Services Marketplace
+// managed rule group, first subscribe to the rule group through Amazon Web
+// Services Marketplace.
 type ManagedRuleGroupSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -16158,7 +16656,7 @@ type ManagedRuleGroupSummary struct {
 	Name *string `min:"1" type:"string"`
 
 	// The name of the managed rule group vendor. You use this, along with the rule
-	// group name, to identify the rule group.
+	// group name, to identify a rule group.
 	VendorName *string `min:"1" type:"string"`
 
 	// Indicates whether the managed rule group is versioned. If it is, you can
@@ -23132,8 +23630,8 @@ func (s *VersionToPublish) SetForecastedLifetime(v int64) *VersionToPublish {
 type VisibilityConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A boolean indicating whether the associated resource sends metrics to Amazon
-	// CloudWatch. For the list of available metrics, see WAF Metrics (https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics)
+	// Indicates whether the associated resource sends metrics to Amazon CloudWatch.
+	// For the list of available metrics, see WAF Metrics (https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics)
 	// in the WAF Developer Guide.
 	//
 	// For web ACLs, the metrics are for web requests that have the web ACL default
@@ -23153,8 +23651,8 @@ type VisibilityConfig struct {
 	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
-	// A boolean indicating whether WAF should store a sampling of the web requests
-	// that match the rules. You can view the sampled requests through the WAF console.
+	// Indicates whether WAF should store a sampling of the web requests that match
+	// the rules. You can view the sampled requests through the WAF console.
 	//
 	// SampledRequestsEnabled is a required field
 	SampledRequestsEnabled *bool `type:"boolean" required:"true"`

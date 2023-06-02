@@ -234,6 +234,10 @@ type CloudTrailAPI interface {
 	RestoreEventDataStoreWithContext(aws.Context, *cloudtrail.RestoreEventDataStoreInput, ...request.Option) (*cloudtrail.RestoreEventDataStoreOutput, error)
 	RestoreEventDataStoreRequest(*cloudtrail.RestoreEventDataStoreInput) (*request.Request, *cloudtrail.RestoreEventDataStoreOutput)
 
+	StartEventDataStoreIngestion(*cloudtrail.StartEventDataStoreIngestionInput) (*cloudtrail.StartEventDataStoreIngestionOutput, error)
+	StartEventDataStoreIngestionWithContext(aws.Context, *cloudtrail.StartEventDataStoreIngestionInput, ...request.Option) (*cloudtrail.StartEventDataStoreIngestionOutput, error)
+	StartEventDataStoreIngestionRequest(*cloudtrail.StartEventDataStoreIngestionInput) (*request.Request, *cloudtrail.StartEventDataStoreIngestionOutput)
+
 	StartImport(*cloudtrail.StartImportInput) (*cloudtrail.StartImportOutput, error)
 	StartImportWithContext(aws.Context, *cloudtrail.StartImportInput, ...request.Option) (*cloudtrail.StartImportOutput, error)
 	StartImportRequest(*cloudtrail.StartImportInput) (*request.Request, *cloudtrail.StartImportOutput)
@@ -245,6 +249,10 @@ type CloudTrailAPI interface {
 	StartQuery(*cloudtrail.StartQueryInput) (*cloudtrail.StartQueryOutput, error)
 	StartQueryWithContext(aws.Context, *cloudtrail.StartQueryInput, ...request.Option) (*cloudtrail.StartQueryOutput, error)
 	StartQueryRequest(*cloudtrail.StartQueryInput) (*request.Request, *cloudtrail.StartQueryOutput)
+
+	StopEventDataStoreIngestion(*cloudtrail.StopEventDataStoreIngestionInput) (*cloudtrail.StopEventDataStoreIngestionOutput, error)
+	StopEventDataStoreIngestionWithContext(aws.Context, *cloudtrail.StopEventDataStoreIngestionInput, ...request.Option) (*cloudtrail.StopEventDataStoreIngestionOutput, error)
+	StopEventDataStoreIngestionRequest(*cloudtrail.StopEventDataStoreIngestionInput) (*request.Request, *cloudtrail.StopEventDataStoreIngestionOutput)
 
 	StopImport(*cloudtrail.StopImportInput) (*cloudtrail.StopImportOutput, error)
 	StopImportWithContext(aws.Context, *cloudtrail.StopImportInput, ...request.Option) (*cloudtrail.StopImportOutput, error)
