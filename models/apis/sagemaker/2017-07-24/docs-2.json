@@ -3329,7 +3329,7 @@
       }
     },
     "DeploymentRecommendation": {
-      "base": "<p>A set of recommended deployment configurations for the model.</p>",
+      "base": "<p>A set of recommended deployment configurations for the model. To get more advanced recommendations, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateInferenceRecommendationsJob.html\">CreateInferenceRecommendationsJob</a> to create an inference recommendation job.</p>",
       "refs": {
         "DescribeModelOutput$DeploymentRecommendation": "<p>A set of recommended deployment configurations for the model.</p>",
         "Model$DeploymentRecommendation": "<p>A set of recommended deployment configurations for the model.</p>"
@@ -10379,6 +10379,8 @@
         "PipelineExecutionSummary$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "RetryPipelineExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "RetryPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
+        "SelectiveExecutionConfig$SourcePipelineExecutionArn": "<p>The ARN from a reference execution of the current pipeline. Used to copy input collaterals needed for the selected steps to run. The execution status of the pipeline can be either <code>Failed</code> or <code>Success</code>.</p>",
+        "SelectiveExecutionResult$SourcePipelineExecutionArn": "<p>The ARN from an execution of the current pipeline.</p>",
         "SendPipelineExecutionStepFailureResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "SendPipelineExecutionStepSuccessResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StartPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
@@ -11186,7 +11188,7 @@
       }
     },
     "RStudioServerProAppSettings": {
-      "base": "<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app. <code>RStudioServerProAppSettings</code> cannot be updated. The <code>RStudioServerPro</code> app must be deleted and a new one created to make any changes.</p>",
+      "base": "<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app.</p>",
       "refs": {
         "UserSettings$RStudioServerProAppSettings": "<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app.</p>"
       }
@@ -11406,7 +11408,7 @@
     "RecommendationStatus": {
       "base": null,
       "refs": {
-        "DeploymentRecommendation$RecommendationStatus": "<p>Status of the deployment recommendation. <code>NOT_APPLICABLE</code> means that SageMaker is unable to provide a default recommendation for the model using the information provided.</p>"
+        "DeploymentRecommendation$RecommendationStatus": "<p>Status of the deployment recommendation. The status <code>NOT_APPLICABLE</code> means that SageMaker is unable to provide a default recommendation for the model using the information provided. If the deployment status is <code>IN_PROGRESS</code>, retry your API call after a few seconds to get a <code>COMPLETED</code> deployment recommendation.</p>"
       }
     },
     "RecommendationStepType": {
@@ -12016,6 +12018,32 @@
       "base": null,
       "refs": {
         "ShuffleConfig$Seed": "<p>Determines the shuffling order in <code>ShuffleConfig</code> value.</p>"
+      }
+    },
+    "SelectedStep": {
+      "base": "<p>A step selected to run in selective execution mode.</p>",
+      "refs": {
+        "SelectedStepList$member": null
+      }
+    },
+    "SelectedStepList": {
+      "base": null,
+      "refs": {
+        "SelectiveExecutionConfig$SelectedSteps": "<p>A list of pipeline steps to run. All step(s) in all path(s) between two selected steps should be included.</p>"
+      }
+    },
+    "SelectiveExecutionConfig": {
+      "base": "<p>The selective execution configuration applied to the pipeline run.</p>",
+      "refs": {
+        "DescribePipelineExecutionResponse$SelectiveExecutionConfig": "<p>The selective execution configuration applied to the pipeline run.</p>",
+        "PipelineExecution$SelectiveExecutionConfig": "<p>The selective execution configuration applied to the pipeline run.</p>",
+        "StartPipelineExecutionRequest$SelectiveExecutionConfig": "<p>The selective execution configuration applied to the pipeline run.</p>"
+      }
+    },
+    "SelectiveExecutionResult": {
+      "base": "<p>The ARN from an execution of the current pipeline.</p>",
+      "refs": {
+        "PipelineExecutionStep$SelectiveExecutionResult": "<p>The ARN from an execution of the current pipeline from which results are reused for this step.</p>"
       }
     },
     "SendPipelineExecutionStepFailureRequest": {
@@ -12719,6 +12747,7 @@
         "QueryProperties$key": null,
         "QueryProperties$value": null,
         "RegisterModelStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
+        "SelectedStep$StepName": "<p>The name of the pipeline step.</p>",
         "SendPipelineExecutionStepFailureRequest$FailureReason": "<p>A message describing why the step failed.</p>"
       }
     },

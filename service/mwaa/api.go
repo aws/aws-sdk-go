@@ -1198,8 +1198,8 @@ type CreateEnvironmentInput struct {
 	AirflowConfigurationOptions map[string]*string `type:"map" sensitive:"true"`
 
 	// The Apache Airflow version for your environment. If no value is specified,
-	// it defaults to the latest version. Valid values: 1.10.12, 2.0.2, 2.2.2, and
-	// 2.4.3. For more information, see Apache Airflow versions on Amazon Managed
+	// it defaults to the latest version. Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3,
+	// and 2.5.1. For more information, see Apache Airflow versions on Amazon Managed
 	// Workflows for Apache Airflow (MWAA) (https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html).
 	AirflowVersion *string `min:"1" type:"string"`
 
@@ -1838,7 +1838,7 @@ type Environment struct {
 	AirflowConfigurationOptions map[string]*string `type:"map" sensitive:"true"`
 
 	// The Apache Airflow version on your environment. Valid values: 1.10.12, 2.0.2,
-	// 2.2.2, and 2.4.3.
+	// 2.2.2, 2.4.3, and 2.5.1.
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon MWAA environment.
@@ -1958,6 +1958,13 @@ type Environment struct {
 	//
 	//    * CREATING - Indicates the request to create the environment is in progress.
 	//
+	//    * CREATING_SNAPSHOT - Indicates the request to update environment details,
+	//    or upgrade the environment version, is in progress and Amazon MWAA is
+	//    creating a storage volume snapshot of the Amazon RDS database cluster
+	//    associated with the environment. A database snapshot is a backup created
+	//    at a specific point in time. Amazon MWAA uses snapshots to recover environment
+	//    metadata if the process to update or upgrade an environment fails.
+	//
 	//    * CREATE_FAILED - Indicates the request to create the environment failed,
 	//    and the environment could not be created.
 	//
@@ -1965,6 +1972,10 @@ type Environment struct {
 	//    is ready to use.
 	//
 	//    * UPDATING - Indicates the request to update the environment is in progress.
+	//
+	//    * ROLLING_BACK - Indicates the request to update environment details,
+	//    or upgrade the environment version, failed and Amazon MWAA is restoring
+	//    the environment using the latest storage volume snapshot.
 	//
 	//    * DELETING - Indicates the request to delete the environment is in progress.
 	//
@@ -3437,9 +3448,15 @@ type UpdateEnvironmentInput struct {
 	// String and GoString methods.
 	AirflowConfigurationOptions map[string]*string `type:"map" sensitive:"true"`
 
-	// The Apache Airflow version for your environment. If no value is specified,
-	// defaults to the latest version. Valid values: 1.10.12, 2.0.2, 2.2.2, and
-	// 2.4.3.
+	// The Apache Airflow version for your environment. To upgrade your environment,
+	// specify a newer version of Apache Airflow supported by Amazon MWAA.
+	//
+	// Before you upgrade an environment, make sure your requirements, DAGs, plugins,
+	// and other resources used in your workflows are compatible with the new Apache
+	// Airflow version. For more information about updating your resources, see
+	// Upgrading an Amazon MWAA environment (https://docs.aws.amazon.com/mwaa/latest/userguide/upgrading-environment.html).
+	//
+	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, and 2.5.1.
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,
@@ -3965,6 +3982,12 @@ const (
 
 	// EnvironmentStatusUpdateFailed is a EnvironmentStatus enum value
 	EnvironmentStatusUpdateFailed = "UPDATE_FAILED"
+
+	// EnvironmentStatusRollingBack is a EnvironmentStatus enum value
+	EnvironmentStatusRollingBack = "ROLLING_BACK"
+
+	// EnvironmentStatusCreatingSnapshot is a EnvironmentStatus enum value
+	EnvironmentStatusCreatingSnapshot = "CREATING_SNAPSHOT"
 )
 
 // EnvironmentStatus_Values returns all elements of the EnvironmentStatus enum
@@ -3978,6 +4001,8 @@ func EnvironmentStatus_Values() []string {
 		EnvironmentStatusDeleted,
 		EnvironmentStatusUnavailable,
 		EnvironmentStatusUpdateFailed,
+		EnvironmentStatusRollingBack,
+		EnvironmentStatusCreatingSnapshot,
 	}
 }
 

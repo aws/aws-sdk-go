@@ -1277,7 +1277,7 @@ func (c *Keyspaces) TagResourceRequest(input *TagResourceInput) (req *request.Re
 //
 // For IAM policy examples that show how to control access to Amazon Keyspaces
 // resources based on tags, see Amazon Keyspaces resource access based on tags
-// (https://docs.aws.amazon.com/keyspaces/latest/devguide/security_iam_id-based-policy-examples-tags)
+// (https://docs.aws.amazon.com/keyspaces/latest/devguide/security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-tags)
 // in the Amazon Keyspaces Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2069,6 +2069,16 @@ type CreateKeyspaceInput struct {
 	// KeyspaceName is a required field
 	KeyspaceName *string `locationName:"keyspaceName" min:"1" type:"string" required:"true"`
 
+	// The replication specification of the keyspace includes:
+	//
+	//    * replicationStrategy - the required value is SINGLE_REGION or MULTI_REGION.
+	//
+	//    * regionList - if the replicationStrategy is MULTI_REGION, the regionList
+	//    requires the current Region and at least one additional Amazon Web Services
+	//    Region where the keyspace is going to be replicated in. The maximum number
+	//    of supported replication Regions including the current Region is six.
+	ReplicationSpecification *ReplicationSpecification `locationName:"replicationSpecification" type:"structure"`
+
 	// A list of key-value pair tags to be attached to the keyspace.
 	//
 	// For more information, see Adding tags and labels to Amazon Keyspaces resources
@@ -2107,6 +2117,11 @@ func (s *CreateKeyspaceInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.ReplicationSpecification != nil {
+		if err := s.ReplicationSpecification.Validate(); err != nil {
+			invalidParams.AddNested("ReplicationSpecification", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -2127,6 +2142,12 @@ func (s *CreateKeyspaceInput) Validate() error {
 // SetKeyspaceName sets the KeyspaceName field's value.
 func (s *CreateKeyspaceInput) SetKeyspaceName(v string) *CreateKeyspaceInput {
 	s.KeyspaceName = &v
+	return s
+}
+
+// SetReplicationSpecification sets the ReplicationSpecification field's value.
+func (s *CreateKeyspaceInput) SetReplicationSpecification(v *ReplicationSpecification) *CreateKeyspaceInput {
+	s.ReplicationSpecification = v
 	return s
 }
 
@@ -2798,7 +2819,17 @@ type GetKeyspaceOutput struct {
 	// KeyspaceName is a required field
 	KeyspaceName *string `locationName:"keyspaceName" min:"1" type:"string" required:"true"`
 
-	// The ARN of the keyspace.
+	// If the replicationStrategy of the keyspace is MULTI_REGION, a list of replication
+	// Regions is returned.
+	ReplicationRegions []*string `locationName:"replicationRegions" min:"2" type:"list"`
+
+	// Returns the replication strategy of the keyspace. The options are SINGLE_REGION
+	// or MULTI_REGION.
+	//
+	// ReplicationStrategy is a required field
+	ReplicationStrategy *string `locationName:"replicationStrategy" min:"1" type:"string" required:"true" enum:"Rs"`
+
+	// Returns the ARN of the keyspace.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -2825,6 +2856,18 @@ func (s GetKeyspaceOutput) GoString() string {
 // SetKeyspaceName sets the KeyspaceName field's value.
 func (s *GetKeyspaceOutput) SetKeyspaceName(v string) *GetKeyspaceOutput {
 	s.KeyspaceName = &v
+	return s
+}
+
+// SetReplicationRegions sets the ReplicationRegions field's value.
+func (s *GetKeyspaceOutput) SetReplicationRegions(v []*string) *GetKeyspaceOutput {
+	s.ReplicationRegions = v
+	return s
+}
+
+// SetReplicationStrategy sets the ReplicationStrategy field's value.
+func (s *GetKeyspaceOutput) SetReplicationStrategy(v string) *GetKeyspaceOutput {
+	s.ReplicationStrategy = &v
 	return s
 }
 
@@ -3123,6 +3166,16 @@ type KeyspaceSummary struct {
 	// KeyspaceName is a required field
 	KeyspaceName *string `locationName:"keyspaceName" min:"1" type:"string" required:"true"`
 
+	// If the replicationStrategy of the keyspace is MULTI_REGION, a list of replication
+	// Regions is returned.
+	ReplicationRegions []*string `locationName:"replicationRegions" min:"2" type:"list"`
+
+	// This property specifies if a keyspace is a single Region keyspace or a multi-Region
+	// keyspace. The available values are SINGLE_REGION or MULTI_REGION.
+	//
+	// ReplicationStrategy is a required field
+	ReplicationStrategy *string `locationName:"replicationStrategy" min:"1" type:"string" required:"true" enum:"Rs"`
+
 	// The unique identifier of the keyspace in the format of an Amazon Resource
 	// Name (ARN).
 	//
@@ -3151,6 +3204,18 @@ func (s KeyspaceSummary) GoString() string {
 // SetKeyspaceName sets the KeyspaceName field's value.
 func (s *KeyspaceSummary) SetKeyspaceName(v string) *KeyspaceSummary {
 	s.KeyspaceName = &v
+	return s
+}
+
+// SetReplicationRegions sets the ReplicationRegions field's value.
+func (s *KeyspaceSummary) SetReplicationRegions(v []*string) *KeyspaceSummary {
+	s.ReplicationRegions = v
+	return s
+}
+
+// SetReplicationStrategy sets the ReplicationStrategy field's value.
+func (s *KeyspaceSummary) SetReplicationStrategy(v string) *KeyspaceSummary {
+	s.ReplicationStrategy = &v
 	return s
 }
 
@@ -3645,6 +3710,75 @@ func (s *PointInTimeRecoverySummary) SetEarliestRestorableTimestamp(v time.Time)
 // SetStatus sets the Status field's value.
 func (s *PointInTimeRecoverySummary) SetStatus(v string) *PointInTimeRecoverySummary {
 	s.Status = &v
+	return s
+}
+
+// The replication specification of the keyspace includes:
+//
+//   - regionList - up to six Amazon Web Services Regions where the keyspace
+//     is replicated in.
+//
+//   - replicationStrategy - the required value is SINGLE_REGION or MULTI_REGION.
+type ReplicationSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The regionList can contain up to six Amazon Web Services Regions where the
+	// keyspace is replicated in.
+	RegionList []*string `locationName:"regionList" min:"2" type:"list"`
+
+	// The replicationStrategy of a keyspace, the required value is SINGLE_REGION
+	// or MULTI_REGION.
+	//
+	// ReplicationStrategy is a required field
+	ReplicationStrategy *string `locationName:"replicationStrategy" min:"1" type:"string" required:"true" enum:"Rs"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicationSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicationSpecification"}
+	if s.RegionList != nil && len(s.RegionList) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("RegionList", 2))
+	}
+	if s.ReplicationStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationStrategy"))
+	}
+	if s.ReplicationStrategy != nil && len(*s.ReplicationStrategy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplicationStrategy", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRegionList sets the RegionList field's value.
+func (s *ReplicationSpecification) SetRegionList(v []*string) *ReplicationSpecification {
+	s.RegionList = v
+	return s
+}
+
+// SetReplicationStrategy sets the ReplicationStrategy field's value.
+func (s *ReplicationSpecification) SetReplicationStrategy(v string) *ReplicationSpecification {
+	s.ReplicationStrategy = &v
 	return s
 }
 
@@ -4954,6 +5088,22 @@ func PointInTimeRecoveryStatus_Values() []string {
 	return []string{
 		PointInTimeRecoveryStatusEnabled,
 		PointInTimeRecoveryStatusDisabled,
+	}
+}
+
+const (
+	// RsSingleRegion is a Rs enum value
+	RsSingleRegion = "SINGLE_REGION"
+
+	// RsMultiRegion is a Rs enum value
+	RsMultiRegion = "MULTI_REGION"
+)
+
+// Rs_Values returns all elements of the Rs enum
+func Rs_Values() []string {
+	return []string{
+		RsSingleRegion,
+		RsMultiRegion,
 	}
 }
 

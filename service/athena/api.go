@@ -326,7 +326,10 @@ func (c *Athena) CancelCapacityReservationRequest(input *CancelCapacityReservati
 
 // CancelCapacityReservation API operation for Amazon Athena.
 //
-// Cancels the capacity reservation with the specified name.
+// Cancels the capacity reservation with the specified name. Cancelled reservations
+// remain in your account and will be deleted 45 days after cancellation. During
+// the 45 days, you cannot re-purpose or reuse a reservation that has been cancelled,
+// but you can refer to its tags and view it for historical reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -973,6 +976,95 @@ func (c *Athena) CreateWorkGroup(input *CreateWorkGroupInput) (*CreateWorkGroupO
 // for more information on using Contexts.
 func (c *Athena) CreateWorkGroupWithContext(ctx aws.Context, input *CreateWorkGroupInput, opts ...request.Option) (*CreateWorkGroupOutput, error) {
 	req, out := c.CreateWorkGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCapacityReservation = "DeleteCapacityReservation"
+
+// DeleteCapacityReservationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCapacityReservation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCapacityReservation for more information on using the DeleteCapacityReservation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCapacityReservationRequest method.
+//	req, resp := client.DeleteCapacityReservationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/DeleteCapacityReservation
+func (c *Athena) DeleteCapacityReservationRequest(input *DeleteCapacityReservationInput) (req *request.Request, output *DeleteCapacityReservationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCapacityReservation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCapacityReservationInput{}
+	}
+
+	output = &DeleteCapacityReservationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCapacityReservation API operation for Amazon Athena.
+//
+// Deletes a cancelled capacity reservation. A reservation must be cancelled
+// before it can be deleted. A deleted reservation is immediately removed from
+// your account and can no longer be referenced, including by its ARN. A deleted
+// reservation cannot be called by GetCapacityReservation, and deleted reservations
+// do not appear in the output of ListCapacityReservations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation DeleteCapacityReservation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/DeleteCapacityReservation
+func (c *Athena) DeleteCapacityReservation(input *DeleteCapacityReservationInput) (*DeleteCapacityReservationOutput, error) {
+	req, out := c.DeleteCapacityReservationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCapacityReservationWithContext is the same as DeleteCapacityReservation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCapacityReservation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) DeleteCapacityReservationWithContext(ctx aws.Context, input *DeleteCapacityReservationInput, opts ...request.Option) (*DeleteCapacityReservationOutput, error) {
+	req, out := c.DeleteCapacityReservationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9097,6 +9189,77 @@ func (s *Datum) SetVarCharValue(v string) *Datum {
 	return s
 }
 
+type DeleteCapacityReservationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the capacity reservation to delete.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCapacityReservationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCapacityReservationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCapacityReservationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCapacityReservationInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteCapacityReservationInput) SetName(v string) *DeleteCapacityReservationInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteCapacityReservationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCapacityReservationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCapacityReservationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteDataCatalogInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14192,6 +14355,7 @@ type QueryExecution struct {
 
 	// A list of values for the parameters in a query. The values are applied sequentially
 	// to the parameters in the query in the order in which the parameters occur.
+	// The list of parameters is not returned in the response.
 	ExecutionParameters []*string `min:"1" type:"list"`
 
 	// The SQL query statements which the query execution ran.

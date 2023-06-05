@@ -1649,7 +1649,9 @@ func (c *FraudDetector) DeleteEventRequest(input *DeleteEventInput) (req *reques
 // Deletes the specified event.
 //
 // When you delete an event, Amazon Fraud Detector permanently deletes that
-// event and the event data is no longer stored in Amazon Fraud Detector.
+// event and the event data is no longer stored in Amazon Fraud Detector. If
+// deleteAuditHistory is True, event data is available through search for up
+// to 30 seconds after the delete operation is completed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10397,7 +10399,7 @@ type CreateVariableInput struct {
 	// DataSource is a required field
 	DataSource *string `locationName:"dataSource" type:"string" required:"true" enum:"DataSource"`
 
-	// The data type.
+	// The data type of the variable.
 	//
 	// DataType is a required field
 	DataType *string `locationName:"dataType" type:"string" required:"true" enum:"DataType"`
@@ -10961,6 +10963,7 @@ type DeleteEventInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether or not to delete any predictions associated with the event.
+	// If set to True,
 	DeleteAuditHistory *bool `locationName:"deleteAuditHistory" type:"boolean"`
 
 	// The ID of the event to delete.
@@ -21682,6 +21685,9 @@ const (
 
 	// DataTypeBoolean is a DataType enum value
 	DataTypeBoolean = "BOOLEAN"
+
+	// DataTypeDatetime is a DataType enum value
+	DataTypeDatetime = "DATETIME"
 )
 
 // DataType_Values returns all elements of the DataType enum
@@ -21691,6 +21697,7 @@ func DataType_Values() []string {
 		DataTypeInteger,
 		DataTypeFloat,
 		DataTypeBoolean,
+		DataTypeDatetime,
 	}
 }
 
