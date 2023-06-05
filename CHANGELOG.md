@@ -1,3 +1,44 @@
+Release v1.44.276 (2023-06-05)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * AWS CloudFormation StackSets provides customers with three new APIs to activate, deactivate, and describe AWS Organizations trusted access which is needed to get started with service-managed StackSets.
+* `service/ec2`: Updates service API
+  * Making InstanceTagAttribute as the required parameter for the DeregisterInstanceEventNotificationAttributes and RegisterInstanceEventNotificationAttributes APIs.
+* `service/finspace`: Updates service API, documentation, and paginators
+* `service/frauddetector`: Updates service API and documentation
+* `service/keyspaces`: Updates service API and documentation
+* `service/kms`: Updates service API, documentation, and examples
+  * This release includes feature to import customer's asymmetric (RSA and ECC) and HMAC keys into KMS.  It also includes feature to allow customers to specify number of days to schedule a KMS key deletion as a policy condition key.
+* `service/lambda`: Updates service API and documentation
+  * Add Ruby 3.2 (ruby3.2) Runtime support to AWS Lambda.
+* `service/mwaa`: Updates service API and documentation
+
+Release v1.44.275 (2023-06-02)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * This release introduces the DeleteCapacityReservation API and the ability to manage capacity reservations using CloudFormation
+* `service/cloudtrail`: Updates service API and documentation
+  * This feature allows users to start and stop event ingestion on a CloudTrail Lake event data store.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds Selective Execution feature that allows SageMaker Pipelines users to run selected steps in a pipeline.
+* `service/wafv2`: Updates service API and documentation
+
+Release v1.44.274 (2023-06-01)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/appflow`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/sagemaker`: Updates service documentation
+  * Amazon Sagemaker Autopilot adds support for Parquet file input to NLP text classification jobs.
+* `service/wafv2`: Updates service documentation
+
 Release v1.44.273 (2023-05-31)
 ===
 

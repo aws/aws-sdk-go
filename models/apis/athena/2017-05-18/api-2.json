@@ -160,6 +160,20 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "DeleteCapacityReservation":{
+      "name":"DeleteCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCapacityReservationInput"},
+      "output":{"shape":"DeleteCapacityReservationOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "DeleteDataCatalog":{
       "name":"DeleteDataCatalog",
       "http":{
@@ -1468,6 +1482,18 @@
       "box":true,
       "max":1,
       "min":1
+    },
+    "DeleteCapacityReservationInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"CapacityReservationName"}
+      }
+    },
+    "DeleteCapacityReservationOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteDataCatalogInput":{
       "type":"structure",

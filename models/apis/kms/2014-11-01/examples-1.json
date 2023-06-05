@@ -410,7 +410,7 @@
             "KeyMetadata": "Detailed information about the KMS key that this operation creates."
           }
         },
-        "description": "This example creates a KMS key with no key material. When the operation is complete, you can import your own key material into the KMS key. To create this KMS key, set the Origin parameter to EXTERNAL.",
+        "description": "This example creates a symmetric KMS key with no key material. When the operation is complete, you can import your own key material into the KMS key. To create this KMS key, set the Origin parameter to EXTERNAL.",
         "id": "to-create-a-kms-key-for-imported-key-material-5",
         "title": "To create a KMS key for imported key material"
       },
@@ -1440,25 +1440,112 @@
         "output": {
           "ImportToken": "<binary data>",
           "KeyId": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
-          "ParametersValidTo": "2016-12-01T14:52:17-08:00",
+          "ParametersValidTo": "2023-02-01T14:52:17-08:00",
           "PublicKey": "<binary data>"
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the KMS key for which to retrieve the public key and import token. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
+            "KeyId": "The identifier of the KMS key that will be associated with the imported key material. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
             "WrappingAlgorithm": "The algorithm that you will use to encrypt the key material before importing it.",
             "WrappingKeySpec": "The type of wrapping key (public key) to return in the response."
           },
           "output": {
             "ImportToken": "The import token to send with a subsequent ImportKeyMaterial request.",
-            "KeyId": "The ARN of the KMS key for which you are retrieving the public key and import token. This is the same KMS key specified in the request.",
-            "ParametersValidTo": "The time at which the import token and public key are no longer valid.",
+            "KeyId": "The ARN of the KMS key that will be associated with the imported key material.",
+            "ParametersValidTo": "The date and time when the import token and public key expire. After this time, call GetParametersForImport again.",
             "PublicKey": "The public key to use to encrypt the key material before importing it."
           }
         },
-        "description": "The following example retrieves the public key and import token for the specified KMS key.",
-        "id": "to-retrieve-the-public-key-and-import-token-for-a-cmk-1480626483211",
-        "title": "To retrieve the public key and import token for a KMS key"
+        "description": "The following example downloads a public key and import token to import symmetric encryption key material. It uses the default wrapping key spec and the RSAES_OAEP_SHA_256 wrapping algorithm.",
+        "id": "to-download-the-public-key-and-import-token-1",
+        "title": "To download the public key and import token for a symmetric encryption KMS key"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/8888abcd-12ab-34cd-56ef-1234567890ab",
+          "WrappingAlgorithm": "RSA_AES_KEY_WRAP_SHA_256",
+          "WrappingKeySpec": "RSA_4096"
+        },
+        "output": {
+          "ImportToken": "<binary data>",
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/8888abcd-12ab-34cd-56ef-1234567890ab",
+          "ParametersValidTo": "2023-03-08T13:02:02-07:00",
+          "PublicKey": "<binary data>"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The identifier of the KMS key that will be associated with the imported key material. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
+            "WrappingAlgorithm": "The algorithm that you will use to encrypt the key material before importing it.",
+            "WrappingKeySpec": "The type of wrapping key (public key) to return in the response."
+          },
+          "output": {
+            "ImportToken": "The import token to send with a subsequent ImportKeyMaterial request.",
+            "KeyId": "The ARN of the KMS key that will be associated with the imported key material.",
+            "ParametersValidTo": "The date and time when the import token and public key expire. After this time, call GetParametersForImport again.",
+            "PublicKey": "The public key to use to encrypt the key material before importing it."
+          }
+        },
+        "description": "The following example downloads a public key and import token to import an RSA private key. It uses a required RSA_AES wrapping algorithm and the largest supported private key.",
+        "id": "to-download-the-public-key-and-import-token-2",
+        "title": "To download the public key and import token for an RSA asymmetric KMS key"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/9876abcd-12ab-34cd-56ef-1234567890ab",
+          "WrappingAlgorithm": "RSAES_OAEP_SHA_256",
+          "WrappingKeySpec": "RSA_3072"
+        },
+        "output": {
+          "ImportToken": "<binary data>",
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/9876abcd-12ab-34cd-56ef-1234567890ab",
+          "ParametersValidTo": "2023-09-12T03:15:01-20:00",
+          "PublicKey": "<binary data>"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The identifier of the KMS key that will be associated with the imported key material. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
+            "WrappingAlgorithm": "The algorithm that you will use to encrypt the key material before importing it.",
+            "WrappingKeySpec": "The type of wrapping key (public key) to return in the response."
+          },
+          "output": {
+            "ImportToken": "The import token to send with a subsequent ImportKeyMaterial request.",
+            "KeyId": "The ARN of the KMS key that will be associated with the imported key material.",
+            "ParametersValidTo": "The date and time when the import token and public key expire. After this time, call GetParametersForImport again.",
+            "PublicKey": "The public key to use to encrypt the key material before importing it."
+          }
+        },
+        "description": "The following example downloads a public key and import token to import an ECC_NIST_P521 (secp521r1) private key. You cannot directly wrap this ECC key under an RSA_2048 public key, although you can use an RSA_2048 public key with an RSA_AES wrapping algorithm to wrap any supported key material. This example requests an RSA_3072 public key for use with the RSAES_OAEP_SHA_256.",
+        "id": "to-download-the-public-key-and-import-token-3",
+        "title": "To download the public key and import token for an elliptic curve (ECC) asymmetric KMS key"
+      },
+      {
+        "input": {
+          "KeyId": "2468abcd-12ab-34cd-56ef-1234567890ab",
+          "WrappingAlgorithm": "RSAES_OAEP_SHA_256",
+          "WrappingKeySpec": "RSA_4096"
+        },
+        "output": {
+          "ImportToken": "<binary data>",
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/2468abcd-12ab-34cd-56ef-1234567890ab",
+          "ParametersValidTo": "2023-04-02T13:02:02-07:00",
+          "PublicKey": "<binary data>"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The identifier of the KMS key that will be associated with the imported key material. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
+            "WrappingAlgorithm": "The algorithm that you will use to encrypt the key material before importing it.",
+            "WrappingKeySpec": "The type of wrapping key (public key) to return in the response."
+          },
+          "output": {
+            "ImportToken": "The import token to send with a subsequent ImportKeyMaterial request.",
+            "KeyId": "The ARN of the KMS key that will be associated with the imported key material.",
+            "ParametersValidTo": "The date and time when the import token and public key expire. After this time, call GetParametersForImport again.",
+            "PublicKey": "The public key to use to encrypt the key material before importing it."
+          }
+        },
+        "description": "The following example downloads a public key and import token to import an HMAC key. It uses the RSAES_OAEP_SHA_256 wrapping algorithm and an RSA_4096 private key.",
+        "id": "to-download-the-public-key-and-import-token-4",
+        "title": "To download the public key and import token for an HMAC KMS key"
       }
     ],
     "GetPublicKey": [
@@ -1510,7 +1597,28 @@
           }
         },
         "description": "The following example imports key material into the specified KMS key.",
-        "id": "to-import-key-material-into-a-cmk-1480630551969",
+        "id": "to-import-key-material-into-a-kms-key-1",
+        "title": "To import key material into a KMS key"
+      },
+      {
+        "input": {
+          "EncryptedKeyMaterial": "<binary data>",
+          "ExpirationModel": "KEY_MATERIAL_EXPIRES",
+          "ImportToken": "<binary data>",
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "ValidTo": "2023-09-30T00:00:00-00:00"
+        },
+        "comments": {
+          "input": {
+            "EncryptedKeyMaterial": "The encrypted key material to import.",
+            "ExpirationModel": "A value that specifies whether the key material expires.",
+            "ImportToken": "The import token that you received in the response to a previous GetParametersForImport request.",
+            "KeyId": "The identifier of the KMS key to import the key material into. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
+            "ValidTo": "Specifies the date and time when the imported key material expires."
+          }
+        },
+        "description": "The following example imports key material that expires in 3 days. It might be part of an application that frequently reimports the same key material to comply with business rules or regulations.",
+        "id": "to-import-key-material-into-a-kms-key-2",
         "title": "To import key material into a KMS key"
       }
     ],

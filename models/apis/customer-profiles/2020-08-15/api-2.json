@@ -29,6 +29,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateCalculatedAttributeDefinition":{
+      "name":"CreateCalculatedAttributeDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}"
+      },
+      "input":{"shape":"CreateCalculatedAttributeDefinitionRequest"},
+      "output":{"shape":"CreateCalculatedAttributeDefinitionResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateDomain":{
       "name":"CreateDomain",
       "http":{
@@ -73,6 +89,22 @@
         {"shape":"BadRequestException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteCalculatedAttributeDefinition":{
+      "name":"DeleteCalculatedAttributeDefinition",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}"
+      },
+      "input":{"shape":"DeleteCalculatedAttributeDefinitionRequest"},
+      "output":{"shape":"DeleteCalculatedAttributeDefinitionResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
@@ -201,6 +233,38 @@
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetCalculatedAttributeDefinition":{
+      "name":"GetCalculatedAttributeDefinition",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}"
+      },
+      "input":{"shape":"GetCalculatedAttributeDefinitionRequest"},
+      "output":{"shape":"GetCalculatedAttributeDefinitionResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetCalculatedAttributeForProfile":{
+      "name":"GetCalculatedAttributeForProfile",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/profile/{ProfileId}/calculated-attributes/{CalculatedAttributeName}"
+      },
+      "input":{"shape":"GetCalculatedAttributeForProfileRequest"},
+      "output":{"shape":"GetCalculatedAttributeForProfileResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
@@ -345,6 +409,38 @@
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListCalculatedAttributeDefinitions":{
+      "name":"ListCalculatedAttributeDefinitions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/calculated-attributes"
+      },
+      "input":{"shape":"ListCalculatedAttributeDefinitionsRequest"},
+      "output":{"shape":"ListCalculatedAttributeDefinitionsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListCalculatedAttributesForProfile":{
+      "name":"ListCalculatedAttributesForProfile",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/profile/{ProfileId}/calculated-attributes"
+      },
+      "input":{"shape":"ListCalculatedAttributesForProfileRequest"},
+      "output":{"shape":"ListCalculatedAttributesForProfileResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
@@ -582,6 +678,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateCalculatedAttributeDefinition":{
+      "name":"UpdateCalculatedAttributeDefinition",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}"
+      },
+      "input":{"shape":"UpdateCalculatedAttributeDefinitionRequest"},
+      "output":{"shape":"UpdateCalculatedAttributeDefinitionResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateDomain":{
       "name":"UpdateDomain",
       "http":{
@@ -738,6 +850,30 @@
         "LastUpdatedAt":{"shape":"timestamp"}
       }
     },
+    "AttributeDetails":{
+      "type":"structure",
+      "required":[
+        "Attributes",
+        "Expression"
+      ],
+      "members":{
+        "Attributes":{"shape":"AttributeList"},
+        "Expression":{"shape":"string1To255"}
+      }
+    },
+    "AttributeItem":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"attributeName"}
+      }
+    },
+    "AttributeList":{
+      "type":"list",
+      "member":{"shape":"AttributeItem"},
+      "max":2,
+      "min":1
+    },
     "AttributeSourceIdMap":{
       "type":"map",
       "key":{"shape":"string1To255"},
@@ -792,6 +928,22 @@
       "max":512,
       "pattern":".*"
     },
+    "CalculatedAttributeDefinitionsList":{
+      "type":"list",
+      "member":{"shape":"ListCalculatedAttributeDefinitionItem"}
+    },
+    "CalculatedAttributesForProfileList":{
+      "type":"list",
+      "member":{"shape":"ListCalculatedAttributeForProfileItem"}
+    },
+    "Conditions":{
+      "type":"structure",
+      "members":{
+        "Range":{"shape":"Range"},
+        "ObjectCount":{"shape":"ObjectCount"},
+        "Threshold":{"shape":"Threshold"}
+      }
+    },
     "ConflictResolution":{
       "type":"structure",
       "required":["ConflictResolvingModel"],
@@ -827,6 +979,47 @@
       "required":["MatchingAttributesList"],
       "members":{
         "MatchingAttributesList":{"shape":"MatchingAttributesList"}
+      }
+    },
+    "CreateCalculatedAttributeDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "CalculatedAttributeName",
+        "AttributeDetails",
+        "Statistic"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "CalculatedAttributeName":{
+          "shape":"typeName",
+          "location":"uri",
+          "locationName":"CalculatedAttributeName"
+        },
+        "DisplayName":{"shape":"displayName"},
+        "Description":{"shape":"text"},
+        "AttributeDetails":{"shape":"AttributeDetails"},
+        "Conditions":{"shape":"Conditions"},
+        "Statistic":{"shape":"Statistic"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateCalculatedAttributeDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "CalculatedAttributeName":{"shape":"typeName"},
+        "DisplayName":{"shape":"displayName"},
+        "Description":{"shape":"text"},
+        "AttributeDetails":{"shape":"AttributeDetails"},
+        "Conditions":{"shape":"Conditions"},
+        "Statistic":{"shape":"Statistic"},
+        "CreatedAt":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateDomainRequest":{
@@ -953,6 +1146,30 @@
       "type":"string",
       "max":256,
       "pattern":".*"
+    },
+    "DeleteCalculatedAttributeDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "CalculatedAttributeName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "CalculatedAttributeName":{
+          "shape":"typeName",
+          "location":"uri",
+          "locationName":"CalculatedAttributeName"
+        }
+      }
+    },
+    "DeleteCalculatedAttributeDefinitionResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteDomainRequest":{
       "type":"structure",
@@ -1266,6 +1483,73 @@
         "NumberOfMatchesInSample":{"shape":"long"},
         "NumberOfProfilesInSample":{"shape":"long"},
         "NumberOfProfilesWillBeMerged":{"shape":"long"}
+      }
+    },
+    "GetCalculatedAttributeDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "CalculatedAttributeName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "CalculatedAttributeName":{
+          "shape":"typeName",
+          "location":"uri",
+          "locationName":"CalculatedAttributeName"
+        }
+      }
+    },
+    "GetCalculatedAttributeDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "CalculatedAttributeName":{"shape":"typeName"},
+        "DisplayName":{"shape":"displayName"},
+        "Description":{"shape":"text"},
+        "CreatedAt":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"},
+        "Statistic":{"shape":"Statistic"},
+        "Conditions":{"shape":"Conditions"},
+        "AttributeDetails":{"shape":"AttributeDetails"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "GetCalculatedAttributeForProfileRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "ProfileId",
+        "CalculatedAttributeName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "ProfileId":{
+          "shape":"uuid",
+          "location":"uri",
+          "locationName":"ProfileId"
+        },
+        "CalculatedAttributeName":{
+          "shape":"typeName",
+          "location":"uri",
+          "locationName":"CalculatedAttributeName"
+        }
+      }
+    },
+    "GetCalculatedAttributeForProfileResponse":{
+      "type":"structure",
+      "members":{
+        "CalculatedAttributeName":{"shape":"typeName"},
+        "DisplayName":{"shape":"displayName"},
+        "IsDataPartial":{"shape":"string1To255"},
+        "Value":{"shape":"string1To255"}
       }
     },
     "GetDomainRequest":{
@@ -1659,6 +1943,90 @@
       "type":"structure",
       "members":{
         "Items":{"shape":"IntegrationList"},
+        "NextToken":{"shape":"token"}
+      }
+    },
+    "ListCalculatedAttributeDefinitionItem":{
+      "type":"structure",
+      "members":{
+        "CalculatedAttributeName":{"shape":"typeName"},
+        "DisplayName":{"shape":"displayName"},
+        "Description":{"shape":"text"},
+        "CreatedAt":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "ListCalculatedAttributeDefinitionsRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListCalculatedAttributeDefinitionsResponse":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"CalculatedAttributeDefinitionsList"},
+        "NextToken":{"shape":"token"}
+      }
+    },
+    "ListCalculatedAttributeForProfileItem":{
+      "type":"structure",
+      "members":{
+        "CalculatedAttributeName":{"shape":"typeName"},
+        "DisplayName":{"shape":"displayName"},
+        "IsDataPartial":{"shape":"string1To255"},
+        "Value":{"shape":"string1To255"}
+      }
+    },
+    "ListCalculatedAttributesForProfileRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "ProfileId"
+      ],
+      "members":{
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "ProfileId":{
+          "shape":"uuid",
+          "location":"uri",
+          "locationName":"ProfileId"
+        }
+      }
+    },
+    "ListCalculatedAttributesForProfileResponse":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"CalculatedAttributesForProfileList"},
         "NextToken":{"shape":"token"}
       }
     },
@@ -2062,6 +2430,11 @@
       "max":512,
       "pattern":"\\S+"
     },
+    "ObjectCount":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "ObjectFilter":{
       "type":"structure",
       "required":[
@@ -2096,6 +2469,15 @@
       "type":"map",
       "key":{"shape":"string1To255"},
       "value":{"shape":"typeName"}
+    },
+    "Operator":{
+      "type":"string",
+      "enum":[
+        "EQUAL_TO",
+        "GREATER_THAN",
+        "LESS_THAN",
+        "NOT_EQUAL_TO"
+      ]
     },
     "OperatorPropertiesKeys":{
       "type":"string",
@@ -2293,6 +2675,17 @@
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
+      }
+    },
+    "Range":{
+      "type":"structure",
+      "required":[
+        "Value",
+        "Unit"
+      ],
+      "members":{
+        "Value":{"shape":"Value"},
+        "Unit":{"shape":"Unit"}
       }
     },
     "ResourceNotFoundException":{
@@ -2540,6 +2933,19 @@
       "type":"list",
       "member":{"shape":"StandardIdentifier"}
     },
+    "Statistic":{
+      "type":"string",
+      "enum":[
+        "FIRST_OCCURRENCE",
+        "LAST_OCCURRENCE",
+        "COUNT",
+        "SUM",
+        "MINIMUM",
+        "MAXIMUM",
+        "AVERAGE",
+        "MAX_OCCURRENCE"
+      ]
+    },
     "Status":{
       "type":"string",
       "enum":[
@@ -2635,6 +3041,17 @@
       "type":"list",
       "member":{"shape":"Task"}
     },
+    "Threshold":{
+      "type":"structure",
+      "required":[
+        "Value",
+        "Operator"
+      ],
+      "members":{
+        "Value":{"shape":"string1To255"},
+        "Operator":{"shape":"Operator"}
+      }
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
@@ -2669,6 +3086,10 @@
         "Event",
         "OnDemand"
       ]
+    },
+    "Unit":{
+      "type":"string",
+      "enum":["DAYS"]
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -2713,6 +3134,42 @@
       "type":"map",
       "key":{"shape":"string1To255"},
       "value":{"shape":"string0To255"}
+    },
+    "UpdateCalculatedAttributeDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "CalculatedAttributeName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "CalculatedAttributeName":{
+          "shape":"typeName",
+          "location":"uri",
+          "locationName":"CalculatedAttributeName"
+        },
+        "DisplayName":{"shape":"displayName"},
+        "Description":{"shape":"text"},
+        "Conditions":{"shape":"Conditions"}
+      }
+    },
+    "UpdateCalculatedAttributeDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "CalculatedAttributeName":{"shape":"typeName"},
+        "DisplayName":{"shape":"displayName"},
+        "Description":{"shape":"text"},
+        "CreatedAt":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"},
+        "Statistic":{"shape":"Statistic"},
+        "Conditions":{"shape":"Conditions"},
+        "AttributeDetails":{"shape":"AttributeDetails"},
+        "Tags":{"shape":"TagMap"}
+      }
     },
     "UpdateDomainRequest":{
       "type":"structure",
@@ -2793,6 +3250,11 @@
         "ProfileId":{"shape":"uuid"}
       }
     },
+    "Value":{
+      "type":"integer",
+      "max":366,
+      "min":1
+    },
     "WorkflowAttributes":{
       "type":"structure",
       "members":{
@@ -2855,7 +3317,19 @@
       "max":4,
       "min":1
     },
+    "attributeName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_.-]+$"
+    },
     "boolean":{"type":"boolean"},
+    "displayName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z_][a-zA-Z_0-9-\\s]*$"
+    },
     "encryptionKey":{
       "type":"string",
       "max":255,

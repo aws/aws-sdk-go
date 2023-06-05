@@ -116,6 +116,14 @@ type WAFV2API interface {
 	DeleteWebACLWithContext(aws.Context, *wafv2.DeleteWebACLInput, ...request.Option) (*wafv2.DeleteWebACLOutput, error)
 	DeleteWebACLRequest(*wafv2.DeleteWebACLInput) (*request.Request, *wafv2.DeleteWebACLOutput)
 
+	DescribeAllManagedProducts(*wafv2.DescribeAllManagedProductsInput) (*wafv2.DescribeAllManagedProductsOutput, error)
+	DescribeAllManagedProductsWithContext(aws.Context, *wafv2.DescribeAllManagedProductsInput, ...request.Option) (*wafv2.DescribeAllManagedProductsOutput, error)
+	DescribeAllManagedProductsRequest(*wafv2.DescribeAllManagedProductsInput) (*request.Request, *wafv2.DescribeAllManagedProductsOutput)
+
+	DescribeManagedProductsByVendor(*wafv2.DescribeManagedProductsByVendorInput) (*wafv2.DescribeManagedProductsByVendorOutput, error)
+	DescribeManagedProductsByVendorWithContext(aws.Context, *wafv2.DescribeManagedProductsByVendorInput, ...request.Option) (*wafv2.DescribeManagedProductsByVendorOutput, error)
+	DescribeManagedProductsByVendorRequest(*wafv2.DescribeManagedProductsByVendorInput) (*request.Request, *wafv2.DescribeManagedProductsByVendorOutput)
+
 	DescribeManagedRuleGroup(*wafv2.DescribeManagedRuleGroupInput) (*wafv2.DescribeManagedRuleGroupOutput, error)
 	DescribeManagedRuleGroupWithContext(aws.Context, *wafv2.DescribeManagedRuleGroupInput, ...request.Option) (*wafv2.DescribeManagedRuleGroupOutput, error)
 	DescribeManagedRuleGroupRequest(*wafv2.DescribeManagedRuleGroupInput) (*request.Request, *wafv2.DescribeManagedRuleGroupOutput)

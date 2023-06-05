@@ -271,6 +271,33 @@
         {"shape":"WAFInvalidOperationException"}
       ]
     },
+    "DescribeAllManagedProducts":{
+      "name":"DescribeAllManagedProducts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAllManagedProductsRequest"},
+      "output":{"shape":"DescribeAllManagedProductsResponse"},
+      "errors":[
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFInternalErrorException"}
+      ]
+    },
+    "DescribeManagedProductsByVendor":{
+      "name":"DescribeManagedProductsByVendor",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeManagedProductsByVendorRequest"},
+      "output":{"shape":"DescribeManagedProductsByVendorResponse"},
+      "errors":[
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"}
+      ]
+    },
     "DescribeManagedRuleGroup":{
       "name":"DescribeManagedRuleGroup",
       "http":{
@@ -1689,6 +1716,36 @@
       "members":{
       }
     },
+    "DescribeAllManagedProductsRequest":{
+      "type":"structure",
+      "required":["Scope"],
+      "members":{
+        "Scope":{"shape":"Scope"}
+      }
+    },
+    "DescribeAllManagedProductsResponse":{
+      "type":"structure",
+      "members":{
+        "ManagedProducts":{"shape":"ManagedProductDescriptors"}
+      }
+    },
+    "DescribeManagedProductsByVendorRequest":{
+      "type":"structure",
+      "required":[
+        "VendorName",
+        "Scope"
+      ],
+      "members":{
+        "VendorName":{"shape":"VendorName"},
+        "Scope":{"shape":"Scope"}
+      }
+    },
+    "DescribeManagedProductsByVendorResponse":{
+      "type":"structure",
+      "members":{
+        "ManagedProducts":{"shape":"ManagedProductDescriptors"}
+      }
+    },
     "DescribeManagedRuleGroupRequest":{
       "type":"structure",
       "required":[
@@ -2641,6 +2698,24 @@
       "min":1,
       "pattern":".*\\S.*"
     },
+    "ManagedProductDescriptor":{
+      "type":"structure",
+      "members":{
+        "VendorName":{"shape":"VendorName"},
+        "ManagedRuleSetName":{"shape":"EntityName"},
+        "ProductId":{"shape":"ProductId"},
+        "ProductLink":{"shape":"ProductLink"},
+        "ProductTitle":{"shape":"ProductTitle"},
+        "ProductDescription":{"shape":"ProductDescription"},
+        "SnsTopicArn":{"shape":"ResourceArn"},
+        "IsVersioningSupported":{"shape":"Boolean"},
+        "IsAdvancedManagedRuleSet":{"shape":"Boolean"}
+      }
+    },
+    "ManagedProductDescriptors":{
+      "type":"list",
+      "member":{"shape":"ManagedProductDescriptor"}
+    },
     "ManagedRuleGroupConfig":{
       "type":"structure",
       "members":{
@@ -2944,6 +3019,28 @@
         "CONTAINS",
         "CONTAINS_WORD"
       ]
+    },
+    "ProductDescription":{
+      "type":"string",
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "ProductId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "ProductLink":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "ProductTitle":{
+      "type":"string",
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "PublishedVersions":{
       "type":"map",

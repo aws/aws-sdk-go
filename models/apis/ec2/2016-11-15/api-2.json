@@ -13991,6 +13991,7 @@
     },
     "DeregisterInstanceEventNotificationAttributesRequest":{
       "type":"structure",
+      "required":["InstanceTagAttribute"],
       "members":{
         "DryRun":{"shape":"Boolean"},
         "InstanceTagAttribute":{"shape":"DeregisterInstanceTagAttributeRequest"}
@@ -35136,6 +35137,7 @@
     },
     "RegisterInstanceEventNotificationAttributesRequest":{
       "type":"structure",
+      "required":["InstanceTagAttribute"],
       "members":{
         "DryRun":{"shape":"Boolean"},
         "InstanceTagAttribute":{"shape":"RegisterInstanceTagAttributeRequest"}

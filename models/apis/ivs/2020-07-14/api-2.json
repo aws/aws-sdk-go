@@ -514,6 +514,7 @@
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
         "playbackUrl":{"shape":"PlaybackURL"},
+        "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "tags":{"shape":"Tags"},
         "type":{"shape":"ChannelType"}
@@ -573,15 +574,19 @@
         "insecureIngest":{"shape":"InsecureIngest"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
+        "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "type":{"shape":"ChannelType"}
       }
     },
     "ChannelType":{
       "type":"string",
       "enum":[
         "BASIC",
-        "STANDARD"
+        "STANDARD",
+        "ADVANCED_SD",
+        "ADVANCED_HD"
       ]
     },
     "Channels":{
@@ -606,6 +611,7 @@
         "insecureIngest":{"shape":"Boolean"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
+        "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "tags":{"shape":"Tags"},
         "type":{"shape":"ChannelType"}
@@ -1351,6 +1357,13 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
+    "TranscodePreset":{
+      "type":"string",
+      "enum":[
+        "HIGHER_BANDWIDTH_DELIVERY",
+        "CONSTRAINED_BANDWIDTH_DELIVERY"
+      ]
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -1384,6 +1397,7 @@
         "insecureIngest":{"shape":"Boolean"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
+        "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "type":{"shape":"ChannelType"}
       }

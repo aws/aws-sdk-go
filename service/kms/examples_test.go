@@ -663,9 +663,9 @@ func ExampleKMS_CreateKey_shared04() {
 }
 
 // To create a KMS key for imported key material
-// This example creates a KMS key with no key material. When the operation is complete,
-// you can import your own key material into the KMS key. To create this KMS key, set
-// the Origin parameter to EXTERNAL.
+// This example creates a symmetric KMS key with no key material. When the operation
+// is complete, you can import your own key material into the KMS key. To create this
+// KMS key, set the Origin parameter to EXTERNAL.
 func ExampleKMS_CreateKey_shared05() {
 	svc := kms.New(session.New())
 	input := &kms.CreateKeyInput{
@@ -2207,15 +2207,145 @@ func ExampleKMS_GetKeyRotationStatus_shared00() {
 	fmt.Println(result)
 }
 
-// To retrieve the public key and import token for a KMS key
-// The following example retrieves the public key and import token for the specified
-// KMS key.
+// To download the public key and import token for a symmetric encryption KMS key
+// The following example downloads a public key and import token to import symmetric
+// encryption key material. It uses the default wrapping key spec and the RSAES_OAEP_SHA_256
+// wrapping algorithm.
 func ExampleKMS_GetParametersForImport_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.GetParametersForImportInput{
 		KeyId:             aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		WrappingAlgorithm: aws.String("RSAES_OAEP_SHA_1"),
 		WrappingKeySpec:   aws.String("RSA_2048"),
+	}
+
+	result, err := svc.GetParametersForImport(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeInvalidArnException:
+				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
+			case kms.ErrCodeUnsupportedOperationException:
+				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To download the public key and import token for an RSA asymmetric KMS key
+// The following example downloads a public key and import token to import an RSA private
+// key. It uses a required RSA_AES wrapping algorithm and the largest supported private
+// key.
+func ExampleKMS_GetParametersForImport_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.GetParametersForImportInput{
+		KeyId:             aws.String("arn:aws:kms:us-east-2:111122223333:key/8888abcd-12ab-34cd-56ef-1234567890ab"),
+		WrappingAlgorithm: aws.String("RSA_AES_KEY_WRAP_SHA_256"),
+		WrappingKeySpec:   aws.String("RSA_4096"),
+	}
+
+	result, err := svc.GetParametersForImport(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeInvalidArnException:
+				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
+			case kms.ErrCodeUnsupportedOperationException:
+				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To download the public key and import token for an elliptic curve (ECC) asymmetric
+// KMS key
+//
+// The following example downloads a public key and import token to import an ECC_NIST_P521
+// (secp521r1) private key. You cannot directly wrap this ECC key under an RSA_2048
+// public key, although you can use an RSA_2048 public key with an RSA_AES wrapping
+// algorithm to wrap any supported key material. This example requests an RSA_3072 public
+// key for use with the RSAES_OAEP_SHA_256.
+func ExampleKMS_GetParametersForImport_shared02() {
+	svc := kms.New(session.New())
+	input := &kms.GetParametersForImportInput{
+		KeyId:             aws.String("arn:aws:kms:us-east-2:111122223333:key/9876abcd-12ab-34cd-56ef-1234567890ab"),
+		WrappingAlgorithm: aws.String("RSAES_OAEP_SHA_256"),
+		WrappingKeySpec:   aws.String("RSA_3072"),
+	}
+
+	result, err := svc.GetParametersForImport(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeInvalidArnException:
+				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
+			case kms.ErrCodeUnsupportedOperationException:
+				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To download the public key and import token for an HMAC KMS key
+// The following example downloads a public key and import token to import an HMAC key.
+// It uses the RSAES_OAEP_SHA_256 wrapping algorithm and an RSA_4096 private key.
+func ExampleKMS_GetParametersForImport_shared03() {
+	svc := kms.New(session.New())
+	input := &kms.GetParametersForImportInput{
+		KeyId:             aws.String("2468abcd-12ab-34cd-56ef-1234567890ab"),
+		WrappingAlgorithm: aws.String("RSAES_OAEP_SHA_256"),
+		WrappingKeySpec:   aws.String("RSA_4096"),
 	}
 
 	result, err := svc.GetParametersForImport(input)
@@ -2305,6 +2435,58 @@ func ExampleKMS_ImportKeyMaterial_shared00() {
 		ExpirationModel:      aws.String("KEY_MATERIAL_DOES_NOT_EXPIRE"),
 		ImportToken:          []byte("<binary data>"),
 		KeyId:                aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
+	}
+
+	result, err := svc.ImportKeyMaterial(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeInvalidArnException:
+				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
+			case kms.ErrCodeUnsupportedOperationException:
+				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeInvalidCiphertextException:
+				fmt.Println(kms.ErrCodeInvalidCiphertextException, aerr.Error())
+			case kms.ErrCodeIncorrectKeyMaterialException:
+				fmt.Println(kms.ErrCodeIncorrectKeyMaterialException, aerr.Error())
+			case kms.ErrCodeExpiredImportTokenException:
+				fmt.Println(kms.ErrCodeExpiredImportTokenException, aerr.Error())
+			case kms.ErrCodeInvalidImportTokenException:
+				fmt.Println(kms.ErrCodeInvalidImportTokenException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To import key material into a KMS key
+// The following example imports key material that expires in 3 days. It might be part
+// of an application that frequently reimports the same key material to comply with
+// business rules or regulations.
+func ExampleKMS_ImportKeyMaterial_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.ImportKeyMaterialInput{
+		EncryptedKeyMaterial: []byte("<binary data>"),
+		ExpirationModel:      aws.String("KEY_MATERIAL_EXPIRES"),
+		ImportToken:          []byte("<binary data>"),
+		KeyId:                aws.String("arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
+		ValidTo:              parseTime("2006-01-02T15:04:05.999999999Z", "2023-09-30T00:00:00-00:00"),
 	}
 
 	result, err := svc.ImportKeyMaterial(input)

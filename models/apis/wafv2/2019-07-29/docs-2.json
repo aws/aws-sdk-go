@@ -16,6 +16,8 @@
     "DeleteRegexPatternSet": "<p>Deletes the specified <a>RegexPatternSet</a>.</p>",
     "DeleteRuleGroup": "<p>Deletes the specified <a>RuleGroup</a>.</p>",
     "DeleteWebACL": "<p>Deletes the specified <a>WebACL</a>. </p> <p>You can only use this if <code>ManagedByFirewallManager</code> is false in the specified <a>WebACL</a>. </p> <note> <p>Before deleting any web ACL, first disassociate it from all resources.</p> <ul> <li> <p>To retrieve a list of the resources that are associated with a web ACL, use the following calls:</p> <ul> <li> <p>For regional resources, call <a>ListResourcesForWebACL</a>.</p> </li> <li> <p>For Amazon CloudFront distributions, use the CloudFront call <code>ListDistributionsByWebACLId</code>. For information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByWebACLId.html\">ListDistributionsByWebACLId</a> in the <i>Amazon CloudFront API Reference</i>. </p> </li> </ul> </li> <li> <p>To disassociate a resource from a web ACL, use the following calls:</p> <ul> <li> <p>For regional resources, call <a>DisassociateWebACL</a>.</p> </li> <li> <p>For Amazon CloudFront distributions, provide an empty web ACL ID in the CloudFront call <code>UpdateDistribution</code>. For information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html\">UpdateDistribution</a> in the <i>Amazon CloudFront API Reference</i>. </p> </li> </ul> </li> </ul> </note>",
+    "DescribeAllManagedProducts": "<p>Provides high-level information for the Amazon Web Services Managed Rules rule groups and Amazon Web Services Marketplace managed rule groups. </p>",
+    "DescribeManagedProductsByVendor": "<p>Provides high-level information for the managed rule groups owned by a specific vendor. </p>",
     "DescribeManagedRuleGroup": "<p>Provides high-level information for a managed rule group, including descriptions of the rules. </p>",
     "DisassociateWebACL": "<p>Disassociates the specified regional application resource from any existing web ACL association. A resource can have at most one web ACL association. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>For Amazon CloudFront, don't use this call. Instead, use your CloudFront distribution configuration. To disassociate a web ACL, provide an empty web ACL ID in the CloudFront call <code>UpdateDistribution</code>. For information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html\">UpdateDistribution</a> in the <i>Amazon CloudFront API Reference</i>. </p>",
     "GenerateMobileSdkReleaseUrl": "<p>Generates a presigned download URL for the specified release of the mobile SDK.</p> <p>The mobile SDK is not generally available. Customers who have access to the mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S) requests from a mobile device to WAF. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html\">WAF client application integration</a> in the <i>WAF Developer Guide</i>.</p>",
@@ -192,9 +194,11 @@
       "base": null,
       "refs": {
         "LoggingConfiguration$ManagedByFirewallManager": "<p>Indicates whether the logging configuration was created by Firewall Manager, as part of an WAF policy configuration. If true, only Firewall Manager can modify or delete the configuration. </p>",
+        "ManagedProductDescriptor$IsVersioningSupported": "<p>Indicates whether the rule group is versioned. </p>",
+        "ManagedProductDescriptor$IsAdvancedManagedRuleSet": "<p>Indicates whether the rule group provides an advanced set of protections, such as the the Amazon Web Services Managed Rules rule groups that are used for WAF intelligent threat mitigation. </p>",
         "ManagedRuleGroupSummary$VersioningSupported": "<p>Indicates whether the managed rule group is versioned. If it is, you can retrieve the versions list by calling <a>ListAvailableManagedRuleGroupVersions</a>. </p>",
-        "VisibilityConfig$SampledRequestsEnabled": "<p>A boolean indicating whether WAF should store a sampling of the web requests that match the rules. You can view the sampled requests through the WAF console. </p>",
-        "VisibilityConfig$CloudWatchMetricsEnabled": "<p>A boolean indicating whether the associated resource sends metrics to Amazon CloudWatch. For the list of available metrics, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics\">WAF Metrics</a> in the <i>WAF Developer Guide</i>.</p> <p>For web ACLs, the metrics are for web requests that have the web ACL default action applied. WAF applies the default action to web requests that pass the inspection of all rules in the web ACL without being either allowed or blocked. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-default-action.html\">The web ACL default action</a> in the <i>WAF Developer Guide</i>.</p>",
+        "VisibilityConfig$SampledRequestsEnabled": "<p>Indicates whether WAF should store a sampling of the web requests that match the rules. You can view the sampled requests through the WAF console. </p>",
+        "VisibilityConfig$CloudWatchMetricsEnabled": "<p>Indicates whether the associated resource sends metrics to Amazon CloudWatch. For the list of available metrics, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics\">WAF Metrics</a> in the <i>WAF Developer Guide</i>.</p> <p>For web ACLs, the metrics are for web requests that have the web ACL default action applied. WAF applies the default action to web requests that pass the inspection of all rules in the web ACL without being either allowed or blocked. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-default-action.html\">The web ACL default action</a> in the <i>WAF Developer Guide</i>.</p>",
         "WebACL$ManagedByFirewallManager": "<p>Indicates whether this web ACL is managed by Firewall Manager. If true, then only Firewall Manager can delete the web ACL or any Firewall Manager rule groups in the web ACL. </p>"
       }
     },
@@ -519,6 +523,26 @@
       "refs": {
       }
     },
+    "DescribeAllManagedProductsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAllManagedProductsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeManagedProductsByVendorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeManagedProductsByVendorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeManagedRuleGroupRequest": {
       "base": null,
       "refs": {
@@ -627,6 +651,7 @@
         "IPSet$Name": "<p>The name of the IP set. You cannot change the name of an <code>IPSet</code> after you create it.</p>",
         "IPSetSummary$Name": "<p>The name of the IP set. You cannot change the name of an <code>IPSet</code> after you create it.</p>",
         "ListAvailableManagedRuleGroupVersionsRequest$Name": "<p>The name of the managed rule group. You use this, along with the vendor name, to identify the rule group.</p>",
+        "ManagedProductDescriptor$ManagedRuleSetName": "<p>The name of the managed rule group. For example, <code>AWSManagedRulesAnonymousIpList</code> or <code>AWSManagedRulesATPRuleSet</code>.</p>",
         "ManagedRuleGroupStatement$Name": "<p>The name of the managed rule group. You use this, along with the vendor name, to identify the rule group.</p>",
         "ManagedRuleGroupSummary$Name": "<p>The name of the managed rule group. You use this, along with the vendor name, to identify the rule group.</p>",
         "ManagedRuleSet$Name": "<p>The name of the managed rule set. You use this, along with the rule set ID, to identify the rule set.</p> <p>This name is assigned to the corresponding managed rule group, which your customers can access and use. </p>",
@@ -1385,6 +1410,19 @@
         "ManagedRuleGroupConfig$LoginPath": "<note> <p>Instead of this setting, provide your configuration under <code>AWSManagedRulesATPRuleSet</code>. </p> </note>"
       }
     },
+    "ManagedProductDescriptor": {
+      "base": "<p>The properties of a managed product, such as an Amazon Web Services Managed Rules rule group or an Amazon Web Services Marketplace managed rule group. </p>",
+      "refs": {
+        "ManagedProductDescriptors$member": null
+      }
+    },
+    "ManagedProductDescriptors": {
+      "base": null,
+      "refs": {
+        "DescribeAllManagedProductsResponse$ManagedProducts": "<p>High-level information for the Amazon Web Services Managed Rules rule groups and Amazon Web Services Marketplace managed rule groups. </p>",
+        "DescribeManagedProductsByVendorResponse$ManagedProducts": "<p>High-level information for the managed rule groups owned by the specified vendor. </p>"
+      }
+    },
     "ManagedRuleGroupConfig": {
       "base": "<p>Additional information that's used by a managed rule group. Many managed rule groups don't require this.</p> <p>Use the <code>AWSManagedRulesATPRuleSet</code> configuration object for the account takeover prevention managed rule group, to provide information such as the sign-in page of your application and the type of content to accept or reject from the client. </p> <p>Use the <code>AWSManagedRulesBotControlRuleSet</code> configuration object to configure the protection level that you want the Bot Control rule group to use. </p> <p>For example specifications, see the examples section of <a>CreateWebACL</a>.</p>",
       "refs": {
@@ -1411,7 +1449,7 @@
       }
     },
     "ManagedRuleGroupSummary": {
-      "base": "<p>High-level information about a managed rule group, returned by <a>ListAvailableManagedRuleGroups</a>. This provides information like the name and vendor name, that you provide when you add a <a>ManagedRuleGroupStatement</a> to a web ACL. Managed rule groups include Amazon Web Services Managed Rules rule groups, which are free of charge to WAF customers, and Amazon Web Services Marketplace managed rule groups, which you can subscribe to through Amazon Web Services Marketplace. </p>",
+      "base": "<p>High-level information about a managed rule group, returned by <a>ListAvailableManagedRuleGroups</a>. This provides information like the name and vendor name, that you provide when you add a <a>ManagedRuleGroupStatement</a> to a web ACL. Managed rule groups include Amazon Web Services Managed Rules rule groups and Amazon Web Services Marketplace managed rule groups. To use any Amazon Web Services Marketplace managed rule group, first subscribe to the rule group through Amazon Web Services Marketplace. </p>",
       "refs": {
         "ManagedRuleGroupSummaries$member": null
       }
@@ -1614,6 +1652,30 @@
       "base": null,
       "refs": {
         "ByteMatchStatement$PositionalConstraint": "<p>The area within the portion of the web request that you want WAF to search for <code>SearchString</code>. Valid values include the following:</p> <p> <b>CONTAINS</b> </p> <p>The specified part of the web request must include the value of <code>SearchString</code>, but the location doesn't matter.</p> <p> <b>CONTAINS_WORD</b> </p> <p>The specified part of the web request must include the value of <code>SearchString</code>, and <code>SearchString</code> must contain only alphanumeric characters or underscore (A-Z, a-z, 0-9, or _). In addition, <code>SearchString</code> must be a word, which means that both of the following are true:</p> <ul> <li> <p> <code>SearchString</code> is at the beginning of the specified part of the web request or is preceded by a character other than an alphanumeric character or underscore (_). Examples include the value of a header and <code>;BadBot</code>.</p> </li> <li> <p> <code>SearchString</code> is at the end of the specified part of the web request or is followed by a character other than an alphanumeric character or underscore (_), for example, <code>BadBot;</code> and <code>-BadBot;</code>.</p> </li> </ul> <p> <b>EXACTLY</b> </p> <p>The value of the specified part of the web request must exactly match the value of <code>SearchString</code>.</p> <p> <b>STARTS_WITH</b> </p> <p>The value of <code>SearchString</code> must appear at the beginning of the specified part of the web request.</p> <p> <b>ENDS_WITH</b> </p> <p>The value of <code>SearchString</code> must appear at the end of the specified part of the web request.</p>"
+      }
+    },
+    "ProductDescription": {
+      "base": null,
+      "refs": {
+        "ManagedProductDescriptor$ProductDescription": "<p>A short description of the managed rule group.</p>"
+      }
+    },
+    "ProductId": {
+      "base": null,
+      "refs": {
+        "ManagedProductDescriptor$ProductId": "<p>A unique identifier for the rule group. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.</p>"
+      }
+    },
+    "ProductLink": {
+      "base": null,
+      "refs": {
+        "ManagedProductDescriptor$ProductLink": "<p>For Amazon Web Services Marketplace managed rule groups only, the link to the rule group product page. </p>"
+      }
+    },
+    "ProductTitle": {
+      "base": null,
+      "refs": {
+        "ManagedProductDescriptor$ProductTitle": "<p>The display name for the managed rule group. For example, <code>Anonymous IP list</code> or <code>Account takeover prevention</code>.</p>"
       }
     },
     "PublishedVersions": {
@@ -1845,7 +1907,7 @@
         "DeleteFirewallManagerRuleGroupsRequest$WebACLArn": "<p>The Amazon Resource Name (ARN) of the web ACL.</p>",
         "DeleteLoggingConfigurationRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the web ACL from which you want to delete the <a>LoggingConfiguration</a>.</p>",
         "DeletePermissionPolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the rule group from which you want to delete the policy.</p> <p>You must be the owner of the rule group to perform this operation.</p>",
-        "DescribeManagedRuleGroupResponse$SnsTopicArn": "<p>The Amazon resource name (ARN) of the Amazon Simple Notification Service SNS topic that's used to record changes to the managed rule group. You can subscribe to the SNS topic to receive notifications when the managed rule group is modified, such as for new versions and for version expiration. For more information, see the <a href=\"https://docs.aws.amazon.com/sns/latest/dg/welcome.html\">Amazon Simple Notification Service Developer Guide</a>.</p>",
+        "DescribeManagedRuleGroupResponse$SnsTopicArn": "<p>The Amazon resource name (ARN) of the Amazon Simple Notification Service SNS topic that's used to provide notification of changes to the managed rule group. You can subscribe to the SNS topic to receive notifications when the managed rule group is modified, such as for new versions and for version expiration. For more information, see the <a href=\"https://docs.aws.amazon.com/sns/latest/dg/welcome.html\">Amazon Simple Notification Service Developer Guide</a>.</p>",
         "DisassociateWebACLRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to disassociate from the web ACL. </p> <p>The ARN must be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i> </code> </p> </li> <li> <p>For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i> </code> </p> </li> <li> <p>For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i> </code> </p> </li> <li> <p>For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i> </code> </p> </li> <li> <p>For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i> </code> </p> </li> </ul>",
         "GetLoggingConfigurationRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the web ACL for which you want to get the <a>LoggingConfiguration</a>.</p>",
         "GetPermissionPolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the rule group for which you want to get the policy.</p>",
@@ -1859,6 +1921,7 @@
         "ListTagsForResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "LogDestinationConfigs$member": null,
         "LoggingConfiguration$ResourceArn": "<p>The Amazon Resource Name (ARN) of the web ACL that you want to associate with <code>LogDestinationConfigs</code>.</p>",
+        "ManagedProductDescriptor$SnsTopicArn": "<p>The Amazon resource name (ARN) of the Amazon Simple Notification Service SNS topic that's used to provide notification of changes to the managed rule group. You can subscribe to the SNS topic to receive notifications when the managed rule group is modified, such as for new versions and for version expiration. For more information, see the <a href=\"https://docs.aws.amazon.com/sns/latest/dg/welcome.html\">Amazon Simple Notification Service Developer Guide</a>.</p>",
         "ManagedRuleSet$ARN": "<p>The Amazon Resource Name (ARN) of the entity.</p>",
         "ManagedRuleSetSummary$ARN": "<p>The Amazon Resource Name (ARN) of the entity.</p>",
         "ManagedRuleSetVersion$AssociatedRuleGroupArn": "<p>The Amazon Resource Name (ARN) of the vendor rule group that's used to define the published version of your managed rule group. </p>",
@@ -2115,6 +2178,8 @@
         "DeleteRegexPatternSetRequest$Scope": "<p>Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows: </p> <ul> <li> <p>CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT --region=us-east-1</code>. </p> </li> <li> <p>API and SDKs - For all calls, use the Region endpoint us-east-1. </p> </li> </ul>",
         "DeleteRuleGroupRequest$Scope": "<p>Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows: </p> <ul> <li> <p>CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT --region=us-east-1</code>. </p> </li> <li> <p>API and SDKs - For all calls, use the Region endpoint us-east-1. </p> </li> </ul>",
         "DeleteWebACLRequest$Scope": "<p>Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows: </p> <ul> <li> <p>CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT --region=us-east-1</code>. </p> </li> <li> <p>API and SDKs - For all calls, use the Region endpoint us-east-1. </p> </li> </ul>",
+        "DescribeAllManagedProductsRequest$Scope": "<p>Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows: </p> <ul> <li> <p>CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT --region=us-east-1</code>. </p> </li> <li> <p>API and SDKs - For all calls, use the Region endpoint us-east-1. </p> </li> </ul>",
+        "DescribeManagedProductsByVendorRequest$Scope": "<p>Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows: </p> <ul> <li> <p>CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT --region=us-east-1</code>. </p> </li> <li> <p>API and SDKs - For all calls, use the Region endpoint us-east-1. </p> </li> </ul>",
         "DescribeManagedRuleGroupRequest$Scope": "<p>Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows: </p> <ul> <li> <p>CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT --region=us-east-1</code>. </p> </li> <li> <p>API and SDKs - For all calls, use the Region endpoint us-east-1. </p> </li> </ul>",
         "GetDecryptedAPIKeyRequest$Scope": "<p>Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows: </p> <ul> <li> <p>CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT --region=us-east-1</code>. </p> </li> <li> <p>API and SDKs - For all calls, use the Region endpoint us-east-1. </p> </li> </ul>",
         "GetIPSetRequest$Scope": "<p>Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access instance. </p> <p>To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows: </p> <ul> <li> <p>CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT --region=us-east-1</code>. </p> </li> <li> <p>API and SDKs - For all calls, use the Region endpoint us-east-1. </p> </li> </ul>",
@@ -2462,10 +2527,12 @@
     "VendorName": {
       "base": null,
       "refs": {
-        "DescribeManagedRuleGroupRequest$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify the rule group.</p>",
-        "ListAvailableManagedRuleGroupVersionsRequest$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify the rule group.</p>",
-        "ManagedRuleGroupStatement$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify the rule group.</p>",
-        "ManagedRuleGroupSummary$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify the rule group.</p>"
+        "DescribeManagedProductsByVendorRequest$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify a rule group.</p>",
+        "DescribeManagedRuleGroupRequest$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify a rule group.</p>",
+        "ListAvailableManagedRuleGroupVersionsRequest$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify a rule group.</p>",
+        "ManagedProductDescriptor$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify a rule group.</p>",
+        "ManagedRuleGroupStatement$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify a rule group.</p>",
+        "ManagedRuleGroupSummary$VendorName": "<p>The name of the managed rule group vendor. You use this, along with the rule group name, to identify a rule group.</p>"
       }
     },
     "VersionKeyString": {

@@ -12,7 +12,7 @@
     "ListTables": "<p>Returns a list of tables for a specified keyspace.</p>",
     "ListTagsForResource": "<p>Returns a list of all tags associated with the specified Amazon Keyspaces resource.</p>",
     "RestoreTable": "<p>Restores the specified table to the specified point in time within the <code>earliest_restorable_timestamp</code> and the current time. For more information about restore points, see <a href=\"https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery_HowItWorks.html#howitworks_backup_window\"> Time window for PITR continuous backups</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p> <p>Any number of users can execute up to 4 concurrent restores (any type of restore) in a given account.</p> <p>When you restore using point in time recovery, Amazon Keyspaces restores your source table's schema and data to the state based on the selected timestamp <code>(day:hour:minute:second)</code> to a new table. The Time to Live (TTL) settings are also restored to the state based on the selected timestamp.</p> <p>In addition to the table's schema, data, and TTL settings, <code>RestoreTable</code> restores the capacity mode, encryption, and point-in-time recovery settings from the source table. Unlike the table's schema data and TTL settings, which are restored based on the selected timestamp, these settings are always restored based on the table's settings as of the current time or when the table was deleted.</p> <p>You can also overwrite these settings during restore:</p> <ul> <li> <p>Read/write capacity mode</p> </li> <li> <p>Provisioned throughput capacity settings</p> </li> <li> <p>Point-in-time (PITR) settings</p> </li> <li> <p>Tags</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery_HowItWorks.html#howitworks_backup_settings\">PITR restore settings</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p> <p>Note that the following settings are not restored, and you must configure them manually for the new table:</p> <ul> <li> <p>Automatic scaling policies (for tables that use provisioned capacity mode)</p> </li> <li> <p>Identity and Access Management (IAM) policies</p> </li> <li> <p>Amazon CloudWatch metrics and alarms</p> </li> </ul>",
-    "TagResource": "<p>Associates a set of tags with a Amazon Keyspaces resource. You can then activate these user-defined tags so that they appear on the Cost Management Console for cost allocation tracking. For more information, see <a href=\"https://docs.aws.amazon.com/keyspaces/latest/devguide/tagging-keyspaces.html\">Adding tags and labels to Amazon Keyspaces resources</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p> <p>For IAM policy examples that show how to control access to Amazon Keyspaces resources based on tags, see <a href=\"https://docs.aws.amazon.com/keyspaces/latest/devguide/security_iam_id-based-policy-examples-tags\">Amazon Keyspaces resource access based on tags</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p>",
+    "TagResource": "<p>Associates a set of tags with a Amazon Keyspaces resource. You can then activate these user-defined tags so that they appear on the Cost Management Console for cost allocation tracking. For more information, see <a href=\"https://docs.aws.amazon.com/keyspaces/latest/devguide/tagging-keyspaces.html\">Adding tags and labels to Amazon Keyspaces resources</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p> <p>For IAM policy examples that show how to control access to Amazon Keyspaces resources based on tags, see <a href=\"https://docs.aws.amazon.com/keyspaces/latest/devguide/security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-tags\">Amazon Keyspaces resource access based on tags</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p>",
     "UntagResource": "<p>Removes the association of tags from a Amazon Keyspaces resource.</p>",
     "UpdateTable": "<p>Adds new columns to the table or updates one of the table's settings, for example capacity mode, encryption, point-in-time recovery, or ttl settings. Note that you can only update one specific table setting per update operation.</p>"
   },
@@ -22,7 +22,7 @@
       "refs": {
         "CreateKeyspaceResponse$resourceArn": "<p>The unique identifier of the keyspace in the format of an Amazon Resource Name (ARN).</p>",
         "CreateTableResponse$resourceArn": "<p>The unique identifier of the table in the format of an Amazon Resource Name (ARN).</p>",
-        "GetKeyspaceResponse$resourceArn": "<p>The ARN of the keyspace.</p>",
+        "GetKeyspaceResponse$resourceArn": "<p>Returns the ARN of the keyspace.</p>",
         "GetTableResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the specified table.</p>",
         "KeyspaceSummary$resourceArn": "<p>The unique identifier of the keyspace in the format of an Amazon Resource Name (ARN).</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Keyspaces resource.</p>",
@@ -324,6 +324,20 @@
         "GetTableResponse$pointInTimeRecovery": "<p>The point-in-time recovery status of the specified table.</p>"
       }
     },
+    "RegionList": {
+      "base": null,
+      "refs": {
+        "GetKeyspaceResponse$replicationRegions": "<p> If the <code>replicationStrategy</code> of the keyspace is <code>MULTI_REGION</code>, a list of replication Regions is returned. </p>",
+        "KeyspaceSummary$replicationRegions": "<p> If the <code>replicationStrategy</code> of the keyspace is <code>MULTI_REGION</code>, a list of replication Regions is returned. </p>",
+        "ReplicationSpecification$regionList": "<p> The <code>regionList</code> can contain up to six Amazon Web Services Regions where the keyspace is replicated in. </p>"
+      }
+    },
+    "ReplicationSpecification": {
+      "base": "<p> The replication specification of the keyspace includes:</p> <ul> <li> <p> <code>regionList</code> - up to six Amazon Web Services Regions where the keyspace is replicated in.</p> </li> <li> <p> <code>replicationStrategy</code> - the required value is <code>SINGLE_REGION</code> or <code>MULTI_REGION</code>.</p> </li> </ul>",
+      "refs": {
+        "CreateKeyspaceRequest$replicationSpecification": "<p> The replication specification of the keyspace includes:</p> <ul> <li> <p> <code>replicationStrategy</code> - the required value is <code>SINGLE_REGION</code> or <code>MULTI_REGION</code>.</p> </li> <li> <p> <code>regionList</code> - if the <code>replicationStrategy</code> is <code>MULTI_REGION</code>, the <code>regionList</code> requires the current Region and at least one additional Amazon Web Services Region where the keyspace is going to be replicated in. The maximum number of supported replication Regions including the current Region is six.</p> </li> </ul>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The operation tried to access a keyspace or table that doesn't exist. The resource might not be specified correctly, or its status might not be <code>ACTIVE</code>.</p>",
       "refs": {
@@ -510,6 +524,20 @@
       "base": null,
       "refs": {
         "EncryptionSpecification$kmsKeyIdentifier": "<p>The Amazon Resource Name (ARN) of the customer managed KMS key, for example <code>kms_key_identifier:ARN</code>.</p>"
+      }
+    },
+    "region": {
+      "base": null,
+      "refs": {
+        "RegionList$member": null
+      }
+    },
+    "rs": {
+      "base": null,
+      "refs": {
+        "GetKeyspaceResponse$replicationStrategy": "<p> Returns the replication strategy of the keyspace. The options are <code>SINGLE_REGION</code> or <code>MULTI_REGION</code>. </p>",
+        "KeyspaceSummary$replicationStrategy": "<p> This property specifies if a keyspace is a single Region keyspace or a multi-Region keyspace. The available values are <code>SINGLE_REGION</code> or <code>MULTI_REGION</code>. </p>",
+        "ReplicationSpecification$replicationStrategy": "<p> The <code>replicationStrategy</code> of a keyspace, the required value is <code>SINGLE_REGION</code> or <code>MULTI_REGION</code>. </p>"
       }
     }
   }

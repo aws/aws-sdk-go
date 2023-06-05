@@ -3,13 +3,39 @@
   "service": "<p>The FinSpace management service provides the APIs for managing FinSpace environments.</p>",
   "operations": {
     "CreateEnvironment": "<p>Create a new FinSpace environment.</p>",
+    "CreateKxChangeset": "<p> Creates a changeset for a kdb database. A changeset allows you to add and delete existing files by using an ordered list of change requests. </p>",
+    "CreateKxCluster": "<p>Creates a new kdb cluster.</p>",
+    "CreateKxDatabase": "<p>Creates a new kdb database in the environment.</p>",
+    "CreateKxEnvironment": "<p>Creates a managed kdb environment for the account.</p>",
+    "CreateKxUser": "<p>Creates a user in FinSpace kdb environment with an associated IAM role.</p>",
     "DeleteEnvironment": "<p>Delete an FinSpace environment.</p>",
+    "DeleteKxCluster": "<p>Deletes a kdb cluster.</p>",
+    "DeleteKxDatabase": "<p>Deletes the specified database and all of its associated data. This action is irreversible. You must copy any data out of the database before deleting it if the data is to be retained.</p>",
+    "DeleteKxEnvironment": "<p>Deletes the kdb environment. This action is irreversible. Deleting a kdb environment will remove all the associated data and any services running in it. </p>",
+    "DeleteKxUser": "<p>Deletes a user in the specified kdb environment.</p>",
     "GetEnvironment": "<p>Returns the FinSpace environment object.</p>",
+    "GetKxChangeset": "<p>Returns information about a kdb changeset.</p>",
+    "GetKxCluster": "<p>Retrieves information about a kdb cluster.</p>",
+    "GetKxConnectionString": "<p>Retrieves a connection string for a user to connect to a kdb cluster. You must call this API using the same role that you have defined while creating a user. </p>",
+    "GetKxDatabase": "<p>Returns database information for the specified environment ID.</p>",
+    "GetKxEnvironment": "<p>Retrieves all the information for the specified kdb environment.</p>",
+    "GetKxUser": "<p>Retrieves information about the specified kdb user.</p>",
     "ListEnvironments": "<p>A list of all of your FinSpace environments.</p>",
+    "ListKxChangesets": "<p>Returns a list of all the changesets for a database.</p>",
+    "ListKxClusterNodes": "<p>Lists all the nodes in a kdb cluster.</p>",
+    "ListKxClusters": "<p>Returns a list of clusters.</p>",
+    "ListKxDatabases": "<p>Returns a list of all the databases in the kdb environment.</p>",
+    "ListKxEnvironments": "<p>Returns a list of kdb environments created in an account.</p>",
+    "ListKxUsers": "<p>Lists all the users in a kdb environment.</p>",
     "ListTagsForResource": "<p>A list of all tags for a resource.</p>",
     "TagResource": "<p>Adds metadata tags to a FinSpace resource.</p>",
     "UntagResource": "<p>Removes metadata tags from a FinSpace resource.</p>",
-    "UpdateEnvironment": "<p>Update your FinSpace environment.</p>"
+    "UpdateEnvironment": "<p>Update your FinSpace environment.</p>",
+    "UpdateKxClusterDatabases": "<p>Updates the databases mounted on a kdb cluster, which includes the <code>changesetId</code> and all the dbPaths to be cached. This API does not allow you to change a database name or add a database if you created a cluster without one. </p> <p>Using this API you can point a cluster to a different changeset and modify a list of partitions being cached.</p>",
+    "UpdateKxDatabase": "<p>Updates information for the given kdb database.</p>",
+    "UpdateKxEnvironment": "<p>Updates information for the given kdb environment.</p>",
+    "UpdateKxEnvironmentNetwork": "<p>Updates environment network to connect to your internal network by using a transit gateway. This API supports request to create a transit gateway attachment from FinSpace VPC to your transit gateway ID and create a custom Route-53 outbound resolvers.</p> <p>Once you send a request to update a network, you cannot change it again. Network update might require termination of any clusters that are running in the existing network.</p>",
+    "UpdateKxUser": "<p>Updates the user details. You can only update the IAM role associated with a user.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -23,6 +49,141 @@
         "FederationParameters$attributeMap": "<p>SAML attribute name and value. The name must always be <code>Email</code> and the value should be set to the attribute definition in which user email is set. For example, name would be <code>Email</code> and value <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress</code>. Please check your SAML 2.0 compliant identity provider (IdP) documentation for details.</p>"
       }
     },
+    "AutoScalingConfiguration": {
+      "base": "<p>The configuration based on which FinSpace will scale in or scale out nodes in your cluster. </p>",
+      "refs": {
+        "CreateKxClusterRequest$autoScalingConfiguration": "<p>The configuration based on which FinSpace will scale in or scale out nodes in your cluster.</p>",
+        "CreateKxClusterResponse$autoScalingConfiguration": "<p>The configuration based on which FinSpace will scale in or scale out nodes in your cluster.</p>",
+        "GetKxClusterResponse$autoScalingConfiguration": "<p>The configuration based on which FinSpace will scale in or scale out nodes in your cluster.</p>"
+      }
+    },
+    "AutoScalingMetric": {
+      "base": null,
+      "refs": {
+        "AutoScalingConfiguration$autoScalingMetric": "<p> The metric your cluster will track in order to scale in and out. For example, <code>CPU_UTILIZATION_PERCENTAGE</code> is the average CPU usage across all the nodes in a cluster.</p>"
+      }
+    },
+    "AutoScalingMetricTarget": {
+      "base": null,
+      "refs": {
+        "AutoScalingConfiguration$metricTarget": "<p>The desired value of the chosen <code>autoScalingMetric</code>. When the metric drops below this value, the cluster will scale in. When the metric goes above this value, the cluster will scale out. You can set the target value between 1 and 100 percent.</p>"
+      }
+    },
+    "AvailabilityZoneId": {
+      "base": null,
+      "refs": {
+        "AvailabilityZoneIds$member": null,
+        "CreateKxClusterRequest$availabilityZoneId": "<p>The availability zone identifiers for the requested regions.</p>",
+        "CreateKxClusterResponse$availabilityZoneId": "<p> The availability zone identifiers for the requested regions. </p>",
+        "GetKxClusterResponse$availabilityZoneId": "<p> The availability zone identifiers for the requested regions. </p>",
+        "KxCluster$availabilityZoneId": "<p> The availability zone identifiers for the requested regions. </p>",
+        "KxNode$availabilityZoneId": "<p>The identifier of the availability zones where subnets for the environment are created.</p>"
+      }
+    },
+    "AvailabilityZoneIds": {
+      "base": null,
+      "refs": {
+        "GetKxEnvironmentResponse$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>",
+        "KxEnvironment$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>",
+        "UpdateKxEnvironmentNetworkResponse$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>",
+        "UpdateKxEnvironmentResponse$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>"
+      }
+    },
+    "BoxedInteger": {
+      "base": null,
+      "refs": {
+        "ListKxEnvironmentsRequest$maxResults": "<p>The maximum number of results to return in this request.</p>"
+      }
+    },
+    "CapacityConfiguration": {
+      "base": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, number of instances, and the port used while establishing a connection.</p>",
+      "refs": {
+        "CreateKxClusterRequest$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information about like the CPUs needed, memory of instances, number of instances, and the port used while establishing a connection.</p>",
+        "CreateKxClusterResponse$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, number of instances, and the port used while establishing a connection.</p>",
+        "GetKxClusterResponse$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, number of instances, and the port used while establishing a connection.</p>"
+      }
+    },
+    "ChangeRequest": {
+      "base": "<p>A list of change request objects.</p>",
+      "refs": {
+        "ChangeRequests$member": null
+      }
+    },
+    "ChangeRequests": {
+      "base": null,
+      "refs": {
+        "CreateKxChangesetRequest$changeRequests": "<p>A list of change request objects that are run in order. A change request object consists of changeType , s3Path, and a dbPath. A changeType can has the following values: </p> <ul> <li> <p>PUT – Adds or updates files in a database.</p> </li> <li> <p>DELETE – Deletes files in a database.</p> </li> </ul> <p>All the change requests require a mandatory <i>dbPath</i> attribute that defines the path within the database directory. The <i>s3Path</i> attribute defines the s3 source file path and is required for a PUT change type.</p> <p>Here is an example of how you can use the change request object:</p> <p> <code>[ { \"changeType\": \"PUT\", \"s3Path\":\"s3://bucket/db/2020.01.02/\", \"dbPath\":\"/2020.01.02/\"}, { \"changeType\": \"PUT\", \"s3Path\":\"s3://bucket/db/sym\", \"dbPath\":\"/\"}, { \"changeType\": \"DELETE\", \"dbPath\": \"/2020.01.01/\"} ]</code> </p> <p>In this example, the first request with <i>PUT</i> change type allows you to add files in the given s3Path under the <i>2020.01.02</i> partition of the database. The second request with <i>PUT</i> change type allows you to add a single sym file at database root location. The last request with <i>DELETE</i> change type allows you to delete the files under the <i>2020.01.01</i> partition of the database. </p>",
+        "CreateKxChangesetResponse$changeRequests": "<p>A list of change requests.</p>",
+        "GetKxChangesetResponse$changeRequests": "<p>A list of change request objects that are run in order.</p>"
+      }
+    },
+    "ChangeType": {
+      "base": null,
+      "refs": {
+        "ChangeRequest$changeType": "<p>Defines the type of change request. A <code>changeType</code> can have the following values:</p> <ul> <li> <p>PUT – Adds or updates files in a database.</p> </li> <li> <p>DELETE – Deletes files in a database.</p> </li> </ul>"
+      }
+    },
+    "ChangesetId": {
+      "base": null,
+      "refs": {
+        "CreateKxChangesetResponse$changesetId": "<p>A unique identifier for the changeset.</p>",
+        "GetKxChangesetRequest$changesetId": "<p>A unique identifier of the changeset for which you want to retrieve data.</p>",
+        "GetKxChangesetResponse$changesetId": "<p>A unique identifier for the changeset.</p>",
+        "GetKxDatabaseResponse$lastCompletedChangesetId": "<p>A unique identifier for the changeset.</p>",
+        "KxChangesetListEntry$changesetId": "<p>A unique identifier for the changeset.</p>",
+        "KxDatabaseConfiguration$changesetId": "<p>A unique identifier of the changeset that is associated with the cluster.</p>"
+      }
+    },
+    "ChangesetStatus": {
+      "base": null,
+      "refs": {
+        "CreateKxChangesetResponse$status": "<p>Status of the changeset creation process.</p> <ul> <li> <p>Pending – Changeset creation is pending.</p> </li> <li> <p>Processing – Changeset creation is running.</p> </li> <li> <p>Failed – Changeset creation has failed.</p> </li> <li> <p>Complete – Changeset creation has succeeded.</p> </li> </ul>",
+        "GetKxChangesetResponse$status": "<p>Status of the changeset creation process.</p> <ul> <li> <p>Pending – Changeset creation is pending.</p> </li> <li> <p>Processing – Changeset creation is running.</p> </li> <li> <p>Failed – Changeset creation has failed.</p> </li> <li> <p>Complete – Changeset creation has succeeded.</p> </li> </ul>",
+        "KxChangesetListEntry$status": "<p> Status of the changeset.</p> <ul> <li> <p>Pending – Changeset creation is pending.</p> </li> <li> <p>Processing – Changeset creation is running.</p> </li> <li> <p>Failed – Changeset creation has failed.</p> </li> <li> <p>Complete – Changeset creation has succeeded.</p> </li> </ul>"
+      }
+    },
+    "ClientToken": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateKxEnvironmentRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateKxUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateKxEnvironmentNetworkRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateKxEnvironmentRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateKxUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
+      }
+    },
+    "ClientTokenString": {
+      "base": null,
+      "refs": {
+        "CreateKxChangesetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeleteKxClusterRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeleteKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateKxClusterDatabasesRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
+      }
+    },
+    "CodeConfiguration": {
+      "base": "<p>The structure of the customer code available within the running cluster.</p>",
+      "refs": {
+        "CreateKxClusterRequest$code": "<p>The details of the custom code that you want to use inside a cluster when analyzing a data. It consists of the S3 source bucket, location, S3 object version, and the relative path from where the custom code is loaded into the cluster. </p>",
+        "CreateKxClusterResponse$code": "<p>The details of the custom code that you want to use inside a cluster when analyzing a data. It consists of the S3 source bucket, location, S3 object version, and the relative path from where the custom code is loaded into the cluster. </p>",
+        "GetKxClusterResponse$code": "<p>The details of the custom code that you want to use inside a cluster when analyzing a data. It consists of the S3 source bucket, location, S3 object version, and the relative path from where the custom code is loaded into the cluster. </p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>There was a conflict with this action, and it could not be completed.</p>",
+      "refs": {
+      }
+    },
+    "CooldownTime": {
+      "base": null,
+      "refs": {
+        "AutoScalingConfiguration$scaleInCooldownSeconds": "<p>The duration in seconds that FinSpace will wait after a scale in event before initiating another scaling event.</p>",
+        "AutoScalingConfiguration$scaleOutCooldownSeconds": "<p>The duration in seconds that FinSpace will wait after a scale out event before initiating another scaling event.</p>"
+      }
+    },
     "CreateEnvironmentRequest": {
       "base": null,
       "refs": {
@@ -31,6 +192,72 @@
     "CreateEnvironmentResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateKxChangesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxChangesetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxClusterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxClusterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxDatabaseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxDatabaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxEnvironmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxEnvironmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CustomDNSConfiguration": {
+      "base": null,
+      "refs": {
+        "GetKxEnvironmentResponse$customDNSConfiguration": "<p>A list of DNS server name and server IP. This is used to set up Route-53 outbound resolvers.</p>",
+        "KxEnvironment$customDNSConfiguration": "<p>A list of DNS server name and server IP. This is used to set up Route-53 outbound resolvers.</p>",
+        "UpdateKxEnvironmentNetworkRequest$customDNSConfiguration": "<p>A list of DNS server name and server IP. This is used to set up Route-53 outbound resolvers.</p>",
+        "UpdateKxEnvironmentNetworkResponse$customDNSConfiguration": "<p>A list of DNS server name and server IP. This is used to set up Route-53 outbound resolvers.</p>",
+        "UpdateKxEnvironmentResponse$customDNSConfiguration": "<p>A list of DNS server name and server IP. This is used to set up Route-53 outbound resolvers.</p>"
+      }
+    },
+    "CustomDNSServer": {
+      "base": "<p>A list of DNS server name and server IP. This is used to set up Route-53 outbound resolvers.</p>",
+      "refs": {
+        "CustomDNSConfiguration$member": null
       }
     },
     "DataBundleArn": {
@@ -45,6 +272,45 @@
         "CreateEnvironmentRequest$dataBundles": "<p>The list of Amazon Resource Names (ARN) of the data bundles to install. Currently supported data bundle ARNs:</p> <ul> <li> <p> <code>arn:aws:finspace:${Region}::data-bundle/capital-markets-sample</code> - Contains sample Capital Markets datasets, categories and controlled vocabularies.</p> </li> <li> <p> <code>arn:aws:finspace:${Region}::data-bundle/taq</code> (default) - Contains trades and quotes data in addition to sample Capital Markets data.</p> </li> </ul>"
       }
     },
+    "DatabaseArn": {
+      "base": null,
+      "refs": {
+        "CreateKxDatabaseResponse$databaseArn": "<p>The ARN identifier of the database.</p>",
+        "GetKxDatabaseResponse$databaseArn": "<p>The ARN identifier of the database.</p>"
+      }
+    },
+    "DatabaseName": {
+      "base": null,
+      "refs": {
+        "CreateKxChangesetRequest$databaseName": "<p>The name of the kdb database.</p>",
+        "CreateKxChangesetResponse$databaseName": "<p>The name of the kdb database.</p>",
+        "CreateKxDatabaseRequest$databaseName": "<p>The name of the kdb database.</p>",
+        "CreateKxDatabaseResponse$databaseName": "<p>The name of the kdb database.</p>",
+        "DeleteKxDatabaseRequest$databaseName": "<p>The name of the kdb database that you want to delete.</p>",
+        "GetKxChangesetRequest$databaseName": "<p>The name of the kdb database.</p>",
+        "GetKxChangesetResponse$databaseName": "<p>The name of the kdb database.</p>",
+        "GetKxDatabaseRequest$databaseName": "<p>The name of the kdb database.</p>",
+        "GetKxDatabaseResponse$databaseName": "<p>The name of the kdb database for which the information is retrieved.</p>",
+        "KxDatabaseConfiguration$databaseName": "<p>The name of the kdb database. When this parameter is specified in the structure, S3 with the whole database is included by default.</p>",
+        "KxDatabaseListEntry$databaseName": "<p>The name of the kdb database.</p>",
+        "ListKxChangesetsRequest$databaseName": "<p>The name of the kdb database.</p>",
+        "UpdateKxDatabaseRequest$databaseName": "<p>The name of the kdb database.</p>",
+        "UpdateKxDatabaseResponse$databaseName": "<p>The name of the kdb database.</p>"
+      }
+    },
+    "DbPath": {
+      "base": null,
+      "refs": {
+        "ChangeRequest$dbPath": "<p>Defines the path within the database directory. </p>",
+        "DbPaths$member": null
+      }
+    },
+    "DbPaths": {
+      "base": null,
+      "refs": {
+        "KxDatabaseCacheConfiguration$dbPaths": "<p>Specifies the portions of database that will be loaded into the cache for access.</p>"
+      }
+    },
     "DeleteEnvironmentRequest": {
       "base": null,
       "refs": {
@@ -55,12 +321,64 @@
       "refs": {
       }
     },
+    "DeleteKxClusterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxClusterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxDatabaseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxDatabaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxEnvironmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxEnvironmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Description": {
       "base": null,
       "refs": {
         "CreateEnvironmentRequest$description": "<p>The description of the FinSpace environment to be created.</p>",
+        "CreateKxDatabaseRequest$description": "<p>A description of the database.</p>",
+        "CreateKxDatabaseResponse$description": "<p>A description of the database.</p>",
+        "CreateKxEnvironmentRequest$description": "<p>A description for the kdb environment.</p>",
+        "CreateKxEnvironmentResponse$description": "<p>A description for the kdb environment.</p>",
         "Environment$description": "<p>The description of the FinSpace environment.</p>",
-        "UpdateEnvironmentRequest$description": "<p>The description of the environment.</p>"
+        "GetKxDatabaseResponse$description": "<p>A description of the database.</p>",
+        "GetKxEnvironmentResponse$description": "<p>A description for the kdb environment.</p>",
+        "KxEnvironment$description": "<p>A description of the kdb environment.</p>",
+        "UpdateEnvironmentRequest$description": "<p>The description of the environment.</p>",
+        "UpdateKxDatabaseRequest$description": "<p>A description of the database.</p>",
+        "UpdateKxDatabaseResponse$description": "<p>A description of the database.</p>",
+        "UpdateKxEnvironmentNetworkResponse$description": "<p>The description of the environment.</p>",
+        "UpdateKxEnvironmentRequest$description": "<p>A description of the kdb environment.</p>",
+        "UpdateKxEnvironmentResponse$description": "<p>The description of the environment.</p>"
       }
     },
     "EmailId": {
@@ -81,10 +399,39 @@
       "base": null,
       "refs": {
         "CreateEnvironmentResponse$environmentArn": "<p>The Amazon Resource Name (ARN) of the FinSpace environment that you created.</p>",
+        "CreateKxEnvironmentResponse$environmentArn": "<p>The ARN identifier of the environment.</p>",
         "Environment$environmentArn": "<p>The Amazon Resource Name (ARN) of your FinSpace environment.</p>",
-        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name of the resource.</p>",
-        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) for the resource.</p>",
-        "UntagResourceRequest$resourceArn": "<p>A FinSpace resource from which you want to remove a tag or tags. The value for this parameter is an Amazon Resource Name (ARN).</p>"
+        "GetKxEnvironmentResponse$environmentArn": "<p>The ARN identifier of the environment.</p>",
+        "KxEnvironment$environmentArn": "<p>The Amazon Resource Name (ARN) of your kdb environment.</p>",
+        "UpdateKxEnvironmentNetworkResponse$environmentArn": "<p>The ARN identifier of the environment.</p>",
+        "UpdateKxEnvironmentResponse$environmentArn": "<p>The ARN identifier of the environment.</p>"
+      }
+    },
+    "EnvironmentErrorMessage": {
+      "base": null,
+      "refs": {
+        "GetKxEnvironmentResponse$errorMessage": "<p>Specifies the error message that appears if a flow fails.</p>",
+        "KxEnvironment$errorMessage": "<p>Specifies the error message that appears if a flow fails. </p>",
+        "UpdateKxEnvironmentNetworkResponse$errorMessage": "<p>Specifies the error message that appears if a flow fails.</p>",
+        "UpdateKxEnvironmentResponse$errorMessage": "<p>Specifies the error message that appears if a flow fails.</p>"
+      }
+    },
+    "EnvironmentId": {
+      "base": null,
+      "refs": {
+        "CreateKxChangesetRequest$environmentId": "<p>A unique identifier of the kdb environment.</p>",
+        "CreateKxChangesetResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "CreateKxDatabaseRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "CreateKxDatabaseResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "DeleteKxDatabaseRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxChangesetRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxChangesetResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxDatabaseRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxDatabaseResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "ListKxChangesetsRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "ListKxDatabasesRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxDatabaseRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxDatabaseResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>"
       }
     },
     "EnvironmentList": {
@@ -104,13 +451,52 @@
     "EnvironmentStatus": {
       "base": null,
       "refs": {
-        "Environment$status": "<p>The current status of creation of the FinSpace environment.</p>"
+        "CreateKxEnvironmentResponse$status": "<p>The status of the kdb environment.</p>",
+        "Environment$status": "<p>The current status of creation of the FinSpace environment.</p>",
+        "GetKxEnvironmentResponse$status": "<p>The status of the kdb environment.</p>",
+        "KxEnvironment$status": "<p>The status of the environment creation. </p> <ul> <li> <p>CREATE_REQUESTED – Environment creation has been requested.</p> </li> <li> <p>CREATING – Environment is in the process of being created.</p> </li> <li> <p>FAILED_CREATION – Environment creation has failed.</p> </li> <li> <p>CREATED – Environment is successfully created and is currently active.</p> </li> <li> <p>DELETE REQUESTED – Environment deletion has been requested.</p> </li> <li> <p>DELETING – Environment is in the process of being deleted.</p> </li> <li> <p>RETRY_DELETION – Initial environment deletion failed, system is reattempting delete.</p> </li> <li> <p>DELETED – Environment has been deleted.</p> </li> <li> <p>FAILED_DELETION – Environment deletion has failed.</p> </li> </ul>",
+        "UpdateKxEnvironmentNetworkResponse$status": "<p>The status of the kdb environment.</p>",
+        "UpdateKxEnvironmentResponse$status": "<p>The status of the kdb environment.</p>"
+      }
+    },
+    "ErrorDetails": {
+      "base": null,
+      "refs": {
+        "ErrorInfo$errorType": "<p>Specifies the type of error.</p>"
+      }
+    },
+    "ErrorInfo": {
+      "base": "<p>Provides details in the event of a failed flow, including the error type and the related error message.</p>",
+      "refs": {
+        "CreateKxChangesetResponse$errorInfo": "<p>The details of the error that you receive when creating a changeset. It consists of the type of error and the error message.</p>",
+        "GetKxChangesetResponse$errorInfo": "<p>Provides details in the event of a failed flow, including the error type and the related error message.</p>"
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "ErrorInfo$errorMessage": "<p>Specifies the error message that appears if a flow fails. </p>"
+      }
+    },
+    "ExecutionRoleArn": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$executionRole": "<p>An IAM role that defines a set of permissions associated with a cluster. These permissions are assumed when a cluster attempts to access another cluster.</p>",
+        "CreateKxClusterResponse$executionRole": "<p> An IAM role that defines a set of permissions associated with a cluster. These permissions are assumed when a cluster attempts to access another cluster. </p>",
+        "GetKxClusterResponse$executionRole": "<p> An IAM role that defines a set of permissions associated with a cluster. These permissions are assumed when a cluster attempts to access another cluster. </p>",
+        "KxCluster$executionRole": "<p> An IAM role that defines a set of permissions associated with a cluster. These permissions are assumed when a cluster attempts to access another cluster. </p>"
       }
     },
     "FederationAttributeKey": {
       "base": null,
       "refs": {
         "AttributeMap$key": null
+      }
+    },
+    "FederationAttributeValue": {
+      "base": null,
+      "refs": {
+        "AttributeMap$value": null
       }
     },
     "FederationMode": {
@@ -135,6 +521,14 @@
         "FederationParameters$federationProviderName": "<p>Name of the identity provider (IdP).</p>"
       }
     },
+    "FinSpaceTaggableArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name of the resource.</p>",
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) for the resource.</p>",
+        "UntagResourceRequest$resourceArn": "<p>A FinSpace resource from which you want to remove a tag or tags. The value for this parameter is an Amazon Resource Name (ARN).</p>"
+      }
+    },
     "GetEnvironmentRequest": {
       "base": null,
       "refs": {
@@ -145,16 +539,118 @@
       "refs": {
       }
     },
+    "GetKxChangesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxChangesetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxClusterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxClusterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxConnectionStringRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxConnectionStringResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxDatabaseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxDatabaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxEnvironmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxEnvironmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "IPAddressType": {
+      "base": null,
+      "refs": {
+        "VpcConfiguration$ipAddressType": "<p>The IP address type for cluster network configuration parameters. The following type is available:</p> <ul> <li> <p>IP_V4 – IP address version 4</p> </li> </ul>"
+      }
+    },
     "IdType": {
       "base": null,
       "refs": {
         "CreateEnvironmentResponse$environmentId": "<p>The unique identifier for FinSpace environment that you created.</p>",
+        "CreateKxEnvironmentResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "CreateKxUserRequest$environmentId": "<p>A unique identifier for the kdb environment where you want to create a user.</p>",
+        "CreateKxUserResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "DeleteEnvironmentRequest$environmentId": "<p>The identifier for the FinSpace environment.</p>",
+        "DeleteKxEnvironmentRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "DeleteKxUserRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "Environment$environmentId": "<p>The identifier of the FinSpace environment.</p>",
         "Environment$awsAccountId": "<p>The ID of the AWS account in which the FinSpace environment is created.</p>",
         "Environment$dedicatedServiceAccountId": "<p>The AWS account ID of the dedicated service account associated with your FinSpace environment.</p>",
         "GetEnvironmentRequest$environmentId": "<p>The identifier of the FinSpace environment.</p>",
-        "UpdateEnvironmentRequest$environmentId": "<p>The identifier of the FinSpace environment.</p>"
+        "GetKxConnectionStringRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxEnvironmentRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxEnvironmentResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxEnvironmentResponse$awsAccountId": "<p>The unique identifier of the AWS account that is used to create the kdb environment.</p>",
+        "GetKxEnvironmentResponse$dedicatedServiceAccountId": "<p>A unique identifier for the AWS environment infrastructure account.</p>",
+        "GetKxUserRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxUserResponse$userName": "<p>A unique identifier for the user.</p>",
+        "GetKxUserResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "KxEnvironment$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "KxEnvironment$awsAccountId": "<p>The unique identifier of the AWS account in which you create the kdb environment.</p>",
+        "KxEnvironment$dedicatedServiceAccountId": "<p>A unique identifier for the AWS environment infrastructure account.</p>",
+        "ListKxUsersRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateEnvironmentRequest$environmentId": "<p>The identifier of the FinSpace environment.</p>",
+        "UpdateKxEnvironmentNetworkRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxEnvironmentNetworkResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxEnvironmentNetworkResponse$awsAccountId": "<p>The unique identifier of the AWS account that is used to create the kdb environment.</p>",
+        "UpdateKxEnvironmentNetworkResponse$dedicatedServiceAccountId": "<p>A unique identifier for the AWS environment infrastructure account.</p>",
+        "UpdateKxEnvironmentRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxEnvironmentResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxEnvironmentResponse$awsAccountId": "<p>The unique identifier of the AWS account that is used to create the kdb environment.</p>",
+        "UpdateKxEnvironmentResponse$dedicatedServiceAccountId": "<p>A unique identifier for the AWS environment infrastructure account.</p>",
+        "UpdateKxUserRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxUserResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>"
+      }
+    },
+    "InitializationScriptFilePath": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>",
+        "CreateKxClusterResponse$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>",
+        "GetKxClusterResponse$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>",
+        "KxCluster$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>"
       }
     },
     "InternalServerException": {
@@ -167,11 +663,304 @@
       "refs": {
       }
     },
+    "KmsKeyARN": {
+      "base": null,
+      "refs": {
+        "CreateKxEnvironmentRequest$kmsKeyId": "<p>The KMS key ID to encrypt your data in the FinSpace environment.</p>"
+      }
+    },
     "KmsKeyId": {
       "base": null,
       "refs": {
         "CreateEnvironmentRequest$kmsKeyId": "<p>The KMS key id to encrypt your data in the FinSpace environment.</p>",
-        "Environment$kmsKeyId": "<p>The KMS key id used to encrypt in the FinSpace environment.</p>"
+        "CreateKxEnvironmentResponse$kmsKeyId": "<p>The KMS key ID to encrypt your data in the FinSpace environment.</p>",
+        "Environment$kmsKeyId": "<p>The KMS key id used to encrypt in the FinSpace environment.</p>",
+        "GetKxEnvironmentResponse$kmsKeyId": "<p>The KMS key ID to encrypt your data in the FinSpace environment.</p>",
+        "KxEnvironment$kmsKeyId": "<p>The unique identifier of the KMS key.</p>",
+        "UpdateKxEnvironmentNetworkResponse$kmsKeyId": "<p>The KMS key ID to encrypt your data in the FinSpace environment.</p>",
+        "UpdateKxEnvironmentResponse$kmsKeyId": "<p>The KMS key ID to encrypt your data in the FinSpace environment.</p>"
+      }
+    },
+    "KxAzMode": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "CreateKxClusterResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "GetKxClusterResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "KxCluster$azMode": "<p>The number of availability zones assigned per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>"
+      }
+    },
+    "KxCacheStorageConfiguration": {
+      "base": "<p>The configuration for read only disk cache associated with a cluster.</p>",
+      "refs": {
+        "KxCacheStorageConfigurations$member": null
+      }
+    },
+    "KxCacheStorageConfigurations": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$cacheStorageConfigurations": "<p>The configurations for a read only cache storage associated with a cluster. This cache will be stored as an FSx Lustre that reads from the S3 store. </p>",
+        "CreateKxClusterResponse$cacheStorageConfigurations": "<p>The configurations for a read only cache storage associated with a cluster. This cache will be stored as an FSx Lustre that reads from the S3 store. </p>",
+        "GetKxClusterResponse$cacheStorageConfigurations": "<p>The configurations for a read only cache storage associated with a cluster. This cache will be stored as an FSx Lustre that reads from the S3 store. </p>"
+      }
+    },
+    "KxCacheStorageSize": {
+      "base": null,
+      "refs": {
+        "KxCacheStorageConfiguration$size": "<p>The size of cache in Gigabytes.</p>"
+      }
+    },
+    "KxCacheStorageType": {
+      "base": null,
+      "refs": {
+        "KxCacheStorageConfiguration$type": "<p>The type of cache storage . The valid values are: </p> <ul> <li> <p>CACHE_1000 – This type provides at least 1000 MB/s disk access throughput. </p> </li> </ul>",
+        "KxDatabaseCacheConfiguration$cacheType": "<p>The type of disk cache. This parameter is used to map the database path to cache storage. The valid values are:</p> <ul> <li> <p>CACHE_1000 – This type provides at least 1000 MB/s disk access throughput. </p> </li> </ul>"
+      }
+    },
+    "KxChangesetListEntry": {
+      "base": "<p>Details of changeset.</p>",
+      "refs": {
+        "KxChangesets$member": null
+      }
+    },
+    "KxChangesets": {
+      "base": null,
+      "refs": {
+        "ListKxChangesetsResponse$kxChangesets": "<p>A list of changesets for a database.</p>"
+      }
+    },
+    "KxCluster": {
+      "base": "<p>The details of a kdb cluster.</p>",
+      "refs": {
+        "KxClusters$member": null
+      }
+    },
+    "KxClusterDescription": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$clusterDescription": "<p>A description of the cluster.</p>",
+        "CreateKxClusterResponse$clusterDescription": "<p>A description of the cluster.</p>",
+        "GetKxClusterResponse$clusterDescription": "<p>A description of the cluster.</p>",
+        "KxCluster$clusterDescription": "<p>A description of the cluster.</p>"
+      }
+    },
+    "KxClusterName": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$clusterName": "<p>A unique name for the cluster that you want to create.</p>",
+        "CreateKxClusterResponse$clusterName": "<p>A unique name for the cluster.</p>",
+        "DeleteKxClusterRequest$clusterName": "<p>The name of the cluster that you want to delete.</p>",
+        "GetKxClusterRequest$clusterName": "<p>The name of the cluster that you want to retrieve.</p>",
+        "GetKxClusterResponse$clusterName": "<p>A unique name for the cluster.</p>",
+        "GetKxConnectionStringRequest$clusterName": "<p>A name of the kdb cluster.</p>",
+        "KxCluster$clusterName": "<p>A unique name for the cluster.</p>",
+        "ListKxClusterNodesRequest$clusterName": "<p>A unique name for the cluster.</p>",
+        "UpdateKxClusterDatabasesRequest$clusterName": "<p>A unique name for the cluster that you want to modify.</p>"
+      }
+    },
+    "KxClusterNodeIdString": {
+      "base": null,
+      "refs": {
+        "KxNode$nodeId": "<p>A unique identifier for the node.</p>"
+      }
+    },
+    "KxClusterStatus": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterResponse$status": "<p>The status of cluster creation.</p> <ul> <li> <p>PENDING – The cluster is pending creation.</p> </li> <li> <p>CREATING – The cluster creation process is in progress.</p> </li> <li> <p>CREATE_FAILED – The cluster creation process has failed.</p> </li> <li> <p>RUNNING – The cluster creation process is running.</p> </li> <li> <p>UPDATING – The cluster is in the process of being updated.</p> </li> <li> <p>DELETING – The cluster is in the process of being deleted.</p> </li> <li> <p>DELETED – The cluster has been deleted.</p> </li> <li> <p>DELETE_FAILED – The cluster failed to delete.</p> </li> </ul>",
+        "GetKxClusterResponse$status": "<p>The status of cluster creation.</p> <ul> <li> <p>PENDING – The cluster is pending creation.</p> </li> <li> <p>CREATING – The cluster creation process is in progress.</p> </li> <li> <p>CREATE_FAILED – The cluster creation process has failed.</p> </li> <li> <p>RUNNING – The cluster creation process is running.</p> </li> <li> <p>UPDATING – The cluster is in the process of being updated.</p> </li> <li> <p>DELETING – The cluster is in the process of being deleted.</p> </li> <li> <p>DELETED – The cluster has been deleted.</p> </li> <li> <p>DELETE_FAILED – The cluster failed to delete.</p> </li> </ul>",
+        "KxCluster$status": "<p>The status of a cluster.</p> <ul> <li> <p>PENDING – The cluster is pending creation.</p> </li> <li> <p>CREATING –The cluster creation process is in progress.</p> </li> <li> <p>CREATE_FAILED– The cluster creation process has failed.</p> </li> <li> <p>RUNNING – The cluster creation process is running.</p> </li> <li> <p>UPDATING – The cluster is in the process of being updated.</p> </li> <li> <p> DELETING – The cluster is in the process of being deleted.</p> </li> <li> <p>DELETED – The cluster has been deleted.</p> </li> <li> <p>DELETE_FAILED – The cluster failed to delete.</p> </li> </ul>"
+      }
+    },
+    "KxClusterStatusReason": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterResponse$statusReason": "<p>The error message when a failed state occurs. </p>",
+        "GetKxClusterResponse$statusReason": "<p>The error message when a failed state occurs. </p>",
+        "KxCluster$statusReason": "<p>The error message when a failed state occurs. </p>"
+      }
+    },
+    "KxClusterType": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> </ul>",
+        "CreateKxClusterResponse$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> </ul>",
+        "GetKxClusterResponse$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> </ul>",
+        "KxCluster$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> </ul>",
+        "ListKxClustersRequest$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> </ul>"
+      }
+    },
+    "KxClusters": {
+      "base": null,
+      "refs": {
+        "ListKxClustersResponse$kxClusterSummaries": "<p>Lists the cluster details.</p>"
+      }
+    },
+    "KxCommandLineArgument": {
+      "base": "<p>Defines the key-value pairs to make them available inside the cluster.</p>",
+      "refs": {
+        "KxCommandLineArguments$member": null
+      }
+    },
+    "KxCommandLineArgumentKey": {
+      "base": null,
+      "refs": {
+        "KxCommandLineArgument$key": "<p>The name of the key.</p>"
+      }
+    },
+    "KxCommandLineArgumentValue": {
+      "base": null,
+      "refs": {
+        "KxCommandLineArgument$value": "<p>The value of the key.</p>"
+      }
+    },
+    "KxCommandLineArguments": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$commandLineArguments": "<p>Defines the key-value pairs to make them available inside the cluster.</p>",
+        "CreateKxClusterResponse$commandLineArguments": "<p>Defines the key-value pairs to make them available inside the cluster.</p>",
+        "GetKxClusterResponse$commandLineArguments": "<p>Defines key-value pairs to make them available inside the cluster.</p>"
+      }
+    },
+    "KxDatabaseCacheConfiguration": {
+      "base": "<p>The structure of database cache configuration that is used for mapping database paths to cache types in clusters.</p>",
+      "refs": {
+        "KxDatabaseCacheConfigurations$member": null
+      }
+    },
+    "KxDatabaseCacheConfigurations": {
+      "base": null,
+      "refs": {
+        "KxDatabaseConfiguration$cacheConfigurations": "<p>Configuration details for the disk cache used to increase performance reading from a kdb database mounted to the cluster.</p>"
+      }
+    },
+    "KxDatabaseConfiguration": {
+      "base": "<p>The configuration of data that is available for querying from this database.</p>",
+      "refs": {
+        "KxDatabaseConfigurations$member": null
+      }
+    },
+    "KxDatabaseConfigurations": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$databases": "<p>A list of databases that will be available for querying.</p>",
+        "CreateKxClusterResponse$databases": "<p>A list of databases that will be available for querying.</p>",
+        "GetKxClusterResponse$databases": "<p> A list of databases mounted on the cluster.</p>",
+        "UpdateKxClusterDatabasesRequest$databases": "<p> The structure of databases mounted on the cluster.</p>"
+      }
+    },
+    "KxDatabaseListEntry": {
+      "base": "<p>Details about a FinSpace managed kdb database</p>",
+      "refs": {
+        "KxDatabases$member": null
+      }
+    },
+    "KxDatabases": {
+      "base": null,
+      "refs": {
+        "ListKxDatabasesResponse$kxDatabases": "<p>A list of databases in the kdb environment.</p>"
+      }
+    },
+    "KxEnvironment": {
+      "base": "<p>The details of a kdb environment.</p>",
+      "refs": {
+        "KxEnvironmentList$member": null
+      }
+    },
+    "KxEnvironmentId": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "CreateKxClusterResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "DeleteKxClusterRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxClusterRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "ListKxClusterNodesRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "ListKxClustersRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxClusterDatabasesRequest$environmentId": "<p>The unique identifier of a kdb environment.</p>"
+      }
+    },
+    "KxEnvironmentList": {
+      "base": null,
+      "refs": {
+        "ListKxEnvironmentsResponse$environments": "<p>A list of environments in an account.</p>"
+      }
+    },
+    "KxEnvironmentName": {
+      "base": null,
+      "refs": {
+        "CreateKxEnvironmentRequest$name": "<p>The name of the kdb environment that you want to create.</p>",
+        "CreateKxEnvironmentResponse$name": "<p>The name of the kdb environment.</p>",
+        "GetKxEnvironmentResponse$name": "<p>The name of the kdb environment.</p>",
+        "KxEnvironment$name": "<p>The name of the kdb environment.</p>",
+        "UpdateKxEnvironmentNetworkResponse$name": "<p>The name of the kdb environment.</p>",
+        "UpdateKxEnvironmentRequest$name": "<p>The name of the kdb environment.</p>",
+        "UpdateKxEnvironmentResponse$name": "<p>The name of the kdb environment.</p>"
+      }
+    },
+    "KxNode": {
+      "base": "<p>A structure that stores metadata for a kdb node.</p>",
+      "refs": {
+        "KxNodeSummaries$member": null
+      }
+    },
+    "KxNodeSummaries": {
+      "base": null,
+      "refs": {
+        "ListKxClusterNodesResponse$nodes": "<p>A list of nodes associated with the cluster.</p>"
+      }
+    },
+    "KxSavedownStorageConfiguration": {
+      "base": "<p>The size and type of temporary storage that is used to hold data during the savedown process. All the data written to this storage space is lost when the cluster node is restarted.</p>",
+      "refs": {
+        "CreateKxClusterRequest$savedownStorageConfiguration": "<p>The size and type of the temporary storage that is used to hold data during the savedown process. This parameter is required when you choose <code>clusterType</code> as RDB. All the data written to this storage space is lost when the cluster node is restarted.</p>",
+        "CreateKxClusterResponse$savedownStorageConfiguration": "<p>The size and type of the temporary storage that is used to hold data during the savedown process. This parameter is required when you choose <code>clusterType</code> as RDB. All the data written to this storage space is lost when the cluster node is restarted.</p>",
+        "GetKxClusterResponse$savedownStorageConfiguration": "<p>The size and type of the temporary storage that is used to hold data during the savedown process. This parameter is required when you choose <code>clusterType</code> as RDB. All the data written to this storage space is lost when the cluster node is restarted.</p>"
+      }
+    },
+    "KxSavedownStorageSize": {
+      "base": null,
+      "refs": {
+        "KxSavedownStorageConfiguration$size": "<p>The size of temporary storage in bytes.</p>"
+      }
+    },
+    "KxSavedownStorageType": {
+      "base": null,
+      "refs": {
+        "KxSavedownStorageConfiguration$type": "<p>The type of writeable storage space for temporarily storing your savedown data. The valid values are:</p> <ul> <li> <p>SDS01 – This type represents 3000 IOPS and io2 ebs volume type.</p> </li> </ul>"
+      }
+    },
+    "KxUser": {
+      "base": "<p>A structure that stores metadata for a kdb user.</p>",
+      "refs": {
+        "KxUserList$member": null
+      }
+    },
+    "KxUserArn": {
+      "base": null,
+      "refs": {
+        "CreateKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
+        "GetKxConnectionStringRequest$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
+        "GetKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
+        "KxUser$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
+        "UpdateKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>"
+      }
+    },
+    "KxUserList": {
+      "base": null,
+      "refs": {
+        "ListKxUsersResponse$users": "<p>A list of users in a kdb environment.</p>"
+      }
+    },
+    "KxUserNameString": {
+      "base": null,
+      "refs": {
+        "CreateKxUserRequest$userName": "<p>A unique identifier for the user.</p>",
+        "CreateKxUserResponse$userName": "<p>A unique identifier for the user.</p>",
+        "DeleteKxUserRequest$userName": "<p>A unique identifier for the user that you want to delete.</p>",
+        "GetKxUserRequest$userName": "<p>A unique identifier for the user.</p>",
+        "KxUser$userName": "<p>A unique identifier for the user.</p>",
+        "UpdateKxUserRequest$userName": "<p>A unique identifier for the user.</p>",
+        "UpdateKxUserResponse$userName": "<p>A unique identifier for the user.</p>"
       }
     },
     "LimitExceededException": {
@@ -189,6 +978,66 @@
       "refs": {
       }
     },
+    "ListKxChangesetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxChangesetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxClusterNodesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxClusterNodesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxClustersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxClustersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxDatabasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxDatabasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxEnvironmentsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxEnvironmentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxUsersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxUsersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -199,6 +1048,14 @@
       "refs": {
       }
     },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListKxChangesetsRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
+        "ListKxClustersRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
+        "ListKxDatabasesRequest$maxResults": "<p>The maximum number of results to return in this request.</p>"
+      }
+    },
     "NameString": {
       "base": null,
       "refs": {
@@ -206,11 +1063,51 @@
         "SuperuserParameters$lastName": "<p>The last name of the superuser.</p>"
       }
     },
+    "NodeCount": {
+      "base": null,
+      "refs": {
+        "AutoScalingConfiguration$minNodeCount": "<p>The lowest number of nodes to scale. This value must be at least 1 and less than the <code>maxNodeCount</code>. If the nodes in a cluster belong to multiple availability zones, then <code>minNodeCount</code> must be at least 3.</p>",
+        "AutoScalingConfiguration$maxNodeCount": "<p>The highest number of nodes to scale. This value cannot be greater than 5.</p>",
+        "CapacityConfiguration$nodeCount": "<p>The number of instances running in a cluster.</p>"
+      }
+    },
+    "NodeType": {
+      "base": null,
+      "refs": {
+        "CapacityConfiguration$nodeType": "<p>The type that determines the hardware of the host computer used for your cluster instance. Each node type offers different memory and storage capabilities. Choose a node type based on the requirements of the application or software that you plan to run on your instance.</p> <p>You can only specify one of the following values:</p> <ul> <li> <p> <code>kx.s.large</code> – The node type with a configuration of 12 GiB memory and 2 vCPUs.</p> </li> <li> <p> <code>kx.s.xlarge</code> – The node type with a configuration of 27 GiB memory and 4 vCPUs.</p> </li> <li> <p> <code>kx.s.2xlarge</code> – The node type with a configuration of 54 GiB memory and 8 vCPUs.</p> </li> <li> <p> <code>kx.s.4xlarge</code> – The node type with a configuration of 108 GiB memory and 16 vCPUs.</p> </li> <li> <p> <code>kx.s.8xlarge</code> – The node type with a configuration of 216 GiB memory and 32 vCPUs.</p> </li> <li> <p> <code>kx.s.16xlarge</code> – The node type with a configuration of 432 GiB memory and 64 vCPUs.</p> </li> <li> <p> <code>kx.s.32xlarge</code> – The node type with a configuration of 864 GiB memory and 128 vCPUs.</p> </li> </ul>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
-        "ListEnvironmentsRequest$nextToken": "<p>A token generated by FinSpace that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the nextToken value from the response object of the previous page call.</p>",
-        "ListEnvironmentsResponse$nextToken": "<p>A token that you can use in a subsequent call to retrieve the next set of results.</p>"
+        "ListEnvironmentsRequest$nextToken": "<p>A token generated by FinSpace that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the <code>nextToken</code>nextToken value from the response object of the previous page call.</p>",
+        "ListEnvironmentsResponse$nextToken": "<p>A token that you can use in a subsequent call to retrieve the next set of results.</p>",
+        "ListKxChangesetsRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxChangesetsResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxClusterNodesRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxClusterNodesResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxClustersRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxClustersResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxDatabasesRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxDatabasesResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxEnvironmentsRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxEnvironmentsResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxUsersRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxUsersResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>"
+      }
+    },
+    "ReleaseLabel": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterRequest$releaseLabel": "<p>The version of FinSpace managed kdb to run.</p>",
+        "CreateKxClusterResponse$releaseLabel": "<p>A version of the FinSpace managed kdb to run.</p>",
+        "GetKxClusterResponse$releaseLabel": "<p>The version of FinSpace managed kdb to run.</p>",
+        "KxCluster$releaseLabel": "<p>A version of the FinSpace managed kdb to run.</p>"
+      }
+    },
+    "ResourceAlreadyExistsException": {
+      "base": "<p>The specified resource group already exists.</p>",
+      "refs": {
       }
     },
     "ResourceNotFoundException": {
@@ -221,7 +1118,44 @@
     "ResultLimit": {
       "base": null,
       "refs": {
-        "ListEnvironmentsRequest$maxResults": "<p>The maximum number of results to return in this request.</p>"
+        "ListEnvironmentsRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
+        "ListKxClusterNodesRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
+        "ListKxUsersRequest$maxResults": "<p>The maximum number of results to return in this request.</p>"
+      }
+    },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "CreateKxUserRequest$iamRole": "<p>The IAM role ARN that will be associated with the user.</p>",
+        "CreateKxUserResponse$iamRole": "<p>The IAM role ARN that will be associated with the user.</p>",
+        "GetKxUserResponse$iamRole": "<p>The IAM role ARN that is associated with the user.</p>",
+        "KxUser$iamRole": "<p>The IAM role ARN that is associated with the user.</p>",
+        "UpdateKxUserRequest$iamRole": "<p>The IAM role ARN that is associated with the user.</p>",
+        "UpdateKxUserResponse$iamRole": "<p>The IAM role ARN that is associated with the user.</p>"
+      }
+    },
+    "S3Bucket": {
+      "base": null,
+      "refs": {
+        "CodeConfiguration$s3Bucket": "<p>A unique name for the S3 bucket.</p>"
+      }
+    },
+    "S3Key": {
+      "base": null,
+      "refs": {
+        "CodeConfiguration$s3Key": "<p>The full S3 path (excluding bucket) to the .zip file. This file contains the code that is loaded onto the cluster when it's started.</p>"
+      }
+    },
+    "S3ObjectVersion": {
+      "base": null,
+      "refs": {
+        "CodeConfiguration$s3ObjectVersion": "<p>The version of an S3 object.</p>"
+      }
+    },
+    "S3Path": {
+      "base": null,
+      "refs": {
+        "ChangeRequest$s3Path": "<p>Defines the S3 path of the source file that is required to add or update files in a database.</p>"
       }
     },
     "SamlMetadataDocument": {
@@ -230,15 +1164,45 @@
         "FederationParameters$samlMetadataDocument": "<p>SAML 2.0 Metadata document from identity provider (IdP).</p>"
       }
     },
+    "SecurityGroupIdList": {
+      "base": null,
+      "refs": {
+        "VpcConfiguration$securityGroupIds": "<p>The unique identifier of the VPC security group applied to the VPC endpoint ENI for the cluster.</p>"
+      }
+    },
+    "SecurityGroupIdString": {
+      "base": null,
+      "refs": {
+        "SecurityGroupIdList$member": null
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p> You have exceeded your service quota. To perform the requested action, remove some of the relevant resources, or use Service Quotas to request a service quota increase.</p>",
       "refs": {
       }
     },
+    "SignedKxConnectionString": {
+      "base": null,
+      "refs": {
+        "GetKxConnectionStringResponse$signedConnectionString": "<p>The signed connection string that you can use to connect to clusters.</p>"
+      }
+    },
     "SmsDomainUrl": {
       "base": null,
       "refs": {
-        "Environment$sageMakerStudioDomainUrl": "<p>The url of the integrated FinSpace notebook environment in your web application.</p>"
+        "Environment$sageMakerStudioDomainUrl": "<p>The URL of the integrated FinSpace notebook environment in your web application.</p>"
+      }
+    },
+    "SubnetIdList": {
+      "base": null,
+      "refs": {
+        "VpcConfiguration$subnetIds": "<p>The identifier of the subnet that the Privatelink VPC endpoint uses to connect to the cluster.</p>"
+      }
+    },
+    "SubnetIdString": {
+      "base": null,
+      "refs": {
+        "SubnetIdList$member": null
       }
     },
     "SuperuserParameters": {
@@ -264,6 +1228,10 @@
       "base": null,
       "refs": {
         "CreateEnvironmentRequest$tags": "<p>Add tags to your FinSpace environment.</p>",
+        "CreateKxClusterRequest$tags": "<p>A list of key-value pairs to label the cluster. You can add up to 50 tags to a cluster.</p>",
+        "CreateKxDatabaseRequest$tags": "<p>A list of key-value pairs to label the kdb database. You can add up to 50 tags to your kdb database</p>",
+        "CreateKxEnvironmentRequest$tags": "<p>A list of key-value pairs to label the kdb environment. You can add up to 50 tags to your kdb environment.</p>",
+        "CreateKxUserRequest$tags": "<p>A list of key-value pairs to label the user. You can add up to 50 tags to a user.</p>",
         "ListTagsForResourceResponse$tags": "<p>A list of all tags for a resource.</p>",
         "TagResourceRequest$tags": "<p>One or more tags to be assigned to the resource.</p>"
       }
@@ -289,6 +1257,60 @@
       "refs": {
       }
     },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "CreateKxChangesetResponse$createdTimestamp": "<p>The timestamp at which the changeset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxChangesetResponse$lastModifiedTimestamp": "<p>The timestamp at which the changeset was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxClusterResponse$lastModifiedTimestamp": "<p>The last time that the cluster was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxClusterResponse$createdTimestamp": "<p>The timestamp at which the cluster was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxDatabaseResponse$createdTimestamp": "<p>The timestamp at which the database is created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxDatabaseResponse$lastModifiedTimestamp": "<p>The last time that the database was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxEnvironmentResponse$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace.</p>",
+        "GetKxChangesetResponse$createdTimestamp": "<p>The timestamp at which the changeset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxChangesetResponse$activeFromTimestamp": "<p>Beginning time from which the changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxChangesetResponse$lastModifiedTimestamp": "<p>The timestamp at which the changeset was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxClusterResponse$lastModifiedTimestamp": "<p>The last time that the cluster was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxClusterResponse$createdTimestamp": "<p>The timestamp at which the cluster was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxDatabaseResponse$createdTimestamp": "<p>The timestamp at which the database is created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxDatabaseResponse$lastModifiedTimestamp": "<p>The last time that the database was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxEnvironmentResponse$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace. </p>",
+        "GetKxEnvironmentResponse$updateTimestamp": "<p>The timestamp at which the kdb environment was updated. </p>",
+        "KxChangesetListEntry$createdTimestamp": "<p>The timestamp at which the changeset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxChangesetListEntry$activeFromTimestamp": "<p>Beginning time from which the changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxChangesetListEntry$lastModifiedTimestamp": "<p>The timestamp at which the changeset was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxCluster$lastModifiedTimestamp": "<p>The last time that the cluster was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxCluster$createdTimestamp": "<p>The timestamp at which the cluster was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxDatabaseListEntry$createdTimestamp": "<p>The timestamp at which the database was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxDatabaseListEntry$lastModifiedTimestamp": "<p>The last time that the database was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxEnvironment$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxEnvironment$updateTimestamp": "<p>The timestamp at which the kdb environment was modified in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxNode$launchTime": "<p>The time when a particular node is started. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxUser$createTimestamp": "<p>The timestamp at which the kdb user was created. </p>",
+        "KxUser$updateTimestamp": "<p>The timestamp at which the kdb user was updated. </p>",
+        "UpdateKxDatabaseResponse$lastModifiedTimestamp": "<p>The last time that the database was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "UpdateKxEnvironmentNetworkResponse$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace. </p>",
+        "UpdateKxEnvironmentNetworkResponse$updateTimestamp": "<p>The timestamp at which the kdb environment was updated. </p>",
+        "UpdateKxEnvironmentResponse$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace. </p>",
+        "UpdateKxEnvironmentResponse$updateTimestamp": "<p>The timestamp at which the kdb environment was updated. </p>"
+      }
+    },
+    "TransitGatewayConfiguration": {
+      "base": "<p>The structure of the transit gateway and network configuration that is used to connect the kdb environment to an internal network.</p>",
+      "refs": {
+        "GetKxEnvironmentResponse$transitGatewayConfiguration": null,
+        "KxEnvironment$transitGatewayConfiguration": "<p>Specifies the transit gateway and network configuration to connect the kdb environment to an internal network.</p>",
+        "UpdateKxEnvironmentNetworkRequest$transitGatewayConfiguration": "<p>Specifies the transit gateway and network configuration to connect the kdb environment to an internal network.</p>",
+        "UpdateKxEnvironmentNetworkResponse$transitGatewayConfiguration": null,
+        "UpdateKxEnvironmentResponse$transitGatewayConfiguration": null
+      }
+    },
+    "TransitGatewayID": {
+      "base": null,
+      "refs": {
+        "TransitGatewayConfiguration$transitGatewayID": "<p>The identifier of the transit gateway created by the customer to connect outbound traffics from kdb network to your internal network.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -309,28 +1331,155 @@
       "refs": {
       }
     },
+    "UpdateKxClusterDatabasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxClusterDatabasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxDatabaseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxDatabaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxEnvironmentNetworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxEnvironmentNetworkResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxEnvironmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxEnvironmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidCIDRSpace": {
+      "base": null,
+      "refs": {
+        "TransitGatewayConfiguration$routableCIDRSpace": "<p>The routing CIDR on behalf of kdb environment. It could be any \"/26 range in the 100.64.0.0 CIDR space. After providing, it will be added to the customer's transit gateway routing table so that the traffics could be routed to kdb network.</p>"
+      }
+    },
+    "ValidHostname": {
+      "base": null,
+      "refs": {
+        "CustomDNSServer$customDNSServerName": "<p>The name of the DNS server.</p>"
+      }
+    },
+    "ValidIPAddress": {
+      "base": null,
+      "refs": {
+        "CustomDNSServer$customDNSServerIP": "<p>The IP address of the DNS server.</p>"
+      }
+    },
     "ValidationException": {
       "base": "<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
       "refs": {
       }
     },
+    "VpcConfiguration": {
+      "base": "<p>Configuration details about the network where the Privatelink endpoint of the cluster resides.</p>",
+      "refs": {
+        "CreateKxClusterRequest$vpcConfiguration": "<p>Configuration details about the network where the Privatelink endpoint of the cluster resides.</p>",
+        "CreateKxClusterResponse$vpcConfiguration": "<p>Configuration details about the network where the Privatelink endpoint of the cluster resides.</p>",
+        "GetKxClusterResponse$vpcConfiguration": "<p>Configuration details about the network where the Privatelink endpoint of the cluster resides.</p>"
+      }
+    },
+    "VpcIdString": {
+      "base": null,
+      "refs": {
+        "VpcConfiguration$vpcId": "<p>The identifier of the VPC endpoint.</p>"
+      }
+    },
+    "dnsStatus": {
+      "base": null,
+      "refs": {
+        "GetKxEnvironmentResponse$dnsStatus": "<p>The status of DNS configuration.</p>",
+        "KxEnvironment$dnsStatus": "<p>The status of DNS configuration.</p>",
+        "UpdateKxEnvironmentNetworkResponse$dnsStatus": "<p>The status of DNS configuration.</p>",
+        "UpdateKxEnvironmentResponse$dnsStatus": "<p>The status of DNS configuration.</p>"
+      }
+    },
     "errorMessage": {
       "base": null,
       "refs": {
+        "ConflictException$message": null,
+        "ConflictException$reason": "<p>The reason for the conflict exception.</p>",
         "InternalServerException$message": null,
         "InvalidRequestException$message": null,
         "LimitExceededException$message": null,
+        "ResourceAlreadyExistsException$message": null,
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
         "ValidationException$message": null
       }
     },
+    "numBytes": {
+      "base": null,
+      "refs": {
+        "GetKxDatabaseResponse$numBytes": "<p>The total number of bytes in the database.</p>"
+      }
+    },
+    "numChangesets": {
+      "base": null,
+      "refs": {
+        "GetKxDatabaseResponse$numChangesets": "<p>The total number of changesets in the database.</p>"
+      }
+    },
+    "numFiles": {
+      "base": null,
+      "refs": {
+        "GetKxDatabaseResponse$numFiles": "<p>The total number of files in the database.</p>"
+      }
+    },
+    "stringValueLength1to255": {
+      "base": null,
+      "refs": {
+        "GetKxEnvironmentResponse$certificateAuthorityArn": "<p>The Amazon Resource Name (ARN) of the certificate authority of the kdb environment.</p>",
+        "KxEnvironment$certificateAuthorityArn": "<p>The Amazon Resource Name (ARN) of the certificate authority:</p>"
+      }
+    },
+    "tgwStatus": {
+      "base": null,
+      "refs": {
+        "GetKxEnvironmentResponse$tgwStatus": "<p>The status of the network configuration.</p>",
+        "KxEnvironment$tgwStatus": "<p>The status of the network configuration.</p>",
+        "UpdateKxEnvironmentNetworkResponse$tgwStatus": "<p>The status of the network configuration.</p>",
+        "UpdateKxEnvironmentResponse$tgwStatus": "<p>The status of the network configuration.</p>"
+      }
+    },
     "url": {
       "base": null,
       "refs": {
-        "AttributeMap$value": null,
-        "CreateEnvironmentResponse$environmentUrl": "<p>The sign-in url for the web application of the FinSpace environment you created.</p>",
-        "Environment$environmentUrl": "<p>The sign-in url for the web application of your FinSpace environment.</p>",
+        "CreateEnvironmentResponse$environmentUrl": "<p>The sign-in URL for the web application of the FinSpace environment you created.</p>",
+        "Environment$environmentUrl": "<p>The sign-in URL for the web application of your FinSpace environment.</p>",
         "FederationParameters$samlMetadataURL": "<p>Provide the metadata URL from your SAML 2.0 compliant identity provider (IdP).</p>",
         "FederationParameters$applicationCallBackURL": "<p>The redirect or sign-in URL that should be entered into the SAML 2.0 compliant identity provider configuration (IdP).</p>"
       }

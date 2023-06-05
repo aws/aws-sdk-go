@@ -684,7 +684,9 @@
         "connectorProvisioningConfig":{"shape":"ConnectorProvisioningConfig"},
         "logoURL":{"shape":"LogoURL"},
         "registeredAt":{"shape":"Date"},
-        "registeredBy":{"shape":"RegisteredBy"}
+        "registeredBy":{"shape":"RegisteredBy"},
+        "supportedDataTransferTypes":{"shape":"SupportedDataTransferTypeList"},
+        "supportedDataTransferApis":{"shape":"SupportedDataTransferApis"}
       }
     },
     "ConnectorConfigurationsMap":{
@@ -710,7 +712,8 @@
         "registeredAt":{"shape":"Date"},
         "registeredBy":{"shape":"RegisteredBy"},
         "connectorProvisioningType":{"shape":"ConnectorProvisioningType"},
-        "connectorModes":{"shape":"ConnectorModeList"}
+        "connectorModes":{"shape":"ConnectorModeList"},
+        "supportedDataTransferTypes":{"shape":"SupportedDataTransferTypeList"}
       }
     },
     "ConnectorEntity":{
@@ -1166,7 +1169,8 @@
       "required":["entityName"],
       "members":{
         "entityName":{"shape":"EntityName"},
-        "customProperties":{"shape":"CustomProperties"}
+        "customProperties":{"shape":"CustomProperties"},
+        "dataTransferApi":{"shape":"DataTransferApi"}
       }
     },
     "CustomProperties":{
@@ -1211,6 +1215,26 @@
         "Incremental",
         "Complete"
       ]
+    },
+    "DataTransferApi":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"DataTransferApiTypeName"},
+        "Type":{"shape":"DataTransferApiType"}
+      }
+    },
+    "DataTransferApiType":{
+      "type":"string",
+      "enum":[
+        "SYNC",
+        "ASYNC",
+        "AUTOMATIC"
+      ]
+    },
+    "DataTransferApiTypeName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\w/-]+"
     },
     "DatabaseName":{
       "type":"string",
@@ -3173,6 +3197,21 @@
     "SupportedApiVersionList":{
       "type":"list",
       "member":{"shape":"SupportedApiVersion"}
+    },
+    "SupportedDataTransferApis":{
+      "type":"list",
+      "member":{"shape":"DataTransferApi"}
+    },
+    "SupportedDataTransferType":{
+      "type":"string",
+      "enum":[
+        "RECORD",
+        "FILE"
+      ]
+    },
+    "SupportedDataTransferTypeList":{
+      "type":"list",
+      "member":{"shape":"SupportedDataTransferType"}
     },
     "SupportedFieldTypeDetails":{
       "type":"structure",

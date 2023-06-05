@@ -9246,9 +9246,12 @@ type CreateFunctionInput struct {
 	// The ARN of the Key Management Service (KMS) customer managed key that's used
 	// to encrypt your function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption).
 	// When Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html)
-	// is activated, this key is also used to encrypt your function's snapshot.
-	// If you don't provide a customer managed key, Lambda uses a default service
-	// key.
+	// is activated, Lambda also uses this key is to encrypt your function's snapshot.
+	// If you deploy your function using a container image, Lambda also uses this
+	// key to encrypt your function when it's deployed. Note that this is not the
+	// same key that's used to protect your container image in the Amazon Elastic
+	// Container Registry (Amazon ECR). If you don't provide a customer managed
+	// key, Lambda uses a default service key.
 	KMSKeyArn *string `type:"string"`
 
 	// A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
@@ -11518,7 +11521,9 @@ type EventSourceMappingConfiguration struct {
 	// age. The default value is -1, which sets the maximum age to infinite. When
 	// the value is set to infinite, Lambda never discards old records.
 	//
-	// The minimum value that can be set is 60 seconds.
+	// The minimum valid value for maximum record age is 60s. Although values less
+	// than 60 and greater than -1 fall within the parameter's absolute range, they
+	// are not allowed
 	MaximumRecordAgeInSeconds *int64 `type:"integer"`
 
 	// (Kinesis and DynamoDB Streams only) Discard records after the specified number
@@ -13658,6 +13663,9 @@ type GetLayerVersionByArnOutput struct {
 	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// The layer's compatible runtimes.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// Details about the layer version.
@@ -13825,6 +13833,9 @@ type GetLayerVersionOutput struct {
 	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// The layer's compatible runtimes.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// Details about the layer version.
@@ -16311,6 +16322,9 @@ type LayerVersionsListItem struct {
 	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// The layer's compatible runtimes.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// The date that the version was created, in ISO 8601 format. For example, 2018-11-27T15:10:45.123+0000.
@@ -17293,6 +17307,9 @@ type ListLayerVersionsInput struct {
 	CompatibleArchitecture *string `location:"querystring" locationName:"CompatibleArchitecture" type:"string" enum:"Architecture"`
 
 	// A runtime identifier. For example, go1.x.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	CompatibleRuntime *string `location:"querystring" locationName:"CompatibleRuntime" type:"string" enum:"Runtime"`
 
 	// The name or Amazon Resource Name (ARN) of the layer.
@@ -17421,6 +17438,9 @@ type ListLayersInput struct {
 	CompatibleArchitecture *string `location:"querystring" locationName:"CompatibleArchitecture" type:"string" enum:"Architecture"`
 
 	// A runtime identifier. For example, go1.x.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	CompatibleRuntime *string `location:"querystring" locationName:"CompatibleRuntime" type:"string" enum:"Runtime"`
 
 	// A pagination token returned by a previous call.
@@ -18218,6 +18238,9 @@ type PublishLayerVersionInput struct {
 
 	// A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
 	// Used for filtering with ListLayers and ListLayerVersions.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// The function layer archive.
@@ -18329,6 +18352,9 @@ type PublishLayerVersionOutput struct {
 	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// The layer's compatible runtimes.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// Details about the layer version.
@@ -21715,9 +21741,12 @@ type UpdateFunctionConfigurationInput struct {
 	// The ARN of the Key Management Service (KMS) customer managed key that's used
 	// to encrypt your function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption).
 	// When Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html)
-	// is activated, this key is also used to encrypt your function's snapshot.
-	// If you don't provide a customer managed key, Lambda uses a default service
-	// key.
+	// is activated, Lambda also uses this key is to encrypt your function's snapshot.
+	// If you deploy your function using a container image, Lambda also uses this
+	// key to encrypt your function when it's deployed. Note that this is not the
+	// same key that's used to protect your container image in the Amazon Elastic
+	// Container Registry (Amazon ECR). If you don't provide a customer managed
+	// key, Lambda uses a default service key.
 	KMSKeyArn *string `type:"string"`
 
 	// A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
@@ -22860,6 +22889,9 @@ const (
 
 	// RuntimeJava17 is a Runtime enum value
 	RuntimeJava17 = "java17"
+
+	// RuntimeRuby32 is a Runtime enum value
+	RuntimeRuby32 = "ruby3.2"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -22895,6 +22927,7 @@ func Runtime_Values() []string {
 		RuntimeNodejs18X,
 		RuntimePython310,
 		RuntimeJava17,
+		RuntimeRuby32,
 	}
 }
 
