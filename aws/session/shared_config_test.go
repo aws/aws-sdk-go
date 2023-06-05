@@ -399,12 +399,17 @@ func TestLoadSharedConfig(t *testing.T) {
 				SSOAccountID:   "123456789012",
 				SSORoleName:    "testRole",
 				SSOSessionName: "sso-session-success-dev",
-				SSOSession: &SSOSession{
+				SSOSession: &ssoSession{
 					Name:        "sso-session-success-dev",
 					SSORegion:   "us-east-1",
 					SSOStartURL: "https://d-123456789a.awsapps.com/start",
 				},
 			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "sso-session-not-exist",
+			Err:       fmt.Errorf("failed to find SSO session section, sso-session-lost"),
 		},
 	}
 

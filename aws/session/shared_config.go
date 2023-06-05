@@ -108,7 +108,7 @@ type sharedConfig struct {
 
 	// SSO session options
 	SSOSessionName string
-	SSOSession     *SSOSession
+	SSOSession     *ssoSession
 
 	SSOAccountID string
 	SSORegion    string
@@ -199,13 +199,13 @@ type sharedConfigFile struct {
 
 // SSOSession provides the shared configuration parameters of the sso-session
 // section.
-type SSOSession struct {
+type ssoSession struct {
 	Name        string
 	SSORegion   string
 	SSOStartURL string
 }
 
-func (s *SSOSession) setFromIniSection(section ini.Section) {
+func (s *ssoSession) setFromIniSection(section ini.Section) {
 	updateString(&s.Name, section, ssoSessionNameKey)
 	updateString(&s.SSORegion, section, ssoRegionKey)
 	updateString(&s.SSOStartURL, section, ssoStartURL)
@@ -347,7 +347,7 @@ func (cfg *sharedConfig) setFromIniFiles(profiles map[string]struct{}, profile s
 		for _, f := range files {
 			section, ok := f.IniData.GetSection(fmt.Sprintf(ssoSectionPrefix + strings.TrimSpace(cfg.SSOSessionName)))
 			if ok {
-				var ssoSession SSOSession
+				var ssoSession ssoSession
 				ssoSession.setFromIniSection(section)
 				ssoSession.Name = cfg.SSOSessionName
 				cfg.SSOSession = &ssoSession

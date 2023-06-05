@@ -198,3 +198,9 @@ sso_role_name = testRole
 sso_region = us-east-1
 sso_start_url = https://d-123456789a.awsapps.com/start
 sso_registration_scopes = sso:account:access
+
+[profile sso-session-not-exist]
+region = us-east-1
+sso_session = sso-session-lost
+sso_account_id = 123456789012
+sso_role_name = testRole
