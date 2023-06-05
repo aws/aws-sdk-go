@@ -327,7 +327,8 @@
       "required":["keyspaceName"],
       "members":{
         "keyspaceName":{"shape":"KeyspaceName"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "replicationSpecification":{"shape":"ReplicationSpecification"}
       }
     },
     "CreateKeyspaceResponse":{
@@ -426,11 +427,14 @@
       "type":"structure",
       "required":[
         "keyspaceName",
-        "resourceArn"
+        "resourceArn",
+        "replicationStrategy"
       ],
       "members":{
         "keyspaceName":{"shape":"KeyspaceName"},
-        "resourceArn":{"shape":"ARN"}
+        "resourceArn":{"shape":"ARN"},
+        "replicationStrategy":{"shape":"rs"},
+        "replicationRegions":{"shape":"RegionList"}
       }
     },
     "GetTableRequest":{
@@ -479,17 +483,20 @@
       "type":"string",
       "max":48,
       "min":1,
-      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_]{1,47}"
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_]{0,47}"
     },
     "KeyspaceSummary":{
       "type":"structure",
       "required":[
         "keyspaceName",
-        "resourceArn"
+        "resourceArn",
+        "replicationStrategy"
       ],
       "members":{
         "keyspaceName":{"shape":"KeyspaceName"},
-        "resourceArn":{"shape":"ARN"}
+        "resourceArn":{"shape":"ARN"},
+        "replicationStrategy":{"shape":"rs"},
+        "replicationRegions":{"shape":"RegionList"}
       }
     },
     "KeyspaceSummaryList":{
@@ -588,6 +595,20 @@
         "earliestRestorableTimestamp":{"shape":"Timestamp"}
       }
     },
+    "RegionList":{
+      "type":"list",
+      "member":{"shape":"region"},
+      "max":6,
+      "min":2
+    },
+    "ReplicationSpecification":{
+      "type":"structure",
+      "required":["replicationStrategy"],
+      "members":{
+        "replicationStrategy":{"shape":"rs"},
+        "regionList":{"shape":"RegionList"}
+      }
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -666,7 +687,7 @@
       "type":"string",
       "max":48,
       "min":1,
-      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_]{1,47}"
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_]{0,47}"
     },
     "TableStatus":{
       "type":"string",
@@ -810,6 +831,20 @@
     "kmsKeyARN":{
       "type":"string",
       "max":5096,
+      "min":1
+    },
+    "region":{
+      "type":"string",
+      "max":25,
+      "min":2
+    },
+    "rs":{
+      "type":"string",
+      "enum":[
+        "SINGLE_REGION",
+        "MULTI_REGION"
+      ],
+      "max":20,
       "min":1
     }
   }

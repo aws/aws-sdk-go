@@ -1,3 +1,20 @@
+Release v1.44.276 (2023-06-05)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * AWS CloudFormation StackSets provides customers with three new APIs to activate, deactivate, and describe AWS Organizations trusted access which is needed to get started with service-managed StackSets.
+* `service/ec2`: Updates service API
+  * Making InstanceTagAttribute as the required parameter for the DeregisterInstanceEventNotificationAttributes and RegisterInstanceEventNotificationAttributes APIs.
+* `service/finspace`: Updates service API, documentation, and paginators
+* `service/frauddetector`: Updates service API and documentation
+* `service/keyspaces`: Updates service API and documentation
+* `service/kms`: Updates service API, documentation, and examples
+  * This release includes feature to import customer's asymmetric (RSA and ECC) and HMAC keys into KMS.  It also includes feature to allow customers to specify number of days to schedule a KMS key deletion as a policy condition key.
+* `service/lambda`: Updates service API and documentation
+  * Add Ruby 3.2 (ruby3.2) Runtime support to AWS Lambda.
+* `service/mwaa`: Updates service API and documentation
+
 Release v1.44.275 (2023-06-02)
 ===
 
