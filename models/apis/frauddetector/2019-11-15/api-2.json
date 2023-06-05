@@ -1602,7 +1602,8 @@
         "STRING",
         "INTEGER",
         "FLOAT",
-        "BOOLEAN"
+        "BOOLEAN",
+        "DATETIME"
       ]
     },
     "DataValidationMetrics":{

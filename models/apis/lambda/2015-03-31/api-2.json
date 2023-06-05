@@ -3849,7 +3849,8 @@
         "provided.al2",
         "nodejs18.x",
         "python3.10",
-        "java17"
+        "java17",
+        "ruby3.2"
       ]
     },
     "RuntimeVersionArn":{
