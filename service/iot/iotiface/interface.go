@@ -180,6 +180,14 @@ type IoTAPI interface {
 	CreateOTAUpdateWithContext(aws.Context, *iot.CreateOTAUpdateInput, ...request.Option) (*iot.CreateOTAUpdateOutput, error)
 	CreateOTAUpdateRequest(*iot.CreateOTAUpdateInput) (*request.Request, *iot.CreateOTAUpdateOutput)
 
+	CreatePackage(*iot.CreatePackageInput) (*iot.CreatePackageOutput, error)
+	CreatePackageWithContext(aws.Context, *iot.CreatePackageInput, ...request.Option) (*iot.CreatePackageOutput, error)
+	CreatePackageRequest(*iot.CreatePackageInput) (*request.Request, *iot.CreatePackageOutput)
+
+	CreatePackageVersion(*iot.CreatePackageVersionInput) (*iot.CreatePackageVersionOutput, error)
+	CreatePackageVersionWithContext(aws.Context, *iot.CreatePackageVersionInput, ...request.Option) (*iot.CreatePackageVersionOutput, error)
+	CreatePackageVersionRequest(*iot.CreatePackageVersionInput) (*request.Request, *iot.CreatePackageVersionOutput)
+
 	CreatePolicy(*iot.CreatePolicyInput) (*iot.CreatePolicyOutput, error)
 	CreatePolicyWithContext(aws.Context, *iot.CreatePolicyInput, ...request.Option) (*iot.CreatePolicyOutput, error)
 	CreatePolicyRequest(*iot.CreatePolicyInput) (*request.Request, *iot.CreatePolicyOutput)
@@ -299,6 +307,14 @@ type IoTAPI interface {
 	DeleteOTAUpdate(*iot.DeleteOTAUpdateInput) (*iot.DeleteOTAUpdateOutput, error)
 	DeleteOTAUpdateWithContext(aws.Context, *iot.DeleteOTAUpdateInput, ...request.Option) (*iot.DeleteOTAUpdateOutput, error)
 	DeleteOTAUpdateRequest(*iot.DeleteOTAUpdateInput) (*request.Request, *iot.DeleteOTAUpdateOutput)
+
+	DeletePackage(*iot.DeletePackageInput) (*iot.DeletePackageOutput, error)
+	DeletePackageWithContext(aws.Context, *iot.DeletePackageInput, ...request.Option) (*iot.DeletePackageOutput, error)
+	DeletePackageRequest(*iot.DeletePackageInput) (*request.Request, *iot.DeletePackageOutput)
+
+	DeletePackageVersion(*iot.DeletePackageVersionInput) (*iot.DeletePackageVersionOutput, error)
+	DeletePackageVersionWithContext(aws.Context, *iot.DeletePackageVersionInput, ...request.Option) (*iot.DeletePackageVersionOutput, error)
+	DeletePackageVersionRequest(*iot.DeletePackageVersionInput) (*request.Request, *iot.DeletePackageVersionOutput)
 
 	DeletePolicy(*iot.DeletePolicyInput) (*iot.DeletePolicyOutput, error)
 	DeletePolicyWithContext(aws.Context, *iot.DeletePolicyInput, ...request.Option) (*iot.DeletePolicyOutput, error)
@@ -555,6 +571,18 @@ type IoTAPI interface {
 	GetOTAUpdateWithContext(aws.Context, *iot.GetOTAUpdateInput, ...request.Option) (*iot.GetOTAUpdateOutput, error)
 	GetOTAUpdateRequest(*iot.GetOTAUpdateInput) (*request.Request, *iot.GetOTAUpdateOutput)
 
+	GetPackage(*iot.GetPackageInput) (*iot.GetPackageOutput, error)
+	GetPackageWithContext(aws.Context, *iot.GetPackageInput, ...request.Option) (*iot.GetPackageOutput, error)
+	GetPackageRequest(*iot.GetPackageInput) (*request.Request, *iot.GetPackageOutput)
+
+	GetPackageConfiguration(*iot.GetPackageConfigurationInput) (*iot.GetPackageConfigurationOutput, error)
+	GetPackageConfigurationWithContext(aws.Context, *iot.GetPackageConfigurationInput, ...request.Option) (*iot.GetPackageConfigurationOutput, error)
+	GetPackageConfigurationRequest(*iot.GetPackageConfigurationInput) (*request.Request, *iot.GetPackageConfigurationOutput)
+
+	GetPackageVersion(*iot.GetPackageVersionInput) (*iot.GetPackageVersionOutput, error)
+	GetPackageVersionWithContext(aws.Context, *iot.GetPackageVersionInput, ...request.Option) (*iot.GetPackageVersionOutput, error)
+	GetPackageVersionRequest(*iot.GetPackageVersionInput) (*request.Request, *iot.GetPackageVersionOutput)
+
 	GetPercentiles(*iot.GetPercentilesInput) (*iot.GetPercentilesOutput, error)
 	GetPercentilesWithContext(aws.Context, *iot.GetPercentilesInput, ...request.Option) (*iot.GetPercentilesOutput, error)
 	GetPercentilesRequest(*iot.GetPercentilesInput) (*request.Request, *iot.GetPercentilesOutput)
@@ -782,6 +810,20 @@ type IoTAPI interface {
 
 	ListOutgoingCertificatesPages(*iot.ListOutgoingCertificatesInput, func(*iot.ListOutgoingCertificatesOutput, bool) bool) error
 	ListOutgoingCertificatesPagesWithContext(aws.Context, *iot.ListOutgoingCertificatesInput, func(*iot.ListOutgoingCertificatesOutput, bool) bool, ...request.Option) error
+
+	ListPackageVersions(*iot.ListPackageVersionsInput) (*iot.ListPackageVersionsOutput, error)
+	ListPackageVersionsWithContext(aws.Context, *iot.ListPackageVersionsInput, ...request.Option) (*iot.ListPackageVersionsOutput, error)
+	ListPackageVersionsRequest(*iot.ListPackageVersionsInput) (*request.Request, *iot.ListPackageVersionsOutput)
+
+	ListPackageVersionsPages(*iot.ListPackageVersionsInput, func(*iot.ListPackageVersionsOutput, bool) bool) error
+	ListPackageVersionsPagesWithContext(aws.Context, *iot.ListPackageVersionsInput, func(*iot.ListPackageVersionsOutput, bool) bool, ...request.Option) error
+
+	ListPackages(*iot.ListPackagesInput) (*iot.ListPackagesOutput, error)
+	ListPackagesWithContext(aws.Context, *iot.ListPackagesInput, ...request.Option) (*iot.ListPackagesOutput, error)
+	ListPackagesRequest(*iot.ListPackagesInput) (*request.Request, *iot.ListPackagesOutput)
+
+	ListPackagesPages(*iot.ListPackagesInput, func(*iot.ListPackagesOutput, bool) bool) error
+	ListPackagesPagesWithContext(aws.Context, *iot.ListPackagesInput, func(*iot.ListPackagesOutput, bool) bool, ...request.Option) error
 
 	ListPolicies(*iot.ListPoliciesInput) (*iot.ListPoliciesOutput, error)
 	ListPoliciesWithContext(aws.Context, *iot.ListPoliciesInput, ...request.Option) (*iot.ListPoliciesOutput, error)
@@ -1142,6 +1184,18 @@ type IoTAPI interface {
 	UpdateMitigationAction(*iot.UpdateMitigationActionInput) (*iot.UpdateMitigationActionOutput, error)
 	UpdateMitigationActionWithContext(aws.Context, *iot.UpdateMitigationActionInput, ...request.Option) (*iot.UpdateMitigationActionOutput, error)
 	UpdateMitigationActionRequest(*iot.UpdateMitigationActionInput) (*request.Request, *iot.UpdateMitigationActionOutput)
+
+	UpdatePackage(*iot.UpdatePackageInput) (*iot.UpdatePackageOutput, error)
+	UpdatePackageWithContext(aws.Context, *iot.UpdatePackageInput, ...request.Option) (*iot.UpdatePackageOutput, error)
+	UpdatePackageRequest(*iot.UpdatePackageInput) (*request.Request, *iot.UpdatePackageOutput)
+
+	UpdatePackageConfiguration(*iot.UpdatePackageConfigurationInput) (*iot.UpdatePackageConfigurationOutput, error)
+	UpdatePackageConfigurationWithContext(aws.Context, *iot.UpdatePackageConfigurationInput, ...request.Option) (*iot.UpdatePackageConfigurationOutput, error)
+	UpdatePackageConfigurationRequest(*iot.UpdatePackageConfigurationInput) (*request.Request, *iot.UpdatePackageConfigurationOutput)
+
+	UpdatePackageVersion(*iot.UpdatePackageVersionInput) (*iot.UpdatePackageVersionOutput, error)
+	UpdatePackageVersionWithContext(aws.Context, *iot.UpdatePackageVersionInput, ...request.Option) (*iot.UpdatePackageVersionOutput, error)
+	UpdatePackageVersionRequest(*iot.UpdatePackageVersionInput) (*request.Request, *iot.UpdatePackageVersionOutput)
 
 	UpdateProvisioningTemplate(*iot.UpdateProvisioningTemplateInput) (*iot.UpdateProvisioningTemplateOutput, error)
 	UpdateProvisioningTemplateWithContext(aws.Context, *iot.UpdateProvisioningTemplateInput, ...request.Option) (*iot.UpdateProvisioningTemplateOutput, error)

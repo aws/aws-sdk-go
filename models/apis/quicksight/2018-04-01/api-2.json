@@ -13767,7 +13767,8 @@
       "members":{
         "FieldId":{"shape":"FieldId"},
         "TextFormat":{"shape":"TextConditionalFormat"},
-        "Scope":{"shape":"PivotTableConditionalFormattingScope"}
+        "Scope":{"shape":"PivotTableConditionalFormattingScope"},
+        "Scopes":{"shape":"PivotTableConditionalFormattingScopeList"}
       }
     },
     "PivotTableConditionalFormatting":{
@@ -13792,6 +13793,11 @@
       "members":{
         "Role":{"shape":"PivotTableConditionalFormattingScopeRole"}
       }
+    },
+    "PivotTableConditionalFormattingScopeList":{
+      "type":"list",
+      "member":{"shape":"PivotTableConditionalFormattingScope"},
+      "max":3
     },
     "PivotTableConditionalFormattingScopeRole":{
       "type":"string",
@@ -13830,6 +13836,32 @@
       "member":{"shape":"DimensionField"},
       "max":40
     },
+    "PivotTableFieldCollapseState":{
+      "type":"string",
+      "enum":[
+        "COLLAPSED",
+        "EXPANDED"
+      ]
+    },
+    "PivotTableFieldCollapseStateOption":{
+      "type":"structure",
+      "required":["Target"],
+      "members":{
+        "Target":{"shape":"PivotTableFieldCollapseStateTarget"},
+        "State":{"shape":"PivotTableFieldCollapseState"}
+      }
+    },
+    "PivotTableFieldCollapseStateOptionList":{
+      "type":"list",
+      "member":{"shape":"PivotTableFieldCollapseStateOption"}
+    },
+    "PivotTableFieldCollapseStateTarget":{
+      "type":"structure",
+      "members":{
+        "FieldId":{"shape":"String"},
+        "FieldDataPathValues":{"shape":"DataPathValueList"}
+      }
+    },
     "PivotTableFieldOption":{
       "type":"structure",
       "required":["FieldId"],
@@ -13848,7 +13880,8 @@
       "type":"structure",
       "members":{
         "SelectedFieldOptions":{"shape":"PivotTableFieldOptionList"},
-        "DataPathOptions":{"shape":"PivotTableDataPathOptionList"}
+        "DataPathOptions":{"shape":"PivotTableDataPathOptionList"},
+        "CollapseStateOptions":{"shape":"PivotTableFieldCollapseStateOptionList"}
       }
     },
     "PivotTableFieldSubtotalOptions":{
@@ -14153,6 +14186,14 @@
         "Visibility":{"shape":"Visibility"}
       }
     },
+    "RadarChartAxesRangeScale":{
+      "type":"string",
+      "enum":[
+        "AUTO",
+        "INDEPENDENT",
+        "SHARED"
+      ]
+    },
     "RadarChartCategoryFieldList":{
       "type":"list",
       "member":{"shape":"DimensionField"},
@@ -14179,7 +14220,8 @@
         "CategoryLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "ColorAxis":{"shape":"AxisDisplayOptions"},
         "ColorLabelOptions":{"shape":"ChartAxisLabelOptions"},
-        "Legend":{"shape":"LegendOptions"}
+        "Legend":{"shape":"LegendOptions"},
+        "AxesRangeScale":{"shape":"RadarChartAxesRangeScale"}
       }
     },
     "RadarChartFieldWells":{

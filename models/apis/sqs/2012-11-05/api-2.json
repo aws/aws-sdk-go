@@ -23,6 +23,22 @@
         {"shape":"OverLimit"}
       ]
     },
+    "CancelMessageMoveTask":{
+      "name":"CancelMessageMoveTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelMessageMoveTaskRequest"},
+      "output":{
+        "shape":"CancelMessageMoveTaskResult",
+        "resultWrapper":"CancelMessageMoveTaskResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedOperation"}
+      ]
+    },
     "ChangeMessageVisibility":{
       "name":"ChangeMessageVisibility",
       "http":{
@@ -152,6 +168,22 @@
         {"shape":"QueueDoesNotExist"}
       ]
     },
+    "ListMessageMoveTasks":{
+      "name":"ListMessageMoveTasks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMessageMoveTasksRequest"},
+      "output":{
+        "shape":"ListMessageMoveTasksResult",
+        "resultWrapper":"ListMessageMoveTasksResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedOperation"}
+      ]
+    },
     "ListQueueTags":{
       "name":"ListQueueTags",
       "http":{
@@ -256,6 +288,22 @@
       "input":{"shape":"SetQueueAttributesRequest"},
       "errors":[
         {"shape":"InvalidAttributeName"}
+      ]
+    },
+    "StartMessageMoveTask":{
+      "name":"StartMessageMoveTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMessageMoveTaskRequest"},
+      "output":{
+        "shape":"StartMessageMoveTaskResult",
+        "resultWrapper":"StartMessageMoveTaskResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "TagQueue":{
@@ -371,6 +419,19 @@
     "BoxedInteger":{
       "type":"integer",
       "box":true
+    },
+    "CancelMessageMoveTaskRequest":{
+      "type":"structure",
+      "required":["TaskHandle"],
+      "members":{
+        "TaskHandle":{"shape":"String"}
+      }
+    },
+    "CancelMessageMoveTaskResult":{
+      "type":"structure",
+      "members":{
+        "ApproximateNumberOfMessagesMoved":{"shape":"Long"}
+      }
     },
     "ChangeMessageVisibilityBatchRequest":{
       "type":"structure",
@@ -626,6 +687,42 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "ListMessageMoveTasksRequest":{
+      "type":"structure",
+      "required":["SourceArn"],
+      "members":{
+        "SourceArn":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "ListMessageMoveTasksResult":{
+      "type":"structure",
+      "members":{
+        "Results":{"shape":"ListMessageMoveTasksResultEntryList"}
+      }
+    },
+    "ListMessageMoveTasksResultEntry":{
+      "type":"structure",
+      "members":{
+        "TaskHandle":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "SourceArn":{"shape":"String"},
+        "DestinationArn":{"shape":"String"},
+        "MaxNumberOfMessagesPerSecond":{"shape":"Integer"},
+        "ApproximateNumberOfMessagesMoved":{"shape":"Long"},
+        "ApproximateNumberOfMessagesToMove":{"shape":"Long"},
+        "FailureReason":{"shape":"String"},
+        "StartedTimestamp":{"shape":"Long"}
+      }
+    },
+    "ListMessageMoveTasksResultEntryList":{
+      "type":"list",
+      "member":{
+        "shape":"ListMessageMoveTasksResultEntry",
+        "locationName":"ListMessageMoveTasksResultEntry"
+      },
+      "flattened":true
+    },
     "ListQueueTagsRequest":{
       "type":"structure",
       "required":["QueueUrl"],
@@ -657,6 +754,7 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "Long":{"type":"long"},
     "Message":{
       "type":"structure",
       "members":{
@@ -769,7 +867,8 @@
         "SequenceNumber",
         "MessageDeduplicationId",
         "MessageGroupId",
-        "AWSTraceHeader"
+        "AWSTraceHeader",
+        "DeadLetterQueueSourceArn"
       ]
     },
     "MessageSystemAttributeNameForSends":{
@@ -941,6 +1040,17 @@
         "Label":{"shape":"String"}
       }
     },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ResourceNotFoundException",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "SendMessageBatchRequest":{
       "type":"structure",
       "required":[
@@ -1061,6 +1171,21 @@
           "shape":"QueueAttributeMap",
           "locationName":"Attribute"
         }
+      }
+    },
+    "StartMessageMoveTaskRequest":{
+      "type":"structure",
+      "required":["SourceArn"],
+      "members":{
+        "SourceArn":{"shape":"String"},
+        "DestinationArn":{"shape":"String"},
+        "MaxNumberOfMessagesPerSecond":{"shape":"Integer"}
+      }
+    },
+    "StartMessageMoveTaskResult":{
+      "type":"structure",
+      "members":{
+        "TaskHandle":{"shape":"String"}
       }
     },
     "String":{"type":"string"},
