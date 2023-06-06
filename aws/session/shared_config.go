@@ -298,11 +298,6 @@ func (cfg *sharedConfig) setFromIniFiles(profiles map[string]struct{}, profile s
 		}
 	}
 
-	// if not top level profile and has credentials, return with credentials.
-	if len(profiles) != 0 && cfg.Creds.HasKeys() {
-		return nil
-	}
-
 	profiles[profile] = struct{}{}
 
 	if err := cfg.validateCredentialType(); err != nil {
