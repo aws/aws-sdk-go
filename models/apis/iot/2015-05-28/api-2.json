@@ -511,6 +511,42 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "CreatePackage":{
+      "name":"CreatePackage",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/packages/{packageName}",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePackageRequest"},
+      "output":{"shape":"CreatePackageResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
+    "CreatePackageVersion":{
+      "name":"CreatePackageVersion",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/packages/{packageName}/versions/{versionName}",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePackageVersionRequest"},
+      "output":{"shape":"CreatePackageVersionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
     "CreatePolicy":{
       "name":"CreatePolicy",
       "http":{
@@ -1000,6 +1036,38 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"VersionConflictException"}
       ]
+    },
+    "DeletePackage":{
+      "name":"DeletePackage",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/packages/{packageName}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeletePackageRequest"},
+      "output":{"shape":"DeletePackageResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
+    "DeletePackageVersion":{
+      "name":"DeletePackageVersion",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/packages/{packageName}/versions/{versionName}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeletePackageVersionRequest"},
+      "output":{"shape":"DeletePackageVersionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
     },
     "DeletePolicy":{
       "name":"DeletePolicy",
@@ -2010,6 +2078,52 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetPackage":{
+      "name":"GetPackage",
+      "http":{
+        "method":"GET",
+        "requestUri":"/packages/{packageName}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPackageRequest"},
+      "output":{"shape":"GetPackageResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetPackageConfiguration":{
+      "name":"GetPackageConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/package-configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPackageConfigurationRequest"},
+      "output":{"shape":"GetPackageConfigurationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetPackageVersion":{
+      "name":"GetPackageVersion",
+      "http":{
+        "method":"GET",
+        "requestUri":"/packages/{packageName}/versions/{versionName}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPackageVersionRequest"},
+      "output":{"shape":"GetPackageVersionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetPercentiles":{
       "name":"GetPercentiles",
       "http":{
@@ -2563,6 +2677,36 @@
         {"shape":"UnauthorizedException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListPackageVersions":{
+      "name":"ListPackageVersions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/packages/{packageName}/versions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPackageVersionsRequest"},
+      "output":{"shape":"ListPackageVersionsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListPackages":{
+      "name":"ListPackages",
+      "http":{
+        "method":"GET",
+        "requestUri":"/packages",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPackagesRequest"},
+      "output":{"shape":"ListPackagesResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListPolicies":{
@@ -3670,6 +3814,56 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"}
       ]
+    },
+    "UpdatePackage":{
+      "name":"UpdatePackage",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/packages/{packageName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePackageRequest"},
+      "output":{"shape":"UpdatePackageResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "UpdatePackageConfiguration":{
+      "name":"UpdatePackageConfiguration",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/package-configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePackageConfigurationRequest"},
+      "output":{"shape":"UpdatePackageConfigurationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
+    "UpdatePackageVersion":{
+      "name":"UpdatePackageVersion",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/packages/{packageName}/versions/{versionName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePackageVersionRequest"},
+      "output":{"shape":"UpdatePackageVersionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
     },
     "UpdateProvisioningTemplate":{
       "name":"UpdateProvisioningTemplate",
@@ -5110,6 +5304,12 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9-_]+$"
     },
+    "ClientToken":{
+      "type":"string",
+      "max":64,
+      "min":36,
+      "pattern":"\\S{36,64}"
+    },
     "CloudwatchAlarmAction":{
       "type":"structure",
       "required":[
@@ -5237,7 +5437,8 @@
     "ConflictException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"errorMessage"}
+        "message":{"shape":"errorMessage"},
+        "resourceId":{"shape":"resourceId"}
       },
       "error":{"httpStatusCode":409},
       "exception":true
@@ -5538,7 +5739,8 @@
         "jobTemplateArn":{"shape":"JobTemplateArn"},
         "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
         "documentParameters":{"shape":"ParameterMap"},
-        "schedulingConfig":{"shape":"SchedulingConfig"}
+        "schedulingConfig":{"shape":"SchedulingConfig"},
+        "destinationPackageVersions":{"shape":"DestinationPackageVersions"}
       }
     },
     "CreateJobResponse":{
@@ -5571,7 +5773,8 @@
         "timeoutConfig":{"shape":"TimeoutConfig"},
         "tags":{"shape":"TagList"},
         "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
-        "maintenanceWindows":{"shape":"MaintenanceWindows"}
+        "maintenanceWindows":{"shape":"MaintenanceWindows"},
+        "destinationPackageVersions":{"shape":"DestinationPackageVersions"}
       }
     },
     "CreateJobTemplateResponse":{
@@ -5661,6 +5864,73 @@
         "otaUpdateArn":{"shape":"OTAUpdateArn"},
         "awsIotJobArn":{"shape":"AwsIotJobArn"},
         "otaUpdateStatus":{"shape":"OTAUpdateStatus"}
+      }
+    },
+    "CreatePackageRequest":{
+      "type":"structure",
+      "required":["packageName"],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        },
+        "description":{"shape":"ResourceDescription"},
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "CreatePackageResponse":{
+      "type":"structure",
+      "members":{
+        "packageName":{"shape":"PackageName"},
+        "packageArn":{"shape":"PackageArn"},
+        "description":{"shape":"ResourceDescription"}
+      }
+    },
+    "CreatePackageVersionRequest":{
+      "type":"structure",
+      "required":[
+        "packageName",
+        "versionName"
+      ],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        },
+        "versionName":{
+          "shape":"VersionName",
+          "location":"uri",
+          "locationName":"versionName"
+        },
+        "description":{"shape":"ResourceDescription"},
+        "attributes":{"shape":"ResourceAttributes"},
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "CreatePackageVersionResponse":{
+      "type":"structure",
+      "members":{
+        "packageVersionArn":{"shape":"PackageVersionArn"},
+        "packageName":{"shape":"PackageName"},
+        "versionName":{"shape":"VersionName"},
+        "description":{"shape":"ResourceDescription"},
+        "attributes":{"shape":"ResourceAttributes"},
+        "status":{"shape":"PackageVersionStatus"},
+        "errorReason":{"shape":"PackageVersionErrorReason"}
       }
     },
     "CreatePolicyRequest":{
@@ -6364,6 +6634,58 @@
       "members":{
       }
     },
+    "DeletePackageRequest":{
+      "type":"structure",
+      "required":["packageName"],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "DeletePackageResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeletePackageVersionRequest":{
+      "type":"structure",
+      "required":[
+        "packageName",
+        "versionName"
+      ],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        },
+        "versionName":{
+          "shape":"VersionName",
+          "location":"uri",
+          "locationName":"versionName"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "DeletePackageVersionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeletePolicyRequest":{
       "type":"structure",
       "required":["policyName"],
@@ -7063,7 +7385,8 @@
         "abortConfig":{"shape":"AbortConfig"},
         "timeoutConfig":{"shape":"TimeoutConfig"},
         "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
-        "maintenanceWindows":{"shape":"MaintenanceWindows"}
+        "maintenanceWindows":{"shape":"MaintenanceWindows"},
+        "destinationPackageVersions":{"shape":"DestinationPackageVersions"}
       }
     },
     "DescribeManagedJobTemplateRequest":{
@@ -7365,6 +7688,10 @@
         "s3Destination":{"shape":"S3Destination"}
       }
     },
+    "DestinationPackageVersions":{
+      "type":"list",
+      "member":{"shape":"PackageVersionArn"}
+    },
     "DetachPolicyRequest":{
       "type":"structure",
       "required":[
@@ -7660,7 +7987,7 @@
     "DurationInMinutes":{
       "type":"integer",
       "max":1430,
-      "min":30
+      "min":1
     },
     "DurationSeconds":{"type":"integer"},
     "DynamicGroupStatus":{
@@ -7771,6 +8098,10 @@
       }
     },
     "Enabled":{"type":"boolean"},
+    "EnabledBoolean":{
+      "type":"boolean",
+      "box":true
+    },
     "EndpointAddress":{"type":"string"},
     "EndpointType":{
       "type":"string",
@@ -8131,6 +8462,72 @@
       "type":"structure",
       "members":{
         "otaUpdateInfo":{"shape":"OTAUpdateInfo"}
+      }
+    },
+    "GetPackageConfigurationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetPackageConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "versionUpdateByJobsConfig":{"shape":"VersionUpdateByJobsConfig"}
+      }
+    },
+    "GetPackageRequest":{
+      "type":"structure",
+      "required":["packageName"],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        }
+      }
+    },
+    "GetPackageResponse":{
+      "type":"structure",
+      "members":{
+        "packageName":{"shape":"PackageName"},
+        "packageArn":{"shape":"PackageArn"},
+        "description":{"shape":"ResourceDescription"},
+        "defaultVersionName":{"shape":"VersionName"},
+        "creationDate":{"shape":"CreationDate"},
+        "lastModifiedDate":{"shape":"LastModifiedDate"}
+      }
+    },
+    "GetPackageVersionRequest":{
+      "type":"structure",
+      "required":[
+        "packageName",
+        "versionName"
+      ],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        },
+        "versionName":{
+          "shape":"VersionName",
+          "location":"uri",
+          "locationName":"versionName"
+        }
+      }
+    },
+    "GetPackageVersionResponse":{
+      "type":"structure",
+      "members":{
+        "packageVersionArn":{"shape":"PackageVersionArn"},
+        "packageName":{"shape":"PackageName"},
+        "versionName":{"shape":"VersionName"},
+        "description":{"shape":"ResourceDescription"},
+        "attributes":{"shape":"ResourceAttributes"},
+        "status":{"shape":"PackageVersionStatus"},
+        "errorReason":{"shape":"PackageVersionErrorReason"},
+        "creationDate":{"shape":"CreationDate"},
+        "lastModifiedDate":{"shape":"LastModifiedDate"}
       }
     },
     "GetPercentilesRequest":{
@@ -8584,7 +8981,8 @@
         "documentParameters":{"shape":"ParameterMap"},
         "isConcurrent":{"shape":"BooleanWrapperObject"},
         "schedulingConfig":{"shape":"SchedulingConfig"},
-        "scheduledJobRollouts":{"shape":"ScheduledJobRolloutList"}
+        "scheduledJobRollouts":{"shape":"ScheduledJobRolloutList"},
+        "destinationPackageVersions":{"shape":"DestinationPackageVersions"}
       }
     },
     "JobArn":{"type":"string"},
@@ -9761,6 +10159,61 @@
       "members":{
         "outgoingCertificates":{"shape":"OutgoingCertificates"},
         "nextMarker":{"shape":"Marker"}
+      }
+    },
+    "ListPackageVersionsRequest":{
+      "type":"structure",
+      "required":["packageName"],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        },
+        "status":{
+          "shape":"PackageVersionStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "maxResults":{
+          "shape":"PackageCatalogMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListPackageVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "packageVersionSummaries":{"shape":"PackageVersionSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListPackagesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"PackageCatalogMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListPackagesResponse":{
+      "type":"structure",
+      "members":{
+        "packageSummaries":{"shape":"PackageSummaryList"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListPoliciesRequest":{
@@ -11130,6 +11583,68 @@
       "member":{"shape":"OutgoingCertificate"}
     },
     "OverrideDynamicGroups":{"type":"boolean"},
+    "PackageArn":{"type":"string"},
+    "PackageCatalogMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "PackageName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-_.]+"
+    },
+    "PackageSummary":{
+      "type":"structure",
+      "members":{
+        "packageName":{"shape":"PackageName"},
+        "defaultVersionName":{"shape":"VersionName"},
+        "creationDate":{"shape":"CreationDate"},
+        "lastModifiedDate":{"shape":"LastModifiedDate"}
+      }
+    },
+    "PackageSummaryList":{
+      "type":"list",
+      "member":{"shape":"PackageSummary"}
+    },
+    "PackageVersionAction":{
+      "type":"string",
+      "enum":[
+        "PUBLISH",
+        "DEPRECATE"
+      ]
+    },
+    "PackageVersionArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^arn:[!-~]+$"
+    },
+    "PackageVersionErrorReason":{"type":"string"},
+    "PackageVersionStatus":{
+      "type":"string",
+      "enum":[
+        "DRAFT",
+        "PUBLISHED",
+        "DEPRECATED"
+      ]
+    },
+    "PackageVersionSummary":{
+      "type":"structure",
+      "members":{
+        "packageName":{"shape":"PackageName"},
+        "versionName":{"shape":"VersionName"},
+        "status":{"shape":"PackageVersionStatus"},
+        "creationDate":{"shape":"CreationDate"},
+        "lastModifiedDate":{"shape":"LastModifiedDate"}
+      }
+    },
+    "PackageVersionSummaryList":{
+      "type":"list",
+      "member":{"shape":"PackageVersionSummary"}
+    },
     "PageSize":{
       "type":"integer",
       "max":250,
@@ -11705,6 +12220,29 @@
       "key":{"shape":"ResourceLogicalId"},
       "value":{"shape":"ResourceArn"}
     },
+    "ResourceAttributeKey":{
+      "type":"string",
+      "min":1,
+      "pattern":"[a-zA-Z0-9:_-]+"
+    },
+    "ResourceAttributeValue":{
+      "type":"string",
+      "min":1,
+      "pattern":"[^\\p{C}]+"
+    },
+    "ResourceAttributes":{
+      "type":"map",
+      "key":{"shape":"ResourceAttributeKey"},
+      "value":{"shape":"ResourceAttributeValue"},
+      "sensitive":true
+    },
+    "ResourceDescription":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[^\\p{C}]+",
+      "sensitive":true
+    },
     "ResourceIdentifier":{
       "type":"structure",
       "members":{
@@ -12054,6 +12592,14 @@
       "pattern":"[\\s\\S]*"
     },
     "ServiceName":{"type":"string"},
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":402},
+      "exception":true
+    },
     "ServiceType":{
       "type":"string",
       "enum":[
@@ -12504,6 +13050,13 @@
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"}
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":1
     },
     "TagResourceRequest":{
       "type":"structure",
@@ -13137,6 +13690,10 @@
       "exception":true
     },
     "UndoDeprecate":{"type":"boolean"},
+    "UnsetDefaultVersion":{
+      "type":"boolean",
+      "box":true
+    },
     "UnsignedLong":{
       "type":"long",
       "min":0
@@ -13477,6 +14034,81 @@
         "actionId":{"shape":"MitigationActionId"}
       }
     },
+    "UpdatePackageConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "versionUpdateByJobsConfig":{"shape":"VersionUpdateByJobsConfig"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "UpdatePackageConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdatePackageRequest":{
+      "type":"structure",
+      "required":["packageName"],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        },
+        "description":{"shape":"ResourceDescription"},
+        "defaultVersionName":{"shape":"VersionName"},
+        "unsetDefaultVersion":{"shape":"UnsetDefaultVersion"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "UpdatePackageResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdatePackageVersionRequest":{
+      "type":"structure",
+      "required":[
+        "packageName",
+        "versionName"
+      ],
+      "members":{
+        "packageName":{
+          "shape":"PackageName",
+          "location":"uri",
+          "locationName":"packageName"
+        },
+        "versionName":{
+          "shape":"VersionName",
+          "location":"uri",
+          "locationName":"versionName"
+        },
+        "description":{"shape":"ResourceDescription"},
+        "attributes":{"shape":"ResourceAttributes"},
+        "action":{"shape":"PackageVersionAction"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "UpdatePackageVersionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateProvisioningTemplateRequest":{
       "type":"structure",
       "required":["templateName"],
@@ -13739,6 +14371,14 @@
       "type":"list",
       "member":{"shape":"ValidationError"}
     },
+    "ValidationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "Value":{
       "type":"string",
       "max":4096,
@@ -13769,7 +14409,20 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "VersionName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-_.]+"
+    },
     "VersionNumber":{"type":"long"},
+    "VersionUpdateByJobsConfig":{
+      "type":"structure",
+      "members":{
+        "enabled":{"shape":"EnabledBoolean"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
     "VersionsLimitExceededException":{
       "type":"structure",
       "members":{

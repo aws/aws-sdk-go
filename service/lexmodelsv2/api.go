@@ -1438,6 +1438,105 @@ func (c *LexModelsV2) CreateSlotTypeWithContext(ctx aws.Context, input *CreateSl
 	return out, req.Send()
 }
 
+const opCreateTestSetDiscrepancyReport = "CreateTestSetDiscrepancyReport"
+
+// CreateTestSetDiscrepancyReportRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTestSetDiscrepancyReport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTestSetDiscrepancyReport for more information on using the CreateTestSetDiscrepancyReport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateTestSetDiscrepancyReportRequest method.
+//	req, resp := client.CreateTestSetDiscrepancyReportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateTestSetDiscrepancyReport
+func (c *LexModelsV2) CreateTestSetDiscrepancyReportRequest(input *CreateTestSetDiscrepancyReportInput) (req *request.Request, output *CreateTestSetDiscrepancyReportOutput) {
+	op := &request.Operation{
+		Name:       opCreateTestSetDiscrepancyReport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/testsets/{testSetId}/testsetdiscrepancy",
+	}
+
+	if input == nil {
+		input = &CreateTestSetDiscrepancyReportInput{}
+	}
+
+	output = &CreateTestSetDiscrepancyReportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTestSetDiscrepancyReport API operation for Amazon Lex Model Building V2.
+//
+// Create a report that describes the differences between the bot and the test
+// set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation CreateTestSetDiscrepancyReport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ConflictException
+//     The action that you tried to perform couldn't be completed because the resource
+//     is in a conflicting state. For example, deleting a bot that is in the CREATING
+//     state. Try your request again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateTestSetDiscrepancyReport
+func (c *LexModelsV2) CreateTestSetDiscrepancyReport(input *CreateTestSetDiscrepancyReportInput) (*CreateTestSetDiscrepancyReportOutput, error) {
+	req, out := c.CreateTestSetDiscrepancyReportRequest(input)
+	return out, req.Send()
+}
+
+// CreateTestSetDiscrepancyReportWithContext is the same as CreateTestSetDiscrepancyReport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTestSetDiscrepancyReport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) CreateTestSetDiscrepancyReportWithContext(ctx aws.Context, input *CreateTestSetDiscrepancyReportInput, opts ...request.Option) (*CreateTestSetDiscrepancyReportOutput, error) {
+	req, out := c.CreateTestSetDiscrepancyReportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateUploadUrl = "CreateUploadUrl"
 
 // CreateUploadUrlRequest generates a "aws/request.Request" representing the
@@ -2711,6 +2810,105 @@ func (c *LexModelsV2) DeleteSlotTypeWithContext(ctx aws.Context, input *DeleteSl
 	return out, req.Send()
 }
 
+const opDeleteTestSet = "DeleteTestSet"
+
+// DeleteTestSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTestSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTestSet for more information on using the DeleteTestSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTestSetRequest method.
+//	req, resp := client.DeleteTestSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteTestSet
+func (c *LexModelsV2) DeleteTestSetRequest(input *DeleteTestSetInput) (req *request.Request, output *DeleteTestSetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTestSet,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/testsets/{testSetId}",
+	}
+
+	if input == nil {
+		input = &DeleteTestSetInput{}
+	}
+
+	output = &DeleteTestSetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteTestSet API operation for Amazon Lex Model Building V2.
+//
+// The action to delete the selected test set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DeleteTestSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ConflictException
+//     The action that you tried to perform couldn't be completed because the resource
+//     is in a conflicting state. For example, deleting a bot that is in the CREATING
+//     state. Try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteTestSet
+func (c *LexModelsV2) DeleteTestSet(input *DeleteTestSetInput) (*DeleteTestSetOutput, error) {
+	req, out := c.DeleteTestSetRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTestSetWithContext is the same as DeleteTestSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTestSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DeleteTestSetWithContext(ctx aws.Context, input *DeleteTestSetInput, opts ...request.Option) (*DeleteTestSetOutput, error) {
+	req, out := c.DeleteTestSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteUtterances = "DeleteUtterances"
 
 // DeleteUtterancesRequest generates a "aws/request.Request" representing the
@@ -3907,6 +4105,471 @@ func (c *LexModelsV2) DescribeSlotType(input *DescribeSlotTypeInput) (*DescribeS
 // for more information on using Contexts.
 func (c *LexModelsV2) DescribeSlotTypeWithContext(ctx aws.Context, input *DescribeSlotTypeInput, opts ...request.Option) (*DescribeSlotTypeOutput, error) {
 	req, out := c.DescribeSlotTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeTestExecution = "DescribeTestExecution"
+
+// DescribeTestExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTestExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTestExecution for more information on using the DescribeTestExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTestExecutionRequest method.
+//	req, resp := client.DescribeTestExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeTestExecution
+func (c *LexModelsV2) DescribeTestExecutionRequest(input *DescribeTestExecutionInput) (req *request.Request, output *DescribeTestExecutionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTestExecution,
+		HTTPMethod: "GET",
+		HTTPPath:   "/testexecutions/{testExecutionId}",
+	}
+
+	if input == nil {
+		input = &DescribeTestExecutionInput{}
+	}
+
+	output = &DescribeTestExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTestExecution API operation for Amazon Lex Model Building V2.
+//
+// Gets metadata information about the test execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DescribeTestExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeTestExecution
+func (c *LexModelsV2) DescribeTestExecution(input *DescribeTestExecutionInput) (*DescribeTestExecutionOutput, error) {
+	req, out := c.DescribeTestExecutionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTestExecutionWithContext is the same as DescribeTestExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTestExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DescribeTestExecutionWithContext(ctx aws.Context, input *DescribeTestExecutionInput, opts ...request.Option) (*DescribeTestExecutionOutput, error) {
+	req, out := c.DescribeTestExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeTestSet = "DescribeTestSet"
+
+// DescribeTestSetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTestSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTestSet for more information on using the DescribeTestSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTestSetRequest method.
+//	req, resp := client.DescribeTestSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeTestSet
+func (c *LexModelsV2) DescribeTestSetRequest(input *DescribeTestSetInput) (req *request.Request, output *DescribeTestSetOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTestSet,
+		HTTPMethod: "GET",
+		HTTPPath:   "/testsets/{testSetId}",
+	}
+
+	if input == nil {
+		input = &DescribeTestSetInput{}
+	}
+
+	output = &DescribeTestSetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTestSet API operation for Amazon Lex Model Building V2.
+//
+// Gets metadata information about the test set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DescribeTestSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeTestSet
+func (c *LexModelsV2) DescribeTestSet(input *DescribeTestSetInput) (*DescribeTestSetOutput, error) {
+	req, out := c.DescribeTestSetRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTestSetWithContext is the same as DescribeTestSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTestSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DescribeTestSetWithContext(ctx aws.Context, input *DescribeTestSetInput, opts ...request.Option) (*DescribeTestSetOutput, error) {
+	req, out := c.DescribeTestSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeTestSetDiscrepancyReport = "DescribeTestSetDiscrepancyReport"
+
+// DescribeTestSetDiscrepancyReportRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTestSetDiscrepancyReport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTestSetDiscrepancyReport for more information on using the DescribeTestSetDiscrepancyReport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTestSetDiscrepancyReportRequest method.
+//	req, resp := client.DescribeTestSetDiscrepancyReportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeTestSetDiscrepancyReport
+func (c *LexModelsV2) DescribeTestSetDiscrepancyReportRequest(input *DescribeTestSetDiscrepancyReportInput) (req *request.Request, output *DescribeTestSetDiscrepancyReportOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTestSetDiscrepancyReport,
+		HTTPMethod: "GET",
+		HTTPPath:   "/testsetdiscrepancy/{testSetDiscrepancyReportId}",
+	}
+
+	if input == nil {
+		input = &DescribeTestSetDiscrepancyReportInput{}
+	}
+
+	output = &DescribeTestSetDiscrepancyReportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTestSetDiscrepancyReport API operation for Amazon Lex Model Building V2.
+//
+// Gets metadata information about the test set discrepancy report.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DescribeTestSetDiscrepancyReport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeTestSetDiscrepancyReport
+func (c *LexModelsV2) DescribeTestSetDiscrepancyReport(input *DescribeTestSetDiscrepancyReportInput) (*DescribeTestSetDiscrepancyReportOutput, error) {
+	req, out := c.DescribeTestSetDiscrepancyReportRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTestSetDiscrepancyReportWithContext is the same as DescribeTestSetDiscrepancyReport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTestSetDiscrepancyReport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DescribeTestSetDiscrepancyReportWithContext(ctx aws.Context, input *DescribeTestSetDiscrepancyReportInput, opts ...request.Option) (*DescribeTestSetDiscrepancyReportOutput, error) {
+	req, out := c.DescribeTestSetDiscrepancyReportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeTestSetGeneration = "DescribeTestSetGeneration"
+
+// DescribeTestSetGenerationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTestSetGeneration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTestSetGeneration for more information on using the DescribeTestSetGeneration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTestSetGenerationRequest method.
+//	req, resp := client.DescribeTestSetGenerationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeTestSetGeneration
+func (c *LexModelsV2) DescribeTestSetGenerationRequest(input *DescribeTestSetGenerationInput) (req *request.Request, output *DescribeTestSetGenerationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTestSetGeneration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/testsetgenerations/{testSetGenerationId}",
+	}
+
+	if input == nil {
+		input = &DescribeTestSetGenerationInput{}
+	}
+
+	output = &DescribeTestSetGenerationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTestSetGeneration API operation for Amazon Lex Model Building V2.
+//
+// Gets metadata information about the test set generation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DescribeTestSetGeneration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeTestSetGeneration
+func (c *LexModelsV2) DescribeTestSetGeneration(input *DescribeTestSetGenerationInput) (*DescribeTestSetGenerationOutput, error) {
+	req, out := c.DescribeTestSetGenerationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTestSetGenerationWithContext is the same as DescribeTestSetGeneration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTestSetGeneration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DescribeTestSetGenerationWithContext(ctx aws.Context, input *DescribeTestSetGenerationInput, opts ...request.Option) (*DescribeTestSetGenerationOutput, error) {
+	req, out := c.DescribeTestSetGenerationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetTestExecutionArtifactsUrl = "GetTestExecutionArtifactsUrl"
+
+// GetTestExecutionArtifactsUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GetTestExecutionArtifactsUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTestExecutionArtifactsUrl for more information on using the GetTestExecutionArtifactsUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetTestExecutionArtifactsUrlRequest method.
+//	req, resp := client.GetTestExecutionArtifactsUrlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/GetTestExecutionArtifactsUrl
+func (c *LexModelsV2) GetTestExecutionArtifactsUrlRequest(input *GetTestExecutionArtifactsUrlInput) (req *request.Request, output *GetTestExecutionArtifactsUrlOutput) {
+	op := &request.Operation{
+		Name:       opGetTestExecutionArtifactsUrl,
+		HTTPMethod: "GET",
+		HTTPPath:   "/testexecutions/{testExecutionId}/artifacturl",
+	}
+
+	if input == nil {
+		input = &GetTestExecutionArtifactsUrlInput{}
+	}
+
+	output = &GetTestExecutionArtifactsUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTestExecutionArtifactsUrl API operation for Amazon Lex Model Building V2.
+//
+// The pre-signed Amazon S3 URL to download the test execution result artifacts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation GetTestExecutionArtifactsUrl for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/GetTestExecutionArtifactsUrl
+func (c *LexModelsV2) GetTestExecutionArtifactsUrl(input *GetTestExecutionArtifactsUrlInput) (*GetTestExecutionArtifactsUrlOutput, error) {
+	req, out := c.GetTestExecutionArtifactsUrlRequest(input)
+	return out, req.Send()
+}
+
+// GetTestExecutionArtifactsUrlWithContext is the same as GetTestExecutionArtifactsUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTestExecutionArtifactsUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) GetTestExecutionArtifactsUrlWithContext(ctx aws.Context, input *GetTestExecutionArtifactsUrlInput, opts ...request.Option) (*GetTestExecutionArtifactsUrlOutput, error) {
+	req, out := c.GetTestExecutionArtifactsUrlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6234,6 +6897,598 @@ func (c *LexModelsV2) ListTagsForResourceWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opListTestExecutionResultItems = "ListTestExecutionResultItems"
+
+// ListTestExecutionResultItemsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTestExecutionResultItems operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTestExecutionResultItems for more information on using the ListTestExecutionResultItems
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTestExecutionResultItemsRequest method.
+//	req, resp := client.ListTestExecutionResultItemsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTestExecutionResultItems
+func (c *LexModelsV2) ListTestExecutionResultItemsRequest(input *ListTestExecutionResultItemsInput) (req *request.Request, output *ListTestExecutionResultItemsOutput) {
+	op := &request.Operation{
+		Name:       opListTestExecutionResultItems,
+		HTTPMethod: "POST",
+		HTTPPath:   "/testexecutions/{testExecutionId}/results",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTestExecutionResultItemsInput{}
+	}
+
+	output = &ListTestExecutionResultItemsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTestExecutionResultItems API operation for Amazon Lex Model Building V2.
+//
+// Gets a list of test execution result items.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListTestExecutionResultItems for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTestExecutionResultItems
+func (c *LexModelsV2) ListTestExecutionResultItems(input *ListTestExecutionResultItemsInput) (*ListTestExecutionResultItemsOutput, error) {
+	req, out := c.ListTestExecutionResultItemsRequest(input)
+	return out, req.Send()
+}
+
+// ListTestExecutionResultItemsWithContext is the same as ListTestExecutionResultItems with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTestExecutionResultItems for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListTestExecutionResultItemsWithContext(ctx aws.Context, input *ListTestExecutionResultItemsInput, opts ...request.Option) (*ListTestExecutionResultItemsOutput, error) {
+	req, out := c.ListTestExecutionResultItemsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTestExecutionResultItemsPages iterates over the pages of a ListTestExecutionResultItems operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTestExecutionResultItems method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTestExecutionResultItems operation.
+//	pageNum := 0
+//	err := client.ListTestExecutionResultItemsPages(params,
+//	    func(page *lexmodelsv2.ListTestExecutionResultItemsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListTestExecutionResultItemsPages(input *ListTestExecutionResultItemsInput, fn func(*ListTestExecutionResultItemsOutput, bool) bool) error {
+	return c.ListTestExecutionResultItemsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTestExecutionResultItemsPagesWithContext same as ListTestExecutionResultItemsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListTestExecutionResultItemsPagesWithContext(ctx aws.Context, input *ListTestExecutionResultItemsInput, fn func(*ListTestExecutionResultItemsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTestExecutionResultItemsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTestExecutionResultItemsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTestExecutionResultItemsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTestExecutions = "ListTestExecutions"
+
+// ListTestExecutionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTestExecutions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTestExecutions for more information on using the ListTestExecutions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTestExecutionsRequest method.
+//	req, resp := client.ListTestExecutionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTestExecutions
+func (c *LexModelsV2) ListTestExecutionsRequest(input *ListTestExecutionsInput) (req *request.Request, output *ListTestExecutionsOutput) {
+	op := &request.Operation{
+		Name:       opListTestExecutions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/testexecutions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTestExecutionsInput{}
+	}
+
+	output = &ListTestExecutionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTestExecutions API operation for Amazon Lex Model Building V2.
+//
+// The list of test set executions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListTestExecutions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTestExecutions
+func (c *LexModelsV2) ListTestExecutions(input *ListTestExecutionsInput) (*ListTestExecutionsOutput, error) {
+	req, out := c.ListTestExecutionsRequest(input)
+	return out, req.Send()
+}
+
+// ListTestExecutionsWithContext is the same as ListTestExecutions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTestExecutions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListTestExecutionsWithContext(ctx aws.Context, input *ListTestExecutionsInput, opts ...request.Option) (*ListTestExecutionsOutput, error) {
+	req, out := c.ListTestExecutionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTestExecutionsPages iterates over the pages of a ListTestExecutions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTestExecutions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTestExecutions operation.
+//	pageNum := 0
+//	err := client.ListTestExecutionsPages(params,
+//	    func(page *lexmodelsv2.ListTestExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListTestExecutionsPages(input *ListTestExecutionsInput, fn func(*ListTestExecutionsOutput, bool) bool) error {
+	return c.ListTestExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTestExecutionsPagesWithContext same as ListTestExecutionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListTestExecutionsPagesWithContext(ctx aws.Context, input *ListTestExecutionsInput, fn func(*ListTestExecutionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTestExecutionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTestExecutionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTestExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTestSetRecords = "ListTestSetRecords"
+
+// ListTestSetRecordsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTestSetRecords operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTestSetRecords for more information on using the ListTestSetRecords
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTestSetRecordsRequest method.
+//	req, resp := client.ListTestSetRecordsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTestSetRecords
+func (c *LexModelsV2) ListTestSetRecordsRequest(input *ListTestSetRecordsInput) (req *request.Request, output *ListTestSetRecordsOutput) {
+	op := &request.Operation{
+		Name:       opListTestSetRecords,
+		HTTPMethod: "POST",
+		HTTPPath:   "/testsets/{testSetId}/records",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTestSetRecordsInput{}
+	}
+
+	output = &ListTestSetRecordsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTestSetRecords API operation for Amazon Lex Model Building V2.
+//
+// The list of test set records.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListTestSetRecords for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTestSetRecords
+func (c *LexModelsV2) ListTestSetRecords(input *ListTestSetRecordsInput) (*ListTestSetRecordsOutput, error) {
+	req, out := c.ListTestSetRecordsRequest(input)
+	return out, req.Send()
+}
+
+// ListTestSetRecordsWithContext is the same as ListTestSetRecords with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTestSetRecords for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListTestSetRecordsWithContext(ctx aws.Context, input *ListTestSetRecordsInput, opts ...request.Option) (*ListTestSetRecordsOutput, error) {
+	req, out := c.ListTestSetRecordsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTestSetRecordsPages iterates over the pages of a ListTestSetRecords operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTestSetRecords method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTestSetRecords operation.
+//	pageNum := 0
+//	err := client.ListTestSetRecordsPages(params,
+//	    func(page *lexmodelsv2.ListTestSetRecordsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListTestSetRecordsPages(input *ListTestSetRecordsInput, fn func(*ListTestSetRecordsOutput, bool) bool) error {
+	return c.ListTestSetRecordsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTestSetRecordsPagesWithContext same as ListTestSetRecordsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListTestSetRecordsPagesWithContext(ctx aws.Context, input *ListTestSetRecordsInput, fn func(*ListTestSetRecordsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTestSetRecordsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTestSetRecordsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTestSetRecordsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTestSets = "ListTestSets"
+
+// ListTestSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTestSets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTestSets for more information on using the ListTestSets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTestSetsRequest method.
+//	req, resp := client.ListTestSetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTestSets
+func (c *LexModelsV2) ListTestSetsRequest(input *ListTestSetsInput) (req *request.Request, output *ListTestSetsOutput) {
+	op := &request.Operation{
+		Name:       opListTestSets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/testsets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTestSetsInput{}
+	}
+
+	output = &ListTestSetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTestSets API operation for Amazon Lex Model Building V2.
+//
+// # The list of the test sets
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListTestSets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTestSets
+func (c *LexModelsV2) ListTestSets(input *ListTestSetsInput) (*ListTestSetsOutput, error) {
+	req, out := c.ListTestSetsRequest(input)
+	return out, req.Send()
+}
+
+// ListTestSetsWithContext is the same as ListTestSets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTestSets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListTestSetsWithContext(ctx aws.Context, input *ListTestSetsInput, opts ...request.Option) (*ListTestSetsOutput, error) {
+	req, out := c.ListTestSetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTestSetsPages iterates over the pages of a ListTestSets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTestSets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTestSets operation.
+//	pageNum := 0
+//	err := client.ListTestSetsPages(params,
+//	    func(page *lexmodelsv2.ListTestSetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListTestSetsPages(input *ListTestSetsInput, fn func(*ListTestSetsOutput, bool) bool) error {
+	return c.ListTestSetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTestSetsPagesWithContext same as ListTestSetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListTestSetsPagesWithContext(ctx aws.Context, input *ListTestSetsInput, fn func(*ListTestSetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTestSetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTestSetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTestSetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchAssociatedTranscripts = "SearchAssociatedTranscripts"
 
 // SearchAssociatedTranscriptsRequest generates a "aws/request.Request" representing the
@@ -6529,6 +7784,202 @@ func (c *LexModelsV2) StartImport(input *StartImportInput) (*StartImportOutput, 
 // for more information on using Contexts.
 func (c *LexModelsV2) StartImportWithContext(ctx aws.Context, input *StartImportInput, opts ...request.Option) (*StartImportOutput, error) {
 	req, out := c.StartImportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartTestExecution = "StartTestExecution"
+
+// StartTestExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StartTestExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartTestExecution for more information on using the StartTestExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartTestExecutionRequest method.
+//	req, resp := client.StartTestExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StartTestExecution
+func (c *LexModelsV2) StartTestExecutionRequest(input *StartTestExecutionInput) (req *request.Request, output *StartTestExecutionOutput) {
+	op := &request.Operation{
+		Name:       opStartTestExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/testsets/{testSetId}/testexecutions",
+	}
+
+	if input == nil {
+		input = &StartTestExecutionInput{}
+	}
+
+	output = &StartTestExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartTestExecution API operation for Amazon Lex Model Building V2.
+//
+// The action to start test set execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation StartTestExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ConflictException
+//     The action that you tried to perform couldn't be completed because the resource
+//     is in a conflicting state. For example, deleting a bot that is in the CREATING
+//     state. Try your request again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StartTestExecution
+func (c *LexModelsV2) StartTestExecution(input *StartTestExecutionInput) (*StartTestExecutionOutput, error) {
+	req, out := c.StartTestExecutionRequest(input)
+	return out, req.Send()
+}
+
+// StartTestExecutionWithContext is the same as StartTestExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartTestExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) StartTestExecutionWithContext(ctx aws.Context, input *StartTestExecutionInput, opts ...request.Option) (*StartTestExecutionOutput, error) {
+	req, out := c.StartTestExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartTestSetGeneration = "StartTestSetGeneration"
+
+// StartTestSetGenerationRequest generates a "aws/request.Request" representing the
+// client's request for the StartTestSetGeneration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartTestSetGeneration for more information on using the StartTestSetGeneration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartTestSetGenerationRequest method.
+//	req, resp := client.StartTestSetGenerationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StartTestSetGeneration
+func (c *LexModelsV2) StartTestSetGenerationRequest(input *StartTestSetGenerationInput) (req *request.Request, output *StartTestSetGenerationOutput) {
+	op := &request.Operation{
+		Name:       opStartTestSetGeneration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/testsetgenerations",
+	}
+
+	if input == nil {
+		input = &StartTestSetGenerationInput{}
+	}
+
+	output = &StartTestSetGenerationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartTestSetGeneration API operation for Amazon Lex Model Building V2.
+//
+// The action to start the generation of test set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation StartTestSetGeneration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ConflictException
+//     The action that you tried to perform couldn't be completed because the resource
+//     is in a conflicting state. For example, deleting a bot that is in the CREATING
+//     state. Try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StartTestSetGeneration
+func (c *LexModelsV2) StartTestSetGeneration(input *StartTestSetGenerationInput) (*StartTestSetGenerationOutput, error) {
+	req, out := c.StartTestSetGenerationRequest(input)
+	return out, req.Send()
+}
+
+// StartTestSetGenerationWithContext is the same as StartTestSetGeneration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartTestSetGeneration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) StartTestSetGenerationWithContext(ctx aws.Context, input *StartTestSetGenerationInput, opts ...request.Option) (*StartTestSetGenerationOutput, error) {
+	req, out := c.StartTestSetGenerationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7721,6 +9172,138 @@ func (c *LexModelsV2) UpdateSlotTypeWithContext(ctx aws.Context, input *UpdateSl
 	return out, req.Send()
 }
 
+const opUpdateTestSet = "UpdateTestSet"
+
+// UpdateTestSetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTestSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTestSet for more information on using the UpdateTestSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTestSetRequest method.
+//	req, resp := client.UpdateTestSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateTestSet
+func (c *LexModelsV2) UpdateTestSetRequest(input *UpdateTestSetInput) (req *request.Request, output *UpdateTestSetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTestSet,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/testsets/{testSetId}",
+	}
+
+	if input == nil {
+		input = &UpdateTestSetInput{}
+	}
+
+	output = &UpdateTestSetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTestSet API operation for Amazon Lex Model Building V2.
+//
+// The action to update the test set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation UpdateTestSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ConflictException
+//     The action that you tried to perform couldn't be completed because the resource
+//     is in a conflicting state. For example, deleting a bot that is in the CREATING
+//     state. Try your request again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateTestSet
+func (c *LexModelsV2) UpdateTestSet(input *UpdateTestSetInput) (*UpdateTestSetOutput, error) {
+	req, out := c.UpdateTestSetRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTestSetWithContext is the same as UpdateTestSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTestSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) UpdateTestSetWithContext(ctx aws.Context, input *UpdateTestSetInput, opts ...request.Option) (*UpdateTestSetOutput, error) {
+	req, out := c.UpdateTestSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// The active context used in the test execution.
+type ActiveContext struct {
+	_ struct{} `type:"structure"`
+
+	// The name of active context.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActiveContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActiveContext) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ActiveContext) SetName(v string) *ActiveContext {
+	s.Name = &v
+	return s
+}
+
 // Provides settings that enable advanced recognition settings for slot values.
 type AdvancedRecognitionSetting struct {
 	_ struct{} `type:"structure"`
@@ -7751,6 +9334,110 @@ func (s AdvancedRecognitionSetting) GoString() string {
 // SetAudioRecognitionStrategy sets the AudioRecognitionStrategy field's value.
 func (s *AdvancedRecognitionSetting) SetAudioRecognitionStrategy(v string) *AdvancedRecognitionSetting {
 	s.AudioRecognitionStrategy = &v
+	return s
+}
+
+// The information about the agent turn in a test set execution.
+type AgentTurnResult struct {
+	_ struct{} `type:"structure"`
+
+	// The actual agent prompt for the agent turn in a test set execution.
+	ActualAgentPrompt *string `locationName:"actualAgentPrompt" min:"1" type:"string"`
+
+	// The actual elicited slot for the agent turn in a test set execution.
+	ActualElicitedSlot *string `locationName:"actualElicitedSlot" min:"1" type:"string"`
+
+	// The actual intent for the agent turn in a test set execution.
+	ActualIntent *string `locationName:"actualIntent" min:"1" type:"string"`
+
+	// Details about an error in an execution of a test set.
+	ErrorDetails *ExecutionErrorDetails `locationName:"errorDetails" type:"structure"`
+
+	// The expected agent prompt for the agent turn in a test set execution.
+	//
+	// ExpectedAgentPrompt is a required field
+	ExpectedAgentPrompt *string `locationName:"expectedAgentPrompt" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentTurnResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentTurnResult) GoString() string {
+	return s.String()
+}
+
+// SetActualAgentPrompt sets the ActualAgentPrompt field's value.
+func (s *AgentTurnResult) SetActualAgentPrompt(v string) *AgentTurnResult {
+	s.ActualAgentPrompt = &v
+	return s
+}
+
+// SetActualElicitedSlot sets the ActualElicitedSlot field's value.
+func (s *AgentTurnResult) SetActualElicitedSlot(v string) *AgentTurnResult {
+	s.ActualElicitedSlot = &v
+	return s
+}
+
+// SetActualIntent sets the ActualIntent field's value.
+func (s *AgentTurnResult) SetActualIntent(v string) *AgentTurnResult {
+	s.ActualIntent = &v
+	return s
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *AgentTurnResult) SetErrorDetails(v *ExecutionErrorDetails) *AgentTurnResult {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetExpectedAgentPrompt sets the ExpectedAgentPrompt field's value.
+func (s *AgentTurnResult) SetExpectedAgentPrompt(v string) *AgentTurnResult {
+	s.ExpectedAgentPrompt = &v
+	return s
+}
+
+// The specification of an agent turn.
+type AgentTurnSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The agent prompt for the agent turn in a test set.
+	//
+	// AgentPrompt is a required field
+	AgentPrompt *string `locationName:"agentPrompt" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentTurnSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentTurnSpecification) GoString() string {
+	return s.String()
+}
+
+// SetAgentPrompt sets the AgentPrompt field's value.
+func (s *AgentTurnSpecification) SetAgentPrompt(v string) *AgentTurnSpecification {
+	s.AgentPrompt = &v
 	return s
 }
 
@@ -9171,6 +10858,87 @@ func (s *BotAliasSummary) SetDescription(v string) *BotAliasSummary {
 // SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
 func (s *BotAliasSummary) SetLastUpdatedDateTime(v time.Time) *BotAliasSummary {
 	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// The target Amazon S3 location for the test set execution using a bot alias.
+type BotAliasTestExecutionTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The bot alias Id of the bot alias used in the test set execution.
+	//
+	// BotAliasId is a required field
+	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string" required:"true"`
+
+	// The bot Id of the bot alias used in the test set execution.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The locale Id of the bot alias used in the test set execution.
+	//
+	// LocaleId is a required field
+	LocaleId *string `locationName:"localeId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BotAliasTestExecutionTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BotAliasTestExecutionTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BotAliasTestExecutionTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BotAliasTestExecutionTarget"}
+	if s.BotAliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotAliasId"))
+	}
+	if s.BotAliasId != nil && len(*s.BotAliasId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAliasId", 10))
+	}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotAliasId sets the BotAliasId field's value.
+func (s *BotAliasTestExecutionTarget) SetBotAliasId(v string) *BotAliasTestExecutionTarget {
+	s.BotAliasId = &v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BotAliasTestExecutionTarget) SetBotId(v string) *BotAliasTestExecutionTarget {
+	s.BotId = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BotAliasTestExecutionTarget) SetLocaleId(v string) *BotAliasTestExecutionTarget {
+	s.LocaleId = &v
 	return s
 }
 
@@ -11470,6 +13238,296 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The item listing the evaluation of intent level success or failure.
+type ConversationLevelIntentClassificationResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// The intent name used in the evaluation of intent level success or failure.
+	//
+	// IntentName is a required field
+	IntentName *string `locationName:"intentName" min:"1" type:"string" required:"true"`
+
+	// The number of times the specific intent is used in the evaluation of intent
+	// level success or failure.
+	//
+	// MatchResult is a required field
+	MatchResult *string `locationName:"matchResult" type:"string" required:"true" enum:"TestResultMatchStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelIntentClassificationResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelIntentClassificationResultItem) GoString() string {
+	return s.String()
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *ConversationLevelIntentClassificationResultItem) SetIntentName(v string) *ConversationLevelIntentClassificationResultItem {
+	s.IntentName = &v
+	return s
+}
+
+// SetMatchResult sets the MatchResult field's value.
+func (s *ConversationLevelIntentClassificationResultItem) SetMatchResult(v string) *ConversationLevelIntentClassificationResultItem {
+	s.MatchResult = &v
+	return s
+}
+
+// The conversation level details of the conversation used in the test set.
+type ConversationLevelResultDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The success or failure of the streaming of the conversation.
+	//
+	// EndToEndResult is a required field
+	EndToEndResult *string `locationName:"endToEndResult" type:"string" required:"true" enum:"TestResultMatchStatus"`
+
+	// The speech transcription success or failure details of the conversation.
+	SpeechTranscriptionResult *string `locationName:"speechTranscriptionResult" type:"string" enum:"TestResultMatchStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelResultDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelResultDetail) GoString() string {
+	return s.String()
+}
+
+// SetEndToEndResult sets the EndToEndResult field's value.
+func (s *ConversationLevelResultDetail) SetEndToEndResult(v string) *ConversationLevelResultDetail {
+	s.EndToEndResult = &v
+	return s
+}
+
+// SetSpeechTranscriptionResult sets the SpeechTranscriptionResult field's value.
+func (s *ConversationLevelResultDetail) SetSpeechTranscriptionResult(v string) *ConversationLevelResultDetail {
+	s.SpeechTranscriptionResult = &v
+	return s
+}
+
+// The slots used for the slot resolution in the conversation.
+type ConversationLevelSlotResolutionResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// The intents used in the slots list for the slot resolution details.
+	//
+	// IntentName is a required field
+	IntentName *string `locationName:"intentName" min:"1" type:"string" required:"true"`
+
+	// The number of matching slots used in the slots listings for the slot resolution
+	// evaluation.
+	//
+	// MatchResult is a required field
+	MatchResult *string `locationName:"matchResult" type:"string" required:"true" enum:"TestResultMatchStatus"`
+
+	// The slot name in the slots list for the slot resolution details.
+	//
+	// SlotName is a required field
+	SlotName *string `locationName:"slotName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelSlotResolutionResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelSlotResolutionResultItem) GoString() string {
+	return s.String()
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *ConversationLevelSlotResolutionResultItem) SetIntentName(v string) *ConversationLevelSlotResolutionResultItem {
+	s.IntentName = &v
+	return s
+}
+
+// SetMatchResult sets the MatchResult field's value.
+func (s *ConversationLevelSlotResolutionResultItem) SetMatchResult(v string) *ConversationLevelSlotResolutionResultItem {
+	s.MatchResult = &v
+	return s
+}
+
+// SetSlotName sets the SlotName field's value.
+func (s *ConversationLevelSlotResolutionResultItem) SetSlotName(v string) *ConversationLevelSlotResolutionResultItem {
+	s.SlotName = &v
+	return s
+}
+
+// The test result evaluation item at the conversation level.
+type ConversationLevelTestResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// The conversation Id of the test result evaluation item.
+	//
+	// ConversationId is a required field
+	ConversationId *string `locationName:"conversationId" min:"1" type:"string" required:"true"`
+
+	// The end-to-end success or failure of the test result evaluation item.
+	//
+	// EndToEndResult is a required field
+	EndToEndResult *string `locationName:"endToEndResult" type:"string" required:"true" enum:"TestResultMatchStatus"`
+
+	// The intent classification of the test result evaluation item.
+	//
+	// IntentClassificationResults is a required field
+	IntentClassificationResults []*ConversationLevelIntentClassificationResultItem `locationName:"intentClassificationResults" type:"list" required:"true"`
+
+	// The slot success or failure of the test result evaluation item.
+	//
+	// SlotResolutionResults is a required field
+	SlotResolutionResults []*ConversationLevelSlotResolutionResultItem `locationName:"slotResolutionResults" type:"list" required:"true"`
+
+	// The speech transcription success or failure of the test result evaluation
+	// item.
+	SpeechTranscriptionResult *string `locationName:"speechTranscriptionResult" type:"string" enum:"TestResultMatchStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelTestResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelTestResultItem) GoString() string {
+	return s.String()
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *ConversationLevelTestResultItem) SetConversationId(v string) *ConversationLevelTestResultItem {
+	s.ConversationId = &v
+	return s
+}
+
+// SetEndToEndResult sets the EndToEndResult field's value.
+func (s *ConversationLevelTestResultItem) SetEndToEndResult(v string) *ConversationLevelTestResultItem {
+	s.EndToEndResult = &v
+	return s
+}
+
+// SetIntentClassificationResults sets the IntentClassificationResults field's value.
+func (s *ConversationLevelTestResultItem) SetIntentClassificationResults(v []*ConversationLevelIntentClassificationResultItem) *ConversationLevelTestResultItem {
+	s.IntentClassificationResults = v
+	return s
+}
+
+// SetSlotResolutionResults sets the SlotResolutionResults field's value.
+func (s *ConversationLevelTestResultItem) SetSlotResolutionResults(v []*ConversationLevelSlotResolutionResultItem) *ConversationLevelTestResultItem {
+	s.SlotResolutionResults = v
+	return s
+}
+
+// SetSpeechTranscriptionResult sets the SpeechTranscriptionResult field's value.
+func (s *ConversationLevelTestResultItem) SetSpeechTranscriptionResult(v string) *ConversationLevelTestResultItem {
+	s.SpeechTranscriptionResult = &v
+	return s
+}
+
+// The test set results data at the conversation level.
+type ConversationLevelTestResults struct {
+	_ struct{} `type:"structure"`
+
+	// The item list in the test set results data at the conversation level.
+	//
+	// Items is a required field
+	Items []*ConversationLevelTestResultItem `locationName:"items" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelTestResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelTestResults) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ConversationLevelTestResults) SetItems(v []*ConversationLevelTestResultItem) *ConversationLevelTestResults {
+	s.Items = v
+	return s
+}
+
+// The selection to filter the test set results data at the conversation level.
+type ConversationLevelTestResultsFilterBy struct {
+	_ struct{} `type:"structure"`
+
+	// The selection of matched or mismatched end-to-end status to filter test set
+	// results data at the conversation level.
+	EndToEndResult *string `locationName:"endToEndResult" type:"string" enum:"TestResultMatchStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelTestResultsFilterBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLevelTestResultsFilterBy) GoString() string {
+	return s.String()
+}
+
+// SetEndToEndResult sets the EndToEndResult field's value.
+func (s *ConversationLevelTestResultsFilterBy) SetEndToEndResult(v string) *ConversationLevelTestResultsFilterBy {
+	s.EndToEndResult = &v
+	return s
+}
+
 // Configures conversation logging that saves audio, text, and metadata for
 // the conversations with your users.
 type ConversationLogSettings struct {
@@ -11545,6 +13603,181 @@ func (s *ConversationLogSettings) SetAudioLogSettings(v []*AudioLogSetting) *Con
 // SetTextLogSettings sets the TextLogSettings field's value.
 func (s *ConversationLogSettings) SetTextLogSettings(v []*TextLogSetting) *ConversationLogSettings {
 	s.TextLogSettings = v
+	return s
+}
+
+// The data source that uses conversation logs.
+type ConversationLogsDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// The bot alias Id from the conversation logs.
+	//
+	// BotAliasId is a required field
+	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string" required:"true"`
+
+	// The bot Id from the conversation logs.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The filter for the data source of the conversation log.
+	//
+	// Filter is a required field
+	Filter *ConversationLogsDataSourceFilterBy `locationName:"filter" type:"structure" required:"true"`
+
+	// The locale Id of the conversation log.
+	//
+	// LocaleId is a required field
+	LocaleId *string `locationName:"localeId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLogsDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLogsDataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConversationLogsDataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConversationLogsDataSource"}
+	if s.BotAliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotAliasId"))
+	}
+	if s.BotAliasId != nil && len(*s.BotAliasId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAliasId", 10))
+	}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.Filter == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filter"))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotAliasId sets the BotAliasId field's value.
+func (s *ConversationLogsDataSource) SetBotAliasId(v string) *ConversationLogsDataSource {
+	s.BotAliasId = &v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ConversationLogsDataSource) SetBotId(v string) *ConversationLogsDataSource {
+	s.BotId = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ConversationLogsDataSource) SetFilter(v *ConversationLogsDataSourceFilterBy) *ConversationLogsDataSource {
+	s.Filter = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *ConversationLogsDataSource) SetLocaleId(v string) *ConversationLogsDataSource {
+	s.LocaleId = &v
+	return s
+}
+
+// The selected data source to filter the conversation log.
+type ConversationLogsDataSourceFilterBy struct {
+	_ struct{} `type:"structure"`
+
+	// The end time for the conversation log.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" required:"true"`
+
+	// The selection to filter by input mode for the conversation logs.
+	//
+	// InputMode is a required field
+	InputMode *string `locationName:"inputMode" type:"string" required:"true" enum:"ConversationLogsInputModeFilter"`
+
+	// The start time for the conversation log.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLogsDataSourceFilterBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversationLogsDataSourceFilterBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConversationLogsDataSourceFilterBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConversationLogsDataSourceFilterBy"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.InputMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputMode"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ConversationLogsDataSourceFilterBy) SetEndTime(v time.Time) *ConversationLogsDataSourceFilterBy {
+	s.EndTime = &v
+	return s
+}
+
+// SetInputMode sets the InputMode field's value.
+func (s *ConversationLogsDataSourceFilterBy) SetInputMode(v string) *ConversationLogsDataSourceFilterBy {
+	s.InputMode = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ConversationLogsDataSourceFilterBy) SetStartTime(v time.Time) *ConversationLogsDataSourceFilterBy {
+	s.StartTime = &v
 	return s
 }
 
@@ -12717,7 +14950,7 @@ type CreateIntentInput struct {
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// The identifier of the version of the bot associated with this intent.
+	// The version of the bot associated with this intent.
 	//
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"5" type:"string" required:"true"`
@@ -13026,7 +15259,7 @@ type CreateIntentOutput struct {
 	// The identifier of the bot associated with the intent.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
-	// The identifier of the version of the bot associated with the intent.
+	// The version of the bot associated with the intent.
 	BotVersion *string `locationName:"botVersion" min:"5" type:"string"`
 
 	// A timestamp of the date and time that the intent was created.
@@ -13342,9 +15575,9 @@ type CreateResourcePolicyStatementInput struct {
 	// policy with the new values.
 	ExpectedRevisionId *string `location:"querystring" locationName:"expectedRevisionId" min:"1" type:"string"`
 
-	// An IAM principal, such as an IAM users, IAM roles, or AWS services that is
-	// allowed or denied access to a resource. For more information, see AWS JSON
-	// policy elements: Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html).
+	// An IAM principal, such as an IAM user, IAM role, or Amazon Web Services services
+	// that is allowed or denied access to a resource. For more information, see
+	// Amazon Web Services JSON policy elements: Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html).
 	//
 	// Principal is a required field
 	Principal []*Principal `locationName:"principal" type:"list" required:"true"`
@@ -13901,7 +16134,7 @@ type CreateSlotTypeInput struct {
 	// Only AMAZON.AlphaNumeric is supported.
 	ParentSlotTypeSignature *string `locationName:"parentSlotTypeSignature" type:"string"`
 
-	// The name for the slot. A slot type name must be unique within the account.
+	// The name for the slot. A slot type name must be unique within the intent.
 	//
 	// SlotTypeName is a required field
 	SlotTypeName *string `locationName:"slotTypeName" min:"1" type:"string" required:"true"`
@@ -13915,15 +16148,15 @@ type CreateSlotTypeInput struct {
 	// Determines the strategy that Amazon Lex uses to select a value from the list
 	// of possible values. The field can be set to one of the following values:
 	//
-	//    * OriginalValue - Returns the value entered by the user, if the user value
-	//    is similar to the slot value.
+	//    * ORIGINAL_VALUE - Returns the value entered by the user, if the user
+	//    value is similar to the slot value.
 	//
-	//    * TopResolution - If there is a resolution list for the slot, return the
-	//    first value in the resolution list. If there is no resolution list, return
-	//    null.
+	//    * TOP_RESOLUTION - If there is a resolution list for the slot, return
+	//    the first value in the resolution list. If there is no resolution list,
+	//    return null.
 	//
 	// If you don't specify the valueSelectionSetting parameter, the default is
-	// OriginalValue.
+	// ORIGINAL_VALUE.
 	ValueSelectionSetting *SlotValueSelectionSetting `locationName:"valueSelectionSetting" type:"structure"`
 }
 
@@ -14196,6 +16429,132 @@ func (s *CreateSlotTypeOutput) SetSlotTypeValues(v []*SlotTypeValue) *CreateSlot
 // SetValueSelectionSetting sets the ValueSelectionSetting field's value.
 func (s *CreateSlotTypeOutput) SetValueSelectionSetting(v *SlotValueSelectionSetting) *CreateSlotTypeOutput {
 	s.ValueSelectionSetting = v
+	return s
+}
+
+type CreateTestSetDiscrepancyReportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The target bot for the test set discrepancy report.
+	//
+	// Target is a required field
+	Target *TestSetDiscrepancyReportResourceTarget `locationName:"target" type:"structure" required:"true"`
+
+	// The test set Id for the test set discrepancy report.
+	//
+	// TestSetId is a required field
+	TestSetId *string `location:"uri" locationName:"testSetId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTestSetDiscrepancyReportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTestSetDiscrepancyReportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTestSetDiscrepancyReportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTestSetDiscrepancyReportInput"}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+	if s.TestSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetId"))
+	}
+	if s.TestSetId != nil && len(*s.TestSetId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetId", 10))
+	}
+	if s.Target != nil {
+		if err := s.Target.Validate(); err != nil {
+			invalidParams.AddNested("Target", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTarget sets the Target field's value.
+func (s *CreateTestSetDiscrepancyReportInput) SetTarget(v *TestSetDiscrepancyReportResourceTarget) *CreateTestSetDiscrepancyReportInput {
+	s.Target = v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *CreateTestSetDiscrepancyReportInput) SetTestSetId(v string) *CreateTestSetDiscrepancyReportInput {
+	s.TestSetId = &v
+	return s
+}
+
+type CreateTestSetDiscrepancyReportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time for the test set discrepancy report.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The target bot for the test set discrepancy report.
+	Target *TestSetDiscrepancyReportResourceTarget `locationName:"target" type:"structure"`
+
+	// The unique identifier of the test set discrepancy report to describe.
+	TestSetDiscrepancyReportId *string `locationName:"testSetDiscrepancyReportId" min:"10" type:"string"`
+
+	// The test set Id for the test set discrepancy report.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTestSetDiscrepancyReportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTestSetDiscrepancyReportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *CreateTestSetDiscrepancyReportOutput) SetCreationDateTime(v time.Time) *CreateTestSetDiscrepancyReportOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *CreateTestSetDiscrepancyReportOutput) SetTarget(v *TestSetDiscrepancyReportResourceTarget) *CreateTestSetDiscrepancyReportOutput {
+	s.Target = v
+	return s
+}
+
+// SetTestSetDiscrepancyReportId sets the TestSetDiscrepancyReportId field's value.
+func (s *CreateTestSetDiscrepancyReportOutput) SetTestSetDiscrepancyReportId(v string) *CreateTestSetDiscrepancyReportOutput {
+	s.TestSetDiscrepancyReportId = &v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *CreateTestSetDiscrepancyReportOutput) SetTestSetId(v string) *CreateTestSetDiscrepancyReportOutput {
+	s.TestSetId = &v
 	return s
 }
 
@@ -14747,7 +17106,7 @@ type DataPrivacy struct {
 	// age 13, you must obtain any required verifiable parental consent under COPPA.
 	// For information regarding the use of Amazon Lex in connection with websites,
 	// programs, or other applications that are directed or targeted, in whole or
-	// in part, to children under age 13, see the Amazon Lex FAQ (https://aws.amazon.com/lex/faqs#data-security).
+	// in part, to children under age 13, see the Amazon Lex FAQ (http://aws.amazon.com/lex/faqs#data-security).
 	//
 	// ChildDirected is a required field
 	ChildDirected *bool `locationName:"childDirected" type:"boolean" required:"true"`
@@ -16386,6 +18745,77 @@ func (s DeleteSlotTypeOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteTestSetInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The test set Id of the test set to be deleted.
+	//
+	// TestSetId is a required field
+	TestSetId *string `location:"uri" locationName:"testSetId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTestSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTestSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTestSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTestSetInput"}
+	if s.TestSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetId"))
+	}
+	if s.TestSetId != nil && len(*s.TestSetId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *DeleteTestSetInput) SetTestSetId(v string) *DeleteTestSetInput {
+	s.TestSetId = &v
+	return s
+}
+
+type DeleteTestSetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTestSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTestSetOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteUtterancesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -16749,7 +19179,7 @@ type DescribeBotLocaleInput struct {
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// The identifier of the version of the bot associated with the locale.
+	// The version of the bot associated with the locale.
 	//
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
@@ -16839,7 +19269,7 @@ type DescribeBotLocaleOutput struct {
 	// are listed in the failureReasons field.
 	BotLocaleStatus *string `locationName:"botLocaleStatus" type:"string" enum:"BotLocaleStatus"`
 
-	// The identifier of the version of the bot associated with the locale.
+	// The version of the bot associated with the locale.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
 	// The date and time that the locale was created.
@@ -18951,6 +21381,654 @@ func (s *DescribeSlotTypeOutput) SetValueSelectionSetting(v *SlotValueSelectionS
 	return s
 }
 
+type DescribeTestExecutionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The execution Id of the test set execution.
+	//
+	// TestExecutionId is a required field
+	TestExecutionId *string `location:"uri" locationName:"testExecutionId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTestExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTestExecutionInput"}
+	if s.TestExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestExecutionId"))
+	}
+	if s.TestExecutionId != nil && len(*s.TestExecutionId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestExecutionId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTestExecutionId sets the TestExecutionId field's value.
+func (s *DescribeTestExecutionInput) SetTestExecutionId(v string) *DescribeTestExecutionInput {
+	s.TestExecutionId = &v
+	return s
+}
+
+type DescribeTestExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether we use streaming or non-streaming APIs are used for the
+	// test set execution. For streaming, StartConversation Amazon Lex Runtime API
+	// is used. Whereas for non-streaming, RecognizeUtterance and RecognizeText
+	// Amazon Lex Runtime API is used.
+	ApiMode *string `locationName:"apiMode" type:"string" enum:"TestExecutionApiMode"`
+
+	// The execution creation date and time for the test set execution.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// Reasons for the failure of the test set execution.
+	FailureReasons []*string `locationName:"failureReasons" type:"list"`
+
+	// The date and time of the last update for the execution.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The target bot for the test set execution details.
+	Target *TestExecutionTarget `locationName:"target" type:"structure"`
+
+	// The execution Id for the test set execution.
+	TestExecutionId *string `locationName:"testExecutionId" min:"10" type:"string"`
+
+	// Indicates whether test set is audio or text.
+	TestExecutionModality *string `locationName:"testExecutionModality" type:"string" enum:"TestExecutionModality"`
+
+	// The test execution status for the test execution.
+	TestExecutionStatus *string `locationName:"testExecutionStatus" type:"string" enum:"TestExecutionStatus"`
+
+	// The test set Id for the test set execution.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+
+	// The test set name of the test set execution.
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetApiMode sets the ApiMode field's value.
+func (s *DescribeTestExecutionOutput) SetApiMode(v string) *DescribeTestExecutionOutput {
+	s.ApiMode = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DescribeTestExecutionOutput) SetCreationDateTime(v time.Time) *DescribeTestExecutionOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *DescribeTestExecutionOutput) SetFailureReasons(v []*string) *DescribeTestExecutionOutput {
+	s.FailureReasons = v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DescribeTestExecutionOutput) SetLastUpdatedDateTime(v time.Time) *DescribeTestExecutionOutput {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *DescribeTestExecutionOutput) SetTarget(v *TestExecutionTarget) *DescribeTestExecutionOutput {
+	s.Target = v
+	return s
+}
+
+// SetTestExecutionId sets the TestExecutionId field's value.
+func (s *DescribeTestExecutionOutput) SetTestExecutionId(v string) *DescribeTestExecutionOutput {
+	s.TestExecutionId = &v
+	return s
+}
+
+// SetTestExecutionModality sets the TestExecutionModality field's value.
+func (s *DescribeTestExecutionOutput) SetTestExecutionModality(v string) *DescribeTestExecutionOutput {
+	s.TestExecutionModality = &v
+	return s
+}
+
+// SetTestExecutionStatus sets the TestExecutionStatus field's value.
+func (s *DescribeTestExecutionOutput) SetTestExecutionStatus(v string) *DescribeTestExecutionOutput {
+	s.TestExecutionStatus = &v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *DescribeTestExecutionOutput) SetTestSetId(v string) *DescribeTestExecutionOutput {
+	s.TestSetId = &v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *DescribeTestExecutionOutput) SetTestSetName(v string) *DescribeTestExecutionOutput {
+	s.TestSetName = &v
+	return s
+}
+
+type DescribeTestSetDiscrepancyReportInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the test set discrepancy report.
+	//
+	// TestSetDiscrepancyReportId is a required field
+	TestSetDiscrepancyReportId *string `location:"uri" locationName:"testSetDiscrepancyReportId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetDiscrepancyReportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetDiscrepancyReportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTestSetDiscrepancyReportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTestSetDiscrepancyReportInput"}
+	if s.TestSetDiscrepancyReportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetDiscrepancyReportId"))
+	}
+	if s.TestSetDiscrepancyReportId != nil && len(*s.TestSetDiscrepancyReportId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetDiscrepancyReportId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTestSetDiscrepancyReportId sets the TestSetDiscrepancyReportId field's value.
+func (s *DescribeTestSetDiscrepancyReportInput) SetTestSetDiscrepancyReportId(v string) *DescribeTestSetDiscrepancyReportInput {
+	s.TestSetDiscrepancyReportId = &v
+	return s
+}
+
+type DescribeTestSetDiscrepancyReportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time and date of creation for the test set discrepancy report.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The failure report for the test set discrepancy report generation action.
+	FailureReasons []*string `locationName:"failureReasons" type:"list"`
+
+	// The date and time of the last update for the test set discrepancy report.
+	LastUpdatedDataTime *time.Time `locationName:"lastUpdatedDataTime" type:"timestamp"`
+
+	// The target bot location for the test set discrepancy report.
+	Target *TestSetDiscrepancyReportResourceTarget `locationName:"target" type:"structure"`
+
+	// Pre-signed Amazon S3 URL to download the test set discrepancy report.
+	TestSetDiscrepancyRawOutputUrl *string `locationName:"testSetDiscrepancyRawOutputUrl" min:"1" type:"string"`
+
+	// The unique identifier of the test set discrepancy report to describe.
+	TestSetDiscrepancyReportId *string `locationName:"testSetDiscrepancyReportId" min:"10" type:"string"`
+
+	// The status for the test set discrepancy report.
+	TestSetDiscrepancyReportStatus *string `locationName:"testSetDiscrepancyReportStatus" type:"string" enum:"TestSetDiscrepancyReportStatus"`
+
+	// The top 200 error results from the test set discrepancy report.
+	TestSetDiscrepancyTopErrors *TestSetDiscrepancyErrors `locationName:"testSetDiscrepancyTopErrors" type:"structure"`
+
+	// The test set Id for the test set discrepancy report.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetDiscrepancyReportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetDiscrepancyReportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetCreationDateTime(v time.Time) *DescribeTestSetDiscrepancyReportOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetFailureReasons(v []*string) *DescribeTestSetDiscrepancyReportOutput {
+	s.FailureReasons = v
+	return s
+}
+
+// SetLastUpdatedDataTime sets the LastUpdatedDataTime field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetLastUpdatedDataTime(v time.Time) *DescribeTestSetDiscrepancyReportOutput {
+	s.LastUpdatedDataTime = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetTarget(v *TestSetDiscrepancyReportResourceTarget) *DescribeTestSetDiscrepancyReportOutput {
+	s.Target = v
+	return s
+}
+
+// SetTestSetDiscrepancyRawOutputUrl sets the TestSetDiscrepancyRawOutputUrl field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetTestSetDiscrepancyRawOutputUrl(v string) *DescribeTestSetDiscrepancyReportOutput {
+	s.TestSetDiscrepancyRawOutputUrl = &v
+	return s
+}
+
+// SetTestSetDiscrepancyReportId sets the TestSetDiscrepancyReportId field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetTestSetDiscrepancyReportId(v string) *DescribeTestSetDiscrepancyReportOutput {
+	s.TestSetDiscrepancyReportId = &v
+	return s
+}
+
+// SetTestSetDiscrepancyReportStatus sets the TestSetDiscrepancyReportStatus field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetTestSetDiscrepancyReportStatus(v string) *DescribeTestSetDiscrepancyReportOutput {
+	s.TestSetDiscrepancyReportStatus = &v
+	return s
+}
+
+// SetTestSetDiscrepancyTopErrors sets the TestSetDiscrepancyTopErrors field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetTestSetDiscrepancyTopErrors(v *TestSetDiscrepancyErrors) *DescribeTestSetDiscrepancyReportOutput {
+	s.TestSetDiscrepancyTopErrors = v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *DescribeTestSetDiscrepancyReportOutput) SetTestSetId(v string) *DescribeTestSetDiscrepancyReportOutput {
+	s.TestSetId = &v
+	return s
+}
+
+type DescribeTestSetGenerationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the test set generation.
+	//
+	// TestSetGenerationId is a required field
+	TestSetGenerationId *string `location:"uri" locationName:"testSetGenerationId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetGenerationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetGenerationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTestSetGenerationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTestSetGenerationInput"}
+	if s.TestSetGenerationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetGenerationId"))
+	}
+	if s.TestSetGenerationId != nil && len(*s.TestSetGenerationId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetGenerationId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTestSetGenerationId sets the TestSetGenerationId field's value.
+func (s *DescribeTestSetGenerationInput) SetTestSetGenerationId(v string) *DescribeTestSetGenerationInput {
+	s.TestSetGenerationId = &v
+	return s
+}
+
+type DescribeTestSetGenerationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time for the test set generation.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The test set description for the test set generation.
+	Description *string `locationName:"description" type:"string"`
+
+	// The reasons the test set generation failed.
+	FailureReasons []*string `locationName:"failureReasons" type:"list"`
+
+	// The data source of the test set used for the test set generation.
+	GenerationDataSource *TestSetGenerationDataSource `locationName:"generationDataSource" type:"structure"`
+
+	// The date and time of the last update for the test set generation.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The roleARN of the test set used for the test set generation.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The Amazon S3 storage location for the test set generation.
+	StorageLocation *TestSetStorageLocation `locationName:"storageLocation" type:"structure"`
+
+	// The unique identifier of the test set generation.
+	TestSetGenerationId *string `locationName:"testSetGenerationId" min:"10" type:"string"`
+
+	// The status for the test set generation.
+	TestSetGenerationStatus *string `locationName:"testSetGenerationStatus" type:"string" enum:"TestSetGenerationStatus"`
+
+	// The unique identifier for the test set created for the generated test set.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+
+	// The test set name for the generated test set.
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetGenerationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetGenerationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DescribeTestSetGenerationOutput) SetCreationDateTime(v time.Time) *DescribeTestSetGenerationOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeTestSetGenerationOutput) SetDescription(v string) *DescribeTestSetGenerationOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *DescribeTestSetGenerationOutput) SetFailureReasons(v []*string) *DescribeTestSetGenerationOutput {
+	s.FailureReasons = v
+	return s
+}
+
+// SetGenerationDataSource sets the GenerationDataSource field's value.
+func (s *DescribeTestSetGenerationOutput) SetGenerationDataSource(v *TestSetGenerationDataSource) *DescribeTestSetGenerationOutput {
+	s.GenerationDataSource = v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DescribeTestSetGenerationOutput) SetLastUpdatedDateTime(v time.Time) *DescribeTestSetGenerationOutput {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeTestSetGenerationOutput) SetRoleArn(v string) *DescribeTestSetGenerationOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *DescribeTestSetGenerationOutput) SetStorageLocation(v *TestSetStorageLocation) *DescribeTestSetGenerationOutput {
+	s.StorageLocation = v
+	return s
+}
+
+// SetTestSetGenerationId sets the TestSetGenerationId field's value.
+func (s *DescribeTestSetGenerationOutput) SetTestSetGenerationId(v string) *DescribeTestSetGenerationOutput {
+	s.TestSetGenerationId = &v
+	return s
+}
+
+// SetTestSetGenerationStatus sets the TestSetGenerationStatus field's value.
+func (s *DescribeTestSetGenerationOutput) SetTestSetGenerationStatus(v string) *DescribeTestSetGenerationOutput {
+	s.TestSetGenerationStatus = &v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *DescribeTestSetGenerationOutput) SetTestSetId(v string) *DescribeTestSetGenerationOutput {
+	s.TestSetId = &v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *DescribeTestSetGenerationOutput) SetTestSetName(v string) *DescribeTestSetGenerationOutput {
+	s.TestSetName = &v
+	return s
+}
+
+type DescribeTestSetInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The test set Id for the test set request.
+	//
+	// TestSetId is a required field
+	TestSetId *string `location:"uri" locationName:"testSetId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTestSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTestSetInput"}
+	if s.TestSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetId"))
+	}
+	if s.TestSetId != nil && len(*s.TestSetId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *DescribeTestSetInput) SetTestSetId(v string) *DescribeTestSetInput {
+	s.TestSetId = &v
+	return s
+}
+
+type DescribeTestSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time for the test set data.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The description of the test set.
+	Description *string `locationName:"description" type:"string"`
+
+	// The date and time for the last update of the test set data.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// Indicates whether the test set is audio or text data.
+	Modality *string `locationName:"modality" type:"string" enum:"TestSetModality"`
+
+	// The total number of agent and user turn in the test set.
+	NumTurns *int64 `locationName:"numTurns" type:"integer"`
+
+	// The roleARN used for any operation in the test set to access resources in
+	// the Amazon Web Services account.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The status of the test set.
+	Status *string `locationName:"status" type:"string" enum:"TestSetStatus"`
+
+	// The Amazon S3 storage location for the test set data.
+	StorageLocation *TestSetStorageLocation `locationName:"storageLocation" type:"structure"`
+
+	// The test set Id for the test set response.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+
+	// The test set name of the test set.
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTestSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DescribeTestSetOutput) SetCreationDateTime(v time.Time) *DescribeTestSetOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeTestSetOutput) SetDescription(v string) *DescribeTestSetOutput {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DescribeTestSetOutput) SetLastUpdatedDateTime(v time.Time) *DescribeTestSetOutput {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetModality sets the Modality field's value.
+func (s *DescribeTestSetOutput) SetModality(v string) *DescribeTestSetOutput {
+	s.Modality = &v
+	return s
+}
+
+// SetNumTurns sets the NumTurns field's value.
+func (s *DescribeTestSetOutput) SetNumTurns(v int64) *DescribeTestSetOutput {
+	s.NumTurns = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeTestSetOutput) SetRoleArn(v string) *DescribeTestSetOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeTestSetOutput) SetStatus(v string) *DescribeTestSetOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *DescribeTestSetOutput) SetStorageLocation(v *TestSetStorageLocation) *DescribeTestSetOutput {
+	s.StorageLocation = v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *DescribeTestSetOutput) SetTestSetId(v string) *DescribeTestSetOutput {
+	s.TestSetId = &v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *DescribeTestSetOutput) SetTestSetName(v string) *DescribeTestSetOutput {
+	s.TestSetName = &v
+	return s
+}
+
 // Defines the action that the bot executes at runtime when the conversation
 // reaches this step.
 type DialogAction struct {
@@ -19370,6 +22448,51 @@ func (s *EncryptionSetting) SetKmsKeyArn(v string) *EncryptionSetting {
 	return s
 }
 
+// Details about an error in an execution of a test set.
+type ExecutionErrorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the error.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" min:"1" type:"string" required:"true"`
+
+	// The message describing the error.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionErrorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionErrorDetails) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *ExecutionErrorDetails) SetErrorCode(v string) *ExecutionErrorDetails {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ExecutionErrorDetails) SetErrorMessage(v string) *ExecutionErrorDetails {
+	s.ErrorMessage = &v
+	return s
+}
+
 // Filters the response form the ListExports (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListExports.html)
 // operation
 type ExportFilter struct {
@@ -19467,6 +22590,9 @@ type ExportResourceSpecification struct {
 
 	// The parameters required to export a custom vocabulary.
 	CustomVocabularyExportSpecification *CustomVocabularyExportSpecification `locationName:"customVocabularyExportSpecification" type:"structure"`
+
+	// Specifications for the test set that is exported as a resource.
+	TestSetExportSpecification *TestSetExportSpecification `locationName:"testSetExportSpecification" type:"structure"`
 }
 
 // String returns the string representation.
@@ -19505,6 +22631,11 @@ func (s *ExportResourceSpecification) Validate() error {
 			invalidParams.AddNested("CustomVocabularyExportSpecification", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.TestSetExportSpecification != nil {
+		if err := s.TestSetExportSpecification.Validate(); err != nil {
+			invalidParams.AddNested("TestSetExportSpecification", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19527,6 +22658,12 @@ func (s *ExportResourceSpecification) SetBotLocaleExportSpecification(v *BotLoca
 // SetCustomVocabularyExportSpecification sets the CustomVocabularyExportSpecification field's value.
 func (s *ExportResourceSpecification) SetCustomVocabularyExportSpecification(v *CustomVocabularyExportSpecification) *ExportResourceSpecification {
 	s.CustomVocabularyExportSpecification = v
+	return s
+}
+
+// SetTestSetExportSpecification sets the TestSetExportSpecification field's value.
+func (s *ExportResourceSpecification) SetTestSetExportSpecification(v *TestSetExportSpecification) *ExportResourceSpecification {
+	s.TestSetExportSpecification = v
 	return s
 }
 
@@ -19874,7 +23011,7 @@ type FulfillmentStartResponseSpecification struct {
 	// DelayInSeconds is a required field
 	DelayInSeconds *int64 `locationName:"delayInSeconds" min:"1" type:"integer" required:"true"`
 
-	// One to 5 message groups that contain start messages. Amazon Lex chooses one
+	// 1 - 5 message groups that contain start messages. Amazon Lex chooses one
 	// of the messages to play to the user.
 	//
 	// MessageGroups is a required field
@@ -19965,8 +23102,8 @@ type FulfillmentUpdateResponseSpecification struct {
 	// FrequencyInSeconds is a required field
 	FrequencyInSeconds *int64 `locationName:"frequencyInSeconds" min:"1" type:"integer" required:"true"`
 
-	// One to 5 message groups that contain update messages. Amazon Lex chooses
-	// one of the messages to play to the user.
+	// 1 - 5 message groups that contain update messages. Amazon Lex chooses one
+	// of the messages to play to the user.
 	//
 	// MessageGroups is a required field
 	MessageGroups []*MessageGroup `locationName:"messageGroups" min:"1" type:"list" required:"true"`
@@ -20135,6 +23272,95 @@ func (s *FulfillmentUpdatesSpecification) SetUpdateResponse(v *FulfillmentUpdate
 	return s
 }
 
+type GetTestExecutionArtifactsUrlInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the completed test execution.
+	//
+	// TestExecutionId is a required field
+	TestExecutionId *string `location:"uri" locationName:"testExecutionId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTestExecutionArtifactsUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTestExecutionArtifactsUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTestExecutionArtifactsUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTestExecutionArtifactsUrlInput"}
+	if s.TestExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestExecutionId"))
+	}
+	if s.TestExecutionId != nil && len(*s.TestExecutionId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestExecutionId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTestExecutionId sets the TestExecutionId field's value.
+func (s *GetTestExecutionArtifactsUrlInput) SetTestExecutionId(v string) *GetTestExecutionArtifactsUrlInput {
+	s.TestExecutionId = &v
+	return s
+}
+
+type GetTestExecutionArtifactsUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pre-signed Amazon S3 URL to download completed test execution.
+	DownloadArtifactsUrl *string `locationName:"downloadArtifactsUrl" min:"1" type:"string"`
+
+	// The unique identifier of the completed test execution.
+	TestExecutionId *string `locationName:"testExecutionId" min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTestExecutionArtifactsUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTestExecutionArtifactsUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetDownloadArtifactsUrl sets the DownloadArtifactsUrl field's value.
+func (s *GetTestExecutionArtifactsUrlOutput) SetDownloadArtifactsUrl(v string) *GetTestExecutionArtifactsUrlOutput {
+	s.DownloadArtifactsUrl = &v
+	return s
+}
+
+// SetTestExecutionId sets the TestExecutionId field's value.
+func (s *GetTestExecutionArtifactsUrlOutput) SetTestExecutionId(v string) *GetTestExecutionArtifactsUrlOutput {
+	s.TestExecutionId = &v
+	return s
+}
+
 // Settings requried for a slot type based on a grammar that you provide.
 type GrammarSlotTypeSetting struct {
 	_ struct{} `type:"structure"`
@@ -20187,15 +23413,15 @@ func (s *GrammarSlotTypeSetting) SetSource(v *GrammarSlotTypeSource) *GrammarSlo
 type GrammarSlotTypeSource struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon KMS key required to decrypt the contents of the grammar, if any.
+	// The KMS key required to decrypt the contents of the grammar, if any.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
 
-	// The name of the S3 bucket that contains the grammar source.
+	// The name of the Amazon S3 bucket that contains the grammar source.
 	//
 	// S3BucketName is a required field
 	S3BucketName *string `locationName:"s3BucketName" min:"3" type:"string" required:"true"`
 
-	// The path to the grammar in the S3 bucket.
+	// The path to the grammar in the Amazon S3 bucket.
 	//
 	// S3ObjectKey is a required field
 	S3ObjectKey *string `locationName:"s3ObjectKey" min:"1" type:"string" required:"true"`
@@ -20461,6 +23687,9 @@ type ImportResourceSpecification struct {
 
 	// Provides the parameters required for importing a custom vocabulary.
 	CustomVocabularyImportSpecification *CustomVocabularyImportSpecification `locationName:"customVocabularyImportSpecification" type:"structure"`
+
+	// Specifications for the test set that is imported.
+	TestSetImportResourceSpecification *TestSetImportResourceSpecification `locationName:"testSetImportResourceSpecification" type:"structure"`
 }
 
 // String returns the string representation.
@@ -20499,6 +23728,11 @@ func (s *ImportResourceSpecification) Validate() error {
 			invalidParams.AddNested("CustomVocabularyImportSpecification", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.TestSetImportResourceSpecification != nil {
+		if err := s.TestSetImportResourceSpecification.Validate(); err != nil {
+			invalidParams.AddNested("TestSetImportResourceSpecification", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -20521,6 +23755,12 @@ func (s *ImportResourceSpecification) SetBotLocaleImportSpecification(v *BotLoca
 // SetCustomVocabularyImportSpecification sets the CustomVocabularyImportSpecification field's value.
 func (s *ImportResourceSpecification) SetCustomVocabularyImportSpecification(v *CustomVocabularyImportSpecification) *ImportResourceSpecification {
 	s.CustomVocabularyImportSpecification = v
+	return s
+}
+
+// SetTestSetImportResourceSpecification sets the TestSetImportResourceSpecification field's value.
+func (s *ImportResourceSpecification) SetTestSetImportResourceSpecification(v *TestSetImportResourceSpecification) *ImportResourceSpecification {
+	s.TestSetImportResourceSpecification = v
 	return s
 }
 
@@ -20778,8 +24018,7 @@ func (s *InitialResponseSetting) SetNextStep(v *DialogState) *InitialResponseSet
 	return s
 }
 
-// The name of a context that must be active for an intent to be selected by
-// Amazon Lex.
+// A context that must be active for an intent to be selected by Amazon Lex.
 type InputContext struct {
 	_ struct{} `type:"structure"`
 
@@ -20826,6 +24065,203 @@ func (s *InputContext) Validate() error {
 // SetName sets the Name field's value.
 func (s *InputContext) SetName(v string) *InputContext {
 	s.Name = &v
+	return s
+}
+
+// Specifications for the current state of the dialog between the user and the
+// bot in the test set.
+type InputSessionStateSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Active contexts for the session state.
+	ActiveContexts []*ActiveContext `locationName:"activeContexts" type:"list"`
+
+	// Runtime hints for the session state.
+	RuntimeHints *RuntimeHints `locationName:"runtimeHints" type:"structure"`
+
+	// Session attributes for the session state.
+	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputSessionStateSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputSessionStateSpecification) GoString() string {
+	return s.String()
+}
+
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *InputSessionStateSpecification) SetActiveContexts(v []*ActiveContext) *InputSessionStateSpecification {
+	s.ActiveContexts = v
+	return s
+}
+
+// SetRuntimeHints sets the RuntimeHints field's value.
+func (s *InputSessionStateSpecification) SetRuntimeHints(v *RuntimeHints) *InputSessionStateSpecification {
+	s.RuntimeHints = v
+	return s
+}
+
+// SetSessionAttributes sets the SessionAttributes field's value.
+func (s *InputSessionStateSpecification) SetSessionAttributes(v map[string]*string) *InputSessionStateSpecification {
+	s.SessionAttributes = v
+	return s
+}
+
+// Information for an intent that is classified by the test workbench.
+type IntentClassificationTestResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the intent.
+	//
+	// IntentName is a required field
+	IntentName *string `locationName:"intentName" min:"1" type:"string" required:"true"`
+
+	// Indicates whether the conversation involves multiple turns or not.
+	//
+	// MultiTurnConversation is a required field
+	MultiTurnConversation *bool `locationName:"multiTurnConversation" type:"boolean" required:"true"`
+
+	// The result of the intent classification test.
+	//
+	// ResultCounts is a required field
+	ResultCounts *IntentClassificationTestResultItemCounts `locationName:"resultCounts" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentClassificationTestResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentClassificationTestResultItem) GoString() string {
+	return s.String()
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *IntentClassificationTestResultItem) SetIntentName(v string) *IntentClassificationTestResultItem {
+	s.IntentName = &v
+	return s
+}
+
+// SetMultiTurnConversation sets the MultiTurnConversation field's value.
+func (s *IntentClassificationTestResultItem) SetMultiTurnConversation(v bool) *IntentClassificationTestResultItem {
+	s.MultiTurnConversation = &v
+	return s
+}
+
+// SetResultCounts sets the ResultCounts field's value.
+func (s *IntentClassificationTestResultItem) SetResultCounts(v *IntentClassificationTestResultItemCounts) *IntentClassificationTestResultItem {
+	s.ResultCounts = v
+	return s
+}
+
+// The number of items in the intent classification test.
+type IntentClassificationTestResultItemCounts struct {
+	_ struct{} `type:"structure"`
+
+	// The number of matched and mismatched results for intent recognition for the
+	// intent.
+	//
+	// IntentMatchResultCounts is a required field
+	IntentMatchResultCounts map[string]*int64 `locationName:"intentMatchResultCounts" type:"map" required:"true"`
+
+	// The number of matched, mismatched, and execution error results for speech
+	// transcription for the intent.
+	SpeechTranscriptionResultCounts map[string]*int64 `locationName:"speechTranscriptionResultCounts" type:"map"`
+
+	// The total number of results in the intent classification test.
+	//
+	// TotalResultCount is a required field
+	TotalResultCount *int64 `locationName:"totalResultCount" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentClassificationTestResultItemCounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentClassificationTestResultItemCounts) GoString() string {
+	return s.String()
+}
+
+// SetIntentMatchResultCounts sets the IntentMatchResultCounts field's value.
+func (s *IntentClassificationTestResultItemCounts) SetIntentMatchResultCounts(v map[string]*int64) *IntentClassificationTestResultItemCounts {
+	s.IntentMatchResultCounts = v
+	return s
+}
+
+// SetSpeechTranscriptionResultCounts sets the SpeechTranscriptionResultCounts field's value.
+func (s *IntentClassificationTestResultItemCounts) SetSpeechTranscriptionResultCounts(v map[string]*int64) *IntentClassificationTestResultItemCounts {
+	s.SpeechTranscriptionResultCounts = v
+	return s
+}
+
+// SetTotalResultCount sets the TotalResultCount field's value.
+func (s *IntentClassificationTestResultItemCounts) SetTotalResultCount(v int64) *IntentClassificationTestResultItemCounts {
+	s.TotalResultCount = &v
+	return s
+}
+
+// Information for the results of the intent classification test.
+type IntentClassificationTestResults struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the results for the intent classification test.
+	//
+	// Items is a required field
+	Items []*IntentClassificationTestResultItem `locationName:"items" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentClassificationTestResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentClassificationTestResults) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *IntentClassificationTestResults) SetItems(v []*IntentClassificationTestResultItem) *IntentClassificationTestResults {
+	s.Items = v
 	return s
 }
 
@@ -21238,6 +24674,96 @@ func (s *IntentFilter) SetValues(v []*string) *IntentFilter {
 	return s
 }
 
+// Information about intent-level slot resolution in a test result.
+type IntentLevelSlotResolutionTestResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the intent that was recognized.
+	//
+	// IntentName is a required field
+	IntentName *string `locationName:"intentName" min:"1" type:"string" required:"true"`
+
+	// Indicates whether the conversation involves multiple turns or not.
+	//
+	// MultiTurnConversation is a required field
+	MultiTurnConversation *bool `locationName:"multiTurnConversation" type:"boolean" required:"true"`
+
+	// The results for the slot resolution in the test execution result.
+	//
+	// SlotResolutionResults is a required field
+	SlotResolutionResults []*SlotResolutionTestResultItem `locationName:"slotResolutionResults" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentLevelSlotResolutionTestResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentLevelSlotResolutionTestResultItem) GoString() string {
+	return s.String()
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *IntentLevelSlotResolutionTestResultItem) SetIntentName(v string) *IntentLevelSlotResolutionTestResultItem {
+	s.IntentName = &v
+	return s
+}
+
+// SetMultiTurnConversation sets the MultiTurnConversation field's value.
+func (s *IntentLevelSlotResolutionTestResultItem) SetMultiTurnConversation(v bool) *IntentLevelSlotResolutionTestResultItem {
+	s.MultiTurnConversation = &v
+	return s
+}
+
+// SetSlotResolutionResults sets the SlotResolutionResults field's value.
+func (s *IntentLevelSlotResolutionTestResultItem) SetSlotResolutionResults(v []*SlotResolutionTestResultItem) *IntentLevelSlotResolutionTestResultItem {
+	s.SlotResolutionResults = v
+	return s
+}
+
+// Indicates the success or failure of slots at the intent level.
+type IntentLevelSlotResolutionTestResults struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the items for the slot level resolution for the intents.
+	//
+	// Items is a required field
+	Items []*IntentLevelSlotResolutionTestResultItem `locationName:"items" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentLevelSlotResolutionTestResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentLevelSlotResolutionTestResults) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *IntentLevelSlotResolutionTestResults) SetItems(v []*IntentLevelSlotResolutionTestResultItem) *IntentLevelSlotResolutionTestResults {
+	s.Items = v
+	return s
+}
+
 // Override settings to configure the intent state.
 type IntentOverride struct {
 	_ struct{} `type:"structure"`
@@ -21247,7 +24773,7 @@ type IntentOverride struct {
 
 	// A map of all of the slot value overrides for the intent. The name of the
 	// slot maps to the value of the slot. Slots that are not included in the map
-	// aren't overridden.,
+	// aren't overridden.
 	Slots map[string]*SlotValueOverride `locationName:"slots" type:"map"`
 }
 
@@ -24717,7 +28243,488 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// The object that provides message text and it's type.
+type ListTestExecutionResultItemsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of test execution result items to return in each page.
+	// If there are fewer results than the max page size, only the actual number
+	// of results are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListTestExecutionResultItems operation contains
+	// more results than specified in the maxResults parameter, a token is returned
+	// in the response. Use that token in the nextToken parameter to return the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The filter for the list of results from the test set execution.
+	//
+	// ResultFilterBy is a required field
+	ResultFilterBy *TestExecutionResultFilterBy `locationName:"resultFilterBy" type:"structure" required:"true"`
+
+	// The unique identifier of the test execution to list the result items.
+	//
+	// TestExecutionId is a required field
+	TestExecutionId *string `location:"uri" locationName:"testExecutionId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestExecutionResultItemsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestExecutionResultItemsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTestExecutionResultItemsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTestExecutionResultItemsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResultFilterBy == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResultFilterBy"))
+	}
+	if s.TestExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestExecutionId"))
+	}
+	if s.TestExecutionId != nil && len(*s.TestExecutionId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestExecutionId", 10))
+	}
+	if s.ResultFilterBy != nil {
+		if err := s.ResultFilterBy.Validate(); err != nil {
+			invalidParams.AddNested("ResultFilterBy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTestExecutionResultItemsInput) SetMaxResults(v int64) *ListTestExecutionResultItemsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestExecutionResultItemsInput) SetNextToken(v string) *ListTestExecutionResultItemsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResultFilterBy sets the ResultFilterBy field's value.
+func (s *ListTestExecutionResultItemsInput) SetResultFilterBy(v *TestExecutionResultFilterBy) *ListTestExecutionResultItemsInput {
+	s.ResultFilterBy = v
+	return s
+}
+
+// SetTestExecutionId sets the TestExecutionId field's value.
+func (s *ListTestExecutionResultItemsInput) SetTestExecutionId(v string) *ListTestExecutionResultItemsInput {
+	s.TestExecutionId = &v
+	return s
+}
+
+type ListTestExecutionResultItemsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates whether there are more results to return in a response
+	// to the ListTestExecutionResultItems operation. If the nextToken field is
+	// present, you send the contents as the nextToken parameter of a ListTestExecutionResultItems
+	// operation request to get the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of results from the test execution.
+	TestExecutionResults *TestExecutionResultItems `locationName:"testExecutionResults" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestExecutionResultItemsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestExecutionResultItemsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestExecutionResultItemsOutput) SetNextToken(v string) *ListTestExecutionResultItemsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTestExecutionResults sets the TestExecutionResults field's value.
+func (s *ListTestExecutionResultItemsOutput) SetTestExecutionResults(v *TestExecutionResultItems) *ListTestExecutionResultItemsOutput {
+	s.TestExecutionResults = v
+	return s
+}
+
+type ListTestExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of test executions to return in each page. If there are
+	// fewer results than the max page size, only the actual number of results are
+	// returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListTestExecutions operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	// Use that token in the nextToken parameter to return the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The sort order of the test set executions.
+	SortBy *TestExecutionSortBy `locationName:"sortBy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestExecutionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestExecutionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTestExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTestExecutionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTestExecutionsInput) SetMaxResults(v int64) *ListTestExecutionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestExecutionsInput) SetNextToken(v string) *ListTestExecutionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListTestExecutionsInput) SetSortBy(v *TestExecutionSortBy) *ListTestExecutionsInput {
+	s.SortBy = v
+	return s
+}
+
+type ListTestExecutionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates whether there are more results to return in a response
+	// to the ListTestExecutions operation. If the nextToken field is present, you
+	// send the contents as the nextToken parameter of a ListTestExecutions operation
+	// request to get the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of test executions.
+	TestExecutions []*TestExecutionSummary `locationName:"testExecutions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestExecutionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestExecutionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestExecutionsOutput) SetNextToken(v string) *ListTestExecutionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTestExecutions sets the TestExecutions field's value.
+func (s *ListTestExecutionsOutput) SetTestExecutions(v []*TestExecutionSummary) *ListTestExecutionsOutput {
+	s.TestExecutions = v
+	return s
+}
+
+type ListTestSetRecordsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of test set records to return in each page. If there are
+	// fewer records than the max page size, only the actual number of records are
+	// returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListTestSetRecords operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	// Use that token in the nextToken parameter to return the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The identifier of the test set to list its test set records.
+	//
+	// TestSetId is a required field
+	TestSetId *string `location:"uri" locationName:"testSetId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestSetRecordsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestSetRecordsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTestSetRecordsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTestSetRecordsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TestSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetId"))
+	}
+	if s.TestSetId != nil && len(*s.TestSetId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTestSetRecordsInput) SetMaxResults(v int64) *ListTestSetRecordsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestSetRecordsInput) SetNextToken(v string) *ListTestSetRecordsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *ListTestSetRecordsInput) SetTestSetId(v string) *ListTestSetRecordsInput {
+	s.TestSetId = &v
+	return s
+}
+
+type ListTestSetRecordsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates whether there are more records to return in a response
+	// to the ListTestSetRecords operation. If the nextToken field is present, you
+	// send the contents as the nextToken parameter of a ListTestSetRecords operation
+	// request to get the next page of records.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of records from the test set.
+	TestSetRecords []*TestSetTurnRecord `locationName:"testSetRecords" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestSetRecordsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestSetRecordsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestSetRecordsOutput) SetNextToken(v string) *ListTestSetRecordsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTestSetRecords sets the TestSetRecords field's value.
+func (s *ListTestSetRecordsOutput) SetTestSetRecords(v []*TestSetTurnRecord) *ListTestSetRecordsOutput {
+	s.TestSetRecords = v
+	return s
+}
+
+type ListTestSetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of test sets to return in each page. If there are fewer
+	// results than the max page size, only the actual number of results are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListTestSets operation contains more results than
+	// specified in the maxResults parameter, a token is returned in the response.
+	// Use that token in the nextToken parameter to return the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The sort order for the list of test sets.
+	SortBy *TestSetSortBy `locationName:"sortBy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestSetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestSetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTestSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTestSetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTestSetsInput) SetMaxResults(v int64) *ListTestSetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestSetsInput) SetNextToken(v string) *ListTestSetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListTestSetsInput) SetSortBy(v *TestSetSortBy) *ListTestSetsInput {
+	s.SortBy = v
+	return s
+}
+
+type ListTestSetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates whether there are more results to return in a response
+	// to the ListTestSets operation. If the nextToken field is present, you send
+	// the contents as the nextToken parameter of a ListTestSets operation request
+	// to get the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The selected test sets in a list of test sets.
+	TestSets []*TestSetSummary `locationName:"testSets" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestSetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTestSetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestSetsOutput) SetNextToken(v string) *ListTestSetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTestSets sets the TestSets field's value.
+func (s *ListTestSetsOutput) SetTestSets(v []*TestSetSummary) *ListTestSetsOutput {
+	s.TestSets = v
+	return s
+}
+
+// The object that provides message text and its type.
 type Message struct {
 	_ struct{} `type:"structure"`
 
@@ -25127,6 +29134,105 @@ func (s *OutputContext) SetTimeToLiveInSeconds(v int64) *OutputContext {
 // SetTurnsToLive sets the TurnsToLive field's value.
 func (s *OutputContext) SetTurnsToLive(v int64) *OutputContext {
 	s.TurnsToLive = &v
+	return s
+}
+
+// Information about the overall results for a test execution result.
+type OverallTestResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// The number of results that succeeded.
+	//
+	// EndToEndResultCounts is a required field
+	EndToEndResultCounts map[string]*int64 `locationName:"endToEndResultCounts" type:"map" required:"true"`
+
+	// Indicates whether the conversation contains multiple turns or not.
+	//
+	// MultiTurnConversation is a required field
+	MultiTurnConversation *bool `locationName:"multiTurnConversation" type:"boolean" required:"true"`
+
+	// The number of speech transcription results in the overall test.
+	SpeechTranscriptionResultCounts map[string]*int64 `locationName:"speechTranscriptionResultCounts" type:"map"`
+
+	// The total number of overall results in the result of the test execution.
+	//
+	// TotalResultCount is a required field
+	TotalResultCount *int64 `locationName:"totalResultCount" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverallTestResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverallTestResultItem) GoString() string {
+	return s.String()
+}
+
+// SetEndToEndResultCounts sets the EndToEndResultCounts field's value.
+func (s *OverallTestResultItem) SetEndToEndResultCounts(v map[string]*int64) *OverallTestResultItem {
+	s.EndToEndResultCounts = v
+	return s
+}
+
+// SetMultiTurnConversation sets the MultiTurnConversation field's value.
+func (s *OverallTestResultItem) SetMultiTurnConversation(v bool) *OverallTestResultItem {
+	s.MultiTurnConversation = &v
+	return s
+}
+
+// SetSpeechTranscriptionResultCounts sets the SpeechTranscriptionResultCounts field's value.
+func (s *OverallTestResultItem) SetSpeechTranscriptionResultCounts(v map[string]*int64) *OverallTestResultItem {
+	s.SpeechTranscriptionResultCounts = v
+	return s
+}
+
+// SetTotalResultCount sets the TotalResultCount field's value.
+func (s *OverallTestResultItem) SetTotalResultCount(v int64) *OverallTestResultItem {
+	s.TotalResultCount = &v
+	return s
+}
+
+// Information about the overall test results.
+type OverallTestResults struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the overall test results.
+	//
+	// Items is a required field
+	Items []*OverallTestResultItem `locationName:"items" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverallTestResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverallTestResults) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *OverallTestResults) SetItems(v []*OverallTestResultItem) *OverallTestResults {
+	s.Items = v
 	return s
 }
 
@@ -25687,8 +29793,8 @@ type Principal struct {
 	// The Amazon Resource Name (ARN) of the principal.
 	Arn *string `locationName:"arn" min:"30" type:"string"`
 
-	// The name of the AWS service that should allowed or denied access to an Amazon
-	// Lex action.
+	// The name of the Amazon Web Services service that should allowed or denied
+	// access to an Amazon Lex action.
 	Service *string `locationName:"service" min:"15" type:"string"`
 }
 
@@ -26217,12 +30323,142 @@ func (s *ResponseSpecification) SetMessageGroups(v []*MessageGroup) *ResponseSpe
 	return s
 }
 
+// Provides an array of phrases that should be given preference when resolving
+// values for a slot.
+type RuntimeHintDetails struct {
+	_ struct{} `type:"structure"`
+
+	// One or more strings that Amazon Lex should look for in the input to the bot.
+	// Each phrase is given preference when deciding on slot values.
+	RuntimeHintValues []*RuntimeHintValue `locationName:"runtimeHintValues" min:"1" type:"list"`
+
+	// A map of constituent sub slot names inside a composite slot in the intent
+	// and the phrases that should be added for each sub slot. Inside each composite
+	// slot hints, this structure provides a mechanism to add granular sub slot
+	// phrases. Only sub slot hints are supported for composite slots. The intent
+	// name, composite slot name and the constituent sub slot names must exist.
+	SubSlotHints map[string]*RuntimeHintDetails `locationName:"subSlotHints" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintDetails) GoString() string {
+	return s.String()
+}
+
+// SetRuntimeHintValues sets the RuntimeHintValues field's value.
+func (s *RuntimeHintDetails) SetRuntimeHintValues(v []*RuntimeHintValue) *RuntimeHintDetails {
+	s.RuntimeHintValues = v
+	return s
+}
+
+// SetSubSlotHints sets the SubSlotHints field's value.
+func (s *RuntimeHintDetails) SetSubSlotHints(v map[string]*RuntimeHintDetails) *RuntimeHintDetails {
+	s.SubSlotHints = v
+	return s
+}
+
+// Provides the phrase that Amazon Lex should look for in the user's input to
+// the bot.
+type RuntimeHintValue struct {
+	_ struct{} `type:"structure"`
+
+	// The phrase that Amazon Lex should look for in the user's input to the bot.
+	//
+	// Phrase is a required field
+	Phrase *string `locationName:"phrase" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintValue) GoString() string {
+	return s.String()
+}
+
+// SetPhrase sets the Phrase field's value.
+func (s *RuntimeHintValue) SetPhrase(v string) *RuntimeHintValue {
+	s.Phrase = &v
+	return s
+}
+
+// You can provide Amazon Lex with hints to the phrases that a customer is likely
+// to use for a slot. When a slot with hints is resolved, the phrases in the
+// runtime hints are preferred in the resolution. You can provide hints for
+// a maximum of 100 intents. You can provide a maximum of 100 slots.
+//
+// Before you can use runtime hints with an existing bot, you must first rebuild
+// the bot.
+//
+// For more information, see Using runtime hints to improve recognition of slot
+// values (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html).
+type RuntimeHints struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the slots in the intent that should have runtime hints added, and
+	// the phrases that should be added for each slot.
+	//
+	// The first level of the slotHints map is the name of the intent. The second
+	// level is the name of the slot within the intent. For more information, see
+	// Using hints to improve accuracy (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html).
+	//
+	// The intent name and slot name must exist.
+	SlotHints map[string]map[string]*RuntimeHintDetails `locationName:"slotHints" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHints) GoString() string {
+	return s.String()
+}
+
+// SetSlotHints sets the SlotHints field's value.
+func (s *RuntimeHints) SetSlotHints(v map[string]map[string]*RuntimeHintDetails) *RuntimeHints {
+	s.SlotHints = v
+	return s
+}
+
 // Specifies an Amazon S3 bucket for logging audio conversations
 type S3BucketLogDestination struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key
-	// for encrypting audio log files stored in an S3 bucket.
+	// The Amazon Resource Name (ARN) of an Amazon Web Services Key Management Service
+	// (KMS) key for encrypting audio log files stored in an S3 bucket.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
 
 	// The S3 prefix to assign to audio log files.
@@ -27275,7 +31511,7 @@ func (s *SlotFilter) SetValues(v []*string) *SlotFilter {
 type SlotPriority struct {
 	_ struct{} `type:"structure"`
 
-	// The priority that a slot should be elicited.
+	// The priority that Amazon Lex should apply to the slot.
 	//
 	// Priority is a required field
 	Priority *int64 `locationName:"priority" type:"integer" required:"true"`
@@ -27332,6 +31568,109 @@ func (s *SlotPriority) SetPriority(v int64) *SlotPriority {
 // SetSlotId sets the SlotId field's value.
 func (s *SlotPriority) SetSlotId(v string) *SlotPriority {
 	s.SlotId = &v
+	return s
+}
+
+// Information about the success and failure rate of slot resolution in the
+// results of a test execution.
+type SlotResolutionTestResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// A result for slot resolution in the results of a test execution.
+	//
+	// ResultCounts is a required field
+	ResultCounts *SlotResolutionTestResultItemCounts `locationName:"resultCounts" type:"structure" required:"true"`
+
+	// The name of the slot.
+	//
+	// SlotName is a required field
+	SlotName *string `locationName:"slotName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotResolutionTestResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotResolutionTestResultItem) GoString() string {
+	return s.String()
+}
+
+// SetResultCounts sets the ResultCounts field's value.
+func (s *SlotResolutionTestResultItem) SetResultCounts(v *SlotResolutionTestResultItemCounts) *SlotResolutionTestResultItem {
+	s.ResultCounts = v
+	return s
+}
+
+// SetSlotName sets the SlotName field's value.
+func (s *SlotResolutionTestResultItem) SetSlotName(v string) *SlotResolutionTestResultItem {
+	s.SlotName = &v
+	return s
+}
+
+// Information about the counts for a slot resolution in the results of a test
+// execution.
+type SlotResolutionTestResultItemCounts struct {
+	_ struct{} `type:"structure"`
+
+	// The number of matched and mismatched results for slot resolution for the
+	// slot.
+	//
+	// SlotMatchResultCounts is a required field
+	SlotMatchResultCounts map[string]*int64 `locationName:"slotMatchResultCounts" type:"map" required:"true"`
+
+	// The number of matched, mismatched and execution error results for speech
+	// transcription for the slot.
+	SpeechTranscriptionResultCounts map[string]*int64 `locationName:"speechTranscriptionResultCounts" type:"map"`
+
+	// The total number of results.
+	//
+	// TotalResultCount is a required field
+	TotalResultCount *int64 `locationName:"totalResultCount" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotResolutionTestResultItemCounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotResolutionTestResultItemCounts) GoString() string {
+	return s.String()
+}
+
+// SetSlotMatchResultCounts sets the SlotMatchResultCounts field's value.
+func (s *SlotResolutionTestResultItemCounts) SetSlotMatchResultCounts(v map[string]*int64) *SlotResolutionTestResultItemCounts {
+	s.SlotMatchResultCounts = v
+	return s
+}
+
+// SetSpeechTranscriptionResultCounts sets the SpeechTranscriptionResultCounts field's value.
+func (s *SlotResolutionTestResultItemCounts) SetSpeechTranscriptionResultCounts(v map[string]*int64) *SlotResolutionTestResultItemCounts {
+	s.SpeechTranscriptionResultCounts = v
+	return s
+}
+
+// SetTotalResultCount sets the TotalResultCount field's value.
+func (s *SlotResolutionTestResultItemCounts) SetTotalResultCount(v int64) *SlotResolutionTestResultItemCounts {
+	s.TotalResultCount = &v
 	return s
 }
 
@@ -27863,8 +32202,7 @@ func (s *SlotValue) SetInterpretedValue(v string) *SlotValue {
 	return s
 }
 
-// Specifies the elicitation setting details for constituent sub slots of a
-// composite slot.
+// Specifies the elicitation setting details eliciting a slot.
 type SlotValueElicitationSetting struct {
 	_ struct{} `type:"structure"`
 
@@ -28086,9 +32424,10 @@ type SlotValueRegexFilter struct {
 	//
 	//    * 0-9
 	//
-	//    * Unicode characters ("\ u<Unicode>")
+	//    * Unicode characters ("\⁠u<Unicode>")
 	//
-	// Represent Unicode characters with four digits, for example "\u0041" or "\u005A".
+	// Represent Unicode characters with four digits, for example "\⁠u0041" or
+	// "\⁠u005A".
 	//
 	// The following regular expression operators are not supported:
 	//
@@ -28145,6 +32484,8 @@ type SlotValueSelectionSetting struct {
 	_ struct{} `type:"structure"`
 
 	// Provides settings that enable advanced recognition settings for slot values.
+	// You can use this to enable using slot values as a custom vocabulary for recognizing
+	// user utterances.
 	AdvancedRecognitionSetting *AdvancedRecognitionSetting `locationName:"advancedRecognitionSetting" type:"structure"`
 
 	// A regular expression used to validate the value of a slot.
@@ -28153,14 +32494,14 @@ type SlotValueSelectionSetting struct {
 	// Determines the slot resolution strategy that Amazon Lex uses to return slot
 	// type values. The field can be set to one of the following values:
 	//
-	//    * OriginalValue - Returns the value entered by the user, if the user value
-	//    is similar to the slot value.
+	//    * ORIGINAL_VALUE - Returns the value entered by the user, if the user
+	//    value is similar to the slot value.
 	//
-	//    * TopResolution - If there is a resolution list for the slot, return the
-	//    first value in the resolution list as the slot type value. If there is
-	//    no resolution list, null is returned.
+	//    * TOP_RESOLUTION - If there is a resolution list for the slot, return
+	//    the first value in the resolution list as the slot type value. If there
+	//    is no resolution list, null is returned.
 	//
-	// If you don't specify the valueSelectionStrategy, the default is OriginalValue.
+	// If you don't specify the valueSelectionStrategy, the default is ORIGINAL_VALUE.
 	//
 	// ResolutionStrategy is a required field
 	ResolutionStrategy *string `locationName:"resolutionStrategy" type:"string" required:"true" enum:"SlotValueResolutionStrategy"`
@@ -28684,6 +33025,408 @@ func (s *StartImportOutput) SetMergeStrategy(v string) *StartImportOutput {
 // SetResourceSpecification sets the ResourceSpecification field's value.
 func (s *StartImportOutput) SetResourceSpecification(v *ImportResourceSpecification) *StartImportOutput {
 	s.ResourceSpecification = v
+	return s
+}
+
+type StartTestExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether we use streaming or non-streaming APIs for the test set
+	// execution. For streaming, StartConversation Runtime API is used. Whereas,
+	// for non-streaming, RecognizeUtterance and RecognizeText Amazon Lex Runtime
+	// API are used.
+	//
+	// ApiMode is a required field
+	ApiMode *string `locationName:"apiMode" type:"string" required:"true" enum:"TestExecutionApiMode"`
+
+	// The target bot for the test set execution.
+	//
+	// Target is a required field
+	Target *TestExecutionTarget `locationName:"target" type:"structure" required:"true"`
+
+	// Indicates whether audio or text is used.
+	TestExecutionModality *string `locationName:"testExecutionModality" type:"string" enum:"TestExecutionModality"`
+
+	// The test set Id for the test set execution.
+	//
+	// TestSetId is a required field
+	TestSetId *string `location:"uri" locationName:"testSetId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTestExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTestExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartTestExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartTestExecutionInput"}
+	if s.ApiMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiMode"))
+	}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+	if s.TestSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetId"))
+	}
+	if s.TestSetId != nil && len(*s.TestSetId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetId", 10))
+	}
+	if s.Target != nil {
+		if err := s.Target.Validate(); err != nil {
+			invalidParams.AddNested("Target", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiMode sets the ApiMode field's value.
+func (s *StartTestExecutionInput) SetApiMode(v string) *StartTestExecutionInput {
+	s.ApiMode = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *StartTestExecutionInput) SetTarget(v *TestExecutionTarget) *StartTestExecutionInput {
+	s.Target = v
+	return s
+}
+
+// SetTestExecutionModality sets the TestExecutionModality field's value.
+func (s *StartTestExecutionInput) SetTestExecutionModality(v string) *StartTestExecutionInput {
+	s.TestExecutionModality = &v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *StartTestExecutionInput) SetTestSetId(v string) *StartTestExecutionInput {
+	s.TestSetId = &v
+	return s
+}
+
+type StartTestExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether we use streaming or non-streaming APIs for the test set
+	// execution. For streaming, StartConversation Amazon Lex Runtime API is used.
+	// Whereas for non-streaming, RecognizeUtterance and RecognizeText Amazon Lex
+	// Runtime API are used.
+	ApiMode *string `locationName:"apiMode" type:"string" enum:"TestExecutionApiMode"`
+
+	// The creation date and time for the test set execution.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The target bot for the test set execution.
+	Target *TestExecutionTarget `locationName:"target" type:"structure"`
+
+	// The unique identifier of the test set execution.
+	TestExecutionId *string `locationName:"testExecutionId" min:"10" type:"string"`
+
+	// Indicates whether audio or text is used.
+	TestExecutionModality *string `locationName:"testExecutionModality" type:"string" enum:"TestExecutionModality"`
+
+	// The test set Id for the test set execution.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTestExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTestExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetApiMode sets the ApiMode field's value.
+func (s *StartTestExecutionOutput) SetApiMode(v string) *StartTestExecutionOutput {
+	s.ApiMode = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *StartTestExecutionOutput) SetCreationDateTime(v time.Time) *StartTestExecutionOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *StartTestExecutionOutput) SetTarget(v *TestExecutionTarget) *StartTestExecutionOutput {
+	s.Target = v
+	return s
+}
+
+// SetTestExecutionId sets the TestExecutionId field's value.
+func (s *StartTestExecutionOutput) SetTestExecutionId(v string) *StartTestExecutionOutput {
+	s.TestExecutionId = &v
+	return s
+}
+
+// SetTestExecutionModality sets the TestExecutionModality field's value.
+func (s *StartTestExecutionOutput) SetTestExecutionModality(v string) *StartTestExecutionOutput {
+	s.TestExecutionModality = &v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *StartTestExecutionOutput) SetTestSetId(v string) *StartTestExecutionOutput {
+	s.TestSetId = &v
+	return s
+}
+
+type StartTestSetGenerationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The test set description for the test set generation request.
+	Description *string `locationName:"description" type:"string"`
+
+	// The data source for the test set generation.
+	//
+	// GenerationDataSource is a required field
+	GenerationDataSource *TestSetGenerationDataSource `locationName:"generationDataSource" type:"structure" required:"true"`
+
+	// The roleARN used for any operation in the test set to access resources in
+	// the Amazon Web Services account.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+
+	// The Amazon S3 storage location for the test set generation.
+	//
+	// StorageLocation is a required field
+	StorageLocation *TestSetStorageLocation `locationName:"storageLocation" type:"structure" required:"true"`
+
+	// The test set name for the test set generation request.
+	//
+	// TestSetName is a required field
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string" required:"true"`
+
+	// A list of tags to add to the test set. You can only add tags when you import/generate
+	// a new test set. You can't use the UpdateTestSet operation to update tags.
+	// To update tags, use the TagResource operation.
+	TestSetTags map[string]*string `locationName:"testSetTags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTestSetGenerationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTestSetGenerationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartTestSetGenerationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartTestSetGenerationInput"}
+	if s.GenerationDataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("GenerationDataSource"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
+	}
+	if s.StorageLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageLocation"))
+	}
+	if s.TestSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetName"))
+	}
+	if s.TestSetName != nil && len(*s.TestSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetName", 1))
+	}
+	if s.GenerationDataSource != nil {
+		if err := s.GenerationDataSource.Validate(); err != nil {
+			invalidParams.AddNested("GenerationDataSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StorageLocation != nil {
+		if err := s.StorageLocation.Validate(); err != nil {
+			invalidParams.AddNested("StorageLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartTestSetGenerationInput) SetDescription(v string) *StartTestSetGenerationInput {
+	s.Description = &v
+	return s
+}
+
+// SetGenerationDataSource sets the GenerationDataSource field's value.
+func (s *StartTestSetGenerationInput) SetGenerationDataSource(v *TestSetGenerationDataSource) *StartTestSetGenerationInput {
+	s.GenerationDataSource = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *StartTestSetGenerationInput) SetRoleArn(v string) *StartTestSetGenerationInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *StartTestSetGenerationInput) SetStorageLocation(v *TestSetStorageLocation) *StartTestSetGenerationInput {
+	s.StorageLocation = v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *StartTestSetGenerationInput) SetTestSetName(v string) *StartTestSetGenerationInput {
+	s.TestSetName = &v
+	return s
+}
+
+// SetTestSetTags sets the TestSetTags field's value.
+func (s *StartTestSetGenerationInput) SetTestSetTags(v map[string]*string) *StartTestSetGenerationInput {
+	s.TestSetTags = v
+	return s
+}
+
+type StartTestSetGenerationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time for the test set generation.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The description used for the test set generation.
+	Description *string `locationName:"description" type:"string"`
+
+	// The data source for the test set generation.
+	GenerationDataSource *TestSetGenerationDataSource `locationName:"generationDataSource" type:"structure"`
+
+	// The roleARN used for any operation in the test set to access resources in
+	// the Amazon Web Services account.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The Amazon S3 storage location for the test set generation.
+	StorageLocation *TestSetStorageLocation `locationName:"storageLocation" type:"structure"`
+
+	// The unique identifier of the test set generation to describe.
+	TestSetGenerationId *string `locationName:"testSetGenerationId" min:"10" type:"string"`
+
+	// The status for the test set generation.
+	TestSetGenerationStatus *string `locationName:"testSetGenerationStatus" type:"string" enum:"TestSetGenerationStatus"`
+
+	// The test set name used for the test set generation.
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string"`
+
+	// A list of tags that was used for the test set that is being generated.
+	TestSetTags map[string]*string `locationName:"testSetTags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTestSetGenerationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTestSetGenerationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *StartTestSetGenerationOutput) SetCreationDateTime(v time.Time) *StartTestSetGenerationOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartTestSetGenerationOutput) SetDescription(v string) *StartTestSetGenerationOutput {
+	s.Description = &v
+	return s
+}
+
+// SetGenerationDataSource sets the GenerationDataSource field's value.
+func (s *StartTestSetGenerationOutput) SetGenerationDataSource(v *TestSetGenerationDataSource) *StartTestSetGenerationOutput {
+	s.GenerationDataSource = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *StartTestSetGenerationOutput) SetRoleArn(v string) *StartTestSetGenerationOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *StartTestSetGenerationOutput) SetStorageLocation(v *TestSetStorageLocation) *StartTestSetGenerationOutput {
+	s.StorageLocation = v
+	return s
+}
+
+// SetTestSetGenerationId sets the TestSetGenerationId field's value.
+func (s *StartTestSetGenerationOutput) SetTestSetGenerationId(v string) *StartTestSetGenerationOutput {
+	s.TestSetGenerationId = &v
+	return s
+}
+
+// SetTestSetGenerationStatus sets the TestSetGenerationStatus field's value.
+func (s *StartTestSetGenerationOutput) SetTestSetGenerationStatus(v string) *StartTestSetGenerationOutput {
+	s.TestSetGenerationStatus = &v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *StartTestSetGenerationOutput) SetTestSetName(v string) *StartTestSetGenerationOutput {
+	s.TestSetName = &v
+	return s
+}
+
+// SetTestSetTags sets the TestSetTags field's value.
+func (s *StartTestSetGenerationOutput) SetTestSetTags(v map[string]*string) *StartTestSetGenerationOutput {
+	s.TestSetTags = v
 	return s
 }
 
@@ -29300,6 +34043,1309 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains information about the method by which to filter the results of the
+// test execution.
+type TestExecutionResultFilterBy struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the method for filtering Conversation level test
+	// results.
+	ConversationLevelTestResultsFilterBy *ConversationLevelTestResultsFilterBy `locationName:"conversationLevelTestResultsFilterBy" type:"structure"`
+
+	// Specifies which results to filter. See Test result details">Test results
+	// details (https://docs.aws.amazon.com/lexv2/latest/dg/test-results-details-test-set.html)
+	// for details about different types of results.
+	//
+	// ResultTypeFilter is a required field
+	ResultTypeFilter *string `locationName:"resultTypeFilter" type:"string" required:"true" enum:"TestResultTypeFilter"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionResultFilterBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionResultFilterBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestExecutionResultFilterBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestExecutionResultFilterBy"}
+	if s.ResultTypeFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResultTypeFilter"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConversationLevelTestResultsFilterBy sets the ConversationLevelTestResultsFilterBy field's value.
+func (s *TestExecutionResultFilterBy) SetConversationLevelTestResultsFilterBy(v *ConversationLevelTestResultsFilterBy) *TestExecutionResultFilterBy {
+	s.ConversationLevelTestResultsFilterBy = v
+	return s
+}
+
+// SetResultTypeFilter sets the ResultTypeFilter field's value.
+func (s *TestExecutionResultFilterBy) SetResultTypeFilter(v string) *TestExecutionResultFilterBy {
+	s.ResultTypeFilter = &v
+	return s
+}
+
+// Contains the results of the test execution, grouped by type of results. See
+// Test result details">Test results details (https://docs.aws.amazon.com/lexv2/latest/dg/test-results-details-test-set.html)
+// for details about different types of results.
+type TestExecutionResultItems struct {
+	_ struct{} `type:"structure"`
+
+	// Results related to conversations in the test set, including metrics about
+	// success and failure of conversations and intent and slot failures.
+	ConversationLevelTestResults *ConversationLevelTestResults `locationName:"conversationLevelTestResults" type:"structure"`
+
+	// Intent recognition results aggregated by intent name. The aggregated results
+	// contain success and failure rates of intent recognition, speech transcriptions,
+	// and end-to-end conversations.
+	IntentClassificationTestResults *IntentClassificationTestResults `locationName:"intentClassificationTestResults" type:"structure"`
+
+	// Slot resolution results aggregated by intent and slot name. The aggregated
+	// results contain success and failure rates of slot resolution, speech transcriptions,
+	// and end-to-end conversations
+	IntentLevelSlotResolutionTestResults *IntentLevelSlotResolutionTestResults `locationName:"intentLevelSlotResolutionTestResults" type:"structure"`
+
+	// Overall results for the test execution, including the breakdown of conversations
+	// and single-input utterances.
+	OverallTestResults *OverallTestResults `locationName:"overallTestResults" type:"structure"`
+
+	// Results related to utterances in the test set.
+	UtteranceLevelTestResults *UtteranceLevelTestResults `locationName:"utteranceLevelTestResults" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionResultItems) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionResultItems) GoString() string {
+	return s.String()
+}
+
+// SetConversationLevelTestResults sets the ConversationLevelTestResults field's value.
+func (s *TestExecutionResultItems) SetConversationLevelTestResults(v *ConversationLevelTestResults) *TestExecutionResultItems {
+	s.ConversationLevelTestResults = v
+	return s
+}
+
+// SetIntentClassificationTestResults sets the IntentClassificationTestResults field's value.
+func (s *TestExecutionResultItems) SetIntentClassificationTestResults(v *IntentClassificationTestResults) *TestExecutionResultItems {
+	s.IntentClassificationTestResults = v
+	return s
+}
+
+// SetIntentLevelSlotResolutionTestResults sets the IntentLevelSlotResolutionTestResults field's value.
+func (s *TestExecutionResultItems) SetIntentLevelSlotResolutionTestResults(v *IntentLevelSlotResolutionTestResults) *TestExecutionResultItems {
+	s.IntentLevelSlotResolutionTestResults = v
+	return s
+}
+
+// SetOverallTestResults sets the OverallTestResults field's value.
+func (s *TestExecutionResultItems) SetOverallTestResults(v *OverallTestResults) *TestExecutionResultItems {
+	s.OverallTestResults = v
+	return s
+}
+
+// SetUtteranceLevelTestResults sets the UtteranceLevelTestResults field's value.
+func (s *TestExecutionResultItems) SetUtteranceLevelTestResults(v *UtteranceLevelTestResults) *TestExecutionResultItems {
+	s.UtteranceLevelTestResults = v
+	return s
+}
+
+// Contains information about the method by which to sort the instances of test
+// executions you have carried out.
+type TestExecutionSortBy struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to sort the test set executions by the date and time at
+	// which the test sets were created.
+	//
+	// Attribute is a required field
+	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"TestExecutionSortAttribute"`
+
+	// Specifies whether to sort in ascending or descending order.
+	//
+	// Order is a required field
+	Order *string `locationName:"order" type:"string" required:"true" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionSortBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionSortBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestExecutionSortBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestExecutionSortBy"}
+	if s.Attribute == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attribute"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *TestExecutionSortBy) SetAttribute(v string) *TestExecutionSortBy {
+	s.Attribute = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *TestExecutionSortBy) SetOrder(v string) *TestExecutionSortBy {
+	s.Order = &v
+	return s
+}
+
+// Summarizes metadata about the test execution.
+type TestExecutionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the API mode for the test execution is streaming or non-streaming.
+	ApiMode *string `locationName:"apiMode" type:"string" enum:"TestExecutionApiMode"`
+
+	// The date and time at which the test execution was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The date and time at which the test execution was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// Contains information about the bot used for the test execution..
+	Target *TestExecutionTarget `locationName:"target" type:"structure"`
+
+	// The unique identifier of the test execution.
+	TestExecutionId *string `locationName:"testExecutionId" min:"10" type:"string"`
+
+	// Specifies whether the data used for the test execution is written or spoken.
+	TestExecutionModality *string `locationName:"testExecutionModality" type:"string" enum:"TestExecutionModality"`
+
+	// The current status of the test execution.
+	TestExecutionStatus *string `locationName:"testExecutionStatus" type:"string" enum:"TestExecutionStatus"`
+
+	// The unique identifier of the test set used in the test execution.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+
+	// The name of the test set used in the test execution.
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionSummary) GoString() string {
+	return s.String()
+}
+
+// SetApiMode sets the ApiMode field's value.
+func (s *TestExecutionSummary) SetApiMode(v string) *TestExecutionSummary {
+	s.ApiMode = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *TestExecutionSummary) SetCreationDateTime(v time.Time) *TestExecutionSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *TestExecutionSummary) SetLastUpdatedDateTime(v time.Time) *TestExecutionSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *TestExecutionSummary) SetTarget(v *TestExecutionTarget) *TestExecutionSummary {
+	s.Target = v
+	return s
+}
+
+// SetTestExecutionId sets the TestExecutionId field's value.
+func (s *TestExecutionSummary) SetTestExecutionId(v string) *TestExecutionSummary {
+	s.TestExecutionId = &v
+	return s
+}
+
+// SetTestExecutionModality sets the TestExecutionModality field's value.
+func (s *TestExecutionSummary) SetTestExecutionModality(v string) *TestExecutionSummary {
+	s.TestExecutionModality = &v
+	return s
+}
+
+// SetTestExecutionStatus sets the TestExecutionStatus field's value.
+func (s *TestExecutionSummary) SetTestExecutionStatus(v string) *TestExecutionSummary {
+	s.TestExecutionStatus = &v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *TestExecutionSummary) SetTestSetId(v string) *TestExecutionSummary {
+	s.TestSetId = &v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *TestExecutionSummary) SetTestSetName(v string) *TestExecutionSummary {
+	s.TestSetName = &v
+	return s
+}
+
+// Contains information about the bot used for the test execution.
+type TestExecutionTarget struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the bot alias used for the test execution.
+	BotAliasTarget *BotAliasTestExecutionTarget `locationName:"botAliasTarget" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestExecutionTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestExecutionTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestExecutionTarget"}
+	if s.BotAliasTarget != nil {
+		if err := s.BotAliasTarget.Validate(); err != nil {
+			invalidParams.AddNested("BotAliasTarget", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotAliasTarget sets the BotAliasTarget field's value.
+func (s *TestExecutionTarget) SetBotAliasTarget(v *BotAliasTestExecutionTarget) *TestExecutionTarget {
+	s.BotAliasTarget = v
+	return s
+}
+
+// Contains details about the errors in the test set discrepancy report
+type TestSetDiscrepancyErrors struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about discrepancies found for intents between the test
+	// set and the bot.
+	//
+	// IntentDiscrepancies is a required field
+	IntentDiscrepancies []*TestSetIntentDiscrepancyItem `locationName:"intentDiscrepancies" type:"list" required:"true"`
+
+	// Contains information about discrepancies found for slots between the test
+	// set and the bot.
+	//
+	// SlotDiscrepancies is a required field
+	SlotDiscrepancies []*TestSetSlotDiscrepancyItem `locationName:"slotDiscrepancies" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetDiscrepancyErrors) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetDiscrepancyErrors) GoString() string {
+	return s.String()
+}
+
+// SetIntentDiscrepancies sets the IntentDiscrepancies field's value.
+func (s *TestSetDiscrepancyErrors) SetIntentDiscrepancies(v []*TestSetIntentDiscrepancyItem) *TestSetDiscrepancyErrors {
+	s.IntentDiscrepancies = v
+	return s
+}
+
+// SetSlotDiscrepancies sets the SlotDiscrepancies field's value.
+func (s *TestSetDiscrepancyErrors) SetSlotDiscrepancies(v []*TestSetSlotDiscrepancyItem) *TestSetDiscrepancyErrors {
+	s.SlotDiscrepancies = v
+	return s
+}
+
+// Contains information about the bot alias used for the test set discrepancy
+// report.
+type TestSetDiscrepancyReportBotAliasTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the bot associated with the bot alias.
+	//
+	// BotAliasId is a required field
+	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string" required:"true"`
+
+	// The unique identifier for the bot alias.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The unique identifier of the locale associated with the bot alias.
+	//
+	// LocaleId is a required field
+	LocaleId *string `locationName:"localeId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetDiscrepancyReportBotAliasTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetDiscrepancyReportBotAliasTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestSetDiscrepancyReportBotAliasTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestSetDiscrepancyReportBotAliasTarget"}
+	if s.BotAliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotAliasId"))
+	}
+	if s.BotAliasId != nil && len(*s.BotAliasId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAliasId", 10))
+	}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotAliasId sets the BotAliasId field's value.
+func (s *TestSetDiscrepancyReportBotAliasTarget) SetBotAliasId(v string) *TestSetDiscrepancyReportBotAliasTarget {
+	s.BotAliasId = &v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *TestSetDiscrepancyReportBotAliasTarget) SetBotId(v string) *TestSetDiscrepancyReportBotAliasTarget {
+	s.BotId = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *TestSetDiscrepancyReportBotAliasTarget) SetLocaleId(v string) *TestSetDiscrepancyReportBotAliasTarget {
+	s.LocaleId = &v
+	return s
+}
+
+// Contains information about the resource used for the test set discrepancy
+// report.
+type TestSetDiscrepancyReportResourceTarget struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the bot alias used as the resource for the test
+	// set discrepancy report.
+	BotAliasTarget *TestSetDiscrepancyReportBotAliasTarget `locationName:"botAliasTarget" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetDiscrepancyReportResourceTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetDiscrepancyReportResourceTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestSetDiscrepancyReportResourceTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestSetDiscrepancyReportResourceTarget"}
+	if s.BotAliasTarget != nil {
+		if err := s.BotAliasTarget.Validate(); err != nil {
+			invalidParams.AddNested("BotAliasTarget", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotAliasTarget sets the BotAliasTarget field's value.
+func (s *TestSetDiscrepancyReportResourceTarget) SetBotAliasTarget(v *TestSetDiscrepancyReportBotAliasTarget) *TestSetDiscrepancyReportResourceTarget {
+	s.BotAliasTarget = v
+	return s
+}
+
+// Contains information about the test set that is exported.
+type TestSetExportSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the test set.
+	//
+	// TestSetId is a required field
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetExportSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetExportSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestSetExportSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestSetExportSpecification"}
+	if s.TestSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetId"))
+	}
+	if s.TestSetId != nil && len(*s.TestSetId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *TestSetExportSpecification) SetTestSetId(v string) *TestSetExportSpecification {
+	s.TestSetId = &v
+	return s
+}
+
+// Contains information about the data source from which the test set is generated.
+type TestSetGenerationDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the bot from which the conversation logs are sourced.
+	ConversationLogsDataSource *ConversationLogsDataSource `locationName:"conversationLogsDataSource" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetGenerationDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetGenerationDataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestSetGenerationDataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestSetGenerationDataSource"}
+	if s.ConversationLogsDataSource != nil {
+		if err := s.ConversationLogsDataSource.Validate(); err != nil {
+			invalidParams.AddNested("ConversationLogsDataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConversationLogsDataSource sets the ConversationLogsDataSource field's value.
+func (s *TestSetGenerationDataSource) SetConversationLogsDataSource(v *ConversationLogsDataSource) *TestSetGenerationDataSource {
+	s.ConversationLogsDataSource = v
+	return s
+}
+
+// Contains information about the Amazon S3 location from which the test set
+// is imported.
+type TestSetImportInputLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket.
+	//
+	// S3BucketName is a required field
+	S3BucketName *string `locationName:"s3BucketName" min:"3" type:"string" required:"true"`
+
+	// The path inside the Amazon S3 bucket pointing to the test-set CSV file.
+	//
+	// S3Path is a required field
+	S3Path *string `locationName:"s3Path" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetImportInputLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetImportInputLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestSetImportInputLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestSetImportInputLocation"}
+	if s.S3BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketName"))
+	}
+	if s.S3BucketName != nil && len(*s.S3BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("S3BucketName", 3))
+	}
+	if s.S3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Path"))
+	}
+	if s.S3Path != nil && len(*s.S3Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Path", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *TestSetImportInputLocation) SetS3BucketName(v string) *TestSetImportInputLocation {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3Path sets the S3Path field's value.
+func (s *TestSetImportInputLocation) SetS3Path(v string) *TestSetImportInputLocation {
+	s.S3Path = &v
+	return s
+}
+
+// Contains information about the test set that is imported.
+type TestSetImportResourceSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the test set.
+	Description *string `locationName:"description" type:"string"`
+
+	// Contains information about the input location from where test-set should
+	// be imported.
+	//
+	// ImportInputLocation is a required field
+	ImportInputLocation *TestSetImportInputLocation `locationName:"importInputLocation" type:"structure" required:"true"`
+
+	// Specifies whether the test-set being imported contains written or spoken
+	// data.
+	//
+	// Modality is a required field
+	Modality *string `locationName:"modality" type:"string" required:"true" enum:"TestSetModality"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that has permission to access
+	// the test set.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+
+	// Contains information about the location that Amazon Lex uses to store the
+	// test-set.
+	//
+	// StorageLocation is a required field
+	StorageLocation *TestSetStorageLocation `locationName:"storageLocation" type:"structure" required:"true"`
+
+	// The name of the test set.
+	//
+	// TestSetName is a required field
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string" required:"true"`
+
+	// A list of tags to add to the test set. You can only add tags when you import/generate
+	// a new test set. You can't use the UpdateTestSet operation to update tags.
+	// To update tags, use the TagResource operation.
+	TestSetTags map[string]*string `locationName:"testSetTags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetImportResourceSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetImportResourceSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestSetImportResourceSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestSetImportResourceSpecification"}
+	if s.ImportInputLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportInputLocation"))
+	}
+	if s.Modality == nil {
+		invalidParams.Add(request.NewErrParamRequired("Modality"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
+	}
+	if s.StorageLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageLocation"))
+	}
+	if s.TestSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetName"))
+	}
+	if s.TestSetName != nil && len(*s.TestSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetName", 1))
+	}
+	if s.ImportInputLocation != nil {
+		if err := s.ImportInputLocation.Validate(); err != nil {
+			invalidParams.AddNested("ImportInputLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StorageLocation != nil {
+		if err := s.StorageLocation.Validate(); err != nil {
+			invalidParams.AddNested("StorageLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *TestSetImportResourceSpecification) SetDescription(v string) *TestSetImportResourceSpecification {
+	s.Description = &v
+	return s
+}
+
+// SetImportInputLocation sets the ImportInputLocation field's value.
+func (s *TestSetImportResourceSpecification) SetImportInputLocation(v *TestSetImportInputLocation) *TestSetImportResourceSpecification {
+	s.ImportInputLocation = v
+	return s
+}
+
+// SetModality sets the Modality field's value.
+func (s *TestSetImportResourceSpecification) SetModality(v string) *TestSetImportResourceSpecification {
+	s.Modality = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TestSetImportResourceSpecification) SetRoleArn(v string) *TestSetImportResourceSpecification {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *TestSetImportResourceSpecification) SetStorageLocation(v *TestSetStorageLocation) *TestSetImportResourceSpecification {
+	s.StorageLocation = v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *TestSetImportResourceSpecification) SetTestSetName(v string) *TestSetImportResourceSpecification {
+	s.TestSetName = &v
+	return s
+}
+
+// SetTestSetTags sets the TestSetTags field's value.
+func (s *TestSetImportResourceSpecification) SetTestSetTags(v map[string]*string) *TestSetImportResourceSpecification {
+	s.TestSetTags = v
+	return s
+}
+
+// Contains information about discrepancy in an intent information between the
+// test set and the bot.
+type TestSetIntentDiscrepancyItem struct {
+	_ struct{} `type:"structure"`
+
+	// The error message for a discrepancy for an intent between the test set and
+	// the bot.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" type:"string" required:"true"`
+
+	// The name of the intent in the discrepancy report.
+	//
+	// IntentName is a required field
+	IntentName *string `locationName:"intentName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetIntentDiscrepancyItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetIntentDiscrepancyItem) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *TestSetIntentDiscrepancyItem) SetErrorMessage(v string) *TestSetIntentDiscrepancyItem {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *TestSetIntentDiscrepancyItem) SetIntentName(v string) *TestSetIntentDiscrepancyItem {
+	s.IntentName = &v
+	return s
+}
+
+// Contains information about discrepancy in a slot information between the
+// test set and the bot.
+type TestSetSlotDiscrepancyItem struct {
+	_ struct{} `type:"structure"`
+
+	// The error message for a discrepancy for an intent between the test set and
+	// the bot.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" type:"string" required:"true"`
+
+	// The name of the intent associated with the slot in the discrepancy report.
+	//
+	// IntentName is a required field
+	IntentName *string `locationName:"intentName" min:"1" type:"string" required:"true"`
+
+	// The name of the slot in the discrepancy report.
+	//
+	// SlotName is a required field
+	SlotName *string `locationName:"slotName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetSlotDiscrepancyItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetSlotDiscrepancyItem) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *TestSetSlotDiscrepancyItem) SetErrorMessage(v string) *TestSetSlotDiscrepancyItem {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *TestSetSlotDiscrepancyItem) SetIntentName(v string) *TestSetSlotDiscrepancyItem {
+	s.IntentName = &v
+	return s
+}
+
+// SetSlotName sets the SlotName field's value.
+func (s *TestSetSlotDiscrepancyItem) SetSlotName(v string) *TestSetSlotDiscrepancyItem {
+	s.SlotName = &v
+	return s
+}
+
+// Contains information about the methods by which to sort the test set.
+type TestSetSortBy struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to sort the test sets by name or by the time they were
+	// last updated.
+	//
+	// Attribute is a required field
+	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"TestSetSortAttribute"`
+
+	// Specifies whether to sort in ascending or descending order.
+	//
+	// Order is a required field
+	Order *string `locationName:"order" type:"string" required:"true" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetSortBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetSortBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestSetSortBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestSetSortBy"}
+	if s.Attribute == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attribute"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *TestSetSortBy) SetAttribute(v string) *TestSetSortBy {
+	s.Attribute = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *TestSetSortBy) SetOrder(v string) *TestSetSortBy {
+	s.Order = &v
+	return s
+}
+
+// Contains information about the location in which the test set is stored.
+type TestSetStorageLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Web Services Key Management Service
+	// (KMS) key for encrypting the test set.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
+
+	// The name of the Amazon S3 bucket in which the test set is stored.
+	//
+	// S3BucketName is a required field
+	S3BucketName *string `locationName:"s3BucketName" min:"3" type:"string" required:"true"`
+
+	// The path inside the Amazon S3 bucket where the test set is stored.
+	//
+	// S3Path is a required field
+	S3Path *string `locationName:"s3Path" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetStorageLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetStorageLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestSetStorageLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestSetStorageLocation"}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 20))
+	}
+	if s.S3BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketName"))
+	}
+	if s.S3BucketName != nil && len(*s.S3BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("S3BucketName", 3))
+	}
+	if s.S3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Path"))
+	}
+	if s.S3Path != nil && len(*s.S3Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Path", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *TestSetStorageLocation) SetKmsKeyArn(v string) *TestSetStorageLocation {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *TestSetStorageLocation) SetS3BucketName(v string) *TestSetStorageLocation {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3Path sets the S3Path field's value.
+func (s *TestSetStorageLocation) SetS3Path(v string) *TestSetStorageLocation {
+	s.S3Path = &v
+	return s
+}
+
+// Contains summary information about the test set.
+type TestSetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time at which the test set was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The description of the test set.
+	Description *string `locationName:"description" type:"string"`
+
+	// The date and time at which the test set was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// Specifies whether the test set contains written or spoken data.
+	Modality *string `locationName:"modality" type:"string" enum:"TestSetModality"`
+
+	// The number of turns in the test set.
+	NumTurns *int64 `locationName:"numTurns" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that has permission to access
+	// the test set.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The status of the test set.
+	Status *string `locationName:"status" type:"string" enum:"TestSetStatus"`
+
+	// Contains information about the location at which the test set is stored.
+	StorageLocation *TestSetStorageLocation `locationName:"storageLocation" type:"structure"`
+
+	// The unique identifier of the test set.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+
+	// The name of the test set.
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *TestSetSummary) SetCreationDateTime(v time.Time) *TestSetSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TestSetSummary) SetDescription(v string) *TestSetSummary {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *TestSetSummary) SetLastUpdatedDateTime(v time.Time) *TestSetSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetModality sets the Modality field's value.
+func (s *TestSetSummary) SetModality(v string) *TestSetSummary {
+	s.Modality = &v
+	return s
+}
+
+// SetNumTurns sets the NumTurns field's value.
+func (s *TestSetSummary) SetNumTurns(v int64) *TestSetSummary {
+	s.NumTurns = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TestSetSummary) SetRoleArn(v string) *TestSetSummary {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TestSetSummary) SetStatus(v string) *TestSetSummary {
+	s.Status = &v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *TestSetSummary) SetStorageLocation(v *TestSetStorageLocation) *TestSetSummary {
+	s.StorageLocation = v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *TestSetSummary) SetTestSetId(v string) *TestSetSummary {
+	s.TestSetId = &v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *TestSetSummary) SetTestSetName(v string) *TestSetSummary {
+	s.TestSetName = &v
+	return s
+}
+
+// Contains information about a turn in a test set.
+type TestSetTurnRecord struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the conversation associated with the turn.
+	ConversationId *string `locationName:"conversationId" min:"1" type:"string"`
+
+	// The record number associated with the turn.
+	//
+	// RecordNumber is a required field
+	RecordNumber *int64 `locationName:"recordNumber" min:"1" type:"long" required:"true"`
+
+	// The number of turns that has elapsed up to that turn.
+	TurnNumber *int64 `locationName:"turnNumber" type:"integer"`
+
+	// Contains information about the agent or user turn depending upon type of
+	// turn.
+	//
+	// TurnSpecification is a required field
+	TurnSpecification *TurnSpecification `locationName:"turnSpecification" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetTurnRecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetTurnRecord) GoString() string {
+	return s.String()
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *TestSetTurnRecord) SetConversationId(v string) *TestSetTurnRecord {
+	s.ConversationId = &v
+	return s
+}
+
+// SetRecordNumber sets the RecordNumber field's value.
+func (s *TestSetTurnRecord) SetRecordNumber(v int64) *TestSetTurnRecord {
+	s.RecordNumber = &v
+	return s
+}
+
+// SetTurnNumber sets the TurnNumber field's value.
+func (s *TestSetTurnRecord) SetTurnNumber(v int64) *TestSetTurnRecord {
+	s.TurnNumber = &v
+	return s
+}
+
+// SetTurnSpecification sets the TurnSpecification field's value.
+func (s *TestSetTurnRecord) SetTurnSpecification(v *TurnSpecification) *TestSetTurnRecord {
+	s.TurnSpecification = v
+	return s
+}
+
+// Contains information about the results of the analysis of a turn in the test
+// set.
+type TestSetTurnResult struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the agent messages in the turn.
+	Agent *AgentTurnResult `locationName:"agent" type:"structure"`
+
+	// Contains information about the user messages in the turn.
+	User *UserTurnResult `locationName:"user" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetTurnResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestSetTurnResult) GoString() string {
+	return s.String()
+}
+
+// SetAgent sets the Agent field's value.
+func (s *TestSetTurnResult) SetAgent(v *AgentTurnResult) *TestSetTurnResult {
+	s.Agent = v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *TestSetTurnResult) SetUser(v *UserTurnResult) *TestSetTurnResult {
+	s.User = v
+	return s
+}
+
 // Specifies the text input specifications.
 type TextInputSpecification struct {
 	_ struct{} `type:"structure"`
@@ -29631,6 +35677,47 @@ func (s *TranscriptSourceSetting) Validate() error {
 // SetS3BucketTranscriptSource sets the S3BucketTranscriptSource field's value.
 func (s *TranscriptSourceSetting) SetS3BucketTranscriptSource(v *S3BucketTranscriptSource) *TranscriptSourceSetting {
 	s.S3BucketTranscriptSource = v
+	return s
+}
+
+// Contains information about the messages in the turn.
+type TurnSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the agent messages in the turn.
+	AgentTurn *AgentTurnSpecification `locationName:"agentTurn" type:"structure"`
+
+	// Contains information about the user messages in the turn.
+	UserTurn *UserTurnSpecification `locationName:"userTurn" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TurnSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TurnSpecification) GoString() string {
+	return s.String()
+}
+
+// SetAgentTurn sets the AgentTurn field's value.
+func (s *TurnSpecification) SetAgentTurn(v *AgentTurnSpecification) *TurnSpecification {
+	s.AgentTurn = v
+	return s
+}
+
+// SetUserTurn sets the UserTurn field's value.
+func (s *TurnSpecification) SetUserTurn(v *UserTurnSpecification) *TurnSpecification {
+	s.UserTurn = v
 	return s
 }
 
@@ -30956,8 +37043,8 @@ type UpdateIntentInput struct {
 	// provided and the intent is ready for fulfillment.
 	FulfillmentCodeHook *FulfillmentCodeHookSettings `locationName:"fulfillmentCodeHook" type:"structure"`
 
-	// Configuration setting for a response sent to the user before Amazon Lex starts
-	// eliciting slots.
+	// Configuration settings for a response sent to the user before Amazon Lex
+	// starts eliciting slots.
 	InitialResponseSetting *InitialResponseSetting `locationName:"initialResponseSetting" type:"structure"`
 
 	// A new list of contexts that must be active in order for Amazon Lex to consider
@@ -31256,8 +37343,8 @@ type UpdateIntentOutput struct {
 	// The updated Lambda function called when the intent is ready for fulfillment.
 	FulfillmentCodeHook *FulfillmentCodeHookSettings `locationName:"fulfillmentCodeHook" type:"structure"`
 
-	// Configuration setting for a response sent to the user before Amazon Lex starts
-	// eliciting slots.
+	// Configuration settings for a response sent to the user before Amazon Lex
+	// starts eliciting slots.
 	InitialResponseSetting *InitialResponseSetting `locationName:"initialResponseSetting" type:"structure"`
 
 	// The updated list of contexts that must be active for the intent to be considered
@@ -31792,8 +37879,7 @@ type UpdateSlotOutput struct {
 	// The identifier of the bot that contains the slot.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
-	// The identifier of the slot version that contains the slot. Will always be
-	// DRAFT.
+	// The version of the bot that contains the slot. Will always be DRAFT.
 	BotVersion *string `locationName:"botVersion" min:"5" type:"string"`
 
 	// The timestamp of the date and time that the slot was created.
@@ -32283,6 +38369,549 @@ func (s *UpdateSlotTypeOutput) SetValueSelectionSetting(v *SlotValueSelectionSet
 	return s
 }
 
+type UpdateTestSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new test set description.
+	Description *string `locationName:"description" type:"string"`
+
+	// The test set Id for which update test operation to be performed.
+	//
+	// TestSetId is a required field
+	TestSetId *string `location:"uri" locationName:"testSetId" min:"10" type:"string" required:"true"`
+
+	// The new test set name.
+	//
+	// TestSetName is a required field
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTestSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTestSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTestSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTestSetInput"}
+	if s.TestSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetId"))
+	}
+	if s.TestSetId != nil && len(*s.TestSetId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetId", 10))
+	}
+	if s.TestSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TestSetName"))
+	}
+	if s.TestSetName != nil && len(*s.TestSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TestSetName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateTestSetInput) SetDescription(v string) *UpdateTestSetInput {
+	s.Description = &v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *UpdateTestSetInput) SetTestSetId(v string) *UpdateTestSetInput {
+	s.TestSetId = &v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *UpdateTestSetInput) SetTestSetName(v string) *UpdateTestSetInput {
+	s.TestSetName = &v
+	return s
+}
+
+type UpdateTestSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time for the updated test set.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The test set description for the updated test set.
+	Description *string `locationName:"description" type:"string"`
+
+	// The date and time of the last update for the updated test set.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// Indicates whether audio or text is used for the updated test set.
+	Modality *string `locationName:"modality" type:"string" enum:"TestSetModality"`
+
+	// The number of conversation turns from the updated test set.
+	NumTurns *int64 `locationName:"numTurns" type:"integer"`
+
+	// The roleARN used for any operation in the test set to access resources in
+	// the Amazon Web Services account.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The status for the updated test set.
+	Status *string `locationName:"status" type:"string" enum:"TestSetStatus"`
+
+	// The Amazon S3 storage location for the updated test set.
+	StorageLocation *TestSetStorageLocation `locationName:"storageLocation" type:"structure"`
+
+	// The test set Id for which update test operation to be performed.
+	TestSetId *string `locationName:"testSetId" min:"10" type:"string"`
+
+	// The test set name for the updated test set.
+	TestSetName *string `locationName:"testSetName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTestSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTestSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *UpdateTestSetOutput) SetCreationDateTime(v time.Time) *UpdateTestSetOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateTestSetOutput) SetDescription(v string) *UpdateTestSetOutput {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *UpdateTestSetOutput) SetLastUpdatedDateTime(v time.Time) *UpdateTestSetOutput {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetModality sets the Modality field's value.
+func (s *UpdateTestSetOutput) SetModality(v string) *UpdateTestSetOutput {
+	s.Modality = &v
+	return s
+}
+
+// SetNumTurns sets the NumTurns field's value.
+func (s *UpdateTestSetOutput) SetNumTurns(v int64) *UpdateTestSetOutput {
+	s.NumTurns = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateTestSetOutput) SetRoleArn(v string) *UpdateTestSetOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateTestSetOutput) SetStatus(v string) *UpdateTestSetOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *UpdateTestSetOutput) SetStorageLocation(v *TestSetStorageLocation) *UpdateTestSetOutput {
+	s.StorageLocation = v
+	return s
+}
+
+// SetTestSetId sets the TestSetId field's value.
+func (s *UpdateTestSetOutput) SetTestSetId(v string) *UpdateTestSetOutput {
+	s.TestSetId = &v
+	return s
+}
+
+// SetTestSetName sets the TestSetName field's value.
+func (s *UpdateTestSetOutput) SetTestSetName(v string) *UpdateTestSetOutput {
+	s.TestSetName = &v
+	return s
+}
+
+// Contains information about the user messages in the turn in the input.
+type UserTurnInputSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Request attributes of the user turn.
+	RequestAttributes map[string]*string `locationName:"requestAttributes" type:"map"`
+
+	// Contains information about the session state in the input.
+	SessionState *InputSessionStateSpecification `locationName:"sessionState" type:"structure"`
+
+	// The utterance input in the user turn.
+	//
+	// UtteranceInput is a required field
+	UtteranceInput *UtteranceInputSpecification `locationName:"utteranceInput" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnInputSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnInputSpecification) GoString() string {
+	return s.String()
+}
+
+// SetRequestAttributes sets the RequestAttributes field's value.
+func (s *UserTurnInputSpecification) SetRequestAttributes(v map[string]*string) *UserTurnInputSpecification {
+	s.RequestAttributes = v
+	return s
+}
+
+// SetSessionState sets the SessionState field's value.
+func (s *UserTurnInputSpecification) SetSessionState(v *InputSessionStateSpecification) *UserTurnInputSpecification {
+	s.SessionState = v
+	return s
+}
+
+// SetUtteranceInput sets the UtteranceInput field's value.
+func (s *UserTurnInputSpecification) SetUtteranceInput(v *UtteranceInputSpecification) *UserTurnInputSpecification {
+	s.UtteranceInput = v
+	return s
+}
+
+// Contains information about the intent that is output for the turn by the
+// test execution.
+type UserTurnIntentOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the intent.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The slots associated with the intent.
+	Slots map[string]*UserTurnSlotOutput_ `locationName:"slots" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnIntentOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnIntentOutput_) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *UserTurnIntentOutput_) SetName(v string) *UserTurnIntentOutput_ {
+	s.Name = &v
+	return s
+}
+
+// SetSlots sets the Slots field's value.
+func (s *UserTurnIntentOutput_) SetSlots(v map[string]*UserTurnSlotOutput_) *UserTurnIntentOutput_ {
+	s.Slots = v
+	return s
+}
+
+// Contains results that are output for the user turn by the test execution.
+type UserTurnOutputSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The contexts that are active in the turn.
+	ActiveContexts []*ActiveContext `locationName:"activeContexts" type:"list"`
+
+	// Contains information about the intent.
+	//
+	// Intent is a required field
+	Intent *UserTurnIntentOutput_ `locationName:"intent" type:"structure" required:"true"`
+
+	// The transcript that is output for the user turn by the test execution.
+	Transcript *string `locationName:"transcript" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnOutputSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnOutputSpecification) GoString() string {
+	return s.String()
+}
+
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *UserTurnOutputSpecification) SetActiveContexts(v []*ActiveContext) *UserTurnOutputSpecification {
+	s.ActiveContexts = v
+	return s
+}
+
+// SetIntent sets the Intent field's value.
+func (s *UserTurnOutputSpecification) SetIntent(v *UserTurnIntentOutput_) *UserTurnOutputSpecification {
+	s.Intent = v
+	return s
+}
+
+// SetTranscript sets the Transcript field's value.
+func (s *UserTurnOutputSpecification) SetTranscript(v string) *UserTurnOutputSpecification {
+	s.Transcript = &v
+	return s
+}
+
+// Contains the results for the user turn by the test execution.
+type UserTurnResult struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the actual output for the user turn.
+	ActualOutput *UserTurnOutputSpecification `locationName:"actualOutput" type:"structure"`
+
+	// Contains information about the results related to the conversation associated
+	// with the user turn.
+	ConversationLevelResult *ConversationLevelResultDetail `locationName:"conversationLevelResult" type:"structure"`
+
+	// Specifies whether the expected and actual outputs match or not, or if there
+	// is an error in execution.
+	EndToEndResult *string `locationName:"endToEndResult" type:"string" enum:"TestResultMatchStatus"`
+
+	// Details about an error in an execution of a test set.
+	ErrorDetails *ExecutionErrorDetails `locationName:"errorDetails" type:"structure"`
+
+	// Contains information about the expected output for the user turn.
+	//
+	// ExpectedOutput is a required field
+	ExpectedOutput *UserTurnOutputSpecification `locationName:"expectedOutput" type:"structure" required:"true"`
+
+	// Contains information about the user messages in the turn in the input.
+	//
+	// Input is a required field
+	Input *UserTurnInputSpecification `locationName:"input" type:"structure" required:"true"`
+
+	// Specifies whether the expected and actual intents match or not.
+	IntentMatchResult *string `locationName:"intentMatchResult" type:"string" enum:"TestResultMatchStatus"`
+
+	// Specifies whether the expected and actual slots match or not.
+	SlotMatchResult *string `locationName:"slotMatchResult" type:"string" enum:"TestResultMatchStatus"`
+
+	// Specifies whether the expected and actual speech transcriptions match or
+	// not, or if there is an error in execution.
+	SpeechTranscriptionResult *string `locationName:"speechTranscriptionResult" type:"string" enum:"TestResultMatchStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnResult) GoString() string {
+	return s.String()
+}
+
+// SetActualOutput sets the ActualOutput field's value.
+func (s *UserTurnResult) SetActualOutput(v *UserTurnOutputSpecification) *UserTurnResult {
+	s.ActualOutput = v
+	return s
+}
+
+// SetConversationLevelResult sets the ConversationLevelResult field's value.
+func (s *UserTurnResult) SetConversationLevelResult(v *ConversationLevelResultDetail) *UserTurnResult {
+	s.ConversationLevelResult = v
+	return s
+}
+
+// SetEndToEndResult sets the EndToEndResult field's value.
+func (s *UserTurnResult) SetEndToEndResult(v string) *UserTurnResult {
+	s.EndToEndResult = &v
+	return s
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *UserTurnResult) SetErrorDetails(v *ExecutionErrorDetails) *UserTurnResult {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetExpectedOutput sets the ExpectedOutput field's value.
+func (s *UserTurnResult) SetExpectedOutput(v *UserTurnOutputSpecification) *UserTurnResult {
+	s.ExpectedOutput = v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *UserTurnResult) SetInput(v *UserTurnInputSpecification) *UserTurnResult {
+	s.Input = v
+	return s
+}
+
+// SetIntentMatchResult sets the IntentMatchResult field's value.
+func (s *UserTurnResult) SetIntentMatchResult(v string) *UserTurnResult {
+	s.IntentMatchResult = &v
+	return s
+}
+
+// SetSlotMatchResult sets the SlotMatchResult field's value.
+func (s *UserTurnResult) SetSlotMatchResult(v string) *UserTurnResult {
+	s.SlotMatchResult = &v
+	return s
+}
+
+// SetSpeechTranscriptionResult sets the SpeechTranscriptionResult field's value.
+func (s *UserTurnResult) SetSpeechTranscriptionResult(v string) *UserTurnResult {
+	s.SpeechTranscriptionResult = &v
+	return s
+}
+
+// Contains information about a slot output by the test set execution.
+type UserTurnSlotOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// A list of items mapping the name of the subslots to information about those
+	// subslots.
+	SubSlots map[string]*UserTurnSlotOutput_ `locationName:"subSlots" type:"map"`
+
+	// The value output by the slot recognition.
+	Value *string `locationName:"value" min:"1" type:"string"`
+
+	// Values that are output by the slot recognition.
+	Values []*UserTurnSlotOutput_ `locationName:"values" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnSlotOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnSlotOutput_) GoString() string {
+	return s.String()
+}
+
+// SetSubSlots sets the SubSlots field's value.
+func (s *UserTurnSlotOutput_) SetSubSlots(v map[string]*UserTurnSlotOutput_) *UserTurnSlotOutput_ {
+	s.SubSlots = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *UserTurnSlotOutput_) SetValue(v string) *UserTurnSlotOutput_ {
+	s.Value = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *UserTurnSlotOutput_) SetValues(v []*UserTurnSlotOutput_) *UserTurnSlotOutput_ {
+	s.Values = v
+	return s
+}
+
+// Contains information about the expected and input values for the user turn.
+type UserTurnSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Contains results about the expected output for the user turn.
+	//
+	// Expected is a required field
+	Expected *UserTurnOutputSpecification `locationName:"expected" type:"structure" required:"true"`
+
+	// Contains information about the user messages in the turn in the input.
+	//
+	// Input is a required field
+	Input *UserTurnInputSpecification `locationName:"input" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserTurnSpecification) GoString() string {
+	return s.String()
+}
+
+// SetExpected sets the Expected field's value.
+func (s *UserTurnSpecification) SetExpected(v *UserTurnOutputSpecification) *UserTurnSpecification {
+	s.Expected = v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *UserTurnSpecification) SetInput(v *UserTurnInputSpecification) *UserTurnSpecification {
+	s.Input = v
+	return s
+}
+
 // Provides parameters for setting the time window and duration for aggregating
 // utterance data.
 type UtteranceAggregationDuration struct {
@@ -32333,6 +38962,172 @@ func (s *UtteranceAggregationDuration) Validate() error {
 // SetRelativeAggregationDuration sets the RelativeAggregationDuration field's value.
 func (s *UtteranceAggregationDuration) SetRelativeAggregationDuration(v *RelativeAggregationDuration) *UtteranceAggregationDuration {
 	s.RelativeAggregationDuration = v
+	return s
+}
+
+// Contains information about the audio for an utterance.
+type UtteranceAudioInputSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon S3 file pointing to the audio.
+	//
+	// AudioFileS3Location is a required field
+	AudioFileS3Location *string `locationName:"audioFileS3Location" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceAudioInputSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceAudioInputSpecification) GoString() string {
+	return s.String()
+}
+
+// SetAudioFileS3Location sets the AudioFileS3Location field's value.
+func (s *UtteranceAudioInputSpecification) SetAudioFileS3Location(v string) *UtteranceAudioInputSpecification {
+	s.AudioFileS3Location = &v
+	return s
+}
+
+// Contains information about input of an utterance.
+type UtteranceInputSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the audio input for an utterance.
+	AudioInput *UtteranceAudioInputSpecification `locationName:"audioInput" type:"structure"`
+
+	// A text input transcription of the utterance. It is only applicable for test-sets
+	// containing text data.
+	TextInput *string `locationName:"textInput" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceInputSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceInputSpecification) GoString() string {
+	return s.String()
+}
+
+// SetAudioInput sets the AudioInput field's value.
+func (s *UtteranceInputSpecification) SetAudioInput(v *UtteranceAudioInputSpecification) *UtteranceInputSpecification {
+	s.AudioInput = v
+	return s
+}
+
+// SetTextInput sets the TextInput field's value.
+func (s *UtteranceInputSpecification) SetTextInput(v string) *UtteranceInputSpecification {
+	s.TextInput = &v
+	return s
+}
+
+// Contains information about multiple utterances in the results of a test set
+// execution.
+type UtteranceLevelTestResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the conversation associated with the result.
+	ConversationId *string `locationName:"conversationId" min:"1" type:"string"`
+
+	// The record number of the result.
+	//
+	// RecordNumber is a required field
+	RecordNumber *int64 `locationName:"recordNumber" min:"1" type:"long" required:"true"`
+
+	// Contains information about the turn associated with the result.
+	//
+	// TurnResult is a required field
+	TurnResult *TestSetTurnResult `locationName:"turnResult" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceLevelTestResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceLevelTestResultItem) GoString() string {
+	return s.String()
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *UtteranceLevelTestResultItem) SetConversationId(v string) *UtteranceLevelTestResultItem {
+	s.ConversationId = &v
+	return s
+}
+
+// SetRecordNumber sets the RecordNumber field's value.
+func (s *UtteranceLevelTestResultItem) SetRecordNumber(v int64) *UtteranceLevelTestResultItem {
+	s.RecordNumber = &v
+	return s
+}
+
+// SetTurnResult sets the TurnResult field's value.
+func (s *UtteranceLevelTestResultItem) SetTurnResult(v *TestSetTurnResult) *UtteranceLevelTestResultItem {
+	s.TurnResult = v
+	return s
+}
+
+// Contains information about the utterances in the results of the test set
+// execution.
+type UtteranceLevelTestResults struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about an utterance in the results of the test set execution.
+	//
+	// Items is a required field
+	Items []*UtteranceLevelTestResultItem `locationName:"items" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceLevelTestResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceLevelTestResults) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *UtteranceLevelTestResults) SetItems(v []*UtteranceLevelTestResultItem) *UtteranceLevelTestResults {
+	s.Items = v
 	return s
 }
 
@@ -32927,6 +39722,22 @@ func BuiltInSlotTypeSortAttribute_Values() []string {
 }
 
 const (
+	// ConversationLogsInputModeFilterSpeech is a ConversationLogsInputModeFilter enum value
+	ConversationLogsInputModeFilterSpeech = "Speech"
+
+	// ConversationLogsInputModeFilterText is a ConversationLogsInputModeFilter enum value
+	ConversationLogsInputModeFilterText = "Text"
+)
+
+// ConversationLogsInputModeFilter_Values returns all elements of the ConversationLogsInputModeFilter enum
+func ConversationLogsInputModeFilter_Values() []string {
+	return []string{
+		ConversationLogsInputModeFilterSpeech,
+		ConversationLogsInputModeFilterText,
+	}
+}
+
+const (
 	// CustomVocabularyStatusReady is a CustomVocabularyStatus enum value
 	CustomVocabularyStatusReady = "Ready"
 
@@ -33108,6 +39919,9 @@ const (
 
 	// ImportExportFileFormatTsv is a ImportExportFileFormat enum value
 	ImportExportFileFormatTsv = "TSV"
+
+	// ImportExportFileFormatCsv is a ImportExportFileFormat enum value
+	ImportExportFileFormatCsv = "CSV"
 )
 
 // ImportExportFileFormat_Values returns all elements of the ImportExportFileFormat enum
@@ -33115,6 +39929,7 @@ func ImportExportFileFormat_Values() []string {
 	return []string{
 		ImportExportFileFormatLexJson,
 		ImportExportFileFormatTsv,
+		ImportExportFileFormatCsv,
 	}
 }
 
@@ -33155,6 +39970,9 @@ const (
 
 	// ImportResourceTypeCustomVocabulary is a ImportResourceType enum value
 	ImportResourceTypeCustomVocabulary = "CustomVocabulary"
+
+	// ImportResourceTypeTestSet is a ImportResourceType enum value
+	ImportResourceTypeTestSet = "TestSet"
 )
 
 // ImportResourceType_Values returns all elements of the ImportResourceType enum
@@ -33163,6 +39981,7 @@ func ImportResourceType_Values() []string {
 		ImportResourceTypeBot,
 		ImportResourceTypeBotLocale,
 		ImportResourceTypeCustomVocabulary,
+		ImportResourceTypeTestSet,
 	}
 }
 
@@ -33528,6 +40347,242 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAscending,
 		SortOrderDescending,
+	}
+}
+
+const (
+	// TestExecutionApiModeStreaming is a TestExecutionApiMode enum value
+	TestExecutionApiModeStreaming = "Streaming"
+
+	// TestExecutionApiModeNonStreaming is a TestExecutionApiMode enum value
+	TestExecutionApiModeNonStreaming = "NonStreaming"
+)
+
+// TestExecutionApiMode_Values returns all elements of the TestExecutionApiMode enum
+func TestExecutionApiMode_Values() []string {
+	return []string{
+		TestExecutionApiModeStreaming,
+		TestExecutionApiModeNonStreaming,
+	}
+}
+
+const (
+	// TestExecutionModalityText is a TestExecutionModality enum value
+	TestExecutionModalityText = "Text"
+
+	// TestExecutionModalityAudio is a TestExecutionModality enum value
+	TestExecutionModalityAudio = "Audio"
+)
+
+// TestExecutionModality_Values returns all elements of the TestExecutionModality enum
+func TestExecutionModality_Values() []string {
+	return []string{
+		TestExecutionModalityText,
+		TestExecutionModalityAudio,
+	}
+}
+
+const (
+	// TestExecutionSortAttributeTestSetName is a TestExecutionSortAttribute enum value
+	TestExecutionSortAttributeTestSetName = "TestSetName"
+
+	// TestExecutionSortAttributeCreationDateTime is a TestExecutionSortAttribute enum value
+	TestExecutionSortAttributeCreationDateTime = "CreationDateTime"
+)
+
+// TestExecutionSortAttribute_Values returns all elements of the TestExecutionSortAttribute enum
+func TestExecutionSortAttribute_Values() []string {
+	return []string{
+		TestExecutionSortAttributeTestSetName,
+		TestExecutionSortAttributeCreationDateTime,
+	}
+}
+
+const (
+	// TestExecutionStatusPending is a TestExecutionStatus enum value
+	TestExecutionStatusPending = "Pending"
+
+	// TestExecutionStatusWaiting is a TestExecutionStatus enum value
+	TestExecutionStatusWaiting = "Waiting"
+
+	// TestExecutionStatusInProgress is a TestExecutionStatus enum value
+	TestExecutionStatusInProgress = "InProgress"
+
+	// TestExecutionStatusCompleted is a TestExecutionStatus enum value
+	TestExecutionStatusCompleted = "Completed"
+
+	// TestExecutionStatusFailed is a TestExecutionStatus enum value
+	TestExecutionStatusFailed = "Failed"
+
+	// TestExecutionStatusStopping is a TestExecutionStatus enum value
+	TestExecutionStatusStopping = "Stopping"
+
+	// TestExecutionStatusStopped is a TestExecutionStatus enum value
+	TestExecutionStatusStopped = "Stopped"
+)
+
+// TestExecutionStatus_Values returns all elements of the TestExecutionStatus enum
+func TestExecutionStatus_Values() []string {
+	return []string{
+		TestExecutionStatusPending,
+		TestExecutionStatusWaiting,
+		TestExecutionStatusInProgress,
+		TestExecutionStatusCompleted,
+		TestExecutionStatusFailed,
+		TestExecutionStatusStopping,
+		TestExecutionStatusStopped,
+	}
+}
+
+const (
+	// TestResultMatchStatusMatched is a TestResultMatchStatus enum value
+	TestResultMatchStatusMatched = "Matched"
+
+	// TestResultMatchStatusMismatched is a TestResultMatchStatus enum value
+	TestResultMatchStatusMismatched = "Mismatched"
+
+	// TestResultMatchStatusExecutionError is a TestResultMatchStatus enum value
+	TestResultMatchStatusExecutionError = "ExecutionError"
+)
+
+// TestResultMatchStatus_Values returns all elements of the TestResultMatchStatus enum
+func TestResultMatchStatus_Values() []string {
+	return []string{
+		TestResultMatchStatusMatched,
+		TestResultMatchStatusMismatched,
+		TestResultMatchStatusExecutionError,
+	}
+}
+
+const (
+	// TestResultTypeFilterOverallTestResults is a TestResultTypeFilter enum value
+	TestResultTypeFilterOverallTestResults = "OverallTestResults"
+
+	// TestResultTypeFilterConversationLevelTestResults is a TestResultTypeFilter enum value
+	TestResultTypeFilterConversationLevelTestResults = "ConversationLevelTestResults"
+
+	// TestResultTypeFilterIntentClassificationTestResults is a TestResultTypeFilter enum value
+	TestResultTypeFilterIntentClassificationTestResults = "IntentClassificationTestResults"
+
+	// TestResultTypeFilterSlotResolutionTestResults is a TestResultTypeFilter enum value
+	TestResultTypeFilterSlotResolutionTestResults = "SlotResolutionTestResults"
+
+	// TestResultTypeFilterUtteranceLevelResults is a TestResultTypeFilter enum value
+	TestResultTypeFilterUtteranceLevelResults = "UtteranceLevelResults"
+)
+
+// TestResultTypeFilter_Values returns all elements of the TestResultTypeFilter enum
+func TestResultTypeFilter_Values() []string {
+	return []string{
+		TestResultTypeFilterOverallTestResults,
+		TestResultTypeFilterConversationLevelTestResults,
+		TestResultTypeFilterIntentClassificationTestResults,
+		TestResultTypeFilterSlotResolutionTestResults,
+		TestResultTypeFilterUtteranceLevelResults,
+	}
+}
+
+const (
+	// TestSetDiscrepancyReportStatusInProgress is a TestSetDiscrepancyReportStatus enum value
+	TestSetDiscrepancyReportStatusInProgress = "InProgress"
+
+	// TestSetDiscrepancyReportStatusCompleted is a TestSetDiscrepancyReportStatus enum value
+	TestSetDiscrepancyReportStatusCompleted = "Completed"
+
+	// TestSetDiscrepancyReportStatusFailed is a TestSetDiscrepancyReportStatus enum value
+	TestSetDiscrepancyReportStatusFailed = "Failed"
+)
+
+// TestSetDiscrepancyReportStatus_Values returns all elements of the TestSetDiscrepancyReportStatus enum
+func TestSetDiscrepancyReportStatus_Values() []string {
+	return []string{
+		TestSetDiscrepancyReportStatusInProgress,
+		TestSetDiscrepancyReportStatusCompleted,
+		TestSetDiscrepancyReportStatusFailed,
+	}
+}
+
+const (
+	// TestSetGenerationStatusGenerating is a TestSetGenerationStatus enum value
+	TestSetGenerationStatusGenerating = "Generating"
+
+	// TestSetGenerationStatusReady is a TestSetGenerationStatus enum value
+	TestSetGenerationStatusReady = "Ready"
+
+	// TestSetGenerationStatusFailed is a TestSetGenerationStatus enum value
+	TestSetGenerationStatusFailed = "Failed"
+
+	// TestSetGenerationStatusPending is a TestSetGenerationStatus enum value
+	TestSetGenerationStatusPending = "Pending"
+)
+
+// TestSetGenerationStatus_Values returns all elements of the TestSetGenerationStatus enum
+func TestSetGenerationStatus_Values() []string {
+	return []string{
+		TestSetGenerationStatusGenerating,
+		TestSetGenerationStatusReady,
+		TestSetGenerationStatusFailed,
+		TestSetGenerationStatusPending,
+	}
+}
+
+const (
+	// TestSetModalityText is a TestSetModality enum value
+	TestSetModalityText = "Text"
+
+	// TestSetModalityAudio is a TestSetModality enum value
+	TestSetModalityAudio = "Audio"
+)
+
+// TestSetModality_Values returns all elements of the TestSetModality enum
+func TestSetModality_Values() []string {
+	return []string{
+		TestSetModalityText,
+		TestSetModalityAudio,
+	}
+}
+
+const (
+	// TestSetSortAttributeTestSetName is a TestSetSortAttribute enum value
+	TestSetSortAttributeTestSetName = "TestSetName"
+
+	// TestSetSortAttributeLastUpdatedDateTime is a TestSetSortAttribute enum value
+	TestSetSortAttributeLastUpdatedDateTime = "LastUpdatedDateTime"
+)
+
+// TestSetSortAttribute_Values returns all elements of the TestSetSortAttribute enum
+func TestSetSortAttribute_Values() []string {
+	return []string{
+		TestSetSortAttributeTestSetName,
+		TestSetSortAttributeLastUpdatedDateTime,
+	}
+}
+
+const (
+	// TestSetStatusImporting is a TestSetStatus enum value
+	TestSetStatusImporting = "Importing"
+
+	// TestSetStatusPendingAnnotation is a TestSetStatus enum value
+	TestSetStatusPendingAnnotation = "PendingAnnotation"
+
+	// TestSetStatusDeleting is a TestSetStatus enum value
+	TestSetStatusDeleting = "Deleting"
+
+	// TestSetStatusValidationError is a TestSetStatus enum value
+	TestSetStatusValidationError = "ValidationError"
+
+	// TestSetStatusReady is a TestSetStatus enum value
+	TestSetStatusReady = "Ready"
+)
+
+// TestSetStatus_Values returns all elements of the TestSetStatus enum
+func TestSetStatus_Values() []string {
+	return []string{
+		TestSetStatusImporting,
+		TestSetStatusPendingAnnotation,
+		TestSetStatusDeleting,
+		TestSetStatusValidationError,
+		TestSetStatusReady,
 	}
 }
 

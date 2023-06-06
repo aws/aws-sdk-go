@@ -16,6 +16,7 @@
     "CreateResourcePolicyStatement": "<p>Adds a new resource policy statement to a bot or bot alias. If a resource policy exists, the statement is added to the current resource policy. If a policy doesn't exist, a new policy is created.</p> <p>You can't create a resource policy statement that allows cross-account access.</p>",
     "CreateSlot": "<p>Creates a slot in an intent. A slot is a variable needed to fulfill an intent. For example, an <code>OrderPizza</code> intent might need slots for size, crust, and number of pizzas. For each slot, you define one or more utterances that Amazon Lex uses to elicit a response from the user. </p>",
     "CreateSlotType": "<p>Creates a custom slot type</p> <p> To create a custom slot type, specify a name for the slot type and a set of enumeration values, the values that a slot of this type can assume. </p>",
+    "CreateTestSetDiscrepancyReport": "<p>Create a report that describes the differences between the bot and the test set.</p>",
     "CreateUploadUrl": "<p>Gets a pre-signed S3 write URL that you use to upload the zip archive when importing a bot or a bot locale. </p>",
     "DeleteBot": "<p>Deletes all versions of a bot, including the <code>Draft</code> version. To delete a specific version, use the <code>DeleteBotVersion</code> operation.</p> <p>When you delete a bot, all of the resources contained in the bot are also deleted. Deleting a bot removes all locales, intents, slot, and slot types defined for the bot.</p> <p>If a bot has an alias, the <code>DeleteBot</code> operation returns a <code>ResourceInUseException</code> exception. If you want to delete the bot and the alias, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
     "DeleteBotAlias": "<p>Deletes the specified bot alias.</p>",
@@ -29,6 +30,7 @@
     "DeleteResourcePolicyStatement": "<p>Deletes a policy statement from a resource policy. If you delete the last statement from a policy, the policy is deleted. If you specify a statement ID that doesn't exist in the policy, or if the bot or bot alias doesn't have a policy attached, Amazon Lex returns an exception.</p>",
     "DeleteSlot": "<p>Deletes the specified slot from an intent.</p>",
     "DeleteSlotType": "<p>Deletes a slot type from a bot locale.</p> <p>If a slot is using the slot type, Amazon Lex throws a <code>ResourceInUseException</code> exception. To avoid the exception, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
+    "DeleteTestSet": "<p>The action to delete the selected test set.</p>",
     "DeleteUtterances": "<p>Deletes stored utterances.</p> <p>Amazon Lex stores the utterances that users send to your bot. Utterances are stored for 15 days for use with the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListAggregatedUtterances.html\">ListAggregatedUtterances</a> operation, and then stored indefinitely for use in improving the ability of your bot to respond to user input..</p> <p>Use the <code>DeleteUtterances</code> operation to manually delete utterances for a specific session. When you use the <code>DeleteUtterances</code> operation, utterances stored for improving your bot's ability to respond to user input are deleted immediately. Utterances stored for use with the <code>ListAggregatedUtterances</code> operation are deleted after 15 days.</p>",
     "DescribeBot": "<p>Provides metadata information about a bot. </p>",
     "DescribeBotAlias": "<p>Get information about a specific bot alias.</p>",
@@ -42,6 +44,11 @@
     "DescribeResourcePolicy": "<p>Gets the resource policy and policy revision for a bot or bot alias.</p>",
     "DescribeSlot": "<p>Gets metadata information about a slot.</p>",
     "DescribeSlotType": "<p>Gets metadata information about a slot type.</p>",
+    "DescribeTestExecution": "<p>Gets metadata information about the test execution.</p>",
+    "DescribeTestSet": "<p>Gets metadata information about the test set.</p>",
+    "DescribeTestSetDiscrepancyReport": "<p>Gets metadata information about the test set discrepancy report.</p>",
+    "DescribeTestSetGeneration": "<p>Gets metadata information about the test set generation.</p>",
+    "GetTestExecutionArtifactsUrl": "<p>The pre-signed Amazon S3 URL to download the test execution result artifacts.</p>",
     "ListAggregatedUtterances": "<p>Provides a list of utterances that users have sent to the bot.</p> <p>Utterances are aggregated by the text of the utterance. For example, all instances where customers used the phrase \"I want to order pizza\" are aggregated into the same line in the response.</p> <p>You can see both detected utterances and missed utterances. A detected utterance is where the bot properly recognized the utterance and activated the associated intent. A missed utterance was not recognized by the bot and didn't activate an intent.</p> <p>Utterances can be aggregated for a bot alias or for a bot version, but not both at the same time.</p> <p>Utterances statistics are not generated under the following conditions:</p> <ul> <li> <p>The <code>childDirected</code> field was set to true when the bot was created.</p> </li> <li> <p>You are using slot obfuscation with one or more slots.</p> </li> <li> <p>You opted out of participating in improving Amazon Lex.</p> </li> </ul>",
     "ListBotAliases": "<p>Gets a list of aliases for the specified bot.</p>",
     "ListBotLocales": "<p>Gets a list of locales for the specified bot.</p>",
@@ -58,9 +65,15 @@
     "ListSlotTypes": "<p>Gets a list of slot types that match the specified criteria.</p>",
     "ListSlots": "<p>Gets a list of slots that match the specified criteria.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with a resource. Only bots, bot aliases, and bot channels can have tags associated with them.</p>",
+    "ListTestExecutionResultItems": "<p>Gets a list of test execution result items.</p>",
+    "ListTestExecutions": "<p>The list of test set executions.</p>",
+    "ListTestSetRecords": "<p>The list of test set records.</p>",
+    "ListTestSets": "<p>The list of the test sets</p>",
     "SearchAssociatedTranscripts": "<p>Search for associated transcripts that meet the specified criteria.</p>",
     "StartBotRecommendation": "<p>Use this to provide your transcript data, and to start the bot recommendation process.</p>",
     "StartImport": "<p>Starts importing a bot, bot locale, or custom vocabulary from a zip archive that you uploaded to an S3 bucket.</p>",
+    "StartTestExecution": "<p>The action to start test set execution.</p>",
+    "StartTestSetGeneration": "<p>The action to start the generation of test set.</p>",
     "StopBotRecommendation": "<p>Stop an already running Bot Recommendation request.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource. If a tag key already exists, the existing value is replaced with the new value.</p>",
     "UntagResource": "<p>Removes tags from a bot, bot alias, or bot channel.</p>",
@@ -72,13 +85,45 @@
     "UpdateIntent": "<p>Updates the settings for an intent.</p>",
     "UpdateResourcePolicy": "<p>Replaces the existing resource policy for a bot or bot alias with a new one. If the policy doesn't exist, Amazon Lex returns an exception.</p>",
     "UpdateSlot": "<p>Updates the settings for a slot.</p>",
-    "UpdateSlotType": "<p>Updates the configuration of an existing slot type.</p>"
+    "UpdateSlotType": "<p>Updates the configuration of an existing slot type.</p>",
+    "UpdateTestSet": "<p>The action to update the test set.</p>"
   },
   "shapes": {
+    "ActiveContext": {
+      "base": "<p>The active context used in the test execution.</p>",
+      "refs": {
+        "ActiveContextList$member": null
+      }
+    },
+    "ActiveContextList": {
+      "base": null,
+      "refs": {
+        "InputSessionStateSpecification$activeContexts": "<p>Active contexts for the session state.</p>",
+        "UserTurnOutputSpecification$activeContexts": "<p>The contexts that are active in the turn.</p>"
+      }
+    },
+    "ActiveContextName": {
+      "base": null,
+      "refs": {
+        "ActiveContext$name": "<p>The name of active context.</p>"
+      }
+    },
     "AdvancedRecognitionSetting": {
       "base": "<p>Provides settings that enable advanced recognition settings for slot values.</p>",
       "refs": {
-        "SlotValueSelectionSetting$advancedRecognitionSetting": "<p>Provides settings that enable advanced recognition settings for slot values.</p>"
+        "SlotValueSelectionSetting$advancedRecognitionSetting": "<p>Provides settings that enable advanced recognition settings for slot values. You can use this to enable using slot values as a custom vocabulary for recognizing user utterances.</p>"
+      }
+    },
+    "AgentTurnResult": {
+      "base": "<p>The information about the agent turn in a test set execution.</p>",
+      "refs": {
+        "TestSetTurnResult$agent": "<p>Contains information about the agent messages in the turn.</p>"
+      }
+    },
+    "AgentTurnSpecification": {
+      "base": "<p>The specification of an agent turn.</p>",
+      "refs": {
+        "TurnSpecification$agentTurn": "<p>Contains information about the agent messages in the turn.</p>"
       }
     },
     "AggregatedUtterancesFilter": {
@@ -204,6 +249,12 @@
         "PromptAttemptSpecification$audioAndDTMFInputSpecification": "<p>Specifies the settings on audio and DTMF input.</p>"
       }
     },
+    "AudioFileS3Location": {
+      "base": null,
+      "refs": {
+        "UtteranceAudioInputSpecification$audioFileS3Location": "<p>Amazon S3 file pointing to the audio.</p>"
+      }
+    },
     "AudioLogDestination": {
       "base": "<p>The location of audio log files collected when conversation logging is enabled for a bot.</p>",
       "refs": {
@@ -271,8 +322,11 @@
         "BotAliasLocaleSettings$enabled": "<p>Determines whether the locale is enabled for the bot. If the value is <code>false</code>, the locale isn't available for use.</p>",
         "DialogCodeHookSettings$enabled": "<p>Enables the dialog code hook so that it processes user requests.</p>",
         "FulfillmentCodeHookSettings$enabled": "<p>Indicates whether a Lambda function should be invoked to fulfill a specific intent.</p>",
-        "KendraConfiguration$queryFilterStringEnabled": "<p>Determines whether the AMAZON.KendraSearchIntent intent uses a custom query string to query the Amazon Kendra index.</p>",
+        "IntentClassificationTestResultItem$multiTurnConversation": "<p>Indicates whether the conversation involves multiple turns or not.</p>",
+        "IntentLevelSlotResolutionTestResultItem$multiTurnConversation": "<p>Indicates whether the conversation involves multiple turns or not.</p>",
+        "KendraConfiguration$queryFilterStringEnabled": "<p>Determines whether the <code>AMAZON.KendraSearchIntent</code> intent uses a custom query string to query the Amazon Kendra index.</p>",
         "MultipleValuesSetting$allowMultipleValues": "<p>Indicates whether a slot can return multiple values. When <code>true</code>, the slot may return more than one value in a response. When <code>false</code>, the slot returns only a single value.</p> <p>Multi-value slots are only available in the en-US locale. If you set this value to <code>true</code> in any other locale, Amazon Lex throws a <code>ValidationException</code>.</p> <p>If the <code>allowMutlipleValues</code> is not set, the default value is <code>false</code>.</p>",
+        "OverallTestResultItem$multiTurnConversation": "<p>Indicates whether the conversation contains multiple turns or not.</p>",
         "SentimentAnalysisSettings$detectSentiment": "<p>Sets whether Amazon Lex uses Amazon Comprehend to detect the sentiment of user utterances.</p>",
         "TextLogSetting$enabled": "<p>Determines whether conversation logs should be stored for an alias.</p>"
       }
@@ -293,7 +347,9 @@
       "base": null,
       "refs": {
         "BotAliasSummary$botAliasId": "<p>The unique identifier assigned to the bot alias. You can use this ID to get detailed information about the alias using the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeBotAlias.html\">DescribeBotAlias</a> operation.</p>",
+        "BotAliasTestExecutionTarget$botAliasId": "<p>The bot alias Id of the bot alias used in the test set execution.</p>",
         "BotMember$botMemberAliasId": "<p>The alias ID of a bot that is a member of this network of bots.</p>",
+        "ConversationLogsDataSource$botAliasId": "<p>The bot alias Id from the conversation logs.</p>",
         "CreateBotAliasResponse$botAliasId": "<p>The unique identifier of the bot alias.</p>",
         "DeleteBotAliasRequest$botAliasId": "<p>The unique identifier of the bot alias to delete.</p>",
         "DeleteBotAliasResponse$botAliasId": "<p>The unique identifier of the bot alias to delete.</p>",
@@ -301,6 +357,7 @@
         "DescribeBotAliasResponse$botAliasId": "<p>The identifier of the bot alias.</p>",
         "ListAggregatedUtterancesRequest$botAliasId": "<p>The identifier of the bot alias associated with this request. If you specify the bot alias, you can't specify the bot version.</p>",
         "ListAggregatedUtterancesResponse$botAliasId": "<p>The identifier of the bot alias that contains the utterances. If you specified the bot version, the bot alias ID isn't returned.</p>",
+        "TestSetDiscrepancyReportBotAliasTarget$botAliasId": "<p>The unique identifier for the bot associated with the bot alias.</p>",
         "UpdateBotAliasRequest$botAliasId": "<p>The unique identifier of the bot alias.</p>",
         "UpdateBotAliasResponse$botAliasId": "<p>The identifier of the updated bot alias.</p>"
       }
@@ -347,6 +404,12 @@
       "base": null,
       "refs": {
         "ListBotAliasesResponse$botAliasSummaries": "<p>Summary information for the bot aliases that meet the filter criteria specified in the request. The length of the list is specified in the <code>maxResults</code> parameter of the request. If there are more aliases available, the <code>nextToken</code> field contains a token to get the next page of results.</p>"
+      }
+    },
+    "BotAliasTestExecutionTarget": {
+      "base": "<p>The target Amazon S3 location for the test set execution using a bot alias.</p>",
+      "refs": {
+        "TestExecutionTarget$botAliasTarget": "<p>Contains information about the bot alias used for the test execution.</p>"
       }
     },
     "BotExportSpecification": {
@@ -593,8 +656,8 @@
         "BotVersionSummary$botVersion": "<p>The numeric version of the bot, or <code>DRAFT</code> to indicate that this is the version of the bot that can be updated..</p>",
         "CustomVocabularyExportSpecification$botVersion": "<p>The version of the bot that contains the custom vocabulary to export.</p>",
         "DescribeBotAliasResponse$botVersion": "<p>The version of the bot associated with the bot alias.</p>",
-        "DescribeBotLocaleRequest$botVersion": "<p>The identifier of the version of the bot associated with the locale.</p>",
-        "DescribeBotLocaleResponse$botVersion": "<p>The identifier of the version of the bot associated with the locale.</p>",
+        "DescribeBotLocaleRequest$botVersion": "<p>The version of the bot associated with the locale.</p>",
+        "DescribeBotLocaleResponse$botVersion": "<p>The version of the bot associated with the locale.</p>",
         "DescribeCustomVocabularyMetadataRequest$botVersion": "<p>The bot version of the bot to return metadata for.</p>",
         "DescribeCustomVocabularyMetadataResponse$botVersion": "<p>The version of the bot that contains the custom vocabulary to describe.</p>",
         "DescribeIntentRequest$botVersion": "<p>The version of the bot associated with the intent.</p>",
@@ -789,7 +852,7 @@
     "ChildDirected": {
       "base": null,
       "refs": {
-        "DataPrivacy$childDirected": "<p>For each Amazon Lex bot created with the Amazon Lex Model Building Service, you must specify whether your use of Amazon Lex is related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to the Children's Online Privacy Protection Act (COPPA) by specifying <code>true</code> or <code>false</code> in the <code>childDirected</code> field. By specifying <code>true</code> in the <code>childDirected</code> field, you confirm that your use of Amazon Lex <b>is</b> related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. By specifying <code>false</code> in the <code>childDirected</code> field, you confirm that your use of Amazon Lex <b>is not</b> related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. You may not specify a default value for the <code>childDirected</code> field that does not accurately reflect whether your use of Amazon Lex is related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. If your use of Amazon Lex relates to a website, program, or other application that is directed in whole or in part, to children under age 13, you must obtain any required verifiable parental consent under COPPA. For information regarding the use of Amazon Lex in connection with websites, programs, or other applications that are directed or targeted, in whole or in part, to children under age 13, see the <a href=\"https://aws.amazon.com/lex/faqs#data-security\">Amazon Lex FAQ</a>.</p>"
+        "DataPrivacy$childDirected": "<p>For each Amazon Lex bot created with the Amazon Lex Model Building Service, you must specify whether your use of Amazon Lex is related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to the Children's Online Privacy Protection Act (COPPA) by specifying <code>true</code> or <code>false</code> in the <code>childDirected</code> field. By specifying <code>true</code> in the <code>childDirected</code> field, you confirm that your use of Amazon Lex <b>is</b> related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. By specifying <code>false</code> in the <code>childDirected</code> field, you confirm that your use of Amazon Lex <b>is not</b> related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. You may not specify a default value for the <code>childDirected</code> field that does not accurately reflect whether your use of Amazon Lex is related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. If your use of Amazon Lex relates to a website, program, or other application that is directed in whole or in part, to children under age 13, you must obtain any required verifiable parental consent under COPPA. For information regarding the use of Amazon Lex in connection with websites, programs, or other applications that are directed or targeted, in whole or in part, to children under age 13, see the <a href=\"http://aws.amazon.com/lex/faqs#data-security\">Amazon Lex FAQ</a>.</p>"
       }
     },
     "CloudWatchLogGroupArn": {
@@ -926,6 +989,60 @@
         "OutputContext$turnsToLive": "<p>The number of conversation turns that the output context should remain active. The number of turns is counted from the first time that the context is sent to the user.</p>"
       }
     },
+    "ConversationLevelIntentClassificationResultItem": {
+      "base": "<p>The item listing the evaluation of intent level success or failure.</p>",
+      "refs": {
+        "ConversationLevelIntentClassificationResults$member": null
+      }
+    },
+    "ConversationLevelIntentClassificationResults": {
+      "base": null,
+      "refs": {
+        "ConversationLevelTestResultItem$intentClassificationResults": "<p>The intent classification of the test result evaluation item.</p>"
+      }
+    },
+    "ConversationLevelResultDetail": {
+      "base": "<p>The conversation level details of the conversation used in the test set.</p>",
+      "refs": {
+        "UserTurnResult$conversationLevelResult": "<p>Contains information about the results related to the conversation associated with the user turn.</p>"
+      }
+    },
+    "ConversationLevelSlotResolutionResultItem": {
+      "base": "<p>The slots used for the slot resolution in the conversation.</p>",
+      "refs": {
+        "ConversationLevelSlotResolutionResults$member": null
+      }
+    },
+    "ConversationLevelSlotResolutionResults": {
+      "base": null,
+      "refs": {
+        "ConversationLevelTestResultItem$slotResolutionResults": "<p>The slot success or failure of the test result evaluation item.</p>"
+      }
+    },
+    "ConversationLevelTestResultItem": {
+      "base": "<p>The test result evaluation item at the conversation level.</p>",
+      "refs": {
+        "ConversationLevelTestResultItemList$member": null
+      }
+    },
+    "ConversationLevelTestResultItemList": {
+      "base": null,
+      "refs": {
+        "ConversationLevelTestResults$items": "<p>The item list in the test set results data at the conversation level.</p>"
+      }
+    },
+    "ConversationLevelTestResults": {
+      "base": "<p>The test set results data at the conversation level.</p>",
+      "refs": {
+        "TestExecutionResultItems$conversationLevelTestResults": "<p>Results related to conversations in the test set, including metrics about success and failure of conversations and intent and slot failures.</p>"
+      }
+    },
+    "ConversationLevelTestResultsFilterBy": {
+      "base": "<p>The selection to filter the test set results data at the conversation level.</p>",
+      "refs": {
+        "TestExecutionResultFilterBy$conversationLevelTestResultsFilterBy": "<p>Contains information about the method for filtering Conversation level test results.</p>"
+      }
+    },
     "ConversationLogSettings": {
       "base": "<p>Configures conversation logging that saves audio, text, and metadata for the conversations with your users.</p>",
       "refs": {
@@ -936,11 +1053,36 @@
         "UpdateBotAliasResponse$conversationLogSettings": "<p>The updated settings for storing conversation logs in Amazon CloudWatch Logs and Amazon S3 buckets.</p>"
       }
     },
+    "ConversationLogsDataSource": {
+      "base": "<p>The data source that uses conversation logs.</p>",
+      "refs": {
+        "TestSetGenerationDataSource$conversationLogsDataSource": "<p>Contains information about the bot from which the conversation logs are sourced.</p>"
+      }
+    },
+    "ConversationLogsDataSourceFilterBy": {
+      "base": "<p>The selected data source to filter the conversation log.</p>",
+      "refs": {
+        "ConversationLogsDataSource$filter": "<p>The filter for the data source of the conversation log.</p>"
+      }
+    },
+    "ConversationLogsInputModeFilter": {
+      "base": null,
+      "refs": {
+        "ConversationLogsDataSourceFilterBy$inputMode": "<p>The selection to filter by input mode for the conversation logs. </p>"
+      }
+    },
     "Count": {
       "base": null,
       "refs": {
+        "DescribeTestSetResponse$numTurns": "<p>The total number of agent and user turn in the test set.</p>",
+        "IntentClassificationTestResultItemCounts$totalResultCount": "<p>The total number of results in the intent classification test.</p>",
         "IntentStatistics$discoveredIntentCount": "<p>The number of recommended intents associated with the bot recommendation.</p>",
-        "SlotTypeStatistics$discoveredSlotTypeCount": "<p>The number of recommended slot types associated with the bot recommendation.</p>"
+        "OverallTestResultItem$totalResultCount": "<p>The total number of overall results in the result of the test execution.</p>",
+        "SlotResolutionTestResultItemCounts$totalResultCount": "<p>The total number of results.</p>",
+        "SlotTypeStatistics$discoveredSlotTypeCount": "<p>The number of recommended slot types associated with the bot recommendation.</p>",
+        "TestResultMatchStatusCountMap$value": null,
+        "TestSetSummary$numTurns": "<p>The number of turns in the test set.</p>",
+        "UpdateTestSetResponse$numTurns": "<p>The number of conversation turns from the updated test set.</p>"
       }
     },
     "CreateBotAliasRequest": {
@@ -1045,6 +1187,16 @@
       }
     },
     "CreateSlotTypeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTestSetDiscrepancyReportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTestSetDiscrepancyReportResponse": {
       "base": null,
       "refs": {
       }
@@ -1260,6 +1412,11 @@
       "refs": {
       }
     },
+    "DeleteTestSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteUtterancesRequest": {
       "base": null,
       "refs": {
@@ -1390,6 +1547,46 @@
       "refs": {
       }
     },
+    "DescribeTestExecutionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTestExecutionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTestSetDiscrepancyReportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTestSetDiscrepancyReportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTestSetGenerationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTestSetGenerationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTestSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTestSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Description": {
       "base": null,
       "refs": {
@@ -1420,9 +1617,15 @@
         "DescribeIntentResponse$description": "<p>The description of the intent.</p>",
         "DescribeSlotResponse$description": "<p>The description specified for the slot.</p>",
         "DescribeSlotTypeResponse$description": "<p>The description specified for the slot type.</p>",
+        "DescribeTestSetGenerationResponse$description": "<p>The test set description for the test set generation.</p>",
+        "DescribeTestSetResponse$description": "<p>The description of the test set.</p>",
         "IntentSummary$description": "<p>The description of the intent.</p>",
         "SlotSummary$description": "<p>The description of the slot.</p>",
         "SlotTypeSummary$description": "<p>The description of the slot type.</p>",
+        "StartTestSetGenerationRequest$description": "<p>The test set description for the test set generation request.</p>",
+        "StartTestSetGenerationResponse$description": "<p>The description used for the test set generation.</p>",
+        "TestSetImportResourceSpecification$description": "<p>The description of the test set.</p>",
+        "TestSetSummary$description": "<p>The description of the test set.</p>",
         "UpdateBotAliasRequest$description": "<p>The new description to assign to the bot alias.</p>",
         "UpdateBotAliasResponse$description": "<p>The updated description of the bot alias.</p>",
         "UpdateBotLocaleRequest$description": "<p>The new description of the locale.</p>",
@@ -1434,11 +1637,13 @@
         "UpdateSlotRequest$description": "<p>The new description for the slot.</p>",
         "UpdateSlotResponse$description": "<p>The updated description of the bot.</p>",
         "UpdateSlotTypeRequest$description": "<p>The new description of the slot type.</p>",
-        "UpdateSlotTypeResponse$description": "<p>The updated description of the slot type.</p>"
+        "UpdateSlotTypeResponse$description": "<p>The updated description of the slot type.</p>",
+        "UpdateTestSetRequest$description": "<p>The new test set description.</p>",
+        "UpdateTestSetResponse$description": "<p>The test set description for the updated test set.</p>"
       }
     },
     "DialogAction": {
-      "base": "<p> Defines the action that the bot executes at runtime when the conversation reaches this step.</p>",
+      "base": "<p>Defines the action that the bot executes at runtime when the conversation reaches this step.</p>",
       "refs": {
         "DialogState$dialogAction": null
       }
@@ -1450,7 +1655,7 @@
       }
     },
     "DialogCodeHookInvocationSetting": {
-      "base": "<p> Settings that specify the dialog code hook that is called by Amazon Lex at a step of the conversation. </p>",
+      "base": "<p>Settings that specify the dialog code hook that is called by Amazon Lex at a step of the conversation. </p>",
       "refs": {
         "InitialResponseSetting$codeHook": null,
         "IntentConfirmationSetting$codeHook": "<p>The <code>DialogCodeHookInvocationSetting</code> object associated with intent's confirmation step. The dialog code hook is triggered based on these invocation settings when the confirmation next step or declination next step or failure next step is <code>InvokeDialogCodeHook</code>. </p>",
@@ -1495,8 +1700,8 @@
         "BuildBotLocaleResponse$botVersion": "<p>The version of the bot that was built. This is only the draft version of the bot.</p>",
         "CreateBotLocaleRequest$botVersion": "<p>The version of the bot to create the locale for. This can only be the draft version of the bot.</p>",
         "CreateBotLocaleResponse$botVersion": "<p>The specified bot version.</p>",
-        "CreateIntentRequest$botVersion": "<p>The identifier of the version of the bot associated with this intent.</p>",
-        "CreateIntentResponse$botVersion": "<p>The identifier of the version of the bot associated with the intent.</p>",
+        "CreateIntentRequest$botVersion": "<p>The version of the bot associated with this intent.</p>",
+        "CreateIntentResponse$botVersion": "<p>The version of the bot associated with the intent.</p>",
         "CreateSlotRequest$botVersion": "<p>The version of the bot associated with the slot.</p>",
         "CreateSlotResponse$botVersion": "<p>The version of the bot associated with the slot.</p>",
         "CreateSlotTypeRequest$botVersion": "<p>The identifier of the bot version associated with this slot type.</p>",
@@ -1529,7 +1734,7 @@
         "UpdateIntentRequest$botVersion": "<p>The version of the bot that contains the intent. Must be <code>DRAFT</code>.</p>",
         "UpdateIntentResponse$botVersion": "<p>The version of the bot that contains the intent. Will always be <code>DRAFT</code>.</p>",
         "UpdateSlotRequest$botVersion": "<p>The version of the bot that contains the slot. Must always be <code>DRAFT</code>.</p>",
-        "UpdateSlotResponse$botVersion": "<p>The identifier of the slot version that contains the slot. Will always be <code>DRAFT</code>.</p>",
+        "UpdateSlotResponse$botVersion": "<p>The version of the bot that contains the slot. Will always be <code>DRAFT</code>.</p>",
         "UpdateSlotTypeRequest$botVersion": "<p>The version of the bot that contains the slot type. Must be <code>DRAFT</code>.</p>",
         "UpdateSlotTypeResponse$botVersion": "<p>The version of the bot that contains the slot type. This is always <code>DRAFT</code>.</p>"
       }
@@ -1579,6 +1784,13 @@
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
         "ValidationException$message": null
+      }
+    },
+    "ExecutionErrorDetails": {
+      "base": "<p>Details about an error in an execution of a test set.</p>",
+      "refs": {
+        "AgentTurnResult$errorDetails": null,
+        "UserTurnResult$errorDetails": null
       }
     },
     "ExportFilter": {
@@ -1688,6 +1900,9 @@
         "DescribeBotVersionResponse$failureReasons": "<p>If the <code>botStatus</code> is <code>Failed</code>, this contains a list of reasons that the version couldn't be built.</p>",
         "DescribeExportResponse$failureReasons": "<p>If the <code>exportStatus</code> is failed, contains one or more reasons why the export could not be completed.</p>",
         "DescribeImportResponse$failureReasons": "<p>If the <code>importStatus</code> field is <code>Failed</code>, this provides one or more reasons for the failure.</p>",
+        "DescribeTestExecutionResponse$failureReasons": "<p>Reasons for the failure of the test set execution.</p>",
+        "DescribeTestSetDiscrepancyReportResponse$failureReasons": "<p>The failure report for the test set discrepancy report generation action.</p>",
+        "DescribeTestSetGenerationResponse$failureReasons": "<p>The reasons the test set generation failed.</p>",
         "UpdateBotLocaleResponse$failureReasons": "<p>If the <code>botLocaleStatus</code> is <code>Failed</code>, the <code>failureReasons</code> field lists the errors that occurred while building the bot.</p>"
       }
     },
@@ -1764,6 +1979,16 @@
         "FulfillmentCodeHookSettings$fulfillmentUpdatesSpecification": "<p>Provides settings for update messages sent to the user for long-running Lambda fulfillment functions. Fulfillment updates can be used only with streaming conversations.</p>"
       }
     },
+    "GetTestExecutionArtifactsUrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTestExecutionArtifactsUrlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GrammarSlotTypeSetting": {
       "base": "<p>Settings requried for a slot type based on a grammar that you provide.</p>",
       "refs": {
@@ -1791,6 +2016,7 @@
         "BatchDeleteCustomVocabularyItemResponse$botId": "<p>The identifier of the bot associated with this custom vocabulary.</p>",
         "BatchUpdateCustomVocabularyItemRequest$botId": "<p>The identifier of the bot associated with this custom vocabulary</p>",
         "BatchUpdateCustomVocabularyItemResponse$botId": "<p>The identifier of the bot associated with this custom vocabulary.</p>",
+        "BotAliasTestExecutionTarget$botId": "<p>The bot Id of the bot alias used in the test set execution.</p>",
         "BotExportSpecification$botId": "<p>The identifier of the bot assigned by Amazon Lex.</p>",
         "BotLocaleExportSpecification$botId": "<p>The identifier of the bot to create the locale for.</p>",
         "BotLocaleImportSpecification$botId": "<p>The identifier of the bot to import the locale to.</p>",
@@ -1799,6 +2025,7 @@
         "BotSummary$botId": "<p>The unique identifier assigned to the bot. Use this ID to get detailed information about the bot with the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeBot.html\">DescribeBot</a> operation.</p>",
         "BuildBotLocaleRequest$botId": "<p>The identifier of the bot to build. The identifier is returned in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html\">CreateBot</a> operation.</p>",
         "BuildBotLocaleResponse$botId": "<p>The identifier of the specified bot.</p>",
+        "ConversationLogsDataSource$botId": "<p>The bot Id from the conversation logs.</p>",
         "CreateBotAliasRequest$botId": "<p>The unique identifier of the bot that the alias applies to.</p>",
         "CreateBotAliasResponse$botId": "<p>The unique identifier of the bot that this alias applies to.</p>",
         "CreateBotLocaleRequest$botId": "<p>The identifier of the bot to create the locale for.</p>",
@@ -1818,6 +2045,9 @@
         "CreateSlotTypeRequest$botId": "<p>The identifier of the bot associated with this slot type.</p>",
         "CreateSlotTypeResponse$slotTypeId": "<p>The unique identifier assigned to the slot type. Use this to identify the slot type in the <code>UpdateSlotType</code> and <code>DeleteSlotType</code> operations.</p>",
         "CreateSlotTypeResponse$botId": "<p>The identifier for the bot associated with the slot type.</p>",
+        "CreateTestSetDiscrepancyReportRequest$testSetId": "<p>The test set Id for the test set discrepancy report.</p>",
+        "CreateTestSetDiscrepancyReportResponse$testSetDiscrepancyReportId": "<p>The unique identifier of the test set discrepancy report to describe.</p>",
+        "CreateTestSetDiscrepancyReportResponse$testSetId": "<p>The test set Id for the test set discrepancy report.</p>",
         "CreateUploadUrlResponse$importId": "<p>An identifier for a unique import job. Use it when you call the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_StartImport.html\">StartImport</a> operation.</p>",
         "CustomVocabularyExportSpecification$botId": "<p>The identifier of the bot that contains the custom vocabulary to export.</p>",
         "CustomVocabularyImportSpecification$botId": "<p>The identifier of the bot to import the custom vocabulary to.</p>",
@@ -1842,6 +2072,7 @@
         "DeleteSlotRequest$intentId": "<p>The identifier of the intent associated with the slot.</p>",
         "DeleteSlotTypeRequest$slotTypeId": "<p>The identifier of the slot type to delete.</p>",
         "DeleteSlotTypeRequest$botId": "<p>The identifier of the bot associated with the slot type.</p>",
+        "DeleteTestSetRequest$testSetId": "<p>The test set Id of the test set to be deleted.</p>",
         "DeleteUtterancesRequest$botId": "<p>The unique identifier of the bot that contains the utterances.</p>",
         "DescribeBotAliasRequest$botId": "<p>The identifier of the bot associated with the bot alias to describe.</p>",
         "DescribeBotAliasResponse$botId": "<p>The identifier of the bot associated with the bot alias.</p>",
@@ -1875,7 +2106,20 @@
         "DescribeSlotTypeRequest$botId": "<p>The identifier of the bot associated with the slot type.</p>",
         "DescribeSlotTypeResponse$slotTypeId": "<p>The unique identifier for the slot type.</p>",
         "DescribeSlotTypeResponse$botId": "<p>The identifier of the bot associated with the slot type.</p>",
+        "DescribeTestExecutionRequest$testExecutionId": "<p>The execution Id of the test set execution.</p>",
+        "DescribeTestExecutionResponse$testExecutionId": "<p>The execution Id for the test set execution.</p>",
+        "DescribeTestExecutionResponse$testSetId": "<p>The test set Id for the test set execution.</p>",
+        "DescribeTestSetDiscrepancyReportRequest$testSetDiscrepancyReportId": "<p>The unique identifier of the test set discrepancy report.</p>",
+        "DescribeTestSetDiscrepancyReportResponse$testSetDiscrepancyReportId": "<p>The unique identifier of the test set discrepancy report to describe.</p>",
+        "DescribeTestSetDiscrepancyReportResponse$testSetId": "<p>The test set Id for the test set discrepancy report.</p>",
+        "DescribeTestSetGenerationRequest$testSetGenerationId": "<p>The unique identifier of the test set generation.</p>",
+        "DescribeTestSetGenerationResponse$testSetGenerationId": "<p>The unique identifier of the test set generation.</p>",
+        "DescribeTestSetGenerationResponse$testSetId": "<p>The unique identifier for the test set created for the generated test set.</p>",
+        "DescribeTestSetRequest$testSetId": "<p>The test set Id for the test set request.</p>",
+        "DescribeTestSetResponse$testSetId": "<p>The test set Id for the test set response.</p>",
         "ExportSummary$exportId": "<p>The unique identifier that Amazon Lex assigned to the export.</p>",
+        "GetTestExecutionArtifactsUrlRequest$testExecutionId": "<p>The unique identifier of the completed test execution.</p>",
+        "GetTestExecutionArtifactsUrlResponse$testExecutionId": "<p>The unique identifier of the completed test execution.</p>",
         "ImportSummary$importId": "<p>The unique identifier that Amazon Lex assigned to the import.</p>",
         "IntentSummary$intentId": "<p>The unique identifier assigned to the intent. Use this ID to get detailed information about the intent with the <code>DescribeIntent</code> operation.</p>",
         "ListAggregatedUtterancesRequest$botId": "<p>The unique identifier of the bot associated with this request.</p>",
@@ -1906,6 +2150,8 @@
         "ListSlotsRequest$intentId": "<p>The unique identifier of the intent that contains the slot.</p>",
         "ListSlotsResponse$botId": "<p>The identifier of the bot that contains the slots.</p>",
         "ListSlotsResponse$intentId": "<p>The identifier of the intent that contains the slots.</p>",
+        "ListTestExecutionResultItemsRequest$testExecutionId": "<p>The unique identifier of the test execution to list the result items.</p>",
+        "ListTestSetRecordsRequest$testSetId": "<p>The identifier of the test set to list its test set records.</p>",
         "ParentBotNetwork$botId": "<p>The identifier of the network of bots assigned by Amazon Lex.</p>",
         "RecommendedIntentSummary$intentId": "<p>The unique identifier of a recommended intent associated with the bot recommendation.</p>",
         "SearchAssociatedTranscriptsRequest$botId": "<p>The unique identifier of the bot associated with the transcripts that you are searching.</p>",
@@ -1920,10 +2166,19 @@
         "StartBotRecommendationResponse$botRecommendationId": "<p>The identifier of the bot recommendation that you have created.</p>",
         "StartImportRequest$importId": "<p>The unique identifier for the import. It is included in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateUploadUrl.html\">CreateUploadUrl</a> operation.</p>",
         "StartImportResponse$importId": "<p>A unique identifier for the import.</p>",
+        "StartTestExecutionRequest$testSetId": "<p>The test set Id for the test set execution.</p>",
+        "StartTestExecutionResponse$testExecutionId": "<p>The unique identifier of the test set execution.</p>",
+        "StartTestExecutionResponse$testSetId": "<p>The test set Id for the test set execution.</p>",
+        "StartTestSetGenerationResponse$testSetGenerationId": "<p>The unique identifier of the test set generation to describe.</p>",
         "StopBotRecommendationRequest$botId": "<p>The unique identifier of the bot containing the bot recommendation to be stopped.</p>",
         "StopBotRecommendationRequest$botRecommendationId": "<p>The unique identifier of the bot recommendation to be stopped.</p>",
         "StopBotRecommendationResponse$botId": "<p>The unique identifier of the bot containing the bot recommendation that is being stopped.</p>",
         "StopBotRecommendationResponse$botRecommendationId": "<p>The unique identifier of the bot recommendation that is being stopped.</p>",
+        "TestExecutionSummary$testExecutionId": "<p>The unique identifier of the test execution.</p>",
+        "TestExecutionSummary$testSetId": "<p>The unique identifier of the test set used in the test execution.</p>",
+        "TestSetDiscrepancyReportBotAliasTarget$botId": "<p>The unique identifier for the bot alias.</p>",
+        "TestSetExportSpecification$testSetId": "<p>The unique identifier of the test set.</p>",
+        "TestSetSummary$testSetId": "<p>The unique identifier of the test set.</p>",
         "UpdateBotAliasRequest$botId": "<p>The identifier of the bot with the updated alias.</p>",
         "UpdateBotAliasResponse$botId": "<p>The identifier of the bot with the updated alias.</p>",
         "UpdateBotLocaleRequest$botId": "<p>The unique identifier of the bot that contains the locale.</p>",
@@ -1949,7 +2204,9 @@
         "UpdateSlotTypeRequest$slotTypeId": "<p>The unique identifier of the slot type to update.</p>",
         "UpdateSlotTypeRequest$botId": "<p>The identifier of the bot that contains the slot type.</p>",
         "UpdateSlotTypeResponse$slotTypeId": "<p>The unique identifier of the updated slot type.</p>",
-        "UpdateSlotTypeResponse$botId": "<p>The identifier of the bot that contains the slot type.</p>"
+        "UpdateSlotTypeResponse$botId": "<p>The identifier of the bot that contains the slot type.</p>",
+        "UpdateTestSetRequest$testSetId": "<p>The test set Id for which update test operation to be performed.</p>",
+        "UpdateTestSetResponse$testSetId": "<p>The test set Id for which update test operation to be performed.</p>"
       }
     },
     "ImageResponseCard": {
@@ -2059,13 +2316,13 @@
       "refs": {
         "CreateIntentRequest$initialResponseSetting": "<p>Configuration settings for the response that is sent to the user at the beginning of a conversation, before eliciting slot values.</p>",
         "CreateIntentResponse$initialResponseSetting": "<p>Configuration settings for the response that is sent to the user at the beginning of a conversation, before eliciting slot values.</p>",
-        "DescribeIntentResponse$initialResponseSetting": "<p/>",
-        "UpdateIntentRequest$initialResponseSetting": "<p/>",
-        "UpdateIntentResponse$initialResponseSetting": "<p/>"
+        "DescribeIntentResponse$initialResponseSetting": "<p>Configuration setting for a response sent to the user before Amazon Lex starts eliciting slots.</p>",
+        "UpdateIntentRequest$initialResponseSetting": "<p>Configuration settings for a response sent to the user before Amazon Lex starts eliciting slots.</p>",
+        "UpdateIntentResponse$initialResponseSetting": "<p>Configuration settings for a response sent to the user before Amazon Lex starts eliciting slots.</p>"
       }
     },
     "InputContext": {
-      "base": "<p>The name of a context that must be active for an intent to be selected by Amazon Lex.</p>",
+      "base": "<p>A context that must be active for an intent to be selected by Amazon Lex.</p>",
       "refs": {
         "InputContextsList$member": null
       }
@@ -2079,6 +2336,36 @@
         "IntentSummary$inputContexts": "<p>The input contexts that must be active for this intent to be considered for recognition.</p>",
         "UpdateIntentRequest$inputContexts": "<p>A new list of contexts that must be active in order for Amazon Lex to consider the intent.</p>",
         "UpdateIntentResponse$inputContexts": "<p>The updated list of contexts that must be active for the intent to be considered by Amazon Lex.</p>"
+      }
+    },
+    "InputSessionStateSpecification": {
+      "base": "<p>Specifications for the current state of the dialog between the user and the bot in the test set.</p>",
+      "refs": {
+        "UserTurnInputSpecification$sessionState": "<p>Contains information about the session state in the input.</p>"
+      }
+    },
+    "IntentClassificationTestResultItem": {
+      "base": "<p>Information for an intent that is classified by the test workbench.</p>",
+      "refs": {
+        "IntentClassificationTestResultItemList$member": null
+      }
+    },
+    "IntentClassificationTestResultItemCounts": {
+      "base": "<p>The number of items in the intent classification test.</p>",
+      "refs": {
+        "IntentClassificationTestResultItem$resultCounts": "<p>The result of the intent classification test.</p>"
+      }
+    },
+    "IntentClassificationTestResultItemList": {
+      "base": null,
+      "refs": {
+        "IntentClassificationTestResults$items": "<p>A list of the results for the intent classification test.</p>"
+      }
+    },
+    "IntentClassificationTestResults": {
+      "base": "<p>Information for the results of the intent classification test. </p>",
+      "refs": {
+        "TestExecutionResultItems$intentClassificationTestResults": "<p>Intent recognition results aggregated by intent name. The aggregated results contain success and failure rates of intent recognition, speech transcriptions, and end-to-end conversations.</p>"
       }
     },
     "IntentClosingSetting": {
@@ -2123,6 +2410,24 @@
       "base": null,
       "refs": {
         "ListIntentsRequest$filters": "<p>Provides the specification of a filter used to limit the intents in the response to only those that match the filter specification. You can only specify one filter and only one string to filter on.</p>"
+      }
+    },
+    "IntentLevelSlotResolutionTestResultItem": {
+      "base": "<p>Information about intent-level slot resolution in a test result.</p>",
+      "refs": {
+        "IntentLevelSlotResolutionTestResultItemList$member": null
+      }
+    },
+    "IntentLevelSlotResolutionTestResultItemList": {
+      "base": null,
+      "refs": {
+        "IntentLevelSlotResolutionTestResults$items": "<p>Indicates the items for the slot level resolution for the intents.</p>"
+      }
+    },
+    "IntentLevelSlotResolutionTestResults": {
+      "base": "<p>Indicates the success or failure of slots at the intent level.</p>",
+      "refs": {
+        "TestExecutionResultItems$intentLevelSlotResolutionTestResults": "<p>Slot resolution results aggregated by intent and slot name. The aggregated results contain success and failure rates of slot resolution, speech transcriptions, and end-to-end conversations</p>"
       }
     },
     "IntentOverride": {
@@ -2187,7 +2492,7 @@
       }
     },
     "KendraConfiguration": {
-      "base": "<p>Provides configuration information for the AMAZON.KendraSearchIntent intent. When you use this intent, Amazon Lex searches the specified Amazon Kendra index and returns documents from the index that match the user's utterance.</p>",
+      "base": "<p>Provides configuration information for the <code>AMAZON.KendraSearchIntent</code> intent. When you use this intent, Amazon Lex searches the specified Amazon Kendra index and returns documents from the index that match the user's utterance.</p>",
       "refs": {
         "CreateIntentRequest$kendraConfiguration": "<p>Configuration information required to use the <code>AMAZON.KendraSearchIntent</code> intent to connect to an Amazon Kendra index. The <code>AMAZON.KendraSearchIntent</code> intent is called when Amazon Lex can't determine another intent to invoke.</p>",
         "CreateIntentResponse$kendraConfiguration": "<p>Configuration for searching a Amazon Kendra index specified for the intent.</p>",
@@ -2199,16 +2504,17 @@
     "KendraIndexArn": {
       "base": null,
       "refs": {
-        "KendraConfiguration$kendraIndex": "<p>The Amazon Resource Name (ARN) of the Amazon Kendra index that you want the AMAZON.KendraSearchIntent intent to search. The index must be in the same account and Region as the Amazon Lex bot.</p>"
+        "KendraConfiguration$kendraIndex": "<p>The Amazon Resource Name (ARN) of the Amazon Kendra index that you want the <code>AMAZON.KendraSearchIntent</code> intent to search. The index must be in the same account and Region as the Amazon Lex bot.</p>"
       }
     },
     "KmsKeyArn": {
       "base": null,
       "refs": {
         "EncryptionSetting$kmsKeyArn": "<p>The KMS key ARN used to encrypt the metadata associated with the bot recommendation.</p>",
-        "GrammarSlotTypeSource$kmsKeyArn": "<p>The Amazon KMS key required to decrypt the contents of the grammar, if any.</p>",
-        "S3BucketLogDestination$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key for encrypting audio log files stored in an S3 bucket.</p>",
-        "S3BucketTranscriptSource$kmsKeyArn": "<p>The ARN of the KMS key that customer use to encrypt their Amazon S3 bucket. Only use this field if your bucket is encrypted using a customer managed KMS key.</p>"
+        "GrammarSlotTypeSource$kmsKeyArn": "<p>The KMS key required to decrypt the contents of the grammar, if any.</p>",
+        "S3BucketLogDestination$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services Key Management Service (KMS) key for encrypting audio log files stored in an S3 bucket.</p>",
+        "S3BucketTranscriptSource$kmsKeyArn": "<p>The ARN of the KMS key that customer use to encrypt their Amazon S3 bucket. Only use this field if your bucket is encrypted using a customer managed KMS key.</p>",
+        "TestSetStorageLocation$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services Key Management Service (KMS) key for encrypting the test set.</p>"
       }
     },
     "LambdaARN": {
@@ -2389,6 +2695,46 @@
       "refs": {
       }
     },
+    "ListTestExecutionResultItemsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestExecutionResultItemsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestExecutionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestExecutionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestSetRecordsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestSetRecordsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestSetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestSetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LocaleId": {
       "base": null,
       "refs": {
@@ -2399,12 +2745,14 @@
         "BatchUpdateCustomVocabularyItemRequest$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\"> Supported Languages </a>.</p>",
         "BatchUpdateCustomVocabularyItemResponse$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\"> Supported Languages </a>.</p>",
         "BotAliasLocaleSettingsMap$key": null,
+        "BotAliasTestExecutionTarget$localeId": "<p>The locale Id of the bot alias used in the test set execution.</p>",
         "BotLocaleExportSpecification$localeId": "<p>The identifier of the language and locale to export. The string must match one of the locales in the bot.</p>",
         "BotLocaleImportSpecification$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "BotLocaleSummary$localeId": "<p>The language and locale of the bot locale.</p>",
         "BotVersionLocaleSpecification$key": null,
         "BuildBotLocaleRequest$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "BuildBotLocaleResponse$localeId": "<p>The language and locale specified of where the bot can be used.</p>",
+        "ConversationLogsDataSource$localeId": "<p>The locale Id of the conversation log.</p>",
         "CreateBotLocaleRequest$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "CreateBotLocaleResponse$localeId": "<p>The specified locale identifier.</p>",
         "CreateIntentRequest$localeId": "<p>The identifier of the language and locale where this intent is used. All of the bots, slot types, and slots used by the intent must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
@@ -2463,6 +2811,7 @@
         "StartBotRecommendationResponse$localeId": "<p>The identifier of the language and locale of the bot recommendation to start. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
         "StopBotRecommendationRequest$localeId": "<p>The identifier of the language and locale of the bot recommendation to stop. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
         "StopBotRecommendationResponse$localeId": "<p>The identifier of the language and locale of the bot response to stop. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
+        "TestSetDiscrepancyReportBotAliasTarget$localeId": "<p>The unique identifier of the locale associated with the bot alias.</p>",
         "UpdateBotLocaleRequest$localeId": "<p>The identifier of the language and locale to update. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "UpdateBotLocaleResponse$localeId": "<p>The language and locale of the updated bot locale.</p>",
         "UpdateBotRecommendationRequest$localeId": "<p>The identifier of the language and locale of the bot recommendation to update. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
@@ -2507,6 +2856,10 @@
         "ListRecommendedIntentsRequest$maxResults": "<p>The maximum number of bot recommendations to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListSlotTypesRequest$maxResults": "<p>The maximum number of slot types to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListSlotsRequest$maxResults": "<p>The maximum number of slots to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
+        "ListTestExecutionResultItemsRequest$maxResults": "<p>The maximum number of test execution result items to return in each page. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
+        "ListTestExecutionsRequest$maxResults": "<p>The maximum number of test executions to return in each page. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
+        "ListTestSetRecordsRequest$maxResults": "<p>The maximum number of test set records to return in each page. If there are fewer records than the max page size, only the actual number of records are returned.</p>",
+        "ListTestSetsRequest$maxResults": "<p>The maximum number of test sets to return in each page. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "SearchAssociatedTranscriptsRequest$maxResults": "<p>The maximum number of bot recommendations to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "SearchAssociatedTranscriptsResponse$totalResults": "<p>The total number of transcripts returned by the search.</p>"
       }
@@ -2527,7 +2880,7 @@
       }
     },
     "Message": {
-      "base": "<p>The object that provides message text and it's type.</p>",
+      "base": "<p>The object that provides message text and its type.</p>",
       "refs": {
         "MessageGroup$message": "<p>The primary message that Amazon Lex should send to the user.</p>",
         "MessageVariationsList$member": null
@@ -2542,8 +2895,8 @@
     "MessageGroupsList": {
       "base": null,
       "refs": {
-        "FulfillmentStartResponseSpecification$messageGroups": "<p>One to 5 message groups that contain start messages. Amazon Lex chooses one of the messages to play to the user.</p>",
-        "FulfillmentUpdateResponseSpecification$messageGroups": "<p>One to 5 message groups that contain update messages. Amazon Lex chooses one of the messages to play to the user.</p>",
+        "FulfillmentStartResponseSpecification$messageGroups": "<p>1 - 5 message groups that contain start messages. Amazon Lex chooses one of the messages to play to the user.</p>",
+        "FulfillmentUpdateResponseSpecification$messageGroups": "<p>1 - 5 message groups that contain update messages. Amazon Lex chooses one of the messages to play to the user.</p>",
         "PromptSpecification$messageGroups": "<p>A collection of messages that Amazon Lex can send to the user. Amazon Lex chooses the actual message to send at runtime.</p>",
         "ResponseSpecification$messageGroups": "<p>A collection of responses that Amazon Lex can send to the user. Amazon Lex chooses the actual response to send at runtime.</p>",
         "StillWaitingResponseSpecification$messageGroups": "<p>One or more message groups, each containing one or more messages, that define the prompts that Amazon Lex sends to the user.</p>"
@@ -2570,7 +2923,7 @@
     "MultipleValuesSetting": {
       "base": "<p>Indicates whether a slot can return multiple values.</p>",
       "refs": {
-        "CreateSlotRequest$multipleValuesSetting": "<p>Indicates whether the slot returns multiple values in one response. Multi-value slots are only available in the en-US locale. If you set this value to <code>true</code> in any other locale, Amazon Lex throws a <code>ValidationException</code>. </p> <p>If the <code>multipleValuesSetting</code> is not set, the default value is <code>false</code>.</p>",
+        "CreateSlotRequest$multipleValuesSetting": "<p>Indicates whether the slot returns multiple values in one response. Multi-value slots are only available in the <code>en-US</code> locale. If you set this value to <code>true</code> in any other locale, Amazon Lex throws a <code>ValidationException</code>. </p> <p>If the <code>multipleValuesSetting</code> is not set, the default value is <code>false</code>.</p>",
         "CreateSlotResponse$multipleValuesSetting": "<p>Indicates whether the slot returns multiple values in one response.</p>",
         "DescribeSlotResponse$multipleValuesSetting": "<p>Indicates whether the slot accepts multiple values in a single utterance.</p> <p>If the <code>multipleValuesSetting</code> is not set, the default value is <code>false</code>.</p>",
         "UpdateSlotRequest$multipleValuesSetting": "<p>Determines whether the slot accepts multiple values in one response. Multiple value slots are only available in the en-US locale. If you set this value to <code>true</code> in any other locale, Amazon Lex throws a <code>ValidationException</code>.</p> <p>If the <code>multipleValuesSetting</code> is not set, the default value is <code>false</code>.</p>",
@@ -2580,12 +2933,15 @@
     "Name": {
       "base": null,
       "refs": {
+        "AgentTurnResult$actualIntent": "<p>The actual intent for the agent turn in a test set execution.</p>",
         "BotAliasSummary$botAliasName": "<p>The name of the bot alias.</p>",
         "BotImportSpecification$botName": "<p>The name that Amazon Lex should use for the bot.</p>",
         "BotMember$botMemberName": "<p>The unique name of a bot that is a member of this network of bots.</p>",
         "BotSummary$botName": "<p>The name of the bot.</p>",
         "BotVersionSummary$botName": "<p>The name of the bot associated with the version.</p>",
         "ConditionalBranch$name": "<p>The name of the branch. </p>",
+        "ConversationLevelIntentClassificationResultItem$intentName": "<p>The intent name used in the evaluation of intent level success or failure.</p>",
+        "ConversationLevelSlotResolutionResultItem$intentName": "<p>The intents used in the slots list for the slot resolution details.</p>",
         "CreateBotAliasRequest$botAliasName": "<p>The alias to create. The name must be unique for the bot.</p>",
         "CreateBotAliasResponse$botAliasName": "<p>The name specified for the bot alias.</p>",
         "CreateBotRequest$botName": "<p>The name of the bot. The bot name must be unique in the account that creates the bot.</p>",
@@ -2595,7 +2951,7 @@
         "CreateResourcePolicyStatementRequest$statementId": "<p>The name of the statement. The ID is the same as the <code>Sid</code> IAM property. The statement name must be unique within the policy. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_sid.html\">IAM JSON policy elements: Sid</a>. </p>",
         "CreateSlotRequest$slotName": "<p>The name of the slot. Slot names must be unique within the bot that contains the slot.</p>",
         "CreateSlotResponse$slotName": "<p>The name specified for the slot.</p>",
-        "CreateSlotTypeRequest$slotTypeName": "<p>The name for the slot. A slot type name must be unique within the account.</p>",
+        "CreateSlotTypeRequest$slotTypeName": "<p>The name for the slot. A slot type name must be unique within the intent.</p>",
         "CreateSlotTypeResponse$slotTypeName": "<p>The name specified for the slot type.</p>",
         "DeleteResourcePolicyStatementRequest$statementId": "<p>The name of the statement (SID) to delete from the policy.</p>",
         "DescribeBotAliasResponse$botAliasName": "<p>The name of the bot alias.</p>",
@@ -2605,20 +2961,35 @@
         "DescribeIntentResponse$intentName": "<p>The name specified for the intent.</p>",
         "DescribeSlotResponse$slotName": "<p>The name specified for the slot.</p>",
         "DescribeSlotTypeResponse$slotTypeName": "<p>The name specified for the slot type.</p>",
+        "DescribeTestExecutionResponse$testSetName": "<p>The test set name of the test set execution.</p>",
+        "DescribeTestSetGenerationResponse$testSetName": "<p>The test set name for the generated test set.</p>",
+        "DescribeTestSetResponse$testSetName": "<p>The test set name of the test set.</p>",
         "DialogAction$slotToElicit": "<p>If the dialog action is <code>ElicitSlot</code>, defines the slot to elicit from the user.</p>",
         "DialogCodeHookInvocationSetting$invocationLabel": "<p>A label that indicates the dialog step from which the dialog code hook is happening.</p>",
         "ElicitationCodeHookInvocationSetting$invocationLabel": "<p>A label that indicates the dialog step from which the dialog code hook is happening.</p>",
         "ImportSummary$importedResourceName": "<p>The name that you gave the imported resource.</p>",
         "InputContext$name": "<p>The name of the context.</p>",
+        "IntentClassificationTestResultItem$intentName": "<p>The name of the intent.</p>",
+        "IntentLevelSlotResolutionTestResultItem$intentName": "<p>The name of the intent that was recognized.</p>",
         "IntentOverride$name": "<p>The name of the intent. Only required when you're switching intents.</p>",
         "IntentSummary$intentName": "<p>The name of the intent.</p>",
         "OutputContext$name": "<p>The name of the output context.</p>",
         "RecommendedIntentSummary$intentName": "<p>The name of a recommended intent associated with the bot recommendation.</p>",
+        "SlotHintsIntentMap$key": null,
+        "SlotHintsSlotMap$key": null,
         "SlotSummary$slotName": "<p>The name given to the slot.</p>",
         "SlotTypeSummary$slotTypeName": "<p>The name of the slot type.</p>",
         "SlotValueOverrideMap$key": null,
+        "StartTestSetGenerationRequest$testSetName": "<p>The test set name for the test set generation request.</p>",
+        "StartTestSetGenerationResponse$testSetName": "<p>The test set name used for the test set generation.</p>",
         "SubSlotSpecificationMap$key": null,
         "SubSlotTypeComposition$name": "<p>Name of a constituent sub slot inside a composite slot.</p>",
+        "TestExecutionSummary$testSetName": "<p>The name of the test set used in the test execution.</p>",
+        "TestSetImportResourceSpecification$testSetName": "<p>The name of the test set.</p>",
+        "TestSetIntentDiscrepancyItem$intentName": "<p>The name of the intent in the discrepancy report.</p>",
+        "TestSetSlotDiscrepancyItem$intentName": "<p>The name of the intent associated with the slot in the discrepancy report.</p>",
+        "TestSetSlotDiscrepancyItem$slotName": "<p>The name of the slot in the discrepancy report.</p>",
+        "TestSetSummary$testSetName": "<p>The name of the test set.</p>",
         "UpdateBotAliasRequest$botAliasName": "<p>The new name to assign to the bot alias.</p>",
         "UpdateBotAliasResponse$botAliasName": "<p>The updated name of the bot alias.</p>",
         "UpdateBotRequest$botName": "<p>The new name of the bot. The name must be unique in the account that creates the bot.</p>",
@@ -2628,7 +2999,11 @@
         "UpdateSlotRequest$slotName": "<p>The new name for the slot.</p>",
         "UpdateSlotResponse$slotName": "<p>The updated name of the slot.</p>",
         "UpdateSlotTypeRequest$slotTypeName": "<p>The new name of the slot type.</p>",
-        "UpdateSlotTypeResponse$slotTypeName": "<p>The updated name of the slot type.</p>"
+        "UpdateSlotTypeResponse$slotTypeName": "<p>The updated name of the slot type.</p>",
+        "UpdateTestSetRequest$testSetName": "<p>The new test set name.</p>",
+        "UpdateTestSetResponse$testSetName": "<p>The test set name for the updated test set.</p>",
+        "UserTurnIntentOutput$name": "<p>The name of the intent.</p>",
+        "UserTurnSlotOutputMap$key": null
       }
     },
     "NewCustomVocabularyItem": {
@@ -2676,14 +3051,25 @@
         "ListSlotTypesRequest$nextToken": "<p>If the response from the <code>ListSlotTypes</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListSlotTypesResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListSlotTypes</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListSlotTypes</code> operation request to get the next page of results.</p>",
         "ListSlotsRequest$nextToken": "<p>If the response from the <code>ListSlots</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
-        "ListSlotsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListSlots</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListSlots</code> operation request to get the next page of results.</p>"
+        "ListSlotsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListSlots</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListSlots</code> operation request to get the next page of results.</p>",
+        "ListTestExecutionResultItemsRequest$nextToken": "<p>If the response from the <code>ListTestExecutionResultItems</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
+        "ListTestExecutionResultItemsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListTestExecutionResultItems</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListTestExecutionResultItems</code> operation request to get the next page of results.</p>",
+        "ListTestExecutionsRequest$nextToken": "<p>If the response from the ListTestExecutions operation contains more results than specified in the maxResults parameter, a token is returned in the response. Use that token in the nextToken parameter to return the next page of results.</p>",
+        "ListTestExecutionsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the ListTestExecutions operation. If the nextToken field is present, you send the contents as the nextToken parameter of a ListTestExecutions operation request to get the next page of results.</p>",
+        "ListTestSetRecordsRequest$nextToken": "<p>If the response from the ListTestSetRecords operation contains more results than specified in the maxResults parameter, a token is returned in the response. Use that token in the nextToken parameter to return the next page of results.</p>",
+        "ListTestSetRecordsResponse$nextToken": "<p>A token that indicates whether there are more records to return in a response to the ListTestSetRecords operation. If the nextToken field is present, you send the contents as the nextToken parameter of a ListTestSetRecords operation request to get the next page of records.</p>",
+        "ListTestSetsRequest$nextToken": "<p>If the response from the ListTestSets operation contains more results than specified in the maxResults parameter, a token is returned in the response. Use that token in the nextToken parameter to return the next page of results.</p>",
+        "ListTestSetsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the ListTestSets operation. If the nextToken field is present, you send the contents as the nextToken parameter of a ListTestSets operation request to get the next page of results.</p>"
       }
     },
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "ExecutionErrorDetails$errorCode": "<p>The error code for the error.</p>",
+        "ExecutionErrorDetails$errorMessage": "<p>The message describing the error.</p>",
         "SlotValue$interpretedValue": "<p>The value that Amazon Lex determines for the slot. The actual value depends on the setting of the value selection strategy for the bot. You can choose to use the value entered by the user, or you can have Amazon Lex choose the first value in the <code>resolvedValues</code> list.</p>",
-        "StringMap$key": null
+        "StringMap$key": null,
+        "UserTurnSlotOutput$value": "<p>The value output by the slot recognition.</p>"
       }
     },
     "NumericalBotVersion": {
@@ -2754,6 +3140,24 @@
         "IntentSummary$outputContexts": "<p>The output contexts that are activated when this intent is fulfilled.</p>",
         "UpdateIntentRequest$outputContexts": "<p>A new list of contexts that Amazon Lex activates when the intent is fulfilled.</p>",
         "UpdateIntentResponse$outputContexts": "<p>The updated list of contexts that Amazon Lex activates when the intent is fulfilled.</p>"
+      }
+    },
+    "OverallTestResultItem": {
+      "base": "<p>Information about the overall results for a test execution result.</p>",
+      "refs": {
+        "OverallTestResultItemList$member": null
+      }
+    },
+    "OverallTestResultItemList": {
+      "base": null,
+      "refs": {
+        "OverallTestResults$items": "<p>A list of the overall test results.</p>"
+      }
+    },
+    "OverallTestResults": {
+      "base": "<p>Information about the overall test results.</p>",
+      "refs": {
+        "TestExecutionResultItems$overallTestResults": "<p>Overall results for the test execution, including the breakdown of conversations and single-input utterances.</p>"
       }
     },
     "ParentBotNetwork": {
@@ -2827,7 +3231,9 @@
         "BotRecommendationResults$botLocaleExportUrl": "<p>The presigned URL link of the recommended bot definition.</p>",
         "BotRecommendationResults$associatedTranscriptsUrl": "<p>The presigned url link of the associated transcript.</p>",
         "CreateUploadUrlResponse$uploadUrl": "<p>A pre-signed S3 write URL. Upload the zip archive file that contains the definition of your bot or bot locale.</p>",
-        "DescribeExportResponse$downloadUrl": "<p>A pre-signed S3 URL that points to the bot or bot locale archive. The URL is only available for 5 minutes after calling the <code>DescribeExport</code> operation.</p>"
+        "DescribeExportResponse$downloadUrl": "<p>A pre-signed S3 URL that points to the bot or bot locale archive. The URL is only available for 5 minutes after calling the <code>DescribeExport</code> operation.</p>",
+        "DescribeTestSetDiscrepancyReportResponse$testSetDiscrepancyRawOutputUrl": "<p>Pre-signed Amazon S3 URL to download the test set discrepancy report.</p>",
+        "GetTestExecutionArtifactsUrlResponse$downloadArtifactsUrl": "<p>The pre-signed Amazon S3 URL to download completed test execution.</p>"
       }
     },
     "Principal": {
@@ -2845,13 +3251,13 @@
     "PrincipalList": {
       "base": null,
       "refs": {
-        "CreateResourcePolicyStatementRequest$principal": "<p>An IAM principal, such as an IAM users, IAM roles, or AWS services that is allowed or denied access to a resource. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html\">AWS JSON policy elements: Principal</a>.</p>"
+        "CreateResourcePolicyStatementRequest$principal": "<p>An IAM principal, such as an IAM user, IAM role, or Amazon Web Services services that is allowed or denied access to a resource. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html\">Amazon Web Services JSON policy elements: Principal</a>.</p>"
       }
     },
     "PriorityValue": {
       "base": null,
       "refs": {
-        "SlotPriority$priority": "<p>The priority that a slot should be elicited.</p>"
+        "SlotPriority$priority": "<p>The priority that Amazon Lex should apply to the slot.</p>"
       }
     },
     "PromptAttempt": {
@@ -2918,10 +3324,17 @@
         "ListRecommendedIntentsResponse$summaryList": "<p>Summary information for the intents that meet the filter criteria specified in the request. The length of the list is specified in the maxResults parameter of the request. If there are more intents available, the nextToken field contains a token to get the next page of results.</p>"
       }
     },
+    "RecordNumber": {
+      "base": null,
+      "refs": {
+        "TestSetTurnRecord$recordNumber": "<p>The record number associated with the turn.</p>",
+        "UtteranceLevelTestResultItem$recordNumber": "<p>The record number of the result.</p>"
+      }
+    },
     "RegexPattern": {
       "base": null,
       "refs": {
-        "SlotValueRegexFilter$pattern": "<p>A regular expression used to validate the value of a slot.</p> <p> Use a standard regular expression. Amazon Lex supports the following characters in the regular expression: </p> <ul> <li> <p>A-Z, a-z</p> </li> <li> <p>0-9</p> </li> <li> <p>Unicode characters (\"\\ u&lt;Unicode&gt;\")</p> </li> </ul> <p> Represent Unicode characters with four digits, for example \"\\u0041\" or \"\\u005A\". </p> <p> The following regular expression operators are not supported: </p> <ul> <li> <p>Infinite repeaters: *, +, or {x,} with no upper bound.</p> </li> <li> <p>Wild card (.)</p> </li> </ul>"
+        "SlotValueRegexFilter$pattern": "<p>A regular expression used to validate the value of a slot.</p> <p> Use a standard regular expression. Amazon Lex supports the following characters in the regular expression: </p> <ul> <li> <p>A-Z, a-z</p> </li> <li> <p>0-9</p> </li> <li> <p>Unicode characters (\"\\⁠u&lt;Unicode&gt;\")</p> </li> </ul> <p> Represent Unicode characters with four digits, for example \"\\⁠u0041\" or \"\\⁠u005A\". </p> <p> The following regular expression operators are not supported: </p> <ul> <li> <p>Infinite repeaters: *, +, or {x,} with no upper bound.</p> </li> <li> <p>Wild card (.)</p> </li> </ul>"
       }
     },
     "RelativeAggregationDuration": {
@@ -2993,8 +3406,45 @@
         "CreateBotResponse$roleArn": "<p>The IAM role specified for the bot.</p>",
         "DescribeBotResponse$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that has permission to access the bot.</p>",
         "DescribeBotVersionResponse$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that has permission to access the bot version.</p>",
+        "DescribeTestSetGenerationResponse$roleArn": "<p> The roleARN of the test set used for the test set generation.</p>",
+        "DescribeTestSetResponse$roleArn": "<p>The roleARN used for any operation in the test set to access resources in the Amazon Web Services account.</p>",
+        "StartTestSetGenerationRequest$roleArn": "<p>The roleARN used for any operation in the test set to access resources in the Amazon Web Services account.</p>",
+        "StartTestSetGenerationResponse$roleArn": "<p>The roleARN used for any operation in the test set to access resources in the Amazon Web Services account.</p>",
+        "TestSetImportResourceSpecification$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that has permission to access the test set.</p>",
+        "TestSetSummary$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that has permission to access the test set.</p>",
         "UpdateBotRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the bot.</p>",
-        "UpdateBotResponse$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used by the bot after the update.</p>"
+        "UpdateBotResponse$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used by the bot after the update.</p>",
+        "UpdateTestSetResponse$roleArn": "<p>The roleARN used for any operation in the test set to access resources in the Amazon Web Services account.</p>"
+      }
+    },
+    "RuntimeHintDetails": {
+      "base": "<p>Provides an array of phrases that should be given preference when resolving values for a slot.</p>",
+      "refs": {
+        "SlotHintsSlotMap$value": null
+      }
+    },
+    "RuntimeHintPhrase": {
+      "base": null,
+      "refs": {
+        "RuntimeHintValue$phrase": "<p>The phrase that Amazon Lex should look for in the user's input to the bot.</p>"
+      }
+    },
+    "RuntimeHintValue": {
+      "base": "<p>Provides the phrase that Amazon Lex should look for in the user's input to the bot.</p>",
+      "refs": {
+        "RuntimeHintValuesList$member": null
+      }
+    },
+    "RuntimeHintValuesList": {
+      "base": null,
+      "refs": {
+        "RuntimeHintDetails$runtimeHintValues": "<p>One or more strings that Amazon Lex should look for in the input to the bot. Each phrase is given preference when deciding on slot values.</p>"
+      }
+    },
+    "RuntimeHints": {
+      "base": "<p>You can provide Amazon Lex with hints to the phrases that a customer is likely to use for a slot. When a slot with hints is resolved, the phrases in the runtime hints are preferred in the resolution. You can provide hints for a maximum of 100 intents. You can provide a maximum of 100 slots.</p> <p>Before you can use runtime hints with an existing bot, you must first rebuild the bot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html\">Using runtime hints to improve recognition of slot values</a>.</p>",
+      "refs": {
+        "InputSessionStateSpecification$runtimeHints": "<p>Runtime hints for the session state.</p>"
       }
     },
     "S3BucketArn": {
@@ -3012,8 +3462,10 @@
     "S3BucketName": {
       "base": null,
       "refs": {
-        "GrammarSlotTypeSource$s3BucketName": "<p>The name of the S3 bucket that contains the grammar source.</p>",
-        "S3BucketTranscriptSource$s3BucketName": "<p>The name of the bucket containing the transcript and the associated metadata.</p>"
+        "GrammarSlotTypeSource$s3BucketName": "<p>The name of the Amazon S3 bucket that contains the grammar source.</p>",
+        "S3BucketTranscriptSource$s3BucketName": "<p>The name of the bucket containing the transcript and the associated metadata.</p>",
+        "TestSetImportInputLocation$s3BucketName": "<p>The name of the Amazon S3 bucket.</p>",
+        "TestSetStorageLocation$s3BucketName": "<p>The name of the Amazon S3 bucket in which the test set is stored.</p>"
       }
     },
     "S3BucketTranscriptSource": {
@@ -3025,7 +3477,9 @@
     "S3ObjectPath": {
       "base": null,
       "refs": {
-        "GrammarSlotTypeSource$s3ObjectKey": "<p>The path to the grammar in the S3 bucket.</p>"
+        "GrammarSlotTypeSource$s3ObjectKey": "<p>The path to the grammar in the Amazon S3 bucket.</p>",
+        "TestSetImportInputLocation$s3Path": "<p>The path inside the Amazon S3 bucket pointing to the test-set CSV file.</p>",
+        "TestSetStorageLocation$s3Path": "<p>The path inside the Amazon S3 bucket where the test set is stored.</p>"
       }
     },
     "SSMLMessage": {
@@ -3100,7 +3554,7 @@
     "ServicePrincipal": {
       "base": null,
       "refs": {
-        "Principal$service": "<p>The name of the AWS service that should allowed or denied access to an Amazon Lex action.</p>"
+        "Principal$service": "<p>The name of the Amazon Web Services service that should allowed or denied access to an Amazon Lex action.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -3197,6 +3651,19 @@
         "ListSlotsRequest$filters": "<p>Provides the specification of a filter used to limit the slots in the response to only those that match the filter specification. You can only specify one filter and only one string to filter on.</p>"
       }
     },
+    "SlotHintsIntentMap": {
+      "base": null,
+      "refs": {
+        "RuntimeHints$slotHints": "<p>A list of the slots in the intent that should have runtime hints added, and the phrases that should be added for each slot.</p> <p>The first level of the <code>slotHints</code> map is the name of the intent. The second level is the name of the slot within the intent. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html\">Using hints to improve accuracy</a>.</p> <p>The intent name and slot name must exist.</p>"
+      }
+    },
+    "SlotHintsSlotMap": {
+      "base": null,
+      "refs": {
+        "RuntimeHintDetails$subSlotHints": "<p>A map of constituent sub slot names inside a composite slot in the intent and the phrases that should be added for each sub slot. Inside each composite slot hints, this structure provides a mechanism to add granular sub slot phrases. Only sub slot hints are supported for composite slots. The intent name, composite slot name and the constituent sub slot names must exist.</p>",
+        "SlotHintsIntentMap$value": null
+      }
+    },
     "SlotPrioritiesList": {
       "base": null,
       "refs": {
@@ -3209,6 +3676,24 @@
       "base": "<p>Sets the priority that Amazon Lex should use when eliciting slot values from a user.</p>",
       "refs": {
         "SlotPrioritiesList$member": null
+      }
+    },
+    "SlotResolutionTestResultItem": {
+      "base": "<p>Information about the success and failure rate of slot resolution in the results of a test execution.</p>",
+      "refs": {
+        "SlotResolutionTestResultItems$member": null
+      }
+    },
+    "SlotResolutionTestResultItemCounts": {
+      "base": "<p>Information about the counts for a slot resolution in the results of a test execution.</p>",
+      "refs": {
+        "SlotResolutionTestResultItem$resultCounts": "<p>A result for slot resolution in the results of a test execution.</p>"
+      }
+    },
+    "SlotResolutionTestResultItems": {
+      "base": null,
+      "refs": {
+        "IntentLevelSlotResolutionTestResultItem$slotResolutionResults": "<p>The results for the slot resolution in the test execution result.</p>"
       }
     },
     "SlotShape": {
@@ -3244,7 +3729,7 @@
     "SlotTypeCategory": {
       "base": null,
       "refs": {
-        "SlotTypeSummary$slotTypeCategory": "<p>Indicates the type of the slot type.</p> <ul> <li> <p> <code>Custom</code> - A slot type that you created using custom values. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/custom-slot-types.html\">Creating custom slot types</a>.</p> </li> <li> <p> <code>Extended</code> - A slot type created by extending the AMAZON.AlphaNumeric built-in slot type. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/built-in-slot-alphanumerice.html\">AMAZON.AlphaNumeric</a>.</p> </li> <li> <p> <code>ExternalGrammar</code> - A slot type using a custom GRXML grammar to define values. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/building-grxml.html\">Using a custom grammar slot type</a>.</p> </li> </ul>"
+        "SlotTypeSummary$slotTypeCategory": "<p>Indicates the type of the slot type.</p> <ul> <li> <p> <code>Custom</code> - A slot type that you created using custom values. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/custom-slot-types.html\">Creating custom slot types</a>.</p> </li> <li> <p> <code>Extended</code> - A slot type created by extending the <code>AMAZON.AlphaNumeric</code> built-in slot type. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/built-in-slot-alphanumerice.html\"> <code>AMAZON.AlphaNumeric</code> </a>.</p> </li> <li> <p> <code>ExternalGrammar</code> - A slot type using a custom GRXML grammar to define values. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/building-grxml.html\">Using a custom grammar slot type</a>.</p> </li> </ul>"
       }
     },
     "SlotTypeFilter": {
@@ -3336,7 +3821,7 @@
       }
     },
     "SlotValueElicitationSetting": {
-      "base": "<p>Specifies the elicitation setting details for constituent sub slots of a composite slot.</p>",
+      "base": "<p>Specifies the elicitation setting details eliciting a slot.</p>",
       "refs": {
         "CreateSlotRequest$valueElicitationSetting": "<p>Specifies prompts that Amazon Lex sends to the user to elicit a response that provides the value for the slot. </p>",
         "CreateSlotResponse$valueElicitationSetting": "<p>The value elicitation settings specified for the slot.</p>",
@@ -3355,7 +3840,7 @@
     "SlotValueOverrideMap": {
       "base": null,
       "refs": {
-        "IntentOverride$slots": "<p>A map of all of the slot value overrides for the intent. The name of the slot maps to the value of the slot. Slots that are not included in the map aren't overridden.,</p>"
+        "IntentOverride$slots": "<p>A map of all of the slot value overrides for the intent. The name of the slot maps to the value of the slot. Slots that are not included in the map aren't overridden.</p>"
       }
     },
     "SlotValueRegexFilter": {
@@ -3367,13 +3852,13 @@
     "SlotValueResolutionStrategy": {
       "base": null,
       "refs": {
-        "SlotValueSelectionSetting$resolutionStrategy": "<p>Determines the slot resolution strategy that Amazon Lex uses to return slot type values. The field can be set to one of the following values:</p> <ul> <li> <p>OriginalValue - Returns the value entered by the user, if the user value is similar to the slot value.</p> </li> <li> <p>TopResolution - If there is a resolution list for the slot, return the first value in the resolution list as the slot type value. If there is no resolution list, null is returned.</p> </li> </ul> <p>If you don't specify the valueSelectionStrategy, the default is OriginalValue. </p>"
+        "SlotValueSelectionSetting$resolutionStrategy": "<p>Determines the slot resolution strategy that Amazon Lex uses to return slot type values. The field can be set to one of the following values:</p> <ul> <li> <p> <code>ORIGINAL_VALUE</code> - Returns the value entered by the user, if the user value is similar to the slot value.</p> </li> <li> <p> <code>TOP_RESOLUTION</code> - If there is a resolution list for the slot, return the first value in the resolution list as the slot type value. If there is no resolution list, null is returned.</p> </li> </ul> <p>If you don't specify the <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>"
       }
     },
     "SlotValueSelectionSetting": {
       "base": "<p>Contains settings used by Amazon Lex to select a slot value.</p>",
       "refs": {
-        "CreateSlotTypeRequest$valueSelectionSetting": "<p>Determines the strategy that Amazon Lex uses to select a value from the list of possible values. The field can be set to one of the following values:</p> <ul> <li> <p> <code>OriginalValue</code> - Returns the value entered by the user, if the user value is similar to the slot value.</p> </li> <li> <p> <code>TopResolution</code> - If there is a resolution list for the slot, return the first value in the resolution list. If there is no resolution list, return null.</p> </li> </ul> <p>If you don't specify the <code>valueSelectionSetting</code> parameter, the default is <code>OriginalValue</code>.</p>",
+        "CreateSlotTypeRequest$valueSelectionSetting": "<p>Determines the strategy that Amazon Lex uses to select a value from the list of possible values. The field can be set to one of the following values:</p> <ul> <li> <p> <code>ORIGINAL_VALUE</code> - Returns the value entered by the user, if the user value is similar to the slot value.</p> </li> <li> <p> <code>TOP_RESOLUTION</code> - If there is a resolution list for the slot, return the first value in the resolution list. If there is no resolution list, return null.</p> </li> </ul> <p>If you don't specify the <code>valueSelectionSetting</code> parameter, the default is <code>ORIGINAL_VALUE</code>.</p>",
         "CreateSlotTypeResponse$valueSelectionSetting": "<p>The strategy that Amazon Lex uses to select a value from the list of possible values.</p>",
         "DescribeSlotTypeResponse$valueSelectionSetting": "<p>The strategy that Amazon Lex uses to choose a value from a list of possible values.</p>",
         "UpdateSlotTypeRequest$valueSelectionSetting": "<p>The strategy that Amazon Lex should use when deciding on a value from the list of slot type values.</p>",
@@ -3399,7 +3884,9 @@
         "ImportSortBy$order": "<p>The order to sort the list.</p>",
         "IntentSortBy$order": "<p>The order to sort the list. You can choose ascending or descending.</p>",
         "SlotSortBy$order": "<p>The order to sort the list. You can choose ascending or descending.</p>",
-        "SlotTypeSortBy$order": "<p>The order to sort the list. You can say ascending or descending.</p>"
+        "SlotTypeSortBy$order": "<p>The order to sort the list. You can say ascending or descending.</p>",
+        "TestExecutionSortBy$order": "<p>Specifies whether to sort in ascending or descending order.</p>",
+        "TestSetSortBy$order": "<p>Specifies whether to sort in ascending or descending order.</p>"
       }
     },
     "Specifications": {
@@ -3424,6 +3911,26 @@
       }
     },
     "StartImportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartTestExecutionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartTestExecutionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartTestSetGenerationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartTestSetGenerationResponse": {
       "base": null,
       "refs": {
       }
@@ -3459,13 +3966,17 @@
     "String": {
       "base": null,
       "refs": {
-        "StringMap$value": null
+        "StringMap$value": null,
+        "TestSetIntentDiscrepancyItem$errorMessage": "<p>The error message for a discrepancy for an intent between the test set and the bot.</p>",
+        "TestSetSlotDiscrepancyItem$errorMessage": "<p>The error message for a discrepancy for an intent between the test set and the bot.</p>"
       }
     },
     "StringMap": {
       "base": null,
       "refs": {
-        "DialogState$sessionAttributes": "<p>Map of key/value pairs representing session-specific context information. It contains application information passed between Amazon Lex and a client application.</p>"
+        "DialogState$sessionAttributes": "<p>Map of key/value pairs representing session-specific context information. It contains application information passed between Amazon Lex and a client application.</p>",
+        "InputSessionStateSpecification$sessionAttributes": "<p>Session attributes for the session state.</p>",
+        "UserTurnInputSpecification$requestAttributes": "<p>Request attributes of the user turn.</p>"
       }
     },
     "SubSlotExpression": {
@@ -3539,7 +4050,10 @@
         "CreateBotResponse$botTags": "<p>A list of tags associated with the bot.</p>",
         "CreateBotResponse$testBotAliasTags": "<p>A list of tags associated with the test alias for the bot.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags associated with a resource.</p>",
-        "TagResourceRequest$tags": "<p>A list of tag keys to add to the resource. If a tag key already exists, the existing value is replaced with the new value.</p>"
+        "StartTestSetGenerationRequest$testSetTags": "<p>A list of tags to add to the test set. You can only add tags when you import/generate a new test set. You can't use the <code>UpdateTestSet</code> operation to update tags. To update tags, use the <code>TagResource</code> operation.</p>",
+        "StartTestSetGenerationResponse$testSetTags": "<p>A list of tags that was used for the test set that is being generated.</p>",
+        "TagResourceRequest$tags": "<p>A list of tag keys to add to the resource. If a tag key already exists, the existing value is replaced with the new value.</p>",
+        "TestSetImportResourceSpecification$testSetTags": "<p>A list of tags to add to the test set. You can only add tags when you import/generate a new test set. You can't use the <code>UpdateTestSet</code> operation to update tags. To update tags, use the <code>TagResource</code> operation.</p>"
       }
     },
     "TagResourceRequest": {
@@ -3556,6 +4070,295 @@
       "base": null,
       "refs": {
         "TagMap$value": null
+      }
+    },
+    "TestExecutionApiMode": {
+      "base": null,
+      "refs": {
+        "DescribeTestExecutionResponse$apiMode": "<p>Indicates whether we use streaming or non-streaming APIs are used for the test set execution. For streaming, <code>StartConversation</code> Amazon Lex Runtime API is used. Whereas for non-streaming, <code>RecognizeUtterance</code> and <code>RecognizeText</code> Amazon Lex Runtime API is used.</p>",
+        "StartTestExecutionRequest$apiMode": "<p>Indicates whether we use streaming or non-streaming APIs for the test set execution. For streaming, StartConversation Runtime API is used. Whereas, for non-streaming, RecognizeUtterance and RecognizeText Amazon Lex Runtime API are used.</p>",
+        "StartTestExecutionResponse$apiMode": "<p>Indicates whether we use streaming or non-streaming APIs for the test set execution. For streaming, StartConversation Amazon Lex Runtime API is used. Whereas for non-streaming, RecognizeUtterance and RecognizeText Amazon Lex Runtime API are used.</p>",
+        "TestExecutionSummary$apiMode": "<p>Specifies whether the API mode for the test execution is streaming or non-streaming.</p>"
+      }
+    },
+    "TestExecutionModality": {
+      "base": null,
+      "refs": {
+        "DescribeTestExecutionResponse$testExecutionModality": "<p>Indicates whether test set is audio or text.</p>",
+        "StartTestExecutionRequest$testExecutionModality": "<p>Indicates whether audio or text is used.</p>",
+        "StartTestExecutionResponse$testExecutionModality": "<p>Indicates whether audio or text is used.</p>",
+        "TestExecutionSummary$testExecutionModality": "<p>Specifies whether the data used for the test execution is written or spoken.</p>"
+      }
+    },
+    "TestExecutionResultFilterBy": {
+      "base": "<p>Contains information about the method by which to filter the results of the test execution.</p>",
+      "refs": {
+        "ListTestExecutionResultItemsRequest$resultFilterBy": "<p>The filter for the list of results from the test set execution.</p>"
+      }
+    },
+    "TestExecutionResultItems": {
+      "base": "<p>Contains the results of the test execution, grouped by type of results. See <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/test-results-details-test-set.html\">Test result details\"&gt;Test results details</a> for details about different types of results.</p>",
+      "refs": {
+        "ListTestExecutionResultItemsResponse$testExecutionResults": "<p>The list of results from the test execution.</p>"
+      }
+    },
+    "TestExecutionSortAttribute": {
+      "base": null,
+      "refs": {
+        "TestExecutionSortBy$attribute": "<p>Specifies whether to sort the test set executions by the date and time at which the test sets were created.</p>"
+      }
+    },
+    "TestExecutionSortBy": {
+      "base": "<p>Contains information about the method by which to sort the instances of test executions you have carried out.</p>",
+      "refs": {
+        "ListTestExecutionsRequest$sortBy": "<p>The sort order of the test set executions.</p>"
+      }
+    },
+    "TestExecutionStatus": {
+      "base": null,
+      "refs": {
+        "DescribeTestExecutionResponse$testExecutionStatus": "<p>The test execution status for the test execution.</p>",
+        "TestExecutionSummary$testExecutionStatus": "<p>The current status of the test execution.</p>"
+      }
+    },
+    "TestExecutionSummary": {
+      "base": "<p>Summarizes metadata about the test execution.</p>",
+      "refs": {
+        "TestExecutionSummaryList$member": null
+      }
+    },
+    "TestExecutionSummaryList": {
+      "base": null,
+      "refs": {
+        "ListTestExecutionsResponse$testExecutions": "<p>The list of test executions.</p>"
+      }
+    },
+    "TestExecutionTarget": {
+      "base": "<p>Contains information about the bot used for the test execution.</p>",
+      "refs": {
+        "DescribeTestExecutionResponse$target": "<p>The target bot for the test set execution details.</p>",
+        "StartTestExecutionRequest$target": "<p>The target bot for the test set execution.</p>",
+        "StartTestExecutionResponse$target": "<p>The target bot for the test set execution.</p>",
+        "TestExecutionSummary$target": "<p>Contains information about the bot used for the test execution..</p>"
+      }
+    },
+    "TestResultMatchStatus": {
+      "base": null,
+      "refs": {
+        "ConversationLevelIntentClassificationResultItem$matchResult": "<p>The number of times the specific intent is used in the evaluation of intent level success or failure.</p>",
+        "ConversationLevelResultDetail$endToEndResult": "<p>The success or failure of the streaming of the conversation.</p>",
+        "ConversationLevelResultDetail$speechTranscriptionResult": "<p>The speech transcription success or failure details of the conversation.</p>",
+        "ConversationLevelSlotResolutionResultItem$matchResult": "<p>The number of matching slots used in the slots listings for the slot resolution evaluation.</p>",
+        "ConversationLevelTestResultItem$endToEndResult": "<p>The end-to-end success or failure of the test result evaluation item.</p>",
+        "ConversationLevelTestResultItem$speechTranscriptionResult": "<p>The speech transcription success or failure of the test result evaluation item.</p>",
+        "ConversationLevelTestResultsFilterBy$endToEndResult": "<p>The selection of matched or mismatched end-to-end status to filter test set results data at the conversation level.</p>",
+        "TestResultMatchStatusCountMap$key": null,
+        "UserTurnResult$endToEndResult": "<p>Specifies whether the expected and actual outputs match or not, or if there is an error in execution.</p>",
+        "UserTurnResult$intentMatchResult": "<p>Specifies whether the expected and actual intents match or not.</p>",
+        "UserTurnResult$slotMatchResult": "<p>Specifies whether the expected and actual slots match or not.</p>",
+        "UserTurnResult$speechTranscriptionResult": "<p>Specifies whether the expected and actual speech transcriptions match or not, or if there is an error in execution.</p>"
+      }
+    },
+    "TestResultMatchStatusCountMap": {
+      "base": null,
+      "refs": {
+        "IntentClassificationTestResultItemCounts$speechTranscriptionResultCounts": "<p>The number of matched, mismatched, and execution error results for speech transcription for the intent.</p>",
+        "IntentClassificationTestResultItemCounts$intentMatchResultCounts": "<p>The number of matched and mismatched results for intent recognition for the intent.</p>",
+        "OverallTestResultItem$speechTranscriptionResultCounts": "<p>The number of speech transcription results in the overall test.</p>",
+        "OverallTestResultItem$endToEndResultCounts": "<p>The number of results that succeeded.</p>",
+        "SlotResolutionTestResultItemCounts$speechTranscriptionResultCounts": "<p>The number of matched, mismatched and execution error results for speech transcription for the slot.</p>",
+        "SlotResolutionTestResultItemCounts$slotMatchResultCounts": "<p>The number of matched and mismatched results for slot resolution for the slot.</p>"
+      }
+    },
+    "TestResultSlotName": {
+      "base": null,
+      "refs": {
+        "AgentTurnResult$actualElicitedSlot": "<p>The actual elicited slot for the agent turn in a test set execution.</p>",
+        "ConversationLevelSlotResolutionResultItem$slotName": "<p>The slot name in the slots list for the slot resolution details.</p>",
+        "SlotResolutionTestResultItem$slotName": "<p>The name of the slot.</p>"
+      }
+    },
+    "TestResultTypeFilter": {
+      "base": null,
+      "refs": {
+        "TestExecutionResultFilterBy$resultTypeFilter": "<p>Specifies which results to filter. See <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/test-results-details-test-set.html\">Test result details\"&gt;Test results details</a> for details about different types of results.</p>"
+      }
+    },
+    "TestSetAgentPrompt": {
+      "base": null,
+      "refs": {
+        "AgentTurnResult$expectedAgentPrompt": "<p>The expected agent prompt for the agent turn in a test set execution.</p>",
+        "AgentTurnResult$actualAgentPrompt": "<p>The actual agent prompt for the agent turn in a test set execution.</p>",
+        "AgentTurnSpecification$agentPrompt": "<p>The agent prompt for the agent turn in a test set.</p>"
+      }
+    },
+    "TestSetConversationId": {
+      "base": null,
+      "refs": {
+        "ConversationLevelTestResultItem$conversationId": "<p>The conversation Id of the test result evaluation item.</p>",
+        "TestSetTurnRecord$conversationId": "<p>The unique identifier for the conversation associated with the turn.</p>",
+        "UtteranceLevelTestResultItem$conversationId": "<p>The unique identifier for the conversation associated with the result.</p>"
+      }
+    },
+    "TestSetDiscrepancyErrors": {
+      "base": "<p>Contains details about the errors in the test set discrepancy report</p>",
+      "refs": {
+        "DescribeTestSetDiscrepancyReportResponse$testSetDiscrepancyTopErrors": "<p>The top 200 error results from the test set discrepancy report.</p>"
+      }
+    },
+    "TestSetDiscrepancyReportBotAliasTarget": {
+      "base": "<p>Contains information about the bot alias used for the test set discrepancy report.</p>",
+      "refs": {
+        "TestSetDiscrepancyReportResourceTarget$botAliasTarget": "<p>Contains information about the bot alias used as the resource for the test set discrepancy report.</p>"
+      }
+    },
+    "TestSetDiscrepancyReportResourceTarget": {
+      "base": "<p>Contains information about the resource used for the test set discrepancy report.</p>",
+      "refs": {
+        "CreateTestSetDiscrepancyReportRequest$target": "<p>The target bot for the test set discrepancy report.</p>",
+        "CreateTestSetDiscrepancyReportResponse$target": "<p>The target bot for the test set discrepancy report.</p>",
+        "DescribeTestSetDiscrepancyReportResponse$target": "<p>The target bot location for the test set discrepancy report.</p>"
+      }
+    },
+    "TestSetDiscrepancyReportStatus": {
+      "base": null,
+      "refs": {
+        "DescribeTestSetDiscrepancyReportResponse$testSetDiscrepancyReportStatus": "<p>The status for the test set discrepancy report.</p>"
+      }
+    },
+    "TestSetExportSpecification": {
+      "base": "<p>Contains information about the test set that is exported.</p>",
+      "refs": {
+        "ExportResourceSpecification$testSetExportSpecification": "<p>Specifications for the test set that is exported as a resource.</p>"
+      }
+    },
+    "TestSetGenerationDataSource": {
+      "base": "<p>Contains information about the data source from which the test set is generated.</p>",
+      "refs": {
+        "DescribeTestSetGenerationResponse$generationDataSource": "<p>The data source of the test set used for the test set generation.</p>",
+        "StartTestSetGenerationRequest$generationDataSource": "<p>The data source for the test set generation.</p>",
+        "StartTestSetGenerationResponse$generationDataSource": "<p> The data source for the test set generation.</p>"
+      }
+    },
+    "TestSetGenerationStatus": {
+      "base": null,
+      "refs": {
+        "DescribeTestSetGenerationResponse$testSetGenerationStatus": "<p>The status for the test set generation.</p>",
+        "StartTestSetGenerationResponse$testSetGenerationStatus": "<p> The status for the test set generation.</p>"
+      }
+    },
+    "TestSetImportInputLocation": {
+      "base": "<p>Contains information about the Amazon S3 location from which the test set is imported.</p>",
+      "refs": {
+        "TestSetImportResourceSpecification$importInputLocation": "<p>Contains information about the input location from where test-set should be imported.</p>"
+      }
+    },
+    "TestSetImportResourceSpecification": {
+      "base": "<p>Contains information about the test set that is imported.</p>",
+      "refs": {
+        "ImportResourceSpecification$testSetImportResourceSpecification": "<p>Specifications for the test set that is imported.</p>"
+      }
+    },
+    "TestSetIntentDiscrepancyItem": {
+      "base": "<p>Contains information about discrepancy in an intent information between the test set and the bot.</p>",
+      "refs": {
+        "TestSetIntentDiscrepancyList$member": null
+      }
+    },
+    "TestSetIntentDiscrepancyList": {
+      "base": null,
+      "refs": {
+        "TestSetDiscrepancyErrors$intentDiscrepancies": "<p>Contains information about discrepancies found for intents between the test set and the bot.</p>"
+      }
+    },
+    "TestSetModality": {
+      "base": null,
+      "refs": {
+        "DescribeTestSetResponse$modality": "<p>Indicates whether the test set is audio or text data.</p>",
+        "TestSetImportResourceSpecification$modality": "<p>Specifies whether the test-set being imported contains written or spoken data.</p>",
+        "TestSetSummary$modality": "<p>Specifies whether the test set contains written or spoken data.</p>",
+        "UpdateTestSetResponse$modality": "<p>Indicates whether audio or text is used for the updated test set.</p>"
+      }
+    },
+    "TestSetSlotDiscrepancyItem": {
+      "base": "<p>Contains information about discrepancy in a slot information between the test set and the bot.</p>",
+      "refs": {
+        "TestSetSlotDiscrepancyList$member": null
+      }
+    },
+    "TestSetSlotDiscrepancyList": {
+      "base": null,
+      "refs": {
+        "TestSetDiscrepancyErrors$slotDiscrepancies": "<p>Contains information about discrepancies found for slots between the test set and the bot.</p>"
+      }
+    },
+    "TestSetSortAttribute": {
+      "base": null,
+      "refs": {
+        "TestSetSortBy$attribute": "<p>Specifies whether to sort the test sets by name or by the time they were last updated.</p>"
+      }
+    },
+    "TestSetSortBy": {
+      "base": "<p>Contains information about the methods by which to sort the test set.</p>",
+      "refs": {
+        "ListTestSetsRequest$sortBy": "<p>The sort order for the list of test sets.</p>"
+      }
+    },
+    "TestSetStatus": {
+      "base": null,
+      "refs": {
+        "DescribeTestSetResponse$status": "<p>The status of the test set.</p>",
+        "TestSetSummary$status": "<p>The status of the test set.</p>",
+        "UpdateTestSetResponse$status": "<p>The status for the updated test set.</p>"
+      }
+    },
+    "TestSetStorageLocation": {
+      "base": "<p>Contains information about the location in which the test set is stored.</p>",
+      "refs": {
+        "DescribeTestSetGenerationResponse$storageLocation": "<p>The Amazon S3 storage location for the test set generation.</p>",
+        "DescribeTestSetResponse$storageLocation": "<p>The Amazon S3 storage location for the test set data.</p>",
+        "StartTestSetGenerationRequest$storageLocation": "<p>The Amazon S3 storage location for the test set generation.</p>",
+        "StartTestSetGenerationResponse$storageLocation": "<p>The Amazon S3 storage location for the test set generation.</p>",
+        "TestSetImportResourceSpecification$storageLocation": "<p>Contains information about the location that Amazon Lex uses to store the test-set.</p>",
+        "TestSetSummary$storageLocation": "<p>Contains information about the location at which the test set is stored.</p>",
+        "UpdateTestSetResponse$storageLocation": "<p>The Amazon S3 storage location for the updated test set.</p>"
+      }
+    },
+    "TestSetSummary": {
+      "base": "<p>Contains summary information about the test set.</p>",
+      "refs": {
+        "TestSetSummaryList$member": null
+      }
+    },
+    "TestSetSummaryList": {
+      "base": null,
+      "refs": {
+        "ListTestSetsResponse$testSets": "<p>The selected test sets in a list of test sets.</p>"
+      }
+    },
+    "TestSetTurnRecord": {
+      "base": "<p>Contains information about a turn in a test set.</p>",
+      "refs": {
+        "TestSetTurnRecordList$member": null
+      }
+    },
+    "TestSetTurnRecordList": {
+      "base": null,
+      "refs": {
+        "ListTestSetRecordsResponse$testSetRecords": "<p>The list of records from the test set.</p>"
+      }
+    },
+    "TestSetTurnResult": {
+      "base": "<p>Contains information about the results of the analysis of a turn in the test set.</p>",
+      "refs": {
+        "UtteranceLevelTestResultItem$turnResult": "<p>Contains information about the turn associated with the result.</p>"
+      }
+    },
+    "TestSetUtteranceText": {
+      "base": null,
+      "refs": {
+        "UserTurnOutputSpecification$transcript": "<p>The transcript that is output for the user turn by the test execution.</p>",
+        "UtteranceInputSpecification$textInput": "<p>A text input transcription of the utterance. It is only applicable for test-sets containing text data.</p>"
       }
     },
     "TextInputSpecification": {
@@ -3626,6 +4429,8 @@
         "BotSummary$lastUpdatedDateTime": "<p>The date and time that the bot was last updated.</p>",
         "BotVersionSummary$creationDateTime": "<p>A timestamp of the date and time that the version was created.</p>",
         "BuildBotLocaleResponse$lastBuildSubmittedDateTime": "<p>A timestamp indicating the date and time that the bot was last built for this locale.</p>",
+        "ConversationLogsDataSourceFilterBy$startTime": "<p>The start time for the conversation log.</p>",
+        "ConversationLogsDataSourceFilterBy$endTime": "<p>The end time for the conversation log.</p>",
         "CreateBotAliasResponse$creationDateTime": "<p>A Unix timestamp indicating the date and time that the bot alias was created.</p>",
         "CreateBotLocaleResponse$creationDateTime": "<p>A timestamp specifying the date and time that the bot locale was created.</p>",
         "CreateBotResponse$creationDateTime": "<p>A timestamp indicating the date and time that the bot was created.</p>",
@@ -3634,6 +4439,7 @@
         "CreateIntentResponse$creationDateTime": "<p>A timestamp of the date and time that the intent was created.</p>",
         "CreateSlotResponse$creationDateTime": "<p>The timestamp of the date and time that the slot was created.</p>",
         "CreateSlotTypeResponse$creationDateTime": "<p>A timestamp of the date and time that the slot type was created.</p>",
+        "CreateTestSetDiscrepancyReportResponse$creationDateTime": "<p>The creation date and time for the test set discrepancy report.</p>",
         "DateRangeFilter$startDateTime": "<p>A timestamp indicating the start date for the date range filter.</p>",
         "DateRangeFilter$endDateTime": "<p>A timestamp indicating the end date for the date range filter.</p>",
         "DescribeBotAliasResponse$creationDateTime": "<p>A timestamp of the date and time that the alias was created.</p>",
@@ -3658,6 +4464,14 @@
         "DescribeSlotResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the slot was last updated.</p>",
         "DescribeSlotTypeResponse$creationDateTime": "<p>A timestamp of the date and time that the slot type was created.</p>",
         "DescribeSlotTypeResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the slot type was last updated.</p>",
+        "DescribeTestExecutionResponse$creationDateTime": "<p>The execution creation date and time for the test set execution.</p>",
+        "DescribeTestExecutionResponse$lastUpdatedDateTime": "<p>The date and time of the last update for the execution.</p>",
+        "DescribeTestSetDiscrepancyReportResponse$creationDateTime": "<p>The time and date of creation for the test set discrepancy report.</p>",
+        "DescribeTestSetDiscrepancyReportResponse$lastUpdatedDataTime": "<p>The date and time of the last update for the test set discrepancy report.</p>",
+        "DescribeTestSetGenerationResponse$creationDateTime": "<p>The creation date and time for the test set generation.</p>",
+        "DescribeTestSetGenerationResponse$lastUpdatedDateTime": "<p>The date and time of the last update for the test set generation.</p>",
+        "DescribeTestSetResponse$creationDateTime": "<p>The creation date and time for the test set data.</p>",
+        "DescribeTestSetResponse$lastUpdatedDateTime": "<p>The date and time for the last update of the test set data.</p>",
         "ExportSummary$creationDateTime": "<p>The date and time that the export was created.</p>",
         "ExportSummary$lastUpdatedDateTime": "<p>The date and time that the export was last updated.</p>",
         "ImportSummary$creationDateTime": "<p>The date and time that the import was created.</p>",
@@ -3670,6 +4484,12 @@
         "SlotTypeSummary$lastUpdatedDateTime": "<p>A timestamp of the date and time that the slot type was last updated.</p>",
         "StartBotRecommendationResponse$creationDateTime": "<p>A timestamp of the date and time that the bot recommendation was created.</p>",
         "StartImportResponse$creationDateTime": "<p>The date and time that the import request was created.</p>",
+        "StartTestExecutionResponse$creationDateTime": "<p>The creation date and time for the test set execution.</p>",
+        "StartTestSetGenerationResponse$creationDateTime": "<p> The creation date and time for the test set generation.</p>",
+        "TestExecutionSummary$creationDateTime": "<p>The date and time at which the test execution was created.</p>",
+        "TestExecutionSummary$lastUpdatedDateTime": "<p>The date and time at which the test execution was last updated.</p>",
+        "TestSetSummary$creationDateTime": "<p>The date and time at which the test set was created.</p>",
+        "TestSetSummary$lastUpdatedDateTime": "<p>The date and time at which the test set was last updated.</p>",
         "UpdateBotAliasResponse$creationDateTime": "<p>A timestamp of the date and time that the bot was created.</p>",
         "UpdateBotAliasResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the bot was last updated.</p>",
         "UpdateBotLocaleResponse$creationDateTime": "<p>A timestamp of the date and time that the locale was created.</p>",
@@ -3685,7 +4505,9 @@
         "UpdateSlotResponse$creationDateTime": "<p>The timestamp of the date and time that the slot was created.</p>",
         "UpdateSlotResponse$lastUpdatedDateTime": "<p>The timestamp of the date and time that the slot was last updated.</p>",
         "UpdateSlotTypeResponse$creationDateTime": "<p>The timestamp of the date and time that the slot type was created.</p>",
-        "UpdateSlotTypeResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the slot type was last updated.</p>"
+        "UpdateSlotTypeResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the slot type was last updated.</p>",
+        "UpdateTestSetResponse$creationDateTime": "<p>The creation date and time for the updated test set.</p>",
+        "UpdateTestSetResponse$lastUpdatedDateTime": "<p> The date and time of the last update for the updated test set.</p>"
       }
     },
     "Transcript": {
@@ -3713,6 +4535,18 @@
         "StartBotRecommendationRequest$transcriptSourceSetting": "<p>The object representing the Amazon S3 bucket containing the transcript, as well as the associated metadata.</p>",
         "StartBotRecommendationResponse$transcriptSourceSetting": "<p>The object representing the Amazon S3 bucket containing the transcript, as well as the associated metadata.</p>",
         "UpdateBotRecommendationResponse$transcriptSourceSetting": "<p>The object representing the Amazon S3 bucket containing the transcript, as well as the associated metadata.</p>"
+      }
+    },
+    "TurnNumber": {
+      "base": null,
+      "refs": {
+        "TestSetTurnRecord$turnNumber": "<p>The number of turns that has elapsed up to that turn.</p>"
+      }
+    },
+    "TurnSpecification": {
+      "base": "<p>Contains information about the messages in the turn.</p>",
+      "refs": {
+        "TestSetTurnRecord$turnSpecification": "<p>Contains information about the agent or user turn depending upon type of turn.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -3821,6 +4655,69 @@
       "refs": {
       }
     },
+    "UpdateTestSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTestSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UserTurnInputSpecification": {
+      "base": "<p>Contains information about the user messages in the turn in the input.</p>",
+      "refs": {
+        "UserTurnResult$input": "<p>Contains information about the user messages in the turn in the input.</p>",
+        "UserTurnSpecification$input": "<p>Contains information about the user messages in the turn in the input.</p>"
+      }
+    },
+    "UserTurnIntentOutput": {
+      "base": "<p>Contains information about the intent that is output for the turn by the test execution.</p>",
+      "refs": {
+        "UserTurnOutputSpecification$intent": "<p>Contains information about the intent.</p>"
+      }
+    },
+    "UserTurnOutputSpecification": {
+      "base": "<p>Contains results that are output for the user turn by the test execution.</p>",
+      "refs": {
+        "UserTurnResult$expectedOutput": "<p>Contains information about the expected output for the user turn.</p>",
+        "UserTurnResult$actualOutput": "<p>Contains information about the actual output for the user turn.</p>",
+        "UserTurnSpecification$expected": "<p>Contains results about the expected output for the user turn.</p>"
+      }
+    },
+    "UserTurnResult": {
+      "base": "<p>Contains the results for the user turn by the test execution.</p>",
+      "refs": {
+        "TestSetTurnResult$user": "<p>Contains information about the user messages in the turn.</p>"
+      }
+    },
+    "UserTurnSlotOutput": {
+      "base": "<p>Contains information about a slot output by the test set execution.</p>",
+      "refs": {
+        "UserTurnSlotOutputList$member": null,
+        "UserTurnSlotOutputMap$value": null
+      }
+    },
+    "UserTurnSlotOutputList": {
+      "base": null,
+      "refs": {
+        "UserTurnSlotOutput$values": "<p>Values that are output by the slot recognition.</p>"
+      }
+    },
+    "UserTurnSlotOutputMap": {
+      "base": null,
+      "refs": {
+        "UserTurnIntentOutput$slots": "<p>The slots associated with the intent.</p>",
+        "UserTurnSlotOutput$subSlots": "<p>A list of items mapping the name of the subslots to information about those subslots.</p>"
+      }
+    },
+    "UserTurnSpecification": {
+      "base": "<p>Contains information about the expected and input values for the user turn.</p>",
+      "refs": {
+        "TurnSpecification$userTurn": "<p>Contains information about the user messages in the turn.</p>"
+      }
+    },
     "Utterance": {
       "base": null,
       "refs": {
@@ -3833,6 +4730,36 @@
       "refs": {
         "ListAggregatedUtterancesRequest$aggregationDuration": "<p>The time window for aggregating the utterance information. You can specify a time between one hour and two weeks.</p>",
         "ListAggregatedUtterancesResponse$aggregationDuration": "<p>The time period used to aggregate the utterance data.</p>"
+      }
+    },
+    "UtteranceAudioInputSpecification": {
+      "base": "<p>Contains information about the audio for an utterance.</p>",
+      "refs": {
+        "UtteranceInputSpecification$audioInput": "<p>Contains information about the audio input for an utterance.</p>"
+      }
+    },
+    "UtteranceInputSpecification": {
+      "base": "<p>Contains information about input of an utterance.</p>",
+      "refs": {
+        "UserTurnInputSpecification$utteranceInput": "<p>The utterance input in the user turn.</p>"
+      }
+    },
+    "UtteranceLevelTestResultItem": {
+      "base": "<p>Contains information about multiple utterances in the results of a test set execution.</p>",
+      "refs": {
+        "UtteranceLevelTestResultItemList$member": null
+      }
+    },
+    "UtteranceLevelTestResultItemList": {
+      "base": null,
+      "refs": {
+        "UtteranceLevelTestResults$items": "<p>Contains information about an utterance in the results of the test set execution.</p>"
+      }
+    },
+    "UtteranceLevelTestResults": {
+      "base": "<p>Contains information about the utterances in the results of the test set execution.</p>",
+      "refs": {
+        "TestExecutionResultItems$utteranceLevelTestResults": "<p>Results related to utterances in the test set.</p>"
       }
     },
     "ValidationException": {

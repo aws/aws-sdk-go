@@ -1109,6 +1109,19 @@
       "max":5,
       "min":1
     },
+    "CoverageDateFilter":{
+      "type":"structure",
+      "members":{
+        "endInclusive":{"shape":"DateTimeTimestamp"},
+        "startInclusive":{"shape":"DateTimeTimestamp"}
+      }
+    },
+    "CoverageDateFilterList":{
+      "type":"list",
+      "member":{"shape":"CoverageDateFilter"},
+      "max":10,
+      "min":1
+    },
     "CoverageFilterCriteria":{
       "type":"structure",
       "members":{
@@ -1119,6 +1132,7 @@
         "lambdaFunctionName":{"shape":"CoverageStringFilterList"},
         "lambdaFunctionRuntime":{"shape":"CoverageStringFilterList"},
         "lambdaFunctionTags":{"shape":"CoverageMapFilterList"},
+        "lastScannedAt":{"shape":"CoverageDateFilterList"},
         "resourceId":{"shape":"CoverageStringFilterList"},
         "resourceType":{"shape":"CoverageStringFilterList"},
         "scanStatusCode":{"shape":"CoverageStringFilterList"},
@@ -1196,6 +1210,7 @@
       ],
       "members":{
         "accountId":{"shape":"AccountId"},
+        "lastScannedAt":{"shape":"DateTimeTimestamp"},
         "resourceId":{"shape":"ResourceId"},
         "resourceMetadata":{"shape":"ResourceScanMetadata"},
         "resourceType":{"shape":"CoverageResourceType"},

@@ -790,7 +790,7 @@
       "base": null,
       "refs": {
         "AssetBundleExportJobSummary$JobStatus": "<p>The current status of the export job.</p>",
-        "DescribeAssetBundleExportJobResponse$JobStatus": "<p>Indicates tha status of a job through its queueing and execution.</p> <p>Poll this <code>DescribeAssetBundleExportApi</code> until <code>JobStatus</code> is either <code>SUCCESSFUL</code> or <code>FAILED</code>.</p>"
+        "DescribeAssetBundleExportJobResponse$JobStatus": "<p>Indicates the status of a job through its queuing and execution.</p> <p>Poll this <code>DescribeAssetBundleExportApi</code> until <code>JobStatus</code> is either <code>SUCCESSFUL</code> or <code>FAILED</code>.</p>"
       }
     },
     "AssetBundleExportJobSummary": {
@@ -856,7 +856,7 @@
     "AssetBundleImportBodyBlob": {
       "base": null,
       "refs": {
-        "AssetBundleImportSource$Body": "<p>The bytes of the Base64 encoded asset bundle import zip file. This file can't exceed 20MB.</p> <p>If you are calling the APIs from the Amazon Web Services Java, JavaScript, Python, or PHP SDKs, the SDK encodes Base64 automatically to allow the direct setting of the zip file's bytes. If you are using a SDK of a different language or are receiving related errors, try to Base64 encode your data.</p>"
+        "AssetBundleImportSource$Body": "<p>The bytes of the base64 encoded asset bundle import zip file. This file can't exceed 20 MB.</p> <p>If you are calling the API operations from the Amazon Web Services SDK for Java, JavaScript, Python, or PHP, the SDK encodes base64 automatically to allow the direct setting of the zip file's bytes. If you are using an SDK for a different language or receiving related errors, try to base64 encode your data.</p>"
       }
     },
     "AssetBundleImportFailureAction": {
@@ -864,7 +864,7 @@
       "refs": {
         "AssetBundleImportJobSummary$FailureAction": "<p>The failure action for the import job.</p>",
         "DescribeAssetBundleImportJobResponse$FailureAction": "<p>The failure action for the import job.</p>",
-        "StartAssetBundleImportJobRequest$FailureAction": "<p>The failure action for the import job.</p> <p>If you choose <code>ROLLBACK</code>, failed import jobs will attempt to undo any asset changes caused by the failed job.</p> <p>If you choose <code>DO_NOTHING</code>, failed import jobs will not attempt to roll back any asset changes caused by the failed job, possibly leaving the Amazon QuickSight account in an inconsistent state.</p>"
+        "StartAssetBundleImportJobRequest$FailureAction": "<p>The failure action for the import job.</p> <p>If you choose <code>ROLLBACK</code>, failed import jobs will attempt to undo any asset changes caused by the failed job.</p> <p>If you choose <code>DO_NOTHING</code>, failed import jobs will not attempt to roll back any asset changes caused by the failed job, possibly keeping the Amazon QuickSight account in an inconsistent state.</p>"
       }
     },
     "AssetBundleImportJobAnalysisOverrideParameters": {
@@ -906,7 +906,7 @@
     "AssetBundleImportJobDataSourceCredentialPair": {
       "base": "<p>A username and password credential pair to use to import a data source resource.</p>",
       "refs": {
-        "AssetBundleImportJobDataSourceCredentials$CredentialPair": "<p>A username and password credential pair to be used to create the imported data source. Leave this field blank if you are using an Secrets Manager Secret to provide credentials.</p>"
+        "AssetBundleImportJobDataSourceCredentials$CredentialPair": "<p>A username and password credential pair to be used to create the imported data source. Keep this field blank if you are using a Secrets Manager secret to provide credentials.</p>"
       }
     },
     "AssetBundleImportJobDataSourceCredentials": {
@@ -960,7 +960,7 @@
       }
     },
     "AssetBundleImportJobResourceIdOverrideConfiguration": {
-      "base": "<p>An optional structure that configures resource ID overrides for the import job</p>",
+      "base": "<p>An optional structure that configures resource ID overrides for the import job.</p>",
       "refs": {
         "AssetBundleImportJobOverrideParameters$ResourceIdOverrideConfiguration": "<p>An optional structure that configures resource ID overrides to be applied within the import job.</p>"
       }
@@ -969,7 +969,7 @@
       "base": null,
       "refs": {
         "AssetBundleImportJobSummary$JobStatus": "<p>The current status of the import job.</p>",
-        "DescribeAssetBundleImportJobResponse$JobStatus": "<p>Indicates tha status of a job through its queueing and execution.</p> <p>Poll this <code>DescribeAssetBundleImport</code> API until <code>JobStatus</code> returns one of the following values.</p> <ul> <li> <p> <code>SUCCESSFUL</code> </p> </li> <li> <p> <code>FAILED</code> </p> </li> <li> <p> <code>FAILED_ROLLBACK_COMPLETED</code> </p> </li> <li> <p> <code>FAILED_ROLLBACK_ERROR</code> </p> </li> </ul>"
+        "DescribeAssetBundleImportJobResponse$JobStatus": "<p>Indicates the status of a job through its queuing and execution.</p> <p>Poll the <code>DescribeAssetBundleImport</code> API until <code>JobStatus</code> returns one of the following values:</p> <ul> <li> <p> <code>SUCCESSFUL</code> </p> </li> <li> <p> <code>FAILED</code> </p> </li> <li> <p> <code>FAILED_ROLLBACK_COMPLETED</code> </p> </li> <li> <p> <code>FAILED_ROLLBACK_ERROR</code> </p> </li> </ul>"
       }
     },
     "AssetBundleImportJobSummary": {
@@ -1015,7 +1015,7 @@
       }
     },
     "AssetBundleImportSourceDescription": {
-      "base": "<p>A description of the import source that you provide at the start of an import job. This value is set to either <code>Body</code> or <code>S3Uri</code> depending on how the <code>StartAssetBundleImportJobRequest</code> is configured.</p>",
+      "base": "<p>A description of the import source that you provide at the start of an import job. This value is set to either <code>Body</code> or <code>S3Uri</code>, depending on how the <code>StartAssetBundleImportJobRequest</code> is configured.</p>",
       "refs": {
         "DescribeAssetBundleImportJobResponse$AssetBundleImportSource": "<p>The source of the asset bundle zip file that contains the data that is imported by the job.</p>"
       }
@@ -1484,7 +1484,7 @@
         "NumericRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
         "SignupResponse$IAMUser": "<p>A Boolean that is <code>TRUE</code> if the Amazon QuickSight uses IAM as an authentication method.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
-        "StartAssetBundleExportJobRequest$IncludeAllDependencies": "<p>A Boolean that determines whether all dependencies of each resource ARN are recursively exported with the job. For example, say you provided a Dashboard ARN to the <code>ResourceArns</code> parameter. If you set <code>IncludeAllDependencies</code> to <code>TRUE</code>, any theme, dataset, and dataource resource that is a dependency of the dashboard is also exported.</p>",
+        "StartAssetBundleExportJobRequest$IncludeAllDependencies": "<p>A Boolean that determines whether all dependencies of each resource ARN are recursively exported with the job. For example, say you provided a Dashboard ARN to the <code>ResourceArns</code> parameter. If you set <code>IncludeAllDependencies</code> to <code>TRUE</code>, any theme, dataset, and data source resource that is a dependency of the dashboard is also exported.</p>",
         "StatePersistenceConfigurations$Enabled": "<p>Determines if a Amazon QuickSight dashboard's state persistence settings are turned on or off.</p>",
         "TimeRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
         "TimeRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
@@ -2883,7 +2883,8 @@
       "base": null,
       "refs": {
         "DataPathSort$SortPaths": "<p>The list of data paths that need to be sorted.</p>",
-        "PivotTableDataPathOption$DataPathList": "<p>The list of data path values for the data path options.</p>"
+        "PivotTableDataPathOption$DataPathList": "<p>The list of data path values for the data path options.</p>",
+        "PivotTableFieldCollapseStateTarget$FieldDataPathValues": "<p>The data path of the pivot table's header. Used to set the collapse state.</p>"
       }
     },
     "DataPointDrillUpDownOption": {
@@ -4161,7 +4162,7 @@
     "DnsResolverList": {
       "base": null,
       "refs": {
-        "AssetBundleImportJobVPCConnectionOverrideParameters$DnsResolvers": "<p>An optional override of dns resolvers to be used by the VPC connection.</p>",
+        "AssetBundleImportJobVPCConnectionOverrideParameters$DnsResolvers": "<p>An optional override of DNS resolvers to be used by the VPC connection.</p>",
         "CreateVPCConnectionRequest$DnsResolvers": "<p>A list of IP addresses of DNS resolver endpoints for the VPC connection.</p>",
         "UpdateVPCConnectionRequest$DnsResolvers": "<p>A list of IP addresses of DNS resolver endpoints for the VPC connection.</p>"
       }
@@ -7523,7 +7524,14 @@
     "PivotTableConditionalFormattingScope": {
       "base": "<p>The scope of the cell for conditional formatting.</p>",
       "refs": {
-        "PivotTableCellConditionalFormatting$Scope": "<p>The scope of the cell for conditional formatting.</p>"
+        "PivotTableCellConditionalFormatting$Scope": "<p>The scope of the cell for conditional formatting.</p>",
+        "PivotTableConditionalFormattingScopeList$member": null
+      }
+    },
+    "PivotTableConditionalFormattingScopeList": {
+      "base": null,
+      "refs": {
+        "PivotTableCellConditionalFormatting$Scopes": "<p>A list of cell scopes for conditional formatting.</p>"
       }
     },
     "PivotTableConditionalFormattingScopeRole": {
@@ -7555,6 +7563,30 @@
       "refs": {
         "PivotTableAggregatedFieldWells$Rows": "<p>The rows field well for a pivot table. Values are grouped by rows fields.</p>",
         "PivotTableAggregatedFieldWells$Columns": "<p>The columns field well for a pivot table. Values are grouped by columns fields.</p>"
+      }
+    },
+    "PivotTableFieldCollapseState": {
+      "base": null,
+      "refs": {
+        "PivotTableFieldCollapseStateOption$State": "<p>The state of the field target of a pivot table. Choose one of the following options:</p> <ul> <li> <p> <code>COLLAPSED</code> </p> </li> <li> <p> <code>EXPANDED</code> </p> </li> </ul>"
+      }
+    },
+    "PivotTableFieldCollapseStateOption": {
+      "base": "<p>The collapse state options for the pivot table field options.</p>",
+      "refs": {
+        "PivotTableFieldCollapseStateOptionList$member": null
+      }
+    },
+    "PivotTableFieldCollapseStateOptionList": {
+      "base": null,
+      "refs": {
+        "PivotTableFieldOptions$CollapseStateOptions": "<p>The collapse state options for the pivot table field options.</p>"
+      }
+    },
+    "PivotTableFieldCollapseStateTarget": {
+      "base": "<p>The target of a pivot table field collapse state.</p>",
+      "refs": {
+        "PivotTableFieldCollapseStateOption$Target": "<p>A tagged-union object that sets the collapse state.</p>"
       }
     },
     "PivotTableFieldOption": {
@@ -7828,6 +7860,12 @@
       "base": "<p>The configured style settings of a radar chart.</p>",
       "refs": {
         "RadarChartSeriesSettings$AreaStyleSettings": "<p>The area style settings of a radar chart.</p>"
+      }
+    },
+    "RadarChartAxesRangeScale": {
+      "base": null,
+      "refs": {
+        "RadarChartConfiguration$AxesRangeScale": "<p>The axis behavior options of a radar chart.</p>"
       }
     },
     "RadarChartCategoryFieldList": {
@@ -8485,8 +8523,8 @@
     "S3Uri": {
       "base": null,
       "refs": {
-        "AssetBundleImportSource$S3Uri": "<p>The Amazon S3 uri for an asset bundle import file that exists in an Amazon S3 bucket that the caller has read access to. The file must be a zip format file and can't exceed 20MB.</p>",
-        "AssetBundleImportSourceDescription$S3Uri": "<p>The Amazon S3 uri that you provided at the start of the import job.</p>"
+        "AssetBundleImportSource$S3Uri": "<p>The Amazon S3 URI for an asset bundle import file that exists in an Amazon S3 bucket that the caller has read access to. The file must be a zip format file and can't exceed 20 MB.</p>",
+        "AssetBundleImportSourceDescription$S3Uri": "<p>The Amazon S3 URI that you provided at the start of the import job.</p>"
       }
     },
     "SameSheetTargetVisualConfiguration": {
@@ -8642,7 +8680,7 @@
     "SecretArn": {
       "base": null,
       "refs": {
-        "AssetBundleImportJobDataSourceCredentials$SecretArn": "<p>The ARN of the Secrets Manager Secret to be used to create the imported data source leave this field blank if you aren't using a Secret in place of a credential pair.</p>",
+        "AssetBundleImportJobDataSourceCredentials$SecretArn": "<p>The ARN of the Secrets Manager secret that's used to create the imported data source. Keep this field blank, unless you are using a secret in place of a credential pair.</p>",
         "DataSource$SecretArn": "<p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>",
         "DataSourceCredentials$SecretArn": "<p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>"
       }
@@ -8707,7 +8745,7 @@
     "SecurityGroupIdList": {
       "base": null,
       "refs": {
-        "AssetBundleImportJobVPCConnectionOverrideParameters$SecurityGroupIds": "<p>A new security group ID for the VPC connection you are importing. This field is required if you are importing the VPC connection from another Amazon Web Services account or region.</p>",
+        "AssetBundleImportJobVPCConnectionOverrideParameters$SecurityGroupIds": "<p>A new security group ID for the VPC connection you are importing. This field is required if you are importing the VPC connection from another Amazon Web Services account or Region.</p>",
         "CreateVPCConnectionRequest$SecurityGroupIds": "<p>A list of security group IDs for the VPC connection.</p>",
         "UpdateVPCConnectionRequest$SecurityGroupIds": "<p>A list of security group IDs for the VPC connection.</p>",
         "VPCConnection$SecurityGroupIds": "<p>The Amazon EC2 security group IDs associated with the VPC connection.</p>",
@@ -9596,7 +9634,7 @@
         "AnalysisSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_USER</code>, that you want to use as a filter, for example <code>\"Value\"</code>. An example is <code>\"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p>",
         "AssetBundleImportJobRefreshScheduleOverrideParameters$ScheduleId": "<p>A partial identifier for the specific <code>RefreshSchedule</code> resource being overridden. This structure is used together with the <code>DataSetId</code> structure.</p>",
         "AssetBundleImportJobResourceIdOverrideConfiguration$PrefixForAllResources": "<p>An option to request a CloudFormation variable for a prefix to be prepended to each resource's ID before import. The prefix is only added to the asset IDs and does not change the name of the asset.</p>",
-        "AssetBundleImportSourceDescription$Body": "<p>A HTTPS download URL for the provided asset bundle that you optionally provided at the start of the import job. This URL is valid for 5 minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed. The downloaded asset bundle is a <code>.qs</code> zip file.</p>",
+        "AssetBundleImportSourceDescription$Body": "<p>An HTTPS download URL for the provided asset bundle that you optionally provided at the start of the import job. This URL is valid for five minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed. The downloaded asset bundle is a <code>.qs</code> zip file.</p>",
         "AxisLabelOptions$CustomLabel": "<p>The text for the axis label.</p>",
         "CancelIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
         "CancelIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -9839,6 +9877,7 @@
         "ParameterSelectableValueList$member": null,
         "PeriodOverPeriodComputation$Name": "<p>The name of a computation.</p>",
         "PeriodToDateComputation$Name": "<p>The name of a computation.</p>",
+        "PivotTableFieldCollapseStateTarget$FieldId": "<p>The field ID of the pivot table that the collapse state needs to be set to.</p>",
         "PivotTotalOptions$CustomLabel": "<p>The custom label string for the total cells.</p>",
         "PreconditionNotMetException$Message": null,
         "PreconditionNotMetException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
@@ -10047,7 +10086,7 @@
     "SubnetIdList": {
       "base": null,
       "refs": {
-        "AssetBundleImportJobVPCConnectionOverrideParameters$SubnetIds": "<p>A list of new subnet IDs for the VPC connection you are importing. This field is required if you are importing the VPC connection from another Amazon Web Services account or region.</p>",
+        "AssetBundleImportJobVPCConnectionOverrideParameters$SubnetIds": "<p>A list of new subnet IDs for the VPC connection you are importing. This field is required if you are importing the VPC connection from another Amazon Web Services account or Region.</p>",
         "CreateVPCConnectionRequest$SubnetIds": "<p>A list of subnet IDs for the VPC connection.</p>",
         "UpdateVPCConnectionRequest$SubnetIds": "<p>A list of subnet IDs for the VPC connection.</p>"
       }
@@ -10715,7 +10754,7 @@
         "AnalysisSummary$CreatedTime": "<p>The time that the analysis was created.</p>",
         "AnalysisSummary$LastUpdatedTime": "<p>The time that the analysis was last updated.</p>",
         "AssetBundleExportJobSummary$CreatedTime": "<p>The time that the export job was created.</p>",
-        "AssetBundleImportJobRefreshScheduleOverrideParameters$StartAfterDateTime": "<p>An override for the <code>StartAfterDateTime</code> of a <code>RefreshSchedule</code> to ensure that the <code>StartAfterDateTime</code> is set to a time that takes place in the future.</p>",
+        "AssetBundleImportJobRefreshScheduleOverrideParameters$StartAfterDateTime": "<p>An override for the <code>StartAfterDateTime</code> of a <code>RefreshSchedule</code>. Make sure that the <code>StartAfterDateTime</code> is set to a time that takes place in the future.</p>",
         "AssetBundleImportJobSummary$CreatedTime": "<p>The time that the import job was created.</p>",
         "Dashboard$CreatedTime": "<p>The time that this dashboard was created.</p>",
         "Dashboard$LastPublishedTime": "<p>The last time that this dashboard was published.</p>",

@@ -421,6 +421,18 @@
         "ListCoverageStatisticsResponse$countsByGroup": "<p>An array with the number for each group.</p>"
       }
     },
+    "CoverageDateFilter": {
+      "base": "<p>Contains details of a coverage date filter.</p>",
+      "refs": {
+        "CoverageDateFilterList$member": null
+      }
+    },
+    "CoverageDateFilterList": {
+      "base": null,
+      "refs": {
+        "CoverageFilterCriteria$lastScannedAt": "<p>Filters Amazon Web Services resources based on whether Amazon Inspector has checked them for vulnerabilities within the specified time range.</p>"
+      }
+    },
     "CoverageFilterCriteria": {
       "base": "<p>A structure that identifies filter criteria for <code>GetCoverageStatistics</code>.</p>",
       "refs": {
@@ -474,7 +486,7 @@
         "CoverageFilterCriteria$lambdaFunctionName": "<p>Returns coverage statistics for AWS Lambda functions filtered by function names.</p>",
         "CoverageFilterCriteria$lambdaFunctionRuntime": "<p>Returns coverage statistics for AWS Lambda functions filtered by runtime.</p>",
         "CoverageFilterCriteria$resourceId": "<p>An array of Amazon Web Services resource IDs to return coverage statistics for.</p>",
-        "CoverageFilterCriteria$resourceType": "<p>An array of Amazon Web Services resource types to return coverage statistics for. The values can be <code>AWS_EC2_INSTANCE</code> or <code>AWS_ECR_REPOSITORY</code>.</p>",
+        "CoverageFilterCriteria$resourceType": "<p>An array of Amazon Web Services resource types to return coverage statistics for. The values can be <code>AWS_EC2_INSTANCE</code>, <code>AWS_LAMBDA_FUNCTION</code> or <code>AWS_ECR_REPOSITORY</code>.</p>",
         "CoverageFilterCriteria$scanStatusCode": "<p>The scan status code to filter on.</p>",
         "CoverageFilterCriteria$scanStatusReason": "<p>The scan status reason to filter on.</p>",
         "CoverageFilterCriteria$scanType": "<p>An array of Amazon Inspector scan types to return coverage statistics for.</p>"
@@ -623,6 +635,9 @@
       "refs": {
         "AwsEc2InstanceDetails$launchedAt": "<p>The date and time the Amazon EC2 instance was launched at.</p>",
         "AwsEcrContainerImageDetails$pushedAt": "<p>The date and time the Amazon ECR container image was pushed.</p>",
+        "CoverageDateFilter$endInclusive": "<p>A timestamp representing the end of the time period to filter results by.</p>",
+        "CoverageDateFilter$startInclusive": "<p>A timestamp representing the start of the time period to filter results by.</p>",
+        "CoveredResource$lastScannedAt": "<p>The date and time the resource was last checked for vulnerabilities.</p>",
         "EcrRescanDurationState$updatedAt": "<p>A timestamp representing when the last time the ECR scan duration setting was changed.</p>",
         "ExploitabilityDetails$lastKnownExploitAt": "<p>The date and time of the last exploit associated with a finding discovered in your environment.</p>",
         "Filter$createdAt": "<p>The date and time this filter was created at.</p>",

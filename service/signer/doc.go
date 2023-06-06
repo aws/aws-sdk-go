@@ -8,10 +8,12 @@
 //
 // AWS Signer supports the following applications:
 //
-// With code signing for AWS Lambda, you can sign AWS Lambda deployment packages.
-// Integrated support is provided for Amazon S3, Amazon CloudWatch, and AWS
-// CloudTrail. In order to sign code, you create a signing profile and then
-// use Signer to sign Lambda zip files in S3.
+// With code signing for AWS Lambda, you can sign AWS Lambda (http://docs.aws.amazon.com/lambda/latest/dg/)
+// deployment packages. Integrated support is provided for Amazon S3 (http://docs.aws.amazon.com/AmazonS3/latest/gsg/),
+// Amazon CloudWatch (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/),
+// and AWS CloudTrail (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/).
+// In order to sign code, you create a signing profile and then use Signer to
+// sign Lambda zip files in S3.
 //
 // With code signing for IoT, you can sign code for any IoT device that is supported
 // by AWS. IoT code signing is available for Amazon FreeRTOS (http://docs.aws.amazon.com/freertos/latest/userguide/)
@@ -21,8 +23,10 @@
 // using ACM, and use that to sign updates in Amazon FreeRTOS and AWS IoT Device
 // Management.
 //
+// With code signing for containers …(TBD)
+//
 // For more information about AWS Signer, see the AWS Signer Developer Guide
-// (http://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html).
+// (https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25 for more information on this service.
 //
