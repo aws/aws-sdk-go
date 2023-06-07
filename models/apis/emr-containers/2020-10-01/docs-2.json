@@ -106,6 +106,12 @@
         "ContainerProvider$info": "<p>The information about the container cluster.</p>"
       }
     },
+    "ContainerLogRotationConfiguration": {
+      "base": "<p>The settings for container log rotation.</p>",
+      "refs": {
+        "MonitoringConfiguration$containerLogRotationConfiguration": "<p>Enable or disable container log rotation.</p>"
+      }
+    },
     "ContainerProvider": {
       "base": "<p>The information about the container provider.</p>",
       "refs": {
@@ -511,6 +517,12 @@
         "CloudWatchMonitoringConfiguration$logGroupName": "<p>The name of the log group for log publishing.</p>"
       }
     },
+    "MaxFilesToKeep": {
+      "base": null,
+      "refs": {
+        "ContainerLogRotationConfiguration$maxFilesToKeep": "<p>The number of files to keep in container after rotation.</p>"
+      }
+    },
     "MonitoringConfiguration": {
       "base": "<p>Configuration setting for monitoring.</p>",
       "refs": {
@@ -668,6 +680,12 @@
       "base": "<p>The current status of the retry policy executed on the job.</p>",
       "refs": {
         "JobRun$retryPolicyExecution": "<p>The current status of the retry policy executed on the job.</p>"
+      }
+    },
+    "RotationSize": {
+      "base": null,
+      "refs": {
+        "ContainerLogRotationConfiguration$rotationSize": "<p>The file size at which to rotate logs. Minimum of 2KB, Maximum of 2GB.</p>"
       }
     },
     "RsiArn": {
