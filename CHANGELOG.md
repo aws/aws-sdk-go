@@ -1,3 +1,24 @@
+Release v1.44.277 (2023-06-06)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * This release provides customers the ability to specify an allocation strategies amongst PRICE_CAPACITY_OPTIMIZED, CAPACITY_OPTIMIZED, LOWEST_PRICE, DIVERSIFIED for Spot instances in Instance Feet cluster. This enables customers to choose an allocation strategy best suited for their workload.
+* `service/iam`: Updates service API and documentation
+  * This release updates the AccountAlias regex pattern with the same length restrictions enforced by the length constraint.
+* `service/inspector2`: Updates service API and documentation
+* `service/iot`: Updates service API, documentation, and paginators
+  * Adding IoT Device Management Software Package Catalog APIs to register, store, and report system software packages, along with their versions and metadata in a centralized location.
+* `service/iot-data`: Updates service API
+* `service/models.lex.v2`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service API and documentation
+  * QuickSight support for pivot table field collapse state, radar chart range scale and multiple scope options in conditional formatting.
+* `service/signer`: Updates service API and documentation
+  * AWS Signer is launching Container Image Signing, a new feature that enables you to sign and verify container images. This feature enables you to validate that only container images you approve are used in your enterprise.
+* `service/sqs`: Updates service API and documentation
+  * Amazon SQS adds three new APIs - StartMessageMoveTask, CancelMessageMoveTask, and ListMessageMoveTasks to automate redriving messages from dead-letter queues to source queues or a custom destination.
+
 Release v1.44.276 (2023-06-05)
 ===
 

@@ -6273,6 +6273,47 @@ func (s *Counts) SetGroupKey(v string) *Counts {
 	return s
 }
 
+// Contains details of a coverage date filter.
+type CoverageDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp representing the end of the time period to filter results by.
+	EndInclusive *time.Time `locationName:"endInclusive" type:"timestamp"`
+
+	// A timestamp representing the start of the time period to filter results by.
+	StartInclusive *time.Time `locationName:"startInclusive" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CoverageDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CoverageDateFilter) GoString() string {
+	return s.String()
+}
+
+// SetEndInclusive sets the EndInclusive field's value.
+func (s *CoverageDateFilter) SetEndInclusive(v time.Time) *CoverageDateFilter {
+	s.EndInclusive = &v
+	return s
+}
+
+// SetStartInclusive sets the StartInclusive field's value.
+func (s *CoverageDateFilter) SetStartInclusive(v time.Time) *CoverageDateFilter {
+	s.StartInclusive = &v
+	return s
+}
+
 // A structure that identifies filter criteria for GetCoverageStatistics.
 type CoverageFilterCriteria struct {
 	_ struct{} `type:"structure"`
@@ -6300,12 +6341,16 @@ type CoverageFilterCriteria struct {
 	// Returns coverage statistics for AWS Lambda functions filtered by tag.
 	LambdaFunctionTags []*CoverageMapFilter `locationName:"lambdaFunctionTags" min:"1" type:"list"`
 
+	// Filters Amazon Web Services resources based on whether Amazon Inspector has
+	// checked them for vulnerabilities within the specified time range.
+	LastScannedAt []*CoverageDateFilter `locationName:"lastScannedAt" min:"1" type:"list"`
+
 	// An array of Amazon Web Services resource IDs to return coverage statistics
 	// for.
 	ResourceId []*CoverageStringFilter `locationName:"resourceId" min:"1" type:"list"`
 
 	// An array of Amazon Web Services resource types to return coverage statistics
-	// for. The values can be AWS_EC2_INSTANCE or AWS_ECR_REPOSITORY.
+	// for. The values can be AWS_EC2_INSTANCE, AWS_LAMBDA_FUNCTION or AWS_ECR_REPOSITORY.
 	ResourceType []*CoverageStringFilter `locationName:"resourceType" min:"1" type:"list"`
 
 	// The scan status code to filter on.
@@ -6359,6 +6404,9 @@ func (s *CoverageFilterCriteria) Validate() error {
 	}
 	if s.LambdaFunctionTags != nil && len(s.LambdaFunctionTags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionTags", 1))
+	}
+	if s.LastScannedAt != nil && len(s.LastScannedAt) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LastScannedAt", 1))
 	}
 	if s.ResourceId != nil && len(s.ResourceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
@@ -6544,6 +6592,12 @@ func (s *CoverageFilterCriteria) SetLambdaFunctionTags(v []*CoverageMapFilter) *
 	return s
 }
 
+// SetLastScannedAt sets the LastScannedAt field's value.
+func (s *CoverageFilterCriteria) SetLastScannedAt(v []*CoverageDateFilter) *CoverageFilterCriteria {
+	s.LastScannedAt = v
+	return s
+}
+
 // SetResourceId sets the ResourceId field's value.
 func (s *CoverageFilterCriteria) SetResourceId(v []*CoverageStringFilter) *CoverageFilterCriteria {
 	s.ResourceId = v
@@ -6723,6 +6777,9 @@ type CoveredResource struct {
 	// AccountId is a required field
 	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
 
+	// The date and time the resource was last checked for vulnerabilities.
+	LastScannedAt *time.Time `locationName:"lastScannedAt" type:"timestamp"`
+
 	// The ID of the covered resource.
 	//
 	// ResourceId is a required field
@@ -6766,6 +6823,12 @@ func (s CoveredResource) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *CoveredResource) SetAccountId(v string) *CoveredResource {
 	s.AccountId = &v
+	return s
+}
+
+// SetLastScannedAt sets the LastScannedAt field's value.
+func (s *CoveredResource) SetLastScannedAt(v time.Time) *CoveredResource {
+	s.LastScannedAt = &v
 	return s
 }
 

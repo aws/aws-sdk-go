@@ -332,6 +332,8 @@ func ExampleIAM_CreateAccountAlias_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
+			case iam.ErrCodeConcurrentModificationException:
+				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			case iam.ErrCodeEntityAlreadyExistsException:
 				fmt.Println(iam.ErrCodeEntityAlreadyExistsException, aerr.Error())
 			case iam.ErrCodeLimitExceededException:
@@ -631,6 +633,8 @@ func ExampleIAM_DeleteAccountAlias_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
+			case iam.ErrCodeConcurrentModificationException:
+				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			case iam.ErrCodeNoSuchEntityException:
 				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
 			case iam.ErrCodeLimitExceededException:
@@ -875,6 +879,8 @@ func ExampleIAM_DeleteSigningCertificate_shared00() {
 				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
 			case iam.ErrCodeLimitExceededException:
 				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
+			case iam.ErrCodeConcurrentModificationException:
+				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
@@ -982,6 +988,8 @@ func ExampleIAM_DeleteVirtualMFADevice_shared00() {
 				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
+			case iam.ErrCodeConcurrentModificationException:
+				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2336,6 +2344,8 @@ func ExampleIAM_UploadSigningCertificate_shared00() {
 				fmt.Println(iam.ErrCodeDuplicateCertificateException, aerr.Error())
 			case iam.ErrCodeNoSuchEntityException:
 				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
+			case iam.ErrCodeConcurrentModificationException:
+				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:

@@ -8558,8 +8558,6 @@ func (c *Connect) GetMetricDataV2Request(input *GetMetricDataV2Input) (req *requ
 // and GetMetricData, see Historical metrics definitions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
 // in the Amazon Connect Administrator's Guide.
 //
-// This API is not available in the Amazon Web Services GovCloud (US) Regions.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -22978,7 +22976,9 @@ type Contact struct {
 	// is when the contact arrived. For OUTBOUND, this is when the agent began dialing.
 	// For CALLBACK, this is when the callback contact was created. For TRANSFER
 	// and QUEUE_TRANSFER, this is when the transfer was initiated. For API, this
-	// is when the request arrived.
+	// is when the request arrived. For EXTERNAL_OUTBOUND, this is when the agent
+	// started dialing the external participant. For MONITOR, this is when the supervisor
+	// started listening to a contact.
 	InitiationTimestamp *time.Time `type:"timestamp"`
 
 	// The timestamp when contact was last updated.
