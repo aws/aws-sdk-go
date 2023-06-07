@@ -379,6 +379,17 @@
       },
       "union":true
     },
+    "ContainerLogRotationConfiguration":{
+      "type":"structure",
+      "required":[
+        "rotationSize",
+        "maxFilesToKeep"
+      ],
+      "members":{
+        "rotationSize":{"shape":"RotationSize"},
+        "maxFilesToKeep":{"shape":"MaxFilesToKeep"}
+      }
+    },
     "ContainerProvider":{
       "type":"structure",
       "required":[
@@ -900,7 +911,7 @@
       "type":"string",
       "max":2048,
       "min":3,
-      "pattern":"^(arn:(aws[a-zA-Z0-9-]*):kms:([a-zA-Z0-9]+-?)+:(\\d{12})?:key\\/[(0-9a-zA-Z)-?]+|\\$\\{[a-zA-Z]\\w*\\})$"
+      "pattern":"^(arn:(aws[a-zA-Z0-9-]*):kms:.+:(\\d{12})?:key\\/[(0-9a-zA-Z)-?]+|\\$\\{[a-zA-Z]\\w*\\})$"
     },
     "KubernetesNamespace":{
       "type":"string",
@@ -1112,12 +1123,18 @@
       "min":1,
       "pattern":"[\\.\\-_/#A-Za-z0-9]+"
     },
+    "MaxFilesToKeep":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
     "MonitoringConfiguration":{
       "type":"structure",
       "members":{
         "persistentAppUI":{"shape":"PersistentAppUI"},
         "cloudWatchMonitoringConfiguration":{"shape":"CloudWatchMonitoringConfiguration"},
-        "s3MonitoringConfiguration":{"shape":"S3MonitoringConfiguration"}
+        "s3MonitoringConfiguration":{"shape":"S3MonitoringConfiguration"},
+        "containerLogRotationConfiguration":{"shape":"ContainerLogRotationConfiguration"}
       }
     },
     "NextToken":{
@@ -1226,6 +1243,12 @@
       "members":{
         "currentAttemptCount":{"shape":"JavaInteger"}
       }
+    },
+    "RotationSize":{
+      "type":"string",
+      "max":12,
+      "min":3,
+      "pattern":"^\\d+(\\.\\d+)?[KMG][Bb]?$"
     },
     "RsiArn":{
       "type":"string",

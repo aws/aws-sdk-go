@@ -80,6 +80,10 @@ type CloudWatchLogsAPI interface {
 	CreateLogStreamWithContext(aws.Context, *cloudwatchlogs.CreateLogStreamInput, ...request.Option) (*cloudwatchlogs.CreateLogStreamOutput, error)
 	CreateLogStreamRequest(*cloudwatchlogs.CreateLogStreamInput) (*request.Request, *cloudwatchlogs.CreateLogStreamOutput)
 
+	DeleteAccountPolicy(*cloudwatchlogs.DeleteAccountPolicyInput) (*cloudwatchlogs.DeleteAccountPolicyOutput, error)
+	DeleteAccountPolicyWithContext(aws.Context, *cloudwatchlogs.DeleteAccountPolicyInput, ...request.Option) (*cloudwatchlogs.DeleteAccountPolicyOutput, error)
+	DeleteAccountPolicyRequest(*cloudwatchlogs.DeleteAccountPolicyInput) (*request.Request, *cloudwatchlogs.DeleteAccountPolicyOutput)
+
 	DeleteDataProtectionPolicy(*cloudwatchlogs.DeleteDataProtectionPolicyInput) (*cloudwatchlogs.DeleteDataProtectionPolicyOutput, error)
 	DeleteDataProtectionPolicyWithContext(aws.Context, *cloudwatchlogs.DeleteDataProtectionPolicyInput, ...request.Option) (*cloudwatchlogs.DeleteDataProtectionPolicyOutput, error)
 	DeleteDataProtectionPolicyRequest(*cloudwatchlogs.DeleteDataProtectionPolicyInput) (*request.Request, *cloudwatchlogs.DeleteDataProtectionPolicyOutput)
@@ -115,6 +119,10 @@ type CloudWatchLogsAPI interface {
 	DeleteSubscriptionFilter(*cloudwatchlogs.DeleteSubscriptionFilterInput) (*cloudwatchlogs.DeleteSubscriptionFilterOutput, error)
 	DeleteSubscriptionFilterWithContext(aws.Context, *cloudwatchlogs.DeleteSubscriptionFilterInput, ...request.Option) (*cloudwatchlogs.DeleteSubscriptionFilterOutput, error)
 	DeleteSubscriptionFilterRequest(*cloudwatchlogs.DeleteSubscriptionFilterInput) (*request.Request, *cloudwatchlogs.DeleteSubscriptionFilterOutput)
+
+	DescribeAccountPolicies(*cloudwatchlogs.DescribeAccountPoliciesInput) (*cloudwatchlogs.DescribeAccountPoliciesOutput, error)
+	DescribeAccountPoliciesWithContext(aws.Context, *cloudwatchlogs.DescribeAccountPoliciesInput, ...request.Option) (*cloudwatchlogs.DescribeAccountPoliciesOutput, error)
+	DescribeAccountPoliciesRequest(*cloudwatchlogs.DescribeAccountPoliciesInput) (*request.Request, *cloudwatchlogs.DescribeAccountPoliciesOutput)
 
 	DescribeDestinations(*cloudwatchlogs.DescribeDestinationsInput) (*cloudwatchlogs.DescribeDestinationsOutput, error)
 	DescribeDestinationsWithContext(aws.Context, *cloudwatchlogs.DescribeDestinationsInput, ...request.Option) (*cloudwatchlogs.DescribeDestinationsOutput, error)
@@ -208,6 +216,10 @@ type CloudWatchLogsAPI interface {
 	ListTagsLogGroup(*cloudwatchlogs.ListTagsLogGroupInput) (*cloudwatchlogs.ListTagsLogGroupOutput, error)
 	ListTagsLogGroupWithContext(aws.Context, *cloudwatchlogs.ListTagsLogGroupInput, ...request.Option) (*cloudwatchlogs.ListTagsLogGroupOutput, error)
 	ListTagsLogGroupRequest(*cloudwatchlogs.ListTagsLogGroupInput) (*request.Request, *cloudwatchlogs.ListTagsLogGroupOutput)
+
+	PutAccountPolicy(*cloudwatchlogs.PutAccountPolicyInput) (*cloudwatchlogs.PutAccountPolicyOutput, error)
+	PutAccountPolicyWithContext(aws.Context, *cloudwatchlogs.PutAccountPolicyInput, ...request.Option) (*cloudwatchlogs.PutAccountPolicyOutput, error)
+	PutAccountPolicyRequest(*cloudwatchlogs.PutAccountPolicyInput) (*request.Request, *cloudwatchlogs.PutAccountPolicyOutput)
 
 	PutDataProtectionPolicy(*cloudwatchlogs.PutDataProtectionPolicyInput) (*cloudwatchlogs.PutDataProtectionPolicyOutput, error)
 	PutDataProtectionPolicyWithContext(aws.Context, *cloudwatchlogs.PutDataProtectionPolicyInput, ...request.Option) (*cloudwatchlogs.PutDataProtectionPolicyOutput, error)

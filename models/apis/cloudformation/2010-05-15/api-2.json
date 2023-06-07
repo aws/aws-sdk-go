@@ -3490,7 +3490,8 @@
         "SUCCEEDED",
         "FAILED",
         "CANCELLED",
-        "INOPERABLE"
+        "INOPERABLE",
+        "SKIPPED_SUSPENDED_ACCOUNT"
       ]
     },
     "StackInstanceFilter":{

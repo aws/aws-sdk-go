@@ -1,3 +1,17 @@
+Release v1.44.278 (2023-06-07)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * AWS CloudFormation StackSets is updating the deployment experience for all stackset operations to skip suspended AWS accounts during deployments. StackSets will skip target AWS accounts that are suspended and set the Detailed Status of the corresponding stack instances as SKIPPED_SUSPENDED_ACCOUNT
+* `service/customer-profiles`: Updates service API, documentation, and paginators
+* `service/directconnect`: Updates service documentation
+  * This update corrects the jumbo frames mtu values from 9100 to 8500 for transit virtual interfaces.
+* `service/emr-containers`: Updates service API and documentation
+* `service/iotdeviceadvisor`: Updates service API and documentation
+* `service/logs`: Updates service API and documentation
+  * This change adds support for account level data protection policies using 3 new APIs, PutAccountPolicy, DeleteAccountPolicy and DescribeAccountPolicy. DescribeLogGroup API has been modified to indicate if account level policy is applied to the LogGroup via "inheritedProperties" list in the response.
+
 Release v1.44.277 (2023-06-06)
 ===
 

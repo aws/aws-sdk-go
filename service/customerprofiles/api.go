@@ -310,6 +310,103 @@ func (c *CustomerProfiles) CreateDomainWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
+const opCreateEventStream = "CreateEventStream"
+
+// CreateEventStreamRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEventStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEventStream for more information on using the CreateEventStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateEventStreamRequest method.
+//	req, resp := client.CreateEventStreamRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateEventStream
+func (c *CustomerProfiles) CreateEventStreamRequest(input *CreateEventStreamInput) (req *request.Request, output *CreateEventStreamOutput) {
+	op := &request.Operation{
+		Name:       opCreateEventStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/domains/{DomainName}/event-streams/{EventStreamName}",
+	}
+
+	if input == nil {
+		input = &CreateEventStreamInput{}
+	}
+
+	output = &CreateEventStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEventStream API operation for Amazon Connect Customer Profiles.
+//
+// Creates an event stream, which is a subscription to real-time events, such
+// as when profiles are created and updated through Amazon Connect Customer
+// Profiles.
+//
+// Each event stream can be associated with only one Kinesis Data Stream destination
+// in the same region and Amazon Web Services account as the customer profiles
+// domain
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation CreateEventStream for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateEventStream
+func (c *CustomerProfiles) CreateEventStream(input *CreateEventStreamInput) (*CreateEventStreamOutput, error) {
+	req, out := c.CreateEventStreamRequest(input)
+	return out, req.Send()
+}
+
+// CreateEventStreamWithContext is the same as CreateEventStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEventStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) CreateEventStreamWithContext(ctx aws.Context, input *CreateEventStreamInput, opts ...request.Option) (*CreateEventStreamOutput, error) {
+	req, out := c.CreateEventStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateIntegrationWorkflow = "CreateIntegrationWorkflow"
 
 // CreateIntegrationWorkflowRequest generates a "aws/request.Request" representing the
@@ -679,6 +776,98 @@ func (c *CustomerProfiles) DeleteDomain(input *DeleteDomainInput) (*DeleteDomain
 // for more information on using Contexts.
 func (c *CustomerProfiles) DeleteDomainWithContext(ctx aws.Context, input *DeleteDomainInput, opts ...request.Option) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEventStream = "DeleteEventStream"
+
+// DeleteEventStreamRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEventStream for more information on using the DeleteEventStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEventStreamRequest method.
+//	req, resp := client.DeleteEventStreamRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DeleteEventStream
+func (c *CustomerProfiles) DeleteEventStreamRequest(input *DeleteEventStreamInput) (req *request.Request, output *DeleteEventStreamOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventStream,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/domains/{DomainName}/event-streams/{EventStreamName}",
+	}
+
+	if input == nil {
+		input = &DeleteEventStreamInput{}
+	}
+
+	output = &DeleteEventStreamOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEventStream API operation for Amazon Connect Customer Profiles.
+//
+// Disables and deletes the specified event stream.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation DeleteEventStream for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DeleteEventStream
+func (c *CustomerProfiles) DeleteEventStream(input *DeleteEventStreamInput) (*DeleteEventStreamOutput, error) {
+	req, out := c.DeleteEventStreamRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventStreamWithContext is the same as DeleteEventStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) DeleteEventStreamWithContext(ctx aws.Context, input *DeleteEventStreamInput, opts ...request.Option) (*DeleteEventStreamOutput, error) {
+	req, out := c.DeleteEventStreamRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1608,6 +1797,97 @@ func (c *CustomerProfiles) GetDomain(input *GetDomainInput) (*GetDomainOutput, e
 // for more information on using Contexts.
 func (c *CustomerProfiles) GetDomainWithContext(ctx aws.Context, input *GetDomainInput, opts ...request.Option) (*GetDomainOutput, error) {
 	req, out := c.GetDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEventStream = "GetEventStream"
+
+// GetEventStreamRequest generates a "aws/request.Request" representing the
+// client's request for the GetEventStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEventStream for more information on using the GetEventStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEventStreamRequest method.
+//	req, resp := client.GetEventStreamRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetEventStream
+func (c *CustomerProfiles) GetEventStreamRequest(input *GetEventStreamInput) (req *request.Request, output *GetEventStreamOutput) {
+	op := &request.Operation{
+		Name:       opGetEventStream,
+		HTTPMethod: "GET",
+		HTTPPath:   "/domains/{DomainName}/event-streams/{EventStreamName}",
+	}
+
+	if input == nil {
+		input = &GetEventStreamInput{}
+	}
+
+	output = &GetEventStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEventStream API operation for Amazon Connect Customer Profiles.
+//
+// Returns information about the specified event stream in a specific domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation GetEventStream for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetEventStream
+func (c *CustomerProfiles) GetEventStream(input *GetEventStreamInput) (*GetEventStreamOutput, error) {
+	req, out := c.GetEventStreamRequest(input)
+	return out, req.Send()
+}
+
+// GetEventStreamWithContext is the same as GetEventStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEventStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) GetEventStreamWithContext(ctx aws.Context, input *GetEventStreamInput, opts ...request.Option) (*GetEventStreamOutput, error) {
+	req, out := c.GetEventStreamRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2660,6 +2940,154 @@ func (c *CustomerProfiles) ListDomainsWithContext(ctx aws.Context, input *ListDo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListEventStreams = "ListEventStreams"
+
+// ListEventStreamsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEventStreams operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEventStreams for more information on using the ListEventStreams
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEventStreamsRequest method.
+//	req, resp := client.ListEventStreamsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListEventStreams
+func (c *CustomerProfiles) ListEventStreamsRequest(input *ListEventStreamsInput) (req *request.Request, output *ListEventStreamsOutput) {
+	op := &request.Operation{
+		Name:       opListEventStreams,
+		HTTPMethod: "GET",
+		HTTPPath:   "/domains/{DomainName}/event-streams",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEventStreamsInput{}
+	}
+
+	output = &ListEventStreamsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEventStreams API operation for Amazon Connect Customer Profiles.
+//
+// Returns a list of all the event streams in a specific domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation ListEventStreams for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListEventStreams
+func (c *CustomerProfiles) ListEventStreams(input *ListEventStreamsInput) (*ListEventStreamsOutput, error) {
+	req, out := c.ListEventStreamsRequest(input)
+	return out, req.Send()
+}
+
+// ListEventStreamsWithContext is the same as ListEventStreams with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEventStreams for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) ListEventStreamsWithContext(ctx aws.Context, input *ListEventStreamsInput, opts ...request.Option) (*ListEventStreamsOutput, error) {
+	req, out := c.ListEventStreamsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEventStreamsPages iterates over the pages of a ListEventStreams operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEventStreams method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEventStreams operation.
+//	pageNum := 0
+//	err := client.ListEventStreamsPages(params,
+//	    func(page *customerprofiles.ListEventStreamsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CustomerProfiles) ListEventStreamsPages(input *ListEventStreamsInput, fn func(*ListEventStreamsOutput, bool) bool) error {
+	return c.ListEventStreamsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEventStreamsPagesWithContext same as ListEventStreamsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) ListEventStreamsPagesWithContext(ctx aws.Context, input *ListEventStreamsInput, fn func(*ListEventStreamsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEventStreamsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEventStreamsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEventStreamsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListIdentityResolutionJobs = "ListIdentityResolutionJobs"
@@ -6107,6 +6535,144 @@ func (s *CreateDomainOutput) SetTags(v map[string]*string) *CreateDomainOutput {
 	return s
 }
 
+type CreateEventStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The name of the event stream.
+	//
+	// EventStreamName is a required field
+	EventStreamName *string `location:"uri" locationName:"EventStreamName" min:"1" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The StreamARN of the destination to deliver profile events to. For example,
+	// arn:aws:kinesis:region:account-id:stream/stream-name
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEventStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEventStreamInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.EventStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventStreamName"))
+	}
+	if s.EventStreamName != nil && len(*s.EventStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventStreamName", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CreateEventStreamInput) SetDomainName(v string) *CreateEventStreamInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEventStreamName sets the EventStreamName field's value.
+func (s *CreateEventStreamInput) SetEventStreamName(v string) *CreateEventStreamInput {
+	s.EventStreamName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventStreamInput) SetTags(v map[string]*string) *CreateEventStreamInput {
+	s.Tags = v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *CreateEventStreamInput) SetUri(v string) *CreateEventStreamInput {
+	s.Uri = &v
+	return s
+}
+
+type CreateEventStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the event stream.
+	//
+	// EventStreamArn is a required field
+	EventStreamArn *string `min:"1" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventStreamArn sets the EventStreamArn field's value.
+func (s *CreateEventStreamOutput) SetEventStreamArn(v string) *CreateEventStreamOutput {
+	s.EventStreamArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventStreamOutput) SetTags(v map[string]*string) *CreateEventStreamOutput {
+	s.Tags = v
+	return s
+}
+
 type CreateIntegrationWorkflowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6807,6 +7373,94 @@ func (s *DeleteDomainOutput) SetMessage(v string) *DeleteDomainOutput {
 	return s
 }
 
+type DeleteEventStreamInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The name of the event stream
+	//
+	// EventStreamName is a required field
+	EventStreamName *string `location:"uri" locationName:"EventStreamName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventStreamInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.EventStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventStreamName"))
+	}
+	if s.EventStreamName != nil && len(*s.EventStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventStreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DeleteEventStreamInput) SetDomainName(v string) *DeleteEventStreamInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEventStreamName sets the EventStreamName field's value.
+func (s *DeleteEventStreamInput) SetEventStreamName(v string) *DeleteEventStreamInput {
+	s.EventStreamName = &v
+	return s
+}
+
+type DeleteEventStreamOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventStreamOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7440,6 +8094,61 @@ func (s DeleteWorkflowOutput) GoString() string {
 	return s.String()
 }
 
+// Summary information about the Kinesis data stream
+type DestinationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The status of enabling the Kinesis stream as a destination for export.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EventStreamDestinationStatus"`
+
+	// The timestamp when the status last changed to UNHEALHY.
+	UnhealthySince *time.Time `type:"timestamp"`
+
+	// The StreamARN of the destination to deliver profile events to. For example,
+	// arn:aws:kinesis:region:account-id:stream/stream-name.
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationSummary) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *DestinationSummary) SetStatus(v string) *DestinationSummary {
+	s.Status = &v
+	return s
+}
+
+// SetUnhealthySince sets the UnhealthySince field's value.
+func (s *DestinationSummary) SetUnhealthySince(v time.Time) *DestinationSummary {
+	s.UnhealthySince = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *DestinationSummary) SetUri(v string) *DestinationSummary {
+	s.Uri = &v
+	return s
+}
+
 // Usage-specific statistics about the domain.
 type DomainStats struct {
 	_ struct{} `type:"structure"`
@@ -7499,6 +8208,165 @@ func (s *DomainStats) SetProfileCount(v int64) *DomainStats {
 // SetTotalSize sets the TotalSize field's value.
 func (s *DomainStats) SetTotalSize(v int64) *DomainStats {
 	s.TotalSize = &v
+	return s
+}
+
+// Details of the destination being used for the EventStream.
+type EventStreamDestinationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The human-readable string that corresponds to the error or success while
+	// enabling the streaming destination.
+	Message *string `min:"1" type:"string"`
+
+	// The status of enabling the Kinesis stream as a destination for export.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EventStreamDestinationStatus"`
+
+	// The timestamp when the status last changed to UNHEALHY.
+	UnhealthySince *time.Time `type:"timestamp"`
+
+	// The StreamARN of the destination to deliver profile events to. For example,
+	// arn:aws:kinesis:region:account-id:stream/stream-name.
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventStreamDestinationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventStreamDestinationDetails) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *EventStreamDestinationDetails) SetMessage(v string) *EventStreamDestinationDetails {
+	s.Message = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EventStreamDestinationDetails) SetStatus(v string) *EventStreamDestinationDetails {
+	s.Status = &v
+	return s
+}
+
+// SetUnhealthySince sets the UnhealthySince field's value.
+func (s *EventStreamDestinationDetails) SetUnhealthySince(v time.Time) *EventStreamDestinationDetails {
+	s.UnhealthySince = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *EventStreamDestinationDetails) SetUri(v string) *EventStreamDestinationDetails {
+	s.Uri = &v
+	return s
+}
+
+// An instance of EventStream in a list of EventStreams.
+type EventStreamSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Summary information about the Kinesis data stream.
+	DestinationSummary *DestinationSummary `type:"structure"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the event stream.
+	//
+	// EventStreamArn is a required field
+	EventStreamArn *string `min:"1" type:"string" required:"true"`
+
+	// The name of the event stream.
+	//
+	// EventStreamName is a required field
+	EventStreamName *string `min:"1" type:"string" required:"true"`
+
+	// The operational state of destination stream for export.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"EventStreamState"`
+
+	// The timestamp when the State changed to STOPPED.
+	StoppedSince *time.Time `type:"timestamp"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventStreamSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventStreamSummary) GoString() string {
+	return s.String()
+}
+
+// SetDestinationSummary sets the DestinationSummary field's value.
+func (s *EventStreamSummary) SetDestinationSummary(v *DestinationSummary) *EventStreamSummary {
+	s.DestinationSummary = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *EventStreamSummary) SetDomainName(v string) *EventStreamSummary {
+	s.DomainName = &v
+	return s
+}
+
+// SetEventStreamArn sets the EventStreamArn field's value.
+func (s *EventStreamSummary) SetEventStreamArn(v string) *EventStreamSummary {
+	s.EventStreamArn = &v
+	return s
+}
+
+// SetEventStreamName sets the EventStreamName field's value.
+func (s *EventStreamSummary) SetEventStreamName(v string) *EventStreamSummary {
+	s.EventStreamName = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *EventStreamSummary) SetState(v string) *EventStreamSummary {
+	s.State = &v
+	return s
+}
+
+// SetStoppedSince sets the StoppedSince field's value.
+func (s *EventStreamSummary) SetStoppedSince(v time.Time) *EventStreamSummary {
+	s.StoppedSince = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EventStreamSummary) SetTags(v map[string]*string) *EventStreamSummary {
+	s.Tags = v
 	return s
 }
 
@@ -8621,6 +9489,167 @@ func (s *GetDomainOutput) SetStats(v *DomainStats) *GetDomainOutput {
 
 // SetTags sets the Tags field's value.
 func (s *GetDomainOutput) SetTags(v map[string]*string) *GetDomainOutput {
+	s.Tags = v
+	return s
+}
+
+type GetEventStreamInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The name of the event stream provided during create operations.
+	//
+	// EventStreamName is a required field
+	EventStreamName *string `location:"uri" locationName:"EventStreamName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventStreamInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.EventStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventStreamName"))
+	}
+	if s.EventStreamName != nil && len(*s.EventStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventStreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *GetEventStreamInput) SetDomainName(v string) *GetEventStreamInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEventStreamName sets the EventStreamName field's value.
+func (s *GetEventStreamInput) SetEventStreamName(v string) *GetEventStreamInput {
+	s.EventStreamName = &v
+	return s
+}
+
+type GetEventStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the export was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `type:"timestamp" required:"true"`
+
+	// Details regarding the Kinesis stream.
+	//
+	// DestinationDetails is a required field
+	DestinationDetails *EventStreamDestinationDetails `type:"structure" required:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the event stream.
+	//
+	// EventStreamArn is a required field
+	EventStreamArn *string `min:"1" type:"string" required:"true"`
+
+	// The operational state of destination stream for export.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"EventStreamState"`
+
+	// The timestamp when the State changed to STOPPED.
+	StoppedSince *time.Time `type:"timestamp"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetEventStreamOutput) SetCreatedAt(v time.Time) *GetEventStreamOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDestinationDetails sets the DestinationDetails field's value.
+func (s *GetEventStreamOutput) SetDestinationDetails(v *EventStreamDestinationDetails) *GetEventStreamOutput {
+	s.DestinationDetails = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *GetEventStreamOutput) SetDomainName(v string) *GetEventStreamOutput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEventStreamArn sets the EventStreamArn field's value.
+func (s *GetEventStreamOutput) SetEventStreamArn(v string) *GetEventStreamOutput {
+	s.EventStreamArn = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *GetEventStreamOutput) SetState(v string) *GetEventStreamOutput {
+	s.State = &v
+	return s
+}
+
+// SetStoppedSince sets the StoppedSince field's value.
+func (s *GetEventStreamOutput) SetStoppedSince(v time.Time) *GetEventStreamOutput {
+	s.StoppedSince = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetEventStreamOutput) SetTags(v map[string]*string) *GetEventStreamOutput {
 	s.Tags = v
 	return s
 }
@@ -10838,6 +11867,119 @@ func (s *ListDomainsOutput) SetItems(v []*ListDomainItem) *ListDomainsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListDomainsOutput) SetNextToken(v string) *ListDomainsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEventStreamsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The maximum number of objects returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventStreamsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventStreamsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEventStreamsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEventStreamsInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ListEventStreamsInput) SetDomainName(v string) *ListEventStreamsInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEventStreamsInput) SetMaxResults(v int64) *ListEventStreamsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventStreamsInput) SetNextToken(v string) *ListEventStreamsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEventStreamsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains summary information about an EventStream.
+	Items []*EventStreamSummary `type:"list"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventStreamsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventStreamsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListEventStreamsOutput) SetItems(v []*EventStreamSummary) *ListEventStreamsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventStreamsOutput) SetNextToken(v string) *ListEventStreamsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -16018,6 +17160,38 @@ func DataPullMode_Values() []string {
 	return []string{
 		DataPullModeIncremental,
 		DataPullModeComplete,
+	}
+}
+
+const (
+	// EventStreamDestinationStatusHealthy is a EventStreamDestinationStatus enum value
+	EventStreamDestinationStatusHealthy = "HEALTHY"
+
+	// EventStreamDestinationStatusUnhealthy is a EventStreamDestinationStatus enum value
+	EventStreamDestinationStatusUnhealthy = "UNHEALTHY"
+)
+
+// EventStreamDestinationStatus_Values returns all elements of the EventStreamDestinationStatus enum
+func EventStreamDestinationStatus_Values() []string {
+	return []string{
+		EventStreamDestinationStatusHealthy,
+		EventStreamDestinationStatusUnhealthy,
+	}
+}
+
+const (
+	// EventStreamStateRunning is a EventStreamState enum value
+	EventStreamStateRunning = "RUNNING"
+
+	// EventStreamStateStopped is a EventStreamState enum value
+	EventStreamStateStopped = "STOPPED"
+)
+
+// EventStreamState_Values returns all elements of the EventStreamState enum
+func EventStreamState_Values() []string {
+	return []string{
+		EventStreamStateRunning,
+		EventStreamStateStopped,
 	}
 }
 

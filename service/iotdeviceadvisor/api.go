@@ -2949,10 +2949,19 @@ type SuiteDefinitionConfiguration struct {
 	// Sets the MQTT protocol that is configured in the suite definition.
 	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
 
-	// Gets the test suite root group. This is a required parameter.
+	// Gets the test suite root group. This is a required parameter. For updating
+	// or creating the latest qualification suite, if intendedForQualification is
+	// set to true, rootGroup can be an empty string. If intendedForQualification
+	// is false, rootGroup cannot be an empty string. If rootGroup is empty, and
+	// intendedForQualification is set to true, all the qualification tests are
+	// included, and the configuration is default.
+	//
+	// For a qualification suite, the minimum length is 0, and the maximum is 2048.
+	// For a non-qualification suite, the minimum length is 1, and the maximum is
+	// 2048.
 	//
 	// RootGroup is a required field
-	RootGroup *string `locationName:"rootGroup" min:"1" type:"string" required:"true"`
+	RootGroup *string `locationName:"rootGroup" type:"string" required:"true"`
 
 	// Gets the suite definition name. This is a required parameter.
 	//
@@ -2989,9 +2998,6 @@ func (s *SuiteDefinitionConfiguration) Validate() error {
 	}
 	if s.RootGroup == nil {
 		invalidParams.Add(request.NewErrParamRequired("RootGroup"))
-	}
-	if s.RootGroup != nil && len(*s.RootGroup) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RootGroup", 1))
 	}
 	if s.SuiteDefinitionName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SuiteDefinitionName"))
@@ -3576,6 +3582,7 @@ type TestCaseScenario struct {
 	//    * ERORR: Test faced an error when running due to an internal issue.
 	Status *string `locationName:"status" type:"string" enum:"TestCaseScenarioStatus"`
 
+	// Provides test case scenario system messages if any.
 	SystemMessage *string `locationName:"systemMessage" type:"string"`
 
 	// Provides test case scenario ID.
