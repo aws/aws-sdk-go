@@ -17478,10 +17478,15 @@ func (s *SimplifiedApplication) SetVersion(v string) *SimplifiedApplication {
 type SpotProvisioningSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the strategy to use in launching Spot Instance fleets. Currently,
-	// the only option is capacity-optimized (the default), which launches instances
-	// from Spot Instance pools with optimal capacity for the number of instances
-	// that are launching.
+	// Specifies one of the following strategies to launch Spot Instance fleets:
+	// price-capacity-optimized, capacity-optimized, lowest-price, or diversified.
+	// For more information on the provisioning strategies, see Allocation strategies
+	// for Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html)
+	// in the Amazon EC2 User Guide for Linux Instances.
+	//
+	// When you launch a Spot Instance fleet with the old console, it automatically
+	// launches with the capacity-optimized strategy. You can't change the allocation
+	// strategy from the old console.
 	AllocationStrategy *string `type:"string" enum:"SpotProvisioningAllocationStrategy"`
 
 	// The defined duration for Spot Instances (also known as Spot blocks) in minutes.
@@ -20004,12 +20009,24 @@ func ScaleDownBehavior_Values() []string {
 const (
 	// SpotProvisioningAllocationStrategyCapacityOptimized is a SpotProvisioningAllocationStrategy enum value
 	SpotProvisioningAllocationStrategyCapacityOptimized = "capacity-optimized"
+
+	// SpotProvisioningAllocationStrategyPriceCapacityOptimized is a SpotProvisioningAllocationStrategy enum value
+	SpotProvisioningAllocationStrategyPriceCapacityOptimized = "price-capacity-optimized"
+
+	// SpotProvisioningAllocationStrategyLowestPrice is a SpotProvisioningAllocationStrategy enum value
+	SpotProvisioningAllocationStrategyLowestPrice = "lowest-price"
+
+	// SpotProvisioningAllocationStrategyDiversified is a SpotProvisioningAllocationStrategy enum value
+	SpotProvisioningAllocationStrategyDiversified = "diversified"
 )
 
 // SpotProvisioningAllocationStrategy_Values returns all elements of the SpotProvisioningAllocationStrategy enum
 func SpotProvisioningAllocationStrategy_Values() []string {
 	return []string{
 		SpotProvisioningAllocationStrategyCapacityOptimized,
+		SpotProvisioningAllocationStrategyPriceCapacityOptimized,
+		SpotProvisioningAllocationStrategyLowestPrice,
+		SpotProvisioningAllocationStrategyDiversified,
 	}
 }
 

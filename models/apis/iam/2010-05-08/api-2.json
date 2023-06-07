@@ -142,6 +142,7 @@
       },
       "input":{"shape":"CreateAccountAliasRequest"},
       "errors":[
+        {"shape":"ConcurrentModificationException"},
         {"shape":"EntityAlreadyExistsException"},
         {"shape":"LimitExceededException"},
         {"shape":"ServiceFailureException"}
@@ -385,7 +386,8 @@
         {"shape":"EntityTemporarilyUnmodifiableException"},
         {"shape":"NoSuchEntityException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ServiceFailureException"}
+        {"shape":"ServiceFailureException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteAccessKey":{
@@ -409,6 +411,7 @@
       },
       "input":{"shape":"DeleteAccountAliasRequest"},
       "errors":[
+        {"shape":"ConcurrentModificationException"},
         {"shape":"NoSuchEntityException"},
         {"shape":"LimitExceededException"},
         {"shape":"ServiceFailureException"}
@@ -644,6 +647,7 @@
       "errors":[
         {"shape":"NoSuchEntityException"},
         {"shape":"LimitExceededException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"ServiceFailureException"}
       ]
     },
@@ -698,7 +702,8 @@
         {"shape":"NoSuchEntityException"},
         {"shape":"DeleteConflictException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ServiceFailureException"}
+        {"shape":"ServiceFailureException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DetachGroupPolicy":{
@@ -757,7 +762,8 @@
         {"shape":"InvalidAuthenticationCodeException"},
         {"shape":"LimitExceededException"},
         {"shape":"NoSuchEntityException"},
-        {"shape":"ServiceFailureException"}
+        {"shape":"ServiceFailureException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "GenerateCredentialReport":{
@@ -1882,7 +1888,8 @@
         {"shape":"InvalidAuthenticationCodeException"},
         {"shape":"NoSuchEntityException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ServiceFailureException"}
+        {"shape":"ServiceFailureException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "SetDefaultPolicyVersion":{
@@ -2432,6 +2439,7 @@
         {"shape":"InvalidCertificateException"},
         {"shape":"DuplicateCertificateException"},
         {"shape":"NoSuchEntityException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"ServiceFailureException"}
       ]
     }
@@ -5843,7 +5851,7 @@
       "type":"string",
       "max":63,
       "min":3,
-      "pattern":"^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$"
+      "pattern":"^[a-z0-9]([a-z0-9]|-(?!-)){1,61}[a-z0-9]$"
     },
     "arnType":{
       "type":"string",
@@ -6076,7 +6084,7 @@
       "type":"string",
       "max":512,
       "min":1,
-      "pattern":"(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)"
+      "pattern":"(\\u002F)|(\\u002F[\\u0021-\\u007E]+\\u002F)"
     },
     "policyDescriptionType":{
       "type":"string",
@@ -6179,7 +6187,7 @@
     "roleDescriptionType":{
       "type":"string",
       "max":1000,
-      "pattern":"[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*"
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]*"
     },
     "roleDetailListType":{
       "type":"list",

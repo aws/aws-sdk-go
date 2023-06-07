@@ -2861,7 +2861,12 @@
     },
     "SpotProvisioningAllocationStrategy":{
       "type":"string",
-      "enum":["capacity-optimized"]
+      "enum":[
+        "capacity-optimized",
+        "price-capacity-optimized",
+        "lowest-price",
+        "diversified"
+      ]
     },
     "SpotProvisioningSpecification":{
       "type":"structure",

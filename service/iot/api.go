@@ -1859,7 +1859,7 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 // action.
 //
 // The CSR must include a public key that is either an RSA key with a length
-// of at least 2048 bits or an ECC key from NIST P-25 or NIST P-384 curves.
+// of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves.
 // For supported certificates, consult Certificate signing algorithms supported
 // by IoT (https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms).
 //
@@ -2898,6 +2898,190 @@ func (c *IoT) CreateOTAUpdate(input *CreateOTAUpdateInput) (*CreateOTAUpdateOutp
 // for more information on using Contexts.
 func (c *IoT) CreateOTAUpdateWithContext(ctx aws.Context, input *CreateOTAUpdateInput, opts ...request.Option) (*CreateOTAUpdateOutput, error) {
 	req, out := c.CreateOTAUpdateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreatePackage = "CreatePackage"
+
+// CreatePackageRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePackage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePackage for more information on using the CreatePackage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePackageRequest method.
+//	req, resp := client.CreatePackageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) CreatePackageRequest(input *CreatePackageInput) (req *request.Request, output *CreatePackageOutput) {
+	op := &request.Operation{
+		Name:       opCreatePackage,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/packages/{packageName}",
+	}
+
+	if input == nil {
+		input = &CreatePackageInput{}
+	}
+
+	output = &CreatePackageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePackage API operation for AWS IoT.
+//
+// Creates an IoT software package that can be deployed to your fleet.
+//
+// Requires permission to access the CreatePackage (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// and GetIndexingConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreatePackage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ConflictException
+//     A resource with the same name already exists.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+//
+//   - ServiceQuotaExceededException
+//     A limit has been exceeded.
+func (c *IoT) CreatePackage(input *CreatePackageInput) (*CreatePackageOutput, error) {
+	req, out := c.CreatePackageRequest(input)
+	return out, req.Send()
+}
+
+// CreatePackageWithContext is the same as CreatePackage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePackage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) CreatePackageWithContext(ctx aws.Context, input *CreatePackageInput, opts ...request.Option) (*CreatePackageOutput, error) {
+	req, out := c.CreatePackageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreatePackageVersion = "CreatePackageVersion"
+
+// CreatePackageVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePackageVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePackageVersion for more information on using the CreatePackageVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePackageVersionRequest method.
+//	req, resp := client.CreatePackageVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) CreatePackageVersionRequest(input *CreatePackageVersionInput) (req *request.Request, output *CreatePackageVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreatePackageVersion,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/packages/{packageName}/versions/{versionName}",
+	}
+
+	if input == nil {
+		input = &CreatePackageVersionInput{}
+	}
+
+	output = &CreatePackageVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePackageVersion API operation for AWS IoT.
+//
+// Creates a new version for an existing IoT software package.
+//
+// Requires permission to access the CreatePackageVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// and GetIndexingConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreatePackageVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ConflictException
+//     A resource with the same name already exists.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+//
+//   - ServiceQuotaExceededException
+//     A limit has been exceeded.
+func (c *IoT) CreatePackageVersion(input *CreatePackageVersionInput) (*CreatePackageVersionOutput, error) {
+	req, out := c.CreatePackageVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreatePackageVersionWithContext is the same as CreatePackageVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePackageVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) CreatePackageVersionWithContext(ctx aws.Context, input *CreatePackageVersionInput, opts ...request.Option) (*CreatePackageVersionOutput, error) {
+	req, out := c.CreatePackageVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5718,6 +5902,180 @@ func (c *IoT) DeleteOTAUpdate(input *DeleteOTAUpdateInput) (*DeleteOTAUpdateOutp
 // for more information on using Contexts.
 func (c *IoT) DeleteOTAUpdateWithContext(ctx aws.Context, input *DeleteOTAUpdateInput, opts ...request.Option) (*DeleteOTAUpdateOutput, error) {
 	req, out := c.DeleteOTAUpdateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePackage = "DeletePackage"
+
+// DeletePackageRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePackage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePackage for more information on using the DeletePackage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePackageRequest method.
+//	req, resp := client.DeletePackageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) DeletePackageRequest(input *DeletePackageInput) (req *request.Request, output *DeletePackageOutput) {
+	op := &request.Operation{
+		Name:       opDeletePackage,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/packages/{packageName}",
+	}
+
+	if input == nil {
+		input = &DeletePackageInput{}
+	}
+
+	output = &DeletePackageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePackage API operation for AWS IoT.
+//
+// Deletes a specific version from a software package.
+//
+// Note: All package versions must be deleted before deleting the software package.
+//
+// Requires permission to access the DeletePackageVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeletePackage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+func (c *IoT) DeletePackage(input *DeletePackageInput) (*DeletePackageOutput, error) {
+	req, out := c.DeletePackageRequest(input)
+	return out, req.Send()
+}
+
+// DeletePackageWithContext is the same as DeletePackage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePackage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DeletePackageWithContext(ctx aws.Context, input *DeletePackageInput, opts ...request.Option) (*DeletePackageOutput, error) {
+	req, out := c.DeletePackageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePackageVersion = "DeletePackageVersion"
+
+// DeletePackageVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePackageVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePackageVersion for more information on using the DeletePackageVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePackageVersionRequest method.
+//	req, resp := client.DeletePackageVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) DeletePackageVersionRequest(input *DeletePackageVersionInput) (req *request.Request, output *DeletePackageVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeletePackageVersion,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/packages/{packageName}/versions/{versionName}",
+	}
+
+	if input == nil {
+		input = &DeletePackageVersionInput{}
+	}
+
+	output = &DeletePackageVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePackageVersion API operation for AWS IoT.
+//
+// Deletes a specific version from a software package.
+//
+// Note: If a package version is designated as default, you must remove the
+// designation from the package using the UpdatePackage action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeletePackageVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+func (c *IoT) DeletePackageVersion(input *DeletePackageVersionInput) (*DeletePackageVersionOutput, error) {
+	req, out := c.DeletePackageVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeletePackageVersionWithContext is the same as DeletePackageVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePackageVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DeletePackageVersionWithContext(ctx aws.Context, input *DeletePackageVersionInput, opts ...request.Option) (*DeletePackageVersionOutput, error) {
+	req, out := c.DeletePackageVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11550,6 +11908,264 @@ func (c *IoT) GetOTAUpdateWithContext(ctx aws.Context, input *GetOTAUpdateInput,
 	return out, req.Send()
 }
 
+const opGetPackage = "GetPackage"
+
+// GetPackageRequest generates a "aws/request.Request" representing the
+// client's request for the GetPackage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPackage for more information on using the GetPackage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPackageRequest method.
+//	req, resp := client.GetPackageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) GetPackageRequest(input *GetPackageInput) (req *request.Request, output *GetPackageOutput) {
+	op := &request.Operation{
+		Name:       opGetPackage,
+		HTTPMethod: "GET",
+		HTTPPath:   "/packages/{packageName}",
+	}
+
+	if input == nil {
+		input = &GetPackageInput{}
+	}
+
+	output = &GetPackageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPackage API operation for AWS IoT.
+//
+// Gets information about the specified software package.
+//
+// Requires permission to access the GetPackage (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetPackage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+func (c *IoT) GetPackage(input *GetPackageInput) (*GetPackageOutput, error) {
+	req, out := c.GetPackageRequest(input)
+	return out, req.Send()
+}
+
+// GetPackageWithContext is the same as GetPackage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPackage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) GetPackageWithContext(ctx aws.Context, input *GetPackageInput, opts ...request.Option) (*GetPackageOutput, error) {
+	req, out := c.GetPackageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPackageConfiguration = "GetPackageConfiguration"
+
+// GetPackageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetPackageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPackageConfiguration for more information on using the GetPackageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPackageConfigurationRequest method.
+//	req, resp := client.GetPackageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) GetPackageConfigurationRequest(input *GetPackageConfigurationInput) (req *request.Request, output *GetPackageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetPackageConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/package-configuration",
+	}
+
+	if input == nil {
+		input = &GetPackageConfigurationInput{}
+	}
+
+	output = &GetPackageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPackageConfiguration API operation for AWS IoT.
+//
+// Gets information about the specified software package's configuration.
+//
+// Requires permission to access the GetPackageConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetPackageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+func (c *IoT) GetPackageConfiguration(input *GetPackageConfigurationInput) (*GetPackageConfigurationOutput, error) {
+	req, out := c.GetPackageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetPackageConfigurationWithContext is the same as GetPackageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPackageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) GetPackageConfigurationWithContext(ctx aws.Context, input *GetPackageConfigurationInput, opts ...request.Option) (*GetPackageConfigurationOutput, error) {
+	req, out := c.GetPackageConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPackageVersion = "GetPackageVersion"
+
+// GetPackageVersionRequest generates a "aws/request.Request" representing the
+// client's request for the GetPackageVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPackageVersion for more information on using the GetPackageVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPackageVersionRequest method.
+//	req, resp := client.GetPackageVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) GetPackageVersionRequest(input *GetPackageVersionInput) (req *request.Request, output *GetPackageVersionOutput) {
+	op := &request.Operation{
+		Name:       opGetPackageVersion,
+		HTTPMethod: "GET",
+		HTTPPath:   "/packages/{packageName}/versions/{versionName}",
+	}
+
+	if input == nil {
+		input = &GetPackageVersionInput{}
+	}
+
+	output = &GetPackageVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPackageVersion API operation for AWS IoT.
+//
+// Gets information about the specified package version.
+//
+// Requires permission to access the GetPackageVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetPackageVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+func (c *IoT) GetPackageVersion(input *GetPackageVersionInput) (*GetPackageVersionOutput, error) {
+	req, out := c.GetPackageVersionRequest(input)
+	return out, req.Send()
+}
+
+// GetPackageVersionWithContext is the same as GetPackageVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPackageVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) GetPackageVersionWithContext(ctx aws.Context, input *GetPackageVersionInput, opts ...request.Option) (*GetPackageVersionOutput, error) {
+	req, out := c.GetPackageVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPercentiles = "GetPercentiles"
 
 // GetPercentilesRequest generates a "aws/request.Request" representing the
@@ -16336,6 +16952,290 @@ func (c *IoT) ListOutgoingCertificatesPagesWithContext(ctx aws.Context, input *L
 
 	for p.Next() {
 		if !fn(p.Page().(*ListOutgoingCertificatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPackageVersions = "ListPackageVersions"
+
+// ListPackageVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPackageVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPackageVersions for more information on using the ListPackageVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPackageVersionsRequest method.
+//	req, resp := client.ListPackageVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) ListPackageVersionsRequest(input *ListPackageVersionsInput) (req *request.Request, output *ListPackageVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListPackageVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/packages/{packageName}/versions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPackageVersionsInput{}
+	}
+
+	output = &ListPackageVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPackageVersions API operation for AWS IoT.
+//
+// Lists the software package versions associated to the account.
+//
+// Requires permission to access the ListPackageVersions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListPackageVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+func (c *IoT) ListPackageVersions(input *ListPackageVersionsInput) (*ListPackageVersionsOutput, error) {
+	req, out := c.ListPackageVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListPackageVersionsWithContext is the same as ListPackageVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPackageVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListPackageVersionsWithContext(ctx aws.Context, input *ListPackageVersionsInput, opts ...request.Option) (*ListPackageVersionsOutput, error) {
+	req, out := c.ListPackageVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPackageVersionsPages iterates over the pages of a ListPackageVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPackageVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPackageVersions operation.
+//	pageNum := 0
+//	err := client.ListPackageVersionsPages(params,
+//	    func(page *iot.ListPackageVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoT) ListPackageVersionsPages(input *ListPackageVersionsInput, fn func(*ListPackageVersionsOutput, bool) bool) error {
+	return c.ListPackageVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPackageVersionsPagesWithContext same as ListPackageVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListPackageVersionsPagesWithContext(ctx aws.Context, input *ListPackageVersionsInput, fn func(*ListPackageVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPackageVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPackageVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPackageVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPackages = "ListPackages"
+
+// ListPackagesRequest generates a "aws/request.Request" representing the
+// client's request for the ListPackages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPackages for more information on using the ListPackages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPackagesRequest method.
+//	req, resp := client.ListPackagesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) ListPackagesRequest(input *ListPackagesInput) (req *request.Request, output *ListPackagesOutput) {
+	op := &request.Operation{
+		Name:       opListPackages,
+		HTTPMethod: "GET",
+		HTTPPath:   "/packages",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPackagesInput{}
+	}
+
+	output = &ListPackagesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPackages API operation for AWS IoT.
+//
+// Lists the software packages associated to the account.
+//
+// Requires permission to access the ListPackages (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListPackages for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+func (c *IoT) ListPackages(input *ListPackagesInput) (*ListPackagesOutput, error) {
+	req, out := c.ListPackagesRequest(input)
+	return out, req.Send()
+}
+
+// ListPackagesWithContext is the same as ListPackages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPackages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListPackagesWithContext(ctx aws.Context, input *ListPackagesInput, opts ...request.Option) (*ListPackagesOutput, error) {
+	req, out := c.ListPackagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPackagesPages iterates over the pages of a ListPackages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPackages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPackages operation.
+//	pageNum := 0
+//	err := client.ListPackagesPages(params,
+//	    func(page *iot.ListPackagesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoT) ListPackagesPages(input *ListPackagesInput, fn func(*ListPackagesOutput, bool) bool) error {
+	return c.ListPackagesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPackagesPagesWithContext same as ListPackagesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListPackagesPagesWithContext(ctx aws.Context, input *ListPackagesInput, fn func(*ListPackagesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPackagesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPackagesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPackagesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -24338,6 +25238,273 @@ func (c *IoT) UpdateMitigationActionWithContext(ctx aws.Context, input *UpdateMi
 	return out, req.Send()
 }
 
+const opUpdatePackage = "UpdatePackage"
+
+// UpdatePackageRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePackage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePackage for more information on using the UpdatePackage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePackageRequest method.
+//	req, resp := client.UpdatePackageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) UpdatePackageRequest(input *UpdatePackageInput) (req *request.Request, output *UpdatePackageOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePackage,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/packages/{packageName}",
+	}
+
+	if input == nil {
+		input = &UpdatePackageInput{}
+	}
+
+	output = &UpdatePackageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdatePackage API operation for AWS IoT.
+//
+// Updates the supported fields for a specific package.
+//
+// Requires permission to access the UpdatePackage (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// and GetIndexingConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdatePackage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+func (c *IoT) UpdatePackage(input *UpdatePackageInput) (*UpdatePackageOutput, error) {
+	req, out := c.UpdatePackageRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePackageWithContext is the same as UpdatePackage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePackage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) UpdatePackageWithContext(ctx aws.Context, input *UpdatePackageInput, opts ...request.Option) (*UpdatePackageOutput, error) {
+	req, out := c.UpdatePackageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePackageConfiguration = "UpdatePackageConfiguration"
+
+// UpdatePackageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePackageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePackageConfiguration for more information on using the UpdatePackageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePackageConfigurationRequest method.
+//	req, resp := client.UpdatePackageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) UpdatePackageConfigurationRequest(input *UpdatePackageConfigurationInput) (req *request.Request, output *UpdatePackageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePackageConfiguration,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/package-configuration",
+	}
+
+	if input == nil {
+		input = &UpdatePackageConfigurationInput{}
+	}
+
+	output = &UpdatePackageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdatePackageConfiguration API operation for AWS IoT.
+//
+// Updates the package configuration.
+//
+// Requires permission to access the UpdatePackageConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// and iam:PassRole (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html)
+// actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdatePackageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+func (c *IoT) UpdatePackageConfiguration(input *UpdatePackageConfigurationInput) (*UpdatePackageConfigurationOutput, error) {
+	req, out := c.UpdatePackageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePackageConfigurationWithContext is the same as UpdatePackageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePackageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) UpdatePackageConfigurationWithContext(ctx aws.Context, input *UpdatePackageConfigurationInput, opts ...request.Option) (*UpdatePackageConfigurationOutput, error) {
+	req, out := c.UpdatePackageConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePackageVersion = "UpdatePackageVersion"
+
+// UpdatePackageVersionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePackageVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePackageVersion for more information on using the UpdatePackageVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePackageVersionRequest method.
+//	req, resp := client.UpdatePackageVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) UpdatePackageVersionRequest(input *UpdatePackageVersionInput) (req *request.Request, output *UpdatePackageVersionOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePackageVersion,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/packages/{packageName}/versions/{versionName}",
+	}
+
+	if input == nil {
+		input = &UpdatePackageVersionInput{}
+	}
+
+	output = &UpdatePackageVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdatePackageVersion API operation for AWS IoT.
+//
+// Updates the supported fields for a specific package version.
+//
+// Requires permission to access the UpdatePackageVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// and GetIndexingConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdatePackageVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalServerException
+//     Internal error from the service that indicates an unexpected error or that
+//     the service is unavailable.
+//
+//   - ValidationException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+func (c *IoT) UpdatePackageVersion(input *UpdatePackageVersionInput) (*UpdatePackageVersionOutput, error) {
+	req, out := c.UpdatePackageVersionRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePackageVersionWithContext is the same as UpdatePackageVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePackageVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) UpdatePackageVersionWithContext(ctx aws.Context, input *UpdatePackageVersionInput, opts ...request.Option) (*UpdatePackageVersionOutput, error) {
+	req, out := c.UpdatePackageVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateProvisioningTemplate = "UpdateProvisioningTemplate"
 
 // UpdateProvisioningTemplateRequest generates a "aws/request.Request" representing the
@@ -30834,6 +32001,9 @@ type ConflictException struct {
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
+
+	// A resource with the same name already exists.
+	ResourceId *string `locationName:"resourceId" type:"string"`
 }
 
 // String returns the string representation.
@@ -30879,7 +32049,7 @@ func (s *ConflictException) OrigErr() error {
 }
 
 func (s *ConflictException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -32432,6 +33602,13 @@ type CreateJobInput struct {
 	// A short text description of the job.
 	Description *string `locationName:"description" type:"string"`
 
+	// The package version Amazon Resource Names (ARNs) that are installed on the
+	// device when the job successfully completes.
+	//
+	// Note:The following Length Constraints relates to a single string. Up to five
+	// strings are allowed.
+	DestinationPackageVersions []*string `locationName:"destinationPackageVersions" type:"list"`
+
 	// The job document. Required if you don't specify a value for documentSource.
 	Document *string `locationName:"document" type:"string"`
 
@@ -32446,7 +33623,7 @@ type CreateJobInput struct {
 	// An S3 link, or S3 object URL, to the job document. The link is an Amazon
 	// S3 object URL and is required if you don't specify a value for document.
 	//
-	// For example, --document-source https://s3.region-code.amazonaws.com/example-firmware/device-firmware.1.0.
+	// For example, --document-source https://s3.region-code.amazonaws.com/example-firmware/device-firmware.1.0
 	//
 	// For more information, see Methods for accessing a bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html).
 	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
@@ -32605,6 +33782,12 @@ func (s *CreateJobInput) SetDescription(v string) *CreateJobInput {
 	return s
 }
 
+// SetDestinationPackageVersions sets the DestinationPackageVersions field's value.
+func (s *CreateJobInput) SetDestinationPackageVersions(v []*string) *CreateJobInput {
+	s.DestinationPackageVersions = v
+	return s
+}
+
 // SetDocument sets the Document field's value.
 func (s *CreateJobInput) SetDocument(v string) *CreateJobInput {
 	s.Document = &v
@@ -32749,6 +33932,13 @@ type CreateJobTemplateInput struct {
 	// Description is a required field
 	Description *string `locationName:"description" type:"string" required:"true"`
 
+	// The package version Amazon Resource Names (ARNs) that are installed on the
+	// device when the job successfully completes.
+	//
+	// Note:The following Length Constraints relates to a single string. Up to five
+	// strings are allowed.
+	DestinationPackageVersions []*string `locationName:"destinationPackageVersions" type:"list"`
+
 	// The job document. Required if you don't specify a value for documentSource.
 	Document *string `locationName:"document" type:"string"`
 
@@ -32887,6 +34077,12 @@ func (s *CreateJobTemplateInput) SetAbortConfig(v *AbortConfig) *CreateJobTempla
 // SetDescription sets the Description field's value.
 func (s *CreateJobTemplateInput) SetDescription(v string) *CreateJobTemplateInput {
 	s.Description = &v
+	return s
+}
+
+// SetDestinationPackageVersions sets the DestinationPackageVersions field's value.
+func (s *CreateJobTemplateInput) SetDestinationPackageVersions(v []*string) *CreateJobTemplateInput {
+	s.DestinationPackageVersions = v
 	return s
 }
 
@@ -33520,6 +34716,367 @@ func (s *CreateOTAUpdateOutput) SetOtaUpdateId(v string) *CreateOTAUpdateOutput 
 // SetOtaUpdateStatus sets the OtaUpdateStatus field's value.
 func (s *CreateOTAUpdateOutput) SetOtaUpdateStatus(v string) *CreateOTAUpdateOutput {
 	s.OtaUpdateStatus = &v
+	return s
+}
+
+type CreatePackageInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// A summary of the package being created. This can be used to outline the package's
+	// contents or purpose.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePackageInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The name of the new package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+
+	// Metadata that can be used to manage the package.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePackageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePackageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePackageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePackageInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreatePackageInput) SetClientToken(v string) *CreatePackageInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePackageInput) SetDescription(v string) *CreatePackageInput {
+	s.Description = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *CreatePackageInput) SetPackageName(v string) *CreatePackageInput {
+	s.PackageName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePackageInput) SetTags(v map[string]*string) *CreatePackageInput {
+	s.Tags = v
+	return s
+}
+
+type CreatePackageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The package description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePackageOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The Amazon Resource Name (ARN) for the package.
+	PackageArn *string `locationName:"packageArn" type:"string"`
+
+	// The name of the package.
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePackageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePackageOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePackageOutput) SetDescription(v string) *CreatePackageOutput {
+	s.Description = &v
+	return s
+}
+
+// SetPackageArn sets the PackageArn field's value.
+func (s *CreatePackageOutput) SetPackageArn(v string) *CreatePackageOutput {
+	s.PackageArn = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *CreatePackageOutput) SetPackageName(v string) *CreatePackageOutput {
+	s.PackageName = &v
+	return s
+}
+
+type CreatePackageVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Metadata that can be used to define a package version’s configuration.
+	// For example, the S3 file location, configuration options that are being sent
+	// to the device or fleet.
+	//
+	// The combined size of all the attributes on a package version is limited to
+	// 3KB.
+	//
+	// Attributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePackageVersionInput's
+	// String and GoString methods.
+	Attributes map[string]*string `locationName:"attributes" type:"map" sensitive:"true"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// A summary of the package version being created. This can be used to outline
+	// the package's contents or purpose.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePackageVersionInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The name of the associated package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+
+	// Metadata that can be used to manage the package version.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// The name of the new package version.
+	//
+	// VersionName is a required field
+	VersionName *string `location:"uri" locationName:"versionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePackageVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePackageVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePackageVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePackageVersionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VersionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionName"))
+	}
+	if s.VersionName != nil && len(*s.VersionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *CreatePackageVersionInput) SetAttributes(v map[string]*string) *CreatePackageVersionInput {
+	s.Attributes = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreatePackageVersionInput) SetClientToken(v string) *CreatePackageVersionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePackageVersionInput) SetDescription(v string) *CreatePackageVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *CreatePackageVersionInput) SetPackageName(v string) *CreatePackageVersionInput {
+	s.PackageName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePackageVersionInput) SetTags(v map[string]*string) *CreatePackageVersionInput {
+	s.Tags = v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *CreatePackageVersionInput) SetVersionName(v string) *CreatePackageVersionInput {
+	s.VersionName = &v
+	return s
+}
+
+type CreatePackageVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Metadata that were added to the package version that can be used to define
+	// a package version’s configuration.
+	//
+	// Attributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePackageVersionOutput's
+	// String and GoString methods.
+	Attributes map[string]*string `locationName:"attributes" type:"map" sensitive:"true"`
+
+	// The package version description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePackageVersionOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// Error reason for a package version failure during creation or update.
+	ErrorReason *string `locationName:"errorReason" type:"string"`
+
+	// The name of the associated package.
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) for the package.
+	PackageVersionArn *string `locationName:"packageVersionArn" min:"1" type:"string"`
+
+	// The status of the package version. For more information, see Package version
+	// lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
+	Status *string `locationName:"status" type:"string" enum:"PackageVersionStatus"`
+
+	// The name of the new package version.
+	VersionName *string `locationName:"versionName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePackageVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePackageVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *CreatePackageVersionOutput) SetAttributes(v map[string]*string) *CreatePackageVersionOutput {
+	s.Attributes = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePackageVersionOutput) SetDescription(v string) *CreatePackageVersionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetErrorReason sets the ErrorReason field's value.
+func (s *CreatePackageVersionOutput) SetErrorReason(v string) *CreatePackageVersionOutput {
+	s.ErrorReason = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *CreatePackageVersionOutput) SetPackageName(v string) *CreatePackageVersionOutput {
+	s.PackageName = &v
+	return s
+}
+
+// SetPackageVersionArn sets the PackageVersionArn field's value.
+func (s *CreatePackageVersionOutput) SetPackageVersionArn(v string) *CreatePackageVersionOutput {
+	s.PackageVersionArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreatePackageVersionOutput) SetStatus(v string) *CreatePackageVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *CreatePackageVersionOutput) SetVersionName(v string) *CreatePackageVersionOutput {
+	s.VersionName = &v
 	return s
 }
 
@@ -36954,6 +38511,193 @@ func (s DeleteOTAUpdateOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteOTAUpdateOutput) GoString() string {
+	return s.String()
+}
+
+type DeletePackageInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The name of the target package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePackageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePackageInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeletePackageInput) SetClientToken(v string) *DeletePackageInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *DeletePackageInput) SetPackageName(v string) *DeletePackageInput {
+	s.PackageName = &v
+	return s
+}
+
+type DeletePackageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageOutput) GoString() string {
+	return s.String()
+}
+
+type DeletePackageVersionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The name of the associated package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+
+	// The name of the target package version.
+	//
+	// VersionName is a required field
+	VersionName *string `location:"uri" locationName:"versionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePackageVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePackageVersionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+	if s.VersionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionName"))
+	}
+	if s.VersionName != nil && len(*s.VersionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeletePackageVersionInput) SetClientToken(v string) *DeletePackageVersionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *DeletePackageVersionInput) SetPackageName(v string) *DeletePackageVersionInput {
+	s.PackageName = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *DeletePackageVersionInput) SetVersionName(v string) *DeletePackageVersionInput {
+	s.VersionName = &v
+	return s
+}
+
+type DeletePackageVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageVersionOutput) GoString() string {
 	return s.String()
 }
 
@@ -40398,6 +42142,13 @@ type DescribeJobTemplateOutput struct {
 	// A description of the job template.
 	Description *string `locationName:"description" type:"string"`
 
+	// The package version Amazon Resource Names (ARNs) that are installed on the
+	// device when the job successfully completes.
+	//
+	// Note:The following Length Constraints relates to a single string. Up to five
+	// strings are allowed.
+	DestinationPackageVersions []*string `locationName:"destinationPackageVersions" type:"list"`
+
 	// The job document.
 	Document *string `locationName:"document" type:"string"`
 
@@ -40464,6 +42215,12 @@ func (s *DescribeJobTemplateOutput) SetCreatedAt(v time.Time) *DescribeJobTempla
 // SetDescription sets the Description field's value.
 func (s *DescribeJobTemplateOutput) SetDescription(v string) *DescribeJobTemplateOutput {
 	s.Description = &v
+	return s
+}
+
+// SetDestinationPackageVersions sets the DestinationPackageVersions field's value.
+func (s *DescribeJobTemplateOutput) SetDestinationPackageVersions(v []*string) *DescribeJobTemplateOutput {
+	s.DestinationPackageVersions = v
 	return s
 }
 
@@ -44812,6 +46569,367 @@ func (s *GetOTAUpdateOutput) SetOtaUpdateInfo(v *OTAUpdateInfo) *GetOTAUpdateOut
 	return s
 }
 
+type GetPackageConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetPackageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The version that is associated to a specific job.
+	VersionUpdateByJobsConfig *VersionUpdateByJobsConfig `locationName:"versionUpdateByJobsConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetVersionUpdateByJobsConfig sets the VersionUpdateByJobsConfig field's value.
+func (s *GetPackageConfigurationOutput) SetVersionUpdateByJobsConfig(v *VersionUpdateByJobsConfig) *GetPackageConfigurationOutput {
+	s.VersionUpdateByJobsConfig = v
+	return s
+}
+
+type GetPackageInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the target package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPackageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPackageInput"}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *GetPackageInput) SetPackageName(v string) *GetPackageInput {
+	s.PackageName = &v
+	return s
+}
+
+type GetPackageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date the package was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The name of the default package version.
+	DefaultVersionName *string `locationName:"defaultVersionName" min:"1" type:"string"`
+
+	// The package description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPackageOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The date when the package was last updated.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// The ARN for the package.
+	PackageArn *string `locationName:"packageArn" type:"string"`
+
+	// The name of the package.
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GetPackageOutput) SetCreationDate(v time.Time) *GetPackageOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDefaultVersionName sets the DefaultVersionName field's value.
+func (s *GetPackageOutput) SetDefaultVersionName(v string) *GetPackageOutput {
+	s.DefaultVersionName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetPackageOutput) SetDescription(v string) *GetPackageOutput {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *GetPackageOutput) SetLastModifiedDate(v time.Time) *GetPackageOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetPackageArn sets the PackageArn field's value.
+func (s *GetPackageOutput) SetPackageArn(v string) *GetPackageOutput {
+	s.PackageArn = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *GetPackageOutput) SetPackageName(v string) *GetPackageOutput {
+	s.PackageName = &v
+	return s
+}
+
+type GetPackageVersionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the associated package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+
+	// The name of the target package version.
+	//
+	// VersionName is a required field
+	VersionName *string `location:"uri" locationName:"versionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPackageVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPackageVersionInput"}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+	if s.VersionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionName"))
+	}
+	if s.VersionName != nil && len(*s.VersionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *GetPackageVersionInput) SetPackageName(v string) *GetPackageVersionInput {
+	s.PackageName = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *GetPackageVersionInput) SetVersionName(v string) *GetPackageVersionInput {
+	s.VersionName = &v
+	return s
+}
+
+type GetPackageVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Metadata that were added to the package version that can be used to define
+	// a package version’s configuration.
+	//
+	// Attributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPackageVersionOutput's
+	// String and GoString methods.
+	Attributes map[string]*string `locationName:"attributes" type:"map" sensitive:"true"`
+
+	// The date when the package version was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The package version description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPackageVersionOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// Error reason for a package version failure during creation or update.
+	ErrorReason *string `locationName:"errorReason" type:"string"`
+
+	// The date when the package version was last updated.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// The name of the package.
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
+
+	// The ARN for the package version.
+	PackageVersionArn *string `locationName:"packageVersionArn" min:"1" type:"string"`
+
+	// The status associated to the package version. For more information, see Package
+	// version lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
+	Status *string `locationName:"status" type:"string" enum:"PackageVersionStatus"`
+
+	// The name of the package version.
+	VersionName *string `locationName:"versionName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPackageVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *GetPackageVersionOutput) SetAttributes(v map[string]*string) *GetPackageVersionOutput {
+	s.Attributes = v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GetPackageVersionOutput) SetCreationDate(v time.Time) *GetPackageVersionOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetPackageVersionOutput) SetDescription(v string) *GetPackageVersionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetErrorReason sets the ErrorReason field's value.
+func (s *GetPackageVersionOutput) SetErrorReason(v string) *GetPackageVersionOutput {
+	s.ErrorReason = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *GetPackageVersionOutput) SetLastModifiedDate(v time.Time) *GetPackageVersionOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *GetPackageVersionOutput) SetPackageName(v string) *GetPackageVersionOutput {
+	s.PackageName = &v
+	return s
+}
+
+// SetPackageVersionArn sets the PackageVersionArn field's value.
+func (s *GetPackageVersionOutput) SetPackageVersionArn(v string) *GetPackageVersionOutput {
+	s.PackageVersionArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetPackageVersionOutput) SetStatus(v string) *GetPackageVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *GetPackageVersionOutput) SetVersionName(v string) *GetPackageVersionOutput {
+	s.VersionName = &v
+	return s
+}
+
 type GetPercentilesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -47027,6 +49145,13 @@ type Job struct {
 	// A short text description of the job.
 	Description *string `locationName:"description" type:"string"`
 
+	// The package version Amazon Resource Names (ARNs) that are installed on the
+	// device when the job successfully completes.
+	//
+	// Note:The following Length Constraints relates to a single string. Up to five
+	// strings are allowed.
+	DestinationPackageVersions []*string `locationName:"destinationPackageVersions" type:"list"`
+
 	// A key-value map that pairs the patterns that need to be replaced in a managed
 	// template job document schema. You can use the description of each key as
 	// a guidance to specify the inputs during runtime when creating a job.
@@ -47161,6 +49286,12 @@ func (s *Job) SetCreatedAt(v time.Time) *Job {
 // SetDescription sets the Description field's value.
 func (s *Job) SetDescription(v string) *Job {
 	s.Description = &v
+	return s
+}
+
+// SetDestinationPackageVersions sets the DestinationPackageVersions field's value.
+func (s *Job) SetDestinationPackageVersions(v []*string) *Job {
+	s.DestinationPackageVersions = v
 	return s
 }
 
@@ -51767,6 +53898,219 @@ func (s *ListOutgoingCertificatesOutput) SetOutgoingCertificates(v []*OutgoingCe
 	return s
 }
 
+type ListPackageVersionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return at one time.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The name of the target package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+
+	// The status of the package version. For more information, see Package version
+	// lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
+	Status *string `location:"querystring" locationName:"status" type:"string" enum:"PackageVersionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPackageVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPackageVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPackageVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPackageVersionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPackageVersionsInput) SetMaxResults(v int64) *ListPackageVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPackageVersionsInput) SetNextToken(v string) *ListPackageVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *ListPackageVersionsInput) SetPackageName(v string) *ListPackageVersionsInput {
+	s.PackageName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListPackageVersionsInput) SetStatus(v string) *ListPackageVersionsInput {
+	s.Status = &v
+	return s
+}
+
+type ListPackageVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Lists the package versions associated to the package.
+	PackageVersionSummaries []*PackageVersionSummary `locationName:"packageVersionSummaries" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPackageVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPackageVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPackageVersionsOutput) SetNextToken(v string) *ListPackageVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPackageVersionSummaries sets the PackageVersionSummaries field's value.
+func (s *ListPackageVersionsOutput) SetPackageVersionSummaries(v []*PackageVersionSummary) *ListPackageVersionsOutput {
+	s.PackageVersionSummaries = v
+	return s
+}
+
+type ListPackagesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results returned at one time.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPackagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPackagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPackagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPackagesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPackagesInput) SetMaxResults(v int64) *ListPackagesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPackagesInput) SetNextToken(v string) *ListPackagesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPackagesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The software package summary.
+	PackageSummaries []*PackageSummary `locationName:"packageSummaries" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPackagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPackagesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPackagesOutput) SetNextToken(v string) *ListPackagesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPackageSummaries sets the PackageSummaries field's value.
+func (s *ListPackagesOutput) SetPackageSummaries(v []*PackageSummary) *ListPackagesOutput {
+	s.PackageSummaries = v
+	return s
+}
+
 // The input for the ListPolicies operation.
 type ListPoliciesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -55437,7 +57781,7 @@ type MaintenanceWindow struct {
 	// Displays the duration of the next maintenance window.
 	//
 	// DurationInMinutes is a required field
-	DurationInMinutes *int64 `locationName:"durationInMinutes" min:"30" type:"integer" required:"true"`
+	DurationInMinutes *int64 `locationName:"durationInMinutes" min:"1" type:"integer" required:"true"`
 
 	// Displays the start time of the next maintenance window.
 	//
@@ -55469,8 +57813,8 @@ func (s *MaintenanceWindow) Validate() error {
 	if s.DurationInMinutes == nil {
 		invalidParams.Add(request.NewErrParamRequired("DurationInMinutes"))
 	}
-	if s.DurationInMinutes != nil && *s.DurationInMinutes < 30 {
-		invalidParams.Add(request.NewErrParamMinValue("DurationInMinutes", 30))
+	if s.DurationInMinutes != nil && *s.DurationInMinutes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInMinutes", 1))
 	}
 	if s.StartTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("StartTime"))
@@ -56936,6 +59280,134 @@ func (s *OutgoingCertificate) SetTransferMessage(v string) *OutgoingCertificate 
 // SetTransferredTo sets the TransferredTo field's value.
 func (s *OutgoingCertificate) SetTransferredTo(v string) *OutgoingCertificate {
 	s.TransferredTo = &v
+	return s
+}
+
+// A summary of information about a software package.
+type PackageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date that the package was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The name of the default package version.
+	DefaultVersionName *string `locationName:"defaultVersionName" min:"1" type:"string"`
+
+	// The date that the package was last updated.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// The name for the target package.
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *PackageSummary) SetCreationDate(v time.Time) *PackageSummary {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDefaultVersionName sets the DefaultVersionName field's value.
+func (s *PackageSummary) SetDefaultVersionName(v string) *PackageSummary {
+	s.DefaultVersionName = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *PackageSummary) SetLastModifiedDate(v time.Time) *PackageSummary {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *PackageSummary) SetPackageName(v string) *PackageSummary {
+	s.PackageName = &v
+	return s
+}
+
+// A summary of information about a package version.
+type PackageVersionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date that the package version was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The date that the package version was last updated.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// The name of the associated software package.
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
+
+	// The status of the package version. For more information, see Package version
+	// lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
+	Status *string `locationName:"status" type:"string" enum:"PackageVersionStatus"`
+
+	// The name of the target package version.
+	VersionName *string `locationName:"versionName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageVersionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageVersionSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *PackageVersionSummary) SetCreationDate(v time.Time) *PackageVersionSummary {
+	s.CreationDate = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *PackageVersionSummary) SetLastModifiedDate(v time.Time) *PackageVersionSummary {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *PackageVersionSummary) SetPackageName(v string) *PackageVersionSummary {
+	s.PackageName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PackageVersionSummary) SetStatus(v string) *PackageVersionSummary {
+	s.Status = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *PackageVersionSummary) SetVersionName(v string) *PackageVersionSummary {
+	s.VersionName = &v
 	return s
 }
 
@@ -60214,6 +62686,70 @@ func (s *ServerCertificateSummary) SetServerCertificateStatus(v string) *ServerC
 func (s *ServerCertificateSummary) SetServerCertificateStatusDetail(v string) *ServerCertificateSummary {
 	s.ServerCertificateStatusDetail = &v
 	return s
+}
+
+// A limit has been exceeded.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The service is temporarily unavailable.
@@ -67027,6 +69563,361 @@ func (s *UpdateMitigationActionOutput) SetActionId(v string) *UpdateMitigationAc
 	return s
 }
 
+type UpdatePackageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// Configuration to manage job's package version reporting. This updates the
+	// thing's reserved named shadow that the job targets.
+	VersionUpdateByJobsConfig *VersionUpdateByJobsConfig `locationName:"versionUpdateByJobsConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePackageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePackageConfigurationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.VersionUpdateByJobsConfig != nil {
+		if err := s.VersionUpdateByJobsConfig.Validate(); err != nil {
+			invalidParams.AddNested("VersionUpdateByJobsConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdatePackageConfigurationInput) SetClientToken(v string) *UpdatePackageConfigurationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetVersionUpdateByJobsConfig sets the VersionUpdateByJobsConfig field's value.
+func (s *UpdatePackageConfigurationInput) SetVersionUpdateByJobsConfig(v *VersionUpdateByJobsConfig) *UpdatePackageConfigurationInput {
+	s.VersionUpdateByJobsConfig = v
+	return s
+}
+
+type UpdatePackageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type UpdatePackageInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The name of the default package version.
+	//
+	// Note: You cannot name a defaultVersion and set unsetDefaultVersion equal
+	// to true at the same time.
+	DefaultVersionName *string `locationName:"defaultVersionName" min:"1" type:"string"`
+
+	// The package description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePackageInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The name of the target package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+
+	// Indicates whether you want to remove the named default package version from
+	// the software package. Set as true to remove the default package version.
+	//
+	// Note: You cannot name a defaultVersion and set unsetDefaultVersion equal
+	// to true at the same time.
+	UnsetDefaultVersion *bool `locationName:"unsetDefaultVersion" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePackageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePackageInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.DefaultVersionName != nil && len(*s.DefaultVersionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DefaultVersionName", 1))
+	}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdatePackageInput) SetClientToken(v string) *UpdatePackageInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDefaultVersionName sets the DefaultVersionName field's value.
+func (s *UpdatePackageInput) SetDefaultVersionName(v string) *UpdatePackageInput {
+	s.DefaultVersionName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePackageInput) SetDescription(v string) *UpdatePackageInput {
+	s.Description = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *UpdatePackageInput) SetPackageName(v string) *UpdatePackageInput {
+	s.PackageName = &v
+	return s
+}
+
+// SetUnsetDefaultVersion sets the UnsetDefaultVersion field's value.
+func (s *UpdatePackageInput) SetUnsetDefaultVersion(v bool) *UpdatePackageInput {
+	s.UnsetDefaultVersion = &v
+	return s
+}
+
+type UpdatePackageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageOutput) GoString() string {
+	return s.String()
+}
+
+type UpdatePackageVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The status that the package version should be assigned. For more information,
+	// see Package version lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
+	Action *string `locationName:"action" type:"string" enum:"PackageVersionAction"`
+
+	// Metadata that can be used to define a package version’s configuration.
+	// For example, the S3 file location, configuration options that are being sent
+	// to the device or fleet.
+	//
+	// Note: Attributes can be updated only when the package version is in a draft
+	// state.
+	//
+	// The combined size of all the attributes on a package version is limited to
+	// 3KB.
+	//
+	// Attributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePackageVersionInput's
+	// String and GoString methods.
+	Attributes map[string]*string `locationName:"attributes" type:"map" sensitive:"true"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The package version description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePackageVersionInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The name of the associated software package.
+	//
+	// PackageName is a required field
+	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
+
+	// The name of the target package version.
+	//
+	// VersionName is a required field
+	VersionName *string `location:"uri" locationName:"versionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePackageVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePackageVersionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.PackageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+	if s.VersionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionName"))
+	}
+	if s.VersionName != nil && len(*s.VersionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *UpdatePackageVersionInput) SetAction(v string) *UpdatePackageVersionInput {
+	s.Action = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *UpdatePackageVersionInput) SetAttributes(v map[string]*string) *UpdatePackageVersionInput {
+	s.Attributes = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdatePackageVersionInput) SetClientToken(v string) *UpdatePackageVersionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePackageVersionInput) SetDescription(v string) *UpdatePackageVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *UpdatePackageVersionInput) SetPackageName(v string) *UpdatePackageVersionInput {
+	s.PackageName = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *UpdatePackageVersionInput) SetVersionName(v string) *UpdatePackageVersionInput {
+	s.VersionName = &v
+	return s
+}
+
+type UpdatePackageVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePackageVersionOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateProvisioningTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -68474,6 +71365,70 @@ func (s *ValidationError) SetErrorMessage(v string) *ValidationError {
 	return s
 }
 
+// The request is not valid.
+type ValidationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s *ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s *ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ValidationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ValidationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // An exception thrown when the version of an entity specified with the expectedVersion
 // parameter does not match the latest version in the system.
 type VersionConflictException struct {
@@ -68538,6 +71493,67 @@ func (s *VersionConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *VersionConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Configuration to manage IoT Job's package version reporting. If configured,
+// Jobs updates the thing's reserved named shadow with the package version information
+// up on successful job completion.
+//
+// Note: For each job, the destinationPackageVersions attribute has to be set
+// with the correct data for Jobs to report to the thing shadow.
+type VersionUpdateByJobsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the Job is enabled or not.
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the role that grants permission to the
+	// IoT jobs service to update the reserved named shadow when the job successfully
+	// completes.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VersionUpdateByJobsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VersionUpdateByJobsConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VersionUpdateByJobsConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VersionUpdateByJobsConfig"}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *VersionUpdateByJobsConfig) SetEnabled(v bool) *VersionUpdateByJobsConfig {
+	s.Enabled = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *VersionUpdateByJobsConfig) SetRoleArn(v string) *VersionUpdateByJobsConfig {
+	s.RoleArn = &v
+	return s
 }
 
 // The number of policy versions exceeds the limit.
@@ -70291,6 +73307,42 @@ func OTAUpdateStatus_Values() []string {
 		OTAUpdateStatusCreateFailed,
 		OTAUpdateStatusDeleteInProgress,
 		OTAUpdateStatusDeleteFailed,
+	}
+}
+
+const (
+	// PackageVersionActionPublish is a PackageVersionAction enum value
+	PackageVersionActionPublish = "PUBLISH"
+
+	// PackageVersionActionDeprecate is a PackageVersionAction enum value
+	PackageVersionActionDeprecate = "DEPRECATE"
+)
+
+// PackageVersionAction_Values returns all elements of the PackageVersionAction enum
+func PackageVersionAction_Values() []string {
+	return []string{
+		PackageVersionActionPublish,
+		PackageVersionActionDeprecate,
+	}
+}
+
+const (
+	// PackageVersionStatusDraft is a PackageVersionStatus enum value
+	PackageVersionStatusDraft = "DRAFT"
+
+	// PackageVersionStatusPublished is a PackageVersionStatus enum value
+	PackageVersionStatusPublished = "PUBLISHED"
+
+	// PackageVersionStatusDeprecated is a PackageVersionStatus enum value
+	PackageVersionStatusDeprecated = "DEPRECATED"
+)
+
+// PackageVersionStatus_Values returns all elements of the PackageVersionStatus enum
+func PackageVersionStatus_Values() []string {
+	return []string{
+		PackageVersionStatusDraft,
+		PackageVersionStatusPublished,
+		PackageVersionStatusDeprecated,
 	}
 }
 

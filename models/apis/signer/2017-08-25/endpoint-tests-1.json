@@ -1,153 +1,10 @@
 {
     "testCases": [
         {
-            "documentation": "For region af-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.af-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "af-south-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.ap-northeast-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-northeast-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.ap-northeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-northeast-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.ap-southeast-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-southeast-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.ap-southeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-southeast-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.ca-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ca-central-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.eu-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-central-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.eu-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.eu-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-west-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.us-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://models-v2-lex.us-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex-fips.us-east-1.api.aws"
+                    "url": "https://signer-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -160,7 +17,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex-fips.us-east-1.amazonaws.com"
+                    "url": "https://signer-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -173,7 +30,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex.us-east-1.api.aws"
+                    "url": "https://signer.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -183,10 +40,23 @@
             }
         },
         {
+            "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://signer.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://signer-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -199,7 +69,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://signer-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -212,7 +82,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://signer.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -225,7 +95,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex.cn-north-1.amazonaws.com.cn"
+                    "url": "https://signer.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -238,7 +108,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex-fips.us-gov-east-1.api.aws"
+                    "url": "https://signer-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -251,7 +121,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://signer-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -264,7 +134,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex.us-gov-east-1.api.aws"
+                    "url": "https://signer.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -277,7 +147,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex.us-gov-east-1.amazonaws.com"
+                    "url": "https://signer.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -301,7 +171,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://signer-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -325,7 +195,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://signer.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -349,7 +219,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://signer-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -373,7 +243,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://models-v2-lex.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://signer.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

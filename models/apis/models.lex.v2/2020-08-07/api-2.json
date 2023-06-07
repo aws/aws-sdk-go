@@ -263,6 +263,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateTestSetDiscrepancyReport":{
+      "name":"CreateTestSetDiscrepancyReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testsets/{testSetId}/testsetdiscrepancy",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateTestSetDiscrepancyReportRequest"},
+      "output":{"shape":"CreateTestSetDiscrepancyReportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "CreateUploadUrl":{
       "name":"CreateUploadUrl",
       "http":{
@@ -487,6 +505,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteTestSet":{
+      "name":"DeleteTestSet",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/testsets/{testSetId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteTestSetRequest"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "DeleteUtterances":{
       "name":"DeleteUtterances",
       "http":{
@@ -693,6 +729,91 @@
       },
       "input":{"shape":"DescribeSlotTypeRequest"},
       "output":{"shape":"DescribeSlotTypeResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeTestExecution":{
+      "name":"DescribeTestExecution",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testexecutions/{testExecutionId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeTestExecutionRequest"},
+      "output":{"shape":"DescribeTestExecutionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeTestSet":{
+      "name":"DescribeTestSet",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testsets/{testSetId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeTestSetRequest"},
+      "output":{"shape":"DescribeTestSetResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeTestSetDiscrepancyReport":{
+      "name":"DescribeTestSetDiscrepancyReport",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testsetdiscrepancy/{testSetDiscrepancyReportId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeTestSetDiscrepancyReportRequest"},
+      "output":{"shape":"DescribeTestSetDiscrepancyReportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeTestSetGeneration":{
+      "name":"DescribeTestSetGeneration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testsetgenerations/{testSetGenerationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeTestSetGenerationRequest"},
+      "output":{"shape":"DescribeTestSetGenerationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetTestExecutionArtifactsUrl":{
+      "name":"GetTestExecutionArtifactsUrl",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testexecutions/{testExecutionId}/artifacturl",
+        "responseCode":200
+      },
+      "input":{"shape":"GetTestExecutionArtifactsUrlRequest"},
+      "output":{"shape":"GetTestExecutionArtifactsUrlResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
@@ -957,6 +1078,72 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListTestExecutionResultItems":{
+      "name":"ListTestExecutionResultItems",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testexecutions/{testExecutionId}/results",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTestExecutionResultItemsRequest"},
+      "output":{"shape":"ListTestExecutionResultItemsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTestExecutions":{
+      "name":"ListTestExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testexecutions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTestExecutionsRequest"},
+      "output":{"shape":"ListTestExecutionsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTestSetRecords":{
+      "name":"ListTestSetRecords",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testsets/{testSetId}/records",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTestSetRecordsRequest"},
+      "output":{"shape":"ListTestSetRecordsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTestSets":{
+      "name":"ListTestSets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testsets",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTestSetsRequest"},
+      "output":{"shape":"ListTestSetsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "SearchAssociatedTranscripts":{
       "name":"SearchAssociatedTranscripts",
       "http":{
@@ -1011,6 +1198,43 @@
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "StartTestExecution":{
+      "name":"StartTestExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testsets/{testSetId}/testexecutions",
+        "responseCode":202
+      },
+      "input":{"shape":"StartTestExecutionRequest"},
+      "output":{"shape":"StartTestExecutionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartTestSetGeneration":{
+      "name":"StartTestSetGeneration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/testsetgenerations",
+        "responseCode":202
+      },
+      "input":{"shape":"StartTestSetGenerationRequest"},
+      "output":{"shape":"StartTestSetGenerationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "StopBotRecommendation":{
       "name":"StopBotRecommendation",
@@ -1227,13 +1451,69 @@
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "UpdateTestSet":{
+      "name":"UpdateTestSet",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/testsets/{testSetId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateTestSetRequest"},
+      "output":{"shape":"UpdateTestSetResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
+    "ActiveContext":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"ActiveContextName"}
+      }
+    },
+    "ActiveContextList":{
+      "type":"list",
+      "member":{"shape":"ActiveContext"},
+      "max":20,
+      "min":0
+    },
+    "ActiveContextName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([A-Za-z]_?)+$"
+    },
     "AdvancedRecognitionSetting":{
       "type":"structure",
       "members":{
         "audioRecognitionStrategy":{"shape":"AudioRecognitionStrategy"}
+      }
+    },
+    "AgentTurnResult":{
+      "type":"structure",
+      "required":["expectedAgentPrompt"],
+      "members":{
+        "expectedAgentPrompt":{"shape":"TestSetAgentPrompt"},
+        "actualAgentPrompt":{"shape":"TestSetAgentPrompt"},
+        "errorDetails":{"shape":"ExecutionErrorDetails"},
+        "actualElicitedSlot":{"shape":"TestResultSlotName"},
+        "actualIntent":{"shape":"Name"}
+      }
+    },
+    "AgentTurnSpecification":{
+      "type":"structure",
+      "required":["agentPrompt"],
+      "members":{
+        "agentPrompt":{"shape":"TestSetAgentPrompt"}
       }
     },
     "AggregatedUtterancesFilter":{
@@ -1367,6 +1647,12 @@
         "audioSpecification":{"shape":"AudioSpecification"},
         "dtmfSpecification":{"shape":"DTMFSpecification"}
       }
+    },
+    "AudioFileS3Location":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^s3://([a-z0-9\\\\.-]+)/(.+)$"
     },
     "AudioLogDestination":{
       "type":"structure",
@@ -1581,6 +1867,19 @@
     "BotAliasSummaryList":{
       "type":"list",
       "member":{"shape":"BotAliasSummary"}
+    },
+    "BotAliasTestExecutionTarget":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botAliasId",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botAliasId":{"shape":"BotAliasId"},
+        "localeId":{"shape":"LocaleId"}
+      }
     },
     "BotExportSpecification":{
       "type":"structure",
@@ -2191,12 +2490,120 @@
       "max":20,
       "min":1
     },
+    "ConversationLevelIntentClassificationResultItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "matchResult"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "matchResult":{"shape":"TestResultMatchStatus"}
+      }
+    },
+    "ConversationLevelIntentClassificationResults":{
+      "type":"list",
+      "member":{"shape":"ConversationLevelIntentClassificationResultItem"}
+    },
+    "ConversationLevelResultDetail":{
+      "type":"structure",
+      "required":["endToEndResult"],
+      "members":{
+        "endToEndResult":{"shape":"TestResultMatchStatus"},
+        "speechTranscriptionResult":{"shape":"TestResultMatchStatus"}
+      }
+    },
+    "ConversationLevelSlotResolutionResultItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "slotName",
+        "matchResult"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "slotName":{"shape":"TestResultSlotName"},
+        "matchResult":{"shape":"TestResultMatchStatus"}
+      }
+    },
+    "ConversationLevelSlotResolutionResults":{
+      "type":"list",
+      "member":{"shape":"ConversationLevelSlotResolutionResultItem"}
+    },
+    "ConversationLevelTestResultItem":{
+      "type":"structure",
+      "required":[
+        "conversationId",
+        "endToEndResult",
+        "intentClassificationResults",
+        "slotResolutionResults"
+      ],
+      "members":{
+        "conversationId":{"shape":"TestSetConversationId"},
+        "endToEndResult":{"shape":"TestResultMatchStatus"},
+        "speechTranscriptionResult":{"shape":"TestResultMatchStatus"},
+        "intentClassificationResults":{"shape":"ConversationLevelIntentClassificationResults"},
+        "slotResolutionResults":{"shape":"ConversationLevelSlotResolutionResults"}
+      }
+    },
+    "ConversationLevelTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"ConversationLevelTestResultItem"}
+    },
+    "ConversationLevelTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"ConversationLevelTestResultItemList"}
+      }
+    },
+    "ConversationLevelTestResultsFilterBy":{
+      "type":"structure",
+      "members":{
+        "endToEndResult":{"shape":"TestResultMatchStatus"}
+      }
+    },
     "ConversationLogSettings":{
       "type":"structure",
       "members":{
         "textLogSettings":{"shape":"TextLogSettingsList"},
         "audioLogSettings":{"shape":"AudioLogSettingsList"}
       }
+    },
+    "ConversationLogsDataSource":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botAliasId",
+        "localeId",
+        "filter"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botAliasId":{"shape":"BotAliasId"},
+        "localeId":{"shape":"LocaleId"},
+        "filter":{"shape":"ConversationLogsDataSourceFilterBy"}
+      }
+    },
+    "ConversationLogsDataSourceFilterBy":{
+      "type":"structure",
+      "required":[
+        "startTime",
+        "endTime",
+        "inputMode"
+      ],
+      "members":{
+        "startTime":{"shape":"Timestamp"},
+        "endTime":{"shape":"Timestamp"},
+        "inputMode":{"shape":"ConversationLogsInputModeFilter"}
+      }
+    },
+    "ConversationLogsInputModeFilter":{
+      "type":"string",
+      "enum":[
+        "Speech",
+        "Text"
+      ]
     },
     "Count":{"type":"integer"},
     "CreateBotAliasRequest":{
@@ -2589,6 +2996,30 @@
         "creationDateTime":{"shape":"Timestamp"},
         "externalSourceSetting":{"shape":"ExternalSourceSetting"},
         "compositeSlotTypeSetting":{"shape":"CompositeSlotTypeSetting"}
+      }
+    },
+    "CreateTestSetDiscrepancyReportRequest":{
+      "type":"structure",
+      "required":[
+        "testSetId",
+        "target"
+      ],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        },
+        "target":{"shape":"TestSetDiscrepancyReportResourceTarget"}
+      }
+    },
+    "CreateTestSetDiscrepancyReportResponse":{
+      "type":"structure",
+      "members":{
+        "testSetDiscrepancyReportId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "testSetId":{"shape":"Id"},
+        "target":{"shape":"TestSetDiscrepancyReportResourceTarget"}
       }
     },
     "CreateUploadUrlRequest":{
@@ -3071,6 +3502,17 @@
           "shape":"SkipResourceInUseCheck",
           "location":"querystring",
           "locationName":"skipResourceInUseCheck"
+        }
+      }
+    },
+    "DeleteTestSetRequest":{
+      "type":"structure",
+      "required":["testSetId"],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
         }
       }
     },
@@ -3559,6 +4001,110 @@
         "compositeSlotTypeSetting":{"shape":"CompositeSlotTypeSetting"}
       }
     },
+    "DescribeTestExecutionRequest":{
+      "type":"structure",
+      "required":["testExecutionId"],
+      "members":{
+        "testExecutionId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testExecutionId"
+        }
+      }
+    },
+    "DescribeTestExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutionId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "testExecutionStatus":{"shape":"TestExecutionStatus"},
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "target":{"shape":"TestExecutionTarget"},
+        "apiMode":{"shape":"TestExecutionApiMode"},
+        "testExecutionModality":{"shape":"TestExecutionModality"},
+        "failureReasons":{"shape":"FailureReasons"}
+      }
+    },
+    "DescribeTestSetDiscrepancyReportRequest":{
+      "type":"structure",
+      "required":["testSetDiscrepancyReportId"],
+      "members":{
+        "testSetDiscrepancyReportId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetDiscrepancyReportId"
+        }
+      }
+    },
+    "DescribeTestSetDiscrepancyReportResponse":{
+      "type":"structure",
+      "members":{
+        "testSetDiscrepancyReportId":{"shape":"Id"},
+        "testSetId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "target":{"shape":"TestSetDiscrepancyReportResourceTarget"},
+        "testSetDiscrepancyReportStatus":{"shape":"TestSetDiscrepancyReportStatus"},
+        "lastUpdatedDataTime":{"shape":"Timestamp"},
+        "testSetDiscrepancyTopErrors":{"shape":"TestSetDiscrepancyErrors"},
+        "testSetDiscrepancyRawOutputUrl":{"shape":"PresignedS3Url"},
+        "failureReasons":{"shape":"FailureReasons"}
+      }
+    },
+    "DescribeTestSetGenerationRequest":{
+      "type":"structure",
+      "required":["testSetGenerationId"],
+      "members":{
+        "testSetGenerationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetGenerationId"
+        }
+      }
+    },
+    "DescribeTestSetGenerationResponse":{
+      "type":"structure",
+      "members":{
+        "testSetGenerationId":{"shape":"Id"},
+        "testSetGenerationStatus":{"shape":"TestSetGenerationStatus"},
+        "failureReasons":{"shape":"FailureReasons"},
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "generationDataSource":{"shape":"TestSetGenerationDataSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeTestSetRequest":{
+      "type":"structure",
+      "required":["testSetId"],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        }
+      }
+    },
+    "DescribeTestSetResponse":{
+      "type":"structure",
+      "members":{
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "modality":{"shape":"TestSetModality"},
+        "status":{"shape":"TestSetStatus"},
+        "roleArn":{"shape":"RoleArn"},
+        "numTurns":{"shape":"Count"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
     "Description":{
       "type":"string",
       "max":200,
@@ -3656,6 +4202,17 @@
     },
     "ErrorMessage":{"type":"string"},
     "ExceptionMessage":{"type":"string"},
+    "ExecutionErrorDetails":{
+      "type":"structure",
+      "required":[
+        "errorCode",
+        "errorMessage"
+      ],
+      "members":{
+        "errorCode":{"shape":"NonEmptyString"},
+        "errorMessage":{"shape":"NonEmptyString"}
+      }
+    },
     "ExportFilter":{
       "type":"structure",
       "required":[
@@ -3691,7 +4248,8 @@
       "members":{
         "botExportSpecification":{"shape":"BotExportSpecification"},
         "botLocaleExportSpecification":{"shape":"BotLocaleExportSpecification"},
-        "customVocabularyExportSpecification":{"shape":"CustomVocabularyExportSpecification"}
+        "customVocabularyExportSpecification":{"shape":"CustomVocabularyExportSpecification"},
+        "testSetExportSpecification":{"shape":"TestSetExportSpecification"}
       }
     },
     "ExportSortAttribute":{
@@ -3833,6 +4391,24 @@
         "timeoutInSeconds":{"shape":"FulfillmentTimeout"}
       }
     },
+    "GetTestExecutionArtifactsUrlRequest":{
+      "type":"structure",
+      "required":["testExecutionId"],
+      "members":{
+        "testExecutionId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testExecutionId"
+        }
+      }
+    },
+    "GetTestExecutionArtifactsUrlResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutionId":{"shape":"Id"},
+        "downloadArtifactsUrl":{"shape":"PresignedS3Url"}
+      }
+    },
     "GrammarSlotTypeSetting":{
       "type":"structure",
       "members":{
@@ -3872,7 +4448,8 @@
       "type":"string",
       "enum":[
         "LexJson",
-        "TSV"
+        "TSV",
+        "CSV"
       ]
     },
     "ImportExportFilePassword":{
@@ -3916,7 +4493,8 @@
       "members":{
         "botImportSpecification":{"shape":"BotImportSpecification"},
         "botLocaleImportSpecification":{"shape":"BotLocaleImportSpecification"},
-        "customVocabularyImportSpecification":{"shape":"CustomVocabularyImportSpecification"}
+        "customVocabularyImportSpecification":{"shape":"CustomVocabularyImportSpecification"},
+        "testSetImportResourceSpecification":{"shape":"TestSetImportResourceSpecification"}
       }
     },
     "ImportResourceType":{
@@ -3924,7 +4502,8 @@
       "enum":[
         "Bot",
         "BotLocale",
-        "CustomVocabulary"
+        "CustomVocabulary",
+        "TestSet"
       ]
     },
     "ImportSortAttribute":{
@@ -3996,6 +4575,50 @@
       "max":5,
       "min":0
     },
+    "InputSessionStateSpecification":{
+      "type":"structure",
+      "members":{
+        "sessionAttributes":{"shape":"StringMap"},
+        "activeContexts":{"shape":"ActiveContextList"},
+        "runtimeHints":{"shape":"RuntimeHints"}
+      }
+    },
+    "IntentClassificationTestResultItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "multiTurnConversation",
+        "resultCounts"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "multiTurnConversation":{"shape":"Boolean"},
+        "resultCounts":{"shape":"IntentClassificationTestResultItemCounts"}
+      }
+    },
+    "IntentClassificationTestResultItemCounts":{
+      "type":"structure",
+      "required":[
+        "totalResultCount",
+        "intentMatchResultCounts"
+      ],
+      "members":{
+        "totalResultCount":{"shape":"Count"},
+        "speechTranscriptionResultCounts":{"shape":"TestResultMatchStatusCountMap"},
+        "intentMatchResultCounts":{"shape":"TestResultMatchStatusCountMap"}
+      }
+    },
+    "IntentClassificationTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"IntentClassificationTestResultItem"}
+    },
+    "IntentClassificationTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"IntentClassificationTestResultItemList"}
+      }
+    },
     "IntentClosingSetting":{
       "type":"structure",
       "members":{
@@ -4053,6 +4676,30 @@
       "member":{"shape":"IntentFilter"},
       "max":1,
       "min":1
+    },
+    "IntentLevelSlotResolutionTestResultItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "multiTurnConversation",
+        "slotResolutionResults"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "multiTurnConversation":{"shape":"Boolean"},
+        "slotResolutionResults":{"shape":"SlotResolutionTestResultItems"}
+      }
+    },
+    "IntentLevelSlotResolutionTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"IntentLevelSlotResolutionTestResultItem"}
+    },
+    "IntentLevelSlotResolutionTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"IntentLevelSlotResolutionTestResultItemList"}
+      }
     },
     "IntentOverride":{
       "type":"structure",
@@ -4636,6 +5283,80 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "ListTestExecutionResultItemsRequest":{
+      "type":"structure",
+      "required":[
+        "testExecutionId",
+        "resultFilterBy"
+      ],
+      "members":{
+        "testExecutionId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testExecutionId"
+        },
+        "resultFilterBy":{"shape":"TestExecutionResultFilterBy"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestExecutionResultItemsResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutionResults":{"shape":"TestExecutionResultItems"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestExecutionsRequest":{
+      "type":"structure",
+      "members":{
+        "sortBy":{"shape":"TestExecutionSortBy"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestExecutionsResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutions":{"shape":"TestExecutionSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestSetRecordsRequest":{
+      "type":"structure",
+      "required":["testSetId"],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        },
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestSetRecordsResponse":{
+      "type":"structure",
+      "members":{
+        "testSetRecords":{"shape":"TestSetTurnRecordList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestSetsRequest":{
+      "type":"structure",
+      "members":{
+        "sortBy":{"shape":"TestSetSortBy"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestSetsResponse":{
+      "type":"structure",
+      "members":{
+        "testSets":{"shape":"TestSetSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "LocaleId":{"type":"string"},
     "LocaleName":{"type":"string"},
     "LogPrefix":{
@@ -4708,7 +5429,7 @@
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":"^([0-9a-zA-Z][_-]?)+$"
+      "pattern":"^([0-9a-zA-Z][_-]?){1,100}$"
     },
     "NewCustomVocabularyItem":{
       "type":"structure",
@@ -4789,6 +5510,31 @@
       "member":{"shape":"OutputContext"},
       "max":10,
       "min":0
+    },
+    "OverallTestResultItem":{
+      "type":"structure",
+      "required":[
+        "multiTurnConversation",
+        "totalResultCount",
+        "endToEndResultCounts"
+      ],
+      "members":{
+        "multiTurnConversation":{"shape":"Boolean"},
+        "totalResultCount":{"shape":"Count"},
+        "speechTranscriptionResultCounts":{"shape":"TestResultMatchStatusCountMap"},
+        "endToEndResultCounts":{"shape":"TestResultMatchStatusCountMap"}
+      }
+    },
+    "OverallTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"OverallTestResultItem"}
+    },
+    "OverallTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"OverallTestResultItemList"}
+      }
     },
     "ParentBotNetwork":{
       "type":"structure",
@@ -4964,6 +5710,11 @@
       "type":"list",
       "member":{"shape":"RecommendedIntentSummary"}
     },
+    "RecordNumber":{
+      "type":"long",
+      "max":200000,
+      "min":1
+    },
     "RegexPattern":{
       "type":"string",
       "max":300,
@@ -5009,6 +5760,37 @@
       "max":2048,
       "min":32,
       "pattern":"^arn:aws:iam::[0-9]{12}:role/.*$"
+    },
+    "RuntimeHintDetails":{
+      "type":"structure",
+      "members":{
+        "runtimeHintValues":{"shape":"RuntimeHintValuesList"},
+        "subSlotHints":{"shape":"SlotHintsSlotMap"}
+      }
+    },
+    "RuntimeHintPhrase":{
+      "type":"string",
+      "max":140,
+      "min":1
+    },
+    "RuntimeHintValue":{
+      "type":"structure",
+      "required":["phrase"],
+      "members":{
+        "phrase":{"shape":"RuntimeHintPhrase"}
+      }
+    },
+    "RuntimeHintValuesList":{
+      "type":"list",
+      "member":{"shape":"RuntimeHintValue"},
+      "max":100,
+      "min":1
+    },
+    "RuntimeHints":{
+      "type":"structure",
+      "members":{
+        "slotHints":{"shape":"SlotHintsIntentMap"}
+      }
     },
     "S3BucketArn":{
       "type":"string",
@@ -5248,6 +6030,16 @@
       "max":1,
       "min":1
     },
+    "SlotHintsIntentMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"SlotHintsSlotMap"}
+    },
+    "SlotHintsSlotMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"RuntimeHintDetails"}
+    },
     "SlotPrioritiesList":{
       "type":"list",
       "member":{"shape":"SlotPriority"}
@@ -5262,6 +6054,33 @@
         "priority":{"shape":"PriorityValue"},
         "slotId":{"shape":"Id"}
       }
+    },
+    "SlotResolutionTestResultItem":{
+      "type":"structure",
+      "required":[
+        "slotName",
+        "resultCounts"
+      ],
+      "members":{
+        "slotName":{"shape":"TestResultSlotName"},
+        "resultCounts":{"shape":"SlotResolutionTestResultItemCounts"}
+      }
+    },
+    "SlotResolutionTestResultItemCounts":{
+      "type":"structure",
+      "required":[
+        "totalResultCount",
+        "slotMatchResultCounts"
+      ],
+      "members":{
+        "totalResultCount":{"shape":"Count"},
+        "speechTranscriptionResultCounts":{"shape":"TestResultMatchStatusCountMap"},
+        "slotMatchResultCounts":{"shape":"TestResultMatchStatusCountMap"}
+      }
+    },
+    "SlotResolutionTestResultItems":{
+      "type":"list",
+      "member":{"shape":"SlotResolutionTestResultItem"}
     },
     "SlotShape":{
       "type":"string",
@@ -5541,6 +6360,66 @@
         "creationDateTime":{"shape":"Timestamp"}
       }
     },
+    "StartTestExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "testSetId",
+        "target",
+        "apiMode"
+      ],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        },
+        "target":{"shape":"TestExecutionTarget"},
+        "apiMode":{"shape":"TestExecutionApiMode"},
+        "testExecutionModality":{"shape":"TestExecutionModality"}
+      }
+    },
+    "StartTestExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutionId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "testSetId":{"shape":"Id"},
+        "target":{"shape":"TestExecutionTarget"},
+        "apiMode":{"shape":"TestExecutionApiMode"},
+        "testExecutionModality":{"shape":"TestExecutionModality"}
+      }
+    },
+    "StartTestSetGenerationRequest":{
+      "type":"structure",
+      "required":[
+        "testSetName",
+        "storageLocation",
+        "generationDataSource",
+        "roleArn"
+      ],
+      "members":{
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "generationDataSource":{"shape":"TestSetGenerationDataSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "testSetTags":{"shape":"TagMap"}
+      }
+    },
+    "StartTestSetGenerationResponse":{
+      "type":"structure",
+      "members":{
+        "testSetGenerationId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "testSetGenerationStatus":{"shape":"TestSetGenerationStatus"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "generationDataSource":{"shape":"TestSetGenerationDataSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "testSetTags":{"shape":"TagMap"}
+      }
+    },
     "StillWaitingResponseFrequency":{
       "type":"integer",
       "max":300,
@@ -5708,6 +6587,349 @@
       "max":256,
       "min":0
     },
+    "TestExecutionApiMode":{
+      "type":"string",
+      "enum":[
+        "Streaming",
+        "NonStreaming"
+      ]
+    },
+    "TestExecutionModality":{
+      "type":"string",
+      "enum":[
+        "Text",
+        "Audio"
+      ]
+    },
+    "TestExecutionResultFilterBy":{
+      "type":"structure",
+      "required":["resultTypeFilter"],
+      "members":{
+        "resultTypeFilter":{"shape":"TestResultTypeFilter"},
+        "conversationLevelTestResultsFilterBy":{"shape":"ConversationLevelTestResultsFilterBy"}
+      }
+    },
+    "TestExecutionResultItems":{
+      "type":"structure",
+      "members":{
+        "overallTestResults":{"shape":"OverallTestResults"},
+        "conversationLevelTestResults":{"shape":"ConversationLevelTestResults"},
+        "intentClassificationTestResults":{"shape":"IntentClassificationTestResults"},
+        "intentLevelSlotResolutionTestResults":{"shape":"IntentLevelSlotResolutionTestResults"},
+        "utteranceLevelTestResults":{"shape":"UtteranceLevelTestResults"}
+      }
+    },
+    "TestExecutionSortAttribute":{
+      "type":"string",
+      "enum":[
+        "TestSetName",
+        "CreationDateTime"
+      ]
+    },
+    "TestExecutionSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"TestExecutionSortAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "TestExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "Waiting",
+        "InProgress",
+        "Completed",
+        "Failed",
+        "Stopping",
+        "Stopped"
+      ]
+    },
+    "TestExecutionSummary":{
+      "type":"structure",
+      "members":{
+        "testExecutionId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "testExecutionStatus":{"shape":"TestExecutionStatus"},
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "target":{"shape":"TestExecutionTarget"},
+        "apiMode":{"shape":"TestExecutionApiMode"},
+        "testExecutionModality":{"shape":"TestExecutionModality"}
+      }
+    },
+    "TestExecutionSummaryList":{
+      "type":"list",
+      "member":{"shape":"TestExecutionSummary"}
+    },
+    "TestExecutionTarget":{
+      "type":"structure",
+      "members":{
+        "botAliasTarget":{"shape":"BotAliasTestExecutionTarget"}
+      }
+    },
+    "TestResultMatchStatus":{
+      "type":"string",
+      "enum":[
+        "Matched",
+        "Mismatched",
+        "ExecutionError"
+      ]
+    },
+    "TestResultMatchStatusCountMap":{
+      "type":"map",
+      "key":{"shape":"TestResultMatchStatus"},
+      "value":{"shape":"Count"}
+    },
+    "TestResultSlotName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([0-9a-zA-Z][_.-]?)+$"
+    },
+    "TestResultTypeFilter":{
+      "type":"string",
+      "enum":[
+        "OverallTestResults",
+        "ConversationLevelTestResults",
+        "IntentClassificationTestResults",
+        "SlotResolutionTestResults",
+        "UtteranceLevelResults"
+      ]
+    },
+    "TestSetAgentPrompt":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "TestSetConversationId":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"^([0-9a-zA-Z][_-]?)+$"
+    },
+    "TestSetDiscrepancyErrors":{
+      "type":"structure",
+      "required":[
+        "intentDiscrepancies",
+        "slotDiscrepancies"
+      ],
+      "members":{
+        "intentDiscrepancies":{"shape":"TestSetIntentDiscrepancyList"},
+        "slotDiscrepancies":{"shape":"TestSetSlotDiscrepancyList"}
+      }
+    },
+    "TestSetDiscrepancyReportBotAliasTarget":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botAliasId",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botAliasId":{"shape":"BotAliasId"},
+        "localeId":{"shape":"LocaleId"}
+      }
+    },
+    "TestSetDiscrepancyReportResourceTarget":{
+      "type":"structure",
+      "members":{
+        "botAliasTarget":{"shape":"TestSetDiscrepancyReportBotAliasTarget"}
+      }
+    },
+    "TestSetDiscrepancyReportStatus":{
+      "type":"string",
+      "enum":[
+        "InProgress",
+        "Completed",
+        "Failed"
+      ]
+    },
+    "TestSetExportSpecification":{
+      "type":"structure",
+      "required":["testSetId"],
+      "members":{
+        "testSetId":{"shape":"Id"}
+      }
+    },
+    "TestSetGenerationDataSource":{
+      "type":"structure",
+      "members":{
+        "conversationLogsDataSource":{"shape":"ConversationLogsDataSource"}
+      }
+    },
+    "TestSetGenerationStatus":{
+      "type":"string",
+      "enum":[
+        "Generating",
+        "Ready",
+        "Failed",
+        "Pending"
+      ]
+    },
+    "TestSetImportInputLocation":{
+      "type":"structure",
+      "required":[
+        "s3BucketName",
+        "s3Path"
+      ],
+      "members":{
+        "s3BucketName":{"shape":"S3BucketName"},
+        "s3Path":{"shape":"S3ObjectPath"}
+      }
+    },
+    "TestSetImportResourceSpecification":{
+      "type":"structure",
+      "required":[
+        "testSetName",
+        "roleArn",
+        "storageLocation",
+        "importInputLocation",
+        "modality"
+      ],
+      "members":{
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "roleArn":{"shape":"RoleArn"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "importInputLocation":{"shape":"TestSetImportInputLocation"},
+        "modality":{"shape":"TestSetModality"},
+        "testSetTags":{"shape":"TagMap"}
+      }
+    },
+    "TestSetIntentDiscrepancyItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "errorMessage"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "errorMessage":{"shape":"String"}
+      }
+    },
+    "TestSetIntentDiscrepancyList":{
+      "type":"list",
+      "member":{"shape":"TestSetIntentDiscrepancyItem"}
+    },
+    "TestSetModality":{
+      "type":"string",
+      "enum":[
+        "Text",
+        "Audio"
+      ]
+    },
+    "TestSetSlotDiscrepancyItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "slotName",
+        "errorMessage"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "slotName":{"shape":"Name"},
+        "errorMessage":{"shape":"String"}
+      }
+    },
+    "TestSetSlotDiscrepancyList":{
+      "type":"list",
+      "member":{"shape":"TestSetSlotDiscrepancyItem"}
+    },
+    "TestSetSortAttribute":{
+      "type":"string",
+      "enum":[
+        "TestSetName",
+        "LastUpdatedDateTime"
+      ]
+    },
+    "TestSetSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"TestSetSortAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "TestSetStatus":{
+      "type":"string",
+      "enum":[
+        "Importing",
+        "PendingAnnotation",
+        "Deleting",
+        "ValidationError",
+        "Ready"
+      ]
+    },
+    "TestSetStorageLocation":{
+      "type":"structure",
+      "required":[
+        "s3BucketName",
+        "s3Path"
+      ],
+      "members":{
+        "s3BucketName":{"shape":"S3BucketName"},
+        "s3Path":{"shape":"S3ObjectPath"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "TestSetSummary":{
+      "type":"structure",
+      "members":{
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "modality":{"shape":"TestSetModality"},
+        "status":{"shape":"TestSetStatus"},
+        "roleArn":{"shape":"RoleArn"},
+        "numTurns":{"shape":"Count"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "TestSetSummaryList":{
+      "type":"list",
+      "member":{"shape":"TestSetSummary"}
+    },
+    "TestSetTurnRecord":{
+      "type":"structure",
+      "required":[
+        "recordNumber",
+        "turnSpecification"
+      ],
+      "members":{
+        "recordNumber":{"shape":"RecordNumber"},
+        "conversationId":{"shape":"TestSetConversationId"},
+        "turnNumber":{"shape":"TurnNumber"},
+        "turnSpecification":{"shape":"TurnSpecification"}
+      }
+    },
+    "TestSetTurnRecordList":{
+      "type":"list",
+      "member":{"shape":"TestSetTurnRecord"}
+    },
+    "TestSetTurnResult":{
+      "type":"structure",
+      "members":{
+        "agent":{"shape":"AgentTurnResult"},
+        "user":{"shape":"UserTurnResult"}
+      }
+    },
+    "TestSetUtteranceText":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "TextInputSpecification":{
       "type":"structure",
       "required":["startTimeoutMs"],
@@ -5790,6 +7012,18 @@
       "type":"structure",
       "members":{
         "s3BucketTranscriptSource":{"shape":"S3BucketTranscriptSource"}
+      }
+    },
+    "TurnNumber":{
+      "type":"integer",
+      "max":30,
+      "min":0
+    },
+    "TurnSpecification":{
+      "type":"structure",
+      "members":{
+        "agentTurn":{"shape":"AgentTurnSpecification"},
+        "userTurn":{"shape":"UserTurnSpecification"}
       }
     },
     "UntagResourceRequest":{
@@ -6238,12 +7472,152 @@
         "compositeSlotTypeSetting":{"shape":"CompositeSlotTypeSetting"}
       }
     },
+    "UpdateTestSetRequest":{
+      "type":"structure",
+      "required":[
+        "testSetId",
+        "testSetName"
+      ],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        },
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"}
+      }
+    },
+    "UpdateTestSetResponse":{
+      "type":"structure",
+      "members":{
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "modality":{"shape":"TestSetModality"},
+        "status":{"shape":"TestSetStatus"},
+        "roleArn":{"shape":"RoleArn"},
+        "numTurns":{"shape":"Count"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UserTurnInputSpecification":{
+      "type":"structure",
+      "required":["utteranceInput"],
+      "members":{
+        "utteranceInput":{"shape":"UtteranceInputSpecification"},
+        "requestAttributes":{"shape":"StringMap"},
+        "sessionState":{"shape":"InputSessionStateSpecification"}
+      }
+    },
+    "UserTurnIntentOutput":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"Name"},
+        "slots":{"shape":"UserTurnSlotOutputMap"}
+      }
+    },
+    "UserTurnOutputSpecification":{
+      "type":"structure",
+      "required":["intent"],
+      "members":{
+        "intent":{"shape":"UserTurnIntentOutput"},
+        "activeContexts":{"shape":"ActiveContextList"},
+        "transcript":{"shape":"TestSetUtteranceText"}
+      }
+    },
+    "UserTurnResult":{
+      "type":"structure",
+      "required":[
+        "input",
+        "expectedOutput"
+      ],
+      "members":{
+        "input":{"shape":"UserTurnInputSpecification"},
+        "expectedOutput":{"shape":"UserTurnOutputSpecification"},
+        "actualOutput":{"shape":"UserTurnOutputSpecification"},
+        "errorDetails":{"shape":"ExecutionErrorDetails"},
+        "endToEndResult":{"shape":"TestResultMatchStatus"},
+        "intentMatchResult":{"shape":"TestResultMatchStatus"},
+        "slotMatchResult":{"shape":"TestResultMatchStatus"},
+        "speechTranscriptionResult":{"shape":"TestResultMatchStatus"},
+        "conversationLevelResult":{"shape":"ConversationLevelResultDetail"}
+      }
+    },
+    "UserTurnSlotOutput":{
+      "type":"structure",
+      "members":{
+        "value":{"shape":"NonEmptyString"},
+        "values":{"shape":"UserTurnSlotOutputList"},
+        "subSlots":{"shape":"UserTurnSlotOutputMap"}
+      }
+    },
+    "UserTurnSlotOutputList":{
+      "type":"list",
+      "member":{"shape":"UserTurnSlotOutput"}
+    },
+    "UserTurnSlotOutputMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"UserTurnSlotOutput"}
+    },
+    "UserTurnSpecification":{
+      "type":"structure",
+      "required":[
+        "input",
+        "expected"
+      ],
+      "members":{
+        "input":{"shape":"UserTurnInputSpecification"},
+        "expected":{"shape":"UserTurnOutputSpecification"}
+      }
+    },
     "Utterance":{"type":"string"},
     "UtteranceAggregationDuration":{
       "type":"structure",
       "required":["relativeAggregationDuration"],
       "members":{
         "relativeAggregationDuration":{"shape":"RelativeAggregationDuration"}
+      }
+    },
+    "UtteranceAudioInputSpecification":{
+      "type":"structure",
+      "required":["audioFileS3Location"],
+      "members":{
+        "audioFileS3Location":{"shape":"AudioFileS3Location"}
+      }
+    },
+    "UtteranceInputSpecification":{
+      "type":"structure",
+      "members":{
+        "textInput":{"shape":"TestSetUtteranceText"},
+        "audioInput":{"shape":"UtteranceAudioInputSpecification"}
+      }
+    },
+    "UtteranceLevelTestResultItem":{
+      "type":"structure",
+      "required":[
+        "recordNumber",
+        "turnResult"
+      ],
+      "members":{
+        "recordNumber":{"shape":"RecordNumber"},
+        "conversationId":{"shape":"TestSetConversationId"},
+        "turnResult":{"shape":"TestSetTurnResult"}
+      }
+    },
+    "UtteranceLevelTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"UtteranceLevelTestResultItem"}
+    },
+    "UtteranceLevelTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"UtteranceLevelTestResultItemList"}
       }
     },
     "ValidationException":{

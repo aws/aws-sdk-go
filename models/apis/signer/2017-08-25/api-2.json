@@ -60,6 +60,22 @@
         {"shape":"InternalServiceErrorException"}
       ]
     },
+    "GetRevocationStatus":{
+      "name":"GetRevocationStatus",
+      "http":{
+        "method":"GET",
+        "requestUri":"/revocations"
+      },
+      "input":{"shape":"GetRevocationStatusRequest"},
+      "output":{"shape":"GetRevocationStatusResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServiceErrorException"}
+      ],
+      "endpoint":{"hostPrefix":"verification."}
+    },
     "GetSigningPlatform":{
       "name":"GetSigningPlatform",
       "http":{
@@ -228,6 +244,22 @@
         {"shape":"InternalServiceErrorException"}
       ]
     },
+    "SignPayload":{
+      "name":"SignPayload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/signing-jobs/with-payload"
+      },
+      "input":{"shape":"SignPayloadRequest"},
+      "output":{"shape":"SignPayloadResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
     "StartSigningJob":{
       "name":"StartSigningJob",
       "http":{
@@ -333,6 +365,7 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "Blob":{"type":"blob"},
     "BucketName":{"type":"string"},
     "CancelSigningProfileRequest":{
       "type":"structure",
@@ -350,6 +383,10 @@
       "enum":["AWSIoT"]
     },
     "CertificateArn":{"type":"string"},
+    "CertificateHashes":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "ClientRequestToken":{"type":"string"},
     "ConflictException":{
       "type":"structure",
@@ -426,6 +463,49 @@
     },
     "ErrorCode":{"type":"string"},
     "ErrorMessage":{"type":"string"},
+    "GetRevocationStatusRequest":{
+      "type":"structure",
+      "required":[
+        "signatureTimestamp",
+        "platformId",
+        "profileVersionArn",
+        "jobArn",
+        "certificateHashes"
+      ],
+      "members":{
+        "signatureTimestamp":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"signatureTimestamp"
+        },
+        "platformId":{
+          "shape":"PlatformId",
+          "location":"querystring",
+          "locationName":"platformId"
+        },
+        "profileVersionArn":{
+          "shape":"Arn",
+          "location":"querystring",
+          "locationName":"profileVersionArn"
+        },
+        "jobArn":{
+          "shape":"Arn",
+          "location":"querystring",
+          "locationName":"jobArn"
+        },
+        "certificateHashes":{
+          "shape":"CertificateHashes",
+          "location":"querystring",
+          "locationName":"certificateHashes"
+        }
+      }
+    },
+    "GetRevocationStatusResponse":{
+      "type":"structure",
+      "members":{
+        "revokedEntities":{"shape":"RevokedEntities"}
+      }
+    },
     "GetSigningPlatformRequest":{
       "type":"structure",
       "required":["platformId"],
@@ -712,6 +792,11 @@
       "min":1
     },
     "MaxSizeInMB":{"type":"integer"},
+    "Metadata":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
     "NextToken":{"type":"string"},
     "NotFoundException":{
       "type":"structure",
@@ -721,6 +806,11 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "Payload":{
+      "type":"blob",
+      "max":4096,
+      "min":1
     },
     "Permission":{
       "type":"structure",
@@ -859,6 +949,10 @@
         "effectiveTime":{"shape":"Timestamp"}
       }
     },
+    "RevokedEntities":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "S3Destination":{
       "type":"structure",
       "members":{
@@ -894,6 +988,29 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
+    },
+    "SignPayloadRequest":{
+      "type":"structure",
+      "required":[
+        "profileName",
+        "payload",
+        "payloadFormat"
+      ],
+      "members":{
+        "profileName":{"shape":"ProfileName"},
+        "profileOwner":{"shape":"AccountId"},
+        "payload":{"shape":"Payload"},
+        "payloadFormat":{"shape":"String"}
+      }
+    },
+    "SignPayloadResponse":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"JobId"},
+        "jobOwner":{"shape":"AccountId"},
+        "metadata":{"shape":"Metadata"},
+        "signature":{"shape":"Blob"}
+      }
     },
     "SignatureValidityPeriod":{
       "type":"structure",

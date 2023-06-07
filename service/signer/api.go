@@ -296,6 +296,99 @@ func (c *Signer) DescribeSigningJobWithContext(ctx aws.Context, input *DescribeS
 	return out, req.Send()
 }
 
+const opGetRevocationStatus = "GetRevocationStatus"
+
+// GetRevocationStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetRevocationStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRevocationStatus for more information on using the GetRevocationStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetRevocationStatusRequest method.
+//	req, resp := client.GetRevocationStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetRevocationStatus
+func (c *Signer) GetRevocationStatusRequest(input *GetRevocationStatusInput) (req *request.Request, output *GetRevocationStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetRevocationStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/revocations",
+	}
+
+	if input == nil {
+		input = &GetRevocationStatusInput{}
+	}
+
+	output = &GetRevocationStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("verification.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetRevocationStatus API operation for AWS Signer.
+//
+// Retrieves the revocation status of one or more of the signing profile, signing
+// job, and signing certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation GetRevocationStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     You signing certificate could not be validated.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
+//
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetRevocationStatus
+func (c *Signer) GetRevocationStatus(input *GetRevocationStatusInput) (*GetRevocationStatusOutput, error) {
+	req, out := c.GetRevocationStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetRevocationStatusWithContext is the same as GetRevocationStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRevocationStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) GetRevocationStatusWithContext(ctx aws.Context, input *GetRevocationStatusInput, opts ...request.Option) (*GetRevocationStatusOutput, error) {
+	req, out := c.GetRevocationStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetSigningPlatform = "GetSigningPlatform"
 
 // GetSigningPlatformRequest generates a "aws/request.Request" representing the
@@ -1159,9 +1252,7 @@ func (c *Signer) PutSigningProfileRequest(input *PutSigningProfileInput) (req *r
 // PutSigningProfile API operation for AWS Signer.
 //
 // Creates a signing profile. A signing profile is a code signing template that
-// can be used to carry out a pre-defined signing job. For more information,
-// see http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html
-// (http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html)
+// can be used to carry out a pre-defined signing job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1498,6 +1589,99 @@ func (c *Signer) RevokeSigningProfileWithContext(ctx aws.Context, input *RevokeS
 	return out, req.Send()
 }
 
+const opSignPayload = "SignPayload"
+
+// SignPayloadRequest generates a "aws/request.Request" representing the
+// client's request for the SignPayload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SignPayload for more information on using the SignPayload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SignPayloadRequest method.
+//	req, resp := client.SignPayloadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/SignPayload
+func (c *Signer) SignPayloadRequest(input *SignPayloadInput) (req *request.Request, output *SignPayloadOutput) {
+	op := &request.Operation{
+		Name:       opSignPayload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/signing-jobs/with-payload",
+	}
+
+	if input == nil {
+		input = &SignPayloadInput{}
+	}
+
+	output = &SignPayloadOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SignPayload API operation for AWS Signer.
+//
+// Signs a binary payload and returns a signature envelope.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation SignPayload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     You signing certificate could not be validated.
+//
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
+//
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/SignPayload
+func (c *Signer) SignPayload(input *SignPayloadInput) (*SignPayloadOutput, error) {
+	req, out := c.SignPayloadRequest(input)
+	return out, req.Send()
+}
+
+// SignPayloadWithContext is the same as SignPayload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SignPayload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) SignPayloadWithContext(ctx aws.Context, input *SignPayloadInput, opts ...request.Option) (*SignPayloadOutput, error) {
+	req, out := c.SignPayloadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartSigningJob = "StartSigningJob"
 
 // StartSigningJobRequest generates a "aws/request.Request" representing the
@@ -1546,7 +1730,7 @@ func (c *Signer) StartSigningJobRequest(input *StartSigningJobInput) (req *reque
 // performed. Note the following requirements:
 //
 //   - You must create an Amazon S3 source bucket. For more information, see
-//     Create a Bucket (http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
+//     Creating a Bucket (http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
 //     in the Amazon S3 Getting Started Guide.
 //
 //   - Your S3 source bucket must be version enabled.
@@ -1563,8 +1747,8 @@ func (c *Signer) StartSigningJobRequest(input *StartSigningJobInput) (req *reque
 // You can call the DescribeSigningJob and the ListSigningJobs actions after
 // you call StartSigningJob.
 //
-// For a Java example that shows how to use this action, see http://docs.aws.amazon.com/acm/latest/userguide/
-// (http://docs.aws.amazon.com/acm/latest/userguide/)
+// For a Java example that shows how to use this action, see StartSigningJob
+// (https://docs.aws.amazon.com/signer/latest/developerguide/api-startsigningjob.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2543,6 +2727,150 @@ func (s *EncryptionAlgorithmOptions) SetAllowedValues(v []*string) *EncryptionAl
 // SetDefaultValue sets the DefaultValue field's value.
 func (s *EncryptionAlgorithmOptions) SetDefaultValue(v string) *EncryptionAlgorithmOptions {
 	s.DefaultValue = &v
+	return s
+}
+
+type GetRevocationStatusInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A list of composite signed hashes that identify certificates.
+	//
+	// A certificate identifier consists of a subject certificate TBS hash (signed
+	// by the parent CA) combined with a parent CA TBS hash (signed by the parent
+	// CA’s CA). Root certificates are defined as their own CA.
+	//
+	// CertificateHashes is a required field
+	CertificateHashes []*string `location:"querystring" locationName:"certificateHashes" type:"list" required:"true"`
+
+	// The ARN of a signing job.
+	//
+	// JobArn is a required field
+	JobArn *string `location:"querystring" locationName:"jobArn" min:"20" type:"string" required:"true"`
+
+	// The ID of a signing platform.
+	//
+	// PlatformId is a required field
+	PlatformId *string `location:"querystring" locationName:"platformId" type:"string" required:"true"`
+
+	// The version of a signing profile.
+	//
+	// ProfileVersionArn is a required field
+	ProfileVersionArn *string `location:"querystring" locationName:"profileVersionArn" min:"20" type:"string" required:"true"`
+
+	// The timestamp of the signature that validates the profile or job.
+	//
+	// SignatureTimestamp is a required field
+	SignatureTimestamp *time.Time `location:"querystring" locationName:"signatureTimestamp" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRevocationStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRevocationStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRevocationStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRevocationStatusInput"}
+	if s.CertificateHashes == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateHashes"))
+	}
+	if s.JobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobArn"))
+	}
+	if s.JobArn != nil && len(*s.JobArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("JobArn", 20))
+	}
+	if s.PlatformId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlatformId"))
+	}
+	if s.ProfileVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileVersionArn"))
+	}
+	if s.ProfileVersionArn != nil && len(*s.ProfileVersionArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileVersionArn", 20))
+	}
+	if s.SignatureTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("SignatureTimestamp"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateHashes sets the CertificateHashes field's value.
+func (s *GetRevocationStatusInput) SetCertificateHashes(v []*string) *GetRevocationStatusInput {
+	s.CertificateHashes = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *GetRevocationStatusInput) SetJobArn(v string) *GetRevocationStatusInput {
+	s.JobArn = &v
+	return s
+}
+
+// SetPlatformId sets the PlatformId field's value.
+func (s *GetRevocationStatusInput) SetPlatformId(v string) *GetRevocationStatusInput {
+	s.PlatformId = &v
+	return s
+}
+
+// SetProfileVersionArn sets the ProfileVersionArn field's value.
+func (s *GetRevocationStatusInput) SetProfileVersionArn(v string) *GetRevocationStatusInput {
+	s.ProfileVersionArn = &v
+	return s
+}
+
+// SetSignatureTimestamp sets the SignatureTimestamp field's value.
+func (s *GetRevocationStatusInput) SetSignatureTimestamp(v time.Time) *GetRevocationStatusInput {
+	s.SignatureTimestamp = &v
+	return s
+}
+
+type GetRevocationStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of revoked entities (including one or more of the signing profile
+	// ARN, signing job ID, and certificate hash) supplied as input to the API.
+	RevokedEntities []*string `locationName:"revokedEntities" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRevocationStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRevocationStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetRevokedEntities sets the RevokedEntities field's value.
+func (s *GetRevocationStatusOutput) SetRevokedEntities(v []*string) *GetRevocationStatusOutput {
+	s.RevokedEntities = v
 	return s
 }
 
@@ -4554,6 +4882,160 @@ func (s *ServiceLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type SignPayloadInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the object digest (hash) to sign.
+	// Payload is automatically base64 encoded/decoded by the SDK.
+	//
+	// Payload is a required field
+	Payload []byte `locationName:"payload" min:"1" type:"blob" required:"true"`
+
+	// Payload content type
+	//
+	// PayloadFormat is a required field
+	PayloadFormat *string `locationName:"payloadFormat" type:"string" required:"true"`
+
+	// The name of the signing profile.
+	//
+	// ProfileName is a required field
+	ProfileName *string `locationName:"profileName" min:"2" type:"string" required:"true"`
+
+	// The AWS account ID of the profile owner.
+	ProfileOwner *string `locationName:"profileOwner" min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignPayloadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignPayloadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SignPayloadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SignPayloadInput"}
+	if s.Payload == nil {
+		invalidParams.Add(request.NewErrParamRequired("Payload"))
+	}
+	if s.Payload != nil && len(s.Payload) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Payload", 1))
+	}
+	if s.PayloadFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("PayloadFormat"))
+	}
+	if s.ProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileName"))
+	}
+	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
+	}
+	if s.ProfileOwner != nil && len(*s.ProfileOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileOwner", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPayload sets the Payload field's value.
+func (s *SignPayloadInput) SetPayload(v []byte) *SignPayloadInput {
+	s.Payload = v
+	return s
+}
+
+// SetPayloadFormat sets the PayloadFormat field's value.
+func (s *SignPayloadInput) SetPayloadFormat(v string) *SignPayloadInput {
+	s.PayloadFormat = &v
+	return s
+}
+
+// SetProfileName sets the ProfileName field's value.
+func (s *SignPayloadInput) SetProfileName(v string) *SignPayloadInput {
+	s.ProfileName = &v
+	return s
+}
+
+// SetProfileOwner sets the ProfileOwner field's value.
+func (s *SignPayloadInput) SetProfileOwner(v string) *SignPayloadInput {
+	s.ProfileOwner = &v
+	return s
+}
+
+type SignPayloadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier of the signing job.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// The AWS account ID of the job owner.
+	JobOwner *string `locationName:"jobOwner" min:"12" type:"string"`
+
+	// Information including the signing profile ARN and the signing job ID. Clients
+	// use metadata to signature records, for example, as annotations added to the
+	// signature manifest inside an OCI registry.
+	Metadata map[string]*string `locationName:"metadata" type:"map"`
+
+	// A cryptographic signature.
+	// Signature is automatically base64 encoded/decoded by the SDK.
+	Signature []byte `locationName:"signature" type:"blob"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignPayloadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignPayloadOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *SignPayloadOutput) SetJobId(v string) *SignPayloadOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobOwner sets the JobOwner field's value.
+func (s *SignPayloadOutput) SetJobOwner(v string) *SignPayloadOutput {
+	s.JobOwner = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *SignPayloadOutput) SetMetadata(v map[string]*string) *SignPayloadOutput {
+	s.Metadata = v
+	return s
+}
+
+// SetSignature sets the Signature field's value.
+func (s *SignPayloadOutput) SetSignature(v []byte) *SignPayloadOutput {
+	s.Signature = v
+	return s
+}
+
 // The validity period for a signing job.
 type SignatureValidityPeriod struct {
 	_ struct{} `type:"structure"`
@@ -5028,7 +5510,7 @@ type SigningPlatform struct {
 	// Any partner entities linked to a code signing platform.
 	Partner *string `locationName:"partner" type:"string"`
 
-	// The ID of a code signing; platform.
+	// The ID of a code signing platform.
 	PlatformId *string `locationName:"platformId" type:"string"`
 
 	// Indicates whether revocation is supported for the platform.

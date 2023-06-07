@@ -20351,7 +20351,7 @@ type AssetBundleImportJobDataSourceCredentials struct {
 	_ struct{} `type:"structure"`
 
 	// A username and password credential pair to be used to create the imported
-	// data source. Leave this field blank if you are using an Secrets Manager Secret
+	// data source. Keep this field blank if you are using a Secrets Manager secret
 	// to provide credentials.
 	//
 	// CredentialPair is a sensitive parameter and its value will be
@@ -20359,9 +20359,9 @@ type AssetBundleImportJobDataSourceCredentials struct {
 	// String and GoString methods.
 	CredentialPair *AssetBundleImportJobDataSourceCredentialPair `type:"structure" sensitive:"true"`
 
-	// The ARN of the Secrets Manager Secret to be used to create the imported data
-	// source leave this field blank if you aren't using a Secret in place of a
-	// credential pair.
+	// The ARN of the Secrets Manager secret that's used to create the imported
+	// data source. Keep this field blank, unless you are using a secret in place
+	// of a credential pair.
 	SecretArn *string `min:"1" type:"string"`
 }
 
@@ -20799,7 +20799,7 @@ type AssetBundleImportJobRefreshScheduleOverrideParameters struct {
 	// ScheduleId is a required field
 	ScheduleId *string `type:"string" required:"true"`
 
-	// An override for the StartAfterDateTime of a RefreshSchedule to ensure that
+	// An override for the StartAfterDateTime of a RefreshSchedule. Make sure that
 	// the StartAfterDateTime is set to a time that takes place in the future.
 	StartAfterDateTime *time.Time `type:"timestamp"`
 }
@@ -20857,7 +20857,7 @@ func (s *AssetBundleImportJobRefreshScheduleOverrideParameters) SetStartAfterDat
 }
 
 // An optional structure that configures resource ID overrides for the import
-// job
+// job.
 type AssetBundleImportJobResourceIdOverrideConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -21024,7 +21024,7 @@ func (s *AssetBundleImportJobThemeOverrideParameters) SetThemeId(v string) *Asse
 type AssetBundleImportJobVPCConnectionOverrideParameters struct {
 	_ struct{} `type:"structure"`
 
-	// An optional override of dns resolvers to be used by the VPC connection.
+	// An optional override of DNS resolvers to be used by the VPC connection.
 	DnsResolvers []*string `type:"list"`
 
 	// A new name for the VPC connection.
@@ -21035,12 +21035,12 @@ type AssetBundleImportJobVPCConnectionOverrideParameters struct {
 
 	// A new security group ID for the VPC connection you are importing. This field
 	// is required if you are importing the VPC connection from another Amazon Web
-	// Services account or region.
+	// Services account or Region.
 	SecurityGroupIds []*string `min:"1" type:"list"`
 
 	// A list of new subnet IDs for the VPC connection you are importing. This field
 	// is required if you are importing the VPC connection from another Amazon Web
-	// Services account or region.
+	// Services account or Region.
 	SubnetIds []*string `min:"2" type:"list"`
 
 	// The ID of the VPC Connection to apply overrides to.
@@ -21136,13 +21136,14 @@ func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetVPCConnectionId
 type AssetBundleImportSource struct {
 	_ struct{} `type:"structure"`
 
-	// The bytes of the Base64 encoded asset bundle import zip file. This file can't
-	// exceed 20MB.
+	// The bytes of the base64 encoded asset bundle import zip file. This file can't
+	// exceed 20 MB.
 	//
-	// If you are calling the APIs from the Amazon Web Services Java, JavaScript,
-	// Python, or PHP SDKs, the SDK encodes Base64 automatically to allow the direct
-	// setting of the zip file's bytes. If you are using a SDK of a different language
-	// or are receiving related errors, try to Base64 encode your data.
+	// If you are calling the API operations from the Amazon Web Services SDK for
+	// Java, JavaScript, Python, or PHP, the SDK encodes base64 automatically to
+	// allow the direct setting of the zip file's bytes. If you are using an SDK
+	// for a different language or receiving related errors, try to base64 encode
+	// your data.
 	//
 	// Body is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AssetBundleImportSource's
@@ -21151,9 +21152,9 @@ type AssetBundleImportSource struct {
 	// Body is automatically base64 encoded/decoded by the SDK.
 	Body []byte `type:"blob" sensitive:"true"`
 
-	// The Amazon S3 uri for an asset bundle import file that exists in an Amazon
+	// The Amazon S3 URI for an asset bundle import file that exists in an Amazon
 	// S3 bucket that the caller has read access to. The file must be a zip format
-	// file and can't exceed 20MB.
+	// file and can't exceed 20 MB.
 	S3Uri *string `type:"string"`
 }
 
@@ -21188,18 +21189,18 @@ func (s *AssetBundleImportSource) SetS3Uri(v string) *AssetBundleImportSource {
 }
 
 // A description of the import source that you provide at the start of an import
-// job. This value is set to either Body or S3Uri depending on how the StartAssetBundleImportJobRequest
+// job. This value is set to either Body or S3Uri, depending on how the StartAssetBundleImportJobRequest
 // is configured.
 type AssetBundleImportSourceDescription struct {
 	_ struct{} `type:"structure"`
 
-	// A HTTPS download URL for the provided asset bundle that you optionally provided
-	// at the start of the import job. This URL is valid for 5 minutes after issuance.
-	// Call DescribeAssetBundleExportJob again for a fresh URL if needed. The downloaded
-	// asset bundle is a .qs zip file.
+	// An HTTPS download URL for the provided asset bundle that you optionally provided
+	// at the start of the import job. This URL is valid for five minutes after
+	// issuance. Call DescribeAssetBundleExportJob again for a fresh URL if needed.
+	// The downloaded asset bundle is a .qs zip file.
 	Body *string `type:"string"`
 
-	// The Amazon S3 uri that you provided at the start of the import job.
+	// The Amazon S3 URI that you provided at the start of the import job.
 	S3Uri *string `type:"string"`
 }
 
@@ -42408,7 +42409,7 @@ type DescribeAssetBundleExportJobOutput struct {
 	// The include dependencies flag.
 	IncludeAllDependencies *bool `type:"boolean"`
 
-	// Indicates tha status of a job through its queueing and execution.
+	// Indicates the status of a job through its queuing and execution.
 	//
 	// Poll this DescribeAssetBundleExportApi until JobStatus is either SUCCESSFUL
 	// or FAILED.
@@ -42617,10 +42618,10 @@ type DescribeAssetBundleImportJobOutput struct {
 	// The failure action for the import job.
 	FailureAction *string `type:"string" enum:"AssetBundleImportFailureAction"`
 
-	// Indicates tha status of a job through its queueing and execution.
+	// Indicates the status of a job through its queuing and execution.
 	//
-	// Poll this DescribeAssetBundleImport API until JobStatus returns one of the
-	// following values.
+	// Poll the DescribeAssetBundleImport API until JobStatus returns one of the
+	// following values:
 	//
 	//    * SUCCESSFUL
 	//
@@ -69715,6 +69716,9 @@ type PivotTableCellConditionalFormatting struct {
 	// The scope of the cell for conditional formatting.
 	Scope *PivotTableConditionalFormattingScope `type:"structure"`
 
+	// A list of cell scopes for conditional formatting.
+	Scopes []*PivotTableConditionalFormattingScope `type:"list"`
+
 	// The text format of the cell for conditional formatting.
 	TextFormat *TextConditionalFormat `type:"structure"`
 }
@@ -69767,6 +69771,12 @@ func (s *PivotTableCellConditionalFormatting) SetFieldId(v string) *PivotTableCe
 // SetScope sets the Scope field's value.
 func (s *PivotTableCellConditionalFormatting) SetScope(v *PivotTableConditionalFormattingScope) *PivotTableCellConditionalFormatting {
 	s.Scope = v
+	return s
+}
+
+// SetScopes sets the Scopes field's value.
+func (s *PivotTableCellConditionalFormatting) SetScopes(v []*PivotTableConditionalFormattingScope) *PivotTableCellConditionalFormatting {
+	s.Scopes = v
 	return s
 }
 
@@ -70085,6 +70095,133 @@ func (s *PivotTableDataPathOption) SetWidth(v string) *PivotTableDataPathOption 
 	return s
 }
 
+// The collapse state options for the pivot table field options.
+type PivotTableFieldCollapseStateOption struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the field target of a pivot table. Choose one of the following
+	// options:
+	//
+	//    * COLLAPSED
+	//
+	//    * EXPANDED
+	State *string `type:"string" enum:"PivotTableFieldCollapseState"`
+
+	// A tagged-union object that sets the collapse state.
+	//
+	// Target is a required field
+	Target *PivotTableFieldCollapseStateTarget `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PivotTableFieldCollapseStateOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PivotTableFieldCollapseStateOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PivotTableFieldCollapseStateOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PivotTableFieldCollapseStateOption"}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+	if s.Target != nil {
+		if err := s.Target.Validate(); err != nil {
+			invalidParams.AddNested("Target", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *PivotTableFieldCollapseStateOption) SetState(v string) *PivotTableFieldCollapseStateOption {
+	s.State = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *PivotTableFieldCollapseStateOption) SetTarget(v *PivotTableFieldCollapseStateTarget) *PivotTableFieldCollapseStateOption {
+	s.Target = v
+	return s
+}
+
+// The target of a pivot table field collapse state.
+type PivotTableFieldCollapseStateTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The data path of the pivot table's header. Used to set the collapse state.
+	FieldDataPathValues []*DataPathValue `type:"list"`
+
+	// The field ID of the pivot table that the collapse state needs to be set to.
+	FieldId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PivotTableFieldCollapseStateTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PivotTableFieldCollapseStateTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PivotTableFieldCollapseStateTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PivotTableFieldCollapseStateTarget"}
+	if s.FieldDataPathValues != nil {
+		for i, v := range s.FieldDataPathValues {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldDataPathValues", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldDataPathValues sets the FieldDataPathValues field's value.
+func (s *PivotTableFieldCollapseStateTarget) SetFieldDataPathValues(v []*DataPathValue) *PivotTableFieldCollapseStateTarget {
+	s.FieldDataPathValues = v
+	return s
+}
+
+// SetFieldId sets the FieldId field's value.
+func (s *PivotTableFieldCollapseStateTarget) SetFieldId(v string) *PivotTableFieldCollapseStateTarget {
+	s.FieldId = &v
+	return s
+}
+
 // The selected field options for the pivot table field options.
 type PivotTableFieldOption struct {
 	_ struct{} `type:"structure"`
@@ -70160,6 +70297,9 @@ func (s *PivotTableFieldOption) SetVisibility(v string) *PivotTableFieldOption {
 type PivotTableFieldOptions struct {
 	_ struct{} `type:"structure"`
 
+	// The collapse state options for the pivot table field options.
+	CollapseStateOptions []*PivotTableFieldCollapseStateOption `type:"list"`
+
 	// The data path options for the pivot table field options.
 	DataPathOptions []*PivotTableDataPathOption `type:"list"`
 
@@ -70188,6 +70328,16 @@ func (s PivotTableFieldOptions) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PivotTableFieldOptions) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PivotTableFieldOptions"}
+	if s.CollapseStateOptions != nil {
+		for i, v := range s.CollapseStateOptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CollapseStateOptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.DataPathOptions != nil {
 		for i, v := range s.DataPathOptions {
 			if v == nil {
@@ -70213,6 +70363,12 @@ func (s *PivotTableFieldOptions) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCollapseStateOptions sets the CollapseStateOptions field's value.
+func (s *PivotTableFieldOptions) SetCollapseStateOptions(v []*PivotTableFieldCollapseStateOption) *PivotTableFieldOptions {
+	s.CollapseStateOptions = v
+	return s
 }
 
 // SetDataPathOptions sets the DataPathOptions field's value.
@@ -71686,6 +71842,9 @@ type RadarChartConfiguration struct {
 	// The color of the odd-numbered alternate bands of a radar chart.
 	AlternateBandOddColor *string `type:"string"`
 
+	// The axis behavior options of a radar chart.
+	AxesRangeScale *string `type:"string" enum:"RadarChartAxesRangeScale"`
+
 	// The base sreies settings of a radar chart.
 	BaseSeriesSettings *RadarChartSeriesSettings `type:"structure"`
 
@@ -71791,6 +71950,12 @@ func (s *RadarChartConfiguration) SetAlternateBandEvenColor(v string) *RadarChar
 // SetAlternateBandOddColor sets the AlternateBandOddColor field's value.
 func (s *RadarChartConfiguration) SetAlternateBandOddColor(v string) *RadarChartConfiguration {
 	s.AlternateBandOddColor = &v
+	return s
+}
+
+// SetAxesRangeScale sets the AxesRangeScale field's value.
+func (s *RadarChartConfiguration) SetAxesRangeScale(v string) *RadarChartConfiguration {
+	s.AxesRangeScale = &v
 	return s
 }
 
@@ -79850,8 +80015,8 @@ type StartAssetBundleExportJobInput struct {
 	// A Boolean that determines whether all dependencies of each resource ARN are
 	// recursively exported with the job. For example, say you provided a Dashboard
 	// ARN to the ResourceArns parameter. If you set IncludeAllDependencies to TRUE,
-	// any theme, dataset, and dataource resource that is a dependency of the dashboard
-	// is also exported.
+	// any theme, dataset, and data source resource that is a dependency of the
+	// dashboard is also exported.
 	IncludeAllDependencies *bool `type:"boolean"`
 
 	// An array of resource ARNs to export. The following resources are supported.
@@ -80052,7 +80217,7 @@ type StartAssetBundleImportJobInput struct {
 	// changes caused by the failed job.
 	//
 	// If you choose DO_NOTHING, failed import jobs will not attempt to roll back
-	// any asset changes caused by the failed job, possibly leaving the Amazon QuickSight
+	// any asset changes caused by the failed job, possibly keeping the Amazon QuickSight
 	// account in an inconsistent state.
 	FailureAction *string `type:"string" enum:"AssetBundleImportFailureAction"`
 
@@ -99653,6 +99818,22 @@ func PivotTableConditionalFormattingScopeRole_Values() []string {
 }
 
 const (
+	// PivotTableFieldCollapseStateCollapsed is a PivotTableFieldCollapseState enum value
+	PivotTableFieldCollapseStateCollapsed = "COLLAPSED"
+
+	// PivotTableFieldCollapseStateExpanded is a PivotTableFieldCollapseState enum value
+	PivotTableFieldCollapseStateExpanded = "EXPANDED"
+)
+
+// PivotTableFieldCollapseState_Values returns all elements of the PivotTableFieldCollapseState enum
+func PivotTableFieldCollapseState_Values() []string {
+	return []string{
+		PivotTableFieldCollapseStateCollapsed,
+		PivotTableFieldCollapseStateExpanded,
+	}
+}
+
+const (
 	// PivotTableMetricPlacementRow is a PivotTableMetricPlacement enum value
 	PivotTableMetricPlacementRow = "ROW"
 
@@ -99741,6 +99922,26 @@ func PropertyUsage_Values() []string {
 		PropertyUsageInherit,
 		PropertyUsageDimension,
 		PropertyUsageMeasure,
+	}
+}
+
+const (
+	// RadarChartAxesRangeScaleAuto is a RadarChartAxesRangeScale enum value
+	RadarChartAxesRangeScaleAuto = "AUTO"
+
+	// RadarChartAxesRangeScaleIndependent is a RadarChartAxesRangeScale enum value
+	RadarChartAxesRangeScaleIndependent = "INDEPENDENT"
+
+	// RadarChartAxesRangeScaleShared is a RadarChartAxesRangeScale enum value
+	RadarChartAxesRangeScaleShared = "SHARED"
+)
+
+// RadarChartAxesRangeScale_Values returns all elements of the RadarChartAxesRangeScale enum
+func RadarChartAxesRangeScale_Values() []string {
+	return []string{
+		RadarChartAxesRangeScaleAuto,
+		RadarChartAxesRangeScaleIndependent,
+		RadarChartAxesRangeScaleShared,
 	}
 }
 
