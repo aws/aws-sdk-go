@@ -506,7 +506,8 @@
         "TableName":{"shape":"ResourceCreateAPIName"},
         "RetentionProperties":{"shape":"RetentionProperties"},
         "Tags":{"shape":"TagList"},
-        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"}
+        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"},
+        "Schema":{"shape":"Schema"}
       }
     },
     "CreateTableResponse":{
@@ -887,6 +888,34 @@
       "max":20,
       "min":1
     },
+    "PartitionKey":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"PartitionKeyType"},
+        "Name":{"shape":"SchemaName"},
+        "EnforcementInRecord":{"shape":"PartitionKeyEnforcementLevel"}
+      }
+    },
+    "PartitionKeyEnforcementLevel":{
+      "type":"string",
+      "enum":[
+        "REQUIRED",
+        "OPTIONAL"
+      ]
+    },
+    "PartitionKeyList":{
+      "type":"list",
+      "member":{"shape":"PartitionKey"},
+      "min":1
+    },
+    "PartitionKeyType":{
+      "type":"string",
+      "enum":[
+        "DIMENSION",
+        "MEASURE"
+      ]
+    },
     "Record":{
       "type":"structure",
       "members":{
@@ -1037,6 +1066,12 @@
         "TIMESTAMP"
       ]
     },
+    "Schema":{
+      "type":"structure",
+      "members":{
+        "CompositePartitionKey":{"shape":"PartitionKeyList"}
+      }
+    },
     "SchemaName":{
       "type":"string",
       "min":1
@@ -1075,7 +1110,8 @@
         "RetentionProperties":{"shape":"RetentionProperties"},
         "CreationTime":{"shape":"Date"},
         "LastUpdatedTime":{"shape":"Date"},
-        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"}
+        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"},
+        "Schema":{"shape":"Schema"}
       }
     },
     "TableList":{
@@ -1199,7 +1235,8 @@
         "DatabaseName":{"shape":"ResourceName"},
         "TableName":{"shape":"ResourceName"},
         "RetentionProperties":{"shape":"RetentionProperties"},
-        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"}
+        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"},
+        "Schema":{"shape":"Schema"}
       }
     },
     "UpdateTableResponse":{

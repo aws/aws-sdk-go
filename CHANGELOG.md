@@ -1,3 +1,16 @@
+Release v1.44.279 (2023-06-08)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * You can now define custom spark properties at start of the session for use cases like cluster encryption, table formats, and general Spark tuning.
+* `service/comprehendmedical`: Updates service API
+* `service/payment-cryptography`: Adds new service
+* `service/payment-cryptography-data`: Adds new service
+* `service/servicecatalog`: Updates service API and documentation
+  * New parameter added in ServiceCatalog DescribeProvisioningArtifact api - IncludeProvisioningArtifactParameters. This parameter can be used to return information about the parameters used to provision the product
+* `service/timestream-write`: Updates service API and documentation
+
 Release v1.44.278 (2023-06-07)
 ===
 

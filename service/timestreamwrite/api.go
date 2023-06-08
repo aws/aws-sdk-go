@@ -86,9 +86,9 @@ func (c *TimestreamWrite) CreateBatchLoadTaskRequest(input *CreateBatchLoadTaskI
 // from a CSV source in an S3 location and writes to a Timestream table. A mapping
 // from source to target is defined in a batch load task. Errors and events
 // are written to a report at an S3 location. For the report, if the KMS key
-// is not specified, the batch load task will be encrypted with a Timestream
-// managed KMS key located in your account. For more information, see Amazon
-// Web Services managed keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).
+// is not specified, the report will be encrypted with an S3 managed key when
+// SSE_S3 is the option. Otherwise an error is thrown. For more information,
+// see Amazon Web Services managed keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).
 // Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
 // For details, see code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-batch-load.html).
 //
@@ -3373,6 +3373,9 @@ type CreateTableInput struct {
 	// store and the magnetic store.
 	RetentionProperties *RetentionProperties `type:"structure"`
 
+	// The schema of the table.
+	Schema *Schema `type:"structure"`
+
 	// The name of the Timestream table.
 	//
 	// TableName is a required field
@@ -3419,6 +3422,11 @@ func (s *CreateTableInput) Validate() error {
 			invalidParams.AddNested("RetentionProperties", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Schema != nil {
+		if err := s.Schema.Validate(); err != nil {
+			invalidParams.AddNested("Schema", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -3451,6 +3459,12 @@ func (s *CreateTableInput) SetMagneticStoreWriteProperties(v *MagneticStoreWrite
 // SetRetentionProperties sets the RetentionProperties field's value.
 func (s *CreateTableInput) SetRetentionProperties(v *RetentionProperties) *CreateTableInput {
 	s.RetentionProperties = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *CreateTableInput) SetSchema(v *Schema) *CreateTableInput {
+	s.Schema = v
 	return s
 }
 
@@ -5340,7 +5354,7 @@ type MeasureValue struct {
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"MeasureValueType"`
 
-	// The value for the MeasureValue.
+	// The value for the MeasureValue. For information, see Data types (https://docs.aws.amazon.com/timestream/latest/developerguide/writes.html#writes.data-types).
 	//
 	// Value is a required field
 	Value *string `min:"1" type:"string" required:"true"`
@@ -5639,6 +5653,80 @@ func (s *MultiMeasureMappings) SetTargetMultiMeasureName(v string) *MultiMeasure
 	return s
 }
 
+// An attribute used in partitioning data in a table. A dimension key partitions
+// data using the values of the dimension specified by the dimension-name as
+// partition key, while a measure key partitions data using measure names (values
+// of the 'measure_name' column).
+type PartitionKey struct {
+	_ struct{} `type:"structure"`
+
+	// The level of enforcement for the specification of a dimension key in ingested
+	// records. Options are REQUIRED (dimension key must be specified) and OPTIONAL
+	// (dimension key does not have to be specified).
+	EnforcementInRecord *string `type:"string" enum:"PartitionKeyEnforcementLevel"`
+
+	// The name of the attribute used for a dimension key.
+	Name *string `min:"1" type:"string"`
+
+	// The type of the partition key. Options are DIMENSION (dimension key) and
+	// MEASURE (measure key).
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"PartitionKeyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PartitionKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PartitionKey) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PartitionKey) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PartitionKey"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnforcementInRecord sets the EnforcementInRecord field's value.
+func (s *PartitionKey) SetEnforcementInRecord(v string) *PartitionKey {
+	s.EnforcementInRecord = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PartitionKey) SetName(v string) *PartitionKey {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PartitionKey) SetType(v string) *PartitionKey {
+	s.Type = &v
+	return s
+}
+
 // Represents a time-series data point being written into Timestream. Each record
 // contains an array of dimensions. Dimensions represent the metadata attributes
 // of a time-series data point, such as the instance name or Availability Zone
@@ -5669,7 +5757,7 @@ type Record struct {
 	MeasureValue *string `min:"1" type:"string"`
 
 	// Contains the data type of the measure value for the time-series data point.
-	// Default type is DOUBLE.
+	// Default type is DOUBLE. For more information, see Data types (https://docs.aws.amazon.com/timestream/latest/developerguide/writes.html#writes.data-types).
 	MeasureValueType *string `type:"string" enum:"MeasureValueType"`
 
 	// Contains the list of MeasureValue for time-series data points.
@@ -6426,6 +6514,65 @@ func (s *S3Configuration) SetObjectKeyPrefix(v string) *S3Configuration {
 	return s
 }
 
+// A Schema specifies the expected data model of the table.
+type Schema struct {
+	_ struct{} `type:"structure"`
+
+	// A non-empty list of partition keys defining the attributes used to partition
+	// the table data. The order of the list determines the partition hierarchy.
+	// The name and type of each partition key as well as the partition key order
+	// cannot be changed after the table is created. However, the enforcement level
+	// of each partition key can be changed.
+	CompositePartitionKey []*PartitionKey `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Schema) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Schema) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Schema) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Schema"}
+	if s.CompositePartitionKey != nil && len(s.CompositePartitionKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CompositePartitionKey", 1))
+	}
+	if s.CompositePartitionKey != nil {
+		for i, v := range s.CompositePartitionKey {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CompositePartitionKey", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCompositePartitionKey sets the CompositePartitionKey field's value.
+func (s *Schema) SetCompositePartitionKey(v []*PartitionKey) *Schema {
+	s.CompositePartitionKey = v
+	return s
+}
+
 // The instance quota of resource exceeded for this account.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -6514,6 +6661,9 @@ type Table struct {
 	// The retention duration for the memory store and magnetic store.
 	RetentionProperties *RetentionProperties `type:"structure"`
 
+	// The schema of the table.
+	Schema *Schema `type:"structure"`
+
 	// The name of the Timestream table.
 	TableName *string `type:"string"`
 
@@ -6576,6 +6726,12 @@ func (s *Table) SetMagneticStoreWriteProperties(v *MagneticStoreWriteProperties)
 // SetRetentionProperties sets the RetentionProperties field's value.
 func (s *Table) SetRetentionProperties(v *RetentionProperties) *Table {
 	s.RetentionProperties = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *Table) SetSchema(v *Schema) *Table {
+	s.Schema = v
 	return s
 }
 
@@ -7028,6 +7184,9 @@ type UpdateTableInput struct {
 	// The retention duration of the memory store and the magnetic store.
 	RetentionProperties *RetentionProperties `type:"structure"`
 
+	// The schema of the table.
+	Schema *Schema `type:"structure"`
+
 	// The name of the Timestream table.
 	//
 	// TableName is a required field
@@ -7071,6 +7230,11 @@ func (s *UpdateTableInput) Validate() error {
 			invalidParams.AddNested("RetentionProperties", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Schema != nil {
+		if err := s.Schema.Validate(); err != nil {
+			invalidParams.AddNested("Schema", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7093,6 +7257,12 @@ func (s *UpdateTableInput) SetMagneticStoreWriteProperties(v *MagneticStoreWrite
 // SetRetentionProperties sets the RetentionProperties field's value.
 func (s *UpdateTableInput) SetRetentionProperties(v *RetentionProperties) *UpdateTableInput {
 	s.RetentionProperties = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *UpdateTableInput) SetSchema(v *Schema) *UpdateTableInput {
+	s.Schema = v
 	return s
 }
 
@@ -7420,6 +7590,38 @@ func MeasureValueType_Values() []string {
 		MeasureValueTypeBoolean,
 		MeasureValueTypeTimestamp,
 		MeasureValueTypeMulti,
+	}
+}
+
+const (
+	// PartitionKeyEnforcementLevelRequired is a PartitionKeyEnforcementLevel enum value
+	PartitionKeyEnforcementLevelRequired = "REQUIRED"
+
+	// PartitionKeyEnforcementLevelOptional is a PartitionKeyEnforcementLevel enum value
+	PartitionKeyEnforcementLevelOptional = "OPTIONAL"
+)
+
+// PartitionKeyEnforcementLevel_Values returns all elements of the PartitionKeyEnforcementLevel enum
+func PartitionKeyEnforcementLevel_Values() []string {
+	return []string{
+		PartitionKeyEnforcementLevelRequired,
+		PartitionKeyEnforcementLevelOptional,
+	}
+}
+
+const (
+	// PartitionKeyTypeDimension is a PartitionKeyType enum value
+	PartitionKeyTypeDimension = "DIMENSION"
+
+	// PartitionKeyTypeMeasure is a PartitionKeyType enum value
+	PartitionKeyTypeMeasure = "MEASURE"
+)
+
+// PartitionKeyType_Values returns all elements of the PartitionKeyType enum
+func PartitionKeyType_Values() []string {
+	return []string{
+		PartitionKeyTypeDimension,
+		PartitionKeyTypeMeasure,
 	}
 }
 

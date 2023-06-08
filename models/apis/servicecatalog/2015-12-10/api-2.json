@@ -2041,7 +2041,8 @@
         "ProductId":{"shape":"Id"},
         "ProvisioningArtifactName":{"shape":"ProvisioningArtifactName"},
         "ProductName":{"shape":"ProductViewName"},
-        "Verbose":{"shape":"Verbose"}
+        "Verbose":{"shape":"Verbose"},
+        "IncludeProvisioningArtifactParameters":{"shape":"Boolean"}
       }
     },
     "DescribeProvisioningArtifactOutput":{
@@ -2049,7 +2050,8 @@
       "members":{
         "ProvisioningArtifactDetail":{"shape":"ProvisioningArtifactDetail"},
         "Info":{"shape":"ProvisioningArtifactInfo"},
-        "Status":{"shape":"Status"}
+        "Status":{"shape":"Status"},
+        "ProvisioningArtifactParameters":{"shape":"ProvisioningArtifactParameters"}
       }
     },
     "DescribeProvisioningParametersInput":{
