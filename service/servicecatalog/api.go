@@ -9230,21 +9230,24 @@ type AssociatePrincipalWithPortfolioInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
-	// The ARN of the principal (user, role, or group). The supported value is a
-	// fully defined IAM ARN (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns)
-	// if the PrincipalType is IAM. If the PrincipalType is IAM_PATTERN, the supported
-	// value is an IAM ARN without an AccountID in the following format:
+	// The ARN of the principal (user, role, or group). If the PrincipalType is
+	// IAM, the supported value is a fully defined IAM Amazon Resource Name (ARN)
+	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
+	// If the PrincipalType is IAM_PATTERN, the supported value is an IAM ARN without
+	// an AccountID in the following format:
 	//
 	// arn:partition:iam:::resource-type/resource-id
 	//
-	// The resource-id can be either of the following:
+	// The ARN resource-id can be either:
 	//
-	//    * Fully formed, for example arn:aws:iam:::role/resource-name or arn:aws:iam:::role/resource-path/resource-name
+	//    * A fully formed resource-id. For example, arn:aws:iam:::role/resource-name
+	//    or arn:aws:iam:::role/resource-path/resource-name
 	//
 	//    * A wildcard ARN. The wildcard ARN accepts IAM_PATTERN values with a "*"
-	//    or "?" in the resource-id segment of the ARN, for example arn:partition:service:::resource-type/resource-path/resource-name.
+	//    or "?" in the resource-id segment of the ARN. For example arn:partition:service:::resource-type/resource-path/resource-name.
 	//    The new symbols are exclusive to the resource-path and resource-name and
-	//    cannot be used to replace the resource-type or other ARN values.
+	//    cannot replace the resource-type or other ARN values. The ARN path and
+	//    principal name allow unlimited wildcard characters.
 	//
 	// Examples of an acceptable wildcard ARN:
 	//
@@ -9259,29 +9262,25 @@ type AssociatePrincipalWithPortfolioInput struct {
 	// You can associate multiple IAM_PATTERNs even if the account has no principal
 	// with that name.
 	//
-	//    * The ARN path and principal name allow unlimited wildcard characters.
+	// The "?" wildcard character matches zero or one of any character. This is
+	// similar to ".?" in regular regex context. The "*" wildcard character matches
+	// any number of any characters. This is similar to ".*" in regular regex context.
 	//
-	//    * The "?" wildcard character matches zero or one of any character. This
-	//    is similar to ".?" in regular regex context.
+	// In the IAM Principal ARN format (arn:partition:iam:::resource-type/resource-path/resource-name),
+	// valid resource-type values include user/, group/, or role/. The "?" and "*"
+	// characters are allowed only after the resource-type in the resource-id segment.
+	// You can use special characters anywhere within the resource-id.
 	//
-	//    * The "*" wildcard character matches any number of any characters. This
-	//    is similar ".*" in regular regex context.
-	//
-	//    * In the IAM Principal ARNs format (arn:partition:iam:::resource-type/resource-path/resource-name),
-	//    valid resource-type values include user/, group/, or role/. The "?" and
-	//    "*" are allowed only after the resource-type, in the resource-id segment.
-	//    You can use special characters anywhere within the resource-id.
-	//
-	//    * The "*" also matches the "/" character, allowing paths to be formed
-	//    within the resource-id. For example, arn:aws:iam:::role/*/ResourceName_?
-	//    matches both arn:aws:iam:::role/pathA/pathB/ResourceName_1 and arn:aws:iam:::role/pathA/ResourceName_1.
+	// The "*" character also matches the "/" character, allowing paths to be formed
+	// within the resource-id. For example, arn:aws:iam:::role/*/ResourceName_?
+	// matches both arn:aws:iam:::role/pathA/pathB/ResourceName_1 and arn:aws:iam:::role/pathA/ResourceName_1.
 	//
 	// PrincipalARN is a required field
 	PrincipalARN *string `min:"1" type:"string" required:"true"`
 
 	// The principal type. The supported value is IAM if you use a fully defined
-	// ARN, or IAM_PATTERN if you use an ARN with no accountID, with or without
-	// wildcard characters.
+	// Amazon Resource Name (ARN), or IAM_PATTERN if you use an ARN with no accountID,
+	// with or without wildcard characters.
 	//
 	// PrincipalType is a required field
 	PrincipalType *string `type:"string" required:"true" enum:"PrincipalType"`
@@ -13811,6 +13810,10 @@ type DescribeProvisioningArtifactInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
+	// Indicates if the API call response does or does not include additional details
+	// about the provisioning parameters.
+	IncludeProvisioningArtifactParameters *bool `type:"boolean"`
+
 	// The product identifier.
 	ProductId *string `min:"1" type:"string"`
 
@@ -13867,6 +13870,12 @@ func (s *DescribeProvisioningArtifactInput) SetAcceptLanguage(v string) *Describ
 	return s
 }
 
+// SetIncludeProvisioningArtifactParameters sets the IncludeProvisioningArtifactParameters field's value.
+func (s *DescribeProvisioningArtifactInput) SetIncludeProvisioningArtifactParameters(v bool) *DescribeProvisioningArtifactInput {
+	s.IncludeProvisioningArtifactParameters = &v
+	return s
+}
+
 // SetProductId sets the ProductId field's value.
 func (s *DescribeProvisioningArtifactInput) SetProductId(v string) *DescribeProvisioningArtifactInput {
 	s.ProductId = &v
@@ -13906,6 +13915,9 @@ type DescribeProvisioningArtifactOutput struct {
 	// Information about the provisioning artifact.
 	ProvisioningArtifactDetail *ProvisioningArtifactDetail `type:"structure"`
 
+	// Information about the parameters used to provision the product.
+	ProvisioningArtifactParameters []*ProvisioningArtifactParameter `type:"list"`
+
 	// The status of the current request.
 	Status *string `type:"string" enum:"Status"`
 }
@@ -13937,6 +13949,12 @@ func (s *DescribeProvisioningArtifactOutput) SetInfo(v map[string]*string) *Desc
 // SetProvisioningArtifactDetail sets the ProvisioningArtifactDetail field's value.
 func (s *DescribeProvisioningArtifactOutput) SetProvisioningArtifactDetail(v *ProvisioningArtifactDetail) *DescribeProvisioningArtifactOutput {
 	s.ProvisioningArtifactDetail = v
+	return s
+}
+
+// SetProvisioningArtifactParameters sets the ProvisioningArtifactParameters field's value.
+func (s *DescribeProvisioningArtifactOutput) SetProvisioningArtifactParameters(v []*ProvisioningArtifactParameter) *DescribeProvisioningArtifactOutput {
+	s.ProvisioningArtifactParameters = v
 	return s
 }
 

@@ -8921,6 +8921,7 @@ func (s CreateWorkGroupOutput) GoString() string {
 }
 
 // Specifies the KMS key that is used to encrypt the user's data stores in Athena.
+// This setting does not apply to Athena SQL workgroups.
 type CustomerContentEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9720,6 +9721,10 @@ type EngineConfiguration struct {
 	//
 	// MaxConcurrentDpus is a required field
 	MaxConcurrentDpus *int64 `min:"2" type:"integer" required:"true"`
+
+	// Specifies custom jar files and Spark properties for use cases like cluster
+	// encryption, table formats, and general Spark tuning.
+	SparkProperties map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -9783,6 +9788,12 @@ func (s *EngineConfiguration) SetDefaultExecutorDpuSize(v int64) *EngineConfigur
 // SetMaxConcurrentDpus sets the MaxConcurrentDpus field's value.
 func (s *EngineConfiguration) SetMaxConcurrentDpus(v int64) *EngineConfiguration {
 	s.MaxConcurrentDpus = &v
+	return s
+}
+
+// SetSparkProperties sets the SparkProperties field's value.
+func (s *EngineConfiguration) SetSparkProperties(v map[string]*string) *EngineConfiguration {
+	s.SparkProperties = v
 	return s
 }
 
@@ -18219,6 +18230,7 @@ type WorkGroupConfiguration struct {
 	BytesScannedCutoffPerQuery *int64 `min:"1e+07" type:"long"`
 
 	// Specifies the KMS key that is used to encrypt the user's data stores in Athena.
+	// This setting does not apply to Athena SQL workgroups.
 	CustomerContentEncryptionConfiguration *CustomerContentEncryptionConfiguration `type:"structure"`
 
 	// Enforces a minimal level of encryption for the workgroup for query and calculation
@@ -18396,6 +18408,7 @@ type WorkGroupConfigurationUpdates struct {
 	BytesScannedCutoffPerQuery *int64 `min:"1e+07" type:"long"`
 
 	// Specifies the KMS key that is used to encrypt the user's data stores in Athena.
+	// This setting does not apply to Athena SQL workgroups.
 	CustomerContentEncryptionConfiguration *CustomerContentEncryptionConfiguration `type:"structure"`
 
 	// Enforces a minimal level of encryption for the workgroup for query and calculation
@@ -18428,7 +18441,8 @@ type WorkGroupConfigurationUpdates struct {
 	// Indicates that the data usage control limit per query is removed. WorkGroupConfiguration$BytesScannedCutoffPerQuery
 	RemoveBytesScannedCutoffPerQuery *bool `type:"boolean"`
 
-	// Removes content encryption configuration for a workgroup.
+	// Removes content encryption configuration from an Apache Spark-enabled Athena
+	// workgroup.
 	RemoveCustomerContentEncryptionConfiguration *bool `type:"boolean"`
 
 	// If set to true, allows members assigned to a workgroup to specify Amazon

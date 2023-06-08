@@ -1591,7 +1591,8 @@
         "CoordinatorDpuSize":{"shape":"CoordinatorDpuSize"},
         "MaxConcurrentDpus":{"shape":"MaxConcurrentDpus"},
         "DefaultExecutorDpuSize":{"shape":"DefaultExecutorDpuSize"},
-        "AdditionalConfigs":{"shape":"ParametersMap"}
+        "AdditionalConfigs":{"shape":"ParametersMap"},
+        "SparkProperties":{"shape":"ParametersMap"}
       }
     },
     "EngineVersion":{
