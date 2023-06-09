@@ -2140,6 +2140,38 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "SearchHoursOfOperations":{
+      "name":"SearchHoursOfOperations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-hours-of-operations"
+      },
+      "input":{"shape":"SearchHoursOfOperationsRequest"},
+      "output":{"shape":"SearchHoursOfOperationsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "SearchPrompts":{
+      "name":"SearchPrompts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-prompts"
+      },
+      "input":{"shape":"SearchPromptsRequest"},
+      "output":{"shape":"SearchPromptsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "SearchQueues":{
       "name":"SearchQueues",
       "http":{
@@ -2148,6 +2180,22 @@
       },
       "input":{"shape":"SearchQueuesRequest"},
       "output":{"shape":"SearchQueuesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "SearchQuickConnects":{
+      "name":"SearchQuickConnects",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-quick-connects"
+      },
+      "input":{"shape":"SearchQuickConnectsRequest"},
+      "output":{"shape":"SearchQuickConnectsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
@@ -6899,7 +6947,29 @@
       "min":1
     },
     "HoursOfOperationId":{"type":"string"},
+    "HoursOfOperationList":{
+      "type":"list",
+      "member":{"shape":"HoursOfOperation"}
+    },
     "HoursOfOperationName":{"type":"string"},
+    "HoursOfOperationSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"HoursOfOperationSearchCriteria"}
+    },
+    "HoursOfOperationSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"HoursOfOperationSearchConditionList"},
+        "AndConditions":{"shape":"HoursOfOperationSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"}
+      }
+    },
+    "HoursOfOperationSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
+    },
     "HoursOfOperationSummary":{
       "type":"structure",
       "members":{
@@ -9062,6 +9132,10 @@
       "max":256,
       "min":1
     },
+    "PromptList":{
+      "type":"list",
+      "member":{"shape":"Prompt"}
+    },
     "PromptName":{
       "type":"string",
       "max":256,
@@ -9071,6 +9145,24 @@
       "type":"string",
       "max":2000,
       "min":1
+    },
+    "PromptSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"PromptSearchCriteria"}
+    },
+    "PromptSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"PromptSearchConditionList"},
+        "AndConditions":{"shape":"PromptSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"}
+      }
+    },
+    "PromptSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
     },
     "PromptSummary":{
       "type":"structure",
@@ -9297,6 +9389,28 @@
       "type":"string",
       "max":127,
       "min":1
+    },
+    "QuickConnectSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"QuickConnectSearchCriteria"}
+    },
+    "QuickConnectSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"QuickConnectSearchConditionList"},
+        "AndConditions":{"shape":"QuickConnectSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"}
+      }
+    },
+    "QuickConnectSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
+    },
+    "QuickConnectSearchSummaryList":{
+      "type":"list",
+      "member":{"shape":"QuickConnect"}
     },
     "QuickConnectSummary":{
       "type":"structure",
@@ -9818,6 +9932,50 @@
         "AvailableNumbersList":{"shape":"AvailableNumbersList"}
       }
     },
+    "SearchHoursOfOperationsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchFilter":{"shape":"HoursOfOperationSearchFilter"},
+        "SearchCriteria":{"shape":"HoursOfOperationSearchCriteria"}
+      }
+    },
+    "SearchHoursOfOperationsResponse":{
+      "type":"structure",
+      "members":{
+        "HoursOfOperations":{"shape":"HoursOfOperationList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
+    "SearchPromptsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchFilter":{"shape":"PromptSearchFilter"},
+        "SearchCriteria":{"shape":"PromptSearchCriteria"}
+      }
+    },
+    "SearchPromptsResponse":{
+      "type":"structure",
+      "members":{
+        "Prompts":{"shape":"PromptList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
     "SearchQueuesRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -9836,6 +9994,28 @@
       "type":"structure",
       "members":{
         "Queues":{"shape":"QueueSearchSummaryList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
+    "SearchQuickConnectsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchFilter":{"shape":"QuickConnectSearchFilter"},
+        "SearchCriteria":{"shape":"QuickConnectSearchCriteria"}
+      }
+    },
+    "SearchQuickConnectsResponse":{
+      "type":"structure",
+      "members":{
+        "QuickConnects":{"shape":"QuickConnectSearchSummaryList"},
         "NextToken":{"shape":"NextToken2500"},
         "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
       }
