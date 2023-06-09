@@ -134,7 +134,10 @@
     "ReplicateInstance": "<p>Replicates an Amazon Connect instance in the specified Amazon Web Services Region.</p> <p>For more information about replicating an Amazon Connect instance, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html\">Create a replica of your existing Amazon Connect instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ResumeContactRecording": "<p>When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording the call.</p> <p>Only voice recordings are supported at this time.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches for available phone numbers that you can claim to your Amazon Connect instance or traffic distribution group. If the provided <code>TargetArn</code> is a traffic distribution group, you can call this API in both Amazon Web Services Regions associated with the traffic distribution group.</p>",
+    "SearchHoursOfOperations": "<p>Searches the hours of operation in an Amazon Connect instance, with optional filtering.</p>",
+    "SearchPrompts": "<p>Searches prompts in an Amazon Connect instance, with optional filtering.</p>",
     "SearchQueues": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Searches queues in an Amazon Connect instance, with optional filtering.</p>",
+    "SearchQuickConnects": "<p>Searches quick connects in an Amazon Connect instance, with optional filtering.</p>",
     "SearchRoutingProfiles": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Searches routing profiles in an Amazon Connect instance, with optional filtering.</p>",
     "SearchSecurityProfiles": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Searches security profiles in an Amazon Connect instance, with optional filtering.</p>",
     "SearchUsers": "<p>Searches users in an Amazon Connect instance, with optional filtering.</p> <note> <p> <code>AfterContactWorkTimeLimit</code> is returned in milliseconds. </p> </note>",
@@ -517,7 +520,10 @@
       "refs": {
         "GetCurrentMetricDataResponse$ApproximateTotalCount": "<p>The total count of the result, regardless of the current page size. </p>",
         "GetCurrentUserDataResponse$ApproximateTotalCount": "<p>The total count of the result, regardless of the current page size.</p>",
+        "SearchHoursOfOperationsResponse$ApproximateTotalCount": "<p>The total number of hours of operations which matched your search query.</p>",
+        "SearchPromptsResponse$ApproximateTotalCount": "<p>The total number of quick connects which matched your search query.</p>",
         "SearchQueuesResponse$ApproximateTotalCount": "<p>The total number of queues which matched your search query.</p>",
+        "SearchQuickConnectsResponse$ApproximateTotalCount": "<p>The total number of quick connects which matched your search query.</p>",
         "SearchRoutingProfilesResponse$ApproximateTotalCount": "<p>The total number of routing profiles which matched your search query.</p>",
         "SearchSecurityProfilesResponse$ApproximateTotalCount": "<p>The total number of security profiles which matched your search query.</p>",
         "SearchUsersResponse$ApproximateTotalCount": "<p>The total number of users who matched your search query.</p>"
@@ -1122,7 +1128,10 @@
     "ControlPlaneTagFilter": {
       "base": "<p>An object that can be used to specify Tag conditions inside the <code>SearchFilter</code>. This accepts an <code>OR</code> of <code>AND</code> (List of List) input where: </p> <ul> <li> <p>Top level list specifies conditions that need to be applied with <code>OR</code> operator</p> </li> <li> <p>Inner list specifies conditions that need to be applied with <code>AND</code> operator.</p> </li> </ul>",
       "refs": {
+        "HoursOfOperationSearchFilter$TagFilter": null,
+        "PromptSearchFilter$TagFilter": null,
         "QueueSearchFilter$TagFilter": null,
+        "QuickConnectSearchFilter$TagFilter": null,
         "RoutingProfileSearchFilter$TagFilter": null,
         "SecurityProfilesSearchFilter$TagFilter": null,
         "UserSearchFilter$TagFilter": null
@@ -2662,7 +2671,8 @@
     "HoursOfOperation": {
       "base": "<p>Information about of the hours of operation.</p>",
       "refs": {
-        "DescribeHoursOfOperationResponse$HoursOfOperation": "<p>The hours of operation.</p>"
+        "DescribeHoursOfOperationResponse$HoursOfOperation": "<p>The hours of operation.</p>",
+        "HoursOfOperationList$member": null
       }
     },
     "HoursOfOperationConfig": {
@@ -2706,10 +2716,36 @@
         "UpdateQueueHoursOfOperationRequest$HoursOfOperationId": "<p>The identifier for the hours of operation.</p>"
       }
     },
+    "HoursOfOperationList": {
+      "base": null,
+      "refs": {
+        "SearchHoursOfOperationsResponse$HoursOfOperations": "<p>Information about the hours of operations.</p>"
+      }
+    },
     "HoursOfOperationName": {
       "base": null,
       "refs": {
         "HoursOfOperationSummary$Name": "<p>The name of the hours of operation.</p>"
+      }
+    },
+    "HoursOfOperationSearchConditionList": {
+      "base": null,
+      "refs": {
+        "HoursOfOperationSearchCriteria$OrConditions": "<p>A list of conditions which would be applied together with an OR condition.</p>",
+        "HoursOfOperationSearchCriteria$AndConditions": "<p>A list of conditions which would be applied together with an AND condition.</p>"
+      }
+    },
+    "HoursOfOperationSearchCriteria": {
+      "base": "<p>The search criteria to be used to return hours of operations.</p>",
+      "refs": {
+        "HoursOfOperationSearchConditionList$member": null,
+        "SearchHoursOfOperationsRequest$SearchCriteria": "<p>The search criteria to be used to return hours of operations.</p>"
+      }
+    },
+    "HoursOfOperationSearchFilter": {
+      "base": "<p>Filters to be applied to search results.</p>",
+      "refs": {
+        "SearchHoursOfOperationsRequest$SearchFilter": "<p>Filters to be applied to search results.</p>"
       }
     },
     "HoursOfOperationSummary": {
@@ -2906,7 +2942,10 @@
         "ReplicateInstanceResponse$Id": "<p>The identifier of the replicated instance. You can find the <code>instanceId</code> in the ARN of the instance. The replicated instance has the same identifier as the instance it was replicated from.</p>",
         "ResumeContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "RoutingProfile$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "SearchHoursOfOperationsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "SearchPromptsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "SearchQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchRoutingProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchUsersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3587,7 +3626,10 @@
         "ListRoutingProfileQueuesRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
         "ListTaskTemplatesRequest$MaxResults": "<p>The maximum number of results to return per page.</p> <important> <p>It is not expected that you set this.</p> </important>",
         "ListUseCasesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchHoursOfOperationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchPromptsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchQueuesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchQuickConnectsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchRoutingProfilesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchSecurityProfilesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchUsersRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
@@ -3858,8 +3900,14 @@
       "refs": {
         "GetMetricDataV2Request$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "GetMetricDataV2Response$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "SearchHoursOfOperationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchHoursOfOperationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "SearchPromptsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchPromptsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchQueuesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "SearchQueuesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "SearchQuickConnectsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchQuickConnectsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchRoutingProfilesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "SearchRoutingProfilesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchSecurityProfilesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -4211,14 +4259,15 @@
     "Prompt": {
       "base": "<p>Information about a prompt.</p>",
       "refs": {
-        "DescribePromptResponse$Prompt": "<p>Information about the prompt.</p>"
+        "DescribePromptResponse$Prompt": "<p>Information about the prompt.</p>",
+        "PromptList$member": null
       }
     },
     "PromptDescription": {
       "base": null,
       "refs": {
         "CreatePromptRequest$Description": "<p>The description of the prompt.</p>",
-        "Prompt$Description": "<p>A description for the prompt.</p>",
+        "Prompt$Description": "<p>The description of the prompt.</p>",
         "UpdatePromptRequest$Description": "<p>A description of the prompt.</p>"
       }
     },
@@ -4235,6 +4284,12 @@
         "UpdatePromptResponse$PromptId": "<p>A unique identifier for the prompt.</p>"
       }
     },
+    "PromptList": {
+      "base": null,
+      "refs": {
+        "SearchPromptsResponse$Prompts": "<p>Information about the prompts.</p>"
+      }
+    },
     "PromptName": {
       "base": null,
       "refs": {
@@ -4245,6 +4300,26 @@
       "base": null,
       "refs": {
         "GetPromptFileResponse$PromptPresignedUrl": "<p>A generated URL to the prompt that can be given to an unauthorized user so they can access the prompt in S3.</p>"
+      }
+    },
+    "PromptSearchConditionList": {
+      "base": null,
+      "refs": {
+        "PromptSearchCriteria$OrConditions": "<p>A list of conditions which would be applied together with an OR condition.</p>",
+        "PromptSearchCriteria$AndConditions": "<p>A list of conditions which would be applied together with an AND condition.</p>"
+      }
+    },
+    "PromptSearchCriteria": {
+      "base": "<p>The search criteria to be used to return prompts.</p>",
+      "refs": {
+        "PromptSearchConditionList$member": null,
+        "SearchPromptsRequest$SearchCriteria": "<p>The search criteria to be used to return prompts.</p>"
+      }
+    },
+    "PromptSearchFilter": {
+      "base": "<p>Filters to be applied to search results.</p>",
+      "refs": {
+        "SearchPromptsRequest$SearchFilter": "<p>Filters to be applied to search results.</p>"
       }
     },
     "PromptSummary": {
@@ -4437,7 +4512,8 @@
     "QuickConnect": {
       "base": "<p>Contains information about a quick connect.</p>",
       "refs": {
-        "DescribeQuickConnectResponse$QuickConnect": "<p>Information about the quick connect.</p>"
+        "DescribeQuickConnectResponse$QuickConnect": "<p>Information about the quick connect.</p>",
+        "QuickConnectSearchSummaryList$member": null
       }
     },
     "QuickConnectConfig": {
@@ -4476,6 +4552,32 @@
         "QuickConnect$Name": "<p>The name of the quick connect.</p>",
         "QuickConnectSummary$Name": "<p>The name of the quick connect.</p>",
         "UpdateQuickConnectNameRequest$Name": "<p>The name of the quick connect.</p>"
+      }
+    },
+    "QuickConnectSearchConditionList": {
+      "base": null,
+      "refs": {
+        "QuickConnectSearchCriteria$OrConditions": "<p>A list of conditions which would be applied together with an OR condition.</p>",
+        "QuickConnectSearchCriteria$AndConditions": "<p>A list of conditions which would be applied together with an AND condition.</p>"
+      }
+    },
+    "QuickConnectSearchCriteria": {
+      "base": "<p>The search criteria to be used to return quick connects.</p>",
+      "refs": {
+        "QuickConnectSearchConditionList$member": null,
+        "SearchQuickConnectsRequest$SearchCriteria": "<p>The search criteria to be used to return quick connects.</p>"
+      }
+    },
+    "QuickConnectSearchFilter": {
+      "base": "<p>Filters to be applied to search results.</p>",
+      "refs": {
+        "SearchQuickConnectsRequest$SearchFilter": "<p>Filters to be applied to search results.</p>"
+      }
+    },
+    "QuickConnectSearchSummaryList": {
+      "base": null,
+      "refs": {
+        "SearchQuickConnectsResponse$QuickConnects": "<p>Information about the quick connects.</p>"
       }
     },
     "QuickConnectSummary": {
@@ -4945,12 +5047,42 @@
       "refs": {
       }
     },
+    "SearchHoursOfOperationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchHoursOfOperationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchPromptsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchPromptsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SearchQueuesRequest": {
       "base": null,
       "refs": {
       }
     },
     "SearchQueuesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchQuickConnectsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchQuickConnectsResponse": {
       "base": null,
       "refs": {
       }
@@ -5321,12 +5453,15 @@
       }
     },
     "StringCondition": {
-      "base": "<p>A leaf node condition which can be used to specify a string condition. </p> <note> <p>The currently supported value for <code>FieldName</code>: <code>name</code> </p> </note>",
+      "base": "<p>A leaf node condition which can be used to specify a string condition. </p>",
       "refs": {
-        "QueueSearchCriteria$StringCondition": null,
-        "RoutingProfileSearchCriteria$StringCondition": null,
+        "HoursOfOperationSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, <code>timezone</code>, and <code>resourceID</code>.</p> </note>",
+        "PromptSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
+        "QueueSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
+        "QuickConnectSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
+        "RoutingProfileSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
         "SecurityProfileSearchCriteria$StringCondition": null,
-        "UserSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p>"
+        "UserSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>"
       }
     },
     "StringReference": {

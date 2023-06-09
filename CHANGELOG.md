@@ -1,3 +1,10 @@
+Release v1.44.280 (2023-06-09)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service documentation
+* `service/connect`: Updates service API, documentation, and paginators
+
 Release v1.44.279 (2023-06-08)
 ===
 
