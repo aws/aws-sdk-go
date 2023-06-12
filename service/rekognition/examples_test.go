@@ -25,6 +25,58 @@ func parseTime(layout, value string) *time.Time {
 	return &t
 }
 
+// AssociateFaces
+// This operation associates one or more faces with an existing UserID.
+func ExampleRekognition_AssociateFaces_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.AssociateFacesInput{
+		ClientRequestToken: aws.String("550e8400-e29b-41d4-a716-446655440002"),
+		CollectionId:       aws.String("MyCollection"),
+		FaceIds: []*string{
+			aws.String("f5817d37-94f6-4335-bfee-6cf79a3d806e"),
+			aws.String("851cb847-dccc-4fea-9309-9f4805967855"),
+			aws.String("35ebbb41-7f67-4263-908d-dd0ecba05ab9"),
+		},
+		UserId:             aws.String("DemoUser"),
+		UserMatchThreshold: aws.Float64(70.000000),
+	}
+
+	result, err := svc.AssociateFaces(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeIdempotentParameterMismatchException:
+				fmt.Println(rekognition.ErrCodeIdempotentParameterMismatchException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeConflictException:
+				fmt.Println(rekognition.ErrCodeConflictException, aerr.Error())
+			case rekognition.ErrCodeServiceQuotaExceededException:
+				fmt.Println(rekognition.ErrCodeServiceQuotaExceededException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To compare two images
 // This operation compares the largest face detected in the source image with each face
 // detected in the target image.
@@ -176,6 +228,51 @@ func ExampleRekognition_CreateCollection_shared00() {
 	fmt.Println(result)
 }
 
+// CreateUser
+// Creates a new User within a collection specified by CollectionId.
+func ExampleRekognition_CreateUser_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.CreateUserInput{
+		CollectionId: aws.String("MyCollection"),
+		UserId:       aws.String("DemoUser"),
+	}
+
+	result, err := svc.CreateUser(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeConflictException:
+				fmt.Println(rekognition.ErrCodeConflictException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeServiceQuotaExceededException:
+				fmt.Println(rekognition.ErrCodeServiceQuotaExceededException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeIdempotentParameterMismatchException:
+				fmt.Println(rekognition.ErrCodeIdempotentParameterMismatchException, aerr.Error())
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To delete a collection
 // This operation deletes a Rekognition collection.
 func ExampleRekognition_DeleteCollection_shared00() {
@@ -298,6 +395,50 @@ func ExampleRekognition_DeleteProjectPolicy_shared00() {
 	fmt.Println(result)
 }
 
+// DeleteUser
+// Deletes the specified UserID within the collection.
+func ExampleRekognition_DeleteUser_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.DeleteUserInput{
+		ClientRequestToken: aws.String("550e8400-e29b-41d4-a716-446655440001"),
+		CollectionId:       aws.String("MyCollection"),
+		UserId:             aws.String("DemoUser"),
+	}
+
+	result, err := svc.DeleteUser(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeConflictException:
+				fmt.Println(rekognition.ErrCodeConflictException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeIdempotentParameterMismatchException:
+				fmt.Println(rekognition.ErrCodeIdempotentParameterMismatchException, aerr.Error())
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To detect faces in an image
 // This operation detects faces in an image stored in an AWS S3 bucket.
 func ExampleRekognition_DetectFaces_shared00() {
@@ -380,6 +521,54 @@ func ExampleRekognition_DetectLabels_shared00() {
 				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
 			case rekognition.ErrCodeInvalidImageFormatException:
 				fmt.Println(rekognition.ErrCodeInvalidImageFormatException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// DisassociateFaces
+// Removes the association between a Face supplied in an array of FaceIds and the User.
+func ExampleRekognition_DisassociateFaces_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.DisassociateFacesInput{
+		ClientRequestToken: aws.String("550e8400-e29b-41d4-a716-446655440003"),
+		CollectionId:       aws.String("MyCollection"),
+		FaceIds: []*string{
+			aws.String("f5817d37-94f6-4335-bfee-6cf79a3d806e"),
+			aws.String("c92265d4-5f9c-43af-a58e-12be0ce02bc3"),
+		},
+		UserId: aws.String("DemoUser"),
+	}
+
+	result, err := svc.DisassociateFaces(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeIdempotentParameterMismatchException:
+				fmt.Println(rekognition.ErrCodeIdempotentParameterMismatchException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeConflictException:
+				fmt.Println(rekognition.ErrCodeConflictException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -570,6 +759,46 @@ func ExampleRekognition_ListProjectPolicies_shared00() {
 	fmt.Println(result)
 }
 
+// ListUsers
+// Returns metadata of the User such as UserID in the specified collection.
+func ExampleRekognition_ListUsers_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.ListUsersInput{
+		CollectionId: aws.String("MyCollection"),
+	}
+
+	result, err := svc.ListUsers(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeInvalidPaginationTokenException:
+				fmt.Println(rekognition.ErrCodeInvalidPaginationTokenException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // PutProjectPolicy
 // This operation attaches a project policy to a Amazon Rekognition Custom Labels project
 // in a trusting AWS account.
@@ -703,6 +932,100 @@ func ExampleRekognition_SearchFacesByImage_shared00() {
 				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
 			case rekognition.ErrCodeInvalidImageFormatException:
 				fmt.Println(rekognition.ErrCodeInvalidImageFormatException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// SearchUsers
+// Searches for UserIDs within a collection based on a FaceId or UserId.
+func ExampleRekognition_SearchUsers_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.SearchUsersInput{
+		CollectionId:       aws.String("MyCollection"),
+		MaxUsers:           aws.Int64(2),
+		UserId:             aws.String("DemoUser"),
+		UserMatchThreshold: aws.Float64(70.000000),
+	}
+
+	result, err := svc.SearchUsers(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// SearchUsersByImage
+// Searches for UserIDs using a supplied image.
+func ExampleRekognition_SearchUsersByImage_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.SearchUsersByImageInput{
+		CollectionId: aws.String("MyCollection"),
+		Image: &rekognition.Image{
+			S3Object: &rekognition.S3Object{
+				Bucket: aws.String("bucket"),
+				Name:   aws.String("input.jpg"),
+			},
+		},
+		MaxUsers:           aws.Int64(2),
+		QualityFilter:      aws.String("MEDIUM"),
+		UserMatchThreshold: aws.Float64(70.000000),
+	}
+
+	result, err := svc.SearchUsersByImage(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeInvalidImageFormatException:
+				fmt.Println(rekognition.ErrCodeInvalidImageFormatException, aerr.Error())
+			case rekognition.ErrCodeInvalidS3ObjectException:
+				fmt.Println(rekognition.ErrCodeInvalidS3ObjectException, aerr.Error())
+			case rekognition.ErrCodeImageTooLargeException:
+				fmt.Println(rekognition.ErrCodeImageTooLargeException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

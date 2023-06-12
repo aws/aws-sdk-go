@@ -14,6 +14,13 @@ const (
 	// You are not authorized to perform the action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// A User with the same Id already exists within the collection, or the update
+	// or deletion of the User caused an inconsistent state. **
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeHumanLoopQuotaExceededException for service response error code
 	// "HumanLoopQuotaExceededException".
 	//
@@ -155,6 +162,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":                  newErrorAccessDeniedException,
+	"ConflictException":                      newErrorConflictException,
 	"HumanLoopQuotaExceededException":        newErrorHumanLoopQuotaExceededException,
 	"IdempotentParameterMismatchException":   newErrorIdempotentParameterMismatchException,
 	"ImageTooLargeException":                 newErrorImageTooLargeException,

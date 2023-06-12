@@ -163,6 +163,22 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "GetCodegenJob":{
+      "name":"GetCodegenJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/app/{appId}/environment/{environmentName}/codegen-jobs/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetCodegenJobRequest"},
+      "output":{"shape":"GetCodegenJobResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetComponent":{
       "name":"GetComponent",
       "http":{
@@ -220,6 +236,21 @@
         {"shape":"InternalServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListCodegenJobs":{
+      "name":"ListCodegenJobs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/app/{appId}/environment/{environmentName}/codegen-jobs",
+        "responseCode":200
+      },
+      "input":{"shape":"ListCodegenJobsRequest"},
+      "output":{"shape":"ListCodegenJobsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListComponents":{
@@ -290,6 +321,21 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "StartCodegenJob":{
+      "name":"StartCodegenJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/app/{appId}/environment/{environmentName}/codegen-jobs",
+        "responseCode":200
+      },
+      "input":{"shape":"StartCodegenJobRequest"},
+      "output":{"shape":"StartCodegenJobResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "UpdateComponent":{
       "name":"UpdateComponent",
       "http":{
@@ -354,9 +400,225 @@
         "state":{"shape":"MutationActionSetStateParameter"}
       }
     },
+    "AppId":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"d[a-z0-9]+"
+    },
+    "AssociatedFieldsList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Boolean":{
       "type":"boolean",
       "box":true
+    },
+    "CodegenFeatureFlags":{
+      "type":"structure",
+      "members":{
+        "isRelationshipSupported":{"shape":"Boolean"},
+        "isNonModelSupported":{"shape":"Boolean"}
+      }
+    },
+    "CodegenGenericDataEnum":{
+      "type":"structure",
+      "required":["values"],
+      "members":{
+        "values":{"shape":"CodegenGenericDataEnumValuesList"}
+      }
+    },
+    "CodegenGenericDataEnumValuesList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "CodegenGenericDataEnums":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"CodegenGenericDataEnum"}
+    },
+    "CodegenGenericDataField":{
+      "type":"structure",
+      "required":[
+        "dataType",
+        "dataTypeValue",
+        "required",
+        "readOnly",
+        "isArray"
+      ],
+      "members":{
+        "dataType":{"shape":"CodegenGenericDataFieldDataType"},
+        "dataTypeValue":{"shape":"String"},
+        "required":{"shape":"Boolean"},
+        "readOnly":{"shape":"Boolean"},
+        "isArray":{"shape":"Boolean"},
+        "relationship":{"shape":"CodegenGenericDataRelationshipType"}
+      }
+    },
+    "CodegenGenericDataFieldDataType":{
+      "type":"string",
+      "enum":[
+        "ID",
+        "String",
+        "Int",
+        "Float",
+        "AWSDate",
+        "AWSTime",
+        "AWSDateTime",
+        "AWSTimestamp",
+        "AWSEmail",
+        "AWSURL",
+        "AWSIPAddress",
+        "Boolean",
+        "AWSJSON",
+        "AWSPhone",
+        "Enum",
+        "Model",
+        "NonModel"
+      ]
+    },
+    "CodegenGenericDataFields":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"CodegenGenericDataField"}
+    },
+    "CodegenGenericDataModel":{
+      "type":"structure",
+      "required":[
+        "fields",
+        "primaryKeys"
+      ],
+      "members":{
+        "fields":{"shape":"CodegenGenericDataFields"},
+        "isJoinTable":{"shape":"Boolean"},
+        "primaryKeys":{"shape":"CodegenPrimaryKeysList"}
+      }
+    },
+    "CodegenGenericDataModels":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"CodegenGenericDataModel"}
+    },
+    "CodegenGenericDataNonModel":{
+      "type":"structure",
+      "required":["fields"],
+      "members":{
+        "fields":{"shape":"CodegenGenericDataNonModelFields"}
+      }
+    },
+    "CodegenGenericDataNonModelFields":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"CodegenGenericDataField"}
+    },
+    "CodegenGenericDataNonModels":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"CodegenGenericDataNonModel"}
+    },
+    "CodegenGenericDataRelationshipType":{
+      "type":"structure",
+      "required":[
+        "type",
+        "relatedModelName"
+      ],
+      "members":{
+        "type":{"shape":"GenericDataRelationshipType"},
+        "relatedModelName":{"shape":"String"},
+        "relatedModelFields":{"shape":"RelatedModelFieldsList"},
+        "canUnlinkAssociatedModel":{"shape":"Boolean"},
+        "relatedJoinFieldName":{"shape":"String"},
+        "relatedJoinTableName":{"shape":"String"},
+        "belongsToFieldOnRelatedModel":{"shape":"String"},
+        "associatedFields":{"shape":"AssociatedFieldsList"},
+        "isHasManyIndex":{"shape":"Boolean"}
+      }
+    },
+    "CodegenJob":{
+      "type":"structure",
+      "required":[
+        "id",
+        "appId",
+        "environmentName"
+      ],
+      "members":{
+        "id":{"shape":"Uuid"},
+        "appId":{"shape":"AppId"},
+        "environmentName":{"shape":"String"},
+        "renderConfig":{"shape":"CodegenJobRenderConfig"},
+        "genericDataSchema":{"shape":"CodegenJobGenericDataSchema"},
+        "autoGenerateForms":{"shape":"Boolean"},
+        "features":{"shape":"CodegenFeatureFlags"},
+        "status":{"shape":"CodegenJobStatus"},
+        "statusMessage":{"shape":"String"},
+        "asset":{"shape":"CodegenJobAsset"},
+        "tags":{"shape":"Tags"},
+        "createdAt":{"shape":"SyntheticTimestamp_date_time"},
+        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"}
+      }
+    },
+    "CodegenJobAsset":{
+      "type":"structure",
+      "members":{
+        "downloadUrl":{"shape":"String"}
+      }
+    },
+    "CodegenJobGenericDataSchema":{
+      "type":"structure",
+      "required":[
+        "dataSourceType",
+        "models",
+        "enums",
+        "nonModels"
+      ],
+      "members":{
+        "dataSourceType":{"shape":"CodegenJobGenericDataSourceType"},
+        "models":{"shape":"CodegenGenericDataModels"},
+        "enums":{"shape":"CodegenGenericDataEnums"},
+        "nonModels":{"shape":"CodegenGenericDataNonModels"}
+      }
+    },
+    "CodegenJobGenericDataSourceType":{
+      "type":"string",
+      "enum":["DataStore"]
+    },
+    "CodegenJobRenderConfig":{
+      "type":"structure",
+      "members":{
+        "react":{"shape":"ReactStartCodegenJobData"}
+      },
+      "union":true
+    },
+    "CodegenJobStatus":{
+      "type":"string",
+      "enum":[
+        "in_progress",
+        "failed",
+        "succeeded"
+      ]
+    },
+    "CodegenJobSummary":{
+      "type":"structure",
+      "required":[
+        "appId",
+        "environmentName",
+        "id"
+      ],
+      "members":{
+        "appId":{"shape":"AppId"},
+        "environmentName":{"shape":"String"},
+        "id":{"shape":"Uuid"},
+        "createdAt":{"shape":"SyntheticTimestamp_date_time"},
+        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"}
+      }
+    },
+    "CodegenJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"CodegenJobSummary"}
+    },
+    "CodegenPrimaryKeysList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "Component":{
       "type":"structure",
@@ -1221,6 +1483,46 @@
       "type":"list",
       "member":{"shape":"FormSummary"}
     },
+    "GenericDataRelationshipType":{
+      "type":"string",
+      "enum":[
+        "HAS_MANY",
+        "HAS_ONE",
+        "BELONGS_TO"
+      ]
+    },
+    "GetCodegenJobRequest":{
+      "type":"structure",
+      "required":[
+        "appId",
+        "environmentName",
+        "id"
+      ],
+      "members":{
+        "appId":{
+          "shape":"AppId",
+          "location":"uri",
+          "locationName":"appId"
+        },
+        "environmentName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"environmentName"
+        },
+        "id":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "GetCodegenJobResponse":{
+      "type":"structure",
+      "members":{
+        "job":{"shape":"CodegenJob"}
+      },
+      "payload":"job"
+    },
     "GetComponentRequest":{
       "type":"structure",
       "required":[
@@ -1371,6 +1673,28 @@
       },
       "exception":true
     },
+    "JSModule":{
+      "type":"string",
+      "enum":[
+        "es2020",
+        "esnext"
+      ]
+    },
+    "JSScript":{
+      "type":"string",
+      "enum":[
+        "jsx",
+        "tsx",
+        "js"
+      ]
+    },
+    "JSTarget":{
+      "type":"string",
+      "enum":[
+        "es2015",
+        "es2020"
+      ]
+    },
     "LabelDecorator":{
       "type":"string",
       "enum":[
@@ -1378,6 +1702,49 @@
         "optional",
         "none"
       ]
+    },
+    "ListCodegenJobsLimit":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListCodegenJobsRequest":{
+      "type":"structure",
+      "required":[
+        "appId",
+        "environmentName"
+      ],
+      "members":{
+        "appId":{
+          "shape":"AppId",
+          "location":"uri",
+          "locationName":"appId"
+        },
+        "environmentName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"environmentName"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ListCodegenJobsLimit",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListCodegenJobsResponse":{
+      "type":"structure",
+      "required":["entities"],
+      "members":{
+        "entities":{"shape":"CodegenJobSummaryList"},
+        "nextToken":{"shape":"String"}
+      }
     },
     "ListComponentsLimit":{
       "type":"integer",
@@ -1576,6 +1943,16 @@
       },
       "payload":"body"
     },
+    "ReactStartCodegenJobData":{
+      "type":"structure",
+      "members":{
+        "module":{"shape":"JSModule"},
+        "target":{"shape":"JSTarget"},
+        "script":{"shape":"JSScript"},
+        "renderTypeDeclarations":{"shape":"Boolean"},
+        "inlineSourceMap":{"shape":"Boolean"}
+      }
+    },
     "RefreshTokenRequest":{
       "type":"structure",
       "required":[
@@ -1610,6 +1987,10 @@
         "accessToken":{"shape":"SensitiveString"},
         "expiresIn":{"shape":"Integer"}
       }
+    },
+    "RelatedModelFieldsList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "ResourceConflictException":{
       "type":"structure",
@@ -1686,6 +2067,52 @@
     "SortPropertyList":{
       "type":"list",
       "member":{"shape":"SortProperty"}
+    },
+    "StartCodegenJobData":{
+      "type":"structure",
+      "required":["renderConfig"],
+      "members":{
+        "renderConfig":{"shape":"CodegenJobRenderConfig"},
+        "genericDataSchema":{"shape":"CodegenJobGenericDataSchema"},
+        "autoGenerateForms":{"shape":"Boolean"},
+        "features":{"shape":"CodegenFeatureFlags"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "StartCodegenJobRequest":{
+      "type":"structure",
+      "required":[
+        "appId",
+        "environmentName",
+        "codegenJobToCreate"
+      ],
+      "members":{
+        "appId":{
+          "shape":"AppId",
+          "location":"uri",
+          "locationName":"appId"
+        },
+        "environmentName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"environmentName"
+        },
+        "clientToken":{
+          "shape":"String",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        },
+        "codegenJobToCreate":{"shape":"StartCodegenJobData"}
+      },
+      "payload":"codegenJobToCreate"
+    },
+    "StartCodegenJobResponse":{
+      "type":"structure",
+      "members":{
+        "entity":{"shape":"CodegenJob"}
+      },
+      "payload":"entity"
     },
     "StorageAccessLevel":{
       "type":"string",
@@ -1787,6 +2214,17 @@
     "ThemeValuesList":{
       "type":"list",
       "member":{"shape":"ThemeValues"}
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "httpStatusCode":429,
+        "senderFault":true
+      },
+      "exception":true
     },
     "TokenProviders":{
       "type":"string",

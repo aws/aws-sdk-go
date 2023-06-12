@@ -538,6 +538,7 @@
     "ConnectionProperties": {
       "base": "<p>The connection properties of an outbound connection.</p>",
       "refs": {
+        "CreateOutboundConnectionRequest$ConnectionProperties": "<p>The <code>ConnectionProperties</code> for the outbound connection.</p>",
         "CreateOutboundConnectionResponse$ConnectionProperties": "<p>The <code>ConnectionProperties</code> for the newly created connection.</p>",
         "OutboundConnection$ConnectionProperties": "<p>Properties for the outbound connection.</p>"
       }
@@ -594,6 +595,12 @@
       "refs": {
         "PackageDetails$CreatedAt": "<p>The timestamp when the package was created.</p>",
         "PackageVersionHistory$CreatedAt": "<p>The date and time when the package was created.</p>"
+      }
+    },
+    "CrossClusterSearchConnectionProperties": {
+      "base": "<p>Cross cluster search specific connection properties.</p>",
+      "refs": {
+        "ConnectionProperties$CrossClusterSearch": "<p>The connection properties for cross cluster search.</p>"
       }
     },
     "DeleteDomainRequest": {
@@ -1130,7 +1137,7 @@
     "Endpoint": {
       "base": null,
       "refs": {
-        "ConnectionProperties$Endpoint": "<p>The endpoint of the remote domain.</p>",
+        "ConnectionProperties$Endpoint": "<important> <p>The Endpoint attribute cannot be modified. </p> </important> <p>The endpoint of the remote domain. Applicable for VPC_ENDPOINT connection mode.</p>",
         "VpcEndpoint$Endpoint": "<p>The connection endpoint ID for connecting to the domain.</p>"
       }
     },
@@ -2152,6 +2159,12 @@
       "refs": {
         "DomainStatus$Endpoint": "<p>Domain-specific endpoint used to submit index, search, and data upload requests to the domain.</p>",
         "EndpointsMap$value": null
+      }
+    },
+    "SkipUnavailableStatus": {
+      "base": "<p>Status of SkipUnavailable param for outbound connection.</p> <ul> <li> <p> <b>ENABLED</b> - The SkipUnavailable param is enabled for the connection.</p> </li> <li> <p> <b>DISABLED</b> - The SkipUnavailable param is disabled for the connection.</p> </li> </ul>",
+      "refs": {
+        "CrossClusterSearchConnectionProperties$SkipUnavailable": "<p>Status of SkipUnavailable param for outbound connection.</p>"
       }
     },
     "SlotList": {

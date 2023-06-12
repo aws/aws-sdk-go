@@ -368,7 +368,8 @@
         {"shape":"BadRequest"},
         {"shape":"IncompatibleParameterError"},
         {"shape":"InternalServerError"},
-        {"shape":"VolumeNotFound"}
+        {"shape":"VolumeNotFound"},
+        {"shape":"ServiceLimitExceeded"}
       ]
     },
     "DescribeBackups":{
@@ -2774,7 +2775,8 @@
         "PreferredSubnetId":{"shape":"SubnetId"},
         "RouteTableIds":{"shape":"RouteTableIds"},
         "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
-        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"}
+        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
+        "FsxAdminPassword":{"shape":"AdminPassword"}
       }
     },
     "OntapVolumeConfiguration":{
@@ -3141,7 +3143,10 @@
       "members":{
         "UserName":{"shape":"DirectoryUserName"},
         "Password":{"shape":"DirectoryPassword"},
-        "DnsIps":{"shape":"DnsIps"}
+        "DnsIps":{"shape":"DnsIps"},
+        "DomainName":{"shape":"ActiveDirectoryFullyQualifiedName"},
+        "OrganizationalUnitDistinguishedName":{"shape":"OrganizationalUnitDistinguishedName"},
+        "FileSystemAdministratorsGroup":{"shape":"FileSystemAdministratorsGroupName"}
       }
     },
     "ServiceLimit":{
@@ -3721,7 +3726,8 @@
     "UpdateSvmActiveDirectoryConfiguration":{
       "type":"structure",
       "members":{
-        "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryConfigurationUpdates"}
+        "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryConfigurationUpdates"},
+        "NetBiosName":{"shape":"NetBiosAlias"}
       }
     },
     "UpdateVolumeRequest":{
