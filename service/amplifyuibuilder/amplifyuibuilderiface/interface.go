@@ -109,6 +109,10 @@ type AmplifyUIBuilderAPI interface {
 	ExportThemesPages(*amplifyuibuilder.ExportThemesInput, func(*amplifyuibuilder.ExportThemesOutput, bool) bool) error
 	ExportThemesPagesWithContext(aws.Context, *amplifyuibuilder.ExportThemesInput, func(*amplifyuibuilder.ExportThemesOutput, bool) bool, ...request.Option) error
 
+	GetCodegenJob(*amplifyuibuilder.GetCodegenJobInput) (*amplifyuibuilder.GetCodegenJobOutput, error)
+	GetCodegenJobWithContext(aws.Context, *amplifyuibuilder.GetCodegenJobInput, ...request.Option) (*amplifyuibuilder.GetCodegenJobOutput, error)
+	GetCodegenJobRequest(*amplifyuibuilder.GetCodegenJobInput) (*request.Request, *amplifyuibuilder.GetCodegenJobOutput)
+
 	GetComponent(*amplifyuibuilder.GetComponentInput) (*amplifyuibuilder.GetComponentOutput, error)
 	GetComponentWithContext(aws.Context, *amplifyuibuilder.GetComponentInput, ...request.Option) (*amplifyuibuilder.GetComponentOutput, error)
 	GetComponentRequest(*amplifyuibuilder.GetComponentInput) (*request.Request, *amplifyuibuilder.GetComponentOutput)
@@ -124,6 +128,13 @@ type AmplifyUIBuilderAPI interface {
 	GetTheme(*amplifyuibuilder.GetThemeInput) (*amplifyuibuilder.GetThemeOutput, error)
 	GetThemeWithContext(aws.Context, *amplifyuibuilder.GetThemeInput, ...request.Option) (*amplifyuibuilder.GetThemeOutput, error)
 	GetThemeRequest(*amplifyuibuilder.GetThemeInput) (*request.Request, *amplifyuibuilder.GetThemeOutput)
+
+	ListCodegenJobs(*amplifyuibuilder.ListCodegenJobsInput) (*amplifyuibuilder.ListCodegenJobsOutput, error)
+	ListCodegenJobsWithContext(aws.Context, *amplifyuibuilder.ListCodegenJobsInput, ...request.Option) (*amplifyuibuilder.ListCodegenJobsOutput, error)
+	ListCodegenJobsRequest(*amplifyuibuilder.ListCodegenJobsInput) (*request.Request, *amplifyuibuilder.ListCodegenJobsOutput)
+
+	ListCodegenJobsPages(*amplifyuibuilder.ListCodegenJobsInput, func(*amplifyuibuilder.ListCodegenJobsOutput, bool) bool) error
+	ListCodegenJobsPagesWithContext(aws.Context, *amplifyuibuilder.ListCodegenJobsInput, func(*amplifyuibuilder.ListCodegenJobsOutput, bool) bool, ...request.Option) error
 
 	ListComponents(*amplifyuibuilder.ListComponentsInput) (*amplifyuibuilder.ListComponentsOutput, error)
 	ListComponentsWithContext(aws.Context, *amplifyuibuilder.ListComponentsInput, ...request.Option) (*amplifyuibuilder.ListComponentsOutput, error)
@@ -153,6 +164,10 @@ type AmplifyUIBuilderAPI interface {
 	RefreshToken(*amplifyuibuilder.RefreshTokenInput) (*amplifyuibuilder.RefreshTokenOutput, error)
 	RefreshTokenWithContext(aws.Context, *amplifyuibuilder.RefreshTokenInput, ...request.Option) (*amplifyuibuilder.RefreshTokenOutput, error)
 	RefreshTokenRequest(*amplifyuibuilder.RefreshTokenInput) (*request.Request, *amplifyuibuilder.RefreshTokenOutput)
+
+	StartCodegenJob(*amplifyuibuilder.StartCodegenJobInput) (*amplifyuibuilder.StartCodegenJobOutput, error)
+	StartCodegenJobWithContext(aws.Context, *amplifyuibuilder.StartCodegenJobInput, ...request.Option) (*amplifyuibuilder.StartCodegenJobOutput, error)
+	StartCodegenJobRequest(*amplifyuibuilder.StartCodegenJobInput) (*request.Request, *amplifyuibuilder.StartCodegenJobOutput)
 
 	UpdateComponent(*amplifyuibuilder.UpdateComponentInput) (*amplifyuibuilder.UpdateComponentOutput, error)
 	UpdateComponentWithContext(aws.Context, *amplifyuibuilder.UpdateComponentInput, ...request.Option) (*amplifyuibuilder.UpdateComponentOutput, error)

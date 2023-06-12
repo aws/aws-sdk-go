@@ -40,6 +40,12 @@ const (
 	// Web Services account.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// The request was denied due to request throttling.
+	ErrCodeThrottlingException = "ThrottlingException"
+
 	// ErrCodeUnauthorizedException for service response error code
 	// "UnauthorizedException".
 	//
@@ -53,5 +59,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceConflictException":     newErrorResourceConflictException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ThrottlingException":           newErrorThrottlingException,
 	"UnauthorizedException":         newErrorUnauthorizedException,
 }

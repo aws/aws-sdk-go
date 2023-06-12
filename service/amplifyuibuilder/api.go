@@ -146,7 +146,7 @@ func (c *AmplifyUIBuilder) CreateFormRequest(input *CreateFormInput) (req *reque
 
 // CreateForm API operation for AWS Amplify UI Builder.
 //
-// Creates a new form for an Amplify app.
+// Creates a new form for an Amplify.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1039,6 +1039,94 @@ func (c *AmplifyUIBuilder) ExportThemesPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opGetCodegenJob = "GetCodegenJob"
+
+// GetCodegenJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetCodegenJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCodegenJob for more information on using the GetCodegenJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCodegenJobRequest method.
+//	req, resp := client.GetCodegenJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifyuibuilder-2021-08-11/GetCodegenJob
+func (c *AmplifyUIBuilder) GetCodegenJobRequest(input *GetCodegenJobInput) (req *request.Request, output *GetCodegenJobOutput) {
+	op := &request.Operation{
+		Name:       opGetCodegenJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app/{appId}/environment/{environmentName}/codegen-jobs/{id}",
+	}
+
+	if input == nil {
+		input = &GetCodegenJobInput{}
+	}
+
+	output = &GetCodegenJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCodegenJob API operation for AWS Amplify UI Builder.
+//
+// Returns an existing code generation job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Amplify UI Builder's
+// API operation GetCodegenJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error has occurred. Please retry your request.
+//
+//   - InvalidParameterException
+//     An invalid or out-of-range value was supplied for the input parameter.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifyuibuilder-2021-08-11/GetCodegenJob
+func (c *AmplifyUIBuilder) GetCodegenJob(input *GetCodegenJobInput) (*GetCodegenJobOutput, error) {
+	req, out := c.GetCodegenJobRequest(input)
+	return out, req.Send()
+}
+
+// GetCodegenJobWithContext is the same as GetCodegenJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCodegenJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyUIBuilder) GetCodegenJobWithContext(ctx aws.Context, input *GetCodegenJobInput, opts ...request.Option) (*GetCodegenJobOutput, error) {
+	req, out := c.GetCodegenJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetComponent = "GetComponent"
 
 // GetComponentRequest generates a "aws/request.Request" representing the
@@ -1374,6 +1462,149 @@ func (c *AmplifyUIBuilder) GetThemeWithContext(ctx aws.Context, input *GetThemeI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListCodegenJobs = "ListCodegenJobs"
+
+// ListCodegenJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCodegenJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCodegenJobs for more information on using the ListCodegenJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCodegenJobsRequest method.
+//	req, resp := client.ListCodegenJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifyuibuilder-2021-08-11/ListCodegenJobs
+func (c *AmplifyUIBuilder) ListCodegenJobsRequest(input *ListCodegenJobsInput) (req *request.Request, output *ListCodegenJobsOutput) {
+	op := &request.Operation{
+		Name:       opListCodegenJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app/{appId}/environment/{environmentName}/codegen-jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCodegenJobsInput{}
+	}
+
+	output = &ListCodegenJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCodegenJobs API operation for AWS Amplify UI Builder.
+//
+// Retrieves a list of code generation jobs for a specified Amplify app and
+// backend environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Amplify UI Builder's
+// API operation ListCodegenJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error has occurred. Please retry your request.
+//
+//   - InvalidParameterException
+//     An invalid or out-of-range value was supplied for the input parameter.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifyuibuilder-2021-08-11/ListCodegenJobs
+func (c *AmplifyUIBuilder) ListCodegenJobs(input *ListCodegenJobsInput) (*ListCodegenJobsOutput, error) {
+	req, out := c.ListCodegenJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListCodegenJobsWithContext is the same as ListCodegenJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCodegenJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyUIBuilder) ListCodegenJobsWithContext(ctx aws.Context, input *ListCodegenJobsInput, opts ...request.Option) (*ListCodegenJobsOutput, error) {
+	req, out := c.ListCodegenJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCodegenJobsPages iterates over the pages of a ListCodegenJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCodegenJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCodegenJobs operation.
+//	pageNum := 0
+//	err := client.ListCodegenJobsPages(params,
+//	    func(page *amplifyuibuilder.ListCodegenJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AmplifyUIBuilder) ListCodegenJobsPages(input *ListCodegenJobsInput, fn func(*ListCodegenJobsOutput, bool) bool) error {
+	return c.ListCodegenJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCodegenJobsPagesWithContext same as ListCodegenJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyUIBuilder) ListCodegenJobsPagesWithContext(ctx aws.Context, input *ListCodegenJobsInput, fn func(*ListCodegenJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCodegenJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCodegenJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCodegenJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListComponents = "ListComponents"
@@ -1954,6 +2185,92 @@ func (c *AmplifyUIBuilder) RefreshTokenWithContext(ctx aws.Context, input *Refre
 	return out, req.Send()
 }
 
+const opStartCodegenJob = "StartCodegenJob"
+
+// StartCodegenJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartCodegenJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartCodegenJob for more information on using the StartCodegenJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartCodegenJobRequest method.
+//	req, resp := client.StartCodegenJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifyuibuilder-2021-08-11/StartCodegenJob
+func (c *AmplifyUIBuilder) StartCodegenJobRequest(input *StartCodegenJobInput) (req *request.Request, output *StartCodegenJobOutput) {
+	op := &request.Operation{
+		Name:       opStartCodegenJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/app/{appId}/environment/{environmentName}/codegen-jobs",
+	}
+
+	if input == nil {
+		input = &StartCodegenJobInput{}
+	}
+
+	output = &StartCodegenJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartCodegenJob API operation for AWS Amplify UI Builder.
+//
+// Starts a code generation job for for a specified Amplify app and backend
+// environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Amplify UI Builder's
+// API operation StartCodegenJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error has occurred. Please retry your request.
+//
+//   - InvalidParameterException
+//     An invalid or out-of-range value was supplied for the input parameter.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifyuibuilder-2021-08-11/StartCodegenJob
+func (c *AmplifyUIBuilder) StartCodegenJob(input *StartCodegenJobInput) (*StartCodegenJobOutput, error) {
+	req, out := c.StartCodegenJobRequest(input)
+	return out, req.Send()
+}
+
+// StartCodegenJobWithContext is the same as StartCodegenJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartCodegenJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyUIBuilder) StartCodegenJobWithContext(ctx aws.Context, input *StartCodegenJobInput, opts ...request.Option) (*StartCodegenJobOutput, error) {
+	req, out := c.StartCodegenJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateComponent = "UpdateComponent"
 
 // UpdateComponentRequest generates a "aws/request.Request" representing the
@@ -2374,6 +2691,879 @@ func (s *ActionParameters) SetType(v *ComponentProperty) *ActionParameters {
 // SetUrl sets the Url field's value.
 func (s *ActionParameters) SetUrl(v *ComponentProperty) *ActionParameters {
 	s.Url = v
+	return s
+}
+
+// Describes the feature flags that you can specify for a code generation job.
+type CodegenFeatureFlags struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether a code generation job supports non models.
+	IsNonModelSupported *bool `locationName:"isNonModelSupported" type:"boolean"`
+
+	// Specifes whether a code generation job supports data relationships.
+	IsRelationshipSupported *bool `locationName:"isRelationshipSupported" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenFeatureFlags) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenFeatureFlags) GoString() string {
+	return s.String()
+}
+
+// SetIsNonModelSupported sets the IsNonModelSupported field's value.
+func (s *CodegenFeatureFlags) SetIsNonModelSupported(v bool) *CodegenFeatureFlags {
+	s.IsNonModelSupported = &v
+	return s
+}
+
+// SetIsRelationshipSupported sets the IsRelationshipSupported field's value.
+func (s *CodegenFeatureFlags) SetIsRelationshipSupported(v bool) *CodegenFeatureFlags {
+	s.IsRelationshipSupported = &v
+	return s
+}
+
+// Describes the enums in a generic data schema.
+type CodegenGenericDataEnum struct {
+	_ struct{} `type:"structure"`
+
+	// The list of enum values in the generic data schema.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataEnum) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataEnum) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodegenGenericDataEnum) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodegenGenericDataEnum"}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValues sets the Values field's value.
+func (s *CodegenGenericDataEnum) SetValues(v []*string) *CodegenGenericDataEnum {
+	s.Values = v
+	return s
+}
+
+// Describes a field in a generic data schema.
+type CodegenGenericDataField struct {
+	_ struct{} `type:"structure"`
+
+	// The data type for the generic data field.
+	//
+	// DataType is a required field
+	DataType *string `locationName:"dataType" type:"string" required:"true" enum:"CodegenGenericDataFieldDataType"`
+
+	// The value of the data type for the generic data field.
+	//
+	// DataTypeValue is a required field
+	DataTypeValue *string `locationName:"dataTypeValue" type:"string" required:"true"`
+
+	// Specifies whether the generic data field is an array.
+	//
+	// IsArray is a required field
+	IsArray *bool `locationName:"isArray" type:"boolean" required:"true"`
+
+	// Specifies whether the generic data field is read-only.
+	//
+	// ReadOnly is a required field
+	ReadOnly *bool `locationName:"readOnly" type:"boolean" required:"true"`
+
+	// The relationship of the generic data schema.
+	Relationship *CodegenGenericDataRelationshipType `locationName:"relationship" type:"structure"`
+
+	// Specifies whether the generic data field is required.
+	//
+	// Required is a required field
+	Required *bool `locationName:"required" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodegenGenericDataField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodegenGenericDataField"}
+	if s.DataType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataType"))
+	}
+	if s.DataTypeValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataTypeValue"))
+	}
+	if s.IsArray == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsArray"))
+	}
+	if s.ReadOnly == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReadOnly"))
+	}
+	if s.Required == nil {
+		invalidParams.Add(request.NewErrParamRequired("Required"))
+	}
+	if s.Relationship != nil {
+		if err := s.Relationship.Validate(); err != nil {
+			invalidParams.AddNested("Relationship", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataType sets the DataType field's value.
+func (s *CodegenGenericDataField) SetDataType(v string) *CodegenGenericDataField {
+	s.DataType = &v
+	return s
+}
+
+// SetDataTypeValue sets the DataTypeValue field's value.
+func (s *CodegenGenericDataField) SetDataTypeValue(v string) *CodegenGenericDataField {
+	s.DataTypeValue = &v
+	return s
+}
+
+// SetIsArray sets the IsArray field's value.
+func (s *CodegenGenericDataField) SetIsArray(v bool) *CodegenGenericDataField {
+	s.IsArray = &v
+	return s
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *CodegenGenericDataField) SetReadOnly(v bool) *CodegenGenericDataField {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetRelationship sets the Relationship field's value.
+func (s *CodegenGenericDataField) SetRelationship(v *CodegenGenericDataRelationshipType) *CodegenGenericDataField {
+	s.Relationship = v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *CodegenGenericDataField) SetRequired(v bool) *CodegenGenericDataField {
+	s.Required = &v
+	return s
+}
+
+// Describes a model in a generic data schema.
+type CodegenGenericDataModel struct {
+	_ struct{} `type:"structure"`
+
+	// The fields in the generic data model.
+	//
+	// Fields is a required field
+	Fields map[string]*CodegenGenericDataField `locationName:"fields" type:"map" required:"true"`
+
+	// Specifies whether the generic data model is a join table.
+	IsJoinTable *bool `locationName:"isJoinTable" type:"boolean"`
+
+	// The primary keys of the generic data model.
+	//
+	// PrimaryKeys is a required field
+	PrimaryKeys []*string `locationName:"primaryKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataModel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataModel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodegenGenericDataModel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodegenGenericDataModel"}
+	if s.Fields == nil {
+		invalidParams.Add(request.NewErrParamRequired("Fields"))
+	}
+	if s.PrimaryKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimaryKeys"))
+	}
+	if s.Fields != nil {
+		for i, v := range s.Fields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Fields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFields sets the Fields field's value.
+func (s *CodegenGenericDataModel) SetFields(v map[string]*CodegenGenericDataField) *CodegenGenericDataModel {
+	s.Fields = v
+	return s
+}
+
+// SetIsJoinTable sets the IsJoinTable field's value.
+func (s *CodegenGenericDataModel) SetIsJoinTable(v bool) *CodegenGenericDataModel {
+	s.IsJoinTable = &v
+	return s
+}
+
+// SetPrimaryKeys sets the PrimaryKeys field's value.
+func (s *CodegenGenericDataModel) SetPrimaryKeys(v []*string) *CodegenGenericDataModel {
+	s.PrimaryKeys = v
+	return s
+}
+
+// Describes a non-model in a generic data schema.
+type CodegenGenericDataNonModel struct {
+	_ struct{} `type:"structure"`
+
+	// The fields in a generic data schema non model.
+	//
+	// Fields is a required field
+	Fields map[string]*CodegenGenericDataField `locationName:"fields" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataNonModel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataNonModel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodegenGenericDataNonModel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodegenGenericDataNonModel"}
+	if s.Fields == nil {
+		invalidParams.Add(request.NewErrParamRequired("Fields"))
+	}
+	if s.Fields != nil {
+		for i, v := range s.Fields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Fields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFields sets the Fields field's value.
+func (s *CodegenGenericDataNonModel) SetFields(v map[string]*CodegenGenericDataField) *CodegenGenericDataNonModel {
+	s.Fields = v
+	return s
+}
+
+// Describes the relationship between generic data models.
+type CodegenGenericDataRelationshipType struct {
+	_ struct{} `type:"structure"`
+
+	// The associated fields of the data relationship.
+	AssociatedFields []*string `locationName:"associatedFields" type:"list"`
+
+	// The value of the belongsTo field on the related data model.
+	BelongsToFieldOnRelatedModel *string `locationName:"belongsToFieldOnRelatedModel" type:"string"`
+
+	// Specifies whether the relationship can unlink the associated model.
+	CanUnlinkAssociatedModel *bool `locationName:"canUnlinkAssociatedModel" type:"boolean"`
+
+	// Specifies whether the @index directive is supported for a hasMany data relationship.
+	IsHasManyIndex *bool `locationName:"isHasManyIndex" type:"boolean"`
+
+	// The name of the related join field in the data relationship.
+	RelatedJoinFieldName *string `locationName:"relatedJoinFieldName" type:"string"`
+
+	// The name of the related join table in the data relationship.
+	RelatedJoinTableName *string `locationName:"relatedJoinTableName" type:"string"`
+
+	// The related model fields in the data relationship.
+	RelatedModelFields []*string `locationName:"relatedModelFields" type:"list"`
+
+	// The name of the related model in the data relationship.
+	//
+	// RelatedModelName is a required field
+	RelatedModelName *string `locationName:"relatedModelName" type:"string" required:"true"`
+
+	// The data relationship type.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GenericDataRelationshipType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataRelationshipType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenGenericDataRelationshipType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodegenGenericDataRelationshipType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodegenGenericDataRelationshipType"}
+	if s.RelatedModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RelatedModelName"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociatedFields sets the AssociatedFields field's value.
+func (s *CodegenGenericDataRelationshipType) SetAssociatedFields(v []*string) *CodegenGenericDataRelationshipType {
+	s.AssociatedFields = v
+	return s
+}
+
+// SetBelongsToFieldOnRelatedModel sets the BelongsToFieldOnRelatedModel field's value.
+func (s *CodegenGenericDataRelationshipType) SetBelongsToFieldOnRelatedModel(v string) *CodegenGenericDataRelationshipType {
+	s.BelongsToFieldOnRelatedModel = &v
+	return s
+}
+
+// SetCanUnlinkAssociatedModel sets the CanUnlinkAssociatedModel field's value.
+func (s *CodegenGenericDataRelationshipType) SetCanUnlinkAssociatedModel(v bool) *CodegenGenericDataRelationshipType {
+	s.CanUnlinkAssociatedModel = &v
+	return s
+}
+
+// SetIsHasManyIndex sets the IsHasManyIndex field's value.
+func (s *CodegenGenericDataRelationshipType) SetIsHasManyIndex(v bool) *CodegenGenericDataRelationshipType {
+	s.IsHasManyIndex = &v
+	return s
+}
+
+// SetRelatedJoinFieldName sets the RelatedJoinFieldName field's value.
+func (s *CodegenGenericDataRelationshipType) SetRelatedJoinFieldName(v string) *CodegenGenericDataRelationshipType {
+	s.RelatedJoinFieldName = &v
+	return s
+}
+
+// SetRelatedJoinTableName sets the RelatedJoinTableName field's value.
+func (s *CodegenGenericDataRelationshipType) SetRelatedJoinTableName(v string) *CodegenGenericDataRelationshipType {
+	s.RelatedJoinTableName = &v
+	return s
+}
+
+// SetRelatedModelFields sets the RelatedModelFields field's value.
+func (s *CodegenGenericDataRelationshipType) SetRelatedModelFields(v []*string) *CodegenGenericDataRelationshipType {
+	s.RelatedModelFields = v
+	return s
+}
+
+// SetRelatedModelName sets the RelatedModelName field's value.
+func (s *CodegenGenericDataRelationshipType) SetRelatedModelName(v string) *CodegenGenericDataRelationshipType {
+	s.RelatedModelName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CodegenGenericDataRelationshipType) SetType(v string) *CodegenGenericDataRelationshipType {
+	s.Type = &v
+	return s
+}
+
+// Describes the configuration for a code generation job that is associated
+// with an Amplify app.
+type CodegenJob struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amplify app associated with the code generation job.
+	//
+	// AppId is a required field
+	AppId *string `locationName:"appId" min:"1" type:"string" required:"true"`
+
+	// The CodegenJobAsset to use for the code generation job.
+	Asset *CodegenJobAsset `locationName:"asset" type:"structure"`
+
+	// Specifies whether to autogenerate forms in the code generation job.
+	AutoGenerateForms *bool `locationName:"autoGenerateForms" type:"boolean"`
+
+	// The time that the code generation job was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The name of the backend environment associated with the code generation job.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `locationName:"environmentName" type:"string" required:"true"`
+
+	// Describes the feature flags that you can specify for a code generation job.
+	Features *CodegenFeatureFlags `locationName:"features" type:"structure"`
+
+	// Describes the data schema for a code generation job.
+	GenericDataSchema *CodegenJobGenericDataSchema `locationName:"genericDataSchema" type:"structure"`
+
+	// The unique ID for the code generation job.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The time that the code generation job was modified.
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Describes the configuration information for rendering the UI component associated
+	// the code generation job.
+	RenderConfig *CodegenJobRenderConfig `locationName:"renderConfig" type:"structure"`
+
+	// The status of the code generation job.
+	Status *string `locationName:"status" type:"string" enum:"CodegenJobStatus"`
+
+	// The customized status message for the code generation job.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// One or more key-value pairs to use when tagging the code generation job.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJob) GoString() string {
+	return s.String()
+}
+
+// SetAppId sets the AppId field's value.
+func (s *CodegenJob) SetAppId(v string) *CodegenJob {
+	s.AppId = &v
+	return s
+}
+
+// SetAsset sets the Asset field's value.
+func (s *CodegenJob) SetAsset(v *CodegenJobAsset) *CodegenJob {
+	s.Asset = v
+	return s
+}
+
+// SetAutoGenerateForms sets the AutoGenerateForms field's value.
+func (s *CodegenJob) SetAutoGenerateForms(v bool) *CodegenJob {
+	s.AutoGenerateForms = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CodegenJob) SetCreatedAt(v time.Time) *CodegenJob {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *CodegenJob) SetEnvironmentName(v string) *CodegenJob {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetFeatures sets the Features field's value.
+func (s *CodegenJob) SetFeatures(v *CodegenFeatureFlags) *CodegenJob {
+	s.Features = v
+	return s
+}
+
+// SetGenericDataSchema sets the GenericDataSchema field's value.
+func (s *CodegenJob) SetGenericDataSchema(v *CodegenJobGenericDataSchema) *CodegenJob {
+	s.GenericDataSchema = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CodegenJob) SetId(v string) *CodegenJob {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CodegenJob) SetModifiedAt(v time.Time) *CodegenJob {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetRenderConfig sets the RenderConfig field's value.
+func (s *CodegenJob) SetRenderConfig(v *CodegenJobRenderConfig) *CodegenJob {
+	s.RenderConfig = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CodegenJob) SetStatus(v string) *CodegenJob {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *CodegenJob) SetStatusMessage(v string) *CodegenJob {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CodegenJob) SetTags(v map[string]*string) *CodegenJob {
+	s.Tags = v
+	return s
+}
+
+// Describes an asset for a code generation job.
+type CodegenJobAsset struct {
+	_ struct{} `type:"structure"`
+
+	// The URL to use to access the asset.
+	DownloadUrl *string `locationName:"downloadUrl" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJobAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJobAsset) GoString() string {
+	return s.String()
+}
+
+// SetDownloadUrl sets the DownloadUrl field's value.
+func (s *CodegenJobAsset) SetDownloadUrl(v string) *CodegenJobAsset {
+	s.DownloadUrl = &v
+	return s
+}
+
+// Describes the data schema for a code generation job.
+type CodegenJobGenericDataSchema struct {
+	_ struct{} `type:"structure"`
+
+	// The type of the data source for the schema. Currently, the only valid value
+	// is an Amplify DataStore.
+	//
+	// DataSourceType is a required field
+	DataSourceType *string `locationName:"dataSourceType" type:"string" required:"true" enum:"CodegenJobGenericDataSourceType"`
+
+	// The name of a CodegenGenericDataEnum.
+	//
+	// Enums is a required field
+	Enums map[string]*CodegenGenericDataEnum `locationName:"enums" type:"map" required:"true"`
+
+	// The name of a CodegenGenericDataModel.
+	//
+	// Models is a required field
+	Models map[string]*CodegenGenericDataModel `locationName:"models" type:"map" required:"true"`
+
+	// The name of a CodegenGenericDataNonModel.
+	//
+	// NonModels is a required field
+	NonModels map[string]*CodegenGenericDataNonModel `locationName:"nonModels" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJobGenericDataSchema) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJobGenericDataSchema) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodegenJobGenericDataSchema) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodegenJobGenericDataSchema"}
+	if s.DataSourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceType"))
+	}
+	if s.Enums == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enums"))
+	}
+	if s.Models == nil {
+		invalidParams.Add(request.NewErrParamRequired("Models"))
+	}
+	if s.NonModels == nil {
+		invalidParams.Add(request.NewErrParamRequired("NonModels"))
+	}
+	if s.Enums != nil {
+		for i, v := range s.Enums {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Enums", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Models != nil {
+		for i, v := range s.Models {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Models", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.NonModels != nil {
+		for i, v := range s.NonModels {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NonModels", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceType sets the DataSourceType field's value.
+func (s *CodegenJobGenericDataSchema) SetDataSourceType(v string) *CodegenJobGenericDataSchema {
+	s.DataSourceType = &v
+	return s
+}
+
+// SetEnums sets the Enums field's value.
+func (s *CodegenJobGenericDataSchema) SetEnums(v map[string]*CodegenGenericDataEnum) *CodegenJobGenericDataSchema {
+	s.Enums = v
+	return s
+}
+
+// SetModels sets the Models field's value.
+func (s *CodegenJobGenericDataSchema) SetModels(v map[string]*CodegenGenericDataModel) *CodegenJobGenericDataSchema {
+	s.Models = v
+	return s
+}
+
+// SetNonModels sets the NonModels field's value.
+func (s *CodegenJobGenericDataSchema) SetNonModels(v map[string]*CodegenGenericDataNonModel) *CodegenJobGenericDataSchema {
+	s.NonModels = v
+	return s
+}
+
+// Describes the configuration information for rendering the UI component associated
+// the code generation job.
+type CodegenJobRenderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the ReactStartCodegenJobData object.
+	React *ReactStartCodegenJobData `locationName:"react" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJobRenderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJobRenderConfig) GoString() string {
+	return s.String()
+}
+
+// SetReact sets the React field's value.
+func (s *CodegenJobRenderConfig) SetReact(v *ReactStartCodegenJobData) *CodegenJobRenderConfig {
+	s.React = v
+	return s
+}
+
+// A summary of the basic information about the code generation job.
+type CodegenJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID of the Amplify app associated with the code generation job.
+	//
+	// AppId is a required field
+	AppId *string `locationName:"appId" min:"1" type:"string" required:"true"`
+
+	// The time that the code generation job summary was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The name of the backend environment associated with the code generation job.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `locationName:"environmentName" type:"string" required:"true"`
+
+	// The unique ID for the code generation job summary.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The time that the code generation job summary was modified.
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetAppId sets the AppId field's value.
+func (s *CodegenJobSummary) SetAppId(v string) *CodegenJobSummary {
+	s.AppId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CodegenJobSummary) SetCreatedAt(v time.Time) *CodegenJobSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *CodegenJobSummary) SetEnvironmentName(v string) *CodegenJobSummary {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CodegenJobSummary) SetId(v string) *CodegenJobSummary {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CodegenJobSummary) SetModifiedAt(v time.Time) *CodegenJobSummary {
+	s.ModifiedAt = &v
 	return s
 }
 
@@ -6578,6 +7768,121 @@ func (s *FormSummary) SetName(v string) *FormSummary {
 	return s
 }
 
+type GetCodegenJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique ID of the Amplify app associated with the code generation job.
+	//
+	// AppId is a required field
+	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
+
+	// The name of the backend environment that is a part of the Amplify app associated
+	// with the code generation job.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `location:"uri" locationName:"environmentName" type:"string" required:"true"`
+
+	// The unique ID of the code generation job.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCodegenJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCodegenJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCodegenJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCodegenJobInput"}
+	if s.AppId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppId"))
+	}
+	if s.AppId != nil && len(*s.AppId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
+	}
+	if s.EnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentName"))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppId sets the AppId field's value.
+func (s *GetCodegenJobInput) SetAppId(v string) *GetCodegenJobInput {
+	s.AppId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *GetCodegenJobInput) SetEnvironmentName(v string) *GetCodegenJobInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetCodegenJobInput) SetId(v string) *GetCodegenJobInput {
+	s.Id = &v
+	return s
+}
+
+type GetCodegenJobOutput struct {
+	_ struct{} `type:"structure" payload:"Job"`
+
+	// The configuration settings for the code generation job.
+	Job *CodegenJob `locationName:"job" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCodegenJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCodegenJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJob sets the Job field's value.
+func (s *GetCodegenJobOutput) SetJob(v *CodegenJob) *GetCodegenJobOutput {
+	s.Job = v
+	return s
+}
+
 type GetComponentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7145,6 +8450,135 @@ func (s *InvalidParameterException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidParameterException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListCodegenJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique ID for the Amplify app.
+	//
+	// AppId is a required field
+	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
+
+	// The name of the backend environment that is a part of the Amplify app.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `location:"uri" locationName:"environmentName" type:"string" required:"true"`
+
+	// The maximum number of jobs to retrieve.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to request the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCodegenJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCodegenJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCodegenJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCodegenJobsInput"}
+	if s.AppId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppId"))
+	}
+	if s.AppId != nil && len(*s.AppId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
+	}
+	if s.EnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentName"))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppId sets the AppId field's value.
+func (s *ListCodegenJobsInput) SetAppId(v string) *ListCodegenJobsInput {
+	s.AppId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *ListCodegenJobsInput) SetEnvironmentName(v string) *ListCodegenJobsInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCodegenJobsInput) SetMaxResults(v int64) *ListCodegenJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCodegenJobsInput) SetNextToken(v string) *ListCodegenJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCodegenJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of code generation jobs for the Amplify app.
+	//
+	// Entities is a required field
+	Entities []*CodegenJobSummary `locationName:"entities" type:"list" required:"true"`
+
+	// The pagination token that's included if more results are available.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCodegenJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCodegenJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntities sets the Entities field's value.
+func (s *ListCodegenJobsOutput) SetEntities(v []*CodegenJobSummary) *ListCodegenJobsOutput {
+	s.Entities = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCodegenJobsOutput) SetNextToken(v string) *ListCodegenJobsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListComponentsInput struct {
@@ -7864,6 +9298,75 @@ func (s PutMetadataFlagOutput) GoString() string {
 	return s.String()
 }
 
+// Describes the code generation job configuration for a React project.
+type ReactStartCodegenJobData struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the code generation job should render inline source maps.
+	InlineSourceMap *bool `locationName:"inlineSourceMap" type:"boolean"`
+
+	// The JavaScript module type.
+	Module *string `locationName:"module" type:"string" enum:"JSModule"`
+
+	// Specifies whether the code generation job should render type declaration
+	// files.
+	RenderTypeDeclarations *bool `locationName:"renderTypeDeclarations" type:"boolean"`
+
+	// The file type to use for a JavaScript project.
+	Script *string `locationName:"script" type:"string" enum:"JSScript"`
+
+	// The ECMAScript specification to use.
+	Target *string `locationName:"target" type:"string" enum:"JSTarget"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReactStartCodegenJobData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReactStartCodegenJobData) GoString() string {
+	return s.String()
+}
+
+// SetInlineSourceMap sets the InlineSourceMap field's value.
+func (s *ReactStartCodegenJobData) SetInlineSourceMap(v bool) *ReactStartCodegenJobData {
+	s.InlineSourceMap = &v
+	return s
+}
+
+// SetModule sets the Module field's value.
+func (s *ReactStartCodegenJobData) SetModule(v string) *ReactStartCodegenJobData {
+	s.Module = &v
+	return s
+}
+
+// SetRenderTypeDeclarations sets the RenderTypeDeclarations field's value.
+func (s *ReactStartCodegenJobData) SetRenderTypeDeclarations(v bool) *ReactStartCodegenJobData {
+	s.RenderTypeDeclarations = &v
+	return s
+}
+
+// SetScript sets the Script field's value.
+func (s *ReactStartCodegenJobData) SetScript(v string) *ReactStartCodegenJobData {
+	s.Script = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *ReactStartCodegenJobData) SetTarget(v string) *ReactStartCodegenJobData {
+	s.Target = &v
+	return s
+}
+
 type RefreshTokenInput struct {
 	_ struct{} `type:"structure" payload:"RefreshTokenBody"`
 
@@ -8397,6 +9900,221 @@ func (s *SortProperty) SetField(v string) *SortProperty {
 	return s
 }
 
+// The code generation job resource configuration.
+type StartCodegenJobData struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to autogenerate forms in the code generation job.
+	AutoGenerateForms *bool `locationName:"autoGenerateForms" type:"boolean"`
+
+	// The feature flags for a code generation job.
+	Features *CodegenFeatureFlags `locationName:"features" type:"structure"`
+
+	// The data schema to use for a code generation job.
+	GenericDataSchema *CodegenJobGenericDataSchema `locationName:"genericDataSchema" type:"structure"`
+
+	// The code generation configuration for the codegen job.
+	//
+	// RenderConfig is a required field
+	RenderConfig *CodegenJobRenderConfig `locationName:"renderConfig" type:"structure" required:"true"`
+
+	// One or more key-value pairs to use when tagging the code generation job data.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCodegenJobData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCodegenJobData) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCodegenJobData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCodegenJobData"}
+	if s.RenderConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("RenderConfig"))
+	}
+	if s.GenericDataSchema != nil {
+		if err := s.GenericDataSchema.Validate(); err != nil {
+			invalidParams.AddNested("GenericDataSchema", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoGenerateForms sets the AutoGenerateForms field's value.
+func (s *StartCodegenJobData) SetAutoGenerateForms(v bool) *StartCodegenJobData {
+	s.AutoGenerateForms = &v
+	return s
+}
+
+// SetFeatures sets the Features field's value.
+func (s *StartCodegenJobData) SetFeatures(v *CodegenFeatureFlags) *StartCodegenJobData {
+	s.Features = v
+	return s
+}
+
+// SetGenericDataSchema sets the GenericDataSchema field's value.
+func (s *StartCodegenJobData) SetGenericDataSchema(v *CodegenJobGenericDataSchema) *StartCodegenJobData {
+	s.GenericDataSchema = v
+	return s
+}
+
+// SetRenderConfig sets the RenderConfig field's value.
+func (s *StartCodegenJobData) SetRenderConfig(v *CodegenJobRenderConfig) *StartCodegenJobData {
+	s.RenderConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartCodegenJobData) SetTags(v map[string]*string) *StartCodegenJobData {
+	s.Tags = v
+	return s
+}
+
+type StartCodegenJobInput struct {
+	_ struct{} `type:"structure" payload:"CodegenJobToCreate"`
+
+	// The unique ID for the Amplify app.
+	//
+	// AppId is a required field
+	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
+
+	// The idempotency token used to ensure that the code generation job request
+	// completes only once.
+	ClientToken *string `location:"querystring" locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// The code generation job resource configuration.
+	//
+	// CodegenJobToCreate is a required field
+	CodegenJobToCreate *StartCodegenJobData `locationName:"codegenJobToCreate" type:"structure" required:"true"`
+
+	// The name of the backend environment that is a part of the Amplify app.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `location:"uri" locationName:"environmentName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCodegenJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCodegenJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCodegenJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCodegenJobInput"}
+	if s.AppId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppId"))
+	}
+	if s.AppId != nil && len(*s.AppId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
+	}
+	if s.CodegenJobToCreate == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodegenJobToCreate"))
+	}
+	if s.EnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentName"))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 1))
+	}
+	if s.CodegenJobToCreate != nil {
+		if err := s.CodegenJobToCreate.Validate(); err != nil {
+			invalidParams.AddNested("CodegenJobToCreate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppId sets the AppId field's value.
+func (s *StartCodegenJobInput) SetAppId(v string) *StartCodegenJobInput {
+	s.AppId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartCodegenJobInput) SetClientToken(v string) *StartCodegenJobInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCodegenJobToCreate sets the CodegenJobToCreate field's value.
+func (s *StartCodegenJobInput) SetCodegenJobToCreate(v *StartCodegenJobData) *StartCodegenJobInput {
+	s.CodegenJobToCreate = v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *StartCodegenJobInput) SetEnvironmentName(v string) *StartCodegenJobInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+type StartCodegenJobOutput struct {
+	_ struct{} `type:"structure" payload:"Entity"`
+
+	// The code generation job for a UI component that is associated with an Amplify
+	// app.
+	Entity *CodegenJob `locationName:"entity" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCodegenJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCodegenJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntity sets the Entity field's value.
+func (s *StartCodegenJobOutput) SetEntity(v *CodegenJob) *StartCodegenJobOutput {
+	s.Entity = v
+	return s
+}
+
 // A theme is a collection of style settings that apply globally to the components
 // associated with an Amplify application.
 type Theme struct {
@@ -8661,6 +10379,70 @@ func (s *ThemeValues) SetKey(v string) *ThemeValues {
 func (s *ThemeValues) SetValue(v *ThemeValue) *ThemeValues {
 	s.Value = v
 	return s
+}
+
+// The request was denied due to request throttling.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // You don't have permission to perform this operation.
@@ -9698,6 +11480,114 @@ func (s *ValueMappings) SetValues(v []*ValueMapping) *ValueMappings {
 }
 
 const (
+	// CodegenGenericDataFieldDataTypeId is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeId = "ID"
+
+	// CodegenGenericDataFieldDataTypeString is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeString = "String"
+
+	// CodegenGenericDataFieldDataTypeInt is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeInt = "Int"
+
+	// CodegenGenericDataFieldDataTypeFloat is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeFloat = "Float"
+
+	// CodegenGenericDataFieldDataTypeAwsdate is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwsdate = "AWSDate"
+
+	// CodegenGenericDataFieldDataTypeAwstime is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwstime = "AWSTime"
+
+	// CodegenGenericDataFieldDataTypeAwsdateTime is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwsdateTime = "AWSDateTime"
+
+	// CodegenGenericDataFieldDataTypeAwstimestamp is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwstimestamp = "AWSTimestamp"
+
+	// CodegenGenericDataFieldDataTypeAwsemail is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwsemail = "AWSEmail"
+
+	// CodegenGenericDataFieldDataTypeAwsurl is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwsurl = "AWSURL"
+
+	// CodegenGenericDataFieldDataTypeAwsipaddress is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwsipaddress = "AWSIPAddress"
+
+	// CodegenGenericDataFieldDataTypeBoolean is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeBoolean = "Boolean"
+
+	// CodegenGenericDataFieldDataTypeAwsjson is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwsjson = "AWSJSON"
+
+	// CodegenGenericDataFieldDataTypeAwsphone is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeAwsphone = "AWSPhone"
+
+	// CodegenGenericDataFieldDataTypeEnum is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeEnum = "Enum"
+
+	// CodegenGenericDataFieldDataTypeModel is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeModel = "Model"
+
+	// CodegenGenericDataFieldDataTypeNonModel is a CodegenGenericDataFieldDataType enum value
+	CodegenGenericDataFieldDataTypeNonModel = "NonModel"
+)
+
+// CodegenGenericDataFieldDataType_Values returns all elements of the CodegenGenericDataFieldDataType enum
+func CodegenGenericDataFieldDataType_Values() []string {
+	return []string{
+		CodegenGenericDataFieldDataTypeId,
+		CodegenGenericDataFieldDataTypeString,
+		CodegenGenericDataFieldDataTypeInt,
+		CodegenGenericDataFieldDataTypeFloat,
+		CodegenGenericDataFieldDataTypeAwsdate,
+		CodegenGenericDataFieldDataTypeAwstime,
+		CodegenGenericDataFieldDataTypeAwsdateTime,
+		CodegenGenericDataFieldDataTypeAwstimestamp,
+		CodegenGenericDataFieldDataTypeAwsemail,
+		CodegenGenericDataFieldDataTypeAwsurl,
+		CodegenGenericDataFieldDataTypeAwsipaddress,
+		CodegenGenericDataFieldDataTypeBoolean,
+		CodegenGenericDataFieldDataTypeAwsjson,
+		CodegenGenericDataFieldDataTypeAwsphone,
+		CodegenGenericDataFieldDataTypeEnum,
+		CodegenGenericDataFieldDataTypeModel,
+		CodegenGenericDataFieldDataTypeNonModel,
+	}
+}
+
+const (
+	// CodegenJobGenericDataSourceTypeDataStore is a CodegenJobGenericDataSourceType enum value
+	CodegenJobGenericDataSourceTypeDataStore = "DataStore"
+)
+
+// CodegenJobGenericDataSourceType_Values returns all elements of the CodegenJobGenericDataSourceType enum
+func CodegenJobGenericDataSourceType_Values() []string {
+	return []string{
+		CodegenJobGenericDataSourceTypeDataStore,
+	}
+}
+
+const (
+	// CodegenJobStatusInProgress is a CodegenJobStatus enum value
+	CodegenJobStatusInProgress = "in_progress"
+
+	// CodegenJobStatusFailed is a CodegenJobStatus enum value
+	CodegenJobStatusFailed = "failed"
+
+	// CodegenJobStatusSucceeded is a CodegenJobStatus enum value
+	CodegenJobStatusSucceeded = "succeeded"
+)
+
+// CodegenJobStatus_Values returns all elements of the CodegenJobStatus enum
+func CodegenJobStatus_Values() []string {
+	return []string{
+		CodegenJobStatusInProgress,
+		CodegenJobStatusFailed,
+		CodegenJobStatusSucceeded,
+	}
+}
+
+const (
 	// FixedPositionFirst is a FixedPosition enum value
 	FixedPositionFirst = "first"
 )
@@ -9758,6 +11648,78 @@ func FormDataSourceType_Values() []string {
 	return []string{
 		FormDataSourceTypeDataStore,
 		FormDataSourceTypeCustom,
+	}
+}
+
+const (
+	// GenericDataRelationshipTypeHasMany is a GenericDataRelationshipType enum value
+	GenericDataRelationshipTypeHasMany = "HAS_MANY"
+
+	// GenericDataRelationshipTypeHasOne is a GenericDataRelationshipType enum value
+	GenericDataRelationshipTypeHasOne = "HAS_ONE"
+
+	// GenericDataRelationshipTypeBelongsTo is a GenericDataRelationshipType enum value
+	GenericDataRelationshipTypeBelongsTo = "BELONGS_TO"
+)
+
+// GenericDataRelationshipType_Values returns all elements of the GenericDataRelationshipType enum
+func GenericDataRelationshipType_Values() []string {
+	return []string{
+		GenericDataRelationshipTypeHasMany,
+		GenericDataRelationshipTypeHasOne,
+		GenericDataRelationshipTypeBelongsTo,
+	}
+}
+
+const (
+	// JSModuleEs2020 is a JSModule enum value
+	JSModuleEs2020 = "es2020"
+
+	// JSModuleEsnext is a JSModule enum value
+	JSModuleEsnext = "esnext"
+)
+
+// JSModule_Values returns all elements of the JSModule enum
+func JSModule_Values() []string {
+	return []string{
+		JSModuleEs2020,
+		JSModuleEsnext,
+	}
+}
+
+const (
+	// JSScriptJsx is a JSScript enum value
+	JSScriptJsx = "jsx"
+
+	// JSScriptTsx is a JSScript enum value
+	JSScriptTsx = "tsx"
+
+	// JSScriptJs is a JSScript enum value
+	JSScriptJs = "js"
+)
+
+// JSScript_Values returns all elements of the JSScript enum
+func JSScript_Values() []string {
+	return []string{
+		JSScriptJsx,
+		JSScriptTsx,
+		JSScriptJs,
+	}
+}
+
+const (
+	// JSTargetEs2015 is a JSTarget enum value
+	JSTargetEs2015 = "es2015"
+
+	// JSTargetEs2020 is a JSTarget enum value
+	JSTargetEs2020 = "es2020"
+)
+
+// JSTarget_Values returns all elements of the JSTarget enum
+func JSTarget_Values() []string {
+	return []string{
+		JSTargetEs2015,
+		JSTargetEs2020,
 	}
 }
 
