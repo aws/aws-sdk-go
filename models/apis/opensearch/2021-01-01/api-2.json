@@ -1362,7 +1362,8 @@
     "ConnectionProperties":{
       "type":"structure",
       "members":{
-        "Endpoint":{"shape":"Endpoint"}
+        "Endpoint":{"shape":"Endpoint"},
+        "CrossClusterSearch":{"shape":"CrossClusterSearchConnectionProperties"}
       }
     },
     "ConnectionStatusMessage":{"type":"string"},
@@ -1407,7 +1408,8 @@
         "LocalDomainInfo":{"shape":"DomainInformationContainer"},
         "RemoteDomainInfo":{"shape":"DomainInformationContainer"},
         "ConnectionAlias":{"shape":"ConnectionAlias"},
-        "ConnectionMode":{"shape":"ConnectionMode"}
+        "ConnectionMode":{"shape":"ConnectionMode"},
+        "ConnectionProperties":{"shape":"ConnectionProperties"}
       }
     },
     "CreateOutboundConnectionResponse":{
@@ -1462,6 +1464,12 @@
       }
     },
     "CreatedAt":{"type":"timestamp"},
+    "CrossClusterSearchConnectionProperties":{
+      "type":"structure",
+      "members":{
+        "SkipUnavailable":{"shape":"SkipUnavailableStatus"}
+      }
+    },
     "DeleteDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1823,8 +1831,7 @@
     },
     "DescribePackagesFilterValues":{
       "type":"list",
-      "member":{"shape":"DescribePackagesFilterValue"},
-      "min":1
+      "member":{"shape":"DescribePackagesFilterValue"}
     },
     "DescribePackagesRequest":{
       "type":"structure",
@@ -3467,6 +3474,13 @@
       }
     },
     "ServiceUrl":{"type":"string"},
+    "SkipUnavailableStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "SlotList":{
       "type":"list",
       "member":{"shape":"Long"}

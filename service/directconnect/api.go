@@ -5623,7 +5623,7 @@ func (c *DirectConnect) UpdateVirtualInterfaceAttributesRequest(input *UpdateVir
 // jumbo frames. Updating the connection disrupts network connectivity for all
 // virtual interfaces associated with the connection for up to 30 seconds. To
 // check whether your connection supports jumbo frames, call DescribeConnections.
-// To check whether your virtual q interface supports jumbo frames, call DescribeVirtualInterfaces.
+// To check whether your virtual interface supports jumbo frames, call DescribeVirtualInterfaces.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7429,7 +7429,7 @@ type Connection struct {
 	// address family (IPv4/IPv6).
 	HasLogicalRedundancy *string `locationName:"hasLogicalRedundancy" type:"string" enum:"HasLogicalRedundancy"`
 
-	// Indicates whether jumbo frames (9001 MTU) are supported.
+	// Indicates whether jumbo frames are supported.
 	JumboFrameCapable *bool `locationName:"jumboFrameCapable" type:"boolean"`
 
 	// The ID of the LAG.
@@ -11394,7 +11394,7 @@ type Interconnect struct {
 	//    * unknown: The state of the interconnect is not available.
 	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
 
-	// Indicates whether jumbo frames (9001 MTU) are supported.
+	// Indicates whether jumbo frames are supported.
 	JumboFrameCapable *bool `locationName:"jumboFrameCapable" type:"boolean"`
 
 	// The ID of the LAG.
@@ -11557,7 +11557,7 @@ type Lag struct {
 	// family (IPv4/IPv6).
 	HasLogicalRedundancy *string `locationName:"hasLogicalRedundancy" type:"string" enum:"HasLogicalRedundancy"`
 
-	// Indicates whether jumbo frames (9001 MTU) are supported.
+	// Indicates whether jumbo frames are supported.
 	JumboFrameCapable *bool `locationName:"jumboFrameCapable" type:"boolean"`
 
 	// The ID of the LAG.
@@ -13867,7 +13867,7 @@ type UpdateConnectionOutput struct {
 	// address family (IPv4/IPv6).
 	HasLogicalRedundancy *string `locationName:"hasLogicalRedundancy" type:"string" enum:"HasLogicalRedundancy"`
 
-	// Indicates whether jumbo frames (9001 MTU) are supported.
+	// Indicates whether jumbo frames are supported.
 	JumboFrameCapable *bool `locationName:"jumboFrameCapable" type:"boolean"`
 
 	// The ID of the LAG.
@@ -14428,7 +14428,7 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
-	// Indicates whether jumbo frames (9001 MTU) are supported.
+	// Indicates whether jumbo frames are supported.
 	JumboFrameCapable *bool `locationName:"jumboFrameCapable" type:"boolean"`
 
 	// The location of the connection.
@@ -14773,7 +14773,7 @@ type VirtualInterface struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
-	// Indicates whether jumbo frames (9001 MTU) are supported.
+	// Indicates whether jumbo frames are supported.
 	JumboFrameCapable *bool `locationName:"jumboFrameCapable" type:"boolean"`
 
 	// The location of the connection.

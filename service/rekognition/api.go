@@ -13,6 +13,140 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAssociateFaces = "AssociateFaces"
+
+// AssociateFacesRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateFaces operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateFaces for more information on using the AssociateFaces
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateFacesRequest method.
+//	req, resp := client.AssociateFacesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) AssociateFacesRequest(input *AssociateFacesInput) (req *request.Request, output *AssociateFacesOutput) {
+	op := &request.Operation{
+		Name:       opAssociateFaces,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateFacesInput{}
+	}
+
+	output = &AssociateFacesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateFaces API operation for Amazon Rekognition.
+//
+// Associates one or more faces with an existing UserID. Takes an array of FaceIds.
+// Each FaceId that are present in the FaceIds list is associated with the provided
+// UserID. The maximum number of total FaceIds per UserID is 100.
+//
+// The UserMatchThreshold parameter specifies the minimum user match confidence
+// required for the face to be associated with a UserID that has at least one
+// FaceID already associated. This ensures that the FaceIds are associated with
+// the right UserID. The value ranges from 0-100 and default value is 75.
+//
+// If successful, an array of AssociatedFace objects containing the associated
+// FaceIds is returned. If a given face is already associated with the given
+// UserID, it will be ignored and will not be returned in the response. If a
+// given face is already associated to a different UserID, isn't found in the
+// collection, doesn’t meet the UserMatchThreshold, or there are already 100
+// faces associated with the UserID, it will be returned as part of an array
+// of UnsuccessfulFaceAssociations.
+//
+// The UserStatus reflects the status of an operation which updates a UserID
+// representation with a list of given faces. The UserStatus can be:
+//
+//   - ACTIVE - All associations or disassociations of FaceID(s) for a UserID
+//     are complete.
+//
+//   - CREATED - A UserID has been created, but has no FaceID(s) associated
+//     with it.
+//
+//   - UPDATING - A UserID is being updated and there are current associations
+//     or disassociations of FaceID(s) taking place.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation AssociateFaces for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - IdempotentParameterMismatchException
+//     A ClientRequestToken input parameter was reused with an operation, but at
+//     least one of the other input parameters is different from the previous call
+//     to the operation.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ConflictException
+//     A User with the same Id already exists within the collection, or the update
+//     or deletion of the User caused an inconsistent state. **
+//
+//   - ServiceQuotaExceededException
+//     The size of the collection exceeds the allowed limit. For more information,
+//     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//     Developer Guide.
+func (c *Rekognition) AssociateFaces(input *AssociateFacesInput) (*AssociateFacesOutput, error) {
+	req, out := c.AssociateFacesRequest(input)
+	return out, req.Send()
+}
+
+// AssociateFacesWithContext is the same as AssociateFaces with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateFaces for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) AssociateFacesWithContext(ctx aws.Context, input *AssociateFacesInput, opts ...request.Option) (*AssociateFacesOutput, error) {
+	req, out := c.AssociateFacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCompareFaces = "CompareFaces"
 
 // CompareFacesRequest generates a "aws/request.Request" representing the
@@ -1031,6 +1165,122 @@ func (c *Rekognition) CreateStreamProcessorWithContext(ctx aws.Context, input *C
 	return out, req.Send()
 }
 
+const opCreateUser = "CreateUser"
+
+// CreateUserRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUser for more information on using the CreateUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateUserRequest method.
+//	req, resp := client.CreateUserRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
+	op := &request.Operation{
+		Name:       opCreateUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateUserInput{}
+	}
+
+	output = &CreateUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateUser API operation for Amazon Rekognition.
+//
+// Creates a new User within a collection specified by CollectionId. Takes UserId
+// as a parameter, which is a user provided ID which should be unique within
+// the collection. The provided UserId will alias the system generated UUID
+// to make the UserId more user friendly.
+//
+// Uses a ClientToken, an idempotency token that ensures a call to CreateUser
+// completes only once. If the value is not supplied, the AWS SDK generates
+// an idempotency token for the requests. This prevents retries after a network
+// error results from making multiple CreateUser calls.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation CreateUser for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ConflictException
+//     A User with the same Id already exists within the collection, or the update
+//     or deletion of the User caused an inconsistent state. **
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ServiceQuotaExceededException
+//     The size of the collection exceeds the allowed limit. For more information,
+//     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//     Developer Guide.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - IdempotentParameterMismatchException
+//     A ClientRequestToken input parameter was reused with an operation, but at
+//     least one of the other input parameters is different from the previous call
+//     to the operation.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+func (c *Rekognition) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
+	req, out := c.CreateUserRequest(input)
+	return out, req.Send()
+}
+
+// CreateUserWithContext is the same as CreateUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) CreateUserWithContext(ctx aws.Context, input *CreateUserInput, opts ...request.Option) (*CreateUserOutput, error) {
+	req, out := c.CreateUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteCollection = "DeleteCollection"
 
 // DeleteCollectionRequest generates a "aws/request.Request" representing the
@@ -1747,6 +1997,113 @@ func (c *Rekognition) DeleteStreamProcessor(input *DeleteStreamProcessorInput) (
 // for more information on using Contexts.
 func (c *Rekognition) DeleteStreamProcessorWithContext(ctx aws.Context, input *DeleteStreamProcessorInput, opts ...request.Option) (*DeleteStreamProcessorOutput, error) {
 	req, out := c.DeleteStreamProcessorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteUser = "DeleteUser"
+
+// DeleteUserRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUser for more information on using the DeleteUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteUserRequest method.
+//	req, resp := client.DeleteUserRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteUserInput{}
+	}
+
+	output = &DeleteUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteUser API operation for Amazon Rekognition.
+//
+// Deletes the specified UserID within the collection. Faces that are associated
+// with the UserID are disassociated from the UserID before deleting the specified
+// UserID. If the specified Collection or UserID is already deleted or not found,
+// a ResourceNotFoundException will be thrown. If the action is successful with
+// a 200 response, an empty HTTP body is returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DeleteUser for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ConflictException
+//     A User with the same Id already exists within the collection, or the update
+//     or deletion of the User caused an inconsistent state. **
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - IdempotentParameterMismatchException
+//     A ClientRequestToken input parameter was reused with an operation, but at
+//     least one of the other input parameters is different from the previous call
+//     to the operation.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+func (c *Rekognition) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
+	req, out := c.DeleteUserRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUserWithContext is the same as DeleteUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput, opts ...request.Option) (*DeleteUserOutput, error) {
+	req, out := c.DeleteUserRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3228,6 +3585,115 @@ func (c *Rekognition) DetectText(input *DetectTextInput) (*DetectTextOutput, err
 // for more information on using Contexts.
 func (c *Rekognition) DetectTextWithContext(ctx aws.Context, input *DetectTextInput, opts ...request.Option) (*DetectTextOutput, error) {
 	req, out := c.DetectTextRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateFaces = "DisassociateFaces"
+
+// DisassociateFacesRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateFaces operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateFaces for more information on using the DisassociateFaces
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateFacesRequest method.
+//	req, resp := client.DisassociateFacesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) DisassociateFacesRequest(input *DisassociateFacesInput) (req *request.Request, output *DisassociateFacesOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateFaces,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateFacesInput{}
+	}
+
+	output = &DisassociateFacesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateFaces API operation for Amazon Rekognition.
+//
+// Removes the association between a Face supplied in an array of FaceIds and
+// the User. If the User is not present already, then a ResourceNotFound exception
+// is thrown. If successful, an array of faces that are disassociated from the
+// User is returned. If a given face is already disassociated from the given
+// UserID, it will be ignored and not be returned in the response. If a given
+// face is already associated with a different User or not found in the collection
+// it will be returned as part of UnsuccessfulDisassociations. You can remove
+// 1 - 100 face IDs from a user at one time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DisassociateFaces for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - IdempotentParameterMismatchException
+//     A ClientRequestToken input parameter was reused with an operation, but at
+//     least one of the other input parameters is different from the previous call
+//     to the operation.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ConflictException
+//     A User with the same Id already exists within the collection, or the update
+//     or deletion of the User caused an inconsistent state. **
+func (c *Rekognition) DisassociateFaces(input *DisassociateFacesInput) (*DisassociateFacesOutput, error) {
+	req, out := c.DisassociateFacesRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateFacesWithContext is the same as DisassociateFaces with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateFaces for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DisassociateFacesWithContext(ctx aws.Context, input *DisassociateFacesInput, opts ...request.Option) (*DisassociateFacesOutput, error) {
+	req, out := c.DisassociateFacesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6329,6 +6795,163 @@ func (c *Rekognition) ListTagsForResourceWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opListUsers = "ListUsers"
+
+// ListUsersRequest generates a "aws/request.Request" representing the
+// client's request for the ListUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUsers for more information on using the ListUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUsersRequest method.
+//	req, resp := client.ListUsersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) ListUsersRequest(input *ListUsersInput) (req *request.Request, output *ListUsersOutput) {
+	op := &request.Operation{
+		Name:       opListUsers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListUsersInput{}
+	}
+
+	output = &ListUsersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUsers API operation for Amazon Rekognition.
+//
+// Returns metadata of the User such as UserID in the specified collection.
+// Anonymous User (to reserve faces without any identity) is not returned as
+// part of this request. The results are sorted by system generated primary
+// key ID. If the response is truncated, NextToken is returned in the response
+// that can be used in the subsequent request to retrieve the next set of identities.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation ListUsers for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - InvalidPaginationTokenException
+//     Pagination token in the request is not valid.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+func (c *Rekognition) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
+	req, out := c.ListUsersRequest(input)
+	return out, req.Send()
+}
+
+// ListUsersWithContext is the same as ListUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, opts ...request.Option) (*ListUsersOutput, error) {
+	req, out := c.ListUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListUsersPages iterates over the pages of a ListUsers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUsers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListUsers operation.
+//	pageNum := 0
+//	err := client.ListUsersPages(params,
+//	    func(page *rekognition.ListUsersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Rekognition) ListUsersPages(input *ListUsersInput, fn func(*ListUsersOutput, bool) bool) error {
+	return c.ListUsersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUsersPagesWithContext same as ListUsersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInput, fn func(*ListUsersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUsersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUsersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUsersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opPutProjectPolicy = "PutProjectPolicy"
 
 // PutProjectPolicyRequest generates a "aws/request.Request" representing the
@@ -6852,6 +7475,219 @@ func (c *Rekognition) SearchFacesByImage(input *SearchFacesByImageInput) (*Searc
 // for more information on using Contexts.
 func (c *Rekognition) SearchFacesByImageWithContext(ctx aws.Context, input *SearchFacesByImageInput, opts ...request.Option) (*SearchFacesByImageOutput, error) {
 	req, out := c.SearchFacesByImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSearchUsers = "SearchUsers"
+
+// SearchUsersRequest generates a "aws/request.Request" representing the
+// client's request for the SearchUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchUsers for more information on using the SearchUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchUsersRequest method.
+//	req, resp := client.SearchUsersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) SearchUsersRequest(input *SearchUsersInput) (req *request.Request, output *SearchUsersOutput) {
+	op := &request.Operation{
+		Name:       opSearchUsers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SearchUsersInput{}
+	}
+
+	output = &SearchUsersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchUsers API operation for Amazon Rekognition.
+//
+// Searches for UserIDs within a collection based on a FaceId or UserId. This
+// API can be used to find the closest UserID (with a highest similarity) to
+// associate a face. The request must be provided with either FaceId or UserId.
+// The operation returns an array of UserID that match the FaceId or UserId,
+// ordered by similarity score with the highest similarity first.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation SearchUsers for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+func (c *Rekognition) SearchUsers(input *SearchUsersInput) (*SearchUsersOutput, error) {
+	req, out := c.SearchUsersRequest(input)
+	return out, req.Send()
+}
+
+// SearchUsersWithContext is the same as SearchUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) SearchUsersWithContext(ctx aws.Context, input *SearchUsersInput, opts ...request.Option) (*SearchUsersOutput, error) {
+	req, out := c.SearchUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSearchUsersByImage = "SearchUsersByImage"
+
+// SearchUsersByImageRequest generates a "aws/request.Request" representing the
+// client's request for the SearchUsersByImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchUsersByImage for more information on using the SearchUsersByImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchUsersByImageRequest method.
+//	req, resp := client.SearchUsersByImageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) SearchUsersByImageRequest(input *SearchUsersByImageInput) (req *request.Request, output *SearchUsersByImageOutput) {
+	op := &request.Operation{
+		Name:       opSearchUsersByImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SearchUsersByImageInput{}
+	}
+
+	output = &SearchUsersByImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchUsersByImage API operation for Amazon Rekognition.
+//
+// Searches for UserIDs using a supplied image. It first detects the largest
+// face in the image, and then searches a specified collection for matching
+// UserIDs.
+//
+// The operation returns an array of UserIDs that match the face in the supplied
+// image, ordered by similarity score with the highest similarity first. It
+// also returns a bounding box for the face found in the input image.
+//
+// Information about faces detected in the supplied image, but not used for
+// the search, is returned in an array of UnsearchedFace objects. If no valid
+// face is detected in the image, the response will contain an empty UserMatches
+// list and no SearchedFace object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation SearchUsersByImage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - InvalidImageFormatException
+//     The provided image format is not supported.
+//
+//   - InvalidS3ObjectException
+//     Amazon Rekognition is unable to access the S3 object specified in the request.
+//
+//   - ImageTooLargeException
+//     The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//     the image size or resolution exceeds the allowed limit. For more information,
+//     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//     Developer Guide.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+func (c *Rekognition) SearchUsersByImage(input *SearchUsersByImageInput) (*SearchUsersByImageOutput, error) {
+	req, out := c.SearchUsersByImageRequest(input)
+	return out, req.Send()
+}
+
+// SearchUsersByImageWithContext is the same as SearchUsersByImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchUsersByImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) SearchUsersByImageWithContext(ctx aws.Context, input *SearchUsersByImageInput, opts ...request.Option) (*SearchUsersByImageOutput, error) {
+	req, out := c.SearchUsersByImageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8867,6 +9703,200 @@ func (s *Asset) SetGroundTruthManifest(v *GroundTruthManifest) *Asset {
 	return s
 }
 
+type AssociateFacesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotent token used to identify the request to AssociateFaces. If you use
+	// the same token with multiple AssociateFaces requests, the same response is
+	// returned. Use ClientRequestToken to prevent the same request from being processed
+	// more than once.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of an existing collection containing the UserID.
+	//
+	// CollectionId is a required field
+	CollectionId *string `min:"1" type:"string" required:"true"`
+
+	// An array of FaceIDs to associate with the UserID.
+	//
+	// FaceIds is a required field
+	FaceIds []*string `min:"1" type:"list" required:"true"`
+
+	// The ID for the existing UserID.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+
+	// An optional value specifying the minimum confidence in the UserID match to
+	// return. The default value is 75.
+	UserMatchThreshold *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateFacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateFacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateFacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateFacesInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.CollectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionId"))
+	}
+	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
+	}
+	if s.FaceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("FaceIds"))
+	}
+	if s.FaceIds != nil && len(s.FaceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FaceIds", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *AssociateFacesInput) SetClientRequestToken(v string) *AssociateFacesInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCollectionId sets the CollectionId field's value.
+func (s *AssociateFacesInput) SetCollectionId(v string) *AssociateFacesInput {
+	s.CollectionId = &v
+	return s
+}
+
+// SetFaceIds sets the FaceIds field's value.
+func (s *AssociateFacesInput) SetFaceIds(v []*string) *AssociateFacesInput {
+	s.FaceIds = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *AssociateFacesInput) SetUserId(v string) *AssociateFacesInput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserMatchThreshold sets the UserMatchThreshold field's value.
+func (s *AssociateFacesInput) SetUserMatchThreshold(v float64) *AssociateFacesInput {
+	s.UserMatchThreshold = &v
+	return s
+}
+
+type AssociateFacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of AssociatedFace objects containing FaceIDs that are successfully
+	// associated with the UserID is returned. Returned if the AssociateFaces action
+	// is successful.
+	AssociatedFaces []*AssociatedFace `type:"list"`
+
+	// An array of UnsuccessfulAssociation objects containing FaceIDs that are not
+	// successfully associated along with the reasons. Returned if the AssociateFaces
+	// action is successful.
+	UnsuccessfulFaceAssociations []*UnsuccessfulFaceAssociation `type:"list"`
+
+	// The status of an update made to a UserID. Reflects if the UserID has been
+	// updated for every requested change.
+	UserStatus *string `type:"string" enum:"UserStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateFacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateFacesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedFaces sets the AssociatedFaces field's value.
+func (s *AssociateFacesOutput) SetAssociatedFaces(v []*AssociatedFace) *AssociateFacesOutput {
+	s.AssociatedFaces = v
+	return s
+}
+
+// SetUnsuccessfulFaceAssociations sets the UnsuccessfulFaceAssociations field's value.
+func (s *AssociateFacesOutput) SetUnsuccessfulFaceAssociations(v []*UnsuccessfulFaceAssociation) *AssociateFacesOutput {
+	s.UnsuccessfulFaceAssociations = v
+	return s
+}
+
+// SetUserStatus sets the UserStatus field's value.
+func (s *AssociateFacesOutput) SetUserStatus(v string) *AssociateFacesOutput {
+	s.UserStatus = &v
+	return s
+}
+
+// Provides face metadata for the faces that are associated to a specific UserID.
+type AssociatedFace struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier assigned to the face.
+	FaceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatedFace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatedFace) GoString() string {
+	return s.String()
+}
+
+// SetFaceId sets the FaceId field's value.
+func (s *AssociatedFace) SetFaceId(v string) *AssociatedFace {
+	s.FaceId = &v
+	return s
+}
+
 // Metadata information about an audio stream. An array of AudioMetadata objects
 // for the audio streams found in a stored video is returned by GetSegmentDetection.
 type AudioMetadata struct {
@@ -9791,6 +10821,71 @@ func (s *ComparedSourceImageFace) SetBoundingBox(v *BoundingBox) *ComparedSource
 func (s *ComparedSourceImageFace) SetConfidence(v float64) *ComparedSourceImageFace {
 	s.Confidence = &v
 	return s
+}
+
+// A User with the same Id already exists within the collection, or the update
+// or deletion of the User caused an inconsistent state. **
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Label detection settings to use on a streaming video. Defining the settings
@@ -11140,6 +12235,109 @@ func (s *CreateStreamProcessorOutput) SetStreamProcessorArn(v string) *CreateStr
 	return s
 }
 
+type CreateUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotent token used to identify the request to CreateUser. If you use the
+	// same token with multiple CreateUser requests, the same response is returned.
+	// Use ClientRequestToken to prevent the same request from being processed more
+	// than once.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of an existing collection to which the new UserID needs to be created.
+	//
+	// CollectionId is a required field
+	CollectionId *string `min:"1" type:"string" required:"true"`
+
+	// ID for the UserID to be created. This ID needs to be unique within the collection.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.CollectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionId"))
+	}
+	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateUserInput) SetClientRequestToken(v string) *CreateUserInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCollectionId sets the CollectionId field's value.
+func (s *CreateUserInput) SetCollectionId(v string) *CreateUserInput {
+	s.CollectionId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *CreateUserInput) SetUserId(v string) *CreateUserInput {
+	s.UserId = &v
+	return s
+}
+
+type CreateUserOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserOutput) GoString() string {
+	return s.String()
+}
+
 // A custom label detected in an image by a call to DetectCustomLabels.
 type CustomLabel struct {
 	_ struct{} `type:"structure"`
@@ -11852,6 +13050,9 @@ type DeleteFacesOutput struct {
 
 	// An array of strings (face IDs) of the faces that were deleted.
 	DeletedFaces []*string `min:"1" type:"list"`
+
+	// An array of any faces that weren't deleted.
+	UnsuccessfulFaceDeletions []*UnsuccessfulFaceDeletion `type:"list"`
 }
 
 // String returns the string representation.
@@ -11875,6 +13076,12 @@ func (s DeleteFacesOutput) GoString() string {
 // SetDeletedFaces sets the DeletedFaces field's value.
 func (s *DeleteFacesOutput) SetDeletedFaces(v []*string) *DeleteFacesOutput {
 	s.DeletedFaces = v
+	return s
+}
+
+// SetUnsuccessfulFaceDeletions sets the UnsuccessfulFaceDeletions field's value.
+func (s *DeleteFacesOutput) SetUnsuccessfulFaceDeletions(v []*UnsuccessfulFaceDeletion) *DeleteFacesOutput {
+	s.UnsuccessfulFaceDeletions = v
 	return s
 }
 
@@ -12207,6 +13414,109 @@ func (s DeleteStreamProcessorOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotent token used to identify the request to DeleteUser. If you use the
+	// same token with multiple DeleteUser requests, the same response is returned.
+	// Use ClientRequestToken to prevent the same request from being processed more
+	// than once.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of an existing collection from which the UserID needs to be deleted.
+	//
+	// CollectionId is a required field
+	CollectionId *string `min:"1" type:"string" required:"true"`
+
+	// ID for the UserID to be deleted.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.CollectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionId"))
+	}
+	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DeleteUserInput) SetClientRequestToken(v string) *DeleteUserInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCollectionId sets the CollectionId field's value.
+func (s *DeleteUserInput) SetCollectionId(v string) *DeleteUserInput {
+	s.CollectionId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DeleteUserInput) SetUserId(v string) *DeleteUserInput {
+	s.UserId = &v
+	return s
+}
+
+type DeleteUserOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUserOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeCollectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12276,6 +13586,9 @@ type DescribeCollectionOutput struct {
 	// For more information, see Model versioning in the Amazon Rekognition Developer
 	// Guide.
 	FaceModelVersion *string `type:"string"`
+
+	// The number of UserIDs assigned to the specified colleciton.
+	UserCount *int64 `type:"long"`
 }
 
 // String returns the string representation.
@@ -12317,6 +13630,12 @@ func (s *DescribeCollectionOutput) SetFaceCount(v int64) *DescribeCollectionOutp
 // SetFaceModelVersion sets the FaceModelVersion field's value.
 func (s *DescribeCollectionOutput) SetFaceModelVersion(v string) *DescribeCollectionOutput {
 	s.FaceModelVersion = &v
+	return s
+}
+
+// SetUserCount sets the UserCount field's value.
+func (s *DescribeCollectionOutput) SetUserCount(v int64) *DescribeCollectionOutput {
+	s.UserCount = &v
 	return s
 }
 
@@ -14066,6 +15385,191 @@ func (s *DetectionFilter) SetMinConfidence(v float64) *DetectionFilter {
 	return s
 }
 
+type DisassociateFacesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotent token used to identify the request to DisassociateFaces. If you
+	// use the same token with multiple DisassociateFaces requests, the same response
+	// is returned. Use ClientRequestToken to prevent the same request from being
+	// processed more than once.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of an existing collection containing the UserID.
+	//
+	// CollectionId is a required field
+	CollectionId *string `min:"1" type:"string" required:"true"`
+
+	// An array of face IDs to disassociate from the UserID.
+	//
+	// FaceIds is a required field
+	FaceIds []*string `min:"1" type:"list" required:"true"`
+
+	// ID for the existing UserID.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateFacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateFacesInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.CollectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionId"))
+	}
+	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
+	}
+	if s.FaceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("FaceIds"))
+	}
+	if s.FaceIds != nil && len(s.FaceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FaceIds", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DisassociateFacesInput) SetClientRequestToken(v string) *DisassociateFacesInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCollectionId sets the CollectionId field's value.
+func (s *DisassociateFacesInput) SetCollectionId(v string) *DisassociateFacesInput {
+	s.CollectionId = &v
+	return s
+}
+
+// SetFaceIds sets the FaceIds field's value.
+func (s *DisassociateFacesInput) SetFaceIds(v []*string) *DisassociateFacesInput {
+	s.FaceIds = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DisassociateFacesInput) SetUserId(v string) *DisassociateFacesInput {
+	s.UserId = &v
+	return s
+}
+
+type DisassociateFacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of DissociatedFace objects containing FaceIds that are successfully
+	// disassociated with the UserID is returned. Returned if the DisassociatedFaces
+	// action is successful.
+	DisassociatedFaces []*DisassociatedFace `type:"list"`
+
+	// An array of UnsuccessfulDisassociation objects containing FaceIds that are
+	// not successfully associated, along with the reasons for the failure to associate.
+	// Returned if the DisassociateFaces action is successful.
+	UnsuccessfulFaceDisassociations []*UnsuccessfulFaceDisassociation `type:"list"`
+
+	// The status of an update made to a User. Reflects if the User has been updated
+	// for every requested change.
+	UserStatus *string `type:"string" enum:"UserStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFacesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDisassociatedFaces sets the DisassociatedFaces field's value.
+func (s *DisassociateFacesOutput) SetDisassociatedFaces(v []*DisassociatedFace) *DisassociateFacesOutput {
+	s.DisassociatedFaces = v
+	return s
+}
+
+// SetUnsuccessfulFaceDisassociations sets the UnsuccessfulFaceDisassociations field's value.
+func (s *DisassociateFacesOutput) SetUnsuccessfulFaceDisassociations(v []*UnsuccessfulFaceDisassociation) *DisassociateFacesOutput {
+	s.UnsuccessfulFaceDisassociations = v
+	return s
+}
+
+// SetUserStatus sets the UserStatus field's value.
+func (s *DisassociateFacesOutput) SetUserStatus(v string) *DisassociateFacesOutput {
+	s.UserStatus = &v
+	return s
+}
+
+// Provides face metadata for the faces that are disassociated from a specific
+// UserID.
+type DisassociatedFace struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier assigned to the face.
+	FaceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatedFace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatedFace) GoString() string {
+	return s.String()
+}
+
+// SetFaceId sets the FaceId field's value.
+func (s *DisassociatedFace) SetFaceId(v string) *DisassociatedFace {
+	s.FaceId = &v
+	return s
+}
+
 // A training dataset or a test dataset used in a dataset distribution operation.
 // For more information, see DistributeDatasetEntries.
 type DistributeDataset struct {
@@ -14594,6 +16098,9 @@ type Face struct {
 	// The version of the face detect and storage model that was used when indexing
 	// the face vector.
 	IndexFacesModelVersion *string `type:"string"`
+
+	// Unique identifier assigned to the user.
+	UserId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -14647,6 +16154,12 @@ func (s *Face) SetImageId(v string) *Face {
 // SetIndexFacesModelVersion sets the IndexFacesModelVersion field's value.
 func (s *Face) SetIndexFacesModelVersion(v string) *Face {
 	s.IndexFacesModelVersion = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *Face) SetUserId(v string) *Face {
+	s.UserId = &v
 	return s
 }
 
@@ -19320,6 +20833,9 @@ type ListFacesInput struct {
 	// CollectionId is a required field
 	CollectionId *string `min:"1" type:"string" required:"true"`
 
+	// An array of face IDs to match when listing faces in a collection.
+	FaceIds []*string `min:"1" type:"list"`
+
 	// Maximum number of faces to return.
 	MaxResults *int64 `type:"integer"`
 
@@ -19327,6 +20843,9 @@ type ListFacesInput struct {
 	// Amazon Rekognition returns a pagination token in the response. You can use
 	// this pagination token to retrieve the next set of faces.
 	NextToken *string `type:"string"`
+
+	// An array of user IDs to match when listing faces in a collection.
+	UserId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -19356,6 +20875,12 @@ func (s *ListFacesInput) Validate() error {
 	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
 	}
+	if s.FaceIds != nil && len(s.FaceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FaceIds", 1))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19369,6 +20894,12 @@ func (s *ListFacesInput) SetCollectionId(v string) *ListFacesInput {
 	return s
 }
 
+// SetFaceIds sets the FaceIds field's value.
+func (s *ListFacesInput) SetFaceIds(v []*string) *ListFacesInput {
+	s.FaceIds = v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListFacesInput) SetMaxResults(v int64) *ListFacesInput {
 	s.MaxResults = &v
@@ -19378,6 +20909,12 @@ func (s *ListFacesInput) SetMaxResults(v int64) *ListFacesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListFacesInput) SetNextToken(v string) *ListFacesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ListFacesInput) SetUserId(v string) *ListFacesInput {
+	s.UserId = &v
 	return s
 }
 
@@ -19729,6 +21266,117 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type ListUsersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of an existing collection.
+	//
+	// CollectionId is a required field
+	CollectionId *string `min:"1" type:"string" required:"true"`
+
+	// Maximum number of UsersID to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Pagingation token to receive the next set of UsersID.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUsersInput"}
+	if s.CollectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionId"))
+	}
+	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectionId sets the CollectionId field's value.
+func (s *ListUsersInput) SetCollectionId(v string) *ListUsersInput {
+	s.CollectionId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListUsersInput) SetMaxResults(v int64) *ListUsersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUsersInput) SetNextToken(v string) *ListUsersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListUsersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token to be used with the subsequent request if the response
+	// is truncated.
+	NextToken *string `type:"string"`
+
+	// List of UsersID associated with the specified collection.
+	Users []*User `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUsersOutput) SetNextToken(v string) *ListUsersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *ListUsersOutput) SetUsers(v []*User) *ListUsersOutput {
+	s.Users = v
+	return s
+}
+
 // Contains settings that specify the location of an Amazon S3 bucket used to
 // store the output of a Face Liveness session. Note that the S3 bucket must
 // be located in the caller's AWS account and in the same region as the Face
@@ -19855,6 +21503,47 @@ func (s *MalformedPolicyDocumentException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *MalformedPolicyDocumentException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains metadata for a UserID matched with a given face.
+type MatchedUser struct {
+	_ struct{} `type:"structure"`
+
+	// A provided ID for the UserID. Unique within the collection.
+	UserId *string `min:"1" type:"string"`
+
+	// The status of the user matched to a provided FaceID.
+	UserStatus *string `type:"string" enum:"UserStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchedUser) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchedUser) GoString() string {
+	return s.String()
+}
+
+// SetUserId sets the UserId field's value.
+func (s *MatchedUser) SetUserId(v string) *MatchedUser {
+	s.UserId = &v
+	return s
+}
+
+// SetUserStatus sets the UserStatus field's value.
+func (s *MatchedUser) SetUserStatus(v string) *MatchedUser {
+	s.UserStatus = &v
+	return s
 }
 
 // Provides information about a single type of inappropriate, unwanted, or offensive
@@ -22050,6 +23739,470 @@ func (s *SearchFacesOutput) SetFaceModelVersion(v string) *SearchFacesOutput {
 // SetSearchedFaceId sets the SearchedFaceId field's value.
 func (s *SearchFacesOutput) SetSearchedFaceId(v string) *SearchFacesOutput {
 	s.SearchedFaceId = &v
+	return s
+}
+
+type SearchUsersByImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of an existing collection containing the UserID.
+	//
+	// CollectionId is a required field
+	CollectionId *string `min:"1" type:"string" required:"true"`
+
+	// Provides the input image either as bytes or an S3 object.
+	//
+	// You pass image bytes to an Amazon Rekognition API operation by using the
+	// Bytes property. For example, you would use the Bytes property to pass an
+	// image loaded from a local file system. Image bytes passed by using the Bytes
+	// property must be base64-encoded. Your code may not need to encode image bytes
+	// if you are using an AWS SDK to call Amazon Rekognition API operations.
+	//
+	// For more information, see Analyzing an Image Loaded from a Local File System
+	// in the Amazon Rekognition Developer Guide.
+	//
+	// You pass images stored in an S3 bucket to an Amazon Rekognition API operation
+	// by using the S3Object property. Images stored in an S3 bucket do not need
+	// to be base64-encoded.
+	//
+	// The region for the S3 bucket containing the S3 object must match the region
+	// you use for Amazon Rekognition operations.
+	//
+	// If you use the AWS CLI to call Amazon Rekognition operations, passing image
+	// bytes using the Bytes property is not supported. You must first upload the
+	// image to an Amazon S3 bucket and then call the operation using the S3Object
+	// property.
+	//
+	// For Amazon Rekognition to process an S3 object, the user must have permission
+	// to access the S3 object. For more information, see How Amazon Rekognition
+	// works with IAM in the Amazon Rekognition Developer Guide.
+	//
+	// Image is a required field
+	Image *Image `type:"structure" required:"true"`
+
+	// Maximum number of UserIDs to return.
+	MaxUsers *int64 `min:"1" type:"integer"`
+
+	// A filter that specifies a quality bar for how much filtering is done to identify
+	// faces. Filtered faces aren't searched for in the collection. The default
+	// value is NONE.
+	QualityFilter *string `type:"string" enum:"QualityFilter"`
+
+	// Specifies the minimum confidence in the UserID match to return. Default value
+	// is 80.
+	UserMatchThreshold *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersByImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersByImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchUsersByImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchUsersByImageInput"}
+	if s.CollectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionId"))
+	}
+	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
+	}
+	if s.Image == nil {
+		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.MaxUsers != nil && *s.MaxUsers < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxUsers", 1))
+	}
+	if s.Image != nil {
+		if err := s.Image.Validate(); err != nil {
+			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectionId sets the CollectionId field's value.
+func (s *SearchUsersByImageInput) SetCollectionId(v string) *SearchUsersByImageInput {
+	s.CollectionId = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *SearchUsersByImageInput) SetImage(v *Image) *SearchUsersByImageInput {
+	s.Image = v
+	return s
+}
+
+// SetMaxUsers sets the MaxUsers field's value.
+func (s *SearchUsersByImageInput) SetMaxUsers(v int64) *SearchUsersByImageInput {
+	s.MaxUsers = &v
+	return s
+}
+
+// SetQualityFilter sets the QualityFilter field's value.
+func (s *SearchUsersByImageInput) SetQualityFilter(v string) *SearchUsersByImageInput {
+	s.QualityFilter = &v
+	return s
+}
+
+// SetUserMatchThreshold sets the UserMatchThreshold field's value.
+func (s *SearchUsersByImageInput) SetUserMatchThreshold(v float64) *SearchUsersByImageInput {
+	s.UserMatchThreshold = &v
+	return s
+}
+
+type SearchUsersByImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Version number of the face detection model associated with the input collection
+	// CollectionId.
+	FaceModelVersion *string `type:"string"`
+
+	// A list of FaceDetail objects containing the BoundingBox for the largest face
+	// in image, as well as the confidence in the bounding box, that was searched
+	// for matches. If no valid face is detected in the image the response will
+	// contain no SearchedFace object.
+	SearchedFace *SearchedFaceDetails `type:"structure"`
+
+	// List of UnsearchedFace objects. Contains the face details infered from the
+	// specified image but not used for search. Contains reasons that describe why
+	// a face wasn't used for Search.
+	UnsearchedFaces []*UnsearchedFace `type:"list"`
+
+	// An array of UserID objects that matched the input face, along with the confidence
+	// in the match. The returned structure will be empty if there are no matches.
+	// Returned if the SearchUsersByImageResponse action is successful.
+	UserMatches []*UserMatch `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersByImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersByImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetFaceModelVersion sets the FaceModelVersion field's value.
+func (s *SearchUsersByImageOutput) SetFaceModelVersion(v string) *SearchUsersByImageOutput {
+	s.FaceModelVersion = &v
+	return s
+}
+
+// SetSearchedFace sets the SearchedFace field's value.
+func (s *SearchUsersByImageOutput) SetSearchedFace(v *SearchedFaceDetails) *SearchUsersByImageOutput {
+	s.SearchedFace = v
+	return s
+}
+
+// SetUnsearchedFaces sets the UnsearchedFaces field's value.
+func (s *SearchUsersByImageOutput) SetUnsearchedFaces(v []*UnsearchedFace) *SearchUsersByImageOutput {
+	s.UnsearchedFaces = v
+	return s
+}
+
+// SetUserMatches sets the UserMatches field's value.
+func (s *SearchUsersByImageOutput) SetUserMatches(v []*UserMatch) *SearchUsersByImageOutput {
+	s.UserMatches = v
+	return s
+}
+
+type SearchUsersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of an existing collection containing the UserID, used with a UserId
+	// or FaceId. If a FaceId is provided, UserId isn’t required to be present
+	// in the Collection.
+	//
+	// CollectionId is a required field
+	CollectionId *string `min:"1" type:"string" required:"true"`
+
+	// ID for the existing face.
+	FaceId *string `type:"string"`
+
+	// Maximum number of identities to return.
+	MaxUsers *int64 `min:"1" type:"integer"`
+
+	// ID for the existing User.
+	UserId *string `min:"1" type:"string"`
+
+	// Optional value that specifies the minimum confidence in the matched UserID
+	// to return. Default value of 80.
+	UserMatchThreshold *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchUsersInput"}
+	if s.CollectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionId"))
+	}
+	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
+	}
+	if s.MaxUsers != nil && *s.MaxUsers < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxUsers", 1))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectionId sets the CollectionId field's value.
+func (s *SearchUsersInput) SetCollectionId(v string) *SearchUsersInput {
+	s.CollectionId = &v
+	return s
+}
+
+// SetFaceId sets the FaceId field's value.
+func (s *SearchUsersInput) SetFaceId(v string) *SearchUsersInput {
+	s.FaceId = &v
+	return s
+}
+
+// SetMaxUsers sets the MaxUsers field's value.
+func (s *SearchUsersInput) SetMaxUsers(v int64) *SearchUsersInput {
+	s.MaxUsers = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *SearchUsersInput) SetUserId(v string) *SearchUsersInput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserMatchThreshold sets the UserMatchThreshold field's value.
+func (s *SearchUsersInput) SetUserMatchThreshold(v float64) *SearchUsersInput {
+	s.UserMatchThreshold = &v
+	return s
+}
+
+type SearchUsersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Version number of the face detection model associated with the input CollectionId.
+	FaceModelVersion *string `type:"string"`
+
+	// Contains the ID of a face that was used to search for matches in a collection.
+	SearchedFace *SearchedFace `type:"structure"`
+
+	// Contains the ID of the UserID that was used to search for matches in a collection.
+	SearchedUser *SearchedUser `type:"structure"`
+
+	// An array of UserMatch objects that matched the input face along with the
+	// confidence in the match. Array will be empty if there are no matches.
+	UserMatches []*UserMatch `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFaceModelVersion sets the FaceModelVersion field's value.
+func (s *SearchUsersOutput) SetFaceModelVersion(v string) *SearchUsersOutput {
+	s.FaceModelVersion = &v
+	return s
+}
+
+// SetSearchedFace sets the SearchedFace field's value.
+func (s *SearchUsersOutput) SetSearchedFace(v *SearchedFace) *SearchUsersOutput {
+	s.SearchedFace = v
+	return s
+}
+
+// SetSearchedUser sets the SearchedUser field's value.
+func (s *SearchUsersOutput) SetSearchedUser(v *SearchedUser) *SearchUsersOutput {
+	s.SearchedUser = v
+	return s
+}
+
+// SetUserMatches sets the UserMatches field's value.
+func (s *SearchUsersOutput) SetUserMatches(v []*UserMatch) *SearchUsersOutput {
+	s.UserMatches = v
+	return s
+}
+
+// Provides face metadata such as FaceId, BoundingBox, Confidence of the input
+// face used for search.
+type SearchedFace struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier assigned to the face.
+	FaceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchedFace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchedFace) GoString() string {
+	return s.String()
+}
+
+// SetFaceId sets the FaceId field's value.
+func (s *SearchedFace) SetFaceId(v string) *SearchedFace {
+	s.FaceId = &v
+	return s
+}
+
+// Contains data regarding the input face used for a search.
+type SearchedFaceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Structure containing attributes of the face that the algorithm detected.
+	//
+	// A FaceDetail object contains either the default facial attributes or all
+	// facial attributes. The default attributes are BoundingBox, Confidence, Landmarks,
+	// Pose, and Quality.
+	//
+	// GetFaceDetection is the only Amazon Rekognition Video stored video operation
+	// that can return a FaceDetail object with all attributes. To specify which
+	// attributes to return, use the FaceAttributes input parameter for StartFaceDetection.
+	// The following Amazon Rekognition Video operations return only the default
+	// attributes. The corresponding Start operations don't have a FaceAttributes
+	// input parameter:
+	//
+	//    * GetCelebrityRecognition
+	//
+	//    * GetPersonTracking
+	//
+	//    * GetFaceSearch
+	//
+	// The Amazon Rekognition Image DetectFaces and IndexFaces operations can return
+	// all facial attributes. To specify which attributes to return, use the Attributes
+	// input parameter for DetectFaces. For IndexFaces, use the DetectAttributes
+	// input parameter.
+	FaceDetail *FaceDetail `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchedFaceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchedFaceDetails) GoString() string {
+	return s.String()
+}
+
+// SetFaceDetail sets the FaceDetail field's value.
+func (s *SearchedFaceDetails) SetFaceDetail(v *FaceDetail) *SearchedFaceDetails {
+	s.FaceDetail = v
+	return s
+}
+
+// Contains metadata about a User searched for within a collection.
+type SearchedUser struct {
+	_ struct{} `type:"structure"`
+
+	// A provided ID for the UserID. Unique within the collection.
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchedUser) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchedUser) GoString() string {
+	return s.String()
+}
+
+// SetUserId sets the UserId field's value.
+func (s *SearchedUser) SetUserId(v string) *SearchedUser {
+	s.UserId = &v
 	return s
 }
 
@@ -25419,6 +27572,233 @@ func (s *UnindexedFace) SetReasons(v []*string) *UnindexedFace {
 	return s
 }
 
+// Face details inferred from the image but not used for search. The response
+// attribute contains reasons for why a face wasn't used for Search.
+type UnsearchedFace struct {
+	_ struct{} `type:"structure"`
+
+	// Structure containing attributes of the face that the algorithm detected.
+	//
+	// A FaceDetail object contains either the default facial attributes or all
+	// facial attributes. The default attributes are BoundingBox, Confidence, Landmarks,
+	// Pose, and Quality.
+	//
+	// GetFaceDetection is the only Amazon Rekognition Video stored video operation
+	// that can return a FaceDetail object with all attributes. To specify which
+	// attributes to return, use the FaceAttributes input parameter for StartFaceDetection.
+	// The following Amazon Rekognition Video operations return only the default
+	// attributes. The corresponding Start operations don't have a FaceAttributes
+	// input parameter:
+	//
+	//    * GetCelebrityRecognition
+	//
+	//    * GetPersonTracking
+	//
+	//    * GetFaceSearch
+	//
+	// The Amazon Rekognition Image DetectFaces and IndexFaces operations can return
+	// all facial attributes. To specify which attributes to return, use the Attributes
+	// input parameter for DetectFaces. For IndexFaces, use the DetectAttributes
+	// input parameter.
+	FaceDetails *FaceDetail `type:"structure"`
+
+	// Reasons why a face wasn't used for Search.
+	Reasons []*string `type:"list" enum:"UnsearchedFaceReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsearchedFace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsearchedFace) GoString() string {
+	return s.String()
+}
+
+// SetFaceDetails sets the FaceDetails field's value.
+func (s *UnsearchedFace) SetFaceDetails(v *FaceDetail) *UnsearchedFace {
+	s.FaceDetails = v
+	return s
+}
+
+// SetReasons sets the Reasons field's value.
+func (s *UnsearchedFace) SetReasons(v []*string) *UnsearchedFace {
+	s.Reasons = v
+	return s
+}
+
+// Contains metadata like FaceId, UserID, and Reasons, for a face that was unsuccessfully
+// associated.
+type UnsuccessfulFaceAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// Match confidence with the UserID, provides information regarding if a face
+	// association was unsuccessful because it didn't meet UserMatchThreshold.
+	Confidence *float64 `type:"float"`
+
+	// A unique identifier assigned to the face.
+	FaceId *string `type:"string"`
+
+	// The reason why the association was unsuccessful.
+	Reasons []*string `type:"list" enum:"UnsuccessfulFaceAssociationReason"`
+
+	// A provided ID for the UserID. Unique within the collection.
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsuccessfulFaceAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsuccessfulFaceAssociation) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *UnsuccessfulFaceAssociation) SetConfidence(v float64) *UnsuccessfulFaceAssociation {
+	s.Confidence = &v
+	return s
+}
+
+// SetFaceId sets the FaceId field's value.
+func (s *UnsuccessfulFaceAssociation) SetFaceId(v string) *UnsuccessfulFaceAssociation {
+	s.FaceId = &v
+	return s
+}
+
+// SetReasons sets the Reasons field's value.
+func (s *UnsuccessfulFaceAssociation) SetReasons(v []*string) *UnsuccessfulFaceAssociation {
+	s.Reasons = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UnsuccessfulFaceAssociation) SetUserId(v string) *UnsuccessfulFaceAssociation {
+	s.UserId = &v
+	return s
+}
+
+// Contains metadata like FaceId, UserID, and Reasons, for a face that was unsuccessfully
+// deleted.
+type UnsuccessfulFaceDeletion struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier assigned to the face.
+	FaceId *string `type:"string"`
+
+	// The reason why the deletion was unsuccessful.
+	Reasons []*string `type:"list" enum:"UnsuccessfulFaceDeletionReason"`
+
+	// A provided ID for the UserID. Unique within the collection.
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsuccessfulFaceDeletion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsuccessfulFaceDeletion) GoString() string {
+	return s.String()
+}
+
+// SetFaceId sets the FaceId field's value.
+func (s *UnsuccessfulFaceDeletion) SetFaceId(v string) *UnsuccessfulFaceDeletion {
+	s.FaceId = &v
+	return s
+}
+
+// SetReasons sets the Reasons field's value.
+func (s *UnsuccessfulFaceDeletion) SetReasons(v []*string) *UnsuccessfulFaceDeletion {
+	s.Reasons = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UnsuccessfulFaceDeletion) SetUserId(v string) *UnsuccessfulFaceDeletion {
+	s.UserId = &v
+	return s
+}
+
+// Contains metadata like FaceId, UserID, and Reasons, for a face that was unsuccessfully
+// disassociated.
+type UnsuccessfulFaceDisassociation struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier assigned to the face.
+	FaceId *string `type:"string"`
+
+	// The reason why the deletion was unsuccessful.
+	Reasons []*string `type:"list" enum:"UnsuccessfulFaceDisassociationReason"`
+
+	// A provided ID for the UserID. Unique within the collection.
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsuccessfulFaceDisassociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsuccessfulFaceDisassociation) GoString() string {
+	return s.String()
+}
+
+// SetFaceId sets the FaceId field's value.
+func (s *UnsuccessfulFaceDisassociation) SetFaceId(v string) *UnsuccessfulFaceDisassociation {
+	s.FaceId = &v
+	return s
+}
+
+// SetReasons sets the Reasons field's value.
+func (s *UnsuccessfulFaceDisassociation) SetReasons(v []*string) *UnsuccessfulFaceDisassociation {
+	s.Reasons = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UnsuccessfulFaceDisassociation) SetUserId(v string) *UnsuccessfulFaceDisassociation {
+	s.UserId = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25715,6 +28095,90 @@ func (s UpdateStreamProcessorOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateStreamProcessorOutput) GoString() string {
 	return s.String()
+}
+
+// Metadata of the user stored in a collection.
+type User struct {
+	_ struct{} `type:"structure"`
+
+	// A provided ID for the User. Unique within the collection.
+	UserId *string `min:"1" type:"string"`
+
+	// Communicates if the UserID has been updated with latest set of faces to be
+	// associated with the UserID.
+	UserStatus *string `type:"string" enum:"UserStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s User) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s User) GoString() string {
+	return s.String()
+}
+
+// SetUserId sets the UserId field's value.
+func (s *User) SetUserId(v string) *User {
+	s.UserId = &v
+	return s
+}
+
+// SetUserStatus sets the UserStatus field's value.
+func (s *User) SetUserStatus(v string) *User {
+	s.UserStatus = &v
+	return s
+}
+
+// Provides UserID metadata along with the confidence in the match of this UserID
+// with the input face.
+type UserMatch struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the UserID metadata.
+	Similarity *float64 `type:"float"`
+
+	// Confidence in the match of this UserID with the input face.
+	User *MatchedUser `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserMatch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserMatch) GoString() string {
+	return s.String()
+}
+
+// SetSimilarity sets the Similarity field's value.
+func (s *UserMatch) SetSimilarity(v float64) *UserMatch {
+	s.Similarity = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *UserMatch) SetUser(v *MatchedUser) *UserMatch {
+	s.User = v
+	return s
 }
 
 // Contains the Amazon S3 bucket location of the validation data for a model
@@ -26834,6 +29298,122 @@ func TextTypes_Values() []string {
 	return []string{
 		TextTypesLine,
 		TextTypesWord,
+	}
+}
+
+const (
+	// UnsearchedFaceReasonFaceNotLargest is a UnsearchedFaceReason enum value
+	UnsearchedFaceReasonFaceNotLargest = "FACE_NOT_LARGEST"
+
+	// UnsearchedFaceReasonExceedsMaxFaces is a UnsearchedFaceReason enum value
+	UnsearchedFaceReasonExceedsMaxFaces = "EXCEEDS_MAX_FACES"
+
+	// UnsearchedFaceReasonExtremePose is a UnsearchedFaceReason enum value
+	UnsearchedFaceReasonExtremePose = "EXTREME_POSE"
+
+	// UnsearchedFaceReasonLowBrightness is a UnsearchedFaceReason enum value
+	UnsearchedFaceReasonLowBrightness = "LOW_BRIGHTNESS"
+
+	// UnsearchedFaceReasonLowSharpness is a UnsearchedFaceReason enum value
+	UnsearchedFaceReasonLowSharpness = "LOW_SHARPNESS"
+
+	// UnsearchedFaceReasonLowConfidence is a UnsearchedFaceReason enum value
+	UnsearchedFaceReasonLowConfidence = "LOW_CONFIDENCE"
+
+	// UnsearchedFaceReasonSmallBoundingBox is a UnsearchedFaceReason enum value
+	UnsearchedFaceReasonSmallBoundingBox = "SMALL_BOUNDING_BOX"
+
+	// UnsearchedFaceReasonLowFaceQuality is a UnsearchedFaceReason enum value
+	UnsearchedFaceReasonLowFaceQuality = "LOW_FACE_QUALITY"
+)
+
+// UnsearchedFaceReason_Values returns all elements of the UnsearchedFaceReason enum
+func UnsearchedFaceReason_Values() []string {
+	return []string{
+		UnsearchedFaceReasonFaceNotLargest,
+		UnsearchedFaceReasonExceedsMaxFaces,
+		UnsearchedFaceReasonExtremePose,
+		UnsearchedFaceReasonLowBrightness,
+		UnsearchedFaceReasonLowSharpness,
+		UnsearchedFaceReasonLowConfidence,
+		UnsearchedFaceReasonSmallBoundingBox,
+		UnsearchedFaceReasonLowFaceQuality,
+	}
+}
+
+const (
+	// UnsuccessfulFaceAssociationReasonFaceNotFound is a UnsuccessfulFaceAssociationReason enum value
+	UnsuccessfulFaceAssociationReasonFaceNotFound = "FACE_NOT_FOUND"
+
+	// UnsuccessfulFaceAssociationReasonAssociatedToADifferentUser is a UnsuccessfulFaceAssociationReason enum value
+	UnsuccessfulFaceAssociationReasonAssociatedToADifferentUser = "ASSOCIATED_TO_A_DIFFERENT_USER"
+
+	// UnsuccessfulFaceAssociationReasonLowMatchConfidence is a UnsuccessfulFaceAssociationReason enum value
+	UnsuccessfulFaceAssociationReasonLowMatchConfidence = "LOW_MATCH_CONFIDENCE"
+)
+
+// UnsuccessfulFaceAssociationReason_Values returns all elements of the UnsuccessfulFaceAssociationReason enum
+func UnsuccessfulFaceAssociationReason_Values() []string {
+	return []string{
+		UnsuccessfulFaceAssociationReasonFaceNotFound,
+		UnsuccessfulFaceAssociationReasonAssociatedToADifferentUser,
+		UnsuccessfulFaceAssociationReasonLowMatchConfidence,
+	}
+}
+
+const (
+	// UnsuccessfulFaceDeletionReasonAssociatedToAnExistingUser is a UnsuccessfulFaceDeletionReason enum value
+	UnsuccessfulFaceDeletionReasonAssociatedToAnExistingUser = "ASSOCIATED_TO_AN_EXISTING_USER"
+
+	// UnsuccessfulFaceDeletionReasonFaceNotFound is a UnsuccessfulFaceDeletionReason enum value
+	UnsuccessfulFaceDeletionReasonFaceNotFound = "FACE_NOT_FOUND"
+)
+
+// UnsuccessfulFaceDeletionReason_Values returns all elements of the UnsuccessfulFaceDeletionReason enum
+func UnsuccessfulFaceDeletionReason_Values() []string {
+	return []string{
+		UnsuccessfulFaceDeletionReasonAssociatedToAnExistingUser,
+		UnsuccessfulFaceDeletionReasonFaceNotFound,
+	}
+}
+
+const (
+	// UnsuccessfulFaceDisassociationReasonFaceNotFound is a UnsuccessfulFaceDisassociationReason enum value
+	UnsuccessfulFaceDisassociationReasonFaceNotFound = "FACE_NOT_FOUND"
+
+	// UnsuccessfulFaceDisassociationReasonAssociatedToADifferentUser is a UnsuccessfulFaceDisassociationReason enum value
+	UnsuccessfulFaceDisassociationReasonAssociatedToADifferentUser = "ASSOCIATED_TO_A_DIFFERENT_USER"
+)
+
+// UnsuccessfulFaceDisassociationReason_Values returns all elements of the UnsuccessfulFaceDisassociationReason enum
+func UnsuccessfulFaceDisassociationReason_Values() []string {
+	return []string{
+		UnsuccessfulFaceDisassociationReasonFaceNotFound,
+		UnsuccessfulFaceDisassociationReasonAssociatedToADifferentUser,
+	}
+}
+
+const (
+	// UserStatusActive is a UserStatus enum value
+	UserStatusActive = "ACTIVE"
+
+	// UserStatusUpdating is a UserStatus enum value
+	UserStatusUpdating = "UPDATING"
+
+	// UserStatusCreating is a UserStatus enum value
+	UserStatusCreating = "CREATING"
+
+	// UserStatusCreated is a UserStatus enum value
+	UserStatusCreated = "CREATED"
+)
+
+// UserStatus_Values returns all elements of the UserStatus enum
+func UserStatus_Values() []string {
+	return []string{
+		UserStatusActive,
+		UserStatusUpdating,
+		UserStatusCreating,
+		UserStatusCreated,
 	}
 }
 

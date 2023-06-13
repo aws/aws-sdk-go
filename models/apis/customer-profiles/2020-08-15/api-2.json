@@ -61,6 +61,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateEventStream":{
+      "name":"CreateEventStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/event-streams/{EventStreamName}"
+      },
+      "input":{"shape":"CreateEventStreamRequest"},
+      "output":{"shape":"CreateEventStreamResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateIntegrationWorkflow":{
       "name":"CreateIntegrationWorkflow",
       "http":{
@@ -124,6 +140,23 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "DeleteEventStream":{
+      "name":"DeleteEventStream",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/domains/{DomainName}/event-streams/{EventStreamName}"
+      },
+      "input":{"shape":"DeleteEventStreamRequest"},
+      "output":{"shape":"DeleteEventStreamResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "DeleteIntegration":{
       "name":"DeleteIntegration",
@@ -277,6 +310,22 @@
       },
       "input":{"shape":"GetDomainRequest"},
       "output":{"shape":"GetDomainResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetEventStream":{
+      "name":"GetEventStream",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/event-streams/{EventStreamName}"
+      },
+      "input":{"shape":"GetEventStreamRequest"},
+      "output":{"shape":"GetEventStreamResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
@@ -453,6 +502,22 @@
       },
       "input":{"shape":"ListDomainsRequest"},
       "output":{"shape":"ListDomainsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListEventStreams":{
+      "name":"ListEventStreams",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/event-streams"
+      },
+      "input":{"shape":"ListEventStreamsRequest"},
+      "output":{"shape":"ListEventStreamsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
@@ -1060,6 +1125,36 @@
         "Tags":{"shape":"TagMap"}
       }
     },
+    "CreateEventStreamRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Uri",
+        "EventStreamName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Uri":{"shape":"string1To255"},
+        "EventStreamName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"EventStreamName"
+        },
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateEventStreamResponse":{
+      "type":"structure",
+      "required":["EventStreamArn"],
+      "members":{
+        "EventStreamArn":{"shape":"string1To255"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
     "CreateIntegrationWorkflowRequest":{
       "type":"structure",
       "required":[
@@ -1187,6 +1282,30 @@
       "required":["Message"],
       "members":{
         "Message":{"shape":"message"}
+      }
+    },
+    "DeleteEventStreamRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "EventStreamName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "EventStreamName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"EventStreamName"
+        }
+      }
+    },
+    "DeleteEventStreamResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteIntegrationRequest":{
@@ -1337,6 +1456,18 @@
       "max":256,
       "pattern":".*"
     },
+    "DestinationSummary":{
+      "type":"structure",
+      "required":[
+        "Uri",
+        "Status"
+      ],
+      "members":{
+        "Uri":{"shape":"string1To255"},
+        "Status":{"shape":"EventStreamDestinationStatus"},
+        "UnhealthySince":{"shape":"timestamp"}
+      }
+    },
     "DomainList":{
       "type":"list",
       "member":{"shape":"ListDomainItem"}
@@ -1355,6 +1486,55 @@
       "type":"double",
       "max":1.0,
       "min":0.0
+    },
+    "EventStreamDestinationDetails":{
+      "type":"structure",
+      "required":[
+        "Uri",
+        "Status"
+      ],
+      "members":{
+        "Uri":{"shape":"string1To255"},
+        "Status":{"shape":"EventStreamDestinationStatus"},
+        "UnhealthySince":{"shape":"timestamp"},
+        "Message":{"shape":"string1To1000"}
+      }
+    },
+    "EventStreamDestinationStatus":{
+      "type":"string",
+      "enum":[
+        "HEALTHY",
+        "UNHEALTHY"
+      ]
+    },
+    "EventStreamState":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "STOPPED"
+      ]
+    },
+    "EventStreamSummary":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "EventStreamName",
+        "EventStreamArn",
+        "State"
+      ],
+      "members":{
+        "DomainName":{"shape":"name"},
+        "EventStreamName":{"shape":"name"},
+        "EventStreamArn":{"shape":"string1To255"},
+        "State":{"shape":"EventStreamState"},
+        "StoppedSince":{"shape":"timestamp"},
+        "DestinationSummary":{"shape":"DestinationSummary"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "EventStreamSummaryList":{
+      "type":"list",
+      "member":{"shape":"EventStreamSummary"}
     },
     "ExportingConfig":{
       "type":"structure",
@@ -1579,6 +1759,44 @@
         "Matching":{"shape":"MatchingResponse"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "GetEventStreamRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "EventStreamName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "EventStreamName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"EventStreamName"
+        }
+      }
+    },
+    "GetEventStreamResponse":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "EventStreamArn",
+        "CreatedAt",
+        "State",
+        "DestinationDetails"
+      ],
+      "members":{
+        "DomainName":{"shape":"name"},
+        "EventStreamArn":{"shape":"string1To255"},
+        "CreatedAt":{"shape":"timestamp"},
+        "State":{"shape":"EventStreamState"},
+        "StoppedSince":{"shape":"timestamp"},
+        "DestinationDetails":{"shape":"EventStreamDestinationDetails"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -2063,6 +2281,34 @@
       "type":"structure",
       "members":{
         "Items":{"shape":"DomainList"},
+        "NextToken":{"shape":"token"}
+      }
+    },
+    "ListEventStreamsRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListEventStreamsResponse":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"EventStreamSummaryList"},
         "NextToken":{"shape":"token"}
       }
     },

@@ -8065,7 +8065,14 @@ func (s *ConflictException) RequestID() string {
 type ConnectionProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The endpoint of the remote domain.
+	// The connection properties for cross cluster search.
+	CrossClusterSearch *CrossClusterSearchConnectionProperties `type:"structure"`
+
+	//
+	// The Endpoint attribute cannot be modified.
+	//
+	// The endpoint of the remote domain. Applicable for VPC_ENDPOINT connection
+	// mode.
 	Endpoint *string `type:"string"`
 }
 
@@ -8085,6 +8092,12 @@ func (s ConnectionProperties) String() string {
 // value will be replaced with "sensitive".
 func (s ConnectionProperties) GoString() string {
 	return s.String()
+}
+
+// SetCrossClusterSearch sets the CrossClusterSearch field's value.
+func (s *ConnectionProperties) SetCrossClusterSearch(v *CrossClusterSearchConnectionProperties) *ConnectionProperties {
+	s.CrossClusterSearch = v
+	return s
 }
 
 // SetEndpoint sets the Endpoint field's value.
@@ -8438,6 +8451,9 @@ type CreateOutboundConnectionInput struct {
 	// The connection mode.
 	ConnectionMode *string `type:"string" enum:"ConnectionMode"`
 
+	// The ConnectionProperties for the outbound connection.
+	ConnectionProperties *ConnectionProperties `type:"structure"`
+
 	// Name and Region of the source (local) domain.
 	//
 	// LocalDomainInfo is a required field
@@ -8508,6 +8524,12 @@ func (s *CreateOutboundConnectionInput) SetConnectionAlias(v string) *CreateOutb
 // SetConnectionMode sets the ConnectionMode field's value.
 func (s *CreateOutboundConnectionInput) SetConnectionMode(v string) *CreateOutboundConnectionInput {
 	s.ConnectionMode = &v
+	return s
+}
+
+// SetConnectionProperties sets the ConnectionProperties field's value.
+func (s *CreateOutboundConnectionInput) SetConnectionProperties(v *ConnectionProperties) *CreateOutboundConnectionInput {
+	s.ConnectionProperties = v
 	return s
 }
 
@@ -8840,6 +8862,38 @@ func (s CreateVpcEndpointOutput) GoString() string {
 // SetVpcEndpoint sets the VpcEndpoint field's value.
 func (s *CreateVpcEndpointOutput) SetVpcEndpoint(v *VpcEndpoint) *CreateVpcEndpointOutput {
 	s.VpcEndpoint = v
+	return s
+}
+
+// Cross cluster search specific connection properties.
+type CrossClusterSearchConnectionProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Status of SkipUnavailable param for outbound connection.
+	SkipUnavailable *string `type:"string" enum:"SkipUnavailableStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrossClusterSearchConnectionProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrossClusterSearchConnectionProperties) GoString() string {
+	return s.String()
+}
+
+// SetSkipUnavailable sets the SkipUnavailable field's value.
+func (s *CrossClusterSearchConnectionProperties) SetSkipUnavailable(v string) *CrossClusterSearchConnectionProperties {
+	s.SkipUnavailable = &v
 	return s
 }
 
@@ -10565,7 +10619,7 @@ type DescribePackagesFilter struct {
 	Name *string `type:"string" enum:"DescribePackagesFilterName"`
 
 	// A non-empty list of values for the specified filter field.
-	Value []*string `min:"1" type:"list"`
+	Value []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -10584,19 +10638,6 @@ func (s DescribePackagesFilter) String() string {
 // value will be replaced with "sensitive".
 func (s DescribePackagesFilter) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *DescribePackagesFilter) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "DescribePackagesFilter"}
-	if s.Value != nil && len(s.Value) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetName sets the Name field's value.
@@ -10644,26 +10685,6 @@ func (s DescribePackagesInput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribePackagesInput) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *DescribePackagesInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "DescribePackagesInput"}
-	if s.Filters != nil {
-		for i, v := range s.Filters {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
-			}
-		}
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetFilters sets the Filters field's value.
@@ -20120,6 +20141,27 @@ func ScheduledBy_Values() []string {
 	return []string{
 		ScheduledByCustomer,
 		ScheduledBySystem,
+	}
+}
+
+// Status of SkipUnavailable param for outbound connection.
+//
+//   - ENABLED - The SkipUnavailable param is enabled for the connection.
+//
+//   - DISABLED - The SkipUnavailable param is disabled for the connection.
+const (
+	// SkipUnavailableStatusEnabled is a SkipUnavailableStatus enum value
+	SkipUnavailableStatusEnabled = "ENABLED"
+
+	// SkipUnavailableStatusDisabled is a SkipUnavailableStatus enum value
+	SkipUnavailableStatusDisabled = "DISABLED"
+)
+
+// SkipUnavailableStatus_Values returns all elements of the SkipUnavailableStatus enum
+func SkipUnavailableStatus_Values() []string {
+	return []string{
+		SkipUnavailableStatusEnabled,
+		SkipUnavailableStatusDisabled,
 	}
 }
 

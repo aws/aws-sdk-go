@@ -14767,6 +14767,303 @@ func (c *Connect) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opSearchHoursOfOperations = "SearchHoursOfOperations"
+
+// SearchHoursOfOperationsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchHoursOfOperations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchHoursOfOperations for more information on using the SearchHoursOfOperations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchHoursOfOperationsRequest method.
+//	req, resp := client.SearchHoursOfOperationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchHoursOfOperations
+func (c *Connect) SearchHoursOfOperationsRequest(input *SearchHoursOfOperationsInput) (req *request.Request, output *SearchHoursOfOperationsOutput) {
+	op := &request.Operation{
+		Name:       opSearchHoursOfOperations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-hours-of-operations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchHoursOfOperationsInput{}
+	}
+
+	output = &SearchHoursOfOperationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchHoursOfOperations API operation for Amazon Connect Service.
+//
+// Searches the hours of operation in an Amazon Connect instance, with optional
+// filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchHoursOfOperations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchHoursOfOperations
+func (c *Connect) SearchHoursOfOperations(input *SearchHoursOfOperationsInput) (*SearchHoursOfOperationsOutput, error) {
+	req, out := c.SearchHoursOfOperationsRequest(input)
+	return out, req.Send()
+}
+
+// SearchHoursOfOperationsWithContext is the same as SearchHoursOfOperations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchHoursOfOperations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchHoursOfOperationsWithContext(ctx aws.Context, input *SearchHoursOfOperationsInput, opts ...request.Option) (*SearchHoursOfOperationsOutput, error) {
+	req, out := c.SearchHoursOfOperationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchHoursOfOperationsPages iterates over the pages of a SearchHoursOfOperations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchHoursOfOperations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchHoursOfOperations operation.
+//	pageNum := 0
+//	err := client.SearchHoursOfOperationsPages(params,
+//	    func(page *connect.SearchHoursOfOperationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchHoursOfOperationsPages(input *SearchHoursOfOperationsInput, fn func(*SearchHoursOfOperationsOutput, bool) bool) error {
+	return c.SearchHoursOfOperationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchHoursOfOperationsPagesWithContext same as SearchHoursOfOperationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchHoursOfOperationsPagesWithContext(ctx aws.Context, input *SearchHoursOfOperationsInput, fn func(*SearchHoursOfOperationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchHoursOfOperationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchHoursOfOperationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchHoursOfOperationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSearchPrompts = "SearchPrompts"
+
+// SearchPromptsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchPrompts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchPrompts for more information on using the SearchPrompts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchPromptsRequest method.
+//	req, resp := client.SearchPromptsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchPrompts
+func (c *Connect) SearchPromptsRequest(input *SearchPromptsInput) (req *request.Request, output *SearchPromptsOutput) {
+	op := &request.Operation{
+		Name:       opSearchPrompts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-prompts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchPromptsInput{}
+	}
+
+	output = &SearchPromptsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchPrompts API operation for Amazon Connect Service.
+//
+// Searches prompts in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchPrompts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchPrompts
+func (c *Connect) SearchPrompts(input *SearchPromptsInput) (*SearchPromptsOutput, error) {
+	req, out := c.SearchPromptsRequest(input)
+	return out, req.Send()
+}
+
+// SearchPromptsWithContext is the same as SearchPrompts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchPrompts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchPromptsWithContext(ctx aws.Context, input *SearchPromptsInput, opts ...request.Option) (*SearchPromptsOutput, error) {
+	req, out := c.SearchPromptsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchPromptsPages iterates over the pages of a SearchPrompts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchPrompts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchPrompts operation.
+//	pageNum := 0
+//	err := client.SearchPromptsPages(params,
+//	    func(page *connect.SearchPromptsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchPromptsPages(input *SearchPromptsInput, fn func(*SearchPromptsOutput, bool) bool) error {
+	return c.SearchPromptsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchPromptsPagesWithContext same as SearchPromptsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchPromptsPagesWithContext(ctx aws.Context, input *SearchPromptsInput, fn func(*SearchPromptsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchPromptsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchPromptsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchPromptsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchQueues = "SearchQueues"
 
 // SearchQueuesRequest generates a "aws/request.Request" representing the
@@ -14910,6 +15207,154 @@ func (c *Connect) SearchQueuesPagesWithContext(ctx aws.Context, input *SearchQue
 
 	for p.Next() {
 		if !fn(p.Page().(*SearchQueuesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSearchQuickConnects = "SearchQuickConnects"
+
+// SearchQuickConnectsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchQuickConnects operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchQuickConnects for more information on using the SearchQuickConnects
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchQuickConnectsRequest method.
+//	req, resp := client.SearchQuickConnectsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchQuickConnects
+func (c *Connect) SearchQuickConnectsRequest(input *SearchQuickConnectsInput) (req *request.Request, output *SearchQuickConnectsOutput) {
+	op := &request.Operation{
+		Name:       opSearchQuickConnects,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-quick-connects",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchQuickConnectsInput{}
+	}
+
+	output = &SearchQuickConnectsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchQuickConnects API operation for Amazon Connect Service.
+//
+// Searches quick connects in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchQuickConnects for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchQuickConnects
+func (c *Connect) SearchQuickConnects(input *SearchQuickConnectsInput) (*SearchQuickConnectsOutput, error) {
+	req, out := c.SearchQuickConnectsRequest(input)
+	return out, req.Send()
+}
+
+// SearchQuickConnectsWithContext is the same as SearchQuickConnects with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchQuickConnects for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchQuickConnectsWithContext(ctx aws.Context, input *SearchQuickConnectsInput, opts ...request.Option) (*SearchQuickConnectsOutput, error) {
+	req, out := c.SearchQuickConnectsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchQuickConnectsPages iterates over the pages of a SearchQuickConnects operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchQuickConnects method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchQuickConnects operation.
+//	pageNum := 0
+//	err := client.SearchQuickConnectsPages(params,
+//	    func(page *connect.SearchQuickConnectsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchQuickConnectsPages(input *SearchQuickConnectsInput, fn func(*SearchQuickConnectsOutput, bool) bool) error {
+	return c.SearchQuickConnectsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchQuickConnectsPagesWithContext same as SearchQuickConnectsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchQuickConnectsPagesWithContext(ctx aws.Context, input *SearchQuickConnectsInput, fn func(*SearchQuickConnectsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchQuickConnectsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchQuickConnectsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchQuickConnectsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -37672,6 +38117,97 @@ func (s *HoursOfOperationConfig) SetStartTime(v *HoursOfOperationTimeSlice) *Hou
 	return s
 }
 
+// The search criteria to be used to return hours of operations.
+type HoursOfOperationSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*HoursOfOperationSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*HoursOfOperationSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name, description, timezone,
+	// and resourceID.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HoursOfOperationSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HoursOfOperationSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *HoursOfOperationSearchCriteria) SetAndConditions(v []*HoursOfOperationSearchCriteria) *HoursOfOperationSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *HoursOfOperationSearchCriteria) SetOrConditions(v []*HoursOfOperationSearchCriteria) *HoursOfOperationSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *HoursOfOperationSearchCriteria) SetStringCondition(v *StringCondition) *HoursOfOperationSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Filters to be applied to search results.
+type HoursOfOperationSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HoursOfOperationSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HoursOfOperationSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *HoursOfOperationSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *HoursOfOperationSearchFilter {
+	s.TagFilter = v
+	return s
+}
+
 // Contains summary information about hours of operation for a contact center.
 type HoursOfOperationSummary struct {
 	_ struct{} `type:"structure"`
@@ -44714,7 +45250,7 @@ func (s *ProblemDetail) SetMessage(v string) *ProblemDetail {
 type Prompt struct {
 	_ struct{} `type:"structure"`
 
-	// A description for the prompt.
+	// The description of the prompt.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the prompt.
@@ -44776,6 +45312,96 @@ func (s *Prompt) SetPromptId(v string) *Prompt {
 // SetTags sets the Tags field's value.
 func (s *Prompt) SetTags(v map[string]*string) *Prompt {
 	s.Tags = v
+	return s
+}
+
+// The search criteria to be used to return prompts.
+type PromptSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*PromptSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*PromptSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name, description, and resourceID.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *PromptSearchCriteria) SetAndConditions(v []*PromptSearchCriteria) *PromptSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *PromptSearchCriteria) SetOrConditions(v []*PromptSearchCriteria) *PromptSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *PromptSearchCriteria) SetStringCondition(v *StringCondition) *PromptSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Filters to be applied to search results.
+type PromptSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *PromptSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *PromptSearchFilter {
+	s.TagFilter = v
 	return s
 }
 
@@ -45324,7 +45950,7 @@ type QueueSearchCriteria struct {
 
 	// A leaf node condition which can be used to specify a string condition.
 	//
-	// The currently supported value for FieldName: name
+	// The currently supported values for FieldName are name, description, and resourceID.
 	StringCondition *StringCondition `type:"structure"`
 }
 
@@ -45633,6 +46259,96 @@ func (s *QuickConnectConfig) SetQuickConnectType(v string) *QuickConnectConfig {
 // SetUserConfig sets the UserConfig field's value.
 func (s *QuickConnectConfig) SetUserConfig(v *UserQuickConnectConfig) *QuickConnectConfig {
 	s.UserConfig = v
+	return s
+}
+
+// The search criteria to be used to return quick connects.
+type QuickConnectSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*QuickConnectSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*QuickConnectSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name, description, and resourceID.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuickConnectSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuickConnectSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *QuickConnectSearchCriteria) SetAndConditions(v []*QuickConnectSearchCriteria) *QuickConnectSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *QuickConnectSearchCriteria) SetOrConditions(v []*QuickConnectSearchCriteria) *QuickConnectSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *QuickConnectSearchCriteria) SetStringCondition(v *StringCondition) *QuickConnectSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Filters to be applied to search results.
+type QuickConnectSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuickConnectSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuickConnectSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *QuickConnectSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *QuickConnectSearchFilter {
+	s.TagFilter = v
 	return s
 }
 
@@ -46954,7 +47670,7 @@ type RoutingProfileSearchCriteria struct {
 
 	// A leaf node condition which can be used to specify a string condition.
 	//
-	// The currently supported value for FieldName: name
+	// The currently supported values for FieldName are name, description, and resourceID.
 	StringCondition *StringCondition `type:"structure"`
 }
 
@@ -47729,6 +48445,292 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 	return s
 }
 
+type SearchHoursOfOperationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return hours of operations.
+	SearchCriteria *HoursOfOperationSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *HoursOfOperationSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchHoursOfOperationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchHoursOfOperationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchHoursOfOperationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchHoursOfOperationsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchHoursOfOperationsInput) SetInstanceId(v string) *SearchHoursOfOperationsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchHoursOfOperationsInput) SetMaxResults(v int64) *SearchHoursOfOperationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchHoursOfOperationsInput) SetNextToken(v string) *SearchHoursOfOperationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchHoursOfOperationsInput) SetSearchCriteria(v *HoursOfOperationSearchCriteria) *SearchHoursOfOperationsInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchHoursOfOperationsInput) SetSearchFilter(v *HoursOfOperationSearchFilter) *SearchHoursOfOperationsInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchHoursOfOperationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of hours of operations which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// Information about the hours of operations.
+	HoursOfOperations []*HoursOfOperation `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchHoursOfOperationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchHoursOfOperationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchHoursOfOperationsOutput) SetApproximateTotalCount(v int64) *SearchHoursOfOperationsOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetHoursOfOperations sets the HoursOfOperations field's value.
+func (s *SearchHoursOfOperationsOutput) SetHoursOfOperations(v []*HoursOfOperation) *SearchHoursOfOperationsOutput {
+	s.HoursOfOperations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchHoursOfOperationsOutput) SetNextToken(v string) *SearchHoursOfOperationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchPromptsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return prompts.
+	SearchCriteria *PromptSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *PromptSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPromptsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPromptsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchPromptsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchPromptsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchPromptsInput) SetInstanceId(v string) *SearchPromptsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchPromptsInput) SetMaxResults(v int64) *SearchPromptsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchPromptsInput) SetNextToken(v string) *SearchPromptsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchPromptsInput) SetSearchCriteria(v *PromptSearchCriteria) *SearchPromptsInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchPromptsInput) SetSearchFilter(v *PromptSearchFilter) *SearchPromptsInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchPromptsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of quick connects which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the prompts.
+	Prompts []*Prompt `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPromptsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPromptsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchPromptsOutput) SetApproximateTotalCount(v int64) *SearchPromptsOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchPromptsOutput) SetNextToken(v string) *SearchPromptsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrompts sets the Prompts field's value.
+func (s *SearchPromptsOutput) SetPrompts(v []*Prompt) *SearchPromptsOutput {
+	s.Prompts = v
+	return s
+}
+
 type SearchQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -47873,6 +48875,149 @@ func (s *SearchQueuesOutput) SetNextToken(v string) *SearchQueuesOutput {
 // SetQueues sets the Queues field's value.
 func (s *SearchQueuesOutput) SetQueues(v []*Queue) *SearchQueuesOutput {
 	s.Queues = v
+	return s
+}
+
+type SearchQuickConnectsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return quick connects.
+	SearchCriteria *QuickConnectSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *QuickConnectSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchQuickConnectsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchQuickConnectsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchQuickConnectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchQuickConnectsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchQuickConnectsInput) SetInstanceId(v string) *SearchQuickConnectsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchQuickConnectsInput) SetMaxResults(v int64) *SearchQuickConnectsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchQuickConnectsInput) SetNextToken(v string) *SearchQuickConnectsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchQuickConnectsInput) SetSearchCriteria(v *QuickConnectSearchCriteria) *SearchQuickConnectsInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchQuickConnectsInput) SetSearchFilter(v *QuickConnectSearchFilter) *SearchQuickConnectsInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchQuickConnectsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of quick connects which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the quick connects.
+	QuickConnects []*QuickConnect `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchQuickConnectsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchQuickConnectsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchQuickConnectsOutput) SetApproximateTotalCount(v int64) *SearchQuickConnectsOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchQuickConnectsOutput) SetNextToken(v string) *SearchQuickConnectsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQuickConnects sets the QuickConnects field's value.
+func (s *SearchQuickConnectsOutput) SetQuickConnects(v []*QuickConnect) *SearchQuickConnectsOutput {
+	s.QuickConnects = v
 	return s
 }
 
@@ -48625,8 +49770,6 @@ type SecurityProfileSearchCriteria struct {
 	OrConditions []*SecurityProfileSearchCriteria `type:"list"`
 
 	// A leaf node condition which can be used to specify a string condition.
-	//
-	// The currently supported value for FieldName: name
 	StringCondition *StringCondition `type:"structure"`
 }
 
@@ -50472,8 +51615,6 @@ func (s StopContactStreamingOutput) GoString() string {
 }
 
 // A leaf node condition which can be used to specify a string condition.
-//
-// The currently supported value for FieldName: name
 type StringCondition struct {
 	_ struct{} `type:"structure"`
 
@@ -57700,6 +58841,8 @@ type UserSearchCriteria struct {
 	OrConditions []*UserSearchCriteria `type:"list"`
 
 	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name, description, and resourceID.
 	StringCondition *StringCondition `type:"structure"`
 }
 

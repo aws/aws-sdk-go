@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<fullname>Amazon Timestream Write</fullname> <p>Amazon Timestream is a fast, scalable, fully managed time-series database service that makes it easy to store and analyze trillions of time-series data points per day. With Timestream, you can easily store and analyze IoT sensor data to derive insights from your IoT applications. You can analyze industrial telemetry to streamline equipment management and maintenance. You can also store and analyze log data and metrics to improve the performance and availability of your applications. </p> <p>Timestream is built from the ground up to effectively ingest, process, and store time-series data. It organizes data to optimize query processing. It automatically scales based on the volume of data ingested and on the query volume to ensure you receive optimal performance while inserting and querying data. As your data grows over time, Timestream’s adaptive query processing engine spans across storage tiers to provide fast analysis while reducing costs.</p>",
   "operations": {
-    "CreateBatchLoadTask": "<p>Creates a new Timestream batch load task. A batch load task processes data from a CSV source in an S3 location and writes to a Timestream table. A mapping from source to target is defined in a batch load task. Errors and events are written to a report at an S3 location. For the report, if the KMS key is not specified, the batch load task will be encrypted with a Timestream managed KMS key located in your account. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed keys</a>. <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Service quotas apply</a>. For details, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-batch-load.html\">code sample</a>.</p>",
+    "CreateBatchLoadTask": "<p>Creates a new Timestream batch load task. A batch load task processes data from a CSV source in an S3 location and writes to a Timestream table. A mapping from source to target is defined in a batch load task. Errors and events are written to a report at an S3 location. For the report, if the KMS key is not specified, the report will be encrypted with an S3 managed key when <code>SSE_S3</code> is the option. Otherwise an error is thrown. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed keys</a>. <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Service quotas apply</a>. For details, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-batch-load.html\">code sample</a>.</p>",
     "CreateDatabase": "<p>Creates a new Timestream database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed keys</a>. <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Service quotas apply</a>. For details, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-db.html\">code sample</a>. </p>",
     "CreateTable": "<p>Adds a new table to an existing database in your account. In an Amazon Web Services account, table names must be at least unique within each Region if they are in the same database. You might have identical table names in the same Region if the tables are in separate databases. While creating the table, you must specify the table name, database name, and the retention properties. <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Service quotas apply</a>. See <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-table.html\">code sample</a> for details. </p>",
     "DeleteDatabase": "<p>Deletes a given Timestream database. <i>This is an irreversible operation. After a database is deleted, the time-series data from its tables cannot be recovered.</i> </p> <note> <p>All tables in the database must be deleted first, or a ValidationException error will be thrown. </p> <p>Due to the nature of distributed retries, the operation can return either success or a ResourceNotFoundException. Clients should consider them equivalent.</p> </note> <p>See <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.delete-db.html\">code sample</a> for details.</p>",
@@ -409,7 +409,7 @@
       "refs": {
         "MeasureValue$Type": "<p>Contains the data type of the MeasureValue for the time-series data point.</p>",
         "MixedMeasureMapping$MeasureValueType": "<p/>",
-        "Record$MeasureValueType": "<p> Contains the data type of the measure value for the time-series data point. Default type is <code>DOUBLE</code>. </p>"
+        "Record$MeasureValueType": "<p> Contains the data type of the measure value for the time-series data point. Default type is <code>DOUBLE</code>. For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/writes.html#writes.data-types\">Data types</a>.</p>"
       }
     },
     "MeasureValues": {
@@ -466,6 +466,30 @@
       "refs": {
         "ListDatabasesRequest$MaxResults": "<p>The total number of items to return in the output. If the total number of items available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as argument of a subsequent API invocation.</p>",
         "ListTablesRequest$MaxResults": "<p>The total number of items to return in the output. If the total number of items available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as argument of a subsequent API invocation.</p>"
+      }
+    },
+    "PartitionKey": {
+      "base": "<p> An attribute used in partitioning data in a table. A dimension key partitions data using the values of the dimension specified by the dimension-name as partition key, while a measure key partitions data using measure names (values of the 'measure_name' column). </p>",
+      "refs": {
+        "PartitionKeyList$member": null
+      }
+    },
+    "PartitionKeyEnforcementLevel": {
+      "base": null,
+      "refs": {
+        "PartitionKey$EnforcementInRecord": "<p> The level of enforcement for the specification of a dimension key in ingested records. Options are REQUIRED (dimension key must be specified) and OPTIONAL (dimension key does not have to be specified). </p>"
+      }
+    },
+    "PartitionKeyList": {
+      "base": null,
+      "refs": {
+        "Schema$CompositePartitionKey": "<p>A non-empty list of partition keys defining the attributes used to partition the table data. The order of the list determines the partition hierarchy. The name and type of each partition key as well as the partition key order cannot be changed after the table is created. However, the enforcement level of each partition key can be changed. </p>"
+      }
+    },
+    "PartitionKeyType": {
+      "base": null,
+      "refs": {
+        "PartitionKey$Type": "<p> The type of the partition key. Options are DIMENSION (dimension key) and MEASURE (measure key). </p>"
       }
     },
     "Record": {
@@ -631,6 +655,14 @@
         "MultiMeasureAttributeMapping$MeasureValueType": "<p/>"
       }
     },
+    "Schema": {
+      "base": "<p> A Schema specifies the expected data model of the table. </p>",
+      "refs": {
+        "CreateTableRequest$Schema": "<p> The schema of the table. </p>",
+        "Table$Schema": "<p> The schema of the table. </p>",
+        "UpdateTableRequest$Schema": "<p> The schema of the table. </p>"
+      }
+    },
     "SchemaName": {
       "base": null,
       "refs": {
@@ -644,6 +676,7 @@
         "MultiMeasureAttributeMapping$SourceColumn": "<p/>",
         "MultiMeasureAttributeMapping$TargetMultiMeasureAttributeName": "<p/>",
         "MultiMeasureMappings$TargetMultiMeasureName": "<p/>",
+        "PartitionKey$Name": "<p> The name of the attribute used for a dimension key. </p>",
         "Record$MeasureName": "<p>Measure represents the data attribute of the time series. For example, the CPU utilization of an EC2 instance or the RPM of a wind turbine are measures. </p>"
       }
     },
@@ -686,7 +719,7 @@
         "BatchLoadTaskDescription$ErrorMessage": "<p/>",
         "CreateDatabaseRequest$KmsKeyId": "<p>The KMS key for the database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed keys</a>.</p>",
         "Database$KmsKeyId": "<p>The identifier of the KMS key used to encrypt the data stored in the database.</p>",
-        "MeasureValue$Value": "<p> The value for the MeasureValue. </p>",
+        "MeasureValue$Value": "<p> The value for the MeasureValue. For information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/writes.html#writes.data-types\">Data types</a>.</p>",
         "Record$MeasureValue": "<p> Contains the measure value for the time-series data point. </p>",
         "ReportS3Configuration$KmsKeyId": "<p/>",
         "S3Configuration$KmsKeyId": "<p>The KMS key ID for the customer S3 location when encrypting with an Amazon Web Services managed key.</p>",

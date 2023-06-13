@@ -2388,6 +2388,73 @@ func (s *ContainerInfo) SetEksInfo(v *EksInfo) *ContainerInfo {
 	return s
 }
 
+// The settings for container log rotation.
+type ContainerLogRotationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of files to keep in container after rotation.
+	//
+	// MaxFilesToKeep is a required field
+	MaxFilesToKeep *int64 `locationName:"maxFilesToKeep" min:"1" type:"integer" required:"true"`
+
+	// The file size at which to rotate logs. Minimum of 2KB, Maximum of 2GB.
+	//
+	// RotationSize is a required field
+	RotationSize *string `locationName:"rotationSize" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerLogRotationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerLogRotationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerLogRotationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerLogRotationConfiguration"}
+	if s.MaxFilesToKeep == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxFilesToKeep"))
+	}
+	if s.MaxFilesToKeep != nil && *s.MaxFilesToKeep < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxFilesToKeep", 1))
+	}
+	if s.RotationSize == nil {
+		invalidParams.Add(request.NewErrParamRequired("RotationSize"))
+	}
+	if s.RotationSize != nil && len(*s.RotationSize) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("RotationSize", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxFilesToKeep sets the MaxFilesToKeep field's value.
+func (s *ContainerLogRotationConfiguration) SetMaxFilesToKeep(v int64) *ContainerLogRotationConfiguration {
+	s.MaxFilesToKeep = &v
+	return s
+}
+
+// SetRotationSize sets the RotationSize field's value.
+func (s *ContainerLogRotationConfiguration) SetRotationSize(v string) *ContainerLogRotationConfiguration {
+	s.RotationSize = &v
+	return s
+}
+
 // The information about the container provider.
 type ContainerProvider struct {
 	_ struct{} `type:"structure"`
@@ -5252,6 +5319,9 @@ type MonitoringConfiguration struct {
 	// Monitoring configurations for CloudWatch.
 	CloudWatchMonitoringConfiguration *CloudWatchMonitoringConfiguration `locationName:"cloudWatchMonitoringConfiguration" type:"structure"`
 
+	// Enable or disable container log rotation.
+	ContainerLogRotationConfiguration *ContainerLogRotationConfiguration `locationName:"containerLogRotationConfiguration" type:"structure"`
+
 	// Monitoring configurations for the persistent application UI.
 	PersistentAppUI *string `locationName:"persistentAppUI" type:"string" enum:"PersistentAppUI"`
 
@@ -5285,6 +5355,11 @@ func (s *MonitoringConfiguration) Validate() error {
 			invalidParams.AddNested("CloudWatchMonitoringConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ContainerLogRotationConfiguration != nil {
+		if err := s.ContainerLogRotationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ContainerLogRotationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3MonitoringConfiguration != nil {
 		if err := s.S3MonitoringConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("S3MonitoringConfiguration", err.(request.ErrInvalidParams))
@@ -5300,6 +5375,12 @@ func (s *MonitoringConfiguration) Validate() error {
 // SetCloudWatchMonitoringConfiguration sets the CloudWatchMonitoringConfiguration field's value.
 func (s *MonitoringConfiguration) SetCloudWatchMonitoringConfiguration(v *CloudWatchMonitoringConfiguration) *MonitoringConfiguration {
 	s.CloudWatchMonitoringConfiguration = v
+	return s
+}
+
+// SetContainerLogRotationConfiguration sets the ContainerLogRotationConfiguration field's value.
+func (s *MonitoringConfiguration) SetContainerLogRotationConfiguration(v *ContainerLogRotationConfiguration) *MonitoringConfiguration {
+	s.ContainerLogRotationConfiguration = v
 	return s
 }
 

@@ -1,3 +1,52 @@
+Release v1.44.281 (2023-06-12)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Updates service API, documentation, and paginators
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for DynamoDB
+* `service/fsx`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/rekognition`: Updates service API, documentation, paginators, and examples
+  * This release adds support for improved accuracy with user vector in Amazon Rekognition Face Search. Adds new APIs: AssociateFaces, CreateUser, DeleteUser, DisassociateFaces, ListUsers, SearchUsers, SearchUsersByImage. Also adds new face metadata that can be stored: user vector.
+* `service/sagemaker`: Updates service API and documentation
+  * Sagemaker Neo now supports compilation for inferentia2 (ML_INF2) and Trainium1 (ML_TRN1) as available targets. With these devices, you can run your workloads at highest performance with lowest cost. inferentia2 (ML_INF2) is available in CMH and Trainium1 (ML_TRN1) is available in IAD currently
+* `service/streams.dynamodb`: Updates service documentation
+
+Release v1.44.280 (2023-06-09)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service documentation
+* `service/connect`: Updates service API, documentation, and paginators
+
+Release v1.44.279 (2023-06-08)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * You can now define custom spark properties at start of the session for use cases like cluster encryption, table formats, and general Spark tuning.
+* `service/comprehendmedical`: Updates service API
+* `service/payment-cryptography`: Adds new service
+* `service/payment-cryptography-data`: Adds new service
+* `service/servicecatalog`: Updates service API and documentation
+  * New parameter added in ServiceCatalog DescribeProvisioningArtifact api - IncludeProvisioningArtifactParameters. This parameter can be used to return information about the parameters used to provision the product
+* `service/timestream-write`: Updates service API and documentation
+
+Release v1.44.278 (2023-06-07)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * AWS CloudFormation StackSets is updating the deployment experience for all stackset operations to skip suspended AWS accounts during deployments. StackSets will skip target AWS accounts that are suspended and set the Detailed Status of the corresponding stack instances as SKIPPED_SUSPENDED_ACCOUNT
+* `service/customer-profiles`: Updates service API, documentation, and paginators
+* `service/directconnect`: Updates service documentation
+  * This update corrects the jumbo frames mtu values from 9100 to 8500 for transit virtual interfaces.
+* `service/emr-containers`: Updates service API and documentation
+* `service/iotdeviceadvisor`: Updates service API and documentation
+* `service/logs`: Updates service API and documentation
+  * This change adds support for account level data protection policies using 3 new APIs, PutAccountPolicy, DeleteAccountPolicy and DescribeAccountPolicy. DescribeLogGroup API has been modified to indicate if account level policy is applied to the LogGroup via "inheritedProperties" list in the response.
+
 Release v1.44.277 (2023-06-06)
 ===
 
