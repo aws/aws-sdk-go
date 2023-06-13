@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/auth/bearer"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -64,9 +65,12 @@ type Provider struct {
 	// parameter will be ignored.
 	CachedTokenFilepath string
 
+	// Used by the SSOCredentialProvider to judge if TokenProvider is configured
+	HasTokenProvider bool
+
 	// Used by the SSOCredentialProvider if a token configuration
 	// profile is used in the shared config
-	SSOTokenProvider *SSOTokenProvider
+	TokenProvider bearer.TokenProvider
 }
 
 // NewCredentials returns a new AWS Single Sign-On (AWS SSO) credential provider. The ConfigProvider is expected to be configured
@@ -102,8 +106,8 @@ func (p *Provider) Retrieve() (credentials.Value, error) {
 // by exchanging the accessToken present in ~/.aws/sso/cache.
 func (p *Provider) RetrieveWithContext(ctx credentials.Context) (credentials.Value, error) {
 	var accessToken *string
-	if p.SSOTokenProvider != nil {
-		token, err := p.SSOTokenProvider.RetrieveBearerToken(ctx)
+	if p.HasTokenProvider {
+		token, err := p.TokenProvider.RetrieveBearerToken(ctx)
 		if err != nil {
 			return credentials.Value{}, err
 		}

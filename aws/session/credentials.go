@@ -34,7 +34,7 @@ func resolveCredentials(cfg *aws.Config,
 
 	switch {
 	case len(sessOpts.Profile) != 0:
-		// User explicitly provided an Profile in the session's configuration
+		// User explicitly provided a Profile in the session's configuration
 		// so load that profile from shared config first.
 		// Github(aws/aws-sdk-go#2727)
 		return resolveCredsFromProfile(cfg, envCfg, sharedCfg, handlers, sessOpts)
@@ -187,7 +187,8 @@ func resolveSSOCredentials(cfg *aws.Config, sharedCfg sharedConfig, handlers req
 		oidcClient := ssooidc.New(mySession, cfgCopy)
 		tokenProvider := ssocreds.NewSSOTokenProvider(oidcClient, cachedPath)
 		optFns = append(optFns, func(p *ssocreds.Provider) {
-			p.SSOTokenProvider = tokenProvider
+			p.HasTokenProvider = true
+			p.TokenProvider = *tokenProvider
 			p.CachedTokenFilepath = cachedPath
 		})
 	} else {
