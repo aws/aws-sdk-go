@@ -64,7 +64,7 @@
     "UpdateDirectConnectGateway": "<p>Updates the name of a current Direct Connect gateway.</p>",
     "UpdateDirectConnectGatewayAssociation": "<p>Updates the specified attributes of the Direct Connect gateway association.</p> <p>Add or remove prefixes from the association.</p>",
     "UpdateLag": "<p>Updates the attributes of the specified link aggregation group (LAG).</p> <p>You can update the following LAG attributes:</p> <ul> <li> <p>The name of the LAG.</p> </li> <li> <p>The value for the minimum number of connections that must be operational for the LAG itself to be operational. </p> </li> <li> <p>The LAG's MACsec encryption mode.</p> <p>Amazon Web Services assigns this value to each connection which is part of the LAG.</p> </li> <li> <p>The tags</p> </li> </ul> <note> <p>If you adjust the threshold value for the minimum number of operational connections, ensure that the new value does not cause the LAG to fall below the threshold and become non-operational.</p> </note>",
-    "UpdateVirtualInterfaceAttributes": "<p>Updates the specified attributes of the specified virtual private interface.</p> <p>Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update to the underlying physical connection if it wasn't updated to support jumbo frames. Updating the connection disrupts network connectivity for all virtual interfaces associated with the connection for up to 30 seconds. To check whether your connection supports jumbo frames, call <a>DescribeConnections</a>. To check whether your virtual q interface supports jumbo frames, call <a>DescribeVirtualInterfaces</a>.</p>"
+    "UpdateVirtualInterfaceAttributes": "<p>Updates the specified attributes of the specified virtual private interface.</p> <p>Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update to the underlying physical connection if it wasn't updated to support jumbo frames. Updating the connection disrupts network connectivity for all virtual interfaces associated with the connection for up to 30 seconds. To check whether your connection supports jumbo frames, call <a>DescribeConnections</a>. To check whether your virtual interface supports jumbo frames, call <a>DescribeVirtualInterfaces</a>.</p>"
   },
   "shapes": {
     "ASN": {
@@ -1022,10 +1022,10 @@
     "JumboFrameCapable": {
       "base": null,
       "refs": {
-        "Connection$jumboFrameCapable": "<p>Indicates whether jumbo frames (9001 MTU) are supported.</p>",
-        "Interconnect$jumboFrameCapable": "<p>Indicates whether jumbo frames (9001 MTU) are supported.</p>",
-        "Lag$jumboFrameCapable": "<p>Indicates whether jumbo frames (9001 MTU) are supported.</p>",
-        "VirtualInterface$jumboFrameCapable": "<p>Indicates whether jumbo frames (9001 MTU) are supported.</p>"
+        "Connection$jumboFrameCapable": "<p>Indicates whether jumbo frames are supported.</p>",
+        "Interconnect$jumboFrameCapable": "<p>Indicates whether jumbo frames are supported.</p>",
+        "Lag$jumboFrameCapable": "<p>Indicates whether jumbo frames are supported.</p>",
+        "VirtualInterface$jumboFrameCapable": "<p>Indicates whether jumbo frames are supported.</p>"
       }
     },
     "Lag": {

@@ -8054,6 +8054,9 @@ const (
 
 	// ICD10CMRelationshipTypeSystemOrganSite is a ICD10CMRelationshipType enum value
 	ICD10CMRelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+
+	// ICD10CMRelationshipTypeQuality is a ICD10CMRelationshipType enum value
+	ICD10CMRelationshipTypeQuality = "QUALITY"
 )
 
 // ICD10CMRelationshipType_Values returns all elements of the ICD10CMRelationshipType enum
@@ -8061,6 +8064,7 @@ func ICD10CMRelationshipType_Values() []string {
 	return []string{
 		ICD10CMRelationshipTypeOverlap,
 		ICD10CMRelationshipTypeSystemOrganSite,
+		ICD10CMRelationshipTypeQuality,
 	}
 }
 
@@ -8208,6 +8212,12 @@ const (
 
 	// RelationshipTypeAmount is a RelationshipType enum value
 	RelationshipTypeAmount = "AMOUNT"
+
+	// RelationshipTypeUsage is a RelationshipType enum value
+	RelationshipTypeUsage = "USAGE"
+
+	// RelationshipTypeQuality is a RelationshipType enum value
+	RelationshipTypeQuality = "QUALITY"
 )
 
 // RelationshipType_Values returns all elements of the RelationshipType enum
@@ -8233,6 +8243,8 @@ func RelationshipType_Values() []string {
 		RelationshipTypeDirection,
 		RelationshipTypeSystemOrganSite,
 		RelationshipTypeAmount,
+		RelationshipTypeUsage,
+		RelationshipTypeQuality,
 	}
 }
 
@@ -8303,12 +8315,16 @@ func RxNormEntityType_Values() []string {
 const (
 	// RxNormTraitNameNegation is a RxNormTraitName enum value
 	RxNormTraitNameNegation = "NEGATION"
+
+	// RxNormTraitNamePastHistory is a RxNormTraitName enum value
+	RxNormTraitNamePastHistory = "PAST_HISTORY"
 )
 
 // RxNormTraitName_Values returns all elements of the RxNormTraitName enum
 func RxNormTraitName_Values() []string {
 	return []string{
 		RxNormTraitNameNegation,
+		RxNormTraitNamePastHistory,
 	}
 }
 
@@ -8406,6 +8422,9 @@ const (
 
 	// SNOMEDCTRelationshipTypeSystemOrganSite is a SNOMEDCTRelationshipType enum value
 	SNOMEDCTRelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+
+	// SNOMEDCTRelationshipTypeTestUnit is a SNOMEDCTRelationshipType enum value
+	SNOMEDCTRelationshipTypeTestUnit = "TEST_UNIT"
 )
 
 // SNOMEDCTRelationshipType_Values returns all elements of the SNOMEDCTRelationshipType enum
@@ -8417,6 +8436,7 @@ func SNOMEDCTRelationshipType_Values() []string {
 		SNOMEDCTRelationshipTypeTestUnits,
 		SNOMEDCTRelationshipTypeDirection,
 		SNOMEDCTRelationshipTypeSystemOrganSite,
+		SNOMEDCTRelationshipTypeTestUnit,
 	}
 }
 

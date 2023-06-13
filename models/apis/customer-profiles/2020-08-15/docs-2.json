@@ -5,10 +5,12 @@
     "AddProfileKey": "<p>Associates a new key value with a specific profile, such as a Contact Record ContactId.</p> <p>A profile object can have a single unique key and any number of additional keys that can be used to identify the profile that it belongs to.</p>",
     "CreateCalculatedAttributeDefinition": "<p>Creates a new calculated attribute definition. After creation, new object data ingested into Customer Profiles will be included in the calculated attribute, which can be retrieved for a profile using the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetCalculatedAttributeForProfile.html\">GetCalculatedAttributeForProfile</a> API. Defining a calculated attribute makes it available for all profiles within a domain. Each calculated attribute can only reference one <code>ObjectType</code> and at most, two fields from that <code>ObjectType</code>.</p>",
     "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p>",
+    "CreateEventStream": "<p>Creates an event stream, which is a subscription to real-time events, such as when profiles are created and updated through Amazon Connect Customer Profiles.</p> <p>Each event stream can be associated with only one Kinesis Data Stream destination in the same region and Amazon Web Services account as the customer profiles domain</p>",
     "CreateIntegrationWorkflow": "<p> Creates an integration workflow. An integration workflow is an async process which ingests historic data and sets up an integration for ongoing updates. The supported Amazon AppFlow sources are Salesforce, ServiceNow, and Marketo. </p>",
     "CreateProfile": "<p>Creates a standard profile.</p> <p>A standard profile represents the following attributes for a customer profile in a domain.</p>",
     "DeleteCalculatedAttributeDefinition": "<p>Deletes an existing calculated attribute definition. Note that deleting a default calculated attribute is possible, however once deleted, you will be unable to undo that action and will need to recreate it on your own using the CreateCalculatedAttributeDefinition API if you want it back.</p>",
     "DeleteDomain": "<p>Deletes a specific domain and all of its customer data, such as customer profile attributes and their related objects.</p>",
+    "DeleteEventStream": "<p>Disables and deletes the specified event stream.</p>",
     "DeleteIntegration": "<p>Removes an integration from a specific domain.</p>",
     "DeleteProfile": "<p>Deletes the standard customer profile and all data pertaining to the profile.</p>",
     "DeleteProfileKey": "<p>Removes a searchable key from a customer profile.</p>",
@@ -19,6 +21,7 @@
     "GetCalculatedAttributeDefinition": "<p>Provides more information on a calculated attribute definition for Customer Profiles.</p>",
     "GetCalculatedAttributeForProfile": "<p>Retrieve a calculated attribute for a customer profile.</p>",
     "GetDomain": "<p>Returns information about a specific domain.</p>",
+    "GetEventStream": "<p>Returns information about the specified event stream in a specific domain.</p>",
     "GetIdentityResolutionJob": "<p>Returns information about an Identity Resolution Job in a specific domain. </p> <p>Identity Resolution Jobs are set up using the Amazon Connect admin console. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/use-identity-resolution.html\">Use Identity Resolution to consolidate similar profiles</a>.</p>",
     "GetIntegration": "<p>Returns an integration for a domain.</p>",
     "GetMatches": "<p>Before calling this API, use <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable identity resolution: set <code>Matching</code> to true.</p> <p>GetMatches returns potentially matching profiles, based on the results of the latest run of a machine learning process. </p> <important> <p>The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains. </p> <p>After the Identity Resolution Job completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. Or, if you have configured <code>ExportingConfig</code> in the <code>MatchingRequest</code>, you can download the results from S3.</p> </important> <p>Amazon Connect uses the following profile attributes to identify matches:</p> <ul> <li> <p>PhoneNumber</p> </li> <li> <p>HomePhoneNumber</p> </li> <li> <p>BusinessPhoneNumber</p> </li> <li> <p>MobilePhoneNumber</p> </li> <li> <p>EmailAddress</p> </li> <li> <p>PersonalEmailAddress</p> </li> <li> <p>BusinessEmailAddress</p> </li> <li> <p>FullName</p> </li> </ul> <p>For example, two or more profiles—with spelling mistakes such as <b>John Doe</b> and <b>Jhn Doe</b>, or different casing email addresses such as <b>JOHN_DOE@ANYCOMPANY.COM</b> and <b>johndoe@anycompany.com</b>, or different phone number formats such as <b>555-010-0000</b> and <b>+1-555-010-0000</b>—can be detected as belonging to the same customer <b>John Doe</b> and merged into a unified profile.</p>",
@@ -30,6 +33,7 @@
     "ListCalculatedAttributeDefinitions": "<p>Lists calculated attribute definitions for Customer Profiles</p>",
     "ListCalculatedAttributesForProfile": "<p>Retrieve a list of calculated attributes for a customer profile.</p>",
     "ListDomains": "<p>Returns a list of all the domains for an AWS account that have been created.</p>",
+    "ListEventStreams": "<p>Returns a list of all the event streams in a specific domain.</p>",
     "ListIdentityResolutionJobs": "<p>Lists all of the Identity Resolution Jobs in your domain. The response sorts the list by <code>JobStartTime</code>.</p>",
     "ListIntegrations": "<p>Lists all of the integrations in your domain.</p>",
     "ListProfileObjectTypeTemplates": "<p>Lists all of the template information for object types.</p>",
@@ -59,10 +63,14 @@
         "CreateCalculatedAttributeDefinitionRequest$DomainName": "<p>The unique name of the domain.</p>",
         "CreateDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "CreateDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
+        "CreateEventStreamRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "CreateEventStreamRequest$EventStreamName": "<p>The name of the event stream.</p>",
         "CreateIntegrationWorkflowRequest$DomainName": "<p>The unique name of the domain.</p>",
         "CreateProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteCalculatedAttributeDefinitionRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "DeleteEventStreamRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "DeleteEventStreamRequest$EventStreamName": "<p>The name of the event stream</p>",
         "DeleteIntegrationRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteProfileKeyRequest$KeyName": "<p>A searchable identifier of a customer profile.</p>",
         "DeleteProfileKeyRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -70,6 +78,8 @@
         "DeleteProfileObjectTypeRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteWorkflowRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "EventStreamSummary$DomainName": "<p>The unique name of the domain.</p>",
+        "EventStreamSummary$EventStreamName": "<p>The name of the event stream.</p>",
         "FieldMap$key": null,
         "FieldNameList$member": null,
         "FoundByKeyValue$KeyName": "<p>A searchable identifier of a customer profile.</p>",
@@ -79,6 +89,9 @@
         "GetCalculatedAttributeForProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
+        "GetEventStreamRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "GetEventStreamRequest$EventStreamName": "<p>The name of the event stream provided during create operations.</p>",
+        "GetEventStreamResponse$DomainName": "<p>The unique name of the domain.</p>",
         "GetIdentityResolutionJobRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetIdentityResolutionJobResponse$DomainName": "<p>The unique name of the domain.</p>",
         "GetIntegrationRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -97,6 +110,7 @@
         "ListCalculatedAttributeDefinitionsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListCalculatedAttributesForProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListDomainItem$DomainName": "<p>The unique name of the domain.</p>",
+        "ListEventStreamsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListIdentityResolutionJobsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListIntegrationItem$DomainName": "<p>The unique name of the domain.</p>",
         "ListIntegrationsRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -326,6 +340,16 @@
       "refs": {
       }
     },
+    "CreateEventStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEventStreamResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateIntegrationWorkflowRequest": {
       "base": null,
       "refs": {
@@ -382,6 +406,16 @@
       }
     },
     "DeleteDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEventStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEventStreamResponse": {
       "base": null,
       "refs": {
       }
@@ -452,6 +486,12 @@
         "Task$DestinationField": "<p>A field in a destination connector, or a field value against which Amazon AppFlow validates a source field.</p>"
       }
     },
+    "DestinationSummary": {
+      "base": "<p>Summary information about the Kinesis data stream</p>",
+      "refs": {
+        "EventStreamSummary$DestinationSummary": "<p>Summary information about the Kinesis data stream.</p>"
+      }
+    },
     "DomainList": {
       "base": null,
       "refs": {
@@ -475,6 +515,38 @@
       "refs": {
         "AutoMerging$MinAllowedConfidenceScoreForMerging": "<p>A number between 0 and 1 that represents the minimum confidence score required for profiles within a matching group to be merged during the auto-merge process. A higher score means higher similarity required to merge profiles. </p>",
         "GetAutoMergingPreviewRequest$MinAllowedConfidenceScoreForMerging": "<p>Minimum confidence score required for profiles within a matching group to be merged during the auto-merge process.</p>"
+      }
+    },
+    "EventStreamDestinationDetails": {
+      "base": "<p>Details of the destination being used for the EventStream.</p>",
+      "refs": {
+        "GetEventStreamResponse$DestinationDetails": "<p>Details regarding the Kinesis stream.</p>"
+      }
+    },
+    "EventStreamDestinationStatus": {
+      "base": null,
+      "refs": {
+        "DestinationSummary$Status": "<p>The status of enabling the Kinesis stream as a destination for export.</p>",
+        "EventStreamDestinationDetails$Status": "<p>The status of enabling the Kinesis stream as a destination for export.</p>"
+      }
+    },
+    "EventStreamState": {
+      "base": null,
+      "refs": {
+        "EventStreamSummary$State": "<p>The operational state of destination stream for export.</p>",
+        "GetEventStreamResponse$State": "<p>The operational state of destination stream for export.</p>"
+      }
+    },
+    "EventStreamSummary": {
+      "base": "<p>An instance of EventStream in a list of EventStreams.</p>",
+      "refs": {
+        "EventStreamSummaryList$member": null
+      }
+    },
+    "EventStreamSummaryList": {
+      "base": null,
+      "refs": {
+        "ListEventStreamsResponse$Items": "<p>Contains summary information about an EventStream.</p>"
       }
     },
     "ExportingConfig": {
@@ -588,6 +660,16 @@
       }
     },
     "GetDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventStreamResponse": {
       "base": null,
       "refs": {
       }
@@ -800,6 +882,16 @@
       }
     },
     "ListDomainsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventStreamsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventStreamsResponse": {
       "base": null,
       "refs": {
       }
@@ -1287,9 +1379,13 @@
         "CreateCalculatedAttributeDefinitionResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateDomainRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateDomainResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateEventStreamRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateEventStreamResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateIntegrationWorkflowRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "EventStreamSummary$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "GetCalculatedAttributeDefinitionResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "GetDomainResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "GetEventStreamResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "GetIntegrationResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "GetProfileObjectTypeResponse$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ListCalculatedAttributeDefinitionItem$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
@@ -1609,6 +1705,7 @@
         "ListCalculatedAttributeDefinitionsRequest$MaxResults": "<p>The maximum number of calculated attribute definitions returned per page.</p>",
         "ListCalculatedAttributesForProfileRequest$MaxResults": "<p>The maximum number of calculated attributes returned per page.</p>",
         "ListDomainsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
+        "ListEventStreamsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListIdentityResolutionJobsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListIntegrationsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListProfileObjectTypeTemplatesRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
@@ -1730,6 +1827,7 @@
       "base": null,
       "refs": {
         "CreateProfileRequest$AdditionalInformation": "<p>Any additional information relevant to the customer’s profile.</p>",
+        "EventStreamDestinationDetails$Message": "<p>The human-readable string that corresponds to the error or success while enabling the streaming destination.</p>",
         "Profile$AdditionalInformation": "<p>Any additional information relevant to the customer’s profile.</p>"
       }
     },
@@ -1755,6 +1853,8 @@
         "Attributes$key": null,
         "Attributes$value": null,
         "ConflictResolution$SourceName": "<p>The <code>ObjectType</code> name that is used to resolve profile merging conflicts when choosing <code>SOURCE</code> as the <code>ConflictResolvingModel</code>.</p>",
+        "CreateEventStreamRequest$Uri": "<p>The StreamARN of the destination to deliver profile events to. For example, arn:aws:kinesis:region:account-id:stream/stream-name</p>",
+        "CreateEventStreamResponse$EventStreamArn": "<p>A unique identifier for the event stream.</p>",
         "CreateIntegrationWorkflowResponse$Message": "<p>A message indicating create request was received.</p>",
         "CreateProfileRequest$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
         "CreateProfileRequest$BusinessName": "<p>The name of the customer’s business.</p>",
@@ -1774,8 +1874,12 @@
         "DeleteIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "DeleteProfileObjectRequest$ProfileObjectUniqueKey": "<p>The unique identifier of the profile object generated by the service.</p>",
         "DeleteWorkflowRequest$WorkflowId": "<p>Unique identifier for the workflow.</p>",
+        "DestinationSummary$Uri": "<p>The StreamARN of the destination to deliver profile events to. For example, arn:aws:kinesis:region:account-id:stream/stream-name.</p>",
+        "EventStreamDestinationDetails$Uri": "<p>The StreamARN of the destination to deliver profile events to. For example, arn:aws:kinesis:region:account-id:stream/stream-name.</p>",
+        "EventStreamSummary$EventStreamArn": "<p>A unique identifier for the event stream.</p>",
         "GetCalculatedAttributeForProfileResponse$IsDataPartial": "<p>Indicates whether the calculated attribute’s value is based on partial data. If data is partial, it is set to true.</p>",
         "GetCalculatedAttributeForProfileResponse$Value": "<p>The value of the calculated attribute.</p>",
+        "GetEventStreamResponse$EventStreamArn": "<p>A unique identifier for the event stream.</p>",
         "GetIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "GetIntegrationResponse$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "GetIntegrationResponse$WorkflowId": "<p>Unique identifier for the workflow.</p>",
@@ -1862,10 +1966,15 @@
         "CreateCalculatedAttributeDefinitionResponse$LastUpdatedAt": "<p>The timestamp of when the calculated attribute definition was most recently edited.</p>",
         "CreateDomainResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "CreateDomainResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
+        "DestinationSummary$UnhealthySince": "<p>The timestamp when the status last changed to <code>UNHEALHY</code>.</p>",
+        "EventStreamDestinationDetails$UnhealthySince": "<p>The timestamp when the status last changed to <code>UNHEALHY</code>.</p>",
+        "EventStreamSummary$StoppedSince": "<p>The timestamp when the <code>State</code> changed to <code>STOPPED</code>.</p>",
         "GetCalculatedAttributeDefinitionResponse$CreatedAt": "<p>The timestamp of when the calculated attribute definition was created.</p>",
         "GetCalculatedAttributeDefinitionResponse$LastUpdatedAt": "<p>The timestamp of when the calculated attribute definition was most recently edited.</p>",
         "GetDomainResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "GetDomainResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
+        "GetEventStreamResponse$CreatedAt": "<p>The timestamp of when the export was created.</p>",
+        "GetEventStreamResponse$StoppedSince": "<p>The timestamp when the <code>State</code> changed to <code>STOPPED</code>.</p>",
         "GetIdentityResolutionJobResponse$JobStartTime": "<p>The timestamp of when the Identity Resolution Job was started or will be started.</p>",
         "GetIdentityResolutionJobResponse$JobEndTime": "<p>The timestamp of when the Identity Resolution Job was completed.</p>",
         "GetIdentityResolutionJobResponse$LastUpdatedAt": "<p>The timestamp of when the Identity Resolution Job was most recently edited.</p>",
@@ -1916,6 +2025,8 @@
         "ListCalculatedAttributesForProfileResponse$NextToken": "<p>The pagination token from the previous call to ListCalculatedAttributesForProfile.</p>",
         "ListDomainsRequest$NextToken": "<p>The pagination token from the previous ListDomain API call.</p>",
         "ListDomainsResponse$NextToken": "<p>The pagination token from the previous ListDomains API call.</p>",
+        "ListEventStreamsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
+        "ListEventStreamsResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListIdentityResolutionJobsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListIdentityResolutionJobsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListIntegrationsRequest$NextToken": "<p>The pagination token from the previous ListIntegrations API call.</p>",

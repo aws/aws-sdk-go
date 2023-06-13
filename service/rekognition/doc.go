@@ -12,13 +12,19 @@
 //
 // Amazon Rekognition Image
 //
+//   - AssociateFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_AssociateFaces.html)
+//
 //   - CompareFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CompareFaces.html)
 //
 //   - CreateCollection (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateCollection.html)
 //
+//   - CreateUser (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateUser.html)
+//
 //   - DeleteCollection (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteCollection.html)
 //
 //   - DeleteFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteFaces.html)
+//
+//   - DeleteUser (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteUser.html)
 //
 //   - DescribeCollection (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DescribeCollection.html)
 //
@@ -32,6 +38,8 @@
 //
 //   - DetectText (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectText.html)
 //
+//   - DisassociateFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DisassociateFaces.html)
+//
 //   - GetCelebrityInfo (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetCelebrityInfo.html)
 //
 //   - IndexFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_IndexFaces.html)
@@ -40,11 +48,17 @@
 //
 //   - ListFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListFaces.html)
 //
+//   - ListUsers (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListFaces.html)
+//
 //   - RecognizeCelebrities (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_RecognizeCelebrities.html)
 //
 //   - SearchFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html)
 //
 //   - SearchFacesByImage (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFacesByImage.html)
+//
+//   - SearchUsers (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchUsers.html)
+//
+//   - SearchUsersByImage (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchUsersByImage.html)
 //
 // Amazon Rekognition Custom Labels
 //

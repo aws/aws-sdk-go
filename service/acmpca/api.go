@@ -3718,16 +3718,14 @@ type CreateCertificateAuthorityInput struct {
 	//
 	// Default: FIPS_140_2_LEVEL_3_OR_HIGHER
 	//
-	// Note: FIPS_140_2_LEVEL_3_OR_HIGHER is not supported in the following Regions:
+	// Some Amazon Web Services Regions do not support the default. When creating
+	// a CA in these Regions, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER as the
+	// argument for KeyStorageSecurityStandard. Failure to do this results in an
+	// InvalidArgsException with the message, "A certificate authority cannot be
+	// created in this region with the specified security standard."
 	//
-	//    * ap-northeast-3
-	//
-	//    * ap-southeast-3
-	//
-	// When creating a CA in these Regions, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER
-	// as the argument for KeyStorageSecurityStandard. Failure to do this results
-	// in an InvalidArgsException with the message, "A certificate authority cannot
-	// be created in this region with the specified security standard."
+	// For information about security standard support in various Regions, see Storage
+	// and security compliance of Amazon Web Services Private CA private keys (https://docs.aws.amazon.com/privateca/latest/userguide/data-protection.html#private-keys).
 	KeyStorageSecurityStandard *string `type:"string" enum:"KeyStorageSecurityStandard"`
 
 	// Contains information to enable Online Certificate Status Protocol (OCSP)
@@ -6249,7 +6247,7 @@ type IssueCertificateInput struct {
 	// This parameter should not be confused with the SigningAlgorithm parameter
 	// used to sign a CSR in the CreateCertificateAuthority action.
 	//
-	// The specified signing algorithm family (RSA or ECDSA) much match the algorithm
+	// The specified signing algorithm family (RSA or ECDSA) must match the algorithm
 	// family of the CA's secret key.
 	//
 	// SigningAlgorithm is a required field
@@ -6298,7 +6296,7 @@ type IssueCertificateInput struct {
 	// Unlike the Validity parameter, the ValidityNotBefore parameter is optional.
 	//
 	// The ValidityNotBefore value is expressed as an explicit date and time, using
-	// the Validity type value ABSOLUTE. For more information, see Validity (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_Validity.html)
+	// the Validity type value ABSOLUTE. For more information, see Validity (https://docs.aws.amazon.com/privateca/latest/APIReference/API_Validity.html)
 	// in this API reference and Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5)
 	// in RFC 5280.
 	ValidityNotBefore *Validity `type:"structure"`

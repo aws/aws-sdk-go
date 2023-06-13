@@ -705,12 +705,33 @@ type ConnectAPI interface {
 	SearchAvailablePhoneNumbersPages(*connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool) error
 	SearchAvailablePhoneNumbersPagesWithContext(aws.Context, *connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool, ...request.Option) error
 
+	SearchHoursOfOperations(*connect.SearchHoursOfOperationsInput) (*connect.SearchHoursOfOperationsOutput, error)
+	SearchHoursOfOperationsWithContext(aws.Context, *connect.SearchHoursOfOperationsInput, ...request.Option) (*connect.SearchHoursOfOperationsOutput, error)
+	SearchHoursOfOperationsRequest(*connect.SearchHoursOfOperationsInput) (*request.Request, *connect.SearchHoursOfOperationsOutput)
+
+	SearchHoursOfOperationsPages(*connect.SearchHoursOfOperationsInput, func(*connect.SearchHoursOfOperationsOutput, bool) bool) error
+	SearchHoursOfOperationsPagesWithContext(aws.Context, *connect.SearchHoursOfOperationsInput, func(*connect.SearchHoursOfOperationsOutput, bool) bool, ...request.Option) error
+
+	SearchPrompts(*connect.SearchPromptsInput) (*connect.SearchPromptsOutput, error)
+	SearchPromptsWithContext(aws.Context, *connect.SearchPromptsInput, ...request.Option) (*connect.SearchPromptsOutput, error)
+	SearchPromptsRequest(*connect.SearchPromptsInput) (*request.Request, *connect.SearchPromptsOutput)
+
+	SearchPromptsPages(*connect.SearchPromptsInput, func(*connect.SearchPromptsOutput, bool) bool) error
+	SearchPromptsPagesWithContext(aws.Context, *connect.SearchPromptsInput, func(*connect.SearchPromptsOutput, bool) bool, ...request.Option) error
+
 	SearchQueues(*connect.SearchQueuesInput) (*connect.SearchQueuesOutput, error)
 	SearchQueuesWithContext(aws.Context, *connect.SearchQueuesInput, ...request.Option) (*connect.SearchQueuesOutput, error)
 	SearchQueuesRequest(*connect.SearchQueuesInput) (*request.Request, *connect.SearchQueuesOutput)
 
 	SearchQueuesPages(*connect.SearchQueuesInput, func(*connect.SearchQueuesOutput, bool) bool) error
 	SearchQueuesPagesWithContext(aws.Context, *connect.SearchQueuesInput, func(*connect.SearchQueuesOutput, bool) bool, ...request.Option) error
+
+	SearchQuickConnects(*connect.SearchQuickConnectsInput) (*connect.SearchQuickConnectsOutput, error)
+	SearchQuickConnectsWithContext(aws.Context, *connect.SearchQuickConnectsInput, ...request.Option) (*connect.SearchQuickConnectsOutput, error)
+	SearchQuickConnectsRequest(*connect.SearchQuickConnectsInput) (*request.Request, *connect.SearchQuickConnectsOutput)
+
+	SearchQuickConnectsPages(*connect.SearchQuickConnectsInput, func(*connect.SearchQuickConnectsOutput, bool) bool) error
+	SearchQuickConnectsPagesWithContext(aws.Context, *connect.SearchQuickConnectsInput, func(*connect.SearchQuickConnectsOutput, bool) bool, ...request.Option) error
 
 	SearchRoutingProfiles(*connect.SearchRoutingProfilesInput) (*connect.SearchRoutingProfilesOutput, error)
 	SearchRoutingProfilesWithContext(aws.Context, *connect.SearchRoutingProfilesInput, ...request.Option) (*connect.SearchRoutingProfilesOutput, error)

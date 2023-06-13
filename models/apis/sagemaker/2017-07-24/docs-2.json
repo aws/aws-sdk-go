@@ -2147,7 +2147,7 @@
       "base": null,
       "refs": {
         "AutoMLChannel$ContentType": "<p>The content type of the data from the input source. You can use <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p>",
-        "AutoMLJobChannel$ContentType": "<p>The content type of the data from the input source. The following are the allowed content types for different problems:</p> <ul> <li> <p>ImageClassification: <code>image/png</code>, <code>image/jpeg</code>, <code>image/*</code> </p> </li> <li> <p>TextClassification: <code>text/csv;header=present</code> </p> </li> </ul>",
+        "AutoMLJobChannel$ContentType": "<p>The content type of the data from the input source. The following are the allowed content types for different problems:</p> <ul> <li> <p>ImageClassification: <code>image/png</code>, <code>image/jpeg</code>, or <code>image/*</code>. The default value is <code>image/*</code>.</p> </li> <li> <p>TextClassification: <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p> </li> </ul>",
         "Channel$ContentType": "<p>The MIME type of the data.</p>",
         "ContentTypes$member": null,
         "FileSource$ContentType": "<p>The type of content stored in the file source.</p>",
@@ -8153,15 +8153,15 @@
         "ListActionsRequest$MaxResults": "<p>The maximum number of actions to return in the response. The default value is 10.</p>",
         "ListAlgorithmsInput$MaxResults": "<p>The maximum number of algorithms to return in the response.</p>",
         "ListAliasesRequest$MaxResults": "<p>The maximum number of aliases to return.</p>",
-        "ListAppImageConfigsRequest$MaxResults": "<p>The maximum number of AppImageConfigs to return in the response. The default value is 10. </p>",
-        "ListAppsRequest$MaxResults": "<p>Returns a list up to a specified limit.</p>",
+        "ListAppImageConfigsRequest$MaxResults": "<p>The total number of items to return in the response. If the total number of items available is more than the value specified, a <code>NextToken</code> is provided in the response. To resume pagination, provide the <code>NextToken</code> value in the as part of a subsequent call. The default value is 10.</p>",
+        "ListAppsRequest$MaxResults": "<p>The total number of items to return in the response. If the total number of items available is more than the value specified, a <code>NextToken</code> is provided in the response. To resume pagination, provide the <code>NextToken</code> value in the as part of a subsequent call. The default value is 10.</p>",
         "ListArtifactsRequest$MaxResults": "<p>The maximum number of artifacts to return in the response. The default value is 10.</p>",
         "ListAssociationsRequest$MaxResults": "<p>The maximum number of associations to return in the response. The default value is 10.</p>",
         "ListCodeRepositoriesInput$MaxResults": "<p>The maximum number of Git repositories to return in the response.</p>",
         "ListCompilationJobsRequest$MaxResults": "<p>The maximum number of model compilation jobs to return in the response.</p>",
         "ListContextsRequest$MaxResults": "<p>The maximum number of contexts to return in the response. The default value is 10.</p>",
         "ListDataQualityJobDefinitionsRequest$MaxResults": "<p>The maximum number of data quality monitoring job definitions to return in the response.</p>",
-        "ListDomainsRequest$MaxResults": "<p>Returns a list up to a specified limit.</p>",
+        "ListDomainsRequest$MaxResults": "<p>The total number of items to return in the response. If the total number of items available is more than the value specified, a <code>NextToken</code> is provided in the response. To resume pagination, provide the <code>NextToken</code> value in the as part of a subsequent call. The default value is 10.</p>",
         "ListEndpointConfigsInput$MaxResults": "<p>The maximum number of training jobs to return in the response.</p>",
         "ListEndpointsInput$MaxResults": "<p>The maximum number of endpoints to return in the response. This value defaults to 10.</p>",
         "ListExperimentsRequest$MaxResults": "<p>The maximum number of experiments to return in the response. The default value is 10.</p>",
@@ -8201,15 +8201,15 @@
         "ListPipelinesRequest$MaxResults": "<p>The maximum number of pipelines to return in the response.</p>",
         "ListProcessingJobsRequest$MaxResults": "<p>The maximum number of processing jobs to return in the response.</p>",
         "ListProjectsInput$MaxResults": "<p>The maximum number of projects to return in the response.</p>",
-        "ListSpacesRequest$MaxResults": "<p>Returns a list up to a specified limit.</p>",
-        "ListStudioLifecycleConfigsRequest$MaxResults": "<p>The maximum number of Studio Lifecycle Configurations to return in the response. The default value is 10.</p>",
+        "ListSpacesRequest$MaxResults": "<p>The total number of items to return in the response. If the total number of items available is more than the value specified, a <code>NextToken</code> is provided in the response. To resume pagination, provide the <code>NextToken</code> value in the as part of a subsequent call. The default value is 10.</p>",
+        "ListStudioLifecycleConfigsRequest$MaxResults": "<p>The total number of items to return in the response. If the total number of items available is more than the value specified, a <code>NextToken</code> is provided in the response. To resume pagination, provide the <code>NextToken</code> value in the as part of a subsequent call. The default value is 10.</p>",
         "ListSubscribedWorkteamsRequest$MaxResults": "<p>The maximum number of work teams to return in each page of the response.</p>",
         "ListTrainingJobsForHyperParameterTuningJobRequest$MaxResults": "<p>The maximum number of training jobs to return. The default value is 10.</p>",
         "ListTrainingJobsRequest$MaxResults": "<p>The maximum number of training jobs to return in the response.</p>",
         "ListTransformJobsRequest$MaxResults": "<p>The maximum number of transform jobs to return in the response. The default value is <code>10</code>.</p>",
         "ListTrialComponentsRequest$MaxResults": "<p>The maximum number of components to return in the response. The default value is 10.</p>",
         "ListTrialsRequest$MaxResults": "<p>The maximum number of trials to return in the response. The default value is 10.</p>",
-        "ListUserProfilesRequest$MaxResults": "<p>Returns a list up to a specified limit.</p>",
+        "ListUserProfilesRequest$MaxResults": "<p>The total number of items to return in the response. If the total number of items available is more than the value specified, a <code>NextToken</code> is provided in the response. To resume pagination, provide the <code>NextToken</code> value in the as part of a subsequent call. The default value is 10.</p>",
         "ListWorkforcesRequest$MaxResults": "<p>The maximum number of workforces returned in the response.</p>",
         "ListWorkteamsRequest$MaxResults": "<p>The maximum number of work teams to return in each page of the response.</p>",
         "SearchRequest$MaxResults": "<p>The maximum number of results to return.</p>"
@@ -9768,7 +9768,7 @@
         "ListStageDevicesRequest$NextToken": "<p>The response from the last list when returning a list large enough to neeed tokening.</p>",
         "ListStageDevicesResponse$NextToken": "<p>The token to use when calling the next page of results.</p>",
         "ListStudioLifecycleConfigsRequest$NextToken": "<p>If the previous call to ListStudioLifecycleConfigs didn't return the full set of Lifecycle Configurations, the call returns a token for getting the next set of Lifecycle Configurations.</p>",
-        "ListStudioLifecycleConfigsResponse$NextToken": "<p>A token for getting the next set of actions, if there are any.</p>",
+        "ListStudioLifecycleConfigsResponse$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
         "ListSubscribedWorkteamsRequest$NextToken": "<p>If the result of the previous <code>ListSubscribedWorkteams</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of labeling jobs, use the token in the next request.</p>",
         "ListSubscribedWorkteamsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of work teams, use it in the subsequent request.</p>",
         "ListTagsInput$NextToken": "<p> If the response to the previous <code>ListTags</code> request is truncated, SageMaker returns this token. To retrieve the next set of tags, use it in the subsequent request. </p>",
@@ -10482,9 +10482,9 @@
     "PipelineNameOrArn": {
       "base": null,
       "refs": {
-        "DescribePipelineRequest$PipelineName": "<p>The name of the pipeline to describe.</p>",
-        "ListPipelineExecutionsRequest$PipelineName": "<p>The name of the pipeline.</p>",
-        "StartPipelineExecutionRequest$PipelineName": "<p>The name of the pipeline.</p>"
+        "DescribePipelineRequest$PipelineName": "<p>The name or Amazon Resource Name (ARN) of the pipeline to describe.</p>",
+        "ListPipelineExecutionsRequest$PipelineName": "<p>The name or Amazon Resource Name (ARN) of the pipeline.</p>",
+        "StartPipelineExecutionRequest$PipelineName": "<p>The name or Amazon Resource Name (ARN) of the pipeline.</p>"
       }
     },
     "PipelineParameterName": {
@@ -13653,7 +13653,7 @@
     "TrainingInstanceCount": {
       "base": null,
       "refs": {
-        "HyperParameterTuningInstanceConfig$InstanceCount": "<p>The number of instances of the type specified by <code>InstanceType</code>. Choose an instance count larger than 1 for distributed training algorithms. See <a href=\"https://docs.aws.amazon.com/data-parallel-use-api.html\">SageMaker distributed training jobs</a> for more information.</p>",
+        "HyperParameterTuningInstanceConfig$InstanceCount": "<p>The number of instances of the type specified by <code>InstanceType</code>. Choose an instance count larger than 1 for distributed training algorithms. See <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel-use-api.html\">Step 2: Launch a SageMaker Distributed Training Job Using the SageMaker Python SDK</a> for more information.</p>",
         "HyperParameterTuningResourceConfig$InstanceCount": "<p>The number of compute instances of type <code>InstanceType</code> to use. For <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel-use-api.html\">distributed training</a>, select a value greater than 1.</p>",
         "InstanceGroup$InstanceCount": "<p>Specifies the number of instances of the instance group.</p>",
         "ResourceConfig$InstanceCount": "<p>The number of ML compute instances to use. For distributed training, provide a value greater than 1. </p>"
@@ -13663,7 +13663,7 @@
       "base": null,
       "refs": {
         "HyperParameterTuningInstanceConfig$InstanceType": "<p>The instance type used for processing of hyperparameter optimization jobs. Choose from general purpose (no GPUs) instance types: ml.m5.xlarge, ml.m5.2xlarge, and ml.m5.4xlarge or compute optimized (no GPUs) instance types: ml.c5.xlarge and ml.c5.2xlarge. For more information about instance types, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks-available-instance-types.html\">instance type descriptions</a>.</p>",
-        "HyperParameterTuningResourceConfig$InstanceType": "<p>The instance type used to run hyperparameter optimization tuning jobs. See <a href=\"https://docs.aws.amazon.com/notebooks-available-instance-types.html\"> descriptions of instance types</a> for more information.</p>",
+        "HyperParameterTuningResourceConfig$InstanceType": "<p>The instance type used to run hyperparameter optimization tuning jobs. See <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks-available-instance-types.html\"> descriptions of instance types</a> for more information.</p>",
         "InstanceGroup$InstanceType": "<p>Specifies the instance type of the instance group.</p>",
         "ResourceConfig$InstanceType": "<p>The ML compute instance type. </p> <note> <p>SageMaker Training on Amazon Elastic Compute Cloud (EC2) P4de instances is in preview release starting December 9th, 2022. </p> <p> <a href=\"http://aws.amazon.com/ec2/instance-types/p4/\">Amazon EC2 P4de instances</a> (currently in preview) are powered by 8 NVIDIA A100 GPUs with 80GB high-performance HBM2e GPU memory, which accelerate the speed of training ML models that need to be trained on large datasets of high-resolution data. In this preview release, Amazon SageMaker supports ML training jobs on P4de instances (<code>ml.p4de.24xlarge</code>) to reduce model training time. The <code>ml.p4de.24xlarge</code> instances are available in the following Amazon Web Services Regions. </p> <ul> <li> <p>US East (N. Virginia) (us-east-1)</p> </li> <li> <p>US West (Oregon) (us-west-2)</p> </li> </ul> <p>To request quota limit increase and start using P4de instances, contact the SageMaker Training service team through your account team.</p> </note>",
         "TrainingInstanceTypes$member": null

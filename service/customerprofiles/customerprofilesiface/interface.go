@@ -72,6 +72,10 @@ type CustomerProfilesAPI interface {
 	CreateDomainWithContext(aws.Context, *customerprofiles.CreateDomainInput, ...request.Option) (*customerprofiles.CreateDomainOutput, error)
 	CreateDomainRequest(*customerprofiles.CreateDomainInput) (*request.Request, *customerprofiles.CreateDomainOutput)
 
+	CreateEventStream(*customerprofiles.CreateEventStreamInput) (*customerprofiles.CreateEventStreamOutput, error)
+	CreateEventStreamWithContext(aws.Context, *customerprofiles.CreateEventStreamInput, ...request.Option) (*customerprofiles.CreateEventStreamOutput, error)
+	CreateEventStreamRequest(*customerprofiles.CreateEventStreamInput) (*request.Request, *customerprofiles.CreateEventStreamOutput)
+
 	CreateIntegrationWorkflow(*customerprofiles.CreateIntegrationWorkflowInput) (*customerprofiles.CreateIntegrationWorkflowOutput, error)
 	CreateIntegrationWorkflowWithContext(aws.Context, *customerprofiles.CreateIntegrationWorkflowInput, ...request.Option) (*customerprofiles.CreateIntegrationWorkflowOutput, error)
 	CreateIntegrationWorkflowRequest(*customerprofiles.CreateIntegrationWorkflowInput) (*request.Request, *customerprofiles.CreateIntegrationWorkflowOutput)
@@ -87,6 +91,10 @@ type CustomerProfilesAPI interface {
 	DeleteDomain(*customerprofiles.DeleteDomainInput) (*customerprofiles.DeleteDomainOutput, error)
 	DeleteDomainWithContext(aws.Context, *customerprofiles.DeleteDomainInput, ...request.Option) (*customerprofiles.DeleteDomainOutput, error)
 	DeleteDomainRequest(*customerprofiles.DeleteDomainInput) (*request.Request, *customerprofiles.DeleteDomainOutput)
+
+	DeleteEventStream(*customerprofiles.DeleteEventStreamInput) (*customerprofiles.DeleteEventStreamOutput, error)
+	DeleteEventStreamWithContext(aws.Context, *customerprofiles.DeleteEventStreamInput, ...request.Option) (*customerprofiles.DeleteEventStreamOutput, error)
+	DeleteEventStreamRequest(*customerprofiles.DeleteEventStreamInput) (*request.Request, *customerprofiles.DeleteEventStreamOutput)
 
 	DeleteIntegration(*customerprofiles.DeleteIntegrationInput) (*customerprofiles.DeleteIntegrationOutput, error)
 	DeleteIntegrationWithContext(aws.Context, *customerprofiles.DeleteIntegrationInput, ...request.Option) (*customerprofiles.DeleteIntegrationOutput, error)
@@ -127,6 +135,10 @@ type CustomerProfilesAPI interface {
 	GetDomain(*customerprofiles.GetDomainInput) (*customerprofiles.GetDomainOutput, error)
 	GetDomainWithContext(aws.Context, *customerprofiles.GetDomainInput, ...request.Option) (*customerprofiles.GetDomainOutput, error)
 	GetDomainRequest(*customerprofiles.GetDomainInput) (*request.Request, *customerprofiles.GetDomainOutput)
+
+	GetEventStream(*customerprofiles.GetEventStreamInput) (*customerprofiles.GetEventStreamOutput, error)
+	GetEventStreamWithContext(aws.Context, *customerprofiles.GetEventStreamInput, ...request.Option) (*customerprofiles.GetEventStreamOutput, error)
+	GetEventStreamRequest(*customerprofiles.GetEventStreamInput) (*request.Request, *customerprofiles.GetEventStreamOutput)
 
 	GetIdentityResolutionJob(*customerprofiles.GetIdentityResolutionJobInput) (*customerprofiles.GetIdentityResolutionJobOutput, error)
 	GetIdentityResolutionJobWithContext(aws.Context, *customerprofiles.GetIdentityResolutionJobInput, ...request.Option) (*customerprofiles.GetIdentityResolutionJobOutput, error)
@@ -171,6 +183,13 @@ type CustomerProfilesAPI interface {
 	ListDomains(*customerprofiles.ListDomainsInput) (*customerprofiles.ListDomainsOutput, error)
 	ListDomainsWithContext(aws.Context, *customerprofiles.ListDomainsInput, ...request.Option) (*customerprofiles.ListDomainsOutput, error)
 	ListDomainsRequest(*customerprofiles.ListDomainsInput) (*request.Request, *customerprofiles.ListDomainsOutput)
+
+	ListEventStreams(*customerprofiles.ListEventStreamsInput) (*customerprofiles.ListEventStreamsOutput, error)
+	ListEventStreamsWithContext(aws.Context, *customerprofiles.ListEventStreamsInput, ...request.Option) (*customerprofiles.ListEventStreamsOutput, error)
+	ListEventStreamsRequest(*customerprofiles.ListEventStreamsInput) (*request.Request, *customerprofiles.ListEventStreamsOutput)
+
+	ListEventStreamsPages(*customerprofiles.ListEventStreamsInput, func(*customerprofiles.ListEventStreamsOutput, bool) bool) error
+	ListEventStreamsPagesWithContext(aws.Context, *customerprofiles.ListEventStreamsInput, func(*customerprofiles.ListEventStreamsOutput, bool) bool, ...request.Option) error
 
 	ListIdentityResolutionJobs(*customerprofiles.ListIdentityResolutionJobsInput) (*customerprofiles.ListIdentityResolutionJobsOutput, error)
 	ListIdentityResolutionJobsWithContext(aws.Context, *customerprofiles.ListIdentityResolutionJobsInput, ...request.Option) (*customerprofiles.ListIdentityResolutionJobsOutput, error)
