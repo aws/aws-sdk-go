@@ -638,6 +638,15 @@
       "input":{"shape":"CreateImageRequest"},
       "output":{"shape":"CreateImageResult"}
     },
+    "CreateInstanceConnectEndpoint":{
+      "name":"CreateInstanceConnectEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateInstanceConnectEndpointRequest"},
+      "output":{"shape":"CreateInstanceConnectEndpointResult"}
+    },
     "CreateInstanceEventWindow":{
       "name":"CreateInstanceEventWindow",
       "http":{
@@ -1316,6 +1325,15 @@
       },
       "input":{"shape":"DeleteFpgaImageRequest"},
       "output":{"shape":"DeleteFpgaImageResult"}
+    },
+    "DeleteInstanceConnectEndpoint":{
+      "name":"DeleteInstanceConnectEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteInstanceConnectEndpointRequest"},
+      "output":{"shape":"DeleteInstanceConnectEndpointResult"}
     },
     "DeleteInstanceEventWindow":{
       "name":"DeleteInstanceEventWindow",
@@ -2323,6 +2341,15 @@
       },
       "input":{"shape":"DescribeInstanceAttributeRequest"},
       "output":{"shape":"InstanceAttribute"}
+    },
+    "DescribeInstanceConnectEndpoints":{
+      "name":"DescribeInstanceConnectEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceConnectEndpointsRequest"},
+      "output":{"shape":"DescribeInstanceConnectEndpointsResult"}
     },
     "DescribeInstanceCreditSpecifications":{
       "name":"DescribeInstanceCreditSpecifications",
@@ -10275,6 +10302,40 @@
         }
       }
     },
+    "CreateInstanceConnectEndpointRequest":{
+      "type":"structure",
+      "required":["SubnetId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "SubnetId":{"shape":"SubnetId"},
+        "SecurityGroupIds":{
+          "shape":"SecurityGroupIdStringListRequest",
+          "locationName":"SecurityGroupId"
+        },
+        "PreserveClientIp":{"shape":"Boolean"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
+      }
+    },
+    "CreateInstanceConnectEndpointResult":{
+      "type":"structure",
+      "members":{
+        "InstanceConnectEndpoint":{
+          "shape":"Ec2InstanceConnectEndpoint",
+          "locationName":"instanceConnectEndpoint"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
+        }
+      }
+    },
     "CreateInstanceEventWindowRequest":{
       "type":"structure",
       "members":{
@@ -12773,6 +12834,23 @@
         "Return":{
           "shape":"Boolean",
           "locationName":"return"
+        }
+      }
+    },
+    "DeleteInstanceConnectEndpointRequest":{
+      "type":"structure",
+      "required":["InstanceConnectEndpointId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceConnectEndpointId":{"shape":"InstanceConnectEndpointId"}
+      }
+    },
+    "DeleteInstanceConnectEndpointResult":{
+      "type":"structure",
+      "members":{
+        "InstanceConnectEndpoint":{
+          "shape":"Ec2InstanceConnectEndpoint",
+          "locationName":"instanceConnectEndpoint"
         }
       }
     },
@@ -15535,6 +15613,35 @@
         "InstanceId":{
           "shape":"InstanceId",
           "locationName":"instanceId"
+        }
+      }
+    },
+    "DescribeInstanceConnectEndpointsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "MaxResults":{"shape":"InstanceConnectEndpointMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "InstanceConnectEndpointIds":{
+          "shape":"ValueStringList",
+          "locationName":"InstanceConnectEndpointId"
+        }
+      }
+    },
+    "DescribeInstanceConnectEndpointsResult":{
+      "type":"structure",
+      "members":{
+        "InstanceConnectEndpoints":{
+          "shape":"InstanceConnectEndpointSet",
+          "locationName":"instanceConnectEndpointSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
         }
       }
     },
@@ -19948,6 +20055,82 @@
         "unsupported",
         "supported",
         "default"
+      ]
+    },
+    "Ec2InstanceConnectEndpoint":{
+      "type":"structure",
+      "members":{
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "InstanceConnectEndpointId":{
+          "shape":"InstanceConnectEndpointId",
+          "locationName":"instanceConnectEndpointId"
+        },
+        "InstanceConnectEndpointArn":{
+          "shape":"ResourceArn",
+          "locationName":"instanceConnectEndpointArn"
+        },
+        "State":{
+          "shape":"Ec2InstanceConnectEndpointState",
+          "locationName":"state"
+        },
+        "StateMessage":{
+          "shape":"String",
+          "locationName":"stateMessage"
+        },
+        "DnsName":{
+          "shape":"String",
+          "locationName":"dnsName"
+        },
+        "FipsDnsName":{
+          "shape":"String",
+          "locationName":"fipsDnsName"
+        },
+        "NetworkInterfaceIds":{
+          "shape":"NetworkInterfaceIdSet",
+          "locationName":"networkInterfaceIdSet"
+        },
+        "VpcId":{
+          "shape":"VpcId",
+          "locationName":"vpcId"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "CreatedAt":{
+          "shape":"MillisecondDateTime",
+          "locationName":"createdAt"
+        },
+        "SubnetId":{
+          "shape":"SubnetId",
+          "locationName":"subnetId"
+        },
+        "PreserveClientIp":{
+          "shape":"Boolean",
+          "locationName":"preserveClientIp"
+        },
+        "SecurityGroupIds":{
+          "shape":"SecurityGroupIdSet",
+          "locationName":"securityGroupIdSet"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "Ec2InstanceConnectEndpointState":{
+      "type":"string",
+      "enum":[
+        "create-in-progress",
+        "create-complete",
+        "create-failed",
+        "delete-in-progress",
+        "delete-complete",
+        "delete-failed"
       ]
     },
     "EfaInfo":{
@@ -25283,6 +25466,19 @@
           "shape":"Integer",
           "locationName":"totalCapacity"
         }
+      }
+    },
+    "InstanceConnectEndpointId":{"type":"string"},
+    "InstanceConnectEndpointMaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "InstanceConnectEndpointSet":{
+      "type":"list",
+      "member":{
+        "shape":"Ec2InstanceConnectEndpoint",
+        "locationName":"item"
       }
     },
     "InstanceCount":{
@@ -33133,6 +33329,13 @@
         "locationName":"item"
       }
     },
+    "NetworkInterfaceIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
     "NetworkInterfaceIpv6Address":{
       "type":"structure",
       "members":{
@@ -36754,7 +36957,8 @@
         "vpn-connection-device-type",
         "vpc-block-public-access-exclusion",
         "ipam-resource-discovery",
-        "ipam-resource-discovery-association"
+        "ipam-resource-discovery-association",
+        "instance-connect-endpoint"
       ]
     },
     "ResponseError":{
@@ -38094,12 +38298,28 @@
         "locationName":"item"
       }
     },
+    "SecurityGroupIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"SecurityGroupId",
+        "locationName":"item"
+      }
+    },
     "SecurityGroupIdStringList":{
       "type":"list",
       "member":{
         "shape":"SecurityGroupId",
         "locationName":"SecurityGroupId"
       }
+    },
+    "SecurityGroupIdStringListRequest":{
+      "type":"list",
+      "member":{
+        "shape":"SecurityGroupId",
+        "locationName":"SecurityGroupId"
+      },
+      "max":16,
+      "min":0
     },
     "SecurityGroupIdentifier":{
       "type":"structure",

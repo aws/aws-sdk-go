@@ -609,7 +609,7 @@
       "type":"string",
       "max":1600,
       "min":0,
-      "pattern":"^arn:(?:aws|aws-cn):log-group:([a-z]{2}-[a-z]+-\\d{1}):(\\d{12})?:role\\/(.+)$"
+      "pattern":"^arn:(?:aws|aws-cn|aws-us-gov):log-group:([a-z]{2}-[a-z]+-\\d{1}):(\\d{12})?:role\\/(.+)$"
     },
     "LoggingConfiguration":{
       "type":"structure",
@@ -659,7 +659,7 @@
       "type":"string",
       "max":1600,
       "min":0,
-      "pattern":"^arn:(?:aws|aws-cn):iam::(\\d{12})?:role\\/(.+)$"
+      "pattern":"^arn:(?:aws|aws-cn|aws-us-gov):iam::(\\d{12})?:role\\/(.+)$"
     },
     "S3Destination":{
       "type":"structure",
@@ -690,7 +690,7 @@
       "type":"string",
       "max":1600,
       "min":0,
-      "pattern":"^arn:(?:aws|aws-cn):simspaceweaver:([a-z]{2}-[a-z]+-\\d{1}):(\\d{12})?:([a-z]+)\\/(.+)$"
+      "pattern":"^arn:(?:aws|aws-cn|aws-us-gov):simspaceweaver:([a-z]{2}-[a-z]+-\\d{1}):(\\d{12})?:([a-z]+)\\/(.+)$"
     },
     "SimSpaceWeaverLongResourceName":{
       "type":"string",

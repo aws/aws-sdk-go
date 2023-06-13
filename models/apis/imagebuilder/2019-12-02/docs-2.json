@@ -541,7 +541,7 @@
         "ImagePipeline$dateCreated": "<p>The date on which this image pipeline was created.</p>",
         "ImagePipeline$dateUpdated": "<p>The date on which this image pipeline was last updated.</p>",
         "ImagePipeline$dateLastRun": "<p>This is no longer supported, and does not return a value.</p>",
-        "ImagePipeline$dateNextRun": "<p>This is no longer supported, and does not return a value.</p>",
+        "ImagePipeline$dateNextRun": "<p>The next date when the pipeline is scheduled to run.</p>",
         "ImageRecipe$dateCreated": "<p>The date on which this image recipe was created.</p>",
         "ImageRecipeSummary$dateCreated": "<p>The date on which this image recipe was created.</p>",
         "ImageSummary$dateCreated": "<p>The date on which Image Builder created this image.</p>",

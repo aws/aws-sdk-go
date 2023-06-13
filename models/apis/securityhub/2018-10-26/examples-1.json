@@ -18,6 +18,37 @@
         "title": "To accept an invitation be a member account"
       }
     ],
+    "BatchDeleteAutomationRules": [
+      {
+        "input": {
+          "AutomationRulesArns": [
+            "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+            "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222"
+          ]
+        },
+        "output": {
+          "ProcessedAutomationRules": [
+            "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"
+          ],
+          "UnprocessedAutomationRules": [
+            {
+              "ErrorCode": 500,
+              "ErrorMessage": "InternalException",
+              "RuleArn": "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example deletes the specified automation rules.",
+        "id": "to-delete-one-or-more-automation-rules-1684769550318",
+        "title": "To delete one or more automation rules"
+      }
+    ],
     "BatchDisableStandards": [
       {
         "input": {
@@ -76,6 +107,105 @@
         "description": "The following example enables the security standard specified by the StandardArn. You can use this operation to enable one or more Security Hub standards.",
         "id": "to-enable-security-standards-1683233792239",
         "title": "To enable security standards"
+      }
+    ],
+    "BatchGetAutomationRules": [
+      {
+        "input": {
+          "AutomationRulesArns": [
+            "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+            "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222"
+          ]
+        },
+        "output": {
+          "Rules": [
+            {
+              "Actions": [
+                {
+                  "FindingFieldsUpdate": {
+                    "Workflow": {
+                      "Status": "RESOLVED"
+                    }
+                  },
+                  "Type": "FINDING_FIELDS_UPDATE"
+                }
+              ],
+              "CreatedAt": "2022-08-31T01:52:33.250Z",
+              "CreatedBy": "AROAJURBUYQQNL5OL2TIM:TEST-16MJ75L9VBK14",
+              "Criteria": {
+                "AwsAccountId": [
+                  {
+                    "Comparison": "EQUALS",
+                    "Value": "111122223333"
+                  }
+                ],
+                "FirstObservedAt": [
+                  {
+                    "DateRange": {
+                      "Unit": "DAYS",
+                      "Value": 5
+                    }
+                  }
+                ],
+                "Type": [
+                  {
+                    "Comparison": "EQUALS",
+                    "Value": "Software and Configuration Checks/Industry and Regulatory Standards"
+                  }
+                ]
+              },
+              "Description": "sample rule description 1",
+              "RuleArn": "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+              "RuleName": "sample-rule-name-1",
+              "RuleOrder": 1,
+              "RuleStatus": "ENABLED",
+              "UpdatedAt": "2022-08-31T01:52:33.250Z"
+            },
+            {
+              "Actions": [
+                {
+                  "FindingFieldsUpdate": {
+                    "Workflow": {
+                      "Status": "RESOLVED"
+                    }
+                  },
+                  "Type": "FINDING_FIELDS_UPDATE"
+                }
+              ],
+              "CreatedAt": "2022-08-31T01:52:33.250Z",
+              "CreatedBy": "AROAJURBUYQQNL5OL2TIM:TEST-16MJ75L9VBK14",
+              "Criteria": {
+                "ResourceType": [
+                  {
+                    "Comparison": "EQUALS",
+                    "Value": "Ec2Instance"
+                  }
+                ],
+                "SeverityLabel": [
+                  {
+                    "Comparison": "EQUALS",
+                    "Value": "INFORMATIONAL"
+                  }
+                ]
+              },
+              "Description": "Sample rule description 2",
+              "RuleArn": "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
+              "RuleName": "sample-rule-name-2",
+              "RuleOrder": 2,
+              "RuleStatus": "ENABLED",
+              "UpdatedAt": "2022-08-31T01:52:33.250Z"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example updates the specified automation rules.",
+        "id": "to-update-one-ore-more-automation-rules-1684771025347",
+        "title": "To update one ore more automation rules"
       }
     ],
     "BatchGetSecurityControls": [
@@ -224,6 +354,38 @@
         "title": "To import security findings from a third party provider to Security Hub"
       }
     ],
+    "BatchUpdateAutomationRules": [
+      {
+        "input": {
+          "UpdateAutomationRulesRequestItems": [
+            {
+              "RuleArn": "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+              "RuleOrder": 15,
+              "RuleStatus": "ENABLED"
+            },
+            {
+              "RuleArn": "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
+              "RuleStatus": "DISABLED"
+            }
+          ]
+        },
+        "output": {
+          "ProcessedAutomationRules": [
+            "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+            "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222"
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example updates the specified automation rules.",
+        "id": "to-update-one-ore-more-automation-rules-1684771025347",
+        "title": "To update one ore more automation rules"
+      }
+    ],
     "BatchUpdateFindings": [
       {
         "input": {
@@ -351,6 +513,78 @@
         "description": "The following example creates a custom action target in Security Hub. Custom actions on findings and insights automatically trigger actions in Amazon CloudWatch Events.",
         "id": "to-create-a-custom-action-target-1675184966299",
         "title": "To create a custom action target"
+      }
+    ],
+    "CreateAutomationRule": [
+      {
+        "input": {
+          "Actions": [
+            {
+              "FindingFieldsUpdate": {
+                "Note": {
+                  "Text": "This is a critical S3 bucket, please look into this ASAP",
+                  "UpdatedBy": "test-user"
+                },
+                "Severity": {
+                  "Label": "CRITICAL"
+                }
+              },
+              "Type": "FINDING_FIELDS_UPDATE"
+            }
+          ],
+          "Criteria": {
+            "ComplianceStatus": [
+              {
+                "Comparison": "EQUALS",
+                "Value": "FAILED"
+              }
+            ],
+            "ProductName": [
+              {
+                "Comparison": "EQUALS",
+                "Value": "Security Hub"
+              }
+            ],
+            "RecordState": [
+              {
+                "Comparison": "EQUALS",
+                "Value": "ACTIVE"
+              }
+            ],
+            "ResourceId": [
+              {
+                "Comparison": "EQUALS",
+                "Value": "arn:aws:s3:::examplebucket/developers/design_info.doc"
+              }
+            ],
+            "WorkflowStatus": [
+              {
+                "Comparison": "EQUALS",
+                "Value": "NEW"
+              }
+            ]
+          },
+          "Description": "Elevate finding severity to Critical for important resources",
+          "IsTerminal": false,
+          "RuleName": "Elevate severity for important resources",
+          "RuleOrder": 1,
+          "RuleStatus": "ENABLED",
+          "Tags": {
+            "important-resources-rule": "s3-bucket"
+          }
+        },
+        "output": {
+          "RuleArn": "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example creates an automation rule.",
+        "id": "to-create-an-automation-rule-1684768393507",
+        "title": "To create an automation rule"
       }
     ],
     "CreateFindingAggregator": [
@@ -1290,6 +1524,48 @@
         "description": "The following example invites the specified AWS accounts to become member accounts associated with the calling Security Hub administrator account. You only use this operation to invite accounts that don't belong to an AWS Organizations organization.",
         "id": "to-invite-accounts-to-become-members-1677775500860",
         "title": "To invite accounts to become members"
+      }
+    ],
+    "ListAutomationRules": [
+      {
+        "input": {
+          "MaxResults": 2,
+          "NextToken": "example-token"
+        },
+        "output": {
+          "AutomationRulesMetadata": [
+            {
+              "CreatedAt": "2022-08-31T01:52:33.250Z",
+              "CreatedBy": "AROAJURBUYQQNL5OL2TIM:TEST-16MJ75L9VBK14",
+              "Description": "IAM.8 is a known issue and can be resolved",
+              "RuleArn": "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+              "RuleName": "sample-rule-name-1",
+              "RuleOrder": 1,
+              "RuleStatus": "ENABLED",
+              "UpdatedAt": "2022-08-31T01:52:33.250Z"
+            },
+            {
+              "CreatedAt": "2022-08-31T01:52:33.250Z",
+              "CreatedBy": "AROAJURBUYQQNL5OL2TIM:TEST-16MJ75L9VBK14",
+              "Description": "Lambda.2 is a known issue and can be resolved",
+              "RuleArn": "arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
+              "RuleName": "sample-rule-name-2",
+              "RuleOrder": 2,
+              "RuleStatus": "ENABLED",
+              "UpdatedAt": "2022-08-31T01:52:33.250Z"
+            }
+          ],
+          "NextToken": "example-token"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example lists automation rules and rule metadata in the calling account.",
+        "id": "to-list-automation-rules-1684770582059",
+        "title": "To list automation rules"
       }
     ],
     "ListEnabledProductsForImport": [

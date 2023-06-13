@@ -89,6 +89,12 @@
         "APIKeySummary$Version": "<p>Internal value used by WAF to manage the key. </p>"
       }
     },
+    "AWSManagedRulesACFPRuleSet": {
+      "base": "<p>Details for your use of the account creation fraud prevention managed rule group, <code>AWSManagedRulesACFPRuleSet</code>. This configuration is used in <code>ManagedRuleGroupConfig</code>. </p>",
+      "refs": {
+        "ManagedRuleGroupConfig$AWSManagedRulesACFPRuleSet": "<p>Additional configuration for using the account creation fraud prevention (ACFP) managed rule group, <code>AWSManagedRulesACFPRuleSet</code>. Use this to provide account creation request information to the rule group. For web ACLs that protect CloudFront distributions, use this to also provide the information about how your distribution responds to account creation requests. </p> <p>For information about using the ACFP managed rule group, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-acfp.html\">WAF Fraud Control account creation fraud prevention (ACFP) rule group</a> and <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-acfp.html\">WAF Fraud Control account creation fraud prevention (ACFP)</a> in the <i>WAF Developer Guide</i>.</p>"
+      }
+    },
     "AWSManagedRulesATPRuleSet": {
       "base": "<p>Details for your use of the account takeover prevention managed rule group, <code>AWSManagedRulesATPRuleSet</code>. This configuration is used in <code>ManagedRuleGroupConfig</code>. </p>",
       "refs": {
@@ -118,6 +124,18 @@
       "base": null,
       "refs": {
         "ActionCondition$Action": "<p>The action setting that a log record must contain in order to meet the condition. This is the action that WAF applied to the web request. </p> <p>For rule groups, this is either the configured rule action setting, or if you've applied a rule action override to the rule, it's the override action. The value <code>EXCLUDED_AS_COUNT</code> matches on excluded rules and also on rules that have a rule action override of Count. </p>"
+      }
+    },
+    "AddressField": {
+      "base": "<p>The name of a field in the request payload that contains part or all of your customer's primary physical address. </p> <p>This data type is used in the <code>RequestInspectionACFP</code> data type. </p>",
+      "refs": {
+        "AddressFields$member": null
+      }
+    },
+    "AddressFields": {
+      "base": null,
+      "refs": {
+        "RequestInspectionACFP$AddressFields": "<p>The names of the fields in the request payload that contain your customer's primary physical address. </p> <p>Order the address fields in the array exactly as they are ordered in the request payload. </p> <p>How you specify the address fields depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field identifiers in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"primaryaddressline1\": \"THE_ADDRESS1\", \"primaryaddressline2\": \"THE_ADDRESS2\", \"primaryaddressline3\": \"THE_ADDRESS3\" } }</code>, the address field idenfiers are <code>/form/primaryaddressline1</code>, <code>/form/primaryaddressline2</code>, and <code>/form/primaryaddressline3</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with input elements named <code>primaryaddressline1</code>, <code>primaryaddressline2</code>, and <code>primaryaddressline3</code>, the address fields identifiers are <code>primaryaddressline1</code>, <code>primaryaddressline2</code>, and <code>primaryaddressline3</code>. </p> </li> </ul>"
       }
     },
     "All": {
@@ -193,6 +211,8 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "AWSManagedRulesACFPRuleSet$EnableRegexInPath": "<p>Allow the use of regular expressions in the registration page path and the account creation path. </p>",
+        "AWSManagedRulesATPRuleSet$EnableRegexInPath": "<p>Allow the use of regular expressions in the login page path. </p>",
         "LoggingConfiguration$ManagedByFirewallManager": "<p>Indicates whether the logging configuration was created by Firewall Manager, as part of an WAF policy configuration. If true, only Firewall Manager can modify or delete the configuration. </p>",
         "ManagedProductDescriptor$IsVersioningSupported": "<p>Indicates whether the rule group is versioned. </p>",
         "ManagedProductDescriptor$IsAdvancedManagedRuleSet": "<p>Indicates whether the rule group provides an advanced set of protections, such as the the Amazon Web Services Managed Rules rule groups that are used for WAF intelligent threat mitigation. </p>",
@@ -388,6 +408,12 @@
       "refs": {
       }
     },
+    "CreationPathString": {
+      "base": null,
+      "refs": {
+        "AWSManagedRulesACFPRuleSet$CreationPath": "<p>The path of the account creation endpoint for your application. This is the page on your website that accepts the completed registration form for a new user. This page must accept <code>POST</code> requests.</p> <p>For example, for the URL <code>https://example.com/web/signup</code>, you would provide the path <code>/web/signup</code>.</p>"
+      }
+    },
     "CustomHTTPHeader": {
       "base": "<p>A custom header for custom request and response handling. This is used in <a>CustomResponse</a> and <a>CustomRequestHandling</a>.</p>",
       "refs": {
@@ -569,6 +595,12 @@
         "GenerateMobileSdkReleaseUrlResponse$Url": "<p>The presigned download URL for the specified SDK release.</p>"
       }
     },
+    "EmailField": {
+      "base": "<p>The name of the field in the request payload that contains your customer's email. </p> <p>This data type is used in the <code>RequestInspectionACFP</code> data type. </p>",
+      "refs": {
+        "RequestInspectionACFP$EmailField": "<p>The name of the field in the request payload that contains your customer's email. </p> <p>How you specify this depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"email\": \"THE_EMAIL\" } }</code>, the email field specification is <code>/form/email</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with the input element named <code>email1</code>, the email field specification is <code>email1</code>.</p> </li> </ul>"
+      }
+    },
     "EntityDescription": {
       "base": null,
       "refs": {
@@ -748,9 +780,12 @@
     "FieldIdentifier": {
       "base": null,
       "refs": {
-        "PasswordField$Identifier": "<p>The name of the password field. For example <code>/form/password</code>.</p>",
-        "ResponseInspectionJson$Identifier": "<p>The identifier for the value to match against in the JSON. The identifier must be an exact match, including case.</p> <p>JSON example: <code>\"Identifier\": [ \"/login/success\" ]</code> </p>",
-        "UsernameField$Identifier": "<p>The name of the username field. For example <code>/form/username</code>.</p>"
+        "AddressField$Identifier": "<p>The name of a single primary address field. </p> <p>How you specify the address fields depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field identifiers in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"primaryaddressline1\": \"THE_ADDRESS1\", \"primaryaddressline2\": \"THE_ADDRESS2\", \"primaryaddressline3\": \"THE_ADDRESS3\" } }</code>, the address field idenfiers are <code>/form/primaryaddressline1</code>, <code>/form/primaryaddressline2</code>, and <code>/form/primaryaddressline3</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with input elements named <code>primaryaddressline1</code>, <code>primaryaddressline2</code>, and <code>primaryaddressline3</code>, the address fields identifiers are <code>primaryaddressline1</code>, <code>primaryaddressline2</code>, and <code>primaryaddressline3</code>. </p> </li> </ul>",
+        "EmailField$Identifier": "<p>The name of the email field. </p> <p>How you specify this depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"email\": \"THE_EMAIL\" } }</code>, the email field specification is <code>/form/email</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with the input element named <code>email1</code>, the email field specification is <code>email1</code>.</p> </li> </ul>",
+        "PasswordField$Identifier": "<p>The name of the password field. </p> <p>How you specify this depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"password\": \"THE_PASSWORD\" } }</code>, the password field specification is <code>/form/password</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with the input element named <code>password1</code>, the password field specification is <code>password1</code>.</p> </li> </ul>",
+        "PhoneNumberField$Identifier": "<p>The name of a single primary phone number field. </p> <p>How you specify the phone number fields depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field identifiers in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"primaryphoneline1\": \"THE_PHONE1\", \"primaryphoneline2\": \"THE_PHONE2\", \"primaryphoneline3\": \"THE_PHONE3\" } }</code>, the phone number field identifiers are <code>/form/primaryphoneline1</code>, <code>/form/primaryphoneline2</code>, and <code>/form/primaryphoneline3</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with input elements named <code>primaryphoneline1</code>, <code>primaryphoneline2</code>, and <code>primaryphoneline3</code>, the phone number field identifiers are <code>primaryphoneline1</code>, <code>primaryphoneline2</code>, and <code>primaryphoneline3</code>. </p> </li> </ul>",
+        "ResponseInspectionJson$Identifier": "<p>The identifier for the value to match against in the JSON. The identifier must be an exact match, including case.</p> <p>JSON examples: <code>\"Identifier\": [ \"/login/success\" ]</code> and <code>\"Identifier\": [ \"/sign-up/success\" ]</code> </p>",
+        "UsernameField$Identifier": "<p>The name of the username field. </p> <p>How you specify this depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"username\": \"THE_USERNAME\" } }</code>, the username field specification is <code>/form/username</code>. </p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with the input element named <code>username1</code>, the username field specification is <code>username1</code> </p> </li> </ul>"
       }
     },
     "FieldToMatch": {
@@ -1027,9 +1062,9 @@
       }
     },
     "HeaderOrder": {
-      "base": "<p>Inspect a string containing the list of the request's header names, ordered as they appear in the web request that WAF receives for inspection. WAF generates the string and then uses that as the field to match component in its inspection. WAF separates the header names in the string using commas and no added spaces.</p> <p>Matches against the header order string are case insensitive.</p>",
+      "base": "<p>Inspect a string containing the list of the request's header names, ordered as they appear in the web request that WAF receives for inspection. WAF generates the string and then uses that as the field to match component in its inspection. WAF separates the header names in the string using colons and no added spaces, for example <code>host:user-agent:accept:authorization:referer</code>.</p>",
       "refs": {
-        "FieldToMatch$HeaderOrder": "<p>Inspect a string containing the list of the request's header names, ordered as they appear in the web request that WAF receives for inspection. WAF generates the string and then uses that as the field to match component in its inspection. WAF separates the header names in the string using commas and no added spaces.</p> <p>Matches against the header order string are case insensitive.</p>"
+        "FieldToMatch$HeaderOrder": "<p>Inspect a string containing the list of the request's header names, ordered as they appear in the web request that WAF receives for inspection. WAF generates the string and then uses that as the field to match component in its inspection. WAF separates the header names in the string using colons and no added spaces, for example <code>host:user-agent:accept:authorization:referer</code>.</p>"
       }
     },
     "HeaderValue": {
@@ -1424,7 +1459,7 @@
       }
     },
     "ManagedRuleGroupConfig": {
-      "base": "<p>Additional information that's used by a managed rule group. Many managed rule groups don't require this.</p> <p>Use the <code>AWSManagedRulesATPRuleSet</code> configuration object for the account takeover prevention managed rule group, to provide information such as the sign-in page of your application and the type of content to accept or reject from the client. </p> <p>Use the <code>AWSManagedRulesBotControlRuleSet</code> configuration object to configure the protection level that you want the Bot Control rule group to use. </p> <p>For example specifications, see the examples section of <a>CreateWebACL</a>.</p>",
+      "base": "<p>Additional information that's used by a managed rule group. Many managed rule groups don't require this.</p> <p>The rule groups used for intelligent threat mitigation require additional configuration: </p> <ul> <li> <p>Use the <code>AWSManagedRulesACFPRuleSet</code> configuration object to configure the account creation fraud prevention managed rule group. The configuration includes the registration and sign-up pages of your application and the locations in the account creation request payload of data, such as the user email and phone number fields. </p> </li> <li> <p>Use the <code>AWSManagedRulesATPRuleSet</code> configuration object to configure the account takeover prevention managed rule group. The configuration includes the sign-in page of your application and the locations in the login request payload of data such as the username and password. </p> </li> <li> <p>Use the <code>AWSManagedRulesBotControlRuleSet</code> configuration object to configure the protection level that you want the Bot Control rule group to use. </p> </li> </ul> <p>For example specifications, see the examples section of <a>CreateWebACL</a>.</p>",
       "refs": {
         "ManagedRuleGroupConfigs$member": null
       }
@@ -1432,14 +1467,14 @@
     "ManagedRuleGroupConfigs": {
       "base": null,
       "refs": {
-        "ManagedRuleGroupStatement$ManagedRuleGroupConfigs": "<p>Additional information that's used by a managed rule group. Many managed rule groups don't require this.</p> <p>Use the <code>AWSManagedRulesATPRuleSet</code> configuration object for the account takeover prevention managed rule group, to provide information such as the sign-in page of your application and the type of content to accept or reject from the client. </p> <p>Use the <code>AWSManagedRulesBotControlRuleSet</code> configuration object to configure the protection level that you want the Bot Control rule group to use. </p>"
+        "ManagedRuleGroupStatement$ManagedRuleGroupConfigs": "<p>Additional information that's used by a managed rule group. Many managed rule groups don't require this.</p> <p>The rule groups used for intelligent threat mitigation require additional configuration: </p> <ul> <li> <p>Use the <code>AWSManagedRulesACFPRuleSet</code> configuration object to configure the account creation fraud prevention managed rule group. The configuration includes the registration and sign-up pages of your application and the locations in the account creation request payload of data, such as the user email and phone number fields. </p> </li> <li> <p>Use the <code>AWSManagedRulesATPRuleSet</code> configuration object to configure the account takeover prevention managed rule group. The configuration includes the sign-in page of your application and the locations in the login request payload of data such as the username and password. </p> </li> <li> <p>Use the <code>AWSManagedRulesBotControlRuleSet</code> configuration object to configure the protection level that you want the Bot Control rule group to use. </p> </li> </ul>"
       }
     },
     "ManagedRuleGroupStatement": {
-      "base": "<p>A rule statement used to run the rules that are defined in a managed rule group. To use this, provide the vendor name and the name of the rule group in this statement. You can retrieve the required names by calling <a>ListAvailableManagedRuleGroups</a>.</p> <p>You cannot nest a <code>ManagedRuleGroupStatement</code>, for example for use inside a <code>NotStatement</code> or <code>OrStatement</code>. It can only be referenced as a top-level statement within a rule.</p> <note> <p>You are charged additional fees when you use the WAF Bot Control managed rule group <code>AWSManagedRulesBotControlRuleSet</code> or the WAF Fraud Control account takeover prevention (ATP) managed rule group <code>AWSManagedRulesATPRuleSet</code>. For more information, see <a href=\"http://aws.amazon.com/waf/pricing/\">WAF Pricing</a>.</p> </note>",
+      "base": "<p>A rule statement used to run the rules that are defined in a managed rule group. To use this, provide the vendor name and the name of the rule group in this statement. You can retrieve the required names by calling <a>ListAvailableManagedRuleGroups</a>.</p> <p>You cannot nest a <code>ManagedRuleGroupStatement</code>, for example for use inside a <code>NotStatement</code> or <code>OrStatement</code>. It can only be referenced as a top-level statement within a rule.</p> <note> <p>You are charged additional fees when you use the WAF Bot Control managed rule group <code>AWSManagedRulesBotControlRuleSet</code>, the WAF Fraud Control account takeover prevention (ATP) managed rule group <code>AWSManagedRulesATPRuleSet</code>, or the WAF Fraud Control account creation fraud prevention (ACFP) managed rule group <code>AWSManagedRulesACFPRuleSet</code>. For more information, see <a href=\"http://aws.amazon.com/waf/pricing/\">WAF Pricing</a>.</p> </note>",
       "refs": {
         "FirewallManagerStatement$ManagedRuleGroupStatement": "<p>A statement used by Firewall Manager to run the rules that are defined in a managed rule group. This is managed by Firewall Manager for an Firewall Manager WAF policy.</p>",
-        "Statement$ManagedRuleGroupStatement": "<p>A rule statement used to run the rules that are defined in a managed rule group. To use this, provide the vendor name and the name of the rule group in this statement. You can retrieve the required names by calling <a>ListAvailableManagedRuleGroups</a>.</p> <p>You cannot nest a <code>ManagedRuleGroupStatement</code>, for example for use inside a <code>NotStatement</code> or <code>OrStatement</code>. It can only be referenced as a top-level statement within a rule.</p> <note> <p>You are charged additional fees when you use the WAF Bot Control managed rule group <code>AWSManagedRulesBotControlRuleSet</code> or the WAF Fraud Control account takeover prevention (ATP) managed rule group <code>AWSManagedRulesATPRuleSet</code>. For more information, see <a href=\"http://aws.amazon.com/waf/pricing/\">WAF Pricing</a>.</p> </note>"
+        "Statement$ManagedRuleGroupStatement": "<p>A rule statement used to run the rules that are defined in a managed rule group. To use this, provide the vendor name and the name of the rule group in this statement. You can retrieve the required names by calling <a>ListAvailableManagedRuleGroups</a>.</p> <p>You cannot nest a <code>ManagedRuleGroupStatement</code>, for example for use inside a <code>NotStatement</code> or <code>OrStatement</code>. It can only be referenced as a top-level statement within a rule.</p> <note> <p>You are charged additional fees when you use the WAF Bot Control managed rule group <code>AWSManagedRulesBotControlRuleSet</code>, the WAF Fraud Control account takeover prevention (ATP) managed rule group <code>AWSManagedRulesATPRuleSet</code>, or the WAF Fraud Control account creation fraud prevention (ACFP) managed rule group <code>AWSManagedRulesACFPRuleSet</code>. For more information, see <a href=\"http://aws.amazon.com/waf/pricing/\">WAF Pricing</a>.</p> </note>"
       }
     },
     "ManagedRuleGroupSummaries": {
@@ -1564,7 +1599,7 @@
     "OutputUrl": {
       "base": null,
       "refs": {
-        "GetWebACLResponse$ApplicationIntegrationURL": "<p>The URL to use in SDK integrations with Amazon Web Services managed rule groups. For example, you can use the integration SDKs with the account takeover prevention managed rule group <code>AWSManagedRulesATPRuleSet</code>. This is only populated if you are using a rule group in your web ACL that integrates with your applications in this way. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html\">WAF client application integration</a> in the <i>WAF Developer Guide</i>.</p>",
+        "GetWebACLResponse$ApplicationIntegrationURL": "<p>The URL to use in SDK integrations with Amazon Web Services managed rule groups. For example, you can use the integration SDKs with the account takeover prevention managed rule group <code>AWSManagedRulesATPRuleSet</code> and the account creation fraud prevention managed rule group <code>AWSManagedRulesACFPRuleSet</code>. This is only populated if you are using a rule group in your web ACL that integrates with your applications in this way. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html\">WAF client application integration</a> in the <i>WAF Developer Guide</i>.</p>",
         "ListAPIKeysResponse$ApplicationIntegrationURL": "<p>The CAPTCHA application integration URL, for use in your JavaScript implementation. </p>"
       }
     },
@@ -1614,17 +1649,31 @@
       }
     },
     "PasswordField": {
-      "base": "<p>Details about your login page password field for request inspection, used in the <code>AWSManagedRulesATPRuleSet</code> <code>RequestInspection</code> configuration.</p>",
+      "base": "<p>The name of the field in the request payload that contains your customer's password. </p> <p>This data type is used in the <code>RequestInspection</code> and <code>RequestInspectionACFP</code> data types. </p>",
       "refs": {
-        "ManagedRuleGroupConfig$PasswordField": "<note> <p>Instead of this setting, provide your configuration under <code>AWSManagedRulesATPRuleSet</code> <code>RequestInspection</code>. </p> </note>",
-        "RequestInspection$PasswordField": "<p>Details about your login page password field. </p> <p>How you specify this depends on the payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"login\": { \"username\": \"THE_USERNAME\", \"password\": \"THE_PASSWORD\" } }</code>, the username field specification is <code>/login/username</code> and the password field specification is <code>/login/password</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with input elements named <code>username1</code> and <code>password1</code>, the username field specification is <code>username1</code> and the password field specification is <code>password1</code>.</p> </li> </ul>"
+        "ManagedRuleGroupConfig$PasswordField": "<note> <p>Instead of this setting, provide your configuration under the request inspection configuration for <code>AWSManagedRulesATPRuleSet</code> or <code>AWSManagedRulesACFPRuleSet</code>. </p> </note>",
+        "RequestInspection$PasswordField": "<p>The name of the field in the request payload that contains your customer's password. </p> <p>How you specify this depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"password\": \"THE_PASSWORD\" } }</code>, the password field specification is <code>/form/password</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with the input element named <code>password1</code>, the password field specification is <code>password1</code>.</p> </li> </ul>",
+        "RequestInspectionACFP$PasswordField": "<p>The name of the field in the request payload that contains your customer's password. </p> <p>How you specify this depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"password\": \"THE_PASSWORD\" } }</code>, the password field specification is <code>/form/password</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with the input element named <code>password1</code>, the password field specification is <code>password1</code>.</p> </li> </ul>"
       }
     },
     "PayloadType": {
       "base": null,
       "refs": {
-        "ManagedRuleGroupConfig$PayloadType": "<note> <p>Instead of this setting, provide your configuration under <code>AWSManagedRulesATPRuleSet</code> <code>RequestInspection</code>. </p> </note>",
-        "RequestInspection$PayloadType": "<p>The payload type for your login endpoint, either JSON or form encoded.</p>"
+        "ManagedRuleGroupConfig$PayloadType": "<note> <p>Instead of this setting, provide your configuration under the request inspection configuration for <code>AWSManagedRulesATPRuleSet</code> or <code>AWSManagedRulesACFPRuleSet</code>. </p> </note>",
+        "RequestInspection$PayloadType": "<p>The payload type for your login endpoint, either JSON or form encoded.</p>",
+        "RequestInspectionACFP$PayloadType": "<p>The payload type for your account creation endpoint, either JSON or form encoded.</p>"
+      }
+    },
+    "PhoneNumberField": {
+      "base": "<p>The name of a field in the request payload that contains part or all of your customer's primary phone number. </p> <p>This data type is used in the <code>RequestInspectionACFP</code> data type. </p>",
+      "refs": {
+        "PhoneNumberFields$member": null
+      }
+    },
+    "PhoneNumberFields": {
+      "base": null,
+      "refs": {
+        "RequestInspectionACFP$PhoneNumberFields": "<p>The names of the fields in the request payload that contain your customer's primary phone number. </p> <p>Order the phone number fields in the array exactly as they are ordered in the request payload. </p> <p>How you specify the phone number fields depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field identifiers in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"primaryphoneline1\": \"THE_PHONE1\", \"primaryphoneline2\": \"THE_PHONE2\", \"primaryphoneline3\": \"THE_PHONE3\" } }</code>, the phone number field identifiers are <code>/form/primaryphoneline1</code>, <code>/form/primaryphoneline2</code>, and <code>/form/primaryphoneline3</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with input elements named <code>primaryphoneline1</code>, <code>primaryphoneline2</code>, and <code>primaryphoneline3</code>, the phone number field identifiers are <code>primaryphoneline1</code>, <code>primaryphoneline2</code>, and <code>primaryphoneline3</code>. </p> </li> </ul>"
       }
     },
     "Platform": {
@@ -1808,7 +1857,7 @@
     "RedactedFields": {
       "base": null,
       "refs": {
-        "LoggingConfiguration$RedactedFields": "<p>The parts of the request that you want to keep out of the logs. For example, if you redact the <code>SingleHeader</code> field, the <code>HEADER</code> field in the logs will be <code>REDACTED</code>. </p> <note> <p>You can specify only the following fields for redaction: <code>UriPath</code>, <code>QueryString</code>, <code>SingleHeader</code>, <code>Method</code>, and <code>JsonBody</code>.</p> </note>"
+        "LoggingConfiguration$RedactedFields": "<p>The parts of the request that you want to keep out of the logs.</p> <p>For example, if you redact the <code>SingleHeader</code> field, the <code>HEADER</code> field in the logs will be <code>REDACTED</code> for all rules that use the <code>SingleHeader</code> <code>FieldToMatch</code> setting. </p> <p>Redaction applies only to the component that's specified in the rule's <code>FieldToMatch</code> setting, so the <code>SingleHeader</code> redaction doesn't apply to rules that use the <code>Headers</code> <code>FieldToMatch</code>.</p> <note> <p>You can specify only the following fields for redaction: <code>UriPath</code>, <code>QueryString</code>, <code>SingleHeader</code>, and <code>Method</code>.</p> </note>"
       }
     },
     "Regex": {
@@ -1855,6 +1904,12 @@
         "RegexMatchStatement$RegexString": "<p>The string representing the regular expression.</p>"
       }
     },
+    "RegistrationPagePathString": {
+      "base": null,
+      "refs": {
+        "AWSManagedRulesACFPRuleSet$RegistrationPagePath": "<p>The path of the account registration endpoint for your application. This is the page on your website that presents the registration form to new users. </p> <note> <p>This page must accept <code>GET</code> text/html requests.</p> </note> <p>For example, for the URL <code>https://example.com/web/register</code>, you would provide the path <code>/web/register</code>.</p>"
+      }
+    },
     "RegularExpressionList": {
       "base": null,
       "refs": {
@@ -1897,6 +1952,12 @@
       "base": "<p>The criteria for inspecting login requests, used by the ATP rule group to validate credentials usage. </p> <p>This is part of the <code>AWSManagedRulesATPRuleSet</code> configuration in <code>ManagedRuleGroupConfig</code>.</p> <p>In these settings, you specify how your application accepts login attempts by providing the request payload type and the names of the fields within the request body where the username and password are provided. </p>",
       "refs": {
         "AWSManagedRulesATPRuleSet$RequestInspection": "<p>The criteria for inspecting login requests, used by the ATP rule group to validate credentials usage. </p>"
+      }
+    },
+    "RequestInspectionACFP": {
+      "base": "<p>The criteria for inspecting account creation requests, used by the ACFP rule group to validate and track account creation attempts. </p> <p>This is part of the <code>AWSManagedRulesACFPRuleSet</code> configuration in <code>ManagedRuleGroupConfig</code>.</p> <p>In these settings, you specify how your application accepts account creation attempts by providing the request payload type and the names of the fields within the request body where the username, password, email, and primary address and phone number fields are provided. </p>",
+      "refs": {
+        "AWSManagedRulesACFPRuleSet$RequestInspection": "<p>The criteria for inspecting account creation requests, used by the ACFP rule group to validate and track account creation attempts. </p>"
       }
     },
     "ResourceArn": {
@@ -1973,87 +2034,88 @@
       }
     },
     "ResponseInspection": {
-      "base": "<p>The criteria for inspecting responses to login requests, used by the ATP rule group to track login failure rates. </p> <p>The ATP rule group evaluates the responses that your protected resources send back to client login attempts, keeping count of successful and failed attempts from each IP address and client session. Using this information, the rule group labels and mitigates requests from client sessions and IP addresses that submit too many failed login attempts in a short amount of time. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note> <p>This is part of the <code>AWSManagedRulesATPRuleSet</code> configuration in <code>ManagedRuleGroupConfig</code>.</p> <p>Enable login response inspection by configuring exactly one component of the response to inspect. You can't configure more than one. If you don't configure any of the response inspection options, response inspection is disabled. </p>",
+      "base": "<p>The criteria for inspecting responses to login requests and account creation requests, used by the ATP and ACFP rule groups to track login and account creation success and failure rates. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note> <p>The rule groups evaluates the responses that your protected resources send back to client login and account creation attempts, keeping count of successful and failed attempts from each IP address and client session. Using this information, the rule group labels and mitigates requests from client sessions and IP addresses with too much suspicious activity in a short amount of time. </p> <p>This is part of the <code>AWSManagedRulesATPRuleSet</code> and <code>AWSManagedRulesACFPRuleSet</code> configurations in <code>ManagedRuleGroupConfig</code>.</p> <p>Enable response inspection by configuring exactly one component of the response to inspect, for example, <code>Header</code> or <code>StatusCode</code>. You can't configure more than one component for inspection. If you don't configure any of the response inspection options, response inspection is disabled. </p>",
       "refs": {
-        "AWSManagedRulesATPRuleSet$ResponseInspection": "<p>The criteria for inspecting responses to login requests, used by the ATP rule group to track login failure rates. </p> <p>The ATP rule group evaluates the responses that your protected resources send back to client login attempts, keeping count of successful and failed attempts from each IP address and client session. Using this information, the rule group labels and mitigates requests from client sessions and IP addresses that submit too many failed login attempts in a short amount of time. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>"
+        "AWSManagedRulesACFPRuleSet$ResponseInspection": "<p>The criteria for inspecting responses to account creation requests, used by the ACFP rule group to track account creation success rates. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note> <p>The ACFP rule group evaluates the responses that your protected resources send back to client account creation attempts, keeping count of successful and failed attempts from each IP address and client session. Using this information, the rule group labels and mitigates requests from client sessions and IP addresses that have had too many successful account creation attempts in a short amount of time. </p>",
+        "AWSManagedRulesATPRuleSet$ResponseInspection": "<p>The criteria for inspecting responses to login requests, used by the ATP rule group to track login failure rates. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note> <p>The ATP rule group evaluates the responses that your protected resources send back to client login attempts, keeping count of successful and failed attempts for each IP address and client session. Using this information, the rule group labels and mitigates requests from client sessions and IP addresses that have had too many failed login attempts in a short amount of time. </p>"
       }
     },
     "ResponseInspectionBodyContains": {
-      "base": "<p>Configures inspection of the response body. WAF can inspect the first 65,536 bytes (64 KB) of the response body. This is part of the <code>ResponseInspection</code> configuration for <code>AWSManagedRulesATPRuleSet</code>. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>",
+      "base": "<p>Configures inspection of the response body. WAF can inspect the first 65,536 bytes (64 KB) of the response body. This is part of the <code>ResponseInspection</code> configuration for <code>AWSManagedRulesATPRuleSet</code> and <code>AWSManagedRulesACFPRuleSet</code>. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>",
       "refs": {
-        "ResponseInspection$BodyContains": "<p>Configures inspection of the response body. WAF can inspect the first 65,536 bytes (64 KB) of the response body. </p>"
+        "ResponseInspection$BodyContains": "<p>Configures inspection of the response body for success and failure indicators. WAF can inspect the first 65,536 bytes (64 KB) of the response body. </p>"
       }
     },
     "ResponseInspectionBodyContainsFailureStrings": {
       "base": null,
       "refs": {
-        "ResponseInspectionBodyContains$FailureStrings": "<p>Strings in the body of the response that indicate a failed login attempt. To be counted as a failed login, the string can be anywhere in the body and must be an exact match, including case. Each string must be unique among the success and failure strings. </p> <p>JSON example: <code>\"FailureStrings\": [ \"Login failed\" ]</code> </p>"
+        "ResponseInspectionBodyContains$FailureStrings": "<p>Strings in the body of the response that indicate a failed login or account creation attempt. To be counted as a failure, the string can be anywhere in the body and must be an exact match, including case. Each string must be unique among the success and failure strings. </p> <p>JSON example: <code>\"FailureStrings\": [ \"Request failed\" ]</code> </p>"
       }
     },
     "ResponseInspectionBodyContainsSuccessStrings": {
       "base": null,
       "refs": {
-        "ResponseInspectionBodyContains$SuccessStrings": "<p>Strings in the body of the response that indicate a successful login attempt. To be counted as a successful login, the string can be anywhere in the body and must be an exact match, including case. Each string must be unique among the success and failure strings. </p> <p>JSON example: <code>\"SuccessStrings\": [ \"Login successful\", \"Welcome to our site!\" ]</code> </p>"
+        "ResponseInspectionBodyContains$SuccessStrings": "<p>Strings in the body of the response that indicate a successful login or account creation attempt. To be counted as a success, the string can be anywhere in the body and must be an exact match, including case. Each string must be unique among the success and failure strings. </p> <p>JSON examples: <code>\"SuccessStrings\": [ \"Login successful\" ]</code> and <code>\"SuccessStrings\": [ \"Account creation successful\", \"Welcome to our site!\" ]</code> </p>"
       }
     },
     "ResponseInspectionHeader": {
-      "base": "<p>Configures inspection of the response header. This is part of the <code>ResponseInspection</code> configuration for <code>AWSManagedRulesATPRuleSet</code>. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>",
+      "base": "<p>Configures inspection of the response header. This is part of the <code>ResponseInspection</code> configuration for <code>AWSManagedRulesATPRuleSet</code> and <code>AWSManagedRulesACFPRuleSet</code>. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>",
       "refs": {
-        "ResponseInspection$Header": "<p>Configures inspection of the response header. </p>"
+        "ResponseInspection$Header": "<p>Configures inspection of the response header for success and failure indicators. </p>"
       }
     },
     "ResponseInspectionHeaderFailureValues": {
       "base": null,
       "refs": {
-        "ResponseInspectionHeader$FailureValues": "<p>Values in the response header with the specified name that indicate a failed login attempt. To be counted as a failed login, the value must be an exact match, including case. Each value must be unique among the success and failure values. </p> <p>JSON example: <code>\"FailureValues\": [ \"LoginFailed\", \"Failed login\" ]</code> </p>"
+        "ResponseInspectionHeader$FailureValues": "<p>Values in the response header with the specified name that indicate a failed login or account creation attempt. To be counted as a failure, the value must be an exact match, including case. Each value must be unique among the success and failure values. </p> <p>JSON examples: <code>\"FailureValues\": [ \"LoginFailed\", \"Failed login\" ]</code> and <code>\"FailureValues\": [ \"AccountCreationFailed\" ]</code> </p>"
       }
     },
     "ResponseInspectionHeaderName": {
       "base": null,
       "refs": {
-        "ResponseInspectionHeader$Name": "<p>The name of the header to match against. The name must be an exact match, including case.</p> <p>JSON example: <code>\"Name\": [ \"LoginResult\" ]</code> </p>"
+        "ResponseInspectionHeader$Name": "<p>The name of the header to match against. The name must be an exact match, including case.</p> <p>JSON example: <code>\"Name\": [ \"RequestResult\" ]</code> </p>"
       }
     },
     "ResponseInspectionHeaderSuccessValues": {
       "base": null,
       "refs": {
-        "ResponseInspectionHeader$SuccessValues": "<p>Values in the response header with the specified name that indicate a successful login attempt. To be counted as a successful login, the value must be an exact match, including case. Each value must be unique among the success and failure values. </p> <p>JSON example: <code>\"SuccessValues\": [ \"LoginPassed\", \"Successful login\" ]</code> </p>"
+        "ResponseInspectionHeader$SuccessValues": "<p>Values in the response header with the specified name that indicate a successful login or account creation attempt. To be counted as a success, the value must be an exact match, including case. Each value must be unique among the success and failure values. </p> <p>JSON examples: <code>\"SuccessValues\": [ \"LoginPassed\", \"Successful login\" ]</code> and <code>\"SuccessValues\": [ \"AccountCreated\", \"Successful account creation\" ]</code> </p>"
       }
     },
     "ResponseInspectionJson": {
-      "base": "<p>Configures inspection of the response JSON. WAF can inspect the first 65,536 bytes (64 KB) of the response JSON. This is part of the <code>ResponseInspection</code> configuration for <code>AWSManagedRulesATPRuleSet</code>. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>",
+      "base": "<p>Configures inspection of the response JSON. WAF can inspect the first 65,536 bytes (64 KB) of the response JSON. This is part of the <code>ResponseInspection</code> configuration for <code>AWSManagedRulesATPRuleSet</code> and <code>AWSManagedRulesACFPRuleSet</code>. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>",
       "refs": {
-        "ResponseInspection$Json": "<p>Configures inspection of the response JSON. WAF can inspect the first 65,536 bytes (64 KB) of the response JSON. </p>"
+        "ResponseInspection$Json": "<p>Configures inspection of the response JSON for success and failure indicators. WAF can inspect the first 65,536 bytes (64 KB) of the response JSON. </p>"
       }
     },
     "ResponseInspectionJsonFailureValues": {
       "base": null,
       "refs": {
-        "ResponseInspectionJson$FailureValues": "<p>Values for the specified identifier in the response JSON that indicate a failed login attempt. To be counted as a failed login, the value must be an exact match, including case. Each value must be unique among the success and failure values. </p> <p>JSON example: <code>\"FailureValues\": [ \"False\", \"Failed\" ]</code> </p>"
+        "ResponseInspectionJson$FailureValues": "<p>Values for the specified identifier in the response JSON that indicate a failed login or account creation attempt. To be counted as a failure, the value must be an exact match, including case. Each value must be unique among the success and failure values. </p> <p>JSON example: <code>\"FailureValues\": [ \"False\", \"Failed\" ]</code> </p>"
       }
     },
     "ResponseInspectionJsonSuccessValues": {
       "base": null,
       "refs": {
-        "ResponseInspectionJson$SuccessValues": "<p>Values for the specified identifier in the response JSON that indicate a successful login attempt. To be counted as a successful login, the value must be an exact match, including case. Each value must be unique among the success and failure values. </p> <p>JSON example: <code>\"SuccessValues\": [ \"True\", \"Succeeded\" ]</code> </p>"
+        "ResponseInspectionJson$SuccessValues": "<p>Values for the specified identifier in the response JSON that indicate a successful login or account creation attempt. To be counted as a success, the value must be an exact match, including case. Each value must be unique among the success and failure values. </p> <p>JSON example: <code>\"SuccessValues\": [ \"True\", \"Succeeded\" ]</code> </p>"
       }
     },
     "ResponseInspectionStatusCode": {
-      "base": "<p>Configures inspection of the response status code. This is part of the <code>ResponseInspection</code> configuration for <code>AWSManagedRulesATPRuleSet</code>. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>",
+      "base": "<p>Configures inspection of the response status code. This is part of the <code>ResponseInspection</code> configuration for <code>AWSManagedRulesATPRuleSet</code> and <code>AWSManagedRulesACFPRuleSet</code>. </p> <note> <p>Response inspection is available only in web ACLs that protect Amazon CloudFront distributions.</p> </note>",
       "refs": {
-        "ResponseInspection$StatusCode": "<p>Configures inspection of the response status code. </p>"
+        "ResponseInspection$StatusCode": "<p>Configures inspection of the response status code for success and failure indicators. </p>"
       }
     },
     "ResponseInspectionStatusCodeFailureCodes": {
       "base": null,
       "refs": {
-        "ResponseInspectionStatusCode$FailureCodes": "<p>Status codes in the response that indicate a failed login attempt. To be counted as a failed login, the response status code must match one of these. Each code must be unique among the success and failure status codes. </p> <p>JSON example: <code>\"FailureCodes\": [ 400, 404 ]</code> </p>"
+        "ResponseInspectionStatusCode$FailureCodes": "<p>Status codes in the response that indicate a failed login or account creation attempt. To be counted as a failure, the response status code must match one of these. Each code must be unique among the success and failure status codes. </p> <p>JSON example: <code>\"FailureCodes\": [ 400, 404 ]</code> </p>"
       }
     },
     "ResponseInspectionStatusCodeSuccessCodes": {
       "base": null,
       "refs": {
-        "ResponseInspectionStatusCode$SuccessCodes": "<p>Status codes in the response that indicate a successful login attempt. To be counted as a successful login, the response status code must match one of these. Each code must be unique among the success and failure status codes. </p> <p>JSON example: <code>\"SuccessCodes\": [ 200, 201 ]</code> </p>"
+        "ResponseInspectionStatusCode$SuccessCodes": "<p>Status codes in the response that indicate a successful login or account creation attempt. To be counted as a success, the response status code must match one of these. Each code must be unique among the success and failure status codes. </p> <p>JSON example: <code>\"SuccessCodes\": [ 200, 201 ]</code> </p>"
       }
     },
     "ResponseStatusCode": {
@@ -2518,10 +2580,11 @@
       }
     },
     "UsernameField": {
-      "base": "<p>Details about your login page username field for request inspection, used in the <code>AWSManagedRulesATPRuleSet</code> <code>RequestInspection</code> configuration.</p>",
+      "base": "<p>The name of the field in the request payload that contains your customer's username. </p> <p>This data type is used in the <code>RequestInspection</code> and <code>RequestInspectionACFP</code> data types. </p>",
       "refs": {
-        "ManagedRuleGroupConfig$UsernameField": "<note> <p>Instead of this setting, provide your configuration under <code>AWSManagedRulesATPRuleSet</code> <code>RequestInspection</code>. </p> </note>",
-        "RequestInspection$UsernameField": "<p>Details about your login page username field. </p> <p>How you specify this depends on the payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"login\": { \"username\": \"THE_USERNAME\", \"password\": \"THE_PASSWORD\" } }</code>, the username field specification is <code>/login/username</code> and the password field specification is <code>/login/password</code>.</p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with input elements named <code>username1</code> and <code>password1</code>, the username field specification is <code>username1</code> and the password field specification is <code>password1</code>.</p> </li> </ul>"
+        "ManagedRuleGroupConfig$UsernameField": "<note> <p>Instead of this setting, provide your configuration under the request inspection configuration for <code>AWSManagedRulesATPRuleSet</code> or <code>AWSManagedRulesACFPRuleSet</code>. </p> </note>",
+        "RequestInspection$UsernameField": "<p>The name of the field in the request payload that contains your customer's username. </p> <p>How you specify this depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"username\": \"THE_USERNAME\" } }</code>, the username field specification is <code>/form/username</code>. </p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with the input element named <code>username1</code>, the username field specification is <code>username1</code> </p> </li> </ul>",
+        "RequestInspectionACFP$UsernameField": "<p>The name of the field in the request payload that contains your customer's username. </p> <p>How you specify this depends on the request inspection payload type.</p> <ul> <li> <p>For JSON payloads, specify the field name in JSON pointer syntax. For information about the JSON Pointer syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>For example, for the JSON payload <code>{ \"form\": { \"username\": \"THE_USERNAME\" } }</code>, the username field specification is <code>/form/username</code>. </p> </li> <li> <p>For form encoded payload types, use the HTML form names.</p> <p>For example, for an HTML form with the input element named <code>username1</code>, the username field specification is <code>username1</code> </p> </li> </ul>"
       }
     },
     "VendorName": {

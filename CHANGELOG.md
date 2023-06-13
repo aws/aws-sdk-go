@@ -1,3 +1,24 @@
+Release v1.44.282 (2023-06-13)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API and documentation
+  * This feature allows users to view dashboards for CloudTrail Lake event data stores.
+* `service/codeguru-security`: Adds new service
+* `service/drs`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release introduces a new feature, EC2 Instance Connect Endpoint, that enables you to connect to a resource over TCP, without requiring the resource to have a public IPv4 address.
+* `service/imagebuilder`: Updates service documentation
+* `service/lightsail`: Updates service API and documentation
+  * This release adds pagination for the Get Certificates API operation.
+* `service/s3`: Updates service API and examples
+  * Integrate double encryption feature to SDKs.
+* `service/securityhub`: Updates service API, documentation, and examples
+* `service/simspaceweaver`: Updates service API and documentation
+* `service/verifiedpermissions`: Adds new service
+* `service/wafv2`: Updates service API and documentation
+* `service/wellarchitected`: Updates service API, documentation, and paginators
+
 Release v1.44.281 (2023-06-12)
 ===
 

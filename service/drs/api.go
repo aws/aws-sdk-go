@@ -4,6 +4,7 @@ package drs
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -11,6 +12,107 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
+
+const opAssociateSourceNetworkStack = "AssociateSourceNetworkStack"
+
+// AssociateSourceNetworkStackRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateSourceNetworkStack operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateSourceNetworkStack for more information on using the AssociateSourceNetworkStack
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateSourceNetworkStackRequest method.
+//	req, resp := client.AssociateSourceNetworkStackRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/AssociateSourceNetworkStack
+func (c *Drs) AssociateSourceNetworkStackRequest(input *AssociateSourceNetworkStackInput) (req *request.Request, output *AssociateSourceNetworkStackOutput) {
+	op := &request.Operation{
+		Name:       opAssociateSourceNetworkStack,
+		HTTPMethod: "POST",
+		HTTPPath:   "/AssociateSourceNetworkStack",
+	}
+
+	if input == nil {
+		input = &AssociateSourceNetworkStackInput{}
+	}
+
+	output = &AssociateSourceNetworkStackOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateSourceNetworkStack API operation for Elastic Disaster Recovery Service.
+//
+// Associate a Source Network to an existing CloudFormation Stack and modify
+// launch templates to use this network. Can be used for reverting to previously
+// deployed CloudFormation stacks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation AssociateSourceNetworkStack for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/AssociateSourceNetworkStack
+func (c *Drs) AssociateSourceNetworkStack(input *AssociateSourceNetworkStackInput) (*AssociateSourceNetworkStackOutput, error) {
+	req, out := c.AssociateSourceNetworkStackRequest(input)
+	return out, req.Send()
+}
+
+// AssociateSourceNetworkStackWithContext is the same as AssociateSourceNetworkStack with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateSourceNetworkStack for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) AssociateSourceNetworkStackWithContext(ctx aws.Context, input *AssociateSourceNetworkStackInput, opts ...request.Option) (*AssociateSourceNetworkStackOutput, error) {
+	req, out := c.AssociateSourceNetworkStackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opCreateExtendedSourceServer = "CreateExtendedSourceServer"
 
@@ -296,6 +398,105 @@ func (c *Drs) CreateReplicationConfigurationTemplate(input *CreateReplicationCon
 // for more information on using Contexts.
 func (c *Drs) CreateReplicationConfigurationTemplateWithContext(ctx aws.Context, input *CreateReplicationConfigurationTemplateInput, opts ...request.Option) (*CreateReplicationConfigurationTemplateOutput, error) {
 	req, out := c.CreateReplicationConfigurationTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateSourceNetwork = "CreateSourceNetwork"
+
+// CreateSourceNetworkRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSourceNetwork operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSourceNetwork for more information on using the CreateSourceNetwork
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateSourceNetworkRequest method.
+//	req, resp := client.CreateSourceNetworkRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/CreateSourceNetwork
+func (c *Drs) CreateSourceNetworkRequest(input *CreateSourceNetworkInput) (req *request.Request, output *CreateSourceNetworkOutput) {
+	op := &request.Operation{
+		Name:       opCreateSourceNetwork,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateSourceNetwork",
+	}
+
+	if input == nil {
+		input = &CreateSourceNetworkInput{}
+	}
+
+	output = &CreateSourceNetworkOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSourceNetwork API operation for Elastic Disaster Recovery Service.
+//
+// Create a new Source Network resource for a provided VPC ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation CreateSourceNetwork for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/CreateSourceNetwork
+func (c *Drs) CreateSourceNetwork(input *CreateSourceNetworkInput) (*CreateSourceNetworkOutput, error) {
+	req, out := c.CreateSourceNetworkRequest(input)
+	return out, req.Send()
+}
+
+// CreateSourceNetworkWithContext is the same as CreateSourceNetwork with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSourceNetwork for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) CreateSourceNetworkWithContext(ctx aws.Context, input *CreateSourceNetworkInput, opts ...request.Option) (*CreateSourceNetworkOutput, error) {
+	req, out := c.CreateSourceNetworkRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -674,6 +875,100 @@ func (c *Drs) DeleteReplicationConfigurationTemplate(input *DeleteReplicationCon
 // for more information on using Contexts.
 func (c *Drs) DeleteReplicationConfigurationTemplateWithContext(ctx aws.Context, input *DeleteReplicationConfigurationTemplateInput, opts ...request.Option) (*DeleteReplicationConfigurationTemplateOutput, error) {
 	req, out := c.DeleteReplicationConfigurationTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSourceNetwork = "DeleteSourceNetwork"
+
+// DeleteSourceNetworkRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSourceNetwork operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSourceNetwork for more information on using the DeleteSourceNetwork
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteSourceNetworkRequest method.
+//	req, resp := client.DeleteSourceNetworkRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/DeleteSourceNetwork
+func (c *Drs) DeleteSourceNetworkRequest(input *DeleteSourceNetworkInput) (req *request.Request, output *DeleteSourceNetworkOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSourceNetwork,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteSourceNetwork",
+	}
+
+	if input == nil {
+		input = &DeleteSourceNetworkInput{}
+	}
+
+	output = &DeleteSourceNetworkOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSourceNetwork API operation for Elastic Disaster Recovery Service.
+//
+// Delete Source Network resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation DeleteSourceNetwork for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/DeleteSourceNetwork
+func (c *Drs) DeleteSourceNetwork(input *DeleteSourceNetworkInput) (*DeleteSourceNetworkOutput, error) {
+	req, out := c.DeleteSourceNetworkRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSourceNetworkWithContext is the same as DeleteSourceNetwork with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSourceNetwork for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) DeleteSourceNetworkWithContext(ctx aws.Context, input *DeleteSourceNetworkInput, opts ...request.Option) (*DeleteSourceNetworkOutput, error) {
+	req, out := c.DeleteSourceNetworkRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1665,6 +1960,152 @@ func (c *Drs) DescribeReplicationConfigurationTemplatesPagesWithContext(ctx aws.
 	return p.Err()
 }
 
+const opDescribeSourceNetworks = "DescribeSourceNetworks"
+
+// DescribeSourceNetworksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSourceNetworks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSourceNetworks for more information on using the DescribeSourceNetworks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeSourceNetworksRequest method.
+//	req, resp := client.DescribeSourceNetworksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/DescribeSourceNetworks
+func (c *Drs) DescribeSourceNetworksRequest(input *DescribeSourceNetworksInput) (req *request.Request, output *DescribeSourceNetworksOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSourceNetworks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DescribeSourceNetworks",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeSourceNetworksInput{}
+	}
+
+	output = &DescribeSourceNetworksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSourceNetworks API operation for Elastic Disaster Recovery Service.
+//
+// Lists all Source Networks or multiple Source Networks filtered by ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation DescribeSourceNetworks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/DescribeSourceNetworks
+func (c *Drs) DescribeSourceNetworks(input *DescribeSourceNetworksInput) (*DescribeSourceNetworksOutput, error) {
+	req, out := c.DescribeSourceNetworksRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSourceNetworksWithContext is the same as DescribeSourceNetworks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSourceNetworks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) DescribeSourceNetworksWithContext(ctx aws.Context, input *DescribeSourceNetworksInput, opts ...request.Option) (*DescribeSourceNetworksOutput, error) {
+	req, out := c.DescribeSourceNetworksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeSourceNetworksPages iterates over the pages of a DescribeSourceNetworks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeSourceNetworks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeSourceNetworks operation.
+//	pageNum := 0
+//	err := client.DescribeSourceNetworksPages(params,
+//	    func(page *drs.DescribeSourceNetworksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Drs) DescribeSourceNetworksPages(input *DescribeSourceNetworksInput, fn func(*DescribeSourceNetworksOutput, bool) bool) error {
+	return c.DescribeSourceNetworksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeSourceNetworksPagesWithContext same as DescribeSourceNetworksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) DescribeSourceNetworksPagesWithContext(ctx aws.Context, input *DescribeSourceNetworksInput, fn func(*DescribeSourceNetworksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeSourceNetworksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeSourceNetworksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeSourceNetworksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeSourceServers = "DescribeSourceServers"
 
 // DescribeSourceServersRequest generates a "aws/request.Request" representing the
@@ -2017,6 +2458,102 @@ func (c *Drs) DisconnectSourceServer(input *DisconnectSourceServerInput) (*Disco
 // for more information on using Contexts.
 func (c *Drs) DisconnectSourceServerWithContext(ctx aws.Context, input *DisconnectSourceServerInput, opts ...request.Option) (*DisconnectSourceServerOutput, error) {
 	req, out := c.DisconnectSourceServerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opExportSourceNetworkCfnTemplate = "ExportSourceNetworkCfnTemplate"
+
+// ExportSourceNetworkCfnTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the ExportSourceNetworkCfnTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportSourceNetworkCfnTemplate for more information on using the ExportSourceNetworkCfnTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ExportSourceNetworkCfnTemplateRequest method.
+//	req, resp := client.ExportSourceNetworkCfnTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ExportSourceNetworkCfnTemplate
+func (c *Drs) ExportSourceNetworkCfnTemplateRequest(input *ExportSourceNetworkCfnTemplateInput) (req *request.Request, output *ExportSourceNetworkCfnTemplateOutput) {
+	op := &request.Operation{
+		Name:       opExportSourceNetworkCfnTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ExportSourceNetworkCfnTemplate",
+	}
+
+	if input == nil {
+		input = &ExportSourceNetworkCfnTemplateInput{}
+	}
+
+	output = &ExportSourceNetworkCfnTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportSourceNetworkCfnTemplate API operation for Elastic Disaster Recovery Service.
+//
+// Export the Source Network CloudFormation template to an S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation ExportSourceNetworkCfnTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ExportSourceNetworkCfnTemplate
+func (c *Drs) ExportSourceNetworkCfnTemplate(input *ExportSourceNetworkCfnTemplateInput) (*ExportSourceNetworkCfnTemplateOutput, error) {
+	req, out := c.ExportSourceNetworkCfnTemplateRequest(input)
+	return out, req.Send()
+}
+
+// ExportSourceNetworkCfnTemplateWithContext is the same as ExportSourceNetworkCfnTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportSourceNetworkCfnTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) ExportSourceNetworkCfnTemplateWithContext(ctx aws.Context, input *ExportSourceNetworkCfnTemplateInput, opts ...request.Option) (*ExportSourceNetworkCfnTemplateOutput, error) {
+	req, out := c.ExportSourceNetworkCfnTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3270,6 +3807,198 @@ func (c *Drs) StartReplicationWithContext(ctx aws.Context, input *StartReplicati
 	return out, req.Send()
 }
 
+const opStartSourceNetworkRecovery = "StartSourceNetworkRecovery"
+
+// StartSourceNetworkRecoveryRequest generates a "aws/request.Request" representing the
+// client's request for the StartSourceNetworkRecovery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSourceNetworkRecovery for more information on using the StartSourceNetworkRecovery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSourceNetworkRecoveryRequest method.
+//	req, resp := client.StartSourceNetworkRecoveryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StartSourceNetworkRecovery
+func (c *Drs) StartSourceNetworkRecoveryRequest(input *StartSourceNetworkRecoveryInput) (req *request.Request, output *StartSourceNetworkRecoveryOutput) {
+	op := &request.Operation{
+		Name:       opStartSourceNetworkRecovery,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartSourceNetworkRecovery",
+	}
+
+	if input == nil {
+		input = &StartSourceNetworkRecoveryInput{}
+	}
+
+	output = &StartSourceNetworkRecoveryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSourceNetworkRecovery API operation for Elastic Disaster Recovery Service.
+//
+// Deploy VPC for the specified Source Network and modify launch templates to
+// use this network. The VPC will be deployed using a dedicated CloudFormation
+// stack.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation StartSourceNetworkRecovery for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StartSourceNetworkRecovery
+func (c *Drs) StartSourceNetworkRecovery(input *StartSourceNetworkRecoveryInput) (*StartSourceNetworkRecoveryOutput, error) {
+	req, out := c.StartSourceNetworkRecoveryRequest(input)
+	return out, req.Send()
+}
+
+// StartSourceNetworkRecoveryWithContext is the same as StartSourceNetworkRecovery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSourceNetworkRecovery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) StartSourceNetworkRecoveryWithContext(ctx aws.Context, input *StartSourceNetworkRecoveryInput, opts ...request.Option) (*StartSourceNetworkRecoveryOutput, error) {
+	req, out := c.StartSourceNetworkRecoveryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartSourceNetworkReplication = "StartSourceNetworkReplication"
+
+// StartSourceNetworkReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StartSourceNetworkReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSourceNetworkReplication for more information on using the StartSourceNetworkReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSourceNetworkReplicationRequest method.
+//	req, resp := client.StartSourceNetworkReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StartSourceNetworkReplication
+func (c *Drs) StartSourceNetworkReplicationRequest(input *StartSourceNetworkReplicationInput) (req *request.Request, output *StartSourceNetworkReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStartSourceNetworkReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartSourceNetworkReplication",
+	}
+
+	if input == nil {
+		input = &StartSourceNetworkReplicationInput{}
+	}
+
+	output = &StartSourceNetworkReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSourceNetworkReplication API operation for Elastic Disaster Recovery Service.
+//
+// Starts replication for a Source Network. This action would make the Source
+// Network protected.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation StartSourceNetworkReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StartSourceNetworkReplication
+func (c *Drs) StartSourceNetworkReplication(input *StartSourceNetworkReplicationInput) (*StartSourceNetworkReplicationOutput, error) {
+	req, out := c.StartSourceNetworkReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StartSourceNetworkReplicationWithContext is the same as StartSourceNetworkReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSourceNetworkReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) StartSourceNetworkReplicationWithContext(ctx aws.Context, input *StartSourceNetworkReplicationInput, opts ...request.Option) (*StartSourceNetworkReplicationOutput, error) {
+	req, out := c.StartSourceNetworkReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopFailback = "StopFailback"
 
 // StopFailbackRequest generates a "aws/request.Request" representing the
@@ -3450,6 +4179,103 @@ func (c *Drs) StopReplication(input *StopReplicationInput) (*StopReplicationOutp
 // for more information on using Contexts.
 func (c *Drs) StopReplicationWithContext(ctx aws.Context, input *StopReplicationInput, opts ...request.Option) (*StopReplicationOutput, error) {
 	req, out := c.StopReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopSourceNetworkReplication = "StopSourceNetworkReplication"
+
+// StopSourceNetworkReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StopSourceNetworkReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopSourceNetworkReplication for more information on using the StopSourceNetworkReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopSourceNetworkReplicationRequest method.
+//	req, resp := client.StopSourceNetworkReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StopSourceNetworkReplication
+func (c *Drs) StopSourceNetworkReplicationRequest(input *StopSourceNetworkReplicationInput) (req *request.Request, output *StopSourceNetworkReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStopSourceNetworkReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StopSourceNetworkReplication",
+	}
+
+	if input == nil {
+		input = &StopSourceNetworkReplicationInput{}
+	}
+
+	output = &StopSourceNetworkReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopSourceNetworkReplication API operation for Elastic Disaster Recovery Service.
+//
+// Stops replication for a Source Network. This action would make the Source
+// Network unprotected.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation StopSourceNetworkReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StopSourceNetworkReplication
+func (c *Drs) StopSourceNetworkReplication(input *StopSourceNetworkReplicationInput) (*StopSourceNetworkReplicationOutput, error) {
+	req, out := c.StopSourceNetworkReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StopSourceNetworkReplicationWithContext is the same as StopSourceNetworkReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopSourceNetworkReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) StopSourceNetworkReplicationWithContext(ctx aws.Context, input *StopSourceNetworkReplicationInput, opts ...request.Option) (*StopSourceNetworkReplicationOutput, error) {
+	req, out := c.StopSourceNetworkReplicationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4317,6 +5143,107 @@ func (s *Account) SetAccountID(v string) *Account {
 	return s
 }
 
+type AssociateSourceNetworkStackInput struct {
+	_ struct{} `type:"structure"`
+
+	// CloudFormation template to associate with a Source Network.
+	//
+	// CfnStackName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssociateSourceNetworkStackInput's
+	// String and GoString methods.
+	//
+	// CfnStackName is a required field
+	CfnStackName *string `locationName:"cfnStackName" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The Source Network ID to associate with CloudFormation template.
+	//
+	// SourceNetworkID is a required field
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateSourceNetworkStackInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateSourceNetworkStackInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateSourceNetworkStackInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateSourceNetworkStackInput"}
+	if s.CfnStackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CfnStackName"))
+	}
+	if s.CfnStackName != nil && len(*s.CfnStackName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CfnStackName", 1))
+	}
+	if s.SourceNetworkID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceNetworkID"))
+	}
+	if s.SourceNetworkID != nil && len(*s.SourceNetworkID) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceNetworkID", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCfnStackName sets the CfnStackName field's value.
+func (s *AssociateSourceNetworkStackInput) SetCfnStackName(v string) *AssociateSourceNetworkStackInput {
+	s.CfnStackName = &v
+	return s
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *AssociateSourceNetworkStackInput) SetSourceNetworkID(v string) *AssociateSourceNetworkStackInput {
+	s.SourceNetworkID = &v
+	return s
+}
+
+type AssociateSourceNetworkStackOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Source Network association Job.
+	Job *Job `locationName:"job" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateSourceNetworkStackOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateSourceNetworkStackOutput) GoString() string {
+	return s.String()
+}
+
+// SetJob sets the Job field's value.
+func (s *AssociateSourceNetworkStackOutput) SetJob(v *Job) *AssociateSourceNetworkStackOutput {
+	s.Job = v
+	return s
+}
+
 // Information about a server's CPU.
 type CPU struct {
 	_ struct{} `type:"structure"`
@@ -4603,6 +5530,9 @@ type CreateLaunchConfigurationTemplateInput struct {
 	// Copy tags.
 	CopyTags *bool `locationName:"copyTags" type:"boolean"`
 
+	// S3 bucket ARN to export Source Network templates.
+	ExportBucketArn *string `locationName:"exportBucketArn" min:"20" type:"string"`
+
 	// Launch disposition.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
 
@@ -4638,6 +5568,19 @@ func (s CreateLaunchConfigurationTemplateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLaunchConfigurationTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLaunchConfigurationTemplateInput"}
+	if s.ExportBucketArn != nil && len(*s.ExportBucketArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExportBucketArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetCopyPrivateIp sets the CopyPrivateIp field's value.
 func (s *CreateLaunchConfigurationTemplateInput) SetCopyPrivateIp(v bool) *CreateLaunchConfigurationTemplateInput {
 	s.CopyPrivateIp = &v
@@ -4647,6 +5590,12 @@ func (s *CreateLaunchConfigurationTemplateInput) SetCopyPrivateIp(v bool) *Creat
 // SetCopyTags sets the CopyTags field's value.
 func (s *CreateLaunchConfigurationTemplateInput) SetCopyTags(v bool) *CreateLaunchConfigurationTemplateInput {
 	s.CopyTags = &v
+	return s
+}
+
+// SetExportBucketArn sets the ExportBucketArn field's value.
+func (s *CreateLaunchConfigurationTemplateInput) SetExportBucketArn(v string) *CreateLaunchConfigurationTemplateInput {
+	s.ExportBucketArn = &v
 	return s
 }
 
@@ -5150,6 +6099,130 @@ func (s *CreateReplicationConfigurationTemplateOutput) SetTags(v map[string]*str
 // SetUseDedicatedReplicationServer sets the UseDedicatedReplicationServer field's value.
 func (s *CreateReplicationConfigurationTemplateOutput) SetUseDedicatedReplicationServer(v bool) *CreateReplicationConfigurationTemplateOutput {
 	s.UseDedicatedReplicationServer = &v
+	return s
+}
+
+type CreateSourceNetworkInput struct {
+	_ struct{} `type:"structure"`
+
+	// Account containing the VPC to protect.
+	//
+	// OriginAccountID is a required field
+	OriginAccountID *string `locationName:"originAccountID" min:"12" type:"string" required:"true"`
+
+	// Region containing the VPC to protect.
+	//
+	// OriginRegion is a required field
+	OriginRegion *string `locationName:"originRegion" type:"string" required:"true"`
+
+	// A set of tags to be associated with the Source Network resource.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateSourceNetworkInput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Which VPC ID to protect.
+	//
+	// VpcID is a required field
+	VpcID *string `locationName:"vpcID" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSourceNetworkInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSourceNetworkInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSourceNetworkInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSourceNetworkInput"}
+	if s.OriginAccountID == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginAccountID"))
+	}
+	if s.OriginAccountID != nil && len(*s.OriginAccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("OriginAccountID", 12))
+	}
+	if s.OriginRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginRegion"))
+	}
+	if s.VpcID == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcID"))
+	}
+	if s.VpcID != nil && len(*s.VpcID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcID", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOriginAccountID sets the OriginAccountID field's value.
+func (s *CreateSourceNetworkInput) SetOriginAccountID(v string) *CreateSourceNetworkInput {
+	s.OriginAccountID = &v
+	return s
+}
+
+// SetOriginRegion sets the OriginRegion field's value.
+func (s *CreateSourceNetworkInput) SetOriginRegion(v string) *CreateSourceNetworkInput {
+	s.OriginRegion = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSourceNetworkInput) SetTags(v map[string]*string) *CreateSourceNetworkInput {
+	s.Tags = v
+	return s
+}
+
+// SetVpcID sets the VpcID field's value.
+func (s *CreateSourceNetworkInput) SetVpcID(v string) *CreateSourceNetworkInput {
+	s.VpcID = &v
+	return s
+}
+
+type CreateSourceNetworkOutput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the created Source Network.
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSourceNetworkOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSourceNetworkOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *CreateSourceNetworkOutput) SetSourceNetworkID(v string) *CreateSourceNetworkOutput {
+	s.SourceNetworkID = &v
 	return s
 }
 
@@ -5720,6 +6793,77 @@ func (s DeleteReplicationConfigurationTemplateOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteReplicationConfigurationTemplateOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSourceNetworkInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the Source Network to delete.
+	//
+	// SourceNetworkID is a required field
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSourceNetworkInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSourceNetworkInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSourceNetworkInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSourceNetworkInput"}
+	if s.SourceNetworkID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceNetworkID"))
+	}
+	if s.SourceNetworkID != nil && len(*s.SourceNetworkID) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceNetworkID", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *DeleteSourceNetworkInput) SetSourceNetworkID(v string) *DeleteSourceNetworkInput {
+	s.SourceNetworkID = &v
+	return s
+}
+
+type DeleteSourceNetworkOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSourceNetworkOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSourceNetworkOutput) GoString() string {
 	return s.String()
 }
 
@@ -6618,6 +7762,177 @@ func (s *DescribeReplicationConfigurationTemplatesOutput) SetNextToken(v string)
 	return s
 }
 
+type DescribeSourceNetworksInput struct {
+	_ struct{} `type:"structure"`
+
+	// A set of filters by which to return Source Networks.
+	Filters *DescribeSourceNetworksRequestFilters `locationName:"filters" type:"structure"`
+
+	// Maximum number of Source Networks to retrieve.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token of the next Source Networks to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSourceNetworksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSourceNetworksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSourceNetworksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSourceNetworksInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeSourceNetworksInput) SetFilters(v *DescribeSourceNetworksRequestFilters) *DescribeSourceNetworksInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeSourceNetworksInput) SetMaxResults(v int64) *DescribeSourceNetworksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSourceNetworksInput) SetNextToken(v string) *DescribeSourceNetworksInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeSourceNetworksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of Source Networks.
+	Items []*SourceNetwork `locationName:"items" type:"list"`
+
+	// The token of the next Source Networks to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSourceNetworksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSourceNetworksOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *DescribeSourceNetworksOutput) SetItems(v []*SourceNetwork) *DescribeSourceNetworksOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSourceNetworksOutput) SetNextToken(v string) *DescribeSourceNetworksOutput {
+	s.NextToken = &v
+	return s
+}
+
+// A set of filters by which to return Source Networks.
+type DescribeSourceNetworksRequestFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Filter Source Networks by account ID containing the protected VPCs.
+	OriginAccountID *string `locationName:"originAccountID" min:"12" type:"string"`
+
+	// Filter Source Networks by the region containing the protected VPCs.
+	OriginRegion *string `locationName:"originRegion" type:"string"`
+
+	// An array of Source Network IDs that should be returned. An empty array means
+	// all Source Networks.
+	SourceNetworkIDs []*string `locationName:"sourceNetworkIDs" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSourceNetworksRequestFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSourceNetworksRequestFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSourceNetworksRequestFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSourceNetworksRequestFilters"}
+	if s.OriginAccountID != nil && len(*s.OriginAccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("OriginAccountID", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOriginAccountID sets the OriginAccountID field's value.
+func (s *DescribeSourceNetworksRequestFilters) SetOriginAccountID(v string) *DescribeSourceNetworksRequestFilters {
+	s.OriginAccountID = &v
+	return s
+}
+
+// SetOriginRegion sets the OriginRegion field's value.
+func (s *DescribeSourceNetworksRequestFilters) SetOriginRegion(v string) *DescribeSourceNetworksRequestFilters {
+	s.OriginRegion = &v
+	return s
+}
+
+// SetSourceNetworkIDs sets the SourceNetworkIDs field's value.
+func (s *DescribeSourceNetworksRequestFilters) SetSourceNetworkIDs(v []*string) *DescribeSourceNetworksRequestFilters {
+	s.SourceNetworkIDs = v
+	return s
+}
+
 type DescribeSourceServersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6922,6 +8237,9 @@ type DisconnectSourceServerOutput struct {
 	// Source cloud properties of the Source Server.
 	SourceCloudProperties *SourceCloudProperties `locationName:"sourceCloudProperties" type:"structure"`
 
+	// ID of the Source Network which is protecting this Source Server's network.
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string"`
+
 	// The source properties of the Source Server.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -7005,6 +8323,12 @@ func (s *DisconnectSourceServerOutput) SetSourceCloudProperties(v *SourceCloudPr
 	return s
 }
 
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *DisconnectSourceServerOutput) SetSourceNetworkID(v string) *DisconnectSourceServerOutput {
+	s.SourceNetworkID = &v
+	return s
+}
+
 // SetSourceProperties sets the SourceProperties field's value.
 func (s *DisconnectSourceServerOutput) SetSourceProperties(v *SourceProperties) *DisconnectSourceServerOutput {
 	s.SourceProperties = v
@@ -7067,6 +8391,119 @@ func (s *Disk) SetBytes(v int64) *Disk {
 // SetDeviceName sets the DeviceName field's value.
 func (s *Disk) SetDeviceName(v string) *Disk {
 	s.DeviceName = &v
+	return s
+}
+
+// Properties of resource related to a job event.
+type EventResourceData struct {
+	_ struct{} `type:"structure"`
+
+	// Source Network properties.
+	SourceNetworkData *SourceNetworkData `locationName:"sourceNetworkData" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventResourceData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventResourceData) GoString() string {
+	return s.String()
+}
+
+// SetSourceNetworkData sets the SourceNetworkData field's value.
+func (s *EventResourceData) SetSourceNetworkData(v *SourceNetworkData) *EventResourceData {
+	s.SourceNetworkData = v
+	return s
+}
+
+type ExportSourceNetworkCfnTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Source Network ID to export its CloudFormation template to an S3 bucket.
+	//
+	// SourceNetworkID is a required field
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportSourceNetworkCfnTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportSourceNetworkCfnTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportSourceNetworkCfnTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportSourceNetworkCfnTemplateInput"}
+	if s.SourceNetworkID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceNetworkID"))
+	}
+	if s.SourceNetworkID != nil && len(*s.SourceNetworkID) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceNetworkID", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *ExportSourceNetworkCfnTemplateInput) SetSourceNetworkID(v string) *ExportSourceNetworkCfnTemplateInput {
+	s.SourceNetworkID = &v
+	return s
+}
+
+type ExportSourceNetworkCfnTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// S3 bucket URL where the Source Network CloudFormation template was exported
+	// to.
+	S3DestinationUrl *string `locationName:"s3DestinationUrl" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportSourceNetworkCfnTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportSourceNetworkCfnTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetS3DestinationUrl sets the S3DestinationUrl field's value.
+func (s *ExportSourceNetworkCfnTemplateOutput) SetS3DestinationUrl(v string) *ExportSourceNetworkCfnTemplateOutput {
+	s.S3DestinationUrl = &v
 	return s
 }
 
@@ -7753,6 +9190,9 @@ type Job struct {
 	// JobID is a required field
 	JobID *string `locationName:"jobID" min:"24" type:"string" required:"true"`
 
+	// A list of resources that the Job is acting upon.
+	ParticipatingResources []*ParticipatingResource `locationName:"participatingResources" type:"list"`
+
 	// A list of servers that the Job is acting upon.
 	ParticipatingServers []*ParticipatingServer `locationName:"participatingServers" type:"list"`
 
@@ -7815,6 +9255,12 @@ func (s *Job) SetInitiatedBy(v string) *Job {
 // SetJobID sets the JobID field's value.
 func (s *Job) SetJobID(v string) *Job {
 	s.JobID = &v
+	return s
+}
+
+// SetParticipatingResources sets the ParticipatingResources field's value.
+func (s *Job) SetParticipatingResources(v []*ParticipatingResource) *Job {
+	s.ParticipatingResources = v
 	return s
 }
 
@@ -7902,6 +9348,9 @@ type JobLogEventData struct {
 	// The ID of a conversion server.
 	ConversionServerID *string `locationName:"conversionServerID" type:"string"`
 
+	// Properties of resource related to a job event.
+	EventResourceData *EventResourceData `locationName:"eventResourceData" type:"structure"`
+
 	// A string representing a job error.
 	RawError *string `locationName:"rawError" type:"string"`
 
@@ -7942,6 +9391,12 @@ func (s *JobLogEventData) SetConversionServerID(v string) *JobLogEventData {
 	return s
 }
 
+// SetEventResourceData sets the EventResourceData field's value.
+func (s *JobLogEventData) SetEventResourceData(v *EventResourceData) *JobLogEventData {
+	s.EventResourceData = v
+	return s
+}
+
 // SetRawError sets the RawError field's value.
 func (s *JobLogEventData) SetRawError(v string) *JobLogEventData {
 	s.RawError = &v
@@ -7972,6 +9427,9 @@ type LaunchConfigurationTemplate struct {
 
 	// Copy tags.
 	CopyTags *bool `locationName:"copyTags" type:"boolean"`
+
+	// S3 bucket ARN to export Source Network templates.
+	ExportBucketArn *string `locationName:"exportBucketArn" min:"20" type:"string"`
 
 	// ID of the Launch Configuration Template.
 	LaunchConfigurationTemplateID *string `locationName:"launchConfigurationTemplateID" min:"21" type:"string"`
@@ -8026,6 +9484,12 @@ func (s *LaunchConfigurationTemplate) SetCopyPrivateIp(v bool) *LaunchConfigurat
 // SetCopyTags sets the CopyTags field's value.
 func (s *LaunchConfigurationTemplate) SetCopyTags(v bool) *LaunchConfigurationTemplate {
 	s.CopyTags = &v
+	return s
+}
+
+// SetExportBucketArn sets the ExportBucketArn field's value.
+func (s *LaunchConfigurationTemplate) SetExportBucketArn(v string) *LaunchConfigurationTemplate {
+	s.ExportBucketArn = &v
 	return s
 }
 
@@ -8719,6 +10183,79 @@ func (s *PITPolicyRule) SetRuleID(v int64) *PITPolicyRule {
 // SetUnits sets the Units field's value.
 func (s *PITPolicyRule) SetUnits(v string) *PITPolicyRule {
 	s.Units = &v
+	return s
+}
+
+// Represents a resource participating in an asynchronous Job.
+type ParticipatingResource struct {
+	_ struct{} `type:"structure"`
+
+	// The launch status of a participating resource.
+	LaunchStatus *string `locationName:"launchStatus" type:"string" enum:"LaunchStatus"`
+
+	// The ID of a participating resource.
+	ParticipatingResourceID *ParticipatingResourceID `locationName:"participatingResourceID" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipatingResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipatingResource) GoString() string {
+	return s.String()
+}
+
+// SetLaunchStatus sets the LaunchStatus field's value.
+func (s *ParticipatingResource) SetLaunchStatus(v string) *ParticipatingResource {
+	s.LaunchStatus = &v
+	return s
+}
+
+// SetParticipatingResourceID sets the ParticipatingResourceID field's value.
+func (s *ParticipatingResource) SetParticipatingResourceID(v *ParticipatingResourceID) *ParticipatingResource {
+	s.ParticipatingResourceID = v
+	return s
+}
+
+// ID of a resource participating in an asynchronous Job.
+type ParticipatingResourceID struct {
+	_ struct{} `type:"structure"`
+
+	// Source Network ID.
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipatingResourceID) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipatingResourceID) GoString() string {
+	return s.String()
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *ParticipatingResourceID) SetSourceNetworkID(v string) *ParticipatingResourceID {
+	s.SourceNetworkID = &v
 	return s
 }
 
@@ -9459,6 +10996,56 @@ func (s *RecoveryInstanceProperties) SetRamBytes(v int64) *RecoveryInstancePrope
 	return s
 }
 
+// An object representing the Source Network recovery Lifecycle.
+type RecoveryLifeCycle struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time the last Source Network recovery was initiated.
+	ApiCallDateTime *time.Time `locationName:"apiCallDateTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ID of the Job that was used to last recover the Source Network.
+	JobID *string `locationName:"jobID" min:"24" type:"string"`
+
+	// The status of the last recovery status of this Source Network.
+	LastRecoveryResult *string `locationName:"lastRecoveryResult" type:"string" enum:"RecoveryResult"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecoveryLifeCycle) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecoveryLifeCycle) GoString() string {
+	return s.String()
+}
+
+// SetApiCallDateTime sets the ApiCallDateTime field's value.
+func (s *RecoveryLifeCycle) SetApiCallDateTime(v time.Time) *RecoveryLifeCycle {
+	s.ApiCallDateTime = &v
+	return s
+}
+
+// SetJobID sets the JobID field's value.
+func (s *RecoveryLifeCycle) SetJobID(v string) *RecoveryLifeCycle {
+	s.JobID = &v
+	return s
+}
+
+// SetLastRecoveryResult sets the LastRecoveryResult field's value.
+func (s *RecoveryLifeCycle) SetLastRecoveryResult(v string) *RecoveryLifeCycle {
+	s.LastRecoveryResult = &v
+	return s
+}
+
 // A snapshot of a Source Server used during recovery.
 type RecoverySnapshot struct {
 	_ struct{} `type:"structure"`
@@ -9954,6 +11541,9 @@ type RetryDataReplicationOutput struct {
 	// Source cloud properties of the Source Server.
 	SourceCloudProperties *SourceCloudProperties `locationName:"sourceCloudProperties" type:"structure"`
 
+	// ID of the Source Network which is protecting this Source Server's network.
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string"`
+
 	// The source properties of the Source Server.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -10034,6 +11624,12 @@ func (s *RetryDataReplicationOutput) SetReversedDirectionSourceServerArn(v strin
 // SetSourceCloudProperties sets the SourceCloudProperties field's value.
 func (s *RetryDataReplicationOutput) SetSourceCloudProperties(v *SourceCloudProperties) *RetryDataReplicationOutput {
 	s.SourceCloudProperties = v
+	return s
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *RetryDataReplicationOutput) SetSourceNetworkID(v string) *RetryDataReplicationOutput {
+	s.SourceNetworkID = &v
 	return s
 }
 
@@ -10269,6 +11865,203 @@ func (s *SourceCloudProperties) SetOriginRegion(v string) *SourceCloudProperties
 	return s
 }
 
+// The ARN of the Source Network.
+type SourceNetwork struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Source Network.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// CloudFormation stack name that was deployed for recovering the Source Network.
+	//
+	// CfnStackName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SourceNetwork's
+	// String and GoString methods.
+	CfnStackName *string `locationName:"cfnStackName" min:"1" type:"string" sensitive:"true"`
+
+	// An object containing information regarding the last recovery of the Source
+	// Network.
+	LastRecovery *RecoveryLifeCycle `locationName:"lastRecovery" type:"structure"`
+
+	// ID of the recovered VPC following Source Network recovery.
+	LaunchedVpcID *string `locationName:"launchedVpcID" min:"12" type:"string"`
+
+	// Status of Source Network Replication. Possible values: (a) STOPPED - Source
+	// Network is not replicating. (b) IN_PROGRESS - Source Network is being replicated.
+	// (c) PROTECTED - Source Network was replicated successfully and is being synchronized
+	// for changes. (d) ERROR - Source Network replication has failed
+	ReplicationStatus *string `locationName:"replicationStatus" type:"string" enum:"ReplicationStatus"`
+
+	// Error details in case Source Network replication status is ERROR.
+	//
+	// ReplicationStatusDetails is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SourceNetwork's
+	// String and GoString methods.
+	ReplicationStatusDetails *string `locationName:"replicationStatusDetails" type:"string" sensitive:"true"`
+
+	// Account ID containing the VPC protected by the Source Network.
+	SourceAccountID *string `locationName:"sourceAccountID" min:"12" type:"string"`
+
+	// Source Network ID.
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string"`
+
+	// Region containing the VPC protected by the Source Network.
+	SourceRegion *string `locationName:"sourceRegion" type:"string"`
+
+	// VPC ID protected by the Source Network.
+	SourceVpcID *string `locationName:"sourceVpcID" min:"12" type:"string"`
+
+	// A list of tags associated with the Source Network.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SourceNetwork's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceNetwork) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceNetwork) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SourceNetwork) SetArn(v string) *SourceNetwork {
+	s.Arn = &v
+	return s
+}
+
+// SetCfnStackName sets the CfnStackName field's value.
+func (s *SourceNetwork) SetCfnStackName(v string) *SourceNetwork {
+	s.CfnStackName = &v
+	return s
+}
+
+// SetLastRecovery sets the LastRecovery field's value.
+func (s *SourceNetwork) SetLastRecovery(v *RecoveryLifeCycle) *SourceNetwork {
+	s.LastRecovery = v
+	return s
+}
+
+// SetLaunchedVpcID sets the LaunchedVpcID field's value.
+func (s *SourceNetwork) SetLaunchedVpcID(v string) *SourceNetwork {
+	s.LaunchedVpcID = &v
+	return s
+}
+
+// SetReplicationStatus sets the ReplicationStatus field's value.
+func (s *SourceNetwork) SetReplicationStatus(v string) *SourceNetwork {
+	s.ReplicationStatus = &v
+	return s
+}
+
+// SetReplicationStatusDetails sets the ReplicationStatusDetails field's value.
+func (s *SourceNetwork) SetReplicationStatusDetails(v string) *SourceNetwork {
+	s.ReplicationStatusDetails = &v
+	return s
+}
+
+// SetSourceAccountID sets the SourceAccountID field's value.
+func (s *SourceNetwork) SetSourceAccountID(v string) *SourceNetwork {
+	s.SourceAccountID = &v
+	return s
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *SourceNetwork) SetSourceNetworkID(v string) *SourceNetwork {
+	s.SourceNetworkID = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *SourceNetwork) SetSourceRegion(v string) *SourceNetwork {
+	s.SourceRegion = &v
+	return s
+}
+
+// SetSourceVpcID sets the SourceVpcID field's value.
+func (s *SourceNetwork) SetSourceVpcID(v string) *SourceNetwork {
+	s.SourceVpcID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SourceNetwork) SetTags(v map[string]*string) *SourceNetwork {
+	s.Tags = v
+	return s
+}
+
+// Properties of Source Network related to a job event.
+type SourceNetworkData struct {
+	_ struct{} `type:"structure"`
+
+	// Source Network ID.
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string"`
+
+	// VPC ID protected by the Source Network.
+	SourceVpc *string `locationName:"sourceVpc" min:"12" type:"string"`
+
+	// CloudFormation stack name that was deployed for recovering the Source Network.
+	StackName *string `locationName:"stackName" type:"string"`
+
+	// ID of the recovered VPC following Source Network recovery.
+	TargetVpc *string `locationName:"targetVpc" min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceNetworkData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceNetworkData) GoString() string {
+	return s.String()
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *SourceNetworkData) SetSourceNetworkID(v string) *SourceNetworkData {
+	s.SourceNetworkID = &v
+	return s
+}
+
+// SetSourceVpc sets the SourceVpc field's value.
+func (s *SourceNetworkData) SetSourceVpc(v string) *SourceNetworkData {
+	s.SourceVpc = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *SourceNetworkData) SetStackName(v string) *SourceNetworkData {
+	s.StackName = &v
+	return s
+}
+
+// SetTargetVpc sets the TargetVpc field's value.
+func (s *SourceNetworkData) SetTargetVpc(v string) *SourceNetworkData {
+	s.TargetVpc = &v
+	return s
+}
+
 // Properties of the Source Server machine.
 type SourceProperties struct {
 	_ struct{} `type:"structure"`
@@ -10403,6 +12196,9 @@ type SourceServer struct {
 	// Source cloud properties of the Source Server.
 	SourceCloudProperties *SourceCloudProperties `locationName:"sourceCloudProperties" type:"structure"`
 
+	// ID of the Source Network which is protecting this Source Server's network.
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string"`
+
 	// The source properties of the Source Server.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -10483,6 +12279,12 @@ func (s *SourceServer) SetReversedDirectionSourceServerArn(v string) *SourceServ
 // SetSourceCloudProperties sets the SourceCloudProperties field's value.
 func (s *SourceServer) SetSourceCloudProperties(v *SourceCloudProperties) *SourceServer {
 	s.SourceCloudProperties = v
+	return s
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *SourceServer) SetSourceNetworkID(v string) *SourceServer {
+	s.SourceNetworkID = &v
 	return s
 }
 
@@ -10979,6 +12781,265 @@ func (s *StartReplicationOutput) SetSourceServer(v *SourceServer) *StartReplicat
 	return s
 }
 
+type StartSourceNetworkRecoveryInput struct {
+	_ struct{} `type:"structure"`
+
+	// Don't update existing CloudFormation Stack, recover the network using a new
+	// stack.
+	DeployAsNew *bool `locationName:"deployAsNew" type:"boolean"`
+
+	// The Source Networks that we want to start a Recovery Job for.
+	//
+	// SourceNetworks is a required field
+	SourceNetworks []*StartSourceNetworkRecoveryRequestNetworkEntry `locationName:"sourceNetworks" min:"1" type:"list" required:"true"`
+
+	// The tags to be associated with the Source Network recovery Job.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartSourceNetworkRecoveryInput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkRecoveryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkRecoveryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSourceNetworkRecoveryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSourceNetworkRecoveryInput"}
+	if s.SourceNetworks == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceNetworks"))
+	}
+	if s.SourceNetworks != nil && len(s.SourceNetworks) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceNetworks", 1))
+	}
+	if s.SourceNetworks != nil {
+		for i, v := range s.SourceNetworks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SourceNetworks", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeployAsNew sets the DeployAsNew field's value.
+func (s *StartSourceNetworkRecoveryInput) SetDeployAsNew(v bool) *StartSourceNetworkRecoveryInput {
+	s.DeployAsNew = &v
+	return s
+}
+
+// SetSourceNetworks sets the SourceNetworks field's value.
+func (s *StartSourceNetworkRecoveryInput) SetSourceNetworks(v []*StartSourceNetworkRecoveryRequestNetworkEntry) *StartSourceNetworkRecoveryInput {
+	s.SourceNetworks = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartSourceNetworkRecoveryInput) SetTags(v map[string]*string) *StartSourceNetworkRecoveryInput {
+	s.Tags = v
+	return s
+}
+
+type StartSourceNetworkRecoveryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Source Network recovery Job.
+	Job *Job `locationName:"job" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkRecoveryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkRecoveryOutput) GoString() string {
+	return s.String()
+}
+
+// SetJob sets the Job field's value.
+func (s *StartSourceNetworkRecoveryOutput) SetJob(v *Job) *StartSourceNetworkRecoveryOutput {
+	s.Job = v
+	return s
+}
+
+// An object representing the Source Network to recover.
+type StartSourceNetworkRecoveryRequestNetworkEntry struct {
+	_ struct{} `type:"structure"`
+
+	// CloudFormation stack name to be used for recovering the network.
+	//
+	// CfnStackName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartSourceNetworkRecoveryRequestNetworkEntry's
+	// String and GoString methods.
+	CfnStackName *string `locationName:"cfnStackName" min:"1" type:"string" sensitive:"true"`
+
+	// The ID of the Source Network you want to recover.
+	//
+	// SourceNetworkID is a required field
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkRecoveryRequestNetworkEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkRecoveryRequestNetworkEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSourceNetworkRecoveryRequestNetworkEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSourceNetworkRecoveryRequestNetworkEntry"}
+	if s.CfnStackName != nil && len(*s.CfnStackName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CfnStackName", 1))
+	}
+	if s.SourceNetworkID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceNetworkID"))
+	}
+	if s.SourceNetworkID != nil && len(*s.SourceNetworkID) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceNetworkID", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCfnStackName sets the CfnStackName field's value.
+func (s *StartSourceNetworkRecoveryRequestNetworkEntry) SetCfnStackName(v string) *StartSourceNetworkRecoveryRequestNetworkEntry {
+	s.CfnStackName = &v
+	return s
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *StartSourceNetworkRecoveryRequestNetworkEntry) SetSourceNetworkID(v string) *StartSourceNetworkRecoveryRequestNetworkEntry {
+	s.SourceNetworkID = &v
+	return s
+}
+
+type StartSourceNetworkReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the Source Network to replicate.
+	//
+	// SourceNetworkID is a required field
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSourceNetworkReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSourceNetworkReplicationInput"}
+	if s.SourceNetworkID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceNetworkID"))
+	}
+	if s.SourceNetworkID != nil && len(*s.SourceNetworkID) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceNetworkID", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *StartSourceNetworkReplicationInput) SetSourceNetworkID(v string) *StartSourceNetworkReplicationInput {
+	s.SourceNetworkID = &v
+	return s
+}
+
+type StartSourceNetworkReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Source Network which was requested for replication.
+	SourceNetwork *SourceNetwork `locationName:"sourceNetwork" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSourceNetworkReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceNetwork sets the SourceNetwork field's value.
+func (s *StartSourceNetworkReplicationOutput) SetSourceNetwork(v *SourceNetwork) *StartSourceNetworkReplicationOutput {
+	s.SourceNetwork = v
+	return s
+}
+
 type StopFailbackInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11127,6 +13188,86 @@ func (s StopReplicationOutput) GoString() string {
 // SetSourceServer sets the SourceServer field's value.
 func (s *StopReplicationOutput) SetSourceServer(v *SourceServer) *StopReplicationOutput {
 	s.SourceServer = v
+	return s
+}
+
+type StopSourceNetworkReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the Source Network to stop replication.
+	//
+	// SourceNetworkID is a required field
+	SourceNetworkID *string `locationName:"sourceNetworkID" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSourceNetworkReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSourceNetworkReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopSourceNetworkReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopSourceNetworkReplicationInput"}
+	if s.SourceNetworkID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceNetworkID"))
+	}
+	if s.SourceNetworkID != nil && len(*s.SourceNetworkID) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceNetworkID", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceNetworkID sets the SourceNetworkID field's value.
+func (s *StopSourceNetworkReplicationInput) SetSourceNetworkID(v string) *StopSourceNetworkReplicationInput {
+	s.SourceNetworkID = &v
+	return s
+}
+
+type StopSourceNetworkReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Source Network which was requested to stop replication.
+	SourceNetwork *SourceNetwork `locationName:"sourceNetwork" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSourceNetworkReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSourceNetworkReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceNetwork sets the SourceNetwork field's value.
+func (s *StopSourceNetworkReplicationOutput) SetSourceNetwork(v *SourceNetwork) *StopSourceNetworkReplicationOutput {
+	s.SourceNetwork = v
 	return s
 }
 
@@ -11839,6 +13980,9 @@ type UpdateLaunchConfigurationTemplateInput struct {
 	// Copy tags.
 	CopyTags *bool `locationName:"copyTags" type:"boolean"`
 
+	// S3 bucket ARN to export Source Network templates.
+	ExportBucketArn *string `locationName:"exportBucketArn" min:"20" type:"string"`
+
 	// Launch Configuration Template ID.
 	//
 	// LaunchConfigurationTemplateID is a required field
@@ -11875,6 +14019,9 @@ func (s UpdateLaunchConfigurationTemplateInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateLaunchConfigurationTemplateInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateLaunchConfigurationTemplateInput"}
+	if s.ExportBucketArn != nil && len(*s.ExportBucketArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExportBucketArn", 20))
+	}
 	if s.LaunchConfigurationTemplateID == nil {
 		invalidParams.Add(request.NewErrParamRequired("LaunchConfigurationTemplateID"))
 	}
@@ -11897,6 +14044,12 @@ func (s *UpdateLaunchConfigurationTemplateInput) SetCopyPrivateIp(v bool) *Updat
 // SetCopyTags sets the CopyTags field's value.
 func (s *UpdateLaunchConfigurationTemplateInput) SetCopyTags(v bool) *UpdateLaunchConfigurationTemplateInput {
 	s.CopyTags = &v
+	return s
+}
+
+// SetExportBucketArn sets the ExportBucketArn field's value.
+func (s *UpdateLaunchConfigurationTemplateInput) SetExportBucketArn(v string) *UpdateLaunchConfigurationTemplateInput {
+	s.ExportBucketArn = &v
 	return s
 }
 
@@ -13283,6 +15436,15 @@ const (
 
 	// InitiatedByTargetAccount is a InitiatedBy enum value
 	InitiatedByTargetAccount = "TARGET_ACCOUNT"
+
+	// InitiatedByCreateNetworkRecovery is a InitiatedBy enum value
+	InitiatedByCreateNetworkRecovery = "CREATE_NETWORK_RECOVERY"
+
+	// InitiatedByUpdateNetworkRecovery is a InitiatedBy enum value
+	InitiatedByUpdateNetworkRecovery = "UPDATE_NETWORK_RECOVERY"
+
+	// InitiatedByAssociateNetworkRecovery is a InitiatedBy enum value
+	InitiatedByAssociateNetworkRecovery = "ASSOCIATE_NETWORK_RECOVERY"
 )
 
 // InitiatedBy_Values returns all elements of the InitiatedBy enum
@@ -13294,6 +15456,9 @@ func InitiatedBy_Values() []string {
 		InitiatedByDiagnostic,
 		InitiatedByTerminateRecoveryInstances,
 		InitiatedByTargetAccount,
+		InitiatedByCreateNetworkRecovery,
+		InitiatedByUpdateNetworkRecovery,
+		InitiatedByAssociateNetworkRecovery,
 	}
 }
 
@@ -13348,6 +15513,36 @@ const (
 
 	// JobLogEventJobEnd is a JobLogEvent enum value
 	JobLogEventJobEnd = "JOB_END"
+
+	// JobLogEventDeployNetworkConfigurationStart is a JobLogEvent enum value
+	JobLogEventDeployNetworkConfigurationStart = "DEPLOY_NETWORK_CONFIGURATION_START"
+
+	// JobLogEventDeployNetworkConfigurationEnd is a JobLogEvent enum value
+	JobLogEventDeployNetworkConfigurationEnd = "DEPLOY_NETWORK_CONFIGURATION_END"
+
+	// JobLogEventDeployNetworkConfigurationFailed is a JobLogEvent enum value
+	JobLogEventDeployNetworkConfigurationFailed = "DEPLOY_NETWORK_CONFIGURATION_FAILED"
+
+	// JobLogEventUpdateNetworkConfigurationStart is a JobLogEvent enum value
+	JobLogEventUpdateNetworkConfigurationStart = "UPDATE_NETWORK_CONFIGURATION_START"
+
+	// JobLogEventUpdateNetworkConfigurationEnd is a JobLogEvent enum value
+	JobLogEventUpdateNetworkConfigurationEnd = "UPDATE_NETWORK_CONFIGURATION_END"
+
+	// JobLogEventUpdateNetworkConfigurationFailed is a JobLogEvent enum value
+	JobLogEventUpdateNetworkConfigurationFailed = "UPDATE_NETWORK_CONFIGURATION_FAILED"
+
+	// JobLogEventUpdateLaunchTemplateStart is a JobLogEvent enum value
+	JobLogEventUpdateLaunchTemplateStart = "UPDATE_LAUNCH_TEMPLATE_START"
+
+	// JobLogEventUpdateLaunchTemplateEnd is a JobLogEvent enum value
+	JobLogEventUpdateLaunchTemplateEnd = "UPDATE_LAUNCH_TEMPLATE_END"
+
+	// JobLogEventUpdateLaunchTemplateFailed is a JobLogEvent enum value
+	JobLogEventUpdateLaunchTemplateFailed = "UPDATE_LAUNCH_TEMPLATE_FAILED"
+
+	// JobLogEventNetworkRecoveryFail is a JobLogEvent enum value
+	JobLogEventNetworkRecoveryFail = "NETWORK_RECOVERY_FAIL"
 )
 
 // JobLogEvent_Values returns all elements of the JobLogEvent enum
@@ -13370,6 +15565,16 @@ func JobLogEvent_Values() []string {
 		JobLogEventLaunchFailed,
 		JobLogEventJobCancel,
 		JobLogEventJobEnd,
+		JobLogEventDeployNetworkConfigurationStart,
+		JobLogEventDeployNetworkConfigurationEnd,
+		JobLogEventDeployNetworkConfigurationFailed,
+		JobLogEventUpdateNetworkConfigurationStart,
+		JobLogEventUpdateNetworkConfigurationEnd,
+		JobLogEventUpdateNetworkConfigurationFailed,
+		JobLogEventUpdateLaunchTemplateStart,
+		JobLogEventUpdateLaunchTemplateEnd,
+		JobLogEventUpdateLaunchTemplateFailed,
+		JobLogEventNetworkRecoveryFail,
 	}
 }
 
@@ -13698,6 +15903,42 @@ func RecoveryInstanceDataReplicationState_Values() []string {
 }
 
 const (
+	// RecoveryResultNotStarted is a RecoveryResult enum value
+	RecoveryResultNotStarted = "NOT_STARTED"
+
+	// RecoveryResultInProgress is a RecoveryResult enum value
+	RecoveryResultInProgress = "IN_PROGRESS"
+
+	// RecoveryResultSuccess is a RecoveryResult enum value
+	RecoveryResultSuccess = "SUCCESS"
+
+	// RecoveryResultFail is a RecoveryResult enum value
+	RecoveryResultFail = "FAIL"
+
+	// RecoveryResultPartialSuccess is a RecoveryResult enum value
+	RecoveryResultPartialSuccess = "PARTIAL_SUCCESS"
+
+	// RecoveryResultAssociateSuccess is a RecoveryResult enum value
+	RecoveryResultAssociateSuccess = "ASSOCIATE_SUCCESS"
+
+	// RecoveryResultAssociateFail is a RecoveryResult enum value
+	RecoveryResultAssociateFail = "ASSOCIATE_FAIL"
+)
+
+// RecoveryResult_Values returns all elements of the RecoveryResult enum
+func RecoveryResult_Values() []string {
+	return []string{
+		RecoveryResultNotStarted,
+		RecoveryResultInProgress,
+		RecoveryResultSuccess,
+		RecoveryResultFail,
+		RecoveryResultPartialSuccess,
+		RecoveryResultAssociateSuccess,
+		RecoveryResultAssociateFail,
+	}
+}
+
+const (
 	// RecoverySnapshotsOrderAsc is a RecoverySnapshotsOrder enum value
 	RecoverySnapshotsOrderAsc = "ASC"
 
@@ -13759,6 +16000,9 @@ const (
 
 	// ReplicationConfigurationEbsEncryptionCustom is a ReplicationConfigurationEbsEncryption enum value
 	ReplicationConfigurationEbsEncryptionCustom = "CUSTOM"
+
+	// ReplicationConfigurationEbsEncryptionNone is a ReplicationConfigurationEbsEncryption enum value
+	ReplicationConfigurationEbsEncryptionNone = "NONE"
 )
 
 // ReplicationConfigurationEbsEncryption_Values returns all elements of the ReplicationConfigurationEbsEncryption enum
@@ -13766,6 +16010,7 @@ func ReplicationConfigurationEbsEncryption_Values() []string {
 	return []string{
 		ReplicationConfigurationEbsEncryptionDefault,
 		ReplicationConfigurationEbsEncryptionCustom,
+		ReplicationConfigurationEbsEncryptionNone,
 	}
 }
 
@@ -13824,6 +16069,30 @@ func ReplicationDirection_Values() []string {
 	return []string{
 		ReplicationDirectionFailover,
 		ReplicationDirectionFailback,
+	}
+}
+
+const (
+	// ReplicationStatusStopped is a ReplicationStatus enum value
+	ReplicationStatusStopped = "STOPPED"
+
+	// ReplicationStatusInProgress is a ReplicationStatus enum value
+	ReplicationStatusInProgress = "IN_PROGRESS"
+
+	// ReplicationStatusProtected is a ReplicationStatus enum value
+	ReplicationStatusProtected = "PROTECTED"
+
+	// ReplicationStatusError is a ReplicationStatus enum value
+	ReplicationStatusError = "ERROR"
+)
+
+// ReplicationStatus_Values returns all elements of the ReplicationStatus enum
+func ReplicationStatus_Values() []string {
+	return []string{
+		ReplicationStatusStopped,
+		ReplicationStatusInProgress,
+		ReplicationStatusProtected,
+		ReplicationStatusError,
 	}
 }
 
