@@ -5086,13 +5086,15 @@
       "members":{
         "certificateStatuses":{"shape":"CertificateStatusList"},
         "includeCertificateDetails":{"shape":"IncludeCertificateDetails"},
-        "certificateName":{"shape":"CertificateName"}
+        "certificateName":{"shape":"CertificateName"},
+        "pageToken":{"shape":"string"}
       }
     },
     "GetCertificatesResult":{
       "type":"structure",
       "members":{
-        "certificates":{"shape":"CertificateSummaryList"}
+        "certificates":{"shape":"CertificateSummaryList"},
+        "nextPageToken":{"shape":"string"}
       }
     },
     "GetCloudFormationStackRecordsRequest":{

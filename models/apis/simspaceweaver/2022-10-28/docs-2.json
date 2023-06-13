@@ -289,7 +289,7 @@
     "S3Destination": {
       "base": "<p>An Amazon S3 bucket and optional folder (object key prefix) where SimSpace Weaver creates a file.</p>",
       "refs": {
-        "CreateSnapshotInput$Destination": "<p>The Amazon S3 bucket and optional folder (object key prefix) where SimSpace Weaver creates the snapshot file.</p>"
+        "CreateSnapshotInput$Destination": "<p>The Amazon S3 bucket and optional folder (object key prefix) where SimSpace Weaver creates the snapshot file.</p> <p>The Amazon S3 bucket must be in the same Amazon Web Services Region as the simulation.</p>"
       }
     },
     "S3Location": {
@@ -298,7 +298,7 @@
         "DescribeSimulationOutput$SchemaS3Location": "<p>The location of the simulation schema in Amazon Simple Storage Service (Amazon S3). For more information about Amazon S3, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html\"> <i>Amazon Simple Storage Service User Guide</i> </a>.</p>",
         "DescribeSimulationOutput$SnapshotS3Location": null,
         "StartSimulationInput$SchemaS3Location": "<p>The location of the simulation schema in Amazon Simple Storage Service (Amazon S3). For more information about Amazon S3, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html\"> <i>Amazon Simple Storage Service User Guide</i> </a>.</p> <p>Provide a <code>SchemaS3Location</code> to start your simulation from a schema.</p> <p>If you provide a <code>SchemaS3Location</code> then you can't provide a <code>SnapshotS3Location</code>.</p>",
-        "StartSimulationInput$SnapshotS3Location": "<p>The location of the snapshot .zip file in Amazon Simple Storage Service (Amazon S3). For more information about Amazon S3, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html\"> <i>Amazon Simple Storage Service User Guide</i> </a>.</p> <p>Provide a <code>SnapshotS3Location</code> to start your simulation from a snapshot.</p> <p>If you provide a <code>SnapshotS3Location</code> then you can't provide a <code>SchemaS3Location</code>.</p>"
+        "StartSimulationInput$SnapshotS3Location": "<p>The location of the snapshot .zip file in Amazon Simple Storage Service (Amazon S3). For more information about Amazon S3, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html\"> <i>Amazon Simple Storage Service User Guide</i> </a>.</p> <p>Provide a <code>SnapshotS3Location</code> to start your simulation from a snapshot.</p> <p>The Amazon S3 bucket must be in the same Amazon Web Services Region as the simulation.</p> <p>If you provide a <code>SnapshotS3Location</code> then you can't provide a <code>SchemaS3Location</code>.</p>"
       }
     },
     "ServiceQuotaExceededException": {

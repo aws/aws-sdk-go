@@ -910,13 +910,29 @@
       "type":"integer",
       "min":0
     },
+    "AWSManagedRulesACFPRuleSet":{
+      "type":"structure",
+      "required":[
+        "CreationPath",
+        "RegistrationPagePath",
+        "RequestInspection"
+      ],
+      "members":{
+        "CreationPath":{"shape":"CreationPathString"},
+        "RegistrationPagePath":{"shape":"RegistrationPagePathString"},
+        "RequestInspection":{"shape":"RequestInspectionACFP"},
+        "ResponseInspection":{"shape":"ResponseInspection"},
+        "EnableRegexInPath":{"shape":"Boolean"}
+      }
+    },
     "AWSManagedRulesATPRuleSet":{
       "type":"structure",
       "required":["LoginPath"],
       "members":{
         "LoginPath":{"shape":"String"},
         "RequestInspection":{"shape":"RequestInspection"},
-        "ResponseInspection":{"shape":"ResponseInspection"}
+        "ResponseInspection":{"shape":"ResponseInspection"},
+        "EnableRegexInPath":{"shape":"Boolean"}
       }
     },
     "AWSManagedRulesBotControlRuleSet":{
@@ -944,6 +960,17 @@
         "CHALLENGE",
         "EXCLUDED_AS_COUNT"
       ]
+    },
+    "AddressField":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{"shape":"FieldIdentifier"}
+      }
+    },
+    "AddressFields":{
+      "type":"list",
+      "member":{"shape":"AddressField"}
     },
     "All":{
       "type":"structure",
@@ -1527,6 +1554,12 @@
         "Summary":{"shape":"WebACLSummary"}
       }
     },
+    "CreationPathString":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
     "CustomHTTPHeader":{
       "type":"structure",
       "required":[
@@ -1785,6 +1818,13 @@
       }
     },
     "DownloadUrl":{"type":"string"},
+    "EmailField":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{"shape":"FieldIdentifier"}
+      }
+    },
     "EntityDescription":{
       "type":"string",
       "max":256,
@@ -2740,7 +2780,8 @@
           "deprecatedMessage":"Deprecated. Use AWSManagedRulesATPRuleSet RequestInspection PasswordField"
         },
         "AWSManagedRulesBotControlRuleSet":{"shape":"AWSManagedRulesBotControlRuleSet"},
-        "AWSManagedRulesATPRuleSet":{"shape":"AWSManagedRulesATPRuleSet"}
+        "AWSManagedRulesATPRuleSet":{"shape":"AWSManagedRulesATPRuleSet"},
+        "AWSManagedRulesACFPRuleSet":{"shape":"AWSManagedRulesACFPRuleSet"}
       }
     },
     "ManagedRuleGroupConfigs":{
@@ -2975,7 +3016,8 @@
         "ATP_RULE_SET_RESPONSE_INSPECTION",
         "ASSOCIATED_RESOURCE_TYPE",
         "SCOPE_DOWN",
-        "CUSTOM_KEYS"
+        "CUSTOM_KEYS",
+        "ACP_RULE_SET_RESPONSE_INSPECTION"
       ]
     },
     "ParameterExceptionParameter":{
@@ -2995,6 +3037,17 @@
         "JSON",
         "FORM_ENCODED"
       ]
+    },
+    "PhoneNumberField":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{"shape":"FieldIdentifier"}
+      }
+    },
+    "PhoneNumberFields":{
+      "type":"list",
+      "member":{"shape":"PhoneNumberField"}
     },
     "Platform":{
       "type":"string",
@@ -3287,6 +3340,12 @@
       "min":1,
       "pattern":".*"
     },
+    "RegistrationPagePathString":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
     "RegularExpressionList":{
       "type":"list",
       "member":{"shape":"Regex"}
@@ -3326,6 +3385,18 @@
         "PayloadType":{"shape":"PayloadType"},
         "UsernameField":{"shape":"UsernameField"},
         "PasswordField":{"shape":"PasswordField"}
+      }
+    },
+    "RequestInspectionACFP":{
+      "type":"structure",
+      "required":["PayloadType"],
+      "members":{
+        "PayloadType":{"shape":"PayloadType"},
+        "UsernameField":{"shape":"UsernameField"},
+        "PasswordField":{"shape":"PasswordField"},
+        "EmailField":{"shape":"EmailField"},
+        "PhoneNumberFields":{"shape":"PhoneNumberFields"},
+        "AddressFields":{"shape":"AddressFields"}
       }
     },
     "ResourceArn":{

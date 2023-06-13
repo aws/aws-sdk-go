@@ -195,6 +195,12 @@
       "output_token": "NextToken",
       "result_key": "ImportSnapshotTasks"
     },
+    "DescribeInstanceConnectEndpoints": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "InstanceConnectEndpoints"
+    },
     "DescribeInstanceCreditSpecifications": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

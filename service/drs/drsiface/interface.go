@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Elastic Disaster Recovery Service.
 //	func myFunc(svc drsiface.DrsAPI) bool {
-//	    // Make svc.CreateExtendedSourceServer request
+//	    // Make svc.AssociateSourceNetworkStack request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockDrsClient struct {
 //	    drsiface.DrsAPI
 //	}
-//	func (m *mockDrsClient) CreateExtendedSourceServer(input *drs.CreateExtendedSourceServerInput) (*drs.CreateExtendedSourceServerOutput, error) {
+//	func (m *mockDrsClient) AssociateSourceNetworkStack(input *drs.AssociateSourceNetworkStackInput) (*drs.AssociateSourceNetworkStackOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type DrsAPI interface {
+	AssociateSourceNetworkStack(*drs.AssociateSourceNetworkStackInput) (*drs.AssociateSourceNetworkStackOutput, error)
+	AssociateSourceNetworkStackWithContext(aws.Context, *drs.AssociateSourceNetworkStackInput, ...request.Option) (*drs.AssociateSourceNetworkStackOutput, error)
+	AssociateSourceNetworkStackRequest(*drs.AssociateSourceNetworkStackInput) (*request.Request, *drs.AssociateSourceNetworkStackOutput)
+
 	CreateExtendedSourceServer(*drs.CreateExtendedSourceServerInput) (*drs.CreateExtendedSourceServerOutput, error)
 	CreateExtendedSourceServerWithContext(aws.Context, *drs.CreateExtendedSourceServerInput, ...request.Option) (*drs.CreateExtendedSourceServerOutput, error)
 	CreateExtendedSourceServerRequest(*drs.CreateExtendedSourceServerInput) (*request.Request, *drs.CreateExtendedSourceServerOutput)
@@ -71,6 +75,10 @@ type DrsAPI interface {
 	CreateReplicationConfigurationTemplate(*drs.CreateReplicationConfigurationTemplateInput) (*drs.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateWithContext(aws.Context, *drs.CreateReplicationConfigurationTemplateInput, ...request.Option) (*drs.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateRequest(*drs.CreateReplicationConfigurationTemplateInput) (*request.Request, *drs.CreateReplicationConfigurationTemplateOutput)
+
+	CreateSourceNetwork(*drs.CreateSourceNetworkInput) (*drs.CreateSourceNetworkOutput, error)
+	CreateSourceNetworkWithContext(aws.Context, *drs.CreateSourceNetworkInput, ...request.Option) (*drs.CreateSourceNetworkOutput, error)
+	CreateSourceNetworkRequest(*drs.CreateSourceNetworkInput) (*request.Request, *drs.CreateSourceNetworkOutput)
 
 	DeleteJob(*drs.DeleteJobInput) (*drs.DeleteJobOutput, error)
 	DeleteJobWithContext(aws.Context, *drs.DeleteJobInput, ...request.Option) (*drs.DeleteJobOutput, error)
@@ -87,6 +95,10 @@ type DrsAPI interface {
 	DeleteReplicationConfigurationTemplate(*drs.DeleteReplicationConfigurationTemplateInput) (*drs.DeleteReplicationConfigurationTemplateOutput, error)
 	DeleteReplicationConfigurationTemplateWithContext(aws.Context, *drs.DeleteReplicationConfigurationTemplateInput, ...request.Option) (*drs.DeleteReplicationConfigurationTemplateOutput, error)
 	DeleteReplicationConfigurationTemplateRequest(*drs.DeleteReplicationConfigurationTemplateInput) (*request.Request, *drs.DeleteReplicationConfigurationTemplateOutput)
+
+	DeleteSourceNetwork(*drs.DeleteSourceNetworkInput) (*drs.DeleteSourceNetworkOutput, error)
+	DeleteSourceNetworkWithContext(aws.Context, *drs.DeleteSourceNetworkInput, ...request.Option) (*drs.DeleteSourceNetworkOutput, error)
+	DeleteSourceNetworkRequest(*drs.DeleteSourceNetworkInput) (*request.Request, *drs.DeleteSourceNetworkOutput)
 
 	DeleteSourceServer(*drs.DeleteSourceServerInput) (*drs.DeleteSourceServerOutput, error)
 	DeleteSourceServerWithContext(aws.Context, *drs.DeleteSourceServerInput, ...request.Option) (*drs.DeleteSourceServerOutput, error)
@@ -134,6 +146,13 @@ type DrsAPI interface {
 	DescribeReplicationConfigurationTemplatesPages(*drs.DescribeReplicationConfigurationTemplatesInput, func(*drs.DescribeReplicationConfigurationTemplatesOutput, bool) bool) error
 	DescribeReplicationConfigurationTemplatesPagesWithContext(aws.Context, *drs.DescribeReplicationConfigurationTemplatesInput, func(*drs.DescribeReplicationConfigurationTemplatesOutput, bool) bool, ...request.Option) error
 
+	DescribeSourceNetworks(*drs.DescribeSourceNetworksInput) (*drs.DescribeSourceNetworksOutput, error)
+	DescribeSourceNetworksWithContext(aws.Context, *drs.DescribeSourceNetworksInput, ...request.Option) (*drs.DescribeSourceNetworksOutput, error)
+	DescribeSourceNetworksRequest(*drs.DescribeSourceNetworksInput) (*request.Request, *drs.DescribeSourceNetworksOutput)
+
+	DescribeSourceNetworksPages(*drs.DescribeSourceNetworksInput, func(*drs.DescribeSourceNetworksOutput, bool) bool) error
+	DescribeSourceNetworksPagesWithContext(aws.Context, *drs.DescribeSourceNetworksInput, func(*drs.DescribeSourceNetworksOutput, bool) bool, ...request.Option) error
+
 	DescribeSourceServers(*drs.DescribeSourceServersInput) (*drs.DescribeSourceServersOutput, error)
 	DescribeSourceServersWithContext(aws.Context, *drs.DescribeSourceServersInput, ...request.Option) (*drs.DescribeSourceServersOutput, error)
 	DescribeSourceServersRequest(*drs.DescribeSourceServersInput) (*request.Request, *drs.DescribeSourceServersOutput)
@@ -148,6 +167,10 @@ type DrsAPI interface {
 	DisconnectSourceServer(*drs.DisconnectSourceServerInput) (*drs.DisconnectSourceServerOutput, error)
 	DisconnectSourceServerWithContext(aws.Context, *drs.DisconnectSourceServerInput, ...request.Option) (*drs.DisconnectSourceServerOutput, error)
 	DisconnectSourceServerRequest(*drs.DisconnectSourceServerInput) (*request.Request, *drs.DisconnectSourceServerOutput)
+
+	ExportSourceNetworkCfnTemplate(*drs.ExportSourceNetworkCfnTemplateInput) (*drs.ExportSourceNetworkCfnTemplateOutput, error)
+	ExportSourceNetworkCfnTemplateWithContext(aws.Context, *drs.ExportSourceNetworkCfnTemplateInput, ...request.Option) (*drs.ExportSourceNetworkCfnTemplateOutput, error)
+	ExportSourceNetworkCfnTemplateRequest(*drs.ExportSourceNetworkCfnTemplateInput) (*request.Request, *drs.ExportSourceNetworkCfnTemplateOutput)
 
 	GetFailbackReplicationConfiguration(*drs.GetFailbackReplicationConfigurationInput) (*drs.GetFailbackReplicationConfigurationOutput, error)
 	GetFailbackReplicationConfigurationWithContext(aws.Context, *drs.GetFailbackReplicationConfigurationInput, ...request.Option) (*drs.GetFailbackReplicationConfigurationOutput, error)
@@ -203,6 +226,14 @@ type DrsAPI interface {
 	StartReplicationWithContext(aws.Context, *drs.StartReplicationInput, ...request.Option) (*drs.StartReplicationOutput, error)
 	StartReplicationRequest(*drs.StartReplicationInput) (*request.Request, *drs.StartReplicationOutput)
 
+	StartSourceNetworkRecovery(*drs.StartSourceNetworkRecoveryInput) (*drs.StartSourceNetworkRecoveryOutput, error)
+	StartSourceNetworkRecoveryWithContext(aws.Context, *drs.StartSourceNetworkRecoveryInput, ...request.Option) (*drs.StartSourceNetworkRecoveryOutput, error)
+	StartSourceNetworkRecoveryRequest(*drs.StartSourceNetworkRecoveryInput) (*request.Request, *drs.StartSourceNetworkRecoveryOutput)
+
+	StartSourceNetworkReplication(*drs.StartSourceNetworkReplicationInput) (*drs.StartSourceNetworkReplicationOutput, error)
+	StartSourceNetworkReplicationWithContext(aws.Context, *drs.StartSourceNetworkReplicationInput, ...request.Option) (*drs.StartSourceNetworkReplicationOutput, error)
+	StartSourceNetworkReplicationRequest(*drs.StartSourceNetworkReplicationInput) (*request.Request, *drs.StartSourceNetworkReplicationOutput)
+
 	StopFailback(*drs.StopFailbackInput) (*drs.StopFailbackOutput, error)
 	StopFailbackWithContext(aws.Context, *drs.StopFailbackInput, ...request.Option) (*drs.StopFailbackOutput, error)
 	StopFailbackRequest(*drs.StopFailbackInput) (*request.Request, *drs.StopFailbackOutput)
@@ -210,6 +241,10 @@ type DrsAPI interface {
 	StopReplication(*drs.StopReplicationInput) (*drs.StopReplicationOutput, error)
 	StopReplicationWithContext(aws.Context, *drs.StopReplicationInput, ...request.Option) (*drs.StopReplicationOutput, error)
 	StopReplicationRequest(*drs.StopReplicationInput) (*request.Request, *drs.StopReplicationOutput)
+
+	StopSourceNetworkReplication(*drs.StopSourceNetworkReplicationInput) (*drs.StopSourceNetworkReplicationOutput, error)
+	StopSourceNetworkReplicationWithContext(aws.Context, *drs.StopSourceNetworkReplicationInput, ...request.Option) (*drs.StopSourceNetworkReplicationOutput, error)
+	StopSourceNetworkReplicationRequest(*drs.StopSourceNetworkReplicationInput) (*request.Request, *drs.StopSourceNetworkReplicationOutput)
 
 	TagResource(*drs.TagResourceInput) (*drs.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *drs.TagResourceInput, ...request.Option) (*drs.TagResourceOutput, error)

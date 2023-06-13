@@ -13402,7 +13402,7 @@ type ImagePipeline struct {
 	// This is no longer supported, and does not return a value.
 	DateLastRun *string `locationName:"dateLastRun" type:"string"`
 
-	// This is no longer supported, and does not return a value.
+	// The next date when the pipeline is scheduled to run.
 	DateNextRun *string `locationName:"dateNextRun" type:"string"`
 
 	// The date on which this image pipeline was last updated.

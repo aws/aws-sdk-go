@@ -6367,10 +6367,147 @@ func (s *APIKeySummary) SetVersion(v int64) *APIKeySummary {
 	return s
 }
 
+// Details for your use of the account creation fraud prevention managed rule
+// group, AWSManagedRulesACFPRuleSet. This configuration is used in ManagedRuleGroupConfig.
+type AWSManagedRulesACFPRuleSet struct {
+	_ struct{} `type:"structure"`
+
+	// The path of the account creation endpoint for your application. This is the
+	// page on your website that accepts the completed registration form for a new
+	// user. This page must accept POST requests.
+	//
+	// For example, for the URL https://example.com/web/signup, you would provide
+	// the path /web/signup.
+	//
+	// CreationPath is a required field
+	CreationPath *string `min:"1" type:"string" required:"true"`
+
+	// Allow the use of regular expressions in the registration page path and the
+	// account creation path.
+	EnableRegexInPath *bool `type:"boolean"`
+
+	// The path of the account registration endpoint for your application. This
+	// is the page on your website that presents the registration form to new users.
+	//
+	// This page must accept GET text/html requests.
+	//
+	// For example, for the URL https://example.com/web/register, you would provide
+	// the path /web/register.
+	//
+	// RegistrationPagePath is a required field
+	RegistrationPagePath *string `min:"1" type:"string" required:"true"`
+
+	// The criteria for inspecting account creation requests, used by the ACFP rule
+	// group to validate and track account creation attempts.
+	//
+	// RequestInspection is a required field
+	RequestInspection *RequestInspectionACFP `type:"structure" required:"true"`
+
+	// The criteria for inspecting responses to account creation requests, used
+	// by the ACFP rule group to track account creation success rates.
+	//
+	// Response inspection is available only in web ACLs that protect Amazon CloudFront
+	// distributions.
+	//
+	// The ACFP rule group evaluates the responses that your protected resources
+	// send back to client account creation attempts, keeping count of successful
+	// and failed attempts from each IP address and client session. Using this information,
+	// the rule group labels and mitigates requests from client sessions and IP
+	// addresses that have had too many successful account creation attempts in
+	// a short amount of time.
+	ResponseInspection *ResponseInspection `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AWSManagedRulesACFPRuleSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AWSManagedRulesACFPRuleSet) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AWSManagedRulesACFPRuleSet) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AWSManagedRulesACFPRuleSet"}
+	if s.CreationPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("CreationPath"))
+	}
+	if s.CreationPath != nil && len(*s.CreationPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreationPath", 1))
+	}
+	if s.RegistrationPagePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegistrationPagePath"))
+	}
+	if s.RegistrationPagePath != nil && len(*s.RegistrationPagePath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegistrationPagePath", 1))
+	}
+	if s.RequestInspection == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestInspection"))
+	}
+	if s.RequestInspection != nil {
+		if err := s.RequestInspection.Validate(); err != nil {
+			invalidParams.AddNested("RequestInspection", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ResponseInspection != nil {
+		if err := s.ResponseInspection.Validate(); err != nil {
+			invalidParams.AddNested("ResponseInspection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationPath sets the CreationPath field's value.
+func (s *AWSManagedRulesACFPRuleSet) SetCreationPath(v string) *AWSManagedRulesACFPRuleSet {
+	s.CreationPath = &v
+	return s
+}
+
+// SetEnableRegexInPath sets the EnableRegexInPath field's value.
+func (s *AWSManagedRulesACFPRuleSet) SetEnableRegexInPath(v bool) *AWSManagedRulesACFPRuleSet {
+	s.EnableRegexInPath = &v
+	return s
+}
+
+// SetRegistrationPagePath sets the RegistrationPagePath field's value.
+func (s *AWSManagedRulesACFPRuleSet) SetRegistrationPagePath(v string) *AWSManagedRulesACFPRuleSet {
+	s.RegistrationPagePath = &v
+	return s
+}
+
+// SetRequestInspection sets the RequestInspection field's value.
+func (s *AWSManagedRulesACFPRuleSet) SetRequestInspection(v *RequestInspectionACFP) *AWSManagedRulesACFPRuleSet {
+	s.RequestInspection = v
+	return s
+}
+
+// SetResponseInspection sets the ResponseInspection field's value.
+func (s *AWSManagedRulesACFPRuleSet) SetResponseInspection(v *ResponseInspection) *AWSManagedRulesACFPRuleSet {
+	s.ResponseInspection = v
+	return s
+}
+
 // Details for your use of the account takeover prevention managed rule group,
 // AWSManagedRulesATPRuleSet. This configuration is used in ManagedRuleGroupConfig.
 type AWSManagedRulesATPRuleSet struct {
 	_ struct{} `type:"structure"`
+
+	// Allow the use of regular expressions in the login page path.
+	EnableRegexInPath *bool `type:"boolean"`
 
 	// The path of the login endpoint for your application. For example, for the
 	// URL https://example.com/web/login, you would provide the path /web/login.
@@ -6387,15 +6524,15 @@ type AWSManagedRulesATPRuleSet struct {
 	// The criteria for inspecting responses to login requests, used by the ATP
 	// rule group to track login failure rates.
 	//
-	// The ATP rule group evaluates the responses that your protected resources
-	// send back to client login attempts, keeping count of successful and failed
-	// attempts from each IP address and client session. Using this information,
-	// the rule group labels and mitigates requests from client sessions and IP
-	// addresses that submit too many failed login attempts in a short amount of
-	// time.
-	//
 	// Response inspection is available only in web ACLs that protect Amazon CloudFront
 	// distributions.
+	//
+	// The ATP rule group evaluates the responses that your protected resources
+	// send back to client login attempts, keeping count of successful and failed
+	// attempts for each IP address and client session. Using this information,
+	// the rule group labels and mitigates requests from client sessions and IP
+	// addresses that have had too many failed login attempts in a short amount
+	// of time.
 	ResponseInspection *ResponseInspection `type:"structure"`
 }
 
@@ -6438,6 +6575,12 @@ func (s *AWSManagedRulesATPRuleSet) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnableRegexInPath sets the EnableRegexInPath field's value.
+func (s *AWSManagedRulesATPRuleSet) SetEnableRegexInPath(v bool) *AWSManagedRulesATPRuleSet {
+	s.EnableRegexInPath = &v
+	return s
 }
 
 // SetLoginPath sets the LoginPath field's value.
@@ -6560,6 +6703,76 @@ func (s *ActionCondition) Validate() error {
 // SetAction sets the Action field's value.
 func (s *ActionCondition) SetAction(v string) *ActionCondition {
 	s.Action = &v
+	return s
+}
+
+// The name of a field in the request payload that contains part or all of your
+// customer's primary physical address.
+//
+// This data type is used in the RequestInspectionACFP data type.
+type AddressField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a single primary address field.
+	//
+	// How you specify the address fields depends on the request inspection payload
+	// type.
+	//
+	//    * For JSON payloads, specify the field identifiers in JSON pointer syntax.
+	//    For information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "primaryaddressline1": "THE_ADDRESS1", "primaryaddressline2":
+	//    "THE_ADDRESS2", "primaryaddressline3": "THE_ADDRESS3" } }, the address
+	//    field idenfiers are /form/primaryaddressline1, /form/primaryaddressline2,
+	//    and /form/primaryaddressline3.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with input elements named primaryaddressline1, primaryaddressline2,
+	//    and primaryaddressline3, the address fields identifiers are primaryaddressline1,
+	//    primaryaddressline2, and primaryaddressline3.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddressField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddressField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddressField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddressField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *AddressField) SetIdentifier(v string) *AddressField {
+	s.Identifier = &v
 	return s
 }
 
@@ -10714,6 +10927,72 @@ func (s DisassociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
+// The name of the field in the request payload that contains your customer's
+// email.
+//
+// This data type is used in the RequestInspectionACFP data type.
+type EmailField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the email field.
+	//
+	// How you specify this depends on the request inspection payload type.
+	//
+	//    * For JSON payloads, specify the field name in JSON pointer syntax. For
+	//    information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "email": "THE_EMAIL" } }, the email field specification is
+	//    /form/email.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with the input element named email1, the email field
+	//    specification is email1.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmailField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmailField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EmailField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EmailField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *EmailField) SetIdentifier(v string) *EmailField {
+	s.Identifier = &v
+	return s
+}
+
 // Specifies a single rule in a rule group whose action you want to override
 // to Count.
 //
@@ -10817,9 +11096,8 @@ type FieldToMatch struct {
 	// Inspect a string containing the list of the request's header names, ordered
 	// as they appear in the web request that WAF receives for inspection. WAF generates
 	// the string and then uses that as the field to match component in its inspection.
-	// WAF separates the header names in the string using commas and no added spaces.
-	//
-	// Matches against the header order string are case insensitive.
+	// WAF separates the header names in the string using colons and no added spaces,
+	// for example host:user-agent:accept:authorization:referer.
 	HeaderOrder *HeaderOrder `type:"structure"`
 
 	// Inspect the request headers. You must configure scope and pattern matching
@@ -13021,10 +13299,11 @@ type GetWebACLOutput struct {
 
 	// The URL to use in SDK integrations with Amazon Web Services managed rule
 	// groups. For example, you can use the integration SDKs with the account takeover
-	// prevention managed rule group AWSManagedRulesATPRuleSet. This is only populated
-	// if you are using a rule group in your web ACL that integrates with your applications
-	// in this way. For more information, see WAF client application integration
-	// (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+	// prevention managed rule group AWSManagedRulesATPRuleSet and the account creation
+	// fraud prevention managed rule group AWSManagedRulesACFPRuleSet. This is only
+	// populated if you are using a rule group in your web ACL that integrates with
+	// your applications in this way. For more information, see WAF client application
+	// integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
 	// in the WAF Developer Guide.
 	ApplicationIntegrationURL *string `type:"string"`
 
@@ -13289,9 +13568,8 @@ func (s *HeaderMatchPattern) SetIncludedHeaders(v []*string) *HeaderMatchPattern
 // Inspect a string containing the list of the request's header names, ordered
 // as they appear in the web request that WAF receives for inspection. WAF generates
 // the string and then uses that as the field to match component in its inspection.
-// WAF separates the header names in the string using commas and no added spaces.
-//
-// Matches against the header order string are case insensitive.
+// WAF separates the header names in the string using colons and no added spaces,
+// for example host:user-agent:accept:authorization:referer.
 type HeaderOrder struct {
 	_ struct{} `type:"structure"`
 
@@ -15994,12 +16272,18 @@ type LoggingConfiguration struct {
 	// modify or delete the configuration.
 	ManagedByFirewallManager *bool `type:"boolean"`
 
-	// The parts of the request that you want to keep out of the logs. For example,
-	// if you redact the SingleHeader field, the HEADER field in the logs will be
-	// REDACTED.
+	// The parts of the request that you want to keep out of the logs.
+	//
+	// For example, if you redact the SingleHeader field, the HEADER field in the
+	// logs will be REDACTED for all rules that use the SingleHeader FieldToMatch
+	// setting.
+	//
+	// Redaction applies only to the component that's specified in the rule's FieldToMatch
+	// setting, so the SingleHeader redaction doesn't apply to rules that use the
+	// Headers FieldToMatch.
 	//
 	// You can specify only the following fields for redaction: UriPath, QueryString,
-	// SingleHeader, Method, and JsonBody.
+	// SingleHeader, and Method.
 	RedactedFields []*FieldToMatch `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the web ACL that you want to associate
@@ -16294,17 +16578,38 @@ func (s *ManagedProductDescriptor) SetVendorName(v string) *ManagedProductDescri
 // Additional information that's used by a managed rule group. Many managed
 // rule groups don't require this.
 //
-// Use the AWSManagedRulesATPRuleSet configuration object for the account takeover
-// prevention managed rule group, to provide information such as the sign-in
-// page of your application and the type of content to accept or reject from
-// the client.
+// The rule groups used for intelligent threat mitigation require additional
+// configuration:
 //
-// Use the AWSManagedRulesBotControlRuleSet configuration object to configure
-// the protection level that you want the Bot Control rule group to use.
+//   - Use the AWSManagedRulesACFPRuleSet configuration object to configure
+//     the account creation fraud prevention managed rule group. The configuration
+//     includes the registration and sign-up pages of your application and the
+//     locations in the account creation request payload of data, such as the
+//     user email and phone number fields.
+//
+//   - Use the AWSManagedRulesATPRuleSet configuration object to configure
+//     the account takeover prevention managed rule group. The configuration
+//     includes the sign-in page of your application and the locations in the
+//     login request payload of data such as the username and password.
+//
+//   - Use the AWSManagedRulesBotControlRuleSet configuration object to configure
+//     the protection level that you want the Bot Control rule group to use.
 //
 // For example specifications, see the examples section of CreateWebACL.
 type ManagedRuleGroupConfig struct {
 	_ struct{} `type:"structure"`
+
+	// Additional configuration for using the account creation fraud prevention
+	// (ACFP) managed rule group, AWSManagedRulesACFPRuleSet. Use this to provide
+	// account creation request information to the rule group. For web ACLs that
+	// protect CloudFront distributions, use this to also provide the information
+	// about how your distribution responds to account creation requests.
+	//
+	// For information about using the ACFP managed rule group, see WAF Fraud Control
+	// account creation fraud prevention (ACFP) rule group (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-acfp.html)
+	// and WAF Fraud Control account creation fraud prevention (ACFP) (https://docs.aws.amazon.com/waf/latest/developerguide/waf-acfp.html)
+	// in the WAF Developer Guide.
+	AWSManagedRulesACFPRuleSet *AWSManagedRulesACFPRuleSet `type:"structure"`
 
 	// Additional configuration for using the account takeover prevention (ATP)
 	// managed rule group, AWSManagedRulesATPRuleSet. Use this to provide login
@@ -16336,22 +16641,22 @@ type ManagedRuleGroupConfig struct {
 	LoginPath *string `min:"1" deprecated:"true" type:"string"`
 
 	//
-	// Instead of this setting, provide your configuration under AWSManagedRulesATPRuleSet
-	// RequestInspection.
+	// Instead of this setting, provide your configuration under the request inspection
+	// configuration for AWSManagedRulesATPRuleSet or AWSManagedRulesACFPRuleSet.
 	//
 	// Deprecated: Deprecated. Use AWSManagedRulesATPRuleSet RequestInspection PasswordField
 	PasswordField *PasswordField `deprecated:"true" type:"structure"`
 
 	//
-	// Instead of this setting, provide your configuration under AWSManagedRulesATPRuleSet
-	// RequestInspection.
+	// Instead of this setting, provide your configuration under the request inspection
+	// configuration for AWSManagedRulesATPRuleSet or AWSManagedRulesACFPRuleSet.
 	//
 	// Deprecated: Deprecated. Use AWSManagedRulesATPRuleSet RequestInspection PayloadType
 	PayloadType *string `deprecated:"true" type:"string" enum:"PayloadType"`
 
 	//
-	// Instead of this setting, provide your configuration under AWSManagedRulesATPRuleSet
-	// RequestInspection.
+	// Instead of this setting, provide your configuration under the request inspection
+	// configuration for AWSManagedRulesATPRuleSet or AWSManagedRulesACFPRuleSet.
 	//
 	// Deprecated: Deprecated. Use AWSManagedRulesATPRuleSet RequestInspection UsernameField
 	UsernameField *UsernameField `deprecated:"true" type:"structure"`
@@ -16381,6 +16686,11 @@ func (s *ManagedRuleGroupConfig) Validate() error {
 	if s.LoginPath != nil && len(*s.LoginPath) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LoginPath", 1))
 	}
+	if s.AWSManagedRulesACFPRuleSet != nil {
+		if err := s.AWSManagedRulesACFPRuleSet.Validate(); err != nil {
+			invalidParams.AddNested("AWSManagedRulesACFPRuleSet", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.AWSManagedRulesATPRuleSet != nil {
 		if err := s.AWSManagedRulesATPRuleSet.Validate(); err != nil {
 			invalidParams.AddNested("AWSManagedRulesATPRuleSet", err.(request.ErrInvalidParams))
@@ -16406,6 +16716,12 @@ func (s *ManagedRuleGroupConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAWSManagedRulesACFPRuleSet sets the AWSManagedRulesACFPRuleSet field's value.
+func (s *ManagedRuleGroupConfig) SetAWSManagedRulesACFPRuleSet(v *AWSManagedRulesACFPRuleSet) *ManagedRuleGroupConfig {
+	s.AWSManagedRulesACFPRuleSet = v
+	return s
 }
 
 // SetAWSManagedRulesATPRuleSet sets the AWSManagedRulesATPRuleSet field's value.
@@ -16453,9 +16769,10 @@ func (s *ManagedRuleGroupConfig) SetUsernameField(v *UsernameField) *ManagedRule
 // within a rule.
 //
 // You are charged additional fees when you use the WAF Bot Control managed
-// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
-// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
-// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
+// rule group AWSManagedRulesBotControlRuleSet, the WAF Fraud Control account
+// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet, or
+// the WAF Fraud Control account creation fraud prevention (ACFP) managed rule
+// group AWSManagedRulesACFPRuleSet. For more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 type ManagedRuleGroupStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -16468,13 +16785,22 @@ type ManagedRuleGroupStatement struct {
 	// Additional information that's used by a managed rule group. Many managed
 	// rule groups don't require this.
 	//
-	// Use the AWSManagedRulesATPRuleSet configuration object for the account takeover
-	// prevention managed rule group, to provide information such as the sign-in
-	// page of your application and the type of content to accept or reject from
-	// the client.
+	// The rule groups used for intelligent threat mitigation require additional
+	// configuration:
 	//
-	// Use the AWSManagedRulesBotControlRuleSet configuration object to configure
-	// the protection level that you want the Bot Control rule group to use.
+	//    * Use the AWSManagedRulesACFPRuleSet configuration object to configure
+	//    the account creation fraud prevention managed rule group. The configuration
+	//    includes the registration and sign-up pages of your application and the
+	//    locations in the account creation request payload of data, such as the
+	//    user email and phone number fields.
+	//
+	//    * Use the AWSManagedRulesATPRuleSet configuration object to configure
+	//    the account takeover prevention managed rule group. The configuration
+	//    includes the sign-in page of your application and the locations in the
+	//    login request payload of data such as the username and password.
+	//
+	//    * Use the AWSManagedRulesBotControlRuleSet configuration object to configure
+	//    the protection level that you want the Bot Control rule group to use.
 	ManagedRuleGroupConfigs []*ManagedRuleGroupConfig `type:"list"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
@@ -17387,12 +17713,28 @@ func (s *OverrideAction) SetNone(v *NoneAction) *OverrideAction {
 	return s
 }
 
-// Details about your login page password field for request inspection, used
-// in the AWSManagedRulesATPRuleSet RequestInspection configuration.
+// The name of the field in the request payload that contains your customer's
+// password.
+//
+// This data type is used in the RequestInspection and RequestInspectionACFP
+// data types.
 type PasswordField struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the password field. For example /form/password.
+	// The name of the password field.
+	//
+	// How you specify this depends on the request inspection payload type.
+	//
+	//    * For JSON payloads, specify the field name in JSON pointer syntax. For
+	//    information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "password": "THE_PASSWORD" } }, the password field specification
+	//    is /form/password.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with the input element named password1, the password
+	//    field specification is password1.
 	//
 	// Identifier is a required field
 	Identifier *string `min:"1" type:"string" required:"true"`
@@ -17434,6 +17776,75 @@ func (s *PasswordField) Validate() error {
 
 // SetIdentifier sets the Identifier field's value.
 func (s *PasswordField) SetIdentifier(v string) *PasswordField {
+	s.Identifier = &v
+	return s
+}
+
+// The name of a field in the request payload that contains part or all of your
+// customer's primary phone number.
+//
+// This data type is used in the RequestInspectionACFP data type.
+type PhoneNumberField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a single primary phone number field.
+	//
+	// How you specify the phone number fields depends on the request inspection
+	// payload type.
+	//
+	//    * For JSON payloads, specify the field identifiers in JSON pointer syntax.
+	//    For information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "primaryphoneline1": "THE_PHONE1", "primaryphoneline2": "THE_PHONE2",
+	//    "primaryphoneline3": "THE_PHONE3" } }, the phone number field identifiers
+	//    are /form/primaryphoneline1, /form/primaryphoneline2, and /form/primaryphoneline3.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with input elements named primaryphoneline1, primaryphoneline2,
+	//    and primaryphoneline3, the phone number field identifiers are primaryphoneline1,
+	//    primaryphoneline2, and primaryphoneline3.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PhoneNumberField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PhoneNumberField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PhoneNumberField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PhoneNumberField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *PhoneNumberField) SetIdentifier(v string) *PhoneNumberField {
 	s.Identifier = &v
 	return s
 }
@@ -19397,22 +19808,21 @@ func (s *RequestBodyAssociatedResourceTypeConfig) SetDefaultSizeInspectionLimit(
 type RequestInspection struct {
 	_ struct{} `type:"structure"`
 
-	// Details about your login page password field.
+	// The name of the field in the request payload that contains your customer's
+	// password.
 	//
-	// How you specify this depends on the payload type.
+	// How you specify this depends on the request inspection payload type.
 	//
 	//    * For JSON payloads, specify the field name in JSON pointer syntax. For
 	//    information about the JSON Pointer syntax, see the Internet Engineering
 	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
 	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
-	//    { "login": { "username": "THE_USERNAME", "password": "THE_PASSWORD" }
-	//    }, the username field specification is /login/username and the password
-	//    field specification is /login/password.
+	//    { "form": { "password": "THE_PASSWORD" } }, the password field specification
+	//    is /form/password.
 	//
 	//    * For form encoded payload types, use the HTML form names. For example,
-	//    for an HTML form with input elements named username1 and password1, the
-	//    username field specification is username1 and the password field specification
-	//    is password1.
+	//    for an HTML form with the input element named password1, the password
+	//    field specification is password1.
 	//
 	// PasswordField is a required field
 	PasswordField *PasswordField `type:"structure" required:"true"`
@@ -19422,22 +19832,21 @@ type RequestInspection struct {
 	// PayloadType is a required field
 	PayloadType *string `type:"string" required:"true" enum:"PayloadType"`
 
-	// Details about your login page username field.
+	// The name of the field in the request payload that contains your customer's
+	// username.
 	//
-	// How you specify this depends on the payload type.
+	// How you specify this depends on the request inspection payload type.
 	//
 	//    * For JSON payloads, specify the field name in JSON pointer syntax. For
 	//    information about the JSON Pointer syntax, see the Internet Engineering
 	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
 	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
-	//    { "login": { "username": "THE_USERNAME", "password": "THE_PASSWORD" }
-	//    }, the username field specification is /login/username and the password
-	//    field specification is /login/password.
+	//    { "form": { "username": "THE_USERNAME" } }, the username field specification
+	//    is /form/username.
 	//
 	//    * For form encoded payload types, use the HTML form names. For example,
-	//    for an HTML form with input elements named username1 and password1, the
-	//    username field specification is username1 and the password field specification
-	//    is password1.
+	//    for an HTML form with the input element named username1, the username
+	//    field specification is username1
 	//
 	// UsernameField is a required field
 	UsernameField *UsernameField `type:"structure" required:"true"`
@@ -19508,40 +19917,261 @@ func (s *RequestInspection) SetUsernameField(v *UsernameField) *RequestInspectio
 	return s
 }
 
-// The criteria for inspecting responses to login requests, used by the ATP
-// rule group to track login failure rates.
+// The criteria for inspecting account creation requests, used by the ACFP rule
+// group to validate and track account creation attempts.
 //
-// The ATP rule group evaluates the responses that your protected resources
-// send back to client login attempts, keeping count of successful and failed
-// attempts from each IP address and client session. Using this information,
-// the rule group labels and mitigates requests from client sessions and IP
-// addresses that submit too many failed login attempts in a short amount of
-// time.
+// This is part of the AWSManagedRulesACFPRuleSet configuration in ManagedRuleGroupConfig.
+//
+// In these settings, you specify how your application accepts account creation
+// attempts by providing the request payload type and the names of the fields
+// within the request body where the username, password, email, and primary
+// address and phone number fields are provided.
+type RequestInspectionACFP struct {
+	_ struct{} `type:"structure"`
+
+	// The names of the fields in the request payload that contain your customer's
+	// primary physical address.
+	//
+	// Order the address fields in the array exactly as they are ordered in the
+	// request payload.
+	//
+	// How you specify the address fields depends on the request inspection payload
+	// type.
+	//
+	//    * For JSON payloads, specify the field identifiers in JSON pointer syntax.
+	//    For information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "primaryaddressline1": "THE_ADDRESS1", "primaryaddressline2":
+	//    "THE_ADDRESS2", "primaryaddressline3": "THE_ADDRESS3" } }, the address
+	//    field idenfiers are /form/primaryaddressline1, /form/primaryaddressline2,
+	//    and /form/primaryaddressline3.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with input elements named primaryaddressline1, primaryaddressline2,
+	//    and primaryaddressline3, the address fields identifiers are primaryaddressline1,
+	//    primaryaddressline2, and primaryaddressline3.
+	AddressFields []*AddressField `type:"list"`
+
+	// The name of the field in the request payload that contains your customer's
+	// email.
+	//
+	// How you specify this depends on the request inspection payload type.
+	//
+	//    * For JSON payloads, specify the field name in JSON pointer syntax. For
+	//    information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "email": "THE_EMAIL" } }, the email field specification is
+	//    /form/email.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with the input element named email1, the email field
+	//    specification is email1.
+	EmailField *EmailField `type:"structure"`
+
+	// The name of the field in the request payload that contains your customer's
+	// password.
+	//
+	// How you specify this depends on the request inspection payload type.
+	//
+	//    * For JSON payloads, specify the field name in JSON pointer syntax. For
+	//    information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "password": "THE_PASSWORD" } }, the password field specification
+	//    is /form/password.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with the input element named password1, the password
+	//    field specification is password1.
+	PasswordField *PasswordField `type:"structure"`
+
+	// The payload type for your account creation endpoint, either JSON or form
+	// encoded.
+	//
+	// PayloadType is a required field
+	PayloadType *string `type:"string" required:"true" enum:"PayloadType"`
+
+	// The names of the fields in the request payload that contain your customer's
+	// primary phone number.
+	//
+	// Order the phone number fields in the array exactly as they are ordered in
+	// the request payload.
+	//
+	// How you specify the phone number fields depends on the request inspection
+	// payload type.
+	//
+	//    * For JSON payloads, specify the field identifiers in JSON pointer syntax.
+	//    For information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "primaryphoneline1": "THE_PHONE1", "primaryphoneline2": "THE_PHONE2",
+	//    "primaryphoneline3": "THE_PHONE3" } }, the phone number field identifiers
+	//    are /form/primaryphoneline1, /form/primaryphoneline2, and /form/primaryphoneline3.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with input elements named primaryphoneline1, primaryphoneline2,
+	//    and primaryphoneline3, the phone number field identifiers are primaryphoneline1,
+	//    primaryphoneline2, and primaryphoneline3.
+	PhoneNumberFields []*PhoneNumberField `type:"list"`
+
+	// The name of the field in the request payload that contains your customer's
+	// username.
+	//
+	// How you specify this depends on the request inspection payload type.
+	//
+	//    * For JSON payloads, specify the field name in JSON pointer syntax. For
+	//    information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "username": "THE_USERNAME" } }, the username field specification
+	//    is /form/username.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with the input element named username1, the username
+	//    field specification is username1
+	UsernameField *UsernameField `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestInspectionACFP) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestInspectionACFP) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequestInspectionACFP) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequestInspectionACFP"}
+	if s.PayloadType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PayloadType"))
+	}
+	if s.AddressFields != nil {
+		for i, v := range s.AddressFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AddressFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.EmailField != nil {
+		if err := s.EmailField.Validate(); err != nil {
+			invalidParams.AddNested("EmailField", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PasswordField != nil {
+		if err := s.PasswordField.Validate(); err != nil {
+			invalidParams.AddNested("PasswordField", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PhoneNumberFields != nil {
+		for i, v := range s.PhoneNumberFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PhoneNumberFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UsernameField != nil {
+		if err := s.UsernameField.Validate(); err != nil {
+			invalidParams.AddNested("UsernameField", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddressFields sets the AddressFields field's value.
+func (s *RequestInspectionACFP) SetAddressFields(v []*AddressField) *RequestInspectionACFP {
+	s.AddressFields = v
+	return s
+}
+
+// SetEmailField sets the EmailField field's value.
+func (s *RequestInspectionACFP) SetEmailField(v *EmailField) *RequestInspectionACFP {
+	s.EmailField = v
+	return s
+}
+
+// SetPasswordField sets the PasswordField field's value.
+func (s *RequestInspectionACFP) SetPasswordField(v *PasswordField) *RequestInspectionACFP {
+	s.PasswordField = v
+	return s
+}
+
+// SetPayloadType sets the PayloadType field's value.
+func (s *RequestInspectionACFP) SetPayloadType(v string) *RequestInspectionACFP {
+	s.PayloadType = &v
+	return s
+}
+
+// SetPhoneNumberFields sets the PhoneNumberFields field's value.
+func (s *RequestInspectionACFP) SetPhoneNumberFields(v []*PhoneNumberField) *RequestInspectionACFP {
+	s.PhoneNumberFields = v
+	return s
+}
+
+// SetUsernameField sets the UsernameField field's value.
+func (s *RequestInspectionACFP) SetUsernameField(v *UsernameField) *RequestInspectionACFP {
+	s.UsernameField = v
+	return s
+}
+
+// The criteria for inspecting responses to login requests and account creation
+// requests, used by the ATP and ACFP rule groups to track login and account
+// creation success and failure rates.
 //
 // Response inspection is available only in web ACLs that protect Amazon CloudFront
 // distributions.
 //
-// This is part of the AWSManagedRulesATPRuleSet configuration in ManagedRuleGroupConfig.
+// The rule groups evaluates the responses that your protected resources send
+// back to client login and account creation attempts, keeping count of successful
+// and failed attempts from each IP address and client session. Using this information,
+// the rule group labels and mitigates requests from client sessions and IP
+// addresses with too much suspicious activity in a short amount of time.
 //
-// Enable login response inspection by configuring exactly one component of
-// the response to inspect. You can't configure more than one. If you don't
-// configure any of the response inspection options, response inspection is
-// disabled.
+// This is part of the AWSManagedRulesATPRuleSet and AWSManagedRulesACFPRuleSet
+// configurations in ManagedRuleGroupConfig.
+//
+// Enable response inspection by configuring exactly one component of the response
+// to inspect, for example, Header or StatusCode. You can't configure more than
+// one component for inspection. If you don't configure any of the response
+// inspection options, response inspection is disabled.
 type ResponseInspection struct {
 	_ struct{} `type:"structure"`
 
-	// Configures inspection of the response body. WAF can inspect the first 65,536
-	// bytes (64 KB) of the response body.
+	// Configures inspection of the response body for success and failure indicators.
+	// WAF can inspect the first 65,536 bytes (64 KB) of the response body.
 	BodyContains *ResponseInspectionBodyContains `type:"structure"`
 
-	// Configures inspection of the response header.
+	// Configures inspection of the response header for success and failure indicators.
 	Header *ResponseInspectionHeader `type:"structure"`
 
-	// Configures inspection of the response JSON. WAF can inspect the first 65,536
-	// bytes (64 KB) of the response JSON.
+	// Configures inspection of the response JSON for success and failure indicators.
+	// WAF can inspect the first 65,536 bytes (64 KB) of the response JSON.
 	Json *ResponseInspectionJson `type:"structure"`
 
-	// Configures inspection of the response status code.
+	// Configures inspection of the response status code for success and failure
+	// indicators.
 	StatusCode *ResponseInspectionStatusCode `type:"structure"`
 }
 
@@ -19619,30 +20249,30 @@ func (s *ResponseInspection) SetStatusCode(v *ResponseInspectionStatusCode) *Res
 
 // Configures inspection of the response body. WAF can inspect the first 65,536
 // bytes (64 KB) of the response body. This is part of the ResponseInspection
-// configuration for AWSManagedRulesATPRuleSet.
+// configuration for AWSManagedRulesATPRuleSet and AWSManagedRulesACFPRuleSet.
 //
 // Response inspection is available only in web ACLs that protect Amazon CloudFront
 // distributions.
 type ResponseInspectionBodyContains struct {
 	_ struct{} `type:"structure"`
 
-	// Strings in the body of the response that indicate a failed login attempt.
-	// To be counted as a failed login, the string can be anywhere in the body and
-	// must be an exact match, including case. Each string must be unique among
-	// the success and failure strings.
+	// Strings in the body of the response that indicate a failed login or account
+	// creation attempt. To be counted as a failure, the string can be anywhere
+	// in the body and must be an exact match, including case. Each string must
+	// be unique among the success and failure strings.
 	//
-	// JSON example: "FailureStrings": [ "Login failed" ]
+	// JSON example: "FailureStrings": [ "Request failed" ]
 	//
 	// FailureStrings is a required field
 	FailureStrings []*string `min:"1" type:"list" required:"true"`
 
-	// Strings in the body of the response that indicate a successful login attempt.
-	// To be counted as a successful login, the string can be anywhere in the body
-	// and must be an exact match, including case. Each string must be unique among
-	// the success and failure strings.
+	// Strings in the body of the response that indicate a successful login or account
+	// creation attempt. To be counted as a success, the string can be anywhere
+	// in the body and must be an exact match, including case. Each string must
+	// be unique among the success and failure strings.
 	//
-	// JSON example: "SuccessStrings": [ "Login successful", "Welcome to our site!"
-	// ]
+	// JSON examples: "SuccessStrings": [ "Login successful" ] and "SuccessStrings":
+	// [ "Account creation successful", "Welcome to our site!" ]
 	//
 	// SuccessStrings is a required field
 	SuccessStrings []*string `min:"1" type:"list" required:"true"`
@@ -19701,7 +20331,7 @@ func (s *ResponseInspectionBodyContains) SetSuccessStrings(v []*string) *Respons
 }
 
 // Configures inspection of the response header. This is part of the ResponseInspection
-// configuration for AWSManagedRulesATPRuleSet.
+// configuration for AWSManagedRulesATPRuleSet and AWSManagedRulesACFPRuleSet.
 //
 // Response inspection is available only in web ACLs that protect Amazon CloudFront
 // distributions.
@@ -19709,11 +20339,12 @@ type ResponseInspectionHeader struct {
 	_ struct{} `type:"structure"`
 
 	// Values in the response header with the specified name that indicate a failed
-	// login attempt. To be counted as a failed login, the value must be an exact
-	// match, including case. Each value must be unique among the success and failure
-	// values.
+	// login or account creation attempt. To be counted as a failure, the value
+	// must be an exact match, including case. Each value must be unique among the
+	// success and failure values.
 	//
-	// JSON example: "FailureValues": [ "LoginFailed", "Failed login" ]
+	// JSON examples: "FailureValues": [ "LoginFailed", "Failed login" ] and "FailureValues":
+	// [ "AccountCreationFailed" ]
 	//
 	// FailureValues is a required field
 	FailureValues []*string `min:"1" type:"list" required:"true"`
@@ -19721,17 +20352,18 @@ type ResponseInspectionHeader struct {
 	// The name of the header to match against. The name must be an exact match,
 	// including case.
 	//
-	// JSON example: "Name": [ "LoginResult" ]
+	// JSON example: "Name": [ "RequestResult" ]
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// Values in the response header with the specified name that indicate a successful
-	// login attempt. To be counted as a successful login, the value must be an
-	// exact match, including case. Each value must be unique among the success
-	// and failure values.
+	// login or account creation attempt. To be counted as a success, the value
+	// must be an exact match, including case. Each value must be unique among the
+	// success and failure values.
 	//
-	// JSON example: "SuccessValues": [ "LoginPassed", "Successful login" ]
+	// JSON examples: "SuccessValues": [ "LoginPassed", "Successful login" ] and
+	// "SuccessValues": [ "AccountCreated", "Successful account creation" ]
 	//
 	// SuccessValues is a required field
 	SuccessValues []*string `min:"1" type:"list" required:"true"`
@@ -19803,7 +20435,7 @@ func (s *ResponseInspectionHeader) SetSuccessValues(v []*string) *ResponseInspec
 
 // Configures inspection of the response JSON. WAF can inspect the first 65,536
 // bytes (64 KB) of the response JSON. This is part of the ResponseInspection
-// configuration for AWSManagedRulesATPRuleSet.
+// configuration for AWSManagedRulesATPRuleSet and AWSManagedRulesACFPRuleSet.
 //
 // Response inspection is available only in web ACLs that protect Amazon CloudFront
 // distributions.
@@ -19811,9 +20443,9 @@ type ResponseInspectionJson struct {
 	_ struct{} `type:"structure"`
 
 	// Values for the specified identifier in the response JSON that indicate a
-	// failed login attempt. To be counted as a failed login, the value must be
-	// an exact match, including case. Each value must be unique among the success
-	// and failure values.
+	// failed login or account creation attempt. To be counted as a failure, the
+	// value must be an exact match, including case. Each value must be unique among
+	// the success and failure values.
 	//
 	// JSON example: "FailureValues": [ "False", "Failed" ]
 	//
@@ -19823,15 +20455,16 @@ type ResponseInspectionJson struct {
 	// The identifier for the value to match against in the JSON. The identifier
 	// must be an exact match, including case.
 	//
-	// JSON example: "Identifier": [ "/login/success" ]
+	// JSON examples: "Identifier": [ "/login/success" ] and "Identifier": [ "/sign-up/success"
+	// ]
 	//
 	// Identifier is a required field
 	Identifier *string `min:"1" type:"string" required:"true"`
 
 	// Values for the specified identifier in the response JSON that indicate a
-	// successful login attempt. To be counted as a successful login, the value
-	// must be an exact match, including case. Each value must be unique among the
-	// success and failure values.
+	// successful login or account creation attempt. To be counted as a success,
+	// the value must be an exact match, including case. Each value must be unique
+	// among the success and failure values.
 	//
 	// JSON example: "SuccessValues": [ "True", "Succeeded" ]
 	//
@@ -19904,25 +20537,27 @@ func (s *ResponseInspectionJson) SetSuccessValues(v []*string) *ResponseInspecti
 }
 
 // Configures inspection of the response status code. This is part of the ResponseInspection
-// configuration for AWSManagedRulesATPRuleSet.
+// configuration for AWSManagedRulesATPRuleSet and AWSManagedRulesACFPRuleSet.
 //
 // Response inspection is available only in web ACLs that protect Amazon CloudFront
 // distributions.
 type ResponseInspectionStatusCode struct {
 	_ struct{} `type:"structure"`
 
-	// Status codes in the response that indicate a failed login attempt. To be
-	// counted as a failed login, the response status code must match one of these.
-	// Each code must be unique among the success and failure status codes.
+	// Status codes in the response that indicate a failed login or account creation
+	// attempt. To be counted as a failure, the response status code must match
+	// one of these. Each code must be unique among the success and failure status
+	// codes.
 	//
 	// JSON example: "FailureCodes": [ 400, 404 ]
 	//
 	// FailureCodes is a required field
 	FailureCodes []*int64 `min:"1" type:"list" required:"true"`
 
-	// Status codes in the response that indicate a successful login attempt. To
-	// be counted as a successful login, the response status code must match one
-	// of these. Each code must be unique among the success and failure status codes.
+	// Status codes in the response that indicate a successful login or account
+	// creation attempt. To be counted as a success, the response status code must
+	// match one of these. Each code must be unique among the success and failure
+	// status codes.
 	//
 	// JSON example: "SuccessCodes": [ 200, 201 ]
 	//
@@ -21390,9 +22025,10 @@ type Statement struct {
 	// within a rule.
 	//
 	// You are charged additional fees when you use the WAF Bot Control managed
-	// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
-	// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
-	// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
+	// rule group AWSManagedRulesBotControlRuleSet, the WAF Fraud Control account
+	// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet, or
+	// the WAF Fraud Control account creation fraud prevention (ACFP) managed rule
+	// group AWSManagedRulesACFPRuleSet. For more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 	ManagedRuleGroupStatement *ManagedRuleGroupStatement `type:"structure"`
 
 	// A logical rule statement used to negate the results of another rule statement.
@@ -23507,12 +24143,28 @@ func (s UriPath) GoString() string {
 	return s.String()
 }
 
-// Details about your login page username field for request inspection, used
-// in the AWSManagedRulesATPRuleSet RequestInspection configuration.
+// The name of the field in the request payload that contains your customer's
+// username.
+//
+// This data type is used in the RequestInspection and RequestInspectionACFP
+// data types.
 type UsernameField struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the username field. For example /form/username.
+	// The name of the username field.
+	//
+	// How you specify this depends on the request inspection payload type.
+	//
+	//    * For JSON payloads, specify the field name in JSON pointer syntax. For
+	//    information about the JSON Pointer syntax, see the Internet Engineering
+	//    Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer
+	//    (https://tools.ietf.org/html/rfc6901). For example, for the JSON payload
+	//    { "form": { "username": "THE_USERNAME" } }, the username field specification
+	//    is /form/username.
+	//
+	//    * For form encoded payload types, use the HTML form names. For example,
+	//    for an HTML form with the input element named username1, the username
+	//    field specification is username1
 	//
 	// Identifier is a required field
 	Identifier *string `min:"1" type:"string" required:"true"`
@@ -26960,6 +27612,9 @@ const (
 
 	// ParameterExceptionFieldCustomKeys is a ParameterExceptionField enum value
 	ParameterExceptionFieldCustomKeys = "CUSTOM_KEYS"
+
+	// ParameterExceptionFieldAcpRuleSetResponseInspection is a ParameterExceptionField enum value
+	ParameterExceptionFieldAcpRuleSetResponseInspection = "ACP_RULE_SET_RESPONSE_INSPECTION"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -27034,6 +27689,7 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldAssociatedResourceType,
 		ParameterExceptionFieldScopeDown,
 		ParameterExceptionFieldCustomKeys,
+		ParameterExceptionFieldAcpRuleSetResponseInspection,
 	}
 }
 

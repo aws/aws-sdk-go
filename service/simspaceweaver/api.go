@@ -1700,6 +1700,9 @@ type CreateSnapshotInput struct {
 	// The Amazon S3 bucket and optional folder (object key prefix) where SimSpace
 	// Weaver creates the snapshot file.
 	//
+	// The Amazon S3 bucket must be in the same Amazon Web Services Region as the
+	// simulation.
+	//
 	// Destination is a required field
 	Destination *S3Destination `type:"structure" required:"true"`
 
@@ -3763,6 +3766,9 @@ type StartSimulationInput struct {
 	// Service User Guide (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
 	//
 	// Provide a SnapshotS3Location to start your simulation from a snapshot.
+	//
+	// The Amazon S3 bucket must be in the same Amazon Web Services Region as the
+	// simulation.
 	//
 	// If you provide a SnapshotS3Location then you can't provide a SchemaS3Location.
 	SnapshotS3Location *S3Location `type:"structure"`
