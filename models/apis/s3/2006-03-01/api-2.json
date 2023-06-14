@@ -7730,7 +7730,8 @@
       "type":"string",
       "enum":[
         "AES256",
-        "aws:kms"
+        "aws:kms",
+        "aws:kms:dsse"
       ]
     },
     "ServerSideEncryptionByDefault":{

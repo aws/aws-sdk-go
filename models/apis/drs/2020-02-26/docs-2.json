@@ -2,13 +2,16 @@
   "version": "2.0",
   "service": "<p>AWS Elastic Disaster Recovery Service.</p>",
   "operations": {
+    "AssociateSourceNetworkStack": "<p>Associate a Source Network to an existing CloudFormation Stack and modify launch templates to use this network. Can be used for reverting to previously deployed CloudFormation stacks.</p>",
     "CreateExtendedSourceServer": "<p>Create an extended source server in the target Account based on the source server in staging account.</p>",
     "CreateLaunchConfigurationTemplate": "<p>Creates a new Launch Configuration Template.</p>",
     "CreateReplicationConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
+    "CreateSourceNetwork": "<p>Create a new Source Network resource for a provided VPC ID.</p>",
     "DeleteJob": "<p>Deletes a single Job by ID.</p>",
     "DeleteLaunchConfigurationTemplate": "<p>Deletes a single Launch Configuration Template by ID.</p>",
     "DeleteRecoveryInstance": "<p>Deletes a single Recovery Instance by ID. This deletes the Recovery Instance resource from Elastic Disaster Recovery. The Recovery Instance must be disconnected first in order to delete it.</p>",
     "DeleteReplicationConfigurationTemplate": "<p>Deletes a single Replication Configuration Template by ID</p>",
+    "DeleteSourceNetwork": "<p>Delete Source Network resource.</p>",
     "DeleteSourceServer": "<p>Deletes a single Source Server by ID. The Source Server must be disconnected first.</p>",
     "DescribeJobLogItems": "<p>Retrieves a detailed Job log with pagination.</p>",
     "DescribeJobs": "<p>Returns a list of Jobs. Use the JobsID and fromDate and toDate filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are created by the StartRecovery, TerminateRecoveryInstances and StartFailbackLaunch APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>",
@@ -16,9 +19,11 @@
     "DescribeRecoveryInstances": "<p>Lists all Recovery Instances or multiple Recovery Instances by ID.</p>",
     "DescribeRecoverySnapshots": "<p>Lists all Recovery Snapshots for a single Source Server.</p>",
     "DescribeReplicationConfigurationTemplates": "<p>Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.</p>",
+    "DescribeSourceNetworks": "<p>Lists all Source Networks or multiple Source Networks filtered by ID.</p>",
     "DescribeSourceServers": "<p>Lists all Source Servers or multiple Source Servers filtered by ID.</p>",
     "DisconnectRecoveryInstance": "<p>Disconnect a Recovery Instance from Elastic Disaster Recovery. Data replication is stopped immediately. All AWS resources created by Elastic Disaster Recovery for enabling the replication of the Recovery Instance will be terminated / deleted within 90 minutes. If the agent on the Recovery Instance has not been prevented from communicating with the Elastic Disaster Recovery service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the Recovery Instance will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>",
     "DisconnectSourceServer": "<p>Disconnects a specific Source Server from Elastic Disaster Recovery. Data replication is stopped immediately. All AWS resources created by Elastic Disaster Recovery for enabling the replication of the Source Server will be terminated / deleted within 90 minutes. You cannot disconnect a Source Server if it has a Recovery Instance. If the agent on the Source Server has not been prevented from communicating with the Elastic Disaster Recovery service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>",
+    "ExportSourceNetworkCfnTemplate": "<p>Export the Source Network CloudFormation template to an S3 bucket.</p>",
     "GetFailbackReplicationConfiguration": "<p>Lists all Failback ReplicationConfigurations, filtered by Recovery Instance ID.</p>",
     "GetLaunchConfiguration": "<p>Gets a LaunchConfiguration, filtered by Source Server IDs.</p>",
     "GetReplicationConfiguration": "<p>Gets a ReplicationConfiguration, filtered by Source Server ID.</p>",
@@ -31,8 +36,11 @@
     "StartFailbackLaunch": "<p>Initiates a Job for launching the machine that is being failed back to from the specified Recovery Instance. This will run conversion on the failback client and will reboot your machine, thus completing the failback process.</p>",
     "StartRecovery": "<p>Launches Recovery Instances for the specified Source Servers. For each Source Server you may choose a point in time snapshot to launch from, or use an on demand snapshot.</p>",
     "StartReplication": "<p>Starts replication for a stopped Source Server. This action would make the Source Server protected again and restart billing for it.</p>",
+    "StartSourceNetworkRecovery": "<p>Deploy VPC for the specified Source Network and modify launch templates to use this network. The VPC will be deployed using a dedicated CloudFormation stack.</p>",
+    "StartSourceNetworkReplication": "<p>Starts replication for a Source Network. This action would make the Source Network protected.</p>",
     "StopFailback": "<p>Stops the failback process for a specified Recovery Instance. This changes the Failback State of the Recovery Instance back to FAILBACK_NOT_STARTED.</p>",
     "StopReplication": "<p>Stops replication for a Source Server. This action would make the Source Server unprotected, delete its existing snapshots and stop billing for it.</p>",
+    "StopSourceNetworkReplication": "<p>Stops replication for a Source Network. This action would make the Source Network unprotected.</p>",
     "TagResource": "<p>Adds or overwrites only the specified tags for the specified Elastic Disaster Recovery resource or resources. When you specify an existing tag key, the value is overwritten with the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value.</p>",
     "TerminateRecoveryInstances": "<p>Initiates a Job for terminating the EC2 resources associated with the specified Recovery Instances, and then will delete the Recovery Instances from the Elastic Disaster Recovery service.</p>",
     "UntagResource": "<p>Deletes the specified set of tags from the specified set of Elastic Disaster Recovery resources.</p>",
@@ -46,18 +54,22 @@
     "ARN": {
       "base": null,
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$exportBucketArn": "<p>S3 bucket ARN to export Source Network templates.</p>",
         "CreateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>",
         "Job$arn": "<p>The ARN of a Job.</p>",
         "LaunchConfigurationTemplate$arn": "<p>ARN of the Launch Configuration Template.</p>",
+        "LaunchConfigurationTemplate$exportBucketArn": "<p>S3 bucket ARN to export Source Network templates.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource whose tags should be returned.</p>",
         "RecoveryInstance$arn": "<p>The ARN of the Recovery Instance.</p>",
         "ReplicationConfiguration$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>",
         "ReplicationConfigurationTemplate$arn": "<p>The Replication Configuration Template ARN.</p>",
         "ReplicationConfigurationTemplate$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>",
+        "SourceNetwork$arn": "<p>The ARN of the Source Network.</p>",
         "SourceServer$arn": "<p>The ARN of the Source Server.</p>",
         "StagingArea$stagingSourceServerArn": "<p>Arn of the staging source server if this source server is extended</p>",
         "TagResourceRequest$resourceArn": "<p>ARN of the resource for which tags are to be added or updated.</p>",
         "UntagResourceRequest$resourceArn": "<p>ARN of the resource for which tags are to be removed.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$exportBucketArn": "<p>S3 bucket ARN to export Source Network templates.</p>",
         "UpdateReplicationConfigurationRequest$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>",
         "UpdateReplicationConfigurationTemplateRequest$arn": "<p>The Replication Configuration Template ARN.</p>",
         "UpdateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>"
@@ -79,8 +91,11 @@
       "refs": {
         "Account$accountID": "<p>Account ID of AWS account.</p>",
         "AccountIDs$member": null,
+        "CreateSourceNetworkRequest$originAccountID": "<p>Account containing the VPC to protect.</p>",
+        "DescribeSourceNetworksRequestFilters$originAccountID": "<p>Filter Source Networks by account ID containing the protected VPCs.</p>",
         "ListExtensibleSourceServersRequest$stagingAccountID": "<p>The Id of the staging Account to retrieve extensible source servers from.</p>",
         "SourceCloudProperties$originAccountID": "<p>AWS Account ID for an EC2-originated Source Server.</p>",
+        "SourceNetwork$sourceAccountID": "<p>Account ID containing the VPC protected by the Source Network.</p>",
         "StagingArea$stagingAccountID": "<p>Account ID of the account to which source server belongs. If this source server is extended - shows Account ID of staging source server.</p>"
       }
     },
@@ -96,6 +111,16 @@
         "ListStagingAccountsResponse$accounts": "<p>An array of staging AWS Accounts.</p>"
       }
     },
+    "AssociateSourceNetworkStackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSourceNetworkStackResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AwsAvailabilityZone": {
       "base": null,
       "refs": {
@@ -108,7 +133,10 @@
     "AwsRegion": {
       "base": null,
       "refs": {
-        "SourceCloudProperties$originRegion": "<p>AWS Region for an EC2-originated Source Server.</p>"
+        "CreateSourceNetworkRequest$originRegion": "<p>Region containing the VPC to protect.</p>",
+        "DescribeSourceNetworksRequestFilters$originRegion": "<p>Filter Source Networks by the region containing the protected VPCs.</p>",
+        "SourceCloudProperties$originRegion": "<p>AWS Region for an EC2-originated Source Server.</p>",
+        "SourceNetwork$sourceRegion": "<p>Region containing the VPC protected by the Source Network.</p>"
       }
     },
     "Boolean": {
@@ -142,6 +170,7 @@
         "ReplicationConfigurationTemplate$useDedicatedReplicationServer": "<p>Whether to use a dedicated Replication Server in the replication staging area.</p>",
         "SourceProperties$supportsNitroInstances": "<p>Are EC2 nitro instance types supported when recovering the Source Server.</p>",
         "StartRecoveryRequest$isDrill": "<p>Whether this Source Server Recovery operation is a drill or not.</p>",
+        "StartSourceNetworkRecoveryRequest$deployAsNew": "<p>Don't update existing CloudFormation Stack, recover the network using a new stack.</p>",
         "UpdateFailbackReplicationConfigurationRequest$usePrivateIP": "<p>Whether to use Private IP for the failback replication of the Recovery Instance.</p>",
         "UpdateLaunchConfigurationRequest$copyPrivateIp": "<p>Whether we should copy the Private IP of the Source Server to the Recovery Instance.</p>",
         "UpdateLaunchConfigurationRequest$copyTags": "<p>Whether we want to copy the tags of the Source Server to the EC2 machine of the Recovery Instance.</p>",
@@ -184,6 +213,14 @@
       "base": "<p>Information about a server's CPU.</p>",
       "refs": {
         "Cpus$member": null
+      }
+    },
+    "CfnStackName": {
+      "base": null,
+      "refs": {
+        "AssociateSourceNetworkStackRequest$cfnStackName": "<p>CloudFormation template to associate with a Source Network.</p>",
+        "SourceNetwork$cfnStackName": "<p>CloudFormation stack name that was deployed for recovering the Source Network.</p>",
+        "StartSourceNetworkRecoveryRequestNetworkEntry$cfnStackName": "<p>CloudFormation stack name to be used for recovering the network.</p>"
       }
     },
     "ConflictException": {
@@ -231,6 +268,16 @@
       }
     },
     "CreateReplicationConfigurationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSourceNetworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSourceNetworkResponse": {
       "base": null,
       "refs": {
       }
@@ -336,6 +383,16 @@
       "refs": {
       }
     },
+    "DeleteSourceNetworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSourceNetworkResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteSourceServerRequest": {
       "base": null,
       "refs": {
@@ -436,6 +493,28 @@
       "refs": {
       }
     },
+    "DescribeSourceNetworksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeSourceNetworksRequestFilters": {
+      "base": "<p>A set of filters by which to return Source Networks.</p>",
+      "refs": {
+        "DescribeSourceNetworksRequest$filters": "<p>A set of filters by which to return Source Networks.</p>"
+      }
+    },
+    "DescribeSourceNetworksRequestFiltersIDs": {
+      "base": null,
+      "refs": {
+        "DescribeSourceNetworksRequestFilters$sourceNetworkIDs": "<p>An array of Source Network IDs that should be returned. An empty array means all Source Networks.</p>"
+      }
+    },
+    "DescribeSourceNetworksResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeSourceServersRequest": {
       "base": null,
       "refs": {
@@ -524,6 +603,22 @@
       "base": null,
       "refs": {
         "RecoveryInstanceDisk$ebsVolumeID": "<p>The EBS Volume ID of this disk.</p>"
+      }
+    },
+    "EventResourceData": {
+      "base": "<p>Properties of resource related to a job event.</p>",
+      "refs": {
+        "JobLogEventData$eventResourceData": "<p>Properties of resource related to a job event.</p>"
+      }
+    },
+    "ExportSourceNetworkCfnTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportSourceNetworkCfnTemplateResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ExtensionStatus": {
@@ -646,9 +741,11 @@
     "Job": {
       "base": "<p>A job is an asynchronous workflow.</p>",
       "refs": {
+        "AssociateSourceNetworkStackResponse$job": "<p>The Source Network association Job.</p>",
         "JobsList$member": null,
         "StartFailbackLaunchResponse$job": "<p>The failback launch Job.</p>",
         "StartRecoveryResponse$job": "<p>The Recovery Job.</p>",
+        "StartSourceNetworkRecoveryResponse$job": "<p>The Source Network recovery Job.</p>",
         "TerminateRecoveryInstancesResponse$job": "<p>The Job for terminating the Recovery Instances.</p>"
       }
     },
@@ -661,7 +758,8 @@
         "Job$jobID": "<p>The ID of the Job.</p>",
         "LifeCycleLastLaunchInitiated$jobID": "<p>The ID of the Job that was used to last launch the Source Server.</p>",
         "RecoveryInstance$jobID": "<p>The ID of the Job that created the Recovery Instance.</p>",
-        "RecoveryInstanceFailback$failbackJobID": "<p>The Job ID of the last failback log for this Recovery Instance.</p>"
+        "RecoveryInstanceFailback$failbackJobID": "<p>The Job ID of the last failback log for this Recovery Instance.</p>",
+        "RecoveryLifeCycle$jobID": "<p>The ID of the Job that was used to last recover the Source Network.</p>"
       }
     },
     "JobLog": {
@@ -718,6 +816,7 @@
         "ConversionProperties$dataTimestamp": "<p>The timestamp of when the snapshot being converted was taken</p>",
         "ConversionProperties$rootVolumeName": "<p>The root volume name of a conversion job</p>",
         "DataReplicationError$rawError": "<p>Error in data replication.</p>",
+        "ExportSourceNetworkCfnTemplateResponse$s3DestinationUrl": "<p>S3 bucket URL where the Source Network CloudFormation template was exported to.</p>",
         "InternalServerException$message": null,
         "JobLogEventData$rawError": "<p>A string representing a job error.</p>",
         "RecoveryInstanceDataReplicationError$rawError": "<p>Error in data replication.</p>",
@@ -731,6 +830,7 @@
         "ServiceQuotaExceededException$resourceId": "<p>The ID of the resource.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>The type of the resource.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>Service code.</p>",
+        "SourceNetworkData$stackName": "<p>CloudFormation stack name that was deployed for recovering the Source Network.</p>",
         "StagingArea$errorMessage": "<p>Shows an error message that occurred when DRS tried to access the staging source server. In this case StagingArea$status will have value EXTENSION_ERROR</p>",
         "ThrottlingException$message": null,
         "ThrottlingException$quotaCode": "<p>Quota code.</p>",
@@ -806,6 +906,7 @@
       "base": null,
       "refs": {
         "LifeCycleLastLaunch$status": "<p>Status of Source Server's last launch.</p>",
+        "ParticipatingResource$launchStatus": "<p>The launch status of a participating resource.</p>",
         "ParticipatingServer$launchStatus": "<p>The launch status of a participating server.</p>"
       }
     },
@@ -948,12 +1049,32 @@
         "DescribeRecoverySnapshotsResponse$nextToken": "<p>The token of the next Recovery Snapshot to retrieve.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$nextToken": "<p>The token of the next Replication Configuration Template to retrieve.</p>",
         "DescribeReplicationConfigurationTemplatesResponse$nextToken": "<p>The token of the next Replication Configuration Template to retrieve.</p>",
+        "DescribeSourceNetworksRequest$nextToken": "<p>The token of the next Source Networks to retrieve.</p>",
+        "DescribeSourceNetworksResponse$nextToken": "<p>The token of the next Source Networks to retrieve.</p>",
         "DescribeSourceServersRequest$nextToken": "<p>The token of the next Source Server to retrieve.</p>",
         "DescribeSourceServersResponse$nextToken": "<p>The token of the next Source Server to retrieve.</p>",
         "ListExtensibleSourceServersRequest$nextToken": "<p>The token of the next extensible source server to retrieve.</p>",
         "ListExtensibleSourceServersResponse$nextToken": "<p>The token of the next extensible source server to retrieve.</p>",
         "ListStagingAccountsRequest$nextToken": "<p>The token of the next staging Account to retrieve.</p>",
         "ListStagingAccountsResponse$nextToken": "<p>The token of the next staging Account to retrieve.</p>"
+      }
+    },
+    "ParticipatingResource": {
+      "base": "<p>Represents a resource participating in an asynchronous Job.</p>",
+      "refs": {
+        "ParticipatingResources$member": null
+      }
+    },
+    "ParticipatingResourceID": {
+      "base": "<p>ID of a resource participating in an asynchronous Job.</p>",
+      "refs": {
+        "ParticipatingResource$participatingResourceID": "<p>The ID of a participating resource.</p>"
+      }
+    },
+    "ParticipatingResources": {
+      "base": null,
+      "refs": {
+        "Job$participatingResources": "<p>A list of resources that the Job is acting upon.</p>"
       }
     },
     "ParticipatingServer": {
@@ -1118,6 +1239,18 @@
         "TerminateRecoveryInstancesRequest$recoveryInstanceIDs": "<p>The IDs of the Recovery Instances that should be terminated.</p>"
       }
     },
+    "RecoveryLifeCycle": {
+      "base": "<p>An object representing the Source Network recovery Lifecycle.</p>",
+      "refs": {
+        "SourceNetwork$lastRecovery": "<p>An object containing information regarding the last recovery of the Source Network.</p>"
+      }
+    },
+    "RecoveryResult": {
+      "base": null,
+      "refs": {
+        "RecoveryLifeCycle$lastRecoveryResult": "<p>The status of the last recovery status of this Source Network.</p>"
+      }
+    },
     "RecoverySnapshot": {
       "base": "<p>A snapshot of a Source Server used during recovery.</p>",
       "refs": {
@@ -1241,6 +1374,12 @@
         "UpdateReplicationConfigurationTemplateRequest$replicationServersSecurityGroupsIDs": "<p>The security group IDs that will be used by the replication server.</p>"
       }
     },
+    "ReplicationStatus": {
+      "base": null,
+      "refs": {
+        "SourceNetwork$replicationStatus": "<p>Status of Source Network Replication. Possible values: (a) STOPPED - Source Network is not replicating. (b) IN_PROGRESS - Source Network is being replicated. (c) PROTECTED - Source Network was replicated successfully and is being synchronized for changes. (d) ERROR - Source Network replication has failed</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The resource for this operation was not found.</p>",
       "refs": {
@@ -1267,6 +1406,12 @@
         "ReplicationServersSecurityGroupsIDs$member": null
       }
     },
+    "SensitiveBoundedString": {
+      "base": null,
+      "refs": {
+        "SourceNetwork$replicationStatusDetails": "<p>Error details in case Source Network replication status is ERROR.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>The request could not be completed because its exceeded the service quota.</p>",
       "refs": {
@@ -1285,6 +1430,43 @@
       "base": "<p>Properties of the cloud environment where this Source Server originated from.</p>",
       "refs": {
         "SourceServer$sourceCloudProperties": "<p>Source cloud properties of the Source Server.</p>"
+      }
+    },
+    "SourceNetwork": {
+      "base": "<p>The ARN of the Source Network.</p>",
+      "refs": {
+        "SourceNetworksList$member": null,
+        "StartSourceNetworkReplicationResponse$sourceNetwork": "<p>Source Network which was requested for replication.</p>",
+        "StopSourceNetworkReplicationResponse$sourceNetwork": "<p>Source Network which was requested to stop replication.</p>"
+      }
+    },
+    "SourceNetworkData": {
+      "base": "<p>Properties of Source Network related to a job event.</p>",
+      "refs": {
+        "EventResourceData$sourceNetworkData": "<p>Source Network properties.</p>"
+      }
+    },
+    "SourceNetworkID": {
+      "base": null,
+      "refs": {
+        "AssociateSourceNetworkStackRequest$sourceNetworkID": "<p>The Source Network ID to associate with CloudFormation template.</p>",
+        "CreateSourceNetworkResponse$sourceNetworkID": "<p>ID of the created Source Network.</p>",
+        "DeleteSourceNetworkRequest$sourceNetworkID": "<p>ID of the Source Network to delete.</p>",
+        "DescribeSourceNetworksRequestFiltersIDs$member": null,
+        "ExportSourceNetworkCfnTemplateRequest$sourceNetworkID": "<p>The Source Network ID to export its CloudFormation template to an S3 bucket.</p>",
+        "ParticipatingResourceID$sourceNetworkID": "<p>Source Network ID.</p>",
+        "SourceNetwork$sourceNetworkID": "<p>Source Network ID.</p>",
+        "SourceNetworkData$sourceNetworkID": "<p>Source Network ID.</p>",
+        "SourceServer$sourceNetworkID": "<p>ID of the Source Network which is protecting this Source Server's network.</p>",
+        "StartSourceNetworkRecoveryRequestNetworkEntry$sourceNetworkID": "<p>The ID of the Source Network you want to recover.</p>",
+        "StartSourceNetworkReplicationRequest$sourceNetworkID": "<p>ID of the Source Network to replicate.</p>",
+        "StopSourceNetworkReplicationRequest$sourceNetworkID": "<p>ID of the Source Network to stop replication.</p>"
+      }
+    },
+    "SourceNetworksList": {
+      "base": null,
+      "refs": {
+        "DescribeSourceNetworksResponse$items": "<p>An array of Source Networks.</p>"
       }
     },
     "SourceProperties": {
@@ -1414,6 +1596,38 @@
       "refs": {
       }
     },
+    "StartSourceNetworkRecoveryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSourceNetworkRecoveryRequestNetworkEntries": {
+      "base": null,
+      "refs": {
+        "StartSourceNetworkRecoveryRequest$sourceNetworks": "<p>The Source Networks that we want to start a Recovery Job for.</p>"
+      }
+    },
+    "StartSourceNetworkRecoveryRequestNetworkEntry": {
+      "base": "<p>An object representing the Source Network to recover.</p>",
+      "refs": {
+        "StartSourceNetworkRecoveryRequestNetworkEntries$member": null
+      }
+    },
+    "StartSourceNetworkRecoveryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSourceNetworkReplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSourceNetworkReplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StopFailbackRequest": {
       "base": null,
       "refs": {
@@ -1429,6 +1643,16 @@
       "refs": {
       }
     },
+    "StopSourceNetworkReplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopSourceNetworkReplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StrictlyPositiveInteger": {
       "base": null,
       "refs": {
@@ -1437,6 +1661,7 @@
         "DescribeRecoveryInstancesRequest$maxResults": "<p>Maximum number of Recovery Instances to retrieve.</p>",
         "DescribeRecoverySnapshotsRequest$maxResults": "<p>Maximum number of Recovery Snapshots to retrieve.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$maxResults": "<p>Maximum number of Replication Configuration Templates to retrieve.</p>",
+        "DescribeSourceNetworksRequest$maxResults": "<p>Maximum number of Source Networks to retrieve.</p>",
         "DescribeSourceServersRequest$maxResults": "<p>Maximum number of Source Servers to retrieve.</p>",
         "PITPolicyRule$interval": "<p>How often, in the chosen units, a snapshot should be taken.</p>",
         "PITPolicyRule$retentionDuration": "<p>The duration to retain a snapshot for, in the chosen units.</p>"
@@ -1450,6 +1675,12 @@
         "ReplicationConfigurationTemplate$stagingAreaSubnetId": "<p>The subnet to be used by the replication staging area.</p>",
         "UpdateReplicationConfigurationRequest$stagingAreaSubnetId": "<p>The subnet to be used by the replication staging area.</p>",
         "UpdateReplicationConfigurationTemplateRequest$stagingAreaSubnetId": "<p>The subnet to be used by the replication staging area.</p>"
+      }
+    },
+    "SyntheticTimestamp_date_time": {
+      "base": null,
+      "refs": {
+        "RecoveryLifeCycle$apiCallDateTime": "<p>The date and time the last Source Network recovery was initiated.</p>"
       }
     },
     "TagKey": {
@@ -1483,6 +1714,7 @@
         "CreateLaunchConfigurationTemplateRequest$tags": "<p>Request to associate tags during creation of a Launch Configuration Template.</p>",
         "CreateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>",
         "CreateReplicationConfigurationTemplateRequest$tags": "<p>A set of tags to be associated with the Replication Configuration Template resource.</p>",
+        "CreateSourceNetworkRequest$tags": "<p>A set of tags to be associated with the Source Network resource.</p>",
         "Job$tags": "<p>A list of tags associated with the Job.</p>",
         "LaunchConfigurationTemplate$tags": "<p>Tags of the Launch Configuration Template.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags of the requested resource.</p>",
@@ -1490,10 +1722,12 @@
         "ReplicationConfiguration$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>",
         "ReplicationConfigurationTemplate$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>",
         "ReplicationConfigurationTemplate$tags": "<p>A set of tags to be associated with the Replication Configuration Template resource.</p>",
+        "SourceNetwork$tags": "<p>A list of tags associated with the Source Network.</p>",
         "SourceServer$tags": "<p>The tags associated with the Source Server.</p>",
         "StagingSourceServer$tags": "<p>A list of tags associated with the staging source server.</p>",
         "StartFailbackLaunchRequest$tags": "<p>The tags to be associated with the failback launch Job.</p>",
         "StartRecoveryRequest$tags": "<p>The tags to be associated with the Recovery Job.</p>",
+        "StartSourceNetworkRecoveryRequest$tags": "<p>The tags to be associated with the Source Network recovery Job.</p>",
         "TagResourceRequest$tags": "<p>Array of tags to be added or updated.</p>",
         "UpdateReplicationConfigurationRequest$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>",
         "UpdateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>"
@@ -1597,6 +1831,16 @@
       "base": null,
       "refs": {
         "ConversionProperties$volumeToVolumeSize": "<p>A mapping between the volumes and their sizes</p>"
+      }
+    },
+    "VpcID": {
+      "base": null,
+      "refs": {
+        "CreateSourceNetworkRequest$vpcID": "<p>Which VPC ID to protect.</p>",
+        "SourceNetwork$launchedVpcID": "<p>ID of the recovered VPC following Source Network recovery.</p>",
+        "SourceNetwork$sourceVpcID": "<p>VPC ID protected by the Source Network.</p>",
+        "SourceNetworkData$sourceVpc": "<p>VPC ID protected by the Source Network.</p>",
+        "SourceNetworkData$targetVpc": "<p>ID of the recovered VPC following Source Network recovery.</p>"
       }
     }
   }

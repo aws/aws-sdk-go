@@ -64,6 +64,45 @@ func ExampleSecurityHub_AcceptAdministratorInvitation_shared00() {
 	fmt.Println(result)
 }
 
+// To delete one or more automation rules
+// The following example deletes the specified automation rules.
+func ExampleSecurityHub_BatchDeleteAutomationRules_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.BatchDeleteAutomationRulesInput{
+		AutomationRulesArns: []*string{
+			aws.String("arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"),
+			aws.String("arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222"),
+		},
+	}
+
+	result, err := svc.BatchDeleteAutomationRules(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			case securityhub.ErrCodeResourceNotFoundException:
+				fmt.Println(securityhub.ErrCodeResourceNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To disable one or more security standards
 // The following example disables a security standard in Security Hub.
 func ExampleSecurityHub_BatchDisableStandards_shared00() {
@@ -125,6 +164,47 @@ func ExampleSecurityHub_BatchEnableStandards_shared00() {
 				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
 			case securityhub.ErrCodeLimitExceededException:
 				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To update one ore more automation rules
+// The following example updates the specified automation rules.
+func ExampleSecurityHub_BatchGetAutomationRules_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.BatchGetAutomationRulesInput{
+		AutomationRulesArns: []*string{
+			aws.String("arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"),
+			aws.String("arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222"),
+		},
+	}
+
+	result, err := svc.BatchGetAutomationRules(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeAccessDeniedException:
+				fmt.Println(securityhub.ErrCodeAccessDeniedException, aerr.Error())
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			case securityhub.ErrCodeResourceNotFoundException:
+				fmt.Println(securityhub.ErrCodeResourceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -284,6 +364,52 @@ func ExampleSecurityHub_BatchImportFindings_shared00() {
 	fmt.Println(result)
 }
 
+// To update one ore more automation rules
+// The following example updates the specified automation rules.
+func ExampleSecurityHub_BatchUpdateAutomationRules_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.BatchUpdateAutomationRulesInput{
+		UpdateAutomationRulesRequestItems: []*securityhub.UpdateAutomationRulesRequestItem{
+			{
+				RuleArn:    aws.String("arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"),
+				RuleOrder:  aws.Int64(15),
+				RuleStatus: aws.String("ENABLED"),
+			},
+			{
+				RuleArn:    aws.String("arn:aws:securityhub:us-east-1:123456789012:automation-rule/a1b2c3d4-5678-90ab-cdef-EXAMPLE22222"),
+				RuleStatus: aws.String("DISABLED"),
+			},
+		},
+	}
+
+	result, err := svc.BatchUpdateAutomationRules(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			case securityhub.ErrCodeResourceNotFoundException:
+				fmt.Println(securityhub.ErrCodeResourceNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To update Security Hub findings
 // The following example updates Security Hub findings. The finding identifier parameter
 // specifies which findings to update. Only specific finding fields can be updated with
@@ -428,6 +554,95 @@ func ExampleSecurityHub_CreateActionTarget_shared00() {
 				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
 			case securityhub.ErrCodeResourceConflictException:
 				fmt.Println(securityhub.ErrCodeResourceConflictException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To create an automation rule
+// The following example creates an automation rule.
+func ExampleSecurityHub_CreateAutomationRule_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.CreateAutomationRuleInput{
+		Actions: []*securityhub.AutomationRulesAction{
+			{
+				FindingFieldsUpdate: &securityhub.AutomationRulesFindingFieldsUpdate{
+					Note: &securityhub.NoteUpdate{
+						Text:      aws.String("This is a critical S3 bucket, please look into this ASAP"),
+						UpdatedBy: aws.String("test-user"),
+					},
+					Severity: &securityhub.SeverityUpdate{
+						Label: aws.String("CRITICAL"),
+					},
+				},
+				Type: aws.String("FINDING_FIELDS_UPDATE"),
+			},
+		},
+		Criteria: &securityhub.AutomationRulesFindingFilters{
+			ComplianceStatus: []*securityhub.StringFilter{
+				{
+					Comparison: aws.String("EQUALS"),
+					Value:      aws.String("FAILED"),
+				},
+			},
+			ProductName: []*securityhub.StringFilter{
+				{
+					Comparison: aws.String("EQUALS"),
+					Value:      aws.String("Security Hub"),
+				},
+			},
+			RecordState: []*securityhub.StringFilter{
+				{
+					Comparison: aws.String("EQUALS"),
+					Value:      aws.String("ACTIVE"),
+				},
+			},
+			ResourceId: []*securityhub.StringFilter{
+				{
+					Comparison: aws.String("EQUALS"),
+					Value:      aws.String("arn:aws:s3:::examplebucket/developers/design_info.doc"),
+				},
+			},
+			WorkflowStatus: []*securityhub.StringFilter{
+				{
+					Comparison: aws.String("EQUALS"),
+					Value:      aws.String("NEW"),
+				},
+			},
+		},
+		Description: aws.String("Elevate finding severity to Critical for important resources"),
+		IsTerminal:  aws.Bool(false),
+		RuleName:    aws.String("Elevate severity for important resources"),
+		RuleOrder:   aws.Int64(1),
+		RuleStatus:  aws.String("ENABLED"),
+		Tags: map[string]*string{
+			"important-resources-rule": aws.String("s3-bucket"),
+		},
+	}
+
+	result, err := svc.CreateAutomationRule(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeAccessDeniedException:
+				fmt.Println(securityhub.ErrCodeAccessDeniedException, aerr.Error())
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1696,6 +1911,43 @@ func ExampleSecurityHub_InviteMembers_shared00() {
 				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
 			case securityhub.ErrCodeResourceNotFoundException:
 				fmt.Println(securityhub.ErrCodeResourceNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To list automation rules
+// The following example lists automation rules and rule metadata in the calling account.
+func ExampleSecurityHub_ListAutomationRules_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.ListAutomationRulesInput{
+		MaxResults: aws.Int64(2),
+		NextToken:  aws.String("example-token"),
+	}
+
+	result, err := svc.ListAutomationRules(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeAccessDeniedException:
+				fmt.Println(securityhub.ErrCodeAccessDeniedException, aerr.Error())
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
