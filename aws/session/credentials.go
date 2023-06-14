@@ -138,7 +138,11 @@ func resolveCredsFromProfile(cfg *aws.Config,
 
 	case len(sharedCfg.CredentialProcess) != 0:
 		// Get credentials from CredentialProcess
-		creds = processcreds.NewCredentials(sharedCfg.CredentialProcess, sessOpts.CredentialsProviderOptions.ProcessProviderOptions)
+		var optFns []func(*processcreds.ProcessProvider)
+		if sessOpts.CredentialsProviderOptions != nil && sessOpts.CredentialsProviderOptions.ProcessProviderOptions != nil {
+			optFns = append(optFns, sessOpts.CredentialsProviderOptions.ProcessProviderOptions)
+		}
+		creds = processcreds.NewCredentials(sharedCfg.CredentialProcess, optFns...)
 
 	default:
 		// Fallback to default credentials provider, include mock errors for
