@@ -187,8 +187,7 @@ func resolveSSOCredentials(cfg *aws.Config, sharedCfg sharedConfig, handlers req
 		oidcClient := ssooidc.New(mySession, cfgCopy)
 		tokenProvider := ssocreds.NewSSOTokenProvider(oidcClient, cachedPath)
 		optFns = append(optFns, func(p *ssocreds.Provider) {
-			p.HasTokenProvider = true
-			p.TokenProvider = *tokenProvider
+			p.TokenProvider = tokenProvider
 			p.CachedTokenFilepath = cachedPath
 		})
 	} else {

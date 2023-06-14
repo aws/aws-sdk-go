@@ -65,9 +65,6 @@ type Provider struct {
 	// parameter will be ignored.
 	CachedTokenFilepath string
 
-	// Used by the SSOCredentialProvider to judge if TokenProvider is configured
-	HasTokenProvider bool
-
 	// Used by the SSOCredentialProvider if a token configuration
 	// profile is used in the shared config
 	TokenProvider bearer.TokenProvider
@@ -106,7 +103,7 @@ func (p *Provider) Retrieve() (credentials.Value, error) {
 // by exchanging the accessToken present in ~/.aws/sso/cache.
 func (p *Provider) RetrieveWithContext(ctx credentials.Context) (credentials.Value, error) {
 	var accessToken *string
-	if p.HasTokenProvider {
+	if p.TokenProvider != nil {
 		token, err := p.TokenProvider.RetrieveBearerToken(ctx)
 		if err != nil {
 			return credentials.Value{}, err

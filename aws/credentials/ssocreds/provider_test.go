@@ -38,7 +38,7 @@ type mockTokenProvider struct {
 	Response func() (bearer.Token, error)
 }
 
-func (p mockTokenProvider) RetrieveBearerToken(ctx aws.Context) (bearer.Token, error) {
+func (p *mockTokenProvider) RetrieveBearerToken(ctx aws.Context) (bearer.Token, error) {
 	if p.Response == nil {
 		return bearer.Token{}, nil
 	}
@@ -109,7 +109,7 @@ func TestProvider(t *testing.T) {
 		StartURL            string
 		CachedTokenFilePath string
 		HasTokenProvider    bool
-		TokenProvider       mockTokenProvider
+		TokenProvider       *mockTokenProvider
 
 		ExpectedErr         bool
 		ExpectedCredentials credentials.Value
@@ -193,7 +193,7 @@ func TestProvider(t *testing.T) {
 					}, nil
 				},
 			},
-			TokenProvider: mockTokenProvider{
+			TokenProvider: &mockTokenProvider{
 				Response: func() (bearer.Token, error) {
 					return bearer.Token{
 						Value: "WFsIHZhbHVldGhpcyBpcyBub3QgYSByZ",
@@ -214,7 +214,7 @@ func TestProvider(t *testing.T) {
 			ExpectedExpire: time.Date(2021, 01, 20, 21, 22, 23, 0.123e9, time.UTC),
 		},
 		"token provider return error": {
-			TokenProvider: mockTokenProvider{
+			TokenProvider: &mockTokenProvider{
 				Response: func() (bearer.Token, error) {
 					return bearer.Token{}, fmt.Errorf("mock token provider return error")
 				},
@@ -258,8 +258,9 @@ func TestProvider(t *testing.T) {
 				RoleName:            tt.RoleName,
 				StartURL:            tt.StartURL,
 				CachedTokenFilepath: tt.CachedTokenFilePath,
-				HasTokenProvider:    tt.HasTokenProvider,
-				TokenProvider:       tt.TokenProvider,
+			}
+			if tt.TokenProvider != nil {
+				provider.TokenProvider = tt.TokenProvider
 			}
 
 			provider.Expiry.CurrentTime = nowTime
