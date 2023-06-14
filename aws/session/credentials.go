@@ -23,6 +23,10 @@ type CredentialsProviderOptions struct {
 	// WebIdentityRoleProviderOptions configures a WebIdentityRoleProvider,
 	// such as setting its ExpiryWindow.
 	WebIdentityRoleProviderOptions func(*stscreds.WebIdentityRoleProvider)
+
+	// ProcessProviderOptions configures a ProcessProvider,
+	// such as setting its Timeout.
+	ProcessProviderOptions func(*processcreds.ProcessProvider)
 }
 
 func resolveCredentials(cfg *aws.Config,
@@ -134,7 +138,7 @@ func resolveCredsFromProfile(cfg *aws.Config,
 
 	case len(sharedCfg.CredentialProcess) != 0:
 		// Get credentials from CredentialProcess
-		creds = processcreds.NewCredentials(sharedCfg.CredentialProcess)
+		creds = processcreds.NewCredentials(sharedCfg.CredentialProcess, sessOpts.CredentialsProviderOptions.ProcessProviderOptions)
 
 	default:
 		// Fallback to default credentials provider, include mock errors for
