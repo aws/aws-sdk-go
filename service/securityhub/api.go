@@ -235,6 +235,100 @@ func (c *SecurityHub) AcceptInvitationWithContext(ctx aws.Context, input *Accept
 	return out, req.Send()
 }
 
+const opBatchDeleteAutomationRules = "BatchDeleteAutomationRules"
+
+// BatchDeleteAutomationRulesRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDeleteAutomationRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDeleteAutomationRules for more information on using the BatchDeleteAutomationRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDeleteAutomationRulesRequest method.
+//	req, resp := client.BatchDeleteAutomationRulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchDeleteAutomationRules
+func (c *SecurityHub) BatchDeleteAutomationRulesRequest(input *BatchDeleteAutomationRulesInput) (req *request.Request, output *BatchDeleteAutomationRulesOutput) {
+	op := &request.Operation{
+		Name:       opBatchDeleteAutomationRules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/automationrules/delete",
+	}
+
+	if input == nil {
+		input = &BatchDeleteAutomationRulesInput{}
+	}
+
+	output = &BatchDeleteAutomationRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDeleteAutomationRules API operation for AWS SecurityHub.
+//
+// Deletes one or more automation rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation BatchDeleteAutomationRules for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchDeleteAutomationRules
+func (c *SecurityHub) BatchDeleteAutomationRules(input *BatchDeleteAutomationRulesInput) (*BatchDeleteAutomationRulesOutput, error) {
+	req, out := c.BatchDeleteAutomationRulesRequest(input)
+	return out, req.Send()
+}
+
+// BatchDeleteAutomationRulesWithContext is the same as BatchDeleteAutomationRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDeleteAutomationRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) BatchDeleteAutomationRulesWithContext(ctx aws.Context, input *BatchDeleteAutomationRulesInput, opts ...request.Option) (*BatchDeleteAutomationRulesOutput, error) {
+	req, out := c.BatchDeleteAutomationRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchDisableStandards = "BatchDisableStandards"
 
 // BatchDisableStandardsRequest generates a "aws/request.Request" representing the
@@ -419,6 +513,104 @@ func (c *SecurityHub) BatchEnableStandards(input *BatchEnableStandardsInput) (*B
 // for more information on using Contexts.
 func (c *SecurityHub) BatchEnableStandardsWithContext(ctx aws.Context, input *BatchEnableStandardsInput, opts ...request.Option) (*BatchEnableStandardsOutput, error) {
 	req, out := c.BatchEnableStandardsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchGetAutomationRules = "BatchGetAutomationRules"
+
+// BatchGetAutomationRulesRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetAutomationRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetAutomationRules for more information on using the BatchGetAutomationRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetAutomationRulesRequest method.
+//	req, resp := client.BatchGetAutomationRulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetAutomationRules
+func (c *SecurityHub) BatchGetAutomationRulesRequest(input *BatchGetAutomationRulesInput) (req *request.Request, output *BatchGetAutomationRulesOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetAutomationRules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/automationrules/get",
+	}
+
+	if input == nil {
+		input = &BatchGetAutomationRulesInput{}
+	}
+
+	output = &BatchGetAutomationRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetAutomationRules API operation for AWS SecurityHub.
+//
+// Retrieves a list of details for automation rules based on rule Amazon Resource
+// Names (ARNs).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation BatchGetAutomationRules for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetAutomationRules
+func (c *SecurityHub) BatchGetAutomationRules(input *BatchGetAutomationRulesInput) (*BatchGetAutomationRulesOutput, error) {
+	req, out := c.BatchGetAutomationRulesRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetAutomationRulesWithContext is the same as BatchGetAutomationRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetAutomationRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) BatchGetAutomationRulesWithContext(ctx aws.Context, input *BatchGetAutomationRulesInput, opts ...request.Option) (*BatchGetAutomationRulesOutput, error) {
+	req, out := c.BatchGetAutomationRulesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -746,6 +938,101 @@ func (c *SecurityHub) BatchImportFindingsWithContext(ctx aws.Context, input *Bat
 	return out, req.Send()
 }
 
+const opBatchUpdateAutomationRules = "BatchUpdateAutomationRules"
+
+// BatchUpdateAutomationRulesRequest generates a "aws/request.Request" representing the
+// client's request for the BatchUpdateAutomationRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchUpdateAutomationRules for more information on using the BatchUpdateAutomationRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchUpdateAutomationRulesRequest method.
+//	req, resp := client.BatchUpdateAutomationRulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchUpdateAutomationRules
+func (c *SecurityHub) BatchUpdateAutomationRulesRequest(input *BatchUpdateAutomationRulesInput) (req *request.Request, output *BatchUpdateAutomationRulesOutput) {
+	op := &request.Operation{
+		Name:       opBatchUpdateAutomationRules,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/automationrules/update",
+	}
+
+	if input == nil {
+		input = &BatchUpdateAutomationRulesInput{}
+	}
+
+	output = &BatchUpdateAutomationRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchUpdateAutomationRules API operation for AWS SecurityHub.
+//
+// Updates one or more automation rules based on rule Amazon Resource Names
+// (ARNs) and input parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation BatchUpdateAutomationRules for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchUpdateAutomationRules
+func (c *SecurityHub) BatchUpdateAutomationRules(input *BatchUpdateAutomationRulesInput) (*BatchUpdateAutomationRulesOutput, error) {
+	req, out := c.BatchUpdateAutomationRulesRequest(input)
+	return out, req.Send()
+}
+
+// BatchUpdateAutomationRulesWithContext is the same as BatchUpdateAutomationRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchUpdateAutomationRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) BatchUpdateAutomationRulesWithContext(ctx aws.Context, input *BatchUpdateAutomationRulesInput, opts ...request.Option) (*BatchUpdateAutomationRulesOutput, error) {
+	req, out := c.BatchUpdateAutomationRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchUpdateFindings = "BatchUpdateFindings"
 
 // BatchUpdateFindingsRequest generates a "aws/request.Request" representing the
@@ -1054,6 +1341,100 @@ func (c *SecurityHub) CreateActionTarget(input *CreateActionTargetInput) (*Creat
 // for more information on using Contexts.
 func (c *SecurityHub) CreateActionTargetWithContext(ctx aws.Context, input *CreateActionTargetInput, opts ...request.Option) (*CreateActionTargetOutput, error) {
 	req, out := c.CreateActionTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAutomationRule = "CreateAutomationRule"
+
+// CreateAutomationRuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAutomationRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAutomationRule for more information on using the CreateAutomationRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAutomationRuleRequest method.
+//	req, resp := client.CreateAutomationRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateAutomationRule
+func (c *SecurityHub) CreateAutomationRuleRequest(input *CreateAutomationRuleInput) (req *request.Request, output *CreateAutomationRuleOutput) {
+	op := &request.Operation{
+		Name:       opCreateAutomationRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/automationrules/create",
+	}
+
+	if input == nil {
+		input = &CreateAutomationRuleInput{}
+	}
+
+	output = &CreateAutomationRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAutomationRule API operation for AWS SecurityHub.
+//
+// Creates an automation rule based on input parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation CreateAutomationRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateAutomationRule
+func (c *SecurityHub) CreateAutomationRule(input *CreateAutomationRuleInput) (*CreateAutomationRuleOutput, error) {
+	req, out := c.CreateAutomationRuleRequest(input)
+	return out, req.Send()
+}
+
+// CreateAutomationRuleWithContext is the same as CreateAutomationRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAutomationRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) CreateAutomationRuleWithContext(ctx aws.Context, input *CreateAutomationRuleInput, opts ...request.Option) (*CreateAutomationRuleOutput, error) {
+	req, out := c.CreateAutomationRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4977,6 +5358,100 @@ func (c *SecurityHub) InviteMembersWithContext(ctx aws.Context, input *InviteMem
 	return out, req.Send()
 }
 
+const opListAutomationRules = "ListAutomationRules"
+
+// ListAutomationRulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAutomationRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAutomationRules for more information on using the ListAutomationRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAutomationRulesRequest method.
+//	req, resp := client.ListAutomationRulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListAutomationRules
+func (c *SecurityHub) ListAutomationRulesRequest(input *ListAutomationRulesInput) (req *request.Request, output *ListAutomationRulesOutput) {
+	op := &request.Operation{
+		Name:       opListAutomationRules,
+		HTTPMethod: "GET",
+		HTTPPath:   "/automationrules/list",
+	}
+
+	if input == nil {
+		input = &ListAutomationRulesInput{}
+	}
+
+	output = &ListAutomationRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAutomationRules API operation for AWS SecurityHub.
+//
+// A list of automation rules and their metadata for the calling account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation ListAutomationRules for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListAutomationRules
+func (c *SecurityHub) ListAutomationRules(input *ListAutomationRulesInput) (*ListAutomationRulesOutput, error) {
+	req, out := c.ListAutomationRulesRequest(input)
+	return out, req.Send()
+}
+
+// ListAutomationRulesWithContext is the same as ListAutomationRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAutomationRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListAutomationRulesWithContext(ctx aws.Context, input *ListAutomationRulesInput, opts ...request.Option) (*ListAutomationRulesOutput, error) {
+	req, out := c.ListAutomationRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListEnabledProductsForImport = "ListEnabledProductsForImport"
 
 // ListEnabledProductsForImportRequest generates a "aws/request.Request" representing the
@@ -7809,6 +8284,853 @@ func (s *AssociationStateDetails) SetState(v string) *AssociationStateDetails {
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *AssociationStateDetails) SetStatusMessage(v string) *AssociationStateDetails {
 	s.StatusMessage = &v
+	return s
+}
+
+// One or more actions to update finding fields if a finding matches the defined
+// criteria of the rule.
+type AutomationRulesAction struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies that the automation rule action is an update to a finding field.
+	FindingFieldsUpdate *AutomationRulesFindingFieldsUpdate `type:"structure"`
+
+	// Specifies that the rule action should update the Types finding field. The
+	// Types finding field provides one or more finding types in the format of namespace/category/classifier
+	// that classify a finding. For more information, see Types taxonomy for ASFF
+	// (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format-type-taxonomy.html)
+	// in the Security Hub User Guide.
+	Type *string `type:"string" enum:"AutomationRulesActionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutomationRulesAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutomationRulesAction"}
+	if s.FindingFieldsUpdate != nil {
+		if err := s.FindingFieldsUpdate.Validate(); err != nil {
+			invalidParams.AddNested("FindingFieldsUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFindingFieldsUpdate sets the FindingFieldsUpdate field's value.
+func (s *AutomationRulesAction) SetFindingFieldsUpdate(v *AutomationRulesFindingFieldsUpdate) *AutomationRulesAction {
+	s.FindingFieldsUpdate = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AutomationRulesAction) SetType(v string) *AutomationRulesAction {
+	s.Type = &v
+	return s
+}
+
+// Defines the configuration of an automation rule.
+type AutomationRulesConfig struct {
+	_ struct{} `type:"structure"`
+
+	// One or more actions to update finding fields if a finding matches the defined
+	// criteria of the rule.
+	Actions []*AutomationRulesAction `min:"1" type:"list"`
+
+	// A timestamp that indicates when the rule was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The principal that created a rule.
+	CreatedBy *string `type:"string"`
+
+	// A set of Amazon Web Services Security Finding Format (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html)
+	// finding field attributes and corresponding expected values that Security
+	// Hub uses to filter findings. If a finding matches the conditions specified
+	// in this parameter, Security Hub applies the rule action to the finding.
+	Criteria *AutomationRulesFindingFilters `type:"structure"`
+
+	// A description of the rule.
+	Description *string `type:"string"`
+
+	// Specifies whether a rule is the last to be applied with respect to a finding
+	// that matches the rule criteria. This is useful when a finding matches the
+	// criteria for multiple rules, and each rule has different actions. If the
+	// value of this field is set to true for a rule, Security Hub applies the rule
+	// action to a finding that matches the rule criteria and won't evaluate other
+	// rules for the finding. The default value of this field is false.
+	IsTerminal *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of a rule.
+	RuleArn *string `type:"string"`
+
+	// The name of the rule.
+	RuleName *string `type:"string"`
+
+	// An integer ranging from 1 to 1000 that represents the order in which the
+	// rule action is applied to findings. Security Hub applies rules with lower
+	// values for this parameter first.
+	RuleOrder *int64 `min:"1" type:"integer"`
+
+	// Whether the rule is active after it is created. If this parameter is equal
+	// to >ENABLED, Security Hub will apply the rule to findings and finding updates
+	// after the rule is created.
+	RuleStatus *string `type:"string" enum:"RuleStatus"`
+
+	// A timestamp that indicates when the rule was most recently updated.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesConfig) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *AutomationRulesConfig) SetActions(v []*AutomationRulesAction) *AutomationRulesConfig {
+	s.Actions = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AutomationRulesConfig) SetCreatedAt(v time.Time) *AutomationRulesConfig {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *AutomationRulesConfig) SetCreatedBy(v string) *AutomationRulesConfig {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetCriteria sets the Criteria field's value.
+func (s *AutomationRulesConfig) SetCriteria(v *AutomationRulesFindingFilters) *AutomationRulesConfig {
+	s.Criteria = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AutomationRulesConfig) SetDescription(v string) *AutomationRulesConfig {
+	s.Description = &v
+	return s
+}
+
+// SetIsTerminal sets the IsTerminal field's value.
+func (s *AutomationRulesConfig) SetIsTerminal(v bool) *AutomationRulesConfig {
+	s.IsTerminal = &v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *AutomationRulesConfig) SetRuleArn(v string) *AutomationRulesConfig {
+	s.RuleArn = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *AutomationRulesConfig) SetRuleName(v string) *AutomationRulesConfig {
+	s.RuleName = &v
+	return s
+}
+
+// SetRuleOrder sets the RuleOrder field's value.
+func (s *AutomationRulesConfig) SetRuleOrder(v int64) *AutomationRulesConfig {
+	s.RuleOrder = &v
+	return s
+}
+
+// SetRuleStatus sets the RuleStatus field's value.
+func (s *AutomationRulesConfig) SetRuleStatus(v string) *AutomationRulesConfig {
+	s.RuleStatus = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *AutomationRulesConfig) SetUpdatedAt(v time.Time) *AutomationRulesConfig {
+	s.UpdatedAt = &v
+	return s
+}
+
+// Identifies the finding fields that the automation rule action will update
+// when a finding matches the defined criteria.
+type AutomationRulesFindingFieldsUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The rule action will update the Confidence field of a finding.
+	Confidence *int64 `type:"integer"`
+
+	// The rule action will update the Criticality field of a finding.
+	Criticality *int64 `type:"integer"`
+
+	// The updated note.
+	Note *NoteUpdate `type:"structure"`
+
+	// A list of findings that are related to a finding.
+	RelatedFindings []*RelatedFinding `type:"list"`
+
+	// Updates to the severity information for a finding.
+	Severity *SeverityUpdate `type:"structure"`
+
+	// The rule action will update the Types field of a finding.
+	Types []*string `type:"list"`
+
+	// The rule action will update the UserDefinedFields field of a finding.
+	UserDefinedFields map[string]*string `type:"map"`
+
+	// The rule action will update the VerificationState field of a finding.
+	VerificationState *string `type:"string" enum:"VerificationState"`
+
+	// Used to update information about the investigation into the finding.
+	Workflow *WorkflowUpdate `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesFindingFieldsUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesFindingFieldsUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutomationRulesFindingFieldsUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutomationRulesFindingFieldsUpdate"}
+	if s.Note != nil {
+		if err := s.Note.Validate(); err != nil {
+			invalidParams.AddNested("Note", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RelatedFindings != nil {
+		for i, v := range s.RelatedFindings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RelatedFindings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetConfidence(v int64) *AutomationRulesFindingFieldsUpdate {
+	s.Confidence = &v
+	return s
+}
+
+// SetCriticality sets the Criticality field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetCriticality(v int64) *AutomationRulesFindingFieldsUpdate {
+	s.Criticality = &v
+	return s
+}
+
+// SetNote sets the Note field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetNote(v *NoteUpdate) *AutomationRulesFindingFieldsUpdate {
+	s.Note = v
+	return s
+}
+
+// SetRelatedFindings sets the RelatedFindings field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetRelatedFindings(v []*RelatedFinding) *AutomationRulesFindingFieldsUpdate {
+	s.RelatedFindings = v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetSeverity(v *SeverityUpdate) *AutomationRulesFindingFieldsUpdate {
+	s.Severity = v
+	return s
+}
+
+// SetTypes sets the Types field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetTypes(v []*string) *AutomationRulesFindingFieldsUpdate {
+	s.Types = v
+	return s
+}
+
+// SetUserDefinedFields sets the UserDefinedFields field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetUserDefinedFields(v map[string]*string) *AutomationRulesFindingFieldsUpdate {
+	s.UserDefinedFields = v
+	return s
+}
+
+// SetVerificationState sets the VerificationState field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetVerificationState(v string) *AutomationRulesFindingFieldsUpdate {
+	s.VerificationState = &v
+	return s
+}
+
+// SetWorkflow sets the Workflow field's value.
+func (s *AutomationRulesFindingFieldsUpdate) SetWorkflow(v *WorkflowUpdate) *AutomationRulesFindingFieldsUpdate {
+	s.Workflow = v
+	return s
+}
+
+// The criteria that determine which findings a rule applies to.
+type AutomationRulesFindingFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID in which a finding was generated.
+	AwsAccountId []*StringFilter `type:"list"`
+
+	// The name of the company for the product that generated the finding. For control-based
+	// findings, the company is Amazon Web Services.
+	CompanyName []*StringFilter `type:"list"`
+
+	// The unique identifier of a standard in which a control is enabled. This field
+	// consists of the resource portion of the Amazon Resource Name (ARN) returned
+	// for a standard in the DescribeStandards (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html)
+	// API response.
+	ComplianceAssociatedStandardsId []*StringFilter `type:"list"`
+
+	// The security control ID for which a finding was generated. Security control
+	// IDs are the same across standards.
+	ComplianceSecurityControlId []*StringFilter `type:"list"`
+
+	// The result of a security check. This field is only used for findings generated
+	// from controls.
+	ComplianceStatus []*StringFilter `type:"list"`
+
+	// The likelihood that a finding accurately identifies the behavior or issue
+	// that it was intended to identify. Confidence is scored on a 0–100 basis
+	// using a ratio scale. A value of 0 means 0 percent confidence, and a value
+	// of 100 means 100 percent confidence. For example, a data exfiltration detection
+	// based on a statistical deviation of network traffic has low confidence because
+	// an actual exfiltration hasn't been verified. For more information, see Confidence
+	// (https://docs.aws.amazon.com/securityhub/latest/userguide/asff-top-level-attributes.html#asff-confidence)
+	// in the Security Hub User Guide.
+	Confidence []*NumberFilter `type:"list"`
+
+	// A timestamp that indicates when this finding record was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedAt []*DateFilter `type:"list"`
+
+	// The level of importance that is assigned to the resources that are associated
+	// with a finding. Criticality is scored on a 0–100 basis, using a ratio scale
+	// that supports only full integers. A score of 0 means that the underlying
+	// resources have no criticality, and a score of 100 is reserved for the most
+	// critical resources. For more information, see Criticality (https://docs.aws.amazon.com/securityhub/latest/userguide/asff-top-level-attributes.html#asff-criticality)
+	// in the Security Hub User Guide.
+	Criticality []*NumberFilter `type:"list"`
+
+	// A finding's description.
+	Description []*StringFilter `type:"list"`
+
+	// A timestamp that indicates when the potential security issue captured by
+	// a finding was first observed by the security findings product.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	FirstObservedAt []*DateFilter `type:"list"`
+
+	// The identifier for the solution-specific component that generated a finding.
+	GeneratorId []*StringFilter `type:"list"`
+
+	// The product-specific identifier for a finding.
+	Id []*StringFilter `type:"list"`
+
+	// A timestamp that indicates when the potential security issue captured by
+	// a finding was most recently observed by the security findings product.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	LastObservedAt []*DateFilter `type:"list"`
+
+	// The text of a user-defined note that's added to a finding.
+	NoteText []*StringFilter `type:"list"`
+
+	// The timestamp of when the note was updated. Uses the date-time format specified
+	// in RFC 3339 section 5.6, Internet Date/Time Format (https://www.rfc-editor.org/rfc/rfc3339#section-5.6).
+	// The value cannot contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	NoteUpdatedAt []*DateFilter `type:"list"`
+
+	// The principal that created a note.
+	NoteUpdatedBy []*StringFilter `type:"list"`
+
+	// The Amazon Resource Name (ARN) for a third-party product that generated a
+	// finding in Security Hub.
+	ProductArn []*StringFilter `type:"list"`
+
+	// Provides the name of the product that generated the finding. For control-based
+	// findings, the product name is Security Hub.
+	ProductName []*StringFilter `type:"list"`
+
+	// Provides the current state of a finding.
+	RecordState []*StringFilter `type:"list"`
+
+	// The product-generated identifier for a related finding.
+	RelatedFindingsId []*StringFilter `type:"list"`
+
+	// The ARN for the product that generated a related finding.
+	RelatedFindingsProductArn []*StringFilter `type:"list"`
+
+	// Custom fields and values about the resource that a finding pertains to.
+	ResourceDetailsOther []*MapFilter `type:"list"`
+
+	// The identifier for the given resource type. For Amazon Web Services resources
+	// that are identified by Amazon Resource Names (ARNs), this is the ARN. For
+	// Amazon Web Services resources that lack ARNs, this is the identifier as defined
+	// by the Amazon Web Service that created the resource. For non-Amazon Web Services
+	// resources, this is a unique identifier that is associated with the resource.
+	ResourceId []*StringFilter `type:"list"`
+
+	// The partition in which the resource that the finding pertains to is located.
+	// A partition is a group of Amazon Web Services Regions. Each Amazon Web Services
+	// account is scoped to one partition.
+	ResourcePartition []*StringFilter `type:"list"`
+
+	// The Amazon Web Services Region where the resource that a finding pertains
+	// to is located.
+	ResourceRegion []*StringFilter `type:"list"`
+
+	// A list of Amazon Web Services tags associated with a resource at the time
+	// the finding was processed.
+	ResourceTags []*MapFilter `type:"list"`
+
+	// The type of resource that the finding pertains to.
+	ResourceType []*StringFilter `type:"list"`
+
+	// The severity value of the finding.
+	SeverityLabel []*StringFilter `type:"list"`
+
+	// Provides a URL that links to a page about the current finding in the finding
+	// product.
+	SourceUrl []*StringFilter `type:"list"`
+
+	// A finding's title.
+	Title []*StringFilter `type:"list"`
+
+	// One or more finding types in the format of namespace/category/classifier
+	// that classify a finding. For a list of namespaces, classifiers, and categories,
+	// see Types taxonomy for ASFF (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format-type-taxonomy.html)
+	// in the Security Hub User Guide.
+	Type []*StringFilter `type:"list"`
+
+	// A timestamp that indicates when the finding record was most recently updated.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	UpdatedAt []*DateFilter `type:"list"`
+
+	// A list of user-defined name and value string pairs added to a finding.
+	UserDefinedFields []*MapFilter `type:"list"`
+
+	// Provides the veracity of a finding.
+	VerificationState []*StringFilter `type:"list"`
+
+	// Provides information about the status of the investigation into a finding.
+	WorkflowStatus []*StringFilter `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesFindingFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesFindingFilters) GoString() string {
+	return s.String()
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *AutomationRulesFindingFilters) SetAwsAccountId(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.AwsAccountId = v
+	return s
+}
+
+// SetCompanyName sets the CompanyName field's value.
+func (s *AutomationRulesFindingFilters) SetCompanyName(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.CompanyName = v
+	return s
+}
+
+// SetComplianceAssociatedStandardsId sets the ComplianceAssociatedStandardsId field's value.
+func (s *AutomationRulesFindingFilters) SetComplianceAssociatedStandardsId(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ComplianceAssociatedStandardsId = v
+	return s
+}
+
+// SetComplianceSecurityControlId sets the ComplianceSecurityControlId field's value.
+func (s *AutomationRulesFindingFilters) SetComplianceSecurityControlId(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ComplianceSecurityControlId = v
+	return s
+}
+
+// SetComplianceStatus sets the ComplianceStatus field's value.
+func (s *AutomationRulesFindingFilters) SetComplianceStatus(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ComplianceStatus = v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *AutomationRulesFindingFilters) SetConfidence(v []*NumberFilter) *AutomationRulesFindingFilters {
+	s.Confidence = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AutomationRulesFindingFilters) SetCreatedAt(v []*DateFilter) *AutomationRulesFindingFilters {
+	s.CreatedAt = v
+	return s
+}
+
+// SetCriticality sets the Criticality field's value.
+func (s *AutomationRulesFindingFilters) SetCriticality(v []*NumberFilter) *AutomationRulesFindingFilters {
+	s.Criticality = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AutomationRulesFindingFilters) SetDescription(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.Description = v
+	return s
+}
+
+// SetFirstObservedAt sets the FirstObservedAt field's value.
+func (s *AutomationRulesFindingFilters) SetFirstObservedAt(v []*DateFilter) *AutomationRulesFindingFilters {
+	s.FirstObservedAt = v
+	return s
+}
+
+// SetGeneratorId sets the GeneratorId field's value.
+func (s *AutomationRulesFindingFilters) SetGeneratorId(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.GeneratorId = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AutomationRulesFindingFilters) SetId(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.Id = v
+	return s
+}
+
+// SetLastObservedAt sets the LastObservedAt field's value.
+func (s *AutomationRulesFindingFilters) SetLastObservedAt(v []*DateFilter) *AutomationRulesFindingFilters {
+	s.LastObservedAt = v
+	return s
+}
+
+// SetNoteText sets the NoteText field's value.
+func (s *AutomationRulesFindingFilters) SetNoteText(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.NoteText = v
+	return s
+}
+
+// SetNoteUpdatedAt sets the NoteUpdatedAt field's value.
+func (s *AutomationRulesFindingFilters) SetNoteUpdatedAt(v []*DateFilter) *AutomationRulesFindingFilters {
+	s.NoteUpdatedAt = v
+	return s
+}
+
+// SetNoteUpdatedBy sets the NoteUpdatedBy field's value.
+func (s *AutomationRulesFindingFilters) SetNoteUpdatedBy(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.NoteUpdatedBy = v
+	return s
+}
+
+// SetProductArn sets the ProductArn field's value.
+func (s *AutomationRulesFindingFilters) SetProductArn(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ProductArn = v
+	return s
+}
+
+// SetProductName sets the ProductName field's value.
+func (s *AutomationRulesFindingFilters) SetProductName(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ProductName = v
+	return s
+}
+
+// SetRecordState sets the RecordState field's value.
+func (s *AutomationRulesFindingFilters) SetRecordState(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.RecordState = v
+	return s
+}
+
+// SetRelatedFindingsId sets the RelatedFindingsId field's value.
+func (s *AutomationRulesFindingFilters) SetRelatedFindingsId(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.RelatedFindingsId = v
+	return s
+}
+
+// SetRelatedFindingsProductArn sets the RelatedFindingsProductArn field's value.
+func (s *AutomationRulesFindingFilters) SetRelatedFindingsProductArn(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.RelatedFindingsProductArn = v
+	return s
+}
+
+// SetResourceDetailsOther sets the ResourceDetailsOther field's value.
+func (s *AutomationRulesFindingFilters) SetResourceDetailsOther(v []*MapFilter) *AutomationRulesFindingFilters {
+	s.ResourceDetailsOther = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *AutomationRulesFindingFilters) SetResourceId(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ResourceId = v
+	return s
+}
+
+// SetResourcePartition sets the ResourcePartition field's value.
+func (s *AutomationRulesFindingFilters) SetResourcePartition(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ResourcePartition = v
+	return s
+}
+
+// SetResourceRegion sets the ResourceRegion field's value.
+func (s *AutomationRulesFindingFilters) SetResourceRegion(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ResourceRegion = v
+	return s
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *AutomationRulesFindingFilters) SetResourceTags(v []*MapFilter) *AutomationRulesFindingFilters {
+	s.ResourceTags = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *AutomationRulesFindingFilters) SetResourceType(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ResourceType = v
+	return s
+}
+
+// SetSeverityLabel sets the SeverityLabel field's value.
+func (s *AutomationRulesFindingFilters) SetSeverityLabel(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.SeverityLabel = v
+	return s
+}
+
+// SetSourceUrl sets the SourceUrl field's value.
+func (s *AutomationRulesFindingFilters) SetSourceUrl(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.SourceUrl = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *AutomationRulesFindingFilters) SetTitle(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.Title = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AutomationRulesFindingFilters) SetType(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.Type = v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *AutomationRulesFindingFilters) SetUpdatedAt(v []*DateFilter) *AutomationRulesFindingFilters {
+	s.UpdatedAt = v
+	return s
+}
+
+// SetUserDefinedFields sets the UserDefinedFields field's value.
+func (s *AutomationRulesFindingFilters) SetUserDefinedFields(v []*MapFilter) *AutomationRulesFindingFilters {
+	s.UserDefinedFields = v
+	return s
+}
+
+// SetVerificationState sets the VerificationState field's value.
+func (s *AutomationRulesFindingFilters) SetVerificationState(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.VerificationState = v
+	return s
+}
+
+// SetWorkflowStatus sets the WorkflowStatus field's value.
+func (s *AutomationRulesFindingFilters) SetWorkflowStatus(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.WorkflowStatus = v
+	return s
+}
+
+// Metadata for automation rules in the calling account. The response includes
+// rules with a RuleStatus of ENABLED and DISABLED.
+type AutomationRulesMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp that indicates when the rule was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The principal that created a rule.
+	CreatedBy *string `type:"string"`
+
+	// A description of the rule.
+	Description *string `type:"string"`
+
+	// Specifies whether a rule is the last to be applied with respect to a finding
+	// that matches the rule criteria. This is useful when a finding matches the
+	// criteria for multiple rules, and each rule has different actions. If the
+	// value of this field is set to true for a rule, Security Hub applies the rule
+	// action to a finding that matches the rule criteria and won't evaluate other
+	// rules for the finding. The default value of this field is false.
+	IsTerminal *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) for the rule.
+	RuleArn *string `type:"string"`
+
+	// The name of the rule.
+	RuleName *string `type:"string"`
+
+	// An integer ranging from 1 to 1000 that represents the order in which the
+	// rule action is applied to findings. Security Hub applies rules with lower
+	// values for this parameter first.
+	RuleOrder *int64 `min:"1" type:"integer"`
+
+	// Whether the rule is active after it is created. If this parameter is equal
+	// to ENABLED, Security Hub will apply the rule to findings and finding updates
+	// after the rule is created. To change the value of this parameter after creating
+	// a rule, use BatchUpdateAutomationRules.
+	RuleStatus *string `type:"string" enum:"RuleStatus"`
+
+	// A timestamp that indicates when the rule was most recently updated.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomationRulesMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AutomationRulesMetadata) SetCreatedAt(v time.Time) *AutomationRulesMetadata {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *AutomationRulesMetadata) SetCreatedBy(v string) *AutomationRulesMetadata {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AutomationRulesMetadata) SetDescription(v string) *AutomationRulesMetadata {
+	s.Description = &v
+	return s
+}
+
+// SetIsTerminal sets the IsTerminal field's value.
+func (s *AutomationRulesMetadata) SetIsTerminal(v bool) *AutomationRulesMetadata {
+	s.IsTerminal = &v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *AutomationRulesMetadata) SetRuleArn(v string) *AutomationRulesMetadata {
+	s.RuleArn = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *AutomationRulesMetadata) SetRuleName(v string) *AutomationRulesMetadata {
+	s.RuleName = &v
+	return s
+}
+
+// SetRuleOrder sets the RuleOrder field's value.
+func (s *AutomationRulesMetadata) SetRuleOrder(v int64) *AutomationRulesMetadata {
+	s.RuleOrder = &v
+	return s
+}
+
+// SetRuleStatus sets the RuleStatus field's value.
+func (s *AutomationRulesMetadata) SetRuleStatus(v string) *AutomationRulesMetadata {
+	s.RuleStatus = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *AutomationRulesMetadata) SetUpdatedAt(v time.Time) *AutomationRulesMetadata {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -41370,6 +42692,96 @@ func (s *AwsXrayEncryptionConfigDetails) SetType(v string) *AwsXrayEncryptionCon
 	return s
 }
 
+type BatchDeleteAutomationRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Amazon Resource Names (ARNs) for the rules that are to be deleted.
+	//
+	// AutomationRulesArns is a required field
+	AutomationRulesArns []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAutomationRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAutomationRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDeleteAutomationRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDeleteAutomationRulesInput"}
+	if s.AutomationRulesArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutomationRulesArns"))
+	}
+	if s.AutomationRulesArns != nil && len(s.AutomationRulesArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AutomationRulesArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomationRulesArns sets the AutomationRulesArns field's value.
+func (s *BatchDeleteAutomationRulesInput) SetAutomationRulesArns(v []*string) *BatchDeleteAutomationRulesInput {
+	s.AutomationRulesArns = v
+	return s
+}
+
+type BatchDeleteAutomationRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of properly processed rule ARNs.
+	ProcessedAutomationRules []*string `min:"1" type:"list"`
+
+	// A list of objects containing RuleArn, ErrorCode, and ErrorMessage. This parameter
+	// tells you which automation rules the request didn't delete and why.
+	UnprocessedAutomationRules []*UnprocessedAutomationRule `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAutomationRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAutomationRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetProcessedAutomationRules sets the ProcessedAutomationRules field's value.
+func (s *BatchDeleteAutomationRulesOutput) SetProcessedAutomationRules(v []*string) *BatchDeleteAutomationRulesOutput {
+	s.ProcessedAutomationRules = v
+	return s
+}
+
+// SetUnprocessedAutomationRules sets the UnprocessedAutomationRules field's value.
+func (s *BatchDeleteAutomationRulesOutput) SetUnprocessedAutomationRules(v []*UnprocessedAutomationRule) *BatchDeleteAutomationRulesOutput {
+	s.UnprocessedAutomationRules = v
+	return s
+}
+
 type BatchDisableStandardsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -41537,6 +42949,96 @@ func (s BatchEnableStandardsOutput) GoString() string {
 // SetStandardsSubscriptions sets the StandardsSubscriptions field's value.
 func (s *BatchEnableStandardsOutput) SetStandardsSubscriptions(v []*StandardsSubscription) *BatchEnableStandardsOutput {
 	s.StandardsSubscriptions = v
+	return s
+}
+
+type BatchGetAutomationRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of rule ARNs to get details for.
+	//
+	// AutomationRulesArns is a required field
+	AutomationRulesArns []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAutomationRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAutomationRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetAutomationRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetAutomationRulesInput"}
+	if s.AutomationRulesArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutomationRulesArns"))
+	}
+	if s.AutomationRulesArns != nil && len(s.AutomationRulesArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AutomationRulesArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomationRulesArns sets the AutomationRulesArns field's value.
+func (s *BatchGetAutomationRulesInput) SetAutomationRulesArns(v []*string) *BatchGetAutomationRulesInput {
+	s.AutomationRulesArns = v
+	return s
+}
+
+type BatchGetAutomationRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of rule details for the provided rule ARNs.
+	Rules []*AutomationRulesConfig `type:"list"`
+
+	// A list of objects containing RuleArn, ErrorCode, and ErrorMessage. This parameter
+	// tells you which automation rules the request didn't retrieve and why.
+	UnprocessedAutomationRules []*UnprocessedAutomationRule `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAutomationRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAutomationRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetRules sets the Rules field's value.
+func (s *BatchGetAutomationRulesOutput) SetRules(v []*AutomationRulesConfig) *BatchGetAutomationRulesOutput {
+	s.Rules = v
+	return s
+}
+
+// SetUnprocessedAutomationRules sets the UnprocessedAutomationRules field's value.
+func (s *BatchGetAutomationRulesOutput) SetUnprocessedAutomationRules(v []*UnprocessedAutomationRule) *BatchGetAutomationRulesOutput {
+	s.UnprocessedAutomationRules = v
 	return s
 }
 
@@ -41849,6 +43351,107 @@ func (s *BatchImportFindingsOutput) SetFailedFindings(v []*ImportFindingsError) 
 // SetSuccessCount sets the SuccessCount field's value.
 func (s *BatchImportFindingsOutput) SetSuccessCount(v int64) *BatchImportFindingsOutput {
 	s.SuccessCount = &v
+	return s
+}
+
+type BatchUpdateAutomationRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of ARNs for the rules that are to be updated. Optionally, you can
+	// also include RuleStatus and RuleOrder.
+	//
+	// UpdateAutomationRulesRequestItems is a required field
+	UpdateAutomationRulesRequestItems []*UpdateAutomationRulesRequestItem `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateAutomationRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateAutomationRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchUpdateAutomationRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateAutomationRulesInput"}
+	if s.UpdateAutomationRulesRequestItems == nil {
+		invalidParams.Add(request.NewErrParamRequired("UpdateAutomationRulesRequestItems"))
+	}
+	if s.UpdateAutomationRulesRequestItems != nil && len(s.UpdateAutomationRulesRequestItems) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UpdateAutomationRulesRequestItems", 1))
+	}
+	if s.UpdateAutomationRulesRequestItems != nil {
+		for i, v := range s.UpdateAutomationRulesRequestItems {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UpdateAutomationRulesRequestItems", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUpdateAutomationRulesRequestItems sets the UpdateAutomationRulesRequestItems field's value.
+func (s *BatchUpdateAutomationRulesInput) SetUpdateAutomationRulesRequestItems(v []*UpdateAutomationRulesRequestItem) *BatchUpdateAutomationRulesInput {
+	s.UpdateAutomationRulesRequestItems = v
+	return s
+}
+
+type BatchUpdateAutomationRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of properly processed rule ARNs.
+	ProcessedAutomationRules []*string `min:"1" type:"list"`
+
+	// A list of objects containing RuleArn, ErrorCode, and ErrorMessage. This parameter
+	// tells you which automation rules the request didn't update and why.
+	UnprocessedAutomationRules []*UnprocessedAutomationRule `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateAutomationRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateAutomationRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetProcessedAutomationRules sets the ProcessedAutomationRules field's value.
+func (s *BatchUpdateAutomationRulesOutput) SetProcessedAutomationRules(v []*string) *BatchUpdateAutomationRulesOutput {
+	s.ProcessedAutomationRules = v
+	return s
+}
+
+// SetUnprocessedAutomationRules sets the UnprocessedAutomationRules field's value.
+func (s *BatchUpdateAutomationRulesOutput) SetUnprocessedAutomationRules(v []*UnprocessedAutomationRule) *BatchUpdateAutomationRulesOutput {
+	s.UnprocessedAutomationRules = v
 	return s
 }
 
@@ -42912,6 +44515,199 @@ func (s CreateActionTargetOutput) GoString() string {
 // SetActionTargetArn sets the ActionTargetArn field's value.
 func (s *CreateActionTargetOutput) SetActionTargetArn(v string) *CreateActionTargetOutput {
 	s.ActionTargetArn = &v
+	return s
+}
+
+type CreateAutomationRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// One or more actions to update finding fields if a finding matches the conditions
+	// specified in Criteria.
+	//
+	// Actions is a required field
+	Actions []*AutomationRulesAction `min:"1" type:"list" required:"true"`
+
+	// A set of ASFF finding field attributes and corresponding expected values
+	// that Security Hub uses to filter findings. If a finding matches the conditions
+	// specified in this parameter, Security Hub applies the rule action to the
+	// finding.
+	//
+	// Criteria is a required field
+	Criteria *AutomationRulesFindingFilters `type:"structure" required:"true"`
+
+	// A description of the rule.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// Specifies whether a rule is the last to be applied with respect to a finding
+	// that matches the rule criteria. This is useful when a finding matches the
+	// criteria for multiple rules, and each rule has different actions. If the
+	// value of this field is set to true for a rule, Security Hub applies the rule
+	// action to a finding that matches the rule criteria and won't evaluate other
+	// rules for the finding. The default value of this field is false.
+	IsTerminal *bool `type:"boolean"`
+
+	// The name of the rule.
+	//
+	// RuleName is a required field
+	RuleName *string `type:"string" required:"true"`
+
+	// An integer ranging from 1 to 1000 that represents the order in which the
+	// rule action is applied to findings. Security Hub applies rules with lower
+	// values for this parameter first.
+	//
+	// RuleOrder is a required field
+	RuleOrder *int64 `min:"1" type:"integer" required:"true"`
+
+	// Whether the rule is active after it is created. If this parameter is equal
+	// to Enabled, Security Hub will apply the rule to findings and finding updates
+	// after the rule is created. To change the value of this parameter after creating
+	// a rule, use BatchUpdateAutomationRules.
+	RuleStatus *string `type:"string" enum:"RuleStatus"`
+
+	// User-defined tags that help you label the purpose of a rule.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAutomationRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAutomationRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAutomationRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAutomationRuleInput"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Actions != nil && len(s.Actions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.Criteria == nil {
+		invalidParams.Add(request.NewErrParamRequired("Criteria"))
+	}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleOrder == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleOrder"))
+	}
+	if s.RuleOrder != nil && *s.RuleOrder < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RuleOrder", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Actions != nil {
+		for i, v := range s.Actions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *CreateAutomationRuleInput) SetActions(v []*AutomationRulesAction) *CreateAutomationRuleInput {
+	s.Actions = v
+	return s
+}
+
+// SetCriteria sets the Criteria field's value.
+func (s *CreateAutomationRuleInput) SetCriteria(v *AutomationRulesFindingFilters) *CreateAutomationRuleInput {
+	s.Criteria = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateAutomationRuleInput) SetDescription(v string) *CreateAutomationRuleInput {
+	s.Description = &v
+	return s
+}
+
+// SetIsTerminal sets the IsTerminal field's value.
+func (s *CreateAutomationRuleInput) SetIsTerminal(v bool) *CreateAutomationRuleInput {
+	s.IsTerminal = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *CreateAutomationRuleInput) SetRuleName(v string) *CreateAutomationRuleInput {
+	s.RuleName = &v
+	return s
+}
+
+// SetRuleOrder sets the RuleOrder field's value.
+func (s *CreateAutomationRuleInput) SetRuleOrder(v int64) *CreateAutomationRuleInput {
+	s.RuleOrder = &v
+	return s
+}
+
+// SetRuleStatus sets the RuleStatus field's value.
+func (s *CreateAutomationRuleInput) SetRuleStatus(v string) *CreateAutomationRuleInput {
+	s.RuleStatus = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAutomationRuleInput) SetTags(v map[string]*string) *CreateAutomationRuleInput {
+	s.Tags = v
+	return s
+}
+
+type CreateAutomationRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the automation rule that you created.
+	RuleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAutomationRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAutomationRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *CreateAutomationRuleOutput) SetRuleArn(v string) *CreateAutomationRuleOutput {
+	s.RuleArn = &v
 	return s
 }
 
@@ -47775,6 +49571,103 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListAutomationRulesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of rules to return in the response. This currently ranges
+	// from 1 to 100.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// A token to specify where to start paginating the response. This is the NextToken
+	// from a previously truncated response. On your first call to the ListAutomationRules
+	// API, set the value of this parameter to NULL.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAutomationRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAutomationRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAutomationRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAutomationRulesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAutomationRulesInput) SetMaxResults(v int64) *ListAutomationRulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAutomationRulesInput) SetNextToken(v string) *ListAutomationRulesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAutomationRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Metadata for rules in the calling account. The response includes rules with
+	// a RuleStatus of ENABLED and DISABLED.
+	AutomationRulesMetadata []*AutomationRulesMetadata `type:"list"`
+
+	// A pagination token for the response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAutomationRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAutomationRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAutomationRulesMetadata sets the AutomationRulesMetadata field's value.
+func (s *ListAutomationRulesOutput) SetAutomationRulesMetadata(v []*AutomationRulesMetadata) *ListAutomationRulesOutput {
+	s.AutomationRulesMetadata = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAutomationRulesOutput) SetNextToken(v string) *ListAutomationRulesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListEnabledProductsForImportInput struct {
@@ -54592,6 +56485,57 @@ func (s *ThreatIntelIndicator) SetValue(v string) *ThreatIntelIndicator {
 	return s
 }
 
+// A list of objects containing RuleArn, ErrorCode, and ErrorMessage. This parameter
+// tells you which automation rules the request didn't process and why.
+type UnprocessedAutomationRule struct {
+	_ struct{} `type:"structure"`
+
+	// The error code associated with the unprocessed automation rule.
+	ErrorCode *int64 `type:"integer"`
+
+	// An error message describing why a request didn't process a specific rule.
+	ErrorMessage *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the unprocessed automation rule.
+	RuleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedAutomationRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedAutomationRule) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *UnprocessedAutomationRule) SetErrorCode(v int64) *UnprocessedAutomationRule {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *UnprocessedAutomationRule) SetErrorMessage(v string) *UnprocessedAutomationRule {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *UnprocessedAutomationRule) SetRuleArn(v string) *UnprocessedAutomationRule {
+	s.RuleArn = &v
+	return s
+}
+
 // Provides details about a security control for which a response couldn't be
 // returned.
 type UnprocessedSecurityControl struct {
@@ -54946,6 +56890,146 @@ func (s UpdateActionTargetOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateActionTargetOutput) GoString() string {
 	return s.String()
+}
+
+// Specifies the parameters to update in an existing automation rule.
+type UpdateAutomationRulesRequestItem struct {
+	_ struct{} `type:"structure"`
+
+	// One or more actions to update finding fields if a finding matches the conditions
+	// specified in Criteria.
+	Actions []*AutomationRulesAction `min:"1" type:"list"`
+
+	// A set of ASFF finding field attributes and corresponding expected values
+	// that Security Hub uses to filter findings. If a finding matches the conditions
+	// specified in this parameter, Security Hub applies the rule action to the
+	// finding.
+	Criteria *AutomationRulesFindingFilters `type:"structure"`
+
+	// A description of the rule.
+	Description *string `type:"string"`
+
+	// Specifies whether a rule is the last to be applied with respect to a finding
+	// that matches the rule criteria. This is useful when a finding matches the
+	// criteria for multiple rules, and each rule has different actions. If the
+	// value of this field is set to true for a rule, Security Hub applies the rule
+	// action to a finding that matches the rule criteria and won't evaluate other
+	// rules for the finding. The default value of this field is false.
+	IsTerminal *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) for the rule.
+	//
+	// RuleArn is a required field
+	RuleArn *string `type:"string" required:"true"`
+
+	// The name of the rule.
+	RuleName *string `type:"string"`
+
+	// An integer ranging from 1 to 1000 that represents the order in which the
+	// rule action is applied to findings. Security Hub applies rules with lower
+	// values for this parameter first.
+	RuleOrder *int64 `min:"1" type:"integer"`
+
+	// Whether the rule is active after it is created. If this parameter is equal
+	// to ENABLED, Security Hub will apply the rule to findings and finding updates
+	// after the rule is created. To change the value of this parameter after creating
+	// a rule, use BatchUpdateAutomationRules.
+	RuleStatus *string `type:"string" enum:"RuleStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutomationRulesRequestItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutomationRulesRequestItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAutomationRulesRequestItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAutomationRulesRequestItem"}
+	if s.Actions != nil && len(s.Actions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.RuleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleArn"))
+	}
+	if s.RuleOrder != nil && *s.RuleOrder < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RuleOrder", 1))
+	}
+	if s.Actions != nil {
+		for i, v := range s.Actions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *UpdateAutomationRulesRequestItem) SetActions(v []*AutomationRulesAction) *UpdateAutomationRulesRequestItem {
+	s.Actions = v
+	return s
+}
+
+// SetCriteria sets the Criteria field's value.
+func (s *UpdateAutomationRulesRequestItem) SetCriteria(v *AutomationRulesFindingFilters) *UpdateAutomationRulesRequestItem {
+	s.Criteria = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateAutomationRulesRequestItem) SetDescription(v string) *UpdateAutomationRulesRequestItem {
+	s.Description = &v
+	return s
+}
+
+// SetIsTerminal sets the IsTerminal field's value.
+func (s *UpdateAutomationRulesRequestItem) SetIsTerminal(v bool) *UpdateAutomationRulesRequestItem {
+	s.IsTerminal = &v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *UpdateAutomationRulesRequestItem) SetRuleArn(v string) *UpdateAutomationRulesRequestItem {
+	s.RuleArn = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *UpdateAutomationRulesRequestItem) SetRuleName(v string) *UpdateAutomationRulesRequestItem {
+	s.RuleName = &v
+	return s
+}
+
+// SetRuleOrder sets the RuleOrder field's value.
+func (s *UpdateAutomationRulesRequestItem) SetRuleOrder(v int64) *UpdateAutomationRulesRequestItem {
+	s.RuleOrder = &v
+	return s
+}
+
+// SetRuleStatus sets the RuleStatus field's value.
+func (s *UpdateAutomationRulesRequestItem) SetRuleStatus(v string) *UpdateAutomationRulesRequestItem {
+	s.RuleStatus = &v
+	return s
 }
 
 type UpdateFindingAggregatorInput struct {
@@ -56178,6 +58262,18 @@ func AutoEnableStandards_Values() []string {
 }
 
 const (
+	// AutomationRulesActionTypeFindingFieldsUpdate is a AutomationRulesActionType enum value
+	AutomationRulesActionTypeFindingFieldsUpdate = "FINDING_FIELDS_UPDATE"
+)
+
+// AutomationRulesActionType_Values returns all elements of the AutomationRulesActionType enum
+func AutomationRulesActionType_Values() []string {
+	return []string{
+		AutomationRulesActionTypeFindingFieldsUpdate,
+	}
+}
+
+const (
 	// AwsIamAccessKeyStatusActive is a AwsIamAccessKeyStatus enum value
 	AwsIamAccessKeyStatusActive = "Active"
 
@@ -56482,6 +58578,22 @@ func RegionAvailabilityStatus_Values() []string {
 	return []string{
 		RegionAvailabilityStatusAvailable,
 		RegionAvailabilityStatusUnavailable,
+	}
+}
+
+const (
+	// RuleStatusEnabled is a RuleStatus enum value
+	RuleStatusEnabled = "ENABLED"
+
+	// RuleStatusDisabled is a RuleStatus enum value
+	RuleStatusDisabled = "DISABLED"
+)
+
+// RuleStatus_Values returns all elements of the RuleStatus enum
+func RuleStatus_Values() []string {
+	return []string{
+		RuleStatusEnabled,
+		RuleStatusDisabled,
 	}
 }
 

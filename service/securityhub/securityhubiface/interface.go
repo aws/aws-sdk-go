@@ -68,6 +68,10 @@ type SecurityHubAPI interface {
 	AcceptInvitationWithContext(aws.Context, *securityhub.AcceptInvitationInput, ...request.Option) (*securityhub.AcceptInvitationOutput, error)
 	AcceptInvitationRequest(*securityhub.AcceptInvitationInput) (*request.Request, *securityhub.AcceptInvitationOutput)
 
+	BatchDeleteAutomationRules(*securityhub.BatchDeleteAutomationRulesInput) (*securityhub.BatchDeleteAutomationRulesOutput, error)
+	BatchDeleteAutomationRulesWithContext(aws.Context, *securityhub.BatchDeleteAutomationRulesInput, ...request.Option) (*securityhub.BatchDeleteAutomationRulesOutput, error)
+	BatchDeleteAutomationRulesRequest(*securityhub.BatchDeleteAutomationRulesInput) (*request.Request, *securityhub.BatchDeleteAutomationRulesOutput)
+
 	BatchDisableStandards(*securityhub.BatchDisableStandardsInput) (*securityhub.BatchDisableStandardsOutput, error)
 	BatchDisableStandardsWithContext(aws.Context, *securityhub.BatchDisableStandardsInput, ...request.Option) (*securityhub.BatchDisableStandardsOutput, error)
 	BatchDisableStandardsRequest(*securityhub.BatchDisableStandardsInput) (*request.Request, *securityhub.BatchDisableStandardsOutput)
@@ -75,6 +79,10 @@ type SecurityHubAPI interface {
 	BatchEnableStandards(*securityhub.BatchEnableStandardsInput) (*securityhub.BatchEnableStandardsOutput, error)
 	BatchEnableStandardsWithContext(aws.Context, *securityhub.BatchEnableStandardsInput, ...request.Option) (*securityhub.BatchEnableStandardsOutput, error)
 	BatchEnableStandardsRequest(*securityhub.BatchEnableStandardsInput) (*request.Request, *securityhub.BatchEnableStandardsOutput)
+
+	BatchGetAutomationRules(*securityhub.BatchGetAutomationRulesInput) (*securityhub.BatchGetAutomationRulesOutput, error)
+	BatchGetAutomationRulesWithContext(aws.Context, *securityhub.BatchGetAutomationRulesInput, ...request.Option) (*securityhub.BatchGetAutomationRulesOutput, error)
+	BatchGetAutomationRulesRequest(*securityhub.BatchGetAutomationRulesInput) (*request.Request, *securityhub.BatchGetAutomationRulesOutput)
 
 	BatchGetSecurityControls(*securityhub.BatchGetSecurityControlsInput) (*securityhub.BatchGetSecurityControlsOutput, error)
 	BatchGetSecurityControlsWithContext(aws.Context, *securityhub.BatchGetSecurityControlsInput, ...request.Option) (*securityhub.BatchGetSecurityControlsOutput, error)
@@ -88,6 +96,10 @@ type SecurityHubAPI interface {
 	BatchImportFindingsWithContext(aws.Context, *securityhub.BatchImportFindingsInput, ...request.Option) (*securityhub.BatchImportFindingsOutput, error)
 	BatchImportFindingsRequest(*securityhub.BatchImportFindingsInput) (*request.Request, *securityhub.BatchImportFindingsOutput)
 
+	BatchUpdateAutomationRules(*securityhub.BatchUpdateAutomationRulesInput) (*securityhub.BatchUpdateAutomationRulesOutput, error)
+	BatchUpdateAutomationRulesWithContext(aws.Context, *securityhub.BatchUpdateAutomationRulesInput, ...request.Option) (*securityhub.BatchUpdateAutomationRulesOutput, error)
+	BatchUpdateAutomationRulesRequest(*securityhub.BatchUpdateAutomationRulesInput) (*request.Request, *securityhub.BatchUpdateAutomationRulesOutput)
+
 	BatchUpdateFindings(*securityhub.BatchUpdateFindingsInput) (*securityhub.BatchUpdateFindingsOutput, error)
 	BatchUpdateFindingsWithContext(aws.Context, *securityhub.BatchUpdateFindingsInput, ...request.Option) (*securityhub.BatchUpdateFindingsOutput, error)
 	BatchUpdateFindingsRequest(*securityhub.BatchUpdateFindingsInput) (*request.Request, *securityhub.BatchUpdateFindingsOutput)
@@ -99,6 +111,10 @@ type SecurityHubAPI interface {
 	CreateActionTarget(*securityhub.CreateActionTargetInput) (*securityhub.CreateActionTargetOutput, error)
 	CreateActionTargetWithContext(aws.Context, *securityhub.CreateActionTargetInput, ...request.Option) (*securityhub.CreateActionTargetOutput, error)
 	CreateActionTargetRequest(*securityhub.CreateActionTargetInput) (*request.Request, *securityhub.CreateActionTargetOutput)
+
+	CreateAutomationRule(*securityhub.CreateAutomationRuleInput) (*securityhub.CreateAutomationRuleOutput, error)
+	CreateAutomationRuleWithContext(aws.Context, *securityhub.CreateAutomationRuleInput, ...request.Option) (*securityhub.CreateAutomationRuleOutput, error)
+	CreateAutomationRuleRequest(*securityhub.CreateAutomationRuleInput) (*request.Request, *securityhub.CreateAutomationRuleOutput)
 
 	CreateFindingAggregator(*securityhub.CreateFindingAggregatorInput) (*securityhub.CreateFindingAggregatorOutput, error)
 	CreateFindingAggregatorWithContext(aws.Context, *securityhub.CreateFindingAggregatorInput, ...request.Option) (*securityhub.CreateFindingAggregatorOutput, error)
@@ -263,6 +279,10 @@ type SecurityHubAPI interface {
 	InviteMembers(*securityhub.InviteMembersInput) (*securityhub.InviteMembersOutput, error)
 	InviteMembersWithContext(aws.Context, *securityhub.InviteMembersInput, ...request.Option) (*securityhub.InviteMembersOutput, error)
 	InviteMembersRequest(*securityhub.InviteMembersInput) (*request.Request, *securityhub.InviteMembersOutput)
+
+	ListAutomationRules(*securityhub.ListAutomationRulesInput) (*securityhub.ListAutomationRulesOutput, error)
+	ListAutomationRulesWithContext(aws.Context, *securityhub.ListAutomationRulesInput, ...request.Option) (*securityhub.ListAutomationRulesOutput, error)
+	ListAutomationRulesRequest(*securityhub.ListAutomationRulesInput) (*request.Request, *securityhub.ListAutomationRulesOutput)
 
 	ListEnabledProductsForImport(*securityhub.ListEnabledProductsForImportInput) (*securityhub.ListEnabledProductsForImportOutput, error)
 	ListEnabledProductsForImportWithContext(aws.Context, *securityhub.ListEnabledProductsForImportInput, ...request.Option) (*securityhub.ListEnabledProductsForImportOutput, error)

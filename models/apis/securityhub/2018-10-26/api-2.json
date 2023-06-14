@@ -46,6 +46,22 @@
       "deprecated":true,
       "deprecatedMessage":"This API has been deprecated, use AcceptAdministratorInvitation API instead."
     },
+    "BatchDeleteAutomationRules":{
+      "name":"BatchDeleteAutomationRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/automationrules/delete"
+      },
+      "input":{"shape":"BatchDeleteAutomationRulesRequest"},
+      "output":{"shape":"BatchDeleteAutomationRulesResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "BatchDisableStandards":{
       "name":"BatchDisableStandards",
       "http":{
@@ -74,6 +90,23 @@
         {"shape":"InvalidInputException"},
         {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"}
+      ]
+    },
+    "BatchGetAutomationRules":{
+      "name":"BatchGetAutomationRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/automationrules/get"
+      },
+      "input":{"shape":"BatchGetAutomationRulesRequest"},
+      "output":{"shape":"BatchGetAutomationRulesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "BatchGetSecurityControls":{
@@ -121,6 +154,22 @@
         {"shape":"InvalidAccessException"}
       ]
     },
+    "BatchUpdateAutomationRules":{
+      "name":"BatchUpdateAutomationRules",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/automationrules/update"
+      },
+      "input":{"shape":"BatchUpdateAutomationRulesRequest"},
+      "output":{"shape":"BatchUpdateAutomationRulesResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "BatchUpdateFindings":{
       "name":"BatchUpdateFindings",
       "http":{
@@ -165,6 +214,22 @@
         {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceConflictException"}
+      ]
+    },
+    "CreateAutomationRule":{
+      "name":"CreateAutomationRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/automationrules/create"
+      },
+      "input":{"shape":"CreateAutomationRuleRequest"},
+      "output":{"shape":"CreateAutomationRuleResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "CreateFindingAggregator":{
@@ -718,6 +783,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ListAutomationRules":{
+      "name":"ListAutomationRules",
+      "http":{
+        "method":"GET",
+        "requestUri":"/automationrules/list"
+      },
+      "input":{"shape":"ListAutomationRulesRequest"},
+      "output":{"shape":"ListAutomationRulesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "ListEnabledProductsForImport":{
       "name":"ListEnabledProductsForImport",
       "http":{
@@ -1046,6 +1127,12 @@
         "PortProbeAction":{"shape":"PortProbeAction"}
       }
     },
+    "ActionList":{
+      "type":"list",
+      "member":{"shape":"AutomationRulesAction"},
+      "max":1,
+      "min":1
+    },
     "ActionLocalIpDetails":{
       "type":"structure",
       "members":{
@@ -1176,6 +1263,115 @@
         "NONE",
         "DEFAULT"
       ]
+    },
+    "AutomationRulesAction":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"AutomationRulesActionType"},
+        "FindingFieldsUpdate":{"shape":"AutomationRulesFindingFieldsUpdate"}
+      }
+    },
+    "AutomationRulesActionType":{
+      "type":"string",
+      "enum":["FINDING_FIELDS_UPDATE"]
+    },
+    "AutomationRulesArnsList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
+    },
+    "AutomationRulesConfig":{
+      "type":"structure",
+      "members":{
+        "RuleArn":{"shape":"NonEmptyString"},
+        "RuleStatus":{"shape":"RuleStatus"},
+        "RuleOrder":{"shape":"RuleOrderValue"},
+        "RuleName":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "IsTerminal":{"shape":"Boolean"},
+        "Criteria":{"shape":"AutomationRulesFindingFilters"},
+        "Actions":{"shape":"ActionList"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"},
+        "CreatedBy":{"shape":"NonEmptyString"}
+      }
+    },
+    "AutomationRulesConfigList":{
+      "type":"list",
+      "member":{"shape":"AutomationRulesConfig"}
+    },
+    "AutomationRulesFindingFieldsUpdate":{
+      "type":"structure",
+      "members":{
+        "Note":{"shape":"NoteUpdate"},
+        "Severity":{"shape":"SeverityUpdate"},
+        "VerificationState":{"shape":"VerificationState"},
+        "Confidence":{"shape":"RatioScale"},
+        "Criticality":{"shape":"RatioScale"},
+        "Types":{"shape":"TypeList"},
+        "UserDefinedFields":{"shape":"FieldMap"},
+        "Workflow":{"shape":"WorkflowUpdate"},
+        "RelatedFindings":{"shape":"RelatedFindingList"}
+      }
+    },
+    "AutomationRulesFindingFilters":{
+      "type":"structure",
+      "members":{
+        "ProductArn":{"shape":"StringFilterList"},
+        "AwsAccountId":{"shape":"StringFilterList"},
+        "Id":{"shape":"StringFilterList"},
+        "GeneratorId":{"shape":"StringFilterList"},
+        "Type":{"shape":"StringFilterList"},
+        "FirstObservedAt":{"shape":"DateFilterList"},
+        "LastObservedAt":{"shape":"DateFilterList"},
+        "CreatedAt":{"shape":"DateFilterList"},
+        "UpdatedAt":{"shape":"DateFilterList"},
+        "Confidence":{"shape":"NumberFilterList"},
+        "Criticality":{"shape":"NumberFilterList"},
+        "Title":{"shape":"StringFilterList"},
+        "Description":{"shape":"StringFilterList"},
+        "SourceUrl":{"shape":"StringFilterList"},
+        "ProductName":{"shape":"StringFilterList"},
+        "CompanyName":{"shape":"StringFilterList"},
+        "SeverityLabel":{"shape":"StringFilterList"},
+        "ResourceType":{"shape":"StringFilterList"},
+        "ResourceId":{"shape":"StringFilterList"},
+        "ResourcePartition":{"shape":"StringFilterList"},
+        "ResourceRegion":{"shape":"StringFilterList"},
+        "ResourceTags":{"shape":"MapFilterList"},
+        "ResourceDetailsOther":{"shape":"MapFilterList"},
+        "ComplianceStatus":{"shape":"StringFilterList"},
+        "ComplianceSecurityControlId":{"shape":"StringFilterList"},
+        "ComplianceAssociatedStandardsId":{"shape":"StringFilterList"},
+        "VerificationState":{"shape":"StringFilterList"},
+        "WorkflowStatus":{"shape":"StringFilterList"},
+        "RecordState":{"shape":"StringFilterList"},
+        "RelatedFindingsProductArn":{"shape":"StringFilterList"},
+        "RelatedFindingsId":{"shape":"StringFilterList"},
+        "NoteText":{"shape":"StringFilterList"},
+        "NoteUpdatedAt":{"shape":"DateFilterList"},
+        "NoteUpdatedBy":{"shape":"StringFilterList"},
+        "UserDefinedFields":{"shape":"MapFilterList"}
+      }
+    },
+    "AutomationRulesMetadata":{
+      "type":"structure",
+      "members":{
+        "RuleArn":{"shape":"NonEmptyString"},
+        "RuleStatus":{"shape":"RuleStatus"},
+        "RuleOrder":{"shape":"RuleOrderValue"},
+        "RuleName":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "IsTerminal":{"shape":"Boolean"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"},
+        "CreatedBy":{"shape":"NonEmptyString"}
+      }
+    },
+    "AutomationRulesMetadataList":{
+      "type":"list",
+      "member":{"shape":"AutomationRulesMetadata"}
     },
     "AvailabilityZone":{
       "type":"structure",
@@ -6332,6 +6528,20 @@
         "Type":{"shape":"NonEmptyString"}
       }
     },
+    "BatchDeleteAutomationRulesRequest":{
+      "type":"structure",
+      "required":["AutomationRulesArns"],
+      "members":{
+        "AutomationRulesArns":{"shape":"AutomationRulesArnsList"}
+      }
+    },
+    "BatchDeleteAutomationRulesResponse":{
+      "type":"structure",
+      "members":{
+        "ProcessedAutomationRules":{"shape":"AutomationRulesArnsList"},
+        "UnprocessedAutomationRules":{"shape":"UnprocessedAutomationRulesList"}
+      }
+    },
     "BatchDisableStandardsRequest":{
       "type":"structure",
       "required":["StandardsSubscriptionArns"],
@@ -6356,6 +6566,20 @@
       "type":"structure",
       "members":{
         "StandardsSubscriptions":{"shape":"StandardsSubscriptions"}
+      }
+    },
+    "BatchGetAutomationRulesRequest":{
+      "type":"structure",
+      "required":["AutomationRulesArns"],
+      "members":{
+        "AutomationRulesArns":{"shape":"AutomationRulesArnsList"}
+      }
+    },
+    "BatchGetAutomationRulesResponse":{
+      "type":"structure",
+      "members":{
+        "Rules":{"shape":"AutomationRulesConfigList"},
+        "UnprocessedAutomationRules":{"shape":"UnprocessedAutomationRulesList"}
       }
     },
     "BatchGetSecurityControlsRequest":{
@@ -6411,6 +6635,20 @@
         "FailedCount":{"shape":"Integer"},
         "SuccessCount":{"shape":"Integer"},
         "FailedFindings":{"shape":"ImportFindingsErrorList"}
+      }
+    },
+    "BatchUpdateAutomationRulesRequest":{
+      "type":"structure",
+      "required":["UpdateAutomationRulesRequestItems"],
+      "members":{
+        "UpdateAutomationRulesRequestItems":{"shape":"UpdateAutomationRulesRequestItemsList"}
+      }
+    },
+    "BatchUpdateAutomationRulesResponse":{
+      "type":"structure",
+      "members":{
+        "ProcessedAutomationRules":{"shape":"AutomationRulesArnsList"},
+        "UnprocessedAutomationRules":{"shape":"UnprocessedAutomationRulesList"}
       }
     },
     "BatchUpdateFindingsRequest":{
@@ -6604,6 +6842,32 @@
       "required":["ActionTargetArn"],
       "members":{
         "ActionTargetArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "CreateAutomationRuleRequest":{
+      "type":"structure",
+      "required":[
+        "RuleOrder",
+        "RuleName",
+        "Description",
+        "Criteria",
+        "Actions"
+      ],
+      "members":{
+        "Tags":{"shape":"TagMap"},
+        "RuleStatus":{"shape":"RuleStatus"},
+        "RuleOrder":{"shape":"RuleOrderValue"},
+        "RuleName":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "IsTerminal":{"shape":"Boolean"},
+        "Criteria":{"shape":"AutomationRulesFindingFilters"},
+        "Actions":{"shape":"ActionList"}
+      }
+    },
+    "CreateAutomationRuleResponse":{
+      "type":"structure",
+      "members":{
+        "RuleArn":{"shape":"NonEmptyString"}
       }
     },
     "CreateFindingAggregatorRequest":{
@@ -7535,6 +7799,28 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "ListAutomationRulesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "ListAutomationRulesResponse":{
+      "type":"structure",
+      "members":{
+        "AutomationRulesMetadata":{"shape":"AutomationRulesMetadataList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListEnabledProductsForImportRequest":{
       "type":"structure",
@@ -8487,6 +8773,18 @@
         "Definition":{"shape":"NonEmptyStringList"}
       }
     },
+    "RuleOrderValue":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "RuleStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "SecurityControl":{
       "type":"structure",
       "required":[
@@ -8997,6 +9295,18 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "UnprocessedAutomationRule":{
+      "type":"structure",
+      "members":{
+        "RuleArn":{"shape":"NonEmptyString"},
+        "ErrorCode":{"shape":"Integer"},
+        "ErrorMessage":{"shape":"NonEmptyString"}
+      }
+    },
+    "UnprocessedAutomationRulesList":{
+      "type":"list",
+      "member":{"shape":"UnprocessedAutomationRule"}
+    },
     "UnprocessedErrorCode":{
       "type":"string",
       "enum":[
@@ -9095,6 +9405,26 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UpdateAutomationRulesRequestItem":{
+      "type":"structure",
+      "required":["RuleArn"],
+      "members":{
+        "RuleArn":{"shape":"NonEmptyString"},
+        "RuleStatus":{"shape":"RuleStatus"},
+        "RuleOrder":{"shape":"RuleOrderValue"},
+        "Description":{"shape":"NonEmptyString"},
+        "RuleName":{"shape":"NonEmptyString"},
+        "IsTerminal":{"shape":"Boolean"},
+        "Criteria":{"shape":"AutomationRulesFindingFilters"},
+        "Actions":{"shape":"ActionList"}
+      }
+    },
+    "UpdateAutomationRulesRequestItemsList":{
+      "type":"list",
+      "member":{"shape":"UpdateAutomationRulesRequestItem"},
+      "max":100,
+      "min":1
     },
     "UpdateFindingAggregatorRequest":{
       "type":"structure",

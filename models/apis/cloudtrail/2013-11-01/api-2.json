@@ -939,6 +939,7 @@
       "input":{"shape":"UpdateEventDataStoreRequest"},
       "output":{"shape":"UpdateEventDataStoreResponse"},
       "errors":[
+        {"shape":"EventDataStoreAlreadyExistsException"},
         {"shape":"EventDataStoreARNInvalidException"},
         {"shape":"EventDataStoreNotFoundException"},
         {"shape":"InvalidEventSelectorsException"},
@@ -1397,14 +1398,14 @@
     },
     "DescribeQueryRequest":{
       "type":"structure",
-      "required":["QueryId"],
       "members":{
         "EventDataStore":{
           "shape":"EventDataStoreArn",
           "deprecated":true,
           "deprecatedMessage":"EventDataStore is no longer required by DescribeQueryRequest"
         },
-        "QueryId":{"shape":"UUID"}
+        "QueryId":{"shape":"UUID"},
+        "QueryAlias":{"shape":"QueryAlias"}
       }
     },
     "DescribeQueryResponse":{
@@ -2467,11 +2468,29 @@
         "CreationTime":{"shape":"Date"}
       }
     },
+    "QueryAlias":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z][a-zA-Z0-9._\\-]*$"
+    },
     "QueryIdNotFoundException":{
       "type":"structure",
       "members":{
       },
       "exception":true
+    },
+    "QueryParameter":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".*"
+    },
+    "QueryParameters":{
+      "type":"list",
+      "member":{"shape":"QueryParameter"},
+      "max":10,
+      "min":1
     },
     "QueryResultColumn":{
       "type":"map",
@@ -2747,10 +2766,11 @@
     },
     "StartQueryRequest":{
       "type":"structure",
-      "required":["QueryStatement"],
       "members":{
         "QueryStatement":{"shape":"QueryStatement"},
-        "DeliveryS3Uri":{"shape":"DeliveryS3Uri"}
+        "DeliveryS3Uri":{"shape":"DeliveryS3Uri"},
+        "QueryAlias":{"shape":"QueryAlias"},
+        "QueryParameters":{"shape":"QueryParameters"}
       }
     },
     "StartQueryResponse":{

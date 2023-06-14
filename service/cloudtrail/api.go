@@ -1440,8 +1440,12 @@ func (c *CloudTrail) DescribeQueryRequest(input *DescribeQueryInput) (req *reque
 // DescribeQuery API operation for AWS CloudTrail.
 //
 // Returns metadata about a query, including query run time in milliseconds,
-// number of events scanned and matched, and query status. You must specify
-// an ARN for EventDataStore, and a value for QueryID.
+// number of events scanned and matched, and query status. If the query results
+// were delivered to an S3 bucket, the response also provides the S3 URI and
+// the delivery status.
+//
+// You must specify either a QueryID or a QueryAlias. Specifying the QueryAlias
+// parameter returns information about the last query run for the alias.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2189,7 +2193,7 @@ func (c *CloudTrail) GetQueryResultsRequest(input *GetQueryResultsInput) (req *r
 // GetQueryResults API operation for AWS CloudTrail.
 //
 // Gets event data results of a query. You must specify the QueryID value returned
-// by the StartQuery operation, and an ARN for EventDataStore.
+// by the StartQuery operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5434,9 +5438,14 @@ func (c *CloudTrail) StartQueryRequest(input *StartQueryInput) (req *request.Req
 
 // StartQuery API operation for AWS CloudTrail.
 //
-// Starts a CloudTrail Lake query. The required QueryStatement parameter provides
+// Starts a CloudTrail Lake query. Use the QueryStatement parameter to provide
 // your SQL query, enclosed in single quotation marks. Use the optional DeliveryS3Uri
 // parameter to deliver the query results to an S3 bucket.
+//
+// StartQuery requires you specify either the QueryStatement parameter, or a
+// QueryAlias and any QueryParameters. In the current release, the QueryAlias
+// and QueryParameters parameters are used only for the queries that populate
+// the CloudTrail Lake dashboards.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6033,7 +6042,7 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //
 // For event data stores for CloudTrail events, AdvancedEventSelectors includes
 // or excludes management and data events in your event data store. For more
-// information about AdvancedEventSelectors, see PutEventSelectorsRequest$AdvancedEventSelectors.
+// information about AdvancedEventSelectors, see AdvancedEventSelectors (https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_AdvancedEventSelector.html).
 //
 // For event data stores for Config configuration items, Audit Manager evidence,
 // or non-Amazon Web Services events, AdvancedEventSelectors includes events
@@ -6047,6 +6056,9 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 // API operation UpdateEventDataStore for usage and error information.
 //
 // Returned Error Types:
+//
+//   - EventDataStoreAlreadyExistsException
+//     An event data store with that name already exists.
 //
 //   - EventDataStoreARNInvalidException
 //     The specified event data store ARN is not valid or does not map to an event
@@ -7054,9 +7066,10 @@ type AdvancedFieldSelector struct {
 	//    * resources.type - This ﬁeld is required for CloudTrail data events.
 	//    resources.type can only use the Equals operator, and the value can be
 	//    one of the following: AWS::DynamoDB::Table AWS::Lambda::Function AWS::S3::Object
-	//    AWS::CloudTrail::Channel AWS::Cognito::IdentityPool AWS::DynamoDB::Stream
-	//    AWS::EC2::Snapshot AWS::FinSpace::Environment AWS::Glue::Table AWS::GuardDuty::Detector
-	//    AWS::KendraRanking::ExecutionPlan AWS::ManagedBlockchain::Node AWS::SageMaker::ExperimentTrialComponent
+	//    AWS::CloudTrail::Channel AWS::CodeWhisperer::Profile AWS::Cognito::IdentityPool
+	//    AWS::DynamoDB::Stream AWS::EC2::Snapshot AWS::EMRWAL::Workspace AWS::FinSpace::Environment
+	//    AWS::Glue::Table AWS::GuardDuty::Detector AWS::KendraRanking::ExecutionPlan
+	//    AWS::ManagedBlockchain::Node AWS::SageMaker::ExperimentTrialComponent
 	//    AWS::SageMaker::FeatureGroup AWS::S3::AccessPoint AWS::S3ObjectLambda::AccessPoint
 	//    AWS::S3Outposts::Object You can have only one resources.type ﬁeld per
 	//    selector. To log data events on more than one resource type, add another
@@ -7079,6 +7092,9 @@ type AdvancedFieldSelector struct {
 	//    When resources.type equals AWS::CloudTrail::Channel, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:cloudtrail:<region>:<account_ID>:channel/<channel_UUID>
+	//    When resources.type equals AWS::CodeWhisperer::Profile, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:codewhisperer:<region>:<account_ID>:profile/<profile_ID>
 	//    When resources.type equals AWS::Cognito::IdentityPool, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:cognito-identity:<region>:<account_ID>:identitypool/<identity_pool_ID>
@@ -7086,6 +7102,8 @@ type AdvancedFieldSelector struct {
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table/<table_name>/stream/<date_time>
 	//    When resources.type equals AWS::EC2::Snapshot, and the operator is set
 	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:ec2:<region>::snapshot/<snapshot_ID>
+	//    When resources.type equals AWS::EMRWAL::Workspace, and the operator is
+	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:emrwal:<region>::workspace/<workspace_name>
 	//    When resources.type equals AWS::FinSpace::Environment, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:finspace:<region>:<account_ID>:environment/<environment_ID>
@@ -8928,15 +8946,19 @@ type DataResource struct {
 	// The following resource types are also available through advanced event selectors.
 	// Basic event selector resource types are valid in advanced event selectors,
 	// but advanced event selector resource types are not valid in basic event selectors.
-	// For more information, see AdvancedFieldSelector$Field.
+	// For more information, see AdvancedFieldSelector (https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_AdvancedFieldSelector.html).
 	//
 	//    * AWS::CloudTrail::Channel
+	//
+	//    * AWS::CodeWhisperer::Profile
 	//
 	//    * AWS::Cognito::IdentityPool
 	//
 	//    * AWS::DynamoDB::Stream
 	//
 	//    * AWS::EC2::Snapshot
+	//
+	//    * AWS::EMRWAL::Workspace
 	//
 	//    * AWS::FinSpace::Environment
 	//
@@ -9459,10 +9481,11 @@ type DescribeQueryInput struct {
 	// Deprecated: EventDataStore is no longer required by DescribeQueryRequest
 	EventDataStore *string `min:"3" deprecated:"true" type:"string"`
 
+	// The alias that identifies a query template.
+	QueryAlias *string `min:"1" type:"string"`
+
 	// The query ID.
-	//
-	// QueryId is a required field
-	QueryId *string `min:"36" type:"string" required:"true"`
+	QueryId *string `min:"36" type:"string"`
 }
 
 // String returns the string representation.
@@ -9489,8 +9512,8 @@ func (s *DescribeQueryInput) Validate() error {
 	if s.EventDataStore != nil && len(*s.EventDataStore) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("EventDataStore", 3))
 	}
-	if s.QueryId == nil {
-		invalidParams.Add(request.NewErrParamRequired("QueryId"))
+	if s.QueryAlias != nil && len(*s.QueryAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryAlias", 1))
 	}
 	if s.QueryId != nil && len(*s.QueryId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("QueryId", 36))
@@ -9505,6 +9528,12 @@ func (s *DescribeQueryInput) Validate() error {
 // SetEventDataStore sets the EventDataStore field's value.
 func (s *DescribeQueryInput) SetEventDataStore(v string) *DescribeQueryInput {
 	s.EventDataStore = &v
+	return s
+}
+
+// SetQueryAlias sets the QueryAlias field's value.
+func (s *DescribeQueryInput) SetQueryAlias(v string) *DescribeQueryInput {
+	s.QueryAlias = &v
 	return s
 }
 
@@ -18159,10 +18188,14 @@ type StartQueryInput struct {
 	// The URI for the S3 bucket where CloudTrail delivers the query results.
 	DeliveryS3Uri *string `type:"string"`
 
+	// The alias that identifies a query template.
+	QueryAlias *string `min:"1" type:"string"`
+
+	// The query parameters for the specified QueryAlias.
+	QueryParameters []*string `min:"1" type:"list"`
+
 	// The SQL code of your query.
-	//
-	// QueryStatement is a required field
-	QueryStatement *string `min:"1" type:"string" required:"true"`
+	QueryStatement *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -18186,8 +18219,11 @@ func (s StartQueryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartQueryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartQueryInput"}
-	if s.QueryStatement == nil {
-		invalidParams.Add(request.NewErrParamRequired("QueryStatement"))
+	if s.QueryAlias != nil && len(*s.QueryAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryAlias", 1))
+	}
+	if s.QueryParameters != nil && len(s.QueryParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryParameters", 1))
 	}
 	if s.QueryStatement != nil && len(*s.QueryStatement) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("QueryStatement", 1))
@@ -18202,6 +18238,18 @@ func (s *StartQueryInput) Validate() error {
 // SetDeliveryS3Uri sets the DeliveryS3Uri field's value.
 func (s *StartQueryInput) SetDeliveryS3Uri(v string) *StartQueryInput {
 	s.DeliveryS3Uri = &v
+	return s
+}
+
+// SetQueryAlias sets the QueryAlias field's value.
+func (s *StartQueryInput) SetQueryAlias(v string) *StartQueryInput {
+	s.QueryAlias = &v
+	return s
+}
+
+// SetQueryParameters sets the QueryParameters field's value.
+func (s *StartQueryInput) SetQueryParameters(v []*string) *StartQueryInput {
+	s.QueryParameters = v
 	return s
 }
 
@@ -19851,7 +19899,7 @@ type UpdateTrailOutput struct {
 	// arn:aws:sns:us-east-2:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
-	// This field is no longer in use. Use UpdateTrailResponse$SnsTopicARN.
+	// This field is no longer in use. Use SnsTopicARN.
 	//
 	// Deprecated: SnsTopicName has been deprecated
 	SnsTopicName *string `deprecated:"true" type:"string"`
