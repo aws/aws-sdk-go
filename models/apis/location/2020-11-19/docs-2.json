@@ -8,7 +8,7 @@
     "BatchEvaluateGeofences": "<p>Evaluates device positions against the geofence geometries from a given geofence collection.</p> <p>This operation always returns an empty response because geofences are asynchronously evaluated. The evaluation determines if the device has entered or exited a geofenced area, and then publishes one of the following events to Amazon EventBridge:</p> <ul> <li> <p> <code>ENTER</code> if Amazon Location determines that the tracked device has entered a geofenced area.</p> </li> <li> <p> <code>EXIT</code> if Amazon Location determines that the tracked device has exited a geofenced area.</p> </li> </ul> <note> <p>The last geofence that a device was observed within is tracked for 30 days after the most recent device position update.</p> </note> <note> <p>Geofence evaluation uses the given device position. It does not account for the optional <code>Accuracy</code> of a <code>DevicePositionUpdate</code>.</p> </note> <note> <p>The <code>DeviceID</code> is used as a string to represent the device. You do not need to have a <code>Tracker</code> associated with the <code>DeviceID</code>.</p> </note>",
     "BatchGetDevicePosition": "<p>Lists the latest device positions for requested devices.</p>",
     "BatchPutGeofence": "<p>A batch request for storing geofence geometries into a given geofence collection, or updates the geometry of an existing geofence if a geofence ID is included in the request.</p>",
-    "BatchUpdateDevicePosition": "<p>Uploads position update data for one or more devices to a tracker resource. Amazon Location uses the data when it reports the last known device position and position history. Amazon Location retains location data for 30 days.</p> <note> <p>Position updates are handled based on the <code>PositionFiltering</code> property of the tracker. When <code>PositionFiltering</code> is set to <code>TimeBased</code>, updates are evaluated against linked geofence collections, and location data is stored at a maximum of one position per 30 second interval. If your update frequency is more often than every 30 seconds, only one update per 30 seconds is stored for each unique device ID.</p> <p>When <code>PositionFiltering</code> is set to <code>DistanceBased</code> filtering, location data is stored and evaluated against linked geofence collections only if the device has moved more than 30 m (98.4 ft).</p> <p>When <code>PositionFiltering</code> is set to <code>AccuracyBased</code> filtering, location data is stored and evaluated against linked geofence collections only if the device has moved more than the measured accuracy. For example, if two consecutive updates from a device have a horizontal accuracy of 5 m and 10 m, the second update is neither stored or evaluated if the device has moved less than 15 m. If <code>PositionFiltering</code> is set to <code>AccuracyBased</code> filtering, Amazon Location uses the default value <code>{ \"Horizontal\": 0}</code> when accuracy is not provided on a <code>DevicePositionUpdate</code>.</p> </note>",
+    "BatchUpdateDevicePosition": "<p>Uploads position update data for one or more devices to a tracker resource (up to 10 devices per batch). Amazon Location uses the data when it reports the last known device position and position history. Amazon Location retains location data for 30 days.</p> <note> <p>Position updates are handled based on the <code>PositionFiltering</code> property of the tracker. When <code>PositionFiltering</code> is set to <code>TimeBased</code>, updates are evaluated against linked geofence collections, and location data is stored at a maximum of one position per 30 second interval. If your update frequency is more often than every 30 seconds, only one update per 30 seconds is stored for each unique device ID.</p> <p>When <code>PositionFiltering</code> is set to <code>DistanceBased</code> filtering, location data is stored and evaluated against linked geofence collections only if the device has moved more than 30 m (98.4 ft).</p> <p>When <code>PositionFiltering</code> is set to <code>AccuracyBased</code> filtering, location data is stored and evaluated against linked geofence collections only if the device has moved more than the measured accuracy. For example, if two consecutive updates from a device have a horizontal accuracy of 5 m and 10 m, the second update is neither stored or evaluated if the device has moved less than 15 m. If <code>PositionFiltering</code> is set to <code>AccuracyBased</code> filtering, Amazon Location uses the default value <code>{ \"Horizontal\": 0}</code> when accuracy is not provided on a <code>DevicePositionUpdate</code>.</p> </note>",
     "CalculateRoute": "<p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html\">Calculates a route</a> given the following required parameters: <code>DeparturePosition</code> and <code>DestinationPosition</code>. Requires that you first <a href=\"https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html\">create a route calculator resource</a>.</p> <p>By default, a request that doesn't specify a departure time uses the best time of day to travel with the best traffic conditions when calculating the route.</p> <p>Additional options include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/departure-time.html\">Specifying a departure time</a> using either <code>DepartureTime</code> or <code>DepartNow</code>. This calculates a route based on predictive traffic data at the given time. </p> <note> <p>You can't specify both <code>DepartureTime</code> and <code>DepartNow</code> in a single request. Specifying both parameters returns a validation error.</p> </note> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/travel-mode.html\">Specifying a travel mode</a> using TravelMode sets the transportation mode used to calculate the routes. This also lets you specify additional route preferences in <code>CarModeOptions</code> if traveling by <code>Car</code>, or <code>TruckModeOptions</code> if traveling by <code>Truck</code>.</p> <note> <p>If you specify <code>walking</code> for the travel mode and your data provider is Esri, the start and destination must be within 40km.</p> </note> </li> </ul>",
     "CalculateRouteMatrix": "<p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route-matrix.html\"> Calculates a route matrix</a> given the following required parameters: <code>DeparturePositions</code> and <code>DestinationPositions</code>. <code>CalculateRouteMatrix</code> calculates routes and returns the travel time and travel distance from each departure position to each destination position in the request. For example, given departure positions A and B, and destination positions X and Y, <code>CalculateRouteMatrix</code> will return time and distance for routes from A to X, A to Y, B to X, and B to Y (in that order). The number of results returned (and routes calculated) will be the number of <code>DeparturePositions</code> times the number of <code>DestinationPositions</code>.</p> <note> <p>Your account is charged for each route calculated, not the number of requests.</p> </note> <p>Requires that you first <a href=\"https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html\">create a route calculator resource</a>.</p> <p>By default, a request that doesn't specify a departure time uses the best time of day to travel with the best traffic conditions when calculating routes.</p> <p>Additional options include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/departure-time.html\"> Specifying a departure time</a> using either <code>DepartureTime</code> or <code>DepartNow</code>. This calculates routes based on predictive traffic data at the given time. </p> <note> <p>You can't specify both <code>DepartureTime</code> and <code>DepartNow</code> in a single request. Specifying both parameters returns a validation error.</p> </note> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/travel-mode.html\">Specifying a travel mode</a> using TravelMode sets the transportation mode used to calculate the routes. This also lets you specify additional route preferences in <code>CarModeOptions</code> if traveling by <code>Car</code>, or <code>TruckModeOptions</code> if traveling by <code>Truck</code>.</p> </li> </ul>",
     "CreateGeofenceCollection": "<p>Creates a geofence collection, which manages and stores geofences.</p>",
@@ -354,7 +354,7 @@
     "BatchUpdateDevicePositionRequestUpdatesList": {
       "base": null,
       "refs": {
-        "BatchUpdateDevicePositionRequest$Updates": "<p>Contains the position update details for each device.</p>"
+        "BatchUpdateDevicePositionRequest$Updates": "<p>Contains the position update details for each device, up to 10 devices.</p>"
       }
     },
     "BatchUpdateDevicePositionResponse": {
@@ -775,6 +775,15 @@
         "BoundingBox$member": null,
         "Circle$Radius": "<p>The radius of the circle in meters. Must be greater than zero and no larger than 100,000 (100 kilometers).</p>",
         "Position$member": null
+      }
+    },
+    "FilterPlaceCategoryList": {
+      "base": null,
+      "refs": {
+        "SearchPlaceIndexForSuggestionsRequest$FilterCategories": "<p>A list of one or more Amazon Location categories to filter the returned places. If you include more than one category, the results will include results that match <i>any</i> of the categories listed.</p> <p>For more information about using categories, including a list of Amazon Location categories, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html\">Categories and filtering</a>, in the <i>Amazon Location Service Developer Guide</i>.</p>",
+        "SearchPlaceIndexForSuggestionsSummary$FilterCategories": "<p>The optional category filter specified in the request.</p>",
+        "SearchPlaceIndexForTextRequest$FilterCategories": "<p>A list of one or more Amazon Location categories to filter the returned places. If you include more than one category, the results will include results that match <i>any</i> of the categories listed.</p> <p>For more information about using categories, including a list of Amazon Location categories, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html\">Categories and filtering</a>, in the <i>Amazon Location Service Developer Guide</i>.</p>",
+        "SearchPlaceIndexForTextSummary$FilterCategories": "<p>The optional category filter specified in the request.</p>"
       }
     },
     "GeoArn": {
@@ -1308,6 +1317,20 @@
         "SearchForTextResult$Place": "<p>Details about the search result, such as its address and position.</p>"
       }
     },
+    "PlaceCategory": {
+      "base": null,
+      "refs": {
+        "FilterPlaceCategoryList$member": null,
+        "PlaceCategoryList$member": null
+      }
+    },
+    "PlaceCategoryList": {
+      "base": null,
+      "refs": {
+        "Place$Categories": "<p>The Amazon Location categories that describe this Place.</p> <p>For more information about using categories, including a list of Amazon Location categories, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html\">Categories and filtering</a>, in the <i>Amazon Location Service Developer Guide</i>.</p>",
+        "SearchForSuggestionsResult$Categories": "<p>The Amazon Location categories that describe the Place.</p> <p>For more information about using categories, including a list of Amazon Location categories, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html\">Categories and filtering</a>, in the <i>Amazon Location Service Developer Guide</i>.</p>"
+      }
+    },
     "PlaceGeometry": {
       "base": "<p>Places uses a point geometry to specify a location or a Place.</p>",
       "refs": {
@@ -1319,7 +1342,7 @@
       "refs": {
         "GetPlaceRequest$PlaceId": "<p>The identifier of the place to find.</p>",
         "SearchForPositionResult$PlaceId": "<p>The unique identifier of the place. You can use this with the <code>GetPlace</code> operation to find the place again later.</p> <note> <p>For <code>SearchPlaceIndexForPosition</code> operations, the <code>PlaceId</code> is returned only by place indexes that use HERE or Grab as a data provider.</p> </note>",
-        "SearchForSuggestionsResult$PlaceId": "<p>The unique identifier of the place. You can use this with the <code>GetPlace</code> operation to find the place again later.</p> <note> <p>For <code>SearchPlaceIndexForSuggestions</code> operations, the <code>PlaceId</code> is returned by place indexes that use Esri, Grab, or HERE as data providers.</p> </note>",
+        "SearchForSuggestionsResult$PlaceId": "<p>The unique identifier of the Place. You can use this with the <code>GetPlace</code> operation to find the place again later, or to get full information for the Place.</p> <p>The <code>GetPlace</code> request must use the same <code>PlaceIndex</code> resource as the <code>SearchPlaceIndexForSuggestions</code> that generated the Place ID.</p> <note> <p>For <code>SearchPlaceIndexForSuggestions</code> operations, the <code>PlaceId</code> is returned by place indexes that use Esri, Grab, or HERE as data providers.</p> </note>",
         "SearchForTextResult$PlaceId": "<p>The unique identifier of the place. You can use this with the <code>GetPlace</code> operation to find the place again later.</p> <note> <p>For <code>SearchPlaceIndexForText</code> operations, the <code>PlaceId</code> is returned only by place indexes that use HERE or Grab as a data provider.</p> </note>"
       }
     },
@@ -1330,6 +1353,19 @@
         "SearchPlaceIndexForPositionSummary$MaxResults": "<p>Contains the optional result count limit that is specified in the request.</p> <p>Default value: <code>50</code> </p>",
         "SearchPlaceIndexForTextRequest$MaxResults": "<p>An optional parameter. The maximum number of results returned per request. </p> <p>The default: <code>50</code> </p>",
         "SearchPlaceIndexForTextSummary$MaxResults": "<p>Contains the optional result count limit specified in the request.</p>"
+      }
+    },
+    "PlaceSupplementalCategory": {
+      "base": null,
+      "refs": {
+        "PlaceSupplementalCategoryList$member": null
+      }
+    },
+    "PlaceSupplementalCategoryList": {
+      "base": null,
+      "refs": {
+        "Place$SupplementalCategories": "<p>Categories from the data provider that describe the Place that are not mapped to any Amazon Location categories.</p>",
+        "SearchForSuggestionsResult$SupplementalCategories": "<p>Categories from the data provider that describe the Place that are not mapped to any Amazon Location categories.</p>"
       }
     },
     "Position": {
@@ -1413,10 +1449,14 @@
     "PropertyMap": {
       "base": null,
       "refs": {
+        "BatchPutGeofenceRequestEntry$GeofenceProperties": "<p>Specifies additional user-defined properties to store with the Geofence. An array of key-value pairs.</p>",
         "DevicePosition$PositionProperties": "<p>The properties associated with the position.</p>",
         "DevicePositionUpdate$PositionProperties": "<p>Associates one of more properties with the position update. A property is a key-value pair stored with the position update and added to any geofence event the update may trigger.</p> <p>Format: <code>\"key\" : \"value\"</code> </p>",
         "GetDevicePositionResponse$PositionProperties": "<p>The properties associated with the position.</p>",
-        "ListDevicePositionsResponseEntry$PositionProperties": "<p>The properties associated with the position.</p>"
+        "GetGeofenceResponse$GeofenceProperties": "<p>Contains additional user-defined properties stored with the geofence. An array of key-value pairs.</p>",
+        "ListDevicePositionsResponseEntry$PositionProperties": "<p>The properties associated with the position.</p>",
+        "ListGeofenceResponseEntry$GeofenceProperties": "<p>Contains additional user-defined properties stored with the geofence. An array of key-value pairs.</p>",
+        "PutGeofenceRequest$GeofenceProperties": "<p>Specifies additional user-defined properties to store with the Geofence. An array of key-value pairs.</p>"
       }
     },
     "PropertyMapKeyString": {
@@ -1811,8 +1851,8 @@
         "Place$Region": "<p>A name for an area or geographical division, such as a province or state name. For example, <code>British Columbia</code>.</p>",
         "Place$Street": "<p>The name for a street or a road to identify a location. For example, <code>Main Street</code>.</p>",
         "Place$SubRegion": "<p>A county, or an area that's part of a larger region. For example, <code>Metro Vancouver</code>.</p>",
-        "Place$UnitNumber": "<p>For addresses with multiple units, the unit identifier. Can include numbers and letters, for example <code>3B</code> or <code>Unit 123</code>.</p> <note> <p>Returned only for a place index that uses Esri as a data provider. Is not returned for <code>SearchPlaceIndexForPosition</code>.</p> </note>",
-        "Place$UnitType": "<p>For addresses with a <code>UnitNumber</code>, the type of unit. For example, <code>Apartment</code>.</p>",
+        "Place$UnitNumber": "<p>For addresses with multiple units, the unit identifier. Can include numbers and letters, for example <code>3B</code> or <code>Unit 123</code>.</p> <note> <p>Returned only for a place index that uses Esri or Grab as a data provider. Is not returned for <code>SearchPlaceIndexForPosition</code>.</p> </note>",
+        "Place$UnitType": "<p>For addresses with a <code>UnitNumber</code>, the type of unit. For example, <code>Apartment</code>.</p> <note> <p>Returned only for a place index that uses Esri as a data provider.</p> </note>",
         "ResourceNotFoundException$Message": null,
         "RouteMatrixEntryError$Message": "<p>A message about the error that occurred for the route calculation.</p>",
         "SearchForSuggestionsResult$Text": "<p>The text of the place suggestion, typically formatted as an address string.</p>",
@@ -1885,7 +1925,7 @@
     "TimeZone": {
       "base": "<p>Information about a time zone. Includes the name of the time zone and the offset from UTC in seconds.</p>",
       "refs": {
-        "Place$TimeZone": "<p>The time zone in which the <code>Place</code> is located. Returned only when using HERE as the selected partner.</p>"
+        "Place$TimeZone": "<p>The time zone in which the <code>Place</code> is located. Returned only when using HERE or Grab as the selected partner.</p>"
       }
     },
     "Timestamp": {
