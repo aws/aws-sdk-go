@@ -66,13 +66,20 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 // more, see Mounting a file system using EFS access points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
 //
 // If multiple requests to create access points on the same file system are
-// sent in quick succession, and the file system is near the limit of 1000 access
-// points, you may experience a throttling response for these requests. This
-// is to ensure that the file system does not exceed the stated access point
-// limit.
+// sent in quick succession, and the file system is near the limit of 1,000
+// access points, you may experience a throttling response for these requests.
+// This is to ensure that the file system does not exceed the stated access
+// point limit.
 //
 // This operation requires permissions for the elasticfilesystem:CreateAccessPoint
 // action.
+//
+// Access points can be tagged on creation. If tags are specified in the creation
+// action, IAM performs additional authorization on the elasticfilesystem:TagResource
+// action to verify if users have permissions to create tags. Therefore, you
+// must grant explicit permissions to use the elasticfilesystem:TagResource
+// action. For more information, see Granting permissions to tag resources during
+// creation (https://docs.aws.amazon.com/efs/latest/ug/using-tags-efs.html#supported-iam-actions-tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -230,6 +237,13 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //
 // This operation requires permissions for the elasticfilesystem:CreateFileSystem
 // action.
+//
+// File systems can be tagged on creation. If tags are specified in the creation
+// action, IAM performs additional authorization on the elasticfilesystem:TagResource
+// action to verify if users have permissions to create tags. Therefore, you
+// must grant explicit permissions to use the elasticfilesystem:TagResource
+// action. For more information, see Granting permissions to tag resources during
+// creation (https://docs.aws.amazon.com/efs/latest/ug/using-tags-efs.html#supported-iam-actions-tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6625,10 +6639,21 @@ type Destination struct {
 	// Region is a required field
 	Region *string `min:"1" type:"string" required:"true"`
 
-	// Describes the status of the destination Amazon EFS file system. If the status
-	// is ERROR, the destination file system in the replication configuration is
-	// in a failed state and is unrecoverable. To access the file system data, restore
-	// a backup of the failed file system to a new file system.
+	// Describes the status of the destination Amazon EFS file system.
+	//
+	//    * The Paused state occurs as a result of opting out of the source or destination
+	//    Region after the replication configuration was created. To resume replication
+	//    for the file system, you need to again opt in to the Amazon Web Services
+	//    Region. For more information, see Managing Amazon Web Services Regions
+	//    (https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)
+	//    in the Amazon Web Services General Reference Guide.
+	//
+	//    * The Error state occurs when either the source or the destination file
+	//    system (or both) is in a failed state and is unrecoverable. For more information,
+	//    see Monitoring replication status (https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#restoring-backup-efsmonitoring-replication-status.html)
+	//    in the Amazon EFS User Guide. You must delete the replication configuration,
+	//    and then restore the most recent backup of the failed file system (either
+	//    the source or the destination) to a new file system.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ReplicationStatus"`

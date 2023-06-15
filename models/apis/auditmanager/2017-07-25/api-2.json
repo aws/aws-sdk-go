@@ -99,7 +99,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateAssessment":{
@@ -414,6 +415,21 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "GetEvidenceFileUploadUrl":{
+      "name":"GetEvidenceFileUploadUrl",
+      "http":{
+        "method":"GET",
+        "requestUri":"/evidenceFileUploadUrl"
+      },
+      "input":{"shape":"GetEvidenceFileUploadUrlRequest"},
+      "output":{"shape":"GetEvidenceFileUploadUrlResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetEvidenceFolder":{
@@ -1806,6 +1822,13 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9\\s-_()\\[\\]]+$"
     },
+    "DefaultExportDestination":{
+      "type":"structure",
+      "members":{
+        "destinationType":{"shape":"ExportDestinationType"},
+        "destination":{"shape":"S3Url"}
+      }
+    },
     "Delegation":{
       "type":"structure",
       "members":{
@@ -2117,6 +2140,10 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "ExportDestinationType":{
+      "type":"string",
+      "enum":["S3"]
+    },
     "Filename":{
       "type":"string",
       "max":255,
@@ -2368,6 +2395,24 @@
       "members":{
         "evidence":{"shape":"EvidenceList"},
         "nextToken":{"shape":"Token"}
+      }
+    },
+    "GetEvidenceFileUploadUrlRequest":{
+      "type":"structure",
+      "required":["fileName"],
+      "members":{
+        "fileName":{
+          "shape":"ManualEvidenceLocalFileName",
+          "location":"querystring",
+          "locationName":"fileName"
+        }
+      }
+    },
+    "GetEvidenceFileUploadUrlResponse":{
+      "type":"structure",
+      "members":{
+        "evidenceFileName":{"shape":"NonEmptyString"},
+        "uploadUrl":{"shape":"NonEmptyString"}
       }
     },
     "GetEvidenceFolderRequest":{
@@ -2624,7 +2669,11 @@
     },
     "KeywordInputType":{
       "type":"string",
-      "enum":["SELECT_FROM_LIST"]
+      "enum":[
+        "SELECT_FROM_LIST",
+        "UPLOAD_FILE",
+        "INPUT_TEXT"
+      ]
     },
     "KeywordValue":{
       "type":"string",
@@ -2969,7 +3018,9 @@
     "ManualEvidence":{
       "type":"structure",
       "members":{
-        "s3ResourcePath":{"shape":"S3Url"}
+        "s3ResourcePath":{"shape":"S3Url"},
+        "textResponse":{"shape":"ManualEvidenceTextResponse"},
+        "evidenceFileName":{"shape":"ManualEvidenceLocalFileName"}
       }
     },
     "ManualEvidenceList":{
@@ -2977,6 +3028,18 @@
       "member":{"shape":"ManualEvidence"},
       "max":50,
       "min":1
+    },
+    "ManualEvidenceLocalFileName":{
+      "type":"string",
+      "max":300,
+      "min":1,
+      "pattern":"[^\\/]*"
+    },
+    "ManualEvidenceTextResponse":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"^[\\w\\W\\s\\S]*$"
     },
     "MaxResults":{
       "type":"integer",
@@ -3153,7 +3216,8 @@
         "DEFAULT_ASSESSMENT_REPORTS_DESTINATION",
         "DEFAULT_PROCESS_OWNERS",
         "EVIDENCE_FINDER_ENABLEMENT",
-        "DEREGISTRATION_POLICY"
+        "DEREGISTRATION_POLICY",
+        "DEFAULT_EXPORT_DESTINATION"
       ]
     },
     "Settings":{
@@ -3165,7 +3229,8 @@
         "defaultProcessOwners":{"shape":"Roles"},
         "kmsKey":{"shape":"KmsKey"},
         "evidenceFinderEnablement":{"shape":"EvidenceFinderEnablement"},
-        "deregistrationPolicy":{"shape":"DeregistrationPolicy"}
+        "deregistrationPolicy":{"shape":"DeregistrationPolicy"},
+        "defaultExportDestination":{"shape":"DefaultExportDestination"}
       }
     },
     "ShareRequestAction":{
@@ -3601,7 +3666,8 @@
         "defaultProcessOwners":{"shape":"Roles"},
         "kmsKey":{"shape":"KmsKey"},
         "evidenceFinderEnabled":{"shape":"Boolean"},
-        "deregistrationPolicy":{"shape":"DeregistrationPolicy"}
+        "deregistrationPolicy":{"shape":"DeregistrationPolicy"},
+        "defaultExportDestination":{"shape":"DefaultExportDestination"}
       }
     },
     "UpdateSettingsResponse":{

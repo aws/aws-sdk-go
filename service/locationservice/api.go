@@ -670,9 +670,10 @@ func (c *LocationService) BatchUpdateDevicePositionRequest(input *BatchUpdateDev
 
 // BatchUpdateDevicePosition API operation for Amazon Location Service.
 //
-// Uploads position update data for one or more devices to a tracker resource.
-// Amazon Location uses the data when it reports the last known device position
-// and position history. Amazon Location retains location data for 30 days.
+// Uploads position update data for one or more devices to a tracker resource
+// (up to 10 devices per batch). Amazon Location uses the data when it reports
+// the last known device position and position history. Amazon Location retains
+// location data for 30 days.
 //
 // Position updates are handled based on the PositionFiltering property of the
 // tracker. When PositionFiltering is set to TimeBased, updates are evaluated
@@ -7501,6 +7502,14 @@ type BatchPutGeofenceRequestEntry struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
+	// Specifies additional user-defined properties to store with the Geofence.
+	// An array of key-value pairs.
+	//
+	// GeofenceProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by BatchPutGeofenceRequestEntry's
+	// String and GoString methods.
+	GeofenceProperties map[string]*string `type:"map" sensitive:"true"`
+
 	// Contains the details of the position of the geofence. Can be either a polygon
 	// or a circle. Including both will return a validation error.
 	//
@@ -7556,6 +7565,12 @@ func (s *BatchPutGeofenceRequestEntry) Validate() error {
 // SetGeofenceId sets the GeofenceId field's value.
 func (s *BatchPutGeofenceRequestEntry) SetGeofenceId(v string) *BatchPutGeofenceRequestEntry {
 	s.GeofenceId = &v
+	return s
+}
+
+// SetGeofenceProperties sets the GeofenceProperties field's value.
+func (s *BatchPutGeofenceRequestEntry) SetGeofenceProperties(v map[string]*string) *BatchPutGeofenceRequestEntry {
+	s.GeofenceProperties = v
 	return s
 }
 
@@ -7691,7 +7706,7 @@ type BatchUpdateDevicePositionInput struct {
 	// TrackerName is a required field
 	TrackerName *string `location:"uri" locationName:"TrackerName" min:"1" type:"string" required:"true"`
 
-	// Contains the position update details for each device.
+	// Contains the position update details for each device, up to 10 devices.
 	//
 	// Updates is a required field
 	Updates []*DevicePositionUpdate `min:"1" type:"list" required:"true"`
@@ -12390,6 +12405,14 @@ type GetGeofenceOutput struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
+	// Contains additional user-defined properties stored with the geofence. An
+	// array of key-value pairs.
+	//
+	// GeofenceProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetGeofenceOutput's
+	// String and GoString methods.
+	GeofenceProperties map[string]*string `type:"map" sensitive:"true"`
+
 	// Contains the geofence geometry details describing a polygon or a circle.
 	//
 	// Geometry is a required field
@@ -12445,6 +12468,12 @@ func (s *GetGeofenceOutput) SetCreateTime(v time.Time) *GetGeofenceOutput {
 // SetGeofenceId sets the GeofenceId field's value.
 func (s *GetGeofenceOutput) SetGeofenceId(v string) *GetGeofenceOutput {
 	s.GeofenceId = &v
+	return s
+}
+
+// SetGeofenceProperties sets the GeofenceProperties field's value.
+func (s *GetGeofenceOutput) SetGeofenceProperties(v map[string]*string) *GetGeofenceOutput {
+	s.GeofenceProperties = v
 	return s
 }
 
@@ -13855,6 +13884,14 @@ type ListGeofenceResponseEntry struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
+	// Contains additional user-defined properties stored with the geofence. An
+	// array of key-value pairs.
+	//
+	// GeofenceProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListGeofenceResponseEntry's
+	// String and GoString methods.
+	GeofenceProperties map[string]*string `type:"map" sensitive:"true"`
+
 	// Contains the geofence geometry details describing a polygon or a circle.
 	//
 	// Geometry is a required field
@@ -13910,6 +13947,12 @@ func (s *ListGeofenceResponseEntry) SetCreateTime(v time.Time) *ListGeofenceResp
 // SetGeofenceId sets the GeofenceId field's value.
 func (s *ListGeofenceResponseEntry) SetGeofenceId(v string) *ListGeofenceResponseEntry {
 	s.GeofenceId = &v
+	return s
+}
+
+// SetGeofenceProperties sets the GeofenceProperties field's value.
+func (s *ListGeofenceResponseEntry) SetGeofenceProperties(v map[string]*string) *ListGeofenceResponseEntry {
+	s.GeofenceProperties = v
 	return s
 }
 
@@ -15481,6 +15524,13 @@ type Place struct {
 	// The numerical portion of an address, such as a building number.
 	AddressNumber *string `type:"string"`
 
+	// The Amazon Location categories that describe this Place.
+	//
+	// For more information about using categories, including a list of Amazon Location
+	// categories, see Categories and filtering (https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html),
+	// in the Amazon Location Service Developer Guide.
+	Categories []*string `min:"1" type:"list"`
+
 	// A country/region specified using ISO 3166 (https://www.iso.org/iso-3166-country-codes.html)
 	// 3-digit country/region code. For example, CAN.
 	Country *string `type:"string"`
@@ -15526,18 +15576,24 @@ type Place struct {
 	// A county, or an area that's part of a larger region. For example, Metro Vancouver.
 	SubRegion *string `type:"string"`
 
+	// Categories from the data provider that describe the Place that are not mapped
+	// to any Amazon Location categories.
+	SupplementalCategories []*string `min:"1" type:"list"`
+
 	// The time zone in which the Place is located. Returned only when using HERE
-	// as the selected partner.
+	// or Grab as the selected partner.
 	TimeZone *TimeZone `type:"structure"`
 
 	// For addresses with multiple units, the unit identifier. Can include numbers
 	// and letters, for example 3B or Unit 123.
 	//
-	// Returned only for a place index that uses Esri as a data provider. Is not
-	// returned for SearchPlaceIndexForPosition.
+	// Returned only for a place index that uses Esri or Grab as a data provider.
+	// Is not returned for SearchPlaceIndexForPosition.
 	UnitNumber *string `type:"string"`
 
 	// For addresses with a UnitNumber, the type of unit. For example, Apartment.
+	//
+	// Returned only for a place index that uses Esri as a data provider.
 	UnitType *string `type:"string"`
 }
 
@@ -15562,6 +15618,12 @@ func (s Place) GoString() string {
 // SetAddressNumber sets the AddressNumber field's value.
 func (s *Place) SetAddressNumber(v string) *Place {
 	s.AddressNumber = &v
+	return s
+}
+
+// SetCategories sets the Categories field's value.
+func (s *Place) SetCategories(v []*string) *Place {
+	s.Categories = v
 	return s
 }
 
@@ -15622,6 +15684,12 @@ func (s *Place) SetStreet(v string) *Place {
 // SetSubRegion sets the SubRegion field's value.
 func (s *Place) SetSubRegion(v string) *Place {
 	s.SubRegion = &v
+	return s
+}
+
+// SetSupplementalCategories sets the SupplementalCategories field's value.
+func (s *Place) SetSupplementalCategories(v []*string) *Place {
+	s.SupplementalCategories = v
 	return s
 }
 
@@ -15745,6 +15813,14 @@ type PutGeofenceInput struct {
 	// GeofenceId is a required field
 	GeofenceId *string `location:"uri" locationName:"GeofenceId" min:"1" type:"string" required:"true"`
 
+	// Specifies additional user-defined properties to store with the Geofence.
+	// An array of key-value pairs.
+	//
+	// GeofenceProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutGeofenceInput's
+	// String and GoString methods.
+	GeofenceProperties map[string]*string `type:"map" sensitive:"true"`
+
 	// Contains the details to specify the position of the geofence. Can be either
 	// a polygon or a circle. Including both will return a validation error.
 	//
@@ -15812,6 +15888,12 @@ func (s *PutGeofenceInput) SetCollectionName(v string) *PutGeofenceInput {
 // SetGeofenceId sets the GeofenceId field's value.
 func (s *PutGeofenceInput) SetGeofenceId(v string) *PutGeofenceInput {
 	s.GeofenceId = &v
+	return s
+}
+
+// SetGeofenceProperties sets the GeofenceProperties field's value.
+func (s *PutGeofenceInput) SetGeofenceProperties(v map[string]*string) *PutGeofenceInput {
+	s.GeofenceProperties = v
 	return s
 }
 
@@ -16125,12 +16207,26 @@ func (s *SearchForPositionResult) SetPlaceId(v string) *SearchForPositionResult 
 type SearchForSuggestionsResult struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the place. You can use this with the GetPlace operation
-	// to find the place again later.
+	// The Amazon Location categories that describe the Place.
+	//
+	// For more information about using categories, including a list of Amazon Location
+	// categories, see Categories and filtering (https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html),
+	// in the Amazon Location Service Developer Guide.
+	Categories []*string `min:"1" type:"list"`
+
+	// The unique identifier of the Place. You can use this with the GetPlace operation
+	// to find the place again later, or to get full information for the Place.
+	//
+	// The GetPlace request must use the same PlaceIndex resource as the SearchPlaceIndexForSuggestions
+	// that generated the Place ID.
 	//
 	// For SearchPlaceIndexForSuggestions operations, the PlaceId is returned by
 	// place indexes that use Esri, Grab, or HERE as data providers.
 	PlaceId *string `type:"string"`
+
+	// Categories from the data provider that describe the Place that are not mapped
+	// to any Amazon Location categories.
+	SupplementalCategories []*string `min:"1" type:"list"`
 
 	// The text of the place suggestion, typically formatted as an address string.
 	//
@@ -16156,9 +16252,21 @@ func (s SearchForSuggestionsResult) GoString() string {
 	return s.String()
 }
 
+// SetCategories sets the Categories field's value.
+func (s *SearchForSuggestionsResult) SetCategories(v []*string) *SearchForSuggestionsResult {
+	s.Categories = v
+	return s
+}
+
 // SetPlaceId sets the PlaceId field's value.
 func (s *SearchForSuggestionsResult) SetPlaceId(v string) *SearchForSuggestionsResult {
 	s.PlaceId = &v
+	return s
+}
+
+// SetSupplementalCategories sets the SupplementalCategories field's value.
+func (s *SearchForSuggestionsResult) SetSupplementalCategories(v []*string) *SearchForSuggestionsResult {
+	s.SupplementalCategories = v
 	return s
 }
 
@@ -16532,6 +16640,15 @@ type SearchPlaceIndexForSuggestionsInput struct {
 	// String and GoString methods.
 	FilterBBox []*float64 `min:"4" type:"list" sensitive:"true"`
 
+	// A list of one or more Amazon Location categories to filter the returned places.
+	// If you include more than one category, the results will include results that
+	// match any of the categories listed.
+	//
+	// For more information about using categories, including a list of Amazon Location
+	// categories, see Categories and filtering (https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html),
+	// in the Amazon Location Service Developer Guide.
+	FilterCategories []*string `min:"1" type:"list"`
+
 	// An optional parameter that limits the search results by returning only suggestions
 	// within the provided list of countries.
 	//
@@ -16607,6 +16724,9 @@ func (s *SearchPlaceIndexForSuggestionsInput) Validate() error {
 	if s.FilterBBox != nil && len(s.FilterBBox) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("FilterBBox", 4))
 	}
+	if s.FilterCategories != nil && len(s.FilterCategories) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterCategories", 1))
+	}
 	if s.FilterCountries != nil && len(s.FilterCountries) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FilterCountries", 1))
 	}
@@ -16644,6 +16764,12 @@ func (s *SearchPlaceIndexForSuggestionsInput) SetBiasPosition(v []*float64) *Sea
 // SetFilterBBox sets the FilterBBox field's value.
 func (s *SearchPlaceIndexForSuggestionsInput) SetFilterBBox(v []*float64) *SearchPlaceIndexForSuggestionsInput {
 	s.FilterBBox = v
+	return s
+}
+
+// SetFilterCategories sets the FilterCategories field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetFilterCategories(v []*string) *SearchPlaceIndexForSuggestionsInput {
+	s.FilterCategories = v
 	return s
 }
 
@@ -16764,6 +16890,9 @@ type SearchPlaceIndexForSuggestionsSummary struct {
 	// String and GoString methods.
 	FilterBBox []*float64 `min:"4" type:"list" sensitive:"true"`
 
+	// The optional category filter specified in the request.
+	FilterCategories []*string `min:"1" type:"list"`
+
 	// Contains the optional country filter specified in the request.
 	FilterCountries []*string `min:"1" type:"list"`
 
@@ -16818,6 +16947,12 @@ func (s *SearchPlaceIndexForSuggestionsSummary) SetDataSource(v string) *SearchP
 // SetFilterBBox sets the FilterBBox field's value.
 func (s *SearchPlaceIndexForSuggestionsSummary) SetFilterBBox(v []*float64) *SearchPlaceIndexForSuggestionsSummary {
 	s.FilterBBox = v
+	return s
+}
+
+// SetFilterCategories sets the FilterCategories field's value.
+func (s *SearchPlaceIndexForSuggestionsSummary) SetFilterCategories(v []*string) *SearchPlaceIndexForSuggestionsSummary {
+	s.FilterCategories = v
 	return s
 }
 
@@ -16886,6 +17021,15 @@ type SearchPlaceIndexForTextInput struct {
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextInput's
 	// String and GoString methods.
 	FilterBBox []*float64 `min:"4" type:"list" sensitive:"true"`
+
+	// A list of one or more Amazon Location categories to filter the returned places.
+	// If you include more than one category, the results will include results that
+	// match any of the categories listed.
+	//
+	// For more information about using categories, including a list of Amazon Location
+	// categories, see Categories and filtering (https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html),
+	// in the Amazon Location Service Developer Guide.
+	FilterCategories []*string `min:"1" type:"list"`
 
 	// An optional parameter that limits the search results by returning only places
 	// that are in a specified list of countries.
@@ -16962,6 +17106,9 @@ func (s *SearchPlaceIndexForTextInput) Validate() error {
 	if s.FilterBBox != nil && len(s.FilterBBox) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("FilterBBox", 4))
 	}
+	if s.FilterCategories != nil && len(s.FilterCategories) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterCategories", 1))
+	}
 	if s.FilterCountries != nil && len(s.FilterCountries) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FilterCountries", 1))
 	}
@@ -16999,6 +17146,12 @@ func (s *SearchPlaceIndexForTextInput) SetBiasPosition(v []*float64) *SearchPlac
 // SetFilterBBox sets the FilterBBox field's value.
 func (s *SearchPlaceIndexForTextInput) SetFilterBBox(v []*float64) *SearchPlaceIndexForTextInput {
 	s.FilterBBox = v
+	return s
+}
+
+// SetFilterCategories sets the FilterCategories field's value.
+func (s *SearchPlaceIndexForTextInput) SetFilterCategories(v []*string) *SearchPlaceIndexForTextInput {
+	s.FilterCategories = v
 	return s
 }
 
@@ -17124,6 +17277,9 @@ type SearchPlaceIndexForTextSummary struct {
 	// String and GoString methods.
 	FilterBBox []*float64 `min:"4" type:"list" sensitive:"true"`
 
+	// The optional category filter specified in the request.
+	FilterCategories []*string `min:"1" type:"list"`
+
 	// Contains the optional country filter specified in the request.
 	FilterCountries []*string `min:"1" type:"list"`
 
@@ -17188,6 +17344,12 @@ func (s *SearchPlaceIndexForTextSummary) SetDataSource(v string) *SearchPlaceInd
 // SetFilterBBox sets the FilterBBox field's value.
 func (s *SearchPlaceIndexForTextSummary) SetFilterBBox(v []*float64) *SearchPlaceIndexForTextSummary {
 	s.FilterBBox = v
+	return s
+}
+
+// SetFilterCategories sets the FilterCategories field's value.
+func (s *SearchPlaceIndexForTextSummary) SetFilterCategories(v []*string) *SearchPlaceIndexForTextSummary {
+	s.FilterCategories = v
 	return s
 }
 
