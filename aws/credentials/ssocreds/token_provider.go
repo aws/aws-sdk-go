@@ -2,11 +2,11 @@ package ssocreds
 
 import (
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws/auth/bearer"
 	"os"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/auth/bearer"
 	"github.com/aws/aws-sdk-go/service/ssooidc"
 )
 
@@ -76,7 +76,7 @@ func NewSSOTokenProvider(client CreateTokenAPIClient, cachedTokenFilepath string
 //
 // A utility such as the AWS CLI must be used to initially create the SSO
 // session and cached token file. https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html
-func (p SSOTokenProvider) RetrieveBearerToken(ctx aws.Context) (bearer.Token, error) {
+func (p *SSOTokenProvider) RetrieveBearerToken(ctx aws.Context) (bearer.Token, error) {
 	cachedToken, err := loadCachedToken(p.options.CachedTokenFilepath)
 	if err != nil {
 		return bearer.Token{}, err
@@ -97,7 +97,7 @@ func (p SSOTokenProvider) RetrieveBearerToken(ctx aws.Context) (bearer.Token, er
 	}, nil
 }
 
-func (p SSOTokenProvider) refreshToken(token cachedToken) (cachedToken, error) {
+func (p *SSOTokenProvider) refreshToken(token cachedToken) (cachedToken, error) {
 	if token.ClientSecret == "" || token.ClientID == "" || token.RefreshToken == "" {
 		return cachedToken{}, fmt.Errorf("cached SSO token is expired, or not present, and cannot be refreshed")
 	}
