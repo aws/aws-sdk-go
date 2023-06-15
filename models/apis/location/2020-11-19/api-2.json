@@ -1127,7 +1127,7 @@
     "ApiKeyRestrictionsAllowActionsList":{
       "type":"list",
       "member":{"shape":"ApiKeyAction"},
-      "max":5,
+      "max":7,
       "min":1
     },
     "ApiKeyRestrictionsAllowReferersList":{
@@ -1417,6 +1417,7 @@
       ],
       "members":{
         "GeofenceId":{"shape":"Id"},
+        "GeofenceProperties":{"shape":"PropertyMap"},
         "Geometry":{"shape":"GeofenceGeometry"}
       }
     },
@@ -2323,6 +2324,12 @@
       "type":"double",
       "box":true
     },
+    "FilterPlaceCategoryList":{
+      "type":"list",
+      "member":{"shape":"PlaceCategory"},
+      "max":5,
+      "min":1
+    },
     "GeoArn":{
       "type":"string",
       "max":1600,
@@ -2439,6 +2446,7 @@
       "members":{
         "CreateTime":{"shape":"Timestamp"},
         "GeofenceId":{"shape":"Id"},
+        "GeofenceProperties":{"shape":"PropertyMap"},
         "Geometry":{"shape":"GeofenceGeometry"},
         "Status":{"shape":"String"},
         "UpdateTime":{"shape":"Timestamp"}
@@ -2871,6 +2879,7 @@
       "members":{
         "CreateTime":{"shape":"Timestamp"},
         "GeofenceId":{"shape":"Id"},
+        "GeofenceProperties":{"shape":"PropertyMap"},
         "Geometry":{"shape":"GeofenceGeometry"},
         "Status":{"shape":"String"},
         "UpdateTime":{"shape":"Timestamp"}
@@ -3211,6 +3220,7 @@
       "required":["Geometry"],
       "members":{
         "AddressNumber":{"shape":"String"},
+        "Categories":{"shape":"PlaceCategoryList"},
         "Country":{"shape":"String"},
         "Geometry":{"shape":"PlaceGeometry"},
         "Interpolated":{"shape":"Boolean"},
@@ -3221,10 +3231,22 @@
         "Region":{"shape":"String"},
         "Street":{"shape":"String"},
         "SubRegion":{"shape":"String"},
+        "SupplementalCategories":{"shape":"PlaceSupplementalCategoryList"},
         "TimeZone":{"shape":"TimeZone"},
         "UnitNumber":{"shape":"String"},
         "UnitType":{"shape":"String"}
       }
+    },
+    "PlaceCategory":{
+      "type":"string",
+      "max":35,
+      "min":0
+    },
+    "PlaceCategoryList":{
+      "type":"list",
+      "member":{"shape":"PlaceCategory"},
+      "max":10,
+      "min":1
     },
     "PlaceGeometry":{
       "type":"structure",
@@ -3236,6 +3258,17 @@
     "PlaceIndexSearchResultLimit":{
       "type":"integer",
       "max":50,
+      "min":1
+    },
+    "PlaceSupplementalCategory":{
+      "type":"string",
+      "max":35,
+      "min":0
+    },
+    "PlaceSupplementalCategoryList":{
+      "type":"list",
+      "member":{"shape":"PlaceSupplementalCategory"},
+      "max":10,
       "min":1
     },
     "Position":{
@@ -3310,6 +3343,7 @@
           "location":"uri",
           "locationName":"GeofenceId"
         },
+        "GeofenceProperties":{"shape":"PropertyMap"},
         "Geometry":{"shape":"GeofenceGeometry"}
       }
     },
@@ -3428,7 +3462,9 @@
       "type":"structure",
       "required":["Text"],
       "members":{
+        "Categories":{"shape":"PlaceCategoryList"},
         "PlaceId":{"shape":"PlaceId"},
+        "SupplementalCategories":{"shape":"PlaceSupplementalCategoryList"},
         "Text":{"shape":"String"}
       }
     },
@@ -3511,6 +3547,7 @@
       "members":{
         "BiasPosition":{"shape":"Position"},
         "FilterBBox":{"shape":"BoundingBox"},
+        "FilterCategories":{"shape":"FilterPlaceCategoryList"},
         "FilterCountries":{"shape":"CountryCodeList"},
         "IndexName":{
           "shape":"ResourceName",
@@ -3555,6 +3592,7 @@
         "BiasPosition":{"shape":"Position"},
         "DataSource":{"shape":"String"},
         "FilterBBox":{"shape":"BoundingBox"},
+        "FilterCategories":{"shape":"FilterPlaceCategoryList"},
         "FilterCountries":{"shape":"CountryCodeList"},
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"Integer"},
@@ -3570,6 +3608,7 @@
       "members":{
         "BiasPosition":{"shape":"Position"},
         "FilterBBox":{"shape":"BoundingBox"},
+        "FilterCategories":{"shape":"FilterPlaceCategoryList"},
         "FilterCountries":{"shape":"CountryCodeList"},
         "IndexName":{
           "shape":"ResourceName",
@@ -3608,6 +3647,7 @@
         "BiasPosition":{"shape":"Position"},
         "DataSource":{"shape":"String"},
         "FilterBBox":{"shape":"BoundingBox"},
+        "FilterCategories":{"shape":"FilterPlaceCategoryList"},
         "FilterCountries":{"shape":"CountryCodeList"},
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"PlaceIndexSearchResultLimit"},

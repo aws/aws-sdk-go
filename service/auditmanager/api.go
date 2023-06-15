@@ -509,16 +509,16 @@ func (c *AuditManager) BatchImportEvidenceToAssessmentControlRequest(input *Batc
 
 // BatchImportEvidenceToAssessmentControl API operation for AWS Audit Manager.
 //
-// Uploads one or more pieces of evidence to a control in an Audit Manager assessment.
-// You can upload manual evidence from any Amazon Simple Storage Service (Amazon
-// S3) bucket by specifying the S3 URI of the evidence.
+// Adds one or more pieces of evidence to a control in an Audit Manager assessment.
 //
-// You must upload manual evidence to your S3 bucket before you can upload it
-// to your assessment. For instructions, see CreateBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html)
-// and PutObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
-// in the Amazon Simple Storage Service API Reference.
+// You can import manual evidence from any S3 bucket by specifying the S3 URI
+// of the object. You can also upload a file from your browser, or enter plain
+// text in response to a risk assessment question.
 //
 // The following restrictions apply to this action:
+//
+//   - manualEvidence can be only one of the following: evidenceFileName, s3ResourcePath,
+//     or textResponse
 //
 //   - Maximum size of an individual evidence file: 100 MB
 //
@@ -553,6 +553,9 @@ func (c *AuditManager) BatchImportEvidenceToAssessmentControlRequest(input *Batc
 //   - InternalServerException
 //     An internal service error occurred during the processing of your request.
 //     Try again later.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/BatchImportEvidenceToAssessmentControl
 func (c *AuditManager) BatchImportEvidenceToAssessmentControl(input *BatchImportEvidenceToAssessmentControlInput) (*BatchImportEvidenceToAssessmentControlOutput, error) {
@@ -1389,6 +1392,12 @@ func (c *AuditManager) DeleteControlRequest(input *DeleteControlInput) (req *req
 //
 // Deletes a custom control in Audit Manager.
 //
+// When you invoke this operation, the custom control is deleted from any frameworks
+// or assessments that it’s currently part of. As a result, Audit Manager
+// will stop collecting evidence for that custom control in all of your assessments.
+// This includes assessments that you previously created before you deleted
+// the custom control.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1816,7 +1825,7 @@ func (c *AuditManager) GetAccountStatusRequest(input *GetAccountStatusInput) (re
 
 // GetAccountStatus API operation for AWS Audit Manager.
 //
-// Returns the registration status of an account in Audit Manager.
+// Gets the registration status of an account in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1895,7 +1904,7 @@ func (c *AuditManager) GetAssessmentRequest(input *GetAssessmentInput) (req *req
 
 // GetAssessment API operation for AWS Audit Manager.
 //
-// Returns an assessment from Audit Manager.
+// Gets information about a specified assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1985,7 +1994,7 @@ func (c *AuditManager) GetAssessmentFrameworkRequest(input *GetAssessmentFramewo
 
 // GetAssessmentFramework API operation for AWS Audit Manager.
 //
-// Returns a framework from Audit Manager.
+// Gets information about a specified framework.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2075,7 +2084,7 @@ func (c *AuditManager) GetAssessmentReportUrlRequest(input *GetAssessmentReportU
 
 // GetAssessmentReportUrl API operation for AWS Audit Manager.
 //
-// Returns the URL of an assessment report in Audit Manager.
+// Gets the URL of an assessment report in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2171,7 +2180,7 @@ func (c *AuditManager) GetChangeLogsRequest(input *GetChangeLogsInput) (req *req
 
 // GetChangeLogs API operation for AWS Audit Manager.
 //
-// Returns a list of changelogs from Audit Manager.
+// Gets a list of changelogs from Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2312,7 +2321,7 @@ func (c *AuditManager) GetControlRequest(input *GetControlInput) (req *request.R
 
 // GetControl API operation for AWS Audit Manager.
 //
-// Returns a control from Audit Manager.
+// Gets information about a specified control.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2408,7 +2417,7 @@ func (c *AuditManager) GetDelegationsRequest(input *GetDelegationsInput) (req *r
 
 // GetDelegations API operation for AWS Audit Manager.
 //
-// Returns a list of delegations from an audit owner to a delegate.
+// Gets a list of delegations from an audit owner to a delegate.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2546,7 +2555,7 @@ func (c *AuditManager) GetEvidenceRequest(input *GetEvidenceInput) (req *request
 
 // GetEvidence API operation for AWS Audit Manager.
 //
-// Returns evidence from Audit Manager.
+// Gets information about a specified evidence item.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2642,7 +2651,7 @@ func (c *AuditManager) GetEvidenceByEvidenceFolderRequest(input *GetEvidenceByEv
 
 // GetEvidenceByEvidenceFolder API operation for AWS Audit Manager.
 //
-// Returns all evidence from a specified evidence folder in Audit Manager.
+// Gets all evidence from a specified evidence folder in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2740,6 +2749,112 @@ func (c *AuditManager) GetEvidenceByEvidenceFolderPagesWithContext(ctx aws.Conte
 	return p.Err()
 }
 
+const opGetEvidenceFileUploadUrl = "GetEvidenceFileUploadUrl"
+
+// GetEvidenceFileUploadUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GetEvidenceFileUploadUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEvidenceFileUploadUrl for more information on using the GetEvidenceFileUploadUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEvidenceFileUploadUrlRequest method.
+//	req, resp := client.GetEvidenceFileUploadUrlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/GetEvidenceFileUploadUrl
+func (c *AuditManager) GetEvidenceFileUploadUrlRequest(input *GetEvidenceFileUploadUrlInput) (req *request.Request, output *GetEvidenceFileUploadUrlOutput) {
+	op := &request.Operation{
+		Name:       opGetEvidenceFileUploadUrl,
+		HTTPMethod: "GET",
+		HTTPPath:   "/evidenceFileUploadUrl",
+	}
+
+	if input == nil {
+		input = &GetEvidenceFileUploadUrlInput{}
+	}
+
+	output = &GetEvidenceFileUploadUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEvidenceFileUploadUrl API operation for AWS Audit Manager.
+//
+// Creates a presigned Amazon S3 URL that can be used to upload a file as manual
+// evidence. For instructions on how to use this operation, see Upload a file
+// from your browser (https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#how-to-upload-manual-evidence-files)
+// in the Audit Manager User Guide.
+//
+// The following restrictions apply to this operation:
+//
+//   - Maximum size of an individual evidence file: 100 MB
+//
+//   - Number of daily manual evidence uploads per control: 100
+//
+//   - Supported file formats: See Supported file types for manual evidence
+//     (https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#supported-manual-evidence-files)
+//     in the Audit Manager User Guide
+//
+// For more information about Audit Manager service restrictions, see Quotas
+// and restrictions for Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation GetEvidenceFileUploadUrl for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has invalid or missing parameters.
+//
+//   - AccessDeniedException
+//     Your account isn't registered with Audit Manager. Check the delegated administrator
+//     setup on the Audit Manager settings page, and try again.
+//
+//   - InternalServerException
+//     An internal service error occurred during the processing of your request.
+//     Try again later.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/GetEvidenceFileUploadUrl
+func (c *AuditManager) GetEvidenceFileUploadUrl(input *GetEvidenceFileUploadUrlInput) (*GetEvidenceFileUploadUrlOutput, error) {
+	req, out := c.GetEvidenceFileUploadUrlRequest(input)
+	return out, req.Send()
+}
+
+// GetEvidenceFileUploadUrlWithContext is the same as GetEvidenceFileUploadUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEvidenceFileUploadUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) GetEvidenceFileUploadUrlWithContext(ctx aws.Context, input *GetEvidenceFileUploadUrlInput, opts ...request.Option) (*GetEvidenceFileUploadUrlOutput, error) {
+	req, out := c.GetEvidenceFileUploadUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEvidenceFolder = "GetEvidenceFolder"
 
 // GetEvidenceFolderRequest generates a "aws/request.Request" representing the
@@ -2783,7 +2898,7 @@ func (c *AuditManager) GetEvidenceFolderRequest(input *GetEvidenceFolderInput) (
 
 // GetEvidenceFolder API operation for AWS Audit Manager.
 //
-// Returns an evidence folder from the specified assessment in Audit Manager.
+// Gets an evidence folder from a specified assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2879,7 +2994,7 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentRequest(input *GetEvidenceF
 
 // GetEvidenceFoldersByAssessment API operation for AWS Audit Manager.
 //
-// Returns the evidence folders from a specified assessment in Audit Manager.
+// Gets the evidence folders from a specified assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3026,7 +3141,7 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentControlRequest(input *GetEv
 
 // GetEvidenceFoldersByAssessmentControl API operation for AWS Audit Manager.
 //
-// Returns a list of evidence folders that are associated with a specified control
+// Gets a list of evidence folders that are associated with a specified control
 // in an Audit Manager assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3342,8 +3457,8 @@ func (c *AuditManager) GetOrganizationAdminAccountRequest(input *GetOrganization
 
 // GetOrganizationAdminAccount API operation for AWS Audit Manager.
 //
-// Returns the name of the delegated Amazon Web Services administrator account
-// for the organization.
+// Gets the name of the delegated Amazon Web Services administrator account
+// for a specified organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3433,7 +3548,7 @@ func (c *AuditManager) GetServicesInScopeRequest(input *GetServicesInScopeInput)
 
 // GetServicesInScope API operation for AWS Audit Manager.
 //
-// Returns a list of all of the Amazon Web Services that you can choose to include
+// Gets a list of all of the Amazon Web Services that you can choose to include
 // in your assessment. When you create an assessment (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessment.html),
 // specify which of these services you want to include to narrow the assessment's
 // scope (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Scope.html).
@@ -3523,7 +3638,7 @@ func (c *AuditManager) GetSettingsRequest(input *GetSettingsInput) (req *request
 
 // GetSettings API operation for AWS Audit Manager.
 //
-// Returns the settings for the specified Amazon Web Services account.
+// Gets the settings for a specified Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8047,7 +8162,7 @@ func (s *AssessmentReportMetadata) SetStatus(v string) *AssessmentReportMetadata
 type AssessmentReportsDestination struct {
 	_ struct{} `type:"structure"`
 
-	// The destination of the assessment report.
+	// The destination bucket where Audit Manager stores assessment reports.
 	Destination *string `locationName:"destination" min:"1" type:"string"`
 
 	// The destination type, such as Amazon S3.
@@ -9049,7 +9164,7 @@ type Control struct {
 	// The steps that you should follow to determine if the control has been satisfied.
 	TestingInformation *string `locationName:"testingInformation" type:"string"`
 
-	// The type of control, such as a custom control or a standard control.
+	// Specifies whether the control is a standard control or a custom control.
 	Type *string `locationName:"type" type:"string" enum:"ControlType"`
 }
 
@@ -9439,22 +9554,27 @@ type ControlMappingSource struct {
 	// The description of the source.
 	SourceDescription *string `locationName:"sourceDescription" type:"string"`
 
-	// The frequency of evidence collection for the control mapping source.
+	// Specifies how often evidence is collected from the control mapping source.
 	SourceFrequency *string `locationName:"sourceFrequency" type:"string" enum:"SourceFrequency"`
 
 	// The unique identifier for the source.
 	SourceId *string `locationName:"sourceId" min:"36" type:"string"`
 
-	// The keyword to search for in CloudTrail logs, Config rules, Security Hub
-	// checks, and Amazon Web Services API names.
+	// A keyword that relates to the control data source.
+	//
+	// For manual evidence, this keyword indicates if the manual evidence is a file
+	// or text.
+	//
+	// For automated evidence, this keyword identifies a specific CloudTrail event,
+	// Config rule, Security Hub control, or Amazon Web Services API name.
 	//
 	// To learn more about the supported keywords that you can use when mapping
 	// a control data source, see the following pages in the Audit Manager User
 	// Guide:
 	//
-	//    * Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
+	//    * Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
 	//
-	//    * Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
+	//    * Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
 	//
 	//    * API calls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html)
 	//
@@ -10396,19 +10516,24 @@ type CreateControlMappingSource struct {
 	// evidence from for the control.
 	SourceDescription *string `locationName:"sourceDescription" type:"string"`
 
-	// The frequency of evidence collection for the control mapping source.
+	// Specifies how often evidence is collected from the control mapping source.
 	SourceFrequency *string `locationName:"sourceFrequency" type:"string" enum:"SourceFrequency"`
 
-	// The keyword to search for in CloudTrail logs, Config rules, Security Hub
-	// checks, and Amazon Web Services API names.
+	// A keyword that relates to the control data source.
+	//
+	// For manual evidence, this keyword indicates if the manual evidence is a file
+	// or text.
+	//
+	// For automated evidence, this keyword identifies a specific CloudTrail event,
+	// Config rule, Security Hub control, or Amazon Web Services API name.
 	//
 	// To learn more about the supported keywords that you can use when mapping
 	// a control data source, see the following pages in the Audit Manager User
 	// Guide:
 	//
-	//    * Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
+	//    * Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
 	//
-	//    * Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
+	//    * Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
 	//
 	//    * API calls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html)
 	//
@@ -10617,6 +10742,61 @@ func (s *CreateDelegationRequest) SetRoleArn(v string) *CreateDelegationRequest 
 // SetRoleType sets the RoleType field's value.
 func (s *CreateDelegationRequest) SetRoleType(v string) *CreateDelegationRequest {
 	s.RoleType = &v
+	return s
+}
+
+// The default s3 bucket where Audit Manager saves the files that you export
+// from evidence finder.
+type DefaultExportDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The destination bucket where Audit Manager stores exported files.
+	Destination *string `locationName:"destination" min:"1" type:"string"`
+
+	// The destination type, such as Amazon S3.
+	DestinationType *string `locationName:"destinationType" type:"string" enum:"ExportDestinationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultExportDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultExportDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultExportDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultExportDestination"}
+	if s.Destination != nil && len(*s.Destination) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Destination", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *DefaultExportDestination) SetDestination(v string) *DefaultExportDestination {
+	s.Destination = &v
+	return s
+}
+
+// SetDestinationType sets the DestinationType field's value.
+func (s *DefaultExportDestination) SetDestinationType(v string) *DefaultExportDestination {
+	s.DestinationType = &v
 	return s
 }
 
@@ -11825,14 +12005,13 @@ type Framework struct {
 	// The Amazon Resource Name (ARN) of the framework.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The compliance type that the new custom framework supports, such as CIS or
-	// HIPAA.
+	// The compliance type that the framework supports, such as CIS or HIPAA.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
 
 	// The control sets that are associated with the framework.
 	ControlSets []*ControlSet `locationName:"controlSets" min:"1" type:"list"`
 
-	// The sources that Audit Manager collects evidence from for the control.
+	// The control data sources where Audit Manager collects evidence from.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
 	// The time when the framework was created.
@@ -11862,7 +12041,7 @@ type Framework struct {
 	// The tags that are associated with the framework.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The framework type, such as a custom framework or a standard framework.
+	// Specifies whether the framework is a standard framework or a custom framework.
 	Type *string `locationName:"type" type:"string" enum:"FrameworkType"`
 }
 
@@ -12540,7 +12719,7 @@ func (s *GetControlInput) SetControlId(v string) *GetControlInput {
 type GetControlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the control that the GetControl API returned.
+	// The details of the control that the GetControl API returned.
 	Control *Control `locationName:"control" type:"structure"`
 }
 
@@ -12810,6 +12989,98 @@ func (s *GetEvidenceByEvidenceFolderOutput) SetEvidence(v []*Evidence) *GetEvide
 // SetNextToken sets the NextToken field's value.
 func (s *GetEvidenceByEvidenceFolderOutput) SetNextToken(v string) *GetEvidenceByEvidenceFolderOutput {
 	s.NextToken = &v
+	return s
+}
+
+type GetEvidenceFileUploadUrlInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The file that you want to upload. For a list of supported file formats, see
+	// Supported file types for manual evidence (https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#supported-manual-evidence-files)
+	// in the Audit Manager User Guide.
+	//
+	// FileName is a required field
+	FileName *string `location:"querystring" locationName:"fileName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEvidenceFileUploadUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEvidenceFileUploadUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEvidenceFileUploadUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEvidenceFileUploadUrlInput"}
+	if s.FileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileName"))
+	}
+	if s.FileName != nil && len(*s.FileName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileName sets the FileName field's value.
+func (s *GetEvidenceFileUploadUrlInput) SetFileName(v string) *GetEvidenceFileUploadUrlInput {
+	s.FileName = &v
+	return s
+}
+
+type GetEvidenceFileUploadUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the uploaded manual evidence file that the presigned URL was
+	// generated for.
+	EvidenceFileName *string `locationName:"evidenceFileName" min:"1" type:"string"`
+
+	// The presigned URL that was generated.
+	UploadUrl *string `locationName:"uploadUrl" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEvidenceFileUploadUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEvidenceFileUploadUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvidenceFileName sets the EvidenceFileName field's value.
+func (s *GetEvidenceFileUploadUrlOutput) SetEvidenceFileName(v string) *GetEvidenceFileUploadUrlOutput {
+	s.EvidenceFileName = &v
+	return s
+}
+
+// SetUploadUrl sets the UploadUrl field's value.
+func (s *GetEvidenceFileUploadUrlOutput) SetUploadUrl(v string) *GetEvidenceFileUploadUrlOutput {
+	s.UploadUrl = &v
 	return s
 }
 
@@ -14264,7 +14535,8 @@ func (s *ListAssessmentFrameworksInput) SetNextToken(v string) *ListAssessmentFr
 type ListAssessmentFrameworksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of metadata objects for the framework.
+	// A list of metadata that the ListAssessmentFrameworks API returns for each
+	// framework.
 	FrameworkMetadataList []*AssessmentFrameworkMetadata `locationName:"frameworkMetadataList" type:"list"`
 
 	// The pagination token that's used to fetch the next set of results.
@@ -14467,7 +14739,7 @@ func (s *ListAssessmentsInput) SetStatus(v string) *ListAssessmentsInput {
 type ListAssessmentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The metadata that's associated with the assessment.
+	// The metadata that the ListAssessments API returns for each assessment.
 	AssessmentMetadata []*AssessmentMetadataItem `locationName:"assessmentMetadata" type:"list"`
 
 	// The pagination token that's used to fetch the next set of results.
@@ -14906,7 +15178,7 @@ func (s *ListControlsInput) SetNextToken(v string) *ListControlsInput {
 type ListControlsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of control metadata objects that the ListControls API returned.
+	// A list of metadata that the ListControls API returns for each control.
 	ControlMetadataList []*ControlMetadata `locationName:"controlMetadataList" type:"list"`
 
 	// The pagination token that's used to fetch the next set of results.
@@ -15231,12 +15503,21 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Evidence that's uploaded to Audit Manager manually.
+// Evidence that's manually added to a control in Audit Manager. manualEvidence
+// can be one of the following: evidenceFileName, s3ResourcePath, or textResponse.
 type ManualEvidence struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon S3 URL that points to a manual evidence object.
+	// The name of the file that's uploaded as manual evidence. This name is populated
+	// using the evidenceFileName value from the GetEvidenceFileUploadUrl (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidenceFileUploadUrl.html)
+	// API response.
+	EvidenceFileName *string `locationName:"evidenceFileName" min:"1" type:"string"`
+
+	// The S3 URL of the object that's imported as manual evidence.
 	S3ResourcePath *string `locationName:"s3ResourcePath" min:"1" type:"string"`
+
+	// The plain text response that's entered and saved as manual evidence.
+	TextResponse *string `locationName:"textResponse" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -15260,8 +15541,14 @@ func (s ManualEvidence) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ManualEvidence) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ManualEvidence"}
+	if s.EvidenceFileName != nil && len(*s.EvidenceFileName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvidenceFileName", 1))
+	}
 	if s.S3ResourcePath != nil && len(*s.S3ResourcePath) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("S3ResourcePath", 1))
+	}
+	if s.TextResponse != nil && len(*s.TextResponse) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextResponse", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15270,9 +15557,21 @@ func (s *ManualEvidence) Validate() error {
 	return nil
 }
 
+// SetEvidenceFileName sets the EvidenceFileName field's value.
+func (s *ManualEvidence) SetEvidenceFileName(v string) *ManualEvidence {
+	s.EvidenceFileName = &v
+	return s
+}
+
 // SetS3ResourcePath sets the S3ResourcePath field's value.
 func (s *ManualEvidence) SetS3ResourcePath(v string) *ManualEvidence {
 	s.S3ResourcePath = &v
+	return s
+}
+
+// SetTextResponse sets the TextResponse field's value.
+func (s *ManualEvidence) SetTextResponse(v string) *ManualEvidence {
+	s.TextResponse = &v
 	return s
 }
 
@@ -15962,8 +16261,11 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type Settings struct {
 	_ struct{} `type:"structure"`
 
-	// The default storage destination for assessment reports.
+	// The default S3 destination bucket for storing assessment reports.
 	DefaultAssessmentReportsDestination *AssessmentReportsDestination `locationName:"defaultAssessmentReportsDestination" type:"structure"`
+
+	// The default S3 destination bucket for storing evidence finder exports.
+	DefaultExportDestination *DefaultExportDestination `locationName:"defaultExportDestination" type:"structure"`
 
 	// The designated default audit owners.
 	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list"`
@@ -16009,6 +16311,12 @@ func (s *Settings) SetDefaultAssessmentReportsDestination(v *AssessmentReportsDe
 	return s
 }
 
+// SetDefaultExportDestination sets the DefaultExportDestination field's value.
+func (s *Settings) SetDefaultExportDestination(v *DefaultExportDestination) *Settings {
+	s.DefaultExportDestination = v
+	return s
+}
+
 // SetDefaultProcessOwners sets the DefaultProcessOwners field's value.
 func (s *Settings) SetDefaultProcessOwners(v []*Role) *Settings {
 	s.DefaultProcessOwners = v
@@ -16045,16 +16353,21 @@ func (s *Settings) SetSnsTopic(v string) *Settings {
 	return s
 }
 
-// The keyword to search for in CloudTrail logs, Config rules, Security Hub
-// checks, and Amazon Web Services API names.
+// A keyword that relates to the control data source.
+//
+// For manual evidence, this keyword indicates if the manual evidence is a file
+// or text.
+//
+// For automated evidence, this keyword identifies a specific CloudTrail event,
+// Config rule, Security Hub control, or Amazon Web Services API name.
 //
 // To learn more about the supported keywords that you can use when mapping
 // a control data source, see the following pages in the Audit Manager User
 // Guide:
 //
-//   - Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
+//   - Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
 //
-//   - Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
+//   - Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
 //
 //   - API calls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html)
 //
@@ -16063,6 +16376,17 @@ type SourceKeyword struct {
 	_ struct{} `type:"structure"`
 
 	// The input method for the keyword.
+	//
+	//    * SELECT_FROM_LIST is used when mapping a data source for automated evidence.
+	//    When keywordInputType is SELECT_FROM_LIST, a keyword must be selected
+	//    to collect automated evidence. For example, this keyword can be a CloudTrail
+	//    event name, a rule name for Config, a Security Hub control, or the name
+	//    of an Amazon Web Services API call.
+	//
+	//    * UPLOAD_FILE and INPUT_TEXT are only used when mapping a data source
+	//    for manual evidence. When keywordInputType is UPLOAD_FILE, a file must
+	//    be uploaded as manual evidence. When keywordInputType is INPUT_TEXT, text
+	//    must be entered as manual evidence.
 	KeywordInputType *string `locationName:"keywordInputType" type:"string" enum:"KeywordInputType"`
 
 	// The value of the keyword that's used when mapping a control data source.
@@ -16075,21 +16399,58 @@ type SourceKeyword struct {
 	//    * For managed rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html),
 	//    you can use the rule identifier as the keywordValue. You can find the
 	//    rule identifier from the list of Config managed rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
-	//    Managed rule name: s3-bucket-acl-prohibited (https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-acl-prohibited.html)
+	//    For some rules, the rule identifier is different from the rule name. For
+	//    example, the rule name restricted-ssh has the following rule identifier:
+	//    INCOMING_SSH_DISABLED. Make sure to use the rule identifier, not the rule
+	//    name. Keyword example for managed rules: Managed rule name: s3-bucket-acl-prohibited
+	//    (https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-acl-prohibited.html)
 	//    keywordValue: S3_BUCKET_ACL_PROHIBITED
 	//
 	//    * For custom rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html),
 	//    you form the keywordValue by adding the Custom_ prefix to the rule name.
-	//    This prefix distinguishes the rule from a managed rule. Custom rule name:
-	//    my-custom-config-rule keywordValue: Custom_my-custom-config-rule
+	//    This prefix distinguishes the custom rule from a managed rule. Keyword
+	//    example for custom rules: Custom rule name: my-custom-config-rule keywordValue:
+	//    Custom_my-custom-config-rule
 	//
 	//    * For service-linked rules (https://docs.aws.amazon.com/config/latest/developerguide/service-linked-awsconfig-rules.html),
 	//    you form the keywordValue by adding the Custom_ prefix to the rule name.
 	//    In addition, you remove the suffix ID that appears at the end of the rule
-	//    name. Service-linked rule name: CustomRuleForAccount-conformance-pack-szsm1uv0w
-	//    keywordValue: Custom_CustomRuleForAccount-conformance-pack Service-linked
-	//    rule name: OrgConfigRule-s3-bucket-versioning-enabled-dbgzf8ba keywordValue:
-	//    Custom_OrgConfigRule-s3-bucket-versioning-enabled
+	//    name. Keyword examples for service-linked rules: Service-linked rule name:
+	//    CustomRuleForAccount-conformance-pack-szsm1uv0w keywordValue: Custom_CustomRuleForAccount-conformance-pack
+	//    Service-linked rule name: OrgConfigRule-s3-bucket-versioning-enabled-dbgzf8ba
+	//    keywordValue: Custom_OrgConfigRule-s3-bucket-versioning-enabled
+	//
+	// The keywordValue is case sensitive. If you enter a value incorrectly, Audit
+	// Manager might not recognize the data source mapping. As a result, you might
+	// not successfully collect evidence from that data source as intended.
+	//
+	// Keep in mind the following requirements, depending on the data source type
+	// that you're using.
+	//
+	// For Config:
+	//
+	//    * For managed rules, make sure that the keywordValue is the rule identifier
+	//    in ALL_CAPS_WITH_UNDERSCORES. For example, CLOUDWATCH_LOG_GROUP_ENCRYPTED.
+	//    For accuracy, we recommend that you reference the list of supported Config
+	//    managed rules (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html).
+	//
+	//    * For custom rules, make sure that the keywordValue has the Custom_ prefix
+	//    followed by the custom rule name. The format of the custom rule name itself
+	//    may vary. For accuracy, we recommend that you visit the Config console
+	//    (https://console.aws.amazon.com/config/) to verify your custom rule name.
+	//
+	// For Security Hub: The format varies for Security Hub control names. For accuracy,
+	// we recommend that you reference the list of supported Security Hub controls
+	// (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html).
+	//
+	// For Amazon Web Services API calls: Make sure that the keywordValue is written
+	// as serviceprefix_ActionName. For example, iam_ListGroups. For accuracy, we
+	// recommend that you reference the list of supported API calls (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html).
+	//
+	// For CloudTrail: Make sure that the keywordValue is written as serviceprefix_ActionName.
+	// For example, cloudtrail_StartLogging. For accuracy, we recommend that you
+	// review the Amazon Web Service prefix and action names in the Service Authorization
+	// Reference (https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html).
 	KeywordValue *string `locationName:"keywordValue" min:"1" type:"string"`
 }
 
@@ -17551,8 +17912,11 @@ func (s *UpdateControlOutput) SetControl(v *Control) *UpdateControlOutput {
 type UpdateSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The default storage destination for assessment reports.
+	// The default S3 destination bucket for storing assessment reports.
 	DefaultAssessmentReportsDestination *AssessmentReportsDestination `locationName:"defaultAssessmentReportsDestination" type:"structure"`
+
+	// The default S3 destination bucket for storing evidence finder exports.
+	DefaultExportDestination *DefaultExportDestination `locationName:"defaultExportDestination" type:"structure"`
 
 	// A list of the default audit owners.
 	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list"`
@@ -17612,6 +17976,11 @@ func (s *UpdateSettingsInput) Validate() error {
 			invalidParams.AddNested("DefaultAssessmentReportsDestination", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DefaultExportDestination != nil {
+		if err := s.DefaultExportDestination.Validate(); err != nil {
+			invalidParams.AddNested("DefaultExportDestination", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DefaultProcessOwners != nil {
 		for i, v := range s.DefaultProcessOwners {
 			if v == nil {
@@ -17632,6 +18001,12 @@ func (s *UpdateSettingsInput) Validate() error {
 // SetDefaultAssessmentReportsDestination sets the DefaultAssessmentReportsDestination field's value.
 func (s *UpdateSettingsInput) SetDefaultAssessmentReportsDestination(v *AssessmentReportsDestination) *UpdateSettingsInput {
 	s.DefaultAssessmentReportsDestination = v
+	return s
+}
+
+// SetDefaultExportDestination sets the DefaultExportDestination field's value.
+func (s *UpdateSettingsInput) SetDefaultExportDestination(v *DefaultExportDestination) *UpdateSettingsInput {
+	s.DefaultExportDestination = v
 	return s
 }
 
@@ -18198,6 +18573,18 @@ func EvidenceFinderEnablementStatus_Values() []string {
 }
 
 const (
+	// ExportDestinationTypeS3 is a ExportDestinationType enum value
+	ExportDestinationTypeS3 = "S3"
+)
+
+// ExportDestinationType_Values returns all elements of the ExportDestinationType enum
+func ExportDestinationType_Values() []string {
+	return []string{
+		ExportDestinationTypeS3,
+	}
+}
+
+const (
 	// FrameworkTypeStandard is a FrameworkType enum value
 	FrameworkTypeStandard = "Standard"
 
@@ -18216,12 +18603,20 @@ func FrameworkType_Values() []string {
 const (
 	// KeywordInputTypeSelectFromList is a KeywordInputType enum value
 	KeywordInputTypeSelectFromList = "SELECT_FROM_LIST"
+
+	// KeywordInputTypeUploadFile is a KeywordInputType enum value
+	KeywordInputTypeUploadFile = "UPLOAD_FILE"
+
+	// KeywordInputTypeInputText is a KeywordInputType enum value
+	KeywordInputTypeInputText = "INPUT_TEXT"
 )
 
 // KeywordInputType_Values returns all elements of the KeywordInputType enum
 func KeywordInputType_Values() []string {
 	return []string{
 		KeywordInputTypeSelectFromList,
+		KeywordInputTypeUploadFile,
+		KeywordInputTypeInputText,
 	}
 }
 
@@ -18290,6 +18685,9 @@ const (
 
 	// SettingAttributeDeregistrationPolicy is a SettingAttribute enum value
 	SettingAttributeDeregistrationPolicy = "DEREGISTRATION_POLICY"
+
+	// SettingAttributeDefaultExportDestination is a SettingAttribute enum value
+	SettingAttributeDefaultExportDestination = "DEFAULT_EXPORT_DESTINATION"
 )
 
 // SettingAttribute_Values returns all elements of the SettingAttribute enum
@@ -18302,6 +18700,7 @@ func SettingAttribute_Values() []string {
 		SettingAttributeDefaultProcessOwners,
 		SettingAttributeEvidenceFinderEnablement,
 		SettingAttributeDeregistrationPolicy,
+		SettingAttributeDefaultExportDestination,
 	}
 }
 

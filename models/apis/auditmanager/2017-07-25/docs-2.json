@@ -7,7 +7,7 @@
     "BatchCreateDelegationByAssessment": "<p> Creates a batch of delegations for an assessment in Audit Manager. </p>",
     "BatchDeleteDelegationByAssessment": "<p> Deletes a batch of delegations for an assessment in Audit Manager. </p>",
     "BatchDisassociateAssessmentReportEvidence": "<p> Disassociates a list of evidence from an assessment report in Audit Manager. </p>",
-    "BatchImportEvidenceToAssessmentControl": "<p>Uploads one or more pieces of evidence to a control in an Audit Manager assessment. You can upload manual evidence from any Amazon Simple Storage Service (Amazon S3) bucket by specifying the S3 URI of the evidence. </p> <p>You must upload manual evidence to your S3 bucket before you can upload it to your assessment. For instructions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html\">PutObject</a> in the <i>Amazon Simple Storage Service API Reference.</i> </p> <p>The following restrictions apply to this action:</p> <ul> <li> <p>Maximum size of an individual evidence file: 100 MB</p> </li> <li> <p>Number of daily manual evidence uploads per control: 100</p> </li> <li> <p>Supported file formats: See <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#supported-manual-evidence-files\">Supported file types for manual evidence</a> in the <i>Audit Manager User Guide</i> </p> </li> </ul> <p>For more information about Audit Manager service restrictions, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html\">Quotas and restrictions for Audit Manager</a>.</p>",
+    "BatchImportEvidenceToAssessmentControl": "<p>Adds one or more pieces of evidence to a control in an Audit Manager assessment. </p> <p>You can import manual evidence from any S3 bucket by specifying the S3 URI of the object. You can also upload a file from your browser, or enter plain text in response to a risk assessment question. </p> <p>The following restrictions apply to this action:</p> <ul> <li> <p> <code>manualEvidence</code> can be only one of the following: <code>evidenceFileName</code>, <code>s3ResourcePath</code>, or <code>textResponse</code> </p> </li> <li> <p>Maximum size of an individual evidence file: 100 MB</p> </li> <li> <p>Number of daily manual evidence uploads per control: 100</p> </li> <li> <p>Supported file formats: See <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#supported-manual-evidence-files\">Supported file types for manual evidence</a> in the <i>Audit Manager User Guide</i> </p> </li> </ul> <p>For more information about Audit Manager service restrictions, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html\">Quotas and restrictions for Audit Manager</a>.</p>",
     "CreateAssessment": "<p> Creates an assessment in Audit Manager. </p>",
     "CreateAssessmentFramework": "<p> Creates a custom framework in Audit Manager. </p>",
     "CreateAssessmentReport": "<p> Creates an assessment report for the specified assessment. </p>",
@@ -16,27 +16,28 @@
     "DeleteAssessmentFramework": "<p> Deletes a custom framework in Audit Manager. </p>",
     "DeleteAssessmentFrameworkShare": "<p> Deletes a share request for a custom framework in Audit Manager. </p>",
     "DeleteAssessmentReport": "<p>Deletes an assessment report in Audit Manager. </p> <p>When you run the <code>DeleteAssessmentReport</code> operation, Audit Manager attempts to delete the following data:</p> <ol> <li> <p>The specified assessment report that’s stored in your S3 bucket</p> </li> <li> <p>The associated metadata that’s stored in Audit Manager</p> </li> </ol> <p>If Audit Manager can’t access the assessment report in your S3 bucket, the report isn’t deleted. In this event, the <code>DeleteAssessmentReport</code> operation doesn’t fail. Instead, it proceeds to delete the associated metadata only. You must then delete the assessment report from the S3 bucket yourself. </p> <p>This scenario happens when Audit Manager receives a <code>403 (Forbidden)</code> or <code>404 (Not Found)</code> error from Amazon S3. To avoid this, make sure that your S3 bucket is available, and that you configured the correct permissions for Audit Manager to delete resources in your S3 bucket. For an example permissions policy that you can use, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/security_iam_id-based-policy-examples.html#full-administrator-access-assessment-report-destination\">Assessment report destination permissions</a> in the <i>Audit Manager User Guide</i>. For information about the issues that could cause a <code>403 (Forbidden)</code> or <code>404 (Not Found</code>) error from Amazon S3, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList\">List of Error Codes</a> in the <i>Amazon Simple Storage Service API Reference</i>. </p>",
-    "DeleteControl": "<p> Deletes a custom control in Audit Manager. </p>",
+    "DeleteControl": "<p> Deletes a custom control in Audit Manager. </p> <important> <p>When you invoke this operation, the custom control is deleted from any frameworks or assessments that it’s currently part of. As a result, Audit Manager will stop collecting evidence for that custom control in all of your assessments. This includes assessments that you previously created before you deleted the custom control.</p> </important>",
     "DeregisterAccount": "<p> Deregisters an account in Audit Manager. </p> <note> <p>Before you deregister, you can use the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateSettings.html\">UpdateSettings</a> API operation to set your preferred data retention policy. By default, Audit Manager retains your data. If you want to delete your data, you can use the <code>DeregistrationPolicy</code> attribute to request the deletion of your data. </p> <p>For more information about data retention, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/data-protection.html\">Data Protection</a> in the <i>Audit Manager User Guide</i>. </p> </note>",
     "DeregisterOrganizationAdminAccount": "<p>Removes the specified Amazon Web Services account as a delegated administrator for Audit Manager. </p> <p>When you remove a delegated administrator from your Audit Manager settings, you continue to have access to the evidence that you previously collected under that account. This is also the case when you deregister a delegated administrator from Organizations. However, Audit Manager stops collecting and attaching evidence to that delegated administrator account moving forward.</p> <important> <p>Keep in mind the following cleanup task if you use evidence finder:</p> <p>Before you use your management account to remove a delegated administrator, make sure that the current delegated administrator account signs in to Audit Manager and disables evidence finder first. Disabling evidence finder automatically deletes the event data store that was created in their account when they enabled evidence finder. If this task isn’t completed, the event data store remains in their account. In this case, we recommend that the original delegated administrator goes to CloudTrail Lake and manually <a href=\"https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-eds-disable-termination.html\">deletes the event data store</a>.</p> <p>This cleanup task is necessary to ensure that you don't end up with multiple event data stores. Audit Manager ignores an unused event data store after you remove or change a delegated administrator account. However, the unused event data store continues to incur storage costs from CloudTrail Lake if you don't delete it.</p> </important> <p>When you deregister a delegated administrator account for Audit Manager, the data for that account isn’t deleted. If you want to delete resource data for a delegated administrator account, you must perform that task separately before you deregister the account. Either, you can do this in the Audit Manager console. Or, you can use one of the delete API operations that are provided by Audit Manager. </p> <p>To delete your Audit Manager resource data, see the following instructions: </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessment.html\">DeleteAssessment</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-assessment.html\">Deleting an assessment</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFramework.html\">DeleteAssessmentFramework</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-custom-framework.html\">Deleting a custom framework</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFrameworkShare.html\">DeleteAssessmentFrameworkShare</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/deleting-shared-framework-requests.html\">Deleting a share request</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentReport.html\">DeleteAssessmentReport</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#delete-assessment-report-steps\">Deleting an assessment report</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteControl.html\">DeleteControl</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-controls.html\">Deleting a custom control</a> in the <i>Audit Manager User Guide</i>)</p> </li> </ul> <p>At this time, Audit Manager doesn't provide an option to delete evidence for a specific delegated administrator. Instead, when your management account deregisters Audit Manager, we perform a cleanup for the current delegated administrator account at the time of deregistration.</p>",
     "DisassociateAssessmentReportEvidenceFolder": "<p> Disassociates an evidence folder from the specified assessment report in Audit Manager. </p>",
-    "GetAccountStatus": "<p> Returns the registration status of an account in Audit Manager. </p>",
-    "GetAssessment": "<p>Returns an assessment from Audit Manager. </p>",
-    "GetAssessmentFramework": "<p>Returns a framework from Audit Manager. </p>",
-    "GetAssessmentReportUrl": "<p> Returns the URL of an assessment report in Audit Manager. </p>",
-    "GetChangeLogs": "<p> Returns a list of changelogs from Audit Manager. </p>",
-    "GetControl": "<p> Returns a control from Audit Manager. </p>",
-    "GetDelegations": "<p> Returns a list of delegations from an audit owner to a delegate. </p>",
-    "GetEvidence": "<p> Returns evidence from Audit Manager. </p>",
-    "GetEvidenceByEvidenceFolder": "<p> Returns all evidence from a specified evidence folder in Audit Manager. </p>",
-    "GetEvidenceFolder": "<p> Returns an evidence folder from the specified assessment in Audit Manager. </p>",
-    "GetEvidenceFoldersByAssessment": "<p> Returns the evidence folders from a specified assessment in Audit Manager. </p>",
-    "GetEvidenceFoldersByAssessmentControl": "<p> Returns a list of evidence folders that are associated with a specified control in an Audit Manager assessment. </p>",
+    "GetAccountStatus": "<p> Gets the registration status of an account in Audit Manager. </p>",
+    "GetAssessment": "<p>Gets information about a specified assessment. </p>",
+    "GetAssessmentFramework": "<p>Gets information about a specified framework.</p>",
+    "GetAssessmentReportUrl": "<p> Gets the URL of an assessment report in Audit Manager. </p>",
+    "GetChangeLogs": "<p> Gets a list of changelogs from Audit Manager. </p>",
+    "GetControl": "<p> Gets information about a specified control.</p>",
+    "GetDelegations": "<p> Gets a list of delegations from an audit owner to a delegate. </p>",
+    "GetEvidence": "<p> Gets information about a specified evidence item.</p>",
+    "GetEvidenceByEvidenceFolder": "<p> Gets all evidence from a specified evidence folder in Audit Manager. </p>",
+    "GetEvidenceFileUploadUrl": "<p>Creates a presigned Amazon S3 URL that can be used to upload a file as manual evidence. For instructions on how to use this operation, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#how-to-upload-manual-evidence-files\">Upload a file from your browser </a> in the <i>Audit Manager User Guide</i>.</p> <p>The following restrictions apply to this operation:</p> <ul> <li> <p>Maximum size of an individual evidence file: 100 MB</p> </li> <li> <p>Number of daily manual evidence uploads per control: 100</p> </li> <li> <p>Supported file formats: See <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#supported-manual-evidence-files\">Supported file types for manual evidence</a> in the <i>Audit Manager User Guide</i> </p> </li> </ul> <p>For more information about Audit Manager service restrictions, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html\">Quotas and restrictions for Audit Manager</a>.</p>",
+    "GetEvidenceFolder": "<p> Gets an evidence folder from a specified assessment in Audit Manager. </p>",
+    "GetEvidenceFoldersByAssessment": "<p> Gets the evidence folders from a specified assessment in Audit Manager. </p>",
+    "GetEvidenceFoldersByAssessmentControl": "<p> Gets a list of evidence folders that are associated with a specified control in an Audit Manager assessment. </p>",
     "GetInsights": "<p>Gets the latest analytics data for all your current active assessments. </p>",
     "GetInsightsByAssessment": "<p>Gets the latest analytics data for a specific active assessment. </p>",
-    "GetOrganizationAdminAccount": "<p> Returns the name of the delegated Amazon Web Services administrator account for the organization. </p>",
-    "GetServicesInScope": "<p>Returns a list of all of the Amazon Web Services that you can choose to include in your assessment. When you <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessment.html\">create an assessment</a>, specify which of these services you want to include to narrow the assessment's <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Scope.html\">scope</a>.</p>",
-    "GetSettings": "<p> Returns the settings for the specified Amazon Web Services account. </p>",
+    "GetOrganizationAdminAccount": "<p> Gets the name of the delegated Amazon Web Services administrator account for a specified organization. </p>",
+    "GetServicesInScope": "<p>Gets a list of all of the Amazon Web Services that you can choose to include in your assessment. When you <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessment.html\">create an assessment</a>, specify which of these services you want to include to narrow the assessment's <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Scope.html\">scope</a>.</p>",
+    "GetSettings": "<p> Gets the settings for a specified Amazon Web Services account. </p>",
     "ListAssessmentControlInsightsByControlDomain": "<p>Lists the latest analytics data for controls within a specific control domain and a specific active assessment.</p> <note> <p>Control insights are listed only if the control belongs to the control domain and assessment that was specified. Moreover, the control must have collected evidence on the <code>lastUpdated</code> date of <code>controlInsightsByAssessment</code>. If neither of these conditions are met, no data is listed for that control. </p> </note>",
     "ListAssessmentFrameworkShareRequests": "<p> Returns a list of sent or received share requests for custom frameworks in Audit Manager. </p>",
     "ListAssessmentFrameworks": "<p> Returns a list of the frameworks that are available in the Audit Manager framework library. </p>",
@@ -337,9 +338,9 @@
       "refs": {
         "AssessmentMetadata$assessmentReportsDestination": "<p> The destination that evidence reports are stored in for the assessment. </p>",
         "CreateAssessmentRequest$assessmentReportsDestination": "<p> The assessment report storage destination for the assessment that's being created. </p>",
-        "Settings$defaultAssessmentReportsDestination": "<p> The default storage destination for assessment reports. </p>",
+        "Settings$defaultAssessmentReportsDestination": "<p>The default S3 destination bucket for storing assessment reports.</p>",
         "UpdateAssessmentRequest$assessmentReportsDestination": "<p> The assessment report storage destination for the assessment that's being updated. </p>",
-        "UpdateSettingsRequest$defaultAssessmentReportsDestination": "<p> The default storage destination for assessment reports. </p>"
+        "UpdateSettingsRequest$defaultAssessmentReportsDestination": "<p> The default S3 destination bucket for storing assessment reports. </p>"
       }
     },
     "AssessmentReportsMetadata": {
@@ -501,7 +502,7 @@
         "AssessmentMetadata$complianceType": "<p> The name of the compliance standard that's related to the assessment, such as PCI-DSS. </p>",
         "AssessmentMetadataItem$complianceType": "<p> The name of the compliance standard that's related to the assessment, such as PCI-DSS. </p>",
         "CreateAssessmentFrameworkRequest$complianceType": "<p> The compliance type that the new custom framework supports, such as CIS or HIPAA. </p>",
-        "Framework$complianceType": "<p> The compliance type that the new custom framework supports, such as CIS or HIPAA. </p>",
+        "Framework$complianceType": "<p> The compliance type that the framework supports, such as CIS or HIPAA. </p>",
         "FrameworkMetadata$complianceType": "<p> The compliance standard that's associated with the framework. For example, this could be PCI DSS or HIPAA. </p>",
         "UpdateAssessmentFrameworkRequest$complianceType": "<p> The compliance type that the new custom framework supports, such as CIS or HIPAA. </p>"
       }
@@ -511,7 +512,7 @@
       "refs": {
         "Controls$member": null,
         "CreateControlResponse$control": "<p> The new control that the <code>CreateControl</code> API returned. </p>",
-        "GetControlResponse$control": "<p> The name of the control that the <code>GetControl</code> API returned. </p>",
+        "GetControlResponse$control": "<p> The details of the control that the <code>GetControl</code> API returned. </p>",
         "UpdateControlResponse$control": "<p> The name of the updated control set that the <code>UpdateControl</code> API returned. </p>"
       }
     },
@@ -602,7 +603,7 @@
     "ControlMetadataList": {
       "base": null,
       "refs": {
-        "ListControlsResponse$controlMetadataList": "<p> The list of control metadata objects that the <code>ListControls</code> API returned. </p>"
+        "ListControlsResponse$controlMetadataList": "<p> A list of metadata that the <code>ListControls</code> API returns for each control.</p>"
       }
     },
     "ControlName": {
@@ -678,7 +679,7 @@
       "refs": {
         "Control$controlSources": "<p> The data source types that determine where Audit Manager collects evidence from for the control. </p>",
         "ControlMetadata$controlSources": "<p> The data source that determines where Audit Manager collects evidence from for the control. </p>",
-        "Framework$controlSources": "<p> The sources that Audit Manager collects evidence from for the control. </p>"
+        "Framework$controlSources": "<p> The control data sources where Audit Manager collects evidence from.</p>"
       }
     },
     "ControlStatus": {
@@ -691,7 +692,7 @@
     "ControlType": {
       "base": null,
       "refs": {
-        "Control$type": "<p> The type of control, such as a custom control or a standard control. </p>",
+        "Control$type": "<p> Specifies whether the control is a standard control or a custom control.</p>",
         "ListControlsRequest$controlType": "<p> The type of control, such as a standard control or a custom control. </p>"
       }
     },
@@ -803,6 +804,13 @@
         "Control$createdBy": "<p> The user or role that created the control. </p>",
         "Delegation$createdBy": "<p> The user or role that created the delegation. </p>",
         "Framework$createdBy": "<p> The user or role that created the framework. </p>"
+      }
+    },
+    "DefaultExportDestination": {
+      "base": "<p>The default s3 bucket where Audit Manager saves the files that you export from evidence finder.</p>",
+      "refs": {
+        "Settings$defaultExportDestination": "<p>The default S3 destination bucket for storing evidence finder exports.</p>",
+        "UpdateSettingsRequest$defaultExportDestination": "<p> The default S3 destination bucket for storing evidence finder exports. </p>"
       }
     },
     "Delegation": {
@@ -1049,6 +1057,12 @@
         "AssessmentControl$evidenceSources": "<p> The list of data sources for the evidence. </p>"
       }
     },
+    "ExportDestinationType": {
+      "base": null,
+      "refs": {
+        "DefaultExportDestination$destinationType": "<p>The destination type, such as Amazon S3.</p>"
+      }
+    },
     "Filename": {
       "base": null,
       "refs": {
@@ -1084,7 +1098,7 @@
     "FrameworkMetadataList": {
       "base": null,
       "refs": {
-        "ListAssessmentFrameworksResponse$frameworkMetadataList": "<p> The list of metadata objects for the framework. </p>"
+        "ListAssessmentFrameworksResponse$frameworkMetadataList": "<p> A list of metadata that the <code>ListAssessmentFrameworks</code> API returns for each framework.</p>"
       }
     },
     "FrameworkName": {
@@ -1101,7 +1115,7 @@
       "base": null,
       "refs": {
         "AssessmentFrameworkMetadata$type": "<p> The framework type, such as a standard framework or a custom framework. </p>",
-        "Framework$type": "<p> The framework type, such as a custom framework or a standard framework. </p>",
+        "Framework$type": "<p> Specifies whether the framework is a standard framework or a custom framework.</p>",
         "ListAssessmentFrameworksRequest$frameworkType": "<p> The type of framework, such as a standard framework or a custom framework. </p>"
       }
     },
@@ -1187,6 +1201,16 @@
       }
     },
     "GetEvidenceByEvidenceFolderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceFileUploadUrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceFileUploadUrlResponse": {
       "base": null,
       "refs": {
       }
@@ -1336,14 +1360,14 @@
     "KeywordInputType": {
       "base": null,
       "refs": {
-        "SourceKeyword$keywordInputType": "<p> The input method for the keyword. </p>"
+        "SourceKeyword$keywordInputType": "<p> The input method for the keyword. </p> <ul> <li> <p> <code>SELECT_FROM_LIST</code> is used when mapping a data source for automated evidence.</p> <ul> <li> <p>When <code>keywordInputType</code> is <code>SELECT_FROM_LIST</code>, a keyword must be selected to collect automated evidence. For example, this keyword can be a CloudTrail event name, a rule name for Config, a Security Hub control, or the name of an Amazon Web Services API call.</p> </li> </ul> </li> <li> <p> <code>UPLOAD_FILE</code> and <code>INPUT_TEXT</code> are only used when mapping a data source for manual evidence.</p> <ul> <li> <p>When <code>keywordInputType</code> is <code>UPLOAD_FILE</code>, a file must be uploaded as manual evidence.</p> </li> <li> <p>When <code>keywordInputType</code> is <code>INPUT_TEXT</code>, text must be entered as manual evidence.</p> </li> </ul> </li> </ul>"
       }
     },
     "KeywordValue": {
       "base": null,
       "refs": {
         "Keywords$member": null,
-        "SourceKeyword$keywordValue": "<p> The value of the keyword that's used when mapping a control data source. For example, this can be a CloudTrail event name, a rule name for Config, a Security Hub control, or the name of an Amazon Web Services API call. </p> <p>If you’re mapping a data source to a rule in Config, the <code>keywordValue</code> that you specify depends on the type of rule:</p> <ul> <li> <p>For <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html\">managed rules</a>, you can use the rule identifier as the <code>keywordValue</code>. You can find the rule identifier from the <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html\">list of Config managed rules</a>.</p> <ul> <li> <p>Managed rule name: <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-acl-prohibited.html\">s3-bucket-acl-prohibited</a> </p> <p> <code>keywordValue</code>: <code>S3_BUCKET_ACL_PROHIBITED</code> </p> </li> </ul> </li> <li> <p>For <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html\">custom rules</a>, you form the <code>keywordValue</code> by adding the <code>Custom_</code> prefix to the rule name. This prefix distinguishes the rule from a managed rule.</p> <ul> <li> <p>Custom rule name: my-custom-config-rule</p> <p> <code>keywordValue</code>: <code>Custom_my-custom-config-rule</code> </p> </li> </ul> </li> <li> <p>For <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/service-linked-awsconfig-rules.html\">service-linked rules</a>, you form the <code>keywordValue</code> by adding the <code>Custom_</code> prefix to the rule name. In addition, you remove the suffix ID that appears at the end of the rule name.</p> <ul> <li> <p>Service-linked rule name: CustomRuleForAccount-conformance-pack-szsm1uv0w</p> <p> <code>keywordValue</code>: <code>Custom_CustomRuleForAccount-conformance-pack</code> </p> </li> <li> <p>Service-linked rule name: OrgConfigRule-s3-bucket-versioning-enabled-dbgzf8ba</p> <p> <code>keywordValue</code>: <code>Custom_OrgConfigRule-s3-bucket-versioning-enabled</code> </p> </li> </ul> </li> </ul>"
+        "SourceKeyword$keywordValue": "<p> The value of the keyword that's used when mapping a control data source. For example, this can be a CloudTrail event name, a rule name for Config, a Security Hub control, or the name of an Amazon Web Services API call. </p> <p>If you’re mapping a data source to a rule in Config, the <code>keywordValue</code> that you specify depends on the type of rule:</p> <ul> <li> <p>For <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html\">managed rules</a>, you can use the rule identifier as the <code>keywordValue</code>. You can find the rule identifier from the <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html\">list of Config managed rules</a>. For some rules, the rule identifier is different from the rule name. For example, the rule name <code>restricted-ssh</code> has the following rule identifier: <code>INCOMING_SSH_DISABLED</code>. Make sure to use the rule identifier, not the rule name. </p> <p>Keyword example for managed rules:</p> <ul> <li> <p>Managed rule name: <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-acl-prohibited.html\">s3-bucket-acl-prohibited</a> </p> <p> <code>keywordValue</code>: <code>S3_BUCKET_ACL_PROHIBITED</code> </p> </li> </ul> </li> <li> <p>For <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html\">custom rules</a>, you form the <code>keywordValue</code> by adding the <code>Custom_</code> prefix to the rule name. This prefix distinguishes the custom rule from a managed rule. </p> <p>Keyword example for custom rules:</p> <ul> <li> <p>Custom rule name: my-custom-config-rule</p> <p> <code>keywordValue</code>: <code>Custom_my-custom-config-rule</code> </p> </li> </ul> </li> <li> <p>For <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/service-linked-awsconfig-rules.html\">service-linked rules</a>, you form the <code>keywordValue</code> by adding the <code>Custom_</code> prefix to the rule name. In addition, you remove the suffix ID that appears at the end of the rule name. </p> <p>Keyword examples for service-linked rules:</p> <ul> <li> <p>Service-linked rule name: CustomRuleForAccount-conformance-pack-szsm1uv0w</p> <p> <code>keywordValue</code>: <code>Custom_CustomRuleForAccount-conformance-pack</code> </p> </li> <li> <p>Service-linked rule name: OrgConfigRule-s3-bucket-versioning-enabled-dbgzf8ba</p> <p> <code>keywordValue</code>: <code>Custom_OrgConfigRule-s3-bucket-versioning-enabled</code> </p> </li> </ul> </li> </ul> <important> <p>The <code>keywordValue</code> is case sensitive. If you enter a value incorrectly, Audit Manager might not recognize the data source mapping. As a result, you might not successfully collect evidence from that data source as intended. </p> <p>Keep in mind the following requirements, depending on the data source type that you're using. </p> <ol> <li> <p>For Config: </p> <ul> <li> <p>For managed rules, make sure that the <code>keywordValue</code> is the rule identifier in <code>ALL_CAPS_WITH_UNDERSCORES</code>. For example, <code>CLOUDWATCH_LOG_GROUP_ENCRYPTED</code>. For accuracy, we recommend that you reference the list of <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html\">supported Config managed rules</a>.</p> </li> <li> <p>For custom rules, make sure that the <code>keywordValue</code> has the <code>Custom_</code> prefix followed by the custom rule name. The format of the custom rule name itself may vary. For accuracy, we recommend that you visit the <a href=\"https://console.aws.amazon.com/config/\">Config console</a> to verify your custom rule name.</p> </li> </ul> </li> <li> <p>For Security Hub: The format varies for Security Hub control names. For accuracy, we recommend that you reference the list of <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html\">supported Security Hub controls</a>.</p> </li> <li> <p>For Amazon Web Services API calls: Make sure that the <code>keywordValue</code> is written as <code>serviceprefix_ActionName</code>. For example, <code>iam_ListGroups</code>. For accuracy, we recommend that you reference the list of <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html\">supported API calls</a>.</p> </li> <li> <p>For CloudTrail: Make sure that the <code>keywordValue</code> is written as <code>serviceprefix_ActionName</code>. For example, <code>cloudtrail_StartLogging</code>. For accuracy, we recommend that you review the Amazon Web Service prefix and action names in the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html\">Service Authorization Reference</a>.</p> </li> </ol> </important>"
       }
     },
     "Keywords": {
@@ -1400,7 +1424,7 @@
     "ListAssessmentMetadata": {
       "base": null,
       "refs": {
-        "ListAssessmentsResponse$assessmentMetadata": "<p> The metadata that's associated with the assessment. </p>"
+        "ListAssessmentsResponse$assessmentMetadata": "<p>The metadata that the <code>ListAssessments</code> API returns for each assessment.</p>"
       }
     },
     "ListAssessmentReportsRequest": {
@@ -1494,7 +1518,7 @@
       }
     },
     "ManualEvidence": {
-      "base": "<p> Evidence that's uploaded to Audit Manager manually. </p>",
+      "base": "<p> Evidence that's manually added to a control in Audit Manager. <code>manualEvidence</code> can be one of the following: <code>evidenceFileName</code>, <code>s3ResourcePath</code>, or <code>textResponse</code>.</p>",
       "refs": {
         "BatchImportEvidenceToAssessmentControlError$manualEvidence": "<p> Manual evidence that can't be collected automatically by Audit Manager. </p>",
         "ManualEvidenceList$member": null
@@ -1504,6 +1528,19 @@
       "base": null,
       "refs": {
         "BatchImportEvidenceToAssessmentControlRequest$manualEvidence": "<p> The list of manual evidence objects. </p>"
+      }
+    },
+    "ManualEvidenceLocalFileName": {
+      "base": null,
+      "refs": {
+        "GetEvidenceFileUploadUrlRequest$fileName": "<p>The file that you want to upload. For a list of supported file formats, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#supported-manual-evidence-files\">Supported file types for manual evidence</a> in the <i>Audit Manager User Guide</i>.</p>",
+        "ManualEvidence$evidenceFileName": "<p>The name of the file that's uploaded as manual evidence. This name is populated using the <code>evidenceFileName</code> value from the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidenceFileUploadUrl.html\"> <code>GetEvidenceFileUploadUrl</code> </a> API response.</p>"
+      }
+    },
+    "ManualEvidenceTextResponse": {
+      "base": null,
+      "refs": {
+        "ManualEvidence$textResponse": "<p>The plain text response that's entered and saved as manual evidence.</p>"
       }
     },
     "MaxResults": {
@@ -1538,6 +1575,8 @@
         "ControlInsightsMetadataItem$name": "<p>The name of the control. </p>",
         "DelegationMetadata$controlSetName": "<p> Specifies the name of the control set that was delegated for review. </p>",
         "EvidenceSources$member": null,
+        "GetEvidenceFileUploadUrlResponse$evidenceFileName": "<p>The name of the uploaded manual evidence file that the presigned URL was generated for.</p>",
+        "GetEvidenceFileUploadUrlResponse$uploadUrl": "<p>The presigned URL that was generated.</p>",
         "Notification$controlSetName": "<p> Specifies the name of the control set that the notification is about. </p>",
         "Notification$description": "<p> The description of the notification. </p>",
         "Notification$source": "<p> The sender of the notification. </p>",
@@ -1668,8 +1707,9 @@
     "S3Url": {
       "base": null,
       "refs": {
-        "AssessmentReportsDestination$destination": "<p> The destination of the assessment report. </p>",
-        "ManualEvidence$s3ResourcePath": "<p> The Amazon S3 URL that points to a manual evidence object. </p>",
+        "AssessmentReportsDestination$destination": "<p> The destination bucket where Audit Manager stores assessment reports. </p>",
+        "DefaultExportDestination$destination": "<p>The destination bucket where Audit Manager stores exported files.</p>",
+        "ManualEvidence$s3ResourcePath": "<p>The S3 URL of the object that's imported as manual evidence. </p>",
         "ValidateAssessmentReportIntegrityRequest$s3RelativePath": "<p> The relative path of the Amazon S3 bucket that the assessment report is stored in. </p>"
       }
     },
@@ -1760,12 +1800,12 @@
     "SourceFrequency": {
       "base": null,
       "refs": {
-        "ControlMappingSource$sourceFrequency": "<p> The frequency of evidence collection for the control mapping source. </p>",
-        "CreateControlMappingSource$sourceFrequency": "<p> The frequency of evidence collection for the control mapping source. </p>"
+        "ControlMappingSource$sourceFrequency": "<p>Specifies how often evidence is collected from the control mapping source. </p>",
+        "CreateControlMappingSource$sourceFrequency": "<p>Specifies how often evidence is collected from the control mapping source. </p>"
       }
     },
     "SourceKeyword": {
-      "base": "<p> The keyword to search for in CloudTrail logs, Config rules, Security Hub checks, and Amazon Web Services API names. </p> <p> To learn more about the supported keywords that you can use when mapping a control data source, see the following pages in the <i>Audit Manager User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html\">Config rules supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html\">Security Hub controls supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html\">API calls supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-cloudtrail.html\">CloudTrail event names supported by Audit Manager</a> </p> </li> </ul>",
+      "base": "<p>A keyword that relates to the control data source.</p> <p>For manual evidence, this keyword indicates if the manual evidence is a file or text.</p> <p>For automated evidence, this keyword identifies a specific CloudTrail event, Config rule, Security Hub control, or Amazon Web Services API name. </p> <p> To learn more about the supported keywords that you can use when mapping a control data source, see the following pages in the <i>Audit Manager User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html\">Config rules supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html\">Security Hub controls supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html\">API calls supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-cloudtrail.html\">CloudTrail event names supported by Audit Manager</a> </p> </li> </ul>",
       "refs": {
         "ControlMappingSource$sourceKeyword": null,
         "CreateControlMappingSource$sourceKeyword": null

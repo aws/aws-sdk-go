@@ -1,3 +1,14 @@
+Release v1.44.283 (2023-06-15)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API and documentation
+* `service/elasticfilesystem`: Updates service documentation
+  * Documentation updates for EFS.
+* `service/guardduty`: Updates service documentation
+  * Updated descriptions for some APIs.
+* `service/location`: Updates service API and documentation
+
 Release v1.44.282 (2023-06-13)
 ===
 
