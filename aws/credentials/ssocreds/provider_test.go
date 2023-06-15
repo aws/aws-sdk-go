@@ -108,7 +108,6 @@ func TestProvider(t *testing.T) {
 		RoleName            string
 		StartURL            string
 		CachedTokenFilePath string
-		HasTokenProvider    bool
 		TokenProvider       *mockTokenProvider
 
 		ExpectedErr         bool
@@ -200,11 +199,10 @@ func TestProvider(t *testing.T) {
 					}, nil
 				},
 			},
-			HasTokenProvider: true,
-			AccountID:        "012345678901",
-			Region:           "us-west-2",
-			RoleName:         "TestRole",
-			StartURL:         "ignored value",
+			AccountID: "012345678901",
+			Region:    "us-west-2",
+			RoleName:  "TestRole",
+			StartURL:  "ignored value",
 			ExpectedCredentials: credentials.Value{
 				AccessKeyID:     "AccessKey",
 				SecretAccessKey: "SecretKey",
@@ -219,12 +217,11 @@ func TestProvider(t *testing.T) {
 					return bearer.Token{}, fmt.Errorf("mock token provider return error")
 				},
 			},
-			HasTokenProvider: true,
-			AccountID:        "012345678901",
-			Region:           "us-west-2",
-			RoleName:         "TestRole",
-			StartURL:         "ignored value",
-			ExpectedErr:      true,
+			AccountID:   "012345678901",
+			Region:      "us-west-2",
+			RoleName:    "TestRole",
+			StartURL:    "ignored value",
+			ExpectedErr: true,
 		},
 		"expired access token": {
 			StartURL:    "https://expired",
