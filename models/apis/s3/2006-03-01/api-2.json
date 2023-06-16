@@ -2950,7 +2950,12 @@
     "GetBucketAccelerateConfigurationOutput":{
       "type":"structure",
       "members":{
-        "Status":{"shape":"BucketAccelerateStatus"}
+        "Status":{"shape":"BucketAccelerateStatus"},
+        "RequestCharged":{
+          "shape":"RequestCharged",
+          "location":"header",
+          "locationName":"x-amz-request-charged"
+        }
       }
     },
     "GetBucketAccelerateConfigurationRequest":{
@@ -2967,6 +2972,11 @@
           "shape":"AccountId",
           "location":"header",
           "locationName":"x-amz-expected-bucket-owner"
+        },
+        "RequestPayer":{
+          "shape":"RequestPayer",
+          "location":"header",
+          "locationName":"x-amz-request-payer"
         }
       }
     },
@@ -4986,7 +4996,12 @@
           "locationName":"Upload"
         },
         "CommonPrefixes":{"shape":"CommonPrefixList"},
-        "EncodingType":{"shape":"EncodingType"}
+        "EncodingType":{"shape":"EncodingType"},
+        "RequestCharged":{
+          "shape":"RequestCharged",
+          "location":"header",
+          "locationName":"x-amz-request-charged"
+        }
       }
     },
     "ListMultipartUploadsRequest":{
@@ -5033,6 +5048,11 @@
           "shape":"AccountId",
           "location":"header",
           "locationName":"x-amz-expected-bucket-owner"
+        },
+        "RequestPayer":{
+          "shape":"RequestPayer",
+          "location":"header",
+          "locationName":"x-amz-request-payer"
         }
       }
     },
@@ -5057,7 +5077,12 @@
         "Delimiter":{"shape":"Delimiter"},
         "MaxKeys":{"shape":"MaxKeys"},
         "CommonPrefixes":{"shape":"CommonPrefixList"},
-        "EncodingType":{"shape":"EncodingType"}
+        "EncodingType":{"shape":"EncodingType"},
+        "RequestCharged":{
+          "shape":"RequestCharged",
+          "location":"header",
+          "locationName":"x-amz-request-charged"
+        }
       }
     },
     "ListObjectVersionsRequest":{
@@ -5104,6 +5129,11 @@
           "shape":"AccountId",
           "location":"header",
           "locationName":"x-amz-expected-bucket-owner"
+        },
+        "RequestPayer":{
+          "shape":"RequestPayer",
+          "location":"header",
+          "locationName":"x-amz-request-payer"
         }
       }
     },
@@ -5119,7 +5149,12 @@
         "Delimiter":{"shape":"Delimiter"},
         "MaxKeys":{"shape":"MaxKeys"},
         "CommonPrefixes":{"shape":"CommonPrefixList"},
-        "EncodingType":{"shape":"EncodingType"}
+        "EncodingType":{"shape":"EncodingType"},
+        "RequestCharged":{
+          "shape":"RequestCharged",
+          "location":"header",
+          "locationName":"x-amz-request-charged"
+        }
       }
     },
     "ListObjectsRequest":{
@@ -5183,7 +5218,12 @@
         "KeyCount":{"shape":"KeyCount"},
         "ContinuationToken":{"shape":"Token"},
         "NextContinuationToken":{"shape":"NextToken"},
-        "StartAfter":{"shape":"StartAfter"}
+        "StartAfter":{"shape":"StartAfter"},
+        "RequestCharged":{
+          "shape":"RequestCharged",
+          "location":"header",
+          "locationName":"x-amz-request-charged"
+        }
       }
     },
     "ListObjectsV2Request":{

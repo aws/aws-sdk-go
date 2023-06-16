@@ -1,3 +1,16 @@
+Release v1.44.284 (2023-06-16)
+===
+
+### Service Client Updates
+* `service/account`: Updates service paginators
+* `service/connect`: Updates service API and documentation
+* `service/discovery`: Updates service API and documentation
+  * Add Amazon EC2 instance recommendations export
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/s3`: Updates service API, documentation, and examples
+  * This release adds SDK support for request-payer request header and request-charged response header in the "GetBucketAccelerateConfiguration", "ListMultipartUploads", "ListObjects", "ListObjectsV2" and "ListObjectVersions" S3 APIs.
+
 Release v1.44.283 (2023-06-15)
 ===
 

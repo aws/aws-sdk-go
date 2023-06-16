@@ -966,6 +966,28 @@
       "members":{
       }
     },
+    "EC2InstanceType":{
+      "type":"string",
+      "max":25,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\d\\.\\-]+"
+    },
+    "Ec2RecommendationsExportPreferences":{
+      "type":"structure",
+      "members":{
+        "enabled":{"shape":"ExportEnabled"},
+        "cpuPerformanceMetricBasis":{"shape":"UsageMetricBasis"},
+        "ramPerformanceMetricBasis":{"shape":"UsageMetricBasis"},
+        "tenancy":{"shape":"Tenancy"},
+        "excludedInstanceTypes":{"shape":"ExcludedInstanceTypes"},
+        "preferredRegion":{"shape":"UserPreferredRegion"},
+        "reservedInstanceOptions":{"shape":"ReservedInstanceOptions"}
+      }
+    },
+    "ExcludedInstanceTypes":{
+      "type":"list",
+      "member":{"shape":"EC2InstanceType"}
+    },
     "ExportConfigurationsResponse":{
       "type":"structure",
       "members":{
@@ -974,15 +996,13 @@
     },
     "ExportDataFormat":{
       "type":"string",
-      "enum":[
-        "CSV",
-        "GRAPHML"
-      ]
+      "enum":["CSV"]
     },
     "ExportDataFormats":{
       "type":"list",
       "member":{"shape":"ExportDataFormat"}
     },
+    "ExportEnabled":{"type":"boolean"},
     "ExportFilter":{
       "type":"structure",
       "required":[
@@ -1022,6 +1042,13 @@
         "requestedStartTime":{"shape":"TimeStamp"},
         "requestedEndTime":{"shape":"TimeStamp"}
       }
+    },
+    "ExportPreferences":{
+      "type":"structure",
+      "members":{
+        "ec2RecommendationsPreferences":{"shape":"Ec2RecommendationsExportPreferences"}
+      },
+      "union":true
     },
     "ExportRequestTime":{"type":"timestamp"},
     "ExportStatus":{
@@ -1249,6 +1276,13 @@
       "member":{"shape":"NeighborConnectionDetail"}
     },
     "NextToken":{"type":"string"},
+    "OfferingClass":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "CONVERTIBLE"
+      ]
+    },
     "OperationNotPermittedException":{
       "type":"structure",
       "members":{
@@ -1272,6 +1306,27 @@
     "OrderByList":{
       "type":"list",
       "member":{"shape":"OrderByElement"}
+    },
+    "PurchasingOption":{
+      "type":"string",
+      "enum":[
+        "ALL_UPFRONT",
+        "PARTIAL_UPFRONT",
+        "NO_UPFRONT"
+      ]
+    },
+    "ReservedInstanceOptions":{
+      "type":"structure",
+      "required":[
+        "purchasingOption",
+        "offeringClass",
+        "termLength"
+      ],
+      "members":{
+        "purchasingOption":{"shape":"PurchasingOption"},
+        "offeringClass":{"shape":"OfferingClass"},
+        "termLength":{"shape":"TermLength"}
+      }
     },
     "ResourceInUseException":{
       "type":"structure",
@@ -1336,7 +1391,8 @@
         "exportDataFormat":{"shape":"ExportDataFormats"},
         "filters":{"shape":"ExportFilters"},
         "startTime":{"shape":"TimeStamp"},
-        "endTime":{"shape":"TimeStamp"}
+        "endTime":{"shape":"TimeStamp"},
+        "preferences":{"shape":"ExportPreferences"}
       }
     },
     "StartExportTaskResponse":{
@@ -1436,6 +1492,20 @@
       "member":{"shape":"Tag"}
     },
     "TagValue":{"type":"string"},
+    "Tenancy":{
+      "type":"string",
+      "enum":[
+        "DEDICATED",
+        "SHARED"
+      ]
+    },
+    "TermLength":{
+      "type":"string",
+      "enum":[
+        "ONE_YEAR",
+        "THREE_YEAR"
+      ]
+    },
     "TimeStamp":{"type":"timestamp"},
     "ToDeleteIdentifierList":{
       "type":"list",
@@ -1456,6 +1526,28 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UsageMetricBasis":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"UsageMetricBasisName"},
+        "percentageAdjust":{"shape":"UsageMetricPercentageAdjust"}
+      }
+    },
+    "UsageMetricBasisName":{
+      "type":"string",
+      "pattern":"^(p(\\d{1,2}|100)|AVG|SPEC|MAX)$"
+    },
+    "UsageMetricPercentageAdjust":{
+      "type":"double",
+      "max":100.0,
+      "min":0.0
+    },
+    "UserPreferredRegion":{
+      "type":"string",
+      "max":30,
+      "min":1,
+      "pattern":"[a-z]{2}-[a-z\\-]+-[0-9]+"
     },
     "orderString":{
       "type":"string",
