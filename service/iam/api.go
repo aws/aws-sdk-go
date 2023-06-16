@@ -10994,9 +10994,16 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *request.Request, out
 // Working with roles (https://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 //
 // IAM resource-listing operations return a subset of the available attributes
-// for the resource. For example, this operation does not return tags, even
-// though they are an attribute of the returned object. To view all of the information
-// for a role, see GetRole.
+// for the resource. This operation does not return the following attributes,
+// even though they are an attribute of the returned object:
+//
+//   - PermissionsBoundary
+//
+//   - RoleLastUsed
+//
+//   - Tags
+//
+// To view all of the information for a role, see GetRole.
 //
 // You can paginate the results using the MaxItems and Marker parameters.
 //
@@ -12240,9 +12247,14 @@ func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *request.Request, out
 // account. If there are none, the operation returns an empty list.
 //
 // IAM resource-listing operations return a subset of the available attributes
-// for the resource. For example, this operation does not return tags, even
-// though they are an attribute of the returned object. To view all of the information
-// for a user, see GetUser.
+// for the resource. This operation does not return the following attributes,
+// even though they are an attribute of the returned object:
+//
+//   - PermissionsBoundary
+//
+//   - Tags
+//
+// To view all of the information for a user, see GetUser.
 //
 // You can paginate the results using the MaxItems and Marker parameters.
 //

@@ -14575,9 +14575,9 @@ func (c *Connect) ResumeContactRecordingRequest(input *ResumeContactRecordingInp
 // ResumeContactRecording API operation for Amazon Connect Service.
 //
 // When a contact is being recorded, and the recording has been suspended using
-// SuspendContactRecording, this API resumes recording the call.
+// SuspendContactRecording, this API resumes recording the call or screen.
 //
-// Only voice recordings are supported at this time.
+// Voice and screen recordings are supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17010,15 +17010,15 @@ func (c *Connect) SuspendContactRecordingRequest(input *SuspendContactRecordingI
 
 // SuspendContactRecording API operation for Amazon Connect Service.
 //
-// When a contact is being recorded, this API suspends recording the call. For
-// example, you might suspend the call recording while collecting sensitive
-// information, such as a credit card number. Then use ResumeContactRecording
-// to restart recording.
+// When a contact is being recorded, this API suspends recording the call or
+// screen. For example, you might suspend the call or screen recording while
+// collecting sensitive information, such as a credit card number. Then use
+// ResumeContactRecording to restart recording.
 //
 // The period of time that the recording is suspended is filled with silence
 // in the final recording.
 //
-// Only voice recordings are supported at this time.
+// Voice and screen recordings are supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -38404,6 +38404,9 @@ type Instance struct {
 	// Whether inbound calls are enabled.
 	InboundCallsEnabled *bool `type:"boolean"`
 
+	// This URL allows contact center users to access Amazon Connect admin website.
+	InstanceAccessUrl *string `type:"string"`
+
 	// The alias of instance.
 	//
 	// InstanceAlias is a sensitive parameter and its value will be
@@ -38469,6 +38472,12 @@ func (s *Instance) SetIdentityManagementType(v string) *Instance {
 // SetInboundCallsEnabled sets the InboundCallsEnabled field's value.
 func (s *Instance) SetInboundCallsEnabled(v bool) *Instance {
 	s.InboundCallsEnabled = &v
+	return s
+}
+
+// SetInstanceAccessUrl sets the InstanceAccessUrl field's value.
+func (s *Instance) SetInstanceAccessUrl(v string) *Instance {
+	s.InstanceAccessUrl = &v
 	return s
 }
 
@@ -38669,6 +38678,9 @@ type InstanceSummary struct {
 	// Whether inbound calls are enabled.
 	InboundCallsEnabled *bool `type:"boolean"`
 
+	// This URL allows contact center users to access Amazon Connect admin website.
+	InstanceAccessUrl *string `type:"string"`
+
 	// The alias of the instance.
 	//
 	// InstanceAlias is a sensitive parameter and its value will be
@@ -38731,6 +38743,12 @@ func (s *InstanceSummary) SetIdentityManagementType(v string) *InstanceSummary {
 // SetInboundCallsEnabled sets the InboundCallsEnabled field's value.
 func (s *InstanceSummary) SetInboundCallsEnabled(v bool) *InstanceSummary {
 	s.InboundCallsEnabled = &v
+	return s
+}
+
+// SetInstanceAccessUrl sets the InstanceAccessUrl field's value.
+func (s *InstanceSummary) SetInstanceAccessUrl(v string) *InstanceSummary {
+	s.InstanceAccessUrl = &v
 	return s
 }
 
@@ -60168,6 +60186,9 @@ const (
 
 	// InstanceStorageResourceTypeContactEvaluations is a InstanceStorageResourceType enum value
 	InstanceStorageResourceTypeContactEvaluations = "CONTACT_EVALUATIONS"
+
+	// InstanceStorageResourceTypeScreenRecordings is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeScreenRecordings = "SCREEN_RECORDINGS"
 )
 
 // InstanceStorageResourceType_Values returns all elements of the InstanceStorageResourceType enum
@@ -60182,6 +60203,7 @@ func InstanceStorageResourceType_Values() []string {
 		InstanceStorageResourceTypeRealTimeContactAnalysisSegments,
 		InstanceStorageResourceTypeAttachments,
 		InstanceStorageResourceTypeContactEvaluations,
+		InstanceStorageResourceTypeScreenRecordings,
 	}
 }
 

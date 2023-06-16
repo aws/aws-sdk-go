@@ -69,8 +69,8 @@ func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplicationRe
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -83,7 +83,7 @@ func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplicationRe
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AssociateConfigurationItemsToApplication
 func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplication(input *AssociateConfigurationItemsToApplicationInput) (*AssociateConfigurationItemsToApplicationOutput, error) {
@@ -170,8 +170,8 @@ func (c *ApplicationDiscoveryService) BatchDeleteImportDataRequest(input *BatchD
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -184,7 +184,7 @@ func (c *ApplicationDiscoveryService) BatchDeleteImportDataRequest(input *BatchD
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/BatchDeleteImportData
 func (c *ApplicationDiscoveryService) BatchDeleteImportData(input *BatchDeleteImportDataInput) (*BatchDeleteImportDataOutput, error) {
@@ -263,8 +263,8 @@ func (c *ApplicationDiscoveryService) CreateApplicationRequest(input *CreateAppl
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -277,7 +277,7 @@ func (c *ApplicationDiscoveryService) CreateApplicationRequest(input *CreateAppl
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateApplication
 func (c *ApplicationDiscoveryService) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -361,8 +361,8 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - ResourceNotFoundException
 //     The specified configuration ID was not located. Verify the configuration
@@ -379,7 +379,7 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateTags
 func (c *ApplicationDiscoveryService) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
@@ -460,8 +460,8 @@ func (c *ApplicationDiscoveryService) DeleteApplicationsRequest(input *DeleteApp
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -474,7 +474,7 @@ func (c *ApplicationDiscoveryService) DeleteApplicationsRequest(input *DeleteApp
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteApplications
 func (c *ApplicationDiscoveryService) DeleteApplications(input *DeleteApplicationsInput) (*DeleteApplicationsOutput, error) {
@@ -555,8 +555,8 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - ResourceNotFoundException
 //     The specified configuration ID was not located. Verify the configuration
@@ -573,7 +573,7 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteTags
 func (c *ApplicationDiscoveryService) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
@@ -640,9 +640,9 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 
 // DescribeAgents API operation for AWS Application Discovery Service.
 //
-// Lists agents or connectors as specified by ID or other filters. All agents/connectors
-// associated with your user account can be listed if you call DescribeAgents
-// as is without passing any parameters.
+// Lists agents or collectors as specified by ID or other filters. All agents/collectors
+// associated with your user can be listed if you call DescribeAgents as is
+// without passing any parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -654,8 +654,8 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -668,7 +668,7 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgents
 func (c *ApplicationDiscoveryService) DescribeAgents(input *DescribeAgentsInput) (*DescribeAgentsOutput, error) {
@@ -766,8 +766,8 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -780,7 +780,7 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeConfigurations
 func (c *ApplicationDiscoveryService) DescribeConfigurations(input *DescribeConfigurationsInput) (*DescribeConfigurationsOutput, error) {
@@ -854,8 +854,8 @@ func (c *ApplicationDiscoveryService) DescribeContinuousExportsRequest(input *De
 // DescribeContinuousExports API operation for AWS Application Discovery Service.
 //
 // Lists exports as specified by ID. All continuous exports associated with
-// your user account can be listed if you call DescribeContinuousExports as
-// is without passing any parameters.
+// your user can be listed if you call DescribeContinuousExports as is without
+// passing any parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -867,8 +867,8 @@ func (c *ApplicationDiscoveryService) DescribeContinuousExportsRequest(input *De
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -888,7 +888,7 @@ func (c *ApplicationDiscoveryService) DescribeContinuousExportsRequest(input *De
 //     ID and try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeContinuousExports
 func (c *ApplicationDiscoveryService) DescribeContinuousExports(input *DescribeContinuousExportsInput) (*DescribeContinuousExportsOutput, error) {
@@ -1024,8 +1024,8 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - ResourceNotFoundException
 //     The specified configuration ID was not located. Verify the configuration
@@ -1042,7 +1042,7 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
 //
@@ -1126,8 +1126,8 @@ func (c *ApplicationDiscoveryService) DescribeExportTasksRequest(input *Describe
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -1140,7 +1140,7 @@ func (c *ApplicationDiscoveryService) DescribeExportTasksRequest(input *Describe
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportTasks
 func (c *ApplicationDiscoveryService) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExportTasksOutput, error) {
@@ -1226,8 +1226,8 @@ func (c *ApplicationDiscoveryService) DescribeImportTasksRequest(input *Describe
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -1240,7 +1240,7 @@ func (c *ApplicationDiscoveryService) DescribeImportTasksRequest(input *Describe
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeImportTasks
 func (c *ApplicationDiscoveryService) DescribeImportTasks(input *DescribeImportTasksInput) (*DescribeImportTasksOutput, error) {
@@ -1369,8 +1369,8 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 //
 //   - configurationId
 //
-// Also, all configuration items associated with your user account that have
-// tags can be listed if you call DescribeTags as is without passing any parameters.
+// Also, all configuration items associated with your user that have tags can
+// be listed if you call DescribeTags as is without passing any parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1382,8 +1382,8 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - ResourceNotFoundException
 //     The specified configuration ID was not located. Verify the configuration
@@ -1400,7 +1400,7 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTags
 func (c *ApplicationDiscoveryService) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
@@ -1480,8 +1480,8 @@ func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplicat
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -1494,7 +1494,7 @@ func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplicat
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DisassociateConfigurationItemsFromApplication
 func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplication(input *DisassociateConfigurationItemsFromApplicationInput) (*DisassociateConfigurationItemsFromApplicationOutput, error) {
@@ -1584,8 +1584,8 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -1601,7 +1601,7 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 //     This operation is not permitted.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
 //
@@ -1687,8 +1687,8 @@ func (c *ApplicationDiscoveryService) GetDiscoverySummaryRequest(input *GetDisco
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -1701,7 +1701,7 @@ func (c *ApplicationDiscoveryService) GetDiscoverySummaryRequest(input *GetDisco
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/GetDiscoverySummary
 func (c *ApplicationDiscoveryService) GetDiscoverySummary(input *GetDiscoverySummaryInput) (*GetDiscoverySummaryOutput, error) {
@@ -1782,8 +1782,8 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - ResourceNotFoundException
 //     The specified configuration ID was not located. Verify the configuration
@@ -1800,7 +1800,7 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListConfigurations
 func (c *ApplicationDiscoveryService) ListConfigurations(input *ListConfigurationsInput) (*ListConfigurationsOutput, error) {
@@ -1880,8 +1880,8 @@ func (c *ApplicationDiscoveryService) ListServerNeighborsRequest(input *ListServ
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -1894,7 +1894,7 @@ func (c *ApplicationDiscoveryService) ListServerNeighborsRequest(input *ListServ
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListServerNeighbors
 func (c *ApplicationDiscoveryService) ListServerNeighbors(input *ListServerNeighborsInput) (*ListServerNeighborsOutput, error) {
@@ -1975,8 +1975,8 @@ func (c *ApplicationDiscoveryService) StartContinuousExportRequest(input *StartC
 //   - ConflictErrorException
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -1999,7 +1999,7 @@ func (c *ApplicationDiscoveryService) StartContinuousExportRequest(input *StartC
 //     and try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartContinuousExport
 func (c *ApplicationDiscoveryService) StartContinuousExport(input *StartContinuousExportInput) (*StartContinuousExportOutput, error) {
@@ -2066,7 +2066,7 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 
 // StartDataCollectionByAgentIds API operation for AWS Application Discovery Service.
 //
-// Instructs the specified agents or connectors to start collecting data.
+// Instructs the specified agents to start collecting data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2078,8 +2078,8 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -2092,7 +2092,7 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIds(input *StartDataCollectionByAgentIdsInput) (*StartDataCollectionByAgentIdsOutput, error) {
@@ -2159,18 +2159,31 @@ func (c *ApplicationDiscoveryService) StartExportTaskRequest(input *StartExportT
 
 // StartExportTask API operation for AWS Application Discovery Service.
 //
-// Begins the export of discovered data to an S3 bucket.
+// Begins the export of a discovered data report to an Amazon S3 bucket managed
+// by Amazon Web Services.
+//
+// Exports might provide an estimate of fees and savings based on certain information
+// that you provide. Fee estimates do not include any taxes that might apply.
+// Your actual fees and savings depend on a variety of factors, including your
+// actual usage of Amazon Web Services services, which might vary from the estimates
+// provided in this report.
+//
+// If you do not specify preferences or agentIds in the filter, a summary of
+// all servers, applications, tags, and performance is generated. This data
+// is an aggregation of all server data collected through on-premises tooling,
+// file import, application grouping and applying tags.
 //
 // If you specify agentIds in a filter, the task exports up to 72 hours of detailed
 // data collected by the identified Application Discovery Agent, including network,
 // process, and performance details. A time range for exported agent data may
 // be set by using startTime and endTime. Export of detailed agent data is limited
-// to five concurrently running exports.
-//
-// If you do not include an agentIds filter, summary data is exported that includes
-// both Amazon Web Services Agentless Discovery Connector data and summary data
-// from Amazon Web Services Discovery Agents. Export of summary data is limited
+// to five concurrently running exports. Export of detailed agent data is limited
 // to two exports per day.
+//
+// If you enable ec2RecommendationsPreferences in preferences , an Amazon EC2
+// instance matching the characteristics of each server in Application Discovery
+// Service is generated. Changing the attributes of the ec2RecommendationsPreferences
+// changes the criteria of the recommendation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2182,8 +2195,8 @@ func (c *ApplicationDiscoveryService) StartExportTaskRequest(input *StartExportT
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -2199,7 +2212,7 @@ func (c *ApplicationDiscoveryService) StartExportTaskRequest(input *StartExportT
 //     This operation is not permitted.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartExportTask
 func (c *ApplicationDiscoveryService) StartExportTask(input *StartExportTaskInput) (*StartExportTaskOutput, error) {
@@ -2268,10 +2281,12 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 //
 // Starts an import task, which allows you to import details of your on-premises
 // environment directly into Amazon Web Services Migration Hub without having
-// to use the Application Discovery Service (ADS) tools such as the Discovery
-// Connector or Discovery Agent. This gives you the option to perform migration
-// assessment and planning directly from your imported data, including the ability
-// to group your devices as applications and track their migration status.
+// to use the Amazon Web Services Application Discovery Service (Application
+// Discovery Service) tools such as the Amazon Web Services Application Discovery
+// Service Agentless Collector or Application Discovery Agent. This gives you
+// the option to perform migration assessment and planning directly from your
+// imported data, including the ability to group your devices as applications
+// and track their migration status.
 //
 // To start an import request, do this:
 //
@@ -2314,8 +2329,8 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 //     and try again.
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -2328,7 +2343,7 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartImportTask
 func (c *ApplicationDiscoveryService) StartImportTask(input *StartImportTaskInput) (*StartImportTaskOutput, error) {
@@ -2407,8 +2422,8 @@ func (c *ApplicationDiscoveryService) StopContinuousExportRequest(input *StopCon
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -2435,7 +2450,7 @@ func (c *ApplicationDiscoveryService) StopContinuousExportRequest(input *StopCon
 //     and try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopContinuousExport
 func (c *ApplicationDiscoveryService) StopContinuousExport(input *StopContinuousExportInput) (*StopContinuousExportOutput, error) {
@@ -2502,7 +2517,7 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 
 // StopDataCollectionByAgentIds API operation for AWS Application Discovery Service.
 //
-// Instructs the specified agents or connectors to stop collecting data.
+// Instructs the specified agents to stop collecting data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2514,8 +2529,8 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -2528,7 +2543,7 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIds(input *StopDataCollectionByAgentIdsInput) (*StopDataCollectionByAgentIdsOutput, error) {
@@ -2608,8 +2623,8 @@ func (c *ApplicationDiscoveryService) UpdateApplicationRequest(input *UpdateAppl
 // Returned Error Types:
 //
 //   - AuthorizationErrorException
-//     The Amazon Web Services user account does not have permission to perform
-//     the action. Check the IAM policy associated with this account.
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
 //
 //   - InvalidParameterException
 //     One or more parameters are not valid. Verify the parameters and try again.
@@ -2622,7 +2637,7 @@ func (c *ApplicationDiscoveryService) UpdateApplicationRequest(input *UpdateAppl
 //     The server experienced an internal error. Try again.
 //
 //   - HomeRegionNotSetException
-//     The home region is not set. Set the home region to continue.
+//     The home Region is not set. Set the home Region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/UpdateApplication
 func (c *ApplicationDiscoveryService) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -2646,20 +2661,20 @@ func (c *ApplicationDiscoveryService) UpdateApplicationWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
-// Information about agents or connectors that were instructed to start collecting
-// data. Information includes the agent/connector ID, a description of the operation,
-// and whether the agent/connector configuration was updated.
+// Information about agents that were instructed to start collecting data. Information
+// includes the agent ID, a description of the operation, and whether the agent
+// configuration was updated.
 type AgentConfigurationStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The agent/connector ID.
+	// The agent ID.
 	AgentId *string `locationName:"agentId" type:"string"`
 
 	// A description of the operation performed.
 	Description *string `locationName:"description" type:"string"`
 
 	// Information about the status of the StartDataCollection and StopDataCollection
-	// operations. The system has recorded the data collection operation. The agent/connector
+	// operations. The system has recorded the data collection operation. The agent
 	// receives this command the next time it polls for a new command.
 	OperationSucceeded *bool `locationName:"operationSucceeded" type:"boolean"`
 }
@@ -2700,42 +2715,42 @@ func (s *AgentConfigurationStatus) SetOperationSucceeded(v bool) *AgentConfigura
 	return s
 }
 
-// Information about agents or connectors associated with the user’s Amazon
-// Web Services account. Information includes agent or connector IDs, IP addresses,
-// media access control (MAC) addresses, agent or connector health, hostname
-// where the agent or connector resides, and agent version for each agent.
+// Information about agents associated with the user’s Amazon Web Services
+// account. Information includes agent IDs, IP addresses, media access control
+// (MAC) addresses, agent or collector status, hostname where the agent resides,
+// and agent version for each agent.
 type AgentInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The agent or connector ID.
+	// The agent or collector ID.
 	AgentId *string `locationName:"agentId" min:"10" type:"string"`
 
-	// Network details about the host where the agent or connector resides.
+	// Network details about the host where the agent or collector resides.
 	AgentNetworkInfoList []*AgentNetworkInfo `locationName:"agentNetworkInfoList" type:"list"`
 
 	// Type of agent.
 	AgentType *string `locationName:"agentType" type:"string"`
 
-	// Status of the collection process for an agent or connector.
+	// Status of the collection process for an agent.
 	CollectionStatus *string `locationName:"collectionStatus" type:"string"`
 
 	// The ID of the connector.
 	ConnectorId *string `locationName:"connectorId" type:"string"`
 
-	// The health of the agent or connector.
+	// The health of the agent.
 	Health *string `locationName:"health" type:"string" enum:"AgentStatus"`
 
-	// The name of the host where the agent or connector resides. The host can be
+	// The name of the host where the agent or collector resides. The host can be
 	// a server or virtual machine.
 	HostName *string `locationName:"hostName" type:"string"`
 
-	// Time since agent or connector health was reported.
+	// Time since agent health was reported.
 	LastHealthPingTime *string `locationName:"lastHealthPingTime" type:"string"`
 
 	// Agent's first registration timestamp in UTC.
 	RegisteredTime *string `locationName:"registeredTime" type:"string"`
 
-	// The agent or connector version.
+	// The agent or collector version.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -2817,14 +2832,14 @@ func (s *AgentInfo) SetVersion(v string) *AgentInfo {
 	return s
 }
 
-// Network details about the host where the agent/connector resides.
+// Network details about the host where the agent/collector resides.
 type AgentNetworkInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The IP address for the host where the agent/connector resides.
+	// The IP address for the host where the agent/collector resides.
 	IpAddress *string `locationName:"ipAddress" type:"string"`
 
-	// The MAC address for the host where the agent/connector resides.
+	// The MAC address for the host where the agent/collector resides.
 	MacAddress *string `locationName:"macAddress" type:"string"`
 }
 
@@ -2940,8 +2955,8 @@ func (s AssociateConfigurationItemsToApplicationOutput) GoString() string {
 	return s.String()
 }
 
-// The Amazon Web Services user account does not have permission to perform
-// the action. Check the IAM policy associated with this account.
+// The user does not have permission to perform the action. Check the IAM policy
+// associated with this user.
 type AuthorizationErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3331,14 +3346,14 @@ type ContinuousExportDescription struct {
 	//    in the Amazon Kinesis Data Streams Developer Guide.
 	//
 	//    * FIREHOSE_ROLE_MISSING - The Data Exploration feature is in an error
-	//    state because your IAM User is missing the AWSApplicationDiscoveryServiceFirehose
+	//    state because your user is missing the Amazon Web ServicesApplicationDiscoveryServiceFirehose
 	//    role. Turn on Data Exploration in Amazon Athena and try again. For more
-	//    information, see Step 3: Provide Application Discovery Service Access
-	//    to Non-Administrator Users by Attaching Policies (http://docs.aws.amazon.com/application-discovery/latest/userguide/setting-up.html#setting-up-user-policy)
+	//    information, see Creating the Amazon Web ServicesApplicationDiscoveryServiceFirehose
+	//    Role (https://docs.aws.amazon.com/application-discovery/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-create-firehose-role)
 	//    in the Application Discovery Service User Guide.
 	//
 	//    * FIREHOSE_STREAM_DOES_NOT_EXIST - The Data Exploration feature is in
-	//    an error state because your IAM User is missing one or more of the Kinesis
+	//    an error state because your user is missing one or more of the Kinesis
 	//    data delivery streams.
 	//
 	//    * INTERNAL_FAILURE - The Data Exploration feature is in an error state
@@ -3727,27 +3742,42 @@ func (s *CustomerAgentInfo) SetUnknownAgents(v int64) *CustomerAgentInfo {
 	return s
 }
 
+// The inventory data for installed Agentless Collector collectors.
 type CustomerAgentlessCollectorInfo struct {
 	_ struct{} `type:"structure"`
 
+	// The number of active Agentless Collector collectors.
+	//
 	// ActiveAgentlessCollectors is a required field
 	ActiveAgentlessCollectors *int64 `locationName:"activeAgentlessCollectors" type:"integer" required:"true"`
 
+	// The number of deny-listed Agentless Collector collectors.
+	//
 	// DenyListedAgentlessCollectors is a required field
 	DenyListedAgentlessCollectors *int64 `locationName:"denyListedAgentlessCollectors" type:"integer" required:"true"`
 
+	// The number of healthy Agentless Collector collectors.
+	//
 	// HealthyAgentlessCollectors is a required field
 	HealthyAgentlessCollectors *int64 `locationName:"healthyAgentlessCollectors" type:"integer" required:"true"`
 
+	// The number of Agentless Collector collectors with SHUTDOWN status.
+	//
 	// ShutdownAgentlessCollectors is a required field
 	ShutdownAgentlessCollectors *int64 `locationName:"shutdownAgentlessCollectors" type:"integer" required:"true"`
 
+	// The total number of Agentless Collector collectors.
+	//
 	// TotalAgentlessCollectors is a required field
 	TotalAgentlessCollectors *int64 `locationName:"totalAgentlessCollectors" type:"integer" required:"true"`
 
+	// The number of unhealthy Agentless Collector collectors.
+	//
 	// UnhealthyAgentlessCollectors is a required field
 	UnhealthyAgentlessCollectors *int64 `locationName:"unhealthyAgentlessCollectors" type:"integer" required:"true"`
 
+	// The number of unknown Agentless Collector collectors.
+	//
 	// UnknownAgentlessCollectors is a required field
 	UnknownAgentlessCollectors *int64 `locationName:"unknownAgentlessCollectors" type:"integer" required:"true"`
 }
@@ -4173,9 +4203,9 @@ func (s DeleteTagsOutput) GoString() string {
 type DescribeAgentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The agent or the Connector IDs for which you want information. If you specify
-	// no IDs, the system returns information about all agents/Connectors associated
-	// with your Amazon Web Services user account.
+	// The agent or the collector IDs for which you want information. If you specify
+	// no IDs, the system returns information about all agents/collectors associated
+	// with your user.
 	AgentIds []*string `locationName:"agentIds" type:"list"`
 
 	// You can filter the request using various logical operators and a key-value
@@ -4184,7 +4214,7 @@ type DescribeAgentsInput struct {
 	// {"key": "collectionStatus", "value": "STARTED"}
 	Filters []*Filter `locationName:"filters" type:"list"`
 
-	// The total number of agents/Connectors to return in a single page of output.
+	// The total number of agents/collectors to return in a single page of output.
 	// The maximum value is 100.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
@@ -4260,11 +4290,11 @@ func (s *DescribeAgentsInput) SetNextToken(v string) *DescribeAgentsInput {
 type DescribeAgentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists agents or the Connector by ID or lists all agents/Connectors associated
-	// with your user account if you did not specify an agent/Connector ID. The
-	// output includes agent/Connector IDs, IP addresses, media access control (MAC)
-	// addresses, agent/Connector health, host name where the agent/Connector resides,
-	// and the version number of each agent/Connector.
+	// Lists agents or the collector by ID or lists all agents/collectors associated
+	// with your user, if you did not specify an agent/collector ID. The output
+	// includes agent/collector IDs, IP addresses, media access control (MAC) addresses,
+	// agent/collector health, host name where the agent/collector resides, and
+	// the version number of each agent/collector.
 	AgentsInfo []*AgentInfo `locationName:"agentsInfo" type:"list"`
 
 	// Token to retrieve the next set of results. For example, if you specified
@@ -5015,6 +5045,119 @@ func (s DisassociateConfigurationItemsFromApplicationOutput) GoString() string {
 	return s.String()
 }
 
+// Indicates that the exported data must include EC2 instance type matches for
+// on-premises servers that are discovered through Amazon Web Services Application
+// Discovery Service.
+type Ec2RecommendationsExportPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// The recommended EC2 instance type that matches the CPU usage metric of server
+	// performance data.
+	CpuPerformanceMetricBasis *UsageMetricBasis `locationName:"cpuPerformanceMetricBasis" type:"structure"`
+
+	// If set to true, the export preferences (https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_StartExportTask.html#API_StartExportTask_RequestSyntax)
+	// is set to Ec2RecommendationsExportPreferences.
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+
+	// An array of instance types to exclude from recommendations.
+	ExcludedInstanceTypes []*string `locationName:"excludedInstanceTypes" type:"list"`
+
+	// The target Amazon Web Services Region for the recommendations. You can use
+	// any of the Region codes available for the chosen service, as listed in Amazon
+	// Web Services service endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html)
+	// in the Amazon Web Services General Reference.
+	PreferredRegion *string `locationName:"preferredRegion" min:"1" type:"string"`
+
+	// The recommended EC2 instance type that matches the Memory usage metric of
+	// server performance data.
+	RamPerformanceMetricBasis *UsageMetricBasis `locationName:"ramPerformanceMetricBasis" type:"structure"`
+
+	// The contract type for a reserved instance. If blank, we assume an On-Demand
+	// instance is preferred.
+	ReservedInstanceOptions *ReservedInstanceOptions `locationName:"reservedInstanceOptions" type:"structure"`
+
+	// The target tenancy to use for your recommended EC2 instances.
+	Tenancy *string `locationName:"tenancy" type:"string" enum:"Tenancy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Ec2RecommendationsExportPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Ec2RecommendationsExportPreferences) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Ec2RecommendationsExportPreferences) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Ec2RecommendationsExportPreferences"}
+	if s.PreferredRegion != nil && len(*s.PreferredRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredRegion", 1))
+	}
+	if s.ReservedInstanceOptions != nil {
+		if err := s.ReservedInstanceOptions.Validate(); err != nil {
+			invalidParams.AddNested("ReservedInstanceOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCpuPerformanceMetricBasis sets the CpuPerformanceMetricBasis field's value.
+func (s *Ec2RecommendationsExportPreferences) SetCpuPerformanceMetricBasis(v *UsageMetricBasis) *Ec2RecommendationsExportPreferences {
+	s.CpuPerformanceMetricBasis = v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *Ec2RecommendationsExportPreferences) SetEnabled(v bool) *Ec2RecommendationsExportPreferences {
+	s.Enabled = &v
+	return s
+}
+
+// SetExcludedInstanceTypes sets the ExcludedInstanceTypes field's value.
+func (s *Ec2RecommendationsExportPreferences) SetExcludedInstanceTypes(v []*string) *Ec2RecommendationsExportPreferences {
+	s.ExcludedInstanceTypes = v
+	return s
+}
+
+// SetPreferredRegion sets the PreferredRegion field's value.
+func (s *Ec2RecommendationsExportPreferences) SetPreferredRegion(v string) *Ec2RecommendationsExportPreferences {
+	s.PreferredRegion = &v
+	return s
+}
+
+// SetRamPerformanceMetricBasis sets the RamPerformanceMetricBasis field's value.
+func (s *Ec2RecommendationsExportPreferences) SetRamPerformanceMetricBasis(v *UsageMetricBasis) *Ec2RecommendationsExportPreferences {
+	s.RamPerformanceMetricBasis = v
+	return s
+}
+
+// SetReservedInstanceOptions sets the ReservedInstanceOptions field's value.
+func (s *Ec2RecommendationsExportPreferences) SetReservedInstanceOptions(v *ReservedInstanceOptions) *Ec2RecommendationsExportPreferences {
+	s.ReservedInstanceOptions = v
+	return s
+}
+
+// SetTenancy sets the Tenancy field's value.
+func (s *Ec2RecommendationsExportPreferences) SetTenancy(v string) *Ec2RecommendationsExportPreferences {
+	s.Tenancy = &v
+	return s
+}
+
 type ExportConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5257,6 +5400,56 @@ func (s *ExportInfo) SetStatusMessage(v string) *ExportInfo {
 	return s
 }
 
+// Indicates the type of data that is being exported. Only one ExportPreferences
+// can be enabled for a StartExportTask (https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_StartExportTask.html)
+// action.
+type ExportPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// If enabled, exported data includes EC2 instance type matches for on-premises
+	// servers discovered through Amazon Web Services Application Discovery Service.
+	Ec2RecommendationsPreferences *Ec2RecommendationsExportPreferences `locationName:"ec2RecommendationsPreferences" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportPreferences) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportPreferences) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportPreferences"}
+	if s.Ec2RecommendationsPreferences != nil {
+		if err := s.Ec2RecommendationsPreferences.Validate(); err != nil {
+			invalidParams.AddNested("Ec2RecommendationsPreferences", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEc2RecommendationsPreferences sets the Ec2RecommendationsPreferences field's value.
+func (s *ExportPreferences) SetEc2RecommendationsPreferences(v *Ec2RecommendationsExportPreferences) *ExportPreferences {
+	s.Ec2RecommendationsPreferences = v
+	return s
+}
+
 // A filter that can use conditional operators.
 //
 // For more information about filters, see Querying Discovered Configuration
@@ -5370,6 +5563,7 @@ type GetDiscoverySummaryOutput struct {
 	// Details about discovered agents, including agent status and health.
 	AgentSummary *CustomerAgentInfo `locationName:"agentSummary" type:"structure"`
 
+	// Details about Agentless Collector collectors, including status.
 	AgentlessCollectorSummary *CustomerAgentlessCollectorInfo `locationName:"agentlessCollectorSummary" type:"structure"`
 
 	// The number of applications discovered.
@@ -5458,7 +5652,7 @@ func (s *GetDiscoverySummaryOutput) SetServersMappedtoTags(v int64) *GetDiscover
 	return s
 }
 
-// The home region is not set. Set the home region to continue.
+// The home Region is not set. Set the home Region to continue.
 type HomeRegionNotSetException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6372,6 +6566,81 @@ func (s *OrderByElement) SetSortOrder(v string) *OrderByElement {
 	return s
 }
 
+// Used to provide Reserved Instance preferences for the recommendation.
+type ReservedInstanceOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The flexibility to change the instance types needed for your Reserved Instance.
+	//
+	// OfferingClass is a required field
+	OfferingClass *string `locationName:"offeringClass" type:"string" required:"true" enum:"OfferingClass"`
+
+	// The payment plan to use for your Reserved Instance.
+	//
+	// PurchasingOption is a required field
+	PurchasingOption *string `locationName:"purchasingOption" type:"string" required:"true" enum:"PurchasingOption"`
+
+	// The preferred duration of the Reserved Instance term.
+	//
+	// TermLength is a required field
+	TermLength *string `locationName:"termLength" type:"string" required:"true" enum:"TermLength"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReservedInstanceOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReservedInstanceOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReservedInstanceOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReservedInstanceOptions"}
+	if s.OfferingClass == nil {
+		invalidParams.Add(request.NewErrParamRequired("OfferingClass"))
+	}
+	if s.PurchasingOption == nil {
+		invalidParams.Add(request.NewErrParamRequired("PurchasingOption"))
+	}
+	if s.TermLength == nil {
+		invalidParams.Add(request.NewErrParamRequired("TermLength"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOfferingClass sets the OfferingClass field's value.
+func (s *ReservedInstanceOptions) SetOfferingClass(v string) *ReservedInstanceOptions {
+	s.OfferingClass = &v
+	return s
+}
+
+// SetPurchasingOption sets the PurchasingOption field's value.
+func (s *ReservedInstanceOptions) SetPurchasingOption(v string) *ReservedInstanceOptions {
+	s.PurchasingOption = &v
+	return s
+}
+
+// SetTermLength sets the TermLength field's value.
+func (s *ReservedInstanceOptions) SetTermLength(v string) *ReservedInstanceOptions {
+	s.TermLength = &v
+	return s
+}
+
 // This issue occurs when the same clientRequestToken is used with the StartImportTask
 // action, but with different parameters. For example, you use the same request
 // token but have two different import URLs, you can encounter this issue. If
@@ -6664,14 +6933,13 @@ func (s *StartContinuousExportOutput) SetStartTime(v time.Time) *StartContinuous
 type StartDataCollectionByAgentIdsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the agents or connectors from which to start collecting data.
-	// If you send a request to an agent/connector ID that you do not have permission
-	// to contact, according to your Amazon Web Services account, the service does
-	// not throw an exception. Instead, it returns the error in the Description
-	// field. If you send a request to multiple agents/connectors and you do not
-	// have permission to contact some of those agents/connectors, the system does
-	// not throw an exception. Instead, the system shows Failed in the Description
-	// field.
+	// The IDs of the agents from which to start collecting data. If you send a
+	// request to an agent ID that you do not have permission to contact, according
+	// to your Amazon Web Services account, the service does not throw an exception.
+	// Instead, it returns the error in the Description field. If you send a request
+	// to multiple agents and you do not have permission to contact some of those
+	// agents, the system does not throw an exception. Instead, the system shows
+	// Failed in the Description field.
 	//
 	// AgentIds is a required field
 	AgentIds []*string `locationName:"agentIds" type:"list" required:"true"`
@@ -6717,9 +6985,9 @@ func (s *StartDataCollectionByAgentIdsInput) SetAgentIds(v []*string) *StartData
 type StartDataCollectionByAgentIdsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about agents or the connector that were instructed to start collecting
-	// data. Information includes the agent/connector ID, a description of the operation
-	// performed, and whether the agent/connector configuration was updated.
+	// Information about agents that were instructed to start collecting data. Information
+	// includes the agent ID, a description of the operation performed, and whether
+	// the agent configuration was updated.
 	AgentsConfigurationStatus []*AgentConfigurationStatus `locationName:"agentsConfigurationStatus" type:"list"`
 }
 
@@ -6762,9 +7030,15 @@ type StartExportTaskInput struct {
 	// If a filter is present, it selects the single agentId of the Application
 	// Discovery Agent for which data is exported. The agentId can be found in the
 	// results of the DescribeAgents API or CLI. If no filter is present, startTime
-	// and endTime are ignored and exported data includes both Agentless Discovery
-	// Connector data and summary data from Application Discovery agents.
+	// and endTime are ignored and exported data includes both Amazon Web Services
+	// Application Discovery Service Agentless Collector collectors data and summary
+	// data from Application Discovery Agent agents.
 	Filters []*ExportFilter `locationName:"filters" type:"list"`
+
+	// Indicates the type of data that needs to be exported. Only one ExportPreferences
+	// (https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_ExportPreferences.html)
+	// can be enabled at any time.
+	Preferences *ExportPreferences `locationName:"preferences" type:"structure"`
 
 	// The start timestamp for exported data from the single Application Discovery
 	// Agent selected in the filters. If no value is specified, data is exported
@@ -6803,6 +7077,11 @@ func (s *StartExportTaskInput) Validate() error {
 			}
 		}
 	}
+	if s.Preferences != nil {
+		if err := s.Preferences.Validate(); err != nil {
+			invalidParams.AddNested("Preferences", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6825,6 +7104,12 @@ func (s *StartExportTaskInput) SetExportDataFormat(v []*string) *StartExportTask
 // SetFilters sets the Filters field's value.
 func (s *StartExportTaskInput) SetFilters(v []*ExportFilter) *StartExportTaskInput {
 	s.Filters = v
+	return s
+}
+
+// SetPreferences sets the Preferences field's value.
+func (s *StartExportTaskInput) SetPreferences(v *ExportPreferences) *StartExportTaskInput {
+	s.Preferences = v
 	return s
 }
 
@@ -7078,7 +7363,7 @@ func (s *StopContinuousExportOutput) SetStopTime(v time.Time) *StopContinuousExp
 type StopDataCollectionByAgentIdsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the agents or connectors from which to stop collecting data.
+	// The IDs of the agents from which to stop collecting data.
 	//
 	// AgentIds is a required field
 	AgentIds []*string `locationName:"agentIds" type:"list" required:"true"`
@@ -7124,9 +7409,9 @@ func (s *StopDataCollectionByAgentIdsInput) SetAgentIds(v []*string) *StopDataCo
 type StopDataCollectionByAgentIdsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the agents or connector that were instructed to stop collecting
-	// data. Information includes the agent/connector ID, a description of the operation
-	// performed, and whether the agent/connector configuration was updated.
+	// Information about the agents that were instructed to stop collecting data.
+	// Information includes the agent ID, a description of the operation performed,
+	// and whether the agent configuration was updated.
 	AgentsConfigurationStatus []*AgentConfigurationStatus `locationName:"agentsConfigurationStatus" type:"list"`
 }
 
@@ -7364,6 +7649,49 @@ func (s UpdateApplicationOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies the performance metrics to use for the server that is used for
+// recommendations.
+type UsageMetricBasis struct {
+	_ struct{} `type:"structure"`
+
+	// A utilization metric that is used by the recommendations.
+	Name *string `locationName:"name" type:"string"`
+
+	// Specifies the percentage of the specified utilization metric that is used
+	// by the recommendations.
+	PercentageAdjust *float64 `locationName:"percentageAdjust" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsageMetricBasis) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsageMetricBasis) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *UsageMetricBasis) SetName(v string) *UsageMetricBasis {
+	s.Name = &v
+	return s
+}
+
+// SetPercentageAdjust sets the PercentageAdjust field's value.
+func (s *UsageMetricBasis) SetPercentageAdjust(v float64) *UsageMetricBasis {
+	s.PercentageAdjust = &v
+	return s
+}
+
 const (
 	// AgentStatusHealthy is a AgentStatus enum value
 	AgentStatusHealthy = "HEALTHY"
@@ -7491,16 +7819,12 @@ func DataSource_Values() []string {
 const (
 	// ExportDataFormatCsv is a ExportDataFormat enum value
 	ExportDataFormatCsv = "CSV"
-
-	// ExportDataFormatGraphml is a ExportDataFormat enum value
-	ExportDataFormatGraphml = "GRAPHML"
 )
 
 // ExportDataFormat_Values returns all elements of the ExportDataFormat enum
 func ExportDataFormat_Values() []string {
 	return []string{
 		ExportDataFormatCsv,
-		ExportDataFormatGraphml,
 	}
 }
 
@@ -7597,6 +7921,22 @@ func ImportTaskFilterName_Values() []string {
 }
 
 const (
+	// OfferingClassStandard is a OfferingClass enum value
+	OfferingClassStandard = "STANDARD"
+
+	// OfferingClassConvertible is a OfferingClass enum value
+	OfferingClassConvertible = "CONVERTIBLE"
+)
+
+// OfferingClass_Values returns all elements of the OfferingClass enum
+func OfferingClass_Values() []string {
+	return []string{
+		OfferingClassStandard,
+		OfferingClassConvertible,
+	}
+}
+
+const (
 	// OrderStringAsc is a OrderString enum value
 	OrderStringAsc = "ASC"
 
@@ -7609,5 +7949,57 @@ func OrderString_Values() []string {
 	return []string{
 		OrderStringAsc,
 		OrderStringDesc,
+	}
+}
+
+const (
+	// PurchasingOptionAllUpfront is a PurchasingOption enum value
+	PurchasingOptionAllUpfront = "ALL_UPFRONT"
+
+	// PurchasingOptionPartialUpfront is a PurchasingOption enum value
+	PurchasingOptionPartialUpfront = "PARTIAL_UPFRONT"
+
+	// PurchasingOptionNoUpfront is a PurchasingOption enum value
+	PurchasingOptionNoUpfront = "NO_UPFRONT"
+)
+
+// PurchasingOption_Values returns all elements of the PurchasingOption enum
+func PurchasingOption_Values() []string {
+	return []string{
+		PurchasingOptionAllUpfront,
+		PurchasingOptionPartialUpfront,
+		PurchasingOptionNoUpfront,
+	}
+}
+
+const (
+	// TenancyDedicated is a Tenancy enum value
+	TenancyDedicated = "DEDICATED"
+
+	// TenancyShared is a Tenancy enum value
+	TenancyShared = "SHARED"
+)
+
+// Tenancy_Values returns all elements of the Tenancy enum
+func Tenancy_Values() []string {
+	return []string{
+		TenancyDedicated,
+		TenancyShared,
+	}
+}
+
+const (
+	// TermLengthOneYear is a TermLength enum value
+	TermLengthOneYear = "ONE_YEAR"
+
+	// TermLengthThreeYear is a TermLength enum value
+	TermLengthThreeYear = "THREE_YEAR"
+)
+
+// TermLength_Values returns all elements of the TermLength enum
+func TermLength_Values() []string {
+	return []string{
+		TermLengthOneYear,
+		TermLengthThreeYear,
 	}
 }
