@@ -1387,12 +1387,16 @@
       "type":"string",
       "enum":["SubmittedDate"]
     },
+    "ListPricesPageMaxItems":{
+      "type":"integer",
+      "max":1000
+    },
     "ListPricesRequest":{
       "type":"structure",
       "members":{
         "Tld":{"shape":"TldName"},
         "Marker":{"shape":"PageMarker"},
-        "MaxItems":{"shape":"PageMaxItems"}
+        "MaxItems":{"shape":"ListPricesPageMaxItems"}
       }
     },
     "ListPricesResponse":{

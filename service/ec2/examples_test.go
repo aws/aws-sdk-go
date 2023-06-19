@@ -25,35 +25,9 @@ func parseTime(layout, value string) *time.Time {
 	return &t
 }
 
-// To allocate an Elastic IP address for EC2-VPC
-// This example allocates an Elastic IP address to use with an instance in a VPC.
+// To allocate an Elastic IP address
+// This example allocates an Elastic IP address.
 func ExampleEC2_AllocateAddress_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.AllocateAddressInput{
-		Domain: aws.String("vpc"),
-	}
-
-	result, err := svc.AllocateAddress(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To allocate an Elastic IP address for EC2-Classic
-// This example allocates an Elastic IP address to use with an instance in EC2-Classic.
-func ExampleEC2_AllocateAddress_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.AllocateAddressInput{}
 
@@ -135,9 +109,8 @@ func ExampleEC2_AssignPrivateIpAddresses_shared01() {
 	fmt.Println(result)
 }
 
-// To associate an Elastic IP address in EC2-VPC
-// This example associates the specified Elastic IP address with the specified instance
-// in a VPC.
+// To associate an Elastic IP address
+// This example associates the specified Elastic IP address with the specified instance.
 func ExampleEC2_AssociateAddress_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.AssociateAddressInput{
@@ -171,33 +144,6 @@ func ExampleEC2_AssociateAddress_shared01() {
 	input := &ec2.AssociateAddressInput{
 		AllocationId:       aws.String("eipalloc-64d5890a"),
 		NetworkInterfaceId: aws.String("eni-1a2b3c4d"),
-	}
-
-	result, err := svc.AssociateAddress(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To associate an Elastic IP address in EC2-Classic
-// This example associates an Elastic IP address with an instance in EC2-Classic.
-func ExampleEC2_AssociateAddress_shared02() {
-	svc := ec2.New(session.New())
-	input := &ec2.AssociateAddressInput{
-		InstanceId: aws.String("i-07ffe74c7330ebf53"),
-		PublicIp:   aws.String("198.51.100.0"),
 	}
 
 	result, err := svc.AssociateAddress(input)
@@ -2072,72 +2018,6 @@ func ExampleEC2_DescribeAddresses_shared00() {
 	fmt.Println(result)
 }
 
-// To describe your Elastic IP addresses for EC2-VPC
-// This example describes your Elastic IP addresses for use with instances in a VPC.
-func ExampleEC2_DescribeAddresses_shared01() {
-	svc := ec2.New(session.New())
-	input := &ec2.DescribeAddressesInput{
-		Filters: []*ec2.Filter{
-			{
-				Name: aws.String("domain"),
-				Values: []*string{
-					aws.String("vpc"),
-				},
-			},
-		},
-	}
-
-	result, err := svc.DescribeAddresses(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To describe your Elastic IP addresses for EC2-Classic
-// This example describes your Elastic IP addresses for use with instances in EC2-Classic.
-func ExampleEC2_DescribeAddresses_shared02() {
-	svc := ec2.New(session.New())
-	input := &ec2.DescribeAddressesInput{
-		Filters: []*ec2.Filter{
-			{
-				Name: aws.String("domain"),
-				Values: []*string{
-					aws.String("standard"),
-				},
-			},
-		},
-	}
-
-	result, err := svc.DescribeAddresses(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To describe your Availability Zones
 // This example describes the Availability Zones that are available to you. The response
 // includes Availability Zones only for the current region.
@@ -2894,71 +2774,6 @@ func ExampleEC2_DescribeRouteTables_shared00() {
 	fmt.Println(result)
 }
 
-// To describe an available schedule
-// This example describes a schedule that occurs every week on Sunday, starting on the
-// specified date. Note that the output contains a single schedule as an example.
-func ExampleEC2_DescribeScheduledInstanceAvailability_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.DescribeScheduledInstanceAvailabilityInput{
-		FirstSlotStartTimeRange: &ec2.SlotDateTimeRangeRequest{
-			EarliestTime: parseTime("2006-01-02T15:04:05.999999999Z", "2016-01-31T00:00:00Z"),
-			LatestTime:   parseTime("2006-01-02T15:04:05.999999999Z", "2016-01-31T04:00:00Z"),
-		},
-		Recurrence: &ec2.ScheduledInstanceRecurrenceRequest{
-			Frequency: aws.String("Weekly"),
-			Interval:  aws.Int64(1),
-			OccurrenceDays: []*int64{
-				aws.Int64(1),
-			},
-		},
-	}
-
-	result, err := svc.DescribeScheduledInstanceAvailability(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To describe your Scheduled Instances
-// This example describes the specified Scheduled Instance.
-func ExampleEC2_DescribeScheduledInstances_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.DescribeScheduledInstancesInput{
-		ScheduledInstanceIds: []*string{
-			aws.String("sci-1234-1234-1234-1234-123456789012"),
-		},
-	}
-
-	result, err := svc.DescribeScheduledInstances(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To describe security group references
 // This example describes the security group references for the specified security group.
 func ExampleEC2_DescribeSecurityGroupReferences_shared00() {
@@ -3281,14 +3096,14 @@ func ExampleEC2_DescribeSpotInstanceRequests_shared00() {
 func ExampleEC2_DescribeSpotPriceHistory_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeSpotPriceHistoryInput{
-		EndTime: parseTime("2006-01-02T15:04:05.999999999Z", "2014-01-06T08:09:10"),
+		EndTime: parseTime("2006-01-02T15:04:05.999999999Z", "2014-01-06T08:09:10.05Z"),
 		InstanceTypes: []*string{
 			aws.String("m1.xlarge"),
 		},
 		ProductDescriptions: []*string{
 			aws.String("Linux/UNIX (Amazon VPC)"),
 		},
-		StartTime: parseTime("2006-01-02T15:04:05.999999999Z", "2014-01-06T07:08:09"),
+		StartTime: parseTime("2006-01-02T15:04:05.999999999Z", "2014-01-06T07:08:09.05Z"),
 	}
 
 	result, err := svc.DescribeSpotPriceHistory(input)
@@ -3723,38 +3538,12 @@ func ExampleEC2_DisableVgwRoutePropagation_shared00() {
 	fmt.Println(result)
 }
 
-// To disassociate an Elastic IP address in EC2-VPC
-// This example disassociates an Elastic IP address from an instance in a VPC.
+// To disassociate an Elastic IP address
+// This example disassociates an Elastic IP address from an instance.
 func ExampleEC2_DisassociateAddress_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DisassociateAddressInput{
 		AssociationId: aws.String("eipassoc-2bebb745"),
-	}
-
-	result, err := svc.DisassociateAddress(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To disassociate an Elastic IP addresses in EC2-Classic
-// This example disassociates an Elastic IP address from an instance in EC2-Classic.
-func ExampleEC2_DisassociateAddress_shared01() {
-	svc := ec2.New(session.New())
-	input := &ec2.DisassociateAddressInput{
-		PublicIp: aws.String("198.51.100.0"),
 	}
 
 	result, err := svc.DisassociateAddress(input)
@@ -4474,37 +4263,6 @@ func ExampleEC2_MoveAddressToVpc_shared00() {
 	fmt.Println(result)
 }
 
-// To purchase a Scheduled Instance
-// This example purchases a Scheduled Instance.
-func ExampleEC2_PurchaseScheduledInstances_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.PurchaseScheduledInstancesInput{
-		PurchaseRequests: []*ec2.PurchaseRequest{
-			{
-				InstanceCount: aws.Int64(1),
-				PurchaseToken: aws.String("eyJ2IjoiMSIsInMiOjEsImMiOi..."),
-			},
-		},
-	}
-
-	result, err := svc.PurchaseScheduledInstances(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To reboot an EC2 instance
 // This example reboots the specified EC2 instance.
 func ExampleEC2_RebootInstances_shared00() {
@@ -4533,38 +4291,12 @@ func ExampleEC2_RebootInstances_shared00() {
 	fmt.Println(result)
 }
 
-// To release an Elastic IP address for EC2-VPC
-// This example releases an Elastic IP address for use with instances in a VPC.
+// To release an Elastic IP address
+// This example releases the specified Elastic IP address.
 func ExampleEC2_ReleaseAddress_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.ReleaseAddressInput{
 		AllocationId: aws.String("eipalloc-64d5890a"),
-	}
-
-	result, err := svc.ReleaseAddress(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To release an Elastic IP addresses for EC2-Classic
-// This example releases an Elastic IP address for use with instances in EC2-Classic.
-func ExampleEC2_ReleaseAddress_shared01() {
-	svc := ec2.New(session.New())
-	input := &ec2.ReleaseAddressInput{
-		PublicIp: aws.String("198.51.100.0"),
 	}
 
 	result, err := svc.ReleaseAddress(input)
@@ -4762,9 +4494,7 @@ func ExampleEC2_RequestSpotFleet_shared00() {
 // This example creates a Spot fleet request with two launch specifications that differ
 // only by Availability Zone. The Spot fleet launches the instances in the specified
 // Availability Zone with the lowest price. If your account supports EC2-VPC only, Amazon
-// EC2 launches the Spot instances in the default subnet of the Availability Zone. If
-// your account supports EC2-Classic, Amazon EC2 launches the instances in EC2-Classic
-// in the Availability Zone.
+// EC2 launches the Spot instances in the default subnet of the Availability Zone.
 func ExampleEC2_RequestSpotFleet_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.RequestSpotFleetInput{
@@ -4917,9 +4647,7 @@ func ExampleEC2_RequestSpotFleet_shared03() {
 // To create a one-time Spot Instance request
 // This example creates a one-time Spot Instance request for five instances in the specified
 // Availability Zone. If your account supports EC2-VPC only, Amazon EC2 launches the
-// instances in the default subnet of the specified Availability Zone. If your account
-// supports EC2-Classic, Amazon EC2 launches the instances in EC2-Classic in the specified
-// Availability Zone.
+// instances in the default subnet of the specified Availability Zone.
 func ExampleEC2_RequestSpotInstances_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.RequestSpotInstancesInput{
@@ -5085,32 +4813,6 @@ func ExampleEC2_ResetSnapshotAttribute_shared00() {
 	fmt.Println(result)
 }
 
-// To restore an address to EC2-Classic
-// This example restores the specified Elastic IP address to the EC2-Classic platform.
-func ExampleEC2_RestoreAddressToClassic_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.RestoreAddressToClassicInput{
-		PublicIp: aws.String("198.51.100.0"),
-	}
-
-	result, err := svc.RestoreAddressToClassic(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To launch an instance
 // This example launches an instance using the specified AMI, instance type, security
 // group, subnet, block device mapping, and tags.
@@ -5148,92 +4850,6 @@ func ExampleEC2_RunInstances_shared00() {
 	}
 
 	result, err := svc.RunInstances(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To launch a Scheduled Instance in a VPC
-// This example launches the specified Scheduled Instance in a VPC.
-func ExampleEC2_RunScheduledInstances_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.RunScheduledInstancesInput{
-		InstanceCount: aws.Int64(1),
-		LaunchSpecification: &ec2.ScheduledInstancesLaunchSpecification{
-			IamInstanceProfile: &ec2.ScheduledInstancesIamInstanceProfile{
-				Name: aws.String("my-iam-role"),
-			},
-			ImageId:      aws.String("ami-12345678"),
-			InstanceType: aws.String("c4.large"),
-			KeyName:      aws.String("my-key-pair"),
-			NetworkInterfaces: []*ec2.ScheduledInstancesNetworkInterface{
-				{
-					AssociatePublicIpAddress: aws.Bool(true),
-					DeviceIndex:              aws.Int64(0),
-					Groups: []*string{
-						aws.String("sg-12345678"),
-					},
-					SubnetId: aws.String("subnet-12345678"),
-				},
-			},
-		},
-		ScheduledInstanceId: aws.String("sci-1234-1234-1234-1234-123456789012"),
-	}
-
-	result, err := svc.RunScheduledInstances(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To launch a Scheduled Instance in EC2-Classic
-// This example launches the specified Scheduled Instance in EC2-Classic.
-func ExampleEC2_RunScheduledInstances_shared01() {
-	svc := ec2.New(session.New())
-	input := &ec2.RunScheduledInstancesInput{
-		InstanceCount: aws.Int64(1),
-		LaunchSpecification: &ec2.ScheduledInstancesLaunchSpecification{
-			IamInstanceProfile: &ec2.ScheduledInstancesIamInstanceProfile{
-				Name: aws.String("my-iam-role"),
-			},
-			ImageId:      aws.String("ami-12345678"),
-			InstanceType: aws.String("c4.large"),
-			KeyName:      aws.String("my-key-pair"),
-			Placement: &ec2.ScheduledInstancesPlacement{
-				AvailabilityZone: aws.String("us-west-2b"),
-			},
-			SecurityGroupIds: []*string{
-				aws.String("sg-12345678"),
-			},
-		},
-		ScheduledInstanceId: aws.String("sci-1234-1234-1234-1234-123456789012"),
-	}
-
-	result, err := svc.RunScheduledInstances(input)
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
