@@ -5745,7 +5745,8 @@
       "type":"structure",
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
-        "DatabaseName":{"shape":"NameString"}
+        "DatabaseName":{"shape":"NameString"},
+        "Region":{"shape":"NameString"}
       }
     },
     "DatabaseInput":{
@@ -11501,7 +11502,8 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
-        "Name":{"shape":"NameString"}
+        "Name":{"shape":"NameString"},
+        "Region":{"shape":"NameString"}
       }
     },
     "TableInput":{

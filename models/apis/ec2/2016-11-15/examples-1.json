@@ -3,13 +3,12 @@
   "examples": {
     "AllocateAddress": [
       {
-        "input": {
-          "Domain": "vpc"
-        },
         "output": {
           "AllocationId": "eipalloc-64d5890a",
           "Domain": "vpc",
-          "PublicIp": "203.0.113.0"
+          "NetworkBorderGroup": "us-east-1",
+          "PublicIp": "203.0.113.0",
+          "PublicIpv4Pool": "amazon"
         },
         "comments": {
           "input": {
@@ -17,24 +16,9 @@
           "output": {
           }
         },
-        "description": "This example allocates an Elastic IP address to use with an instance in a VPC.",
+        "description": "This example allocates an Elastic IP address.",
         "id": "ec2-allocate-address-1",
-        "title": "To allocate an Elastic IP address for EC2-VPC"
-      },
-      {
-        "output": {
-          "Domain": "standard",
-          "PublicIp": "198.51.100.0"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example allocates an Elastic IP address to use with an instance in EC2-Classic.",
-        "id": "ec2-allocate-address-2",
-        "title": "To allocate an Elastic IP address for EC2-Classic"
+        "title": "To allocate an Elastic IP address"
       }
     ],
     "AssignPrivateIpAddresses": [
@@ -86,9 +70,9 @@
           "output": {
           }
         },
-        "description": "This example associates the specified Elastic IP address with the specified instance in a VPC.",
+        "description": "This example associates the specified Elastic IP address with the specified instance.",
         "id": "ec2-associate-address-1",
-        "title": "To associate an Elastic IP address in EC2-VPC"
+        "title": "To associate an Elastic IP address"
       },
       {
         "input": {
@@ -107,21 +91,6 @@
         "description": "This example associates the specified Elastic IP address with the specified network interface.",
         "id": "ec2-associate-address-2",
         "title": "To associate an Elastic IP address with a network interface"
-      },
-      {
-        "input": {
-          "InstanceId": "i-07ffe74c7330ebf53",
-          "PublicIp": "198.51.100.0"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example associates an Elastic IP address with an instance in EC2-Classic.",
-        "id": "ec2-associate-address-3",
-        "title": "To associate an Elastic IP address in EC2-Classic"
       }
     ],
     "AssociateDhcpOptions": [
@@ -1734,71 +1703,6 @@
         "description": "This example describes your Elastic IP addresses.",
         "id": "ec2-describe-addresses-1",
         "title": "To describe your Elastic IP addresses"
-      },
-      {
-        "input": {
-          "Filters": [
-            {
-              "Name": "domain",
-              "Values": [
-                "vpc"
-              ]
-            }
-          ]
-        },
-        "output": {
-          "Addresses": [
-            {
-              "AllocationId": "eipalloc-12345678",
-              "AssociationId": "eipassoc-12345678",
-              "Domain": "vpc",
-              "InstanceId": "i-1234567890abcdef0",
-              "NetworkInterfaceId": "eni-12345678",
-              "NetworkInterfaceOwnerId": "123456789012",
-              "PrivateIpAddress": "10.0.1.241",
-              "PublicIp": "203.0.113.0"
-            }
-          ]
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example describes your Elastic IP addresses for use with instances in a VPC.",
-        "id": "ec2-describe-addresses-2",
-        "title": "To describe your Elastic IP addresses for EC2-VPC"
-      },
-      {
-        "input": {
-          "Filters": [
-            {
-              "Name": "domain",
-              "Values": [
-                "standard"
-              ]
-            }
-          ]
-        },
-        "output": {
-          "Addresses": [
-            {
-              "Domain": "standard",
-              "InstanceId": "i-1234567890abcdef0",
-              "PublicIp": "198.51.100.0"
-            }
-          ]
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example describes your Elastic IP addresses for use with instances in EC2-Classic.",
-        "id": "ec2-describe-addresses-3",
-        "title": "To describe your Elastic IP addresses for EC2-Classic"
       }
     ],
     "DescribeAvailabilityZones": [
@@ -2235,7 +2139,7 @@
             {
               "Attachments": [
                 {
-                  "State": "available",
+                  "State": "attached",
                   "VpcId": "vpc-a01106c2"
                 }
               ],
@@ -2385,7 +2289,7 @@
         "output": {
           "MovingAddressStatuses": [
             {
-              "MoveStatus": "MovingToVpc",
+              "MoveStatus": "movingToVpc",
               "PublicIp": "198.51.100.0"
             }
           ]
@@ -2769,104 +2673,6 @@
         "description": "This example describes the specified route table.",
         "id": "ec2-describe-route-tables-1",
         "title": "To describe a route table"
-      }
-    ],
-    "DescribeScheduledInstanceAvailability": [
-      {
-        "input": {
-          "FirstSlotStartTimeRange": {
-            "EarliestTime": "2016-01-31T00:00:00Z",
-            "LatestTime": "2016-01-31T04:00:00Z"
-          },
-          "Recurrence": {
-            "Frequency": "Weekly",
-            "Interval": 1,
-            "OccurrenceDays": [
-              1
-            ]
-          }
-        },
-        "output": {
-          "ScheduledInstanceAvailabilitySet": [
-            {
-              "AvailabilityZone": "us-west-2b",
-              "AvailableInstanceCount": 20,
-              "FirstSlotStartTime": "2016-01-31T00:00:00Z",
-              "HourlyPrice": "0.095",
-              "InstanceType": "c4.large",
-              "MaxTermDurationInDays": 366,
-              "MinTermDurationInDays": 366,
-              "NetworkPlatform": "EC2-VPC",
-              "Platform": "Linux/UNIX",
-              "PurchaseToken": "eyJ2IjoiMSIsInMiOjEsImMiOi...",
-              "Recurrence": {
-                "Frequency": "Weekly",
-                "Interval": 1,
-                "OccurrenceDaySet": [
-                  1
-                ],
-                "OccurrenceRelativeToEnd": false
-              },
-              "SlotDurationInHours": 23,
-              "TotalScheduledInstanceHours": 1219
-            }
-          ]
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example describes a schedule that occurs every week on Sunday, starting on the specified date. Note that the output contains a single schedule as an example.",
-        "id": "ec2-describe-scheduled-instance-availability-1",
-        "title": "To describe an available schedule"
-      }
-    ],
-    "DescribeScheduledInstances": [
-      {
-        "input": {
-          "ScheduledInstanceIds": [
-            "sci-1234-1234-1234-1234-123456789012"
-          ]
-        },
-        "output": {
-          "ScheduledInstanceSet": [
-            {
-              "AvailabilityZone": "us-west-2b",
-              "CreateDate": "2016-01-25T21:43:38.612Z",
-              "HourlyPrice": "0.095",
-              "InstanceCount": 1,
-              "InstanceType": "c4.large",
-              "NetworkPlatform": "EC2-VPC",
-              "NextSlotStartTime": "2016-01-31T09:00:00Z",
-              "Platform": "Linux/UNIX",
-              "Recurrence": {
-                "Frequency": "Weekly",
-                "Interval": 1,
-                "OccurrenceDaySet": [
-                  1
-                ],
-                "OccurrenceRelativeToEnd": false,
-                "OccurrenceUnit": ""
-              },
-              "ScheduledInstanceId": "sci-1234-1234-1234-1234-123456789012",
-              "SlotDurationInHours": 32,
-              "TermEndDate": "2017-01-31T09:00:00Z",
-              "TermStartDate": "2016-01-31T09:00:00Z",
-              "TotalScheduledInstanceHours": 1696
-            }
-          ]
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example describes the specified Scheduled Instance.",
-        "id": "ec2-describe-scheduled-instances-1",
-        "title": "To describe your Scheduled Instances"
       }
     ],
     "DescribeSecurityGroupReferences": [
@@ -3258,14 +3064,14 @@
     "DescribeSpotPriceHistory": [
       {
         "input": {
-          "EndTime": "2014-01-06T08:09:10",
+          "EndTime": "2014-01-06T08:09:10.05Z",
           "InstanceTypes": [
             "m1.xlarge"
           ],
           "ProductDescriptions": [
             "Linux/UNIX (Amazon VPC)"
           ],
-          "StartTime": "2014-01-06T07:08:09"
+          "StartTime": "2014-01-06T07:08:09.05Z"
         },
         "output": {
           "SpotPriceHistory": [
@@ -3719,23 +3525,9 @@
           "output": {
           }
         },
-        "description": "This example disassociates an Elastic IP address from an instance in a VPC.",
+        "description": "This example disassociates an Elastic IP address from an instance.",
         "id": "ec2-disassociate-address-1",
-        "title": "To disassociate an Elastic IP address in EC2-VPC"
-      },
-      {
-        "input": {
-          "PublicIp": "198.51.100.0"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example disassociates an Elastic IP address from an instance in EC2-Classic.",
-        "id": "ec2-disassociate-address-2",
-        "title": "To disassociate an Elastic IP addresses in EC2-Classic"
+        "title": "To disassociate an Elastic IP address"
       }
     ],
     "DisassociateIamInstanceProfile": [
@@ -4269,55 +4061,6 @@
         "title": "To move an address to EC2-VPC"
       }
     ],
-    "PurchaseScheduledInstances": [
-      {
-        "input": {
-          "PurchaseRequests": [
-            {
-              "InstanceCount": 1,
-              "PurchaseToken": "eyJ2IjoiMSIsInMiOjEsImMiOi..."
-            }
-          ]
-        },
-        "output": {
-          "ScheduledInstanceSet": [
-            {
-              "AvailabilityZone": "us-west-2b",
-              "CreateDate": "2016-01-25T21:43:38.612Z",
-              "HourlyPrice": "0.095",
-              "InstanceCount": 1,
-              "InstanceType": "c4.large",
-              "NetworkPlatform": "EC2-VPC",
-              "NextSlotStartTime": "2016-01-31T09:00:00Z",
-              "Platform": "Linux/UNIX",
-              "Recurrence": {
-                "Frequency": "Weekly",
-                "Interval": 1,
-                "OccurrenceDaySet": [
-                  1
-                ],
-                "OccurrenceRelativeToEnd": false,
-                "OccurrenceUnit": ""
-              },
-              "ScheduledInstanceId": "sci-1234-1234-1234-1234-123456789012",
-              "SlotDurationInHours": 32,
-              "TermEndDate": "2017-01-31T09:00:00Z",
-              "TermStartDate": "2016-01-31T09:00:00Z",
-              "TotalScheduledInstanceHours": 1696
-            }
-          ]
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example purchases a Scheduled Instance.",
-        "id": "ec2-purchase-scheduled-instances-1",
-        "title": "To purchase a Scheduled Instance"
-      }
-    ],
     "RebootInstances": [
       {
         "input": {
@@ -4349,23 +4092,9 @@
           "output": {
           }
         },
-        "description": "This example releases an Elastic IP address for use with instances in a VPC.",
+        "description": "This example releases the specified Elastic IP address.",
         "id": "ec2-release-address-1",
-        "title": "To release an Elastic IP address for EC2-VPC"
-      },
-      {
-        "input": {
-          "PublicIp": "198.51.100.0"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example releases an Elastic IP address for use with instances in EC2-Classic.",
-        "id": "ec2-release-address-2",
-        "title": "To release an Elastic IP addresses for EC2-Classic"
+        "title": "To release an Elastic IP address"
       }
     ],
     "ReplaceNetworkAclAssociation": [
@@ -4524,7 +4253,7 @@
           "output": {
           }
         },
-        "description": "This example creates a Spot fleet request with two launch specifications that differ only by Availability Zone. The Spot fleet launches the instances in the specified Availability Zone with the lowest price. If your account supports EC2-VPC only, Amazon EC2 launches the Spot instances in the default subnet of the Availability Zone. If your account supports EC2-Classic, Amazon EC2 launches the instances in EC2-Classic in the Availability Zone.",
+        "description": "This example creates a Spot fleet request with two launch specifications that differ only by Availability Zone. The Spot fleet launches the instances in the specified Availability Zone with the lowest price. If your account supports EC2-VPC only, Amazon EC2 launches the Spot instances in the default subnet of the Availability Zone.",
         "id": "ec2-request-spot-fleet-2",
         "title": "To request a Spot fleet in the Availability Zone with the lowest price"
       },
@@ -4636,7 +4365,7 @@
           "output": {
           }
         },
-        "description": "This example creates a one-time Spot Instance request for five instances in the specified Availability Zone. If your account supports EC2-VPC only, Amazon EC2 launches the instances in the default subnet of the specified Availability Zone. If your account supports EC2-Classic, Amazon EC2 launches the instances in EC2-Classic in the specified Availability Zone.",
+        "description": "This example creates a one-time Spot Instance request for five instances in the specified Availability Zone. If your account supports EC2-VPC only, Amazon EC2 launches the instances in the default subnet of the specified Availability Zone.",
         "id": "ec2-request-spot-instances-1",
         "title": "To create a one-time Spot Instance request"
       },
@@ -4725,26 +4454,6 @@
         "title": "To reset a snapshot attribute"
       }
     ],
-    "RestoreAddressToClassic": [
-      {
-        "input": {
-          "PublicIp": "198.51.100.0"
-        },
-        "output": {
-          "PublicIp": "198.51.100.0",
-          "Status": "MoveInProgress"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example restores the specified Elastic IP address to the EC2-Classic platform.",
-        "id": "ec2-restore-address-to-classic-1",
-        "title": "To restore an address to EC2-Classic"
-      }
-    ],
     "RunInstances": [
       {
         "input": {
@@ -4788,80 +4497,6 @@
         "description": "This example launches an instance using the specified AMI, instance type, security group, subnet, block device mapping, and tags.",
         "id": "to-launch-an-instance-1529360150806",
         "title": "To launch an instance"
-      }
-    ],
-    "RunScheduledInstances": [
-      {
-        "input": {
-          "InstanceCount": 1,
-          "LaunchSpecification": {
-            "IamInstanceProfile": {
-              "Name": "my-iam-role"
-            },
-            "ImageId": "ami-12345678",
-            "InstanceType": "c4.large",
-            "KeyName": "my-key-pair",
-            "NetworkInterfaces": [
-              {
-                "AssociatePublicIpAddress": true,
-                "DeviceIndex": 0,
-                "Groups": [
-                  "sg-12345678"
-                ],
-                "SubnetId": "subnet-12345678"
-              }
-            ]
-          },
-          "ScheduledInstanceId": "sci-1234-1234-1234-1234-123456789012"
-        },
-        "output": {
-          "InstanceIdSet": [
-            "i-1234567890abcdef0"
-          ]
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example launches the specified Scheduled Instance in a VPC.",
-        "id": "ec2-run-scheduled-instances-1",
-        "title": "To launch a Scheduled Instance in a VPC"
-      },
-      {
-        "input": {
-          "InstanceCount": 1,
-          "LaunchSpecification": {
-            "IamInstanceProfile": {
-              "Name": "my-iam-role"
-            },
-            "ImageId": "ami-12345678",
-            "InstanceType": "c4.large",
-            "KeyName": "my-key-pair",
-            "Placement": {
-              "AvailabilityZone": "us-west-2b"
-            },
-            "SecurityGroupIds": [
-              "sg-12345678"
-            ]
-          },
-          "ScheduledInstanceId": "sci-1234-1234-1234-1234-123456789012"
-        },
-        "output": {
-          "InstanceIdSet": [
-            "i-1234567890abcdef0"
-          ]
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example launches the specified Scheduled Instance in EC2-Classic.",
-        "id": "ec2-run-scheduled-instances-2",
-        "title": "To launch a Scheduled Instance in EC2-Classic"
       }
     ],
     "StartInstances": [

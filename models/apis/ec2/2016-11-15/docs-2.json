@@ -219,7 +219,7 @@
     "DeregisterInstanceEventNotificationAttributes": "<p>Deregisters tag keys to prevent tags that have the specified tag keys from being included in scheduled event notifications for resources in the Region.</p>",
     "DeregisterTransitGatewayMulticastGroupMembers": "<p>Deregisters the specified members (network interfaces) from the transit gateway multicast group.</p>",
     "DeregisterTransitGatewayMulticastGroupSources": "<p>Deregisters the specified sources (network interfaces) from the transit gateway multicast group.</p>",
-    "DescribeAccountAttributes": "<p>Describes attributes of your Amazon Web Services account. The following are the supported account attributes:</p> <ul> <li> <p> <code>supported-platforms</code>: Indicates whether your account can launch instances into EC2-Classic and EC2-VPC, or only into EC2-VPC.</p> </li> <li> <p> <code>default-vpc</code>: The ID of the default VPC for your account, or <code>none</code>.</p> </li> <li> <p> <code>max-instances</code>: This attribute is no longer supported. The returned value does not reflect your actual vCPU limit for running On-Demand Instances. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits\">On-Demand Instance Limits</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </li> <li> <p> <code>vpc-max-security-groups-per-interface</code>: The maximum number of security groups that you can assign to a network interface.</p> </li> <li> <p> <code>max-elastic-ips</code>: The maximum number of Elastic IP addresses that you can allocate for use with EC2-Classic. </p> </li> <li> <p> <code>vpc-max-elastic-ips</code>: The maximum number of Elastic IP addresses that you can allocate for use with EC2-VPC.</p> </li> </ul> <note> <p>We are retiring EC2-Classic on August 15, 2022. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon EC2 User Guide</i>.</p> </note>",
+    "DescribeAccountAttributes": "<p>Describes attributes of your Amazon Web Services account. The following are the supported account attributes:</p> <ul> <li> <p> <code>default-vpc</code>: The ID of the default VPC for your account, or <code>none</code>.</p> </li> <li> <p> <code>max-instances</code>: This attribute is no longer supported. The returned value does not reflect your actual vCPU limit for running On-Demand Instances. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits\">On-Demand Instance Limits</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </li> <li> <p> <code>max-elastic-ips</code>: The maximum number of Elastic IP addresses that you can allocate.</p> </li> <li> <p> <code>supported-platforms</code>: This attribute is deprecated.</p> </li> <li> <p> <code>vpc-max-elastic-ips</code>: The maximum number of Elastic IP addresses that you can allocate.</p> </li> <li> <p> <code>vpc-max-security-groups-per-interface</code>: The maximum number of security groups that you can assign to a network interface.</p> </li> </ul>",
     "DescribeAddressTransfers": "<p>Describes an Elastic IP address transfer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro\">Transfer Elastic IP addresses</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>When you transfer an Elastic IP address, there is a two-step handshake between the source and transfer Amazon Web Services accounts. When the source account starts the transfer, the transfer account has seven days to accept the Elastic IP address transfer. During those seven days, the source account can view the pending transfer by using this action. After seven days, the transfer expires and ownership of the Elastic IP address returns to the source account. Accepted transfers are visible to the source account for three days after the transfers have been accepted.</p>",
     "DescribeAddresses": "<p>Describes the specified Elastic IP addresses or all of your Elastic IP addresses.</p>",
     "DescribeAddressesAttribute": "<p>Describes the attributes of the specified Elastic IP addresses. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
@@ -1703,6 +1703,12 @@
         "AvailabilityZoneList$member": null
       }
     },
+    "AvailabilityZoneId": {
+      "base": null,
+      "refs": {
+        "CreateCapacityReservationRequest$AvailabilityZoneId": "<p>The ID of the Availability Zone in which to create the Capacity Reservation.</p>"
+      }
+    },
     "AvailabilityZoneList": {
       "base": null,
       "refs": {
@@ -1724,6 +1730,7 @@
     "AvailabilityZoneName": {
       "base": null,
       "refs": {
+        "CreateCapacityReservationRequest$AvailabilityZone": "<p>The Availability Zone in which to create the Capacity Reservation.</p>",
         "CreateVolumeRequest$AvailabilityZone": "<p>The Availability Zone in which to create the volume.</p>"
       }
     },
@@ -2737,8 +2744,10 @@
         "VerifiedAccessLogCloudWatchLogsDestinationOptions$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestination$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestinationOptions$Enabled": "<p>Indicates whether logging is enabled.</p>",
+        "VerifiedAccessLogOptions$IncludeTrustContext": "<p> Include trust data sent by trust providers into the logs. </p>",
         "VerifiedAccessLogS3Destination$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogS3DestinationOptions$Enabled": "<p>Indicates whether logging is enabled.</p>",
+        "VerifiedAccessLogs$IncludeTrustContext": "<p> Describes current setting for including trust data into the logs. </p>",
         "Volume$Encrypted": "<p>Indicates whether the volume is encrypted.</p>",
         "Volume$FastRestored": "<p>Indicates whether the volume was created using fast snapshot restore.</p>",
         "Volume$MultiAttachEnabled": "<p>Indicates whether Amazon EBS Multi-Attach is enabled.</p>",
@@ -18487,8 +18496,6 @@
         "CreateCapacityReservationFleetResult$AllocationStrategy": "<p>The allocation strategy used by the Capacity Reservation Fleet.</p>",
         "CreateCapacityReservationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensure Idempotency</a>.</p>",
         "CreateCapacityReservationRequest$InstanceType": "<p>The instance type for which to reserve capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon EC2 User Guide</i>.</p>",
-        "CreateCapacityReservationRequest$AvailabilityZone": "<p>The Availability Zone in which to create the Capacity Reservation.</p>",
-        "CreateCapacityReservationRequest$AvailabilityZoneId": "<p>The ID of the Availability Zone in which to create the Capacity Reservation.</p>",
         "CreateCarrierGatewayRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
         "CreateClientVpnEndpointRequest$ClientCidrBlock": "<p>The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. Client CIDR range must have a size of at least /22 and must not be greater than /12.</p>",
         "CreateClientVpnEndpointRequest$ServerCertificateArn": "<p>The ARN of the server certificate. For more information, see the <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/\">Certificate Manager User Guide</a>.</p>",
@@ -20151,12 +20158,14 @@
         "VerifiedAccessLogDeliveryStatus$Message": "<p>The status message.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestination$DeliveryStream": "<p>The ID of the delivery stream.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestinationOptions$DeliveryStream": "<p>The ID of the delivery stream.</p>",
+        "VerifiedAccessLogOptions$LogVersion": "<p> The logging version to use. </p> <p>Valid values: <code>ocsf-0.1</code> | <code>ocsf-1.0.0-rc.2</code> </p>",
         "VerifiedAccessLogS3Destination$BucketName": "<p>The bucket name.</p>",
         "VerifiedAccessLogS3Destination$Prefix": "<p>The bucket prefix.</p>",
         "VerifiedAccessLogS3Destination$BucketOwner": "<p>The Amazon Web Services account number that owns the bucket.</p>",
         "VerifiedAccessLogS3DestinationOptions$BucketName": "<p>The bucket name.</p>",
         "VerifiedAccessLogS3DestinationOptions$Prefix": "<p>The bucket prefix.</p>",
         "VerifiedAccessLogS3DestinationOptions$BucketOwner": "<p>The ID of the Amazon Web Services account that owns the Amazon S3 bucket.</p>",
+        "VerifiedAccessLogs$LogVersion": "<p> Describes current setting for the logging version. </p>",
         "VerifiedAccessTrustProvider$VerifiedAccessTrustProviderId": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
         "VerifiedAccessTrustProvider$Description": "<p>A description for the Amazon Web Services Verified Access trust provider.</p>",
         "VerifiedAccessTrustProvider$PolicyReferenceName": "<p>The identifier to be used when working with policy rules.</p>",
@@ -22463,7 +22472,7 @@
       }
     },
     "VerifiedAccessLogOptions": {
-      "base": "<p>Describes the destinations for Verified Access logs.</p>",
+      "base": "<p>Options for Verified Access logs.</p>",
       "refs": {
         "ModifyVerifiedAccessInstanceLoggingConfigurationRequest$AccessLogs": "<p>The configuration options for Verified Access instances.</p>"
       }
@@ -22481,7 +22490,7 @@
       }
     },
     "VerifiedAccessLogs": {
-      "base": "<p>Describes the destinations for Verified Access logs.</p>",
+      "base": "<p>Describes the options for Verified Access logs.</p>",
       "refs": {
         "VerifiedAccessInstanceLoggingConfiguration$AccessLogs": "<p>Details about the logging options.</p>"
       }
