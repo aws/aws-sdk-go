@@ -18,6 +18,7 @@
     "ListFlows": "<p> Lists all of the flows associated with your account. </p>",
     "ListTagsForResource": "<p> Retrieves the tags that are associated with a specified flow. </p>",
     "RegisterConnector": "<p>Registers a new custom connector with your Amazon Web Services account. Before you can register the connector, you must deploy the associated AWS lambda function in your account.</p>",
+    "ResetConnectorMetadataCache": "<p>Resets metadata about your connector entities that Amazon AppFlow stored in its cache. Use this action when you want Amazon AppFlow to return the latest information about the data that you have in a source application.</p> <p>Amazon AppFlow returns metadata about your entities when you use the ListConnectorEntities or DescribeConnectorEntities actions. Following these actions, Amazon AppFlow caches the metadata to reduce the number of API requests that it must send to the source application. Amazon AppFlow automatically resets the cache once every hour, but you can use this action when you want to get the latest metadata right away.</p>",
     "StartFlow": "<p> Activates an existing flow. For on-demand flows, this operation runs the flow immediately. For schedule and event-triggered flows, this operation activates the flow. </p>",
     "StopFlow": "<p> Deactivates the existing flow. For on-demand flows, this operation returns an <code>unsupportedOperationException</code> error message. For schedule and event-triggered flows, this operation deactivates the flow. </p>",
     "TagResource": "<p> Applies a tag to the specified flow. </p>",
@@ -149,6 +150,7 @@
         "DescribeConnectorEntityRequest$apiVersion": "<p>The version of the API that's used by the connector.</p>",
         "DestinationFlowConfig$apiVersion": "<p>The API version that the destination connector uses.</p>",
         "ListConnectorEntitiesRequest$apiVersion": "<p>The version of the API that's used by the connector.</p>",
+        "ResetConnectorMetadataCacheRequest$apiVersion": "<p>The API version that you specified in the connector profile that you’re resetting cached metadata for. You must use this parameter only if the connector supports multiple API versions or if the connector type is CustomConnector.</p> <p>To look up how many versions a connector supports, use the DescribeConnectors action. In the response, find the value that Amazon AppFlow returns for the connectorVersion parameter.</p> <p>To look up the connector type, use the DescribeConnectorProfiles action. In the response, find the value that Amazon AppFlow returns for the connectorType parameter.</p> <p>To look up the API version that you specified in a connector profile, use the DescribeConnectorProfiles action.</p>",
         "SourceFlowConfig$apiVersion": "<p>The API version of the connector when it's used as a source in the flow.</p>"
       }
     },
@@ -563,6 +565,7 @@
         "DescribeConnectorEntityRequest$connectorProfileName": "<p> The name of the connector profile. The name is unique for each <code>ConnectorProfile</code> in the Amazon Web Services account. </p>",
         "DestinationFlowConfig$connectorProfileName": "<p> The name of the connector profile. This name must be unique for each connector profile in the Amazon Web Services account. </p>",
         "ListConnectorEntitiesRequest$connectorProfileName": "<p> The name of the connector profile. The name is unique for each <code>ConnectorProfile</code> in the Amazon Web Services account, and is used to query the downstream connector. </p>",
+        "ResetConnectorMetadataCacheRequest$connectorProfileName": "<p>The name of the connector profile that you want to reset cached metadata for.</p> <p>You can omit this parameter if you're resetting the cache for any of the following connectors: Amazon Connect, Amazon EventBridge, Amazon Lookout for Metrics, Amazon S3, or Upsolver. If you're resetting the cache for any other connector, you must include this parameter in your request.</p>",
         "SourceFlowConfig$connectorProfileName": "<p> The name of the connector profile. This name must be unique for each connector profile in the Amazon Web Services account. </p>",
         "UpdateConnectorProfileRequest$connectorProfileName": "<p> The name of the connector profile and is unique for each <code>ConnectorProfile</code> in the Amazon Web Services account. </p>"
       }
@@ -661,6 +664,7 @@
         "FlowDefinition$sourceConnectorType": "<p> Specifies the source connector type, such as Salesforce, Amazon S3, Amplitude, and so on. </p>",
         "FlowDefinition$destinationConnectorType": "<p> Specifies the destination connector type, such as Salesforce, Amazon S3, Amplitude, and so on. </p>",
         "ListConnectorEntitiesRequest$connectorType": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>",
+        "ResetConnectorMetadataCacheRequest$connectorType": "<p>The type of connector to reset cached metadata for.</p> <p>You must include this parameter in your request if you're resetting the cache for any of the following connectors: Amazon Connect, Amazon EventBridge, Amazon Lookout for Metrics, Amazon S3, or Upsolver. If you're resetting the cache for any other connector, you can omit this parameter from your request. </p>",
         "SourceFlowConfig$connectorType": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>"
       }
     },
@@ -1081,7 +1085,8 @@
     "EntitiesPath": {
       "base": null,
       "refs": {
-        "ListConnectorEntitiesRequest$entitiesPath": "<p> This optional parameter is specific to connector implementation. Some connectors support multiple levels or categories of entities. You can find out the list of roots for such providers by sending a request without the <code>entitiesPath</code> parameter. If the connector supports entities at different roots, this initial request returns the list of roots. Otherwise, this request returns all entities supported by the provider. </p>"
+        "ListConnectorEntitiesRequest$entitiesPath": "<p> This optional parameter is specific to connector implementation. Some connectors support multiple levels or categories of entities. You can find out the list of roots for such providers by sending a request without the <code>entitiesPath</code> parameter. If the connector supports entities at different roots, this initial request returns the list of roots. Otherwise, this request returns all entities supported by the provider. </p>",
+        "ResetConnectorMetadataCacheRequest$entitiesPath": "<p>Use this parameter only if you’re resetting the cached metadata about a nested entity. Only some connectors support nested entities. A nested entity is one that has another entity as a parent. To use this parameter, specify the name of the parent entity.</p> <p>To look up the parent-child relationship of entities, you can send a ListConnectorEntities request that omits the entitiesPath parameter. Amazon AppFlow will return a list of top-level entities. For each one, it indicates whether the entity has nested entities. Then, in a subsequent ListConnectorEntities request, you can specify a parent entity name for the entitiesPath parameter. Amazon AppFlow will return a list of the child entities for that parent.</p>"
       }
     },
     "EntityName": {
@@ -1089,7 +1094,8 @@
       "refs": {
         "CustomConnectorDestinationProperties$entityName": "<p>The entity specified in the custom connector as a destination in the flow.</p>",
         "CustomConnectorSourceProperties$entityName": "<p>The entity specified in the custom connector as a source in the flow.</p>",
-        "DescribeConnectorEntityRequest$connectorEntityName": "<p> The entity name for that connector. </p>"
+        "DescribeConnectorEntityRequest$connectorEntityName": "<p> The entity name for that connector. </p>",
+        "ResetConnectorMetadataCacheRequest$connectorEntityName": "<p>Use this parameter if you want to reset cached metadata about the details for an individual entity.</p> <p>If you don't include this parameter in your request, Amazon AppFlow only resets cached metadata about entity names, not entity details.</p>"
       }
     },
     "ErrorHandlingConfig": {
@@ -2010,6 +2016,16 @@
       "refs": {
         "MetadataCatalogDetail$tableRegistrationOutput": "<p>Describes the status of the attempt from Amazon AppFlow to register the metadata table with the metadata catalog. Amazon AppFlow creates or updates this table for the associated flow run.</p>",
         "MetadataCatalogDetail$partitionRegistrationOutput": "<p>Describes the status of the attempt from Amazon AppFlow to register the data partitions with the metadata catalog. The data partitions organize the flow output into a hierarchical path, such as a folder path in an S3 bucket. Amazon AppFlow creates the partitions (if they don't already exist) based on your flow configuration.</p>"
+      }
+    },
+    "ResetConnectorMetadataCacheRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResetConnectorMetadataCacheResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ResourceNotFoundException": {

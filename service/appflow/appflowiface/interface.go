@@ -139,6 +139,10 @@ type AppflowAPI interface {
 	RegisterConnectorWithContext(aws.Context, *appflow.RegisterConnectorInput, ...request.Option) (*appflow.RegisterConnectorOutput, error)
 	RegisterConnectorRequest(*appflow.RegisterConnectorInput) (*request.Request, *appflow.RegisterConnectorOutput)
 
+	ResetConnectorMetadataCache(*appflow.ResetConnectorMetadataCacheInput) (*appflow.ResetConnectorMetadataCacheOutput, error)
+	ResetConnectorMetadataCacheWithContext(aws.Context, *appflow.ResetConnectorMetadataCacheInput, ...request.Option) (*appflow.ResetConnectorMetadataCacheOutput, error)
+	ResetConnectorMetadataCacheRequest(*appflow.ResetConnectorMetadataCacheInput) (*request.Request, *appflow.ResetConnectorMetadataCacheOutput)
+
 	StartFlow(*appflow.StartFlowInput) (*appflow.StartFlowOutput, error)
 	StartFlowWithContext(aws.Context, *appflow.StartFlowInput, ...request.Option) (*appflow.StartFlowOutput, error)
 	StartFlowRequest(*appflow.StartFlowInput) (*request.Request, *appflow.StartFlowOutput)

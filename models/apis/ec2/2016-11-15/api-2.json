@@ -6032,10 +6032,7 @@
     },
     "AllocateHostsRequest":{
       "type":"structure",
-      "required":[
-        "AvailabilityZone",
-        "Quantity"
-      ],
+      "required":["AvailabilityZone"],
       "members":{
         "AutoPlacement":{
           "shape":"AutoPlacement",
@@ -6064,7 +6061,11 @@
         },
         "HostRecovery":{"shape":"HostRecovery"},
         "OutpostArn":{"shape":"String"},
-        "HostMaintenance":{"shape":"HostMaintenance"}
+        "HostMaintenance":{"shape":"HostMaintenance"},
+        "AssetIds":{
+          "shape":"AssetIdList",
+          "locationName":"AssetId"
+        }
       }
     },
     "AllocateHostsResult":{
@@ -6511,6 +6512,11 @@
         "shape":"ResourceArn",
         "locationName":"item"
       }
+    },
+    "AssetId":{"type":"string"},
+    "AssetIdList":{
+      "type":"list",
+      "member":{"shape":"AssetId"}
     },
     "AssignIpv6AddressesRequest":{
       "type":"structure",
@@ -23796,6 +23802,10 @@
         "HostMaintenance":{
           "shape":"HostMaintenance",
           "locationName":"hostMaintenance"
+        },
+        "AssetId":{
+          "shape":"AssetId",
+          "locationName":"assetId"
         }
       }
     },
@@ -32282,7 +32292,7 @@
       "members":{
         "TunnelInsideCidr":{"shape":"String"},
         "TunnelInsideIpv6Cidr":{"shape":"String"},
-        "PreSharedKey":{"shape":"String"},
+        "PreSharedKey":{"shape":"preSharedKey"},
         "Phase1LifetimeSeconds":{"shape":"Integer"},
         "Phase2LifetimeSeconds":{"shape":"Integer"},
         "RekeyMarginTimeSeconds":{"shape":"Integer"},
@@ -32321,7 +32331,8 @@
         "StartupAction":{"shape":"String"},
         "LogOptions":{"shape":"VpnTunnelLogOptionsSpecification"},
         "EnableTunnelLifecycleControl":{"shape":"Boolean"}
-      }
+      },
+      "sensitive":true
     },
     "MonitorInstancesRequest":{
       "type":"structure",
@@ -42562,7 +42573,7 @@
           "locationName":"tunnelInsideIpv6Cidr"
         },
         "PreSharedKey":{
-          "shape":"String",
+          "shape":"preSharedKey",
           "locationName":"preSharedKey"
         },
         "Phase1LifetimeSeconds":{
@@ -44635,7 +44646,7 @@
       "type":"structure",
       "members":{
         "CustomerGatewayConfiguration":{
-          "shape":"String",
+          "shape":"customerGatewayConfiguration",
           "locationName":"customerGatewayConfiguration"
         },
         "CustomerGatewayId":{
@@ -44923,7 +44934,7 @@
       "members":{
         "TunnelInsideCidr":{"shape":"String"},
         "TunnelInsideIpv6Cidr":{"shape":"String"},
-        "PreSharedKey":{"shape":"String"},
+        "PreSharedKey":{"shape":"preSharedKey"},
         "Phase1LifetimeSeconds":{"shape":"Integer"},
         "Phase2LifetimeSeconds":{"shape":"Integer"},
         "RekeyMarginTimeSeconds":{"shape":"Integer"},
@@ -45010,6 +45021,14 @@
         "shape":"String",
         "locationName":"ZoneName"
       }
+    },
+    "customerGatewayConfiguration":{
+      "type":"string",
+      "sensitive":true
+    },
+    "preSharedKey":{
+      "type":"string",
+      "sensitive":true
     },
     "scope":{
       "type":"string",
