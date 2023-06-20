@@ -582,7 +582,8 @@
         {"shape":"KMSNotFoundException"},
         {"shape":"InvalidRuntimeException"},
         {"shape":"ResourceConflictException"},
-        {"shape":"ResourceNotReadyException"}
+        {"shape":"ResourceNotReadyException"},
+        {"shape":"RecursiveInvocationException"}
       ]
     },
     "InvokeAsync":{
@@ -640,7 +641,8 @@
         {"shape":"KMSNotFoundException"},
         {"shape":"InvalidRuntimeException"},
         {"shape":"ResourceConflictException"},
-        {"shape":"ResourceNotReadyException"}
+        {"shape":"ResourceNotReadyException"},
+        {"shape":"RecursiveInvocationException"}
       ]
     },
     "ListAliases":{
@@ -3693,6 +3695,15 @@
       "member":{"shape":"Queue"},
       "max":1,
       "min":1
+    },
+    "RecursiveInvocationException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "RemoveLayerVersionPermissionRequest":{
       "type":"structure",

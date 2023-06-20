@@ -178,6 +178,13 @@ const (
 	// The specified configuration does not exist.
 	ErrCodeProvisionedConcurrencyConfigNotFoundException = "ProvisionedConcurrencyConfigNotFoundException"
 
+	// ErrCodeRecursiveInvocationException for service response error code
+	// "RecursiveInvocationException".
+	//
+	// Lambda has detected your function being invoked in a recursive loop with
+	// other Amazon Web Services resources and stopped your function's invocation.
+	ErrCodeRecursiveInvocationException = "RecursiveInvocationException"
+
 	// ErrCodeRequestTooLargeException for service response error code
 	// "RequestTooLargeException".
 	//
@@ -286,6 +293,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"PolicyLengthExceededException":                 newErrorPolicyLengthExceededException,
 	"PreconditionFailedException":                   newErrorPreconditionFailedException,
 	"ProvisionedConcurrencyConfigNotFoundException": newErrorProvisionedConcurrencyConfigNotFoundException,
+	"RecursiveInvocationException":                  newErrorRecursiveInvocationException,
 	"RequestTooLargeException":                      newErrorRequestTooLargeException,
 	"ResourceConflictException":                     newErrorResourceConflictException,
 	"ResourceInUseException":                        newErrorResourceInUseException,

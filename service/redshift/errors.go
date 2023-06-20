@@ -204,6 +204,18 @@ const (
 	// Cross-region snapshot copy was temporarily disabled. Try your request again.
 	ErrCodeCopyToRegionDisabledFault = "CopyToRegionDisabledFault"
 
+	// ErrCodeCustomCnameAssociationFault for service response error code
+	// "CustomCnameAssociationFault".
+	//
+	// An error occurred when an attempt was made to change the custom domain association.
+	ErrCodeCustomCnameAssociationFault = "CustomCnameAssociationFault"
+
+	// ErrCodeCustomDomainAssociationNotFoundFault for service response error code
+	// "CustomDomainAssociationNotFoundFault".
+	//
+	// An error occurred. The custom domain name couldn't be found.
+	ErrCodeCustomDomainAssociationNotFoundFault = "CustomDomainAssociationNotFoundFault"
+
 	// ErrCodeDependentServiceRequestThrottlingFault for service response error code
 	// "DependentServiceRequestThrottlingFault".
 	//

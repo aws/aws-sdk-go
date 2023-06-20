@@ -339,6 +339,23 @@
         {"shape":"DependentServiceRequestThrottlingFault"}
       ]
     },
+    "CreateCustomDomainAssociation":{
+      "name":"CreateCustomDomainAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCustomDomainAssociationMessage"},
+      "output":{
+        "shape":"CreateCustomDomainAssociationResult",
+        "resultWrapper":"CreateCustomDomainAssociationResult"
+      },
+      "errors":[
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"CustomCnameAssociationFault"}
+      ]
+    },
     "CreateEndpointAccess":{
       "name":"CreateEndpointAccess",
       "http":{
@@ -620,6 +637,19 @@
         {"shape":"InvalidClusterSubnetGroupStateFault"},
         {"shape":"InvalidClusterSubnetStateFault"},
         {"shape":"ClusterSubnetGroupNotFoundFault"}
+      ]
+    },
+    "DeleteCustomDomainAssociation":{
+      "name":"DeleteCustomDomainAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCustomDomainAssociationMessage"},
+      "errors":[
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"CustomCnameAssociationFault"}
       ]
     },
     "DeleteEndpointAccess":{
@@ -921,6 +951,22 @@
       "errors":[
         {"shape":"ClusterNotFoundFault"},
         {"shape":"InvalidTagFault"}
+      ]
+    },
+    "DescribeCustomDomainAssociations":{
+      "name":"DescribeCustomDomainAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCustomDomainAssociationsMessage"},
+      "output":{
+        "shape":"CustomDomainAssociationsMessage",
+        "resultWrapper":"DescribeCustomDomainAssociationsResult"
+      },
+      "errors":[
+        {"shape":"CustomDomainAssociationNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "DescribeDataShares":{
@@ -1549,7 +1595,9 @@
         {"shape":"InvalidElasticIpFault"},
         {"shape":"TableLimitExceededFault"},
         {"shape":"InvalidClusterTrackFault"},
-        {"shape":"InvalidRetentionPeriodFault"}
+        {"shape":"InvalidRetentionPeriodFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"CustomCnameAssociationFault"}
       ]
     },
     "ModifyClusterDbRevision":{
@@ -1665,6 +1713,23 @@
         {"shape":"InvalidSubnet"},
         {"shape":"UnauthorizedOperation"},
         {"shape":"DependentServiceRequestThrottlingFault"}
+      ]
+    },
+    "ModifyCustomDomainAssociation":{
+      "name":"ModifyCustomDomainAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyCustomDomainAssociationMessage"},
+      "output":{
+        "shape":"ModifyCustomDomainAssociationResult",
+        "resultWrapper":"ModifyCustomDomainAssociationResult"
+      },
+      "errors":[
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"CustomCnameAssociationFault"}
       ]
     },
     "ModifyEndpointAccess":{
@@ -2182,6 +2247,22 @@
         "locationName":"ClusterAssociatedToSchedule"
       }
     },
+    "Association":{
+      "type":"structure",
+      "members":{
+        "CustomDomainCertificateArn":{"shape":"String"},
+        "CustomDomainCertificateExpiryDate":{"shape":"TStamp"},
+        "CertificateAssociations":{"shape":"CertificateAssociationList"}
+      },
+      "wrapper":true
+    },
+    "AssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"Association",
+        "locationName":"Association"
+      }
+    },
     "AttributeList":{
       "type":"list",
       "member":{
@@ -2451,6 +2532,20 @@
         "ClusterIdentifier":{"shape":"String"}
       }
     },
+    "CertificateAssociation":{
+      "type":"structure",
+      "members":{
+        "CustomDomainName":{"shape":"String"},
+        "ClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "CertificateAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"CertificateAssociation",
+        "locationName":"CertificateAssociation"
+      }
+    },
     "Cluster":{
       "type":"structure",
       "members":{
@@ -2505,7 +2600,10 @@
         "TotalStorageCapacityInMegaBytes":{"shape":"LongOptional"},
         "AquaConfiguration":{"shape":"AquaConfiguration"},
         "DefaultIamRoleArn":{"shape":"String"},
-        "ReservedNodeExchangeStatus":{"shape":"ReservedNodeExchangeStatus"}
+        "ReservedNodeExchangeStatus":{"shape":"ReservedNodeExchangeStatus"},
+        "CustomDomainName":{"shape":"String"},
+        "CustomDomainCertificateArn":{"shape":"String"},
+        "CustomDomainCertificateExpiryDate":{"shape":"TStamp"}
       },
       "wrapper":true
     },
@@ -3120,6 +3218,28 @@
         "ClusterSubnetGroup":{"shape":"ClusterSubnetGroup"}
       }
     },
+    "CreateCustomDomainAssociationMessage":{
+      "type":"structure",
+      "required":[
+        "CustomDomainName",
+        "CustomDomainCertificateArn",
+        "ClusterIdentifier"
+      ],
+      "members":{
+        "CustomDomainName":{"shape":"CustomDomainNameString"},
+        "CustomDomainCertificateArn":{"shape":"CustomDomainCertificateArnString"},
+        "ClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "CreateCustomDomainAssociationResult":{
+      "type":"structure",
+      "members":{
+        "CustomDomainName":{"shape":"CustomDomainNameString"},
+        "CustomDomainCertificateArn":{"shape":"CustomDomainCertificateArnString"},
+        "ClusterIdentifier":{"shape":"String"},
+        "CustomDomainCertExpiryTime":{"shape":"String"}
+      }
+    },
     "CreateEndpointAccessMessage":{
       "type":"structure",
       "required":[
@@ -3270,6 +3390,47 @@
         "BreachAction":{"shape":"UsageLimitBreachAction"},
         "Tags":{"shape":"TagList"}
       }
+    },
+    "CustomCnameAssociationFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CustomCnameAssociationFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "CustomDomainAssociationNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CustomDomainAssociationNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "CustomDomainAssociationsMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "Associations":{"shape":"AssociationList"}
+      }
+    },
+    "CustomDomainCertificateArnString":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:[\\w+=/,.@-]+:acm:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+    },
+    "CustomDomainNameString":{
+      "type":"string",
+      "max":253,
+      "min":1,
+      "pattern":"^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+[A-Za-z]{2,6}$"
     },
     "CustomerStorageMessage":{
       "type":"structure",
@@ -3456,6 +3617,13 @@
       "required":["ClusterSubnetGroupName"],
       "members":{
         "ClusterSubnetGroupName":{"shape":"String"}
+      }
+    },
+    "DeleteCustomDomainAssociationMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"}
       }
     },
     "DeleteEndpointAccessMessage":{
@@ -3656,6 +3824,15 @@
         "Marker":{"shape":"String"},
         "TagKeys":{"shape":"TagKeyList"},
         "TagValues":{"shape":"TagValueList"}
+      }
+    },
+    "DescribeCustomDomainAssociationsMessage":{
+      "type":"structure",
+      "members":{
+        "CustomDomainName":{"shape":"CustomDomainNameString"},
+        "CustomDomainCertificateArn":{"shape":"CustomDomainCertificateArnString"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
       }
     },
     "DescribeDataSharesForConsumerMessage":{
@@ -4297,26 +4474,24 @@
     },
     "GetClusterCredentialsMessage":{
       "type":"structure",
-      "required":[
-        "DbUser",
-        "ClusterIdentifier"
-      ],
+      "required":["DbUser"],
       "members":{
         "DbUser":{"shape":"String"},
         "DbName":{"shape":"String"},
         "ClusterIdentifier":{"shape":"String"},
         "DurationSeconds":{"shape":"IntegerOptional"},
         "AutoCreate":{"shape":"BooleanOptional"},
-        "DbGroups":{"shape":"DbGroupList"}
+        "DbGroups":{"shape":"DbGroupList"},
+        "CustomDomainName":{"shape":"String"}
       }
     },
     "GetClusterCredentialsWithIAMMessage":{
       "type":"structure",
-      "required":["ClusterIdentifier"],
       "members":{
         "DbName":{"shape":"String"},
         "ClusterIdentifier":{"shape":"String"},
-        "DurationSeconds":{"shape":"IntegerOptional"}
+        "DurationSeconds":{"shape":"IntegerOptional"},
+        "CustomDomainName":{"shape":"String"}
       }
     },
     "GetReservedNodeExchangeConfigurationOptionsInputMessage":{
@@ -5108,6 +5283,24 @@
       "type":"structure",
       "members":{
         "ClusterSubnetGroup":{"shape":"ClusterSubnetGroup"}
+      }
+    },
+    "ModifyCustomDomainAssociationMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "CustomDomainName":{"shape":"CustomDomainNameString"},
+        "CustomDomainCertificateArn":{"shape":"CustomDomainCertificateArnString"},
+        "ClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "ModifyCustomDomainAssociationResult":{
+      "type":"structure",
+      "members":{
+        "CustomDomainName":{"shape":"CustomDomainNameString"},
+        "CustomDomainCertificateArn":{"shape":"CustomDomainCertificateArnString"},
+        "ClusterIdentifier":{"shape":"String"},
+        "CustomDomainCertExpiryTime":{"shape":"String"}
       }
     },
     "ModifyEndpointAccessMessage":{

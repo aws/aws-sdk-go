@@ -1,3 +1,16 @@
+Release v1.44.286 (2023-06-20)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/config`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * Adds support for targeting Dedicated Host allocations by assetIds in AWS Outposts
+* `service/lambda`: Updates service API and documentation
+  * This release adds RecursiveInvocationException to the Invoke API and InvokeWithResponseStream API.
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Added support for custom domain names for Redshift Provisioned clusters. This feature enables customers to create a custom domain name and use ACM to generate fully secure connections to it.
+
 Release v1.44.285 (2023-06-19)
 ===
 

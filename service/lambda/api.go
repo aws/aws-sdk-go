@@ -3404,6 +3404,10 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //     The function is inactive and its VPC connection is no longer available. Wait
 //     for the VPC connection to reestablish and try again.
 //
+//   - RecursiveInvocationException
+//     Lambda has detected your function being invoked in a recursive loop with
+//     other Amazon Web Services resources and stopped your function's invocation.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/Invoke
 func (c *Lambda) Invoke(input *InvokeInput) (*InvokeOutput, error) {
 	req, out := c.InvokeRequest(input)
@@ -3701,6 +3705,10 @@ func (c *Lambda) InvokeWithResponseStreamRequest(input *InvokeWithResponseStream
 //   - ResourceNotReadyException
 //     The function is inactive and its VPC connection is no longer available. Wait
 //     for the VPC connection to reestablish and try again.
+//
+//   - RecursiveInvocationException
+//     Lambda has detected your function being invoked in a recursive loop with
+//     other Amazon Web Services resources and stopped your function's invocation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvokeWithResponseStream
 func (c *Lambda) InvokeWithResponseStream(input *InvokeWithResponseStreamInput) (*InvokeWithResponseStreamOutput, error) {
@@ -19317,6 +19325,75 @@ func (s *PutRuntimeManagementConfigOutput) SetRuntimeVersionArn(v string) *PutRu
 func (s *PutRuntimeManagementConfigOutput) SetUpdateRuntimeOn(v string) *PutRuntimeManagementConfigOutput {
 	s.UpdateRuntimeOn = &v
 	return s
+}
+
+// Lambda has detected your function being invoked in a recursive loop with
+// other Amazon Web Services resources and stopped your function's invocation.
+type RecursiveInvocationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The exception message.
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The exception type.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecursiveInvocationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecursiveInvocationException) GoString() string {
+	return s.String()
+}
+
+func newErrorRecursiveInvocationException(v protocol.ResponseMetadata) error {
+	return &RecursiveInvocationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RecursiveInvocationException) Code() string {
+	return "RecursiveInvocationException"
+}
+
+// Message returns the exception's message.
+func (s *RecursiveInvocationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RecursiveInvocationException) OrigErr() error {
+	return nil
+}
+
+func (s *RecursiveInvocationException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RecursiveInvocationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RecursiveInvocationException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type RemoveLayerVersionPermissionInput struct {

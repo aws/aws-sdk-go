@@ -1823,6 +1823,11 @@
         "EventSourceMappingConfiguration$Queues": "<p> (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.</p>"
       }
     },
+    "RecursiveInvocationException": {
+      "base": "<p>Lambda has detected your function being invoked in a recursive loop with other Amazon Web Services resources and stopped your function's invocation.</p>",
+      "refs": {
+      }
+    },
     "RemoveLayerVersionPermissionRequest": {
       "base": null,
       "refs": {
@@ -2207,6 +2212,8 @@
         "PublishVersionRequest$CodeSha256": "<p>Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of <a>UpdateFunctionCode</a>.</p>",
         "PublishVersionRequest$RevisionId": "<p>Only update the function if the revision ID matches the ID that's specified. Use this option to avoid publishing a version if the function configuration has changed since you last updated it.</p>",
         "PutProvisionedConcurrencyConfigResponse$StatusReason": "<p>For failed allocations, the reason that provisioned concurrency could not be allocated.</p>",
+        "RecursiveInvocationException$Type": "<p>The exception type.</p>",
+        "RecursiveInvocationException$Message": "<p>The exception message.</p>",
         "RemoveLayerVersionPermissionRequest$RevisionId": "<p>Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it.</p>",
         "RemovePermissionRequest$RevisionId": "<p>Update the policy only if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it.</p>",
         "RequestTooLargeException$Type": null,

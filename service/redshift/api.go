@@ -1699,6 +1699,93 @@ func (c *Redshift) CreateClusterSubnetGroupWithContext(ctx aws.Context, input *C
 	return out, req.Send()
 }
 
+const opCreateCustomDomainAssociation = "CreateCustomDomainAssociation"
+
+// CreateCustomDomainAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomDomainAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCustomDomainAssociation for more information on using the CreateCustomDomainAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCustomDomainAssociationRequest method.
+//	req, resp := client.CreateCustomDomainAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateCustomDomainAssociation
+func (c *Redshift) CreateCustomDomainAssociationRequest(input *CreateCustomDomainAssociationInput) (req *request.Request, output *CreateCustomDomainAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreateCustomDomainAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCustomDomainAssociationInput{}
+	}
+
+	output = &CreateCustomDomainAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCustomDomainAssociation API operation for Amazon Redshift.
+//
+// Used to create a custom domain name for a cluster. Properties include the
+// custom domain name, the cluster the custom domain is associated with, and
+// the certificate Amazon Resource Name (ARN).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation CreateCustomDomainAssociation for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+//   - ErrCodeClusterNotFoundFault "ClusterNotFound"
+//     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   - ErrCodeCustomCnameAssociationFault "CustomCnameAssociationFault"
+//     An error occurred when an attempt was made to change the custom domain association.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateCustomDomainAssociation
+func (c *Redshift) CreateCustomDomainAssociation(input *CreateCustomDomainAssociationInput) (*CreateCustomDomainAssociationOutput, error) {
+	req, out := c.CreateCustomDomainAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreateCustomDomainAssociationWithContext is the same as CreateCustomDomainAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCustomDomainAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) CreateCustomDomainAssociationWithContext(ctx aws.Context, input *CreateCustomDomainAssociationInput, opts ...request.Option) (*CreateCustomDomainAssociationOutput, error) {
+	req, out := c.CreateCustomDomainAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateEndpointAccess = "CreateEndpointAccess"
 
 // CreateEndpointAccessRequest generates a "aws/request.Request" representing the
@@ -3260,6 +3347,92 @@ func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupInput
 // for more information on using Contexts.
 func (c *Redshift) DeleteClusterSubnetGroupWithContext(ctx aws.Context, input *DeleteClusterSubnetGroupInput, opts ...request.Option) (*DeleteClusterSubnetGroupOutput, error) {
 	req, out := c.DeleteClusterSubnetGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCustomDomainAssociation = "DeleteCustomDomainAssociation"
+
+// DeleteCustomDomainAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomDomainAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCustomDomainAssociation for more information on using the DeleteCustomDomainAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCustomDomainAssociationRequest method.
+//	req, resp := client.DeleteCustomDomainAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteCustomDomainAssociation
+func (c *Redshift) DeleteCustomDomainAssociationRequest(input *DeleteCustomDomainAssociationInput) (req *request.Request, output *DeleteCustomDomainAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCustomDomainAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCustomDomainAssociationInput{}
+	}
+
+	output = &DeleteCustomDomainAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCustomDomainAssociation API operation for Amazon Redshift.
+//
+// Contains information about deleting a custom domain association for a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DeleteCustomDomainAssociation for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+//   - ErrCodeClusterNotFoundFault "ClusterNotFound"
+//     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   - ErrCodeCustomCnameAssociationFault "CustomCnameAssociationFault"
+//     An error occurred when an attempt was made to change the custom domain association.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteCustomDomainAssociation
+func (c *Redshift) DeleteCustomDomainAssociation(input *DeleteCustomDomainAssociationInput) (*DeleteCustomDomainAssociationOutput, error) {
+	req, out := c.DeleteCustomDomainAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCustomDomainAssociationWithContext is the same as DeleteCustomDomainAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCustomDomainAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DeleteCustomDomainAssociationWithContext(ctx aws.Context, input *DeleteCustomDomainAssociationInput, opts ...request.Option) (*DeleteCustomDomainAssociationOutput, error) {
+	req, out := c.DeleteCustomDomainAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5598,6 +5771,145 @@ func (c *Redshift) DescribeClustersPagesWithContext(ctx aws.Context, input *Desc
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeClustersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeCustomDomainAssociations = "DescribeCustomDomainAssociations"
+
+// DescribeCustomDomainAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCustomDomainAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCustomDomainAssociations for more information on using the DescribeCustomDomainAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeCustomDomainAssociationsRequest method.
+//	req, resp := client.DescribeCustomDomainAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeCustomDomainAssociations
+func (c *Redshift) DescribeCustomDomainAssociationsRequest(input *DescribeCustomDomainAssociationsInput) (req *request.Request, output *DescribeCustomDomainAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCustomDomainAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeCustomDomainAssociationsInput{}
+	}
+
+	output = &DescribeCustomDomainAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCustomDomainAssociations API operation for Amazon Redshift.
+//
+// Contains information for custom domain associations for a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeCustomDomainAssociations for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeCustomDomainAssociationNotFoundFault "CustomDomainAssociationNotFoundFault"
+//     An error occurred. The custom domain name couldn't be found.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeCustomDomainAssociations
+func (c *Redshift) DescribeCustomDomainAssociations(input *DescribeCustomDomainAssociationsInput) (*DescribeCustomDomainAssociationsOutput, error) {
+	req, out := c.DescribeCustomDomainAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCustomDomainAssociationsWithContext is the same as DescribeCustomDomainAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCustomDomainAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeCustomDomainAssociationsWithContext(ctx aws.Context, input *DescribeCustomDomainAssociationsInput, opts ...request.Option) (*DescribeCustomDomainAssociationsOutput, error) {
+	req, out := c.DescribeCustomDomainAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeCustomDomainAssociationsPages iterates over the pages of a DescribeCustomDomainAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCustomDomainAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeCustomDomainAssociations operation.
+//	pageNum := 0
+//	err := client.DescribeCustomDomainAssociationsPages(params,
+//	    func(page *redshift.DescribeCustomDomainAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Redshift) DescribeCustomDomainAssociationsPages(input *DescribeCustomDomainAssociationsInput, fn func(*DescribeCustomDomainAssociationsOutput, bool) bool) error {
+	return c.DescribeCustomDomainAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeCustomDomainAssociationsPagesWithContext same as DescribeCustomDomainAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeCustomDomainAssociationsPagesWithContext(ctx aws.Context, input *DescribeCustomDomainAssociationsInput, fn func(*DescribeCustomDomainAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeCustomDomainAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeCustomDomainAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeCustomDomainAssociationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -10300,6 +10612,12 @@ func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *request
 //
 //     The value must be either -1 or an integer between 1 and 3,653.
 //
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+//   - ErrCodeCustomCnameAssociationFault "CustomCnameAssociationFault"
+//     An error occurred when an attempt was made to change the custom domain association.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyCluster
 func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutput, error) {
 	req, out := c.ModifyClusterRequest(input)
@@ -10940,6 +11258,91 @@ func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupInput
 // for more information on using Contexts.
 func (c *Redshift) ModifyClusterSubnetGroupWithContext(ctx aws.Context, input *ModifyClusterSubnetGroupInput, opts ...request.Option) (*ModifyClusterSubnetGroupOutput, error) {
 	req, out := c.ModifyClusterSubnetGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyCustomDomainAssociation = "ModifyCustomDomainAssociation"
+
+// ModifyCustomDomainAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyCustomDomainAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyCustomDomainAssociation for more information on using the ModifyCustomDomainAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyCustomDomainAssociationRequest method.
+//	req, resp := client.ModifyCustomDomainAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyCustomDomainAssociation
+func (c *Redshift) ModifyCustomDomainAssociationRequest(input *ModifyCustomDomainAssociationInput) (req *request.Request, output *ModifyCustomDomainAssociationOutput) {
+	op := &request.Operation{
+		Name:       opModifyCustomDomainAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyCustomDomainAssociationInput{}
+	}
+
+	output = &ModifyCustomDomainAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyCustomDomainAssociation API operation for Amazon Redshift.
+//
+// Contains information for changing a custom domain association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation ModifyCustomDomainAssociation for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+//   - ErrCodeClusterNotFoundFault "ClusterNotFound"
+//     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   - ErrCodeCustomCnameAssociationFault "CustomCnameAssociationFault"
+//     An error occurred when an attempt was made to change the custom domain association.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyCustomDomainAssociation
+func (c *Redshift) ModifyCustomDomainAssociation(input *ModifyCustomDomainAssociationInput) (*ModifyCustomDomainAssociationOutput, error) {
+	req, out := c.ModifyCustomDomainAssociationRequest(input)
+	return out, req.Send()
+}
+
+// ModifyCustomDomainAssociationWithContext is the same as ModifyCustomDomainAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyCustomDomainAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) ModifyCustomDomainAssociationWithContext(ctx aws.Context, input *ModifyCustomDomainAssociationInput, opts ...request.Option) (*ModifyCustomDomainAssociationOutput, error) {
+	req, out := c.ModifyCustomDomainAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -13438,6 +13841,57 @@ func (s *AssociateDataShareConsumerOutput) SetProducerArn(v string) *AssociateDa
 	return s
 }
 
+// Contains information about the custom domain name association.
+type Association struct {
+	_ struct{} `type:"structure"`
+
+	// A list of all associated clusters and domain names tied to a specific certificate.
+	CertificateAssociations []*CertificateAssociation `locationNameList:"CertificateAssociation" type:"list"`
+
+	// The Amazon Resource Name (ARN) for the certificate associated with the custom
+	// domain.
+	CustomDomainCertificateArn *string `type:"string"`
+
+	// The expiration date for the certificate.
+	CustomDomainCertificateExpiryDate *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Association) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Association) GoString() string {
+	return s.String()
+}
+
+// SetCertificateAssociations sets the CertificateAssociations field's value.
+func (s *Association) SetCertificateAssociations(v []*CertificateAssociation) *Association {
+	s.CertificateAssociations = v
+	return s
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *Association) SetCustomDomainCertificateArn(v string) *Association {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainCertificateExpiryDate sets the CustomDomainCertificateExpiryDate field's value.
+func (s *Association) SetCustomDomainCertificateExpiryDate(v time.Time) *Association {
+	s.CustomDomainCertificateExpiryDate = &v
+	return s
+}
+
 // Describes an attribute value.
 type AttributeValueTarget struct {
 	_ struct{} `type:"structure"`
@@ -13940,7 +14394,7 @@ type AuthorizeSnapshotAccessInput struct {
 	SnapshotArn *string `type:"string"`
 
 	// The identifier of the cluster the snapshot was created from. This parameter
-	// is required if your IAM user or role has a policy containing a snapshot resource
+	// is required if your IAM user has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
 	SnapshotClusterIdentifier *string `type:"string"`
 
@@ -14523,6 +14977,48 @@ func (s *CancelResizeOutput) SetTotalResizeDataInMegaBytes(v int64) *CancelResiz
 	return s
 }
 
+// A cluster ID and custom domain name tied to a specific certificate. These
+// are typically returned in a list.
+type CertificateAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster identifier for the certificate association.
+	ClusterIdentifier *string `type:"string"`
+
+	// The custom domain name for the certificate association.
+	CustomDomainName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateAssociation) GoString() string {
+	return s.String()
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *CertificateAssociation) SetClusterIdentifier(v string) *CertificateAssociation {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *CertificateAssociation) SetCustomDomainName(v string) *CertificateAssociation {
+	s.CustomDomainName = &v
+	return s
+}
+
 // Describes a cluster.
 type Cluster struct {
 	_ struct{} `type:"structure"`
@@ -14644,6 +15140,16 @@ type Cluster struct {
 
 	// The version ID of the Amazon Redshift engine that is running on the cluster.
 	ClusterVersion *string `type:"string"`
+
+	// The certificate Amazon Resource Name (ARN) for the custom domain name.
+	CustomDomainCertificateArn *string `type:"string"`
+
+	// The expiration date for the certificate associated with the custom domain
+	// name.
+	CustomDomainCertificateExpiryDate *time.Time `type:"timestamp"`
+
+	// The custom domain name associated with the cluster.
+	CustomDomainName *string `type:"string"`
 
 	// The name of the initial database that was created when the cluster was created.
 	// This same name is returned for the life of the cluster. If an initial database
@@ -14913,6 +15419,24 @@ func (s *Cluster) SetClusterSubnetGroupName(v string) *Cluster {
 // SetClusterVersion sets the ClusterVersion field's value.
 func (s *Cluster) SetClusterVersion(v string) *Cluster {
 	s.ClusterVersion = &v
+	return s
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *Cluster) SetCustomDomainCertificateArn(v string) *Cluster {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainCertificateExpiryDate sets the CustomDomainCertificateExpiryDate field's value.
+func (s *Cluster) SetCustomDomainCertificateExpiryDate(v time.Time) *Cluster {
+	s.CustomDomainCertificateExpiryDate = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *Cluster) SetCustomDomainName(v string) *Cluster {
+	s.CustomDomainName = &v
 	return s
 }
 
@@ -15867,9 +16391,8 @@ type CopyClusterSnapshotInput struct {
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
 	// The identifier of the cluster the source snapshot was created from. This
-	// parameter is required if your IAM user or role has a policy containing a
-	// snapshot resource element that specifies anything other than * for the cluster
-	// name.
+	// parameter is required if your IAM user has a policy containing a snapshot
+	// resource element that specifies anything other than * for the cluster name.
 	//
 	// Constraints:
 	//
@@ -16300,8 +16823,8 @@ type CreateClusterInput struct {
 	// The value must be either -1 or an integer between 1 and 3,653.
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
-	// The password associated with the admin user for the cluster that is being
-	// created.
+	// The password associated with the admin user account for the cluster that
+	// is being created.
 	//
 	// Constraints:
 	//
@@ -16319,8 +16842,8 @@ type CreateClusterInput struct {
 	// MasterUserPassword is a required field
 	MasterUserPassword *string `type:"string" required:"true"`
 
-	// The user name associated with the admin user for the cluster that is being
-	// created.
+	// The user name associated with the admin user account for the cluster that
+	// is being created.
 	//
 	// Constraints:
 	//
@@ -17181,6 +17704,145 @@ func (s CreateClusterSubnetGroupOutput) GoString() string {
 // SetClusterSubnetGroup sets the ClusterSubnetGroup field's value.
 func (s *CreateClusterSubnetGroupOutput) SetClusterSubnetGroup(v *ClusterSubnetGroup) *CreateClusterSubnetGroupOutput {
 	s.ClusterSubnetGroup = v
+	return s
+}
+
+type CreateCustomDomainAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster identifier that the custom domain is associated with.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The certificate Amazon Resource Name (ARN) for the custom domain name association.
+	//
+	// CustomDomainCertificateArn is a required field
+	CustomDomainCertificateArn *string `min:"20" type:"string" required:"true"`
+
+	// The custom domain name for a custom domain association.
+	//
+	// CustomDomainName is a required field
+	CustomDomainName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDomainAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDomainAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomDomainAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomDomainAssociationInput"}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.CustomDomainCertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainCertificateArn"))
+	}
+	if s.CustomDomainCertificateArn != nil && len(*s.CustomDomainCertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainCertificateArn", 20))
+	}
+	if s.CustomDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainName"))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *CreateCustomDomainAssociationInput) SetClusterIdentifier(v string) *CreateCustomDomainAssociationInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *CreateCustomDomainAssociationInput) SetCustomDomainCertificateArn(v string) *CreateCustomDomainAssociationInput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *CreateCustomDomainAssociationInput) SetCustomDomainName(v string) *CreateCustomDomainAssociationInput {
+	s.CustomDomainName = &v
+	return s
+}
+
+type CreateCustomDomainAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the cluster that the custom domain is associated with.
+	ClusterIdentifier *string `type:"string"`
+
+	// The expiration time for the certificate for the custom domain.
+	CustomDomainCertExpiryTime *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the certificate associated with the custom
+	// domain name.
+	CustomDomainCertificateArn *string `min:"20" type:"string"`
+
+	// The custom domain name for the association result.
+	CustomDomainName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDomainAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDomainAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *CreateCustomDomainAssociationOutput) SetClusterIdentifier(v string) *CreateCustomDomainAssociationOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCustomDomainCertExpiryTime sets the CustomDomainCertExpiryTime field's value.
+func (s *CreateCustomDomainAssociationOutput) SetCustomDomainCertExpiryTime(v string) *CreateCustomDomainAssociationOutput {
+	s.CustomDomainCertExpiryTime = &v
+	return s
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *CreateCustomDomainAssociationOutput) SetCustomDomainCertificateArn(v string) *CreateCustomDomainAssociationOutput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *CreateCustomDomainAssociationOutput) SetCustomDomainName(v string) *CreateCustomDomainAssociationOutput {
+	s.CustomDomainName = &v
 	return s
 }
 
@@ -19493,9 +20155,8 @@ type DeleteClusterSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier of the cluster the snapshot was created from. This
-	// parameter is required if your IAM user or role has a policy containing a
-	// snapshot resource element that specifies anything other than * for the cluster
-	// name.
+	// parameter is required if your IAM user has a policy containing a snapshot
+	// resource element that specifies anything other than * for the cluster name.
 	//
 	// Constraints: Must be the name of valid cluster.
 	SnapshotClusterIdentifier *string `type:"string"`
@@ -19556,9 +20217,8 @@ type DeleteClusterSnapshotMessage struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier of the cluster the snapshot was created from. This
-	// parameter is required if your IAM user or role has a policy containing a
-	// snapshot resource element that specifies anything other than * for the cluster
-	// name.
+	// parameter is required if your IAM user has a policy containing a snapshot
+	// resource element that specifies anything other than * for the cluster name.
 	//
 	// Constraints: Must be the name of valid cluster.
 	SnapshotClusterIdentifier *string `type:"string"`
@@ -19711,6 +20371,74 @@ func (s DeleteClusterSubnetGroupOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteClusterSubnetGroupOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteCustomDomainAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the cluster to delete a custom domain association for.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDomainAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDomainAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomDomainAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomDomainAssociationInput"}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *DeleteCustomDomainAssociationInput) SetClusterIdentifier(v string) *DeleteCustomDomainAssociationInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+type DeleteCustomDomainAssociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDomainAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDomainAssociationOutput) GoString() string {
 	return s.String()
 }
 
@@ -21260,7 +21988,7 @@ type DescribeClusterSnapshotsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 500.
+	// Constraints: minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The Amazon Web Services account used to create or copy the snapshot. Use
@@ -21960,6 +22688,120 @@ func (s *DescribeClustersOutput) SetClusters(v []*Cluster) *DescribeClustersOutp
 
 // SetMarker sets the Marker field's value.
 func (s *DescribeClustersOutput) SetMarker(v string) *DescribeClustersOutput {
+	s.Marker = &v
+	return s
+}
+
+type DescribeCustomDomainAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The certificate Amazon Resource Name (ARN) for the custom domain association.
+	CustomDomainCertificateArn *string `min:"20" type:"string"`
+
+	// The custom domain name for the custom domain association.
+	CustomDomainName *string `min:"1" type:"string"`
+
+	// The marker for the custom domain association.
+	Marker *string `type:"string"`
+
+	// The maximum records setting for the associated custom domain.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCustomDomainAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCustomDomainAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCustomDomainAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCustomDomainAssociationsInput"}
+	if s.CustomDomainCertificateArn != nil && len(*s.CustomDomainCertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainCertificateArn", 20))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *DescribeCustomDomainAssociationsInput) SetCustomDomainCertificateArn(v string) *DescribeCustomDomainAssociationsInput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *DescribeCustomDomainAssociationsInput) SetCustomDomainName(v string) *DescribeCustomDomainAssociationsInput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCustomDomainAssociationsInput) SetMarker(v string) *DescribeCustomDomainAssociationsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCustomDomainAssociationsInput) SetMaxRecords(v int64) *DescribeCustomDomainAssociationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeCustomDomainAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The associations for the custom domain.
+	Associations []*Association `locationNameList:"Association" type:"list"`
+
+	// The marker for the custom domain association.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCustomDomainAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCustomDomainAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *DescribeCustomDomainAssociationsOutput) SetAssociations(v []*Association) *DescribeCustomDomainAssociationsOutput {
+	s.Associations = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCustomDomainAssociationsOutput) SetMarker(v string) *DescribeCustomDomainAssociationsOutput {
 	s.Marker = &v
 	return s
 }
@@ -26464,9 +27306,10 @@ type GetClusterCredentialsInput struct {
 
 	// The unique identifier of the cluster that contains the database for which
 	// you are requesting credentials. This parameter is case sensitive.
-	//
-	// ClusterIdentifier is a required field
-	ClusterIdentifier *string `type:"string" required:"true"`
+	ClusterIdentifier *string `type:"string"`
+
+	// The custom domain name for the cluster credentials.
+	CustomDomainName *string `type:"string"`
 
 	// A list of the names of existing database groups that the user named in DbUser
 	// will join for the current session, in addition to any group memberships for
@@ -26566,9 +27409,6 @@ func (s GetClusterCredentialsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetClusterCredentialsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetClusterCredentialsInput"}
-	if s.ClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
-	}
 	if s.DbUser == nil {
 		invalidParams.Add(request.NewErrParamRequired("DbUser"))
 	}
@@ -26588,6 +27428,12 @@ func (s *GetClusterCredentialsInput) SetAutoCreate(v bool) *GetClusterCredential
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *GetClusterCredentialsInput) SetClusterIdentifier(v string) *GetClusterCredentialsInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *GetClusterCredentialsInput) SetCustomDomainName(v string) *GetClusterCredentialsInput {
+	s.CustomDomainName = &v
 	return s
 }
 
@@ -26681,9 +27527,10 @@ type GetClusterCredentialsWithIAMInput struct {
 
 	// The unique identifier of the cluster that contains the database for which
 	// you are requesting credentials.
-	//
-	// ClusterIdentifier is a required field
-	ClusterIdentifier *string `type:"string" required:"true"`
+	ClusterIdentifier *string `type:"string"`
+
+	// The custom domain name for the IAM message cluster credentials.
+	CustomDomainName *string `type:"string"`
 
 	// The name of the database for which you are requesting credentials. If the
 	// database name is specified, the IAM policy must allow access to the resource
@@ -26715,22 +27562,15 @@ func (s GetClusterCredentialsWithIAMInput) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *GetClusterCredentialsWithIAMInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "GetClusterCredentialsWithIAMInput"}
-	if s.ClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *GetClusterCredentialsWithIAMInput) SetClusterIdentifier(v string) *GetClusterCredentialsWithIAMInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *GetClusterCredentialsWithIAMInput) SetCustomDomainName(v string) *GetClusterCredentialsWithIAMInput {
+	s.CustomDomainName = &v
 	return s
 }
 
@@ -27972,7 +28812,8 @@ type ModifyClusterInput struct {
 	// element of the operation response.
 	//
 	// Operations never return the password, so this operation provides a way to
-	// regain access to the admin user for a cluster if the password is lost.
+	// regain access to the admin user account for a cluster if the password is
+	// lost.
 	//
 	// Default: Uses existing setting.
 	//
@@ -28751,6 +29592,139 @@ func (s ModifyClusterSubnetGroupOutput) GoString() string {
 // SetClusterSubnetGroup sets the ClusterSubnetGroup field's value.
 func (s *ModifyClusterSubnetGroupOutput) SetClusterSubnetGroup(v *ClusterSubnetGroup) *ModifyClusterSubnetGroupOutput {
 	s.ClusterSubnetGroup = v
+	return s
+}
+
+type ModifyCustomDomainAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the cluster to change a custom domain association for.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The certificate Amazon Resource Name (ARN) for the changed custom domain
+	// association.
+	CustomDomainCertificateArn *string `min:"20" type:"string"`
+
+	// The custom domain name for a changed custom domain association.
+	CustomDomainName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCustomDomainAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCustomDomainAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyCustomDomainAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyCustomDomainAssociationInput"}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.CustomDomainCertificateArn != nil && len(*s.CustomDomainCertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainCertificateArn", 20))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *ModifyCustomDomainAssociationInput) SetClusterIdentifier(v string) *ModifyCustomDomainAssociationInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *ModifyCustomDomainAssociationInput) SetCustomDomainCertificateArn(v string) *ModifyCustomDomainAssociationInput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *ModifyCustomDomainAssociationInput) SetCustomDomainName(v string) *ModifyCustomDomainAssociationInput {
+	s.CustomDomainName = &v
+	return s
+}
+
+type ModifyCustomDomainAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the cluster associated with the result for the changed
+	// custom domain association.
+	ClusterIdentifier *string `type:"string"`
+
+	// The certificate expiration time associated with the result for the changed
+	// custom domain association.
+	CustomDomainCertExpiryTime *string `type:"string"`
+
+	// The certificate Amazon Resource Name (ARN) associated with the result for
+	// the changed custom domain association.
+	CustomDomainCertificateArn *string `min:"20" type:"string"`
+
+	// The custom domain name associated with the result for the changed custom
+	// domain association.
+	CustomDomainName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCustomDomainAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCustomDomainAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *ModifyCustomDomainAssociationOutput) SetClusterIdentifier(v string) *ModifyCustomDomainAssociationOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCustomDomainCertExpiryTime sets the CustomDomainCertExpiryTime field's value.
+func (s *ModifyCustomDomainAssociationOutput) SetCustomDomainCertExpiryTime(v string) *ModifyCustomDomainAssociationOutput {
+	s.CustomDomainCertExpiryTime = &v
+	return s
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *ModifyCustomDomainAssociationOutput) SetCustomDomainCertificateArn(v string) *ModifyCustomDomainAssociationOutput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *ModifyCustomDomainAssociationOutput) SetCustomDomainName(v string) *ModifyCustomDomainAssociationOutput {
+	s.CustomDomainName = &v
 	return s
 }
 
@@ -31760,7 +32734,7 @@ type RestoreFromClusterSnapshotInput struct {
 	SnapshotArn *string `type:"string"`
 
 	// The name of the cluster the source snapshot was created from. This parameter
-	// is required if your IAM user or role has a policy containing a snapshot resource
+	// is required if your IAM user has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
 	SnapshotClusterIdentifier *string `type:"string"`
 
@@ -32778,7 +33752,7 @@ type RevokeSnapshotAccessInput struct {
 	SnapshotArn *string `type:"string"`
 
 	// The identifier of the cluster the snapshot was created from. This parameter
-	// is required if your IAM user or role has a policy containing a snapshot resource
+	// is required if your IAM user has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
 	SnapshotClusterIdentifier *string `type:"string"`
 

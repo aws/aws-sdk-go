@@ -34720,6 +34720,69 @@ const (
 
 	// ResourceTypeAwsSageMakerImage is a ResourceType enum value
 	ResourceTypeAwsSageMakerImage = "AWS::SageMaker::Image"
+
+	// ResourceTypeAwsEcsTaskSet is a ResourceType enum value
+	ResourceTypeAwsEcsTaskSet = "AWS::ECS::TaskSet"
+
+	// ResourceTypeAwsCassandraKeyspace is a ResourceType enum value
+	ResourceTypeAwsCassandraKeyspace = "AWS::Cassandra::Keyspace"
+
+	// ResourceTypeAwsSignerSigningProfile is a ResourceType enum value
+	ResourceTypeAwsSignerSigningProfile = "AWS::Signer::SigningProfile"
+
+	// ResourceTypeAwsAmplifyApp is a ResourceType enum value
+	ResourceTypeAwsAmplifyApp = "AWS::Amplify::App"
+
+	// ResourceTypeAwsAppMeshVirtualNode is a ResourceType enum value
+	ResourceTypeAwsAppMeshVirtualNode = "AWS::AppMesh::VirtualNode"
+
+	// ResourceTypeAwsAppMeshVirtualService is a ResourceType enum value
+	ResourceTypeAwsAppMeshVirtualService = "AWS::AppMesh::VirtualService"
+
+	// ResourceTypeAwsAppRunnerVpcConnector is a ResourceType enum value
+	ResourceTypeAwsAppRunnerVpcConnector = "AWS::AppRunner::VpcConnector"
+
+	// ResourceTypeAwsAppStreamApplication is a ResourceType enum value
+	ResourceTypeAwsAppStreamApplication = "AWS::AppStream::Application"
+
+	// ResourceTypeAwsCodeArtifactRepository is a ResourceType enum value
+	ResourceTypeAwsCodeArtifactRepository = "AWS::CodeArtifact::Repository"
+
+	// ResourceTypeAwsEc2PrefixList is a ResourceType enum value
+	ResourceTypeAwsEc2PrefixList = "AWS::EC2::PrefixList"
+
+	// ResourceTypeAwsEc2SpotFleet is a ResourceType enum value
+	ResourceTypeAwsEc2SpotFleet = "AWS::EC2::SpotFleet"
+
+	// ResourceTypeAwsEvidentlyProject is a ResourceType enum value
+	ResourceTypeAwsEvidentlyProject = "AWS::Evidently::Project"
+
+	// ResourceTypeAwsForecastDataset is a ResourceType enum value
+	ResourceTypeAwsForecastDataset = "AWS::Forecast::Dataset"
+
+	// ResourceTypeAwsIamSamlprovider is a ResourceType enum value
+	ResourceTypeAwsIamSamlprovider = "AWS::IAM::SAMLProvider"
+
+	// ResourceTypeAwsIamServerCertificate is a ResourceType enum value
+	ResourceTypeAwsIamServerCertificate = "AWS::IAM::ServerCertificate"
+
+	// ResourceTypeAwsPinpointCampaign is a ResourceType enum value
+	ResourceTypeAwsPinpointCampaign = "AWS::Pinpoint::Campaign"
+
+	// ResourceTypeAwsPinpointInAppTemplate is a ResourceType enum value
+	ResourceTypeAwsPinpointInAppTemplate = "AWS::Pinpoint::InAppTemplate"
+
+	// ResourceTypeAwsSageMakerDomain is a ResourceType enum value
+	ResourceTypeAwsSageMakerDomain = "AWS::SageMaker::Domain"
+
+	// ResourceTypeAwsTransferAgreement is a ResourceType enum value
+	ResourceTypeAwsTransferAgreement = "AWS::Transfer::Agreement"
+
+	// ResourceTypeAwsTransferConnector is a ResourceType enum value
+	ResourceTypeAwsTransferConnector = "AWS::Transfer::Connector"
+
+	// ResourceTypeAwsKinesisFirehoseDeliveryStream is a ResourceType enum value
+	ResourceTypeAwsKinesisFirehoseDeliveryStream = "AWS::KinesisFirehose::DeliveryStream"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -35022,6 +35085,27 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsRoute53resolverFirewallRuleGroupAssociation,
 		ResourceTypeAwsSageMakerAppImageConfig,
 		ResourceTypeAwsSageMakerImage,
+		ResourceTypeAwsEcsTaskSet,
+		ResourceTypeAwsCassandraKeyspace,
+		ResourceTypeAwsSignerSigningProfile,
+		ResourceTypeAwsAmplifyApp,
+		ResourceTypeAwsAppMeshVirtualNode,
+		ResourceTypeAwsAppMeshVirtualService,
+		ResourceTypeAwsAppRunnerVpcConnector,
+		ResourceTypeAwsAppStreamApplication,
+		ResourceTypeAwsCodeArtifactRepository,
+		ResourceTypeAwsEc2PrefixList,
+		ResourceTypeAwsEc2SpotFleet,
+		ResourceTypeAwsEvidentlyProject,
+		ResourceTypeAwsForecastDataset,
+		ResourceTypeAwsIamSamlprovider,
+		ResourceTypeAwsIamServerCertificate,
+		ResourceTypeAwsPinpointCampaign,
+		ResourceTypeAwsPinpointInAppTemplate,
+		ResourceTypeAwsSageMakerDomain,
+		ResourceTypeAwsTransferAgreement,
+		ResourceTypeAwsTransferConnector,
+		ResourceTypeAwsKinesisFirehoseDeliveryStream,
 	}
 }
 
