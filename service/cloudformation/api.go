@@ -8258,6 +8258,29 @@ type CreateChangeSetInput struct {
 	// associated notification topics, specify an empty list.
 	NotificationARNs []*string `type:"list"`
 
+	// Determines what action will be taken if stack creation fails. If this parameter
+	// is specified, the DisableRollback parameter to the ExecuteChangeSet (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html)
+	// API operation must not be specified. This must be one of these values:
+	//
+	//    * DELETE - Deletes the change set if the stack creation fails. This is
+	//    only valid when the ChangeSetType parameter is set to CREATE. If the deletion
+	//    of the stack fails, the status of the stack is DELETE_FAILED.
+	//
+	//    * DO_NOTHING - if the stack creation fails, do nothing. This is equivalent
+	//    to specifying true for the DisableRollback parameter to the ExecuteChangeSet
+	//    (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html)
+	//    API operation.
+	//
+	//    * ROLLBACK - if the stack creation fails, roll back the stack. This is
+	//    equivalent to specifying false for the DisableRollback parameter to the
+	//    ExecuteChangeSet (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html)
+	//    API operation.
+	//
+	// For nested stacks, when the OnStackFailure parameter is set to DELETE for
+	// the change set for the parent stack, any failure in a child stack will cause
+	// the parent stack creation to fail and all stacks to be deleted.
+	OnStackFailure *string `type:"string" enum:"OnStackFailure"`
+
 	// A list of Parameter structures that specify input parameters for the change
 	// set. For more information, see the Parameter data type.
 	Parameters []*Parameter `type:"list"`
@@ -8445,6 +8468,12 @@ func (s *CreateChangeSetInput) SetIncludeNestedStacks(v bool) *CreateChangeSetIn
 // SetNotificationARNs sets the NotificationARNs field's value.
 func (s *CreateChangeSetInput) SetNotificationARNs(v []*string) *CreateChangeSetInput {
 	s.NotificationARNs = v
+	return s
+}
+
+// SetOnStackFailure sets the OnStackFailure field's value.
+func (s *CreateChangeSetInput) SetOnStackFailure(v string) *CreateChangeSetInput {
+	s.OnStackFailure = &v
 	return s
 }
 
@@ -10705,6 +10734,25 @@ type DescribeChangeSetOutput struct {
 	// will be associated with the stack if you execute the change set.
 	NotificationARNs []*string `type:"list"`
 
+	// Determines what action will be taken if stack creation fails. When this parameter
+	// is specified, the DisableRollback parameter to the ExecuteChangeSet (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html)
+	// API operation must not be specified. This must be one of these values:
+	//
+	//    * DELETE - Deletes the change set if the stack creation fails. This is
+	//    only valid when the ChangeSetType parameter is set to CREATE. If the deletion
+	//    of the stack fails, the status of the stack is DELETE_FAILED.
+	//
+	//    * DO_NOTHING - if the stack creation fails, do nothing. This is equivalent
+	//    to specifying true for the DisableRollback parameter to the ExecuteChangeSet
+	//    (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html)
+	//    API operation.
+	//
+	//    * ROLLBACK - if the stack creation fails, roll back the stack. This is
+	//    equivalent to specifying false for the DisableRollback parameter to the
+	//    ExecuteChangeSet (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html)
+	//    API operation.
+	OnStackFailure *string `type:"string" enum:"OnStackFailure"`
+
 	// A list of Parameter structures that describes the input parameters and their
 	// values used to create the change set. For more information, see the Parameter
 	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html)
@@ -10818,6 +10866,12 @@ func (s *DescribeChangeSetOutput) SetNextToken(v string) *DescribeChangeSetOutpu
 // SetNotificationARNs sets the NotificationARNs field's value.
 func (s *DescribeChangeSetOutput) SetNotificationARNs(v []*string) *DescribeChangeSetOutput {
 	s.NotificationARNs = v
+	return s
+}
+
+// SetOnStackFailure sets the OnStackFailure field's value.
+func (s *DescribeChangeSetOutput) SetOnStackFailure(v string) *DescribeChangeSetOutput {
+	s.OnStackFailure = &v
 	return s
 }
 
@@ -13241,7 +13295,19 @@ type ExecuteChangeSetInput struct {
 	ClientRequestToken *string `min:"1" type:"string"`
 
 	// Preserves the state of previously provisioned resources when an operation
-	// fails.
+	// fails. This parameter can't be specified when the OnStackFailure parameter
+	// to the CreateChangeSet (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_CreateChangeSet.html)
+	// API operation was specified.
+	//
+	//    * True - if the stack creation fails, do nothing. This is equivalent to
+	//    specifying DO_NOTHING for the OnStackFailure parameter to the CreateChangeSet
+	//    (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_CreateChangeSet.html)
+	//    API operation.
+	//
+	//    * False - if the stack creation fails, roll back the stack. This is equivalent
+	//    to specifying ROLLBACK for the OnStackFailure parameter to the CreateChangeSet
+	//    (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_CreateChangeSet.html)
+	//    API operation.
 	//
 	// Default: True
 	DisableRollback *bool `type:"boolean"`
@@ -23806,6 +23872,26 @@ func OnFailure_Values() []string {
 		OnFailureDoNothing,
 		OnFailureRollback,
 		OnFailureDelete,
+	}
+}
+
+const (
+	// OnStackFailureDoNothing is a OnStackFailure enum value
+	OnStackFailureDoNothing = "DO_NOTHING"
+
+	// OnStackFailureRollback is a OnStackFailure enum value
+	OnStackFailureRollback = "ROLLBACK"
+
+	// OnStackFailureDelete is a OnStackFailure enum value
+	OnStackFailureDelete = "DELETE"
+)
+
+// OnStackFailure_Values returns all elements of the OnStackFailure enum
+func OnStackFailure_Values() []string {
+	return []string{
+		OnStackFailureDoNothing,
+		OnStackFailureRollback,
+		OnStackFailureDelete,
 	}
 }
 

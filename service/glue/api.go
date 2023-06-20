@@ -35006,6 +35006,9 @@ type DatabaseIdentifier struct {
 
 	// The name of the catalog database.
 	DatabaseName *string `min:"1" type:"string"`
+
+	// Region of the target database.
+	Region *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -35035,6 +35038,9 @@ func (s *DatabaseIdentifier) Validate() error {
 	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
 	}
+	if s.Region != nil && len(*s.Region) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -35051,6 +35057,12 @@ func (s *DatabaseIdentifier) SetCatalogId(v string) *DatabaseIdentifier {
 // SetDatabaseName sets the DatabaseName field's value.
 func (s *DatabaseIdentifier) SetDatabaseName(v string) *DatabaseIdentifier {
 	s.DatabaseName = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DatabaseIdentifier) SetRegion(v string) *DatabaseIdentifier {
+	s.Region = &v
 	return s
 }
 
@@ -67144,6 +67156,9 @@ type TableIdentifier struct {
 
 	// The name of the target table.
 	Name *string `min:"1" type:"string"`
+
+	// Region of the target table.
+	Region *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -67176,6 +67191,9 @@ func (s *TableIdentifier) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Region != nil && len(*s.Region) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -67198,6 +67216,12 @@ func (s *TableIdentifier) SetDatabaseName(v string) *TableIdentifier {
 // SetName sets the Name field's value.
 func (s *TableIdentifier) SetName(v string) *TableIdentifier {
 	s.Name = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *TableIdentifier) SetRegion(v string) *TableIdentifier {
+	s.Region = &v
 	return s
 }
 

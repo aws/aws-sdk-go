@@ -2190,10 +2190,8 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 
 // RegisterDomain API operation for Amazon Route 53 Domains.
 //
-// This operation registers a domain. Domains are registered either by Amazon
-// Registrar (for .com, .net, and .org domains) or by our registrar associate,
-// Gandi (for all other domains). For some top-level domains (TLDs), this operation
-// requires extra parameters.
+// This operation registers a domain. For some top-level domains (TLDs), this
+// operation requires extra parameters.
 //
 // When you register a domain, Amazon Route 53 does the following:
 //
@@ -2206,12 +2204,12 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 //     choose whether to renew the registration.
 //
 //   - Optionally enables privacy protection, so WHOIS queries return contact
-//     information either for Amazon Registrar (for .com, .net, and .org domains)
-//     or for our registrar associate, Gandi (for all other TLDs). If you don't
-//     enable privacy protection, WHOIS queries return the information that you
-//     entered for the administrative, registrant, and technical contacts. You
-//     must specify the same privacy setting for the administrative, registrant,
-//     and technical contacts.
+//     for the registrar or the phrase "REDACTED FOR PRIVACY", or "On behalf
+//     of <domain name> owner." If you don't enable privacy protection, WHOIS
+//     queries return the information that you entered for the administrative,
+//     registrant, and technical contacts. While some domains may allow different
+//     privacy settings per contact, we recommend specifying the same privacy
+//     setting for all contacts.
 //
 //   - If registration is successful, returns an operation ID that you can
 //     use to track the progress and completion of the action. If the request
@@ -2774,10 +2772,7 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 
 // TransferDomain API operation for Amazon Route 53 Domains.
 //
-// Transfers a domain from another registrar to Amazon Route 53. When the transfer
-// is complete, the domain is registered either with Amazon Registrar (for .com,
-// .net, and .org domains) or with our registrar associate, Gandi (for all other
-// TLDs).
+// Transfers a domain from another registrar to Amazon Route 53.
 //
 // For more information about transferring domains, see the following topics:
 //
@@ -3126,13 +3121,12 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 // UpdateDomainContactPrivacy API operation for Amazon Route 53 Domains.
 //
 // This operation updates the specified domain contact's privacy setting. When
-// privacy protection is enabled, contact information such as email address
-// is replaced either with contact information for Amazon Registrar (for .com,
-// .net, and .org domains) or with contact information for our registrar associate,
-// Gandi.
+// privacy protection is enabled, your contact information is replaced with
+// contact information for the registrar or with the phrase "REDACTED FOR PRIVACY",
+// or "On behalf of <domain name> owner."
 //
-// You must specify the same privacy setting for the administrative, registrant,
-// and technical contacts.
+// While some domains may allow different privacy settings per contact, we recommend
+// specifying the same privacy setting for all contacts.
 //
 // This operation affects only the contact information for the specified contact
 // type (administrative, registrant, or technical). If the request succeeds,
@@ -5692,22 +5686,6 @@ type ExtraParam struct {
 	//
 	//    * FI_ORGANIZATION_TYPE Valid values include the following: COMPANY CORPORATION
 	//    GOVERNMENT INSTITUTION POLITICAL_PARTY PUBLIC_COMMUNITY TOWNSHIP
-	//
-	// .fr
-	//
-	//    * BIRTH_CITY
-	//
-	//    * BIRTH_COUNTRY
-	//
-	//    * BIRTH_DATE_IN_YYYY_MM_DD
-	//
-	//    * BIRTH_DEPARTMENT: Specify the INSEE code that corresponds with the department
-	//    where the contact was born. If the contact was born somewhere other than
-	//    France or its overseas departments, specify 99. For more information,
-	//    including a list of departments and the corresponding INSEE numbers, see
-	//    the Wikipedia entry Departments of France (https://en.wikipedia.org/wiki/Departments_of_France).
-	//
-	//    * BRAND_NUMBER
 	//
 	// .it
 	//
@@ -8466,13 +8444,12 @@ type TransferDomainInput struct {
 	Nameservers []*Nameserver `type:"list"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the admin contact.
+	// specify true, WHOIS ("who is") queries return contact information for the
+	// registrar, the phrase "REDACTED FOR PRIVACY", or "On behalf of <domain name>
+	// owner.".
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// While some domains may allow different privacy settings per contact, we recommend
+	// specifying the same privacy setting for all contacts.
 	//
 	// Default: true
 	PrivacyProtectAdminContact *bool `type:"boolean"`
@@ -8885,7 +8862,8 @@ type UpdateDomainContactInput struct {
 	// String and GoString methods.
 	AdminContact *ContactDetail `type:"structure" sensitive:"true"`
 
-	// Customer's consent for the owner change request.
+	// Customer's consent for the owner change request. Required if the domain is
+	// not free (consent price is more than $0.00).
 	Consent *Consent `type:"structure"`
 
 	// The name of the domain that you want to update contact information for.

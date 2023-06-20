@@ -4425,7 +4425,23 @@
       "type":"structure",
       "members":{
         "ImageClassificationJobConfig":{"shape":"ImageClassificationJobConfig"},
-        "TextClassificationJobConfig":{"shape":"TextClassificationJobConfig"}
+        "TextClassificationJobConfig":{"shape":"TextClassificationJobConfig"},
+        "TabularJobConfig":{"shape":"TabularJobConfig"}
+      },
+      "union":true
+    },
+    "AutoMLProblemTypeConfigName":{
+      "type":"string",
+      "enum":[
+        "ImageClassification",
+        "TextClassification",
+        "Tabular"
+      ]
+    },
+    "AutoMLProblemTypeResolvedAttributes":{
+      "type":"structure",
+      "members":{
+        "TabularResolvedAttributes":{"shape":"TabularResolvedAttributes"}
       },
       "union":true
     },
@@ -4435,6 +4451,14 @@
         "CPU",
         "GPU"
       ]
+    },
+    "AutoMLResolvedAttributes":{
+      "type":"structure",
+      "members":{
+        "AutoMLJobObjective":{"shape":"AutoMLJobObjective"},
+        "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
+        "AutoMLProblemTypeResolvedAttributes":{"shape":"AutoMLProblemTypeResolvedAttributes"}
+      }
     },
     "AutoMLS3DataSource":{
       "type":"structure",
@@ -4688,6 +4712,12 @@
     "CandidateDefinitionNotebookLocation":{
       "type":"string",
       "min":1
+    },
+    "CandidateGenerationConfig":{
+      "type":"structure",
+      "members":{
+        "AlgorithmsConfig":{"shape":"AutoMLAlgorithmsConfig"}
+      }
     },
     "CandidateName":{
       "type":"string",
@@ -7844,7 +7874,10 @@
         "ModelDeployConfig":{"shape":"ModelDeployConfig"},
         "ModelDeployResult":{"shape":"ModelDeployResult"},
         "DataSplitConfig":{"shape":"AutoMLDataSplitConfig"},
-        "SecurityConfig":{"shape":"AutoMLSecurityConfig"}
+        "SecurityConfig":{"shape":"AutoMLSecurityConfig"},
+        "AutoMLJobArtifacts":{"shape":"AutoMLJobArtifacts"},
+        "ResolvedAttributes":{"shape":"AutoMLResolvedAttributes"},
+        "AutoMLProblemTypeConfigName":{"shape":"AutoMLProblemTypeConfigName"}
       }
     },
     "DescribeCodeRepositoryInput":{
@@ -18995,6 +19028,26 @@
       "max":255,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "TabularJobConfig":{
+      "type":"structure",
+      "required":["TargetAttributeName"],
+      "members":{
+        "CandidateGenerationConfig":{"shape":"CandidateGenerationConfig"},
+        "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
+        "FeatureSpecificationS3Uri":{"shape":"S3Uri"},
+        "Mode":{"shape":"AutoMLMode"},
+        "GenerateCandidateDefinitionsOnly":{"shape":"GenerateCandidateDefinitionsOnly"},
+        "ProblemType":{"shape":"ProblemType"},
+        "TargetAttributeName":{"shape":"TargetAttributeName"},
+        "SampleWeightAttributeName":{"shape":"SampleWeightAttributeName"}
+      }
+    },
+    "TabularResolvedAttributes":{
+      "type":"structure",
+      "members":{
+        "ProblemType":{"shape":"ProblemType"}
+      }
     },
     "Tag":{
       "type":"structure",

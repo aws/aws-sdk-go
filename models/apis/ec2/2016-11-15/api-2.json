@@ -7592,6 +7592,7 @@
         }
       }
     },
+    "AvailabilityZoneId":{"type":"string"},
     "AvailabilityZoneList":{
       "type":"list",
       "member":{
@@ -9786,8 +9787,8 @@
         "ClientToken":{"shape":"String"},
         "InstanceType":{"shape":"String"},
         "InstancePlatform":{"shape":"CapacityReservationInstancePlatform"},
-        "AvailabilityZone":{"shape":"String"},
-        "AvailabilityZoneId":{"shape":"String"},
+        "AvailabilityZone":{"shape":"AvailabilityZoneName"},
+        "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
         "Tenancy":{"shape":"CapacityReservationTenancy"},
         "InstanceCount":{"shape":"Integer"},
         "EbsOptimized":{"shape":"Boolean"},
@@ -43447,7 +43448,9 @@
       "members":{
         "S3":{"shape":"VerifiedAccessLogS3DestinationOptions"},
         "CloudWatchLogs":{"shape":"VerifiedAccessLogCloudWatchLogsDestinationOptions"},
-        "KinesisDataFirehose":{"shape":"VerifiedAccessLogKinesisDataFirehoseDestinationOptions"}
+        "KinesisDataFirehose":{"shape":"VerifiedAccessLogKinesisDataFirehoseDestinationOptions"},
+        "LogVersion":{"shape":"String"},
+        "IncludeTrustContext":{"shape":"Boolean"}
       }
     },
     "VerifiedAccessLogS3Destination":{
@@ -43499,6 +43502,14 @@
         "KinesisDataFirehose":{
           "shape":"VerifiedAccessLogKinesisDataFirehoseDestination",
           "locationName":"kinesisDataFirehose"
+        },
+        "LogVersion":{
+          "shape":"String",
+          "locationName":"logVersion"
+        },
+        "IncludeTrustContext":{
+          "shape":"Boolean",
+          "locationName":"includeTrustContext"
         }
       }
     },

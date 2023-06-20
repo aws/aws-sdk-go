@@ -11,8 +11,8 @@ const (
 	// ErrCodeAuthorizationErrorException for service response error code
 	// "AuthorizationErrorException".
 	//
-	// The Amazon Web Services user account does not have permission to perform
-	// the action. Check the IAM policy associated with this account.
+	// The user does not have permission to perform the action. Check the IAM policy
+	// associated with this user.
 	ErrCodeAuthorizationErrorException = "AuthorizationErrorException"
 
 	// ErrCodeConflictErrorException for service response error code
@@ -22,7 +22,7 @@ const (
 	// ErrCodeHomeRegionNotSetException for service response error code
 	// "HomeRegionNotSetException".
 	//
-	// The home region is not set. Set the home region to continue.
+	// The home Region is not set. Set the home Region to continue.
 	ErrCodeHomeRegionNotSetException = "HomeRegionNotSetException"
 
 	// ErrCodeInvalidParameterException for service response error code

@@ -1442,7 +1442,8 @@
         "Description":{"shape":"Description"},
         "ChangeSetType":{"shape":"ChangeSetType"},
         "ResourcesToImport":{"shape":"ResourcesToImport"},
-        "IncludeNestedStacks":{"shape":"IncludeNestedStacks"}
+        "IncludeNestedStacks":{"shape":"IncludeNestedStacks"},
+        "OnStackFailure":{"shape":"OnStackFailure"}
       }
     },
     "CreateChangeSetOutput":{
@@ -1731,7 +1732,8 @@
         "NextToken":{"shape":"NextToken"},
         "IncludeNestedStacks":{"shape":"IncludeNestedStacks"},
         "ParentChangeSetId":{"shape":"ChangeSetId"},
-        "RootChangeSetId":{"shape":"ChangeSetId"}
+        "RootChangeSetId":{"shape":"ChangeSetId"},
+        "OnStackFailure":{"shape":"OnStackFailure"}
       }
     },
     "DescribeOrganizationsAccessInput":{
@@ -2670,6 +2672,14 @@
       "max":5
     },
     "OnFailure":{
+      "type":"string",
+      "enum":[
+        "DO_NOTHING",
+        "ROLLBACK",
+        "DELETE"
+      ]
+    },
+    "OnStackFailure":{
       "type":"string",
       "enum":[
         "DO_NOTHING",

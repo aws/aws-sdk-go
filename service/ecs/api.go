@@ -1123,6 +1123,13 @@ func (c *ECS) DeleteTaskDefinitionsRequest(input *DeleteTaskDefinitionsInput) (r
 // A task definition revision will stay in DELETE_IN_PROGRESS status until all
 // the associated tasks and services have been terminated.
 //
+// When you delete all INACTIVE task definition revisions, the task definition
+// name is not displayed in the console and not returned in the API. If a task
+// definition revisions are in the DELETE_IN_PROGRESS state, the task definition
+// name is displayed in the console and returned in the API. The task definition
+// name is retained by Amazon ECS and the revision is incremented the next time
+// you create a task definition with that name.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10361,6 +10368,9 @@ type CreateServiceInput struct {
 	// the service. For more information, see Tagging your Amazon ECS resources
 	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)
 	// in the Amazon Elastic Container Service Developer Guide.
+	//
+	// When you use Amazon ECS managed tags, you need to set the propagateTags request
+	// parameter.
 	EnableECSManagedTags *bool `locationName:"enableECSManagedTags" type:"boolean"`
 
 	// Determines whether the execute command functionality is turned on for the
@@ -10485,6 +10495,8 @@ type CreateServiceInput struct {
 	// to the task during task creation. To add tags to a task after task creation,
 	// use the TagResource (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)
 	// API action.
+	//
+	// The default is NONE.
 	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
 
 	// The name or full Amazon Resource Name (ARN) of the IAM role that allows Amazon
