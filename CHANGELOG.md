@@ -1,3 +1,21 @@
+Release v1.44.287 (2023-06-21)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for DynamoDB
+* `service/elasticmapreduce`: Updates service API, documentation, and paginators
+  * This release introduces a new Amazon EMR EPI called ListSupportedInstanceTypes that returns a list of all instance types supported by a given EMR release.
+* `service/inspector2`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release introduces the bandwidth reduction filter for the HEVC encoder, increases the limits of outputs per job, and updates support for the Nagra SDK to version 1.14.7.
+* `service/mq`: Updates service API and documentation
+  * The Cross Region Disaster Recovery feature allows to replicate a brokers state from one region to another in order to provide customers with multi-region resiliency in the event of a regional outage.
+* `service/sagemaker`: Updates service API and documentation
+  * This release provides support in SageMaker for output files in training jobs to be uploaded without compression and enable customer to deploy uncompressed model from S3 to real-time inference Endpoints. In addition, ml.trn1n.32xlarge is added to supported instance type list in training job.
+* `service/transfer`: Updates service API and documentation
+  * This release adds a new parameter StructuredLogDestinations to CreateServer, UpdateServer APIs.
+
 Release v1.44.286 (2023-06-20)
 ===
 

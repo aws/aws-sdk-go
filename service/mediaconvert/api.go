@@ -6097,7 +6097,7 @@ func (s *CaptionDestinationSettings) SetWebvttDestinationSettings(v *WebvttDesti
 }
 
 // Use captions selectors to specify the captions data from your input that
-// you use in your outputs. You can use up to 20 captions selectors per input.
+// you use in your outputs. You can use up to 100 captions selectors per input.
 type CaptionSelector struct {
 	_ struct{} `type:"structure"`
 
@@ -13107,6 +13107,16 @@ type H265Settings struct {
 	// Log Gamma (HLG) Electro-Optical Transfer Function (EOTF).
 	AlternateTransferFunctionSei *string `locationName:"alternateTransferFunctionSei" type:"string" enum:"H265AlternateTransferFunctionSei"`
 
+	// The Bandwidth reduction filter increases the video quality of your output
+	// relative to its bitrate. Use to lower the bitrate of your constant quality
+	// QVBR output, with little or no perceptual decrease in quality. Or, use to
+	// increase the video quality of outputs with other rate control modes relative
+	// to the bitrate that you specify. Bandwidth reduction increases further when
+	// your input is low quality or noisy. Outputs that use this feature incur pro-tier
+	// pricing. When you include Bandwidth reduction filter, you cannot include
+	// the Noise reducer preprocessor.
+	BandwidthReductionFilter *BandwidthReductionFilter `locationName:"bandwidthReductionFilter" type:"structure"`
+
 	// Specify the average bitrate in bits per second. Required for VBR and CBR.
 	// For MS Smooth outputs, bitrates must be unique when rounded down to the nearest
 	// multiple of 1000.
@@ -13498,6 +13508,12 @@ func (s *H265Settings) SetAdaptiveQuantization(v string) *H265Settings {
 // SetAlternateTransferFunctionSei sets the AlternateTransferFunctionSei field's value.
 func (s *H265Settings) SetAlternateTransferFunctionSei(v string) *H265Settings {
 	s.AlternateTransferFunctionSei = &v
+	return s
+}
+
+// SetBandwidthReductionFilter sets the BandwidthReductionFilter field's value.
+func (s *H265Settings) SetBandwidthReductionFilter(v *BandwidthReductionFilter) *H265Settings {
+	s.BandwidthReductionFilter = v
 	return s
 }
 
@@ -14313,6 +14329,18 @@ type HlsGroupSettings struct {
 	// Period of insertion of EXT-X-PROGRAM-DATE-TIME entry, in seconds.
 	ProgramDateTimePeriod *int64 `locationName:"programDateTimePeriod" type:"integer"`
 
+	// Specify whether MediaConvert generates HLS manifests while your job is running
+	// or when your job is complete. To generate HLS manifests while your job is
+	// running: Choose Enabled. Use if you want to play back your content as soon
+	// as it's available. MediaConvert writes the parent and child manifests after
+	// the first three media segments are written to your destination S3 bucket.
+	// It then writes new updated manifests after each additional segment is written.
+	// The parent manifest includes the latest BANDWIDTH and AVERAGE-BANDWIDTH attributes,
+	// and child manifests include the latest available media segment. When your
+	// job completes, the final child playlists include an EXT-X-ENDLIST tag. To
+	// generate HLS manifests only when your job completes: Choose Disabled.
+	ProgressiveWriteHlsManifest *string `locationName:"progressiveWriteHlsManifest" type:"string" enum:"HlsProgressiveWriteHlsManifest"`
+
 	// When set to SINGLE_FILE, emits program as a single media resource (.ts) file,
 	// uses #EXT-X-BYTERANGE tags to index segment for playback.
 	SegmentControl *string `locationName:"segmentControl" type:"string" enum:"HlsSegmentControl"`
@@ -14569,6 +14597,12 @@ func (s *HlsGroupSettings) SetProgramDateTime(v string) *HlsGroupSettings {
 // SetProgramDateTimePeriod sets the ProgramDateTimePeriod field's value.
 func (s *HlsGroupSettings) SetProgramDateTimePeriod(v int64) *HlsGroupSettings {
 	s.ProgramDateTimePeriod = &v
+	return s
+}
+
+// SetProgressiveWriteHlsManifest sets the ProgressiveWriteHlsManifest field's value.
+func (s *HlsGroupSettings) SetProgressiveWriteHlsManifest(v string) *HlsGroupSettings {
+	s.ProgressiveWriteHlsManifest = &v
 	return s
 }
 
@@ -15194,7 +15228,7 @@ type Input struct {
 	AudioSelectors map[string]*AudioSelector `locationName:"audioSelectors" type:"map"`
 
 	// Use captions selectors to specify the captions data from your input that
-	// you use in your outputs. You can use up to 20 captions selectors per input.
+	// you use in your outputs. You can use up to 100 captions selectors per input.
 	CaptionSelectors map[string]*CaptionSelector `locationName:"captionSelectors" type:"map"`
 
 	// Use Cropping selection (crop) to specify the video area that the service
@@ -15750,7 +15784,7 @@ type InputTemplate struct {
 	AudioSelectors map[string]*AudioSelector `locationName:"audioSelectors" type:"map"`
 
 	// Use captions selectors to specify the captions data from your input that
-	// you use in your outputs. You can use up to 20 captions selectors per input.
+	// you use in your outputs. You can use up to 100 captions selectors per input.
 	CaptionSelectors map[string]*CaptionSelector `locationName:"captionSelectors" type:"map"`
 
 	// Use Cropping selection (crop) to specify the video area that the service
@@ -33409,6 +33443,32 @@ func HlsProgramDateTime_Values() []string {
 	return []string{
 		HlsProgramDateTimeInclude,
 		HlsProgramDateTimeExclude,
+	}
+}
+
+// Specify whether MediaConvert generates HLS manifests while your job is running
+// or when your job is complete. To generate HLS manifests while your job is
+// running: Choose Enabled. Use if you want to play back your content as soon
+// as it's available. MediaConvert writes the parent and child manifests after
+// the first three media segments are written to your destination S3 bucket.
+// It then writes new updated manifests after each additional segment is written.
+// The parent manifest includes the latest BANDWIDTH and AVERAGE-BANDWIDTH attributes,
+// and child manifests include the latest available media segment. When your
+// job completes, the final child playlists include an EXT-X-ENDLIST tag. To
+// generate HLS manifests only when your job completes: Choose Disabled.
+const (
+	// HlsProgressiveWriteHlsManifestEnabled is a HlsProgressiveWriteHlsManifest enum value
+	HlsProgressiveWriteHlsManifestEnabled = "ENABLED"
+
+	// HlsProgressiveWriteHlsManifestDisabled is a HlsProgressiveWriteHlsManifest enum value
+	HlsProgressiveWriteHlsManifestDisabled = "DISABLED"
+)
+
+// HlsProgressiveWriteHlsManifest_Values returns all elements of the HlsProgressiveWriteHlsManifest enum
+func HlsProgressiveWriteHlsManifest_Values() []string {
+	return []string{
+		HlsProgressiveWriteHlsManifestEnabled,
+		HlsProgressiveWriteHlsManifestDisabled,
 	}
 }
 

@@ -229,6 +229,13 @@ type EMRAPI interface {
 	ListStudiosPages(*emr.ListStudiosInput, func(*emr.ListStudiosOutput, bool) bool) error
 	ListStudiosPagesWithContext(aws.Context, *emr.ListStudiosInput, func(*emr.ListStudiosOutput, bool) bool, ...request.Option) error
 
+	ListSupportedInstanceTypes(*emr.ListSupportedInstanceTypesInput) (*emr.ListSupportedInstanceTypesOutput, error)
+	ListSupportedInstanceTypesWithContext(aws.Context, *emr.ListSupportedInstanceTypesInput, ...request.Option) (*emr.ListSupportedInstanceTypesOutput, error)
+	ListSupportedInstanceTypesRequest(*emr.ListSupportedInstanceTypesInput) (*request.Request, *emr.ListSupportedInstanceTypesOutput)
+
+	ListSupportedInstanceTypesPages(*emr.ListSupportedInstanceTypesInput, func(*emr.ListSupportedInstanceTypesOutput, bool) bool) error
+	ListSupportedInstanceTypesPagesWithContext(aws.Context, *emr.ListSupportedInstanceTypesInput, func(*emr.ListSupportedInstanceTypesOutput, bool) bool, ...request.Option) error
+
 	ModifyCluster(*emr.ModifyClusterInput) (*emr.ModifyClusterOutput, error)
 	ModifyClusterWithContext(aws.Context, *emr.ModifyClusterInput, ...request.Option) (*emr.ModifyClusterOutput, error)
 	ModifyClusterRequest(*emr.ModifyClusterInput) (*request.Request, *emr.ModifyClusterOutput)

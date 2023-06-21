@@ -7571,6 +7571,22 @@ type CreateServerInput struct {
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
+	// Specifies the log groups to which your server logs are sent.
+	//
+	// To specify a log group, you must provide the ARN for an existing log group.
+	// In this case, the format of the log group is as follows:
+	//
+	// arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*
+	//
+	// For example, arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*
+	//
+	// If you have previously specified a log group for a server, you can clear
+	// it, and in effect turn off structured logging, by providing an empty value
+	// for this parameter in an update-server call. For example:
+	//
+	// update-server --server-id s-1234567890abcdef0 --structured-log-destinations
+	StructuredLogDestinations []*string `type:"list"`
+
 	// Key-value pairs that can be used to group and search for servers.
 	Tags []*Tag `min:"1" type:"list"`
 
@@ -7726,6 +7742,12 @@ func (s *CreateServerInput) SetProtocols(v []*string) *CreateServerInput {
 // SetSecurityPolicyName sets the SecurityPolicyName field's value.
 func (s *CreateServerInput) SetSecurityPolicyName(v string) *CreateServerInput {
 	s.SecurityPolicyName = &v
+	return s
+}
+
+// SetStructuredLogDestinations sets the StructuredLogDestinations field's value.
+func (s *CreateServerInput) SetStructuredLogDestinations(v []*string) *CreateServerInput {
+	s.StructuredLogDestinations = v
 	return s
 }
 
@@ -11394,6 +11416,22 @@ type DescribedServer struct {
 	// of START_FAILED or STOP_FAILED can indicate an error condition.
 	State *string `type:"string" enum:"State"`
 
+	// Specifies the log groups to which your server logs are sent.
+	//
+	// To specify a log group, you must provide the ARN for an existing log group.
+	// In this case, the format of the log group is as follows:
+	//
+	// arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*
+	//
+	// For example, arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*
+	//
+	// If you have previously specified a log group for a server, you can clear
+	// it, and in effect turn off structured logging, by providing an empty value
+	// for this parameter in an update-server call. For example:
+	//
+	// update-server --server-id s-1234567890abcdef0 --structured-log-destinations
+	StructuredLogDestinations []*string `type:"list"`
+
 	// Specifies the key-value pairs that you can use to search for and group servers
 	// that were assigned to the server that was described.
 	Tags []*Tag `min:"1" type:"list"`
@@ -11523,6 +11561,12 @@ func (s *DescribedServer) SetServerId(v string) *DescribedServer {
 // SetState sets the State field's value.
 func (s *DescribedServer) SetState(v string) *DescribedServer {
 	s.State = &v
+	return s
+}
+
+// SetStructuredLogDestinations sets the StructuredLogDestinations field's value.
+func (s *DescribedServer) SetStructuredLogDestinations(v []*string) *DescribedServer {
+	s.StructuredLogDestinations = v
 	return s
 }
 
@@ -18106,6 +18150,22 @@ type UpdateServerInput struct {
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
+	// Specifies the log groups to which your server logs are sent.
+	//
+	// To specify a log group, you must provide the ARN for an existing log group.
+	// In this case, the format of the log group is as follows:
+	//
+	// arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*
+	//
+	// For example, arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*
+	//
+	// If you have previously specified a log group for a server, you can clear
+	// it, and in effect turn off structured logging, by providing an empty value
+	// for this parameter in an update-server call. For example:
+	//
+	// update-server --server-id s-1234567890abcdef0 --structured-log-destinations
+	StructuredLogDestinations []*string `type:"list"`
+
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
@@ -18248,6 +18308,12 @@ func (s *UpdateServerInput) SetSecurityPolicyName(v string) *UpdateServerInput {
 // SetServerId sets the ServerId field's value.
 func (s *UpdateServerInput) SetServerId(v string) *UpdateServerInput {
 	s.ServerId = &v
+	return s
+}
+
+// SetStructuredLogDestinations sets the StructuredLogDestinations field's value.
+func (s *UpdateServerInput) SetStructuredLogDestinations(v []*string) *UpdateServerInput {
+	s.StructuredLogDestinations = v
 	return s
 }
 

@@ -442,6 +442,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "ListSupportedInstanceTypes":{
+      "name":"ListSupportedInstanceTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSupportedInstanceTypesInput"},
+      "output":{"shape":"ListSupportedInstanceTypesOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "ModifyCluster":{
       "name":"ModifyCluster",
       "http":{
@@ -1419,6 +1432,7 @@
         "LogFile":{"shape":"String"}
       }
     },
+    "Float":{"type":"float"},
     "GetAutoTerminationPolicyInput":{
       "type":"structure",
       "required":["ClusterId"],
@@ -2266,6 +2280,21 @@
       "members":{
         "Studios":{"shape":"StudioSummaryList"},
         "Marker":{"shape":"Marker"}
+      }
+    },
+    "ListSupportedInstanceTypesInput":{
+      "type":"structure",
+      "required":["ReleaseLabel"],
+      "members":{
+        "ReleaseLabel":{"shape":"String"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "ListSupportedInstanceTypesOutput":{
+      "type":"structure",
+      "members":{
+        "SupportedInstanceTypes":{"shape":"SupportedInstanceTypesList"},
+        "Marker":{"shape":"String"}
       }
     },
     "Long":{"type":"long"},
@@ -3128,6 +3157,26 @@
     "SubnetIdList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "SupportedInstanceType":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "MemoryGB":{"shape":"Float"},
+        "StorageGB":{"shape":"Integer"},
+        "VCPU":{"shape":"Integer"},
+        "Is64BitsOnly":{"shape":"Boolean"},
+        "InstanceFamilyId":{"shape":"String"},
+        "EbsOptimizedAvailable":{"shape":"Boolean"},
+        "EbsOptimizedByDefault":{"shape":"Boolean"},
+        "NumberOfDisks":{"shape":"Integer"},
+        "EbsStorageOnly":{"shape":"Boolean"},
+        "Architecture":{"shape":"String"}
+      }
+    },
+    "SupportedInstanceTypesList":{
+      "type":"list",
+      "member":{"shape":"SupportedInstanceType"}
     },
     "SupportedProductConfig":{
       "type":"structure",

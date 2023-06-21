@@ -5462,7 +5462,8 @@
         "Environment":{"shape":"EnvironmentMap"},
         "ModelPackageName":{"shape":"VersionedArnOrName"},
         "InferenceSpecificationName":{"shape":"InferenceSpecificationName"},
-        "MultiModelConfig":{"shape":"MultiModelConfig"}
+        "MultiModelConfig":{"shape":"MultiModelConfig"},
+        "ModelDataSource":{"shape":"ModelDataSource"}
       }
     },
     "ContainerDefinitionList":{
@@ -14678,6 +14679,13 @@
         "InvocationsMaxRetries":{"shape":"InvocationsMaxRetries"}
       }
     },
+    "ModelCompressionType":{
+      "type":"string",
+      "enum":[
+        "None",
+        "Gzip"
+      ]
+    },
     "ModelConfiguration":{
       "type":"structure",
       "members":{
@@ -14765,6 +14773,13 @@
       "members":{
         "Statistics":{"shape":"MetricsSource"},
         "Constraints":{"shape":"MetricsSource"}
+      }
+    },
+    "ModelDataSource":{
+      "type":"structure",
+      "required":["S3DataSource"],
+      "members":{
+        "S3DataSource":{"shape":"S3ModelDataSource"}
       }
     },
     "ModelDeployConfig":{
@@ -16120,6 +16135,13 @@
         "Descending"
       ]
     },
+    "OutputCompressionType":{
+      "type":"string",
+      "enum":[
+        "GZIP",
+        "NONE"
+      ]
+    },
     "OutputConfig":{
       "type":"structure",
       "required":["S3OutputLocation"],
@@ -16136,7 +16158,8 @@
       "required":["S3OutputPath"],
       "members":{
         "KmsKeyId":{"shape":"KmsKeyId"},
-        "S3OutputPath":{"shape":"S3Uri"}
+        "S3OutputPath":{"shape":"S3Uri"},
+        "CompressionType":{"shape":"OutputCompressionType"}
       }
     },
     "OutputParameter":{
@@ -18095,6 +18118,31 @@
         "AugmentedManifestFile"
       ]
     },
+    "S3ModelDataSource":{
+      "type":"structure",
+      "required":[
+        "S3Uri",
+        "S3DataType",
+        "CompressionType"
+      ],
+      "members":{
+        "S3Uri":{"shape":"S3ModelUri"},
+        "S3DataType":{"shape":"S3ModelDataType"},
+        "CompressionType":{"shape":"ModelCompressionType"}
+      }
+    },
+    "S3ModelDataType":{
+      "type":"string",
+      "enum":[
+        "S3Prefix",
+        "S3Object"
+      ]
+    },
+    "S3ModelUri":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^(https|s3)://([^/]+)/?(.*)$"
+    },
     "S3OutputPath":{
       "type":"string",
       "max":1024,
@@ -19419,7 +19467,8 @@
         "ml.g5.24xlarge",
         "ml.g5.48xlarge",
         "ml.trn1.2xlarge",
-        "ml.trn1.32xlarge"
+        "ml.trn1.32xlarge",
+        "ml.trn1n.32xlarge"
       ]
     },
     "TrainingInstanceTypes":{
