@@ -477,7 +477,8 @@
     "BandwidthReductionFilter": {
       "base": "The Bandwidth reduction filter increases the video quality of your output relative to its bitrate. Use to lower the bitrate of your constant quality QVBR output, with little or no perceptual decrease in quality. Or, use to increase the video quality of outputs with other rate control modes relative to the bitrate that you specify. Bandwidth reduction increases further when your input is low quality or noisy. Outputs that use this feature incur pro-tier pricing. When you include Bandwidth reduction filter, you cannot include the Noise reducer preprocessor.",
       "refs": {
-        "H264Settings$BandwidthReductionFilter": "The Bandwidth reduction filter increases the video quality of your output relative to its bitrate. Use to lower the bitrate of your constant quality QVBR output, with little or no perceptual decrease in quality. Or, use to increase the video quality of outputs with other rate control modes relative to the bitrate that you specify. Bandwidth reduction increases further when your input is low quality or noisy. Outputs that use this feature incur pro-tier pricing. When you include Bandwidth reduction filter, you cannot include the Noise reducer preprocessor."
+        "H264Settings$BandwidthReductionFilter": "The Bandwidth reduction filter increases the video quality of your output relative to its bitrate. Use to lower the bitrate of your constant quality QVBR output, with little or no perceptual decrease in quality. Or, use to increase the video quality of outputs with other rate control modes relative to the bitrate that you specify. Bandwidth reduction increases further when your input is low quality or noisy. Outputs that use this feature incur pro-tier pricing. When you include Bandwidth reduction filter, you cannot include the Noise reducer preprocessor.",
+        "H265Settings$BandwidthReductionFilter": "The Bandwidth reduction filter increases the video quality of your output relative to its bitrate. Use to lower the bitrate of your constant quality QVBR output, with little or no perceptual decrease in quality. Or, use to increase the video quality of outputs with other rate control modes relative to the bitrate that you specify. Bandwidth reduction increases further when your input is low quality or noisy. Outputs that use this feature incur pro-tier pricing. When you include Bandwidth reduction filter, you cannot include the Noise reducer preprocessor."
       }
     },
     "BandwidthReductionFilterSharpening": {
@@ -595,7 +596,7 @@
       }
     },
     "CaptionSelector": {
-      "base": "Use captions selectors to specify the captions data from your input that you use in your outputs. You can use up to 20 captions selectors per input.",
+      "base": "Use captions selectors to specify the captions data from your input that you use in your outputs. You can use up to 100 captions selectors per input.",
       "refs": {
         "__mapOfCaptionSelector$member": null
       }
@@ -2113,6 +2114,12 @@
       "base": "Includes or excludes EXT-X-PROGRAM-DATE-TIME tag in .m3u8 manifest files. The value is calculated as follows: either the program date and time are initialized using the input timecode source, or the time is initialized using the input timecode source and the date is initialized using the timestamp_offset.",
       "refs": {
         "HlsGroupSettings$ProgramDateTime": "Includes or excludes EXT-X-PROGRAM-DATE-TIME tag in .m3u8 manifest files. The value is calculated as follows: either the program date and time are initialized using the input timecode source, or the time is initialized using the input timecode source and the date is initialized using the timestamp_offset."
+      }
+    },
+    "HlsProgressiveWriteHlsManifest": {
+      "base": "Specify whether MediaConvert generates HLS manifests while your job is running or when your job is complete. To generate HLS manifests while your job is running: Choose Enabled. Use if you want to play back your content as soon as it's available. MediaConvert writes the parent and child manifests after the first three media segments are written to your destination S3 bucket. It then writes new updated manifests after each additional segment is written. The parent manifest includes the latest BANDWIDTH and AVERAGE-BANDWIDTH attributes, and child manifests include the latest available media segment. When your job completes, the final child playlists include an EXT-X-ENDLIST tag. To generate HLS manifests only when your job completes: Choose Disabled.",
+      "refs": {
+        "HlsGroupSettings$ProgressiveWriteHlsManifest": "Specify whether MediaConvert generates HLS manifests while your job is running or when your job is complete. To generate HLS manifests while your job is running: Choose Enabled. Use if you want to play back your content as soon as it's available. MediaConvert writes the parent and child manifests after the first three media segments are written to your destination S3 bucket. It then writes new updated manifests after each additional segment is written. The parent manifest includes the latest BANDWIDTH and AVERAGE-BANDWIDTH attributes, and child manifests include the latest available media segment. When your job completes, the final child playlists include an EXT-X-ENDLIST tag. To generate HLS manifests only when your job completes: Choose Disabled."
       }
     },
     "HlsRenditionGroupSettings": {
@@ -5098,8 +5105,8 @@
     "__mapOfCaptionSelector": {
       "base": null,
       "refs": {
-        "Input$CaptionSelectors": "Use captions selectors to specify the captions data from your input that you use in your outputs. You can use up to 20 captions selectors per input.",
-        "InputTemplate$CaptionSelectors": "Use captions selectors to specify the captions data from your input that you use in your outputs. You can use up to 20 captions selectors per input."
+        "Input$CaptionSelectors": "Use captions selectors to specify the captions data from your input that you use in your outputs. You can use up to 100 captions selectors per input.",
+        "InputTemplate$CaptionSelectors": "Use captions selectors to specify the captions data from your input that you use in your outputs. You can use up to 100 captions selectors per input."
       }
     },
     "__mapOf__string": {

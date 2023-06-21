@@ -36,6 +36,7 @@
     "ListSteps": "<p>Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code> with the request or filter by <code>StepStates</code>. You can specify a maximum of 10 <code>stepIDs</code>. The CLI automatically paginates results to return a list greater than 50 steps. To return more than 50 steps using the CLI, specify a <code>Marker</code>, which is a pagination token that indicates the next set of steps to retrieve.</p>",
     "ListStudioSessionMappings": "<p>Returns a list of all user or group session mappings for the Amazon EMR Studio specified by <code>StudioId</code>.</p>",
     "ListStudios": "<p>Returns a list of all Amazon EMR Studios associated with the Amazon Web Services account. The list includes details such as ID, Studio Access URL, and creation time for each Studio.</p>",
+    "ListSupportedInstanceTypes": "<p>A list of the instance types that Amazon EMR supports. You can filter the list by Amazon Web Services Region and Amazon EMR release. </p>",
     "ModifyCluster": "<p>Modifies the number of steps that can be executed concurrently for the cluster specified using ClusterID.</p>",
     "ModifyInstanceFleet": "<p>Modifies the target On-Demand and target Spot capacities for the instance fleet with the specified InstanceFleetID within the cluster specified using ClusterID. The call either succeeds or fails atomically.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR releases 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
     "ModifyInstanceGroups": "<p>ModifyInstanceGroups modifies the number of nodes and configuration settings of an instance group. The input parameters include the new target instance count for the group and the instance group ID. The call will either succeed or fail atomically.</p>",
@@ -219,7 +220,11 @@
         "JobFlowInstancesDetail$TerminationProtected": "<p>Specifies whether the Amazon EC2 instances in the cluster are protected from termination by API calls, user intervention, or in the event of a job-flow error.</p>",
         "RunJobFlowInput$VisibleToAllUsers": "<important> <p>The VisibleToAllUsers parameter is no longer supported. By default, the value is set to <code>true</code>. Setting it to <code>false</code> now has no effect.</p> </important> <p>Set this value to <code>true</code> so that IAM principals in the Amazon Web Services account associated with the cluster can perform Amazon EMR actions on the cluster that their IAM policies allow. This value defaults to <code>true</code> for clusters created using the Amazon EMR API or the CLI <a href=\"https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html\">create-cluster</a> command.</p> <p>When set to <code>false</code>, only the IAM principal that created the cluster and the Amazon Web Services account root user can perform Amazon EMR actions for the cluster, regardless of the IAM permissions policies attached to other IAM principals. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_IAM_emr-with-IAM.html#security_set_visible_to_all_users\">Understanding the Amazon EMR cluster VisibleToAllUsers setting</a> in the <i>Amazon EMR Management Guide</i>.</p>",
         "SetTerminationProtectionInput$TerminationProtected": "<p>A Boolean that indicates whether to protect the cluster and prevent the Amazon EC2 instances in the cluster from shutting down due to API calls, user intervention, or job-flow error.</p>",
-        "SetVisibleToAllUsersInput$VisibleToAllUsers": "<p>A value of <code>true</code> indicates that an IAM principal in the Amazon Web Services account can perform Amazon EMR actions on the cluster that the IAM policies attached to the principal allow. A value of <code>false</code> indicates that only the IAM principal that created the cluster and the Amazon Web Services root user can perform Amazon EMR actions on the cluster.</p>"
+        "SetVisibleToAllUsersInput$VisibleToAllUsers": "<p>A value of <code>true</code> indicates that an IAM principal in the Amazon Web Services account can perform Amazon EMR actions on the cluster that the IAM policies attached to the principal allow. A value of <code>false</code> indicates that only the IAM principal that created the cluster and the Amazon Web Services root user can perform Amazon EMR actions on the cluster.</p>",
+        "SupportedInstanceType$Is64BitsOnly": "<p>Indicates whether the <code>SupportedInstanceType</code> only supports 64-bit architecture.</p>",
+        "SupportedInstanceType$EbsOptimizedAvailable": "<p>Indicates whether the <code>SupportedInstanceType</code> supports Amazon EBS optimization.</p>",
+        "SupportedInstanceType$EbsOptimizedByDefault": "<p>Indicates whether the <code>SupportedInstanceType</code> uses Amazon EBS optimization by default.</p>",
+        "SupportedInstanceType$EbsStorageOnly": "<p>Indicates whether the <code>SupportedInstanceType</code> only supports Amazon EBS.</p>"
       }
     },
     "BooleanObject": {
@@ -712,6 +717,12 @@
         "StepStatus$FailureDetails": "<p>The details for the step failure including reason, message, and log file path where the root cause was identified.</p>"
       }
     },
+    "Float": {
+      "base": null,
+      "refs": {
+        "SupportedInstanceType$MemoryGB": "<p>The amount of memory that is available to Amazon EMR from the <code>SupportedInstanceType</code>. The kernel and hypervisor software consume some memory, so this value might be lower than the overall memory for the instance type.</p>"
+      }
+    },
     "GetAutoTerminationPolicyInput": {
       "base": null,
       "refs": {
@@ -1146,6 +1157,9 @@
         "ShrinkPolicy$DecommissionTimeout": "<p>The desired timeout for decommissioning an instance. Overrides the default YARN decommissioning timeout.</p>",
         "SimpleScalingPolicyConfiguration$ScalingAdjustment": "<p>The amount by which to scale in or scale out, based on the specified <code>AdjustmentType</code>. A positive value adds to the instance group's Amazon EC2 instance count while a negative number removes instances. If <code>AdjustmentType</code> is set to <code>EXACT_CAPACITY</code>, the number should only be a positive integer. If <code>AdjustmentType</code> is set to <code>PERCENT_CHANGE_IN_CAPACITY</code>, the value should express the percentage as an integer. For example, -20 indicates a decrease in 20% increments of cluster capacity.</p>",
         "SimpleScalingPolicyConfiguration$CoolDown": "<p>The amount of time, in seconds, after a scaling activity completes before any further trigger-related scaling activities can start. The default value is 0.</p>",
+        "SupportedInstanceType$StorageGB": "<p> <code>StorageGB</code> represents the storage capacity of the <code>SupportedInstanceType</code>. This value is <code>0</code> for Amazon EBS-only instance types.</p>",
+        "SupportedInstanceType$VCPU": "<p>The number of vCPUs available for the <code>SupportedInstanceType</code>.</p>",
+        "SupportedInstanceType$NumberOfDisks": "<p>Number of disks for the <code>SupportedInstanceType</code>. This value is <code>0</code> for Amazon EBS-only instance types.</p>",
         "VolumeSpecification$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports.</p>",
         "VolumeSpecification$SizeInGB": "<p>The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10.</p>"
       }
@@ -1333,6 +1347,16 @@
       }
     },
     "ListStudiosOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSupportedInstanceTypesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSupportedInstanceTypesOutput": {
       "base": null,
       "refs": {
       }
@@ -1837,7 +1861,7 @@
     "SpotProvisioningAllocationStrategy": {
       "base": null,
       "refs": {
-        "SpotProvisioningSpecification$AllocationStrategy": "<p>Specifies one of the following strategies to launch Spot Instance fleets: <code>price-capacity-optimized</code>, <code>capacity-optimized</code>, <code>lowest-price</code>, or <code>diversified</code>. For more information on the provisioning strategies, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html\">Allocation strategies for Spot Instances</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> <note> <p>When you launch a Spot Instance fleet with the old console, it automatically launches with the <code>capacity-optimized</code> strategy. You can't change the allocation strategy from the old console.</p> </note>"
+        "SpotProvisioningSpecification$AllocationStrategy": "<p> Specifies the strategy to use in launching Spot Instance fleets. Currently, the only option is capacity-optimized (the default), which launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching. </p>"
       }
     },
     "SpotProvisioningSpecification": {
@@ -2053,6 +2077,9 @@
         "InstanceStateChangeReason$Message": "<p>The status change reason description.</p>",
         "ListReleaseLabelsInput$NextToken": "<p>Specifies the next page of results. If <code>NextToken</code> is not specified, which is usually the case for the first request of ListReleaseLabels, the first page of results are determined by other filtering parameters or by the latest version. The <code>ListReleaseLabels</code> request fails if the identity (Amazon Web Services account ID) and all filtering parameters are different from the original request, or if the <code>NextToken</code> is expired or tampered with.</p>",
         "ListReleaseLabelsOutput$NextToken": "<p>Used to paginate the next page of results if specified in the next <code>ListReleaseLabels</code> request.</p>",
+        "ListSupportedInstanceTypesInput$ReleaseLabel": "<p>The Amazon EMR release label determines the <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-release-app-versions-6.x.html\">versions of open-source application packages</a> that Amazon EMR has installed on the cluster. Release labels are in the format <code>emr-x.x.x</code>, where x.x.x is an Amazon EMR release number such as <code>emr-6.10.0</code>. For more information about Amazon EMR releases and their included application versions and features, see the <i> <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-release-components.html\">Amazon EMR Release Guide</a> </i>.</p>",
+        "ListSupportedInstanceTypesInput$Marker": "<p>The pagination token that marks the next set of results to retrieve.</p>",
+        "ListSupportedInstanceTypesOutput$Marker": "<p>The pagination token that marks the next set of results to retrieve.</p>",
         "MetricDimension$Key": "<p>The dimension name.</p>",
         "MetricDimension$Value": "<p>The dimension value.</p>",
         "ModifyClusterInput$ClusterId": "<p>The unique identifier of the cluster.</p>",
@@ -2070,6 +2097,9 @@
         "StringMap$key": null,
         "StringMap$value": null,
         "SubnetIdList$member": null,
+        "SupportedInstanceType$Type": "<p>The <a href=\"http://aws.amazon.com/ec2/instance-types/\">Amazon EC2 instance type</a>, for example <code>m5.xlarge</code>, of the <code>SupportedInstanceType</code>.</p>",
+        "SupportedInstanceType$InstanceFamilyId": "<p>The Amazon EC2 family and generation for the <code>SupportedInstanceType</code>.</p>",
+        "SupportedInstanceType$Architecture": "<p>The CPU architecture, for example <code>X86_64</code> or <code>AARCH64</code>.</p>",
         "Tag$Key": "<p>A user-defined key, which is the minimum required information for a valid tag. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag</a>. </p>",
         "Tag$Value": "<p>A user-defined value, which is optional in a tag. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag Clusters</a>. </p>",
         "VolumeSpecification$VolumeType": "<p>The volume type. Volume types supported are gp3, gp2, io1, st1, sc1, and standard.</p>"
@@ -2120,6 +2150,18 @@
         "CreateStudioInput$SubnetIds": "<p>A list of subnet IDs to associate with the Amazon EMR Studio. A Studio can have a maximum of 5 subnets. The subnets must belong to the VPC specified by <code>VpcId</code>. Studio users can create a Workspace in any of the specified subnets.</p>",
         "Studio$SubnetIds": "<p>The list of IDs of the subnets associated with the Amazon EMR Studio.</p>",
         "UpdateStudioInput$SubnetIds": "<p>A list of subnet IDs to associate with the Amazon EMR Studio. The list can include new subnet IDs, but must also include all of the subnet IDs previously associated with the Studio. The list order does not matter. A Studio can have a maximum of 5 subnets. The subnets must belong to the same VPC as the Studio. </p>"
+      }
+    },
+    "SupportedInstanceType": {
+      "base": "<p>An instance type that the specified Amazon EMR release supports.</p>",
+      "refs": {
+        "SupportedInstanceTypesList$member": null
+      }
+    },
+    "SupportedInstanceTypesList": {
+      "base": null,
+      "refs": {
+        "ListSupportedInstanceTypesOutput$SupportedInstanceTypes": "<p>The list of instance types that the release specified in <code>ListSupportedInstanceTypesInput$ReleaseLabel</code> supports, filtered by Amazon Web Services Region.</p>"
       }
     },
     "SupportedProductConfig": {

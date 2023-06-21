@@ -46,6 +46,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "BatchGetCodeSnippet":{
+      "name":"BatchGetCodeSnippet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/codesnippet/batchget",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetCodeSnippetRequest"},
+      "output":{"shape":"BatchGetCodeSnippetResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "BatchGetFreeTrialInfo":{
       "name":"BatchGetFreeTrialInfo",
       "http":{
@@ -111,6 +127,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CancelSbomExport":{
+      "name":"CancelSbomExport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sbomexport/cancel",
+        "responseCode":200
+      },
+      "input":{"shape":"CancelSbomExportRequest"},
+      "output":{"shape":"CancelSbomExportResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "CreateFilter":{
       "name":"CreateFilter",
       "http":{
@@ -145,6 +179,24 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "CreateSbomExport":{
+      "name":"CreateSbomExport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sbomexport/create",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateSbomExportRequest"},
+      "output":{"shape":"CreateSbomExportResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "DeleteFilter":{
       "name":"DeleteFilter",
@@ -313,6 +365,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetEncryptionKey":{
+      "name":"GetEncryptionKey",
+      "http":{
+        "method":"GET",
+        "requestUri":"/encryptionkey/get",
+        "responseCode":200
+      },
+      "input":{"shape":"GetEncryptionKeyRequest"},
+      "output":{"shape":"GetEncryptionKeyResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetFindingsReportStatus":{
       "name":"GetFindingsReportStatus",
       "http":{
@@ -346,6 +415,24 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "GetSbomExport":{
+      "name":"GetSbomExport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sbomexport/get",
+        "responseCode":200
+      },
+      "input":{"shape":"GetSbomExportRequest"},
+      "output":{"shape":"GetSbomExportResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "ListAccountPermissions":{
       "name":"ListAccountPermissions",
@@ -503,6 +590,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ResetEncryptionKey":{
+      "name":"ResetEncryptionKey",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/encryptionkey/reset",
+        "responseCode":200
+      },
+      "input":{"shape":"ResetEncryptionKeyRequest"},
+      "output":{"shape":"ResetEncryptionKeyResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "SearchVulnerabilities":{
       "name":"SearchVulnerabilities",
       "http":{
@@ -584,6 +689,24 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "UpdateEncryptionKey":{
+      "name":"UpdateEncryptionKey",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/encryptionkey/update",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateEncryptionKeyRequest"},
+      "output":{"shape":"UpdateEncryptionKeyResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "UpdateFilter":{
       "name":"UpdateFilter",
@@ -725,7 +848,8 @@
       "type":"string",
       "enum":[
         "NETWORK_REACHABILITY",
-        "PACKAGE_VULNERABILITY"
+        "PACKAGE_VULNERABILITY",
+        "CODE_VULNERABILITY"
       ]
     },
     "AggregationRequest":{
@@ -871,7 +995,8 @@
       "members":{
         "ec2":{"shape":"Boolean"},
         "ecr":{"shape":"Boolean"},
-        "lambda":{"shape":"Boolean"}
+        "lambda":{"shape":"Boolean"},
+        "lambdaCode":{"shape":"Boolean"}
       }
     },
     "AwsEc2InstanceDetails":{
@@ -988,6 +1113,26 @@
         "failedAccounts":{"shape":"FailedAccountList"}
       }
     },
+    "BatchGetCodeSnippetRequest":{
+      "type":"structure",
+      "required":["findingArns"],
+      "members":{
+        "findingArns":{"shape":"BatchGetCodeSnippetRequestFindingArnsList"}
+      }
+    },
+    "BatchGetCodeSnippetRequestFindingArnsList":{
+      "type":"list",
+      "member":{"shape":"FindingArn"},
+      "max":10,
+      "min":1
+    },
+    "BatchGetCodeSnippetResponse":{
+      "type":"structure",
+      "members":{
+        "codeSnippetResults":{"shape":"CodeSnippetResultList"},
+        "errors":{"shape":"CodeSnippetErrorList"}
+      }
+    },
     "BatchGetFreeTrialInfoRequest":{
       "type":"structure",
       "required":["accountIds"],
@@ -1057,6 +1202,19 @@
         "reportId":{"shape":"ReportId"}
       }
     },
+    "CancelSbomExportRequest":{
+      "type":"structure",
+      "required":["reportId"],
+      "members":{
+        "reportId":{"shape":"ReportId"}
+      }
+    },
+    "CancelSbomExportResponse":{
+      "type":"structure",
+      "members":{
+        "reportId":{"shape":"ReportId"}
+      }
+    },
     "CisaAction":{
       "type":"string",
       "min":0
@@ -1075,6 +1233,102 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "CodeFilePath":{
+      "type":"structure",
+      "required":[
+        "endLine",
+        "fileName",
+        "filePath",
+        "startLine"
+      ],
+      "members":{
+        "endLine":{"shape":"Integer"},
+        "fileName":{"shape":"NonEmptyString"},
+        "filePath":{"shape":"NonEmptyString"},
+        "startLine":{"shape":"Integer"}
+      }
+    },
+    "CodeLine":{
+      "type":"structure",
+      "required":[
+        "content",
+        "lineNumber"
+      ],
+      "members":{
+        "content":{"shape":"CodeLineContentString"},
+        "lineNumber":{"shape":"Integer"}
+      }
+    },
+    "CodeLineContentString":{
+      "type":"string",
+      "max":240,
+      "min":0
+    },
+    "CodeLineList":{
+      "type":"list",
+      "member":{"shape":"CodeLine"},
+      "max":20,
+      "min":1
+    },
+    "CodeSnippetError":{
+      "type":"structure",
+      "required":[
+        "errorCode",
+        "errorMessage",
+        "findingArn"
+      ],
+      "members":{
+        "errorCode":{"shape":"CodeSnippetErrorCode"},
+        "errorMessage":{"shape":"NonEmptyString"},
+        "findingArn":{"shape":"FindingArn"}
+      }
+    },
+    "CodeSnippetErrorCode":{
+      "type":"string",
+      "enum":[
+        "INTERNAL_ERROR",
+        "ACCESS_DENIED",
+        "CODE_SNIPPET_NOT_FOUND",
+        "INVALID_INPUT"
+      ]
+    },
+    "CodeSnippetErrorList":{
+      "type":"list",
+      "member":{"shape":"CodeSnippetError"}
+    },
+    "CodeSnippetResult":{
+      "type":"structure",
+      "members":{
+        "codeSnippet":{"shape":"CodeLineList"},
+        "endLine":{"shape":"Integer"},
+        "findingArn":{"shape":"FindingArn"},
+        "startLine":{"shape":"Integer"},
+        "suggestedFixes":{"shape":"SuggestedFixes"}
+      }
+    },
+    "CodeSnippetResultList":{
+      "type":"list",
+      "member":{"shape":"CodeSnippetResult"}
+    },
+    "CodeVulnerabilityDetails":{
+      "type":"structure",
+      "required":[
+        "cwes",
+        "detectorId",
+        "detectorName",
+        "filePath"
+      ],
+      "members":{
+        "cwes":{"shape":"CweList"},
+        "detectorId":{"shape":"NonEmptyString"},
+        "detectorName":{"shape":"NonEmptyString"},
+        "detectorTags":{"shape":"DetectorTagList"},
+        "filePath":{"shape":"CodeFilePath"},
+        "referenceUrls":{"shape":"ReferenceUrls"},
+        "ruleId":{"shape":"NonEmptyString"},
+        "sourceLambdaLayerArn":{"shape":"LambdaLayerArn"}
+      }
     },
     "Component":{"type":"string"},
     "ComponentType":{"type":"string"},
@@ -1263,6 +1517,24 @@
         "reportId":{"shape":"ReportId"}
       }
     },
+    "CreateSbomExportRequest":{
+      "type":"structure",
+      "required":[
+        "reportFormat",
+        "s3Destination"
+      ],
+      "members":{
+        "reportFormat":{"shape":"SbomReportFormat"},
+        "resourceFilterCriteria":{"shape":"ResourceFilterCriteria"},
+        "s3Destination":{"shape":"Destination"}
+      }
+    },
+    "CreateSbomExportResponse":{
+      "type":"structure",
+      "members":{
+        "reportId":{"shape":"ReportId"}
+      }
+    },
     "Currency":{
       "type":"string",
       "enum":["USD"]
@@ -1345,6 +1617,12 @@
     "Cwe":{
       "type":"string",
       "min":0
+    },
+    "CweList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":10,
+      "min":1
     },
     "Cwes":{
       "type":"list",
@@ -1435,6 +1713,12 @@
       "member":{"shape":"NonEmptyString"},
       "max":100,
       "min":0
+    },
+    "DetectorTagList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":10,
+      "min":1
     },
     "DisableDelegatedAdminAccountRequest":{
       "type":"structure",
@@ -1655,7 +1939,18 @@
         "score":{"shape":"EpssScore"}
       }
     },
+    "EpssDetails":{
+      "type":"structure",
+      "members":{
+        "score":{"shape":"EpssScoreValue"}
+      }
+    },
     "EpssScore":{"type":"double"},
+    "EpssScoreValue":{
+      "type":"double",
+      "max":1.0,
+      "min":0.0
+    },
     "ErrorCode":{
       "type":"string",
       "enum":[
@@ -1794,6 +2089,9 @@
       "type":"structure",
       "members":{
         "awsAccountId":{"shape":"StringFilterList"},
+        "codeVulnerabilityDetectorName":{"shape":"StringFilterList"},
+        "codeVulnerabilityDetectorTags":{"shape":"StringFilterList"},
+        "codeVulnerabilityFilePath":{"shape":"StringFilterList"},
         "componentId":{"shape":"StringFilterList"},
         "componentType":{"shape":"StringFilterList"},
         "ec2InstanceImageId":{"shape":"StringFilterList"},
@@ -1805,6 +2103,7 @@
         "ecrImageRegistry":{"shape":"StringFilterList"},
         "ecrImageRepositoryName":{"shape":"StringFilterList"},
         "ecrImageTags":{"shape":"StringFilterList"},
+        "epssScore":{"shape":"NumberFilterList"},
         "exploitAvailable":{"shape":"StringFilterList"},
         "findingArn":{"shape":"StringFilterList"},
         "findingStatus":{"shape":"StringFilterList"},
@@ -1868,7 +2167,9 @@
       ],
       "members":{
         "awsAccountId":{"shape":"AccountId"},
+        "codeVulnerabilityDetails":{"shape":"CodeVulnerabilityDetails"},
         "description":{"shape":"FindingDescription"},
+        "epss":{"shape":"EpssDetails"},
         "exploitAvailable":{"shape":"ExploitAvailable"},
         "exploitabilityDetails":{"shape":"ExploitabilityDetails"},
         "findingArn":{"shape":"FindingArn"},
@@ -1922,7 +2223,8 @@
       "type":"string",
       "enum":[
         "NETWORK_REACHABILITY",
-        "PACKAGE_VULNERABILITY"
+        "PACKAGE_VULNERABILITY",
+        "CODE_VULNERABILITY"
       ]
     },
     "FindingTypeAggregation":{
@@ -2028,7 +2330,8 @@
       "enum":[
         "EC2",
         "ECR",
-        "LAMBDA"
+        "LAMBDA",
+        "LAMBDA_CODE"
       ]
     },
     "FunctionName":{
@@ -2071,6 +2374,32 @@
         "status":{"shape":"Ec2DeepInspectionStatus"}
       }
     },
+    "GetEncryptionKeyRequest":{
+      "type":"structure",
+      "required":[
+        "resourceType",
+        "scanType"
+      ],
+      "members":{
+        "resourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "scanType":{
+          "shape":"ScanType",
+          "location":"querystring",
+          "locationName":"scanType"
+        }
+      }
+    },
+    "GetEncryptionKeyResponse":{
+      "type":"structure",
+      "required":["kmsKeyId"],
+      "members":{
+        "kmsKeyId":{"shape":"KmsKeyArn"}
+      }
+    },
     "GetFindingsReportStatusRequest":{
       "type":"structure",
       "members":{
@@ -2099,6 +2428,25 @@
       "type":"structure",
       "members":{
         "member":{"shape":"Member"}
+      }
+    },
+    "GetSbomExportRequest":{
+      "type":"structure",
+      "required":["reportId"],
+      "members":{
+        "reportId":{"shape":"ReportId"}
+      }
+    },
+    "GetSbomExportResponse":{
+      "type":"structure",
+      "members":{
+        "errorCode":{"shape":"ReportingErrorCode"},
+        "errorMessage":{"shape":"NonEmptyString"},
+        "filterCriteria":{"shape":"ResourceFilterCriteria"},
+        "format":{"shape":"SbomReportFormat"},
+        "reportId":{"shape":"ReportId"},
+        "s3Destination":{"shape":"Destination"},
+        "status":{"shape":"ExternalReportStatus"}
       }
     },
     "GroupKey":{
@@ -2199,6 +2547,10 @@
     "IpV6AddressList":{
       "type":"list",
       "member":{"shape":"IpV6Address"}
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "pattern":"^arn:aws(-(us-gov|cn))?:kms:([a-z0-9][-.a-z0-9]{0,62})?:[0-9]{12}?:key/(([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})|(mrk-[0-9a-zA-Z]{32}))$"
     },
     "LambdaFunctionAggregation":{
       "type":"structure",
@@ -2855,6 +3207,12 @@
         "text":{"shape":"NonEmptyString"}
       }
     },
+    "ReferenceUrls":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":10,
+      "min":1
+    },
     "RelatedVulnerabilities":{
       "type":"list",
       "member":{"shape":"RelatedVulnerability"},
@@ -2937,6 +3295,22 @@
         "AFFECTED_IMAGES"
       ]
     },
+    "ResetEncryptionKeyRequest":{
+      "type":"structure",
+      "required":[
+        "resourceType",
+        "scanType"
+      ],
+      "members":{
+        "resourceType":{"shape":"ResourceType"},
+        "scanType":{"shape":"ScanType"}
+      }
+    },
+    "ResetEncryptionKeyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Resource":{
       "type":"structure",
       "required":[
@@ -2960,6 +3334,19 @@
         "awsLambdaFunction":{"shape":"AwsLambdaFunctionDetails"}
       }
     },
+    "ResourceFilterCriteria":{
+      "type":"structure",
+      "members":{
+        "accountId":{"shape":"ResourceStringFilterList"},
+        "ec2InstanceTags":{"shape":"ResourceMapFilterList"},
+        "ecrImageTags":{"shape":"ResourceStringFilterList"},
+        "ecrRepositoryName":{"shape":"ResourceStringFilterList"},
+        "lambdaFunctionName":{"shape":"ResourceStringFilterList"},
+        "lambdaFunctionTags":{"shape":"ResourceMapFilterList"},
+        "resourceId":{"shape":"ResourceStringFilterList"},
+        "resourceType":{"shape":"ResourceStringFilterList"}
+      }
+    },
     "ResourceId":{
       "type":"string",
       "max":341,
@@ -2969,6 +3356,28 @@
     "ResourceList":{
       "type":"list",
       "member":{"shape":"Resource"},
+      "max":10,
+      "min":1
+    },
+    "ResourceMapComparison":{
+      "type":"string",
+      "enum":["EQUALS"]
+    },
+    "ResourceMapFilter":{
+      "type":"structure",
+      "required":[
+        "comparison",
+        "key"
+      ],
+      "members":{
+        "comparison":{"shape":"ResourceMapComparison"},
+        "key":{"shape":"NonEmptyString"},
+        "value":{"shape":"NonEmptyString"}
+      }
+    },
+    "ResourceMapFilterList":{
+      "type":"list",
+      "member":{"shape":"ResourceMapFilter"},
       "max":10,
       "min":1
     },
@@ -2998,7 +3407,8 @@
       "enum":[
         "EC2",
         "ECR",
-        "LAMBDA"
+        "LAMBDA",
+        "LAMBDA_CODE"
       ]
     },
     "ResourceState":{
@@ -3010,7 +3420,8 @@
       "members":{
         "ec2":{"shape":"State"},
         "ecr":{"shape":"State"},
-        "lambda":{"shape":"State"}
+        "lambda":{"shape":"State"},
+        "lambdaCode":{"shape":"State"}
       }
     },
     "ResourceStatus":{
@@ -3022,8 +3433,38 @@
       "members":{
         "ec2":{"shape":"Status"},
         "ecr":{"shape":"Status"},
-        "lambda":{"shape":"Status"}
+        "lambda":{"shape":"Status"},
+        "lambdaCode":{"shape":"Status"}
       }
+    },
+    "ResourceStringComparison":{
+      "type":"string",
+      "enum":[
+        "EQUALS",
+        "NOT_EQUALS"
+      ]
+    },
+    "ResourceStringFilter":{
+      "type":"structure",
+      "required":[
+        "comparison",
+        "value"
+      ],
+      "members":{
+        "comparison":{"shape":"ResourceStringComparison"},
+        "value":{"shape":"ResourceStringInput"}
+      }
+    },
+    "ResourceStringFilterList":{
+      "type":"list",
+      "member":{"shape":"ResourceStringFilter"},
+      "max":10,
+      "min":1
+    },
+    "ResourceStringInput":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "ResourceType":{
       "type":"string",
@@ -3049,7 +3490,16 @@
         "PYTHON_3_9",
         "UNSUPPORTED",
         "NODEJS_18_X",
-        "GO_1_X"
+        "GO_1_X",
+        "JAVA_17",
+        "PYTHON_3_10"
+      ]
+    },
+    "SbomReportFormat":{
+      "type":"string",
+      "enum":[
+        "CYCLONEDX_1_4",
+        "SPDX_2_3"
       ]
     },
     "ScanStatus":{
@@ -3103,7 +3553,8 @@
       "type":"string",
       "enum":[
         "NETWORK",
-        "PACKAGE"
+        "PACKAGE",
+        "CODE"
       ]
     },
     "SearchVulnerabilitiesFilterCriteria":{
@@ -3212,7 +3663,8 @@
         "VULNERABILITY_ID",
         "VULNERABILITY_SOURCE",
         "INSPECTOR_SCORE",
-        "VENDOR_SEVERITY"
+        "VENDOR_SEVERITY",
+        "EPSS_SCORE"
       ]
     },
     "SortOrder":{
@@ -3314,6 +3766,29 @@
       "max":16,
       "min":0
     },
+    "SuggestedFix":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"SuggestedFixCodeString"},
+        "description":{"shape":"SuggestedFixDescriptionString"}
+      }
+    },
+    "SuggestedFixCodeString":{
+      "type":"string",
+      "max":2500,
+      "min":1
+    },
+    "SuggestedFixDescriptionString":{
+      "type":"string",
+      "max":1000,
+      "min":1
+    },
+    "SuggestedFixes":{
+      "type":"list",
+      "member":{"shape":"SuggestedFix"},
+      "max":5,
+      "min":1
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -3387,6 +3862,7 @@
     "TitleAggregation":{
       "type":"structure",
       "members":{
+        "findingType":{"shape":"AggregationFindingType"},
         "resourceType":{"shape":"AggregationResourceType"},
         "sortBy":{"shape":"TitleSortBy"},
         "sortOrder":{"shape":"SortOrder"},
@@ -3474,6 +3950,24 @@
         "status":{"shape":"Ec2DeepInspectionStatus"}
       }
     },
+    "UpdateEncryptionKeyRequest":{
+      "type":"structure",
+      "required":[
+        "kmsKeyId",
+        "resourceType",
+        "scanType"
+      ],
+      "members":{
+        "kmsKeyId":{"shape":"KmsKeyArn"},
+        "resourceType":{"shape":"ResourceType"},
+        "scanType":{"shape":"ScanType"}
+      }
+    },
+    "UpdateEncryptionKeyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateFilterRequest":{
       "type":"structure",
       "required":["filterArn"],
@@ -3559,7 +4053,8 @@
         "EC2_INSTANCE_HOURS",
         "ECR_INITIAL_SCAN",
         "ECR_RESCAN",
-        "LAMBDA_FUNCTION_HOURS"
+        "LAMBDA_FUNCTION_HOURS",
+        "LAMBDA_FUNCTION_CODE_HOURS"
       ]
     },
     "UsageValue":{

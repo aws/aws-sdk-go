@@ -3542,6 +3542,147 @@ func (c *EMR) ListStudiosPagesWithContext(ctx aws.Context, input *ListStudiosInp
 	return p.Err()
 }
 
+const opListSupportedInstanceTypes = "ListSupportedInstanceTypes"
+
+// ListSupportedInstanceTypesRequest generates a "aws/request.Request" representing the
+// client's request for the ListSupportedInstanceTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSupportedInstanceTypes for more information on using the ListSupportedInstanceTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSupportedInstanceTypesRequest method.
+//	req, resp := client.ListSupportedInstanceTypesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSupportedInstanceTypes
+func (c *EMR) ListSupportedInstanceTypesRequest(input *ListSupportedInstanceTypesInput) (req *request.Request, output *ListSupportedInstanceTypesOutput) {
+	op := &request.Operation{
+		Name:       opListSupportedInstanceTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSupportedInstanceTypesInput{}
+	}
+
+	output = &ListSupportedInstanceTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSupportedInstanceTypes API operation for Amazon EMR.
+//
+// A list of the instance types that Amazon EMR supports. You can filter the
+// list by Amazon Web Services Region and Amazon EMR release.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation ListSupportedInstanceTypes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSupportedInstanceTypes
+func (c *EMR) ListSupportedInstanceTypes(input *ListSupportedInstanceTypesInput) (*ListSupportedInstanceTypesOutput, error) {
+	req, out := c.ListSupportedInstanceTypesRequest(input)
+	return out, req.Send()
+}
+
+// ListSupportedInstanceTypesWithContext is the same as ListSupportedInstanceTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSupportedInstanceTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListSupportedInstanceTypesWithContext(ctx aws.Context, input *ListSupportedInstanceTypesInput, opts ...request.Option) (*ListSupportedInstanceTypesOutput, error) {
+	req, out := c.ListSupportedInstanceTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSupportedInstanceTypesPages iterates over the pages of a ListSupportedInstanceTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSupportedInstanceTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSupportedInstanceTypes operation.
+//	pageNum := 0
+//	err := client.ListSupportedInstanceTypesPages(params,
+//	    func(page *emr.ListSupportedInstanceTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EMR) ListSupportedInstanceTypesPages(input *ListSupportedInstanceTypesInput, fn func(*ListSupportedInstanceTypesOutput, bool) bool) error {
+	return c.ListSupportedInstanceTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSupportedInstanceTypesPagesWithContext same as ListSupportedInstanceTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListSupportedInstanceTypesPagesWithContext(ctx aws.Context, input *ListSupportedInstanceTypesInput, fn func(*ListSupportedInstanceTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSupportedInstanceTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSupportedInstanceTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSupportedInstanceTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opModifyCluster = "ModifyCluster"
 
 // ModifyClusterRequest generates a "aws/request.Request" representing the
@@ -14046,6 +14187,107 @@ func (s *ListStudiosOutput) SetStudios(v []*StudioSummary) *ListStudiosOutput {
 	return s
 }
 
+type ListSupportedInstanceTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token that marks the next set of results to retrieve.
+	Marker *string `type:"string"`
+
+	// The Amazon EMR release label determines the versions of open-source application
+	// packages (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-release-app-versions-6.x.html)
+	// that Amazon EMR has installed on the cluster. Release labels are in the format
+	// emr-x.x.x, where x.x.x is an Amazon EMR release number such as emr-6.10.0.
+	// For more information about Amazon EMR releases and their included application
+	// versions and features, see the Amazon EMR Release Guide (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-release-components.html) .
+	//
+	// ReleaseLabel is a required field
+	ReleaseLabel *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSupportedInstanceTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSupportedInstanceTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSupportedInstanceTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSupportedInstanceTypesInput"}
+	if s.ReleaseLabel == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseLabel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListSupportedInstanceTypesInput) SetMarker(v string) *ListSupportedInstanceTypesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetReleaseLabel sets the ReleaseLabel field's value.
+func (s *ListSupportedInstanceTypesInput) SetReleaseLabel(v string) *ListSupportedInstanceTypesInput {
+	s.ReleaseLabel = &v
+	return s
+}
+
+type ListSupportedInstanceTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token that marks the next set of results to retrieve.
+	Marker *string `type:"string"`
+
+	// The list of instance types that the release specified in ListSupportedInstanceTypesInput$ReleaseLabel
+	// supports, filtered by Amazon Web Services Region.
+	SupportedInstanceTypes []*SupportedInstanceType `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSupportedInstanceTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSupportedInstanceTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListSupportedInstanceTypesOutput) SetMarker(v string) *ListSupportedInstanceTypesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetSupportedInstanceTypes sets the SupportedInstanceTypes field's value.
+func (s *ListSupportedInstanceTypesOutput) SetSupportedInstanceTypes(v []*SupportedInstanceType) *ListSupportedInstanceTypesOutput {
+	s.SupportedInstanceTypes = v
+	return s
+}
+
 // Managed scaling policy for an Amazon EMR cluster. The policy specifies the
 // limits for resources that can be added or terminated from a cluster. The
 // policy only applies to the core and task nodes. The master node cannot be
@@ -17478,15 +17720,10 @@ func (s *SimplifiedApplication) SetVersion(v string) *SimplifiedApplication {
 type SpotProvisioningSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies one of the following strategies to launch Spot Instance fleets:
-	// price-capacity-optimized, capacity-optimized, lowest-price, or diversified.
-	// For more information on the provisioning strategies, see Allocation strategies
-	// for Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html)
-	// in the Amazon EC2 User Guide for Linux Instances.
-	//
-	// When you launch a Spot Instance fleet with the old console, it automatically
-	// launches with the capacity-optimized strategy. You can't change the allocation
-	// strategy from the old console.
+	// Specifies the strategy to use in launching Spot Instance fleets. Currently,
+	// the only option is capacity-optimized (the default), which launches instances
+	// from Spot Instance pools with optimal capacity for the number of instances
+	// that are launching.
 	AllocationStrategy *string `type:"string" enum:"SpotProvisioningAllocationStrategy"`
 
 	// The defined duration for Spot Instances (also known as Spot blocks) in minutes.
@@ -18713,6 +18950,134 @@ func (s *StudioSummary) SetUrl(v string) *StudioSummary {
 // SetVpcId sets the VpcId field's value.
 func (s *StudioSummary) SetVpcId(v string) *StudioSummary {
 	s.VpcId = &v
+	return s
+}
+
+// An instance type that the specified Amazon EMR release supports.
+type SupportedInstanceType struct {
+	_ struct{} `type:"structure"`
+
+	// The CPU architecture, for example X86_64 or AARCH64.
+	Architecture *string `type:"string"`
+
+	// Indicates whether the SupportedInstanceType supports Amazon EBS optimization.
+	EbsOptimizedAvailable *bool `type:"boolean"`
+
+	// Indicates whether the SupportedInstanceType uses Amazon EBS optimization
+	// by default.
+	EbsOptimizedByDefault *bool `type:"boolean"`
+
+	// Indicates whether the SupportedInstanceType only supports Amazon EBS.
+	EbsStorageOnly *bool `type:"boolean"`
+
+	// The Amazon EC2 family and generation for the SupportedInstanceType.
+	InstanceFamilyId *string `type:"string"`
+
+	// Indicates whether the SupportedInstanceType only supports 64-bit architecture.
+	Is64BitsOnly *bool `type:"boolean"`
+
+	// The amount of memory that is available to Amazon EMR from the SupportedInstanceType.
+	// The kernel and hypervisor software consume some memory, so this value might
+	// be lower than the overall memory for the instance type.
+	MemoryGB *float64 `type:"float"`
+
+	// Number of disks for the SupportedInstanceType. This value is 0 for Amazon
+	// EBS-only instance types.
+	NumberOfDisks *int64 `type:"integer"`
+
+	// StorageGB represents the storage capacity of the SupportedInstanceType. This
+	// value is 0 for Amazon EBS-only instance types.
+	StorageGB *int64 `type:"integer"`
+
+	// The Amazon EC2 instance type (http://aws.amazon.com/ec2/instance-types/),
+	// for example m5.xlarge, of the SupportedInstanceType.
+	Type *string `type:"string"`
+
+	// The number of vCPUs available for the SupportedInstanceType.
+	VCPU *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SupportedInstanceType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SupportedInstanceType) GoString() string {
+	return s.String()
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *SupportedInstanceType) SetArchitecture(v string) *SupportedInstanceType {
+	s.Architecture = &v
+	return s
+}
+
+// SetEbsOptimizedAvailable sets the EbsOptimizedAvailable field's value.
+func (s *SupportedInstanceType) SetEbsOptimizedAvailable(v bool) *SupportedInstanceType {
+	s.EbsOptimizedAvailable = &v
+	return s
+}
+
+// SetEbsOptimizedByDefault sets the EbsOptimizedByDefault field's value.
+func (s *SupportedInstanceType) SetEbsOptimizedByDefault(v bool) *SupportedInstanceType {
+	s.EbsOptimizedByDefault = &v
+	return s
+}
+
+// SetEbsStorageOnly sets the EbsStorageOnly field's value.
+func (s *SupportedInstanceType) SetEbsStorageOnly(v bool) *SupportedInstanceType {
+	s.EbsStorageOnly = &v
+	return s
+}
+
+// SetInstanceFamilyId sets the InstanceFamilyId field's value.
+func (s *SupportedInstanceType) SetInstanceFamilyId(v string) *SupportedInstanceType {
+	s.InstanceFamilyId = &v
+	return s
+}
+
+// SetIs64BitsOnly sets the Is64BitsOnly field's value.
+func (s *SupportedInstanceType) SetIs64BitsOnly(v bool) *SupportedInstanceType {
+	s.Is64BitsOnly = &v
+	return s
+}
+
+// SetMemoryGB sets the MemoryGB field's value.
+func (s *SupportedInstanceType) SetMemoryGB(v float64) *SupportedInstanceType {
+	s.MemoryGB = &v
+	return s
+}
+
+// SetNumberOfDisks sets the NumberOfDisks field's value.
+func (s *SupportedInstanceType) SetNumberOfDisks(v int64) *SupportedInstanceType {
+	s.NumberOfDisks = &v
+	return s
+}
+
+// SetStorageGB sets the StorageGB field's value.
+func (s *SupportedInstanceType) SetStorageGB(v int64) *SupportedInstanceType {
+	s.StorageGB = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SupportedInstanceType) SetType(v string) *SupportedInstanceType {
+	s.Type = &v
+	return s
+}
+
+// SetVCPU sets the VCPU field's value.
+func (s *SupportedInstanceType) SetVCPU(v int64) *SupportedInstanceType {
+	s.VCPU = &v
 	return s
 }
 
