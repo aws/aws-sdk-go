@@ -3,9 +3,9 @@
 // Package chimesdkmessaging provides the client and types for making API
 // requests to Amazon Chime SDK Messaging.
 //
-// The Amazon Chime SDK Messaging APIs in this section allow software developers
+// The Amazon Chime SDK messaging APIs in this section allow software developers
 // to send and receive messages in custom messaging applications. These APIs
-// depend on the frameworks provided by the Amazon Chime SDK Identity APIs.
+// depend on the frameworks provided by the Amazon Chime SDK identity APIs.
 // For more information about the messaging APIs, see Amazon Chime SDK messaging
 // (https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Messaging.html).
 //

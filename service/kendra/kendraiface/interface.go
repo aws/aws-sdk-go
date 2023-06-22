@@ -304,6 +304,10 @@ type KendraAPI interface {
 	QueryWithContext(aws.Context, *kendra.QueryInput, ...request.Option) (*kendra.QueryOutput, error)
 	QueryRequest(*kendra.QueryInput) (*request.Request, *kendra.QueryOutput)
 
+	Retrieve(*kendra.RetrieveInput) (*kendra.RetrieveOutput, error)
+	RetrieveWithContext(aws.Context, *kendra.RetrieveInput, ...request.Option) (*kendra.RetrieveOutput, error)
+	RetrieveRequest(*kendra.RetrieveInput) (*request.Request, *kendra.RetrieveOutput)
+
 	StartDataSourceSyncJob(*kendra.StartDataSourceSyncJobInput) (*kendra.StartDataSourceSyncJobOutput, error)
 	StartDataSourceSyncJobWithContext(aws.Context, *kendra.StartDataSourceSyncJobInput, ...request.Option) (*kendra.StartDataSourceSyncJobOutput, error)
 	StartDataSourceSyncJobRequest(*kendra.StartDataSourceSyncJobInput) (*request.Request, *kendra.StartDataSourceSyncJobOutput)

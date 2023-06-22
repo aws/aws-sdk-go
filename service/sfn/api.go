@@ -166,16 +166,20 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 // more information, see Amazon States Language (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)
 // in the Step Functions User Guide.
 //
+// If you set the publish parameter of this API action to true, it publishes
+// version 1 as the first revision of the state machine.
+//
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
 //
 // CreateStateMachine is an idempotent API. Subsequent requests won’t create
 // a duplicate resource if it was already created. CreateStateMachine's idempotency
-// check is based on the state machine name, definition, type, LoggingConfiguration
-// and TracingConfiguration. If a following request has a different roleArn
-// or tags, Step Functions will ignore these differences and treat it as an
-// idempotent request of the previous. In this case, roleArn and tags will not
-// be updated, even if they are different.
+// check is based on the state machine name, definition, type, LoggingConfiguration,
+// and TracingConfiguration. The check is also based on the publish and versionDescription
+// parameters. If a following request has a different roleArn or tags, Step
+// Functions will ignore these differences and treat it as an idempotent request
+// of the previous. In this case, roleArn and tags will not be updated, even
+// if they are different.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -219,6 +223,17 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 //     Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
 //     in the Step Functions Developer Guide.
 //
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state. This error
+//     occurs when there're concurrent requests for DeleteStateMachineVersion, PublishStateMachineVersion,
+//     or UpdateStateMachine with the publish parameter set to true.
+//
+//     HTTP Status Code: 409
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachine
 func (c *SFN) CreateStateMachine(input *CreateStateMachineInput) (*CreateStateMachineOutput, error) {
 	req, out := c.CreateStateMachineRequest(input)
@@ -236,6 +251,142 @@ func (c *SFN) CreateStateMachine(input *CreateStateMachineInput) (*CreateStateMa
 // for more information on using Contexts.
 func (c *SFN) CreateStateMachineWithContext(ctx aws.Context, input *CreateStateMachineInput, opts ...request.Option) (*CreateStateMachineOutput, error) {
 	req, out := c.CreateStateMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateStateMachineAlias = "CreateStateMachineAlias"
+
+// CreateStateMachineAliasRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStateMachineAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStateMachineAlias for more information on using the CreateStateMachineAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateStateMachineAliasRequest method.
+//	req, resp := client.CreateStateMachineAliasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachineAlias
+func (c *SFN) CreateStateMachineAliasRequest(input *CreateStateMachineAliasInput) (req *request.Request, output *CreateStateMachineAliasOutput) {
+	op := &request.Operation{
+		Name:       opCreateStateMachineAlias,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateStateMachineAliasInput{}
+	}
+
+	output = &CreateStateMachineAliasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateStateMachineAlias API operation for AWS Step Functions.
+//
+// Creates an alias (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html)
+// for a state machine that points to one or two versions (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html)
+// of the same state machine. You can set your application to call StartExecution
+// with an alias and update the version the alias uses without changing the
+// client's code.
+//
+// You can also map an alias to split StartExecution requests between two versions
+// of a state machine. To do this, add a second RoutingConfig object in the
+// routingConfiguration parameter. You must also specify the percentage of execution
+// run requests each version should receive in both RoutingConfig objects. Step
+// Functions randomly chooses which version runs a given execution based on
+// the percentage you specify.
+//
+// To create an alias that points to a single version, specify a single RoutingConfig
+// object with a weight set to 100.
+//
+// You can create up to 100 aliases for each state machine. You must delete
+// unused aliases using the DeleteStateMachineAlias API action.
+//
+// CreateStateMachineAlias is an idempotent API. Step Functions bases the idempotency
+// check on the stateMachineArn, description, name, and routingConfiguration
+// parameters. Requests that contain the same values for these parameters return
+// a successful idempotent response without creating a duplicate resource.
+//
+// Related operations:
+//
+//   - DescribeStateMachineAlias
+//
+//   - ListStateMachineAliases
+//
+//   - UpdateStateMachineAlias
+//
+//   - DeleteStateMachineAlias
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation CreateStateMachineAlias for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - InvalidName
+//     The provided name is not valid.
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - StateMachineDeleting
+//     The specified state machine is being deleted.
+//
+//   - ResourceNotFound
+//     Could not find the referenced resource.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state. This error
+//     occurs when there're concurrent requests for DeleteStateMachineVersion, PublishStateMachineVersion,
+//     or UpdateStateMachine with the publish parameter set to true.
+//
+//     HTTP Status Code: 409
+//
+//   - ServiceQuotaExceededException
+//     The request would cause a service quota to be exceeded.
+//
+//     HTTP Status Code: 402
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachineAlias
+func (c *SFN) CreateStateMachineAlias(input *CreateStateMachineAliasInput) (*CreateStateMachineAliasOutput, error) {
+	req, out := c.CreateStateMachineAliasRequest(input)
+	return out, req.Send()
+}
+
+// CreateStateMachineAliasWithContext is the same as CreateStateMachineAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStateMachineAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) CreateStateMachineAliasWithContext(ctx aws.Context, input *CreateStateMachineAliasInput, opts ...request.Option) (*CreateStateMachineAliasOutput, error) {
+	req, out := c.CreateStateMachineAliasRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -367,16 +518,27 @@ func (c *SFN) DeleteStateMachineRequest(input *DeleteStateMachineInput) (req *re
 // Deletes a state machine. This is an asynchronous operation: It sets the state
 // machine's status to DELETING and begins the deletion process.
 //
-// If the given state machine Amazon Resource Name (ARN) is a qualified state
-// machine ARN, it will fail with ValidationException.
+// A qualified state machine ARN can either refer to a Distributed Map state
+// defined within a state machine, a version ARN, or an alias ARN.
 //
-// A qualified state machine ARN refers to a Distributed Map state defined within
-// a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel
-// refers to a Distributed Map state with a label mapStateLabel in the state
-// machine named stateMachineName.
+// The following are some examples of qualified and unqualified state machine
+// ARNs:
 //
-// For EXPRESS state machines, the deletion will happen eventually (usually
-// less than a minute). Running executions may emit logs after DeleteStateMachine
+//   - The following qualified state machine ARN refers to a Distributed Map
+//     state with a label mapStateLabel in a state machine named myStateMachine.
+//     arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel
+//     If you provide a qualified state machine ARN that refers to a Distributed
+//     Map state, the request fails with ValidationException.
+//
+//   - The following unqualified state machine ARN refers to a state machine
+//     named myStateMachine. arn:partition:states:region:account-id:stateMachine:myStateMachine
+//
+// This API action also deletes all versions (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html)
+// and aliases (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html)
+// associated with a state machine.
+//
+// For EXPRESS state machines, the deletion happens eventually (usually in less
+// than a minute). Running executions may emit logs after DeleteStateMachine
 // API is called.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -412,6 +574,219 @@ func (c *SFN) DeleteStateMachine(input *DeleteStateMachineInput) (*DeleteStateMa
 // for more information on using Contexts.
 func (c *SFN) DeleteStateMachineWithContext(ctx aws.Context, input *DeleteStateMachineInput, opts ...request.Option) (*DeleteStateMachineOutput, error) {
 	req, out := c.DeleteStateMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteStateMachineAlias = "DeleteStateMachineAlias"
+
+// DeleteStateMachineAliasRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStateMachineAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStateMachineAlias for more information on using the DeleteStateMachineAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteStateMachineAliasRequest method.
+//	req, resp := client.DeleteStateMachineAliasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachineAlias
+func (c *SFN) DeleteStateMachineAliasRequest(input *DeleteStateMachineAliasInput) (req *request.Request, output *DeleteStateMachineAliasOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStateMachineAlias,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteStateMachineAliasInput{}
+	}
+
+	output = &DeleteStateMachineAliasOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteStateMachineAlias API operation for AWS Step Functions.
+//
+// Deletes a state machine alias (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html).
+//
+// After you delete a state machine alias, you can't use it to start executions.
+// When you delete a state machine alias, Step Functions doesn't delete the
+// state machine versions that alias references.
+//
+// Related operations:
+//
+//   - CreateStateMachineAlias
+//
+//   - DescribeStateMachineAlias
+//
+//   - ListStateMachineAliases
+//
+//   - UpdateStateMachineAlias
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation DeleteStateMachineAlias for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - ResourceNotFound
+//     Could not find the referenced resource.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state. This error
+//     occurs when there're concurrent requests for DeleteStateMachineVersion, PublishStateMachineVersion,
+//     or UpdateStateMachine with the publish parameter set to true.
+//
+//     HTTP Status Code: 409
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachineAlias
+func (c *SFN) DeleteStateMachineAlias(input *DeleteStateMachineAliasInput) (*DeleteStateMachineAliasOutput, error) {
+	req, out := c.DeleteStateMachineAliasRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStateMachineAliasWithContext is the same as DeleteStateMachineAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStateMachineAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) DeleteStateMachineAliasWithContext(ctx aws.Context, input *DeleteStateMachineAliasInput, opts ...request.Option) (*DeleteStateMachineAliasOutput, error) {
+	req, out := c.DeleteStateMachineAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteStateMachineVersion = "DeleteStateMachineVersion"
+
+// DeleteStateMachineVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStateMachineVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStateMachineVersion for more information on using the DeleteStateMachineVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteStateMachineVersionRequest method.
+//	req, resp := client.DeleteStateMachineVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachineVersion
+func (c *SFN) DeleteStateMachineVersionRequest(input *DeleteStateMachineVersionInput) (req *request.Request, output *DeleteStateMachineVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStateMachineVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteStateMachineVersionInput{}
+	}
+
+	output = &DeleteStateMachineVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteStateMachineVersion API operation for AWS Step Functions.
+//
+// Deletes a state machine version (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html).
+// After you delete a version, you can't call StartExecution using that version's
+// ARN or use the version with a state machine alias (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html).
+//
+// Deleting a state machine version won't terminate its in-progress executions.
+//
+// You can't delete a state machine version currently referenced by one or more
+// aliases. Before you delete a version, you must either delete the aliases
+// or update them to point to another state machine version.
+//
+// Related operations:
+//
+//   - PublishStateMachineVersion
+//
+//   - ListStateMachineVersions
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation DeleteStateMachineVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state. This error
+//     occurs when there're concurrent requests for DeleteStateMachineVersion, PublishStateMachineVersion,
+//     or UpdateStateMachine with the publish parameter set to true.
+//
+//     HTTP Status Code: 409
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachineVersion
+func (c *SFN) DeleteStateMachineVersion(input *DeleteStateMachineVersionInput) (*DeleteStateMachineVersionOutput, error) {
+	req, out := c.DeleteStateMachineVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStateMachineVersionWithContext is the same as DeleteStateMachineVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStateMachineVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) DeleteStateMachineVersionWithContext(ctx aws.Context, input *DeleteStateMachineVersionInput, opts ...request.Option) (*DeleteStateMachineVersionOutput, error) {
+	req, out := c.DeleteStateMachineVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -545,16 +920,19 @@ func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *requ
 
 // DescribeExecution API operation for AWS Step Functions.
 //
-// Provides all information about a state machine execution, such as the state
-// machine associated with the execution, the execution input and output, and
-// relevant execution metadata. Use this API action to return the Map Run ARN
-// if the execution was dispatched by a Map Run.
+// Provides information about a state machine execution, such as the state machine
+// associated with the execution, the execution input and output, and relevant
+// execution metadata. Use this API action to return the Map Run Amazon Resource
+// Name (ARN) if the execution was dispatched by a Map Run.
+//
+// If you specify a version or alias ARN when you call the StartExecution API
+// action, DescribeExecution returns that ARN.
 //
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
 //
-// This API action is not supported by EXPRESS state machine executions unless
-// they were dispatched by a Map Run.
+// Executions of an EXPRESS state machinearen't supported by DescribeExecution
+// unless a Map Run dispatched them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -650,8 +1028,7 @@ func (c *SFN) DescribeMapRunRequest(input *DescribeMapRunInput) (req *request.Re
 // Returned Error Types:
 //
 //   - ResourceNotFound
-//     Could not find the referenced resource. Only state machine and activity ARNs
-//     are supported.
+//     Could not find the referenced resource.
 //
 //   - InvalidArn
 //     The provided Amazon Resource Name (ARN) is not valid.
@@ -722,13 +1099,31 @@ func (c *SFN) DescribeStateMachineRequest(input *DescribeStateMachineInput) (req
 // DescribeStateMachine API operation for AWS Step Functions.
 //
 // Provides information about a state machine's definition, its IAM role Amazon
-// Resource Name (ARN), and configuration. If the state machine ARN is a qualified
-// state machine ARN, the response returned includes the Map state's label.
+// Resource Name (ARN), and configuration.
 //
-// A qualified state machine ARN refers to a Distributed Map state defined within
-// a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel
-// refers to a Distributed Map state with a label mapStateLabel in the state
-// machine named stateMachineName.
+// A qualified state machine ARN can either refer to a Distributed Map state
+// defined within a state machine, a version ARN, or an alias ARN.
+//
+// The following are some examples of qualified and unqualified state machine
+// ARNs:
+//
+//   - The following qualified state machine ARN refers to a Distributed Map
+//     state with a label mapStateLabel in a state machine named myStateMachine.
+//     arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel
+//     If you provide a qualified state machine ARN that refers to a Distributed
+//     Map state, the request fails with ValidationException.
+//
+//   - The following qualified state machine ARN refers to an alias named PROD.
+//     arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine:PROD>
+//     If you provide a qualified state machine ARN that refers to a version
+//     ARN or an alias ARN, the request starts execution for that version or
+//     alias.
+//
+//   - The following unqualified state machine ARN refers to a state machine
+//     named myStateMachine. arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine>
+//
+// This API action returns the details for a state machine version if the stateMachineArn
+// you specify is a state machine version ARN.
 //
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
@@ -765,6 +1160,102 @@ func (c *SFN) DescribeStateMachine(input *DescribeStateMachineInput) (*DescribeS
 // for more information on using Contexts.
 func (c *SFN) DescribeStateMachineWithContext(ctx aws.Context, input *DescribeStateMachineInput, opts ...request.Option) (*DescribeStateMachineOutput, error) {
 	req, out := c.DescribeStateMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeStateMachineAlias = "DescribeStateMachineAlias"
+
+// DescribeStateMachineAliasRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStateMachineAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStateMachineAlias for more information on using the DescribeStateMachineAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeStateMachineAliasRequest method.
+//	req, resp := client.DescribeStateMachineAliasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachineAlias
+func (c *SFN) DescribeStateMachineAliasRequest(input *DescribeStateMachineAliasInput) (req *request.Request, output *DescribeStateMachineAliasOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStateMachineAlias,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeStateMachineAliasInput{}
+	}
+
+	output = &DescribeStateMachineAliasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeStateMachineAlias API operation for AWS Step Functions.
+//
+// Returns details about a state machine alias (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html).
+//
+// Related operations:
+//
+//   - CreateStateMachineAlias
+//
+//   - ListStateMachineAliases
+//
+//   - UpdateStateMachineAlias
+//
+//   - DeleteStateMachineAlias
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation DescribeStateMachineAlias for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - ResourceNotFound
+//     Could not find the referenced resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachineAlias
+func (c *SFN) DescribeStateMachineAlias(input *DescribeStateMachineAliasInput) (*DescribeStateMachineAliasOutput, error) {
+	req, out := c.DescribeStateMachineAliasRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStateMachineAliasWithContext is the same as DescribeStateMachineAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStateMachineAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) DescribeStateMachineAliasWithContext(ctx aws.Context, input *DescribeStateMachineAliasInput, opts ...request.Option) (*DescribeStateMachineAliasOutput, error) {
+	req, out := c.DescribeStateMachineAliasRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -814,9 +1305,9 @@ func (c *SFN) DescribeStateMachineForExecutionRequest(input *DescribeStateMachin
 // DescribeStateMachineForExecution API operation for AWS Step Functions.
 //
 // Provides information about a state machine's definition, its execution role
-// ARN, and configuration. If an execution was dispatched by a Map Run, the
-// Map Run is returned in the response. Additionally, the state machine returned
-// will be the state machine associated with the Map Run.
+// ARN, and configuration. If a Map Run dispatched the execution, this action
+// returns the Map Run Amazon Resource Name (ARN) in the response. The state
+// machine returned is the state machine associated with the Map Run.
 //
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
@@ -1310,6 +1801,10 @@ func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Re
 // related to a state machine by specifying a state machine Amazon Resource
 // Name (ARN), or those related to a Map Run by specifying a Map Run ARN.
 //
+// You can also provide a state machine alias (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html)
+// ARN or version (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html)
+// ARN to list the executions associated with a specific alias or version.
+//
 // Results are sorted by time, with the most recent execution first.
 //
 // If nextToken is returned, there are more results available. The value of
@@ -1348,8 +1843,7 @@ func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Re
 //     service.
 //
 //   - ResourceNotFound
-//     Could not find the referenced resource. Only state machine and activity ARNs
-//     are supported.
+//     Could not find the referenced resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListExecutions
 func (c *SFN) ListExecutions(input *ListExecutionsInput) (*ListExecutionsOutput, error) {
@@ -1568,6 +2062,219 @@ func (c *SFN) ListMapRunsPagesWithContext(ctx aws.Context, input *ListMapRunsInp
 	return p.Err()
 }
 
+const opListStateMachineAliases = "ListStateMachineAliases"
+
+// ListStateMachineAliasesRequest generates a "aws/request.Request" representing the
+// client's request for the ListStateMachineAliases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStateMachineAliases for more information on using the ListStateMachineAliases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStateMachineAliasesRequest method.
+//	req, resp := client.ListStateMachineAliasesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachineAliases
+func (c *SFN) ListStateMachineAliasesRequest(input *ListStateMachineAliasesInput) (req *request.Request, output *ListStateMachineAliasesOutput) {
+	op := &request.Operation{
+		Name:       opListStateMachineAliases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListStateMachineAliasesInput{}
+	}
+
+	output = &ListStateMachineAliasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStateMachineAliases API operation for AWS Step Functions.
+//
+// Lists aliases (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html)
+// for a specified state machine ARN. Results are sorted by time, with the most
+// recently created aliases listed first.
+//
+// To list aliases that reference a state machine version (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html),
+// you can specify the version ARN in the stateMachineArn parameter.
+//
+// If nextToken is returned, there are more results available. The value of
+// nextToken is a unique pagination token for each page. Make the call again
+// using the returned token to retrieve the next page. Keep all other arguments
+// unchanged. Each pagination token expires after 24 hours. Using an expired
+// pagination token will return an HTTP 400 InvalidToken error.
+//
+// Related operations:
+//
+//   - CreateStateMachineAlias
+//
+//   - DescribeStateMachineAlias
+//
+//   - UpdateStateMachineAlias
+//
+//   - DeleteStateMachineAlias
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation ListStateMachineAliases for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - InvalidToken
+//     The provided token is not valid.
+//
+//   - ResourceNotFound
+//     Could not find the referenced resource.
+//
+//   - StateMachineDoesNotExist
+//     The specified state machine does not exist.
+//
+//   - StateMachineDeleting
+//     The specified state machine is being deleted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachineAliases
+func (c *SFN) ListStateMachineAliases(input *ListStateMachineAliasesInput) (*ListStateMachineAliasesOutput, error) {
+	req, out := c.ListStateMachineAliasesRequest(input)
+	return out, req.Send()
+}
+
+// ListStateMachineAliasesWithContext is the same as ListStateMachineAliases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStateMachineAliases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) ListStateMachineAliasesWithContext(ctx aws.Context, input *ListStateMachineAliasesInput, opts ...request.Option) (*ListStateMachineAliasesOutput, error) {
+	req, out := c.ListStateMachineAliasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListStateMachineVersions = "ListStateMachineVersions"
+
+// ListStateMachineVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStateMachineVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStateMachineVersions for more information on using the ListStateMachineVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStateMachineVersionsRequest method.
+//	req, resp := client.ListStateMachineVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachineVersions
+func (c *SFN) ListStateMachineVersionsRequest(input *ListStateMachineVersionsInput) (req *request.Request, output *ListStateMachineVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListStateMachineVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListStateMachineVersionsInput{}
+	}
+
+	output = &ListStateMachineVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStateMachineVersions API operation for AWS Step Functions.
+//
+// Lists versions (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html)
+// for the specified state machine Amazon Resource Name (ARN).
+//
+// The results are sorted in descending order of the version creation time.
+//
+// If nextToken is returned, there are more results available. The value of
+// nextToken is a unique pagination token for each page. Make the call again
+// using the returned token to retrieve the next page. Keep all other arguments
+// unchanged. Each pagination token expires after 24 hours. Using an expired
+// pagination token will return an HTTP 400 InvalidToken error.
+//
+// Related operations:
+//
+//   - PublishStateMachineVersion
+//
+//   - DeleteStateMachineVersion
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation ListStateMachineVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - InvalidToken
+//     The provided token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachineVersions
+func (c *SFN) ListStateMachineVersions(input *ListStateMachineVersionsInput) (*ListStateMachineVersionsOutput, error) {
+	req, out := c.ListStateMachineVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListStateMachineVersionsWithContext is the same as ListStateMachineVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStateMachineVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) ListStateMachineVersionsWithContext(ctx aws.Context, input *ListStateMachineVersionsInput, opts ...request.Option) (*ListStateMachineVersionsOutput, error) {
+	req, out := c.ListStateMachineVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListStateMachines = "ListStateMachines"
 
 // ListStateMachinesRequest generates a "aws/request.Request" representing the
@@ -1773,8 +2480,7 @@ func (c *SFN) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - ResourceNotFound
-//     Could not find the referenced resource. Only state machine and activity ARNs
-//     are supported.
+//     Could not find the referenced resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListTagsForResource
 func (c *SFN) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1793,6 +2499,127 @@ func (c *SFN) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsFor
 // for more information on using Contexts.
 func (c *SFN) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPublishStateMachineVersion = "PublishStateMachineVersion"
+
+// PublishStateMachineVersionRequest generates a "aws/request.Request" representing the
+// client's request for the PublishStateMachineVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PublishStateMachineVersion for more information on using the PublishStateMachineVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PublishStateMachineVersionRequest method.
+//	req, resp := client.PublishStateMachineVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/PublishStateMachineVersion
+func (c *SFN) PublishStateMachineVersionRequest(input *PublishStateMachineVersionInput) (req *request.Request, output *PublishStateMachineVersionOutput) {
+	op := &request.Operation{
+		Name:       opPublishStateMachineVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PublishStateMachineVersionInput{}
+	}
+
+	output = &PublishStateMachineVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PublishStateMachineVersion API operation for AWS Step Functions.
+//
+// Creates a version (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html)
+// from the current revision of a state machine. Use versions to create immutable
+// snapshots of your state machine. You can start executions from versions either
+// directly or with an alias. To create an alias, use CreateStateMachineAlias.
+//
+// You can publish up to 1000 versions for each state machine. You must manually
+// delete unused versions using the DeleteStateMachineVersion API action.
+//
+// PublishStateMachineVersion is an idempotent API. It doesn't create a duplicate
+// state machine version if it already exists for the current revision. Step
+// Functions bases PublishStateMachineVersion's idempotency check on the stateMachineArn,
+// name, and revisionId parameters. Requests with the same parameters return
+// a successful idempotent response. If you don't specify a revisionId, Step
+// Functions checks for a previously published version of the state machine's
+// current revision.
+//
+// Related operations:
+//
+//   - DeleteStateMachineVersion
+//
+//   - ListStateMachineVersions
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation PublishStateMachineVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - StateMachineDeleting
+//     The specified state machine is being deleted.
+//
+//   - StateMachineDoesNotExist
+//     The specified state machine does not exist.
+//
+//   - ServiceQuotaExceededException
+//     The request would cause a service quota to be exceeded.
+//
+//     HTTP Status Code: 402
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state. This error
+//     occurs when there're concurrent requests for DeleteStateMachineVersion, PublishStateMachineVersion,
+//     or UpdateStateMachine with the publish parameter set to true.
+//
+//     HTTP Status Code: 409
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/PublishStateMachineVersion
+func (c *SFN) PublishStateMachineVersion(input *PublishStateMachineVersionInput) (*PublishStateMachineVersionOutput, error) {
+	req, out := c.PublishStateMachineVersionRequest(input)
+	return out, req.Send()
+}
+
+// PublishStateMachineVersionWithContext is the same as PublishStateMachineVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PublishStateMachineVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) PublishStateMachineVersionWithContext(ctx aws.Context, input *PublishStateMachineVersionInput, opts ...request.Option) (*PublishStateMachineVersionOutput, error) {
+	req, out := c.PublishStateMachineVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2112,21 +2939,43 @@ func (c *SFN) StartExecutionRequest(input *StartExecutionInput) (req *request.Re
 
 // StartExecution API operation for AWS Step Functions.
 //
-// Starts a state machine execution. If the given state machine Amazon Resource
-// Name (ARN) is a qualified state machine ARN, it will fail with ValidationException.
+// Starts a state machine execution.
 //
-// A qualified state machine ARN refers to a Distributed Map state defined within
-// a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel
-// refers to a Distributed Map state with a label mapStateLabel in the state
-// machine named stateMachineName.
+// A qualified state machine ARN can either refer to a Distributed Map state
+// defined within a state machine, a version ARN, or an alias ARN.
+//
+// The following are some examples of qualified and unqualified state machine
+// ARNs:
+//
+//   - The following qualified state machine ARN refers to a Distributed Map
+//     state with a label mapStateLabel in a state machine named myStateMachine.
+//     arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel
+//     If you provide a qualified state machine ARN that refers to a Distributed
+//     Map state, the request fails with ValidationException.
+//
+//   - The following qualified state machine ARN refers to an alias named PROD.
+//     arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine:PROD>
+//     If you provide a qualified state machine ARN that refers to a version
+//     ARN or an alias ARN, the request starts execution for that version or
+//     alias.
+//
+//   - The following unqualified state machine ARN refers to a state machine
+//     named myStateMachine. arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine>
+//
+// If you start an execution with an unqualified state machine ARN, Step Functions
+// uses the latest revision of the state machine for the execution.
+//
+// To start executions of a state machine version (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html),
+// call StartExecution and provide the version ARN or the ARN of an alias (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html)
+// that points to the version.
 //
 // StartExecution is idempotent for STANDARD workflows. For a STANDARD workflow,
-// if StartExecution is called with the same name and input as a running execution,
-// the call will succeed and return the same response as the original request.
-// If the execution is closed or if the input is different, it will return a
-// 400 ExecutionAlreadyExists error. Names can be reused after 90 days.
+// if you call StartExecution with the same name and input as a running execution,
+// the call succeeds and return the same response as the original request. If
+// the execution is closed or if the input is different, it returns a 400 ExecutionAlreadyExists
+// error. You can reuse names after 90 days.
 //
-// StartExecution is not idempotent for EXPRESS workflows.
+// StartExecution isn't idempotent for EXPRESS workflows.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2446,8 +3295,7 @@ func (c *SFN) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - ResourceNotFound
-//     Could not find the referenced resource. Only state machine and activity ARNs
-//     are supported.
+//     Could not find the referenced resource.
 //
 //   - TooManyTags
 //     You've exceeded the number of tags allowed for a resource. See the Limits
@@ -2535,8 +3383,7 @@ func (c *SFN) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 //     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - ResourceNotFound
-//     Could not find the referenced resource. Only state machine and activity ARNs
-//     are supported.
+//     Could not find the referenced resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/UntagResource
 func (c *SFN) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2617,8 +3464,7 @@ func (c *SFN) UpdateMapRunRequest(input *UpdateMapRunInput) (req *request.Reques
 // Returned Error Types:
 //
 //   - ResourceNotFound
-//     Could not find the referenced resource. Only state machine and activity ARNs
-//     are supported.
+//     Could not find the referenced resource.
 //
 //   - InvalidArn
 //     The provided Amazon Resource Name (ARN) is not valid.
@@ -2697,16 +3543,41 @@ func (c *SFN) UpdateStateMachineRequest(input *UpdateStateMachineInput) (req *re
 // definition and roleArn. You must include at least one of definition or roleArn
 // or you will receive a MissingRequiredParameter error.
 //
-// If the given state machine Amazon Resource Name (ARN) is a qualified state
-// machine ARN, it will fail with ValidationException.
-//
 // A qualified state machine ARN refers to a Distributed Map state defined within
 // a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel
 // refers to a Distributed Map state with a label mapStateLabel in the state
 // machine named stateMachineName.
 //
-// All StartExecution calls within a few seconds will use the updated definition
-// and roleArn. Executions started immediately after calling UpdateStateMachine
+// A qualified state machine ARN can either refer to a Distributed Map state
+// defined within a state machine, a version ARN, or an alias ARN.
+//
+// The following are some examples of qualified and unqualified state machine
+// ARNs:
+//
+//   - The following qualified state machine ARN refers to a Distributed Map
+//     state with a label mapStateLabel in a state machine named myStateMachine.
+//     arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel
+//     If you provide a qualified state machine ARN that refers to a Distributed
+//     Map state, the request fails with ValidationException.
+//
+//   - The following qualified state machine ARN refers to an alias named PROD.
+//     arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine:PROD>
+//     If you provide a qualified state machine ARN that refers to a version
+//     ARN or an alias ARN, the request starts execution for that version or
+//     alias.
+//
+//   - The following unqualified state machine ARN refers to a state machine
+//     named myStateMachine. arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine>
+//
+// After you update your state machine, you can set the publish parameter to
+// true in the same action to publish a new version (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html).
+// This way, you can opt-in to strict versioning of your state machine.
+//
+// Step Functions assigns monotonically increasing integers for state machine
+// versions, starting at version number 1.
+//
+// All StartExecution calls within a few seconds use the updated definition
+// and roleArn. Executions started immediately after you call UpdateStateMachine
 // may use the previous state machine definition and roleArn.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2740,6 +3611,18 @@ func (c *SFN) UpdateStateMachineRequest(input *UpdateStateMachineInput) (req *re
 //   - StateMachineDoesNotExist
 //     The specified state machine does not exist.
 //
+//   - ServiceQuotaExceededException
+//     The request would cause a service quota to be exceeded.
+//
+//     HTTP Status Code: 402
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state. This error
+//     occurs when there're concurrent requests for DeleteStateMachineVersion, PublishStateMachineVersion,
+//     or UpdateStateMachine with the publish parameter set to true.
+//
+//     HTTP Status Code: 409
+//
 //   - ValidationException
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
@@ -2761,6 +3644,122 @@ func (c *SFN) UpdateStateMachine(input *UpdateStateMachineInput) (*UpdateStateMa
 // for more information on using Contexts.
 func (c *SFN) UpdateStateMachineWithContext(ctx aws.Context, input *UpdateStateMachineInput, opts ...request.Option) (*UpdateStateMachineOutput, error) {
 	req, out := c.UpdateStateMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateStateMachineAlias = "UpdateStateMachineAlias"
+
+// UpdateStateMachineAliasRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStateMachineAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStateMachineAlias for more information on using the UpdateStateMachineAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateStateMachineAliasRequest method.
+//	req, resp := client.UpdateStateMachineAliasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/UpdateStateMachineAlias
+func (c *SFN) UpdateStateMachineAliasRequest(input *UpdateStateMachineAliasInput) (req *request.Request, output *UpdateStateMachineAliasOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStateMachineAlias,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateStateMachineAliasInput{}
+	}
+
+	output = &UpdateStateMachineAliasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateStateMachineAlias API operation for AWS Step Functions.
+//
+// Updates the configuration of an existing state machine alias (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html)
+// by modifying its description or routingConfiguration.
+//
+// You must specify at least one of the description or routingConfiguration
+// parameters to update a state machine alias.
+//
+// UpdateStateMachineAlias is an idempotent API. Step Functions bases the idempotency
+// check on the stateMachineAliasArn, description, and routingConfiguration
+// parameters. Requests with the same parameters return an idempotent response.
+//
+// This operation is eventually consistent. All StartExecution requests made
+// within a few seconds use the latest alias configuration. Executions started
+// immediately after calling UpdateStateMachineAlias may use the previous routing
+// configuration.
+//
+// Related operations:
+//
+//   - CreateStateMachineAlias
+//
+//   - DescribeStateMachineAlias
+//
+//   - ListStateMachineAliases
+//
+//   - DeleteStateMachineAlias
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation UpdateStateMachineAlias for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - ResourceNotFound
+//     Could not find the referenced resource.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state. This error
+//     occurs when there're concurrent requests for DeleteStateMachineVersion, PublishStateMachineVersion,
+//     or UpdateStateMachine with the publish parameter set to true.
+//
+//     HTTP Status Code: 409
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/UpdateStateMachineAlias
+func (c *SFN) UpdateStateMachineAlias(input *UpdateStateMachineAliasInput) (*UpdateStateMachineAliasOutput, error) {
+	req, out := c.UpdateStateMachineAliasRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStateMachineAliasWithContext is the same as UpdateStateMachineAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStateMachineAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) UpdateStateMachineAliasWithContext(ctx aws.Context, input *UpdateStateMachineAliasInput, opts ...request.Option) (*UpdateStateMachineAliasOutput, error) {
+	req, out := c.UpdateStateMachineAliasRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3453,6 +4452,74 @@ func (s *CloudWatchLogsLogGroup) SetLogGroupArn(v string) *CloudWatchLogsLogGrou
 	return s
 }
 
+// Updating or deleting a resource can cause an inconsistent state. This error
+// occurs when there're concurrent requests for DeleteStateMachineVersion, PublishStateMachineVersion,
+// or UpdateStateMachine with the publish parameter set to true.
+//
+// HTTP Status Code: 409
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type CreateActivityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3591,6 +4658,147 @@ func (s *CreateActivityOutput) SetCreationDate(v time.Time) *CreateActivityOutpu
 	return s
 }
 
+type CreateStateMachineAliasInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description for the state machine alias.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStateMachineAliasInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The name of the state machine alias.
+	//
+	// To avoid conflict with version ARNs, don't use an integer in the name of
+	// the alias.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The routing configuration of a state machine alias. The routing configuration
+	// shifts execution traffic between two state machine versions. routingConfiguration
+	// contains an array of RoutingConfig objects that specify up to two state machine
+	// versions. Step Functions then randomly choses which version to run an execution
+	// with based on the weight assigned to each RoutingConfig.
+	//
+	// RoutingConfiguration is a required field
+	RoutingConfiguration []*RoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStateMachineAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStateMachineAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStateMachineAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStateMachineAliasInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoutingConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingConfiguration"))
+	}
+	if s.RoutingConfiguration != nil && len(s.RoutingConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingConfiguration", 1))
+	}
+	if s.RoutingConfiguration != nil {
+		for i, v := range s.RoutingConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RoutingConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateStateMachineAliasInput) SetDescription(v string) *CreateStateMachineAliasInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateStateMachineAliasInput) SetName(v string) *CreateStateMachineAliasInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *CreateStateMachineAliasInput) SetRoutingConfiguration(v []*RoutingConfigurationListItem) *CreateStateMachineAliasInput {
+	s.RoutingConfiguration = v
+	return s
+}
+
+type CreateStateMachineAliasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date the state machine alias was created.
+	//
+	// CreationDate is a required field
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) that identifies the created state machine
+	// alias.
+	//
+	// StateMachineAliasArn is a required field
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStateMachineAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStateMachineAliasOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *CreateStateMachineAliasOutput) SetCreationDate(v time.Time) *CreateStateMachineAliasOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *CreateStateMachineAliasOutput) SetStateMachineAliasArn(v string) *CreateStateMachineAliasOutput {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
 type CreateStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3631,6 +4839,10 @@ type CreateStateMachineInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// Set to true to publish the first version of the state machine during creation.
+	// The default is false.
+	Publish *bool `locationName:"publish" type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
 	//
 	// RoleArn is a required field
@@ -3654,6 +4866,15 @@ type CreateStateMachineInput struct {
 	// is STANDARD. You cannot update the type of a state machine once it has been
 	// created.
 	Type *string `locationName:"type" type:"string" enum:"StateMachineType"`
+
+	// Sets description about the state machine version. You can only set the description
+	// if the publish parameter is set to true. Otherwise, if you set versionDescription,
+	// but publish to false, this API action throws ValidationException.
+	//
+	// VersionDescription is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStateMachineInput's
+	// String and GoString methods.
+	VersionDescription *string `locationName:"versionDescription" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -3735,6 +4956,12 @@ func (s *CreateStateMachineInput) SetName(v string) *CreateStateMachineInput {
 	return s
 }
 
+// SetPublish sets the Publish field's value.
+func (s *CreateStateMachineInput) SetPublish(v bool) *CreateStateMachineInput {
+	s.Publish = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *CreateStateMachineInput) SetRoleArn(v string) *CreateStateMachineInput {
 	s.RoleArn = &v
@@ -3759,6 +4986,12 @@ func (s *CreateStateMachineInput) SetType(v string) *CreateStateMachineInput {
 	return s
 }
 
+// SetVersionDescription sets the VersionDescription field's value.
+func (s *CreateStateMachineInput) SetVersionDescription(v string) *CreateStateMachineInput {
+	s.VersionDescription = &v
+	return s
+}
+
 type CreateStateMachineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3771,6 +5004,11 @@ type CreateStateMachineOutput struct {
 	//
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) that identifies the created state machine
+	// version. If you do not set the publish parameter to true, this field returns
+	// null value.
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -3800,6 +5038,12 @@ func (s *CreateStateMachineOutput) SetCreationDate(v time.Time) *CreateStateMach
 // SetStateMachineArn sets the StateMachineArn field's value.
 func (s *CreateStateMachineOutput) SetStateMachineArn(v string) *CreateStateMachineOutput {
 	s.StateMachineArn = &v
+	return s
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *CreateStateMachineOutput) SetStateMachineVersionArn(v string) *CreateStateMachineOutput {
+	s.StateMachineVersionArn = &v
 	return s
 }
 
@@ -3874,6 +5118,77 @@ func (s DeleteActivityOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteStateMachineAliasInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the state machine alias to delete.
+	//
+	// StateMachineAliasArn is a required field
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStateMachineAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStateMachineAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStateMachineAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStateMachineAliasInput"}
+	if s.StateMachineAliasArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineAliasArn"))
+	}
+	if s.StateMachineAliasArn != nil && len(*s.StateMachineAliasArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineAliasArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *DeleteStateMachineAliasInput) SetStateMachineAliasArn(v string) *DeleteStateMachineAliasInput {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
+type DeleteStateMachineAliasOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStateMachineAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStateMachineAliasOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3942,6 +5257,77 @@ func (s DeleteStateMachineOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteStateMachineOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteStateMachineVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the state machine version to delete.
+	//
+	// StateMachineVersionArn is a required field
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStateMachineVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStateMachineVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStateMachineVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStateMachineVersionInput"}
+	if s.StateMachineVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineVersionArn"))
+	}
+	if s.StateMachineVersionArn != nil && len(*s.StateMachineVersionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineVersionArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *DeleteStateMachineVersionInput) SetStateMachineVersionArn(v string) *DeleteStateMachineVersionInput {
+	s.StateMachineVersionArn = &v
+	return s
+}
+
+type DeleteStateMachineVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStateMachineVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStateMachineVersionOutput) GoString() string {
 	return s.String()
 }
 
@@ -4187,17 +5573,33 @@ type DescribeExecutionOutput struct {
 	// StartDate is a required field
 	StartDate *time.Time `locationName:"startDate" type:"timestamp" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the state machine alias associated with
+	// the execution. The alias ARN is a combination of state machine ARN and the
+	// alias name separated by a colon (:). For example, stateMachineARN:PROD.
+	//
+	// If you start an execution from a StartExecution request with a state machine
+	// version ARN, this field will be null.
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the executed stated machine.
 	//
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the state machine version associated with
+	// the execution. The version ARN is a combination of state machine ARN and
+	// the version number separated by a colon (:). For example, stateMachineARN:1.
+	//
+	// If you start an execution from a StartExecution request without specifying
+	// a state machine version or alias ARN, Step Functions returns a null value.
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string"`
 
 	// The current status of the execution.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ExecutionStatus"`
 
-	// If the execution has already ended, the date the execution stopped.
+	// If the execution ended, the date the execution stopped.
 	StopDate *time.Time `locationName:"stopDate" type:"timestamp"`
 
 	// The X-Ray trace header that was passed to the execution.
@@ -4282,9 +5684,21 @@ func (s *DescribeExecutionOutput) SetStartDate(v time.Time) *DescribeExecutionOu
 	return s
 }
 
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *DescribeExecutionOutput) SetStateMachineAliasArn(v string) *DescribeExecutionOutput {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
 // SetStateMachineArn sets the StateMachineArn field's value.
 func (s *DescribeExecutionOutput) SetStateMachineArn(v string) *DescribeExecutionOutput {
 	s.StateMachineArn = &v
+	return s
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *DescribeExecutionOutput) SetStateMachineVersionArn(v string) *DescribeExecutionOutput {
+	s.StateMachineVersionArn = &v
 	return s
 }
 
@@ -4492,6 +5906,137 @@ func (s *DescribeMapRunOutput) SetToleratedFailurePercentage(v float64) *Describ
 	return s
 }
 
+type DescribeStateMachineAliasInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the state machine alias.
+	//
+	// StateMachineAliasArn is a required field
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStateMachineAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStateMachineAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStateMachineAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStateMachineAliasInput"}
+	if s.StateMachineAliasArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineAliasArn"))
+	}
+	if s.StateMachineAliasArn != nil && len(*s.StateMachineAliasArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineAliasArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *DescribeStateMachineAliasInput) SetStateMachineAliasArn(v string) *DescribeStateMachineAliasInput {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
+type DescribeStateMachineAliasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date the state machine alias was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// A description of the alias.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeStateMachineAliasOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The name of the state machine alias.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The routing configuration of the alias.
+	RoutingConfiguration []*RoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the state machine alias.
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string"`
+
+	// The date the state machine alias was last updated.
+	//
+	// For a newly created state machine, this is the same as the creation date.
+	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStateMachineAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStateMachineAliasOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *DescribeStateMachineAliasOutput) SetCreationDate(v time.Time) *DescribeStateMachineAliasOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeStateMachineAliasOutput) SetDescription(v string) *DescribeStateMachineAliasOutput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeStateMachineAliasOutput) SetName(v string) *DescribeStateMachineAliasOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *DescribeStateMachineAliasOutput) SetRoutingConfiguration(v []*RoutingConfigurationListItem) *DescribeStateMachineAliasOutput {
+	s.RoutingConfiguration = v
+	return s
+}
+
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *DescribeStateMachineAliasOutput) SetStateMachineAliasArn(v string) *DescribeStateMachineAliasOutput {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
+// SetUpdateDate sets the UpdateDate field's value.
+func (s *DescribeStateMachineAliasOutput) SetUpdateDate(v time.Time) *DescribeStateMachineAliasOutput {
+	s.UpdateDate = &v
+	return s
+}
+
 type DescribeStateMachineForExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4573,6 +6118,14 @@ type DescribeStateMachineForExecutionOutput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The revision identifier for the state machine. The first revision ID when
+	// you create the state machine is null.
+	//
+	// Use the state machine revisionId parameter to compare the revision of a state
+	// machine with the configuration of the state machine used for executions without
+	// performing a diff of the properties, such as definition and roleArn.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM role of the State Machine for the
 	// execution.
 	//
@@ -4642,6 +6195,12 @@ func (s *DescribeStateMachineForExecutionOutput) SetName(v string) *DescribeStat
 	return s
 }
 
+// SetRevisionId sets the RevisionId field's value.
+func (s *DescribeStateMachineForExecutionOutput) SetRevisionId(v string) *DescribeStateMachineForExecutionOutput {
+	s.RevisionId = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *DescribeStateMachineForExecutionOutput) SetRoleArn(v string) *DescribeStateMachineForExecutionOutput {
 	s.RoleArn = &v
@@ -4669,7 +6228,12 @@ func (s *DescribeStateMachineForExecutionOutput) SetUpdateDate(v time.Time) *Des
 type DescribeStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the state machine to describe.
+	// The Amazon Resource Name (ARN) of the state machine for which you want the
+	// information.
+	//
+	// If you specify a state machine version ARN, this API returns details about
+	// that version. The version ARN is a combination of state machine ARN and the
+	// version number separated by a colon (:). For example, stateMachineARN:1.
 	//
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
@@ -4720,6 +6284,8 @@ type DescribeStateMachineOutput struct {
 
 	// The date the state machine is created.
 	//
+	// For a state machine version, creationDate is the date the version was created.
+	//
 	// CreationDate is a required field
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" required:"true"`
 
@@ -4732,6 +6298,13 @@ type DescribeStateMachineOutput struct {
 	//
 	// Definition is a required field
 	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The description of the state machine version.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeStateMachineOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// A user-defined or an auto-generated string that identifies a Map state. This
 	// parameter is present only if the stateMachineArn specified in input is a
@@ -4761,6 +6334,13 @@ type DescribeStateMachineOutput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The revision identifier for the state machine.
+	//
+	// Use the revisionId parameter to compare between versions of a state machine
+	// configuration used for executions without performing a diff of the properties,
+	// such as definition and roleArn.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM role used when creating this state
 	// machine. (The IAM role maintains security by granting Step Functions access
 	// to Amazon Web Services resources.)
@@ -4769,6 +6349,10 @@ type DescribeStateMachineOutput struct {
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) that identifies the state machine.
+	//
+	// If you specified a state machine version ARN in your request, the API returns
+	// the version ARN. The version ARN is a combination of state machine ARN and
+	// the version number separated by a colon (:). For example, stateMachineARN:1.
 	//
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
@@ -4815,6 +6399,12 @@ func (s *DescribeStateMachineOutput) SetDefinition(v string) *DescribeStateMachi
 	return s
 }
 
+// SetDescription sets the Description field's value.
+func (s *DescribeStateMachineOutput) SetDescription(v string) *DescribeStateMachineOutput {
+	s.Description = &v
+	return s
+}
+
 // SetLabel sets the Label field's value.
 func (s *DescribeStateMachineOutput) SetLabel(v string) *DescribeStateMachineOutput {
 	s.Label = &v
@@ -4830,6 +6420,12 @@ func (s *DescribeStateMachineOutput) SetLoggingConfiguration(v *LoggingConfigura
 // SetName sets the Name field's value.
 func (s *DescribeStateMachineOutput) SetName(v string) *DescribeStateMachineOutput {
 	s.Name = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *DescribeStateMachineOutput) SetRevisionId(v string) *DescribeStateMachineOutput {
+	s.RevisionId = &v
 	return s
 }
 
@@ -5201,10 +6797,27 @@ type ExecutionListItem struct {
 	// StartDate is a required field
 	StartDate *time.Time `locationName:"startDate" type:"timestamp" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the executed state machine.
+	// The Amazon Resource Name (ARN) of the state machine alias used to start an
+	// execution.
+	//
+	// If the state machine execution was started with an unqualified ARN or a version
+	// ARN, it returns null.
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the state machine that ran the execution.
 	//
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the state machine version associated with
+	// the execution.
+	//
+	// If the state machine execution was started with an unqualified ARN, it returns
+	// null.
+	//
+	// If the execution was started using a stateMachineAliasArn, both the stateMachineAliasArn
+	// and stateMachineVersionArn parameters contain the respective values.
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string"`
 
 	// The current status of the execution.
 	//
@@ -5263,9 +6876,21 @@ func (s *ExecutionListItem) SetStartDate(v time.Time) *ExecutionListItem {
 	return s
 }
 
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *ExecutionListItem) SetStateMachineAliasArn(v string) *ExecutionListItem {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
 // SetStateMachineArn sets the StateMachineArn field's value.
 func (s *ExecutionListItem) SetStateMachineArn(v string) *ExecutionListItem {
 	s.StateMachineArn = &v
+	return s
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *ExecutionListItem) SetStateMachineVersionArn(v string) *ExecutionListItem {
+	s.StateMachineVersionArn = &v
 	return s
 }
 
@@ -5299,6 +6924,14 @@ type ExecutionStartedEventDetails struct {
 	// The Amazon Resource Name (ARN) of the IAM role used for executing Lambda
 	// tasks.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) that identifies a state machine alias used
+	// for starting the state machine execution.
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) that identifies a state machine version used
+	// for starting the state machine execution.
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -5334,6 +6967,18 @@ func (s *ExecutionStartedEventDetails) SetInputDetails(v *HistoryEventExecutionD
 // SetRoleArn sets the RoleArn field's value.
 func (s *ExecutionStartedEventDetails) SetRoleArn(v string) *ExecutionStartedEventDetails {
 	s.RoleArn = &v
+	return s
+}
+
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *ExecutionStartedEventDetails) SetStateMachineAliasArn(v string) *ExecutionStartedEventDetails {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *ExecutionStartedEventDetails) SetStateMachineVersionArn(v string) *ExecutionStartedEventDetails {
+	s.StateMachineVersionArn = &v
 	return s
 }
 
@@ -7067,6 +8712,11 @@ type ListExecutionsInput struct {
 	// The Amazon Resource Name (ARN) of the state machine whose executions is listed.
 	//
 	// You can specify either a mapRunArn or a stateMachineArn, but not both.
+	//
+	// You can also return a list of executions associated with a specific alias
+	// (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html)
+	// or version (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html),
+	// by specifying an alias ARN or a version ARN in the stateMachineArn parameter.
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string"`
 
 	// If specified, only list the executions whose current execution status matches
@@ -7312,6 +8962,260 @@ func (s *ListMapRunsOutput) SetMapRuns(v []*MapRunListItem) *ListMapRunsOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListMapRunsOutput) SetNextToken(v string) *ListMapRunsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListStateMachineAliasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results that are returned per call. You can use nextToken
+	// to obtain further pages of results. The default is 100 and the maximum allowed
+	// page size is 1000. A value of 0 uses the default.
+	//
+	// This is only an upper limit. The actual number of results returned per call
+	// might be fewer than the specified maximum.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours. Using an expired
+	// pagination token will return an HTTP 400 InvalidToken error.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the state machine for which you want to
+	// list aliases.
+	//
+	// If you specify a state machine version ARN, this API returns a list of aliases
+	// for that version.
+	//
+	// StateMachineArn is a required field
+	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStateMachineAliasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStateMachineAliasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStateMachineAliasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStateMachineAliasesInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StateMachineArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineArn"))
+	}
+	if s.StateMachineArn != nil && len(*s.StateMachineArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStateMachineAliasesInput) SetMaxResults(v int64) *ListStateMachineAliasesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStateMachineAliasesInput) SetNextToken(v string) *ListStateMachineAliasesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStateMachineArn sets the StateMachineArn field's value.
+func (s *ListStateMachineAliasesInput) SetStateMachineArn(v string) *ListStateMachineAliasesInput {
+	s.StateMachineArn = &v
+	return s
+}
+
+type ListStateMachineAliasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours. Using an expired
+	// pagination token will return an HTTP 400 InvalidToken error.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// Aliases for the state machine.
+	//
+	// StateMachineAliases is a required field
+	StateMachineAliases []*StateMachineAliasListItem `locationName:"stateMachineAliases" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStateMachineAliasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStateMachineAliasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStateMachineAliasesOutput) SetNextToken(v string) *ListStateMachineAliasesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStateMachineAliases sets the StateMachineAliases field's value.
+func (s *ListStateMachineAliasesOutput) SetStateMachineAliases(v []*StateMachineAliasListItem) *ListStateMachineAliasesOutput {
+	s.StateMachineAliases = v
+	return s
+}
+
+type ListStateMachineVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results that are returned per call. You can use nextToken
+	// to obtain further pages of results. The default is 100 and the maximum allowed
+	// page size is 1000. A value of 0 uses the default.
+	//
+	// This is only an upper limit. The actual number of results returned per call
+	// might be fewer than the specified maximum.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours. Using an expired
+	// pagination token will return an HTTP 400 InvalidToken error.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the state machine.
+	//
+	// StateMachineArn is a required field
+	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStateMachineVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStateMachineVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStateMachineVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStateMachineVersionsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StateMachineArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineArn"))
+	}
+	if s.StateMachineArn != nil && len(*s.StateMachineArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStateMachineVersionsInput) SetMaxResults(v int64) *ListStateMachineVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStateMachineVersionsInput) SetNextToken(v string) *ListStateMachineVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStateMachineArn sets the StateMachineArn field's value.
+func (s *ListStateMachineVersionsInput) SetStateMachineArn(v string) *ListStateMachineVersionsInput {
+	s.StateMachineArn = &v
+	return s
+}
+
+type ListStateMachineVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours. Using an expired
+	// pagination token will return an HTTP 400 InvalidToken error.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// Versions for the state machine.
+	//
+	// StateMachineVersions is a required field
+	StateMachineVersions []*StateMachineVersionListItem `locationName:"stateMachineVersions" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStateMachineVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStateMachineVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStateMachineVersionsOutput) SetNextToken(v string) *ListStateMachineVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStateMachineVersions sets the StateMachineVersions field's value.
+func (s *ListStateMachineVersionsOutput) SetStateMachineVersions(v []*StateMachineVersionListItem) *ListStateMachineVersionsOutput {
+	s.StateMachineVersions = v
 	return s
 }
 
@@ -8161,8 +10065,132 @@ func (s *MissingRequiredParameter) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Could not find the referenced resource. Only state machine and activity ARNs
-// are supported.
+type PublishStateMachineVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional description of the state machine version.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PublishStateMachineVersionInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// Only publish the state machine version if the current state machine's revision
+	// ID matches the specified ID.
+	//
+	// Use this option to avoid publishing a version if the state machine changed
+	// since you last updated it. If the specified revision ID doesn't match the
+	// state machine's current revision ID, the API returns ConflictException.
+	//
+	// To specify an initial revision ID for a state machine with no revision ID
+	// assigned, specify the string INITIAL for the revisionId parameter. For example,
+	// you can specify a revisionID of INITIAL when you create a state machine using
+	// the CreateStateMachine API action.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the state machine.
+	//
+	// StateMachineArn is a required field
+	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublishStateMachineVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublishStateMachineVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PublishStateMachineVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PublishStateMachineVersionInput"}
+	if s.StateMachineArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineArn"))
+	}
+	if s.StateMachineArn != nil && len(*s.StateMachineArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *PublishStateMachineVersionInput) SetDescription(v string) *PublishStateMachineVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *PublishStateMachineVersionInput) SetRevisionId(v string) *PublishStateMachineVersionInput {
+	s.RevisionId = &v
+	return s
+}
+
+// SetStateMachineArn sets the StateMachineArn field's value.
+func (s *PublishStateMachineVersionInput) SetStateMachineArn(v string) *PublishStateMachineVersionInput {
+	s.StateMachineArn = &v
+	return s
+}
+
+type PublishStateMachineVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date the version was created.
+	//
+	// CreationDate is a required field
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) (ARN) that identifies the state machine version.
+	//
+	// StateMachineVersionArn is a required field
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublishStateMachineVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublishStateMachineVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *PublishStateMachineVersionOutput) SetCreationDate(v time.Time) *PublishStateMachineVersionOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *PublishStateMachineVersionOutput) SetStateMachineVersionArn(v string) *PublishStateMachineVersionOutput {
+	s.StateMachineVersionArn = &v
+	return s
+}
+
+// Could not find the referenced resource.
 type ResourceNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8226,6 +10254,78 @@ func (s *ResourceNotFound) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains details about the routing configuration of a state machine alias.
+// In a routing configuration, you define an array of objects that specify up
+// to two state machine versions. You also specify the percentage of traffic
+// to be routed to each version.
+type RoutingConfigurationListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies one or two state machine versions
+	// defined in the routing configuration.
+	//
+	// If you specify the ARN of a second version, it must belong to the same state
+	// machine as the first version.
+	//
+	// StateMachineVersionArn is a required field
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string" required:"true"`
+
+	// The percentage of traffic you want to route to the second state machine version.
+	// The sum of the weights in the routing configuration must be equal to 100.
+	//
+	// Weight is a required field
+	Weight *int64 `locationName:"weight" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingConfigurationListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingConfigurationListItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RoutingConfigurationListItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RoutingConfigurationListItem"}
+	if s.StateMachineVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineVersionArn"))
+	}
+	if s.StateMachineVersionArn != nil && len(*s.StateMachineVersionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineVersionArn", 1))
+	}
+	if s.Weight == nil {
+		invalidParams.Add(request.NewErrParamRequired("Weight"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *RoutingConfigurationListItem) SetStateMachineVersionArn(v string) *RoutingConfigurationListItem {
+	s.StateMachineVersionArn = &v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *RoutingConfigurationListItem) SetWeight(v int64) *RoutingConfigurationListItem {
+	s.Weight = &v
+	return s
 }
 
 type SendTaskFailureInput struct {
@@ -8492,6 +10592,72 @@ func (s SendTaskSuccessOutput) GoString() string {
 	return s.String()
 }
 
+// The request would cause a service quota to be exceeded.
+//
+// HTTP Status Code: 402
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type StartExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8510,9 +10676,9 @@ type StartExecutionInput struct {
 	// String and GoString methods.
 	Input *string `locationName:"input" type:"string" sensitive:"true"`
 
-	// The name of the execution. This name must be unique for your Amazon Web Services
-	// account, region, and state machine for 90 days. For more information, see
-	// Limits Related to State Machine Executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions)
+	// Optional name of the execution. This name must be unique for your Amazon
+	// Web Services account, Region, and state machine for 90 days. For more information,
+	// see Limits Related to State Machine Executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions)
 	// in the Step Functions Developer Guide.
 	//
 	// A name must not contain:
@@ -8532,6 +10698,27 @@ type StartExecutionInput struct {
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the state machine to execute.
+	//
+	// The stateMachineArn parameter accepts one of the following inputs:
+	//
+	//    * An unqualified state machine ARN – Refers to a state machine ARN that
+	//    isn't qualified with a version or alias ARN. The following is an example
+	//    of an unqualified state machine ARN. arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine>
+	//    Step Functions doesn't associate state machine executions that you start
+	//    with an unqualified ARN with a version. This is true even if that version
+	//    uses the same revision that the execution used.
+	//
+	//    * A state machine version ARN – Refers to a version ARN, which is a
+	//    combination of state machine ARN and the version number separated by a
+	//    colon (:). The following is an example of the ARN for version 10. arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine>:10
+	//    Step Functions doesn't associate executions that you start with a version
+	//    ARN with any aliases that point to that version.
+	//
+	//    * A state machine alias ARN – Refers to an alias ARN, which is a combination
+	//    of state machine ARN and the alias name separated by a colon (:). The
+	//    following is an example of the ARN for an alias named PROD. arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine:PROD>
+	//    Step Functions associates executions that you start with an alias ARN
+	//    with that alias and the state machine version used for that execution.
 	//
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
@@ -9045,6 +11232,53 @@ func (s *StateExitedEventDetails) SetOutputDetails(v *HistoryEventExecutionDataD
 	return s
 }
 
+// Contains details about a specific state machine alias.
+type StateMachineAliasListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date of a state machine alias.
+	//
+	// CreationDate is a required field
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) that identifies a state machine alias. The
+	// alias ARN is a combination of state machine ARN and the alias name separated
+	// by a colon (:). For example, stateMachineARN:PROD.
+	//
+	// StateMachineAliasArn is a required field
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StateMachineAliasListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StateMachineAliasListItem) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *StateMachineAliasListItem) SetCreationDate(v time.Time) *StateMachineAliasListItem {
+	s.CreationDate = &v
+	return s
+}
+
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *StateMachineAliasListItem) SetStateMachineAliasArn(v string) *StateMachineAliasListItem {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
 // A state machine with the same name but a different definition or role ARN
 // already exists.
 type StateMachineAlreadyExists struct {
@@ -9444,6 +11678,53 @@ func (s *StateMachineTypeNotSupported) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *StateMachineTypeNotSupported) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains details about a specific state machine version.
+type StateMachineVersionListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date of a state machine version.
+	//
+	// CreationDate is a required field
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) that identifies a state machine version. The
+	// version ARN is a combination of state machine ARN and the version number
+	// separated by a colon (:). For example, stateMachineARN:1.
+	//
+	// StateMachineVersionArn is a required field
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StateMachineVersionListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StateMachineVersionListItem) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *StateMachineVersionListItem) SetCreationDate(v time.Time) *StateMachineVersionListItem {
+	s.CreationDate = &v
+	return s
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *StateMachineVersionListItem) SetStateMachineVersionArn(v string) *StateMachineVersionListItem {
+	s.StateMachineVersionArn = &v
+	return s
 }
 
 type StopExecutionInput struct {
@@ -10724,6 +13005,126 @@ func (s UpdateMapRunOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateStateMachineAliasInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the state machine alias.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStateMachineAliasInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The routing configuration of the state machine alias.
+	//
+	// An array of RoutingConfig objects that specifies up to two state machine
+	// versions that the alias starts executions for.
+	RoutingConfiguration []*RoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the state machine alias.
+	//
+	// StateMachineAliasArn is a required field
+	StateMachineAliasArn *string `locationName:"stateMachineAliasArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStateMachineAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStateMachineAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStateMachineAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStateMachineAliasInput"}
+	if s.RoutingConfiguration != nil && len(s.RoutingConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingConfiguration", 1))
+	}
+	if s.StateMachineAliasArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineAliasArn"))
+	}
+	if s.StateMachineAliasArn != nil && len(*s.StateMachineAliasArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineAliasArn", 1))
+	}
+	if s.RoutingConfiguration != nil {
+		for i, v := range s.RoutingConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RoutingConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateStateMachineAliasInput) SetDescription(v string) *UpdateStateMachineAliasInput {
+	s.Description = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *UpdateStateMachineAliasInput) SetRoutingConfiguration(v []*RoutingConfigurationListItem) *UpdateStateMachineAliasInput {
+	s.RoutingConfiguration = v
+	return s
+}
+
+// SetStateMachineAliasArn sets the StateMachineAliasArn field's value.
+func (s *UpdateStateMachineAliasInput) SetStateMachineAliasArn(v string) *UpdateStateMachineAliasInput {
+	s.StateMachineAliasArn = &v
+	return s
+}
+
+type UpdateStateMachineAliasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time the state machine alias was updated.
+	//
+	// UpdateDate is a required field
+	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStateMachineAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStateMachineAliasOutput) GoString() string {
+	return s.String()
+}
+
+// SetUpdateDate sets the UpdateDate field's value.
+func (s *UpdateStateMachineAliasOutput) SetUpdateDate(v time.Time) *UpdateStateMachineAliasOutput {
+	s.UpdateDate = &v
+	return s
+}
+
 type UpdateStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10735,8 +13136,13 @@ type UpdateStateMachineInput struct {
 	// String and GoString methods.
 	Definition *string `locationName:"definition" min:"1" type:"string" sensitive:"true"`
 
-	// The LoggingConfiguration data type is used to set CloudWatch Logs options.
+	// Use the LoggingConfiguration data type to set CloudWatch Logs options.
 	LoggingConfiguration *LoggingConfiguration `locationName:"loggingConfiguration" type:"structure"`
+
+	// Specifies whether the state machine version is published. The default is
+	// false. To publish a version after updating the state machine, set publish
+	// to true.
+	Publish *bool `locationName:"publish" type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the IAM role of the state machine.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
@@ -10748,6 +13154,16 @@ type UpdateStateMachineInput struct {
 
 	// Selects whether X-Ray tracing is enabled.
 	TracingConfiguration *TracingConfiguration `locationName:"tracingConfiguration" type:"structure"`
+
+	// An optional description of the state machine version to publish.
+	//
+	// You can only specify the versionDescription parameter if you've set publish
+	// to true.
+	//
+	// VersionDescription is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStateMachineInput's
+	// String and GoString methods.
+	VersionDescription *string `locationName:"versionDescription" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -10807,6 +13223,12 @@ func (s *UpdateStateMachineInput) SetLoggingConfiguration(v *LoggingConfiguratio
 	return s
 }
 
+// SetPublish sets the Publish field's value.
+func (s *UpdateStateMachineInput) SetPublish(v bool) *UpdateStateMachineInput {
+	s.Publish = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *UpdateStateMachineInput) SetRoleArn(v string) *UpdateStateMachineInput {
 	s.RoleArn = &v
@@ -10825,8 +13247,22 @@ func (s *UpdateStateMachineInput) SetTracingConfiguration(v *TracingConfiguratio
 	return s
 }
 
+// SetVersionDescription sets the VersionDescription field's value.
+func (s *UpdateStateMachineInput) SetVersionDescription(v string) *UpdateStateMachineInput {
+	s.VersionDescription = &v
+	return s
+}
+
 type UpdateStateMachineOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The revision identifier for the updated state machine.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the published state machine version.
+	//
+	// If the publish parameter isn't set to true, this field returns null.
+	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string"`
 
 	// The date and time the state machine was updated.
 	//
@@ -10850,6 +13286,18 @@ func (s UpdateStateMachineOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateStateMachineOutput) GoString() string {
 	return s.String()
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *UpdateStateMachineOutput) SetRevisionId(v string) *UpdateStateMachineOutput {
+	s.RevisionId = &v
+	return s
+}
+
+// SetStateMachineVersionArn sets the StateMachineVersionArn field's value.
+func (s *UpdateStateMachineOutput) SetStateMachineVersionArn(v string) *UpdateStateMachineOutput {
+	s.StateMachineVersionArn = &v
+	return s
 }
 
 // SetUpdateDate sets the UpdateDate field's value.
@@ -11308,6 +13756,9 @@ const (
 
 	// ValidationExceptionReasonCannotUpdateCompletedMapRun is a ValidationExceptionReason enum value
 	ValidationExceptionReasonCannotUpdateCompletedMapRun = "CANNOT_UPDATE_COMPLETED_MAP_RUN"
+
+	// ValidationExceptionReasonInvalidRoutingConfiguration is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidRoutingConfiguration = "INVALID_ROUTING_CONFIGURATION"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -11316,5 +13767,6 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonApiDoesNotSupportLabeledArns,
 		ValidationExceptionReasonMissingRequiredParameter,
 		ValidationExceptionReasonCannotUpdateCompletedMapRun,
+		ValidationExceptionReasonInvalidRoutingConfiguration,
 	}
 }

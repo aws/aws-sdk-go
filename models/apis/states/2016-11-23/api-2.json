@@ -46,9 +46,29 @@
         {"shape":"StateMachineDeleting"},
         {"shape":"StateMachineLimitExceeded"},
         {"shape":"StateMachineTypeNotSupported"},
-        {"shape":"TooManyTags"}
+        {"shape":"TooManyTags"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
+    },
+    "CreateStateMachineAlias":{
+      "name":"CreateStateMachineAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateStateMachineAliasInput"},
+      "output":{"shape":"CreateStateMachineAliasOutput"},
+      "errors":[
+        {"shape":"InvalidArn"},
+        {"shape":"InvalidName"},
+        {"shape":"ValidationException"},
+        {"shape":"StateMachineDeleting"},
+        {"shape":"ResourceNotFound"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
     },
     "DeleteActivity":{
       "name":"DeleteActivity",
@@ -73,6 +93,35 @@
       "errors":[
         {"shape":"InvalidArn"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "DeleteStateMachineAlias":{
+      "name":"DeleteStateMachineAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteStateMachineAliasInput"},
+      "output":{"shape":"DeleteStateMachineAliasOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InvalidArn"},
+        {"shape":"ResourceNotFound"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "DeleteStateMachineVersion":{
+      "name":"DeleteStateMachineVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteStateMachineVersionInput"},
+      "output":{"shape":"DeleteStateMachineVersionOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InvalidArn"},
+        {"shape":"ConflictException"}
       ]
     },
     "DescribeActivity":{
@@ -125,6 +174,20 @@
       "errors":[
         {"shape":"InvalidArn"},
         {"shape":"StateMachineDoesNotExist"}
+      ]
+    },
+    "DescribeStateMachineAlias":{
+      "name":"DescribeStateMachineAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStateMachineAliasInput"},
+      "output":{"shape":"DescribeStateMachineAliasOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InvalidArn"},
+        {"shape":"ResourceNotFound"}
       ]
     },
     "DescribeStateMachineForExecution":{
@@ -211,6 +274,36 @@
         {"shape":"InvalidToken"}
       ]
     },
+    "ListStateMachineAliases":{
+      "name":"ListStateMachineAliases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStateMachineAliasesInput"},
+      "output":{"shape":"ListStateMachineAliasesOutput"},
+      "errors":[
+        {"shape":"InvalidArn"},
+        {"shape":"InvalidToken"},
+        {"shape":"ResourceNotFound"},
+        {"shape":"StateMachineDoesNotExist"},
+        {"shape":"StateMachineDeleting"}
+      ]
+    },
+    "ListStateMachineVersions":{
+      "name":"ListStateMachineVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStateMachineVersionsInput"},
+      "output":{"shape":"ListStateMachineVersionsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InvalidArn"},
+        {"shape":"InvalidToken"}
+      ]
+    },
     "ListStateMachines":{
       "name":"ListStateMachines",
       "http":{
@@ -235,6 +328,24 @@
         {"shape":"InvalidArn"},
         {"shape":"ResourceNotFound"}
       ]
+    },
+    "PublishStateMachineVersion":{
+      "name":"PublishStateMachineVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PublishStateMachineVersionInput"},
+      "output":{"shape":"PublishStateMachineVersionOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"StateMachineDeleting"},
+        {"shape":"StateMachineDoesNotExist"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"InvalidArn"}
+      ],
+      "idempotent":true
     },
     "SendTaskFailure":{
       "name":"SendTaskFailure",
@@ -388,9 +499,26 @@
         {"shape":"MissingRequiredParameter"},
         {"shape":"StateMachineDeleting"},
         {"shape":"StateMachineDoesNotExist"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
+    },
+    "UpdateStateMachineAlias":{
+      "name":"UpdateStateMachineAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateStateMachineAliasInput"},
+      "output":{"shape":"UpdateStateMachineAliasOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InvalidArn"},
+        {"shape":"ResourceNotFound"},
+        {"shape":"ConflictException"}
+      ]
     }
   },
   "shapes":{
@@ -483,6 +611,11 @@
       },
       "exception":true
     },
+    "AliasDescription":{
+      "type":"string",
+      "max":256,
+      "sensitive":true
+    },
     "Arn":{
       "type":"string",
       "max":256,
@@ -503,6 +636,12 @@
         "billedDurationInMilliseconds":{"shape":"BilledDuration"}
       }
     },
+    "CharacterRestrictedName":{
+      "type":"string",
+      "max":80,
+      "min":1,
+      "pattern":"^(?=.*[a-zA-Z_\\-\\.])[a-zA-Z0-9_\\-\\.]+$"
+    },
     "CloudWatchEventsExecutionDataDetails":{
       "type":"structure",
       "members":{
@@ -514,6 +653,13 @@
       "members":{
         "logGroupArn":{"shape":"Arn"}
       }
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "ConnectorParameters":{
       "type":"string",
@@ -540,6 +686,29 @@
         "creationDate":{"shape":"Timestamp"}
       }
     },
+    "CreateStateMachineAliasInput":{
+      "type":"structure",
+      "required":[
+        "name",
+        "routingConfiguration"
+      ],
+      "members":{
+        "description":{"shape":"AliasDescription"},
+        "name":{"shape":"CharacterRestrictedName"},
+        "routingConfiguration":{"shape":"RoutingConfigurationList"}
+      }
+    },
+    "CreateStateMachineAliasOutput":{
+      "type":"structure",
+      "required":[
+        "stateMachineAliasArn",
+        "creationDate"
+      ],
+      "members":{
+        "stateMachineAliasArn":{"shape":"Arn"},
+        "creationDate":{"shape":"Timestamp"}
+      }
+    },
     "CreateStateMachineInput":{
       "type":"structure",
       "required":[
@@ -554,7 +723,9 @@
         "type":{"shape":"StateMachineType"},
         "loggingConfiguration":{"shape":"LoggingConfiguration"},
         "tags":{"shape":"TagList"},
-        "tracingConfiguration":{"shape":"TracingConfiguration"}
+        "tracingConfiguration":{"shape":"TracingConfiguration"},
+        "publish":{"shape":"Publish"},
+        "versionDescription":{"shape":"VersionDescription"}
       }
     },
     "CreateStateMachineOutput":{
@@ -565,7 +736,8 @@
       ],
       "members":{
         "stateMachineArn":{"shape":"Arn"},
-        "creationDate":{"shape":"Timestamp"}
+        "creationDate":{"shape":"Timestamp"},
+        "stateMachineVersionArn":{"shape":"Arn"}
       }
     },
     "Definition":{
@@ -586,6 +758,18 @@
       "members":{
       }
     },
+    "DeleteStateMachineAliasInput":{
+      "type":"structure",
+      "required":["stateMachineAliasArn"],
+      "members":{
+        "stateMachineAliasArn":{"shape":"Arn"}
+      }
+    },
+    "DeleteStateMachineAliasOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteStateMachineInput":{
       "type":"structure",
       "required":["stateMachineArn"],
@@ -594,6 +778,18 @@
       }
     },
     "DeleteStateMachineOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteStateMachineVersionInput":{
+      "type":"structure",
+      "required":["stateMachineVersionArn"],
+      "members":{
+        "stateMachineVersionArn":{"shape":"LongArn"}
+      }
+    },
+    "DeleteStateMachineVersionOutput":{
       "type":"structure",
       "members":{
       }
@@ -647,7 +843,9 @@
         "traceHeader":{"shape":"TraceHeader"},
         "mapRunArn":{"shape":"LongArn"},
         "error":{"shape":"SensitiveError"},
-        "cause":{"shape":"SensitiveCause"}
+        "cause":{"shape":"SensitiveCause"},
+        "stateMachineVersionArn":{"shape":"Arn"},
+        "stateMachineAliasArn":{"shape":"Arn"}
       }
     },
     "DescribeMapRunInput":{
@@ -683,6 +881,24 @@
         "executionCounts":{"shape":"MapRunExecutionCounts"}
       }
     },
+    "DescribeStateMachineAliasInput":{
+      "type":"structure",
+      "required":["stateMachineAliasArn"],
+      "members":{
+        "stateMachineAliasArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeStateMachineAliasOutput":{
+      "type":"structure",
+      "members":{
+        "stateMachineAliasArn":{"shape":"Arn"},
+        "name":{"shape":"Name"},
+        "description":{"shape":"AliasDescription"},
+        "routingConfiguration":{"shape":"RoutingConfigurationList"},
+        "creationDate":{"shape":"Timestamp"},
+        "updateDate":{"shape":"Timestamp"}
+      }
+    },
     "DescribeStateMachineForExecutionInput":{
       "type":"structure",
       "required":["executionArn"],
@@ -708,7 +924,8 @@
         "loggingConfiguration":{"shape":"LoggingConfiguration"},
         "tracingConfiguration":{"shape":"TracingConfiguration"},
         "mapRunArn":{"shape":"LongArn"},
-        "label":{"shape":"MapRunLabel"}
+        "label":{"shape":"MapRunLabel"},
+        "revisionId":{"shape":"RevisionId"}
       }
     },
     "DescribeStateMachineInput":{
@@ -738,7 +955,9 @@
         "creationDate":{"shape":"Timestamp"},
         "loggingConfiguration":{"shape":"LoggingConfiguration"},
         "tracingConfiguration":{"shape":"TracingConfiguration"},
-        "label":{"shape":"MapRunLabel"}
+        "label":{"shape":"MapRunLabel"},
+        "revisionId":{"shape":"RevisionId"},
+        "description":{"shape":"VersionDescription"}
       }
     },
     "Enabled":{"type":"boolean"},
@@ -803,7 +1022,9 @@
         "itemCount":{
           "shape":"UnsignedInteger",
           "box":true
-        }
+        },
+        "stateMachineVersionArn":{"shape":"Arn"},
+        "stateMachineAliasArn":{"shape":"Arn"}
       }
     },
     "ExecutionStartedEventDetails":{
@@ -811,7 +1032,9 @@
       "members":{
         "input":{"shape":"SensitiveData"},
         "inputDetails":{"shape":"HistoryEventExecutionDataDetails"},
-        "roleArn":{"shape":"Arn"}
+        "roleArn":{"shape":"Arn"},
+        "stateMachineAliasArn":{"shape":"Arn"},
+        "stateMachineVersionArn":{"shape":"Arn"}
       }
     },
     "ExecutionStatus":{
@@ -1163,6 +1386,40 @@
         "nextToken":{"shape":"PageToken"}
       }
     },
+    "ListStateMachineAliasesInput":{
+      "type":"structure",
+      "required":["stateMachineArn"],
+      "members":{
+        "stateMachineArn":{"shape":"Arn"},
+        "nextToken":{"shape":"PageToken"},
+        "maxResults":{"shape":"PageSize"}
+      }
+    },
+    "ListStateMachineAliasesOutput":{
+      "type":"structure",
+      "required":["stateMachineAliases"],
+      "members":{
+        "stateMachineAliases":{"shape":"StateMachineAliasList"},
+        "nextToken":{"shape":"PageToken"}
+      }
+    },
+    "ListStateMachineVersionsInput":{
+      "type":"structure",
+      "required":["stateMachineArn"],
+      "members":{
+        "stateMachineArn":{"shape":"Arn"},
+        "nextToken":{"shape":"PageToken"},
+        "maxResults":{"shape":"PageSize"}
+      }
+    },
+    "ListStateMachineVersionsOutput":{
+      "type":"structure",
+      "required":["stateMachineVersions"],
+      "members":{
+        "stateMachineVersions":{"shape":"StateMachineVersionList"},
+        "nextToken":{"shape":"PageToken"}
+      }
+    },
     "ListStateMachinesInput":{
       "type":"structure",
       "members":{
@@ -1351,6 +1608,27 @@
       "max":1024,
       "min":1
     },
+    "Publish":{"type":"boolean"},
+    "PublishStateMachineVersionInput":{
+      "type":"structure",
+      "required":["stateMachineArn"],
+      "members":{
+        "stateMachineArn":{"shape":"Arn"},
+        "revisionId":{"shape":"RevisionId"},
+        "description":{"shape":"VersionDescription"}
+      }
+    },
+    "PublishStateMachineVersionOutput":{
+      "type":"structure",
+      "required":[
+        "creationDate",
+        "stateMachineVersionArn"
+      ],
+      "members":{
+        "creationDate":{"shape":"Timestamp"},
+        "stateMachineVersionArn":{"shape":"Arn"}
+      }
+    },
     "ResourceNotFound":{
       "type":"structure",
       "members":{
@@ -1360,6 +1638,24 @@
       "exception":true
     },
     "ReverseOrder":{"type":"boolean"},
+    "RevisionId":{"type":"string"},
+    "RoutingConfigurationList":{
+      "type":"list",
+      "member":{"shape":"RoutingConfigurationListItem"},
+      "max":2,
+      "min":1
+    },
+    "RoutingConfigurationListItem":{
+      "type":"structure",
+      "required":[
+        "stateMachineVersionArn",
+        "weight"
+      ],
+      "members":{
+        "stateMachineVersionArn":{"shape":"Arn"},
+        "weight":{"shape":"VersionWeight"}
+      }
+    },
     "SendTaskFailureInput":{
       "type":"structure",
       "required":["taskToken"],
@@ -1423,6 +1719,13 @@
       "max":256,
       "min":0,
       "sensitive":true
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "StartExecutionInput":{
       "type":"structure",
@@ -1498,6 +1801,21 @@
         "outputDetails":{"shape":"HistoryEventExecutionDataDetails"}
       }
     },
+    "StateMachineAliasList":{
+      "type":"list",
+      "member":{"shape":"StateMachineAliasListItem"}
+    },
+    "StateMachineAliasListItem":{
+      "type":"structure",
+      "required":[
+        "stateMachineAliasArn",
+        "creationDate"
+      ],
+      "members":{
+        "stateMachineAliasArn":{"shape":"LongArn"},
+        "creationDate":{"shape":"Timestamp"}
+      }
+    },
     "StateMachineAlreadyExists":{
       "type":"structure",
       "members":{
@@ -1565,6 +1883,21 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "StateMachineVersionList":{
+      "type":"list",
+      "member":{"shape":"StateMachineVersionListItem"}
+    },
+    "StateMachineVersionListItem":{
+      "type":"structure",
+      "required":[
+        "stateMachineVersionArn",
+        "creationDate"
+      ],
+      "members":{
+        "stateMachineVersionArn":{"shape":"LongArn"},
+        "creationDate":{"shape":"Timestamp"}
+      }
     },
     "StopExecutionInput":{
       "type":"structure",
@@ -1848,6 +2181,22 @@
       "members":{
       }
     },
+    "UpdateStateMachineAliasInput":{
+      "type":"structure",
+      "required":["stateMachineAliasArn"],
+      "members":{
+        "stateMachineAliasArn":{"shape":"Arn"},
+        "description":{"shape":"AliasDescription"},
+        "routingConfiguration":{"shape":"RoutingConfigurationList"}
+      }
+    },
+    "UpdateStateMachineAliasOutput":{
+      "type":"structure",
+      "required":["updateDate"],
+      "members":{
+        "updateDate":{"shape":"Timestamp"}
+      }
+    },
     "UpdateStateMachineInput":{
       "type":"structure",
       "required":["stateMachineArn"],
@@ -1856,14 +2205,18 @@
         "definition":{"shape":"Definition"},
         "roleArn":{"shape":"Arn"},
         "loggingConfiguration":{"shape":"LoggingConfiguration"},
-        "tracingConfiguration":{"shape":"TracingConfiguration"}
+        "tracingConfiguration":{"shape":"TracingConfiguration"},
+        "publish":{"shape":"Publish"},
+        "versionDescription":{"shape":"VersionDescription"}
       }
     },
     "UpdateStateMachineOutput":{
       "type":"structure",
       "required":["updateDate"],
       "members":{
-        "updateDate":{"shape":"Timestamp"}
+        "updateDate":{"shape":"Timestamp"},
+        "revisionId":{"shape":"RevisionId"},
+        "stateMachineVersionArn":{"shape":"Arn"}
       }
     },
     "ValidationException":{
@@ -1879,8 +2232,19 @@
       "enum":[
         "API_DOES_NOT_SUPPORT_LABELED_ARNS",
         "MISSING_REQUIRED_PARAMETER",
-        "CANNOT_UPDATE_COMPLETED_MAP_RUN"
+        "CANNOT_UPDATE_COMPLETED_MAP_RUN",
+        "INVALID_ROUTING_CONFIGURATION"
       ]
+    },
+    "VersionDescription":{
+      "type":"string",
+      "max":256,
+      "sensitive":true
+    },
+    "VersionWeight":{
+      "type":"integer",
+      "max":100,
+      "min":0
     },
     "includedDetails":{"type":"boolean"},
     "truncated":{"type":"boolean"}
