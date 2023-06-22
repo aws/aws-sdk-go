@@ -264,8 +264,8 @@ func (c *ChimeSDKMessaging) ChannelFlowCallbackRequest(input *ChannelFlowCallbac
 
 // ChannelFlowCallback API operation for Amazon Chime SDK Messaging.
 //
-// Calls back Chime SDK Messaging with a processing response message. This should
-// be invoked from the processor Lambda. This is a developer API.
+// Calls back Amazon Chime SDK messaging with a processing response message.
+// This should be invoked from the processor Lambda. This is a developer API.
 //
 // You can return one of the following processing responses:
 //
@@ -601,7 +601,7 @@ func (c *ChimeSDKMessaging) CreateChannelFlowRequest(input *CreateChannelFlowInp
 // # The Standard message type
 //
 // Channel flows don't process Control or System messages. For more information
-// about the message types provided by Chime SDK Messaging, refer to Message
+// about the message types provided by Chime SDK messaging, refer to Message
 // types (https://docs.aws.amazon.com/chime/latest/dg/using-the-messaging-sdk.html#msg-types)
 // in the Amazon Chime developer guide.
 //
@@ -2444,7 +2444,7 @@ func (c *ChimeSDKMessaging) GetChannelMembershipPreferencesRequest(input *GetCha
 //
 // Gets the membership preferences of an AppInstanceUser or AppInstanceBot for
 // the specified channel. A user or a bot must be a member of the channel and
-// own the membership to be able to retrieve membership preferences. Users or
+// own the membership in order to retrieve membership preferences. Users or
 // bots in the AppInstanceAdmin and channel moderator roles can't retrieve preferences
 // for other users or bots. Banned users or bots can't retrieve membership preferences
 // for the channel from which they are banned.
@@ -2665,7 +2665,7 @@ func (c *ChimeSDKMessaging) GetChannelMessageStatusRequest(input *GetChannelMess
 //
 // # DENIED
 //
-// Messasge denied by the processor
+// Message denied by the processor
 //
 //   - This API does not return statuses for denied messages, because we don't
 //     store them once the processor denies them.
@@ -3428,7 +3428,7 @@ func (c *ChimeSDKMessaging) ListChannelMembershipsForAppInstanceUserRequest(inpu
 
 // ListChannelMembershipsForAppInstanceUser API operation for Amazon Chime SDK Messaging.
 //
-// Lists all channels that anr AppInstanceUser or AppInstanceBot is a part of.
+// Lists all channels that an AppInstanceUser or AppInstanceBot is a part of.
 // Only an AppInstanceAdmin can call the API with a user ARN that is not their
 // own.
 //
@@ -4716,12 +4716,12 @@ func (c *ChimeSDKMessaging) PutChannelMembershipPreferencesRequest(input *PutCha
 
 // PutChannelMembershipPreferences API operation for Amazon Chime SDK Messaging.
 //
-// Sets the membership preferences of an AppInstanceUser or AppIntanceBot for
+// Sets the membership preferences of an AppInstanceUser or AppInstanceBot for
 // the specified channel. The user or bot must be a member of the channel. Only
 // the user or bot who owns the membership can set preferences. Users or bots
 // in the AppInstanceAdmin and channel moderator roles can't set preferences
-// for other users or users. Banned users or bots can't set membership preferences
-// for the channel from which they are banned.
+// for other users. Banned users or bots can't set membership preferences for
+// the channel from which they are banned.
 //
 // The x-amz-chime-bearer request header is mandatory. Use the ARN of an AppInstanceUser
 // or AppInstanceBot that makes the API call as the value in the header.
@@ -5188,8 +5188,11 @@ func (c *ChimeSDKMessaging) SendChannelMessageRequest(input *SendChannelMessageI
 // The x-amz-chime-bearer request header is mandatory. Use the ARN of the AppInstanceUser
 // or AppInstanceBot that makes the API call as the value in the header.
 //
-// Also, STANDARD messages can contain 4KB of data and the 1KB of metadata.
-// CONTROL messages can contain 30 bytes of data and no metadata.
+// Also, STANDARD messages can be up to 4KB in size and contain metadata. Metadata
+// is arbitrary, and you can use it in a variety of ways, such as containing
+// a link to an attachment.
+//
+// CONTROL messages are limited to 30 bytes and do not contain metadata.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7110,14 +7113,21 @@ type ChannelMessage struct {
 	// The ARN of the channel.
 	ChannelArn *string `min:"5" type:"string"`
 
-	// The message content.
+	// The content of the channel message. For Amazon Lex V2 bot responses, this
+	// field holds a list of messages originating from the bot. For more information,
+	// refer to Processing responses from an AppInstanceBot (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ChannelMessage's
 	// String and GoString methods.
 	Content *string `type:"string" sensitive:"true"`
 
-	// The content type of the channel message.
+	// The content type of the channel message. For Amazon Lex V2 bot responses,
+	// the content type is application/amz-chime-lex-msgs for success responses
+	// and application/amz-chime-lex-error for failure responses. For more information,
+	// refer to Processing responses from an AppInstanceBot (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	//
 	// ContentType is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ChannelMessage's
@@ -7133,8 +7143,10 @@ type ChannelMessage struct {
 	// The time at which a message was updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp"`
 
-	// The attributes for the message, used for message filtering along with a FilterRule
-	// defined in the PushNotificationPreferences.
+	// The attributes for the channel message. For Amazon Lex V2 bot responses,
+	// the attributes are mapped to specific fields from the bot. For more information,
+	// refer to Processing responses from an AppInstanceBot (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	MessageAttributes map[string]*MessageAttributeValue `type:"map"`
 
 	// The ID of a message.
@@ -7161,6 +7173,12 @@ type ChannelMessage struct {
 
 	// The ID of the SubChannel.
 	SubChannelId *string `min:"1" type:"string"`
+
+	// The target of a message, a sender, a user, or a bot. Only the target and
+	// the sender can view targeted messages. Only users who can see targeted messages
+	// can take actions on them. However, administrators can delete targeted messages
+	// that they can’t see.
+	Target []*Target `min:"1" type:"list"`
 
 	// The message type.
 	Type *string `type:"string" enum:"ChannelMessageType"`
@@ -7268,6 +7286,12 @@ func (s *ChannelMessage) SetSubChannelId(v string) *ChannelMessage {
 	return s
 }
 
+// SetTarget sets the Target field's value.
+func (s *ChannelMessage) SetTarget(v []*Target) *ChannelMessage {
+	s.Target = v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *ChannelMessage) SetType(v string) *ChannelMessage {
 	s.Type = &v
@@ -7278,22 +7302,31 @@ func (s *ChannelMessage) SetType(v string) *ChannelMessage {
 type ChannelMessageCallback struct {
 	_ struct{} `type:"structure"`
 
-	// The message content.
+	// The message content. For Amazon Lex V2 bot responses, this field holds a
+	// list of messages originating from the bot. For more information, refer to
+	// Processing responses from an AppInstanceBot (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ChannelMessageCallback's
 	// String and GoString methods.
 	Content *string `min:"1" type:"string" sensitive:"true"`
 
-	// The content type of the call-back message.
+	// The content type of the call-back message. For Amazon Lex V2 bot responses,
+	// the content type is application/amz-chime-lex-msgs for success responses
+	// and application/amz-chime-lex-error for failure responses. For more information,
+	// refer to Processing responses from an AppInstanceBot (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	//
 	// ContentType is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ChannelMessageCallback's
 	// String and GoString methods.
 	ContentType *string `type:"string" sensitive:"true"`
 
-	// The attributes for the message, used for message filtering along with a FilterRule
-	// defined in the PushNotificationPreferences.
+	// The attributes for the channel message. For Amazon Lex V2 bot responses,
+	// the attributes are mapped to specific fields from the bot. For more information,
+	// refer to Processing responses from an AppInstanceBot (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	MessageAttributes map[string]*MessageAttributeValue `type:"map"`
 
 	// The message ID.
@@ -7406,7 +7439,7 @@ func (s *ChannelMessageCallback) SetSubChannelId(v string) *ChannelMessageCallba
 type ChannelMessageStatusStructure struct {
 	_ struct{} `type:"structure"`
 
-	// Contains more details about the messasge status.
+	// Contains more details about the message status.
 	Detail *string `type:"string"`
 
 	// The message status value.
@@ -7447,14 +7480,22 @@ func (s *ChannelMessageStatusStructure) SetValue(v string) *ChannelMessageStatus
 type ChannelMessageSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The content of the message.
+	// The content of the channel message. For Amazon Lex V2 bot responses, this
+	// field holds a list of messages originating from the bot. For more information,
+	// refer to Processing responses from an AppInstanceBot (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ChannelMessageSummary's
 	// String and GoString methods.
 	Content *string `type:"string" sensitive:"true"`
 
-	// The content type of the channel messsage listed in the summary.
+	// The content type of the channel message listed in the summary. For Amazon
+	// Lex V2 bot responses, the content type is application/amz-chime-lex-msgs
+	// for success responses and application/amz-chime-lex-error for failure responses.
+	// For more information, refer to Processing responses from an AppInstanceBot
+	// (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	//
 	// ContentType is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ChannelMessageSummary's
@@ -7470,7 +7511,10 @@ type ChannelMessageSummary struct {
 	// The time at which a message was last updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp"`
 
-	// The message attribues listed in a the summary of a channel message.
+	// The attributes for the channel message. For Amazon Lex V2 bot responses,
+	// the attributes are mapped to specific fields from the bot. For more information,
+	// refer to Processing responses from an AppInstanceBot (https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html)
+	// in the Amazon Chime SDK Messaging Developer Guide.
 	MessageAttributes map[string]*MessageAttributeValue `type:"map"`
 
 	// The ID of the message.
@@ -7493,6 +7537,12 @@ type ChannelMessageSummary struct {
 	// without a channel flow. For channels associated with channel flow, the value
 	// determines the processing stage.
 	Status *ChannelMessageStatusStructure `type:"structure"`
+
+	// The target of a message, a sender, a user, or a bot. Only the target and
+	// the sender can view targeted messages. Only users who can see targeted messages
+	// can take actions on them. However, administrators can delete targeted messages
+	// that they can’t see.
+	Target []*Target `min:"1" type:"list"`
 
 	// The type of message.
 	Type *string `type:"string" enum:"ChannelMessageType"`
@@ -7579,6 +7629,12 @@ func (s *ChannelMessageSummary) SetSender(v *Identity) *ChannelMessageSummary {
 // SetStatus sets the Status field's value.
 func (s *ChannelMessageSummary) SetStatus(v *ChannelMessageStatusStructure) *ChannelMessageSummary {
 	s.Status = v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *ChannelMessageSummary) SetTarget(v []*Target) *ChannelMessageSummary {
+	s.Target = v
 	return s
 }
 
@@ -7718,7 +7774,8 @@ type ChannelSummary struct {
 	// The ARN of the channel.
 	ChannelArn *string `min:"5" type:"string"`
 
-	// The time at which the last persistent message in a channel was sent.
+	// The time at which the last persistent message visible to the caller in a
+	// channel was sent.
 	LastMessageTimestamp *time.Time `type:"timestamp"`
 
 	// The metadata of the channel.
@@ -13899,7 +13956,7 @@ type SendChannelMessageInput struct {
 	// String and GoString methods.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
-	// The content of the message.
+	// The content of the channel message.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SendChannelMessageInput's
@@ -13937,7 +13994,19 @@ type SendChannelMessageInput struct {
 	// The ID of the SubChannel in the request.
 	SubChannelId *string `min:"1" type:"string"`
 
+	// The target of a message. Must be a member of the channel, such as another
+	// user, a bot, or the sender. Only the target and the sender can view targeted
+	// messages. Only users who can see targeted messages can take actions on them.
+	// However, administrators can delete targeted messages that they can’t see.
+	Target []*Target `min:"1" type:"list"`
+
 	// The type of message, STANDARD or CONTROL.
+	//
+	// STANDARD messages can be up to 4KB in size and contain metadata. Metadata
+	// is arbitrary, and you can use it in a variety of ways, such as containing
+	// a link to an attachment.
+	//
+	// CONTROL messages are limited to 30 bytes and do not contain metadata.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ChannelMessageType"`
@@ -13991,12 +14060,25 @@ func (s *SendChannelMessageInput) Validate() error {
 	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
 	}
+	if s.Target != nil && len(s.Target) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Target", 1))
+	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
 	if s.PushNotification != nil {
 		if err := s.PushNotification.Validate(); err != nil {
 			invalidParams.AddNested("PushNotification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Target != nil {
+		for i, v := range s.Target {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Target", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -14063,6 +14145,12 @@ func (s *SendChannelMessageInput) SetPushNotification(v *PushNotificationConfigu
 // SetSubChannelId sets the SubChannelId field's value.
 func (s *SendChannelMessageInput) SetSubChannelId(v string) *SendChannelMessageInput {
 	s.SubChannelId = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *SendChannelMessageInput) SetTarget(v []*Target) *SendChannelMessageInput {
+	s.Target = v
 	return s
 }
 
@@ -14540,6 +14628,54 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The target of a message, a sender, a user, or a bot. Only the target and
+// the sender can view targeted messages. Only users who can see targeted messages
+// can take actions on them. However, administrators can delete targeted messages
+// that they can’t see.
+type Target struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the target channel member.
+	MemberArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Target) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Target) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Target) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Target"}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *Target) SetMemberArn(v string) *Target {
+	s.MemberArn = &v
+	return s
+}
+
 // The client exceeded its request rate limit.
 type ThrottledClientException struct {
 	_            struct{}                  `type:"structure"`
@@ -15005,7 +15141,7 @@ type UpdateChannelMessageInput struct {
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
 
-	// The content of the message being updated.
+	// The content of the channel message.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateChannelMessageInput's

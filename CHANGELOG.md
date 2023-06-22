@@ -1,3 +1,14 @@
+Release v1.44.288 (2023-06-22)
+===
+
+### Service Client Updates
+* `service/chime-sdk-identity`: Updates service API and documentation
+* `service/chime-sdk-messaging`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Introducing Amazon Kendra Retrieve API that can be used to retrieve relevant passages or text excerpts given an input query.
+* `service/states`: Updates service API and documentation
+  * Adds support for Versions and Aliases. Adds 8 operations: PublishStateMachineVersion, DeleteStateMachineVersion, ListStateMachineVersions, CreateStateMachineAlias, DescribeStateMachineAlias, UpdateStateMachineAlias, DeleteStateMachineAlias, ListStateMachineAliases
+
 Release v1.44.287 (2023-06-21)
 ===
 

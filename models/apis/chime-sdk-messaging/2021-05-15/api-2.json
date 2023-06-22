@@ -1240,7 +1240,8 @@
         "Status":{"shape":"ChannelMessageStatusStructure"},
         "MessageAttributes":{"shape":"MessageAttributeMap"},
         "SubChannelId":{"shape":"SubChannelId"},
-        "ContentType":{"shape":"ContentType"}
+        "ContentType":{"shape":"ContentType"},
+        "Target":{"shape":"TargetList"}
       }
     },
     "ChannelMessageCallback":{
@@ -1293,7 +1294,8 @@
         "Redacted":{"shape":"NonNullableBoolean"},
         "Status":{"shape":"ChannelMessageStatusStructure"},
         "MessageAttributes":{"shape":"MessageAttributeMap"},
-        "ContentType":{"shape":"ContentType"}
+        "ContentType":{"shape":"ContentType"},
+        "Target":{"shape":"TargetList"}
       }
     },
     "ChannelMessageSummaryList":{
@@ -2978,7 +2980,8 @@
         "PushNotification":{"shape":"PushNotificationConfiguration"},
         "MessageAttributes":{"shape":"MessageAttributeMap"},
         "SubChannelId":{"shape":"SubChannelId"},
-        "ContentType":{"shape":"ContentType"}
+        "ContentType":{"shape":"ContentType"},
+        "Target":{"shape":"TargetList"}
       }
     },
     "SendChannelMessageResponse":{
@@ -3103,6 +3106,18 @@
       "max":256,
       "min":1,
       "sensitive":true
+    },
+    "Target":{
+      "type":"structure",
+      "members":{
+        "MemberArn":{"shape":"ChimeArn"}
+      }
+    },
+    "TargetList":{
+      "type":"list",
+      "member":{"shape":"Target"},
+      "max":1,
+      "min":1
     },
     "TargetMembershipsPerSubChannel":{
       "type":"integer",
