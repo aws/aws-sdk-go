@@ -8337,7 +8337,7 @@ type CreateFileSystemOntapConfiguration struct {
 
 	// The number of days to retain automatic backups. Setting this property to
 	// 0 disables automatic backups. You can retain automatic backups for a maximum
-	// of 90 days. The default is 0.
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
@@ -8528,7 +8528,7 @@ type CreateFileSystemOpenZFSConfiguration struct {
 
 	// The number of days to retain automatic backups. Setting this property to
 	// 0 disables automatic backups. You can retain automatic backups for a maximum
-	// of 90 days. The default is 0.
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A Boolean value indicating whether tags for the file system should be copied
@@ -8559,10 +8559,10 @@ type CreateFileSystemOpenZFSConfiguration struct {
 	//
 	//    * SINGLE_AZ_1- (Default) Creates file systems with throughput capacities
 	//    of 64 - 4,096 MBps. Single_AZ_1 is available in all Amazon Web Services
-	//    Regions where Amazon FSx for OpenZFS is available, except US West (Oregon).
+	//    Regions where Amazon FSx for OpenZFS is available.
 	//
 	//    * SINGLE_AZ_2- Creates file systems with throughput capacities of 160
-	//    - 10,240 MBps using an NVMe L2ARC cache. Single_AZ_2 is available only
+	//    - 10,240 MB/s using an NVMe L2ARC cache. Single_AZ_2 is available only
 	//    in the US East (N. Virginia), US East (Ohio), US West (Oregon), and Europe
 	//    (Ireland) Amazon Web Services Regions.
 	//
@@ -8792,9 +8792,9 @@ type CreateFileSystemWindowsConfiguration struct {
 	// Windows File Server file system.
 	AuditLogConfiguration *WindowsAuditLogCreateConfiguration `type:"structure"`
 
-	// The number of days to retain automatic backups. The default is to retain
-	// backups for 7 days. Setting this value to 0 disables the creation of automatic
-	// backups. The maximum retention period for backups is 90 days.
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A boolean flag indicating whether tags for the file system should be copied
@@ -16081,7 +16081,7 @@ type LustreFileSystemConfiguration struct {
 
 	// The number of days to retain automatic backups. Setting this property to
 	// 0 disables automatic backups. You can retain automatic backups for a maximum
-	// of 90 days. The default is 0.
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A boolean flag indicating whether tags on the file system are copied to backups.
@@ -16831,7 +16831,7 @@ type OntapFileSystemConfiguration struct {
 
 	// The number of days to retain automatic backups. Setting this property to
 	// 0 disables automatic backups. You can retain automatic backups for a maximum
-	// of 90 days. The default is 0.
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
@@ -17394,7 +17394,7 @@ type OpenZFSFileSystemConfiguration struct {
 
 	// The number of days to retain automatic backups. Setting this property to
 	// 0 disables automatic backups. You can retain automatic backups for a maximum
-	// of 90 days. The default is 0.
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A Boolean value indicating whether tags on the file system should be copied
@@ -20493,7 +20493,7 @@ type UpdateFileSystemOntapConfiguration struct {
 
 	// The number of days to retain automatic backups. Setting this property to
 	// 0 disables automatic backups. You can retain automatic backups for a maximum
-	// of 90 days. The default is 0.
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
@@ -20639,7 +20639,7 @@ type UpdateFileSystemOpenZFSConfiguration struct {
 
 	// The number of days to retain automatic backups. Setting this property to
 	// 0 disables automatic backups. You can retain automatic backups for a maximum
-	// of 90 days. The default is 0.
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A Boolean value indicating whether tags for the file system should be copied
@@ -20818,9 +20818,9 @@ type UpdateFileSystemWindowsConfiguration struct {
 	// Windows File Server file system..
 	AuditLogConfiguration *WindowsAuditLogCreateConfiguration `type:"structure"`
 
-	// The number of days to retain automatic daily backups. Setting this to zero
-	// (0) disables automatic daily backups. You can retain automatic daily backups
-	// for a maximum of 90 days. For more information, see Working with Automatic
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30. For more information, see Working with Automatic
 	// Daily Backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html#automatic-backups).
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 

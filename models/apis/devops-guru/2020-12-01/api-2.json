@@ -1334,6 +1334,28 @@
       "exception":true,
       "fault":true
     },
+    "KMSKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "KMSServerSideEncryptionIntegration":{
+      "type":"structure",
+      "members":{
+        "KMSKeyId":{"shape":"KMSKeyId"},
+        "OptInStatus":{"shape":"OptInStatus"},
+        "Type":{"shape":"ServerSideEncryptionType"}
+      }
+    },
+    "KMSServerSideEncryptionIntegrationConfig":{
+      "type":"structure",
+      "members":{
+        "KMSKeyId":{"shape":"KMSKeyId"},
+        "OptInStatus":{"shape":"OptInStatus"},
+        "Type":{"shape":"ServerSideEncryptionType"}
+      }
+    },
     "ListAnomaliesForInsightFilters":{
       "type":"structure",
       "members":{
@@ -2377,6 +2399,13 @@
         "NextToken":{"shape":"UuidNextToken"}
       }
     },
+    "ServerSideEncryptionType":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER_MANAGED_KEY",
+        "AWS_OWNED_KMS_KEY"
+      ]
+    },
     "ServiceCollection":{
       "type":"structure",
       "members":{
@@ -2406,7 +2435,8 @@
       "type":"structure",
       "members":{
         "OpsCenter":{"shape":"OpsCenterIntegration"},
-        "LogsAnomalyDetection":{"shape":"LogsAnomalyDetectionIntegration"}
+        "LogsAnomalyDetection":{"shape":"LogsAnomalyDetectionIntegration"},
+        "KMSServerSideEncryption":{"shape":"KMSServerSideEncryptionIntegration"}
       }
     },
     "ServiceName":{
@@ -2663,7 +2693,8 @@
       "type":"structure",
       "members":{
         "OpsCenter":{"shape":"OpsCenterIntegrationConfig"},
-        "LogsAnomalyDetection":{"shape":"LogsAnomalyDetectionIntegrationConfig"}
+        "LogsAnomalyDetection":{"shape":"LogsAnomalyDetectionIntegrationConfig"},
+        "KMSServerSideEncryption":{"shape":"KMSServerSideEncryptionIntegrationConfig"}
       }
     },
     "UpdateServiceIntegrationRequest":{

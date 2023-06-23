@@ -375,6 +375,9 @@ func (c *VerifiedPermissions) CreatePolicyStoreRequest(input *CreatePolicyStoreI
 //
 // Creates a policy store. A policy store is a container for policy resources.
 //
+// Although Cedar supports multiple namespaces (https://docs.cedarpolicy.com/schema.html#namespace),
+// Verified Permissions currently supports only one namespace per policy store.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3909,7 +3912,7 @@ func (s *AttributeValue) SetString_(v string) *AttributeValue {
 // This data type is used as a field that is part of an Configuration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html)
 // structure that is used as a parameter to the Configuration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html).
 //
-// Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
+// Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
 // ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
 type CognitoUserPoolConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -3923,7 +3926,7 @@ type CognitoUserPoolConfiguration struct {
 	// The Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the Amazon Cognito user pool that contains the identities to be authorized.
 	//
-	// Example: "UserPoolArn": "cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5"
+	// Example: "UserPoolArn": "arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5"
 	//
 	// UserPoolArn is a required field
 	UserPoolArn *string `locationName:"userPoolArn" min:"1" type:"string" required:"true"`
@@ -3993,7 +3996,7 @@ type Configuration struct {
 	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of a Amazon Cognito user pool and one or more application client IDs.
 	//
-	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
+	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
 	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}}
 	CognitoUserPoolConfiguration *CognitoUserPoolConfiguration `locationName:"cognitoUserPoolConfiguration" type:"structure"`
 }
@@ -6666,8 +6669,11 @@ type IsAuthorizedInput struct {
 	// decisions.
 	Context *ContextDefinition `locationName:"context" type:"structure"`
 
-	// Specifies the list of entities and their associated attributes that Verified
-	// Permissions can examine when evaluating the policies.
+	// Specifies the list of resources and principals and their associated attributes
+	// that Verified Permissions can examine when evaluating the policies.
+	//
+	// You can include only principal and resource entities in this parameter; you
+	// can't include actions. You must specify actions in the schema.
 	Entities *EntitiesDefinition `locationName:"entities" type:"structure"`
 
 	// Specifies the ID of the policy store. Policies in this policy store will
@@ -6858,8 +6864,11 @@ type IsAuthorizedWithTokenInput struct {
 	// decisions.
 	Context *ContextDefinition `locationName:"context" type:"structure"`
 
-	// Specifies the list of entities and their associated attributes that Verified
-	// Permissions can examine when evaluating the policies.
+	// Specifies the list of resources and principals and their associated attributes
+	// that Verified Permissions can examine when evaluating the policies.
+	//
+	// You can include only principal and resource entities in this parameter; you
+	// can't include actions. You must specify actions in the schema.
 	Entities *EntitiesDefinition `locationName:"entities" type:"structure"`
 
 	// Specifies an identity token for the principal to be authorized. This token

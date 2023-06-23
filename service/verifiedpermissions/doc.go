@@ -52,12 +52,12 @@
 // make sense for the same parameter in a different operation. To help you understand
 // the purpose of each, the following naming convention is used for the structures:
 //
-//   - Parameters that end in Detail are used in Get operations.
+//   - Parameter type structures that end in Detail are used in Get operations.
 //
-//   - Parameters that end in Item are used in List operations.
+//   - Parameter type structures that end in Item are used in List operations.
 //
-//   - Parameters that use neither suffix are used in the mutating (create
-//     and update) operations.
+//   - Parameter type structures that use neither suffix are used in the mutating
+//     (create and update) operations.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/verifiedpermissions-2021-12-01 for more information on this service.
 //
