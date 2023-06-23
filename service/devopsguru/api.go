@@ -61,16 +61,10 @@ func (c *DevOpsGuru) AddNotificationChannelRequest(input *AddNotificationChannel
 // is generated.
 //
 // If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. DevOps Guru only supports standard SNS topics. For more
-// information, see Permissions for cross account Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
-//
-// If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics.
+// to it that grants DevOps Guru permission to send it notifications. DevOps
+// Guru adds the required policy on your behalf to send notifications using
+// Amazon SNS in your account. DevOps Guru only supports standard SNS topics.
+// For more information, see Permissions for Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
 // If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
 // Key Management Service customer-managed key (CMK), then you must add permissions
@@ -7012,6 +7006,160 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about the KMS encryption used with DevOps Guru.
+type KMSServerSideEncryptionIntegration struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the specified KMS key.
+	//
+	// To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+	// When using an alias name, prefix it with "alias/". If you specify a predefined
+	// Amazon Web Services alias (an Amazon Web Services alias with no key ID),
+	// Amazon Web Services KMS associates the alias with an Amazon Web Services
+	// managed key and returns its KeyId and Arn in the response. To specify a KMS
+	// key in a different Amazon Web Services account, you must use the key ARN
+	// or alias ARN.
+	//
+	// For example:
+	//
+	// Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// Alias name: alias/ExampleAlias
+	//
+	// Alias ARN: arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias
+	KMSKeyId *string `min:"1" type:"string"`
+
+	// Specifies if DevOps Guru is enabled for customer managed keys.
+	OptInStatus *string `type:"string" enum:"OptInStatus"`
+
+	// The type of KMS key used. Customer managed keys are the KMS keys that you
+	// create. Amazon Web Services owned keys are keys that are owned and managed
+	// by DevOps Guru.
+	Type *string `type:"string" enum:"ServerSideEncryptionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSServerSideEncryptionIntegration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSServerSideEncryptionIntegration) GoString() string {
+	return s.String()
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *KMSServerSideEncryptionIntegration) SetKMSKeyId(v string) *KMSServerSideEncryptionIntegration {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *KMSServerSideEncryptionIntegration) SetOptInStatus(v string) *KMSServerSideEncryptionIntegration {
+	s.OptInStatus = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *KMSServerSideEncryptionIntegration) SetType(v string) *KMSServerSideEncryptionIntegration {
+	s.Type = &v
+	return s
+}
+
+// Information about whether DevOps Guru is configured to encrypt server-side
+// data using KMS.
+type KMSServerSideEncryptionIntegrationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the specified KMS key.
+	//
+	// To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+	// When using an alias name, prefix it with "alias/". If you specify a predefined
+	// Amazon Web Services alias (an Amazon Web Services alias with no key ID),
+	// Amazon Web Services KMS associates the alias with an Amazon Web Services
+	// managed key and returns its KeyId and Arn in the response. To specify a KMS
+	// key in a different Amazon Web Services account, you must use the key ARN
+	// or alias ARN.
+	//
+	// For example:
+	//
+	// Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// Alias name: alias/ExampleAlias
+	//
+	// Alias ARN: arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias
+	KMSKeyId *string `min:"1" type:"string"`
+
+	// Specifies if DevOps Guru is enabled for KMS integration.
+	OptInStatus *string `type:"string" enum:"OptInStatus"`
+
+	// The type of KMS key used. Customer managed keys are the KMS keys that you
+	// create. Amazon Web Services owned keys are keys that are owned and managed
+	// by DevOps Guru.
+	Type *string `type:"string" enum:"ServerSideEncryptionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSServerSideEncryptionIntegrationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSServerSideEncryptionIntegrationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KMSServerSideEncryptionIntegrationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KMSServerSideEncryptionIntegrationConfig"}
+	if s.KMSKeyId != nil && len(*s.KMSKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSKeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *KMSServerSideEncryptionIntegrationConfig) SetKMSKeyId(v string) *KMSServerSideEncryptionIntegrationConfig {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *KMSServerSideEncryptionIntegrationConfig) SetOptInStatus(v string) *KMSServerSideEncryptionIntegrationConfig {
+	s.OptInStatus = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *KMSServerSideEncryptionIntegrationConfig) SetType(v string) *KMSServerSideEncryptionIntegrationConfig {
+	s.Type = &v
+	return s
+}
+
 // Specifies one or more service names that are used to list anomalies.
 type ListAnomaliesForInsightFilters struct {
 	_ struct{} `type:"structure"`
@@ -8757,16 +8905,10 @@ func (s *MonitoredResourceIdentifier) SetType(v string) *MonitoredResourceIdenti
 // channel is Amazon Simple Notification Service (Amazon SNS).
 //
 // If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. DevOps Guru only supports standard SNS topics. For more
-// information, see Permissions for cross account Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
-//
-// If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics.
+// to it that grants DevOps Guru permission to send it notifications. DevOps
+// Guru adds the required policy on your behalf to send notifications using
+// Amazon SNS in your account. DevOps Guru only supports standard SNS topics.
+// For more information, see Permissions for Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
 // If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
 // Key Management Service customer-managed key (CMK), then you must add permissions
@@ -8828,16 +8970,10 @@ type NotificationChannelConfig struct {
 	// notifications when insights are created.
 	//
 	// If you use an Amazon SNS topic in another account, you must attach a policy
-	// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-	// adds the required policy on your behalf to send notifications using Amazon
-	// SNS in your account. DevOps Guru only supports standard SNS topics. For more
-	// information, see Permissions for cross account Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
-	//
-	// If you use an Amazon SNS topic in another account, you must attach a policy
-	// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-	// adds the required policy on your behalf to send notifications using Amazon
-	// SNS in your account. For more information, see Permissions for cross account
-	// Amazon SNS topics.
+	// to it that grants DevOps Guru permission to send it notifications. DevOps
+	// Guru adds the required policy on your behalf to send notifications using
+	// Amazon SNS in your account. DevOps Guru only supports standard SNS topics.
+	// For more information, see Permissions for Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 	//
 	// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
 	// Key Management Service customer-managed key (CMK), then you must add permissions
@@ -12270,6 +12406,10 @@ func (s *ServiceInsightHealth) SetOpenReactiveInsights(v int64) *ServiceInsightH
 type ServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about whether DevOps Guru is configured to encrypt server-side
+	// data using KMS.
+	KMSServerSideEncryption *KMSServerSideEncryptionIntegration `type:"structure"`
+
 	// Information about whether DevOps Guru is configured to perform log anomaly
 	// detection on Amazon CloudWatch log groups.
 	LogsAnomalyDetection *LogsAnomalyDetectionIntegration `type:"structure"`
@@ -12295,6 +12435,12 @@ func (s ServiceIntegrationConfig) String() string {
 // value will be replaced with "sensitive".
 func (s ServiceIntegrationConfig) GoString() string {
 	return s.String()
+}
+
+// SetKMSServerSideEncryption sets the KMSServerSideEncryption field's value.
+func (s *ServiceIntegrationConfig) SetKMSServerSideEncryption(v *KMSServerSideEncryptionIntegration) *ServiceIntegrationConfig {
+	s.KMSServerSideEncryption = v
+	return s
 }
 
 // SetLogsAnomalyDetection sets the LogsAnomalyDetection field's value.
@@ -12455,16 +12601,10 @@ func (s *ServiceResourceCost) SetUnitCost(v float64) *ServiceResourceCost {
 // Service topic.
 //
 // If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. DevOps Guru only supports standard SNS topics. For more
-// information, see Permissions for cross account Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
-//
-// If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics.
+// to it that grants DevOps Guru permission to send it notifications. DevOps
+// Guru adds the required policy on your behalf to send notifications using
+// Amazon SNS in your account. DevOps Guru only supports standard SNS topics.
+// For more information, see Permissions for Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
 // If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
 // Key Management Service customer-managed key (CMK), then you must add permissions
@@ -13378,6 +13518,10 @@ func (s UpdateResourceCollectionOutput) GoString() string {
 type UpdateServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about whether DevOps Guru is configured to encrypt server-side
+	// data using KMS.
+	KMSServerSideEncryption *KMSServerSideEncryptionIntegrationConfig `type:"structure"`
+
 	// Information about whether DevOps Guru is configured to perform log anomaly
 	// detection on Amazon CloudWatch log groups.
 	LogsAnomalyDetection *LogsAnomalyDetectionIntegrationConfig `type:"structure"`
@@ -13404,6 +13548,27 @@ func (s UpdateServiceIntegrationConfig) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateServiceIntegrationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateServiceIntegrationConfig"}
+	if s.KMSServerSideEncryption != nil {
+		if err := s.KMSServerSideEncryption.Validate(); err != nil {
+			invalidParams.AddNested("KMSServerSideEncryption", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKMSServerSideEncryption sets the KMSServerSideEncryption field's value.
+func (s *UpdateServiceIntegrationConfig) SetKMSServerSideEncryption(v *KMSServerSideEncryptionIntegrationConfig) *UpdateServiceIntegrationConfig {
+	s.KMSServerSideEncryption = v
+	return s
 }
 
 // SetLogsAnomalyDetection sets the LogsAnomalyDetection field's value.
@@ -13451,6 +13616,11 @@ func (s *UpdateServiceIntegrationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateServiceIntegrationInput"}
 	if s.ServiceIntegration == nil {
 		invalidParams.Add(request.NewErrParamRequired("ServiceIntegration"))
+	}
+	if s.ServiceIntegration != nil {
+		if err := s.ServiceIntegration.Validate(); err != nil {
+			invalidParams.AddNested("ServiceIntegration", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -14283,6 +14453,22 @@ func ResourceTypeFilter_Values() []string {
 		ResourceTypeFilterSqsQueue,
 		ResourceTypeFilterStepFunctionsActivity,
 		ResourceTypeFilterStepFunctionsStateMachine,
+	}
+}
+
+const (
+	// ServerSideEncryptionTypeCustomerManagedKey is a ServerSideEncryptionType enum value
+	ServerSideEncryptionTypeCustomerManagedKey = "CUSTOMER_MANAGED_KEY"
+
+	// ServerSideEncryptionTypeAwsOwnedKmsKey is a ServerSideEncryptionType enum value
+	ServerSideEncryptionTypeAwsOwnedKmsKey = "AWS_OWNED_KMS_KEY"
+)
+
+// ServerSideEncryptionType_Values returns all elements of the ServerSideEncryptionType enum
+func ServerSideEncryptionType_Values() []string {
+	return []string{
+		ServerSideEncryptionTypeCustomerManagedKey,
+		ServerSideEncryptionTypeAwsOwnedKmsKey,
 	}
 }
 

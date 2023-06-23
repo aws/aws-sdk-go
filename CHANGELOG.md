@@ -1,3 +1,13 @@
+Release v1.44.289 (2023-06-23)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API and documentation
+* `service/fsx`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation improvements for create, describe, and modify DB clusters and DB instances.
+* `service/verifiedpermissions`: Updates service documentation
+
 Release v1.44.288 (2023-06-22)
 ===
 
