@@ -53,7 +53,7 @@
     "ListMembers": "<p>Lists details about all member accounts for the current GuardDuty administrator account.</p>",
     "ListOrganizationAdminAccounts": "<p>Lists the accounts configured as GuardDuty delegated administrators.</p>",
     "ListPublishingDestinations": "<p>Returns a list of publishing destinations associated with the specified <code>detectorId</code>.</p>",
-    "ListTagsForResource": "<p>Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, and threat intel sets, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource.</p>",
+    "ListTagsForResource": "<p>Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, threat intel sets, publishing destination, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource.</p>",
     "ListThreatIntelSets": "<p>Lists the ThreatIntelSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the ThreatIntelSets associated with the administrator account are returned.</p>",
     "StartMalwareScan": "<p>Initiates the malware scan. Invoking this API will automatically create the <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/slr-permissions-malware-protection.html\">Service-linked role </a> in the corresponding account.</p>",
     "StartMonitoringMembers": "<p>Turns on GuardDuty monitoring of the specified member accounts. Use this operation to restart monitoring of accounts that you stopped monitoring with the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_StopMonitoringMembers.html\">StopMonitoringMembers</a> operation.</p>",
@@ -2456,6 +2456,12 @@
         "Service$AdditionalInfo": "<p>Contains additional information about the generated finding.</p>"
       }
     },
+    "SessionNameList": {
+      "base": null,
+      "refs": {
+        "KubernetesUserDetails$SessionName": "<p>Entity that assumes the IAM role when Kubernetes RBAC permissions are assigned to that role.</p>"
+      }
+    },
     "SortCriteria": {
       "base": "<p>Contains information about the criteria used for sorting findings.</p>",
       "refs": {
@@ -2765,6 +2771,7 @@
         "Service$FeatureName": "<p>The name of the feature that generated a finding.</p>",
         "ServiceAdditionalInfo$Value": "<p>This field specifies the value of the additional information.</p>",
         "ServiceAdditionalInfo$Type": "<p>Describes the type of the additional information.</p>",
+        "SessionNameList$member": null,
         "SortCriteria$AttributeName": "<p>Represents the finding attribute, such as <code>accountId</code>, that sorts the findings.</p>",
         "SourceIps$member": null,
         "Sources$member": null,

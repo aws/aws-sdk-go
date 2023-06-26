@@ -733,6 +733,13 @@ type ConnectAPI interface {
 	SearchQuickConnectsPages(*connect.SearchQuickConnectsInput, func(*connect.SearchQuickConnectsOutput, bool) bool) error
 	SearchQuickConnectsPagesWithContext(aws.Context, *connect.SearchQuickConnectsInput, func(*connect.SearchQuickConnectsOutput, bool) bool, ...request.Option) error
 
+	SearchResourceTags(*connect.SearchResourceTagsInput) (*connect.SearchResourceTagsOutput, error)
+	SearchResourceTagsWithContext(aws.Context, *connect.SearchResourceTagsInput, ...request.Option) (*connect.SearchResourceTagsOutput, error)
+	SearchResourceTagsRequest(*connect.SearchResourceTagsInput) (*request.Request, *connect.SearchResourceTagsOutput)
+
+	SearchResourceTagsPages(*connect.SearchResourceTagsInput, func(*connect.SearchResourceTagsOutput, bool) bool) error
+	SearchResourceTagsPagesWithContext(aws.Context, *connect.SearchResourceTagsInput, func(*connect.SearchResourceTagsOutput, bool) bool, ...request.Option) error
+
 	SearchRoutingProfiles(*connect.SearchRoutingProfilesInput) (*connect.SearchRoutingProfilesOutput, error)
 	SearchRoutingProfilesWithContext(aws.Context, *connect.SearchRoutingProfilesInput, ...request.Option) (*connect.SearchRoutingProfilesOutput, error)
 	SearchRoutingProfilesRequest(*connect.SearchRoutingProfilesInput) (*request.Request, *connect.SearchRoutingProfilesOutput)

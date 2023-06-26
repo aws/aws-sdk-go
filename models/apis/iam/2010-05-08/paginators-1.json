@@ -86,6 +86,13 @@
       "output_token": "Marker",
       "result_key": "Groups"
     },
+    "ListInstanceProfileTags": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "more_results": "IsTruncated",
+      "output_token": "Marker",
+      "result_key": "Tags"
+    },
     "ListInstanceProfiles": {
       "input_token": "Marker",
       "limit_key": "MaxItems",
@@ -100,6 +107,13 @@
       "output_token": "Marker",
       "result_key": "InstanceProfiles"
     },
+    "ListMFADeviceTags": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "more_results": "IsTruncated",
+      "output_token": "Marker",
+      "result_key": "Tags"
+    },
     "ListMFADevices": {
       "input_token": "Marker",
       "limit_key": "MaxItems",
@@ -107,12 +121,26 @@
       "output_token": "Marker",
       "result_key": "MFADevices"
     },
+    "ListOpenIDConnectProviderTags": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "more_results": "IsTruncated",
+      "output_token": "Marker",
+      "result_key": "Tags"
+    },
     "ListPolicies": {
       "input_token": "Marker",
       "limit_key": "MaxItems",
       "more_results": "IsTruncated",
       "output_token": "Marker",
       "result_key": "Policies"
+    },
+    "ListPolicyTags": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "more_results": "IsTruncated",
+      "output_token": "Marker",
+      "result_key": "Tags"
     },
     "ListPolicyVersions": {
       "input_token": "Marker",
@@ -128,12 +156,26 @@
       "output_token": "Marker",
       "result_key": "PolicyNames"
     },
+    "ListRoleTags": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "more_results": "IsTruncated",
+      "output_token": "Marker",
+      "result_key": "Tags"
+    },
     "ListRoles": {
       "input_token": "Marker",
       "limit_key": "MaxItems",
       "more_results": "IsTruncated",
       "output_token": "Marker",
       "result_key": "Roles"
+    },
+    "ListSAMLProviderTags": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "more_results": "IsTruncated",
+      "output_token": "Marker",
+      "result_key": "Tags"
     },
     "ListSAMLProviders": {
       "result_key": "SAMLProviderList"
@@ -144,6 +186,13 @@
       "more_results": "IsTruncated",
       "output_token": "Marker",
       "result_key": "SSHPublicKeys"
+    },
+    "ListServerCertificateTags": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "more_results": "IsTruncated",
+      "output_token": "Marker",
+      "result_key": "Tags"
     },
     "ListServerCertificates": {
       "input_token": "Marker",

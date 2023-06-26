@@ -30889,6 +30889,21 @@ type JourneyResponse struct {
 	// This object is not used or supported.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// An array of time zone estimation methods, if any, to use for determining
+	// an Endpoints (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-endpoints-endpoint-id.html)
+	// time zone if the Endpoint does not have a value for the Demographic.Timezone
+	// attribute.
+	//
+	//    * PHONE_NUMBER - A time zone is determined based on the Endpoint.Address
+	//    and Endpoint.Location.Country.
+	//
+	//    * POSTAL_CODE - A time zone is determined based on the Endpoint.Location.PostalCode
+	//    and Endpoint.Location.Country. POSTAL_CODE detection is only supported
+	//    in the United States, United Kingdom, Australia, New Zealand, Canada,
+	//    France, Italy, Spain, Germany and in regions where Amazon Pinpoint is
+	//    available.
+	TimezoneEstimationMethods []*string `type:"list" enum:"TimezoneEstimationMethodsElement"`
+
 	// Indicates whether endpoints in quiet hours should enter a wait activity until
 	// quiet hours have elapsed.
 	WaitForQuietTime *bool `type:"boolean"`
@@ -31029,6 +31044,12 @@ func (s *JourneyResponse) SetState(v string) *JourneyResponse {
 // SetTags sets the Tags field's value.
 func (s *JourneyResponse) SetTags(v map[string]*string) *JourneyResponse {
 	s.Tags = v
+	return s
+}
+
+// SetTimezoneEstimationMethods sets the TimezoneEstimationMethods field's value.
+func (s *JourneyResponse) SetTimezoneEstimationMethods(v []*string) *JourneyResponse {
+	s.TimezoneEstimationMethods = v
 	return s
 }
 
@@ -42439,6 +42460,21 @@ type WriteJourneyRequest struct {
 	// the Journey State resource.
 	State *string `type:"string" enum:"State"`
 
+	// An array of time zone estimation methods, if any, to use for determining
+	// an Endpoints (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-endpoints-endpoint-id.html)
+	// time zone if the Endpoint does not have a value for the Demographic.Timezone
+	// attribute.
+	//
+	//    * PHONE_NUMBER - A time zone is determined based on the Endpoint.Address
+	//    and Endpoint.Location.Country.
+	//
+	//    * POSTAL_CODE - A time zone is determined based on the Endpoint.Location.PostalCode
+	//    and Endpoint.Location.Country. POSTAL_CODE detection is only supported
+	//    in the United States, United Kingdom, Australia, New Zealand, Canada,
+	//    France, Italy, Spain, Germany and in regions where Amazon Pinpoint is
+	//    available.
+	TimezoneEstimationMethods []*string `type:"list" enum:"TimezoneEstimationMethodsElement"`
+
 	// Indicates whether endpoints in quiet hours should enter a wait activity until
 	// quiet hours have elapsed.
 	WaitForQuietTime *bool `type:"boolean"`
@@ -42589,6 +42625,12 @@ func (s *WriteJourneyRequest) SetStartCondition(v *StartCondition) *WriteJourney
 // SetState sets the State field's value.
 func (s *WriteJourneyRequest) SetState(v string) *WriteJourneyRequest {
 	s.State = &v
+	return s
+}
+
+// SetTimezoneEstimationMethods sets the TimezoneEstimationMethods field's value.
+func (s *WriteJourneyRequest) SetTimezoneEstimationMethods(v []*string) *WriteJourneyRequest {
+	s.TimezoneEstimationMethods = v
 	return s
 }
 
@@ -43521,6 +43563,22 @@ func TemplateType_Values() []string {
 		TemplateTypeVoice,
 		TemplateTypePush,
 		TemplateTypeInapp,
+	}
+}
+
+const (
+	// TimezoneEstimationMethodsElementPhoneNumber is a TimezoneEstimationMethodsElement enum value
+	TimezoneEstimationMethodsElementPhoneNumber = "PHONE_NUMBER"
+
+	// TimezoneEstimationMethodsElementPostalCode is a TimezoneEstimationMethodsElement enum value
+	TimezoneEstimationMethodsElementPostalCode = "POSTAL_CODE"
+)
+
+// TimezoneEstimationMethodsElement_Values returns all elements of the TimezoneEstimationMethodsElement enum
+func TimezoneEstimationMethodsElement_Values() []string {
+	return []string{
+		TimezoneEstimationMethodsElementPhoneNumber,
+		TimezoneEstimationMethodsElementPostalCode,
 	}
 }
 
