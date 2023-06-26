@@ -1,3 +1,17 @@
+Release v1.44.290 (2023-06-26)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * Timestamp Starting Position For Kinesis and Kafka Data Sources in a Glue Streaming Job
+* `service/guardduty`: Updates service API and documentation
+  * Add support for user.extra.sessionName in Kubernetes Audit Logs Findings.
+* `service/iam`: Updates service API, documentation, and paginators
+  * Support for a new API "GetMFADevice" to present MFA device metadata such as device certifications
+* `service/pinpoint`: Updates service API and documentation
+  * Added time zone estimation support for journeys
+
 Release v1.44.289 (2023-06-23)
 ===
 

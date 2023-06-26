@@ -4448,6 +4448,13 @@
         "CheckSchemaVersionValidityResponse$Valid": "<p>Return true, if the schema is valid and false otherwise.</p>"
       }
     },
+    "Iso8601DateTime": {
+      "base": null,
+      "refs": {
+        "KafkaStreamingSourceOptions$StartingTimestamp": "<p>The timestamp of the record in the Kafka topic to start reading data from. The possible values are a timestamp string in UTC format of the pattern <code>yyyy-mm-ddTHH:MM:SSZ</code> (where Z represents a UTC timezone offset with a +/-. For example: \"2023-04-04T08:00:00+08:00\"). </p> <p>Only one of <code>StartingTimestamp</code> or <code>StartingOffsets</code> must be set.</p>",
+        "KinesisStreamingSourceOptions$StartingTimestamp": "<p>The timestamp of the record in the Kinesis data stream to start reading data from. The possible values are a timestamp string in UTC format of the pattern <code>yyyy-mm-ddTHH:MM:SSZ</code> (where Z represents a UTC timezone offset with a +/-. For example: \"2023-04-04T08:00:00+08:00\"). </p>"
+      }
+    },
     "JDBCConnectionType": {
       "base": null,
       "refs": {
@@ -7415,7 +7422,7 @@
     "StartingPosition": {
       "base": null,
       "refs": {
-        "KinesisStreamingSourceOptions$StartingPosition": "<p>The starting position in the Kinesis data stream to read data from. The possible values are <code>\"latest\"</code>, <code>\"trim_horizon\"</code>, or <code>\"earliest\"</code>. The default value is <code>\"latest\"</code>.</p>"
+        "KinesisStreamingSourceOptions$StartingPosition": "<p>The starting position in the Kinesis data stream to read data from. The possible values are <code>\"latest\"</code>, <code>\"trim_horizon\"</code>, <code>\"earliest\"</code>, or a timestamp string in UTC format in the pattern <code>yyyy-mm-ddTHH:MM:SSZ</code> (where <code>Z</code> represents a UTC timezone offset with a +/-. For example: \"2023-04-04T08:00:00-04:00\"). The default value is <code>\"latest\"</code>.</p> <p>Note: Using a value that is a timestamp string in UTC format for \"startingPosition\" is supported only for Glue version 4.0 or later.</p>"
       }
     },
     "Statement": {

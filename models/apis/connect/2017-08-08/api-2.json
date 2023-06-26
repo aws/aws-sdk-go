@@ -2204,6 +2204,23 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "SearchResourceTags":{
+      "name":"SearchResourceTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-resource-tags"
+      },
+      "input":{"shape":"SearchResourceTagsRequest"},
+      "output":{"shape":"SearchResourceTagsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"MaximumResultReturnedException"}
+      ]
+    },
     "SearchRoutingProfiles":{
       "name":"SearchRoutingProfiles",
       "http":{
@@ -8457,6 +8474,14 @@
       "max":7,
       "min":1
     },
+    "MaximumResultReturnedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "MediaConcurrencies":{
       "type":"list",
       "member":{"shape":"MediaConcurrency"}
@@ -9628,6 +9653,12 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ResourceTagsSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "TagSearchCondition":{"shape":"TagSearchCondition"}
+      }
+    },
     "ResourceType":{
       "type":"string",
       "enum":[
@@ -9639,6 +9670,10 @@
         "HIERARCHY_GROUP",
         "USER"
       ]
+    },
+    "ResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "ResumeContactRecordingRequest":{
       "type":"structure",
@@ -10021,6 +10056,27 @@
         "QuickConnects":{"shape":"QuickConnectSearchSummaryList"},
         "NextToken":{"shape":"NextToken2500"},
         "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
+    "SearchResourceTagsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceIdOrArn"},
+        "ResourceTypes":{"shape":"ResourceTypeList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchCriteria":{"shape":"ResourceTagsSearchCriteria"}
+      }
+    },
+    "SearchResourceTagsResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagsList"},
+        "NextToken":{"shape":"NextToken2500"}
       }
     },
     "SearchRoutingProfilesRequest":{
@@ -10642,6 +10698,10 @@
       "max":50,
       "min":1
     },
+    "TagKeyString":{
+      "type":"string",
+      "max":128
+    },
     "TagMap":{
       "type":"map",
       "key":{"shape":"TagKey"},
@@ -10678,9 +10738,33 @@
       "max":128,
       "min":1
     },
+    "TagSearchCondition":{
+      "type":"structure",
+      "members":{
+        "tagKey":{"shape":"TagKeyString"},
+        "tagValue":{"shape":"TagValueString"},
+        "tagKeyComparisonType":{"shape":"StringComparisonType"},
+        "tagValueComparisonType":{"shape":"StringComparisonType"}
+      }
+    },
+    "TagSet":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"TagKey"},
+        "value":{"shape":"TagValue"}
+      }
+    },
     "TagValue":{
       "type":"string",
       "max":256
+    },
+    "TagValueString":{
+      "type":"string",
+      "max":256
+    },
+    "TagsList":{
+      "type":"list",
+      "member":{"shape":"TagSet"}
     },
     "TaskActionDefinition":{
       "type":"structure",

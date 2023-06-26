@@ -10140,6 +10140,9 @@
         },
         "ClosedDays": {
             "shape": "ClosedDays"
+        },
+        "TimezoneEstimationMethods": {
+          "shape": "ListOf__TimezoneEstimationMethodsElement"
         }
       },
       "required": [
@@ -13412,6 +13415,9 @@
         },
         "ClosedDays": {
             "shape": "ClosedDays"
+        },
+        "TimezoneEstimationMethods": {
+          "shape": "ListOf__TimezoneEstimationMethodsElement"
         }
       },
       "required": [
@@ -13481,6 +13487,13 @@
         "BAIDU",
         "CUSTOM",
         "IN_APP"
+      ]
+    },
+    "__TimezoneEstimationMethodsElement": {
+      "type": "string",
+      "enum": [
+        "PHONE_NUMBER",
+        "POSTAL_CODE"
       ]
     },
     "__boolean": {
@@ -13646,6 +13659,12 @@
       "type": "list",
       "member": {
         "shape": "__EndpointTypesElement"
+      }
+    },
+    "ListOf__TimezoneEstimationMethodsElement": {
+      "type": "list",
+      "member": {
+        "shape": "__TimezoneEstimationMethodsElement"
       }
     },
     "ListOf__string": {

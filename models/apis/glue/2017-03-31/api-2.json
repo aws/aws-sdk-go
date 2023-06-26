@@ -8272,6 +8272,10 @@
       "exception":true
     },
     "IsVersionValid":{"type":"boolean"},
+    "Iso8601DateTime":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
     "JDBCConnectionType":{
       "type":"string",
       "enum":[
@@ -8645,7 +8649,8 @@
         "MinPartitions":{"shape":"BoxedNonNegativeInt"},
         "IncludeHeaders":{"shape":"BoxedBoolean"},
         "AddRecordTimestamp":{"shape":"EnclosedInStringProperty"},
-        "EmitConsumerLagMetrics":{"shape":"EnclosedInStringProperty"}
+        "EmitConsumerLagMetrics":{"shape":"EnclosedInStringProperty"},
+        "StartingTimestamp":{"shape":"Iso8601DateTime"}
       }
     },
     "KeyList":{
@@ -8697,7 +8702,8 @@
         "RoleArn":{"shape":"EnclosedInStringProperty"},
         "RoleSessionName":{"shape":"EnclosedInStringProperty"},
         "AddRecordTimestamp":{"shape":"EnclosedInStringProperty"},
-        "EmitConsumerLagMetrics":{"shape":"EnclosedInStringProperty"}
+        "EmitConsumerLagMetrics":{"shape":"EnclosedInStringProperty"},
+        "StartingTimestamp":{"shape":"Iso8601DateTime"}
       }
     },
     "KmsKeyArn":{
@@ -11300,7 +11306,8 @@
       "enum":[
         "latest",
         "trim_horizon",
-        "earliest"
+        "earliest",
+        "timestamp"
       ]
     },
     "Statement":{

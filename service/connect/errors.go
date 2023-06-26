@@ -81,6 +81,13 @@ const (
 	// The allowed limit for the resource has been exceeded.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
+	// ErrCodeMaximumResultReturnedException for service response error code
+	// "MaximumResultReturnedException".
+	//
+	// Maximum number (1000) of tags have been returned with current request. Consider
+	// changing request parameters to get more tags.
+	ErrCodeMaximumResultReturnedException = "MaximumResultReturnedException"
+
 	// ErrCodeOutboundContactNotPermittedException for service response error code
 	// "OutboundContactNotPermittedException".
 	//
@@ -149,6 +156,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidParameterException":            newErrorInvalidParameterException,
 	"InvalidRequestException":              newErrorInvalidRequestException,
 	"LimitExceededException":               newErrorLimitExceededException,
+	"MaximumResultReturnedException":       newErrorMaximumResultReturnedException,
 	"OutboundContactNotPermittedException": newErrorOutboundContactNotPermittedException,
 	"PropertyValidationException":          newErrorPropertyValidationException,
 	"ResourceConflictException":            newErrorResourceConflictException,
