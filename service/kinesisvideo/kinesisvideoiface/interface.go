@@ -68,6 +68,10 @@ type KinesisVideoAPI interface {
 	CreateStreamWithContext(aws.Context, *kinesisvideo.CreateStreamInput, ...request.Option) (*kinesisvideo.CreateStreamOutput, error)
 	CreateStreamRequest(*kinesisvideo.CreateStreamInput) (*request.Request, *kinesisvideo.CreateStreamOutput)
 
+	DeleteEdgeConfiguration(*kinesisvideo.DeleteEdgeConfigurationInput) (*kinesisvideo.DeleteEdgeConfigurationOutput, error)
+	DeleteEdgeConfigurationWithContext(aws.Context, *kinesisvideo.DeleteEdgeConfigurationInput, ...request.Option) (*kinesisvideo.DeleteEdgeConfigurationOutput, error)
+	DeleteEdgeConfigurationRequest(*kinesisvideo.DeleteEdgeConfigurationInput) (*request.Request, *kinesisvideo.DeleteEdgeConfigurationOutput)
+
 	DeleteSignalingChannel(*kinesisvideo.DeleteSignalingChannelInput) (*kinesisvideo.DeleteSignalingChannelOutput, error)
 	DeleteSignalingChannelWithContext(aws.Context, *kinesisvideo.DeleteSignalingChannelInput, ...request.Option) (*kinesisvideo.DeleteSignalingChannelOutput, error)
 	DeleteSignalingChannelRequest(*kinesisvideo.DeleteSignalingChannelInput) (*request.Request, *kinesisvideo.DeleteSignalingChannelOutput)
@@ -114,6 +118,13 @@ type KinesisVideoAPI interface {
 	GetSignalingChannelEndpoint(*kinesisvideo.GetSignalingChannelEndpointInput) (*kinesisvideo.GetSignalingChannelEndpointOutput, error)
 	GetSignalingChannelEndpointWithContext(aws.Context, *kinesisvideo.GetSignalingChannelEndpointInput, ...request.Option) (*kinesisvideo.GetSignalingChannelEndpointOutput, error)
 	GetSignalingChannelEndpointRequest(*kinesisvideo.GetSignalingChannelEndpointInput) (*request.Request, *kinesisvideo.GetSignalingChannelEndpointOutput)
+
+	ListEdgeAgentConfigurations(*kinesisvideo.ListEdgeAgentConfigurationsInput) (*kinesisvideo.ListEdgeAgentConfigurationsOutput, error)
+	ListEdgeAgentConfigurationsWithContext(aws.Context, *kinesisvideo.ListEdgeAgentConfigurationsInput, ...request.Option) (*kinesisvideo.ListEdgeAgentConfigurationsOutput, error)
+	ListEdgeAgentConfigurationsRequest(*kinesisvideo.ListEdgeAgentConfigurationsInput) (*request.Request, *kinesisvideo.ListEdgeAgentConfigurationsOutput)
+
+	ListEdgeAgentConfigurationsPages(*kinesisvideo.ListEdgeAgentConfigurationsInput, func(*kinesisvideo.ListEdgeAgentConfigurationsOutput, bool) bool) error
+	ListEdgeAgentConfigurationsPagesWithContext(aws.Context, *kinesisvideo.ListEdgeAgentConfigurationsInput, func(*kinesisvideo.ListEdgeAgentConfigurationsOutput, bool) bool, ...request.Option) error
 
 	ListSignalingChannels(*kinesisvideo.ListSignalingChannelsInput) (*kinesisvideo.ListSignalingChannelsOutput, error)
 	ListSignalingChannelsWithContext(aws.Context, *kinesisvideo.ListSignalingChannelsInput, ...request.Option) (*kinesisvideo.ListSignalingChannelsOutput, error)

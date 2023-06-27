@@ -46,6 +46,22 @@
         {"shape":"TagsPerResourceExceededLimitException"}
       ]
     },
+    "DeleteEdgeConfiguration":{
+      "name":"DeleteEdgeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/deleteEdgeConfiguration"
+      },
+      "input":{"shape":"DeleteEdgeConfigurationInput"},
+      "output":{"shape":"DeleteEdgeConfigurationOutput"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"StreamEdgeConfigurationNotFoundException"}
+      ]
+    },
     "DeleteSignalingChannel":{
       "name":"DeleteSignalingChannel",
       "http":{
@@ -215,6 +231,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListEdgeAgentConfigurations":{
+      "name":"ListEdgeAgentConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listEdgeAgentConfigurations"
+      },
+      "input":{"shape":"ListEdgeAgentConfigurationsInput"},
+      "output":{"shape":"ListEdgeAgentConfigurationsOutput"},
+      "errors":[
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"InvalidArgumentException"}
       ]
     },
     "ListSignalingChannels":{
@@ -611,6 +641,18 @@
       "min":0
     },
     "DeleteAfterUpload":{"type":"boolean"},
+    "DeleteEdgeConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"}
+      }
+    },
+    "DeleteEdgeConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteSignalingChannelInput":{
       "type":"structure",
       "required":["ChannelARN"],
@@ -661,7 +703,8 @@
         "LastUpdatedTime":{"shape":"Timestamp"},
         "SyncStatus":{"shape":"SyncStatus"},
         "FailedStatusDetails":{"shape":"FailedStatusDetails"},
-        "EdgeConfig":{"shape":"EdgeConfig"}
+        "EdgeConfig":{"shape":"EdgeConfig"},
+        "EdgeAgentStatus":{"shape":"EdgeAgentStatus"}
       }
     },
     "DescribeImageGenerationConfigurationInput":{
@@ -775,6 +818,13 @@
       "type":"integer",
       "max":3600,
       "min":60
+    },
+    "EdgeAgentStatus":{
+      "type":"structure",
+      "members":{
+        "LastRecorderStatus":{"shape":"LastRecorderStatus"},
+        "LastUploaderStatus":{"shape":"LastUploaderStatus"}
+      }
     },
     "EdgeConfig":{
       "type":"structure",
@@ -922,11 +972,67 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "JobStatusDetails":{"type":"string"},
     "KmsKeyId":{
       "type":"string",
       "max":2048,
       "min":1,
       "pattern":".+"
+    },
+    "LastRecorderStatus":{
+      "type":"structure",
+      "members":{
+        "JobStatusDetails":{"shape":"JobStatusDetails"},
+        "LastCollectedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "RecorderStatus":{"shape":"RecorderStatus"}
+      }
+    },
+    "LastUploaderStatus":{
+      "type":"structure",
+      "members":{
+        "JobStatusDetails":{"shape":"JobStatusDetails"},
+        "LastCollectedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "UploaderStatus":{"shape":"UploaderStatus"}
+      }
+    },
+    "ListEdgeAgentConfigurationsEdgeConfig":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "SyncStatus":{"shape":"SyncStatus"},
+        "FailedStatusDetails":{"shape":"FailedStatusDetails"},
+        "EdgeConfig":{"shape":"EdgeConfig"}
+      }
+    },
+    "ListEdgeAgentConfigurationsEdgeConfigList":{
+      "type":"list",
+      "member":{"shape":"ListEdgeAgentConfigurationsEdgeConfig"}
+    },
+    "ListEdgeAgentConfigurationsInput":{
+      "type":"structure",
+      "required":["HubDeviceArn"],
+      "members":{
+        "HubDeviceArn":{"shape":"HubDeviceArn"},
+        "MaxResults":{"shape":"ListEdgeAgentConfigurationsInputLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListEdgeAgentConfigurationsInputLimit":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
+    "ListEdgeAgentConfigurationsOutput":{
+      "type":"structure",
+      "members":{
+        "EdgeConfigs":{"shape":"ListEdgeAgentConfigurationsEdgeConfigList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListOfProtocols":{
       "type":"list",
@@ -1128,6 +1234,14 @@
         "ScheduleConfig":{"shape":"ScheduleConfig"}
       }
     },
+    "RecorderStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "USER_ERROR",
+        "SYSTEM_ERROR"
+      ]
+    },
     "ResourceARN":{
       "type":"string",
       "max":1024,
@@ -1288,7 +1402,8 @@
         "IN_SYNC",
         "SYNC_FAILED",
         "DELETING",
-        "DELETE_FAILED"
+        "DELETE_FAILED",
+        "DELETING_ACKNOWLEDGED"
       ]
     },
     "Tag":{
@@ -1510,6 +1625,14 @@
       "members":{
         "ScheduleConfig":{"shape":"ScheduleConfig"}
       }
+    },
+    "UploaderStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "USER_ERROR",
+        "SYSTEM_ERROR"
+      ]
     },
     "Version":{
       "type":"string",

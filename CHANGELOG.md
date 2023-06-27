@@ -1,3 +1,22 @@
+Release v1.44.291 (2023-06-27)
+===
+
+### Service Client Updates
+* `service/appfabric`: Updates service API, documentation, waiters, paginators, and examples
+* `service/appflow`: Updates service API and documentation
+* `service/emr-serverless`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/kinesisvideo`: Updates service API, documentation, and paginators
+  * General Availability (GA) release of Kinesis Video Streams at Edge, enabling customers to provide a configuration for the Kinesis Video Streams EdgeAgent running on an on-premise IoT device. Customers can now locally record from cameras and stream videos to the cloud on a configured schedule.
+* `service/macie2`: Updates service API and documentation
+* `service/privatenetworks`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Introducing TTL for online store records in feature groups.
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+* `service/ssm`: Updates service documentation
+  * Systems Manager doc-only update for June 2023.
+* `service/verifiedpermissions`: Updates service documentation
+
 Release v1.44.290 (2023-06-26)
 ===
 

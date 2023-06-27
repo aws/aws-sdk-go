@@ -23,7 +23,7 @@
 // Guide (https://docs.aws.amazon.com/verifiedpermissions/latest/userguide/).
 //
 // For more information about the Cedar policy language, see the Cedar Policy
-// Language Guide (docs.cedarpolicy.com).
+// Language Guide (https://docs.cedarpolicy.com/).
 //
 // When you write Cedar policies that reference principals, resources and actions,
 // you can define the unique identifiers used for each of those elements. We

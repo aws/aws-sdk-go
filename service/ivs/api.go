@@ -159,6 +159,84 @@ func (c *IVS) BatchGetStreamKeyWithContext(ctx aws.Context, input *BatchGetStrea
 	return out, req.Send()
 }
 
+const opBatchStartViewerSessionRevocation = "BatchStartViewerSessionRevocation"
+
+// BatchStartViewerSessionRevocationRequest generates a "aws/request.Request" representing the
+// client's request for the BatchStartViewerSessionRevocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchStartViewerSessionRevocation for more information on using the BatchStartViewerSessionRevocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchStartViewerSessionRevocationRequest method.
+//	req, resp := client.BatchStartViewerSessionRevocationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/BatchStartViewerSessionRevocation
+func (c *IVS) BatchStartViewerSessionRevocationRequest(input *BatchStartViewerSessionRevocationInput) (req *request.Request, output *BatchStartViewerSessionRevocationOutput) {
+	op := &request.Operation{
+		Name:       opBatchStartViewerSessionRevocation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/BatchStartViewerSessionRevocation",
+	}
+
+	if input == nil {
+		input = &BatchStartViewerSessionRevocationInput{}
+	}
+
+	output = &BatchStartViewerSessionRevocationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchStartViewerSessionRevocation API operation for Amazon Interactive Video Service.
+//
+// Performs StartViewerSessionRevocation on multiple channel ARN and viewer
+// ID pairs simultaneously.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation BatchStartViewerSessionRevocation for usage and error information.
+//
+// Returned Error Types:
+//   - ValidationException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/BatchStartViewerSessionRevocation
+func (c *IVS) BatchStartViewerSessionRevocation(input *BatchStartViewerSessionRevocationInput) (*BatchStartViewerSessionRevocationOutput, error) {
+	req, out := c.BatchStartViewerSessionRevocationRequest(input)
+	return out, req.Send()
+}
+
+// BatchStartViewerSessionRevocationWithContext is the same as BatchStartViewerSessionRevocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchStartViewerSessionRevocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) BatchStartViewerSessionRevocationWithContext(ctx aws.Context, input *BatchStartViewerSessionRevocationInput, opts ...request.Option) (*BatchStartViewerSessionRevocationOutput, error) {
+	req, out := c.BatchStartViewerSessionRevocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateChannel = "CreateChannel"
 
 // CreateChannelRequest generates a "aws/request.Request" representing the
@@ -2398,6 +2476,95 @@ func (c *IVS) PutMetadataWithContext(ctx aws.Context, input *PutMetadataInput, o
 	return out, req.Send()
 }
 
+const opStartViewerSessionRevocation = "StartViewerSessionRevocation"
+
+// StartViewerSessionRevocationRequest generates a "aws/request.Request" representing the
+// client's request for the StartViewerSessionRevocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartViewerSessionRevocation for more information on using the StartViewerSessionRevocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartViewerSessionRevocationRequest method.
+//	req, resp := client.StartViewerSessionRevocationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/StartViewerSessionRevocation
+func (c *IVS) StartViewerSessionRevocationRequest(input *StartViewerSessionRevocationInput) (req *request.Request, output *StartViewerSessionRevocationOutput) {
+	op := &request.Operation{
+		Name:       opStartViewerSessionRevocation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartViewerSessionRevocation",
+	}
+
+	if input == nil {
+		input = &StartViewerSessionRevocationInput{}
+	}
+
+	output = &StartViewerSessionRevocationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartViewerSessionRevocation API operation for Amazon Interactive Video Service.
+//
+// Starts the process of revoking the viewer session associated with a specified
+// channel ARN and viewer ID. Optionally, you can provide a version to revoke
+// viewer sessions less than and including that version. For instructions on
+// associating a viewer ID with a viewer session, see Setting Up Private Channels
+// (https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation StartViewerSessionRevocation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//
+//   - AccessDeniedException
+//
+//   - ValidationException
+//
+//   - ThrottlingException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/StartViewerSessionRevocation
+func (c *IVS) StartViewerSessionRevocation(input *StartViewerSessionRevocationInput) (*StartViewerSessionRevocationOutput, error) {
+	req, out := c.StartViewerSessionRevocationRequest(input)
+	return out, req.Send()
+}
+
+// StartViewerSessionRevocationWithContext is the same as StartViewerSessionRevocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartViewerSessionRevocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) StartViewerSessionRevocationWithContext(ctx aws.Context, input *StartViewerSessionRevocationInput, opts ...request.Option) (*StartViewerSessionRevocationOutput, error) {
+	req, out := c.StartViewerSessionRevocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopStream = "StopStream"
 
 // StopStreamRequest generates a "aws/request.Request" representing the
@@ -3095,6 +3262,240 @@ func (s *BatchGetStreamKeyOutput) SetErrors(v []*BatchError) *BatchGetStreamKeyO
 // SetStreamKeys sets the StreamKeys field's value.
 func (s *BatchGetStreamKeyOutput) SetStreamKeys(v []*StreamKey) *BatchGetStreamKeyOutput {
 	s.StreamKeys = v
+	return s
+}
+
+// Error for a request in the batch for BatchStartViewerSessionRevocation. Each
+// error is related to a specific channel-ARN and viewer-ID pair.
+type BatchStartViewerSessionRevocationError struct {
+	_ struct{} `type:"structure"`
+
+	// Channel ARN.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
+
+	// Error code.
+	Code *string `locationName:"code" type:"string"`
+
+	// Error message, determined by the application.
+	Message *string `locationName:"message" type:"string"`
+
+	// The ID of the viewer session to revoke.
+	//
+	// ViewerId is a required field
+	ViewerId *string `locationName:"viewerId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartViewerSessionRevocationError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartViewerSessionRevocationError) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *BatchStartViewerSessionRevocationError) SetChannelArn(v string) *BatchStartViewerSessionRevocationError {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetCode sets the Code field's value.
+func (s *BatchStartViewerSessionRevocationError) SetCode(v string) *BatchStartViewerSessionRevocationError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *BatchStartViewerSessionRevocationError) SetMessage(v string) *BatchStartViewerSessionRevocationError {
+	s.Message = &v
+	return s
+}
+
+// SetViewerId sets the ViewerId field's value.
+func (s *BatchStartViewerSessionRevocationError) SetViewerId(v string) *BatchStartViewerSessionRevocationError {
+	s.ViewerId = &v
+	return s
+}
+
+type BatchStartViewerSessionRevocationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Array of viewer sessions, one per channel-ARN and viewer-ID pair.
+	//
+	// ViewerSessions is a required field
+	ViewerSessions []*BatchStartViewerSessionRevocationViewerSession `locationName:"viewerSessions" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartViewerSessionRevocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartViewerSessionRevocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchStartViewerSessionRevocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchStartViewerSessionRevocationInput"}
+	if s.ViewerSessions == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewerSessions"))
+	}
+	if s.ViewerSessions != nil && len(s.ViewerSessions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewerSessions", 1))
+	}
+	if s.ViewerSessions != nil {
+		for i, v := range s.ViewerSessions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ViewerSessions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetViewerSessions sets the ViewerSessions field's value.
+func (s *BatchStartViewerSessionRevocationInput) SetViewerSessions(v []*BatchStartViewerSessionRevocationViewerSession) *BatchStartViewerSessionRevocationInput {
+	s.ViewerSessions = v
+	return s
+}
+
+type BatchStartViewerSessionRevocationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Each error object is related to a specific channelArn and viewerId pair in
+	// the request.
+	Errors []*BatchStartViewerSessionRevocationError `locationName:"errors" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartViewerSessionRevocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartViewerSessionRevocationOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchStartViewerSessionRevocationOutput) SetErrors(v []*BatchStartViewerSessionRevocationError) *BatchStartViewerSessionRevocationOutput {
+	s.Errors = v
+	return s
+}
+
+// A viewer session to revoke in the call to BatchStartViewerSessionRevocation.
+type BatchStartViewerSessionRevocationViewerSession struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel associated with the viewer session to revoke.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
+
+	// The ID of the viewer associated with the viewer session to revoke. Do not
+	// use this field for personally identifying, confidential, or sensitive information.
+	//
+	// ViewerId is a required field
+	ViewerId *string `locationName:"viewerId" min:"1" type:"string" required:"true"`
+
+	// An optional filter on which versions of the viewer session to revoke. All
+	// versions less than or equal to the specified version will be revoked. Default:
+	// 0.
+	ViewerSessionVersionsLessThanOrEqualTo *int64 `locationName:"viewerSessionVersionsLessThanOrEqualTo" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartViewerSessionRevocationViewerSession) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartViewerSessionRevocationViewerSession) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchStartViewerSessionRevocationViewerSession) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchStartViewerSessionRevocationViewerSession"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 1))
+	}
+	if s.ViewerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewerId"))
+	}
+	if s.ViewerId != nil && len(*s.ViewerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewerId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *BatchStartViewerSessionRevocationViewerSession) SetChannelArn(v string) *BatchStartViewerSessionRevocationViewerSession {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetViewerId sets the ViewerId field's value.
+func (s *BatchStartViewerSessionRevocationViewerSession) SetViewerId(v string) *BatchStartViewerSessionRevocationViewerSession {
+	s.ViewerId = &v
+	return s
+}
+
+// SetViewerSessionVersionsLessThanOrEqualTo sets the ViewerSessionVersionsLessThanOrEqualTo field's value.
+func (s *BatchStartViewerSessionRevocationViewerSession) SetViewerSessionVersionsLessThanOrEqualTo(v int64) *BatchStartViewerSessionRevocationViewerSession {
+	s.ViewerSessionVersionsLessThanOrEqualTo = &v
 	return s
 }
 
@@ -6384,6 +6785,106 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type StartViewerSessionRevocationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel associated with the viewer session to revoke.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
+
+	// The ID of the viewer associated with the viewer session to revoke. Do not
+	// use this field for personally identifying, confidential, or sensitive information.
+	//
+	// ViewerId is a required field
+	ViewerId *string `locationName:"viewerId" min:"1" type:"string" required:"true"`
+
+	// An optional filter on which versions of the viewer session to revoke. All
+	// versions less than or equal to the specified version will be revoked. Default:
+	// 0.
+	ViewerSessionVersionsLessThanOrEqualTo *int64 `locationName:"viewerSessionVersionsLessThanOrEqualTo" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartViewerSessionRevocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartViewerSessionRevocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartViewerSessionRevocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartViewerSessionRevocationInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 1))
+	}
+	if s.ViewerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewerId"))
+	}
+	if s.ViewerId != nil && len(*s.ViewerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewerId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *StartViewerSessionRevocationInput) SetChannelArn(v string) *StartViewerSessionRevocationInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetViewerId sets the ViewerId field's value.
+func (s *StartViewerSessionRevocationInput) SetViewerId(v string) *StartViewerSessionRevocationInput {
+	s.ViewerId = &v
+	return s
+}
+
+// SetViewerSessionVersionsLessThanOrEqualTo sets the ViewerSessionVersionsLessThanOrEqualTo field's value.
+func (s *StartViewerSessionRevocationInput) SetViewerSessionVersionsLessThanOrEqualTo(v int64) *StartViewerSessionRevocationInput {
+	s.ViewerSessionVersionsLessThanOrEqualTo = &v
+	return s
+}
+
+type StartViewerSessionRevocationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartViewerSessionRevocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartViewerSessionRevocationOutput) GoString() string {
+	return s.String()
 }
 
 type StopStreamInput struct {

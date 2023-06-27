@@ -2159,13 +2159,20 @@ func (c *PrivateNetworks) StartNetworkResourceUpdateRequest(input *StartNetworkR
 
 // StartNetworkResourceUpdate API operation for AWS Private 5G.
 //
-// Starts an update of the specified network resource.
+// Use this action to do the following tasks:
+//
+//   - Update the duration and renewal status of the commitment period for
+//     a radio unit. The update goes into effect immediately.
+//
+//   - Request a replacement for a network resource.
+//
+//   - Request that you return a network resource.
 //
 // After you submit a request to replace or return a network resource, the status
-// of the network resource is CREATING_SHIPPING_LABEL. The shipping label is
-// available when the status of the network resource is PENDING_RETURN. After
-// the network resource is successfully returned, its status is DELETED. For
-// more information, see Return a radio unit (https://docs.aws.amazon.com/private-networks/latest/userguide/radio-units.html#return-radio-unit).
+// of the network resource changes to CREATING_SHIPPING_LABEL. The shipping
+// label is available when the status of the network resource is PENDING_RETURN.
+// After the network resource is successfully returned, its status changes to
+// DELETED. For more information, see Return a radio unit (https://docs.aws.amazon.com/private-networks/latest/userguide/radio-units.html#return-radio-unit).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2816,6 +2823,24 @@ type ActivateNetworkSiteInput struct {
 	// of the request. For more information, see How to ensure idempotency (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string"`
 
+	// Determines the duration and renewal status of the commitment period for all
+	// pending radio units.
+	//
+	// If you include commitmentConfiguration in the ActivateNetworkSiteRequest
+	// action, you must specify the following:
+	//
+	//    * The commitment period for the radio unit. You can choose a 60-day, 1-year,
+	//    or 3-year period.
+	//
+	//    * Whether you want your commitment period to automatically renew for one
+	//    more year after your current commitment period expires.
+	//
+	// For pricing, see Amazon Web Services Private 5G Pricing (http://aws.amazon.com/private5g/pricing).
+	//
+	// If you do not include commitmentConfiguration in the ActivateNetworkSiteRequest
+	// action, the commitment period is set to 60-days.
+	CommitmentConfiguration *CommitmentConfiguration `locationName:"commitmentConfiguration" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the network site.
 	//
 	// NetworkSiteArn is a required field
@@ -2857,6 +2882,11 @@ func (s *ActivateNetworkSiteInput) Validate() error {
 	if s.ShippingAddress == nil {
 		invalidParams.Add(request.NewErrParamRequired("ShippingAddress"))
 	}
+	if s.CommitmentConfiguration != nil {
+		if err := s.CommitmentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CommitmentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ShippingAddress != nil {
 		if err := s.ShippingAddress.Validate(); err != nil {
 			invalidParams.AddNested("ShippingAddress", err.(request.ErrInvalidParams))
@@ -2872,6 +2902,12 @@ func (s *ActivateNetworkSiteInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *ActivateNetworkSiteInput) SetClientToken(v string) *ActivateNetworkSiteInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetCommitmentConfiguration sets the CommitmentConfiguration field's value.
+func (s *ActivateNetworkSiteInput) SetCommitmentConfiguration(v *CommitmentConfiguration) *ActivateNetworkSiteInput {
+	s.CommitmentConfiguration = v
 	return s
 }
 
@@ -2947,6 +2983,13 @@ type Address struct {
 	// Country is a required field
 	Country *string `locationName:"country" min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// The recipient's email address.
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	EmailAddress *string `locationName:"emailAddress" min:"1" type:"string" sensitive:"true"`
+
 	// The recipient's name for this address.
 	//
 	// Name is a sensitive parameter and its value will be
@@ -2956,7 +2999,7 @@ type Address struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The phone number for this address.
+	// The recipient's phone number.
 	//
 	// PhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
@@ -3041,6 +3084,9 @@ func (s *Address) Validate() error {
 	if s.Country != nil && len(*s.Country) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Country", 1))
 	}
+	if s.EmailAddress != nil && len(*s.EmailAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -3099,6 +3145,12 @@ func (s *Address) SetCountry(v string) *Address {
 	return s
 }
 
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *Address) SetEmailAddress(v string) *Address {
+	s.EmailAddress = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *Address) SetName(v string) *Address {
 	s.Name = &v
@@ -3138,6 +3190,145 @@ func (s *Address) SetStreet2(v string) *Address {
 // SetStreet3 sets the Street3 field's value.
 func (s *Address) SetStreet3(v string) *Address {
 	s.Street3 = &v
+	return s
+}
+
+// Determines the duration and renewal status of the commitment period for a
+// radio unit.
+//
+// For pricing, see Amazon Web Services Private 5G Pricing (http://aws.amazon.com/private5g/pricing).
+type CommitmentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether the commitment period for a radio unit is set to automatically
+	// renew for an additional 1 year after your current commitment period expires.
+	//
+	// Set to True, if you want your commitment period to automatically renew. Set
+	// to False if you do not want your commitment to automatically renew.
+	//
+	// You can do the following:
+	//
+	//    * Set a 1-year commitment to automatically renew for an additional 1 year.
+	//    The hourly rate for the additional year will continue to be the same as
+	//    your existing 1-year rate.
+	//
+	//    * Set a 3-year commitment to automatically renew for an additional 1 year.
+	//    The hourly rate for the additional year will continue to be the same as
+	//    your existing 3-year rate.
+	//
+	//    * Turn off a previously-enabled automatic renewal on a 1-year or 3-year
+	//    commitment.
+	//
+	// You cannot use the automatic-renewal option for a 60-day commitment.
+	//
+	// AutomaticRenewal is a required field
+	AutomaticRenewal *bool `locationName:"automaticRenewal" type:"boolean" required:"true"`
+
+	// The duration of the commitment period for the radio unit. You can choose
+	// a 60-day, 1-year, or 3-year period.
+	//
+	// CommitmentLength is a required field
+	CommitmentLength *string `locationName:"commitmentLength" type:"string" required:"true" enum:"CommitmentLength"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommitmentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommitmentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CommitmentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CommitmentConfiguration"}
+	if s.AutomaticRenewal == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutomaticRenewal"))
+	}
+	if s.CommitmentLength == nil {
+		invalidParams.Add(request.NewErrParamRequired("CommitmentLength"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomaticRenewal sets the AutomaticRenewal field's value.
+func (s *CommitmentConfiguration) SetAutomaticRenewal(v bool) *CommitmentConfiguration {
+	s.AutomaticRenewal = &v
+	return s
+}
+
+// SetCommitmentLength sets the CommitmentLength field's value.
+func (s *CommitmentConfiguration) SetCommitmentLength(v string) *CommitmentConfiguration {
+	s.CommitmentLength = &v
+	return s
+}
+
+// Shows the duration, the date and time that the contract started and ends,
+// and the renewal status of the commitment period for the radio unit.
+type CommitmentInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The duration and renewal status of the commitment period for the radio unit.
+	//
+	// CommitmentConfiguration is a required field
+	CommitmentConfiguration *CommitmentConfiguration `locationName:"commitmentConfiguration" type:"structure" required:"true"`
+
+	// The date and time that the commitment period ends. If you do not cancel or
+	// renew the commitment before the expiration date, you will be billed at the
+	// 60-day-commitment rate.
+	ExpiresOn *time.Time `locationName:"expiresOn" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The date and time that the commitment period started.
+	StartAt *time.Time `locationName:"startAt" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommitmentInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommitmentInformation) GoString() string {
+	return s.String()
+}
+
+// SetCommitmentConfiguration sets the CommitmentConfiguration field's value.
+func (s *CommitmentInformation) SetCommitmentConfiguration(v *CommitmentConfiguration) *CommitmentInformation {
+	s.CommitmentConfiguration = v
+	return s
+}
+
+// SetExpiresOn sets the ExpiresOn field's value.
+func (s *CommitmentInformation) SetExpiresOn(v time.Time) *CommitmentInformation {
+	s.ExpiresOn = &v
+	return s
+}
+
+// SetStartAt sets the StartAt field's value.
+func (s *CommitmentInformation) SetStartAt(v time.Time) *CommitmentInformation {
+	s.StartAt = &v
 	return s
 }
 
@@ -5439,6 +5630,11 @@ type NetworkResource struct {
 	// The attributes of the network resource.
 	Attributes []*NameValuePair `locationName:"attributes" type:"list"`
 
+	// Information about the commitment period for the radio unit. Shows the duration,
+	// the date and time that the contract started and ends, and the renewal status
+	// of the commitment period.
+	CommitmentInformation *CommitmentInformation `locationName:"commitmentInformation" type:"structure"`
+
 	// The creation time of the network resource.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -5509,6 +5705,12 @@ func (s NetworkResource) GoString() string {
 // SetAttributes sets the Attributes field's value.
 func (s *NetworkResource) SetAttributes(v []*NameValuePair) *NetworkResource {
 	s.Attributes = v
+	return s
+}
+
+// SetCommitmentInformation sets the CommitmentInformation field's value.
+func (s *NetworkResource) SetCommitmentInformation(v *CommitmentInformation) *NetworkResource {
+	s.CommitmentInformation = v
 	return s
 }
 
@@ -5831,6 +6033,9 @@ type Order struct {
 	// The Amazon Resource Name (ARN) of the order.
 	OrderArn *string `locationName:"orderArn" type:"string"`
 
+	// A list of the network resources placed in the order.
+	OrderedResources []*OrderedResourceDefinition `locationName:"orderedResources" type:"list"`
+
 	// The shipping address of the order.
 	ShippingAddress *Address `locationName:"shippingAddress" type:"structure"`
 
@@ -5886,6 +6091,12 @@ func (s *Order) SetOrderArn(v string) *Order {
 	return s
 }
 
+// SetOrderedResources sets the OrderedResources field's value.
+func (s *Order) SetOrderedResources(v []*OrderedResourceDefinition) *Order {
+	s.OrderedResources = v
+	return s
+}
+
 // SetShippingAddress sets the ShippingAddress field's value.
 func (s *Order) SetShippingAddress(v *Address) *Order {
 	s.ShippingAddress = v
@@ -5895,6 +6106,61 @@ func (s *Order) SetShippingAddress(v *Address) *Order {
 // SetTrackingInformation sets the TrackingInformation field's value.
 func (s *Order) SetTrackingInformation(v []*TrackingInformation) *Order {
 	s.TrackingInformation = v
+	return s
+}
+
+// Details of the network resources in the order.
+type OrderedResourceDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The duration and renewal status of the commitment period for each radio unit
+	// in the order. Does not show details if the resource type is DEVICE_IDENTIFIER.
+	CommitmentConfiguration *CommitmentConfiguration `locationName:"commitmentConfiguration" type:"structure"`
+
+	// The number of network resources in the order.
+	//
+	// Count is a required field
+	Count *int64 `locationName:"count" type:"integer" required:"true"`
+
+	// The type of network resource in the order.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"NetworkResourceDefinitionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrderedResourceDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrderedResourceDefinition) GoString() string {
+	return s.String()
+}
+
+// SetCommitmentConfiguration sets the CommitmentConfiguration field's value.
+func (s *OrderedResourceDefinition) SetCommitmentConfiguration(v *CommitmentConfiguration) *OrderedResourceDefinition {
+	s.CommitmentConfiguration = v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *OrderedResourceDefinition) SetCount(v int64) *OrderedResourceDefinition {
+	s.Count = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *OrderedResourceDefinition) SetType(v string) *OrderedResourceDefinition {
+	s.Type = &v
 	return s
 }
 
@@ -6230,6 +6496,30 @@ func (s *SitePlan) SetResourceDefinitions(v []*NetworkResourceDefinition) *SiteP
 type StartNetworkResourceUpdateInput struct {
 	_ struct{} `type:"structure"`
 
+	// Use this action to extend and automatically renew the commitment period for
+	// the radio unit. You can do the following:
+	//
+	//    * Change a 60-day commitment to a 1-year or 3-year commitment. The change
+	//    is immediate and the hourly rate decreases to the rate for the new commitment
+	//    period.
+	//
+	//    * Change a 1-year commitment to a 3-year commitment. The change is immediate
+	//    and the hourly rate decreases to the rate for the 3-year commitment period.
+	//
+	//    * Set a 1-year commitment to automatically renew for an additional 1 year.
+	//    The hourly rate for the additional year will continue to be the same as
+	//    your existing 1-year rate.
+	//
+	//    * Set a 3-year commitment to automatically renew for an additional 1 year.
+	//    The hourly rate for the additional year will continue to be the same as
+	//    your existing 3-year rate.
+	//
+	//    * Turn off a previously-enabled automatic renewal on a 1-year or 3-year
+	//    commitment. You cannot use the automatic-renewal option for a 60-day commitment.
+	//
+	// For pricing, see Amazon Web Services Private 5G Pricing (http://aws.amazon.com/private5g/pricing).
+	CommitmentConfiguration *CommitmentConfiguration `locationName:"commitmentConfiguration" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the network resource.
 	//
 	// NetworkResourceArn is a required field
@@ -6249,8 +6539,11 @@ type StartNetworkResourceUpdateInput struct {
 	//    a shipping label that you can use for the return process and we ship a
 	//    replacement radio unit to you.
 	//
-	//    * RETURN - Submits a request to replace a radio unit that you no longer
+	//    * RETURN - Submits a request to return a radio unit that you no longer
 	//    need. We provide a shipping label that you can use for the return process.
+	//
+	//    * COMMITMENT - Submits a request to change or renew the commitment period.
+	//    If you choose this value, then you must set commitmentConfiguration (https://docs.aws.amazon.com/private-networks/latest/APIReference/API_StartNetworkResourceUpdate.html#privatenetworks-StartNetworkResourceUpdate-request-commitmentConfiguration).
 	//
 	// UpdateType is a required field
 	UpdateType *string `locationName:"updateType" type:"string" required:"true" enum:"UpdateType"`
@@ -6283,6 +6576,11 @@ func (s *StartNetworkResourceUpdateInput) Validate() error {
 	if s.UpdateType == nil {
 		invalidParams.Add(request.NewErrParamRequired("UpdateType"))
 	}
+	if s.CommitmentConfiguration != nil {
+		if err := s.CommitmentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CommitmentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ShippingAddress != nil {
 		if err := s.ShippingAddress.Validate(); err != nil {
 			invalidParams.AddNested("ShippingAddress", err.(request.ErrInvalidParams))
@@ -6293,6 +6591,12 @@ func (s *StartNetworkResourceUpdateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCommitmentConfiguration sets the CommitmentConfiguration field's value.
+func (s *StartNetworkResourceUpdateInput) SetCommitmentConfiguration(v *CommitmentConfiguration) *StartNetworkResourceUpdateInput {
+	s.CommitmentConfiguration = v
+	return s
 }
 
 // SetNetworkResourceArn sets the NetworkResourceArn field's value.
@@ -7003,6 +7307,26 @@ func AcknowledgmentStatus_Values() []string {
 }
 
 const (
+	// CommitmentLengthSixtyDays is a CommitmentLength enum value
+	CommitmentLengthSixtyDays = "SIXTY_DAYS"
+
+	// CommitmentLengthOneYear is a CommitmentLength enum value
+	CommitmentLengthOneYear = "ONE_YEAR"
+
+	// CommitmentLengthThreeYears is a CommitmentLength enum value
+	CommitmentLengthThreeYears = "THREE_YEARS"
+)
+
+// CommitmentLength_Values returns all elements of the CommitmentLength enum
+func CommitmentLength_Values() []string {
+	return []string{
+		CommitmentLengthSixtyDays,
+		CommitmentLengthOneYear,
+		CommitmentLengthThreeYears,
+	}
+}
+
+const (
 	// DeviceIdentifierFilterKeysStatus is a DeviceIdentifierFilterKeys enum value
 	DeviceIdentifierFilterKeysStatus = "STATUS"
 
@@ -7276,6 +7600,9 @@ const (
 
 	// UpdateTypeReturn is a UpdateType enum value
 	UpdateTypeReturn = "RETURN"
+
+	// UpdateTypeCommitment is a UpdateType enum value
+	UpdateTypeCommitment = "COMMITMENT"
 )
 
 // UpdateType_Values returns all elements of the UpdateType enum
@@ -7283,6 +7610,7 @@ func UpdateType_Values() []string {
 	return []string{
 		UpdateTypeReplace,
 		UpdateTypeReturn,
+		UpdateTypeCommitment,
 	}
 }
 

@@ -16097,7 +16097,14 @@
       "type":"structure",
       "members":{
         "SecurityConfig":{"shape":"OnlineStoreSecurityConfig"},
-        "EnableOnlineStore":{"shape":"Boolean"}
+        "EnableOnlineStore":{"shape":"Boolean"},
+        "TtlDuration":{"shape":"TtlDuration"}
+      }
+    },
+    "OnlineStoreConfigUpdate":{
+      "type":"structure",
+      "members":{
+        "TtlDuration":{"shape":"TtlDuration"}
       }
     },
     "OnlineStoreSecurityConfig":{
@@ -20083,6 +20090,27 @@
         "LastModifiedTime":{"shape":"Timestamp"}
       }
     },
+    "TtlDuration":{
+      "type":"structure",
+      "members":{
+        "Unit":{"shape":"TtlDurationUnit"},
+        "Value":{"shape":"TtlDurationValue"}
+      }
+    },
+    "TtlDurationUnit":{
+      "type":"string",
+      "enum":[
+        "Seconds",
+        "Minutes",
+        "Hours",
+        "Days",
+        "Weeks"
+      ]
+    },
+    "TtlDurationValue":{
+      "type":"integer",
+      "min":1
+    },
     "TuningJobCompletionCriteria":{
       "type":"structure",
       "members":{
@@ -20306,7 +20334,8 @@
       "required":["FeatureGroupName"],
       "members":{
         "FeatureGroupName":{"shape":"FeatureGroupName"},
-        "FeatureAdditions":{"shape":"FeatureAdditions"}
+        "FeatureAdditions":{"shape":"FeatureAdditions"},
+        "OnlineStoreConfig":{"shape":"OnlineStoreConfigUpdate"}
       }
     },
     "UpdateFeatureGroupResponse":{

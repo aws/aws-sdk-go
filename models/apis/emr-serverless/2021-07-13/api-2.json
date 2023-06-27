@@ -1255,7 +1255,8 @@
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "architecture":{"shape":"Architecture"},
         "imageConfiguration":{"shape":"ImageConfigurationInput"},
-        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"}
+        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"},
+        "releaseLabel":{"shape":"ReleaseLabel"}
       }
     },
     "UpdateApplicationResponse":{
