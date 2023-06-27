@@ -477,6 +477,7 @@
       ],
       "members":{
         "clientToken":{"shape":"ClientToken"},
+        "commitmentConfiguration":{"shape":"CommitmentConfiguration"},
         "networkSiteArn":{"shape":"Arn"},
         "shippingAddress":{"shape":"Address"}
       }
@@ -501,6 +502,7 @@
         "city":{"shape":"AddressContent"},
         "company":{"shape":"AddressContent"},
         "country":{"shape":"AddressContent"},
+        "emailAddress":{"shape":"AddressContent"},
         "name":{"shape":"AddressContent"},
         "phoneNumber":{"shape":"AddressContent"},
         "postalCode":{"shape":"AddressContent"},
@@ -520,10 +522,42 @@
       "type":"string",
       "pattern":"^arn:aws:private-networks:[a-z0-9-]+:[^:]*:.*$"
     },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
     "ClientToken":{
       "type":"string",
       "max":100,
       "min":1
+    },
+    "CommitmentConfiguration":{
+      "type":"structure",
+      "required":[
+        "automaticRenewal",
+        "commitmentLength"
+      ],
+      "members":{
+        "automaticRenewal":{"shape":"Boolean"},
+        "commitmentLength":{"shape":"CommitmentLength"}
+      }
+    },
+    "CommitmentInformation":{
+      "type":"structure",
+      "required":["commitmentConfiguration"],
+      "members":{
+        "commitmentConfiguration":{"shape":"CommitmentConfiguration"},
+        "expiresOn":{"shape":"Timestamp"},
+        "startAt":{"shape":"Timestamp"}
+      }
+    },
+    "CommitmentLength":{
+      "type":"string",
+      "enum":[
+        "SIXTY_DAYS",
+        "ONE_YEAR",
+        "THREE_YEARS"
+      ]
     },
     "ConfigureAccessPointRequest":{
       "type":"structure",
@@ -1055,6 +1089,7 @@
       "type":"structure",
       "members":{
         "attributes":{"shape":"NameValuePairs"},
+        "commitmentInformation":{"shape":"CommitmentInformation"},
         "createdAt":{"shape":"Timestamp"},
         "description":{"shape":"Description"},
         "health":{"shape":"HealthStatus"},
@@ -1209,6 +1244,7 @@
         "networkArn":{"shape":"Arn"},
         "networkSiteArn":{"shape":"Arn"},
         "orderArn":{"shape":"Arn"},
+        "orderedResources":{"shape":"OrderedResourceDefinitions"},
         "shippingAddress":{"shape":"Address"},
         "trackingInformation":{"shape":"TrackingInformationList"}
       }
@@ -1232,6 +1268,27 @@
     "OrderList":{
       "type":"list",
       "member":{"shape":"Order"}
+    },
+    "OrderedResourceDefinition":{
+      "type":"structure",
+      "required":[
+        "count",
+        "type"
+      ],
+      "members":{
+        "commitmentConfiguration":{"shape":"CommitmentConfiguration"},
+        "count":{"shape":"OrderedResourceDefinitionCountInteger"},
+        "type":{"shape":"NetworkResourceDefinitionType"}
+      }
+    },
+    "OrderedResourceDefinitionCountInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "OrderedResourceDefinitions":{
+      "type":"list",
+      "member":{"shape":"OrderedResourceDefinition"}
     },
     "PaginationToken":{"type":"string"},
     "PingResponse":{
@@ -1291,6 +1348,7 @@
         "updateType"
       ],
       "members":{
+        "commitmentConfiguration":{"shape":"CommitmentConfiguration"},
         "networkResourceArn":{"shape":"Arn"},
         "returnReason":{"shape":"StartNetworkResourceUpdateRequestReturnReasonString"},
         "shippingAddress":{"shape":"Address"},
@@ -1438,7 +1496,8 @@
       "type":"string",
       "enum":[
         "REPLACE",
-        "RETURN"
+        "RETURN",
+        "COMMITMENT"
       ]
     },
     "ValidationException":{

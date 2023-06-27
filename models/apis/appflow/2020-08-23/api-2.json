@@ -2748,7 +2748,8 @@
         "clientNumber":{"shape":"ClientNumber"},
         "logonLanguage":{"shape":"LogonLanguage"},
         "privateLinkServiceName":{"shape":"PrivateLinkServiceName"},
-        "oAuthProperties":{"shape":"OAuthProperties"}
+        "oAuthProperties":{"shape":"OAuthProperties"},
+        "disableSSO":{"shape":"Boolean"}
       }
     },
     "SAPODataDestinationProperties":{

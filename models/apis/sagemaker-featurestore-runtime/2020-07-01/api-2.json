@@ -124,7 +124,8 @@
       "type":"structure",
       "required":["Identifiers"],
       "members":{
-        "Identifiers":{"shape":"BatchGetRecordIdentifiers"}
+        "Identifiers":{"shape":"BatchGetRecordIdentifiers"},
+        "ExpirationTimeResponse":{"shape":"ExpirationTimeResponse"}
       }
     },
     "BatchGetRecordResponse":{
@@ -150,7 +151,8 @@
       "members":{
         "FeatureGroupName":{"shape":"ValueAsString"},
         "RecordIdentifierValueAsString":{"shape":"ValueAsString"},
-        "Record":{"shape":"Record"}
+        "Record":{"shape":"Record"},
+        "ExpiresAt":{"shape":"ExpiresAt"}
       }
     },
     "BatchGetRecordResultDetails":{
@@ -200,6 +202,14 @@
         "HardDelete"
       ]
     },
+    "ExpirationTimeResponse":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "ExpiresAt":{"type":"string"},
     "FeatureGroupName":{
       "type":"string",
       "max":64,
@@ -249,13 +259,19 @@
           "shape":"FeatureNames",
           "location":"querystring",
           "locationName":"FeatureName"
+        },
+        "ExpirationTimeResponse":{
+          "shape":"ExpirationTimeResponse",
+          "location":"querystring",
+          "locationName":"ExpirationTimeResponse"
         }
       }
     },
     "GetRecordResponse":{
       "type":"structure",
       "members":{
-        "Record":{"shape":"Record"}
+        "Record":{"shape":"Record"},
+        "ExpiresAt":{"shape":"ExpiresAt"}
       }
     },
     "InternalFailure":{
@@ -285,7 +301,8 @@
           "locationName":"FeatureGroupName"
         },
         "Record":{"shape":"Record"},
-        "TargetStores":{"shape":"TargetStores"}
+        "TargetStores":{"shape":"TargetStores"},
+        "TtlDuration":{"shape":"TtlDuration"}
       }
     },
     "Record":{
@@ -328,6 +345,31 @@
       "type":"list",
       "member":{"shape":"TargetStore"},
       "max":2,
+      "min":1
+    },
+    "TtlDuration":{
+      "type":"structure",
+      "required":[
+        "Unit",
+        "Value"
+      ],
+      "members":{
+        "Unit":{"shape":"TtlDurationUnit"},
+        "Value":{"shape":"TtlDurationValue"}
+      }
+    },
+    "TtlDurationUnit":{
+      "type":"string",
+      "enum":[
+        "Seconds",
+        "Minutes",
+        "Hours",
+        "Days",
+        "Weeks"
+      ]
+    },
+    "TtlDurationValue":{
+      "type":"integer",
       "min":1
     },
     "UnprocessedIdentifiers":{

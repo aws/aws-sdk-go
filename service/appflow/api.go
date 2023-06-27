@@ -12295,6 +12295,17 @@ type SAPODataConnectorProfileProperties struct {
 	// ClientNumber is a required field
 	ClientNumber *string `locationName:"clientNumber" min:"3" type:"string" required:"true"`
 
+	// If you set this parameter to true, Amazon AppFlow bypasses the single sign-on
+	// (SSO) settings in your SAP account when it accesses your SAP OData instance.
+	//
+	// Whether you need this option depends on the types of credentials that you
+	// applied to your SAP OData connection profile. If your profile uses basic
+	// authentication credentials, SAP SSO can prevent Amazon AppFlow from connecting
+	// to your account with your username and password. In this case, bypassing
+	// SSO makes it possible for Amazon AppFlow to connect successfully. However,
+	// if your profile uses OAuth credentials, this parameter has no affect.
+	DisableSSO *bool `locationName:"disableSSO" type:"boolean"`
+
 	// The logon language of SAPOData instance.
 	LogonLanguage *string `locationName:"logonLanguage" type:"string"`
 
@@ -12376,6 +12387,12 @@ func (s *SAPODataConnectorProfileProperties) SetApplicationServicePath(v string)
 // SetClientNumber sets the ClientNumber field's value.
 func (s *SAPODataConnectorProfileProperties) SetClientNumber(v string) *SAPODataConnectorProfileProperties {
 	s.ClientNumber = &v
+	return s
+}
+
+// SetDisableSSO sets the DisableSSO field's value.
+func (s *SAPODataConnectorProfileProperties) SetDisableSSO(v bool) *SAPODataConnectorProfileProperties {
+	s.DisableSSO = &v
 	return s
 }
 

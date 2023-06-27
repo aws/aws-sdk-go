@@ -6,6 +6,12 @@
       "output_token": "NextToken",
       "result_key": "MappedResourceConfigurationList"
     },
+    "ListEdgeAgentConfigurations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "EdgeConfigs"
+    },
     "ListSignalingChannels": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
