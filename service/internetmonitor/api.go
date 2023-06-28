@@ -1370,6 +1370,13 @@ type CreateMonitorInput struct {
 	// other API requests.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
+	// Defines the health event threshold percentages, for performance score and
+	// availability score. Internet Monitor creates a health event when there's
+	// an internet issue that affects your application end users where a health
+	// score percentage is at or below a set threshold. If you don't set a health
+	// event threshold, the default calue is 95%.
+	HealthEventsConfig *HealthEventsConfig `type:"structure"`
+
 	// Publish internet measurements for Internet Monitor to an Amazon S3 bucket
 	// in addition to CloudWatch Logs.
 	InternetMeasurementsLogDelivery *InternetMeasurementsLogDelivery `type:"structure"`
@@ -1456,6 +1463,12 @@ func (s *CreateMonitorInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateMonitorInput) SetClientToken(v string) *CreateMonitorInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetHealthEventsConfig sets the HealthEventsConfig field's value.
+func (s *CreateMonitorInput) SetHealthEventsConfig(v *HealthEventsConfig) *CreateMonitorInput {
+	s.HealthEventsConfig = v
 	return s
 }
 
@@ -1698,6 +1711,10 @@ type GetHealthEventOutput struct {
 	// EventId is a required field
 	EventId *string `min:"1" type:"string" required:"true"`
 
+	// The threshold percentage for health events when Amazon CloudWatch Internet
+	// Monitor creates a health event.
+	HealthScoreThreshold *float64 `type:"double"`
+
 	// The type of impairment of a specific health event.
 	//
 	// ImpactType is a required field
@@ -1766,6 +1783,12 @@ func (s *GetHealthEventOutput) SetEventArn(v string) *GetHealthEventOutput {
 // SetEventId sets the EventId field's value.
 func (s *GetHealthEventOutput) SetEventId(v string) *GetHealthEventOutput {
 	s.EventId = &v
+	return s
+}
+
+// SetHealthScoreThreshold sets the HealthScoreThreshold field's value.
+func (s *GetHealthEventOutput) SetHealthScoreThreshold(v float64) *GetHealthEventOutput {
+	s.HealthScoreThreshold = &v
 	return s
 }
 
@@ -1862,6 +1885,12 @@ type GetMonitorOutput struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// The list of health event thresholds. A health event threshold percentage,
+	// for performance and availability, determines the level of impact at which
+	// Amazon CloudWatch Internet Monitor creates a health event when there's an
+	// internet issue that affects your application end users.
+	HealthEventsConfig *HealthEventsConfig `type:"structure"`
+
 	// Publish internet measurements for Internet Monitor to another location, such
 	// as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch
 	// Logs.
@@ -1938,6 +1967,12 @@ func (s GetMonitorOutput) GoString() string {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *GetMonitorOutput) SetCreatedAt(v time.Time) *GetMonitorOutput {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetHealthEventsConfig sets the HealthEventsConfig field's value.
+func (s *GetMonitorOutput) SetHealthEventsConfig(v *HealthEventsConfig) *GetMonitorOutput {
+	s.HealthEventsConfig = v
 	return s
 }
 
@@ -2030,6 +2065,11 @@ type HealthEvent struct {
 	// EventId is a required field
 	EventId *string `min:"1" type:"string" required:"true"`
 
+	// The value of the threshold percentage for performance or availability that
+	// was configured when Amazon CloudWatch Internet Monitor created the health
+	// event.
+	HealthScoreThreshold *float64 `type:"double"`
+
 	// The type of impairment for a health event.
 	//
 	// ImpactType is a required field
@@ -2101,6 +2141,12 @@ func (s *HealthEvent) SetEventId(v string) *HealthEvent {
 	return s
 }
 
+// SetHealthScoreThreshold sets the HealthScoreThreshold field's value.
+func (s *HealthEvent) SetHealthScoreThreshold(v float64) *HealthEvent {
+	s.HealthScoreThreshold = &v
+	return s
+}
+
 // SetImpactType sets the ImpactType field's value.
 func (s *HealthEvent) SetImpactType(v string) *HealthEvent {
 	s.ImpactType = &v
@@ -2134,6 +2180,52 @@ func (s *HealthEvent) SetStartedAt(v time.Time) *HealthEvent {
 // SetStatus sets the Status field's value.
 func (s *HealthEvent) SetStatus(v string) *HealthEvent {
 	s.Status = &v
+	return s
+}
+
+// A complex type for the configuration. Defines the health event threshold
+// percentages, for performance score and availability score. Amazon CloudWatch
+// Internet Monitor creates a health event when there's an internet issue that
+// affects your application end users where a health score percentage is at
+// or below a set threshold. If you don't set a health event threshold, the
+// default value is 95%.
+type HealthEventsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The health event threshold percentage set for availability scores.
+	AvailabilityScoreThreshold *float64 `type:"double"`
+
+	// The health event threshold percentage set for performance scores.
+	PerformanceScoreThreshold *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HealthEventsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HealthEventsConfig) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityScoreThreshold sets the AvailabilityScoreThreshold field's value.
+func (s *HealthEventsConfig) SetAvailabilityScoreThreshold(v float64) *HealthEventsConfig {
+	s.AvailabilityScoreThreshold = &v
+	return s
+}
+
+// SetPerformanceScoreThreshold sets the PerformanceScoreThreshold field's value.
+func (s *HealthEventsConfig) SetPerformanceScoreThreshold(v float64) *HealthEventsConfig {
+	s.PerformanceScoreThreshold = &v
 	return s
 }
 
@@ -3790,6 +3882,12 @@ type UpdateMonitorInput struct {
 	// for other API requests.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
+	// The list of health event thresholds. A health event threshold percentage,
+	// for performance and availability, determines when Internet Monitor creates
+	// a health event when there's an internet issue that affects your application
+	// end users.
+	HealthEventsConfig *HealthEventsConfig `type:"structure"`
+
 	// Publish internet measurements for Internet Monitor to another location, such
 	// as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch
 	// Logs.
@@ -3879,6 +3977,12 @@ func (s *UpdateMonitorInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *UpdateMonitorInput) SetClientToken(v string) *UpdateMonitorInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetHealthEventsConfig sets the HealthEventsConfig field's value.
+func (s *UpdateMonitorInput) SetHealthEventsConfig(v *HealthEventsConfig) *UpdateMonitorInput {
+	s.HealthEventsConfig = v
 	return s
 }
 

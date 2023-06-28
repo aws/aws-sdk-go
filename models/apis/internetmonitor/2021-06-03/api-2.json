@@ -246,7 +246,8 @@
         "Tags":{"shape":"TagMap"},
         "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
         "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"},
-        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"}
+        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"},
+        "HealthEventsConfig":{"shape":"HealthEventsConfig"}
       }
     },
     "CreateMonitorOutput":{
@@ -320,7 +321,8 @@
         "ImpactedLocations":{"shape":"ImpactedLocationsList"},
         "Status":{"shape":"HealthEventStatus"},
         "PercentOfTotalTrafficImpacted":{"shape":"Double"},
-        "ImpactType":{"shape":"HealthEventImpactType"}
+        "ImpactType":{"shape":"HealthEventImpactType"},
+        "HealthScoreThreshold":{"shape":"Percentage"}
       }
     },
     "GetMonitorInput":{
@@ -356,7 +358,8 @@
         "Tags":{"shape":"TagMap"},
         "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
         "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"},
-        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"}
+        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"},
+        "HealthEventsConfig":{"shape":"HealthEventsConfig"}
       }
     },
     "HealthEvent":{
@@ -380,7 +383,8 @@
         "ImpactedLocations":{"shape":"ImpactedLocationsList"},
         "Status":{"shape":"HealthEventStatus"},
         "PercentOfTotalTrafficImpacted":{"shape":"Double"},
-        "ImpactType":{"shape":"HealthEventImpactType"}
+        "ImpactType":{"shape":"HealthEventImpactType"},
+        "HealthScoreThreshold":{"shape":"Percentage"}
       }
     },
     "HealthEventImpactType":{
@@ -406,6 +410,13 @@
         "ACTIVE",
         "RESOLVED"
       ]
+    },
+    "HealthEventsConfig":{
+      "type":"structure",
+      "members":{
+        "AvailabilityScoreThreshold":{"shape":"Percentage"},
+        "PerformanceScoreThreshold":{"shape":"Percentage"}
+      }
     },
     "ImpactedLocation":{
       "type":"structure",
@@ -673,6 +684,11 @@
       },
       "exception":true
     },
+    "Percentage":{
+      "type":"double",
+      "max":100,
+      "min":0
+    },
     "PerformanceMeasurement":{
       "type":"structure",
       "members":{
@@ -849,7 +865,8 @@
         },
         "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
         "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"},
-        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"}
+        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"},
+        "HealthEventsConfig":{"shape":"HealthEventsConfig"}
       }
     },
     "UpdateMonitorOutput":{

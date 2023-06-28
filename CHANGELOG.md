@@ -1,3 +1,19 @@
+Release v1.44.292 (2023-06-28)
+===
+
+### Service Client Updates
+* `service/internetmonitor`: Updates service API and documentation
+* `service/kinesisanalyticsv2`: Updates service API
+* `service/lambda`: Updates service API and documentation
+  * Surface ResourceConflictException in DeleteEventSourceMapping
+* `service/omics`: Updates service API
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Amazon Relational Database Service (RDS) now supports joining a RDS for SQL Server instance to a self-managed Active Directory.
+* `service/s3`: Updates service API, documentation, and examples
+  * The S3 LISTObjects, ListObjectsV2 and ListObjectVersions API now supports a new optional header x-amz-optional-object-attributes. If header contains RestoreStatus as the value, then S3 will include Glacier restore status i.e. isRestoreInProgress and RestoreExpiryDate in List response.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for Model Cards Model Registry integration.
+
 Release v1.44.291 (2023-06-27)
 ===
 
