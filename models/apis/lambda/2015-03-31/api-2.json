@@ -179,6 +179,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceConflictException"},
         {"shape":"ResourceInUseException"}
       ]
     },

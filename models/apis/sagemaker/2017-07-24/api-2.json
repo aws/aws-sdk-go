@@ -14504,7 +14504,8 @@
         "LastModifiedBy":{"shape":"UserContext"},
         "Tags":{"shape":"TagList"},
         "ModelId":{"shape":"String"},
-        "RiskRating":{"shape":"String"}
+        "RiskRating":{"shape":"String"},
+        "ModelPackageGroupName":{"shape":"String"}
       }
     },
     "ModelCardArn":{

@@ -6489,7 +6489,7 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *req
 // use request parameters as selection criteria to return metadata about a subset
 // of all the object versions.
 //
-// To use this operation, you must have permissions to perform the s3:ListBucketVersions
+// To use this operation, you must have permission to perform the s3:ListBucketVersions
 // action. Be aware of the name difference.
 //
 // A 200 OK response can contain valid or invalid XML. Make sure to design your
@@ -6800,20 +6800,22 @@ func (c *S3) ListObjectsV2Request(input *ListObjectsV2Input) (req *request.Reque
 // and handle it appropriately. Objects are returned sorted in an ascending
 // order of the respective key names in the list. For more information about
 // listing objects, see Listing object keys programmatically (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ListingKeysUsingAPIs.html)
+// in the Amazon S3 User Guide.
 //
 // To use this operation, you must have READ access to the bucket.
 //
 // To use this action in an Identity and Access Management (IAM) policy, you
-// must have permissions to perform the s3:ListBucket action. The bucket owner
+// must have permission to perform the s3:ListBucket action. The bucket owner
 // has this permission by default and can grant this permission to others. For
 // more information about permissions, see Permissions Related to Bucket Subresource
 // Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
-// and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html).
+// and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html)
+// in the Amazon S3 User Guide.
 //
 // This section describes the latest revision of this action. We recommend that
-// you use this revised API for application development. For backward compatibility,
-// Amazon S3 continues to support the prior version of this API, ListObjects
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html).
+// you use this revised API operation for application development. For backward
+// compatibility, Amazon S3 continues to support the prior version of this API
+// operation, ListObjects (https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html).
 //
 // To get a list of your buckets, see ListBuckets (https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html).
 //
@@ -11378,7 +11380,7 @@ type AbortMultipartUploadInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -12767,7 +12769,7 @@ type CompleteMultipartUploadInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -13029,7 +13031,7 @@ type CompleteMultipartUploadOutput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	Bucket *string `type:"string"`
 
@@ -13473,7 +13475,7 @@ type CopyObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -14617,7 +14619,7 @@ type CreateMultipartUploadInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -15064,7 +15066,7 @@ type CreateMultipartUploadOutput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	Bucket *string `locationName:"Bucket" type:"string"`
 
@@ -17034,7 +17036,7 @@ type DeleteObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -17257,7 +17259,7 @@ type DeleteObjectTaggingInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -17424,7 +17426,7 @@ type DeleteObjectsInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -21694,7 +21696,7 @@ type GetObjectAttributesInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -21713,8 +21715,8 @@ type GetObjectAttributesInput struct {
 	// Sets the maximum number of parts to return.
 	MaxParts *int64 `location:"header" locationName:"x-amz-max-parts" type:"integer"`
 
-	// An XML header that specifies the fields at the root level that you want returned
-	// in the response. Fields that you do not specify are not returned.
+	// Specifies the fields at the root level that you want returned in the response.
+	// Fields that you do not specify are not returned.
 	//
 	// ObjectAttributes is a required field
 	ObjectAttributes []*string `location:"header" locationName:"x-amz-object-attributes" type:"list" required:"true" enum:"ObjectAttributes"`
@@ -22113,7 +22115,7 @@ type GetObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -23310,7 +23312,7 @@ type GetObjectTaggingInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -24008,7 +24010,7 @@ type HeadBucketInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -24139,7 +24141,7 @@ type HeadObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -27051,7 +27053,7 @@ type ListMultipartUploadsInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -27068,8 +27070,8 @@ type ListMultipartUploadsInput struct {
 	Delimiter *string `location:"querystring" locationName:"delimiter" type:"string"`
 
 	// Requests Amazon S3 to encode the object keys in the response and specifies
-	// the encoding method to use. An object key may contain any Unicode character;
-	// however, XML 1.0 parser cannot parse some characters, such as characters
+	// the encoding method to use. An object key can contain any Unicode character;
+	// however, the XML 1.0 parser cannot parse some characters, such as characters
 	// with an ASCII value from 0 to 10. For characters that are not supported in
 	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
 	// keys in the response.
@@ -27098,8 +27100,8 @@ type ListMultipartUploadsInput struct {
 
 	// Lists in-progress uploads only for those keys that begin with the specified
 	// prefix. You can use prefixes to separate a bucket into different grouping
-	// of keys. (You can think of using prefix to make groups in the same way you'd
-	// use a folder in a file system.)
+	// of keys. (You can think of using prefix to make groups in the same way that
+	// you'd use a folder in a file system.)
 	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
 
 	// Confirms that the requester knows that they will be charged for the request.
@@ -27257,9 +27259,9 @@ type ListMultipartUploadsOutput struct {
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
 	//
-	// If you specify encoding-type request parameter, Amazon S3 includes this element
-	// in the response, and returns encoded key name values in the following response
-	// elements:
+	// If you specify the encoding-type request parameter, Amazon S3 includes this
+	// element in the response, and returns encoded key name values in the following
+	// response elements:
 	//
 	// Delimiter, KeyMarker, Prefix, NextKeyMarker, Key.
 	EncodingType *string `type:"string" enum:"EncodingType"`
@@ -27420,8 +27422,8 @@ type ListObjectVersionsInput struct {
 	Delimiter *string `location:"querystring" locationName:"delimiter" type:"string"`
 
 	// Requests Amazon S3 to encode the object keys in the response and specifies
-	// the encoding method to use. An object key may contain any Unicode character;
-	// however, XML 1.0 parser cannot parse some characters, such as characters
+	// the encoding method to use. An object key can contain any Unicode character;
+	// however, the XML 1.0 parser cannot parse some characters, such as characters
 	// with an ASCII value from 0 to 10. For characters that are not supported in
 	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
 	// keys in the response.
@@ -27435,7 +27437,7 @@ type ListObjectVersionsInput struct {
 	// Specifies the key to start with when listing objects in a bucket.
 	KeyMarker *string `location:"querystring" locationName:"key-marker" type:"string"`
 
-	// Sets the maximum number of keys returned in the response. By default the
+	// Sets the maximum number of keys returned in the response. By default, the
 	// action returns up to 1,000 key names. The response might contain fewer keys
 	// but will never contain more. If additional keys satisfy the search criteria,
 	// but were not returned because max-keys was exceeded, the response contains
@@ -27443,11 +27445,15 @@ type ListObjectVersionsInput struct {
 	// and version-id-marker.
 	MaxKeys *int64 `location:"querystring" locationName:"max-keys" type:"integer"`
 
+	// Specifies the optional fields that you want returned in the response. Fields
+	// that you do not specify are not returned.
+	OptionalObjectAttributes []*string `location:"header" locationName:"x-amz-optional-object-attributes" type:"list" enum:"OptionalObjectAttributes"`
+
 	// Use this parameter to select only those keys that begin with the specified
 	// prefix. You can use prefixes to separate a bucket into different groupings
-	// of keys. (You can think of using prefix to make groups in the same way you'd
-	// use a folder in a file system.) You can use prefix with delimiter to roll
-	// up numerous objects into a single result under CommonPrefixes.
+	// of keys. (You can think of using prefix to make groups in the same way that
+	// you'd use a folder in a file system.) You can use prefix with delimiter to
+	// roll up numerous objects into a single result under CommonPrefixes.
 	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
 
 	// Confirms that the requester knows that they will be charged for the request.
@@ -27538,6 +27544,12 @@ func (s *ListObjectVersionsInput) SetMaxKeys(v int64) *ListObjectVersionsInput {
 	return s
 }
 
+// SetOptionalObjectAttributes sets the OptionalObjectAttributes field's value.
+func (s *ListObjectVersionsInput) SetOptionalObjectAttributes(v []*string) *ListObjectVersionsInput {
+	s.OptionalObjectAttributes = v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *ListObjectVersionsInput) SetPrefix(v string) *ListObjectVersionsInput {
 	s.Prefix = &v
@@ -27603,16 +27615,16 @@ type ListObjectVersionsOutput struct {
 
 	// Encoding type used by Amazon S3 to encode object key names in the XML response.
 	//
-	// If you specify encoding-type request parameter, Amazon S3 includes this element
-	// in the response, and returns encoded key name values in the following response
-	// elements:
+	// If you specify the encoding-type request parameter, Amazon S3 includes this
+	// element in the response, and returns encoded key name values in the following
+	// response elements:
 	//
 	// KeyMarker, NextKeyMarker, Prefix, Key, and Delimiter.
 	EncodingType *string `type:"string" enum:"EncodingType"`
 
 	// A flag that indicates whether Amazon S3 returned all of the results that
 	// satisfied the search criteria. If your results were truncated, you can make
-	// a follow-up paginated request using the NextKeyMarker and NextVersionIdMarker
+	// a follow-up paginated request by using the NextKeyMarker and NextVersionIdMarker
 	// response parameters as a starting place in another request to return the
 	// rest of the results.
 	IsTruncated *bool `type:"boolean"`
@@ -27770,18 +27782,18 @@ type ListObjectsInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	// A delimiter is a character you use to group keys.
+	// A delimiter is a character that you use to group keys.
 	Delimiter *string `location:"querystring" locationName:"delimiter" type:"string"`
 
 	// Requests Amazon S3 to encode the object keys in the response and specifies
-	// the encoding method to use. An object key may contain any Unicode character;
-	// however, XML 1.0 parser cannot parse some characters, such as characters
+	// the encoding method to use. An object key can contain any Unicode character;
+	// however, the XML 1.0 parser cannot parse some characters, such as characters
 	// with an ASCII value from 0 to 10. For characters that are not supported in
 	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
 	// keys in the response.
@@ -27796,10 +27808,14 @@ type ListObjectsInput struct {
 	// listing after this specified key. Marker can be any key in the bucket.
 	Marker *string `location:"querystring" locationName:"marker" type:"string"`
 
-	// Sets the maximum number of keys returned in the response. By default the
+	// Sets the maximum number of keys returned in the response. By default, the
 	// action returns up to 1,000 key names. The response might contain fewer keys
 	// but will never contain more.
 	MaxKeys *int64 `location:"querystring" locationName:"max-keys" type:"integer"`
+
+	// Specifies the optional fields that you want returned in the response. Fields
+	// that you do not specify are not returned.
+	OptionalObjectAttributes []*string `location:"header" locationName:"x-amz-optional-object-attributes" type:"list" enum:"OptionalObjectAttributes"`
 
 	// Limits the response to keys that begin with the specified prefix.
 	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
@@ -27887,6 +27903,12 @@ func (s *ListObjectsInput) SetMaxKeys(v int64) *ListObjectsInput {
 	return s
 }
 
+// SetOptionalObjectAttributes sets the OptionalObjectAttributes field's value.
+func (s *ListObjectsInput) SetOptionalObjectAttributes(v []*string) *ListObjectsInput {
+	s.OptionalObjectAttributes = v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *ListObjectsInput) SetPrefix(v string) *ListObjectsInput {
 	s.Prefix = &v
@@ -27940,7 +27962,7 @@ type ListObjectsOutput struct {
 	// CommonPrefixes lists keys that act like subdirectories in the directory specified
 	// by Prefix.
 	//
-	// For example, if the prefix is notes/ and the delimiter is a slash (/) as
+	// For example, if the prefix is notes/ and the delimiter is a slash (/), as
 	// in notes/summer/july, the common prefix is notes/summer/. All of the keys
 	// that roll up into a common prefix count as a single return when calculating
 	// the number of returns.
@@ -27973,13 +27995,16 @@ type ListObjectsOutput struct {
 	// The bucket name.
 	Name *string `type:"string"`
 
-	// When response is truncated (the IsTruncated element value in the response
-	// is true), you can use the key name in this field as marker in the subsequent
-	// request to get next set of objects. Amazon S3 lists objects in alphabetical
-	// order Note: This element is returned only if you have delimiter request parameter
-	// specified. If response does not include the NextMarker and it is truncated,
-	// you can use the value of the last Key in the response as the marker in the
-	// subsequent request to get the next set of object keys.
+	// When the response is truncated (the IsTruncated element value in the response
+	// is true), you can use the key name in this field as the marker parameter
+	// in the subsequent request to get the next set of objects. Amazon S3 lists
+	// objects in alphabetical order.
+	//
+	// This element is returned only if you have the delimiter request parameter
+	// specified. If the response does not include the NextMarker element and it
+	// is truncated, you can use the value of the last Key element in the response
+	// as the marker parameter in the subsequent request to get the next set of
+	// object keys.
 	NextMarker *string `type:"string"`
 
 	// Keys that begin with the indicated prefix.
@@ -28091,18 +28116,18 @@ type ListObjectsV2Input struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	// ContinuationToken indicates Amazon S3 that the list is being continued on
-	// this bucket with a token. ContinuationToken is obfuscated and is not a real
-	// key.
+	// ContinuationToken indicates to Amazon S3 that the list is being continued
+	// on this bucket with a token. ContinuationToken is obfuscated and is not a
+	// real key.
 	ContinuationToken *string `location:"querystring" locationName:"continuation-token" type:"string"`
 
-	// A delimiter is a character you use to group keys.
+	// A delimiter is a character that you use to group keys.
 	Delimiter *string `location:"querystring" locationName:"delimiter" type:"string"`
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
@@ -28113,15 +28138,19 @@ type ListObjectsV2Input struct {
 	// (access denied).
 	ExpectedBucketOwner *string `location:"header" locationName:"x-amz-expected-bucket-owner" type:"string"`
 
-	// The owner field is not present in listV2 by default, if you want to return
-	// owner field with each key in the result then set the fetch owner field to
-	// true.
+	// The owner field is not present in ListObjectsV2 by default. If you want to
+	// return the owner field with each key in the result, then set the FetchOwner
+	// field to true.
 	FetchOwner *bool `location:"querystring" locationName:"fetch-owner" type:"boolean"`
 
-	// Sets the maximum number of keys returned in the response. By default the
+	// Sets the maximum number of keys returned in the response. By default, the
 	// action returns up to 1,000 key names. The response might contain fewer keys
 	// but will never contain more.
 	MaxKeys *int64 `location:"querystring" locationName:"max-keys" type:"integer"`
+
+	// Specifies the optional fields that you want returned in the response. Fields
+	// that you do not specify are not returned.
+	OptionalObjectAttributes []*string `location:"header" locationName:"x-amz-optional-object-attributes" type:"list" enum:"OptionalObjectAttributes"`
 
 	// Limits the response to keys that begin with the specified prefix.
 	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
@@ -28219,6 +28248,12 @@ func (s *ListObjectsV2Input) SetMaxKeys(v int64) *ListObjectsV2Input {
 	return s
 }
 
+// SetOptionalObjectAttributes sets the OptionalObjectAttributes field's value.
+func (s *ListObjectsV2Input) SetOptionalObjectAttributes(v []*string) *ListObjectsV2Input {
+	s.OptionalObjectAttributes = v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *ListObjectsV2Input) SetPrefix(v string) *ListObjectsV2Input {
 	s.Prefix = &v
@@ -28312,11 +28347,11 @@ type ListObjectsV2Output struct {
 	IsTruncated *bool `type:"boolean"`
 
 	// KeyCount is the number of keys returned with this request. KeyCount will
-	// always be less than or equal to the MaxKeys field. Say you ask for 50 keys,
-	// your result will include 50 keys or fewer.
+	// always be less than or equal to the MaxKeys field. For example, if you ask
+	// for 50 keys, your result will include 50 keys or fewer.
 	KeyCount *int64 `type:"integer"`
 
-	// Sets the maximum number of keys returned in the response. By default the
+	// Sets the maximum number of keys returned in the response. By default, the
 	// action returns up to 1,000 key names. The response might contain fewer keys
 	// but will never contain more.
 	MaxKeys *int64 `type:"integer"`
@@ -28335,7 +28370,7 @@ type ListObjectsV2Output struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	Name *string `type:"string"`
 
@@ -28469,7 +28504,7 @@ type ListPartsInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -29095,10 +29130,10 @@ func (s *LoggingEnabled) SetTargetPrefix(v string) *LoggingEnabled {
 type MetadataEntry struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the Object.
+	// Name of the object.
 	Name *string `type:"string"`
 
-	// Value of the Object.
+	// Value of the object.
 	Value *string `type:"string"`
 }
 
@@ -29848,6 +29883,13 @@ type Object struct {
 	// The owner of the object
 	Owner *Owner `type:"structure"`
 
+	// Specifies the restoration status of an object. Objects in certain storage
+	// classes must be restored before they can be retrieved. For more information
+	// about these storage classes and how to work with archived objects, see Working
+	// with archived objects (https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html)
+	// in the Amazon S3 User Guide.
+	RestoreStatus *RestoreStatus `type:"structure"`
+
 	// Size in bytes of the object
 	Size *int64 `type:"integer"`
 
@@ -29900,6 +29942,12 @@ func (s *Object) SetLastModified(v time.Time) *Object {
 // SetOwner sets the Owner field's value.
 func (s *Object) SetOwner(v *Owner) *Object {
 	s.Owner = v
+	return s
+}
+
+// SetRestoreStatus sets the RestoreStatus field's value.
+func (s *Object) SetRestoreStatus(v *RestoreStatus) *Object {
+	s.RestoreStatus = v
 	return s
 }
 
@@ -30251,6 +30299,13 @@ type ObjectVersion struct {
 	// Specifies the owner of the object.
 	Owner *Owner `type:"structure"`
 
+	// Specifies the restoration status of an object. Objects in certain storage
+	// classes must be restored before they can be retrieved. For more information
+	// about these storage classes and how to work with archived objects, see Working
+	// with archived objects (https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html)
+	// in the Amazon S3 User Guide.
+	RestoreStatus *RestoreStatus `type:"structure"`
+
 	// Size in bytes of the object.
 	Size *int64 `type:"integer"`
 
@@ -30312,6 +30367,12 @@ func (s *ObjectVersion) SetLastModified(v time.Time) *ObjectVersion {
 // SetOwner sets the Owner field's value.
 func (s *ObjectVersion) SetOwner(v *Owner) *ObjectVersion {
 	s.Owner = v
+	return s
+}
+
+// SetRestoreStatus sets the RestoreStatus field's value.
+func (s *ObjectVersion) SetRestoreStatus(v *RestoreStatus) *ObjectVersion {
+	s.RestoreStatus = v
 	return s
 }
 
@@ -34254,7 +34315,7 @@ type PutObjectAclInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Key is a required field
@@ -34486,7 +34547,7 @@ type PutObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -35845,7 +35906,7 @@ type PutObjectTaggingInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -37232,7 +37293,7 @@ type RestoreObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -37555,6 +37616,64 @@ func (s *RestoreRequest) SetTier(v string) *RestoreRequest {
 // SetType sets the Type field's value.
 func (s *RestoreRequest) SetType(v string) *RestoreRequest {
 	s.Type = &v
+	return s
+}
+
+// Specifies the restoration status of an object. Objects in certain storage
+// classes must be restored before they can be retrieved. For more information
+// about these storage classes and how to work with archived objects, see Working
+// with archived objects (https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html)
+// in the Amazon S3 User Guide.
+type RestoreStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the object is currently being restored. If the object restoration
+	// is in progress, the header returns the value TRUE. For example:
+	//
+	// x-amz-optional-object-attributes: IsRestoreInProgress="true"
+	//
+	// If the object restoration has completed, the header returns the value FALSE.
+	// For example:
+	//
+	// x-amz-optional-object-attributes: IsRestoreInProgress="false", RestoreExpiryDate="2012-12-21T00:00:00.000Z"
+	//
+	// If the object hasn't been restored, there is no header response.
+	IsRestoreInProgress *bool `type:"boolean"`
+
+	// Indicates when the restored copy will expire. This value is populated only
+	// if the object has already been restored. For example:
+	//
+	// x-amz-optional-object-attributes: IsRestoreInProgress="false", RestoreExpiryDate="2012-12-21T00:00:00.000Z"
+	RestoreExpiryDate *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreStatus) GoString() string {
+	return s.String()
+}
+
+// SetIsRestoreInProgress sets the IsRestoreInProgress field's value.
+func (s *RestoreStatus) SetIsRestoreInProgress(v bool) *RestoreStatus {
+	s.IsRestoreInProgress = &v
+	return s
+}
+
+// SetRestoreExpiryDate sets the RestoreExpiryDate field's value.
+func (s *RestoreStatus) SetRestoreExpiryDate(v time.Time) *RestoreStatus {
+	s.RestoreExpiryDate = &v
 	return s
 }
 
@@ -39477,7 +39596,7 @@ type UploadPartCopyInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -39947,7 +40066,7 @@ type UploadPartInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// you use this action with S3 on Outposts through the Amazon Web Services SDKs,
 	// you provide the Outposts access point ARN in place of the bucket name. For
-	// more information about S3 on Outposts ARNs, see What is S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+	// more information about S3 on Outposts ARNs, see What is S3 on Outposts? (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -41376,8 +41495,8 @@ func DeleteMarkerReplicationStatus_Values() []string {
 }
 
 // Requests Amazon S3 to encode the object keys in the response and specifies
-// the encoding method to use. An object key may contain any Unicode character;
-// however, XML 1.0 parser cannot parse some characters, such as characters
+// the encoding method to use. An object key can contain any Unicode character;
+// however, the XML 1.0 parser cannot parse some characters, such as characters
 // with an ASCII value from 0 to 10. For characters that are not supported in
 // XML 1.0, you can add this parameter to request that Amazon S3 encode the
 // keys in the response.
@@ -42029,6 +42148,18 @@ const (
 func ObjectVersionStorageClass_Values() []string {
 	return []string{
 		ObjectVersionStorageClassStandard,
+	}
+}
+
+const (
+	// OptionalObjectAttributesRestoreStatus is a OptionalObjectAttributes enum value
+	OptionalObjectAttributesRestoreStatus = "RestoreStatus"
+)
+
+// OptionalObjectAttributes_Values returns all elements of the OptionalObjectAttributes enum
+func OptionalObjectAttributes_Values() []string {
+	return []string{
+		OptionalObjectAttributesRestoreStatus,
 	}
 }
 

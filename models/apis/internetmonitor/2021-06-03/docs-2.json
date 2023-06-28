@@ -137,6 +137,14 @@
         "ListHealthEventsInput$EventStatus": "<p>The status of a health event.</p>"
       }
     },
+    "HealthEventsConfig": {
+      "base": "<p>A complex type for the configuration. Defines the health event threshold percentages, for performance score and availability score. Amazon CloudWatch Internet Monitor creates a health event when there's an internet issue that affects your application end users where a health score percentage is at or below a set threshold. If you don't set a health event threshold, the default value is 95%.</p>",
+      "refs": {
+        "CreateMonitorInput$HealthEventsConfig": "<p>Defines the health event threshold percentages, for performance score and availability score. Internet Monitor creates a health event when there's an internet issue that affects your application end users where a health score percentage is at or below a set threshold. If you don't set a health event threshold, the default calue is 95%.</p>",
+        "GetMonitorOutput$HealthEventsConfig": "<p>The list of health event thresholds. A health event threshold percentage, for performance and availability, determines the level of impact at which Amazon CloudWatch Internet Monitor creates a health event when there's an internet issue that affects your application end users.</p>",
+        "UpdateMonitorInput$HealthEventsConfig": "<p>The list of health event thresholds. A health event threshold percentage, for performance and availability, determines when Internet Monitor creates a health event when there's an internet issue that affects your application end users.</p>"
+      }
+    },
     "ImpactedLocation": {
       "base": "<p>Information about a location impacted by a health event in Amazon CloudWatch Internet Monitor.</p> <p>Geographic regions are hierarchically categorized into country, subdivision, metro and city geographic granularities. The geographic region is identified based on the IP address used at the client locations.</p>",
       "refs": {
@@ -300,6 +308,15 @@
     "NotFoundException": {
       "base": "<p>The request specifies something that doesn't exist.</p>",
       "refs": {
+      }
+    },
+    "Percentage": {
+      "base": null,
+      "refs": {
+        "GetHealthEventOutput$HealthScoreThreshold": "<p>The threshold percentage for health events when Amazon CloudWatch Internet Monitor creates a health event.</p>",
+        "HealthEvent$HealthScoreThreshold": "<p>The value of the threshold percentage for performance or availability that was configured when Amazon CloudWatch Internet Monitor created the health event.</p>",
+        "HealthEventsConfig$AvailabilityScoreThreshold": "<p>The health event threshold percentage set for availability scores.</p>",
+        "HealthEventsConfig$PerformanceScoreThreshold": "<p>The health event threshold percentage set for performance scores.</p>"
       }
     },
     "PerformanceMeasurement": {

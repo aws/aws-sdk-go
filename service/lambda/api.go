@@ -1086,6 +1086,9 @@ func (c *Lambda) DeleteEventSourceMappingRequest(input *DeleteEventSourceMapping
 //     The request throughput limit was exceeded. For more information, see Lambda
 //     quotas (https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests).
 //
+//   - ResourceConflictException
+//     The resource already exists, or another operation is in progress.
+//
 //   - ResourceInUseException
 //     The operation conflicts with the resource's availability. For example, you
 //     tried to update an event source mapping in the CREATING state, or you tried
@@ -1158,7 +1161,8 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *request
 // DeleteFunction API operation for AWS Lambda.
 //
 // Deletes a Lambda function. To delete a specific function version, use the
-// Qualifier parameter. Otherwise, all versions and aliases are deleted.
+// Qualifier parameter. Otherwise, all versions and aliases are deleted. This
+// doesn't require the user to have explicit permissions for DeleteAlias.
 //
 // To delete Lambda event source mappings that invoke a function, use DeleteEventSourceMapping.
 // For Amazon Web Services and resources that invoke your function directly,
@@ -8947,11 +8951,13 @@ type CreateEventSourceMappingInput struct {
 	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
 	// The position in a stream from which to start reading. Required for Amazon
-	// Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is
-	// supported only for Amazon Kinesis streams and Amazon DocumentDB.
+	// Kinesis and Amazon DynamoDB Stream event sources. AT_TIMESTAMP is supported
+	// only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed
+	// Apache Kafka.
 	StartingPosition *string `type:"string" enum:"EventSourcePosition"`
 
 	// With StartingPosition set to AT_TIMESTAMP, the time from which to start reading.
+	// StartingPositionTimestamp cannot be in the future.
 	StartingPositionTimestamp *time.Time `type:"timestamp"`
 
 	// The name of the Kafka topic.
@@ -11563,11 +11569,13 @@ type EventSourceMappingConfiguration struct {
 	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
 	// The position in a stream from which to start reading. Required for Amazon
-	// Kinesis, Amazon DynamoDB, and Amazon MSK stream sources. AT_TIMESTAMP is
-	// supported only for Amazon Kinesis streams and Amazon DocumentDB.
+	// Kinesis and Amazon DynamoDB Stream event sources. AT_TIMESTAMP is supported
+	// only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed
+	// Apache Kafka.
 	StartingPosition *string `type:"string" enum:"EventSourcePosition"`
 
 	// With StartingPosition set to AT_TIMESTAMP, the time from which to start reading.
+	// StartingPositionTimestamp cannot be in the future.
 	StartingPositionTimestamp *time.Time `type:"timestamp"`
 
 	// The state of the event source mapping. It can be one of the following: Creating,
@@ -20265,12 +20273,9 @@ func (s *ServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The function's Lambda SnapStart setting. Set ApplyOn to PublishedVersions
-// to create a snapshot of the initialized execution environment when you publish
-// a function version.
-//
-// SnapStart is supported with the java11 runtime. For more information, see
-// Improving startup performance with Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html).
+// The function's Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html)
+// setting. Set ApplyOn to PublishedVersions to create a snapshot of the initialized
+// execution environment when you publish a function version.
 type SnapStart struct {
 	_ struct{} `type:"structure"`
 

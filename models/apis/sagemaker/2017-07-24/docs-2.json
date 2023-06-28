@@ -10392,7 +10392,7 @@
     "PipelineDefinition": {
       "base": null,
       "refs": {
-        "CreatePipelineRequest$PipelineDefinition": "<p>The JSON pipeline definition of the pipeline.</p>",
+        "CreatePipelineRequest$PipelineDefinition": "<p>The <a href=\"https://aws-sagemaker-mlops.github.io/sagemaker-model-building-pipeline-definition-JSON-schema/\">JSON pipeline definition</a> of the pipeline.</p>",
         "DescribePipelineDefinitionForExecutionResponse$PipelineDefinition": "<p>The JSON pipeline definition.</p>",
         "DescribePipelineResponse$PipelineDefinition": "<p>The JSON pipeline definition.</p>",
         "UpdatePipelineRequest$PipelineDefinition": "<p>The JSON pipeline definition.</p>"
@@ -12696,6 +12696,7 @@
         "ListProcessingJobsRequest$NameContains": "<p>A string in the processing job name. This filter returns only processing jobs whose name contains the specified string.</p>",
         "ModelCard$ModelId": "<p>The unique name (ID) of the model.</p>",
         "ModelCard$RiskRating": "<p>The risk rating of the model. Different organizations might have different criteria for model card risk ratings. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards-risk-rating.html\">Risk ratings</a>.</p>",
+        "ModelCard$ModelPackageGroupName": "<p>The model package group that contains the model package. Only relevant for model cards created for model packages in the Amazon SageMaker Model Registry. </p>",
         "ModelDashboardModelCard$ModelId": "<p>For models created in SageMaker, this is the model ARN. For models created outside of SageMaker, this is a user-customized string.</p>",
         "ModelDashboardModelCard$RiskRating": "<p>A model card's risk rating. Can be low, medium, or high.</p>",
         "ModelMetadataSummary$Domain": "<p>The machine learning domain of the model.</p>",

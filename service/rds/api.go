@@ -21316,6 +21316,33 @@ type CreateDBInstanceInput struct {
 	//    * RDS Custom
 	Domain *string `type:"string"`
 
+	// The ARN for the Secrets Manager secret that contains the credentials for
+	// the user performing the domain join.
+	//
+	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
+	DomainAuthSecretArn *string `type:"string"`
+
+	// The IPv4 DNS IP addresses of your primary and secondary Active Directory
+	// domain controllers.
+	//
+	// Constraints:
+	//
+	//    * Two IP addresses must be provided. If there isn't a secondary domain
+	//    controller, use the IP address of the primary domain controller for both
+	//    entries in the list.
+	//
+	// Example: 123.124.125.126,234.235.236.237
+	DomainDnsIps []*string `type:"list"`
+
+	// Specifies the fully qualified domain name of an Active Directory domain.
+	//
+	// Constraints:
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: mymanagedADtest.mymanagedAD.mydomain
+	DomainFqdn *string `type:"string"`
+
 	// The name of the IAM role to use when making API calls to the Directory Service.
 	//
 	// This setting doesn't apply to the following DB instances:
@@ -21324,6 +21351,17 @@ type CreateDBInstanceInput struct {
 	//
 	//    * RDS Custom
 	DomainIAMRoleName *string `type:"string"`
+
+	// The Active Directory organizational unit for your DB instance to join.
+	//
+	// Constraints:
+	//
+	//    * Must be in the distinguished name format.
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
+	DomainOu *string `type:"string"`
 
 	// The list of log types that need to be enabled for exporting to CloudWatch
 	// Logs. For more information, see Publishing Database Logs to Amazon CloudWatch
@@ -22041,9 +22079,33 @@ func (s *CreateDBInstanceInput) SetDomain(v string) *CreateDBInstanceInput {
 	return s
 }
 
+// SetDomainAuthSecretArn sets the DomainAuthSecretArn field's value.
+func (s *CreateDBInstanceInput) SetDomainAuthSecretArn(v string) *CreateDBInstanceInput {
+	s.DomainAuthSecretArn = &v
+	return s
+}
+
+// SetDomainDnsIps sets the DomainDnsIps field's value.
+func (s *CreateDBInstanceInput) SetDomainDnsIps(v []*string) *CreateDBInstanceInput {
+	s.DomainDnsIps = v
+	return s
+}
+
+// SetDomainFqdn sets the DomainFqdn field's value.
+func (s *CreateDBInstanceInput) SetDomainFqdn(v string) *CreateDBInstanceInput {
+	s.DomainFqdn = &v
+	return s
+}
+
 // SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
 func (s *CreateDBInstanceInput) SetDomainIAMRoleName(v string) *CreateDBInstanceInput {
 	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetDomainOu sets the DomainOu field's value.
+func (s *CreateDBInstanceInput) SetDomainOu(v string) *CreateDBInstanceInput {
+	s.DomainOu = &v
 	return s
 }
 
@@ -22422,11 +22484,49 @@ type CreateDBInstanceReadReplicaInput struct {
 	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
+	// The ARN for the Secrets Manager secret that contains the credentials for
+	// the user performing the domain join.
+	//
+	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
+	DomainAuthSecretArn *string `type:"string"`
+
+	// The IPv4 DNS IP addresses of your primary and secondary Active Directory
+	// domain controllers.
+	//
+	// Constraints:
+	//
+	//    * Two IP addresses must be provided. If there isn't a secondary domain
+	//    controller, use the IP address of the primary domain controller for both
+	//    entries in the list.
+	//
+	// Example: 123.124.125.126,234.235.236.237
+	DomainDnsIps []*string `type:"list"`
+
+	// Specifies the fully qualified domain name of an Active Directory domain.
+	//
+	// Constraints:
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: mymanagedADtest.mymanagedAD.mydomain
+	DomainFqdn *string `type:"string"`
+
 	// The name of the IAM role to be used when making API calls to the Directory
 	// Service.
 	//
 	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
+
+	// The Active Directory organizational unit for your DB instance to join.
+	//
+	// Constraints:
+	//
+	//    * Must be in the distinguished name format.
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
+	DomainOu *string `type:"string"`
 
 	// The list of logs that the new DB instance is to export to CloudWatch Logs.
 	// The values in the list depend on the DB engine being used. For more information,
@@ -22909,9 +23009,33 @@ func (s *CreateDBInstanceReadReplicaInput) SetDomain(v string) *CreateDBInstance
 	return s
 }
 
+// SetDomainAuthSecretArn sets the DomainAuthSecretArn field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetDomainAuthSecretArn(v string) *CreateDBInstanceReadReplicaInput {
+	s.DomainAuthSecretArn = &v
+	return s
+}
+
+// SetDomainDnsIps sets the DomainDnsIps field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetDomainDnsIps(v []*string) *CreateDBInstanceReadReplicaInput {
+	s.DomainDnsIps = v
+	return s
+}
+
+// SetDomainFqdn sets the DomainFqdn field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetDomainFqdn(v string) *CreateDBInstanceReadReplicaInput {
+	s.DomainFqdn = &v
+	return s
+}
+
 // SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetDomainIAMRoleName(v string) *CreateDBInstanceReadReplicaInput {
 	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetDomainOu sets the DomainOu field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetDomainOu(v string) *CreateDBInstanceReadReplicaInput {
+	s.DomainOu = &v
 	return s
 }
 
@@ -37297,15 +37421,26 @@ func (s *DescribeValidDBInstanceModificationsOutput) SetValidDBInstanceModificat
 type DomainMembership struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN for the Secrets Manager secret that contains the credentials for
+	// the user performing the domain join.
+	AuthSecretArn *string `type:"string"`
+
+	// The IPv4 DNS IP addresses of your primary and secondary Active Directory
+	// domain controllers.
+	DnsIps []*string `type:"list"`
+
 	// The identifier of the Active Directory Domain.
 	Domain *string `type:"string"`
 
-	// The fully qualified domain name of the Active Directory Domain.
+	// The fully qualified domain name (FQDN) of the Active Directory Domain.
 	FQDN *string `type:"string"`
 
 	// The name of the IAM role to be used when making API calls to the Directory
 	// Service.
 	IAMRoleName *string `type:"string"`
+
+	// The Active Directory organizational unit for your DB instance to join.
+	OU *string `type:"string"`
 
 	// The status of the Active Directory Domain membership for the DB instance
 	// or cluster. Values include joined, pending-join, failed, and so on.
@@ -37330,6 +37465,18 @@ func (s DomainMembership) GoString() string {
 	return s.String()
 }
 
+// SetAuthSecretArn sets the AuthSecretArn field's value.
+func (s *DomainMembership) SetAuthSecretArn(v string) *DomainMembership {
+	s.AuthSecretArn = &v
+	return s
+}
+
+// SetDnsIps sets the DnsIps field's value.
+func (s *DomainMembership) SetDnsIps(v []*string) *DomainMembership {
+	s.DnsIps = v
+	return s
+}
+
 // SetDomain sets the Domain field's value.
 func (s *DomainMembership) SetDomain(v string) *DomainMembership {
 	s.Domain = &v
@@ -37345,6 +37492,12 @@ func (s *DomainMembership) SetFQDN(v string) *DomainMembership {
 // SetIAMRoleName sets the IAMRoleName field's value.
 func (s *DomainMembership) SetIAMRoleName(v string) *DomainMembership {
 	s.IAMRoleName = &v
+	return s
+}
+
+// SetOU sets the OU field's value.
+func (s *DomainMembership) SetOU(v string) *DomainMembership {
+	s.OU = &v
 	return s
 }
 
@@ -41374,6 +41527,9 @@ type ModifyDBInstanceInput struct {
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
 
+	// Boolean. If present, removes the instance from the Active Directory domain.
+	DisableDomain *bool `type:"boolean"`
+
 	// The Active Directory directory ID to move the DB instance to. Specify none
 	// to remove the instance from its current domain. You must create the domain
 	// before this operation. Currently, you can create only MySQL, Microsoft SQL
@@ -41385,10 +41541,48 @@ type ModifyDBInstanceInput struct {
 	// This setting doesn't apply to RDS Custom DB instances.
 	Domain *string `type:"string"`
 
+	// The ARN for the Secrets Manager secret that contains the credentials for
+	// the user performing the domain join.
+	//
+	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
+	DomainAuthSecretArn *string `type:"string"`
+
+	// The IPv4 DNS IP addresses of your primary and secondary Active Directory
+	// domain controllers.
+	//
+	// Constraints:
+	//
+	//    * Two IP addresses must be provided. If there isn't a secondary domain
+	//    controller, use the IP address of the primary domain controller for both
+	//    entries in the list.
+	//
+	// Example: 123.124.125.126,234.235.236.237
+	DomainDnsIps []*string `type:"list"`
+
+	// Specifies the fully qualified domain name of an Active Directory domain.
+	//
+	// Constraints:
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: mymanagedADtest.mymanagedAD.mydomain
+	DomainFqdn *string `type:"string"`
+
 	// The name of the IAM role to use when making API calls to the Directory Service.
 	//
 	// This setting doesn't apply to RDS Custom DB instances.
 	DomainIAMRoleName *string `type:"string"`
+
+	// The Active Directory organizational unit for your DB instance to join.
+	//
+	// Constraints:
+	//
+	//    * Must be in the distinguished name format.
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
+	DomainOu *string `type:"string"`
 
 	// Specifies whether to enable a customer-owned IP address (CoIP) for an RDS
 	// on Outposts DB instance.
@@ -42077,15 +42271,45 @@ func (s *ModifyDBInstanceInput) SetDeletionProtection(v bool) *ModifyDBInstanceI
 	return s
 }
 
+// SetDisableDomain sets the DisableDomain field's value.
+func (s *ModifyDBInstanceInput) SetDisableDomain(v bool) *ModifyDBInstanceInput {
+	s.DisableDomain = &v
+	return s
+}
+
 // SetDomain sets the Domain field's value.
 func (s *ModifyDBInstanceInput) SetDomain(v string) *ModifyDBInstanceInput {
 	s.Domain = &v
 	return s
 }
 
+// SetDomainAuthSecretArn sets the DomainAuthSecretArn field's value.
+func (s *ModifyDBInstanceInput) SetDomainAuthSecretArn(v string) *ModifyDBInstanceInput {
+	s.DomainAuthSecretArn = &v
+	return s
+}
+
+// SetDomainDnsIps sets the DomainDnsIps field's value.
+func (s *ModifyDBInstanceInput) SetDomainDnsIps(v []*string) *ModifyDBInstanceInput {
+	s.DomainDnsIps = v
+	return s
+}
+
+// SetDomainFqdn sets the DomainFqdn field's value.
+func (s *ModifyDBInstanceInput) SetDomainFqdn(v string) *ModifyDBInstanceInput {
+	s.DomainFqdn = &v
+	return s
+}
+
 // SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
 func (s *ModifyDBInstanceInput) SetDomainIAMRoleName(v string) *ModifyDBInstanceInput {
 	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetDomainOu sets the DomainOu field's value.
+func (s *ModifyDBInstanceInput) SetDomainOu(v string) *ModifyDBInstanceInput {
+	s.DomainOu = &v
 	return s
 }
 
@@ -49010,11 +49234,51 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
+	// The ARN for the Secrets Manager secret that contains the credentials for
+	// the user performing the domain join.
+	//
+	// Constraints:
+	//
+	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
+	DomainAuthSecretArn *string `type:"string"`
+
+	// The IPv4 DNS IP addresses of your primary and secondary Active Directory
+	// domain controllers.
+	//
+	// Constraints:
+	//
+	//    * Two IP addresses must be provided. If there isn't a secondary domain
+	//    controller, use the IP address of the primary domain controller for both
+	//    entries in the list.
+	//
+	// Example: 123.124.125.126,234.235.236.237
+	DomainDnsIps []*string `type:"list"`
+
+	// Specifies the fully qualified domain name of an Active Directory domain.
+	//
+	// Constraints:
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: mymanagedADtest.mymanagedAD.mydomain
+	DomainFqdn *string `type:"string"`
+
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
 	//
 	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
+
+	// The Active Directory organizational unit for your DB instance to join.
+	//
+	// Constraints:
+	//
+	//    * Must be in the distinguished name format.
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
+	DomainOu *string `type:"string"`
 
 	// The list of logs that the restored DB instance is to export to CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
@@ -49333,9 +49597,33 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomain(v string) *RestoreDBIns
 	return s
 }
 
+// SetDomainAuthSecretArn sets the DomainAuthSecretArn field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomainAuthSecretArn(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DomainAuthSecretArn = &v
+	return s
+}
+
+// SetDomainDnsIps sets the DomainDnsIps field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomainDnsIps(v []*string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DomainDnsIps = v
+	return s
+}
+
+// SetDomainFqdn sets the DomainFqdn field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomainFqdn(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DomainFqdn = &v
+	return s
+}
+
 // SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomainIAMRoleName(v string) *RestoreDBInstanceFromDBSnapshotInput {
 	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetDomainOu sets the DomainOu field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomainOu(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DomainOu = &v
 	return s
 }
 
@@ -50412,11 +50700,53 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// in the Amazon RDS User Guide.
 	Domain *string `type:"string"`
 
+	// The ARN for the Secrets Manager secret that contains the credentials for
+	// the user performing the domain join.
+	//
+	// Constraints:
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
+	DomainAuthSecretArn *string `type:"string"`
+
+	// The IPv4 DNS IP addresses of your primary and secondary Active Directory
+	// domain controllers.
+	//
+	// Constraints:
+	//
+	//    * Two IP addresses must be provided. If there isn't a secondary domain
+	//    controller, use the IP address of the primary domain controller for both
+	//    entries in the list.
+	//
+	// Example: 123.124.125.126,234.235.236.237
+	DomainDnsIps []*string `type:"list"`
+
+	// Specifies the fully qualified domain name of an Active Directory domain.
+	//
+	// Constraints:
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: mymanagedADtest.mymanagedAD.mydomain
+	DomainFqdn *string `type:"string"`
+
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
 	//
 	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
+
+	// The Active Directory organizational unit for your DB instance to join.
+	//
+	// Constraints:
+	//
+	//    * Must be in the distinguished name format.
+	//
+	//    * Cannot be greater than 64 characters.
+	//
+	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
+	DomainOu *string `type:"string"`
 
 	// The list of logs that the restored DB instance is to export to CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
@@ -50772,9 +51102,33 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetDomain(v string) *RestoreDBInst
 	return s
 }
 
+// SetDomainAuthSecretArn sets the DomainAuthSecretArn field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDomainAuthSecretArn(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.DomainAuthSecretArn = &v
+	return s
+}
+
+// SetDomainDnsIps sets the DomainDnsIps field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDomainDnsIps(v []*string) *RestoreDBInstanceToPointInTimeInput {
+	s.DomainDnsIps = v
+	return s
+}
+
+// SetDomainFqdn sets the DomainFqdn field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDomainFqdn(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.DomainFqdn = &v
+	return s
+}
+
 // SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetDomainIAMRoleName(v string) *RestoreDBInstanceToPointInTimeInput {
 	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetDomainOu sets the DomainOu field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDomainOu(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.DomainOu = &v
 	return s
 }
 
