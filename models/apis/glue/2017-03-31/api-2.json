@@ -4815,7 +4815,8 @@
         "MongoDBTargets":{"shape":"MongoDBTargetList"},
         "DynamoDBTargets":{"shape":"DynamoDBTargetList"},
         "CatalogTargets":{"shape":"CatalogTargetList"},
-        "DeltaTargets":{"shape":"DeltaTargetList"}
+        "DeltaTargets":{"shape":"DeltaTargetList"},
+        "IcebergTargets":{"shape":"IcebergTargetList"}
       }
     },
     "CrawlsFilter":{
@@ -8188,6 +8189,19 @@
         "uncompressed",
         "snappy"
       ]
+    },
+    "IcebergTarget":{
+      "type":"structure",
+      "members":{
+        "Paths":{"shape":"PathList"},
+        "ConnectionName":{"shape":"ConnectionName"},
+        "Exclusions":{"shape":"PathList"},
+        "MaximumTraversalDepth":{"shape":"NullableInteger"}
+      }
+    },
+    "IcebergTargetList":{
+      "type":"list",
+      "member":{"shape":"IcebergTarget"}
     },
     "IdString":{
       "type":"string",

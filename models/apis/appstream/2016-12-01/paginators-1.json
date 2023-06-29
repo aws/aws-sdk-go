@@ -1,5 +1,15 @@
 {
   "pagination": {
+    "DescribeAppBlockBuilderAppBlockAssociations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "DescribeAppBlockBuilders": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "DescribeImagePermissions": {
       "input_token": "NextToken",
       "output_token": "NextToken",

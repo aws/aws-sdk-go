@@ -3,6 +3,14 @@
 // Package chime provides the client and types for making API
 // requests to Amazon Chime.
 //
+// Most of these APIs are no longer supported and will not be updated. We recommend
+// using the latest versions in the Amazon Chime SDK API reference (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/welcome.html),
+// in the Amazon Chime SDK.
+//
+// Using the latest versions requires migrating to dedicated namespaces. For
+// more information, refer to Migrating from the Amazon Chime namespace (https://docs.aws.amazon.com/chime-sdk/latest/dg/migrate-from-chm-namespace.html)
+// in the Amazon Chime SDK Developer Guide.
+//
 // The Amazon Chime application programming interface (API) is designed so administrators
 // can perform key tasks, such as creating and managing Amazon Chime accounts,
 // users, and Voice Connectors. This guide provides detailed information about

@@ -191,8 +191,8 @@ func (c *GameLift) ClaimGameServerRequest(input *ClaimGameServerInput) (req *req
 // a game server ID, although this approach bypasses Amazon GameLift FleetIQ
 // placement optimization. Optionally, include game data to pass to the game
 // server at the start of a game session, such as a game map or player information.
-// Filter options may be included to further restrict how a game server is chosen,
-// such as only allowing game servers on ACTIVE instances to be claimed.
+// Add filter options to further restrict how a game server is chosen, such
+// as only allowing game servers on ACTIVE instances to be claimed.
 //
 // When a game server is successfully claimed, connection information is returned.
 // A claimed game server's utilization status remains AVAILABLE while the claim
@@ -210,7 +210,7 @@ func (c *GameLift) ClaimGameServerRequest(input *ClaimGameServerInput) (req *req
 //   - If the game server claim status is CLAIMED.
 //
 //   - If the game server is running on an instance in DRAINING status and
-//     provided filter option does not allow placing on DRAINING instances.
+//     the provided filter option does not allow placing on DRAINING instances.
 //
 // # Learn more
 //
@@ -15766,9 +15766,10 @@ type CreateMatchmakingConfigurationInput struct {
 	AcceptanceTimeoutSeconds *int64 `min:"1" type:"integer"`
 
 	// The number of player slots in a match to keep open for future players. For
-	// example, if the configuration's rule set specifies a match for a single 12-person
-	// team, and the additional player count is set to 2, only 10 players are selected
-	// for the match. This parameter is not used if FlexMatchMode is set to STANDALONE.
+	// example, if the configuration's rule set specifies a match for a single 10-person
+	// team, and the additional player count is set to 2, 10 players will be selected
+	// for the match and 2 more player slots will be open for future players. This
+	// parameter is not used if FlexMatchMode is set to STANDALONE.
 	AdditionalPlayerCount *int64 `type:"integer"`
 
 	// The method used to backfill game sessions that are created with this matchmaking
@@ -26340,9 +26341,10 @@ type MatchmakingConfiguration struct {
 	AcceptanceTimeoutSeconds *int64 `min:"1" type:"integer"`
 
 	// The number of player slots in a match to keep open for future players. For
-	// example, if the configuration's rule set specifies a match for a single 12-person
-	// team, and the additional player count is set to 2, only 10 players are selected
-	// for the match. This parameter is not used when FlexMatchMode is set to STANDALONE.
+	// example, if the configuration's rule set specifies a match for a single 10-person
+	// team, and the additional player count is set to 2, 10 players will be selected
+	// for the match and 2 more player slots will be open for future players. This
+	// parameter is not used when FlexMatchMode is set to STANDALONE.
 	AdditionalPlayerCount *int64 `type:"integer"`
 
 	// The method used to backfill game sessions created with this matchmaking configuration.
@@ -32106,9 +32108,10 @@ type UpdateMatchmakingConfigurationInput struct {
 	AcceptanceTimeoutSeconds *int64 `min:"1" type:"integer"`
 
 	// The number of player slots in a match to keep open for future players. For
-	// example, if the configuration's rule set specifies a match for a single 12-person
-	// team, and the additional player count is set to 2, only 10 players are selected
-	// for the match. This parameter is not used if FlexMatchMode is set to STANDALONE.
+	// example, if the configuration's rule set specifies a match for a single 10-person
+	// team, and the additional player count is set to 2, 10 players will be selected
+	// for the match and 2 more player slots will be open for future players. This
+	// parameter is not used if FlexMatchMode is set to STANDALONE.
 	AdditionalPlayerCount *int64 `type:"integer"`
 
 	// The method that is used to backfill game sessions created with this matchmaking
@@ -34526,6 +34529,9 @@ const (
 
 	// OperatingSystemWindows2016 is a OperatingSystem enum value
 	OperatingSystemWindows2016 = "WINDOWS_2016"
+
+	// OperatingSystemAmazonLinux2023 is a OperatingSystem enum value
+	OperatingSystemAmazonLinux2023 = "AMAZON_LINUX_2023"
 )
 
 // OperatingSystem_Values returns all elements of the OperatingSystem enum
@@ -34535,6 +34541,7 @@ func OperatingSystem_Values() []string {
 		OperatingSystemAmazonLinux,
 		OperatingSystemAmazonLinux2,
 		OperatingSystemWindows2016,
+		OperatingSystemAmazonLinux2023,
 	}
 }
 

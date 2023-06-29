@@ -3027,7 +3027,7 @@ func (c *CleanRooms) StartProtectedQueryRequest(input *StartProtectedQueryInput)
 
 // StartProtectedQuery API operation for AWS Clean Rooms Service.
 //
-// Creates a protected query that is started by AWS Clean Rooms.
+// Creates a protected query that is started by Clean Rooms .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4110,7 +4110,7 @@ func (s *AnalysisRule) SetUpdateTime(v time.Time) *AnalysisRule {
 	return s
 }
 
-// Enables query structure and specified queries that product aggregate statistics.
+// Enables query structure and specified queries that produce aggregate statistics.
 type AnalysisRuleAggregation struct {
 	_ struct{} `type:"structure"`
 
@@ -4118,6 +4118,10 @@ type AnalysisRuleAggregation struct {
 	//
 	// AggregateColumns is a required field
 	AggregateColumns []*AggregateColumn `locationName:"aggregateColumns" min:"1" type:"list" required:"true"`
+
+	// Which logical operators (if any) are to be used in an INNER JOIN match condition.
+	// Default is AND.
+	AllowedJoinOperators []*string `locationName:"allowedJoinOperators" type:"list" enum:"JoinOperator"`
 
 	// The columns that query runners are allowed to select, group by, or filter
 	// by.
@@ -4132,7 +4136,7 @@ type AnalysisRuleAggregation struct {
 	JoinColumns []*string `locationName:"joinColumns" type:"list" required:"true"`
 
 	// Control that requires member who runs query to do a join with their configured
-	// table and/or other configured table in query
+	// table and/or other configured table in query.
 	JoinRequired *string `locationName:"joinRequired" type:"string" enum:"JoinRequiredOption"`
 
 	// Columns that must meet a specific threshold value (after an aggregation function
@@ -4223,6 +4227,12 @@ func (s *AnalysisRuleAggregation) SetAggregateColumns(v []*AggregateColumn) *Ana
 	return s
 }
 
+// SetAllowedJoinOperators sets the AllowedJoinOperators field's value.
+func (s *AnalysisRuleAggregation) SetAllowedJoinOperators(v []*string) *AnalysisRuleAggregation {
+	s.AllowedJoinOperators = v
+	return s
+}
+
 // SetDimensionColumns sets the DimensionColumns field's value.
 func (s *AnalysisRuleAggregation) SetDimensionColumns(v []*string) *AnalysisRuleAggregation {
 	s.DimensionColumns = v
@@ -4257,8 +4267,12 @@ func (s *AnalysisRuleAggregation) SetScalarFunctions(v []*string) *AnalysisRuleA
 type AnalysisRuleList struct {
 	_ struct{} `type:"structure"`
 
+	// Which logical operators (if any) are to be used in an INNER JOIN match condition.
+	// Default is AND.
+	AllowedJoinOperators []*string `locationName:"allowedJoinOperators" type:"list" enum:"JoinOperator"`
+
 	// Columns that can be used to join a configured table with the table of the
-	// member who can query and another members' configured tables.
+	// member who can query and other members' configured tables.
 	//
 	// JoinColumns is a required field
 	JoinColumns []*string `locationName:"joinColumns" min:"1" type:"list" required:"true"`
@@ -4304,6 +4318,12 @@ func (s *AnalysisRuleList) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowedJoinOperators sets the AllowedJoinOperators field's value.
+func (s *AnalysisRuleList) SetAllowedJoinOperators(v []*string) *AnalysisRuleList {
+	s.AllowedJoinOperators = v
+	return s
 }
 
 // SetJoinColumns sets the JoinColumns field's value.
@@ -4576,7 +4596,7 @@ type Collaboration struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
 	// The identifier used to reference members of the collaboration. Currently
-	// only supports AWS account ID.
+	// only supports Amazon Web Services account ID.
 	//
 	// CreatorAccountId is a required field
 	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
@@ -4737,7 +4757,7 @@ type CollaborationSummary struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
 	// The identifier used to reference members of the collaboration. Currently
-	// only supports AWS Account ID.
+	// only supports Amazon Web Services account ID.
 	//
 	// CreatorAccountId is a required field
 	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
@@ -4853,7 +4873,7 @@ func (s *CollaborationSummary) SetUpdateTime(v time.Time) *CollaborationSummary 
 	return s
 }
 
-// A column within a schema relation, derived from the underlying AWS Glue table.
+// A column within a schema relation, derived from the underlying Glue table.
 type Column struct {
 	_ struct{} `type:"structure"`
 
@@ -4902,7 +4922,7 @@ func (s *Column) SetType(v string) *Column {
 type ConfiguredTable struct {
 	_ struct{} `type:"structure"`
 
-	// The columns within the underlying AWS Glue table that can be utilized within
+	// The columns within the underlying Glue table that can be utilized within
 	// collaborations.
 	//
 	// AllowedColumns is a required field
@@ -4944,7 +4964,7 @@ type ConfiguredTable struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The AWS Glue table that this configured table represents.
+	// The Glue table that this configured table represents.
 	//
 	// TableReference is a required field
 	TableReference *TableReference `locationName:"tableReference" type:"structure" required:"true"`
@@ -6160,7 +6180,7 @@ type CreateConfiguredTableInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// A reference to the AWS Glue table being configured.
+	// A reference to the Glue table being configured.
 	//
 	// TableReference is a required field
 	TableReference *TableReference `locationName:"tableReference" type:"structure" required:"true"`
@@ -7745,16 +7765,16 @@ func (s *GetSchemaOutput) SetSchema(v *Schema) *GetSchemaOutput {
 	return s
 }
 
-// A reference to a table within an AWS Glue data catalog.
+// A reference to a table within an Glue data catalog.
 type GlueTableReference struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the database the AWS Glue table belongs to.
+	// The name of the database the Glue table belongs to.
 	//
 	// DatabaseName is a required field
 	DatabaseName *string `locationName:"databaseName" type:"string" required:"true"`
 
-	// The name of the AWS Glue table.
+	// The name of the Glue table.
 	//
 	// TableName is a required field
 	TableName *string `locationName:"tableName" type:"string" required:"true"`
@@ -8748,7 +8768,7 @@ type MemberSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier used to reference members of the collaboration. Currently
-	// only supports AWS Account ID.
+	// only supports Amazon Web Services account ID.
 	//
 	// AccountId is a required field
 	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -8835,7 +8855,7 @@ type MemberSummary struct {
 	Abilities []*string `locationName:"abilities" type:"list" required:"true" enum:"MemberAbility"`
 
 	// The identifier used to reference members of the collaboration. Currently
-	// only supports AWS Account ID.
+	// only supports Amazon Web Services account ID.
 	//
 	// AccountId is a required field
 	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -8949,7 +8969,7 @@ type Membership struct {
 	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
 
 	// The identifier used to reference members of the collaboration. Currently
-	// only supports AWS account ID.
+	// only supports Amazon Web Services account ID.
 	//
 	// CollaborationCreatorAccountId is a required field
 	CollaborationCreatorAccountId *string `locationName:"collaborationCreatorAccountId" min:"12" type:"string" required:"true"`
@@ -9105,8 +9125,8 @@ type MembershipSummary struct {
 	// CollaborationArn is a required field
 	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
 
-	// The identifier of the AWS principal that created the collaboration. Currently
-	// only supports AWS account ID.
+	// The identifier of the Amazon Web Services principal that created the collaboration.
+	// Currently only supports Amazon Web Services account ID.
 	//
 	// CollaborationCreatorAccountId is a required field
 	CollaborationCreatorAccountId *string `locationName:"collaborationCreatorAccountId" min:"12" type:"string" required:"true"`
@@ -9236,7 +9256,7 @@ func (s *MembershipSummary) SetUpdateTime(v time.Time) *MembershipSummary {
 	return s
 }
 
-// The parameters for an AWS Clean Rooms protected query.
+// The parameters for an Clean Rooms protected query.
 type ProtectedQuery struct {
 	_ struct{} `type:"structure"`
 
@@ -9689,9 +9709,7 @@ type ProtectedQuerySQLParameters struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The query string to be submitted.
-	//
-	// QueryString is a required field
-	QueryString *string `locationName:"queryString" type:"string" required:"true"`
+	QueryString *string `locationName:"queryString" type:"string"`
 }
 
 // String returns the string representation.
@@ -9710,19 +9728,6 @@ func (s ProtectedQuerySQLParameters) String() string {
 // value will be replaced with "sensitive".
 func (s ProtectedQuerySQLParameters) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ProtectedQuerySQLParameters) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ProtectedQuerySQLParameters"}
-	if s.QueryString == nil {
-		invalidParams.Add(request.NewErrParamRequired("QueryString"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetQueryString sets the QueryString field's value.
@@ -9949,7 +9954,7 @@ type Schema struct {
 	// CreateTime is a required field
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
-	// The unique account ID for the AWS account that owns the schema.
+	// The unique account ID for the Amazon Web Services account that owns the schema.
 	//
 	// CreatorAccountId is a required field
 	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
@@ -10099,7 +10104,7 @@ type SchemaSummary struct {
 	// CreateTime is a required field
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
-	// The unique account ID for the AWS account that owns the schema.
+	// The unique account ID for the Amazon Web Services account that owns the schema.
 	//
 	// CreatorAccountId is a required field
 	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
@@ -10336,11 +10341,6 @@ func (s *StartProtectedQueryInput) Validate() error {
 			invalidParams.AddNested("ResultConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
-	if s.SqlParameters != nil {
-		if err := s.SqlParameters.Validate(); err != nil {
-			invalidParams.AddNested("SqlParameters", err.(request.ErrInvalidParams))
-		}
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10406,11 +10406,11 @@ func (s *StartProtectedQueryOutput) SetProtectedQuery(v *ProtectedQuery) *StartP
 }
 
 // A pointer to the dataset that underlies this table. Currently, this can only
-// be an AWS Glue table.
+// be an Glue table.
 type TableReference struct {
 	_ struct{} `type:"structure"`
 
-	// If present, a reference to the AWS Glue table referred to by this table reference.
+	// If present, a reference to the Glue table referred to by this table reference.
 	Glue *GlueTableReference `locationName:"glue" type:"structure"`
 }
 
@@ -11609,6 +11609,22 @@ func FilterableMemberStatus_Values() []string {
 	return []string{
 		FilterableMemberStatusInvited,
 		FilterableMemberStatusActive,
+	}
+}
+
+const (
+	// JoinOperatorOr is a JoinOperator enum value
+	JoinOperatorOr = "OR"
+
+	// JoinOperatorAnd is a JoinOperator enum value
+	JoinOperatorAnd = "AND"
+)
+
+// JoinOperator_Values returns all elements of the JoinOperator enum
+func JoinOperator_Values() []string {
+	return []string{
+		JoinOperatorOr,
+		JoinOperatorAnd,
 	}
 }
 

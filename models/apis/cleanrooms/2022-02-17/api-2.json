@@ -773,6 +773,7 @@
         "aggregateColumns":{"shape":"AnalysisRuleAggregationAggregateColumnsList"},
         "joinColumns":{"shape":"AnalysisRuleColumnList"},
         "joinRequired":{"shape":"JoinRequiredOption"},
+        "allowedJoinOperators":{"shape":"JoinOperatorsList"},
         "dimensionColumns":{"shape":"AnalysisRuleColumnList"},
         "scalarFunctions":{"shape":"ScalarFunctionsList"},
         "outputConstraints":{"shape":"AggregationConstraints"}
@@ -801,6 +802,7 @@
       ],
       "members":{
         "joinColumns":{"shape":"AnalysisRuleListJoinColumnsList"},
+        "allowedJoinOperators":{"shape":"JoinOperatorsList"},
         "listColumns":{"shape":"AnalysisRuleColumnList"}
       }
     },
@@ -1668,7 +1670,13 @@
         "schema":{"shape":"Schema"}
       }
     },
-    "GlueResourceName":{
+    "GlueDatabaseName":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"[a-zA-Z0-9_](([a-zA-Z0-9_]+-)*([a-zA-Z0-9_]+))?"
+    },
+    "GlueTableName":{
       "type":"string",
       "max":128,
       "min":0,
@@ -1681,8 +1689,8 @@
         "databaseName"
       ],
       "members":{
-        "tableName":{"shape":"GlueResourceName"},
-        "databaseName":{"shape":"GlueResourceName"}
+        "tableName":{"shape":"GlueTableName"},
+        "databaseName":{"shape":"GlueDatabaseName"}
       }
     },
     "InternalServerException":{
@@ -1693,6 +1701,19 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "JoinOperator":{
+      "type":"string",
+      "enum":[
+        "OR",
+        "AND"
+      ]
+    },
+    "JoinOperatorsList":{
+      "type":"list",
+      "member":{"shape":"JoinOperator"},
+      "max":2,
+      "min":0
     },
     "JoinRequiredOption":{
       "type":"string",
@@ -2191,7 +2212,6 @@
     },
     "ProtectedQuerySQLParameters":{
       "type":"structure",
-      "required":["queryString"],
       "members":{
         "queryString":{"shape":"ProtectedQuerySQLParametersQueryStringString"}
       },
@@ -2448,8 +2468,7 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1,
-      "pattern":"(?!aws:).{1,128}"
+      "min":1
     },
     "TagKeys":{
       "type":"list",

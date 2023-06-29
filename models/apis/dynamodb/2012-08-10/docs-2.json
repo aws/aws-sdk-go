@@ -93,8 +93,10 @@
     "AttributeMap": {
       "base": null,
       "refs": {
+        "BatchStatementError$Item": "<p>The item which caused the condition check to fail. This will be set if ReturnValuesOnConditionCheckFailure is specified as <code>ALL_OLD</code>.</p>",
         "BatchStatementResponse$Item": "<p> A DynamoDB item associated with a BatchStatementResponse </p>",
         "CancellationReason$Item": "<p>Item in the request which caused the transaction to get cancelled.</p>",
+        "ConditionalCheckFailedException$Item": "<p>Item which caused the <code>ConditionalCheckFailedException</code>.</p>",
         "DeleteItemOutput$Attributes": "<p>A map of attribute names to <code>AttributeValue</code> objects, representing the item as it appeared before the <code>DeleteItem</code> operation. This map appears in the response only if <code>ReturnValues</code> was specified as <code>ALL_OLD</code> in the request.</p>",
         "GetItemOutput$Item": "<p>A map of attribute names to <code>AttributeValue</code> objects, as specified by <code>ProjectionExpression</code>.</p>",
         "ItemList$member": null,
@@ -2495,10 +2497,16 @@
     "ReturnValuesOnConditionCheckFailure": {
       "base": null,
       "refs": {
+        "BatchStatementRequest$ReturnValuesOnConditionCheckFailure": "<p>An optional parameter that returns the item attributes for a PartiQL batch request operation that failed a condition check.</p> <p>There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed.</p>",
         "ConditionCheck$ReturnValuesOnConditionCheckFailure": "<p>Use <code>ReturnValuesOnConditionCheckFailure</code> to get the item attributes if the <code>ConditionCheck</code> condition fails. For <code>ReturnValuesOnConditionCheckFailure</code>, the valid values are: NONE and ALL_OLD.</p>",
         "Delete$ReturnValuesOnConditionCheckFailure": "<p>Use <code>ReturnValuesOnConditionCheckFailure</code> to get the item attributes if the <code>Delete</code> condition fails. For <code>ReturnValuesOnConditionCheckFailure</code>, the valid values are: NONE and ALL_OLD.</p>",
+        "DeleteItemInput$ReturnValuesOnConditionCheckFailure": "<p>An optional parameter that returns the item attributes for a <code>DeleteItem</code> operation that failed a condition check.</p> <p>There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed.</p>",
+        "ExecuteStatementInput$ReturnValuesOnConditionCheckFailure": "<p>An optional parameter that returns the item attributes for an <code>ExecuteStatement</code> operation that failed a condition check.</p> <p>There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed.</p>",
+        "ParameterizedStatement$ReturnValuesOnConditionCheckFailure": "<p>An optional parameter that returns the item attributes for a PartiQL <code>ParameterizedStatement</code> operation that failed a condition check.</p> <p>There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed.</p>",
         "Put$ReturnValuesOnConditionCheckFailure": "<p>Use <code>ReturnValuesOnConditionCheckFailure</code> to get the item attributes if the <code>Put</code> condition fails. For <code>ReturnValuesOnConditionCheckFailure</code>, the valid values are: NONE and ALL_OLD.</p>",
-        "Update$ReturnValuesOnConditionCheckFailure": "<p>Use <code>ReturnValuesOnConditionCheckFailure</code> to get the item attributes if the <code>Update</code> condition fails. For <code>ReturnValuesOnConditionCheckFailure</code>, the valid values are: NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW.</p>"
+        "PutItemInput$ReturnValuesOnConditionCheckFailure": "<p>An optional parameter that returns the item attributes for a <code>PutItem</code> operation that failed a condition check.</p> <p>There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed.</p>",
+        "Update$ReturnValuesOnConditionCheckFailure": "<p>Use <code>ReturnValuesOnConditionCheckFailure</code> to get the item attributes if the <code>Update</code> condition fails. For <code>ReturnValuesOnConditionCheckFailure</code>, the valid values are: NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW.</p>",
+        "UpdateItemInput$ReturnValuesOnConditionCheckFailure": "<p>An optional parameter that returns the item attributes for an <code>UpdateItem</code> operation that failed a condition check.</p> <p>There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed.</p>"
       }
     },
     "S3Bucket": {
