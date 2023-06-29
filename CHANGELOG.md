@@ -1,3 +1,25 @@
+Release v1.44.293 (2023-06-29)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and paginators
+  * This release introduces app block builder, allowing customers to provision a resource to package applications into an app block
+* `service/chime`: Updates service API and documentation
+  * The Amazon Chime SDK APIs in the Chime namespace are no longer supported.  Customers should use APIs in the dedicated Amazon Chime SDK namespaces: ChimeSDKIdentity, ChimeSDKMediaPipelines, ChimeSDKMeetings, ChimeSDKMessaging, and ChimeSDKVoice.
+* `service/cleanrooms`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds ReturnValuesOnConditionCheckFailure parameter to PutItem, UpdateItem, DeleteItem, ExecuteStatement, BatchExecuteStatement and ExecuteTransaction APIs. When set to ALL_OLD,  API returns a copy of the item as it was when a conditional write failed
+* `service/gamelift`: Updates service API and documentation
+  * Amazon GameLift now supports game builds that use the Amazon Linux 2023 (AL2023) operating system.
+* `service/glue`: Updates service API and documentation
+  * This release adds support for AWS Glue Crawler with Iceberg Tables, allowing Crawlers to discover Iceberg Tables in S3 and register them in Glue Data Catalog for query engines to query against.
+* `service/sagemaker`: Updates service API and documentation
+  * Adding support for timeseries forecasting in the CreateAutoMLJobV2 API.
+
+### SDK Bugs
+* `private/protocol`: Fix header serialization of empty enum lists in restxml.
+  * Header was serialized as the empty string if list was nil/empty.
+
 Release v1.44.292 (2023-06-28)
 ===
 

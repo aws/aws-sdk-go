@@ -1164,7 +1164,8 @@
       "type":"structure",
       "members":{
         "Code":{"shape":"BatchStatementErrorCodeEnum"},
-        "Message":{"shape":"String"}
+        "Message":{"shape":"String"},
+        "Item":{"shape":"AttributeMap"}
       }
     },
     "BatchStatementErrorCodeEnum":{
@@ -1189,7 +1190,8 @@
       "members":{
         "Statement":{"shape":"PartiQLStatement"},
         "Parameters":{"shape":"PreparedStatementParameters"},
-        "ConsistentRead":{"shape":"ConsistentRead"}
+        "ConsistentRead":{"shape":"ConsistentRead"},
+        "ReturnValuesOnConditionCheckFailure":{"shape":"ReturnValuesOnConditionCheckFailure"}
       }
     },
     "BatchStatementResponse":{
@@ -1332,7 +1334,8 @@
     "ConditionalCheckFailedException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "Item":{"shape":"AttributeMap"}
       },
       "exception":true
     },
@@ -1591,7 +1594,8 @@
         "ReturnItemCollectionMetrics":{"shape":"ReturnItemCollectionMetrics"},
         "ConditionExpression":{"shape":"ConditionExpression"},
         "ExpressionAttributeNames":{"shape":"ExpressionAttributeNameMap"},
-        "ExpressionAttributeValues":{"shape":"ExpressionAttributeValueMap"}
+        "ExpressionAttributeValues":{"shape":"ExpressionAttributeValueMap"},
+        "ReturnValuesOnConditionCheckFailure":{"shape":"ReturnValuesOnConditionCheckFailure"}
       }
     },
     "DeleteItemOutput":{
@@ -1864,7 +1868,8 @@
         "ConsistentRead":{"shape":"ConsistentRead"},
         "NextToken":{"shape":"PartiQLNextToken"},
         "ReturnConsumedCapacity":{"shape":"ReturnConsumedCapacity"},
-        "Limit":{"shape":"PositiveIntegerObject"}
+        "Limit":{"shape":"PositiveIntegerObject"},
+        "ReturnValuesOnConditionCheckFailure":{"shape":"ReturnValuesOnConditionCheckFailure"}
       }
     },
     "ExecuteStatementOutput":{
@@ -2747,7 +2752,8 @@
       "required":["Statement"],
       "members":{
         "Statement":{"shape":"PartiQLStatement"},
-        "Parameters":{"shape":"PreparedStatementParameters"}
+        "Parameters":{"shape":"PreparedStatementParameters"},
+        "ReturnValuesOnConditionCheckFailure":{"shape":"ReturnValuesOnConditionCheckFailure"}
       }
     },
     "ParameterizedStatements":{
@@ -2903,7 +2909,8 @@
         "ConditionalOperator":{"shape":"ConditionalOperator"},
         "ConditionExpression":{"shape":"ConditionExpression"},
         "ExpressionAttributeNames":{"shape":"ExpressionAttributeNameMap"},
-        "ExpressionAttributeValues":{"shape":"ExpressionAttributeValueMap"}
+        "ExpressionAttributeValues":{"shape":"ExpressionAttributeValueMap"},
+        "ReturnValuesOnConditionCheckFailure":{"shape":"ReturnValuesOnConditionCheckFailure"}
       }
     },
     "PutItemInputAttributeMap":{
@@ -3899,7 +3906,8 @@
         "UpdateExpression":{"shape":"UpdateExpression"},
         "ConditionExpression":{"shape":"ConditionExpression"},
         "ExpressionAttributeNames":{"shape":"ExpressionAttributeNameMap"},
-        "ExpressionAttributeValues":{"shape":"ExpressionAttributeValueMap"}
+        "ExpressionAttributeValues":{"shape":"ExpressionAttributeValueMap"},
+        "ReturnValuesOnConditionCheckFailure":{"shape":"ReturnValuesOnConditionCheckFailure"}
       }
     },
     "UpdateItemOutput":{

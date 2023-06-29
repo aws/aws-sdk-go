@@ -413,6 +413,18 @@
         "GetDeviceFleetReportResponse$AgentVersions": "<p>The versions of Edge Manager agent deployed on the fleet.</p>"
       }
     },
+    "AggregationTransformationValue": {
+      "base": null,
+      "refs": {
+        "AggregationTransformations$value": null
+      }
+    },
+    "AggregationTransformations": {
+      "base": null,
+      "refs": {
+        "TimeSeriesTransformations$Aggregation": "<p>A key value pair defining the aggregation method for a column, where the key is the column name and the value is the aggregation method.</p> <p>The supported aggregation methods are <code>sum</code> (default), <code>avg</code>, <code>first</code>, <code>min</code>, <code>max</code>.</p> <note> <p>Aggregation is only supported for the target column.</p> </note>"
+      }
+    },
     "Alarm": {
       "base": "<p>An Amazon CloudWatch alarm configured to monitor metrics on an endpoint.</p>",
       "refs": {
@@ -956,7 +968,7 @@
       "base": null,
       "refs": {
         "AutoMLChannel$ChannelType": "<p>The channel type (optional) is an <code>enum</code> string. The default value is <code>training</code>. Channels for training and validation must share the same <code>ContentType</code> and <code>TargetAttributeName</code>. For information on specifying training and validation channel types, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-datasets-problem-types.html#autopilot-data-sources-training-or-validation\">How to specify training and validation datasets</a>.</p>",
-        "AutoMLJobChannel$ChannelType": "<p>The type of channel. Defines whether the data are used for training or validation. The default value is <code>training</code>. Channels for <code>training</code> and <code>validation</code> must share the same <code>ContentType</code> </p>"
+        "AutoMLJobChannel$ChannelType": "<p>The type of channel. Defines whether the data are used for training or validation. The default value is <code>training</code>. Channels for <code>training</code> and <code>validation</code> must share the same <code>ContentType</code> </p> <note> <p>The type of channel defaults to <code>training</code> for the time-series forecasting problem type.</p> </note>"
       }
     },
     "AutoMLContainerDefinition": {
@@ -983,7 +995,7 @@
       "base": "<p>This structure specifies how to split the data into train and validation datasets.</p> <p>The validation and training datasets must contain the same headers. For jobs created by calling <code>CreateAutoMLJob</code>, the validation dataset must be less than 2 GB in size.</p>",
       "refs": {
         "AutoMLJobConfig$DataSplitConfig": "<p>The configuration for splitting the input training dataset.</p> <p>Type: AutoMLDataSplitConfig</p>",
-        "CreateAutoMLJobV2Request$DataSplitConfig": "<p>This structure specifies how to split the data into train and validation datasets.</p> <p>The validation and training datasets must contain the same headers. For jobs created by calling <code>CreateAutoMLJob</code>, the validation dataset must be less than 2 GB in size.</p>",
+        "CreateAutoMLJobV2Request$DataSplitConfig": "<p>This structure specifies how to split the data into train and validation datasets.</p> <p>The validation and training datasets must contain the same headers. For jobs created by calling <code>CreateAutoMLJob</code>, the validation dataset must be less than 2 GB in size.</p> <note> <p>This attribute must not be set for the time-series forecasting problem type, as Autopilot automatically splits the input dataset into training and validation sets.</p> </note>",
         "DescribeAutoMLJobV2Response$DataSplitConfig": "<p>Returns the configuration settings of how the data are split into train and validation datasets.</p>"
       }
     },
@@ -1048,7 +1060,8 @@
         "ImageClassificationJobConfig$CompletionCriteria": "<p>How long a job is allowed to run, or how many candidates a job is allowed to generate.</p>",
         "ResolvedAttributes$CompletionCriteria": null,
         "TabularJobConfig$CompletionCriteria": null,
-        "TextClassificationJobConfig$CompletionCriteria": "<p>How long a job is allowed to run, or how many candidates a job is allowed to generate.</p>"
+        "TextClassificationJobConfig$CompletionCriteria": "<p>How long a job is allowed to run, or how many candidates a job is allowed to generate.</p>",
+        "TimeSeriesForecastingJobConfig$CompletionCriteria": null
       }
     },
     "AutoMLJobConfig": {
@@ -1061,7 +1074,7 @@
     "AutoMLJobInputDataConfig": {
       "base": null,
       "refs": {
-        "CreateAutoMLJobV2Request$AutoMLJobInputDataConfig": "<p>An array of channel objects describing the input data and their location. Each channel is a named input source. Similar to the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-InputDataConfig\">InputDataConfig</a> attribute in the <code>CreateAutoMLJob</code> input parameters. The supported formats depend on the problem type:</p> <ul> <li> <p>For Tabular problem types: <code>S3Prefix</code>, <code>ManifestFile</code>.</p> </li> <li> <p>For ImageClassification: <code>S3Prefix</code>, <code>ManifestFile</code>, <code>AugmentedManifestFile</code>.</p> </li> <li> <p>For TextClassification: <code>S3Prefix</code>.</p> </li> </ul>",
+        "CreateAutoMLJobV2Request$AutoMLJobInputDataConfig": "<p>An array of channel objects describing the input data and their location. Each channel is a named input source. Similar to the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-InputDataConfig\">InputDataConfig</a> attribute in the <code>CreateAutoMLJob</code> input parameters. The supported formats depend on the problem type:</p> <ul> <li> <p>For tabular problem types: <code>S3Prefix</code>, <code>ManifestFile</code>.</p> </li> <li> <p>For image classification: <code>S3Prefix</code>, <code>ManifestFile</code>, <code>AugmentedManifestFile</code>.</p> </li> <li> <p>For text classification: <code>S3Prefix</code>.</p> </li> <li> <p>For time-series forecasting: <code>S3Prefix</code>.</p> </li> </ul>",
         "DescribeAutoMLJobV2Response$AutoMLJobInputDataConfig": "<p>Returns an array of channel objects describing the input data and their location.</p>"
       }
     },
@@ -1141,7 +1154,7 @@
     "AutoMLMetricEnum": {
       "base": null,
       "refs": {
-        "AutoMLJobObjective$MetricName": "<p>The name of the objective metric used to measure the predictive quality of a machine learning system. During training, the model's parameters are updated iteratively to optimize its performance based on the feedback provided by the objective metric when evaluating the model on the validation dataset.</p> <p>For the list of all available metrics supported by Autopilot, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics\">Autopilot metrics</a>.</p> <p>If you do not specify a metric explicitly, the default behavior is to automatically use:</p> <ul> <li> <p>For tabular problem types:</p> <ul> <li> <p>Regression: <code>MSE</code>.</p> </li> <li> <p>Binary classification: <code>F1</code>.</p> </li> <li> <p>Multiclass classification: <code>Accuracy</code>.</p> </li> </ul> </li> <li> <p>For image or text classification problem types: <code>Accuracy</code> </p> </li> </ul>",
+        "AutoMLJobObjective$MetricName": "<p>The name of the objective metric used to measure the predictive quality of a machine learning system. During training, the model's parameters are updated iteratively to optimize its performance based on the feedback provided by the objective metric when evaluating the model on the validation dataset.</p> <p>For the list of all available metrics supported by Autopilot, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics\">Autopilot metrics</a>.</p> <p>If you do not specify a metric explicitly, the default behavior is to automatically use:</p> <ul> <li> <p>For tabular problem types:</p> <ul> <li> <p>Regression: <code>MSE</code>.</p> </li> <li> <p>Binary classification: <code>F1</code>.</p> </li> <li> <p>Multiclass classification: <code>Accuracy</code>.</p> </li> </ul> </li> <li> <p>For image or text classification problem types: <code>Accuracy</code> </p> </li> <li> <p>For time-series forecasting problem types: <code>AverageWeightedQuantileLoss</code> </p> </li> </ul>",
         "FinalAutoMLJobObjectiveMetric$MetricName": "<p>The name of the metric with the best result. For a description of the possible objective metrics, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobObjective.html\">AutoMLJobObjective$MetricName</a>.</p>",
         "FinalAutoMLJobObjectiveMetric$StandardMetricName": "<p>The name of the standard metric. For a description of the standard metrics, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics\">Autopilot candidate metrics</a>.</p>",
         "MetricDatum$MetricName": "<p>The name of the metric.</p>"
@@ -1288,6 +1301,12 @@
       "base": null,
       "refs": {
         "HumanLoopRequestSource$AwsManagedHumanLoopRequestSource": "<p>Specifies whether Amazon Rekognition or Amazon Textract are used as the integration source. The default field settings and JSON parsing rules are different based on the integration source. Valid values:</p>"
+      }
+    },
+    "BacktestResultsLocation": {
+      "base": null,
+      "refs": {
+        "CandidateArtifactLocations$BacktestResults": "<p>The Amazon S3 prefix to the accuracy metrics and the inference results observed over the testing window. Available only for the time-series forecasting problem type.</p>"
       }
     },
     "BatchDataCaptureConfig": {
@@ -2177,7 +2196,7 @@
       "base": null,
       "refs": {
         "AutoMLChannel$ContentType": "<p>The content type of the data from the input source. You can use <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p>",
-        "AutoMLJobChannel$ContentType": "<p>The content type of the data from the input source. The following are the allowed content types for different problems:</p> <ul> <li> <p>For Tabular problem types: <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p> </li> <li> <p>For ImageClassification: <code>image/png</code>, <code>image/jpeg</code>, or <code>image/*</code>. The default value is <code>image/*</code>.</p> </li> <li> <p>For TextClassification: <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p> </li> </ul>",
+        "AutoMLJobChannel$ContentType": "<p>The content type of the data from the input source. The following are the allowed content types for different problems:</p> <ul> <li> <p>For tabular problem types: <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p> </li> <li> <p>For image classification: <code>image/png</code>, <code>image/jpeg</code>, or <code>image/*</code>. The default value is <code>image/*</code>.</p> </li> <li> <p>For text classification: <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p> </li> <li> <p>For time-series forecasting: <code>text/csv;header=present</code> or <code>x-application/vnd.amazon+parquet</code>. The default value is <code>text/csv;header=present</code>.</p> </li> </ul>",
         "Channel$ContentType": "<p>The MIME type of the data.</p>",
         "ContentTypes$member": null,
         "FileSource$ContentType": "<p>The type of content stored in the file source.</p>",
@@ -5443,6 +5462,30 @@
         "FileSystemDataSource$FileSystemType": "<p>The file system type. </p>"
       }
     },
+    "FillingTransformationMap": {
+      "base": null,
+      "refs": {
+        "FillingTransformations$value": null
+      }
+    },
+    "FillingTransformationValue": {
+      "base": null,
+      "refs": {
+        "FillingTransformationMap$value": null
+      }
+    },
+    "FillingTransformations": {
+      "base": null,
+      "refs": {
+        "TimeSeriesTransformations$Filling": "<p>A key value pair defining the filling method for a column, where the key is the column name and the value is an object which defines the filling logic. You can specify multiple filling methods for a single column.</p> <p>The supported filling methods and their corresponding options are:</p> <ul> <li> <p> <code>frontfill</code>: <code>none</code> (Supported only for target column)</p> </li> <li> <p> <code>middlefill</code>: <code>zero</code>, <code>value</code>, <code>median</code>, <code>mean</code>, <code>min</code>, <code>max</code> </p> </li> <li> <p> <code>backfill</code>: <code>zero</code>, <code>value</code>, <code>median</code>, <code>mean</code>, <code>min</code>, <code>max</code> </p> </li> <li> <p> <code>futurefill</code>: <code>zero</code>, <code>value</code>, <code>median</code>, <code>mean</code>, <code>min</code>, <code>max</code> </p> </li> </ul> <p>To set a filling method to a specific value, set the fill parameter to the chosen filling method value (for example <code>\"backfill\" : \"value\"</code>), and define the filling value in an additional parameter prefixed with \"_value\". For example, to set <code>backfill</code> to a value of <code>2</code>, you must include two parameters: <code>\"backfill\": \"value\"</code> and <code>\"backfill_value\":\"2\"</code>.</p>"
+      }
+    },
+    "FillingType": {
+      "base": null,
+      "refs": {
+        "FillingTransformationMap$key": null
+      }
+    },
     "Filter": {
       "base": "<p>A conditional statement for a search expression that includes a resource property, a Boolean operator, and a value. Resources that match the statement are returned in the results from the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html\">Search</a> API.</p> <p>If you specify a <code>Value</code>, but not an <code>Operator</code>, SageMaker uses the equals operator.</p> <p>In search, there are several property types:</p> <dl> <dt>Metrics</dt> <dd> <p>To define a metric filter, enter a value using the form <code>\"Metrics.&lt;name&gt;\"</code>, where <code>&lt;name&gt;</code> is a metric name. For example, the following filter searches for training jobs with an <code>\"accuracy\"</code> metric greater than <code>\"0.9\"</code>:</p> <p> <code>{</code> </p> <p> <code>\"Name\": \"Metrics.accuracy\",</code> </p> <p> <code>\"Operator\": \"GreaterThan\",</code> </p> <p> <code>\"Value\": \"0.9\"</code> </p> <p> <code>}</code> </p> </dd> <dt>HyperParameters</dt> <dd> <p>To define a hyperparameter filter, enter a value with the form <code>\"HyperParameters.&lt;name&gt;\"</code>. Decimal hyperparameter values are treated as a decimal in a comparison if the specified <code>Value</code> is also a decimal value. If the specified <code>Value</code> is an integer, the decimal hyperparameter values are treated as integers. For example, the following filter is satisfied by training jobs with a <code>\"learning_rate\"</code> hyperparameter that is less than <code>\"0.5\"</code>:</p> <p> <code> {</code> </p> <p> <code> \"Name\": \"HyperParameters.learning_rate\",</code> </p> <p> <code> \"Operator\": \"LessThan\",</code> </p> <p> <code> \"Value\": \"0.5\"</code> </p> <p> <code> }</code> </p> </dd> <dt>Tags</dt> <dd> <p>To define a tag filter, enter a value with the form <code>Tags.&lt;key&gt;</code>.</p> </dd> </dl>",
       "refs": {
@@ -5576,6 +5619,30 @@
         "HumanLoopConfig$TaskTitle": "<p>A title for the human worker task.</p>"
       }
     },
+    "ForecastFrequency": {
+      "base": null,
+      "refs": {
+        "TimeSeriesForecastingJobConfig$ForecastFrequency": "<p>The frequency of predictions in a forecast.</p> <p>Valid intervals are an integer followed by Y (Year), M (Month), W (Week), D (Day), H (Hour), and min (Minute). For example, <code>1D</code> indicates every day and <code>15min</code> indicates every 15 minutes. The value of a frequency must not overlap with the next larger frequency. For example, you must use a frequency of <code>1H</code> instead of <code>60min</code>.</p> <p>The valid values for each frequency are the following:</p> <ul> <li> <p>Minute - 1-59</p> </li> <li> <p>Hour - 1-23</p> </li> <li> <p>Day - 1-6</p> </li> <li> <p>Week - 1-4</p> </li> <li> <p>Month - 1-11</p> </li> <li> <p>Year - 1</p> </li> </ul>"
+      }
+    },
+    "ForecastHorizon": {
+      "base": null,
+      "refs": {
+        "TimeSeriesForecastingJobConfig$ForecastHorizon": "<p>The number of time-steps that the model predicts. The forecast horizon is also called the prediction length. The maximum forecast horizon is the lesser of 500 time-steps or 1/4 of the time-steps in the dataset.</p>"
+      }
+    },
+    "ForecastQuantile": {
+      "base": null,
+      "refs": {
+        "ForecastQuantiles$member": null
+      }
+    },
+    "ForecastQuantiles": {
+      "base": null,
+      "refs": {
+        "TimeSeriesForecastingJobConfig$ForecastQuantiles": "<p>The quantiles used to train the model for forecasts at a specified quantile. You can specify quantiles from <code>0.01</code> (p1) to <code>0.99</code> (p99), by increments of 0.01 or higher. Up to five forecast quantiles can be specified. When <code>ForecastQuantiles</code> is not provided, the AutoML job uses the quantiles p10, p50, and p90 as default.</p>"
+      }
+    },
     "Framework": {
       "base": null,
       "refs": {
@@ -5670,6 +5737,18 @@
       "base": null,
       "refs": {
         "Groups$member": null
+      }
+    },
+    "GroupingAttributeName": {
+      "base": null,
+      "refs": {
+        "GroupingAttributeNames$member": null
+      }
+    },
+    "GroupingAttributeNames": {
+      "base": null,
+      "refs": {
+        "TimeSeriesConfig$GroupingAttributeNames": "<p>A set of columns names that can be grouped with the item identifier column to create a composite key for which a target value is predicted.</p>"
       }
     },
     "Groups": {
@@ -6835,6 +6914,12 @@
       "base": null,
       "refs": {
         "DescribeDeviceFleetResponse$IotRoleAlias": "<p>The Amazon Resource Name (ARN) alias created in Amazon Web Services Internet of Things (IoT).</p>"
+      }
+    },
+    "ItemIdentifierAttributeName": {
+      "base": null,
+      "refs": {
+        "TimeSeriesConfig$ItemIdentifierAttributeName": "<p>The name of the column that represents the set of item identifiers for which you want to predict the target value.</p>"
       }
     },
     "JobDurationInSeconds": {
@@ -8097,7 +8182,7 @@
     "MaxCandidates": {
       "base": null,
       "refs": {
-        "AutoMLJobCompletionCriteria$MaxCandidates": "<p>The maximum number of times a training job is allowed to run.</p> <p>For job V2s (jobs created by calling <code>CreateAutoMLJobV2</code>), the supported value is 1.</p>"
+        "AutoMLJobCompletionCriteria$MaxCandidates": "<p>The maximum number of times a training job is allowed to run.</p> <p>For text and image classification, as well as time-series forecasting problem types, the supported value is 1. For tabular problem types, the maximum value is 750.</p>"
       }
     },
     "MaxConcurrentInvocationsPerInstance": {
@@ -11938,6 +12023,7 @@
         "SharingSettings$S3OutputPath": "<p>When <code>NotebookOutputOption</code> is <code>Allowed</code>, the Amazon S3 bucket used to store the shared notebook snapshots.</p>",
         "TabularJobConfig$FeatureSpecificationS3Uri": "<p>A URL to the Amazon S3 data source containing selected features from the input data source to run an Autopilot job V2. You can input <code>FeatureAttributeNames</code> (optional) in JSON format as shown below: </p> <p> <code>{ \"FeatureAttributeNames\":[\"col1\", \"col2\", ...] }</code>.</p> <p>You can also specify the data type of the feature (optional) in the format shown below:</p> <p> <code>{ \"FeatureDataTypes\":{\"col1\":\"numeric\", \"col2\":\"categorical\" ... } }</code> </p> <note> <p>These column keys may not include the target column.</p> </note> <p>In ensembling mode, Autopilot only supports the following data types: <code>numeric</code>, <code>categorical</code>, <code>text</code>, and <code>datetime</code>. In HPO mode, Autopilot can support <code>numeric</code>, <code>categorical</code>, <code>text</code>, <code>datetime</code>, and <code>sequence</code>.</p> <p>If only <code>FeatureDataTypes</code> is provided, the column keys (<code>col1</code>, <code>col2</code>,..) should be a subset of the column names in the input data. </p> <p>If both <code>FeatureDataTypes</code> and <code>FeatureAttributeNames</code> are provided, then the column keys should be a subset of the column names provided in <code>FeatureAttributeNames</code>. </p> <p>The key name <code>FeatureAttributeNames</code> is fixed. The values listed in <code>[\"col1\", \"col2\", ...]</code> are case sensitive and should be a list of strings containing unique values that are a subset of the column names in the input data. The list of columns provided must not include the target column.</p>",
         "TensorBoardOutputConfig$S3OutputPath": "<p>Path to Amazon S3 storage location for TensorBoard output.</p>",
+        "TimeSeriesForecastingJobConfig$FeatureSpecificationS3Uri": "<p>A URL to the Amazon S3 data source containing additional selected features that complement the target, itemID, timestamp, and grouped columns set in <code>TimeSeriesConfig</code>. When not provided, the AutoML job V2 includes all the columns from the original dataset that are not already declared in <code>TimeSeriesConfig</code>. If provided, the AutoML job V2 only considers these additional columns as a complement to the ones declared in <code>TimeSeriesConfig</code>.</p> <p> You can input <code>FeatureAttributeNames</code> (optional) in JSON format as shown below: </p> <p> <code>{ \"FeatureAttributeNames\":[\"col1\", \"col2\", ...] }</code>.</p> <p>You can also specify the data type of the feature (optional) in the format shown below:</p> <p> <code>{ \"FeatureDataTypes\":{\"col1\":\"numeric\", \"col2\":\"categorical\" ... } }</code> </p> <p>Autopilot supports the following data types: <code>numeric</code>, <code>categorical</code>, <code>text</code>, and <code>datetime</code>.</p> <note> <p>These column keys must not include any column set in <code>TimeSeriesConfig</code>.</p> </note> <p>When not provided, the AutoML job V2 includes all the columns from the original dataset that are not already declared in <code>TimeSeriesConfig</code>. If provided, the AutoML job V2 only considers these additional columns as a complement to the ones declared in <code>TimeSeriesConfig</code>.</p> <p>Autopilot supports the following data types: <code>numeric</code>, <code>categorical</code>, <code>text</code>, and <code>datetime</code>.</p>",
         "TransformOutput$S3OutputPath": "<p>The Amazon S3 path where you want Amazon SageMaker to store the results of the transform job. For example, <code>s3://bucket-name/key-name-prefix</code>.</p> <p>For every S3 object used as input for the transform job, batch transform stores the transformed data with an .<code>out</code> suffix in a corresponding subfolder in the location in the output prefix. For example, for the input data stored at <code>s3://bucket-name/input-name-prefix/dataset01/data.csv</code>, batch transform stores the transformed data at <code>s3://bucket-name/output-name-prefix/input-name-prefix/data.csv.out</code>. Batch transform doesn't upload partially processed objects. For an input S3 object that contains multiple records, it creates an .<code>out</code> file only if the transform job succeeds on the entire file. When the input contains multiple S3 objects, the batch transform job processes the listed S3 objects and uploads only the output for successfully processed objects. If any object fails in the transform job batch transform marks the job as failed to prompt investigation.</p>",
         "TransformS3DataSource$S3Uri": "<p>Depending on the value specified for the <code>S3DataType</code>, identifies either a key name prefix or a manifest. For example:</p> <ul> <li> <p> A key name prefix might look like this: <code>s3://bucketname/exampleprefix</code>. </p> </li> <li> <p> A manifest might look like this: <code>s3://bucketname/example.manifest</code> </p> <p> The manifest is an S3 object which is a JSON file with the following format: </p> <p> <code>[ {\"prefix\": \"s3://customer_bucket/some/prefix/\"},</code> </p> <p> <code>\"relative/path/to/custdata-1\",</code> </p> <p> <code>\"relative/path/custdata-2\",</code> </p> <p> <code>...</code> </p> <p> <code>\"relative/path/custdata-N\"</code> </p> <p> <code>]</code> </p> <p> The preceding JSON matches the following <code>S3Uris</code>: </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/to/custdata-1</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-2</code> </p> <p> <code>...</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-N</code> </p> <p> The complete set of <code>S3Uris</code> in this manifest constitutes the input data for the channel for this datasource. The object that each <code>S3Uris</code> points to must be readable by the IAM role that Amazon SageMaker uses to perform tasks on your behalf.</p> </li> </ul>",
         "UiConfig$UiTemplateS3Uri": "<p>The Amazon S3 bucket location of the UI template, or worker task template. This is the template used to render the worker UI and tools for labeling job tasks. For more information about the contents of a UI template, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates-step2.html\"> Creating Your Custom Labeling Task Template</a>.</p>"
@@ -13093,7 +13179,8 @@
       "base": null,
       "refs": {
         "AutoMLChannel$TargetAttributeName": "<p>The name of the target variable in supervised learning, usually represented by 'y'.</p>",
-        "TabularJobConfig$TargetAttributeName": "<p>The name of the target variable in supervised learning, usually represented by 'y'.</p>"
+        "TabularJobConfig$TargetAttributeName": "<p>The name of the target variable in supervised learning, usually represented by 'y'.</p>",
+        "TimeSeriesConfig$TargetAttributeName": "<p>The name of the column representing the target variable that you want to predict for each item in your dataset. The data type of the target variable must be numerical.</p>"
       }
     },
     "TargetDevice": {
@@ -13253,10 +13340,28 @@
         "DeviceSummary$IotThingName": "<p>The Amazon Web Services Internet of Things (IoT) object thing name associated with the device..</p>"
       }
     },
+    "TimeSeriesConfig": {
+      "base": "<p>The collection of components that defines the time-series.</p>",
+      "refs": {
+        "TimeSeriesForecastingJobConfig$TimeSeriesConfig": "<p>The collection of components that defines the time-series.</p>"
+      }
+    },
+    "TimeSeriesForecastingJobConfig": {
+      "base": "<p>The collection of settings used by an AutoML job V2 for the time-series forecasting problem type.</p> <note> <p>The <code>TimeSeriesForecastingJobConfig</code> problem type is only available in private beta. Contact Amazon Web Services Support or your account manager to learn more about access privileges.</p> </note>",
+      "refs": {
+        "AutoMLProblemTypeConfig$TimeSeriesForecastingJobConfig": "<p>Settings used to configure an AutoML job V2 for a time-series forecasting problem type.</p>"
+      }
+    },
     "TimeSeriesForecastingSettings": {
       "base": "<p>Time series forecast settings for the SageMaker Canvas application.</p>",
       "refs": {
         "CanvasAppSettings$TimeSeriesForecastingSettings": "<p>Time series forecast settings for the Canvas application.</p>"
+      }
+    },
+    "TimeSeriesTransformations": {
+      "base": "<p>Transformations allowed on the dataset. Supported transformations are <code>Filling</code> and <code>Aggregation</code>. <code>Filling</code> specifies how to add values to missing values in the dataset. <code>Aggregation</code> defines how to aggregate data that does not align with forecast frequency.</p>",
+      "refs": {
+        "TimeSeriesForecastingJobConfig$Transformations": "<p>The transformations modifying specific attributes of the time-series, such as filling strategies for missing values.</p>"
       }
     },
     "Timestamp": {
@@ -13651,6 +13756,12 @@
         "Workteam$LastUpdatedDate": "<p>The date and time that the work team was last updated (timestamp).</p>"
       }
     },
+    "TimestampAttributeName": {
+      "base": null,
+      "refs": {
+        "TimeSeriesConfig$TimestampAttributeName": "<p>The name of the column indicating a point in time at which the target value of a given item is recorded.</p>"
+      }
+    },
     "TrafficDurationInSeconds": {
       "base": null,
       "refs": {
@@ -14038,6 +14149,13 @@
       "base": "<p>Describes the S3 data source.</p>",
       "refs": {
         "TransformDataSource$S3DataSource": "<p>The S3 location of the data source that is associated with a channel.</p>"
+      }
+    },
+    "TransformationAttributeName": {
+      "base": null,
+      "refs": {
+        "AggregationTransformations$key": null,
+        "FillingTransformations$key": null
       }
     },
     "Trial": {
