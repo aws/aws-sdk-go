@@ -1290,7 +1290,8 @@
         "healthCheck":{"shape":"HealthCheck"},
         "systemControls":{"shape":"SystemControls"},
         "resourceRequirements":{"shape":"ResourceRequirements"},
-        "firelensConfiguration":{"shape":"FirelensConfiguration"}
+        "firelensConfiguration":{"shape":"FirelensConfiguration"},
+        "credentialSpecs":{"shape":"StringList"}
       }
     },
     "ContainerDefinitions":{
