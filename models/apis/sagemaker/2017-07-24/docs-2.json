@@ -1551,8 +1551,10 @@
       }
     },
     "CapacitySize": {
-      "base": "<p>Specifies the endpoint capacity to activate for production.</p>",
+      "base": "<p>Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet.</p> <p>For a rollback strategy, if you don't specify the fields in this object, or if you set the <code>Value</code> to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.</p>",
       "refs": {
+        "RollingUpdatePolicy$MaximumBatchSize": "<p>Batch size for each rolling step to provision capacity and turn on traffic on the new endpoint fleet, and terminate capacity on the old endpoint fleet. Value must be between 5% to 50% of the variant's total instance count.</p>",
+        "RollingUpdatePolicy$RollbackMaximumBatchSize": "<p>Batch size for rollback to the old endpoint fleet. Each rolling step to provision capacity and turn on traffic on the old endpoint fleet, and terminate capacity on the new endpoint fleet. If this field is absent, the default value will be set to 100% of total capacity which means to bring up the whole capacity of the old fleet at once during rollback.</p>",
         "TrafficRoutingConfig$CanarySize": "<p>Batch size for the first step to turn on traffic on the new endpoint fleet. <code>Value</code> must be less than or equal to 50% of the variant's total instance count.</p>",
         "TrafficRoutingConfig$LinearStepSize": "<p>Batch size for each step to turn on traffic on the new endpoint fleet. <code>Value</code> must be 10-50% of the variant's total instance count.</p>"
       }
@@ -8352,7 +8354,8 @@
     "MaximumExecutionTimeoutInSeconds": {
       "base": null,
       "refs": {
-        "BlueGreenUpdatePolicy$MaximumExecutionTimeoutInSeconds": "<p>Maximum execution timeout for the deployment. Note that the timeout value should be larger than the total waiting time specified in <code>TerminationWaitInSeconds</code> and <code>WaitIntervalInSeconds</code>.</p>"
+        "BlueGreenUpdatePolicy$MaximumExecutionTimeoutInSeconds": "<p>Maximum execution timeout for the deployment. Note that the timeout value should be larger than the total waiting time specified in <code>TerminationWaitInSeconds</code> and <code>WaitIntervalInSeconds</code>.</p>",
+        "RollingUpdatePolicy$MaximumExecutionTimeoutInSeconds": "<p>The time limit for the total deployment. Exceeding this limit causes a timeout.</p>"
       }
     },
     "MaximumRetryAttempts": {
@@ -11891,6 +11894,12 @@
         "UserSettings$ExecutionRole": "<p>The execution role for the user.</p>"
       }
     },
+    "RollingUpdatePolicy": {
+      "base": "<p>Specifies a rolling deployment strategy for updating a SageMaker endpoint.</p>",
+      "refs": {
+        "DeploymentConfig$RollingUpdatePolicy": "<p>Specifies a rolling deployment strategy for updating a SageMaker endpoint.</p>"
+      }
+    },
     "RootAccess": {
       "base": null,
       "refs": {
@@ -14998,6 +15007,7 @@
     "WaitIntervalInSeconds": {
       "base": null,
       "refs": {
+        "RollingUpdatePolicy$WaitIntervalInSeconds": "<p>The length of the baking period, during which SageMaker monitors alarms for each batch on the new fleet.</p>",
         "TrafficRoutingConfig$WaitIntervalInSeconds": "<p>The waiting time (in seconds) between incremental steps to turn on traffic on the new endpoint fleet.</p>"
       }
     },

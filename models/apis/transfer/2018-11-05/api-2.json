@@ -961,8 +961,14 @@
         "EncryptionAlgorithm":{"shape":"EncryptionAlg"},
         "SigningAlgorithm":{"shape":"SigningAlg"},
         "MdnSigningAlgorithm":{"shape":"MdnSigningAlg"},
-        "MdnResponse":{"shape":"MdnResponse"}
+        "MdnResponse":{"shape":"MdnResponse"},
+        "BasicAuthSecretId":{"shape":"As2ConnectorSecretId"}
       }
+    },
+    "As2ConnectorSecretId":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "As2Id":{
       "type":"string",

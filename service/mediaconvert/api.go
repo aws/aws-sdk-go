@@ -6104,18 +6104,18 @@ type CaptionSelector struct {
 	// The specific language to extract from source, using the ISO 639-2 or ISO
 	// 639-3 three-letter language code. If input is SCTE-27, complete this field
 	// and/or PID to select the caption language to extract. If input is DVB-Sub
-	// and output is Burn-in or SMPTE-TT, complete this field and/or PID to select
-	// the caption language to extract. If input is DVB-Sub that is being passed
-	// through, omit this field (and PID field); there is no way to extract a specific
-	// language with pass-through captions.
+	// and output is Burn-in, complete this field and/or PID to select the caption
+	// language to extract. If input is DVB-Sub that is being passed through, omit
+	// this field (and PID field); there is no way to extract a specific language
+	// with pass-through captions.
 	CustomLanguageCode *string `locationName:"customLanguageCode" min:"3" type:"string"`
 
 	// The specific language to extract from source. If input is SCTE-27, complete
 	// this field and/or PID to select the caption language to extract. If input
-	// is DVB-Sub and output is Burn-in or SMPTE-TT, complete this field and/or
-	// PID to select the caption language to extract. If input is DVB-Sub that is
-	// being passed through, omit this field (and PID field); there is no way to
-	// extract a specific language with pass-through captions.
+	// is DVB-Sub and output is Burn-in, complete this field and/or PID to select
+	// the caption language to extract. If input is DVB-Sub that is being passed
+	// through, omit this field (and PID field); there is no way to extract a specific
+	// language with pass-through captions.
 	LanguageCode *string `locationName:"languageCode" type:"string" enum:"LanguageCode"`
 
 	// If your input captions are SCC, TTML, STL, SMI, SRT, or IMSC in an xml file,
@@ -10376,9 +10376,9 @@ func (s *DvbSubDestinationSettings) SetYPosition(v int64) *DvbSubDestinationSett
 type DvbSubSourceSettings struct {
 	_ struct{} `type:"structure"`
 
-	// When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source
-	// content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through,
-	// regardless of selectors.
+	// When using DVB-Sub with Burn-in, use this PID for the source content. Unused
+	// for DVB-Sub passthrough. All DVB-Sub content is passed through, regardless
+	// of selectors.
 	Pid *int64 `locationName:"pid" min:"1" type:"integer"`
 }
 
@@ -20599,9 +20599,9 @@ type MxfSettings struct {
 	// video encoding settings.
 	AfdSignaling *string `locationName:"afdSignaling" type:"string" enum:"MxfAfdSignaling"`
 
-	// Specify the MXF profile, also called shim, for this output. When you choose
-	// Auto, MediaConvert chooses a profile based on the video codec and resolution.
-	// For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
+	// Specify the MXF profile, also called shim, for this output. To automatically
+	// select a profile according to your output video codec and resolution, leave
+	// blank. For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
 	// For more information about the automatic selection behavior, see https://docs.aws.amazon.com/mediaconvert/latest/ug/default-automatic-selection-of-mxf-profiles.html.
 	Profile *string `locationName:"profile" type:"string" enum:"MxfProfile"`
 
@@ -25474,7 +25474,7 @@ type VideoPreprocessor struct {
 	// Enable Dolby Vision feature to produce Dolby Vision compatible video output.
 	DolbyVision *DolbyVision `locationName:"dolbyVision" type:"structure"`
 
-	// Enable HDR10+ analyis and metadata injection. Compatible with HEVC only.
+	// Enable HDR10+ analysis and metadata injection. Compatible with HEVC only.
 	Hdr10Plus *Hdr10Plus `locationName:"hdr10Plus" type:"structure"`
 
 	// Enable the Image inserter (ImageInserter) feature to include a graphic overlay
@@ -36099,9 +36099,9 @@ func MxfAfdSignaling_Values() []string {
 	}
 }
 
-// Specify the MXF profile, also called shim, for this output. When you choose
-// Auto, MediaConvert chooses a profile based on the video codec and resolution.
-// For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
+// Specify the MXF profile, also called shim, for this output. To automatically
+// select a profile according to your output video codec and resolution, leave
+// blank. For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
 // For more information about the automatic selection behavior, see https://docs.aws.amazon.com/mediaconvert/latest/ug/default-automatic-selection-of-mxf-profiles.html.
 const (
 	// MxfProfileD10 is a MxfProfile enum value

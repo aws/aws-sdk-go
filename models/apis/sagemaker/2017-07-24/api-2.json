@@ -7633,10 +7633,10 @@
     },
     "DeploymentConfig":{
       "type":"structure",
-      "required":["BlueGreenUpdatePolicy"],
       "members":{
         "BlueGreenUpdatePolicy":{"shape":"BlueGreenUpdatePolicy"},
-        "AutoRollbackConfiguration":{"shape":"AutoRollbackConfig"}
+        "AutoRollbackConfiguration":{"shape":"AutoRollbackConfig"},
+        "RollingUpdatePolicy":{"shape":"RollingUpdatePolicy"}
       }
     },
     "DeploymentRecommendation":{
@@ -10237,7 +10237,8 @@
         "RollingBack",
         "InService",
         "Deleting",
-        "Failed"
+        "Failed",
+        "UpdateRollbackFailed"
       ]
     },
     "EndpointSummary":{
@@ -14403,7 +14404,7 @@
     },
     "MaximumExecutionTimeoutInSeconds":{
       "type":"integer",
-      "max":14400,
+      "max":28800,
       "min":600
     },
     "MaximumRetryAttempts":{
@@ -18169,6 +18170,19 @@
       "max":2048,
       "min":20,
       "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
+    "RollingUpdatePolicy":{
+      "type":"structure",
+      "required":[
+        "MaximumBatchSize",
+        "WaitIntervalInSeconds"
+      ],
+      "members":{
+        "MaximumBatchSize":{"shape":"CapacitySize"},
+        "WaitIntervalInSeconds":{"shape":"WaitIntervalInSeconds"},
+        "MaximumExecutionTimeoutInSeconds":{"shape":"MaximumExecutionTimeoutInSeconds"},
+        "RollbackMaximumBatchSize":{"shape":"CapacitySize"}
+      }
     },
     "RootAccess":{
       "type":"string",

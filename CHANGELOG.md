@@ -1,3 +1,19 @@
+Release v1.44.294 (2023-06-30)
+===
+
+### Service Client Updates
+* `service/amp`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * Added new field  "credentialspecs" to the ecs task definition to support gMSA of windows/linux in both domainless and domain-joined mode
+* `service/ivs`: Updates service API
+* `service/mediaconvert`: Updates service documentation
+  * This release includes improved color handling of overlays and general updates to user documentation.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for rolling deployment in SageMaker Inference.
+* `service/transfer`: Updates service API and documentation
+  * Add outbound Basic authentication support to AS2 connectors
+* `service/verifiedpermissions`: Updates service documentation
+
 Release v1.44.293 (2023-06-29)
 ===
 
