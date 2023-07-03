@@ -10155,11 +10155,11 @@
     },
     "EndpointInputConfiguration":{
       "type":"structure",
-      "required":["InstanceType"],
       "members":{
         "InstanceType":{"shape":"ProductionVariantInstanceType"},
         "InferenceSpecificationName":{"shape":"InferenceSpecificationName"},
-        "EnvironmentParameterRanges":{"shape":"EnvironmentParameterRanges"}
+        "EnvironmentParameterRanges":{"shape":"EnvironmentParameterRanges"},
+        "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"}
       }
     },
     "EndpointInputConfigurations":{
@@ -10192,15 +10192,14 @@
       "type":"structure",
       "required":[
         "EndpointName",
-        "VariantName",
-        "InstanceType",
-        "InitialInstanceCount"
+        "VariantName"
       ],
       "members":{
         "EndpointName":{"shape":"String"},
         "VariantName":{"shape":"String"},
         "InstanceType":{"shape":"ProductionVariantInstanceType"},
-        "InitialInstanceCount":{"shape":"Integer"}
+        "InitialInstanceCount":{"shape":"InitialInstanceCount"},
+        "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"}
       }
     },
     "EndpointPerformance":{
@@ -12134,6 +12133,10 @@
       "max":63,
       "min":1,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$"
+    },
+    "InitialInstanceCount":{
+      "type":"integer",
+      "min":1
     },
     "InitialNumberOfUsers":{
       "type":"integer",
@@ -15323,6 +15326,10 @@
         "CrossAccountModelRegisterRoleArn":{"shape":"RoleArn"}
       }
     },
+    "ModelSetupTime":{
+      "type":"integer",
+      "min":0
+    },
     "ModelSortKey":{
       "type":"string",
       "enum":[
@@ -17675,7 +17682,8 @@
         "PayloadConfig":{"shape":"RecommendationJobPayloadConfig"},
         "NearestModelName":{"shape":"String"},
         "SupportedInstanceTypes":{"shape":"RecommendationJobSupportedInstanceTypes"},
-        "DataInputConfig":{"shape":"RecommendationJobDataInputConfig"}
+        "DataInputConfig":{"shape":"RecommendationJobDataInputConfig"},
+        "SupportedEndpointType":{"shape":"RecommendationJobSupportedEndpointType"}
       }
     },
     "RecommendationJobDataInputConfig":{
@@ -17765,6 +17773,13 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "RecommendationJobSupportedEndpointType":{
+      "type":"string",
+      "enum":[
+        "RealTime",
+        "Serverless"
+      ]
+    },
     "RecommendationJobSupportedInstanceTypes":{
       "type":"list",
       "member":{"shape":"String"}
@@ -17823,7 +17838,8 @@
         "MaxInvocations":{"shape":"Integer"},
         "ModelLatency":{"shape":"Integer"},
         "CpuUtilization":{"shape":"UtilizationMetric"},
-        "MemoryUtilization":{"shape":"UtilizationMetric"}
+        "MemoryUtilization":{"shape":"UtilizationMetric"},
+        "ModelSetupTime":{"shape":"ModelSetupTime"}
       }
     },
     "RecommendationStatus":{

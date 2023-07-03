@@ -1,3 +1,12 @@
+Release v1.44.295 (2023-07-03)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This feature allows customers to use AWS Batch with Linux with ARM64 CPU Architecture and X86_64 CPU Architecture with Windows OS on Fargate Platform.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender now accepts new fields SupportedEndpointType and ServerlessConfiguration to support serverless endpoints.
+
 Release v1.44.294 (2023-06-30)
 ===
 
