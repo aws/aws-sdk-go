@@ -1553,8 +1553,8 @@
     "CapacitySize": {
       "base": "<p>Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet.</p> <p>For a rollback strategy, if you don't specify the fields in this object, or if you set the <code>Value</code> to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.</p>",
       "refs": {
-        "RollingUpdatePolicy$MaximumBatchSize": "<p>Batch size for each rolling step to provision capacity and turn on traffic on the new endpoint fleet, and terminate capacity on the old endpoint fleet. Value must be between 5% to 50% of the variant's total instance count.</p>",
-        "RollingUpdatePolicy$RollbackMaximumBatchSize": "<p>Batch size for rollback to the old endpoint fleet. Each rolling step to provision capacity and turn on traffic on the old endpoint fleet, and terminate capacity on the new endpoint fleet. If this field is absent, the default value will be set to 100% of total capacity which means to bring up the whole capacity of the old fleet at once during rollback.</p>",
+        "RollingUpdatePolicy$MaximumBatchSize": null,
+        "RollingUpdatePolicy$RollbackMaximumBatchSize": null,
         "TrafficRoutingConfig$CanarySize": "<p>Batch size for the first step to turn on traffic on the new endpoint fleet. <code>Value</code> must be less than or equal to 50% of the variant's total instance count.</p>",
         "TrafficRoutingConfig$LinearStepSize": "<p>Batch size for each step to turn on traffic on the new endpoint fleet. <code>Value</code> must be 10-50% of the variant's total instance count.</p>"
       }
@@ -6745,6 +6745,12 @@
         "ModelConfiguration$InferenceSpecificationName": "<p>The inference specification name in the model package version.</p>"
       }
     },
+    "InitialInstanceCount": {
+      "base": null,
+      "refs": {
+        "EndpointOutputConfiguration$InitialInstanceCount": "<p>The number of instances recommended to launch initially.</p>"
+      }
+    },
     "InitialNumberOfUsers": {
       "base": null,
       "refs": {
@@ -6846,7 +6852,6 @@
         "EdgeDeploymentStatus$EdgeDeploymentSuccessInStage": "<p>The number of edge devices with the successful deployment in the current stage.</p>",
         "EdgeDeploymentStatus$EdgeDeploymentPendingInStage": "<p>The number of edge devices yet to pick up the deployment in current stage, or in progress.</p>",
         "EdgeDeploymentStatus$EdgeDeploymentFailedInStage": "<p>The number of edge devices that failed the deployment in current stage.</p>",
-        "EndpointOutputConfiguration$InitialInstanceCount": "<p>The number of instances recommended to launch initially.</p>",
         "HyperParameterTuningJobCompletionDetails$NumberOfTrainingJobsObjectiveNotImproving": "<p>The number of training jobs launched by a tuning job that are not improving (1% or less) as measured by model performance evaluated against an objective function.</p>",
         "HyperParameterTuningJobConsumedResources$RuntimeInSeconds": "<p>The wall clock runtime in seconds used by your hyperparameter tuning job.</p>",
         "InferenceMetrics$MaxInvocations": "<p>The expected maximum number of requests per minute for the instance.</p>",
@@ -9154,6 +9159,12 @@
         "CanvasAppSettings$ModelRegisterSettings": "<p>The model registry settings for the SageMaker Canvas application.</p>"
       }
     },
+    "ModelSetupTime": {
+      "base": null,
+      "refs": {
+        "RecommendationMetrics$ModelSetupTime": "<p>The time it takes to launch new compute resources for a serverless endpoint. The time can vary depending on the model size, how long it takes to download the model, and the start-up time of the container.</p> <p> <code>NaN</code> indicates that the value is not available.</p>"
+      }
+    },
     "ModelSortKey": {
       "base": null,
       "refs": {
@@ -11006,6 +11017,8 @@
     "ProductionVariantServerlessConfig": {
       "base": "<p>Specifies the serverless configuration for an endpoint variant.</p>",
       "refs": {
+        "EndpointInputConfiguration$ServerlessConfig": null,
+        "EndpointOutputConfiguration$ServerlessConfig": null,
         "PendingProductionVariantSummary$CurrentServerlessConfig": "<p>The serverless configuration for the endpoint.</p>",
         "PendingProductionVariantSummary$DesiredServerlessConfig": "<p>The serverless configuration requested for this deployment, as specified in the endpoint configuration for the endpoint.</p>",
         "ProductionVariant$ServerlessConfig": "<p>The serverless configuration for an endpoint. Specifies a serverless endpoint configuration instead of an instance-based endpoint configuration.</p>",
@@ -11497,6 +11510,12 @@
       "base": null,
       "refs": {
         "RecommendationJobPayloadConfig$SupportedContentTypes": "<p>The supported MIME types for the input data.</p>"
+      }
+    },
+    "RecommendationJobSupportedEndpointType": {
+      "base": null,
+      "refs": {
+        "RecommendationJobContainerConfig$SupportedEndpointType": "<p>The endpoint type to receive recommendations for. By default this is null, and the results of the inference recommendation job return a combined list of both real-time and serverless benchmarks. By specifying a value for this field, you can receive a longer list of benchmarks for the desired endpoint type.</p>"
       }
     },
     "RecommendationJobSupportedInstanceTypes": {
@@ -12254,7 +12273,7 @@
     "ServerlessProvisionedConcurrency": {
       "base": null,
       "refs": {
-        "ProductionVariantServerlessConfig$ProvisionedConcurrency": "<p>The amount of provisioned concurrency to allocate for the serverless endpoint. Should be less than or equal to <code>MaxConcurrency</code>.</p>",
+        "ProductionVariantServerlessConfig$ProvisionedConcurrency": "<p>The amount of provisioned concurrency to allocate for the serverless endpoint. Should be less than or equal to <code>MaxConcurrency</code>.</p> <note> <p>This field is not supported for serverless endpoint recommendations for Inference Recommender jobs. For more information about creating an Inference Recommender job, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateInferenceRecommendationsJob.html\">CreateInferenceRecommendationsJobs</a>.</p> </note>",
         "ProductionVariantServerlessUpdateConfig$ProvisionedConcurrency": "<p>The updated amount of provisioned concurrency to allocate for the serverless endpoint. Should be less than or equal to <code>MaxConcurrency</code>.</p>"
       }
     },
@@ -13358,7 +13377,7 @@
     "TimeSeriesForecastingJobConfig": {
       "base": "<p>The collection of settings used by an AutoML job V2 for the time-series forecasting problem type.</p> <note> <p>The <code>TimeSeriesForecastingJobConfig</code> problem type is only available in private beta. Contact Amazon Web Services Support or your account manager to learn more about access privileges.</p> </note>",
       "refs": {
-        "AutoMLProblemTypeConfig$TimeSeriesForecastingJobConfig": "<p>Settings used to configure an AutoML job V2 for a time-series forecasting problem type.</p>"
+        "AutoMLProblemTypeConfig$TimeSeriesForecastingJobConfig": "<p>Settings used to configure an AutoML job V2 for a time-series forecasting problem type.</p> <note> <p>The <code>TimeSeriesForecastingJobConfig</code> problem type is only available in private beta. Contact Amazon Web Services Support or your account manager to learn more about access privileges.</p> </note>"
       }
     },
     "TimeSeriesForecastingSettings": {
