@@ -3564,6 +3564,145 @@ func (c *Mgn) ListImportsPagesWithContext(ctx aws.Context, input *ListImportsInp
 	return p.Err()
 }
 
+const opListManagedAccounts = "ListManagedAccounts"
+
+// ListManagedAccountsRequest generates a "aws/request.Request" representing the
+// client's request for the ListManagedAccounts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListManagedAccounts for more information on using the ListManagedAccounts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListManagedAccountsRequest method.
+//	req, resp := client.ListManagedAccountsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListManagedAccounts
+func (c *Mgn) ListManagedAccountsRequest(input *ListManagedAccountsInput) (req *request.Request, output *ListManagedAccountsOutput) {
+	op := &request.Operation{
+		Name:       opListManagedAccounts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListManagedAccounts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListManagedAccountsInput{}
+	}
+
+	output = &ListManagedAccountsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListManagedAccounts API operation for Application Migration Service.
+//
+// List Managed Accounts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation ListManagedAccounts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListManagedAccounts
+func (c *Mgn) ListManagedAccounts(input *ListManagedAccountsInput) (*ListManagedAccountsOutput, error) {
+	req, out := c.ListManagedAccountsRequest(input)
+	return out, req.Send()
+}
+
+// ListManagedAccountsWithContext is the same as ListManagedAccounts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListManagedAccounts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListManagedAccountsWithContext(ctx aws.Context, input *ListManagedAccountsInput, opts ...request.Option) (*ListManagedAccountsOutput, error) {
+	req, out := c.ListManagedAccountsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListManagedAccountsPages iterates over the pages of a ListManagedAccounts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListManagedAccounts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListManagedAccounts operation.
+//	pageNum := 0
+//	err := client.ListManagedAccountsPages(params,
+//	    func(page *mgn.ListManagedAccountsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Mgn) ListManagedAccountsPages(input *ListManagedAccountsInput, fn func(*ListManagedAccountsOutput, bool) bool) error {
+	return c.ListManagedAccountsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListManagedAccountsPagesWithContext same as ListManagedAccountsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListManagedAccountsPagesWithContext(ctx aws.Context, input *ListManagedAccountsInput, fn func(*ListManagedAccountsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListManagedAccountsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListManagedAccountsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListManagedAccountsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSourceServerActions = "ListSourceServerActions"
 
 // ListSourceServerActionsRequest generates a "aws/request.Request" representing the
@@ -4157,6 +4296,98 @@ func (c *Mgn) MarkAsArchivedWithContext(ctx aws.Context, input *MarkAsArchivedIn
 	return out, req.Send()
 }
 
+const opPauseReplication = "PauseReplication"
+
+// PauseReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the PauseReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PauseReplication for more information on using the PauseReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PauseReplicationRequest method.
+//	req, resp := client.PauseReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/PauseReplication
+func (c *Mgn) PauseReplicationRequest(input *PauseReplicationInput) (req *request.Request, output *PauseReplicationOutput) {
+	op := &request.Operation{
+		Name:       opPauseReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/PauseReplication",
+	}
+
+	if input == nil {
+		input = &PauseReplicationInput{}
+	}
+
+	output = &PauseReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PauseReplication API operation for Application Migration Service.
+//
+// Pause Replication.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation PauseReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ResourceNotFoundException
+//     Resource not found exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/PauseReplication
+func (c *Mgn) PauseReplication(input *PauseReplicationInput) (*PauseReplicationOutput, error) {
+	req, out := c.PauseReplicationRequest(input)
+	return out, req.Send()
+}
+
+// PauseReplicationWithContext is the same as PauseReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PauseReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) PauseReplicationWithContext(ctx aws.Context, input *PauseReplicationInput, opts ...request.Option) (*PauseReplicationOutput, error) {
+	req, out := c.PauseReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutSourceServerAction = "PutSourceServerAction"
 
 // PutSourceServerActionRequest generates a "aws/request.Request" representing the
@@ -4502,6 +4733,98 @@ func (c *Mgn) RemoveTemplateAction(input *RemoveTemplateActionInput) (*RemoveTem
 // for more information on using Contexts.
 func (c *Mgn) RemoveTemplateActionWithContext(ctx aws.Context, input *RemoveTemplateActionInput, opts ...request.Option) (*RemoveTemplateActionOutput, error) {
 	req, out := c.RemoveTemplateActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opResumeReplication = "ResumeReplication"
+
+// ResumeReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the ResumeReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResumeReplication for more information on using the ResumeReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ResumeReplicationRequest method.
+//	req, resp := client.ResumeReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ResumeReplication
+func (c *Mgn) ResumeReplicationRequest(input *ResumeReplicationInput) (req *request.Request, output *ResumeReplicationOutput) {
+	op := &request.Operation{
+		Name:       opResumeReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ResumeReplication",
+	}
+
+	if input == nil {
+		input = &ResumeReplicationInput{}
+	}
+
+	output = &ResumeReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ResumeReplication API operation for Application Migration Service.
+//
+// Resume Replication.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation ResumeReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ResourceNotFoundException
+//     Resource not found exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ResumeReplication
+func (c *Mgn) ResumeReplication(input *ResumeReplicationInput) (*ResumeReplicationOutput, error) {
+	req, out := c.ResumeReplicationRequest(input)
+	return out, req.Send()
+}
+
+// ResumeReplicationWithContext is the same as ResumeReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResumeReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ResumeReplicationWithContext(ctx aws.Context, input *ResumeReplicationInput, opts ...request.Option) (*ResumeReplicationOutput, error) {
+	req, out := c.ResumeReplicationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5035,6 +5358,98 @@ func (c *Mgn) StartTest(input *StartTestInput) (*StartTestOutput, error) {
 // for more information on using Contexts.
 func (c *Mgn) StartTestWithContext(ctx aws.Context, input *StartTestInput, opts ...request.Option) (*StartTestOutput, error) {
 	req, out := c.StartTestRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopReplication = "StopReplication"
+
+// StopReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StopReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopReplication for more information on using the StopReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopReplicationRequest method.
+//	req, resp := client.StopReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/StopReplication
+func (c *Mgn) StopReplicationRequest(input *StopReplicationInput) (req *request.Request, output *StopReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStopReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StopReplication",
+	}
+
+	if input == nil {
+		input = &StopReplicationInput{}
+	}
+
+	output = &StopReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopReplication API operation for Application Migration Service.
+//
+// Stop Replication.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation StopReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ResourceNotFoundException
+//     Resource not found exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/StopReplication
+func (c *Mgn) StopReplication(input *StopReplicationInput) (*StopReplicationOutput, error) {
+	req, out := c.StopReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StopReplicationWithContext is the same as StopReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) StopReplicationWithContext(ctx aws.Context, input *StopReplicationInput, opts ...request.Option) (*StopReplicationOutput, error) {
+	req, out := c.StopReplicationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6352,6 +6767,9 @@ func (s *ApplicationAggregatedStatus) SetTotalSourceServers(v int64) *Applicatio
 type ArchiveApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application ID.
 	//
 	// ApplicationID is a required field
@@ -6379,6 +6797,9 @@ func (s ArchiveApplicationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ArchiveApplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ArchiveApplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ApplicationID == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationID"))
 	}
@@ -6390,6 +6811,12 @@ func (s *ArchiveApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *ArchiveApplicationInput) SetAccountID(v string) *ArchiveApplicationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationID sets the ApplicationID field's value.
@@ -6517,6 +6944,9 @@ func (s *ArchiveApplicationOutput) SetWaveID(v string) *ArchiveApplicationOutput
 type ArchiveWaveInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Wave ID.
 	//
 	// WaveID is a required field
@@ -6544,6 +6974,9 @@ func (s ArchiveWaveInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ArchiveWaveInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ArchiveWaveInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.WaveID == nil {
 		invalidParams.Add(request.NewErrParamRequired("WaveID"))
 	}
@@ -6555,6 +6988,12 @@ func (s *ArchiveWaveInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *ArchiveWaveInput) SetAccountID(v string) *ArchiveWaveInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetWaveID sets the WaveID field's value.
@@ -6673,6 +7112,9 @@ func (s *ArchiveWaveOutput) SetWaveID(v string) *ArchiveWaveOutput {
 type AssociateApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application IDs list.
 	//
 	// ApplicationIDs is a required field
@@ -6705,6 +7147,9 @@ func (s AssociateApplicationsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssociateApplicationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssociateApplicationsInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ApplicationIDs == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationIDs"))
 	}
@@ -6722,6 +7167,12 @@ func (s *AssociateApplicationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *AssociateApplicationsInput) SetAccountID(v string) *AssociateApplicationsInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationIDs sets the ApplicationIDs field's value.
@@ -6761,6 +7212,9 @@ func (s AssociateApplicationsOutput) GoString() string {
 type AssociateSourceServersInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application ID.
 	//
 	// ApplicationID is a required field
@@ -6793,6 +7247,9 @@ func (s AssociateSourceServersInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssociateSourceServersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssociateSourceServersInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ApplicationID == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationID"))
 	}
@@ -6810,6 +7267,12 @@ func (s *AssociateSourceServersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *AssociateSourceServersInput) SetAccountID(v string) *AssociateSourceServersInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationID sets the ApplicationID field's value.
@@ -6890,6 +7353,9 @@ func (s *CPU) SetModelName(v string) *CPU {
 type ChangeServerLifeCycleStateInput struct {
 	_ struct{} `type:"structure"`
 
+	// The request to change the source server migration account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// The request to change the source server migration lifecycle state.
 	//
 	// LifeCycle is a required field
@@ -6923,6 +7389,9 @@ func (s ChangeServerLifeCycleStateInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ChangeServerLifeCycleStateInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ChangeServerLifeCycleStateInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.LifeCycle == nil {
 		invalidParams.Add(request.NewErrParamRequired("LifeCycle"))
 	}
@@ -6942,6 +7411,12 @@ func (s *ChangeServerLifeCycleStateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *ChangeServerLifeCycleStateInput) SetAccountID(v string) *ChangeServerLifeCycleStateInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetLifeCycle sets the LifeCycle field's value.
@@ -7225,6 +7700,9 @@ func (s *ConflictException) RequestID() string {
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application description.
 	Description *string `locationName:"description" type:"string"`
 
@@ -7262,6 +7740,9 @@ func (s CreateApplicationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateApplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateApplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -7273,6 +7754,12 @@ func (s *CreateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *CreateApplicationInput) SetAccountID(v string) *CreateApplicationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -7480,9 +7967,19 @@ func (s CreateLaunchConfigurationTemplateInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateLaunchConfigurationTemplateInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateLaunchConfigurationTemplateInput"}
+	if s.LargeVolumeConf != nil {
+		if err := s.LargeVolumeConf.Validate(); err != nil {
+			invalidParams.AddNested("LargeVolumeConf", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PostLaunchActions != nil {
 		if err := s.PostLaunchActions.Validate(); err != nil {
 			invalidParams.AddNested("PostLaunchActions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SmallVolumeConf != nil {
+		if err := s.SmallVolumeConf.Validate(); err != nil {
+			invalidParams.AddNested("SmallVolumeConf", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7839,6 +8336,9 @@ type CreateReplicationConfigurationTemplateInput struct {
 	//
 	// UseDedicatedReplicationServer is a required field
 	UseDedicatedReplicationServer *bool `locationName:"useDedicatedReplicationServer" type:"boolean" required:"true"`
+
+	// Request to use Fips Endpoint during Replication Settings template creation.
+	UseFipsEndpoint *bool `locationName:"useFipsEndpoint" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -7983,6 +8483,12 @@ func (s *CreateReplicationConfigurationTemplateInput) SetUseDedicatedReplication
 	return s
 }
 
+// SetUseFipsEndpoint sets the UseFipsEndpoint field's value.
+func (s *CreateReplicationConfigurationTemplateInput) SetUseFipsEndpoint(v bool) *CreateReplicationConfigurationTemplateInput {
+	s.UseFipsEndpoint = &v
+	return s
+}
+
 type CreateReplicationConfigurationTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8041,6 +8547,9 @@ type CreateReplicationConfigurationTemplateOutput struct {
 
 	// Replication Configuration template use Dedicated Replication Server.
 	UseDedicatedReplicationServer *bool `locationName:"useDedicatedReplicationServer" type:"boolean"`
+
+	// Replication Configuration template use Fips Endpoint.
+	UseFipsEndpoint *bool `locationName:"useFipsEndpoint" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -8151,8 +8660,17 @@ func (s *CreateReplicationConfigurationTemplateOutput) SetUseDedicatedReplicatio
 	return s
 }
 
+// SetUseFipsEndpoint sets the UseFipsEndpoint field's value.
+func (s *CreateReplicationConfigurationTemplateOutput) SetUseFipsEndpoint(v bool) *CreateReplicationConfigurationTemplateOutput {
+	s.UseFipsEndpoint = &v
+	return s
+}
+
 type CreateWaveInput struct {
 	_ struct{} `type:"structure"`
+
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
 
 	// Wave description.
 	Description *string `locationName:"description" type:"string"`
@@ -8191,6 +8709,9 @@ func (s CreateWaveInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateWaveInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateWaveInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -8202,6 +8723,12 @@ func (s *CreateWaveInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *CreateWaveInput) SetAccountID(v string) *CreateWaveInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -8618,6 +9145,9 @@ func (s *DataReplicationInitiationStep) SetStatus(v string) *DataReplicationInit
 type DeleteApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application ID.
 	//
 	// ApplicationID is a required field
@@ -8645,6 +9175,9 @@ func (s DeleteApplicationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteApplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteApplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ApplicationID == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationID"))
 	}
@@ -8656,6 +9189,12 @@ func (s *DeleteApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DeleteApplicationInput) SetAccountID(v string) *DeleteApplicationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationID sets the ApplicationID field's value.
@@ -8689,6 +9228,9 @@ func (s DeleteApplicationOutput) GoString() string {
 type DeleteJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request to delete Job from service by Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Request to delete Job from service by Job ID.
 	//
 	// JobID is a required field
@@ -8716,6 +9258,9 @@ func (s DeleteJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteJobInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.JobID == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobID"))
 	}
@@ -8727,6 +9272,12 @@ func (s *DeleteJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DeleteJobInput) SetAccountID(v string) *DeleteJobInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetJobID sets the JobID field's value.
@@ -8903,6 +9454,9 @@ func (s DeleteReplicationConfigurationTemplateOutput) GoString() string {
 type DeleteSourceServerInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request to delete Source Server from service by Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Request to delete Source Server from service by Server ID.
 	//
 	// SourceServerID is a required field
@@ -8930,6 +9484,9 @@ func (s DeleteSourceServerInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteSourceServerInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteSourceServerInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -8941,6 +9498,12 @@ func (s *DeleteSourceServerInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DeleteSourceServerInput) SetAccountID(v string) *DeleteSourceServerInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerID sets the SourceServerID field's value.
@@ -9045,6 +9608,9 @@ func (s DeleteVcenterClientOutput) GoString() string {
 type DeleteWaveInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Wave ID.
 	//
 	// WaveID is a required field
@@ -9072,6 +9638,9 @@ func (s DeleteWaveInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteWaveInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteWaveInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.WaveID == nil {
 		invalidParams.Add(request.NewErrParamRequired("WaveID"))
 	}
@@ -9083,6 +9652,12 @@ func (s *DeleteWaveInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DeleteWaveInput) SetAccountID(v string) *DeleteWaveInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetWaveID sets the WaveID field's value.
@@ -9115,6 +9690,9 @@ func (s DeleteWaveOutput) GoString() string {
 
 type DescribeJobLogItemsInput struct {
 	_ struct{} `type:"structure"`
+
+	// Request to describe Job log Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
 
 	// Request to describe Job log job ID.
 	//
@@ -9149,6 +9727,9 @@ func (s DescribeJobLogItemsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeJobLogItemsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeJobLogItemsInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.JobID == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobID"))
 	}
@@ -9163,6 +9744,12 @@ func (s *DescribeJobLogItemsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DescribeJobLogItemsInput) SetAccountID(v string) *DescribeJobLogItemsInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetJobID sets the JobID field's value.
@@ -9226,6 +9813,9 @@ func (s *DescribeJobLogItemsOutput) SetNextToken(v string) *DescribeJobLogItemsO
 type DescribeJobsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request to describe job log items by Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Request to describe Job log filters.
 	Filters *DescribeJobsRequestFilters `locationName:"filters" type:"structure"`
 
@@ -9257,6 +9847,9 @@ func (s DescribeJobsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeJobsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeJobsInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -9270,6 +9863,12 @@ func (s *DescribeJobsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DescribeJobsInput) SetAccountID(v string) *DescribeJobsInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetFilters sets the Filters field's value.
@@ -9604,6 +10203,9 @@ func (s *DescribeReplicationConfigurationTemplatesOutput) SetNextToken(v string)
 type DescribeSourceServersInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request to filter Source Servers list by Accoun ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Request to filter Source Servers list.
 	Filters *DescribeSourceServersRequestFilters `locationName:"filters" type:"structure"`
 
@@ -9635,6 +10237,9 @@ func (s DescribeSourceServersInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeSourceServersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeSourceServersInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -9643,6 +10248,12 @@ func (s *DescribeSourceServersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DescribeSourceServersInput) SetAccountID(v string) *DescribeSourceServersInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetFilters sets the Filters field's value.
@@ -9867,6 +10478,9 @@ func (s *DescribeVcenterClientsOutput) SetNextToken(v string) *DescribeVcenterCl
 type DisassociateApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application IDs list.
 	//
 	// ApplicationIDs is a required field
@@ -9899,6 +10513,9 @@ func (s DisassociateApplicationsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DisassociateApplicationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DisassociateApplicationsInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ApplicationIDs == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationIDs"))
 	}
@@ -9916,6 +10533,12 @@ func (s *DisassociateApplicationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DisassociateApplicationsInput) SetAccountID(v string) *DisassociateApplicationsInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationIDs sets the ApplicationIDs field's value.
@@ -9955,6 +10578,9 @@ func (s DisassociateApplicationsOutput) GoString() string {
 type DisassociateSourceServersInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application ID.
 	//
 	// ApplicationID is a required field
@@ -9987,6 +10613,9 @@ func (s DisassociateSourceServersInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DisassociateSourceServersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DisassociateSourceServersInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ApplicationID == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationID"))
 	}
@@ -10004,6 +10633,12 @@ func (s *DisassociateSourceServersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DisassociateSourceServersInput) SetAccountID(v string) *DisassociateSourceServersInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationID sets the ApplicationID field's value.
@@ -10043,6 +10678,9 @@ func (s DisassociateSourceServersOutput) GoString() string {
 type DisconnectFromServiceInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request to disconnect Source Server from service by Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Request to disconnect Source Server from service by Server ID.
 	//
 	// SourceServerID is a required field
@@ -10070,6 +10708,9 @@ func (s DisconnectFromServiceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DisconnectFromServiceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DisconnectFromServiceInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -10081,6 +10722,12 @@ func (s *DisconnectFromServiceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *DisconnectFromServiceInput) SetAccountID(v string) *DisconnectFromServiceInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerID sets the SourceServerID field's value.
@@ -10562,6 +11209,9 @@ func (s *ExportTaskSummary) SetWavesCount(v int64) *ExportTaskSummary {
 type FinalizeCutoverInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request to finalize Cutover by Source Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Request to finalize Cutover by Source Server ID.
 	//
 	// SourceServerID is a required field
@@ -10589,6 +11239,9 @@ func (s FinalizeCutoverInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FinalizeCutoverInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FinalizeCutoverInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -10600,6 +11253,12 @@ func (s *FinalizeCutoverInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *FinalizeCutoverInput) SetAccountID(v string) *FinalizeCutoverInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerID sets the SourceServerID field's value.
@@ -10754,6 +11413,9 @@ func (s *FinalizeCutoverOutput) SetVcenterClientID(v string) *FinalizeCutoverOut
 type GetLaunchConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request to get Launch Configuration information by Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Request to get Launch Configuration information by Source Server ID.
 	//
 	// SourceServerID is a required field
@@ -10781,6 +11443,9 @@ func (s GetLaunchConfigurationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetLaunchConfigurationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetLaunchConfigurationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -10792,6 +11457,12 @@ func (s *GetLaunchConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *GetLaunchConfigurationInput) SetAccountID(v string) *GetLaunchConfigurationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerID sets the SourceServerID field's value.
@@ -10933,6 +11604,9 @@ func (s *GetLaunchConfigurationOutput) SetTargetInstanceTypeRightSizingMethod(v 
 type GetReplicationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request to get Replication Configuration by Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Request to get Replication Configuration by Source Server ID.
 	//
 	// SourceServerID is a required field
@@ -10960,6 +11634,9 @@ func (s GetReplicationConfigurationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetReplicationConfigurationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetReplicationConfigurationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -10971,6 +11648,12 @@ func (s *GetReplicationConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *GetReplicationConfigurationInput) SetAccountID(v string) *GetReplicationConfigurationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerID sets the SourceServerID field's value.
@@ -11031,6 +11714,9 @@ type GetReplicationConfigurationOutput struct {
 
 	// Replication Configuration use Dedicated Replication Server.
 	UseDedicatedReplicationServer *bool `locationName:"useDedicatedReplicationServer" type:"boolean"`
+
+	// Replication Configuration use Fips Endpoint.
+	UseFipsEndpoint *bool `locationName:"useFipsEndpoint" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -11141,6 +11827,12 @@ func (s *GetReplicationConfigurationOutput) SetUseDedicatedReplicationServer(v b
 	return s
 }
 
+// SetUseFipsEndpoint sets the UseFipsEndpoint field's value.
+func (s *GetReplicationConfigurationOutput) SetUseFipsEndpoint(v bool) *GetReplicationConfigurationOutput {
+	s.UseFipsEndpoint = &v
+	return s
+}
+
 // Identification hints.
 type IdentificationHints struct {
 	_ struct{} `type:"structure"`
@@ -11213,6 +11905,9 @@ func (s *IdentificationHints) SetVmWareUuid(v string) *IdentificationHints {
 type ImportErrorData struct {
 	_ struct{} `type:"structure"`
 
+	// Import error data source account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Import error data application ID.
 	ApplicationID *string `locationName:"applicationID" min:"21" type:"string"`
 
@@ -11248,6 +11943,12 @@ func (s ImportErrorData) String() string {
 // value will be replaced with "sensitive".
 func (s ImportErrorData) GoString() string {
 	return s.String()
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *ImportErrorData) SetAccountID(v string) *ImportErrorData {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationID sets the ApplicationID field's value.
@@ -12182,10 +12883,10 @@ type LaunchTemplateDiskConf struct {
 	_ struct{} `type:"structure"`
 
 	// Launch template disk iops configuration.
-	Iops *int64 `locationName:"iops" type:"long"`
+	Iops *int64 `locationName:"iops" min:"100" type:"long"`
 
 	// Launch template disk throughput configuration.
-	Throughput *int64 `locationName:"throughput" type:"long"`
+	Throughput *int64 `locationName:"throughput" min:"125" type:"long"`
 
 	// Launch template disk volume type configuration.
 	VolumeType *string `locationName:"volumeType" type:"string" enum:"VolumeType"`
@@ -12207,6 +12908,22 @@ func (s LaunchTemplateDiskConf) String() string {
 // value will be replaced with "sensitive".
 func (s LaunchTemplateDiskConf) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LaunchTemplateDiskConf) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LaunchTemplateDiskConf"}
+	if s.Iops != nil && *s.Iops < 100 {
+		invalidParams.Add(request.NewErrParamMinValue("Iops", 100))
+	}
+	if s.Throughput != nil && *s.Throughput < 125 {
+		invalidParams.Add(request.NewErrParamMinValue("Throughput", 125))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetIops sets the Iops field's value.
@@ -12707,6 +13424,9 @@ func (s *LifeCycleLastTestReverted) SetApiCallDateTime(v string) *LifeCycleLastT
 type ListApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Applications list Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Applications list filters.
 	Filters *ListApplicationsRequestFilters `locationName:"filters" type:"structure"`
 
@@ -12738,6 +13458,9 @@ func (s ListApplicationsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListApplicationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListApplicationsInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -12746,6 +13469,12 @@ func (s *ListApplicationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *ListApplicationsInput) SetAccountID(v string) *ListApplicationsInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetFilters sets the Filters field's value.
@@ -13352,8 +14081,108 @@ func (s *ListImportsRequestFilters) SetImportIDs(v []*string) *ListImportsReques
 	return s
 }
 
+// List managed accounts request.
+type ListManagedAccountsInput struct {
+	_ struct{} `type:"structure"`
+
+	// List managed accounts request max results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// List managed accounts request next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedAccountsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedAccountsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListManagedAccountsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListManagedAccountsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListManagedAccountsInput) SetMaxResults(v int64) *ListManagedAccountsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListManagedAccountsInput) SetNextToken(v string) *ListManagedAccountsInput {
+	s.NextToken = &v
+	return s
+}
+
+// List managed accounts response.
+type ListManagedAccountsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List managed accounts response items.
+	//
+	// Items is a required field
+	Items []*ManagedAccount `locationName:"items" type:"list" required:"true"`
+
+	// List managed accounts response next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedAccountsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedAccountsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListManagedAccountsOutput) SetItems(v []*ManagedAccount) *ListManagedAccountsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListManagedAccountsOutput) SetNextToken(v string) *ListManagedAccountsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListSourceServerActionsInput struct {
 	_ struct{} `type:"structure"`
+
+	// Account ID to return when listing source server post migration custom actions.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
 
 	// Filters to apply when listing source server post migration custom actions.
 	Filters *SourceServerActionsRequestFilters `locationName:"filters" type:"structure"`
@@ -13392,6 +14221,9 @@ func (s ListSourceServerActionsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListSourceServerActionsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListSourceServerActionsInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -13406,6 +14238,12 @@ func (s *ListSourceServerActionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *ListSourceServerActionsInput) SetAccountID(v string) *ListSourceServerActionsInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetFilters sets the Filters field's value.
@@ -13679,6 +14517,9 @@ func (s *ListTemplateActionsOutput) SetNextToken(v string) *ListTemplateActionsO
 type ListWavesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Request account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Waves list filters.
 	Filters *ListWavesRequestFilters `locationName:"filters" type:"structure"`
 
@@ -13710,6 +14551,9 @@ func (s ListWavesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListWavesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListWavesInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -13718,6 +14562,12 @@ func (s *ListWavesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *ListWavesInput) SetAccountID(v string) *ListWavesInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetFilters sets the Filters field's value.
@@ -13819,8 +14669,43 @@ func (s *ListWavesRequestFilters) SetWaveIDs(v []*string) *ListWavesRequestFilte
 	return s
 }
 
+// Managed account.
+type ManagedAccount struct {
+	_ struct{} `type:"structure"`
+
+	// Managed account, account ID.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedAccount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedAccount) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ManagedAccount) SetAccountId(v string) *ManagedAccount {
+	s.AccountId = &v
+	return s
+}
+
 type MarkAsArchivedInput struct {
 	_ struct{} `type:"structure"`
+
+	// Mark as archived by Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
 
 	// Mark as archived by Source Server ID.
 	//
@@ -13849,6 +14734,9 @@ func (s MarkAsArchivedInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MarkAsArchivedInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MarkAsArchivedInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -13860,6 +14748,12 @@ func (s *MarkAsArchivedInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *MarkAsArchivedInput) SetAccountID(v string) *MarkAsArchivedInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerID sets the SourceServerID field's value.
@@ -14154,6 +15048,210 @@ func (s *ParticipatingServer) SetSourceServerID(v string) *ParticipatingServer {
 	return s
 }
 
+type PauseReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Pause Replication Request account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
+	// Pause Replication Request source server ID.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PauseReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PauseReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PauseReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PauseReplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
+	if s.SourceServerID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
+	}
+	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *PauseReplicationInput) SetAccountID(v string) *PauseReplicationInput {
+	s.AccountID = &v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *PauseReplicationInput) SetSourceServerID(v string) *PauseReplicationInput {
+	s.SourceServerID = &v
+	return s
+}
+
+type PauseReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Source server application ID.
+	ApplicationID *string `locationName:"applicationID" min:"21" type:"string"`
+
+	// Source server ARN.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Source server data replication info.
+	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
+
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
+	// Source server archived status.
+	IsArchived *bool `locationName:"isArchived" type:"boolean"`
+
+	// Source server launched instance.
+	LaunchedInstance *LaunchedInstance `locationName:"launchedInstance" type:"structure"`
+
+	// Source server lifecycle state.
+	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
+
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
+	// Source server properties.
+	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
+
+	// Source server ID.
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
+
+	// Source server Tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PauseReplicationOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PauseReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PauseReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationID sets the ApplicationID field's value.
+func (s *PauseReplicationOutput) SetApplicationID(v string) *PauseReplicationOutput {
+	s.ApplicationID = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *PauseReplicationOutput) SetArn(v string) *PauseReplicationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDataReplicationInfo sets the DataReplicationInfo field's value.
+func (s *PauseReplicationOutput) SetDataReplicationInfo(v *DataReplicationInfo) *PauseReplicationOutput {
+	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *PauseReplicationOutput) SetFqdnForActionFramework(v string) *PauseReplicationOutput {
+	s.FqdnForActionFramework = &v
+	return s
+}
+
+// SetIsArchived sets the IsArchived field's value.
+func (s *PauseReplicationOutput) SetIsArchived(v bool) *PauseReplicationOutput {
+	s.IsArchived = &v
+	return s
+}
+
+// SetLaunchedInstance sets the LaunchedInstance field's value.
+func (s *PauseReplicationOutput) SetLaunchedInstance(v *LaunchedInstance) *PauseReplicationOutput {
+	s.LaunchedInstance = v
+	return s
+}
+
+// SetLifeCycle sets the LifeCycle field's value.
+func (s *PauseReplicationOutput) SetLifeCycle(v *LifeCycle) *PauseReplicationOutput {
+	s.LifeCycle = v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *PauseReplicationOutput) SetReplicationType(v string) *PauseReplicationOutput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceProperties sets the SourceProperties field's value.
+func (s *PauseReplicationOutput) SetSourceProperties(v *SourceProperties) *PauseReplicationOutput {
+	s.SourceProperties = v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *PauseReplicationOutput) SetSourceServerID(v string) *PauseReplicationOutput {
+	s.SourceServerID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PauseReplicationOutput) SetTags(v map[string]*string) *PauseReplicationOutput {
+	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *PauseReplicationOutput) SetUserProvidedID(v string) *PauseReplicationOutput {
+	s.UserProvidedID = &v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *PauseReplicationOutput) SetVcenterClientID(v string) *PauseReplicationOutput {
+	s.VcenterClientID = &v
+	return s
+}
+
 // Post Launch Actions to executed on the Test or Cutover instance.
 type PostLaunchActions struct {
 	_ struct{} `type:"structure"`
@@ -14293,6 +15391,9 @@ func (s *PostLaunchActionsStatus) SetSsmAgentDiscoveryDatetime(v string) *PostLa
 type PutSourceServerActionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Source server post migration custom account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Source server post migration custom action ID.
 	//
 	// ActionID is a required field
@@ -14364,6 +15465,9 @@ func (s PutSourceServerActionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutSourceServerActionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutSourceServerActionInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ActionID == nil {
 		invalidParams.Add(request.NewErrParamRequired("ActionID"))
 	}
@@ -14409,6 +15513,12 @@ func (s *PutSourceServerActionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *PutSourceServerActionInput) SetAccountID(v string) *PutSourceServerActionInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetActionID sets the ActionID field's value.
@@ -14966,6 +16076,9 @@ func (s *PutTemplateActionOutput) SetTimeoutSeconds(v int64) *PutTemplateActionO
 type RemoveSourceServerActionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Source server post migration account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Source server post migration custom action ID to remove.
 	//
 	// ActionID is a required field
@@ -14998,6 +16111,9 @@ func (s RemoveSourceServerActionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RemoveSourceServerActionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RemoveSourceServerActionInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ActionID == nil {
 		invalidParams.Add(request.NewErrParamRequired("ActionID"))
 	}
@@ -15015,6 +16131,12 @@ func (s *RemoveSourceServerActionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *RemoveSourceServerActionInput) SetAccountID(v string) *RemoveSourceServerActionInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetActionID sets the ActionID field's value.
@@ -15265,6 +16387,9 @@ type ReplicationConfigurationTemplate struct {
 
 	// Replication Configuration template use Dedicated Replication Server.
 	UseDedicatedReplicationServer *bool `locationName:"useDedicatedReplicationServer" type:"boolean"`
+
+	// Replication Configuration template use Fips Endpoint.
+	UseFipsEndpoint *bool `locationName:"useFipsEndpoint" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -15375,6 +16500,12 @@ func (s *ReplicationConfigurationTemplate) SetUseDedicatedReplicationServer(v bo
 	return s
 }
 
+// SetUseFipsEndpoint sets the UseFipsEndpoint field's value.
+func (s *ReplicationConfigurationTemplate) SetUseFipsEndpoint(v bool) *ReplicationConfigurationTemplate {
+	s.UseFipsEndpoint = &v
+	return s
+}
+
 // Resource not found exception.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -15447,8 +16578,215 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ResumeReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Resume Replication Request account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
+	// Resume Replication Request source server ID.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResumeReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResumeReplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
+	if s.SourceServerID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
+	}
+	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *ResumeReplicationInput) SetAccountID(v string) *ResumeReplicationInput {
+	s.AccountID = &v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *ResumeReplicationInput) SetSourceServerID(v string) *ResumeReplicationInput {
+	s.SourceServerID = &v
+	return s
+}
+
+type ResumeReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Source server application ID.
+	ApplicationID *string `locationName:"applicationID" min:"21" type:"string"`
+
+	// Source server ARN.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Source server data replication info.
+	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
+
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
+	// Source server archived status.
+	IsArchived *bool `locationName:"isArchived" type:"boolean"`
+
+	// Source server launched instance.
+	LaunchedInstance *LaunchedInstance `locationName:"launchedInstance" type:"structure"`
+
+	// Source server lifecycle state.
+	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
+
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
+	// Source server properties.
+	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
+
+	// Source server ID.
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
+
+	// Source server Tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ResumeReplicationOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationID sets the ApplicationID field's value.
+func (s *ResumeReplicationOutput) SetApplicationID(v string) *ResumeReplicationOutput {
+	s.ApplicationID = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *ResumeReplicationOutput) SetArn(v string) *ResumeReplicationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDataReplicationInfo sets the DataReplicationInfo field's value.
+func (s *ResumeReplicationOutput) SetDataReplicationInfo(v *DataReplicationInfo) *ResumeReplicationOutput {
+	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *ResumeReplicationOutput) SetFqdnForActionFramework(v string) *ResumeReplicationOutput {
+	s.FqdnForActionFramework = &v
+	return s
+}
+
+// SetIsArchived sets the IsArchived field's value.
+func (s *ResumeReplicationOutput) SetIsArchived(v bool) *ResumeReplicationOutput {
+	s.IsArchived = &v
+	return s
+}
+
+// SetLaunchedInstance sets the LaunchedInstance field's value.
+func (s *ResumeReplicationOutput) SetLaunchedInstance(v *LaunchedInstance) *ResumeReplicationOutput {
+	s.LaunchedInstance = v
+	return s
+}
+
+// SetLifeCycle sets the LifeCycle field's value.
+func (s *ResumeReplicationOutput) SetLifeCycle(v *LifeCycle) *ResumeReplicationOutput {
+	s.LifeCycle = v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *ResumeReplicationOutput) SetReplicationType(v string) *ResumeReplicationOutput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceProperties sets the SourceProperties field's value.
+func (s *ResumeReplicationOutput) SetSourceProperties(v *SourceProperties) *ResumeReplicationOutput {
+	s.SourceProperties = v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *ResumeReplicationOutput) SetSourceServerID(v string) *ResumeReplicationOutput {
+	s.SourceServerID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ResumeReplicationOutput) SetTags(v map[string]*string) *ResumeReplicationOutput {
+	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *ResumeReplicationOutput) SetUserProvidedID(v string) *ResumeReplicationOutput {
+	s.UserProvidedID = &v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *ResumeReplicationOutput) SetVcenterClientID(v string) *ResumeReplicationOutput {
+	s.VcenterClientID = &v
+	return s
+}
+
 type RetryDataReplicationInput struct {
 	_ struct{} `type:"structure"`
+
+	// Retry data replication for Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
 
 	// Retry data replication for Source Server ID.
 	//
@@ -15477,6 +16815,9 @@ func (s RetryDataReplicationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RetryDataReplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RetryDataReplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -15488,6 +16829,12 @@ func (s *RetryDataReplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *RetryDataReplicationInput) SetAccountID(v string) *RetryDataReplicationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerID sets the SourceServerID field's value.
@@ -16399,6 +17746,9 @@ func (s *SsmParameterStoreParameter) SetParameterType(v string) *SsmParameterSto
 type StartCutoverInput struct {
 	_ struct{} `type:"structure"`
 
+	// Start Cutover by Account IDs
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Start Cutover by Source Server IDs.
 	//
 	// SourceServerIDs is a required field
@@ -16433,6 +17783,9 @@ func (s StartCutoverInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartCutoverInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartCutoverInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerIDs == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerIDs"))
 	}
@@ -16444,6 +17797,12 @@ func (s *StartCutoverInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *StartCutoverInput) SetAccountID(v string) *StartCutoverInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerIDs sets the SourceServerIDs field's value.
@@ -16690,6 +18049,9 @@ func (s *StartImportOutput) SetImportTask(v *ImportTask) *StartImportOutput {
 type StartReplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID on which to start replication.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// ID of source server on which to start replication.
 	//
 	// SourceServerID is a required field
@@ -16717,6 +18079,9 @@ func (s StartReplicationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartReplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartReplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -16728,6 +18093,12 @@ func (s *StartReplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *StartReplicationInput) SetAccountID(v string) *StartReplicationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerID sets the SourceServerID field's value.
@@ -16882,6 +18253,9 @@ func (s *StartReplicationOutput) SetVcenterClientID(v string) *StartReplicationO
 type StartTestInput struct {
 	_ struct{} `type:"structure"`
 
+	// Start Test for Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Start Test for Source Server IDs.
 	//
 	// SourceServerIDs is a required field
@@ -16916,6 +18290,9 @@ func (s StartTestInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartTestInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartTestInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerIDs == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerIDs"))
 	}
@@ -16927,6 +18304,12 @@ func (s *StartTestInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *StartTestInput) SetAccountID(v string) *StartTestInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerIDs sets the SourceServerIDs field's value.
@@ -16969,6 +18352,210 @@ func (s StartTestOutput) GoString() string {
 // SetJob sets the Job field's value.
 func (s *StartTestOutput) SetJob(v *Job) *StartTestOutput {
 	s.Job = v
+	return s
+}
+
+type StopReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Stop Replication Request account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
+	// Stop Replication Request source server ID.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopReplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
+	if s.SourceServerID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
+	}
+	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *StopReplicationInput) SetAccountID(v string) *StopReplicationInput {
+	s.AccountID = &v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *StopReplicationInput) SetSourceServerID(v string) *StopReplicationInput {
+	s.SourceServerID = &v
+	return s
+}
+
+type StopReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Source server application ID.
+	ApplicationID *string `locationName:"applicationID" min:"21" type:"string"`
+
+	// Source server ARN.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Source server data replication info.
+	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
+
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
+	// Source server archived status.
+	IsArchived *bool `locationName:"isArchived" type:"boolean"`
+
+	// Source server launched instance.
+	LaunchedInstance *LaunchedInstance `locationName:"launchedInstance" type:"structure"`
+
+	// Source server lifecycle state.
+	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
+
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
+	// Source server properties.
+	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
+
+	// Source server ID.
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
+
+	// Source server Tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StopReplicationOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationID sets the ApplicationID field's value.
+func (s *StopReplicationOutput) SetApplicationID(v string) *StopReplicationOutput {
+	s.ApplicationID = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *StopReplicationOutput) SetArn(v string) *StopReplicationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDataReplicationInfo sets the DataReplicationInfo field's value.
+func (s *StopReplicationOutput) SetDataReplicationInfo(v *DataReplicationInfo) *StopReplicationOutput {
+	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *StopReplicationOutput) SetFqdnForActionFramework(v string) *StopReplicationOutput {
+	s.FqdnForActionFramework = &v
+	return s
+}
+
+// SetIsArchived sets the IsArchived field's value.
+func (s *StopReplicationOutput) SetIsArchived(v bool) *StopReplicationOutput {
+	s.IsArchived = &v
+	return s
+}
+
+// SetLaunchedInstance sets the LaunchedInstance field's value.
+func (s *StopReplicationOutput) SetLaunchedInstance(v *LaunchedInstance) *StopReplicationOutput {
+	s.LaunchedInstance = v
+	return s
+}
+
+// SetLifeCycle sets the LifeCycle field's value.
+func (s *StopReplicationOutput) SetLifeCycle(v *LifeCycle) *StopReplicationOutput {
+	s.LifeCycle = v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *StopReplicationOutput) SetReplicationType(v string) *StopReplicationOutput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceProperties sets the SourceProperties field's value.
+func (s *StopReplicationOutput) SetSourceProperties(v *SourceProperties) *StopReplicationOutput {
+	s.SourceProperties = v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *StopReplicationOutput) SetSourceServerID(v string) *StopReplicationOutput {
+	s.SourceServerID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StopReplicationOutput) SetTags(v map[string]*string) *StopReplicationOutput {
+	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *StopReplicationOutput) SetUserProvidedID(v string) *StopReplicationOutput {
+	s.UserProvidedID = &v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *StopReplicationOutput) SetVcenterClientID(v string) *StopReplicationOutput {
+	s.VcenterClientID = &v
 	return s
 }
 
@@ -17235,6 +18822,9 @@ func (s *TemplateActionsRequestFilters) SetActionIDs(v []*string) *TemplateActio
 type TerminateTargetInstancesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Terminate Target instance by Account ID
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Terminate Target instance by Source Server IDs.
 	//
 	// SourceServerIDs is a required field
@@ -17269,6 +18859,9 @@ func (s TerminateTargetInstancesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TerminateTargetInstancesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TerminateTargetInstancesInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerIDs == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerIDs"))
 	}
@@ -17280,6 +18873,12 @@ func (s *TerminateTargetInstancesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *TerminateTargetInstancesInput) SetAccountID(v string) *TerminateTargetInstancesInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetSourceServerIDs sets the SourceServerIDs field's value.
@@ -17401,6 +19000,9 @@ func (s *ThrottlingException) RequestID() string {
 type UnarchiveApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application ID.
 	//
 	// ApplicationID is a required field
@@ -17428,6 +19030,9 @@ func (s UnarchiveApplicationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UnarchiveApplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UnarchiveApplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ApplicationID == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationID"))
 	}
@@ -17439,6 +19044,12 @@ func (s *UnarchiveApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *UnarchiveApplicationInput) SetAccountID(v string) *UnarchiveApplicationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationID sets the ApplicationID field's value.
@@ -17566,6 +19177,9 @@ func (s *UnarchiveApplicationOutput) SetWaveID(v string) *UnarchiveApplicationOu
 type UnarchiveWaveInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Wave ID.
 	//
 	// WaveID is a required field
@@ -17593,6 +19207,9 @@ func (s UnarchiveWaveInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UnarchiveWaveInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UnarchiveWaveInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.WaveID == nil {
 		invalidParams.Add(request.NewErrParamRequired("WaveID"))
 	}
@@ -17604,6 +19221,12 @@ func (s *UnarchiveWaveInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *UnarchiveWaveInput) SetAccountID(v string) *UnarchiveWaveInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetWaveID sets the WaveID field's value.
@@ -17877,6 +19500,9 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Application ID.
 	//
 	// ApplicationID is a required field
@@ -17910,6 +19536,9 @@ func (s UpdateApplicationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateApplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateApplicationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ApplicationID == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationID"))
 	}
@@ -17924,6 +19553,12 @@ func (s *UpdateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *UpdateApplicationInput) SetAccountID(v string) *UpdateApplicationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetApplicationID sets the ApplicationID field's value.
@@ -18063,6 +19698,9 @@ func (s *UpdateApplicationOutput) SetWaveID(v string) *UpdateApplicationOutput {
 type UpdateLaunchConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Update Launch configuration Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Update Launch configuration boot mode request.
 	BootMode *string `locationName:"bootMode" type:"string" enum:"BootMode"`
 
@@ -18120,6 +19758,9 @@ func (s UpdateLaunchConfigurationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateLaunchConfigurationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateLaunchConfigurationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.SourceServerID == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
 	}
@@ -18136,6 +19777,12 @@ func (s *UpdateLaunchConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *UpdateLaunchConfigurationInput) SetAccountID(v string) *UpdateLaunchConfigurationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetBootMode sets the BootMode field's value.
@@ -18409,9 +20056,19 @@ func (s *UpdateLaunchConfigurationTemplateInput) Validate() error {
 	if s.LaunchConfigurationTemplateID != nil && len(*s.LaunchConfigurationTemplateID) < 21 {
 		invalidParams.Add(request.NewErrParamMinLen("LaunchConfigurationTemplateID", 21))
 	}
+	if s.LargeVolumeConf != nil {
+		if err := s.LargeVolumeConf.Validate(); err != nil {
+			invalidParams.AddNested("LargeVolumeConf", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PostLaunchActions != nil {
 		if err := s.PostLaunchActions.Validate(); err != nil {
 			invalidParams.AddNested("PostLaunchActions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SmallVolumeConf != nil {
+		if err := s.SmallVolumeConf.Validate(); err != nil {
+			invalidParams.AddNested("SmallVolumeConf", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -18689,6 +20346,9 @@ func (s *UpdateLaunchConfigurationTemplateOutput) SetTargetInstanceTypeRightSizi
 type UpdateReplicationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Update replication configuration Account ID request.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Update replication configuration associate default Application Migration
 	// Service Security group request.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
@@ -18740,6 +20400,9 @@ type UpdateReplicationConfigurationInput struct {
 
 	// Update replication configuration use dedicated Replication Server request.
 	UseDedicatedReplicationServer *bool `locationName:"useDedicatedReplicationServer" type:"boolean"`
+
+	// Update replication configuration use Fips Endpoint.
+	UseFipsEndpoint *bool `locationName:"useFipsEndpoint" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -18763,6 +20426,9 @@ func (s UpdateReplicationConfigurationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateReplicationConfigurationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateReplicationConfigurationInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.EbsEncryptionKeyArn != nil && len(*s.EbsEncryptionKeyArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("EbsEncryptionKeyArn", 20))
 	}
@@ -18777,6 +20443,12 @@ func (s *UpdateReplicationConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *UpdateReplicationConfigurationInput) SetAccountID(v string) *UpdateReplicationConfigurationInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetAssociateDefaultSecurityGroup sets the AssociateDefaultSecurityGroup field's value.
@@ -18869,6 +20541,12 @@ func (s *UpdateReplicationConfigurationInput) SetUseDedicatedReplicationServer(v
 	return s
 }
 
+// SetUseFipsEndpoint sets the UseFipsEndpoint field's value.
+func (s *UpdateReplicationConfigurationInput) SetUseFipsEndpoint(v bool) *UpdateReplicationConfigurationInput {
+	s.UseFipsEndpoint = &v
+	return s
+}
+
 type UpdateReplicationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18921,6 +20599,9 @@ type UpdateReplicationConfigurationOutput struct {
 
 	// Replication Configuration use Dedicated Replication Server.
 	UseDedicatedReplicationServer *bool `locationName:"useDedicatedReplicationServer" type:"boolean"`
+
+	// Replication Configuration use Fips Endpoint.
+	UseFipsEndpoint *bool `locationName:"useFipsEndpoint" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -19031,6 +20712,12 @@ func (s *UpdateReplicationConfigurationOutput) SetUseDedicatedReplicationServer(
 	return s
 }
 
+// SetUseFipsEndpoint sets the UseFipsEndpoint field's value.
+func (s *UpdateReplicationConfigurationOutput) SetUseFipsEndpoint(v bool) *UpdateReplicationConfigurationOutput {
+	s.UseFipsEndpoint = &v
+	return s
+}
+
 type UpdateReplicationConfigurationTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19086,6 +20773,9 @@ type UpdateReplicationConfigurationTemplateInput struct {
 	// Update replication configuration template use dedicated Replication Server
 	// request.
 	UseDedicatedReplicationServer *bool `locationName:"useDedicatedReplicationServer" type:"boolean"`
+
+	// Update replication configuration template use Fips Endpoint request.
+	UseFipsEndpoint *bool `locationName:"useFipsEndpoint" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -19212,6 +20902,12 @@ func (s *UpdateReplicationConfigurationTemplateInput) SetUseDedicatedReplication
 	return s
 }
 
+// SetUseFipsEndpoint sets the UseFipsEndpoint field's value.
+func (s *UpdateReplicationConfigurationTemplateInput) SetUseFipsEndpoint(v bool) *UpdateReplicationConfigurationTemplateInput {
+	s.UseFipsEndpoint = &v
+	return s
+}
+
 type UpdateReplicationConfigurationTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19270,6 +20966,9 @@ type UpdateReplicationConfigurationTemplateOutput struct {
 
 	// Replication Configuration template use Dedicated Replication Server.
 	UseDedicatedReplicationServer *bool `locationName:"useDedicatedReplicationServer" type:"boolean"`
+
+	// Replication Configuration template use Fips Endpoint.
+	UseFipsEndpoint *bool `locationName:"useFipsEndpoint" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -19380,8 +21079,17 @@ func (s *UpdateReplicationConfigurationTemplateOutput) SetUseDedicatedReplicatio
 	return s
 }
 
+// SetUseFipsEndpoint sets the UseFipsEndpoint field's value.
+func (s *UpdateReplicationConfigurationTemplateOutput) SetUseFipsEndpoint(v bool) *UpdateReplicationConfigurationTemplateOutput {
+	s.UseFipsEndpoint = &v
+	return s
+}
+
 type UpdateSourceServerReplicationTypeInput struct {
 	_ struct{} `type:"structure"`
+
+	// Account ID on which to update replication type.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
 
 	// Replication type to which to update source server.
 	//
@@ -19415,6 +21123,9 @@ func (s UpdateSourceServerReplicationTypeInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateSourceServerReplicationTypeInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateSourceServerReplicationTypeInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.ReplicationType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ReplicationType"))
 	}
@@ -19429,6 +21140,12 @@ func (s *UpdateSourceServerReplicationTypeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *UpdateSourceServerReplicationTypeInput) SetAccountID(v string) *UpdateSourceServerReplicationTypeInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetReplicationType sets the ReplicationType field's value.
@@ -19589,6 +21306,9 @@ func (s *UpdateSourceServerReplicationTypeOutput) SetVcenterClientID(v string) *
 type UpdateWaveInput struct {
 	_ struct{} `type:"structure"`
 
+	// Account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
 	// Wave description.
 	Description *string `locationName:"description" type:"string"`
 
@@ -19622,6 +21342,9 @@ func (s UpdateWaveInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateWaveInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateWaveInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
@@ -19636,6 +21359,12 @@ func (s *UpdateWaveInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *UpdateWaveInput) SetAccountID(v string) *UpdateWaveInput {
+	s.AccountID = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.

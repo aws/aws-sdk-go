@@ -1,21 +1,21 @@
 {
   "version": "2.0",
-  "service": "<p> Comprehend Medical; extracts structured information from unstructured clinical text. Use these actions to gain insight in your documents. </p>",
+  "service": "<p>Amazon Comprehend Medical extracts structured information from unstructured clinical text. Use these actions to gain insight in your documents. Amazon Comprehend Medical only detects entities in English language texts. Amazon Comprehend Medical places limits on the sizes of files allowed for different API operations. To learn more, see <a href=\"https://docs.aws.amazon.com/comprehend-medical/latest/dev/comprehendmedical-quotas.html\">Guidelines and quotas</a> in the <i>Amazon Comprehend Medical Developer Guide</i>.</p>",
   "operations": {
     "DescribeEntitiesDetectionV2Job": "<p>Gets the properties associated with a medical entities detection job. Use this operation to get the status of a detection job.</p>",
     "DescribeICD10CMInferenceJob": "<p>Gets the properties associated with an InferICD10CM job. Use this operation to get the status of an inference job.</p>",
     "DescribePHIDetectionJob": "<p>Gets the properties associated with a protected health information (PHI) detection job. Use this operation to get the status of a detection job.</p>",
     "DescribeRxNormInferenceJob": "<p>Gets the properties associated with an InferRxNorm job. Use this operation to get the status of an inference job.</p>",
     "DescribeSNOMEDCTInferenceJob": "<p> Gets the properties associated with an InferSNOMEDCT job. Use this operation to get the status of an inference job. </p>",
-    "DetectEntities": "<p>The <code>DetectEntities</code> operation is deprecated. You should use the <a>DetectEntitiesV2</a> operation instead.</p> <p> Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information .</p>",
+    "DetectEntities": "<p>The <code>DetectEntities</code> operation is deprecated. You should use the <a>DetectEntitiesV2</a> operation instead.</p> <p>Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information.</p>",
     "DetectEntitiesV2": "<p>Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information. Amazon Comprehend Medical only detects medical entities in English language texts.</p> <p>The <code>DetectEntitiesV2</code> operation replaces the <a>DetectEntities</a> operation. This new action uses a different model for determining the entities in your medical text and changes the way that some entities are returned in the output. You should use the <code>DetectEntitiesV2</code> operation in all new applications.</p> <p>The <code>DetectEntitiesV2</code> operation returns the <code>Acuity</code> and <code>Direction</code> entities as attributes instead of types. </p>",
-    "DetectPHI": "<p> Inspects the clinical text for protected health information (PHI) entities and returns the entity category, location, and confidence score for each entity. Amazon Comprehend Medical only detects entities in English language texts.</p>",
+    "DetectPHI": "<p>Inspects the clinical text for protected health information (PHI) entities and returns the entity category, location, and confidence score for each entity. Amazon Comprehend Medical only detects entities in English language texts.</p>",
     "InferICD10CM": "<p>InferICD10CM detects medical conditions as entities listed in a patient record and links those entities to normalized concept identifiers in the ICD-10-CM knowledge base from the Centers for Disease Control. Amazon Comprehend Medical only detects medical entities in English language texts. </p>",
     "InferRxNorm": "<p>InferRxNorm detects medications as entities listed in a patient record and links to the normalized concept identifiers in the RxNorm database from the National Library of Medicine. Amazon Comprehend Medical only detects medical entities in English language texts. </p>",
     "InferSNOMEDCT": "<p> InferSNOMEDCT detects possible medical concepts as entities and links them to codes from the Systematized Nomenclature of Medicine, Clinical Terms (SNOMED-CT) ontology</p>",
     "ListEntitiesDetectionV2Jobs": "<p>Gets a list of medical entity detection jobs that you have submitted.</p>",
     "ListICD10CMInferenceJobs": "<p>Gets a list of InferICD10CM jobs that you have submitted.</p>",
-    "ListPHIDetectionJobs": "<p>Gets a list of protected health information (PHI) detection jobs that you have submitted.</p>",
+    "ListPHIDetectionJobs": "<p>Gets a list of protected health information (PHI) detection jobs you have submitted.</p>",
     "ListRxNormInferenceJobs": "<p>Gets a list of InferRxNorm jobs that you have submitted.</p>",
     "ListSNOMEDCTInferenceJobs": "<p> Gets a list of InferSNOMEDCT jobs a user has submitted. </p>",
     "StartEntitiesDetectionV2Job": "<p>Starts an asynchronous medical entity detection job for a collection of documents. Use the <code>DescribeEntitiesDetectionV2Job</code> operation to track the status of a job.</p>",
@@ -58,9 +58,9 @@
     "BoundedLengthString": {
       "base": null,
       "refs": {
-        "DetectEntitiesRequest$Text": "<p> A UTF-8 text string containing the clinical content being examined for entities. Each string must contain fewer than 20,000 bytes of characters.</p>",
-        "DetectEntitiesV2Request$Text": "<p>A UTF-8 string containing the clinical content being examined for entities. Each string must contain fewer than 20,000 bytes of characters.</p>",
-        "DetectPHIRequest$Text": "<p> A UTF-8 text string containing the clinical content being examined for PHI entities. Each string must contain fewer than 20,000 bytes of characters.</p>"
+        "DetectEntitiesRequest$Text": "<p> A UTF-8 text string containing the clinical content being examined for entities.</p>",
+        "DetectEntitiesV2Request$Text": "<p>A UTF-8 string containing the clinical content being examined for entities.</p>",
+        "DetectPHIRequest$Text": "<p>A UTF-8 text string containing the clinical content being examined for PHI entities.</p>"
       }
     },
     "Characters": {
@@ -72,10 +72,10 @@
     "ClientRequestTokenString": {
       "base": null,
       "refs": {
-        "StartEntitiesDetectionV2JobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Comprehend Medical; generates one for you.</p>",
-        "StartICD10CMInferenceJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Comprehend Medical; generates one.</p>",
-        "StartPHIDetectionJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Comprehend Medical; generates one.</p>",
-        "StartRxNormInferenceJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Comprehend Medical; generates one.</p>",
+        "StartEntitiesDetectionV2JobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend Medical generates one for you.</p>",
+        "StartICD10CMInferenceJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend Medical generates one.</p>",
+        "StartPHIDetectionJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend Medical generates one.</p>",
+        "StartRxNormInferenceJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend Medical generates one.</p>",
         "StartSNOMEDCTInferenceJobRequest$ClientRequestToken": "<p> A unique identifier for the request. If you don't set the client request token, Amazon Comprehend Medical generates one. </p>"
       }
     },
@@ -199,9 +199,9 @@
     "EntityList": {
       "base": null,
       "refs": {
-        "DetectEntitiesResponse$Entities": "<p> The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Comprehend Medical; has in the detection and analysis. Attributes and traits of the entity are also returned.</p>",
+        "DetectEntitiesResponse$Entities": "<p>The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Amazon Comprehend Medical has in the detection and analysis. Attributes and traits of the entity are also returned.</p>",
         "DetectEntitiesV2Response$Entities": "<p>The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence in the detection and analysis. Attributes and traits of the entity are also returned.</p>",
-        "DetectPHIResponse$Entities": "<p> The collection of PHI entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Comprehend Medical; has in its detection. </p>"
+        "DetectPHIResponse$Entities": "<p>The collection of PHI entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Amazon Comprehend Medical has in its detection.</p>"
       }
     },
     "EntitySubType": {
@@ -222,25 +222,25 @@
     "Float": {
       "base": null,
       "refs": {
-        "Attribute$Score": "<p> The level of confidence that Comprehend Medical; has that the segment of text is correctly recognized as an attribute. </p>",
-        "Attribute$RelationshipScore": "<p> The level of confidence that Comprehend Medical; has that this attribute is correctly related to this entity. </p>",
-        "Entity$Score": "<p>The level of confidence that Comprehend Medical; has in the accuracy of the detection.</p>",
+        "Attribute$Score": "<p> The level of confidence that Amazon Comprehend Medical has that the segment of text is correctly recognized as an attribute. </p>",
+        "Attribute$RelationshipScore": "<p> The level of confidence that Amazon Comprehend Medical has that this attribute is correctly related to this entity. </p>",
+        "Entity$Score": "<p>The level of confidence that Amazon Comprehend Medical has in the accuracy of the detection.</p>",
         "ICD10CMAttribute$Score": "<p>The level of confidence that Amazon Comprehend Medical has that the segment of text is correctly recognized as an attribute.</p>",
         "ICD10CMAttribute$RelationshipScore": "<p>The level of confidence that Amazon Comprehend Medical has that this attribute is correctly related to this entity.</p>",
         "ICD10CMConcept$Score": "<p>The level of confidence that Amazon Comprehend Medical has that the entity is accurately linked to an ICD-10-CM concept.</p>",
         "ICD10CMEntity$Score": "<p>The level of confidence that Amazon Comprehend Medical has in the accuracy of the detection.</p>",
-        "ICD10CMTrait$Score": "<p>The level of confidence that Comprehend Medical; has that the segment of text is correctly recognized as a trait.</p>",
-        "RxNormAttribute$Score": "<p>The level of confidence that Comprehend Medical has that the segment of text is correctly recognized as an attribute.</p>",
+        "ICD10CMTrait$Score": "<p>The level of confidence that Amazon Comprehend Medical has that the segment of text is correctly recognized as a trait.</p>",
+        "RxNormAttribute$Score": "<p>The level of confidence that Amazon Comprehend Medical has that the segment of text is correctly recognized as an attribute.</p>",
         "RxNormAttribute$RelationshipScore": "<p>The level of confidence that Amazon Comprehend Medical has that the attribute is accurately linked to an entity.</p>",
         "RxNormConcept$Score": "<p>The level of confidence that Amazon Comprehend Medical has that the entity is accurately linked to the reported RxNorm concept.</p>",
         "RxNormEntity$Score": "<p>The level of confidence that Amazon Comprehend Medical has in the accuracy of the detected entity.</p>",
         "RxNormTrait$Score": "<p>The level of confidence that Amazon Comprehend Medical has in the accuracy of the detected trait.</p>",
-        "SNOMEDCTAttribute$Score": "<p> The level of confidence that Comprehend Medical has that the segment of text is correctly recognized as an attribute. </p>",
-        "SNOMEDCTAttribute$RelationshipScore": "<p> The level of confidence that Comprehend Medical has that this attribute is correctly related to this entity. </p>",
-        "SNOMEDCTConcept$Score": "<p> The level of confidence Comprehend Medical has that the entity should be linked to the identified SNOMED-CT concept. </p>",
-        "SNOMEDCTEntity$Score": "<p> The level of confidence that Comprehend Medical has in the accuracy of the detected entity. </p>",
-        "SNOMEDCTTrait$Score": "<p> The level of confidence that Comprehend Medical has in the accuracy of a detected trait. </p>",
-        "Trait$Score": "<p> The level of confidence that Comprehend Medical; has in the accuracy of this trait.</p>"
+        "SNOMEDCTAttribute$Score": "<p> The level of confidence that Amazon Comprehend Medical has that the segment of text is correctly recognized as an attribute. </p>",
+        "SNOMEDCTAttribute$RelationshipScore": "<p> The level of confidence that Amazon Comprehend Medical has that this attribute is correctly related to this entity. </p>",
+        "SNOMEDCTConcept$Score": "<p> The level of confidence Amazon Comprehend Medical has that the entity should be linked to the identified SNOMED-CT concept. </p>",
+        "SNOMEDCTEntity$Score": "<p> The level of confidence that Amazon Comprehend Medical has in the accuracy of the detected entity. </p>",
+        "SNOMEDCTTrait$Score": "<p> The level of confidence that Amazon Comprehend Medical has in the accuracy of a detected trait. </p>",
+        "Trait$Score": "<p> The level of confidence that Amazon Comprehend Medical has in the accuracy of this trait.</p>"
       }
     },
     "ICD10CMAttribute": {
@@ -326,11 +326,11 @@
     "IamRoleArn": {
       "base": null,
       "refs": {
-        "ComprehendMedicalAsyncJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Comprehend Medical; read access to your input data.</p>",
-        "StartEntitiesDetectionV2JobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Comprehend Medical; read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions-med.html#auth-role-permissions-med\"> Role-Based Permissions Required for Asynchronous Operations</a>.</p>",
-        "StartICD10CMInferenceJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Comprehend Medical; read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions-med.html#auth-role-permissions-med\"> Role-Based Permissions Required for Asynchronous Operations</a>.</p>",
-        "StartPHIDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Comprehend Medical; read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions-med.html#auth-role-permissions-med\"> Role-Based Permissions Required for Asynchronous Operations</a>.</p>",
-        "StartRxNormInferenceJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Comprehend Medical; read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions-med.html#auth-role-permissions-med\"> Role-Based Permissions Required for Asynchronous Operations</a>.</p>",
+        "ComprehendMedicalAsyncJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend Medical read access to your input data.</p>",
+        "StartEntitiesDetectionV2JobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend Medical read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions-med.html#auth-role-permissions-med\">Role-Based Permissions Required for Asynchronous Operations</a>.</p>",
+        "StartICD10CMInferenceJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend Medical read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions-med.html#auth-role-permissions-med\"> Role-Based Permissions Required for Asynchronous Operations</a>.</p>",
+        "StartPHIDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend Medical read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions-med.html#auth-role-permissions-med\"> Role-Based Permissions Required for Asynchronous Operations</a>.</p>",
+        "StartRxNormInferenceJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend Medical read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions-med.html#auth-role-permissions-med\"> Role-Based Permissions Required for Asynchronous Operations</a>.</p>",
         "StartSNOMEDCTInferenceJobRequest$DataAccessRoleArn": "<p> The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend Medical read access to your input data. </p>"
       }
     },
@@ -381,7 +381,7 @@
         "Attribute$Id": "<p> The numeric identifier for this attribute. This is a monotonically increasing id unique within this response rather than a global unique identifier. </p>",
         "Attribute$BeginOffset": "<p> The 0-based character offset in the input text that shows where the attribute begins. The offset returns the UTF-8 code point in the string. </p>",
         "Attribute$EndOffset": "<p> The 0-based character offset in the input text that shows where the attribute ends. The offset returns the UTF-8 code point in the string.</p>",
-        "Characters$OriginalTextCharacters": "<p> The number of characters present in the input text document as processed by Comprehend Medical. </p>",
+        "Characters$OriginalTextCharacters": "<p> The number of characters present in the input text document as processed by Amazon Comprehend Medical. </p>",
         "Entity$Id": "<p> The numeric identifier for the entity. This is a monotonically increasing id unique within this response rather than a global unique identifier. </p>",
         "Entity$BeginOffset": "<p> The 0-based character offset in the input text that shows where the entity begins. The offset returns the UTF-8 code point in the string. </p>",
         "Entity$EndOffset": "<p> The 0-based character offset in the input text that shows where the entity ends. The offset returns the UTF-8 code point in the string. </p>",
@@ -424,9 +424,9 @@
       "base": null,
       "refs": {
         "ComprehendMedicalAsyncJobProperties$JobId": "<p>The identifier assigned to the detection job.</p>",
-        "DescribeEntitiesDetectionV2JobRequest$JobId": "<p>The identifier that Comprehend Medical; generated for the job. The <code>StartEntitiesDetectionV2Job</code> operation returns this identifier in its response.</p>",
+        "DescribeEntitiesDetectionV2JobRequest$JobId": "<p>The identifier that Amazon Comprehend Medical generated for the job. The <code>StartEntitiesDetectionV2Job</code> operation returns this identifier in its response.</p>",
         "DescribeICD10CMInferenceJobRequest$JobId": "<p>The identifier that Amazon Comprehend Medical generated for the job. <code>The StartICD10CMInferenceJob</code> operation returns this identifier in its response.</p>",
-        "DescribePHIDetectionJobRequest$JobId": "<p>The identifier that Comprehend Medical; generated for the job. The <code>StartPHIDetectionJob</code> operation returns this identifier in its response.</p>",
+        "DescribePHIDetectionJobRequest$JobId": "<p>The identifier that Amazon Comprehend Medical generated for the job. The <code>StartPHIDetectionJob</code> operation returns this identifier in its response.</p>",
         "DescribeRxNormInferenceJobRequest$JobId": "<p>The identifier that Amazon Comprehend Medical generated for the job. The StartRxNormInferenceJob operation returns this identifier in its response.</p>",
         "DescribeSNOMEDCTInferenceJobRequest$JobId": "<p> The identifier that Amazon Comprehend Medical generated for the job. The StartSNOMEDCTInferenceJob operation returns this identifier in its response. </p>",
         "StartEntitiesDetectionV2JobResponse$JobId": "<p>The identifier generated for the job. To get the status of a job, use this identifier with the <code>DescribeEntitiesDetectionV2Job</code> operation.</p>",
@@ -480,7 +480,7 @@
       "base": null,
       "refs": {
         "ComprehendMedicalAsyncJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
-        "StartEntitiesDetectionV2JobRequest$LanguageCode": "<p>The language of the input documents. All documents must be in the same language. Comprehend Medical; processes files in US English (en).</p>",
+        "StartEntitiesDetectionV2JobRequest$LanguageCode": "<p>The language of the input documents. All documents must be in the same language. Amazon Comprehend Medical processes files in US English (en).</p>",
         "StartICD10CMInferenceJobRequest$LanguageCode": "<p>The language of the input documents. All documents must be in the same language.</p>",
         "StartPHIDetectionJobRequest$LanguageCode": "<p>The language of the input documents. All documents must be in the same language.</p>",
         "StartRxNormInferenceJobRequest$LanguageCode": "<p>The language of the input documents. All documents must be in the same language.</p>",
@@ -563,9 +563,9 @@
       "base": null,
       "refs": {
         "ICD10CMEntity$Text": "<p>The segment of input text that is matched to the detected entity.</p>",
-        "InferICD10CMRequest$Text": "<p>The input text used for analysis. The input for InferICD10CM is a string from 1 to 10000 characters.</p>",
-        "InferRxNormRequest$Text": "<p>The input text used for analysis. The input for InferRxNorm is a string from 1 to 10000 characters.</p>",
-        "InferSNOMEDCTRequest$Text": "<p> The input text to be analyzed using InferSNOMEDCT. The text should be a string with 1 to 10000 characters. </p>",
+        "InferICD10CMRequest$Text": "<p>The input text used for analysis.</p>",
+        "InferRxNormRequest$Text": "<p>The input text used for analysis.</p>",
+        "InferSNOMEDCTRequest$Text": "<p>The input text to be analyzed using InferSNOMEDCT.</p>",
         "RxNormEntity$Text": "<p>The segment of input text extracted from which the entity was detected.</p>",
         "SNOMEDCTEntity$Text": "<p> The segment of input text extracted as this entity. </p>"
       }
@@ -619,7 +619,7 @@
     "RxNormConceptList": {
       "base": null,
       "refs": {
-        "RxNormEntity$RxNormConcepts": "<p> The RxNorm concepts that the entity could refer to, along with a score indicating the likelihood of the match.</p>"
+        "RxNormEntity$RxNormConcepts": "<p>The RxNorm concepts that the entity could refer to, along with a score indicating the likelihood of the match.</p>"
       }
     },
     "RxNormEntity": {
@@ -656,7 +656,7 @@
       "base": null,
       "refs": {
         "RxNormAttribute$Traits": "<p>Contextual information for the attribute. InferRxNorm recognizes the trait <code>NEGATION</code> for attributes, i.e. that the patient is not taking a specific dose or form of a medication.</p>",
-        "RxNormEntity$Traits": "<p> Contextual information for the entity.</p>"
+        "RxNormEntity$Traits": "<p>Contextual information for the entity.</p>"
       }
     },
     "RxNormTraitName": {
@@ -668,7 +668,7 @@
     "S3Bucket": {
       "base": null,
       "refs": {
-        "InputDataConfig$S3Bucket": "<p>The URI of the S3 bucket that contains the input data. The bucket must be in the same region as the API endpoint that you are calling.</p> <p>Each file in the document collection must be less than 40 KB. You can store a maximum of 30 GB in the bucket.</p>",
+        "InputDataConfig$S3Bucket": "<p>The URI of the S3 bucket that contains the input data. The bucket must be in the same region as the API endpoint that you are calling.</p>",
         "OutputDataConfig$S3Bucket": "<p>When you use the <code>OutputDataConfig</code> object with asynchronous operations, you specify the Amazon S3 location where you want to write the output data. The URI must be in the same region as the API endpoint that you are calling. The location is used as the prefix for the actual location of the output.</p>"
       }
     },
@@ -676,7 +676,7 @@
       "base": null,
       "refs": {
         "InputDataConfig$S3Key": "<p>The path to the input data files in the S3 bucket.</p>",
-        "OutputDataConfig$S3Key": "<p>The path to the output data files in the S3 bucket. Comprehend Medical; creates an output directory using the job ID so that the output from one job does not overwrite the output of another.</p>"
+        "OutputDataConfig$S3Key": "<p>The path to the output data files in the S3 bucket. Amazon Comprehend Medical creates an output directory using the job ID so that the output from one job does not overwrite the output of another.</p>"
       }
     },
     "SNOMEDCTAttribute": {
@@ -717,7 +717,7 @@
       }
     },
     "SNOMEDCTEntity": {
-      "base": "<p> The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Comprehend Medical has in the detection and analysis. Attributes and traits of the entity are also returned. </p>",
+      "base": "<p> The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Amazon Comprehend Medical has in the detection and analysis. Attributes and traits of the entity are also returned. </p>",
       "refs": {
         "SNOMEDCTEntityList$member": null
       }
@@ -732,7 +732,7 @@
     "SNOMEDCTEntityList": {
       "base": null,
       "refs": {
-        "InferSNOMEDCTResponse$Entities": "<p> The collection of medical concept entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Comprehend Medical has in the detection and analysis. Attributes and traits of the entity are also returned. </p>"
+        "InferSNOMEDCTResponse$Entities": "<p> The collection of medical concept entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Amazon Comprehend Medical has in the detection and analysis. Attributes and traits of the entity are also returned. </p>"
       }
     },
     "SNOMEDCTEntityType": {
@@ -767,7 +767,7 @@
       }
     },
     "ServiceUnavailableException": {
-      "base": "<p> The Comprehend Medical; service is temporarily unavailable. Please wait and then retry your request. </p>",
+      "base": "<p> The Amazon Comprehend Medical service is temporarily unavailable. Please wait and then retry your request. </p>",
       "refs": {
       }
     },
@@ -875,11 +875,11 @@
       "base": null,
       "refs": {
         "Attribute$Text": "<p> The segment of input text extracted as this attribute.</p>",
-        "DetectEntitiesResponse$PaginationToken": "<p> If the result of the previous request to <code>DetectEntities</code> was truncated, include the <code>PaginationToken</code> to fetch the next page of entities.</p>",
+        "DetectEntitiesResponse$PaginationToken": "<p>If the result of the previous request to <code>DetectEntities</code> was truncated, include the <code>PaginationToken</code> to fetch the next page of entities.</p>",
         "DetectEntitiesResponse$ModelVersion": "<p>The version of the model used to analyze the documents. The version number looks like X.X.X. You can use this information to track the model used for a particular batch of documents.</p>",
         "DetectEntitiesV2Response$PaginationToken": "<p>If the result to the <code>DetectEntitiesV2</code> operation was truncated, include the <code>PaginationToken</code> to fetch the next page of entities.</p>",
         "DetectEntitiesV2Response$ModelVersion": "<p>The version of the model used to analyze the documents. The version number looks like X.X.X. You can use this information to track the model used for a particular batch of documents.</p>",
-        "DetectPHIResponse$PaginationToken": "<p> If the result of the previous request to <code>DetectPHI</code> was truncated, include the <code>PaginationToken</code> to fetch the next page of PHI entities. </p>",
+        "DetectPHIResponse$PaginationToken": "<p>If the result of the previous request to <code>DetectPHI</code> was truncated, include the <code>PaginationToken</code> to fetch the next page of PHI entities. </p>",
         "DetectPHIResponse$ModelVersion": "<p>The version of the model used to analyze the documents. The version number looks like X.X.X. You can use this information to track the model used for a particular batch of documents.</p>",
         "Entity$Text": "<p> The segment of input text extracted as this entity.</p>",
         "ICD10CMAttribute$Text": "<p>The segment of input text which contains the detected attribute.</p>",
@@ -954,7 +954,7 @@
       }
     },
     "UnmappedAttribute": {
-      "base": "<p> An attribute that was extracted, but Comprehend Medical; was unable to relate to an entity. </p>",
+      "base": "<p>An attribute that was extracted, but Amazon Comprehend Medical was unable to relate to an entity. </p>",
       "refs": {
         "UnmappedAttributeList$member": null
       }
@@ -962,7 +962,7 @@
     "UnmappedAttributeList": {
       "base": null,
       "refs": {
-        "DetectEntitiesResponse$UnmappedAttributes": "<p> Attributes extracted from the input text that we were unable to relate to an entity.</p>",
+        "DetectEntitiesResponse$UnmappedAttributes": "<p>Attributes extracted from the input text that we were unable to relate to an entity.</p>",
         "DetectEntitiesV2Response$UnmappedAttributes": "<p>Attributes extracted from the input text that couldn't be related to an entity.</p>"
       }
     },
