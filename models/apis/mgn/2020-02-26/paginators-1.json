@@ -66,6 +66,12 @@
       "limit_key": "maxResults",
       "result_key": "items"
     },
+    "ListManagedAccounts": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "items"
+    },
     "ListSourceServerActions": {
       "input_token": "nextToken",
       "output_token": "nextToken",

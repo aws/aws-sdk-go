@@ -2164,6 +2164,12 @@ func (c *Connect) CreateQueueRequest(input *CreateQueueInput) (req *request.Requ
 // provide a full phone number ARN. If a UUID is provided in this scenario,
 // you will receive a ResourceNotFoundException.
 //
+// Only use the phone number ARN format that doesn't contain instance in the
+// path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid.
+// This is the same ARN format that is returned when you call the ListPhoneNumbersV2
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+// API.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -15147,8 +15153,6 @@ func (c *Connect) SearchQueuesRequest(input *SearchQueuesInput) (req *request.Re
 
 // SearchQueues API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Searches queues in an Amazon Connect instance, with optional filtering.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -15597,8 +15601,6 @@ func (c *Connect) SearchRoutingProfilesRequest(input *SearchRoutingProfilesInput
 
 // SearchRoutingProfiles API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Searches routing profiles in an Amazon Connect instance, with optional filtering.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -15746,8 +15748,6 @@ func (c *Connect) SearchSecurityProfilesRequest(input *SearchSecurityProfilesInp
 }
 
 // SearchSecurityProfiles API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Searches security profiles in an Amazon Connect instance, with optional filtering.
 //
@@ -19568,6 +19568,12 @@ func (c *Connect) UpdateQueueOutboundCallerConfigRequest(input *UpdateQueueOutbo
 // Web Services Region associated with the traffic distribution group, you must
 // provide a full phone number ARN. If a UUID is provided in this scenario,
 // you will receive a ResourceNotFoundException.
+//
+// Only use the phone number ARN format that doesn't contain instance in the
+// path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid.
+// This is the same ARN format that is returned when you call the ListPhoneNumbersV2
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+// API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -36520,9 +36526,10 @@ type GetMetricDataV2Input struct {
 	//    | AGENT_HIERARCHY_LEVEL_FIVE
 	//
 	//    * Filter values: A maximum of 100 filter values are supported in a single
-	//    request. For example, a GetMetricDataV2 request can filter by 50 queues,
-	//    35 agents, and 15 routing profiles for a total of 100 filter values. VOICE,
-	//    CHAT, and TASK are valid filterValue for the CHANNEL filter key.
+	//    request. VOICE, CHAT, and TASK are valid filterValue for the CHANNEL filter
+	//    key. They do not count towards limitation of 100 filter values. For example,
+	//    a GetMetricDataV2 request can filter by 50 queues, 35 agents, and 15 routing
+	//    profiles for a total of 100 filter values, along with 3 channel filters.
 	//
 	// Filters is a required field
 	Filters []*FilterV2 `min:"1" type:"list" required:"true"`

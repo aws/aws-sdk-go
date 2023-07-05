@@ -1,3 +1,14 @@
+Release v1.44.296 (2023-07-05)
+===
+
+### Service Client Updates
+* `service/comprehendmedical`: Updates service documentation
+* `service/connect`: Updates service documentation
+* `service/kms`: Updates service API and documentation
+  * Added Dry Run Feature to cryptographic and cross-account mutating KMS APIs (14 in all). This feature allows users to test their permissions and parameters before making the actual API call.
+* `service/mgn`: Updates service API, documentation, and paginators
+* `service/securityhub`: Updates service documentation
+
 Release v1.44.295 (2023-07-03)
 ===
 
