@@ -1128,12 +1128,9 @@ func (c *LocationService) CreateKeyRequest(input *CreateKeyInput) (req *request.
 // CreateKey API operation for Amazon Location Service.
 //
 // Creates an API key resource in your Amazon Web Services account, which lets
-// you grant geo:GetMap* actions for Amazon Location Map resources to the API
-// key bearer.
+// you grant actions for Amazon Location resources to the API key bearer.
 //
-// The API keys feature is in preview. We may add, change, or remove features
-// before announcing general availability. For more information, see Using API
-// keys (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html).
+// For more information, see Using API keys (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2345,10 +2342,6 @@ func (c *LocationService) DescribeKeyRequest(input *DescribeKeyInput) (req *requ
 // DescribeKey API operation for Amazon Location Service.
 //
 // Retrieves the API key resource details.
-//
-// The API keys feature is in preview. We may add, change, or remove features
-// before announcing general availability. For more information, see Using API
-// keys (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4224,10 +4217,6 @@ func (c *LocationService) ListKeysRequest(input *ListKeysInput) (req *request.Re
 //
 // Lists API key resources in your Amazon Web Services account.
 //
-// The API keys feature is in preview. We may add, change, or remove features
-// before announcing general availability. For more information, see Using API
-// keys (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html).
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5920,10 +5909,6 @@ func (c *LocationService) UpdateKeyRequest(input *UpdateKeyInput) (req *request.
 //
 // Updates the specified properties of a given API key resource.
 //
-// The API keys feature is in preview. We may add, change, or remove features
-// before announcing general availability. For more information, see Using API
-// keys (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html).
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6455,10 +6440,27 @@ type ApiKeyRestrictions struct {
 	_ struct{} `type:"structure"`
 
 	// A list of allowed actions that an API key resource grants permissions to
-	// perform
+	// perform. You must have at least one action for each type of resource. For
+	// example, if you have a place resource, you must include at least one place
+	// action.
 	//
-	// Currently, the only valid action is geo:GetMap* as an input to the list.
-	// For example, ["geo:GetMap*"] is valid but ["geo:GetMapTile"] is not.
+	// The following are valid values for the actions.
+	//
+	//    * Map actions geo:GetMap* - Allows all actions needed for map rendering.
+	//
+	//    * Place actions geo:SearchPlaceIndexForText - Allows geocoding. geo:SearchPlaceIndexForPosition
+	//    - Allows reverse geocoding. geo:SearchPlaceIndexForSuggestions - Allows
+	//    generating suggestions from text. GetPlace - Allows finding a place by
+	//    place ID.
+	//
+	//    * Route actions geo:CalculateRoute - Allows point to point routing. geo:CalculateRouteMatrix
+	//    - Allows calculating a matrix of routes.
+	//
+	// You must use these strings exactly. For example, to provide access to map
+	// rendering, the only valid action is geo:GetMap* as an input to the list.
+	// ["geo:GetMap*"] is valid but ["geo:GetMapTile"] is not. Similarly, you cannot
+	// use ["geo:SearchPlaceIndexFor*"] - you must list each of the Place actions
+	// separately.
 	//
 	// AllowActions is a required field
 	AllowActions []*string `min:"1" type:"list" required:"true"`
@@ -6483,33 +6485,22 @@ type ApiKeyRestrictions struct {
 	AllowReferers []*string `min:"1" type:"list"`
 
 	// A list of allowed resource ARNs that a API key bearer can perform actions
-	// on
+	// on.
+	//
+	//    * The ARN must be the correct ARN for a map, place, or route ARN. You
+	//    may include wildcards in the resource-id to match multiple resources of
+	//    the same type.
+	//
+	//    * The resources must be in the same partition, region, and account-id
+	//    as the key that is being created.
+	//
+	//    * Other than wildcards, you must include the full ARN, including the arn,
+	//    partition, service, region, account-id and resource-id, delimited by colons
+	//    (:).
+	//
+	//    * No spaces allowed, even with wildcards. For example, arn:aws:geo:region:account-id:map/ExampleMap*.
 	//
 	// For more information about ARN format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
-	//
-	// In this preview, you can allow only map resources.
-	//
-	// Requirements:
-	//
-	//    * Must be prefixed with arn.
-	//
-	//    * partition and service must not be empty and should begin with only alphanumeric
-	//    characters (A–Z, a–z, 0–9) and contain only alphanumeric numbers,
-	//    hyphens (-) and periods (.).
-	//
-	//    * region and account-id can be empty or should begin with only alphanumeric
-	//    characters (A–Z, a–z, 0–9) and contain only alphanumeric numbers,
-	//    hyphens (-) and periods (.).
-	//
-	//    * resource-id can begin with any character except for forward slash (/)
-	//    and contain any characters after, including forward slashes to form a
-	//    path. resource-id can also include wildcard characters, denoted by an
-	//    asterisk (*).
-	//
-	//    * arn, partition, service, region, account-id and resource-id must be
-	//    delimited by a colon (:).
-	//
-	//    * No spaces allowed. For example, arn:aws:geo:region:account-id:map/ExampleMap*.
 	//
 	// AllowResources is a required field
 	AllowResources []*string `min:"1" type:"list" required:"true"`
@@ -7502,8 +7493,11 @@ type BatchPutGeofenceRequestEntry struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
-	// Specifies additional user-defined properties to store with the Geofence.
-	// An array of key-value pairs.
+	// Associates one of more properties with the geofence. A property is a key-value
+	// pair stored with the geofence and added to any geofence event triggered with
+	// that geofence.
+	//
+	// Format: "key" : "value"
 	//
 	// GeofenceProperties is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by BatchPutGeofenceRequestEntry's
@@ -7942,6 +7936,14 @@ type CalculateRouteInput struct {
 	// Valid Values: false | true
 	IncludeLegGeometry *bool `type:"boolean"`
 
+	// The optional API key (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html)
+	// to authorize the request.
+	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CalculateRouteInput's
+	// String and GoString methods.
+	Key *string `location:"querystring" locationName:"key" type:"string" sensitive:"true"`
+
 	// Specifies the mode of transport when calculating a route. Used in estimating
 	// the speed of travel and road compatibility. You can choose Car, Truck, Walking,
 	// Bicycle or Motorcycle as options for the TravelMode.
@@ -8084,6 +8086,12 @@ func (s *CalculateRouteInput) SetIncludeLegGeometry(v bool) *CalculateRouteInput
 	return s
 }
 
+// SetKey sets the Key field's value.
+func (s *CalculateRouteInput) SetKey(v string) *CalculateRouteInput {
+	s.Key = &v
+	return s
+}
+
 // SetTravelMode sets the TravelMode field's value.
 func (s *CalculateRouteInput) SetTravelMode(v string) *CalculateRouteInput {
 	s.TravelMode = &v
@@ -8180,6 +8188,14 @@ type CalculateRouteMatrixInput struct {
 	//
 	// Default Value: Kilometers
 	DistanceUnit *string `type:"string" enum:"DistanceUnit"`
+
+	// The optional API key (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html)
+	// to authorize the request.
+	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CalculateRouteMatrixInput's
+	// String and GoString methods.
+	Key *string `location:"querystring" locationName:"key" type:"string" sensitive:"true"`
 
 	// Specifies the mode of transport when calculating a route. Used in estimating
 	// the speed of travel and road compatibility.
@@ -8294,6 +8310,12 @@ func (s *CalculateRouteMatrixInput) SetDestinationPositions(v [][]*float64) *Cal
 // SetDistanceUnit sets the DistanceUnit field's value.
 func (s *CalculateRouteMatrixInput) SetDistanceUnit(v string) *CalculateRouteMatrixInput {
 	s.DistanceUnit = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *CalculateRouteMatrixInput) SetKey(v string) *CalculateRouteMatrixInput {
+	s.Key = &v
 	return s
 }
 
@@ -9854,6 +9876,13 @@ type CreateTrackerInput struct {
 	// An optional description for the tracker resource.
 	Description *string `type:"string"`
 
+	// Whether to enable position UPDATE events from this tracker to be sent to
+	// EventBridge.
+	//
+	// You do not need enable this feature to get ENTER and EXIT events for geofences
+	// with this tracker. Those events are always sent to EventBridge.
+	EventBridgeEnabled *bool `type:"boolean"`
+
 	// A key identifier for an Amazon Web Services KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html).
 	// Enter a key ID, key ARN, alias name, or alias ARN.
 	KmsKeyId *string `min:"1" type:"string"`
@@ -9972,6 +10001,12 @@ func (s *CreateTrackerInput) Validate() error {
 // SetDescription sets the Description field's value.
 func (s *CreateTrackerInput) SetDescription(v string) *CreateTrackerInput {
 	s.Description = &v
+	return s
+}
+
+// SetEventBridgeEnabled sets the EventBridgeEnabled field's value.
+func (s *CreateTrackerInput) SetEventBridgeEnabled(v bool) *CreateTrackerInput {
+	s.EventBridgeEnabled = &v
 	return s
 }
 
@@ -11491,6 +11526,10 @@ type DescribeTrackerOutput struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// Whether UPDATE events from this tracker in EventBridge are enabled. If set
+	// to true these events will be sent to EventBridge.
+	EventBridgeEnabled *bool `type:"boolean"`
+
 	// A key identifier for an Amazon Web Services KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html)
 	// assigned to the Amazon Location resource.
 	KmsKeyId *string `min:"1" type:"string"`
@@ -11558,6 +11597,12 @@ func (s *DescribeTrackerOutput) SetCreateTime(v time.Time) *DescribeTrackerOutpu
 // SetDescription sets the Description field's value.
 func (s *DescribeTrackerOutput) SetDescription(v string) *DescribeTrackerOutput {
 	s.Description = &v
+	return s
+}
+
+// SetEventBridgeEnabled sets the EventBridgeEnabled field's value.
+func (s *DescribeTrackerOutput) SetEventBridgeEnabled(v bool) *DescribeTrackerOutput {
+	s.EventBridgeEnabled = &v
 	return s
 }
 
@@ -12405,8 +12450,10 @@ type GetGeofenceOutput struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
-	// Contains additional user-defined properties stored with the geofence. An
-	// array of key-value pairs.
+	// User defined properties of the geofence. A property is a key-value pair stored
+	// with the geofence and added to any geofence event triggered with that geofence.
+	//
+	// Format: "key" : "value"
 	//
 	// GeofenceProperties is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetGeofenceOutput's
@@ -13117,6 +13164,14 @@ type GetPlaceInput struct {
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
 
+	// The optional API key (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html)
+	// to authorize the request.
+	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPlaceInput's
+	// String and GoString methods.
+	Key *string `location:"querystring" locationName:"key" type:"string" sensitive:"true"`
+
 	// The preferred language used to return results. The value must be a valid
 	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
 	// for English.
@@ -13188,6 +13243,12 @@ func (s *GetPlaceInput) Validate() error {
 // SetIndexName sets the IndexName field's value.
 func (s *GetPlaceInput) SetIndexName(v string) *GetPlaceInput {
 	s.IndexName = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *GetPlaceInput) SetKey(v string) *GetPlaceInput {
+	s.Key = &v
 	return s
 }
 
@@ -13884,8 +13945,10 @@ type ListGeofenceResponseEntry struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
-	// Contains additional user-defined properties stored with the geofence. An
-	// array of key-value pairs.
+	// User defined properties of the geofence. A property is a key-value pair stored
+	// with the geofence and added to any geofence event triggered with that geofence.
+	//
+	// Format: "key" : "value"
 	//
 	// GeofenceProperties is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ListGeofenceResponseEntry's
@@ -15813,8 +15876,11 @@ type PutGeofenceInput struct {
 	// GeofenceId is a required field
 	GeofenceId *string `location:"uri" locationName:"GeofenceId" min:"1" type:"string" required:"true"`
 
-	// Specifies additional user-defined properties to store with the Geofence.
-	// An array of key-value pairs.
+	// Associates one of more properties with the geofence. A property is a key-value
+	// pair stored with the geofence and added to any geofence event triggered with
+	// that geofence.
+	//
+	// Format: "key" : "value"
 	//
 	// GeofenceProperties is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutGeofenceInput's
@@ -16360,6 +16426,14 @@ type SearchPlaceIndexForPositionInput struct {
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
 
+	// The optional API key (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html)
+	// to authorize the request.
+	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForPositionInput's
+	// String and GoString methods.
+	Key *string `location:"querystring" locationName:"key" type:"string" sensitive:"true"`
+
 	// The preferred language used to return results. The value must be a valid
 	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
 	// for English.
@@ -16450,6 +16524,12 @@ func (s *SearchPlaceIndexForPositionInput) Validate() error {
 // SetIndexName sets the IndexName field's value.
 func (s *SearchPlaceIndexForPositionInput) SetIndexName(v string) *SearchPlaceIndexForPositionInput {
 	s.IndexName = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *SearchPlaceIndexForPositionInput) SetKey(v string) *SearchPlaceIndexForPositionInput {
+	s.Key = &v
 	return s
 }
 
@@ -16662,6 +16742,14 @@ type SearchPlaceIndexForSuggestionsInput struct {
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
 
+	// The optional API key (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html)
+	// to authorize the request.
+	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForSuggestionsInput's
+	// String and GoString methods.
+	Key *string `location:"querystring" locationName:"key" type:"string" sensitive:"true"`
+
 	// The preferred language used to return results. The value must be a valid
 	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
 	// for English.
@@ -16782,6 +16870,12 @@ func (s *SearchPlaceIndexForSuggestionsInput) SetFilterCountries(v []*string) *S
 // SetIndexName sets the IndexName field's value.
 func (s *SearchPlaceIndexForSuggestionsInput) SetIndexName(v string) *SearchPlaceIndexForSuggestionsInput {
 	s.IndexName = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetKey(v string) *SearchPlaceIndexForSuggestionsInput {
+	s.Key = &v
 	return s
 }
 
@@ -17044,6 +17138,14 @@ type SearchPlaceIndexForTextInput struct {
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
 
+	// The optional API key (https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html)
+	// to authorize the request.
+	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextInput's
+	// String and GoString methods.
+	Key *string `location:"querystring" locationName:"key" type:"string" sensitive:"true"`
+
 	// The preferred language used to return results. The value must be a valid
 	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
 	// for English.
@@ -17164,6 +17266,12 @@ func (s *SearchPlaceIndexForTextInput) SetFilterCountries(v []*string) *SearchPl
 // SetIndexName sets the IndexName field's value.
 func (s *SearchPlaceIndexForTextInput) SetIndexName(v string) *SearchPlaceIndexForTextInput {
 	s.IndexName = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *SearchPlaceIndexForTextInput) SetKey(v string) *SearchPlaceIndexForTextInput {
+	s.Key = &v
 	return s
 }
 
@@ -18688,6 +18796,13 @@ type UpdateTrackerInput struct {
 	// Updates the description for the tracker resource.
 	Description *string `type:"string"`
 
+	// Whether to enable position UPDATE events from this tracker to be sent to
+	// EventBridge.
+	//
+	// You do not need enable this feature to get ENTER and EXIT events for geofences
+	// with this tracker. Those events are always sent to EventBridge.
+	EventBridgeEnabled *bool `type:"boolean"`
+
 	// Updates the position filtering for the tracker resource.
 	//
 	// Valid values:
@@ -18768,6 +18883,12 @@ func (s *UpdateTrackerInput) Validate() error {
 // SetDescription sets the Description field's value.
 func (s *UpdateTrackerInput) SetDescription(v string) *UpdateTrackerInput {
 	s.Description = &v
+	return s
+}
+
+// SetEventBridgeEnabled sets the EventBridgeEnabled field's value.
+func (s *UpdateTrackerInput) SetEventBridgeEnabled(v bool) *UpdateTrackerInput {
+	s.EventBridgeEnabled = &v
 	return s
 }
 

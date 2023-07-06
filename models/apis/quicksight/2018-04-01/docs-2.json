@@ -127,8 +127,8 @@
     "SearchDataSources": "<p>Use the <code>SearchDataSources</code> operation to search for data sources that belong to an account.</p>",
     "SearchFolders": "<p>Searches the subfolders in a folder.</p>",
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
-    "StartAssetBundleExportJob": "<p>Starts an Asset Bundle export job.</p> <p>An Asset Bundle export job exports specified Amazon QuickSight assets. You can also choose to export any asset dependencies in the same job. Export jobs run asynchronously and can be polled with a <code>DescribeAssetBundleExportJob</code> API call. When a job is successfully completed, a download URL that contains the exported assets is returned. The URL is valid for 5 minutes and can be refreshed with a <code>DescribeAssetBundleExportJob</code> API call. Each Amazon QuickSight account can run up to 10 export jobs concurrently.</p> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>",
-    "StartAssetBundleImportJob": "<p>Starts an Asset Bundle import job.</p> <p>An Asset Bundle import job imports specified Amazon QuickSight assets into an Amazon QuickSight account. You can also choose to import a naming prefix and specified configuration overrides. The assets that are contained in the bundle file that you provide are used to create or update a new or existing asset in your Amazon QuickSight account. Each Amazon QuickSight account can run up to 10 import jobs concurrently.</p> <p>The API caller must have the necessary <code>\"create\"</code>, <code>\"describe\"</code>, and <code>\"update\"</code> permissions in their IAM role to access each resource type that is contained in the bundle file before the resources can be imported.</p>",
+    "StartAssetBundleExportJob": "<p>Starts an Asset Bundle export job.</p> <p>An Asset Bundle export job exports specified Amazon QuickSight assets. You can also choose to export any asset dependencies in the same job. Export jobs run asynchronously and can be polled with a <code>DescribeAssetBundleExportJob</code> API call. When a job is successfully completed, a download URL that contains the exported assets is returned. The URL is valid for 5 minutes and can be refreshed with a <code>DescribeAssetBundleExportJob</code> API call. Each Amazon QuickSight account can run up to 5 export jobs concurrently.</p> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>",
+    "StartAssetBundleImportJob": "<p>Starts an Asset Bundle import job.</p> <p>An Asset Bundle import job imports specified Amazon QuickSight assets into an Amazon QuickSight account. You can also choose to import a naming prefix and specified configuration overrides. The assets that are contained in the bundle file that you provide are used to create or update a new or existing asset in your Amazon QuickSight account. Each Amazon QuickSight account can run up to 5 import jobs concurrently.</p> <p>The API caller must have the necessary <code>\"create\"</code>, <code>\"describe\"</code>, and <code>\"update\"</code> permissions in their IAM role to access each resource type that is contained in the bundle file before the resources can be imported.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, and topic. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, the only customization that you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
@@ -644,7 +644,7 @@
       "base": null,
       "refs": {
         "AssetBundleExportJobSummary$ExportFormat": "<p>The format for the export job.</p>",
-        "DescribeAssetBundleExportJobResponse$ExportFormat": "<p>The format of the export.</p>",
+        "DescribeAssetBundleExportJobResponse$ExportFormat": "<p>The format of the exported asset bundle. A <code>QUICKSIGHT_JSON</code> formatted file can be used to make a <code>StartAssetBundleImportJob</code> API call. A <code>CLOUDFORMATION_JSON</code> formatted file can be used in the CloudFormation console and with the CloudFormation APIs.</p>",
         "StartAssetBundleExportJobRequest$ExportFormat": "<p>The export data format.</p>"
       }
     },
@@ -1009,9 +1009,9 @@
       }
     },
     "AssetBundleImportSource": {
-      "base": "<p>The source of the asset bundle zip file that contains the data that you want to import.</p>",
+      "base": "<p>The source of the asset bundle zip file that contains the data that you want to import. The file must be in <code>QUICKSIGHT_JSON</code> format.</p>",
       "refs": {
-        "StartAssetBundleImportJobRequest$AssetBundleImportSource": "<p>The source of the asset bundle zip file that contains the data that you want to import.</p>"
+        "StartAssetBundleImportJobRequest$AssetBundleImportSource": "<p>The source of the asset bundle zip file that contains the data that you want to import. The file must be in <code>QUICKSIGHT_JSON</code> format. </p>"
       }
     },
     "AssetBundleImportSourceDescription": {
@@ -1839,6 +1839,12 @@
         "ColorScale$Colors": "<p>Determines the list of colors that are applied to the visual.</p>"
       }
     },
+    "ColorsConfiguration": {
+      "base": "<p>The color configurations for a column.</p>",
+      "refs": {
+        "ColumnConfiguration$ColorsConfiguration": "<p>The color configurations of the column.</p>"
+      }
+    },
     "ColumnConfiguration": {
       "base": "<p>The general configuration of a column.</p>",
       "refs": {
@@ -2547,6 +2553,18 @@
       "base": "<p>The URL operation that opens a link to another webpage.</p>",
       "refs": {
         "VisualCustomActionOperation$URLOperation": "<p>The URL operation that opens a link to another webpage.</p>"
+      }
+    },
+    "CustomColor": {
+      "base": "<p>Determines the color that's applied to a particular data value in a column.</p>",
+      "refs": {
+        "CustomColorsList$member": null
+      }
+    },
+    "CustomColorsList": {
+      "base": null,
+      "refs": {
+        "ColorsConfiguration$CustomColors": "<p>A list of up to 50 custom colors.</p>"
       }
     },
     "CustomContentConfiguration": {
@@ -4513,6 +4531,7 @@
     "FieldValue": {
       "base": null,
       "refs": {
+        "CustomColor$FieldValue": "<p>The data value that the color is applied to.</p>",
         "DataPathLabelType$FieldValue": "<p>The actual value of the field that is labeled.</p>",
         "DataPathValue$FieldValue": "<p>The actual value of the field that needs to be sorted.</p>"
       }
@@ -5469,6 +5488,7 @@
         "ColorList$member": null,
         "ConditionalFormattingCustomIconCondition$Color": "<p>Determines the color of the icon.</p>",
         "ConditionalFormattingSolidColor$Color": "<p>Determines the color.</p>",
+        "CustomColor$Color": "<p>The color that is applied to the data value.</p>",
         "DataBarsOptions$PositiveColor": "<p>The color of the positive data bar.</p>",
         "DataBarsOptions$NegativeColor": "<p>The color of the negative data bar.</p>",
         "DataColor$Color": "<p>The color that is applied to the data value.</p>",
@@ -9351,6 +9371,25 @@
         "ParameterSliderControl$DisplayOptions": "<p>The display options of a control.</p>"
       }
     },
+    "SmallMultiplesAxisPlacement": {
+      "base": null,
+      "refs": {
+        "SmallMultiplesAxisProperties$Placement": "<p>Defines the placement of the axis. By default, axes are rendered <code>OUTSIDE</code> of the panels. Axes with <code>INDEPENDENT</code> scale are rendered <code>INSIDE</code> the panels.</p>"
+      }
+    },
+    "SmallMultiplesAxisProperties": {
+      "base": "<p>Configures the properties of a chart's axes that are used by small multiples panels.</p>",
+      "refs": {
+        "SmallMultiplesOptions$XAxis": "<p>The properties of a small multiples X axis.</p>",
+        "SmallMultiplesOptions$YAxis": "<p>The properties of a small multiples Y axis.</p>"
+      }
+    },
+    "SmallMultiplesAxisScale": {
+      "base": null,
+      "refs": {
+        "SmallMultiplesAxisProperties$Scale": "<p>Determines whether scale of the axes are shared or independent. The default value is <code>SHARED</code>.</p>"
+      }
+    },
     "SmallMultiplesDimensionFieldList": {
       "base": null,
       "refs": {
@@ -9393,6 +9432,12 @@
       "base": "<p>The parameters for Spark.</p>",
       "refs": {
         "DataSourceParameters$SparkParameters": "<p>The parameters for Spark.</p>"
+      }
+    },
+    "SpecialValue": {
+      "base": null,
+      "refs": {
+        "CustomColor$SpecialValue": "<p>The value of a special data value.</p>"
       }
     },
     "SqlEndpointPath": {

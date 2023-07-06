@@ -506,7 +506,8 @@
       "type":"string",
       "enum":[
         "ACTIVE",
-        "RETIRING"
+        "RETIRING",
+        "ISOLATED"
       ]
     },
     "AssetType":{
@@ -1651,7 +1652,7 @@
     "StatusList":{
       "type":"list",
       "member":{"shape":"AssetState"},
-      "max":2,
+      "max":3,
       "min":1
     },
     "String":{

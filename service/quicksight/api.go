@@ -14165,7 +14165,7 @@ func (c *QuickSight) StartAssetBundleExportJobRequest(input *StartAssetBundleExp
 // API call. When a job is successfully completed, a download URL that contains
 // the exported assets is returned. The URL is valid for 5 minutes and can be
 // refreshed with a DescribeAssetBundleExportJob API call. Each Amazon QuickSight
-// account can run up to 10 export jobs concurrently.
+// account can run up to 5 export jobs concurrently.
 //
 // The API caller must have the necessary permissions in their IAM role to access
 // each resource before the resources can be exported.
@@ -14279,7 +14279,7 @@ func (c *QuickSight) StartAssetBundleImportJobRequest(input *StartAssetBundleImp
 // and specified configuration overrides. The assets that are contained in the
 // bundle file that you provide are used to create or update a new or existing
 // asset in your Amazon QuickSight account. Each Amazon QuickSight account can
-// run up to 10 import jobs concurrently.
+// run up to 5 import jobs concurrently.
 //
 // The API caller must have the necessary "create", "describe", and "update"
 // permissions in their IAM role to access each resource type that is contained
@@ -17979,9 +17979,7 @@ type AggregationSortConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The function that aggregates the values in Column.
-	//
-	// AggregationFunction is a required field
-	AggregationFunction *AggregationFunction `type:"structure" required:"true"`
+	AggregationFunction *AggregationFunction `type:"structure"`
 
 	// The column that determines the sort order of aggregated values.
 	//
@@ -18019,9 +18017,6 @@ func (s AggregationSortConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AggregationSortConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AggregationSortConfiguration"}
-	if s.AggregationFunction == nil {
-		invalidParams.Add(request.NewErrParamRequired("AggregationFunction"))
-	}
 	if s.Column == nil {
 		invalidParams.Add(request.NewErrParamRequired("Column"))
 	}
@@ -21132,7 +21127,7 @@ func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetVPCConnectionId
 }
 
 // The source of the asset bundle zip file that contains the data that you want
-// to import.
+// to import. The file must be in QUICKSIGHT_JSON format.
 type AssetBundleImportSource struct {
 	_ struct{} `type:"structure"`
 
@@ -24880,9 +24875,64 @@ func (s *ColorScale) SetNullValueColor(v *DataColor) *ColorScale {
 	return s
 }
 
+// The color configurations for a column.
+type ColorsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of up to 50 custom colors.
+	CustomColors []*CustomColor `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColorsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColorsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ColorsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ColorsConfiguration"}
+	if s.CustomColors != nil {
+		for i, v := range s.CustomColors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomColors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomColors sets the CustomColors field's value.
+func (s *ColorsConfiguration) SetCustomColors(v []*CustomColor) *ColorsConfiguration {
+	s.CustomColors = v
+	return s
+}
+
 // The general configuration of a column.
 type ColumnConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// The color configurations of the column.
+	ColorsConfiguration *ColorsConfiguration `type:"structure"`
 
 	// The column.
 	//
@@ -24920,6 +24970,11 @@ func (s *ColumnConfiguration) Validate() error {
 	if s.Column == nil {
 		invalidParams.Add(request.NewErrParamRequired("Column"))
 	}
+	if s.ColorsConfiguration != nil {
+		if err := s.ColorsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ColorsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Column != nil {
 		if err := s.Column.Validate(); err != nil {
 			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
@@ -24935,6 +24990,12 @@ func (s *ColumnConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetColorsConfiguration sets the ColorsConfiguration field's value.
+func (s *ColumnConfiguration) SetColorsConfiguration(v *ColorsConfiguration) *ColumnConfiguration {
+	s.ColorsConfiguration = v
+	return s
 }
 
 // SetColumn sets the Column field's value.
@@ -32291,6 +32352,75 @@ func (s *CustomActionURLOperation) SetURLTarget(v string) *CustomActionURLOperat
 // SetURLTemplate sets the URLTemplate field's value.
 func (s *CustomActionURLOperation) SetURLTemplate(v string) *CustomActionURLOperation {
 	s.URLTemplate = &v
+	return s
+}
+
+// Determines the color that's applied to a particular data value in a column.
+type CustomColor struct {
+	_ struct{} `type:"structure"`
+
+	// The color that is applied to the data value.
+	//
+	// Color is a required field
+	Color *string `type:"string" required:"true"`
+
+	// The data value that the color is applied to.
+	//
+	// FieldValue is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CustomColor's
+	// String and GoString methods.
+	FieldValue *string `type:"string" sensitive:"true"`
+
+	// The value of a special data value.
+	SpecialValue *string `type:"string" enum:"SpecialValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomColor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomColor) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomColor) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomColor"}
+	if s.Color == nil {
+		invalidParams.Add(request.NewErrParamRequired("Color"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColor sets the Color field's value.
+func (s *CustomColor) SetColor(v string) *CustomColor {
+	s.Color = &v
+	return s
+}
+
+// SetFieldValue sets the FieldValue field's value.
+func (s *CustomColor) SetFieldValue(v string) *CustomColor {
+	s.FieldValue = &v
+	return s
+}
+
+// SetSpecialValue sets the SpecialValue field's value.
+func (s *CustomColor) SetSpecialValue(v string) *CustomColor {
+	s.SpecialValue = &v
 	return s
 }
 
@@ -42403,7 +42533,10 @@ type DescribeAssetBundleExportJobOutput struct {
 	// is available after the job has completed and failed.
 	Errors []*AssetBundleExportJobError `type:"list"`
 
-	// The format of the export.
+	// The format of the exported asset bundle. A QUICKSIGHT_JSON formatted file
+	// can be used to make a StartAssetBundleImportJob API call. A CLOUDFORMATION_JSON
+	// formatted file can be used in the CloudFormation console and with the CloudFormation
+	// APIs.
 	ExportFormat *string `type:"string" enum:"AssetBundleExportFormat"`
 
 	// The include dependencies flag.
@@ -79586,6 +79719,50 @@ func (s *SliderControlDisplayOptions) SetTitleOptions(v *LabelOptions) *SliderCo
 	return s
 }
 
+// Configures the properties of a chart's axes that are used by small multiples
+// panels.
+type SmallMultiplesAxisProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the placement of the axis. By default, axes are rendered OUTSIDE
+	// of the panels. Axes with INDEPENDENT scale are rendered INSIDE the panels.
+	Placement *string `type:"string" enum:"SmallMultiplesAxisPlacement"`
+
+	// Determines whether scale of the axes are shared or independent. The default
+	// value is SHARED.
+	Scale *string `type:"string" enum:"SmallMultiplesAxisScale"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SmallMultiplesAxisProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SmallMultiplesAxisProperties) GoString() string {
+	return s.String()
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *SmallMultiplesAxisProperties) SetPlacement(v string) *SmallMultiplesAxisProperties {
+	s.Placement = &v
+	return s
+}
+
+// SetScale sets the Scale field's value.
+func (s *SmallMultiplesAxisProperties) SetScale(v string) *SmallMultiplesAxisProperties {
+	s.Scale = &v
+	return s
+}
+
 // Options that determine the layout and display options of a chart's small
 // multiples.
 type SmallMultiplesOptions struct {
@@ -79607,6 +79784,12 @@ type SmallMultiplesOptions struct {
 
 	// Configures the display options for each small multiples panel.
 	PanelConfiguration *PanelConfiguration `type:"structure"`
+
+	// The properties of a small multiples X axis.
+	XAxis *SmallMultiplesAxisProperties `type:"structure"`
+
+	// The properties of a small multiples Y axis.
+	YAxis *SmallMultiplesAxisProperties `type:"structure"`
 }
 
 // String returns the string representation.
@@ -79658,6 +79841,18 @@ func (s *SmallMultiplesOptions) SetMaxVisibleRows(v int64) *SmallMultiplesOption
 // SetPanelConfiguration sets the PanelConfiguration field's value.
 func (s *SmallMultiplesOptions) SetPanelConfiguration(v *PanelConfiguration) *SmallMultiplesOptions {
 	s.PanelConfiguration = v
+	return s
+}
+
+// SetXAxis sets the XAxis field's value.
+func (s *SmallMultiplesOptions) SetXAxis(v *SmallMultiplesAxisProperties) *SmallMultiplesOptions {
+	s.XAxis = v
+	return s
+}
+
+// SetYAxis sets the YAxis field's value.
+func (s *SmallMultiplesOptions) SetYAxis(v *SmallMultiplesAxisProperties) *SmallMultiplesOptions {
+	s.YAxis = v
 	return s
 }
 
@@ -80201,7 +80396,7 @@ type StartAssetBundleImportJobInput struct {
 	AssetBundleImportJobId *string `min:"1" type:"string" required:"true"`
 
 	// The source of the asset bundle zip file that contains the data that you want
-	// to import.
+	// to import. The file must be in QUICKSIGHT_JSON format.
 	//
 	// AssetBundleImportSource is a required field
 	AssetBundleImportSource *AssetBundleImportSource `type:"structure" required:"true"`
@@ -100378,6 +100573,38 @@ func SimpleNumericalAggregationFunction_Values() []string {
 }
 
 const (
+	// SmallMultiplesAxisPlacementOutside is a SmallMultiplesAxisPlacement enum value
+	SmallMultiplesAxisPlacementOutside = "OUTSIDE"
+
+	// SmallMultiplesAxisPlacementInside is a SmallMultiplesAxisPlacement enum value
+	SmallMultiplesAxisPlacementInside = "INSIDE"
+)
+
+// SmallMultiplesAxisPlacement_Values returns all elements of the SmallMultiplesAxisPlacement enum
+func SmallMultiplesAxisPlacement_Values() []string {
+	return []string{
+		SmallMultiplesAxisPlacementOutside,
+		SmallMultiplesAxisPlacementInside,
+	}
+}
+
+const (
+	// SmallMultiplesAxisScaleShared is a SmallMultiplesAxisScale enum value
+	SmallMultiplesAxisScaleShared = "SHARED"
+
+	// SmallMultiplesAxisScaleIndependent is a SmallMultiplesAxisScale enum value
+	SmallMultiplesAxisScaleIndependent = "INDEPENDENT"
+)
+
+// SmallMultiplesAxisScale_Values returns all elements of the SmallMultiplesAxisScale enum
+func SmallMultiplesAxisScale_Values() []string {
+	return []string{
+		SmallMultiplesAxisScaleShared,
+		SmallMultiplesAxisScaleIndependent,
+	}
+}
+
+const (
 	// SortDirectionAsc is a SortDirection enum value
 	SortDirectionAsc = "ASC"
 
@@ -100390,6 +100617,26 @@ func SortDirection_Values() []string {
 	return []string{
 		SortDirectionAsc,
 		SortDirectionDesc,
+	}
+}
+
+const (
+	// SpecialValueEmpty is a SpecialValue enum value
+	SpecialValueEmpty = "EMPTY"
+
+	// SpecialValueNull is a SpecialValue enum value
+	SpecialValueNull = "NULL"
+
+	// SpecialValueOther is a SpecialValue enum value
+	SpecialValueOther = "OTHER"
+)
+
+// SpecialValue_Values returns all elements of the SpecialValue enum
+func SpecialValue_Values() []string {
+	return []string{
+		SpecialValueEmpty,
+		SpecialValueNull,
+		SpecialValueOther,
 	}
 }
 

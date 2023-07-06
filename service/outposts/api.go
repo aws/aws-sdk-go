@@ -4811,7 +4811,7 @@ type LineItem struct {
 	// The ID of the previous line item.
 	PreviousLineItemId *string `type:"string"`
 
-	// The ID of the previous order.
+	// The ID of the previous order item.
 	PreviousOrderId *string `min:"1" type:"string"`
 
 	// The quantity of the line item.
@@ -5768,7 +5768,7 @@ type Order struct {
 	// The submission date for the order.
 	OrderSubmissionDate *time.Time `type:"timestamp"`
 
-	// The type of order.
+	// Type of order.
 	OrderType *string `type:"string" enum:"OrderType"`
 
 	// The ID of the Outpost in the order.
@@ -7401,6 +7401,9 @@ const (
 
 	// AssetStateRetiring is a AssetState enum value
 	AssetStateRetiring = "RETIRING"
+
+	// AssetStateIsolated is a AssetState enum value
+	AssetStateIsolated = "ISOLATED"
 )
 
 // AssetState_Values returns all elements of the AssetState enum
@@ -7408,6 +7411,7 @@ func AssetState_Values() []string {
 	return []string{
 		AssetStateActive,
 		AssetStateRetiring,
+		AssetStateIsolated,
 	}
 }
 

@@ -719,7 +719,7 @@
       "refs": {
         "CancelOrderInput$OrderId": "<p> The ID of the order. </p>",
         "GetOrderInput$OrderId": "<p>The ID of the order.</p>",
-        "LineItem$PreviousOrderId": "<p>The ID of the previous order.</p>",
+        "LineItem$PreviousOrderId": "<p>The ID of the previous order item.</p>",
         "Order$OrderId": "<p>The ID of the order.</p>",
         "OrderSummary$OrderId": "<p> The ID of the order. </p>"
       }
@@ -746,8 +746,8 @@
     "OrderType": {
       "base": null,
       "refs": {
-        "Order$OrderType": "<p>The type of order.</p>",
-        "OrderSummary$OrderType": "<p>The type of order.</p>"
+        "Order$OrderType": "<p>Type of order.</p>",
+        "OrderSummary$OrderType": "<p> The type of order. </p>"
       }
     },
     "Outpost": {

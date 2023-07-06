@@ -1,3 +1,16 @@
+Release v1.44.297 (2023-07-06)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Add Nitro Enclaves support on DescribeInstanceTypes
+* `service/location`: Updates service API and documentation
+* `service/outposts`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service API and documentation
+  * This release includes below three changes: small multiples axes improvement, field based coloring, removed required trait from Aggregation function for TopBottomFilter.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for creating DB instances and creating Aurora global clusters.
+
 Release v1.44.296 (2023-07-05)
 ===
 
