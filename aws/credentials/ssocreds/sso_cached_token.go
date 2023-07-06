@@ -52,7 +52,9 @@ type cachedToken struct {
 	UnknownFields map[string]interface{} `json:"-"`
 }
 
-// MarshalJSON encode cachedToken know/unknown fields to json format
+// MarshalJSON provides custom marshalling because the standard library Go marshaller ignores unknown/unspecified fields
+// when marshalling from a struct: https://pkg.go.dev/encoding/json#Marshal
+// This function adds some extra validation to the known fields and captures unknown fields.
 func (t cachedToken) MarshalJSON() ([]byte, error) {
 	fields := map[string]interface{}{}
 
@@ -86,7 +88,9 @@ func setTokenFieldRFC3339(fields map[string]interface{}, key string, value *rfc3
 	fields[key] = value
 }
 
-// UnmarshalJSON decode cachedToken known/unknown fields from json format
+// UnmarshalJSON provides custom unmarshalling because the standard library Go unmarshaller ignores unknown/unspecified
+// fields when unmarshalling from a struct: https://pkg.go.dev/encoding/json#Unmarshal
+// This function adds some extra validation to the known fields and captures unknown fields.
 func (t *cachedToken) UnmarshalJSON(b []byte) error {
 	var fields map[string]interface{}
 	if err := json.Unmarshal(b, &fields); err != nil {
