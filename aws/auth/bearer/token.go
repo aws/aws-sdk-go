@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// Token provides a type wrapping a bearer token and expiration metadata.
 type Token struct {
 	Value string
 
@@ -13,7 +14,7 @@ type Token struct {
 }
 
 // Expired returns if the token's Expires time is before or equal to the time
-// provided. If CanExpires is false, Expired will always return false.
+// provided. If CanExpire is false, Expired will always return false.
 func (t Token) Expired(now time.Time) bool {
 	if !t.CanExpire {
 		return false

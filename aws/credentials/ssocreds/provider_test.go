@@ -26,10 +26,9 @@ type mockClient struct {
 	Output *sso.GetRoleCredentialsOutput
 	Err    error
 
-	ExpectedAccountID    string
-	ExpectedAccessToken  string
-	ExpectedRoleName     string
-	ExpectedClientRegion string
+	ExpectedAccountID   string
+	ExpectedAccessToken string
+	ExpectedRoleName    string
 
 	Response func(mockClient) (*sso.GetRoleCredentialsOutput, error)
 }
@@ -104,7 +103,6 @@ func TestProvider(t *testing.T) {
 	cases := map[string]struct {
 		Client              mockClient
 		AccountID           string
-		Region              string
 		RoleName            string
 		StartURL            string
 		CachedTokenFilePath string
@@ -120,10 +118,9 @@ func TestProvider(t *testing.T) {
 		},
 		"valid required parameter values": {
 			Client: mockClient{
-				ExpectedAccountID:    "012345678901",
-				ExpectedRoleName:     "TestRole",
-				ExpectedClientRegion: "us-west-2",
-				ExpectedAccessToken:  "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
+				ExpectedAccountID:   "012345678901",
+				ExpectedRoleName:    "TestRole",
+				ExpectedAccessToken: "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
 				Response: func(mock mockClient) (*sso.GetRoleCredentialsOutput, error) {
 					return &sso.GetRoleCredentialsOutput{
 						RoleCredentials: &sso.RoleCredentials{
@@ -136,7 +133,6 @@ func TestProvider(t *testing.T) {
 				},
 			},
 			AccountID: "012345678901",
-			Region:    "us-west-2",
 			RoleName:  "TestRole",
 			StartURL:  "https://valid-required-only",
 			ExpectedCredentials: credentials.Value{
@@ -165,9 +161,7 @@ func TestProvider(t *testing.T) {
 			},
 			CachedTokenFilePath: filepath.Join("testdata", "custom_cached_token.json"),
 			AccountID:           "012345678901",
-			Region:              "us-west-2",
 			RoleName:            "TestRole",
-			StartURL:            "ignored value",
 			ExpectedCredentials: credentials.Value{
 				AccessKeyID:     "AccessKey",
 				SecretAccessKey: "SecretKey",
@@ -200,7 +194,6 @@ func TestProvider(t *testing.T) {
 				},
 			},
 			AccountID: "012345678901",
-			Region:    "us-west-2",
 			RoleName:  "TestRole",
 			StartURL:  "ignored value",
 			ExpectedCredentials: credentials.Value{
@@ -217,10 +210,6 @@ func TestProvider(t *testing.T) {
 					return bearer.Token{}, fmt.Errorf("mock token provider return error")
 				},
 			},
-			AccountID:   "012345678901",
-			Region:      "us-west-2",
-			RoleName:    "TestRole",
-			StartURL:    "ignored value",
 			ExpectedErr: true,
 		},
 		"expired access token": {
@@ -229,16 +218,14 @@ func TestProvider(t *testing.T) {
 		},
 		"api error": {
 			Client: mockClient{
-				ExpectedAccountID:    "012345678901",
-				ExpectedRoleName:     "TestRole",
-				ExpectedClientRegion: "us-west-2",
-				ExpectedAccessToken:  "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
+				ExpectedAccountID:   "012345678901",
+				ExpectedRoleName:    "TestRole",
+				ExpectedAccessToken: "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
 				Response: func(mock mockClient) (*sso.GetRoleCredentialsOutput, error) {
 					return nil, fmt.Errorf("api error")
 				},
 			},
 			AccountID:   "012345678901",
-			Region:      "us-west-2",
 			RoleName:    "TestRole",
 			StartURL:    "https://valid-required-only",
 			ExpectedErr: true,

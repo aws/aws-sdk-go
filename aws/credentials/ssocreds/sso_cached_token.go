@@ -52,6 +52,7 @@ type cachedToken struct {
 	UnknownFields map[string]interface{} `json:"-"`
 }
 
+// MarshalJSON encode cachedToken know/unknown fields to json format
 func (t cachedToken) MarshalJSON() ([]byte, error) {
 	fields := map[string]interface{}{}
 
@@ -85,6 +86,7 @@ func setTokenFieldRFC3339(fields map[string]interface{}, key string, value *rfc3
 	fields[key] = value
 }
 
+// UnmarshalJSON decode cachedToken known/unknown fields from json format
 func (t *cachedToken) UnmarshalJSON(b []byte) error {
 	var fields map[string]interface{}
 	if err := json.Unmarshal(b, &fields); err != nil {
@@ -199,6 +201,7 @@ func writeCacheFile(filename string, fileMode os.FileMode, t cachedToken) (err e
 
 type rfc3339 time.Time
 
+// UnmarshalJSON decode rfc3339 from JSON format
 func (r *rfc3339) UnmarshalJSON(bytes []byte) error {
 	var value string
 	var err error
@@ -220,6 +223,7 @@ func parseRFC3339(v string) (rfc3339, error) {
 	return rfc3339(parsed), nil
 }
 
+// MarshalJSON encode rfc3339 to JSON format time
 func (r *rfc3339) MarshalJSON() ([]byte, error) {
 	value := time.Time(*r).Format(time.RFC3339)
 
