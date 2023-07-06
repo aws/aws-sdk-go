@@ -1532,6 +1532,11 @@
         "DepartureTime":{"shape":"Timestamp"},
         "DestinationPositions":{"shape":"CalculateRouteMatrixRequestDestinationPositionsList"},
         "DistanceUnit":{"shape":"DistanceUnit"},
+        "Key":{
+          "shape":"ApiKey",
+          "location":"querystring",
+          "locationName":"key"
+        },
         "TravelMode":{"shape":"TravelMode"},
         "TruckModeOptions":{"shape":"CalculateRouteTruckModeOptions"}
       }
@@ -1620,6 +1625,11 @@
         "DestinationPosition":{"shape":"Position"},
         "DistanceUnit":{"shape":"DistanceUnit"},
         "IncludeLegGeometry":{"shape":"Boolean"},
+        "Key":{
+          "shape":"ApiKey",
+          "location":"querystring",
+          "locationName":"key"
+        },
         "TravelMode":{"shape":"TravelMode"},
         "TruckModeOptions":{"shape":"CalculateRouteTruckModeOptions"},
         "WaypointPositions":{"shape":"CalculateRouteRequestWaypointPositionsList"}
@@ -1889,6 +1899,7 @@
       "required":["TrackerName"],
       "members":{
         "Description":{"shape":"ResourceDescription"},
+        "EventBridgeEnabled":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{
@@ -2229,6 +2240,7 @@
       "members":{
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "EventBridgeEnabled":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{
@@ -2657,6 +2669,11 @@
           "shape":"ResourceName",
           "location":"uri",
           "locationName":"IndexName"
+        },
+        "Key":{
+          "shape":"ApiKey",
+          "location":"querystring",
+          "locationName":"key"
         },
         "Language":{
           "shape":"LanguageTag",
@@ -3509,6 +3526,11 @@
           "location":"uri",
           "locationName":"IndexName"
         },
+        "Key":{
+          "shape":"ApiKey",
+          "location":"querystring",
+          "locationName":"key"
+        },
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"PlaceIndexSearchResultLimit"},
         "Position":{"shape":"Position"}
@@ -3553,6 +3575,11 @@
           "shape":"ResourceName",
           "location":"uri",
           "locationName":"IndexName"
+        },
+        "Key":{
+          "shape":"ApiKey",
+          "location":"querystring",
+          "locationName":"key"
         },
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"SearchPlaceIndexForSuggestionsRequestMaxResultsInteger"},
@@ -3614,6 +3641,11 @@
           "shape":"ResourceName",
           "location":"uri",
           "locationName":"IndexName"
+        },
+        "Key":{
+          "shape":"ApiKey",
+          "location":"querystring",
+          "locationName":"key"
         },
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"PlaceIndexSearchResultLimit"},
@@ -4026,6 +4058,7 @@
       "required":["TrackerName"],
       "members":{
         "Description":{"shape":"ResourceDescription"},
+        "EventBridgeEnabled":{"shape":"Boolean"},
         "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{
           "shape":"PricingPlan",

@@ -3020,7 +3020,7 @@ func (c *RDS) CreateGlobalClusterRequest(input *CreateGlobalClusterInput) (req *
 // Aurora cluster during the create operation, and this cluster becomes the
 // primary cluster of the global database.
 //
-// This action applies only to Aurora DB clusters.
+// This operation applies only to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20935,16 +20935,6 @@ type CreateDBInstanceInput struct {
 	//
 	// Amazon RDS Custom
 	//
-	// RDS for MariaDB
-	//
-	// RDS for MySQL
-	//
-	// RDS for Oracle
-	//
-	// RDS for PostgreSQL
-	//
-	// RDS for SQL Server
-	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
 	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 40
@@ -20953,14 +20943,7 @@ type CreateDBInstanceInput struct {
 	//    * Provisioned IOPS storage (io1): Must be an integer from 40 to 65536
 	//    for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
 	//
-	// Constraints to the amount of storage for each storage type are the following:
-	//
-	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
-	//    to 65536.
-	//
-	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
-	//
-	//    * Magnetic storage (standard): Must be an integer from 5 to 3072.
+	// RDS for MariaDB
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
@@ -20970,6 +20953,19 @@ type CreateDBInstanceInput struct {
 	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
 	//
 	//    * Magnetic storage (standard): Must be an integer from 5 to 3072.
+	//
+	// RDS for MySQL
+	//
+	// Constraints to the amount of storage for each storage type are the following:
+	//
+	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
+	//    to 65536.
+	//
+	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
+	//
+	//    * Magnetic storage (standard): Must be an integer from 5 to 3072.
+	//
+	// RDS for Oracle
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
@@ -20980,6 +20976,8 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Magnetic storage (standard): Must be an integer from 10 to 3072.
 	//
+	// RDS for PostgreSQL
+	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
 	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
@@ -20988,6 +20986,8 @@ type CreateDBInstanceInput struct {
 	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
 	//
 	//    * Magnetic storage (standard): Must be an integer from 5 to 3072.
+	//
+	// RDS for SQL Server
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
@@ -21091,7 +21091,7 @@ type CreateDBInstanceInput struct {
 	//    change it on the database itself.
 	CharacterSetName *string `type:"string"`
 
-	// Spcifies whether to copy tags from the DB instance to snapshots of the DB
+	// Specifies whether to copy tags from the DB instance to snapshots of the DB
 	// instance. By default, tags are not copied.
 	//
 	// This setting doesn't apply to Amazon Aurora DB instances. Copying tags to
@@ -21154,22 +21154,6 @@ type CreateDBInstanceInput struct {
 	//
 	// Amazon Aurora MySQL
 	//
-	// Amazon Aurora PostgreSQL
-	//
-	// Amazon RDS Custom for Oracle
-	//
-	// Amazon RDS Custom for SQL Server
-	//
-	// RDS for MariaDB
-	//
-	// RDS for MySQL
-	//
-	// RDS for Oracle
-	//
-	// RDS for PostgreSQL
-	//
-	// RDS for SQL Server
-	//
 	// The name of the database to create when the primary DB instance of the Aurora
 	// MySQL DB cluster is created. If you don't specify a value, Amazon RDS doesn't
 	// create a database in the DB cluster.
@@ -21179,6 +21163,8 @@ type CreateDBInstanceInput struct {
 	//    * Must contain 1 to 64 alphanumeric characters.
 	//
 	//    * Can't be a word reserved by the database engine.
+	//
+	// Amazon Aurora PostgreSQL
 	//
 	// The name of the database to create when the primary DB instance of the Aurora
 	// PostgreSQL DB cluster is created.
@@ -21194,6 +21180,8 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Can't be a word reserved by the database engine.
 	//
+	// Amazon RDS Custom for Oracle
+	//
 	// The Oracle System ID (SID) of the created RDS Custom DB instance.
 	//
 	// Default: ORCL
@@ -21206,19 +21194,11 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Can't be a word reserved by the database engine.
 	//
+	// Amazon RDS Custom for SQL Server
+	//
 	// Not applicable. Must be null.
 	//
-	// The name of the database to create when the DB instance is created. If you
-	// don't specify a value, Amazon RDS doesn't create a database in the DB instance.
-	//
-	// Constraints:
-	//
-	//    * Must contain 1 to 64 letters or numbers.
-	//
-	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
-	//    or digits (0-9).
-	//
-	//    * Can't be a word reserved by the database engine.
+	// RDS for MariaDB
 	//
 	// The name of the database to create when the DB instance is created. If you
 	// don't specify a value, Amazon RDS doesn't create a database in the DB instance.
@@ -21231,6 +21211,22 @@ type CreateDBInstanceInput struct {
 	//    or digits (0-9).
 	//
 	//    * Can't be a word reserved by the database engine.
+	//
+	// RDS for MySQL
+	//
+	// The name of the database to create when the DB instance is created. If you
+	// don't specify a value, Amazon RDS doesn't create a database in the DB instance.
+	//
+	// Constraints:
+	//
+	//    * Must contain 1 to 64 letters or numbers.
+	//
+	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
+	//    or digits (0-9).
+	//
+	//    * Can't be a word reserved by the database engine.
+	//
+	// RDS for Oracle
 	//
 	// The Oracle System ID (SID) of the created DB instance.
 	//
@@ -21242,6 +21238,8 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Can't be a word reserved by the database engine, such as the string
 	//    NULL.
+	//
+	// RDS for PostgreSQL
 	//
 	// The name of the database to create when the DB instance is created.
 	//
@@ -21255,6 +21253,8 @@ type CreateDBInstanceInput struct {
 	//    or digits (0-9).
 	//
 	//    * Can't be a word reserved by the database engine.
+	//
+	// RDS for SQL Server
 	//
 	// Not applicable. Must be null.
 	DBName *string `type:"string"`
@@ -21316,8 +21316,8 @@ type CreateDBInstanceInput struct {
 	//    * RDS Custom
 	Domain *string `type:"string"`
 
-	// The ARN for the Secrets Manager secret that contains the credentials for
-	// the user performing the domain join.
+	// The ARN for the Secrets Manager secret with the credentials for the user
+	// joining the domain.
 	//
 	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
 	DomainAuthSecretArn *string `type:"string"`
@@ -21334,11 +21334,11 @@ type CreateDBInstanceInput struct {
 	// Example: 123.124.125.126,234.235.236.237
 	DomainDnsIps []*string `type:"list"`
 
-	// Specifies the fully qualified domain name of an Active Directory domain.
+	// The fully qualified domain name (FQDN) of an Active Directory domain.
 	//
 	// Constraints:
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: mymanagedADtest.mymanagedAD.mydomain
 	DomainFqdn *string `type:"string"`
@@ -21358,7 +21358,7 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Must be in the distinguished name format.
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
 	DomainOu *string `type:"string"`
@@ -21484,38 +21484,38 @@ type CreateDBInstanceInput struct {
 	//
 	// Amazon RDS Custom for Oracle
 	//
-	// Amazon RDS Custom for SQL Server
-	//
-	// RDS for MariaDB
-	//
-	// RDS for Microsoft SQL Server
-	//
-	// RDS for MySQL
-	//
-	// RDS for Oracle
-	//
-	// RDS for PostgreSQL
-	//
 	// A custom engine version (CEV) that you have previously created. This setting
 	// is required for RDS Custom for Oracle. The CEV name has the following format:
 	// 19.customized_string. A valid CEV name is 19.my_cev1. For more information,
 	// see Creating an RDS Custom for Oracle DB instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-creating.html#custom-creating.create)
 	// in the Amazon RDS User Guide.
 	//
+	// Amazon RDS Custom for SQL Server
+	//
 	// See RDS Custom for SQL Server general requirements (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits-MS.html)
 	// in the Amazon RDS User Guide.
+	//
+	// RDS for MariaDB
 	//
 	// For information, see MariaDB on Amazon RDS versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html#MariaDB.Concepts.VersionMgmt)
 	// in the Amazon RDS User Guide.
 	//
+	// RDS for Microsoft SQL Server
+	//
 	// For information, see Microsoft SQL Server versions on Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport)
 	// in the Amazon RDS User Guide.
+	//
+	// RDS for MySQL
 	//
 	// For information, see MySQL on Amazon RDS versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
 	// in the Amazon RDS User Guide.
 	//
+	// RDS for Oracle
+	//
 	// For information, see Oracle Database Engine release notes (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.Oracle.PatchComposition.html)
 	// in the Amazon RDS User Guide.
+	//
+	// RDS for PostgreSQL
 	//
 	// For information, see Amazon RDS for PostgreSQL versions and extensions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
 	// in the Amazon RDS User Guide.
@@ -22484,8 +22484,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
-	// The ARN for the Secrets Manager secret that contains the credentials for
-	// the user performing the domain join.
+	// The ARN for the Secrets Manager secret with the credentials for the user
+	// joining the domain.
 	//
 	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
 	DomainAuthSecretArn *string `type:"string"`
@@ -22502,11 +22502,11 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Example: 123.124.125.126,234.235.236.237
 	DomainDnsIps []*string `type:"list"`
 
-	// Specifies the fully qualified domain name of an Active Directory domain.
+	// The fully qualified domain name (FQDN) of an Active Directory domain.
 	//
 	// Constraints:
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: mymanagedADtest.mymanagedAD.mydomain
 	DomainFqdn *string `type:"string"`
@@ -22523,7 +22523,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	//    * Must be in the distinguished name format.
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
 	DomainOu *string `type:"string"`
@@ -24301,30 +24301,66 @@ func (s *CreateEventSubscriptionOutput) SetEventSubscription(v *EventSubscriptio
 type CreateGlobalClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name for your database of up to 64 alphanumeric characters. If you do
-	// not provide a name, Amazon Aurora will not create a database in the global
-	// database cluster you are creating.
+	// The name for your database of up to 64 alphanumeric characters. If you don't
+	// specify a name, Amazon Aurora doesn't create a database in the global database
+	// cluster.
+	//
+	// Constraints:
+	//
+	//    * Can't be specified if SourceDBClusterIdentifier is specified. In this
+	//    case, Amazon Aurora uses the database name from the source DB cluster.
 	DatabaseName *string `type:"string"`
 
-	// The deletion protection setting for the new global database. The global database
-	// can't be deleted when deletion protection is enabled.
+	// Specifies whether to enable deletion protection for the new global database
+	// cluster. The global database can't be deleted when deletion protection is
+	// enabled.
 	DeletionProtection *bool `type:"boolean"`
 
-	// The name of the database engine to be used for this DB cluster.
+	// The database engine to use for this global database cluster.
+	//
+	// Valid Values: aurora-mysql | aurora-postgresql
+	//
+	// Constraints:
+	//
+	//    * Can't be specified if SourceDBClusterIdentifier is specified. In this
+	//    case, Amazon Aurora uses the engine of the source DB cluster.
 	Engine *string `type:"string"`
 
-	// The engine version of the Aurora global database.
+	// The engine version to use for this global database cluster.
+	//
+	// Constraints:
+	//
+	//    * Can't be specified if SourceDBClusterIdentifier is specified. In this
+	//    case, Amazon Aurora uses the engine version of the source DB cluster.
 	EngineVersion *string `type:"string"`
 
-	// The cluster identifier of the new global database cluster. This parameter
-	// is stored as a lowercase string.
+	// The cluster identifier for this global database cluster. This parameter is
+	// stored as a lowercase string.
 	GlobalClusterIdentifier *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) to use as the primary cluster of the global
-	// database. This parameter is optional.
+	// database.
+	//
+	// If you provide a value for this parameter, don't specify values for the following
+	// settings because Amazon Aurora uses the values from the specified source
+	// DB cluster:
+	//
+	//    * DatabaseName
+	//
+	//    * Engine
+	//
+	//    * EngineVersion
+	//
+	//    * StorageEncrypted
 	SourceDBClusterIdentifier *string `type:"string"`
 
-	// The storage encryption setting for the new global database cluster.
+	// Specifies whether to enable storage encryption for the new global database
+	// cluster.
+	//
+	// Constraints:
+	//
+	//    * Can't be specified if SourceDBClusterIdentifier is specified. In this
+	//    case, Amazon Aurora uses the setting from the source DB cluster.
 	StorageEncrypted *bool `type:"boolean"`
 }
 
@@ -37421,12 +37457,12 @@ func (s *DescribeValidDBInstanceModificationsOutput) SetValidDBInstanceModificat
 type DomainMembership struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN for the Secrets Manager secret that contains the credentials for
-	// the user performing the domain join.
+	// The ARN for the Secrets Manager secret with the credentials for the user
+	// that's a member of the domain.
 	AuthSecretArn *string `type:"string"`
 
-	// The IPv4 DNS IP addresses of your primary and secondary Active Directory
-	// domain controllers.
+	// The IPv4 DNS IP addresses of the primary and secondary Active Directory domain
+	// controllers.
 	DnsIps []*string `type:"list"`
 
 	// The identifier of the Active Directory Domain.
@@ -37435,11 +37471,10 @@ type DomainMembership struct {
 	// The fully qualified domain name (FQDN) of the Active Directory Domain.
 	FQDN *string `type:"string"`
 
-	// The name of the IAM role to be used when making API calls to the Directory
-	// Service.
+	// The name of the IAM role used when making API calls to the Directory Service.
 	IAMRoleName *string `type:"string"`
 
-	// The Active Directory organizational unit for your DB instance to join.
+	// The Active Directory organizational unit for the DB instance or cluster.
 	OU *string `type:"string"`
 
 	// The status of the Active Directory Domain membership for the DB instance
@@ -41527,7 +41562,7 @@ type ModifyDBInstanceInput struct {
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
 
-	// Boolean. If present, removes the instance from the Active Directory domain.
+	// Specifies whether to remove the DB instance from the Active Directory domain.
 	DisableDomain *bool `type:"boolean"`
 
 	// The Active Directory directory ID to move the DB instance to. Specify none
@@ -41541,8 +41576,8 @@ type ModifyDBInstanceInput struct {
 	// This setting doesn't apply to RDS Custom DB instances.
 	Domain *string `type:"string"`
 
-	// The ARN for the Secrets Manager secret that contains the credentials for
-	// the user performing the domain join.
+	// The ARN for the Secrets Manager secret with the credentials for the user
+	// joining the domain.
 	//
 	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
 	DomainAuthSecretArn *string `type:"string"`
@@ -41559,11 +41594,11 @@ type ModifyDBInstanceInput struct {
 	// Example: 123.124.125.126,234.235.236.237
 	DomainDnsIps []*string `type:"list"`
 
-	// Specifies the fully qualified domain name of an Active Directory domain.
+	// The fully qualified domain name (FQDN) of an Active Directory domain.
 	//
 	// Constraints:
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: mymanagedADtest.mymanagedAD.mydomain
 	DomainFqdn *string `type:"string"`
@@ -41579,7 +41614,7 @@ type ModifyDBInstanceInput struct {
 	//
 	//    * Must be in the distinguished name format.
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
 	DomainOu *string `type:"string"`
@@ -49234,8 +49269,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
-	// The ARN for the Secrets Manager secret that contains the credentials for
-	// the user performing the domain join.
+	// The ARN for the Secrets Manager secret with the credentials for the user
+	// joining the domain.
 	//
 	// Constraints:
 	//
@@ -49254,19 +49289,18 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Example: 123.124.125.126,234.235.236.237
 	DomainDnsIps []*string `type:"list"`
 
-	// Specifies the fully qualified domain name of an Active Directory domain.
+	// The fully qualified domain name (FQDN) of an Active Directory domain.
 	//
 	// Constraints:
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: mymanagedADtest.mymanagedAD.mydomain
 	DomainFqdn *string `type:"string"`
 
-	// Specify the name of the IAM role to be used when making API calls to the
-	// Directory Service.
+	// The name of the IAM role to use when making API calls to the Directory Service.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	DomainIAMRoleName *string `type:"string"`
 
 	// The Active Directory organizational unit for your DB instance to join.
@@ -49275,7 +49309,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	//    * Must be in the distinguished name format.
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
 	DomainOu *string `type:"string"`
@@ -50700,12 +50734,12 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// in the Amazon RDS User Guide.
 	Domain *string `type:"string"`
 
-	// The ARN for the Secrets Manager secret that contains the credentials for
-	// the user performing the domain join.
+	// The ARN for the Secrets Manager secret with the credentials for the user
+	// joining the domain.
 	//
 	// Constraints:
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
 	DomainAuthSecretArn *string `type:"string"`
@@ -50722,19 +50756,18 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Example: 123.124.125.126,234.235.236.237
 	DomainDnsIps []*string `type:"list"`
 
-	// Specifies the fully qualified domain name of an Active Directory domain.
+	// The fully qualified domain name (FQDN) of an Active Directory domain.
 	//
 	// Constraints:
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: mymanagedADtest.mymanagedAD.mydomain
 	DomainFqdn *string `type:"string"`
 
-	// Specify the name of the IAM role to be used when making API calls to the
-	// Directory Service.
+	// The name of the IAM role to use when making API calls to the Directory Service.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	DomainIAMRoleName *string `type:"string"`
 
 	// The Active Directory organizational unit for your DB instance to join.
@@ -50743,7 +50776,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	//    * Must be in the distinguished name format.
 	//
-	//    * Cannot be greater than 64 characters.
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
 	DomainOu *string `type:"string"`
