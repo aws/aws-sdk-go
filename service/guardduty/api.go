@@ -5122,9 +5122,9 @@ func (c *GuardDuty) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // ListTagsForResource API operation for Amazon GuardDuty.
 //
 // Lists tags for a resource. Tagging is currently supported for detectors,
-// finding filters, IP sets, and threat intel sets, with a limit of 50 tags
-// per resource. When invoked, this operation returns all assigned tags for
-// a given resource.
+// finding filters, IP sets, threat intel sets, publishing destination, with
+// a limit of 50 tags per resource. When invoked, this operation returns all
+// assigned tags for a given resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15501,6 +15501,10 @@ type KubernetesUserDetails struct {
 	// The groups that include the user who called the Kubernetes API.
 	Groups []*string `locationName:"groups" type:"list"`
 
+	// Entity that assumes the IAM role when Kubernetes RBAC permissions are assigned
+	// to that role.
+	SessionName []*string `locationName:"sessionName" type:"list"`
+
 	// The user ID of the user who called the Kubernetes API.
 	Uid *string `locationName:"uid" type:"string"`
 
@@ -15529,6 +15533,12 @@ func (s KubernetesUserDetails) GoString() string {
 // SetGroups sets the Groups field's value.
 func (s *KubernetesUserDetails) SetGroups(v []*string) *KubernetesUserDetails {
 	s.Groups = v
+	return s
+}
+
+// SetSessionName sets the SessionName field's value.
+func (s *KubernetesUserDetails) SetSessionName(v []*string) *KubernetesUserDetails {
+	s.SessionName = v
 	return s
 }
 

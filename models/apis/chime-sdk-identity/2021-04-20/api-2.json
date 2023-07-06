@@ -658,8 +658,8 @@
     "AppInstanceUserEndpoint":{
       "type":"structure",
       "members":{
-        "AppInstanceUserArn":{"shape":"SensitiveChimeArn"},
-        "EndpointId":{"shape":"SensitiveString64"},
+        "AppInstanceUserArn":{"shape":"ChimeArn"},
+        "EndpointId":{"shape":"String64"},
         "Name":{"shape":"SensitiveString1600"},
         "Type":{"shape":"AppInstanceUserEndpointType"},
         "ResourceArn":{"shape":"ChimeArn"},
@@ -673,8 +673,8 @@
     "AppInstanceUserEndpointSummary":{
       "type":"structure",
       "members":{
-        "AppInstanceUserArn":{"shape":"SensitiveChimeArn"},
-        "EndpointId":{"shape":"SensitiveString64"},
+        "AppInstanceUserArn":{"shape":"ChimeArn"},
+        "EndpointId":{"shape":"String64"},
         "Name":{"shape":"SensitiveString1600"},
         "Type":{"shape":"AppInstanceUserEndpointType"},
         "AllowMessages":{"shape":"AllowMessages"},
@@ -904,12 +904,12 @@
       ],
       "members":{
         "AppInstanceUserArn":{
-          "shape":"SensitiveChimeArn",
+          "shape":"ChimeArn",
           "location":"uri",
           "locationName":"appInstanceUserArn"
         },
         "EndpointId":{
-          "shape":"SensitiveString64",
+          "shape":"String64",
           "location":"uri",
           "locationName":"endpointId"
         }
@@ -982,12 +982,12 @@
       ],
       "members":{
         "AppInstanceUserArn":{
-          "shape":"SensitiveString1600",
+          "shape":"String1600",
           "location":"uri",
           "locationName":"appInstanceUserArn"
         },
         "EndpointId":{
-          "shape":"SensitiveString64",
+          "shape":"String64",
           "location":"uri",
           "locationName":"endpointId"
         }
@@ -1120,6 +1120,17 @@
         "Name":{"shape":"ResourceName"}
       }
     },
+    "InvokedBy":{
+      "type":"structure",
+      "required":[
+        "StandardMessages",
+        "TargetedMessages"
+      ],
+      "members":{
+        "StandardMessages":{"shape":"StandardMessages"},
+        "TargetedMessages":{"shape":"TargetedMessages"}
+      }
+    },
     "LexBotAliasArn":{
       "type":"string",
       "max":2048,
@@ -1129,12 +1140,12 @@
     "LexConfiguration":{
       "type":"structure",
       "required":[
-        "RespondsTo",
         "LexBotAliasArn",
         "LocaleId"
       ],
       "members":{
         "RespondsTo":{"shape":"RespondsTo"},
+        "InvokedBy":{"shape":"InvokedBy"},
         "LexBotAliasArn":{"shape":"LexBotAliasArn"},
         "LocaleId":{"shape":"String"},
         "WelcomeIntent":{"shape":"LexIntentName"}
@@ -1412,8 +1423,8 @@
     "RegisterAppInstanceUserEndpointResponse":{
       "type":"structure",
       "members":{
-        "AppInstanceUserArn":{"shape":"SensitiveChimeArn"},
-        "EndpointId":{"shape":"SensitiveString64"}
+        "AppInstanceUserArn":{"shape":"ChimeArn"},
+        "EndpointId":{"shape":"String64"}
       }
     },
     "ResourceLimitExceededException":{
@@ -1455,13 +1466,6 @@
       "pattern":".*",
       "sensitive":true
     },
-    "SensitiveString64":{
-      "type":"string",
-      "max":64,
-      "min":0,
-      "pattern":".*",
-      "sensitive":true
-    },
     "ServiceFailureException":{
       "type":"structure",
       "members":{
@@ -1482,7 +1486,28 @@
       "exception":true,
       "fault":true
     },
+    "StandardMessages":{
+      "type":"string",
+      "enum":[
+        "AUTO",
+        "ALL",
+        "MENTIONS",
+        "NONE"
+      ]
+    },
     "String":{"type":"string"},
+    "String1600":{
+      "type":"string",
+      "max":1600,
+      "min":0,
+      "pattern":".*"
+    },
+    "String64":{
+      "type":"string",
+      "max":64,
+      "min":0,
+      "pattern":".*"
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -1529,6 +1554,13 @@
       "min":1,
       "sensitive":true
     },
+    "TargetedMessages":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "NONE"
+      ]
+    },
     "ThrottledClientException":{
       "type":"structure",
       "members":{
@@ -1573,7 +1605,8 @@
           "locationName":"appInstanceBotArn"
         },
         "Name":{"shape":"ResourceName"},
-        "Metadata":{"shape":"Metadata"}
+        "Metadata":{"shape":"Metadata"},
+        "Configuration":{"shape":"Configuration"}
       }
     },
     "UpdateAppInstanceBotResponse":{
@@ -1613,12 +1646,12 @@
       ],
       "members":{
         "AppInstanceUserArn":{
-          "shape":"SensitiveChimeArn",
+          "shape":"ChimeArn",
           "location":"uri",
           "locationName":"appInstanceUserArn"
         },
         "EndpointId":{
-          "shape":"SensitiveString64",
+          "shape":"String64",
           "location":"uri",
           "locationName":"endpointId"
         },
@@ -1629,8 +1662,8 @@
     "UpdateAppInstanceUserEndpointResponse":{
       "type":"structure",
       "members":{
-        "AppInstanceUserArn":{"shape":"SensitiveChimeArn"},
-        "EndpointId":{"shape":"SensitiveString64"}
+        "AppInstanceUserArn":{"shape":"ChimeArn"},
+        "EndpointId":{"shape":"String64"}
       }
     },
     "UpdateAppInstanceUserRequest":{

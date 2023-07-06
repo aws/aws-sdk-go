@@ -4,12 +4,15 @@
   "operations": {
     "AssociateMember": "<p>Associates an Amazon Web Services account with an Amazon Inspector delegated administrator. An HTTP 200 response indicates the association was successfully started, but doesn’t indicate whether it was completed. You can check if the association completed by using <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_ListMembers.html\">ListMembers</a> for multiple accounts or <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_GetMember.html\">GetMembers</a> for a single account.</p>",
     "BatchGetAccountStatus": "<p>Retrieves the Amazon Inspector status of multiple Amazon Web Services accounts within your environment.</p>",
+    "BatchGetCodeSnippet": "<p>Retrieves code snippets from findings that Amazon Inspector detected code vulnerabilities in.</p>",
     "BatchGetFreeTrialInfo": "<p>Gets free trial status for multiple Amazon Web Services accounts.</p>",
     "BatchGetMemberEc2DeepInspectionStatus": "<p>Retrieves Amazon Inspector deep inspection activation status of multiple member accounts within your organization. You must be the delegated administrator of an organization in Amazon Inspector to use this API.</p>",
     "BatchUpdateMemberEc2DeepInspectionStatus": "<p>Activates or deactivates Amazon Inspector deep inspection for the provided member accounts in your organization. You must be the delegated administrator of an organization in Amazon Inspector to use this API.</p>",
     "CancelFindingsReport": "<p>Cancels the given findings report.</p>",
+    "CancelSbomExport": "<p>Cancels a software bill of materials (SBOM) report.</p>",
     "CreateFilter": "<p>Creates a filter resource using specified filter criteria.</p>",
     "CreateFindingsReport": "<p>Creates a finding report. By default only <code>ACTIVE</code> findings are returned in the report. To see <code>SUPRESSED</code> or <code>CLOSED</code> findings you must specify a value for the <code>findingStatus</code> filter criteria. </p>",
+    "CreateSbomExport": "<p>Creates a software bill of materials (SBOM) report.</p>",
     "DeleteFilter": "<p>Deletes a filter resource.</p>",
     "DescribeOrganizationConfiguration": "<p>Describe Amazon Inspector configuration settings for an Amazon Web Services organization.</p>",
     "Disable": "<p>Disables Amazon Inspector scans for one or more Amazon Web Services accounts. Disabling all scan types in an account disables the Amazon Inspector service.</p>",
@@ -20,8 +23,10 @@
     "GetConfiguration": "<p>Retrieves setting configurations for Inspector scans.</p>",
     "GetDelegatedAdminAccount": "<p>Retrieves information about the Amazon Inspector delegated administrator for your organization.</p>",
     "GetEc2DeepInspectionConfiguration": "<p>Retrieves the activation status of Amazon Inspector deep inspection and custom paths associated with your account. </p>",
+    "GetEncryptionKey": "<p>Gets an encryption key.</p>",
     "GetFindingsReportStatus": "<p>Gets the status of a findings report.</p>",
     "GetMember": "<p>Gets member information for your organization.</p>",
+    "GetSbomExport": "<p>Gets details of a software bill of materials (SBOM) report.</p>",
     "ListAccountPermissions": "<p>Lists the permissions an account has to configure Amazon Inspector.</p>",
     "ListCoverage": "<p>Lists coverage details for you environment.</p>",
     "ListCoverageStatistics": "<p>Lists Amazon Inspector coverage statistics for your environment.</p>",
@@ -32,11 +37,13 @@
     "ListMembers": "<p>List members associated with the Amazon Inspector delegated administrator for your organization.</p>",
     "ListTagsForResource": "<p>Lists all tags attached to a given resource.</p>",
     "ListUsageTotals": "<p>Lists the Amazon Inspector usage totals over the last 30 days.</p>",
+    "ResetEncryptionKey": "<p>Resets an encryption key. After the key is reset your resources will be encrypted by an Amazon Web Services owned key.</p>",
     "SearchVulnerabilities": "<p>Lists Amazon Inspector coverage details for a specific vulnerability.</p>",
     "TagResource": "<p>Adds tags to a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateConfiguration": "<p>Updates setting configurations for your Amazon Inspector account. When you use this API as an Amazon Inspector delegated administrator this updates the setting for all accounts you manage. Member accounts in an organization cannot update this setting.</p>",
     "UpdateEc2DeepInspectionConfiguration": "<p>Activates, deactivates Amazon Inspector deep inspection, or updates custom paths for your account. </p>",
+    "UpdateEncryptionKey": "<p>Updates an encryption key. A <code>ResourceNotFoundException</code> means that an AWS owned key is being used for encryption.</p>",
     "UpdateFilter": "<p>Specifies the action that is to be applied to the findings that match the filter.</p>",
     "UpdateOrgEc2DeepInspectionConfiguration": "<p>Updates the Amazon Inspector deep inspection custom paths for your organization. You must be an Amazon Inspector delegated administrator to use this API.</p>",
     "UpdateOrganizationConfiguration": "<p>Updates the configurations for your Amazon Inspector organization.</p>"
@@ -146,7 +153,8 @@
       "base": null,
       "refs": {
         "AccountAggregation$findingType": "<p>The type of finding.</p>",
-        "FindingTypeAggregation$findingType": "<p>The finding type to aggregate.</p>"
+        "FindingTypeAggregation$findingType": "<p>The finding type to aggregate.</p>",
+        "TitleAggregation$findingType": "<p>The type of finding to aggregate on.</p>"
       }
     },
     "AggregationRequest": {
@@ -303,6 +311,22 @@
       "refs": {
       }
     },
+    "BatchGetCodeSnippetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetCodeSnippetRequestFindingArnsList": {
+      "base": null,
+      "refs": {
+        "BatchGetCodeSnippetRequest$findingArns": "<p>An array of finding ARNs for the findings you want to retrieve code snippets from.</p>"
+      }
+    },
+    "BatchGetCodeSnippetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BatchGetFreeTrialInfoRequest": {
       "base": null,
       "refs": {
@@ -345,6 +369,7 @@
         "AutoEnable$ec2": "<p>Represents whether Amazon EC2 scans are automatically enabled for new members of your Amazon Inspector organization.</p>",
         "AutoEnable$ecr": "<p>Represents whether Amazon ECR scans are automatically enabled for new members of your Amazon Inspector organization.</p>",
         "AutoEnable$lambda": "<p>Represents whether AWS Lambda standard scans are automatically enabled for new members of your Amazon Inspector organization. </p>",
+        "AutoEnable$lambdaCode": "<p>Represents whether AWS Lambda code scans are automatically enabled for new members of your Amazon Inspector organization. <pre><code> &lt;/p&gt; </code></pre>",
         "DescribeOrganizationConfigurationResponse$maxAccountLimitReached": "<p>Represents whether your organization has reached the maximum Amazon Web Services account limit for Amazon Inspector.</p>",
         "ListMembersRequest$onlyAssociated": "<p>Specifies whether to list only currently associated members if <code>True</code> or to list all members within the organization if <code>False</code>.</p>",
         "MemberAccountEc2DeepInspectionStatus$activateDeepInspection": "<p>Whether Amazon Inspector deep inspection is active in the account. If <code>TRUE</code> Amazon Inspector deep inspection is active, if <code>FALSE</code> it is not active.</p>",
@@ -357,6 +382,16 @@
       }
     },
     "CancelFindingsReportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelSbomExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelSbomExportResponse": {
       "base": null,
       "refs": {
       }
@@ -390,6 +425,66 @@
       "refs": {
         "EnableDelegatedAdminAccountRequest$clientToken": "<p>The idempotency token for the request.</p>",
         "EnableRequest$clientToken": "<p>The idempotency token for the request.</p>"
+      }
+    },
+    "CodeFilePath": {
+      "base": "<p>Contains information on where a code vulnerability is located in your Lambda function.</p>",
+      "refs": {
+        "CodeVulnerabilityDetails$filePath": "<p>Contains information on where the code vulnerability is located in your code.</p>"
+      }
+    },
+    "CodeLine": {
+      "base": "<p>Contains information on the lines of code associated with a code snippet.</p>",
+      "refs": {
+        "CodeLineList$member": null
+      }
+    },
+    "CodeLineContentString": {
+      "base": null,
+      "refs": {
+        "CodeLine$content": "<p>The content of a line of code</p>"
+      }
+    },
+    "CodeLineList": {
+      "base": null,
+      "refs": {
+        "CodeSnippetResult$codeSnippet": "<p>Contains information on the retrieved code snippet.</p>"
+      }
+    },
+    "CodeSnippetError": {
+      "base": "<p>Contains information about any errors encountered while trying to retrieve a code snippet.</p>",
+      "refs": {
+        "CodeSnippetErrorList$member": null
+      }
+    },
+    "CodeSnippetErrorCode": {
+      "base": null,
+      "refs": {
+        "CodeSnippetError$errorCode": "<p>The error code for the error that prevented a code snippet from being retrieved.</p>"
+      }
+    },
+    "CodeSnippetErrorList": {
+      "base": null,
+      "refs": {
+        "BatchGetCodeSnippetResponse$errors": "<p>Any errors Amazon Inspector encountered while trying to retrieve the requested code snippets.</p>"
+      }
+    },
+    "CodeSnippetResult": {
+      "base": "<p>Contains information on a code snippet retrieved by Amazon Inspector from a code vulnerability finding.</p>",
+      "refs": {
+        "CodeSnippetResultList$member": null
+      }
+    },
+    "CodeSnippetResultList": {
+      "base": null,
+      "refs": {
+        "BatchGetCodeSnippetResponse$codeSnippetResults": "<p>The retrieved code snippets associated with the provided finding ARNs.</p>"
+      }
+    },
+    "CodeVulnerabilityDetails": {
+      "base": "<p>Contains information on the code vulnerability identified in your Lambda function.</p>",
+      "refs": {
+        "Finding$codeVulnerabilityDetails": "<p>Details about the code vulnerability identified in a Lambda function used to filter findings.</p>"
       }
     },
     "Component": {
@@ -530,6 +625,16 @@
       "refs": {
       }
     },
+    "CreateSbomExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSbomExportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Currency": {
       "base": null,
       "refs": {
@@ -606,6 +711,12 @@
       "base": null,
       "refs": {
         "Cwes$member": null
+      }
+    },
+    "CweList": {
+      "base": null,
+      "refs": {
+        "CodeVulnerabilityDetails$cwes": "<p>The Common Weakness Enumeration (CWE) item associated with the detected vulnerability.</p>"
       }
     },
     "Cwes": {
@@ -699,13 +810,21 @@
       "base": "<p>Contains details of the Amazon S3 bucket and KMS key used to export findings.</p>",
       "refs": {
         "CreateFindingsReportRequest$s3Destination": "<p>The Amazon S3 export destination for the report.</p>",
-        "GetFindingsReportStatusResponse$destination": "<p>The destination of the report.</p>"
+        "CreateSbomExportRequest$s3Destination": null,
+        "GetFindingsReportStatusResponse$destination": "<p>The destination of the report.</p>",
+        "GetSbomExportResponse$s3Destination": null
       }
     },
     "DetectionPlatforms": {
       "base": null,
       "refs": {
         "Vulnerability$detectionPlatforms": "<p>Platforms that the vulnerability can be detected on.</p>"
+      }
+    },
+    "DetectorTagList": {
+      "base": null,
+      "refs": {
+        "CodeVulnerabilityDetails$detectorTags": "<p>The detector tag associated with the vulnerability. Detector tags group related vulnerabilities by common themes or tactics. For a list of available tags by programming language, see <a href=\"https://docs.aws.amazon.com/codeguru/detector-library/java/tags/\">Java tags</a>, or <a href=\"https://docs.aws.amazon.com/codeguru/detector-library/python/tags/\">Python tags</a>. </p>"
       }
     },
     "DisableDelegatedAdminAccountRequest": {
@@ -870,13 +989,25 @@
     "Epss": {
       "base": "<p>Details about the Exploit Prediction Scoring System (EPSS) score.</p>",
       "refs": {
-        "Vulnerability$epss": "<p>An object that contains the Exploit Prediction Scoring System (EPSS) score.</p>"
+        "Vulnerability$epss": "<p>An object that contains the Exploit Prediction Scoring System (EPSS) score for a vulnerability.</p>"
+      }
+    },
+    "EpssDetails": {
+      "base": "<p>Details about the Exploit Prediction Scoring System (EPSS) score for a finding.</p>",
+      "refs": {
+        "Finding$epss": "<p>The finding's EPSS score.</p>"
       }
     },
     "EpssScore": {
       "base": null,
       "refs": {
         "Epss$score": "<p>The Exploit Prediction Scoring System (EPSS) score.</p>"
+      }
+    },
+    "EpssScoreValue": {
+      "base": null,
+      "refs": {
+        "EpssDetails$score": "<p>The EPSS score.</p>"
       }
     },
     "ErrorCode": {
@@ -919,7 +1050,8 @@
     "ExternalReportStatus": {
       "base": null,
       "refs": {
-        "GetFindingsReportStatusResponse$status": "<p>The status of the report.</p>"
+        "GetFindingsReportStatusResponse$status": "<p>The status of the report.</p>",
+        "GetSbomExportResponse$status": "<p>The status of the software bill of materials (SBOM) report.</p>"
       }
     },
     "FailedAccount": {
@@ -1038,6 +1170,9 @@
     "FindingArn": {
       "base": null,
       "refs": {
+        "BatchGetCodeSnippetRequestFindingArnsList$member": null,
+        "CodeSnippetError$findingArn": "<p>The ARN of the finding that a code snippet couldn't be retrieved for.</p>",
+        "CodeSnippetResult$findingArn": "<p>The ARN of a finding that the code snippet is associated with.</p>",
         "Finding$findingArn": "<p>The Amazon Resource Number (ARN) of the finding.</p>"
       }
     },
@@ -1192,6 +1327,16 @@
       "refs": {
       }
     },
+    "GetEncryptionKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEncryptionKeyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetFindingsReportStatusRequest": {
       "base": null,
       "refs": {
@@ -1208,6 +1353,16 @@
       }
     },
     "GetMemberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSbomExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSbomExportResponse": {
       "base": null,
       "refs": {
       }
@@ -1258,6 +1413,11 @@
     "Integer": {
       "base": null,
       "refs": {
+        "CodeFilePath$endLine": "<p>The line number of the last line of code that a vulnerability was found in.</p>",
+        "CodeFilePath$startLine": "<p>The line number of the first line of code that a vulnerability was found in.</p>",
+        "CodeLine$lineNumber": "<p>The line number that a section of code is located at.</p>",
+        "CodeSnippetResult$endLine": "<p>The line number of the last line of a code snippet.</p>",
+        "CodeSnippetResult$startLine": "<p>The line number of the first line of a code snippet.</p>",
         "InternalServerException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the request.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the request.</p>"
       }
@@ -1289,6 +1449,13 @@
       "base": null,
       "refs": {
         "AwsEc2InstanceDetails$ipV6Addresses": "<p>The IPv6 addresses of the Amazon EC2 instance.</p>"
+      }
+    },
+    "KmsKeyArn": {
+      "base": null,
+      "refs": {
+        "GetEncryptionKeyResponse$kmsKeyId": "<p>A kms key ID.</p>",
+        "UpdateEncryptionKeyRequest$kmsKeyId": "<p>A KMS key ID for the encryption key.</p>"
       }
     },
     "LambdaFunctionAggregation": {
@@ -1330,6 +1497,7 @@
     "LambdaLayerArn": {
       "base": null,
       "refs": {
+        "CodeVulnerabilityDetails$sourceLambdaLayerArn": "<p>The Amazon Resource Name (ARN) of the Lambda layer that the code vulnerability was detected in.</p>",
         "LayerList$member": null,
         "VulnerablePackage$sourceLambdaLayerArn": "<p>The Amazon Resource Number (ARN) of the AWS Lambda function affected by a finding.</p>"
       }
@@ -1675,6 +1843,12 @@
         "AwsEcrContainerImageDetails$registry": "<p>The registry for the Amazon ECR container image.</p>",
         "AwsEcrContainerImageDetails$repositoryName": "<p>The name of the repository the Amazon ECR container image resides in.</p>",
         "AwsLambdaFunctionDetails$codeSha256": "<p>The SHA256 hash of the AWS Lambda function's deployment package.</p>",
+        "CodeFilePath$fileName": "<p>The name of the file the code vulnerability was found in.</p>",
+        "CodeFilePath$filePath": "<p>The file path to the code that a vulnerability was found in.</p>",
+        "CodeSnippetError$errorMessage": "<p>The error message received when Amazon Inspector failed to retrieve a code snippet.</p>",
+        "CodeVulnerabilityDetails$detectorId": "<p>The ID for the Amazon CodeGuru detector associated with the finding. For more information on detectors see <a href=\"https://docs.aws.amazon.com/codeguru/detector-library\">Amazon CodeGuru Detector Library</a>.</p>",
+        "CodeVulnerabilityDetails$detectorName": "<p>The name of the detector used to identify the code vulnerability. For more information on detectors see <a href=\"https://docs.aws.amazon.com/codeguru/detector-library\">CodeGuru Detector Library</a>.</p>",
+        "CodeVulnerabilityDetails$ruleId": "<p>The identifier for a rule that was used to detect the code vulnerability.</p>",
         "CoverageMapFilter$key": "<p>The tag key associated with the coverage map filter.</p>",
         "CoverageMapFilter$value": "<p>The tag value associated with the coverage map filter.</p>",
         "CvssScore$scoringVector": "<p>The vector string of the CVSS score.</p>",
@@ -1686,11 +1860,14 @@
         "CvssScoreDetails$scoreSource": "<p>The source for the CVSS score.</p>",
         "CvssScoreDetails$scoringVector": "<p>The vector for the CVSS score.</p>",
         "CvssScoreDetails$version": "<p>The CVSS version used in scoring.</p>",
+        "CweList$member": null,
         "DetectionPlatforms$member": null,
+        "DetectorTagList$member": null,
         "Ec2InstanceAggregationResponse$instanceId": "<p>The Amazon EC2 instance ID.</p>",
         "FailedAccount$errorMessage": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
         "FailedMemberAccountEc2DeepInspectionStatusState$errorMessage": "<p>The error message explaining why the account failed to activate Amazon Inspector deep inspection.</p>",
         "GetEc2DeepInspectionConfigurationResponse$errorMessage": "<p>An error message explaining why Amazon Inspector deep inspection configurations could not be retrieved for your account.</p>",
+        "GetSbomExportResponse$errorMessage": "<p>An error message.</p>",
         "ImageLayerAggregationResponse$layerHash": "<p>The layer hash.</p>",
         "ImageLayerAggregationResponse$repository": "<p>The repository the layer resides in.</p>",
         "ImageLayerAggregationResponse$resourceId": "<p>The resource ID of the container image layer.</p>",
@@ -1707,10 +1884,13 @@
         "PackageVulnerabilityDetails$vendorSeverity": "<p>The severity the vendor has given to this vulnerability type.</p>",
         "Recommendation$Url": "<p>The URL address to the CVE remediation recommendations.</p>",
         "Recommendation$text": "<p>The recommended course of action to remediate the finding.</p>",
+        "ReferenceUrls$member": null,
         "RepositoryAggregationResponse$repository": "<p>The name of the repository associated with the findings.</p>",
         "Resource$id": "<p>The ID of the resource.</p>",
         "Resource$partition": "<p>The partition of the resource.</p>",
         "Resource$region": "<p>The Amazon Web Services Region the impacted resource is located in.</p>",
+        "ResourceMapFilter$key": "<p>The filter's key.</p>",
+        "ResourceMapFilter$value": "<p>The filter's value.</p>",
         "State$errorMessage": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
         "StringList$member": null,
         "TitleAggregationResponse$title": "<p>The title that the findings were aggregated on.</p>",
@@ -1734,6 +1914,7 @@
     "NumberFilterList": {
       "base": null,
       "refs": {
+        "FilterCriteria$epssScore": "<p>The EPSS score used to filter findings.</p>",
         "FilterCriteria$inspectorScore": "<p>The Amazon Inspector score to filter on.</p>"
       }
     },
@@ -1897,6 +2078,12 @@
         "Remediation$recommendation": "<p>An object that contains information about the recommended course of action to remediate the finding.</p>"
       }
     },
+    "ReferenceUrls": {
+      "base": null,
+      "refs": {
+        "CodeVulnerabilityDetails$referenceUrls": "<p>A URL containing supporting documentation about the code vulnerability detected.</p>"
+      }
+    },
     "RelatedVulnerabilities": {
       "base": null,
       "refs": {
@@ -1933,15 +2120,21 @@
       "refs": {
         "CancelFindingsReportRequest$reportId": "<p>The ID of the report to be canceled.</p>",
         "CancelFindingsReportResponse$reportId": "<p>The ID of the canceled report.</p>",
+        "CancelSbomExportRequest$reportId": "<p>The report ID of the SBOM export to cancel.</p>",
+        "CancelSbomExportResponse$reportId": "<p>The report ID of the canceled SBOM export.</p>",
         "CreateFindingsReportResponse$reportId": "<p>The ID of the report.</p>",
+        "CreateSbomExportResponse$reportId": "<p>The report ID for the software bill of materials (SBOM) report.</p>",
         "GetFindingsReportStatusRequest$reportId": "<p>The ID of the report to retrieve the status of.</p>",
-        "GetFindingsReportStatusResponse$reportId": "<p>The ID of the report.</p>"
+        "GetFindingsReportStatusResponse$reportId": "<p>The ID of the report.</p>",
+        "GetSbomExportRequest$reportId": "<p>The report ID of the SBOM export to get details for.</p>",
+        "GetSbomExportResponse$reportId": "<p>The report ID of the software bill of materials (SBOM) report.</p>"
       }
     },
     "ReportingErrorCode": {
       "base": null,
       "refs": {
-        "GetFindingsReportStatusResponse$errorCode": "<p>The error code of the report.</p>"
+        "GetFindingsReportStatusResponse$errorCode": "<p>The error code of the report.</p>",
+        "GetSbomExportResponse$errorCode": "<p>An error code.</p>"
       }
     },
     "RepositoryAggregation": {
@@ -1962,6 +2155,16 @@
         "RepositoryAggregation$sortBy": "<p>The value to sort results by.</p>"
       }
     },
+    "ResetEncryptionKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResetEncryptionKeyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Resource": {
       "base": "<p>Details about the resource involved in a finding.</p>",
       "refs": {
@@ -1974,6 +2177,13 @@
         "Resource$details": "<p>An object that contains details about the resource involved in a finding.</p>"
       }
     },
+    "ResourceFilterCriteria": {
+      "base": "<p>The resource filter criteria for a Software bill of materials (SBOM) report.</p>",
+      "refs": {
+        "CreateSbomExportRequest$resourceFilterCriteria": "<p>The resource filter criteria for the software bill of materials (SBOM) report.</p>",
+        "GetSbomExportResponse$filterCriteria": "<p>Contains details about the resource filter criteria used for the software bill of materials (SBOM) report.</p>"
+      }
+    },
     "ResourceId": {
       "base": null,
       "refs": {
@@ -1984,6 +2194,25 @@
       "base": null,
       "refs": {
         "Finding$resources": "<p>Contains information on the resources involved in a finding.</p>"
+      }
+    },
+    "ResourceMapComparison": {
+      "base": null,
+      "refs": {
+        "ResourceMapFilter$comparison": "<p>The filter's comparison.</p>"
+      }
+    },
+    "ResourceMapFilter": {
+      "base": "<p>A resource map filter for a software bill of material report.</p>",
+      "refs": {
+        "ResourceMapFilterList$member": null
+      }
+    },
+    "ResourceMapFilterList": {
+      "base": null,
+      "refs": {
+        "ResourceFilterCriteria$ec2InstanceTags": "<p>The EC2 instance tags used as resource filter criteria.</p>",
+        "ResourceFilterCriteria$lambdaFunctionTags": "<p>The AWS Lambda function tags used as resource filter criteria.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -2017,10 +2246,42 @@
         "FailedAccount$resourceStatus": "<p>An object detailing which resources Amazon Inspector is enabled to scan for the account.</p>"
       }
     },
+    "ResourceStringComparison": {
+      "base": null,
+      "refs": {
+        "ResourceStringFilter$comparison": "<p>The filter's comparison.</p>"
+      }
+    },
+    "ResourceStringFilter": {
+      "base": "<p>A resource string filter for a software bill of materials report.</p>",
+      "refs": {
+        "ResourceStringFilterList$member": null
+      }
+    },
+    "ResourceStringFilterList": {
+      "base": null,
+      "refs": {
+        "ResourceFilterCriteria$accountId": "<p>The account IDs used as resource filter criteria.</p>",
+        "ResourceFilterCriteria$ecrImageTags": "<p>The ECR image tags used as resource filter criteria.</p>",
+        "ResourceFilterCriteria$ecrRepositoryName": "<p>The ECR repository names used as resource filter criteria.</p>",
+        "ResourceFilterCriteria$lambdaFunctionName": "<p>The AWS Lambda function name used as resource filter criteria.</p>",
+        "ResourceFilterCriteria$resourceId": "<p>The resource IDs used as resource filter criteria.</p>",
+        "ResourceFilterCriteria$resourceType": "<p>The resource types used as resource filter criteria.</p>"
+      }
+    },
+    "ResourceStringInput": {
+      "base": null,
+      "refs": {
+        "ResourceStringFilter$value": "<p>The filter's value.</p>"
+      }
+    },
     "ResourceType": {
       "base": null,
       "refs": {
-        "Resource$type": "<p>The type of resource.</p>"
+        "GetEncryptionKeyRequest$resourceType": "<p>The resource type the key encrypts.</p>",
+        "ResetEncryptionKeyRequest$resourceType": "<p>The resource type the key encrypts.</p>",
+        "Resource$type": "<p>The type of resource.</p>",
+        "UpdateEncryptionKeyRequest$resourceType": "<p>The resource type for the encryption key.</p>"
       }
     },
     "Runtime": {
@@ -2028,6 +2289,13 @@
       "refs": {
         "AwsLambdaFunctionDetails$runtime": "<p>The runtime environment for the AWS Lambda function.</p>",
         "LambdaFunctionMetadata$runtime": "<p>An AWS Lambda function's runtime.</p>"
+      }
+    },
+    "SbomReportFormat": {
+      "base": null,
+      "refs": {
+        "CreateSbomExportRequest$reportFormat": "<p>The output format for the software bill of materials (SBOM) report.</p>",
+        "GetSbomExportResponse$format": "<p>The format of the software bill of materials (SBOM) report.</p>"
       }
     },
     "ScanStatus": {
@@ -2051,7 +2319,10 @@
     "ScanType": {
       "base": null,
       "refs": {
-        "CoveredResource$scanType": "<p>The Amazon Inspector scan type covering the resource.</p>"
+        "CoveredResource$scanType": "<p>The Amazon Inspector scan type covering the resource.</p>",
+        "GetEncryptionKeyRequest$scanType": "<p>The scan type the key encrypts.</p>",
+        "ResetEncryptionKeyRequest$scanType": "<p>The scan type the key encrypts.</p>",
+        "UpdateEncryptionKeyRequest$scanType": "<p>The scan type for the encryption key.</p>"
       }
     },
     "SearchVulnerabilitiesFilterCriteria": {
@@ -2157,7 +2428,8 @@
         "AccountState$state": "<p>An object detailing the status of Amazon Inspector for the account.</p>",
         "ResourceState$ec2": "<p>An object detailing the state of Amazon Inspector scanning for Amazon EC2 resources.</p>",
         "ResourceState$ecr": "<p>An object detailing the state of Amazon Inspector scanning for Amazon ECR resources.</p>",
-        "ResourceState$lambda": null
+        "ResourceState$lambda": null,
+        "ResourceState$lambdaCode": null
       }
     },
     "Status": {
@@ -2169,6 +2441,7 @@
         "ResourceStatus$ec2": "<p>The status of Amazon Inspector scanning for Amazon EC2 resources.</p>",
         "ResourceStatus$ecr": "<p>The status of Amazon Inspector scanning for Amazon ECR resources.</p>",
         "ResourceStatus$lambda": "<p>The status of Amazon Inspector scanning for AWS Lambda function.</p>",
+        "ResourceStatus$lambdaCode": "<p>The status of Amazon Inspector scanning for custom application code for Amazon Web Services Lambda functions. </p>",
         "State$status": "<p>The status of Amazon Inspector for the account.</p>"
       }
     },
@@ -2250,6 +2523,9 @@
         "Ec2InstanceAggregation$instanceIds": "<p>The Amazon EC2 instance IDs to aggregate findings for.</p>",
         "Ec2InstanceAggregation$operatingSystems": "<p>The operating system types to aggregate findings for. Valid values must be uppercase and underscore separated, examples are <code>ORACLE_LINUX_7</code> and <code>ALPINE_LINUX_3_8</code>.</p>",
         "FilterCriteria$awsAccountId": "<p>Details of the Amazon Web Services account IDs used to filter findings.</p>",
+        "FilterCriteria$codeVulnerabilityDetectorName": "<p>The name of the detector used to identify a code vulnerability in a Lambda function used to filter findings.</p>",
+        "FilterCriteria$codeVulnerabilityDetectorTags": "<p>The detector type tag associated with the vulnerability used to filter findings. Detector tags group related vulnerabilities by common themes or tactics. For a list of available tags by programming language, see <a href=\"https://docs.aws.amazon.com/codeguru/detector-library/java/tags/\">Java tags</a>, or <a href=\"https://docs.aws.amazon.com/codeguru/detector-library/python/tags/\">Python tags</a>. </p>",
+        "FilterCriteria$codeVulnerabilityFilePath": "<p>The file path to the file in a Lambda function that contains a code vulnerability used to filter findings.</p>",
         "FilterCriteria$componentId": "<p>Details of the component IDs used to filter findings.</p>",
         "FilterCriteria$componentType": "<p>Details of the component types used to filter findings.</p>",
         "FilterCriteria$ec2InstanceImageId": "<p>Details of the Amazon EC2 instance image IDs used to filter findings.</p>",
@@ -2316,6 +2592,30 @@
       "base": null,
       "refs": {
         "LambdaVpcConfig$subnetIds": "<p>A list of VPC subnet IDs.</p>"
+      }
+    },
+    "SuggestedFix": {
+      "base": "<p>A suggested fix for a vulnerability in your Lambda function code.</p>",
+      "refs": {
+        "SuggestedFixes$member": null
+      }
+    },
+    "SuggestedFixCodeString": {
+      "base": null,
+      "refs": {
+        "SuggestedFix$code": "<p>The fix's code.</p>"
+      }
+    },
+    "SuggestedFixDescriptionString": {
+      "base": null,
+      "refs": {
+        "SuggestedFix$description": "<p>The fix's description.</p>"
+      }
+    },
+    "SuggestedFixes": {
+      "base": null,
+      "refs": {
+        "CodeSnippetResult$suggestedFixes": "<p>Details of a suggested code fix.</p>"
       }
     },
     "TagKey": {
@@ -2443,6 +2743,16 @@
       }
     },
     "UpdateEc2DeepInspectionConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEncryptionKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEncryptionKeyResponse": {
       "base": null,
       "refs": {
       }

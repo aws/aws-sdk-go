@@ -4161,6 +4161,10 @@
         "Groups":{
           "shape":"Groups",
           "locationName":"groups"
+        },
+        "SessionName":{
+          "shape":"SessionNameList",
+          "locationName":"sessionName"
         }
       }
     },
@@ -6174,6 +6178,10 @@
           "locationName":"type"
         }
       }
+    },
+    "SessionNameList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "SortCriteria":{
       "type":"structure",

@@ -243,6 +243,110 @@ func (c *KinesisVideo) CreateStreamWithContext(ctx aws.Context, input *CreateStr
 	return out, req.Send()
 }
 
+const opDeleteEdgeConfiguration = "DeleteEdgeConfiguration"
+
+// DeleteEdgeConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEdgeConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEdgeConfiguration for more information on using the DeleteEdgeConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEdgeConfigurationRequest method.
+//	req, resp := client.DeleteEdgeConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteEdgeConfiguration
+func (c *KinesisVideo) DeleteEdgeConfigurationRequest(input *DeleteEdgeConfigurationInput) (req *request.Request, output *DeleteEdgeConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEdgeConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/deleteEdgeConfiguration",
+	}
+
+	if input == nil {
+		input = &DeleteEdgeConfigurationInput{}
+	}
+
+	output = &DeleteEdgeConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEdgeConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// An asynchronous API that deletes a stream’s existing edge configuration,
+// as well as the corresponding media from the Edge Agent.
+//
+// When you invoke this API, the sync status is set to DELETING. A deletion
+// process starts, in which active edge jobs are stopped and all media is deleted
+// from the edge device. The time to delete varies, depending on the total amount
+// of stored media. If the deletion process fails, the sync status changes to
+// DELETE_FAILED. You will need to re-try the deletion.
+//
+// When the deletion process has completed successfully, the edge configuration
+// is no longer accessible.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DeleteEdgeConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - StreamEdgeConfigurationNotFoundException
+//     The Exception rendered when the Amazon Kinesis Video Stream can't find a
+//     stream's edge configuration that you specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteEdgeConfiguration
+func (c *KinesisVideo) DeleteEdgeConfiguration(input *DeleteEdgeConfigurationInput) (*DeleteEdgeConfigurationOutput, error) {
+	req, out := c.DeleteEdgeConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEdgeConfigurationWithContext is the same as DeleteEdgeConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEdgeConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DeleteEdgeConfigurationWithContext(ctx aws.Context, input *DeleteEdgeConfigurationInput, opts ...request.Option) (*DeleteEdgeConfigurationOutput, error) {
+	req, out := c.DeleteEdgeConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteSignalingChannel = "DeleteSignalingChannel"
 
 // DeleteSignalingChannelRequest generates a "aws/request.Request" representing the
@@ -518,8 +622,10 @@ func (c *KinesisVideo) DescribeEdgeConfigurationRequest(input *DescribeEdgeConfi
 // DescribeEdgeConfiguration API operation for Amazon Kinesis Video Streams.
 //
 // Describes a stream’s edge configuration that was set using the StartEdgeConfigurationUpdate
-// API. Use this API to get the status of the configuration if the configuration
-// is in sync with the Edge Agent.
+// API and the latest status of the edge agent's recorder and uploader jobs.
+// Use this API to get the status of the configuration to determine if the configuration
+// is in sync with the Edge Agent. Use this API to evaluate the health of the
+// Edge Agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -706,9 +812,6 @@ func (c *KinesisVideo) DescribeMappedResourceConfigurationRequest(input *Describ
 }
 
 // DescribeMappedResourceConfiguration API operation for Amazon Kinesis Video Streams.
-//
-// Returns the most current information about the stream. Either streamName
-// or streamARN should be provided in the input.
 //
 // Returns the most current information about the stream. The streamName or
 // streamARN should be provided in the input.
@@ -1378,6 +1481,152 @@ func (c *KinesisVideo) GetSignalingChannelEndpointWithContext(ctx aws.Context, i
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListEdgeAgentConfigurations = "ListEdgeAgentConfigurations"
+
+// ListEdgeAgentConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEdgeAgentConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEdgeAgentConfigurations for more information on using the ListEdgeAgentConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEdgeAgentConfigurationsRequest method.
+//	req, resp := client.ListEdgeAgentConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListEdgeAgentConfigurations
+func (c *KinesisVideo) ListEdgeAgentConfigurationsRequest(input *ListEdgeAgentConfigurationsInput) (req *request.Request, output *ListEdgeAgentConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListEdgeAgentConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/listEdgeAgentConfigurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEdgeAgentConfigurationsInput{}
+	}
+
+	output = &ListEdgeAgentConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEdgeAgentConfigurations API operation for Amazon Kinesis Video Streams.
+//
+// Returns an array of edge configurations associated with the specified Edge
+// Agent.
+//
+// In the request, you must specify the Edge Agent HubDeviceArn.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation ListEdgeAgentConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListEdgeAgentConfigurations
+func (c *KinesisVideo) ListEdgeAgentConfigurations(input *ListEdgeAgentConfigurationsInput) (*ListEdgeAgentConfigurationsOutput, error) {
+	req, out := c.ListEdgeAgentConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListEdgeAgentConfigurationsWithContext is the same as ListEdgeAgentConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEdgeAgentConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) ListEdgeAgentConfigurationsWithContext(ctx aws.Context, input *ListEdgeAgentConfigurationsInput, opts ...request.Option) (*ListEdgeAgentConfigurationsOutput, error) {
+	req, out := c.ListEdgeAgentConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEdgeAgentConfigurationsPages iterates over the pages of a ListEdgeAgentConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEdgeAgentConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEdgeAgentConfigurations operation.
+//	pageNum := 0
+//	err := client.ListEdgeAgentConfigurationsPages(params,
+//	    func(page *kinesisvideo.ListEdgeAgentConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *KinesisVideo) ListEdgeAgentConfigurationsPages(input *ListEdgeAgentConfigurationsInput, fn func(*ListEdgeAgentConfigurationsOutput, bool) bool) error {
+	return c.ListEdgeAgentConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEdgeAgentConfigurationsPagesWithContext same as ListEdgeAgentConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) ListEdgeAgentConfigurationsPagesWithContext(ctx aws.Context, input *ListEdgeAgentConfigurationsInput, fn func(*ListEdgeAgentConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEdgeAgentConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEdgeAgentConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEdgeAgentConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListSignalingChannels = "ListSignalingChannels"
@@ -3607,8 +3856,8 @@ type CreateStreamInput struct {
 	// The ID of the Key Management Service (KMS) key that you want Kinesis Video
 	// Streams to use to encrypt stream data.
 	//
-	// If no key ID is specified, the default, Kinesis Video-managed key (aws/kinesisvideo)
-	// is used.
+	// If no key ID is specified, the default, Kinesis Video-managed key (Amazon
+	// Web Services/kinesisvideo) is used.
 	//
 	// For more information, see DescribeKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters).
 	KmsKeyId *string `min:"1" type:"string"`
@@ -3748,6 +3997,86 @@ func (s CreateStreamOutput) GoString() string {
 func (s *CreateStreamOutput) SetStreamARN(v string) *CreateStreamOutput {
 	s.StreamARN = &v
 	return s
+}
+
+type DeleteEdgeConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the stream. Specify either the StreamName
+	// or the StreamARN.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which to delete the edge configuration. Specify
+	// either the StreamName or the StreamARN.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEdgeConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEdgeConfigurationInput"}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *DeleteEdgeConfigurationInput) SetStreamARN(v string) *DeleteEdgeConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DeleteEdgeConfigurationInput) SetStreamName(v string) *DeleteEdgeConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type DeleteEdgeConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSignalingChannelInput struct {
@@ -3937,7 +4266,7 @@ type DeletionConfig struct {
 	//
 	// Since the default value is set to true, configure the uploader schedule such
 	// that the media files are not being deleted before they are initially uploaded
-	// to AWS cloud.
+	// to the Amazon Web Services cloud.
 	DeleteAfterUpload *bool `type:"boolean"`
 
 	// The number of hours that you want to retain the data in the stream on the
@@ -4067,6 +4396,11 @@ type DescribeEdgeConfigurationOutput struct {
 	// The timestamp at which a stream’s edge configuration was first created.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// An object that contains the latest status details for an edge agent's recorder
+	// and uploader jobs. Use this information to determine the current health of
+	// an edge agent.
+	EdgeAgentStatus *EdgeAgentStatus `type:"structure"`
+
 	// A description of the stream's edge configuration that will be used to sync
 	// with the Edge Agent IoT Greengrass component. The Edge Agent component will
 	// run on an IoT Hub Device setup at your premise.
@@ -4109,6 +4443,12 @@ func (s DescribeEdgeConfigurationOutput) GoString() string {
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeEdgeConfigurationOutput) SetCreationTime(v time.Time) *DescribeEdgeConfigurationOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetEdgeAgentStatus sets the EdgeAgentStatus field's value.
+func (s *DescribeEdgeConfigurationOutput) SetEdgeAgentStatus(v *EdgeAgentStatus) *DescribeEdgeConfigurationOutput {
+	s.EdgeAgentStatus = v
 	return s
 }
 
@@ -4777,6 +5117,49 @@ func (s *DeviceStreamLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that contains the latest status details for an edge agent's recorder
+// and uploader jobs. Use this information to determine the current health of
+// an edge agent.
+type EdgeAgentStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The latest status of a stream’s edge recording job.
+	LastRecorderStatus *LastRecorderStatus `type:"structure"`
+
+	// The latest status of a stream’s edge to cloud uploader job.
+	LastUploaderStatus *LastUploaderStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeAgentStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeAgentStatus) GoString() string {
+	return s.String()
+}
+
+// SetLastRecorderStatus sets the LastRecorderStatus field's value.
+func (s *EdgeAgentStatus) SetLastRecorderStatus(v *LastRecorderStatus) *EdgeAgentStatus {
+	s.LastRecorderStatus = v
+	return s
+}
+
+// SetLastUploaderStatus sets the LastUploaderStatus field's value.
+func (s *EdgeAgentStatus) SetLastUploaderStatus(v *LastUploaderStatus) *EdgeAgentStatus {
+	s.LastUploaderStatus = v
+	return s
+}
+
 // A description of the stream's edge configuration that will be used to sync
 // with the Edge Agent IoT Greengrass component. The Edge Agent component will
 // run on an IoT Hub Device setup at your premise.
@@ -5258,8 +5641,8 @@ func (s *ImageGenerationConfiguration) SetWidthPixels(v int64) *ImageGenerationC
 type ImageGenerationDestinationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Region of the S3 bucket where images will be delivered. This DestinationRegion
-	// must match the Region where the stream is located.
+	// The Amazon Web Services Region of the S3 bucket where images will be delivered.
+	// This DestinationRegion must match the Region where the stream is located.
 	//
 	// DestinationRegion is a required field
 	DestinationRegion *string `min:"9" type:"string" required:"true"`
@@ -5513,6 +5896,330 @@ func (s *InvalidResourceFormatException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidResourceFormatException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The latest status of a stream's edge recording job.
+type LastRecorderStatus struct {
+	_ struct{} `type:"structure"`
+
+	// A description of a recorder job’s latest status.
+	JobStatusDetails *string `type:"string"`
+
+	// The timestamp at which the recorder job was last executed and media stored
+	// to local disk.
+	LastCollectedTime *time.Time `type:"timestamp"`
+
+	// The timestamp at which the recorder status was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The status of the latest recorder job.
+	RecorderStatus *string `type:"string" enum:"RecorderStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastRecorderStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastRecorderStatus) GoString() string {
+	return s.String()
+}
+
+// SetJobStatusDetails sets the JobStatusDetails field's value.
+func (s *LastRecorderStatus) SetJobStatusDetails(v string) *LastRecorderStatus {
+	s.JobStatusDetails = &v
+	return s
+}
+
+// SetLastCollectedTime sets the LastCollectedTime field's value.
+func (s *LastRecorderStatus) SetLastCollectedTime(v time.Time) *LastRecorderStatus {
+	s.LastCollectedTime = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *LastRecorderStatus) SetLastUpdatedTime(v time.Time) *LastRecorderStatus {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetRecorderStatus sets the RecorderStatus field's value.
+func (s *LastRecorderStatus) SetRecorderStatus(v string) *LastRecorderStatus {
+	s.RecorderStatus = &v
+	return s
+}
+
+// The latest status of a stream’s edge to cloud uploader job.
+type LastUploaderStatus struct {
+	_ struct{} `type:"structure"`
+
+	// A description of an uploader job’s latest status.
+	JobStatusDetails *string `type:"string"`
+
+	// The timestamp at which the uploader job was last executed and media collected
+	// to the cloud.
+	LastCollectedTime *time.Time `type:"timestamp"`
+
+	// The timestamp at which the uploader status was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The status of the latest uploader job.
+	UploaderStatus *string `type:"string" enum:"UploaderStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastUploaderStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastUploaderStatus) GoString() string {
+	return s.String()
+}
+
+// SetJobStatusDetails sets the JobStatusDetails field's value.
+func (s *LastUploaderStatus) SetJobStatusDetails(v string) *LastUploaderStatus {
+	s.JobStatusDetails = &v
+	return s
+}
+
+// SetLastCollectedTime sets the LastCollectedTime field's value.
+func (s *LastUploaderStatus) SetLastCollectedTime(v time.Time) *LastUploaderStatus {
+	s.LastCollectedTime = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *LastUploaderStatus) SetLastUpdatedTime(v time.Time) *LastUploaderStatus {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetUploaderStatus sets the UploaderStatus field's value.
+func (s *LastUploaderStatus) SetUploaderStatus(v string) *LastUploaderStatus {
+	s.UploaderStatus = &v
+	return s
+}
+
+// A description of a single stream's edge configuration.
+type ListEdgeAgentConfigurationsEdgeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the stream first created the edge config.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// A description of the stream's edge configuration that will be used to sync
+	// with the Edge Agent IoT Greengrass component. The Edge Agent component will
+	// run on an IoT Hub Device setup at your premise.
+	EdgeConfig *EdgeConfig `type:"structure"`
+
+	// A description of the generated failure status.
+	FailedStatusDetails *string `type:"string"`
+
+	// The timestamp when the stream last updated the edge config.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the stream.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream.
+	StreamName *string `min:"1" type:"string"`
+
+	// The current sync status of the stream's edge configuration.
+	SyncStatus *string `type:"string" enum:"SyncStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsEdgeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsEdgeConfig) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetCreationTime(v time.Time) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEdgeConfig sets the EdgeConfig field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetEdgeConfig(v *EdgeConfig) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.EdgeConfig = v
+	return s
+}
+
+// SetFailedStatusDetails sets the FailedStatusDetails field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetFailedStatusDetails(v string) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.FailedStatusDetails = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetLastUpdatedTime(v time.Time) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetStreamARN(v string) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetStreamName(v string) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.StreamName = &v
+	return s
+}
+
+// SetSyncStatus sets the SyncStatus field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetSyncStatus(v string) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.SyncStatus = &v
+	return s
+}
+
+type ListEdgeAgentConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The "Internet of Things (IoT) Thing" Arn of the edge agent.
+	//
+	// HubDeviceArn is a required field
+	HubDeviceArn *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of edge configurations to return in the response. The
+	// default is 5.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If you specify this parameter, when the result of a ListEdgeAgentConfigurations
+	// operation is truncated, the call returns the NextToken in the response. To
+	// get another batch of edge configurations, provide this token in your next
+	// request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEdgeAgentConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEdgeAgentConfigurationsInput"}
+	if s.HubDeviceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HubDeviceArn"))
+	}
+	if s.HubDeviceArn != nil && len(*s.HubDeviceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HubDeviceArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHubDeviceArn sets the HubDeviceArn field's value.
+func (s *ListEdgeAgentConfigurationsInput) SetHubDeviceArn(v string) *ListEdgeAgentConfigurationsInput {
+	s.HubDeviceArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEdgeAgentConfigurationsInput) SetMaxResults(v int64) *ListEdgeAgentConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEdgeAgentConfigurationsInput) SetNextToken(v string) *ListEdgeAgentConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEdgeAgentConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of a single stream's edge configuration.
+	EdgeConfigs []*ListEdgeAgentConfigurationsEdgeConfig `type:"list"`
+
+	// If the response is truncated, the call returns this element with a given
+	// token. To get the next batch of edge configurations, use this token in your
+	// next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEdgeConfigs sets the EdgeConfigs field's value.
+func (s *ListEdgeAgentConfigurationsOutput) SetEdgeConfigs(v []*ListEdgeAgentConfigurationsEdgeConfig) *ListEdgeAgentConfigurationsOutput {
+	s.EdgeConfigs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEdgeAgentConfigurationsOutput) SetNextToken(v string) *ListEdgeAgentConfigurationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListSignalingChannelsInput struct {
@@ -6056,8 +6763,8 @@ func (s *MappedResourceConfigurationListItem) SetType(v string) *MappedResourceC
 type MediaSourceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Secrets Manager ARN for the username and password of the camera,
-	// or a local media file location.
+	// The Amazon Web Services Secrets Manager ARN for the username and password
+	// of the camera, or a local media file location.
 	//
 	// MediaUriSecretArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by MediaSourceConfig's
@@ -6506,6 +7213,8 @@ func (s *RecorderConfig) SetScheduleConfig(v *ScheduleConfig) *RecorderConfig {
 
 // An object that describes the endpoint of the signaling channel returned by
 // the GetSignalingChannelEndpoint API.
+//
+// The media server endpoint will correspond to the WEBRTC Protocol.
 type ResourceEndpointListItem struct {
 	_ struct{} `type:"structure"`
 
@@ -6691,8 +7400,11 @@ func (s *ResourceNotFoundException) RequestID() string {
 // file, should record onto the Edge Agent. The ScheduleConfig consists of the
 // ScheduleExpression and the DurationInMinutes attributes.
 //
-// If the ScheduleExpression is not provided, then the Edge Agent will always
-// be set to recording mode.
+// If the ScheduleConfig is not provided in the RecorderConfig, then the Edge
+// Agent will always be set to recording mode.
+//
+// If the ScheduleConfig is not provided in the UploaderConfig, then the Edge
+// Agent will upload at regular intervals (every 1 hour).
 type ScheduleConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -8426,17 +9138,18 @@ func (s UpdateStreamOutput) GoString() string {
 	return s.String()
 }
 
-// The configuration that consists of the ScheduleExpression and the DurationInMinutesdetails,
-// that specify the scheduling to record from a camera, or local media file,
-// onto the Edge Agent. If the ScheduleExpression is not provided, then the
-// Edge Agent will always be in upload mode.
+// The configuration that consists of the ScheduleExpression and the DurationInMinutes
+// details that specify the scheduling to record from a camera, or local media
+// file, onto the Edge Agent. If the ScheduleConfig is not provided in the UploaderConfig,
+// then the Edge Agent will upload at regular intervals (every 1 hour).
 type UploaderConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration that consists of the ScheduleExpression and the DurationInMinutesdetails
-	// that specify the scheduling to record from a camera, or local media file,
-	// onto the Edge Agent. If the ScheduleExpression is not provided, then the
-	// Edge Agent will always be in recording mode.
+	// The configuration that consists of the ScheduleExpression and the DurationInMinutes
+	// details that specify the scheduling to record from a camera, or local media
+	// file, onto the Edge Agent. If the ScheduleConfig is not provided in this
+	// UploaderConfig, then the Edge Agent will upload at regular intervals (every
+	// 1 hour).
 	//
 	// ScheduleConfig is a required field
 	ScheduleConfig *ScheduleConfig `type:"structure" required:"true"`
@@ -8747,6 +9460,26 @@ func MediaUriType_Values() []string {
 }
 
 const (
+	// RecorderStatusSuccess is a RecorderStatus enum value
+	RecorderStatusSuccess = "SUCCESS"
+
+	// RecorderStatusUserError is a RecorderStatus enum value
+	RecorderStatusUserError = "USER_ERROR"
+
+	// RecorderStatusSystemError is a RecorderStatus enum value
+	RecorderStatusSystemError = "SYSTEM_ERROR"
+)
+
+// RecorderStatus_Values returns all elements of the RecorderStatus enum
+func RecorderStatus_Values() []string {
+	return []string{
+		RecorderStatusSuccess,
+		RecorderStatusUserError,
+		RecorderStatusSystemError,
+	}
+}
+
+const (
 	// StatusCreating is a Status enum value
 	StatusCreating = "CREATING"
 
@@ -8804,6 +9537,9 @@ const (
 
 	// SyncStatusDeleteFailed is a SyncStatus enum value
 	SyncStatusDeleteFailed = "DELETE_FAILED"
+
+	// SyncStatusDeletingAcknowledged is a SyncStatus enum value
+	SyncStatusDeletingAcknowledged = "DELETING_ACKNOWLEDGED"
 )
 
 // SyncStatus_Values returns all elements of the SyncStatus enum
@@ -8815,6 +9551,7 @@ func SyncStatus_Values() []string {
 		SyncStatusSyncFailed,
 		SyncStatusDeleting,
 		SyncStatusDeleteFailed,
+		SyncStatusDeletingAcknowledged,
 	}
 }
 
@@ -8831,5 +9568,25 @@ func UpdateDataRetentionOperation_Values() []string {
 	return []string{
 		UpdateDataRetentionOperationIncreaseDataRetention,
 		UpdateDataRetentionOperationDecreaseDataRetention,
+	}
+}
+
+const (
+	// UploaderStatusSuccess is a UploaderStatus enum value
+	UploaderStatusSuccess = "SUCCESS"
+
+	// UploaderStatusUserError is a UploaderStatus enum value
+	UploaderStatusUserError = "USER_ERROR"
+
+	// UploaderStatusSystemError is a UploaderStatus enum value
+	UploaderStatusSystemError = "SYSTEM_ERROR"
+)
+
+// UploaderStatus_Values returns all elements of the UploaderStatus enum
+func UploaderStatus_Values() []string {
+	return []string{
+		UploaderStatusSuccess,
+		UploaderStatusUserError,
+		UploaderStatusSystemError,
 	}
 }

@@ -229,6 +229,13 @@ type MgnAPI interface {
 	ListImportsPages(*mgn.ListImportsInput, func(*mgn.ListImportsOutput, bool) bool) error
 	ListImportsPagesWithContext(aws.Context, *mgn.ListImportsInput, func(*mgn.ListImportsOutput, bool) bool, ...request.Option) error
 
+	ListManagedAccounts(*mgn.ListManagedAccountsInput) (*mgn.ListManagedAccountsOutput, error)
+	ListManagedAccountsWithContext(aws.Context, *mgn.ListManagedAccountsInput, ...request.Option) (*mgn.ListManagedAccountsOutput, error)
+	ListManagedAccountsRequest(*mgn.ListManagedAccountsInput) (*request.Request, *mgn.ListManagedAccountsOutput)
+
+	ListManagedAccountsPages(*mgn.ListManagedAccountsInput, func(*mgn.ListManagedAccountsOutput, bool) bool) error
+	ListManagedAccountsPagesWithContext(aws.Context, *mgn.ListManagedAccountsInput, func(*mgn.ListManagedAccountsOutput, bool) bool, ...request.Option) error
+
 	ListSourceServerActions(*mgn.ListSourceServerActionsInput) (*mgn.ListSourceServerActionsOutput, error)
 	ListSourceServerActionsWithContext(aws.Context, *mgn.ListSourceServerActionsInput, ...request.Option) (*mgn.ListSourceServerActionsOutput, error)
 	ListSourceServerActionsRequest(*mgn.ListSourceServerActionsInput) (*request.Request, *mgn.ListSourceServerActionsOutput)
@@ -258,6 +265,10 @@ type MgnAPI interface {
 	MarkAsArchivedWithContext(aws.Context, *mgn.MarkAsArchivedInput, ...request.Option) (*mgn.MarkAsArchivedOutput, error)
 	MarkAsArchivedRequest(*mgn.MarkAsArchivedInput) (*request.Request, *mgn.MarkAsArchivedOutput)
 
+	PauseReplication(*mgn.PauseReplicationInput) (*mgn.PauseReplicationOutput, error)
+	PauseReplicationWithContext(aws.Context, *mgn.PauseReplicationInput, ...request.Option) (*mgn.PauseReplicationOutput, error)
+	PauseReplicationRequest(*mgn.PauseReplicationInput) (*request.Request, *mgn.PauseReplicationOutput)
+
 	PutSourceServerAction(*mgn.PutSourceServerActionInput) (*mgn.PutSourceServerActionOutput, error)
 	PutSourceServerActionWithContext(aws.Context, *mgn.PutSourceServerActionInput, ...request.Option) (*mgn.PutSourceServerActionOutput, error)
 	PutSourceServerActionRequest(*mgn.PutSourceServerActionInput) (*request.Request, *mgn.PutSourceServerActionOutput)
@@ -273,6 +284,10 @@ type MgnAPI interface {
 	RemoveTemplateAction(*mgn.RemoveTemplateActionInput) (*mgn.RemoveTemplateActionOutput, error)
 	RemoveTemplateActionWithContext(aws.Context, *mgn.RemoveTemplateActionInput, ...request.Option) (*mgn.RemoveTemplateActionOutput, error)
 	RemoveTemplateActionRequest(*mgn.RemoveTemplateActionInput) (*request.Request, *mgn.RemoveTemplateActionOutput)
+
+	ResumeReplication(*mgn.ResumeReplicationInput) (*mgn.ResumeReplicationOutput, error)
+	ResumeReplicationWithContext(aws.Context, *mgn.ResumeReplicationInput, ...request.Option) (*mgn.ResumeReplicationOutput, error)
+	ResumeReplicationRequest(*mgn.ResumeReplicationInput) (*request.Request, *mgn.ResumeReplicationOutput)
 
 	RetryDataReplication(*mgn.RetryDataReplicationInput) (*mgn.RetryDataReplicationOutput, error)
 	RetryDataReplicationWithContext(aws.Context, *mgn.RetryDataReplicationInput, ...request.Option) (*mgn.RetryDataReplicationOutput, error)
@@ -297,6 +312,10 @@ type MgnAPI interface {
 	StartTest(*mgn.StartTestInput) (*mgn.StartTestOutput, error)
 	StartTestWithContext(aws.Context, *mgn.StartTestInput, ...request.Option) (*mgn.StartTestOutput, error)
 	StartTestRequest(*mgn.StartTestInput) (*request.Request, *mgn.StartTestOutput)
+
+	StopReplication(*mgn.StopReplicationInput) (*mgn.StopReplicationOutput, error)
+	StopReplicationWithContext(aws.Context, *mgn.StopReplicationInput, ...request.Option) (*mgn.StopReplicationOutput, error)
+	StopReplicationRequest(*mgn.StopReplicationInput) (*request.Request, *mgn.StopReplicationOutput)
 
 	TagResource(*mgn.TagResourceInput) (*mgn.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *mgn.TagResourceInput, ...request.Option) (*mgn.TagResourceOutput, error)

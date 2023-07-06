@@ -48,7 +48,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by AssociatePhoneNumbersWithVoiceConnector in the Amazon Chime SDK Voice Namespace"
     },
     "AssociatePhoneNumbersWithVoiceConnectorGroup":{
       "name":"AssociatePhoneNumbersWithVoiceConnectorGroup",
@@ -68,7 +70,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by AssociatePhoneNumbersWithVoiceConnectorGroup in the Amazon Chime SDK Voice Namespace"
     },
     "AssociateSigninDelegateGroupsWithAccount":{
       "name":"AssociateSigninDelegateGroupsWithAccount",
@@ -107,7 +111,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by BatchCreateAttendee in the Amazon Chime SDK Meetings Namespace"
     },
     "BatchCreateChannelMembership":{
       "name":"BatchCreateChannelMembership",
@@ -126,6 +132,8 @@
         {"shape":"ForbiddenException"},
         {"shape":"ThrottledClientException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by BatchCreateChannelMembership in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "BatchCreateRoomMembership":{
@@ -280,6 +288,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateAppInstance in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "CreateAppInstanceAdmin":{
@@ -301,6 +311,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateAppInstanceAdmin in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "CreateAppInstanceUser":{
@@ -322,6 +334,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateAppInstanceUser in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "CreateAttendee":{
@@ -342,7 +356,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateAttendee in the Amazon Chime SDK Meetings Namespace"
     },
     "CreateBot":{
       "name":"CreateBot",
@@ -383,6 +399,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateChannel in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "CreateChannelBan":{
@@ -404,6 +422,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateChannelBan in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "CreateChannelMembership":{
@@ -425,6 +445,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateChannelMembership in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "CreateChannelModerator":{
@@ -446,6 +468,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateChannelModerator in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "CreateMediaCapturePipeline":{
@@ -465,7 +489,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateMediaCapturePipeline in the Amazon Chime SDK Media Pipelines Namespace"
     },
     "CreateMeeting":{
       "name":"CreateMeeting",
@@ -484,7 +510,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateMeeting in the Amazon Chime SDK Meetings Namespace"
     },
     "CreateMeetingDialOut":{
       "name":"CreateMeetingDialOut",
@@ -523,7 +551,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateMeetingWithAttendees in the Amazon Chime SDK Meetings Namespace"
     },
     "CreatePhoneNumberOrder":{
       "name":"CreatePhoneNumberOrder",
@@ -562,7 +592,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateProxySession in the Amazon Chime SDK Voice Namespace"
     },
     "CreateRoom":{
       "name":"CreateRoom",
@@ -624,7 +656,9 @@
         {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateSipMediaApplication in the Amazon Chime SDK Voice Namespace"
     },
     "CreateSipMediaApplicationCall":{
       "name":"CreateSipMediaApplicationCall",
@@ -644,7 +678,9 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateSipMediaApplicationCall in the Amazon Chime SDK Voice Namespace"
     },
     "CreateSipRule":{
       "name":"CreateSipRule",
@@ -665,7 +701,9 @@
         {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateSipRule in the Amazon Chime SDK Voice Namespace"
     },
     "CreateUser":{
       "name":"CreateUser",
@@ -705,7 +743,9 @@
         {"shape":"ResourceLimitExceededException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateVoiceConnector in the Amazon Chime SDK Voice Namespace"
     },
     "CreateVoiceConnectorGroup":{
       "name":"CreateVoiceConnectorGroup",
@@ -725,7 +765,9 @@
         {"shape":"ResourceLimitExceededException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by CreateVoiceConnectorGroup in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteAccount":{
       "name":"DeleteAccount",
@@ -763,6 +805,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteAppInstance in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "DeleteAppInstanceAdmin":{
@@ -782,6 +826,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteAppInstanceAdmin in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "DeleteAppInstanceStreamingConfigurations":{
@@ -800,7 +846,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteAppInstanceStreamingConfigurations in the Amazon Chime SDK Messaging Namespace"
     },
     "DeleteAppInstanceUser":{
       "name":"DeleteAppInstanceUser",
@@ -818,6 +866,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteAppInstanceUser in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "DeleteAttendee":{
@@ -836,7 +886,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteAttendee in the Amazon Chime SDK Meetings Namespace"
     },
     "DeleteChannel":{
       "name":"DeleteChannel",
@@ -854,6 +906,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteChannel in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DeleteChannelBan":{
@@ -872,6 +926,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteChannelBan in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DeleteChannelMembership":{
@@ -891,6 +947,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteChannelMembership in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DeleteChannelMessage":{
@@ -909,6 +967,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteChannelMessage in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DeleteChannelModerator":{
@@ -927,6 +987,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteChannelModerator in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DeleteEventsConfiguration":{
@@ -962,7 +1024,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteMediaCapturePipeline in the Amazon Chime SDK Media Pipelines Namespace"
     },
     "DeleteMeeting":{
       "name":"DeleteMeeting",
@@ -980,7 +1044,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteMeeting in the Amazon Chime SDK Meetings Namespace"
     },
     "DeletePhoneNumber":{
       "name":"DeletePhoneNumber",
@@ -1016,7 +1082,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteProxySession in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteRoom":{
       "name":"DeleteRoom",
@@ -1071,7 +1139,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteSipMediaApplication in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteSipRule":{
       "name":"DeleteSipRule",
@@ -1090,7 +1160,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteSipRule in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteVoiceConnector":{
       "name":"DeleteVoiceConnector",
@@ -1109,7 +1181,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteVoiceConnector in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteVoiceConnectorEmergencyCallingConfiguration":{
       "name":"DeleteVoiceConnectorEmergencyCallingConfiguration",
@@ -1127,7 +1201,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteVoiceConnectorEmergencyCallingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteVoiceConnectorGroup":{
       "name":"DeleteVoiceConnectorGroup",
@@ -1146,7 +1222,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteVoiceConnectorGroup in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteVoiceConnectorOrigination":{
       "name":"DeleteVoiceConnectorOrigination",
@@ -1164,7 +1242,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteVoiceConnectorOrigination in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteVoiceConnectorProxy":{
       "name":"DeleteVoiceConnectorProxy",
@@ -1182,7 +1262,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteVoiceConnectorProxy in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteVoiceConnectorStreamingConfiguration":{
       "name":"DeleteVoiceConnectorStreamingConfiguration",
@@ -1200,7 +1282,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteVoiceConnectorStreamingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteVoiceConnectorTermination":{
       "name":"DeleteVoiceConnectorTermination",
@@ -1218,7 +1302,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteVoiceConnectorTermination in the Amazon Chime SDK Voice Namespace"
     },
     "DeleteVoiceConnectorTerminationCredentials":{
       "name":"DeleteVoiceConnectorTerminationCredentials",
@@ -1236,7 +1322,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DeleteVoiceConnectorTerminationCredentials in the Amazon Chime SDK Voice Namespace"
     },
     "DescribeAppInstance":{
       "name":"DescribeAppInstance",
@@ -1255,6 +1343,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeAppInstance in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "DescribeAppInstanceAdmin":{
@@ -1274,6 +1364,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeAppInstanceAdmin in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "DescribeAppInstanceUser":{
@@ -1293,6 +1385,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeAppInstanceUser in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "DescribeChannel":{
@@ -1312,6 +1406,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeChannel in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DescribeChannelBan":{
@@ -1332,6 +1428,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeChannelBan in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DescribeChannelMembership":{
@@ -1352,6 +1450,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeChannelMembership in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DescribeChannelMembershipForAppInstanceUser":{
@@ -1371,6 +1471,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeChannelMembershipForAppInstanceUser in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DescribeChannelModeratedByAppInstanceUser":{
@@ -1390,6 +1492,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeChannelModeratedByAppInstanceUser in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DescribeChannelModerator":{
@@ -1410,6 +1514,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DescribeChannelModerator in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "DisassociatePhoneNumberFromUser":{
@@ -1448,7 +1554,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DisassociatePhoneNumbersFromVoiceConnector in the Amazon Chime SDK Voice Namespace"
     },
     "DisassociatePhoneNumbersFromVoiceConnectorGroup":{
       "name":"DisassociatePhoneNumbersFromVoiceConnectorGroup",
@@ -1467,7 +1575,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by DisassociatePhoneNumbersFromVoiceConnectorGroup in the Amazon Chime SDK Voice Namespace"
     },
     "DisassociateSigninDelegateGroupsFromAccount":{
       "name":"DisassociateSigninDelegateGroupsFromAccount",
@@ -1542,6 +1652,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetAppInstanceRetentionSettings in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "GetAppInstanceStreamingConfigurations":{
@@ -1561,7 +1673,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetAppInstanceStreamingConfigurations in the Amazon Chime SDK Messaging Namespace"
     },
     "GetAttendee":{
       "name":"GetAttendee",
@@ -1580,7 +1694,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetAttendee in the Amazon Chime SDK Meetings Namespace"
     },
     "GetBot":{
       "name":"GetBot",
@@ -1619,6 +1735,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetChannelMessage in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "GetEventsConfiguration":{
@@ -1674,7 +1792,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetMediaCapturePipeline in the Amazon Chime SDK Media Pipelines Namespace"
     },
     "GetMeeting":{
       "name":"GetMeeting",
@@ -1693,7 +1813,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetMeeting in the Amazon Chime SDK Meetings Namespace"
     },
     "GetMessagingSessionEndpoint":{
       "name":"GetMessagingSessionEndpoint",
@@ -1711,6 +1833,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetMessagingSessionEndpoint in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "GetPhoneNumber":{
@@ -1784,7 +1908,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetProxySession in the Amazon Chime SDK Voice Namespace"
     },
     "GetRetentionSettings":{
       "name":"GetRetentionSettings",
@@ -1840,7 +1966,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetSipMediaApplication in the Amazon Chime SDK Voice Namespace"
     },
     "GetSipMediaApplicationLoggingConfiguration":{
       "name":"GetSipMediaApplicationLoggingConfiguration",
@@ -1859,7 +1987,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetSipMediaApplicationLoggingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "GetSipRule":{
       "name":"GetSipRule",
@@ -1878,7 +2008,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetSipRule in the Amazon Chime SDK Voice Namespace"
     },
     "GetUser":{
       "name":"GetUser",
@@ -1935,7 +2067,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnector in the Amazon Chime SDK Voice Namespace"
     },
     "GetVoiceConnectorEmergencyCallingConfiguration":{
       "name":"GetVoiceConnectorEmergencyCallingConfiguration",
@@ -1954,7 +2088,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnectorEmergencyCallingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "GetVoiceConnectorGroup":{
       "name":"GetVoiceConnectorGroup",
@@ -1973,7 +2109,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnectorGroup in the Amazon Chime SDK Voice Namespace"
     },
     "GetVoiceConnectorLoggingConfiguration":{
       "name":"GetVoiceConnectorLoggingConfiguration",
@@ -1992,7 +2130,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnectorLoggingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "GetVoiceConnectorOrigination":{
       "name":"GetVoiceConnectorOrigination",
@@ -2011,7 +2151,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnectorOrigination in the Amazon Chime SDK Voice Namespace"
     },
     "GetVoiceConnectorProxy":{
       "name":"GetVoiceConnectorProxy",
@@ -2030,7 +2172,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnectorProxy in the Amazon Chime SDK Voice Namespace"
     },
     "GetVoiceConnectorStreamingConfiguration":{
       "name":"GetVoiceConnectorStreamingConfiguration",
@@ -2049,7 +2193,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnectorStreamingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "GetVoiceConnectorTermination":{
       "name":"GetVoiceConnectorTermination",
@@ -2068,7 +2214,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnectorTermination in the Amazon Chime SDK Voice Namespace"
     },
     "GetVoiceConnectorTerminationHealth":{
       "name":"GetVoiceConnectorTerminationHealth",
@@ -2087,7 +2235,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by GetVoiceConnectorTerminationHealth in the Amazon Chime SDK Voice Namespace"
     },
     "InviteUsers":{
       "name":"InviteUsers",
@@ -2143,6 +2293,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListAppInstanceAdmins in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "ListAppInstanceUsers":{
@@ -2162,6 +2314,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListAppInstanceUsers in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "ListAppInstances":{
@@ -2181,6 +2335,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListAppInstances in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "ListAttendeeTags":{
@@ -2200,7 +2356,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Attendee Tags are not supported in the Amazon Chime SDK Meetings Namespace. Update your application to remove calls to this API."
     },
     "ListAttendees":{
       "name":"ListAttendees",
@@ -2219,7 +2377,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListAttendees in the Amazon Chime SDK Meetings Namespace"
     },
     "ListBots":{
       "name":"ListBots",
@@ -2257,6 +2417,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListChannelBans in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "ListChannelMemberships":{
@@ -2276,6 +2438,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListChannelMemberships in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "ListChannelMembershipsForAppInstanceUser":{
@@ -2295,6 +2459,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListChannelMembershipsForAppInstanceUser in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "ListChannelMessages":{
@@ -2314,6 +2480,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListChannelMessages in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "ListChannelModerators":{
@@ -2333,6 +2501,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListChannelModerators in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "ListChannels":{
@@ -2352,6 +2522,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListChannels in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "ListChannelsModeratedByAppInstanceUser":{
@@ -2371,6 +2543,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListChannelsModeratedByAppInstanceUser in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "ListMediaCapturePipelines":{
@@ -2389,7 +2563,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListMediaCapturePipelines in the Amazon Chime SDK Media Pipelines Namespace"
     },
     "ListMeetingTags":{
       "name":"ListMeetingTags",
@@ -2408,7 +2584,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Use ListTagsForResource in the Amazon Chime SDK Meetings Namespace."
     },
     "ListMeetings":{
       "name":"ListMeetings",
@@ -2426,7 +2604,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"ListMeetings is not supported in the Amazon Chime SDK Meetings Namespace. Update your application to remove calls to this API."
     },
     "ListPhoneNumberOrders":{
       "name":"ListPhoneNumberOrders",
@@ -2481,7 +2661,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListProxySessions in the Amazon Chime SDK Voice Namespace"
     },
     "ListRoomMemberships":{
       "name":"ListRoomMemberships",
@@ -2537,7 +2719,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListSipMediaApplications in the Amazon Chime SDK Voice Namespace"
     },
     "ListSipRules":{
       "name":"ListSipRules",
@@ -2555,7 +2739,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListSipRules in the Amazon Chime SDK Voice Namespace"
     },
     "ListSupportedPhoneNumberCountries":{
       "name":"ListSupportedPhoneNumberCountries",
@@ -2591,7 +2777,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListTagsForResource in the Amazon Chime SDK Voice, Amazon Chime SDK Meetings, Amazon Chime SDK Identity, Amazon Chime SDK Messaging, and Amazon Chime SDK Media Pipelines Namespaces"
     },
     "ListUsers":{
       "name":"ListUsers",
@@ -2628,7 +2816,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListVoiceConnectorGroups in the Amazon Chime SDK Voice Namespace"
     },
     "ListVoiceConnectorTerminationCredentials":{
       "name":"ListVoiceConnectorTerminationCredentials",
@@ -2647,7 +2837,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListVoiceConnectorTerminationCredentials in the Amazon Chime SDK Voice Namespace"
     },
     "ListVoiceConnectors":{
       "name":"ListVoiceConnectors",
@@ -2665,7 +2857,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ListVoiceConnectors in the Amazon Chime SDK Voice Namespace"
     },
     "LogoutUser":{
       "name":"LogoutUser",
@@ -2705,6 +2899,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutAppInstanceRetentionSettings in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "PutAppInstanceStreamingConfigurations":{
@@ -2724,7 +2920,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutAppInstanceStreamingConfigurations in the Amazon Chime SDK Messaging Namespace"
     },
     "PutEventsConfiguration":{
       "name":"PutEventsConfiguration",
@@ -2782,7 +2980,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutSipMediaApplicationLoggingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "PutVoiceConnectorEmergencyCallingConfiguration":{
       "name":"PutVoiceConnectorEmergencyCallingConfiguration",
@@ -2801,7 +3001,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutVoiceConnectorEmergencyCallingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "PutVoiceConnectorLoggingConfiguration":{
       "name":"PutVoiceConnectorLoggingConfiguration",
@@ -2820,7 +3022,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutVoiceConnectorLoggingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "PutVoiceConnectorOrigination":{
       "name":"PutVoiceConnectorOrigination",
@@ -2839,7 +3043,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutVoiceConnectorOrigination in the Amazon Chime SDK Voice Namespace"
     },
     "PutVoiceConnectorProxy":{
       "name":"PutVoiceConnectorProxy",
@@ -2858,7 +3064,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutVoiceConnectorProxy in the Amazon Chime SDK Voice Namespace"
     },
     "PutVoiceConnectorStreamingConfiguration":{
       "name":"PutVoiceConnectorStreamingConfiguration",
@@ -2877,7 +3085,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutVoiceConnectorStreamingConfiguration in the Amazon Chime SDK Voice Namespace"
     },
     "PutVoiceConnectorTermination":{
       "name":"PutVoiceConnectorTermination",
@@ -2897,7 +3107,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutVoiceConnectorTermination in the Amazon Chime SDK Voice Namespace"
     },
     "PutVoiceConnectorTerminationCredentials":{
       "name":"PutVoiceConnectorTerminationCredentials",
@@ -2915,7 +3127,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by PutVoiceConnectorTerminationCredentials in the Amazon Chime SDK Voice Namespace"
     },
     "RedactChannelMessage":{
       "name":"RedactChannelMessage",
@@ -2934,6 +3148,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by RedactChannelMessage in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "RedactConversationMessage":{
@@ -3068,6 +3284,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by SendChannelMessage in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "StartMeetingTranscription":{
@@ -3089,7 +3307,9 @@
         {"shape":"UnprocessableEntityException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by StartMeetingTranscription in the Amazon Chime SDK Meetings Namespace"
     },
     "StopMeetingTranscription":{
       "name":"StopMeetingTranscription",
@@ -3109,7 +3329,9 @@
         {"shape":"UnprocessableEntityException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by StopMeetingTranscription in the Amazon Chime SDK Meetings Namespace"
     },
     "TagAttendee":{
       "name":"TagAttendee",
@@ -3128,7 +3350,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Attendee Tags are not supported in the Amazon Chime SDK Meetings Namespace. Update your application to remove calls to this API."
     },
     "TagMeeting":{
       "name":"TagMeeting",
@@ -3147,7 +3371,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Use TagResource in the Amazon Chime SDK Meetings Namespace."
     },
     "TagResource":{
       "name":"TagResource",
@@ -3164,7 +3390,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by TagResource in the Amazon Chime SDK Voice, Amazon Chime SDK Meetings, Amazon Chime SDK Identity, Amazon Chime SDK Messaging, and Amazon Chime SDK Media Pipelines Namespaces"
     },
     "UntagAttendee":{
       "name":"UntagAttendee",
@@ -3182,7 +3410,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Attendee Tags are not supported in the Amazon Chime SDK Meetings Namespace. Update your application to remove calls to this API."
     },
     "UntagMeeting":{
       "name":"UntagMeeting",
@@ -3200,7 +3430,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Use UntagResource in the Amazon Chime SDK Meetings Namespace."
     },
     "UntagResource":{
       "name":"UntagResource",
@@ -3217,7 +3449,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UntagResource in the Amazon Chime SDK Voice, Amazon Chime SDK Meetings, Amazon Chime SDK Identity, Amazon Chime SDK Messaging, and Amazon Chime SDK Media Pipelines Namespaces"
     },
     "UpdateAccount":{
       "name":"UpdateAccount",
@@ -3276,6 +3510,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateAppInstance in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "UpdateAppInstanceUser":{
@@ -3296,6 +3532,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateAppInstanceUser in the Amazon Chime SDK Identity Namespace",
       "endpoint":{"hostPrefix":"identity-"}
     },
     "UpdateBot":{
@@ -3335,6 +3573,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateChannel in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "UpdateChannelMessage":{
@@ -3355,6 +3595,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateChannelMessage in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "UpdateChannelReadMarker":{
@@ -3375,6 +3617,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateChannelReadMarker in the Amazon Chime SDK Messaging Namespace",
       "endpoint":{"hostPrefix":"messaging-"}
     },
     "UpdateGlobalSettings":{
@@ -3448,7 +3692,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateProxySession in the Amazon Chime SDK Voice Namespace"
     },
     "UpdateRoom":{
       "name":"UpdateRoom",
@@ -3506,7 +3752,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateSipMediaApplication in the Amazon Chime SDK Voice Namespace"
     },
     "UpdateSipMediaApplicationCall":{
       "name":"UpdateSipMediaApplicationCall",
@@ -3526,7 +3774,9 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateSipMediaApplicationCall in the Amazon Chime SDK Voice Namespace"
     },
     "UpdateSipRule":{
       "name":"UpdateSipRule",
@@ -3547,7 +3797,9 @@
         {"shape":"ResourceLimitExceededException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateSipRule in the Amazon Chime SDK Voice Namespace"
     },
     "UpdateUser":{
       "name":"UpdateUser",
@@ -3603,7 +3855,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateVoiceConnector in the Amazon Chime SDK Voice Namespace"
     },
     "UpdateVoiceConnectorGroup":{
       "name":"UpdateVoiceConnectorGroup",
@@ -3623,7 +3877,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by UpdateVoiceConnectorGroup in the Amazon Chime SDK Voice Namespace"
     },
     "ValidateE911Address":{
       "name":"ValidateE911Address",
@@ -3642,7 +3898,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Replaced by ValidateE911Address in the Amazon Chime SDK Voice Namespace"
     }
   },
   "shapes":{
@@ -9924,5 +10182,7 @@
         }
       }
     }
-  }
+  },
+  "deprecated":true,
+  "deprecatedMessage":"This namespace has been deprecated"
 }

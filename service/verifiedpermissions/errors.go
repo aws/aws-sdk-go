@@ -73,14 +73,14 @@ const (
 	//    * MissingAttribute The policy attempts to access a record or entity attribute
 	//    that isn't specified in the schema. Test for the existence of the attribute
 	//    first before attempting to access its value. For more information, see
-	//    the has (presence of attribute test) operator (docs.cedarpolicy.comsyntax-operators.html#has-presence-of-attribute-test)
+	//    the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
 	//    in the Cedar Policy Language Guide.
 	//
 	//    * UnsafeOptionalAttributeAccess The policy attempts to access a record
 	//    or entity attribute that is optional and isn't guaranteed to be present.
 	//    Test for the existence of the attribute first before attempting to access
 	//    its value. For more information, see the has (presence of attribute test)
-	//    operator (docs.cedarpolicy.comsyntax-operators.html#has-presence-of-attribute-test)
+	//    operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
 	//    in the Cedar Policy Language Guide.
 	//
 	//    * ImpossiblePolicy Cedar has determined that a policy condition always

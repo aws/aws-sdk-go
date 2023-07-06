@@ -1794,6 +1794,108 @@ func (c *Appflow) RegisterConnectorWithContext(ctx aws.Context, input *RegisterC
 	return out, req.Send()
 }
 
+const opResetConnectorMetadataCache = "ResetConnectorMetadataCache"
+
+// ResetConnectorMetadataCacheRequest generates a "aws/request.Request" representing the
+// client's request for the ResetConnectorMetadataCache operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResetConnectorMetadataCache for more information on using the ResetConnectorMetadataCache
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ResetConnectorMetadataCacheRequest method.
+//	req, resp := client.ResetConnectorMetadataCacheRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/ResetConnectorMetadataCache
+func (c *Appflow) ResetConnectorMetadataCacheRequest(input *ResetConnectorMetadataCacheInput) (req *request.Request, output *ResetConnectorMetadataCacheOutput) {
+	op := &request.Operation{
+		Name:       opResetConnectorMetadataCache,
+		HTTPMethod: "POST",
+		HTTPPath:   "/reset-connector-metadata-cache",
+	}
+
+	if input == nil {
+		input = &ResetConnectorMetadataCacheInput{}
+	}
+
+	output = &ResetConnectorMetadataCacheOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ResetConnectorMetadataCache API operation for Amazon Appflow.
+//
+// Resets metadata about your connector entities that Amazon AppFlow stored
+// in its cache. Use this action when you want Amazon AppFlow to return the
+// latest information about the data that you have in a source application.
+//
+// Amazon AppFlow returns metadata about your entities when you use the ListConnectorEntities
+// or DescribeConnectorEntities actions. Following these actions, Amazon AppFlow
+// caches the metadata to reduce the number of API requests that it must send
+// to the source application. Amazon AppFlow automatically resets the cache
+// once every hour, but you can use this action when you want to get the latest
+// metadata right away.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Appflow's
+// API operation ResetConnectorMetadataCache for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has invalid or missing parameters.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request (such as the source or destination
+//     connector profile) is not found.
+//
+//   - ConflictException
+//     There was a conflict when processing the request (for example, a flow with
+//     the given name already exists within the account. Check for conflicting resource
+//     names and try again.
+//
+//   - InternalServerException
+//     An internal service error occurred during the processing of your request.
+//     Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/ResetConnectorMetadataCache
+func (c *Appflow) ResetConnectorMetadataCache(input *ResetConnectorMetadataCacheInput) (*ResetConnectorMetadataCacheOutput, error) {
+	req, out := c.ResetConnectorMetadataCacheRequest(input)
+	return out, req.Send()
+}
+
+// ResetConnectorMetadataCacheWithContext is the same as ResetConnectorMetadataCache with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResetConnectorMetadataCache for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Appflow) ResetConnectorMetadataCacheWithContext(ctx aws.Context, input *ResetConnectorMetadataCacheInput, opts ...request.Option) (*ResetConnectorMetadataCacheOutput, error) {
+	req, out := c.ResetConnectorMetadataCacheRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartFlow = "StartFlow"
 
 // StartFlowRequest generates a "aws/request.Request" representing the
@@ -11651,6 +11753,133 @@ func (s *RegistrationOutput_) SetStatus(v string) *RegistrationOutput_ {
 	return s
 }
 
+type ResetConnectorMetadataCacheInput struct {
+	_ struct{} `type:"structure"`
+
+	// The API version that you specified in the connector profile that you’re
+	// resetting cached metadata for. You must use this parameter only if the connector
+	// supports multiple API versions or if the connector type is CustomConnector.
+	//
+	// To look up how many versions a connector supports, use the DescribeConnectors
+	// action. In the response, find the value that Amazon AppFlow returns for the
+	// connectorVersion parameter.
+	//
+	// To look up the connector type, use the DescribeConnectorProfiles action.
+	// In the response, find the value that Amazon AppFlow returns for the connectorType
+	// parameter.
+	//
+	// To look up the API version that you specified in a connector profile, use
+	// the DescribeConnectorProfiles action.
+	ApiVersion *string `locationName:"apiVersion" type:"string"`
+
+	// Use this parameter if you want to reset cached metadata about the details
+	// for an individual entity.
+	//
+	// If you don't include this parameter in your request, Amazon AppFlow only
+	// resets cached metadata about entity names, not entity details.
+	ConnectorEntityName *string `locationName:"connectorEntityName" type:"string"`
+
+	// The name of the connector profile that you want to reset cached metadata
+	// for.
+	//
+	// You can omit this parameter if you're resetting the cache for any of the
+	// following connectors: Amazon Connect, Amazon EventBridge, Amazon Lookout
+	// for Metrics, Amazon S3, or Upsolver. If you're resetting the cache for any
+	// other connector, you must include this parameter in your request.
+	ConnectorProfileName *string `locationName:"connectorProfileName" type:"string"`
+
+	// The type of connector to reset cached metadata for.
+	//
+	// You must include this parameter in your request if you're resetting the cache
+	// for any of the following connectors: Amazon Connect, Amazon EventBridge,
+	// Amazon Lookout for Metrics, Amazon S3, or Upsolver. If you're resetting the
+	// cache for any other connector, you can omit this parameter from your request.
+	ConnectorType *string `locationName:"connectorType" type:"string" enum:"ConnectorType"`
+
+	// Use this parameter only if you’re resetting the cached metadata about a
+	// nested entity. Only some connectors support nested entities. A nested entity
+	// is one that has another entity as a parent. To use this parameter, specify
+	// the name of the parent entity.
+	//
+	// To look up the parent-child relationship of entities, you can send a ListConnectorEntities
+	// request that omits the entitiesPath parameter. Amazon AppFlow will return
+	// a list of top-level entities. For each one, it indicates whether the entity
+	// has nested entities. Then, in a subsequent ListConnectorEntities request,
+	// you can specify a parent entity name for the entitiesPath parameter. Amazon
+	// AppFlow will return a list of the child entities for that parent.
+	EntitiesPath *string `locationName:"entitiesPath" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetConnectorMetadataCacheInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetConnectorMetadataCacheInput) GoString() string {
+	return s.String()
+}
+
+// SetApiVersion sets the ApiVersion field's value.
+func (s *ResetConnectorMetadataCacheInput) SetApiVersion(v string) *ResetConnectorMetadataCacheInput {
+	s.ApiVersion = &v
+	return s
+}
+
+// SetConnectorEntityName sets the ConnectorEntityName field's value.
+func (s *ResetConnectorMetadataCacheInput) SetConnectorEntityName(v string) *ResetConnectorMetadataCacheInput {
+	s.ConnectorEntityName = &v
+	return s
+}
+
+// SetConnectorProfileName sets the ConnectorProfileName field's value.
+func (s *ResetConnectorMetadataCacheInput) SetConnectorProfileName(v string) *ResetConnectorMetadataCacheInput {
+	s.ConnectorProfileName = &v
+	return s
+}
+
+// SetConnectorType sets the ConnectorType field's value.
+func (s *ResetConnectorMetadataCacheInput) SetConnectorType(v string) *ResetConnectorMetadataCacheInput {
+	s.ConnectorType = &v
+	return s
+}
+
+// SetEntitiesPath sets the EntitiesPath field's value.
+func (s *ResetConnectorMetadataCacheInput) SetEntitiesPath(v string) *ResetConnectorMetadataCacheInput {
+	s.EntitiesPath = &v
+	return s
+}
+
+type ResetConnectorMetadataCacheOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetConnectorMetadataCacheOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetConnectorMetadataCacheOutput) GoString() string {
+	return s.String()
+}
+
 // The resource specified in the request (such as the source or destination
 // connector profile) is not found.
 type ResourceNotFoundException struct {
@@ -12066,6 +12295,17 @@ type SAPODataConnectorProfileProperties struct {
 	// ClientNumber is a required field
 	ClientNumber *string `locationName:"clientNumber" min:"3" type:"string" required:"true"`
 
+	// If you set this parameter to true, Amazon AppFlow bypasses the single sign-on
+	// (SSO) settings in your SAP account when it accesses your SAP OData instance.
+	//
+	// Whether you need this option depends on the types of credentials that you
+	// applied to your SAP OData connection profile. If your profile uses basic
+	// authentication credentials, SAP SSO can prevent Amazon AppFlow from connecting
+	// to your account with your username and password. In this case, bypassing
+	// SSO makes it possible for Amazon AppFlow to connect successfully. However,
+	// if your profile uses OAuth credentials, this parameter has no affect.
+	DisableSSO *bool `locationName:"disableSSO" type:"boolean"`
+
 	// The logon language of SAPOData instance.
 	LogonLanguage *string `locationName:"logonLanguage" type:"string"`
 
@@ -12147,6 +12387,12 @@ func (s *SAPODataConnectorProfileProperties) SetApplicationServicePath(v string)
 // SetClientNumber sets the ClientNumber field's value.
 func (s *SAPODataConnectorProfileProperties) SetClientNumber(v string) *SAPODataConnectorProfileProperties {
 	s.ClientNumber = &v
+	return s
+}
+
+// SetDisableSSO sets the DisableSSO field's value.
+func (s *SAPODataConnectorProfileProperties) SetDisableSSO(v bool) *SAPODataConnectorProfileProperties {
+	s.DisableSSO = &v
 	return s
 }
 

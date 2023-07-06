@@ -36,21 +36,25 @@
     "ListExports": "<p>List exports.</p>",
     "ListImportErrors": "<p>List import errors.</p>",
     "ListImports": "<p>List imports.</p>",
+    "ListManagedAccounts": "<p>List Managed Accounts.</p>",
     "ListSourceServerActions": "<p>List source server post migration custom actions.</p>",
     "ListTagsForResource": "<p>List all tags for your Application Migration Service resources.</p>",
     "ListTemplateActions": "<p>List template post migration custom actions.</p>",
     "ListWaves": "<p>Retrieves all waves or multiple waves by ID.</p>",
     "MarkAsArchived": "<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle. state which equals DISCONNECTED or CUTOVER.</p>",
+    "PauseReplication": "<p>Pause Replication.</p>",
     "PutSourceServerAction": "<p>Put source server post migration custom action.</p>",
     "PutTemplateAction": "<p>Put template post migration custom action.</p>",
     "RemoveSourceServerAction": "<p>Remove source server post migration custom action.</p>",
     "RemoveTemplateAction": "<p>Remove template post migration custom action.</p>",
+    "ResumeReplication": "<p>Resume Replication.</p>",
     "RetryDataReplication": "<p>Causes the data replication initiation sequence to begin immediately upon next Handshake for specified SourceServer IDs, regardless of when the previous initiation started. This command will not work if the SourceServer is not stalled or is in a DISCONNECTED or STOPPED state.</p>",
     "StartCutover": "<p>Launches a Cutover Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartCutover and changes the SourceServer.lifeCycle.state property to CUTTING_OVER.</p>",
     "StartExport": "<p>Start export.</p>",
     "StartImport": "<p>Start import.</p>",
     "StartReplication": "<p>Starts replication for SNAPSHOT_SHIPPING agents.</p>",
     "StartTest": "<p>Launches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING.</p>",
+    "StopReplication": "<p>Stop Replication.</p>",
     "TagResource": "<p>Adds or overwrites only the specified tags for the specified Application Migration Service resource or resources. When you specify an existing tag key, the value is overwritten with the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value.</p>",
     "TerminateTargetInstances": "<p>Starts a job that terminates specific launched EC2 Test and Cutover instances. This command will not work for any Source Server with a lifecycle.state of TESTING, CUTTING_OVER, or CUTOVER.</p>",
     "UnarchiveApplication": "<p>Unarchive application.</p>",
@@ -94,9 +98,52 @@
     "AccountID": {
       "base": null,
       "refs": {
+        "ArchiveApplicationRequest$accountID": "<p>Account ID.</p>",
+        "ArchiveWaveRequest$accountID": "<p>Account ID.</p>",
+        "AssociateApplicationsRequest$accountID": "<p>Account ID.</p>",
+        "AssociateSourceServersRequest$accountID": "<p>Account ID.</p>",
+        "ChangeServerLifeCycleStateRequest$accountID": "<p>The request to change the source server migration account ID.</p>",
+        "CreateApplicationRequest$accountID": "<p>Account ID.</p>",
+        "CreateWaveRequest$accountID": "<p>Account ID.</p>",
+        "DeleteApplicationRequest$accountID": "<p>Account ID.</p>",
+        "DeleteJobRequest$accountID": "<p>Request to delete Job from service by Account ID.</p>",
+        "DeleteSourceServerRequest$accountID": "<p>Request to delete Source Server from service by Account ID.</p>",
+        "DeleteWaveRequest$accountID": "<p>Account ID.</p>",
+        "DescribeJobLogItemsRequest$accountID": "<p>Request to describe Job log Account ID.</p>",
+        "DescribeJobsRequest$accountID": "<p>Request to describe job log items by Account ID.</p>",
+        "DescribeSourceServersRequest$accountID": "<p>Request to filter Source Servers list by Accoun ID.</p>",
+        "DisassociateApplicationsRequest$accountID": "<p>Account ID.</p>",
+        "DisassociateSourceServersRequest$accountID": "<p>Account ID.</p>",
+        "DisconnectFromServiceRequest$accountID": "<p>Request to disconnect Source Server from service by Account ID.</p>",
         "ExportTask$s3BucketOwner": "<p>Export task s3 bucket owner.</p>",
+        "FinalizeCutoverRequest$accountID": "<p>Request to finalize Cutover by Source Account ID.</p>",
+        "GetLaunchConfigurationRequest$accountID": "<p>Request to get Launch Configuration information by Account ID.</p>",
+        "GetReplicationConfigurationRequest$accountID": "<p>Request to get Replication Configuration by Account ID.</p>",
+        "ImportErrorData$accountID": "<p>Import error data source account ID.</p>",
+        "ListApplicationsRequest$accountID": "<p>Applications list Account ID.</p>",
+        "ListSourceServerActionsRequest$accountID": "<p>Account ID to return when listing source server post migration custom actions.</p>",
+        "ListWavesRequest$accountID": "<p>Request account ID.</p>",
+        "ManagedAccount$accountId": "<p>Managed account, account ID.</p>",
+        "MarkAsArchivedRequest$accountID": "<p>Mark as archived by Account ID.</p>",
+        "PauseReplicationRequest$accountID": "<p>Pause Replication Request account ID.</p>",
+        "PutSourceServerActionRequest$accountID": "<p>Source server post migration custom account ID.</p>",
+        "RemoveSourceServerActionRequest$accountID": "<p>Source server post migration account ID.</p>",
+        "ResumeReplicationRequest$accountID": "<p>Resume Replication Request account ID.</p>",
+        "RetryDataReplicationRequest$accountID": "<p>Retry data replication for Account ID.</p>",
         "S3BucketSource$s3BucketOwner": "<p>S3 bucket source s3 bucket owner.</p>",
-        "StartExportRequest$s3BucketOwner": "<p>Start export request s3 bucket owner.</p>"
+        "StartCutoverRequest$accountID": "<p>Start Cutover by Account IDs</p>",
+        "StartExportRequest$s3BucketOwner": "<p>Start export request s3 bucket owner.</p>",
+        "StartReplicationRequest$accountID": "<p>Account ID on which to start replication.</p>",
+        "StartTestRequest$accountID": "<p>Start Test for Account ID.</p>",
+        "StopReplicationRequest$accountID": "<p>Stop Replication Request account ID.</p>",
+        "TerminateTargetInstancesRequest$accountID": "<p>Terminate Target instance by Account ID</p>",
+        "UnarchiveApplicationRequest$accountID": "<p>Account ID.</p>",
+        "UnarchiveWaveRequest$accountID": "<p>Account ID.</p>",
+        "UpdateApplicationRequest$accountID": "<p>Account ID.</p>",
+        "UpdateLaunchConfigurationRequest$accountID": "<p>Update Launch configuration Account ID.</p>",
+        "UpdateReplicationConfigurationRequest$accountID": "<p>Update replication configuration Account ID request.</p>",
+        "UpdateSourceServerReplicationTypeRequest$accountID": "<p>Account ID on which to update replication type.</p>",
+        "UpdateWaveRequest$accountID": "<p>Account ID.</p>"
       }
     },
     "ActionCategory": {
@@ -255,6 +302,16 @@
       "refs": {
       }
     },
+    "BandwidthThrottling": {
+      "base": null,
+      "refs": {
+        "CreateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Request to configure bandwidth throttling during Replication Settings template creation.</p>",
+        "ReplicationConfiguration$bandwidthThrottling": "<p>Replication Configuration set bandwidth throttling.</p>",
+        "ReplicationConfigurationTemplate$bandwidthThrottling": "<p>Replication Configuration template bandwidth throttling.</p>",
+        "UpdateReplicationConfigurationRequest$bandwidthThrottling": "<p>Update replication configuration bandwidth throttling request.</p>",
+        "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Update replication configuration template bandwidth throttling request.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -266,6 +323,7 @@
         "CreateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Request to associate the default Application Migration Service Security group with the Replication Settings template.</p>",
         "CreateReplicationConfigurationTemplateRequest$createPublicIP": "<p>Request to create Public IP during Replication Settings template creation.</p>",
         "CreateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Request to use Dedicated Replication Servers during Replication Settings template creation.</p>",
+        "CreateReplicationConfigurationTemplateRequest$useFipsEndpoint": "<p>Request to use Fips Endpoint during Replication Settings template creation.</p>",
         "DescribeSourceServersRequestFilters$isArchived": "<p>Request to filter Source Servers list by archived.</p>",
         "LaunchConfiguration$copyPrivateIp": "<p>Copy Private IP during Launch Configuration.</p>",
         "LaunchConfiguration$copyTags": "<p>Copy Tags during Launch Configuration.</p>",
@@ -285,10 +343,12 @@
         "ReplicationConfiguration$associateDefaultSecurityGroup": "<p>Replication Configuration associate default Application Migration Service Security Group.</p>",
         "ReplicationConfiguration$createPublicIP": "<p>Replication Configuration create Public IP.</p>",
         "ReplicationConfiguration$useDedicatedReplicationServer": "<p>Replication Configuration use Dedicated Replication Server.</p>",
+        "ReplicationConfiguration$useFipsEndpoint": "<p>Replication Configuration use Fips Endpoint.</p>",
         "ReplicationConfigurationReplicatedDisk$isBootDisk": "<p>Replication Configuration replicated disk boot disk.</p>",
         "ReplicationConfigurationTemplate$associateDefaultSecurityGroup": "<p>Replication Configuration template associate default Application Migration Service Security group.</p>",
         "ReplicationConfigurationTemplate$createPublicIP": "<p>Replication Configuration template create Public IP.</p>",
         "ReplicationConfigurationTemplate$useDedicatedReplicationServer": "<p>Replication Configuration template use Dedicated Replication Server.</p>",
+        "ReplicationConfigurationTemplate$useFipsEndpoint": "<p>Replication Configuration template use Fips Endpoint.</p>",
         "SourceServer$isArchived": "<p>Source server archived status.</p>",
         "SourceServerActionDocument$active": "<p>Source server post migration custom action active status.</p>",
         "SourceServerActionDocument$mustSucceedForCutover": "<p>Source server post migration custom action must succeed for cutover.</p>",
@@ -305,9 +365,11 @@
         "UpdateReplicationConfigurationRequest$associateDefaultSecurityGroup": "<p>Update replication configuration associate default Application Migration Service Security group request.</p>",
         "UpdateReplicationConfigurationRequest$createPublicIP": "<p>Update replication configuration create Public IP request.</p>",
         "UpdateReplicationConfigurationRequest$useDedicatedReplicationServer": "<p>Update replication configuration use dedicated Replication Server request.</p>",
+        "UpdateReplicationConfigurationRequest$useFipsEndpoint": "<p>Update replication configuration use Fips Endpoint.</p>",
         "UpdateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Update replication configuration template associate default Application Migration Service Security group request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$createPublicIP": "<p>Update replication configuration template create Public IP request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Update replication configuration template use dedicated Replication Server request.</p>",
+        "UpdateReplicationConfigurationTemplateRequest$useFipsEndpoint": "<p>Update replication configuration template use Fips Endpoint request.</p>",
         "Wave$isArchived": "<p>Wave archival status.</p>"
       }
     },
@@ -972,6 +1034,12 @@
       "refs": {
       }
     },
+    "Iops": {
+      "base": null,
+      "refs": {
+        "LaunchTemplateDiskConf$iops": "<p>Launch template disk iops configuration.</p>"
+      }
+    },
     "JmesPathString": {
       "base": null,
       "refs": {
@@ -1305,6 +1373,16 @@
       "refs": {
       }
     },
+    "ListManagedAccountsRequest": {
+      "base": "<p>List managed accounts request.</p>",
+      "refs": {
+      }
+    },
+    "ListManagedAccountsResponse": {
+      "base": "<p>List managed accounts response.</p>",
+      "refs": {
+      }
+    },
     "ListSourceServerActionsRequest": {
       "base": null,
       "refs": {
@@ -1351,6 +1429,18 @@
       "refs": {
       }
     },
+    "ManagedAccount": {
+      "base": "<p>Managed account.</p>",
+      "refs": {
+        "ManagedAccounts$member": null
+      }
+    },
+    "ManagedAccounts": {
+      "base": null,
+      "refs": {
+        "ListManagedAccountsResponse$items": "<p>List managed accounts response items.</p>"
+      }
+    },
     "MarkAsArchivedRequest": {
       "base": null,
       "refs": {
@@ -1370,6 +1460,7 @@
         "ListExportsRequest$maxResults": "<p>List export request max results.</p>",
         "ListImportErrorsRequest$maxResults": "<p>List import errors request max results.</p>",
         "ListImportsRequest$maxResults": "<p>List imports request max results.</p>",
+        "ListManagedAccountsRequest$maxResults": "<p>List managed accounts request max results.</p>",
         "ListSourceServerActionsRequest$maxResults": "<p>Maximum amount of items to return when listing source server post migration custom actions.</p>",
         "ListTemplateActionsRequest$maxResults": "<p>Maximum amount of items to return when listing template post migration custom actions.</p>",
         "ListWavesRequest$maxResults": "<p>Maximum results to return when listing waves.</p>"
@@ -1434,6 +1525,8 @@
         "ListImportErrorsResponse$nextToken": "<p>List imports errors response next token.</p>",
         "ListImportsRequest$nextToken": "<p>List imports request next token.</p>",
         "ListImportsResponse$nextToken": "<p>List import response next token.</p>",
+        "ListManagedAccountsRequest$nextToken": "<p>List managed accounts request next token.</p>",
+        "ListManagedAccountsResponse$nextToken": "<p>List managed accounts response next token.</p>",
         "ListSourceServerActionsRequest$nextToken": "<p>Next token to use when listing source server post migration custom actions.</p>",
         "ListSourceServerActionsResponse$nextToken": "<p>Next token returned when listing source server post migration custom actions.</p>",
         "ListTemplateActionsRequest$nextToken": "<p>Next token to use when listing template post migration custom actions.</p>",
@@ -1454,13 +1547,17 @@
         "Job$participatingServers": "<p>Servers participating in a specific Job.</p>"
       }
     },
+    "PauseReplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PositiveInteger": {
       "base": null,
       "refs": {
         "ApplicationAggregatedStatus$totalSourceServers": "<p>Application aggregated status total source servers amount.</p>",
         "CPU$cores": "<p>The number of CPU cores on the source server.</p>",
         "CreateLaunchConfigurationTemplateRequest$smallVolumeMaxSize": "<p>Small volume maximum size.</p>",
-        "CreateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Request to configure bandwidth throttling during Replication Settings template creation.</p>",
         "DataReplicationInfoReplicatedDisk$backloggedStorageBytes": "<p>Request to query data replication backlog size in bytes.</p>",
         "DataReplicationInfoReplicatedDisk$replicatedStorageBytes": "<p>Request to query amount of data replicated in bytes.</p>",
         "DataReplicationInfoReplicatedDisk$rescannedStorageBytes": "<p>Request to query amount of data rescanned in bytes.</p>",
@@ -1478,16 +1575,10 @@
         "ImportTaskSummaryWaves$modifiedCount": "<p>Import task summery waves modified count.</p>",
         "InternalServerException$retryAfterSeconds": "<p>The server encountered an unexpected condition that prevented it from fulfilling the request. The request will be retried again after x seconds.</p>",
         "LaunchConfigurationTemplate$smallVolumeMaxSize": "<p>Small volume maximum size.</p>",
-        "LaunchTemplateDiskConf$iops": "<p>Launch template disk iops configuration.</p>",
-        "LaunchTemplateDiskConf$throughput": "<p>Launch template disk throughput configuration.</p>",
-        "ReplicationConfiguration$bandwidthThrottling": "<p>Replication Configuration set bandwidth throttling.</p>",
         "ReplicationConfigurationReplicatedDisk$iops": "<p>Replication Configuration replicated disk IOPs.</p>",
         "ReplicationConfigurationReplicatedDisk$throughput": "<p>Replication Configuration replicated disk throughput.</p>",
-        "ReplicationConfigurationTemplate$bandwidthThrottling": "<p>Replication Configuration template bandwidth throttling.</p>",
         "SourceProperties$ramBytes": "<p>Source server RAM in bytes.</p>",
         "UpdateLaunchConfigurationTemplateRequest$smallVolumeMaxSize": "<p>Small volume maximum size.</p>",
-        "UpdateReplicationConfigurationRequest$bandwidthThrottling": "<p>Update replication configuration bandwidth throttling request.</p>",
-        "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Update replication configuration template bandwidth throttling request.</p>",
         "WaveAggregatedStatus$totalApplications": "<p>Wave aggregated status total applications amount.</p>"
       }
     },
@@ -1665,6 +1756,11 @@
       "refs": {
       }
     },
+    "ResumeReplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RetryDataReplicationRequest": {
       "base": null,
       "refs": {
@@ -1767,14 +1863,17 @@
         "ListSourceServerActionsRequest$sourceServerID": "<p>Source server ID.</p>",
         "MarkAsArchivedRequest$sourceServerID": "<p>Mark as archived by Source Server ID.</p>",
         "ParticipatingServer$sourceServerID": "<p>Participating server Source Server ID.</p>",
+        "PauseReplicationRequest$sourceServerID": "<p>Pause Replication Request source server ID.</p>",
         "PutSourceServerActionRequest$sourceServerID": "<p>Source server ID.</p>",
         "RemoveSourceServerActionRequest$sourceServerID": "<p>Source server ID of the post migration custom action to remove.</p>",
         "ReplicationConfiguration$sourceServerID": "<p>Replication Configuration Source Server ID.</p>",
+        "ResumeReplicationRequest$sourceServerID": "<p>Resume Replication Request source server ID.</p>",
         "RetryDataReplicationRequest$sourceServerID": "<p>Retry data replication for Source Server ID.</p>",
         "SourceServer$sourceServerID": "<p>Source server ID.</p>",
         "StartCutoverRequestSourceServerIDs$member": null,
         "StartReplicationRequest$sourceServerID": "<p>ID of source server on which to start replication.</p>",
         "StartTestRequestSourceServerIDs$member": null,
+        "StopReplicationRequest$sourceServerID": "<p>Stop Replication Request source server ID.</p>",
         "TerminateTargetInstancesRequestSourceServerIDs$member": null,
         "UpdateLaunchConfigurationRequest$sourceServerID": "<p>Update Launch configuration by Source Server ID request.</p>",
         "UpdateReplicationConfigurationRequest$sourceServerID": "<p>Update replication configuration Source Server ID request.</p>",
@@ -1926,6 +2025,11 @@
       "refs": {
       }
     },
+    "StopReplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StrictlyPositiveInteger": {
       "base": null,
       "refs": {
@@ -2050,6 +2154,12 @@
     "ThrottlingException": {
       "base": "<p>Reached throttling quota exception.</p>",
       "refs": {
+      }
+    },
+    "Throughput": {
+      "base": null,
+      "refs": {
+        "LaunchTemplateDiskConf$throughput": "<p>Launch template disk throughput configuration.</p>"
       }
     },
     "UnarchiveApplicationRequest": {

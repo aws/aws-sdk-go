@@ -12,7 +12,7 @@
     "DeleteAlias": "<p>Deletes a Lambda function <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html\">alias</a>.</p>",
     "DeleteCodeSigningConfig": "<p>Deletes the code signing configuration. You can delete the code signing configuration only if no function is using it. </p>",
     "DeleteEventSourceMapping": "<p>Deletes an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html\">event source mapping</a>. You can get the identifier of a mapping from the output of <a>ListEventSourceMappings</a>.</p> <p>When you delete an event source mapping, it enters a <code>Deleting</code> state and might not be completely deleted for several seconds.</p>",
-    "DeleteFunction": "<p>Deletes a Lambda function. To delete a specific function version, use the <code>Qualifier</code> parameter. Otherwise, all versions and aliases are deleted.</p> <p>To delete Lambda event source mappings that invoke a function, use <a>DeleteEventSourceMapping</a>. For Amazon Web Services and resources that invoke your function directly, delete the trigger in the service where you originally configured it.</p>",
+    "DeleteFunction": "<p>Deletes a Lambda function. To delete a specific function version, use the <code>Qualifier</code> parameter. Otherwise, all versions and aliases are deleted. This doesn't require the user to have explicit permissions for <a>DeleteAlias</a>.</p> <p>To delete Lambda event source mappings that invoke a function, use <a>DeleteEventSourceMapping</a>. For Amazon Web Services and resources that invoke your function directly, delete the trigger in the service where you originally configured it.</p>",
     "DeleteFunctionCodeSigningConfig": "<p>Removes the code signing configuration from the function.</p>",
     "DeleteFunctionConcurrency": "<p>Removes a concurrent execution limit from a function.</p>",
     "DeleteFunctionEventInvokeConfig": "<p>Deletes the configuration for asynchronous invocation for a function, version, or alias.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>",
@@ -405,8 +405,8 @@
     "Date": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$StartingPositionTimestamp": "<p>With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from which to start reading.</p>",
-        "EventSourceMappingConfiguration$StartingPositionTimestamp": "<p>With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from which to start reading.</p>",
+        "CreateEventSourceMappingRequest$StartingPositionTimestamp": "<p>With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from which to start reading. <code>StartingPositionTimestamp</code> cannot be in the future.</p>",
+        "EventSourceMappingConfiguration$StartingPositionTimestamp": "<p>With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from which to start reading. <code>StartingPositionTimestamp</code> cannot be in the future.</p>",
         "EventSourceMappingConfiguration$LastModified": "<p>The date that the event source mapping was last updated or that its state changed.</p>",
         "FunctionEventInvokeConfig$LastModified": "<p>The date and time that the configuration was last updated.</p>"
       }
@@ -657,8 +657,8 @@
     "EventSourcePosition": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$StartingPosition": "<p>The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. <code>AT_TIMESTAMP</code> is supported only for Amazon Kinesis streams and Amazon DocumentDB.</p>",
-        "EventSourceMappingConfiguration$StartingPosition": "<p>The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK stream sources. <code>AT_TIMESTAMP</code> is supported only for Amazon Kinesis streams and Amazon DocumentDB.</p>"
+        "CreateEventSourceMappingRequest$StartingPosition": "<p>The position in a stream from which to start reading. Required for Amazon Kinesis and Amazon DynamoDB Stream event sources. <code>AT_TIMESTAMP</code> is supported only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.</p>",
+        "EventSourceMappingConfiguration$StartingPosition": "<p>The position in a stream from which to start reading. Required for Amazon Kinesis and Amazon DynamoDB Stream event sources. <code>AT_TIMESTAMP</code> is supported only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.</p>"
       }
     },
     "EventSourceToken": {
@@ -1823,6 +1823,11 @@
         "EventSourceMappingConfiguration$Queues": "<p> (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.</p>"
       }
     },
+    "RecursiveInvocationException": {
+      "base": "<p>Lambda has detected your function being invoked in a recursive loop with other Amazon Web Services resources and stopped your function's invocation.</p>",
+      "refs": {
+      }
+    },
     "RemoveLayerVersionPermissionRequest": {
       "base": null,
       "refs": {
@@ -1997,7 +2002,7 @@
       }
     },
     "SnapStart": {
-      "base": "<p>The function's Lambda SnapStart setting. Set <code>ApplyOn</code> to <code>PublishedVersions</code> to create a snapshot of the initialized execution environment when you publish a function version.</p> <p>SnapStart is supported with the <code>java11</code> runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html\">Improving startup performance with Lambda SnapStart</a>.</p>",
+      "base": "<p>The function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html\">Lambda SnapStart</a> setting. Set <code>ApplyOn</code> to <code>PublishedVersions</code> to create a snapshot of the initialized execution environment when you publish a function version.</p>",
       "refs": {
         "CreateFunctionRequest$SnapStart": "<p>The function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html\">SnapStart</a> setting.</p>",
         "UpdateFunctionConfigurationRequest$SnapStart": "<p>The function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html\">SnapStart</a> setting.</p>"
@@ -2207,6 +2212,8 @@
         "PublishVersionRequest$CodeSha256": "<p>Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of <a>UpdateFunctionCode</a>.</p>",
         "PublishVersionRequest$RevisionId": "<p>Only update the function if the revision ID matches the ID that's specified. Use this option to avoid publishing a version if the function configuration has changed since you last updated it.</p>",
         "PutProvisionedConcurrencyConfigResponse$StatusReason": "<p>For failed allocations, the reason that provisioned concurrency could not be allocated.</p>",
+        "RecursiveInvocationException$Type": "<p>The exception type.</p>",
+        "RecursiveInvocationException$Message": "<p>The exception message.</p>",
         "RemoveLayerVersionPermissionRequest$RevisionId": "<p>Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it.</p>",
         "RemovePermissionRequest$RevisionId": "<p>Update the policy only if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it.</p>",
         "RequestTooLargeException$Type": null,

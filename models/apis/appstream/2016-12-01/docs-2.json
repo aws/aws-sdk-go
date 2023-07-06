@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<fullname>Amazon AppStream 2.0</fullname> <p>This is the <i>Amazon AppStream 2.0 API Reference</i>. This documentation provides descriptions and syntax for each of the actions and data types in AppStream 2.0. AppStream 2.0 is a fully managed, secure application streaming service that lets you stream desktop applications to users without rewriting applications. AppStream 2.0 manages the AWS resources that are required to host and run your applications, scales automatically, and provides access to your users on demand. </p> <note> <p>You can call the AppStream 2.0 API operations by using an interface VPC endpoint (interface endpoint). For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/access-api-cli-through-interface-vpc-endpoint.html\">Access AppStream 2.0 API Operations and CLI Commands Through an Interface VPC Endpoint</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p> </note> <p>To learn more about AppStream 2.0, see the following resources:</p> <ul> <li> <p> <a href=\"http://aws.amazon.com/appstream2\">Amazon AppStream 2.0 product page</a> </p> </li> <li> <p> <a href=\"http://aws.amazon.com/documentation/appstream2\">Amazon AppStream 2.0 documentation</a> </p> </li> </ul>",
   "operations": {
+    "AssociateAppBlockBuilderAppBlock": "<p>Associates the specified app block builder with the specified app block.</p>",
     "AssociateApplicationFleet": "<p>Associates the specified application with the specified fleet. This is only supported for Elastic fleets.</p>",
     "AssociateApplicationToEntitlement": "<p>Associates an application to entitle.</p>",
     "AssociateFleet": "<p>Associates the specified fleet with the specified stack.</p>",
@@ -9,6 +10,8 @@
     "BatchDisassociateUserStack": "<p>Disassociates the specified users from the specified stacks.</p>",
     "CopyImage": "<p>Copies the image within the same region or to a new region within the same AWS account. Note that any tags you added to the image will not be copied.</p>",
     "CreateAppBlock": "<p>Creates an app block.</p> <p>App blocks are an Amazon AppStream 2.0 resource that stores the details about the virtual hard disk in an S3 bucket. It also stores the setup script with details about how to mount the virtual hard disk. The virtual hard disk includes the application binaries and other files necessary to launch your applications. Multiple applications can be assigned to a single app block.</p> <p>This is only supported for Elastic fleets.</p>",
+    "CreateAppBlockBuilder": "<p>Creates an app block builder.</p>",
+    "CreateAppBlockBuilderStreamingURL": "<p>Creates a URL to start a create app block builder streaming session.</p>",
     "CreateApplication": "<p>Creates an application.</p> <p>Applications are an Amazon AppStream 2.0 resource that stores the details about how to launch applications on Elastic fleet streaming instances. An application consists of the launch details, icon, and display name. Applications are associated with an app block that contains the application binaries and other files. The applications assigned to an Elastic fleet are the applications users can launch. </p> <p>This is only supported for Elastic fleets.</p>",
     "CreateDirectoryConfig": "<p>Creates a Directory Config object in AppStream 2.0. This object includes the configuration information required to join fleets and image builders to Microsoft Active Directory domains.</p>",
     "CreateEntitlement": "<p>Creates a new entitlement. Entitlements control access to specific applications within a stack, based on user attributes. Entitlements apply to SAML 2.0 federated user identities. Amazon AppStream 2.0 user pool and streaming URL users are entitled to all applications in a stack. Entitlements don't apply to the desktop stream view application, or to applications managed by a dynamic app provider using the Dynamic Application Framework.</p>",
@@ -21,6 +24,7 @@
     "CreateUsageReportSubscription": "<p>Creates a usage report subscription. Usage reports are generated daily.</p>",
     "CreateUser": "<p>Creates a new user in the user pool.</p>",
     "DeleteAppBlock": "<p>Deletes an app block.</p>",
+    "DeleteAppBlockBuilder": "<p>Deletes an app block builder.</p> <p>An app block builder can only be deleted when it has no association with an app block.</p>",
     "DeleteApplication": "<p>Deletes an application.</p>",
     "DeleteDirectoryConfig": "<p>Deletes the specified Directory Config object from AppStream 2.0. This object includes the information required to join streaming instances to an Active Directory domain.</p>",
     "DeleteEntitlement": "<p>Deletes the specified entitlement.</p>",
@@ -31,6 +35,8 @@
     "DeleteStack": "<p>Deletes the specified stack. After the stack is deleted, the application streaming environment provided by the stack is no longer available to users. Also, any reservations made for application streaming sessions for the stack are released.</p>",
     "DeleteUsageReportSubscription": "<p>Disables usage report generation.</p>",
     "DeleteUser": "<p>Deletes a user from the user pool.</p>",
+    "DescribeAppBlockBuilderAppBlockAssociations": "<p>Retrieves a list that describes one or more app block builder associations.</p>",
+    "DescribeAppBlockBuilders": "<p>Retrieves a list that describes one or more app block builders.</p>",
     "DescribeAppBlocks": "<p>Retrieves a list that describes one or more app blocks.</p>",
     "DescribeApplicationFleetAssociations": "<p>Retrieves a list that describes one or more application fleet associations. Either ApplicationArn or FleetName must be specified.</p>",
     "DescribeApplications": "<p>Retrieves a list that describes one or more applications.</p>",
@@ -46,6 +52,7 @@
     "DescribeUserStackAssociations": "<p>Retrieves a list that describes the UserStackAssociation objects. You must specify either or both of the following:</p> <ul> <li> <p>The stack name</p> </li> <li> <p>The user name (email address of the user associated with the stack) and the authentication type for the user</p> </li> </ul>",
     "DescribeUsers": "<p>Retrieves a list that describes one or more specified users in the user pool.</p>",
     "DisableUser": "<p>Disables the specified user in the user pool. Users can't sign in to AppStream 2.0 until they are re-enabled. This action does not delete the user. </p>",
+    "DisassociateAppBlockBuilderAppBlock": "<p>Disassociates a specified app block builder from a specified app block.</p>",
     "DisassociateApplicationFleet": "<p>Disassociates the specified application from the fleet.</p>",
     "DisassociateApplicationFromEntitlement": "<p>Deletes the specified application from the specified entitlement.</p>",
     "DisassociateFleet": "<p>Disassociates the specified fleet from the specified stack.</p>",
@@ -55,12 +62,15 @@
     "ListAssociatedStacks": "<p>Retrieves the name of the stack with which the specified fleet is associated.</p>",
     "ListEntitledApplications": "<p>Retrieves a list of entitled applications.</p>",
     "ListTagsForResource": "<p>Retrieves a list of all tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
+    "StartAppBlockBuilder": "<p>Starts an app block builder.</p> <p>An app block builder can only be started when it's associated with an app block.</p> <p>Starting an app block builder starts a new instance, which is equivalent to an elastic fleet instance with application builder assistance functionality.</p>",
     "StartFleet": "<p>Starts the specified fleet.</p>",
     "StartImageBuilder": "<p>Starts the specified image builder.</p>",
+    "StopAppBlockBuilder": "<p>Stops an app block builder.</p> <p>Stopping an app block builder terminates the instance, and the instance state is not persisted.</p>",
     "StopFleet": "<p>Stops the specified fleet.</p>",
     "StopImageBuilder": "<p>Stops the specified image builder.</p>",
     "TagResource": "<p>Adds or overwrites one or more tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.</p> <p>Each tag consists of a key and an optional value. If a resource already has a tag with the same key, this operation updates its value.</p> <p>To list the current tags for your resources, use <a>ListTagsForResource</a>. To disassociate tags from your resources, use <a>UntagResource</a>.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
     "UntagResource": "<p>Disassociates one or more specified tags from the specified AppStream 2.0 resource.</p> <p>To list the current tags for your resources, use <a>ListTagsForResource</a>.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
+    "UpdateAppBlockBuilder": "<p>Updates an app block builder.</p> <p>If the app block builder is in the <code>STARTING</code> or <code>STOPPING</code> state, you can't update it. If the app block builder is in the <code>RUNNING</code> state, you can only update the DisplayName and Description. If the app block builder is in the <code>STOPPED</code> state, you can update any attribute except the Name.</p>",
     "UpdateApplication": "<p>Updates the specified application.</p>",
     "UpdateDirectoryConfig": "<p>Updates the specified Directory Config object in AppStream 2.0. This object includes the configuration information required to join fleets and image builders to Microsoft Active Directory domains.</p>",
     "UpdateEntitlement": "<p>Updates the specified entitlement.</p>",
@@ -78,10 +88,13 @@
     "AccessEndpointList": {
       "base": null,
       "refs": {
+        "AppBlockBuilder$AccessEndpoints": "<p>The list of interface VPC endpoint (interface endpoint) objects. Administrators can connect to the app block builder only through the specified endpoints.</p>",
+        "CreateAppBlockBuilderRequest$AccessEndpoints": "<p>The list of interface VPC endpoint (interface endpoint) objects. Administrators can connect to the app block builder only through the specified endpoints.</p>",
         "CreateImageBuilderRequest$AccessEndpoints": "<p>The list of interface VPC endpoint (interface endpoint) objects. Administrators can connect to the image builder only through the specified endpoints.</p>",
         "CreateStackRequest$AccessEndpoints": "<p>The list of interface VPC endpoint (interface endpoint) objects. Users of the stack can connect to AppStream 2.0 only through the specified endpoints.</p>",
         "ImageBuilder$AccessEndpoints": "<p>The list of virtual private cloud (VPC) interface endpoint objects. Administrators can connect to the image builder only through the specified endpoints.</p>",
         "Stack$AccessEndpoints": "<p>The list of virtual private cloud (VPC) interface endpoint objects. Users of the stack can connect to AppStream 2.0 only through the specified endpoints. </p>",
+        "UpdateAppBlockBuilderRequest$AccessEndpoints": "<p>The list of interface VPC endpoint (interface endpoint) objects. Administrators can connect to the app block builder only through the specified endpoints.</p>",
         "UpdateStackRequest$AccessEndpoints": "<p>The list of interface VPC endpoint (interface endpoint) objects. Users of the stack can connect to AppStream 2.0 only through the specified endpoints.</p>"
       }
     },
@@ -114,6 +127,78 @@
       "refs": {
         "AppBlocks$member": null,
         "CreateAppBlockResult$AppBlock": "<p>The app block.</p>"
+      }
+    },
+    "AppBlockBuilder": {
+      "base": "<p>Describes an app block builder.</p>",
+      "refs": {
+        "AppBlockBuilderList$member": null,
+        "CreateAppBlockBuilderResult$AppBlockBuilder": null,
+        "StartAppBlockBuilderResult$AppBlockBuilder": null,
+        "StopAppBlockBuilderResult$AppBlockBuilder": null,
+        "UpdateAppBlockBuilderResult$AppBlockBuilder": null
+      }
+    },
+    "AppBlockBuilderAppBlockAssociation": {
+      "base": "<p>Describes an association between an app block builder and app block.</p>",
+      "refs": {
+        "AppBlockBuilderAppBlockAssociationsList$member": null,
+        "AssociateAppBlockBuilderAppBlockResult$AppBlockBuilderAppBlockAssociation": "<p>The list of app block builders associated with app blocks.</p>"
+      }
+    },
+    "AppBlockBuilderAppBlockAssociationsList": {
+      "base": null,
+      "refs": {
+        "DescribeAppBlockBuilderAppBlockAssociationsResult$AppBlockBuilderAppBlockAssociations": "<p>This list of app block builders associated with app blocks.</p>"
+      }
+    },
+    "AppBlockBuilderAttribute": {
+      "base": null,
+      "refs": {
+        "AppBlockBuilderAttributes$member": null
+      }
+    },
+    "AppBlockBuilderAttributes": {
+      "base": null,
+      "refs": {
+        "UpdateAppBlockBuilderRequest$AttributesToDelete": "<p>The attributes to delete from the app block builder.</p>"
+      }
+    },
+    "AppBlockBuilderList": {
+      "base": null,
+      "refs": {
+        "DescribeAppBlockBuildersResult$AppBlockBuilders": "<p>The list that describes one or more app block builders.</p>"
+      }
+    },
+    "AppBlockBuilderPlatformType": {
+      "base": null,
+      "refs": {
+        "AppBlockBuilder$Platform": "<p>The platform of the app block builder.</p> <p> <code>WINDOWS_SERVER_2019</code> is the only valid value.</p>",
+        "CreateAppBlockBuilderRequest$Platform": "<p>The platform of the app block builder.</p> <p> <code>WINDOWS_SERVER_2019</code> is the only valid value.</p>"
+      }
+    },
+    "AppBlockBuilderState": {
+      "base": null,
+      "refs": {
+        "AppBlockBuilder$State": "<p>The state of the app block builder.</p>"
+      }
+    },
+    "AppBlockBuilderStateChangeReason": {
+      "base": "<p>Describes the reason why the last app block builder state change occurred.</p>",
+      "refs": {
+        "AppBlockBuilder$StateChangeReason": "<p>The state change reason.</p>"
+      }
+    },
+    "AppBlockBuilderStateChangeReasonCode": {
+      "base": null,
+      "refs": {
+        "AppBlockBuilderStateChangeReason$Code": "<p>The state change reason code.</p>"
+      }
+    },
+    "AppBlockState": {
+      "base": null,
+      "refs": {
+        "AppBlock$State": "<p>The state of the app block.</p> <p>An app block with AppStream 2.0 packaging will be in the <code>INACTIVE</code> state if no application package (VHD) is assigned to it. After an application package (VHD) is created by an app block builder for an app block, it becomes <code>ACTIVE</code>. </p> <p>Custom app blocks are always in the <code>ACTIVE</code> state and no action is required to use them.</p>"
       }
     },
     "AppBlocks": {
@@ -196,18 +281,25 @@
       "base": null,
       "refs": {
         "AppBlock$Arn": "<p>The ARN of the app block.</p>",
+        "AppBlockBuilder$Arn": "<p>The ARN of the app block builder.</p>",
+        "AppBlockBuilder$IamRoleArn": "<p>The ARN of the IAM role that is applied to the app block builder.</p>",
+        "AppBlockBuilderAppBlockAssociation$AppBlockArn": "<p>The ARN of the app block.</p>",
         "Application$Arn": "<p>The ARN of the application.</p>",
         "Application$AppBlockArn": "<p>The app block ARN of the application.</p>",
         "ApplicationFleetAssociation$ApplicationArn": "<p>The ARN of the application associated with the fleet.</p>",
         "ArnList$member": null,
+        "AssociateAppBlockBuilderAppBlockRequest$AppBlockArn": "<p>The ARN of the app block.</p>",
         "AssociateApplicationFleetRequest$ApplicationArn": "<p>The ARN of the application.</p>",
         "CertificateBasedAuthProperties$CertificateAuthorityArn": "<p>The ARN of the AWS Certificate Manager Private CA resource.</p>",
+        "CreateAppBlockBuilderRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the app block builder. To assume a role, the app block builder calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>appstream_machine_role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "CreateApplicationRequest$AppBlockArn": "<p>The app block ARN to which the application should be associated</p>",
         "CreateFleetRequest$ImageArn": "<p>The ARN of the public, private, or shared image to use.</p>",
         "CreateFleetRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the fleet. To assume a role, a fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>appstream_machine_role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "CreateImageBuilderRequest$ImageArn": "<p>The ARN of the public, private, or shared image to use.</p>",
         "CreateImageBuilderRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the image builder. To assume a role, the image builder calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>appstream_machine_role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
+        "DescribeAppBlockBuilderAppBlockAssociationsRequest$AppBlockArn": "<p>The ARN of the app block.</p>",
         "DescribeApplicationFleetAssociationsRequest$ApplicationArn": "<p>The ARN of the application.</p>",
+        "DisassociateAppBlockBuilderAppBlockRequest$AppBlockArn": "<p>The ARN of the app block.</p>",
         "DisassociateApplicationFleetRequest$ApplicationArn": "<p>The ARN of the application.</p>",
         "Fleet$Arn": "<p>The Amazon Resource Name (ARN) for the fleet.</p>",
         "Fleet$ImageArn": "<p>The ARN for the public, private, or shared image.</p>",
@@ -221,6 +313,7 @@
         "Stack$Arn": "<p>The ARN of the stack.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "UpdateAppBlockBuilderRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the app block builder. To assume a role, the app block builder calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>appstream_machine_role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "UpdateApplicationRequest$AppBlockArn": "<p>The ARN of the app block.</p>",
         "UpdateFleetRequest$ImageArn": "<p>The ARN of the public, private, or shared image to use.</p>",
         "UpdateFleetRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the fleet. To assume a role, a fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>appstream_machine_role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
@@ -233,6 +326,16 @@
         "DescribeAppBlocksRequest$Arns": "<p>The ARNs of the app blocks.</p>",
         "DescribeApplicationsRequest$Arns": "<p>The ARNs for the applications.</p>",
         "DescribeImagesRequest$Arns": "<p>The ARNs of the public, private, and shared images to describe.</p>"
+      }
+    },
+    "AssociateAppBlockBuilderAppBlockRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateAppBlockBuilderAppBlockResult": {
+      "base": null,
+      "refs": {
       }
     },
     "AssociateApplicationFleetRequest": {
@@ -333,12 +436,15 @@
     "BooleanObject": {
       "base": null,
       "refs": {
+        "AppBlockBuilder$EnableDefaultInternetAccess": "<p>Indicates whether default internet access is enabled for the app block builder.</p>",
+        "CreateAppBlockBuilderRequest$EnableDefaultInternetAccess": "<p>Enables or disables default internet access for the app block builder.</p>",
         "CreateFleetRequest$EnableDefaultInternetAccess": "<p>Enables or disables default internet access for the fleet.</p>",
         "CreateImageBuilderRequest$EnableDefaultInternetAccess": "<p>Enables or disables default internet access for the image builder.</p>",
         "Fleet$EnableDefaultInternetAccess": "<p>Indicates whether default internet access is enabled for the fleet.</p>",
         "ImageBuilder$EnableDefaultInternetAccess": "<p>Enables or disables default internet access for the image builder.</p>",
         "ImagePermissions$allowFleet": "<p>Indicates whether the image can be used for a fleet.</p>",
         "ImagePermissions$allowImageBuilder": "<p>Indicates whether the image can be used for an image builder.</p>",
+        "UpdateAppBlockBuilderRequest$EnableDefaultInternetAccess": "<p>Enables or disables default internet access for the app block builder.</p>",
         "UpdateFleetRequest$EnableDefaultInternetAccess": "<p>Enables or disables default internet access for the fleet.</p>"
       }
     },
@@ -380,6 +486,26 @@
       }
     },
     "CopyImageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAppBlockBuilderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAppBlockBuilderResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAppBlockBuilderStreamingURLRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAppBlockBuilderStreamingURLResult": {
       "base": null,
       "refs": {
       }
@@ -504,6 +630,16 @@
       "refs": {
       }
     },
+    "DeleteAppBlockBuilderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAppBlockBuilderResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteAppBlockRequest": {
       "base": null,
       "refs": {
@@ -610,6 +746,26 @@
       }
     },
     "DeleteUserResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAppBlockBuilderAppBlockAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAppBlockBuilderAppBlockAssociationsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAppBlockBuildersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAppBlockBuildersResult": {
       "base": null,
       "refs": {
       }
@@ -764,6 +920,7 @@
       "base": null,
       "refs": {
         "CopyImageRequest$DestinationImageDescription": "<p>The description that the image will have when it is copied to the destination.</p>",
+        "CreateAppBlockBuilderRequest$Description": "<p>The description of the app block builder.</p>",
         "CreateAppBlockRequest$Description": "<p>The description of the app block.</p>",
         "CreateApplicationRequest$Description": "<p>The description of the application.</p>",
         "CreateEntitlementRequest$Description": "<p>The description of the entitlement.</p>",
@@ -772,6 +929,7 @@
         "CreateStackRequest$Description": "<p>The description to display.</p>",
         "CreateUpdatedImageRequest$newImageDescription": "<p>The description to display for the new image.</p>",
         "Entitlement$Description": "<p>The description of the entitlement.</p>",
+        "UpdateAppBlockBuilderRequest$Description": "<p>The description of the app block builder.</p>",
         "UpdateApplicationRequest$Description": "<p>The description of the application.</p>",
         "UpdateEntitlementRequest$Description": "<p>The description of the entitlement.</p>",
         "UpdateFleetRequest$Description": "<p>The description to display.</p>",
@@ -819,6 +977,16 @@
       "refs": {
       }
     },
+    "DisassociateAppBlockBuilderAppBlockRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateAppBlockBuilderAppBlockResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateApplicationFleetRequest": {
       "base": null,
       "refs": {
@@ -852,12 +1020,14 @@
     "DisplayName": {
       "base": null,
       "refs": {
+        "CreateAppBlockBuilderRequest$DisplayName": "<p>The display name of the app block builder.</p>",
         "CreateAppBlockRequest$DisplayName": "<p>The display name of the app block. This is not displayed to the user.</p>",
         "CreateApplicationRequest$DisplayName": "<p>The display name of the application. This name is visible to users in the application catalog.</p>",
         "CreateFleetRequest$DisplayName": "<p>The fleet name to display.</p>",
         "CreateImageBuilderRequest$DisplayName": "<p>The image builder name to display.</p>",
         "CreateStackRequest$DisplayName": "<p>The stack name to display.</p>",
         "CreateUpdatedImageRequest$newImageDisplayName": "<p>The name to display for the new image.</p>",
+        "UpdateAppBlockBuilderRequest$DisplayName": "<p>The display name of the app block builder.</p>",
         "UpdateApplicationRequest$DisplayName": "<p>The display name of the application. This name is visible to users in the application catalog.</p>",
         "UpdateFleetRequest$DisplayName": "<p>The fleet name to display.</p>",
         "UpdateStackRequest$DisplayName": "<p>The stack name to display.</p>"
@@ -957,6 +1127,18 @@
     "EntitlementNotFoundException": {
       "base": "<p>The entitlement can't be found.</p>",
       "refs": {
+      }
+    },
+    "ErrorDetails": {
+      "base": "<p>The error details.</p>",
+      "refs": {
+        "ErrorDetailsList$member": null
+      }
+    },
+    "ErrorDetailsList": {
+      "base": null,
+      "refs": {
+        "AppBlock$AppBlockErrors": "<p>The errors of the app block.</p>"
       }
     },
     "ErrorMessage": {
@@ -1145,6 +1327,8 @@
         "CreateFleetRequest$DisconnectTimeoutInSeconds": "<p>The amount of time that a streaming session remains active after users disconnect. If users try to reconnect to the streaming session after a disconnection or network interruption within this time interval, they are connected to their previous session. Otherwise, they are connected to a new session with a new streaming instance. </p> <p>Specify a value between 60 and 360000.</p>",
         "CreateFleetRequest$IdleDisconnectTimeoutInSeconds": "<p>The amount of time that users can be idle (inactive) before they are disconnected from their streaming session and the <code>DisconnectTimeoutInSeconds</code> time interval begins. Users are notified before they are disconnected due to inactivity. If they try to reconnect to the streaming session before the time interval specified in <code>DisconnectTimeoutInSeconds</code> elapses, they are connected to their previous session. Users are considered idle when they stop providing keyboard or mouse input during their streaming session. File uploads and downloads, audio in, audio out, and pixels changing do not qualify as user activity. If users continue to be idle after the time interval in <code>IdleDisconnectTimeoutInSeconds</code> elapses, they are disconnected.</p> <p>To prevent users from being disconnected due to inactivity, specify a value of 0. Otherwise, specify a value between 60 and 3600. The default value is 0.</p> <note> <p>If you enable this feature, we recommend that you specify a value that corresponds exactly to a whole number of minutes (for example, 60, 120, and 180). If you don't do this, the value is rounded to the nearest minute. For example, if you specify a value of 70, users are disconnected after 1 minute of inactivity. If you specify a value that is at the midpoint between two different minutes, the value is rounded up. For example, if you specify a value of 90, users are disconnected after 2 minutes of inactivity. </p> </note>",
         "CreateFleetRequest$MaxConcurrentSessions": "<p>The maximum concurrent sessions of the Elastic fleet. This is required for Elastic fleets, and not allowed for other fleet types.</p>",
+        "DescribeAppBlockBuilderAppBlockAssociationsRequest$MaxResults": "<p>The maximum size of each page of results.</p>",
+        "DescribeAppBlockBuildersRequest$MaxResults": "<p>The maximum size of each page of results. The maximum value is 25.</p>",
         "DescribeAppBlocksRequest$MaxResults": "<p>The maximum size of each page of results.</p>",
         "DescribeApplicationFleetAssociationsRequest$MaxResults": "<p>The maximum size of each page of results.</p>",
         "DescribeApplicationsRequest$MaxResults": "<p>The maximum size of each page of results.</p>",
@@ -1160,7 +1344,7 @@
         "Fleet$MaxConcurrentSessions": "<p>The maximum number of concurrent sessions for the fleet.</p>",
         "ListEntitledApplicationsRequest$MaxResults": "<p>The maximum size of each page of results.</p>",
         "ScriptDetails$TimeoutInSeconds": "<p>The run timeout, in seconds, for the script.</p>",
-        "UpdateFleetRequest$MaxUserDurationInSeconds": "<p>The maximum amount of time that a streaming session can remain active, in seconds. If users are still connected to a streaming instance five minutes before this limit is reached, they are prompted to save any open documents before being disconnected. After this time elapses, the instance is terminated and replaced by a new instance.</p> <p>Specify a value between 600 and 360000.</p>",
+        "UpdateFleetRequest$MaxUserDurationInSeconds": "<p>The maximum amount of time that a streaming session can remain active, in seconds. If users are still connected to a streaming instance five minutes before this limit is reached, they are prompted to save any open documents before being disconnected. After this time elapses, the instance is terminated and replaced by a new instance.</p> <p>Specify a value between 600 and 432000.</p>",
         "UpdateFleetRequest$DisconnectTimeoutInSeconds": "<p>The amount of time that a streaming session remains active after users disconnect. If users try to reconnect to the streaming session after a disconnection or network interruption within this time interval, they are connected to their previous session. Otherwise, they are connected to a new session with a new streaming instance. </p> <p>Specify a value between 60 and 360000.</p>",
         "UpdateFleetRequest$IdleDisconnectTimeoutInSeconds": "<p>The amount of time that users can be idle (inactive) before they are disconnected from their streaming session and the <code>DisconnectTimeoutInSeconds</code> time interval begins. Users are notified before they are disconnected due to inactivity. If users try to reconnect to the streaming session before the time interval specified in <code>DisconnectTimeoutInSeconds</code> elapses, they are connected to their previous session. Users are considered idle when they stop providing keyboard or mouse input during their streaming session. File uploads and downloads, audio in, audio out, and pixels changing do not qualify as user activity. If users continue to be idle after the time interval in <code>IdleDisconnectTimeoutInSeconds</code> elapses, they are disconnected. </p> <p>To prevent users from being disconnected due to inactivity, specify a value of 0. Otherwise, specify a value between 60 and 3600. The default value is 0.</p> <note> <p>If you enable this feature, we recommend that you specify a value that corresponds exactly to a whole number of minutes (for example, 60, 120, and 180). If you don't do this, the value is rounded to the nearest minute. For example, if you specify a value of 70, users are disconnected after 1 minute of inactivity. If you specify a value that is at the midpoint between two different minutes, the value is rounded up. For example, if you specify a value of 90, users are disconnected after 2 minutes of inactivity. </p> </note>",
         "UpdateFleetRequest$MaxConcurrentSessions": "<p>The maximum number of concurrent sessions for a fleet.</p>"
@@ -1241,6 +1425,7 @@
     "Long": {
       "base": null,
       "refs": {
+        "CreateAppBlockBuilderStreamingURLRequest$Validity": "<p>The time that the streaming URL will be valid, in seconds. Specify a value between 1 and 604800 seconds. The default is 3600 seconds.</p>",
         "CreateImageBuilderStreamingURLRequest$Validity": "<p>The time that the streaming URL will be valid, in seconds. Specify a value between 1 and 604800 seconds. The default is 3600 seconds.</p>",
         "CreateStreamingURLRequest$Validity": "<p>The time that the streaming URL will be valid, in seconds. Specify a value between 1 and 604800 seconds. The default is 60 seconds.</p>"
       }
@@ -1267,21 +1452,27 @@
     "Name": {
       "base": null,
       "refs": {
+        "AppBlockBuilderAppBlockAssociation$AppBlockBuilderName": "<p>The name of the app block builder.</p>",
+        "AssociateAppBlockBuilderAppBlockRequest$AppBlockBuilderName": "<p>The name of the app block builder.</p>",
         "AssociateApplicationFleetRequest$FleetName": "<p>The name of the fleet.</p>",
         "AssociateApplicationToEntitlementRequest$StackName": "<p>The name of the stack.</p>",
         "AssociateApplicationToEntitlementRequest$EntitlementName": "<p>The name of the entitlement.</p>",
         "CopyImageRequest$SourceImageName": "<p>The name of the image to copy.</p>",
         "CopyImageRequest$DestinationImageName": "<p>The name that the image will have when it is copied to the destination.</p>",
         "CopyImageResponse$DestinationImageName": "<p>The name of the destination image.</p>",
+        "CreateAppBlockBuilderRequest$Name": "<p>The unique name for the app block builder.</p>",
+        "CreateAppBlockBuilderStreamingURLRequest$AppBlockBuilderName": "<p>The name of the app block builder.</p>",
         "CreateAppBlockRequest$Name": "<p>The name of the app block.</p>",
         "CreateApplicationRequest$Name": "<p>The name of the application. This name is visible to users when display name is not specified.</p>",
         "CreateEntitlementRequest$Name": "<p>The name of the entitlement.</p>",
         "CreateEntitlementRequest$StackName": "<p>The name of the stack with which the entitlement is associated.</p>",
         "CreateFleetRequest$Name": "<p>A unique name for the fleet.</p>",
+        "CreateFleetRequest$ImageName": "<p>The name of the image used to create the fleet.</p>",
         "CreateImageBuilderRequest$Name": "<p>A unique name for the image builder.</p>",
         "CreateStackRequest$Name": "<p>The name of the stack.</p>",
         "CreateUpdatedImageRequest$existingImageName": "<p>The name of the image to update.</p>",
         "CreateUpdatedImageRequest$newImageName": "<p>The name of the new image. The name must be unique within the AWS account and Region.</p>",
+        "DeleteAppBlockBuilderRequest$Name": "<p>The name of the app block builder.</p>",
         "DeleteAppBlockRequest$Name": "<p>The name of the app block.</p>",
         "DeleteApplicationRequest$Name": "<p>The name of the application.</p>",
         "DeleteEntitlementRequest$Name": "<p>The name of the entitlement.</p>",
@@ -1289,11 +1480,13 @@
         "DeleteImageBuilderRequest$Name": "<p>The name of the image builder.</p>",
         "DeleteImagePermissionsRequest$Name": "<p>The name of the private image.</p>",
         "DeleteImageRequest$Name": "<p>The name of the image.</p>",
+        "DescribeAppBlockBuilderAppBlockAssociationsRequest$AppBlockBuilderName": "<p>The name of the app block builder.</p>",
         "DescribeApplicationFleetAssociationsRequest$FleetName": "<p>The name of the fleet.</p>",
         "DescribeEntitlementsRequest$Name": "<p>The name of the entitlement.</p>",
         "DescribeEntitlementsRequest$StackName": "<p>The name of the stack with which the entitlement is associated.</p>",
         "DescribeImagePermissionsRequest$Name": "<p>The name of the private image for which to describe permissions. The image must be one that you own. </p>",
         "DescribeImagePermissionsResult$Name": "<p>The name of the private image.</p>",
+        "DisassociateAppBlockBuilderAppBlockRequest$AppBlockBuilderName": "<p>The name of the app block builder.</p>",
         "DisassociateApplicationFleetRequest$FleetName": "<p>The name of the fleet.</p>",
         "DisassociateApplicationFromEntitlementRequest$StackName": "<p>The name of the stack with which the entitlement is associated.</p>",
         "DisassociateApplicationFromEntitlementRequest$EntitlementName": "<p>The name of the entitlement.</p>",
@@ -1301,6 +1494,9 @@
         "Entitlement$StackName": "<p>The name of the stack with which the entitlement is associated.</p>",
         "ListEntitledApplicationsRequest$StackName": "<p>The name of the stack with which the entitlement is associated.</p>",
         "ListEntitledApplicationsRequest$EntitlementName": "<p>The name of the entitlement.</p>",
+        "StartAppBlockBuilderRequest$Name": "<p>The name of the app block builder.</p>",
+        "StopAppBlockBuilderRequest$Name": "<p>The name of the app block builder.</p>",
+        "UpdateAppBlockBuilderRequest$Name": "<p>The unique name for the app block builder.</p>",
         "UpdateApplicationRequest$Name": "<p>The name of the application. This name is visible to users when display name is not specified.</p>",
         "UpdateEntitlementRequest$Name": "<p>The name of the entitlement.</p>",
         "UpdateEntitlementRequest$StackName": "<p>The name of the stack with which the entitlement is associated.</p>",
@@ -1334,6 +1530,13 @@
         "UpdateDirectoryConfigRequest$OrganizationalUnitDistinguishedNames": "<p>The distinguished names of the organizational units for computer accounts.</p>"
       }
     },
+    "PackagingType": {
+      "base": null,
+      "refs": {
+        "AppBlock$PackagingType": "<p>The packaging type of the app block.</p>",
+        "CreateAppBlockRequest$PackagingType": "<p>The packaging type of the app block.</p>"
+      }
+    },
     "Permission": {
       "base": null,
       "refs": {
@@ -1348,6 +1551,7 @@
         "Image$Platform": "<p>The operating system platform of the image.</p>",
         "ImageBuilder$Platform": "<p>The operating system platform of the image builder.</p>",
         "Platforms$member": null,
+        "UpdateAppBlockBuilderRequest$Platform": "<p>The platform of the app block builder.</p> <p> <code>WINDOWS_SERVER_2019</code> is the only valid value.</p>",
         "UpdateFleetRequest$Platform": "<p>The platform of the fleet. WINDOWS_SERVER_2019 and AMAZON_LINUX2 are supported for Elastic fleets. </p>"
       }
     },
@@ -1397,6 +1601,7 @@
     "ResourceErrors": {
       "base": null,
       "refs": {
+        "AppBlockBuilder$AppBlockBuilderErrors": "<p>The app block builder errors.</p>",
         "Image$ImageErrors": "<p>Describes the errors that are returned when a new image can't be created.</p>",
         "ImageBuilder$ImageBuilderErrors": "<p>The image builder errors.</p>"
       }
@@ -1431,7 +1636,7 @@
     "S3Key": {
       "base": null,
       "refs": {
-        "S3Location$S3Key": "<p>The S3 key of the S3 object.</p>"
+        "S3Location$S3Key": "<p>The S3 key of the S3 object.</p> <p>This is required when used for the following:</p> <ul> <li> <p>IconS3Location (Actions: CreateApplication and UpdateApplication)</p> </li> <li> <p>SessionScriptS3Location (Actions: CreateFleet and UpdateFleet)</p> </li> <li> <p>ScriptDetails (Actions: CreateAppBlock)</p> </li> <li> <p>SourceS3Location when creating an app block with <code>CUSTOM</code> PackagingType (Actions: CreateAppBlock)</p> </li> <li> <p>SourceS3Location when creating an app block with <code>APPSTREAM2</code> PackagingType, and using an existing application package (VHD file). In this case, <code>S3Key</code> refers to the VHD file. If a new application package is required, then <code>S3Key</code> is not required. (Actions: CreateAppBlock)</p> </li> </ul>"
       }
     },
     "S3Location": {
@@ -1451,8 +1656,10 @@
     "ScriptDetails": {
       "base": "<p>Describes the details of the script.</p>",
       "refs": {
-        "AppBlock$SetupScriptDetails": "<p>The setup script details of the app block.</p>",
-        "CreateAppBlockRequest$SetupScriptDetails": "<p>The setup script details of the app block.</p>"
+        "AppBlock$SetupScriptDetails": "<p>The setup script details of the app block.</p> <p>This only applies to app blocks with PackagingType <code>CUSTOM</code>.</p>",
+        "AppBlock$PostSetupScriptDetails": "<p>The post setup script details of the app block.</p> <p>This only applies to app blocks with PackagingType <code>APPSTREAM2</code>.</p>",
+        "CreateAppBlockRequest$SetupScriptDetails": "<p>The setup script details of the app block. This must be provided for the <code>CUSTOM</code> PackagingType.</p>",
+        "CreateAppBlockRequest$PostSetupScriptDetails": "<p>The post setup script details of the app block. This can only be provided for the <code>APPSTREAM2</code> PackagingType.</p>"
       }
     },
     "SecurityGroupIdList": {
@@ -1556,6 +1763,16 @@
         "DescribeStacksResult$Stacks": "<p>Information about the stacks.</p>"
       }
     },
+    "StartAppBlockBuilderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartAppBlockBuilderResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartFleetRequest": {
       "base": null,
       "refs": {
@@ -1572,6 +1789,16 @@
       }
     },
     "StartImageBuilderResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopAppBlockBuilderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopAppBlockBuilderResult": {
       "base": null,
       "refs": {
       }
@@ -1645,6 +1872,11 @@
         "AppBlock$Name": "<p>The name of the app block.</p>",
         "AppBlock$Description": "<p>The description of the app block.</p>",
         "AppBlock$DisplayName": "<p>The display name of the app block.</p>",
+        "AppBlockBuilder$Name": "<p>The name of the app block builder.</p>",
+        "AppBlockBuilder$DisplayName": "<p>The display name of the app block builder.</p>",
+        "AppBlockBuilder$Description": "<p>The description of the app block builder.</p>",
+        "AppBlockBuilder$InstanceType": "<p>The instance type of the app block builder.</p>",
+        "AppBlockBuilderStateChangeReason$Message": "<p>The state change reason message.</p>",
         "Application$Name": "<p>The name of the application.</p>",
         "Application$DisplayName": "<p>The application name to display.</p>",
         "Application$IconURL": "<p>The URL for the application icon. This URL might be time-limited.</p>",
@@ -1657,10 +1889,11 @@
         "AssociateApplicationToEntitlementRequest$ApplicationIdentifier": "<p>The identifier of the application.</p>",
         "AssociateFleetRequest$FleetName": "<p>The name of the fleet. </p>",
         "AssociateFleetRequest$StackName": "<p>The name of the stack.</p>",
+        "CreateAppBlockBuilderRequest$InstanceType": "<p>The instance type to use when launching the app block builder. The following instance types are available:</p> <ul> <li> <p>stream.standard.small</p> </li> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.standard.xlarge</p> </li> <li> <p>stream.standard.2xlarge</p> </li> </ul>",
+        "CreateAppBlockBuilderStreamingURLResult$StreamingURL": "<p>The URL to start the streaming session.</p>",
         "CreateApplicationRequest$LaunchPath": "<p>The launch path of the application.</p>",
         "CreateApplicationRequest$WorkingDirectory": "<p>The working directory of the application.</p>",
         "CreateApplicationRequest$LaunchParameters": "<p>The launch parameters of the application.</p>",
-        "CreateFleetRequest$ImageName": "<p>The name of the image used to create the fleet.</p>",
         "CreateFleetRequest$InstanceType": "<p>The instance type to use when launching fleet instances. The following instance types are available:</p> <ul> <li> <p>stream.standard.small</p> </li> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.standard.xlarge</p> </li> <li> <p>stream.standard.2xlarge</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.memory.z1d.large</p> </li> <li> <p>stream.memory.z1d.xlarge</p> </li> <li> <p>stream.memory.z1d.2xlarge</p> </li> <li> <p>stream.memory.z1d.3xlarge</p> </li> <li> <p>stream.memory.z1d.6xlarge</p> </li> <li> <p>stream.memory.z1d.12xlarge</p> </li> <li> <p>stream.graphics-design.large</p> </li> <li> <p>stream.graphics-design.xlarge</p> </li> <li> <p>stream.graphics-design.2xlarge</p> </li> <li> <p>stream.graphics-design.4xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> <li> <p>stream.graphics.g4dn.xlarge</p> </li> <li> <p>stream.graphics.g4dn.2xlarge</p> </li> <li> <p>stream.graphics.g4dn.4xlarge</p> </li> <li> <p>stream.graphics.g4dn.8xlarge</p> </li> <li> <p>stream.graphics.g4dn.12xlarge</p> </li> <li> <p>stream.graphics.g4dn.16xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> </ul> <p>The following instance types are available for Elastic fleets:</p> <ul> <li> <p>stream.standard.small</p> </li> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.standard.xlarge</p> </li> <li> <p>stream.standard.2xlarge</p> </li> </ul>",
         "CreateImageBuilderRequest$ImageName": "<p>The name of the image used to create the image builder.</p>",
         "CreateImageBuilderRequest$InstanceType": "<p>The instance type to use when launching the image builder. The following instance types are available:</p> <ul> <li> <p>stream.standard.small</p> </li> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.memory.z1d.large</p> </li> <li> <p>stream.memory.z1d.xlarge</p> </li> <li> <p>stream.memory.z1d.2xlarge</p> </li> <li> <p>stream.memory.z1d.3xlarge</p> </li> <li> <p>stream.memory.z1d.6xlarge</p> </li> <li> <p>stream.memory.z1d.12xlarge</p> </li> <li> <p>stream.graphics-design.large</p> </li> <li> <p>stream.graphics-design.xlarge</p> </li> <li> <p>stream.graphics-design.2xlarge</p> </li> <li> <p>stream.graphics-design.4xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> <li> <p>stream.graphics.g4dn.xlarge</p> </li> <li> <p>stream.graphics.g4dn.2xlarge</p> </li> <li> <p>stream.graphics.g4dn.4xlarge</p> </li> <li> <p>stream.graphics.g4dn.8xlarge</p> </li> <li> <p>stream.graphics.g4dn.12xlarge</p> </li> <li> <p>stream.graphics.g4dn.16xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> </ul>",
@@ -1674,6 +1907,10 @@
         "CreateUsageReportSubscriptionResult$S3BucketName": "<p>The Amazon S3 bucket where generated reports are stored.</p> <p>If you enabled on-instance session scripts and Amazon S3 logging for your session script configuration, AppStream 2.0 created an S3 bucket to store the script output. The bucket is unique to your account and Region. When you enable usage reporting in this case, AppStream 2.0 uses the same bucket to store your usage reports. If you haven't already enabled on-instance session scripts, when you enable usage reports, AppStream 2.0 creates a new S3 bucket.</p>",
         "DeleteFleetRequest$Name": "<p>The name of the fleet.</p>",
         "DeleteStackRequest$Name": "<p>The name of the stack.</p>",
+        "DescribeAppBlockBuilderAppBlockAssociationsRequest$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
+        "DescribeAppBlockBuilderAppBlockAssociationsResult$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
+        "DescribeAppBlockBuildersRequest$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
+        "DescribeAppBlockBuildersResult$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "DescribeAppBlocksRequest$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "DescribeAppBlocksResult$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "DescribeApplicationFleetAssociationsRequest$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
@@ -1711,6 +1948,8 @@
         "EntitledApplication$ApplicationIdentifier": "<p>The identifier of the application.</p>",
         "EntitlementAttribute$Name": "<p>A supported AWS IAM SAML <code>PrincipalTag</code> attribute that is matched to the associated value when a user identity federates into an Amazon AppStream 2.0 SAML application.</p> <p>The following are valid values:</p> <ul> <li> <p>roles</p> </li> <li> <p>department </p> </li> <li> <p>organization </p> </li> <li> <p>groups </p> </li> <li> <p>title </p> </li> <li> <p>costCenter </p> </li> <li> <p>userType</p> </li> </ul> <p> </p>",
         "EntitlementAttribute$Value": "<p>A value that is matched to a supported SAML attribute name when a user identity federates into an Amazon AppStream 2.0 SAML application. </p>",
+        "ErrorDetails$ErrorCode": "<p>The error code.</p>",
+        "ErrorDetails$ErrorMessage": "<p>The error message.</p>",
         "ExpireSessionRequest$SessionId": "<p>The identifier of the streaming session.</p>",
         "Fleet$Name": "<p>The name of the fleet.</p>",
         "Fleet$DisplayName": "<p>The fleet name to display.</p>",
@@ -1758,6 +1997,7 @@
         "StopImageBuilderRequest$Name": "<p>The name of the image builder.</p>",
         "StringList$member": null,
         "SubnetIdList$member": null,
+        "UpdateAppBlockBuilderRequest$InstanceType": "<p>The instance type to use when launching the app block builder. The following instance types are available:</p> <ul> <li> <p>stream.standard.small</p> </li> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.standard.xlarge</p> </li> <li> <p>stream.standard.2xlarge</p> </li> </ul>",
         "UpdateApplicationRequest$LaunchPath": "<p>The launch path of the application.</p>",
         "UpdateApplicationRequest$WorkingDirectory": "<p>The working directory of the application.</p>",
         "UpdateApplicationRequest$LaunchParameters": "<p>The launch parameters of the application.</p>",
@@ -1776,6 +2016,7 @@
       "refs": {
         "Application$InstanceFamilies": "<p>The instance families for the application.</p>",
         "CreateApplicationRequest$InstanceFamilies": "<p>The instance families the application supports. Valid values are GENERAL_PURPOSE and GRAPHICS_G4.</p>",
+        "DescribeAppBlockBuildersRequest$Names": "<p>The names of the app block builders.</p>",
         "DescribeFleetsRequest$Names": "<p>The names of the fleets to describe.</p>",
         "DescribeImageBuildersRequest$Names": "<p>The names of the image builders to describe.</p>",
         "DescribeImagesRequest$Names": "<p>The names of the public or private images to describe.</p>",
@@ -1822,6 +2063,7 @@
     "Tags": {
       "base": null,
       "refs": {
+        "CreateAppBlockBuilderRequest$Tags": "<p>The tags to associate with the app block builder. A tag is a key-value pair, and the value is optional. For example, Environment=Test. If you do not specify a value, Environment=. </p> <p>If you do not specify a value, the value is set to an empty string.</p> <p>Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following special characters: </p> <p>_ . : / = + \\ - @</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "CreateAppBlockRequest$Tags": "<p>The tags assigned to the app block.</p>",
         "CreateApplicationRequest$Tags": "<p>The tags assigned to the application.</p>",
         "CreateFleetRequest$Tags": "<p>The tags to associate with the fleet. A tag is a key-value pair, and the value is optional. For example, Environment=Test. If you do not specify a value, Environment=. </p> <p>If you do not specify a value, the value is set to an empty string.</p> <p>Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following special characters: </p> <p>_ . : / = + \\ - @</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
@@ -1836,7 +2078,9 @@
       "base": null,
       "refs": {
         "AppBlock$CreatedTime": "<p>The created time of the app block.</p>",
+        "AppBlockBuilder$CreatedTime": "<p>The creation time of the app block builder.</p>",
         "Application$CreatedTime": "<p>The time at which the application was created within the app block.</p>",
+        "CreateAppBlockBuilderStreamingURLResult$Expires": "<p>The elapsed time, in seconds after the Unix epoch, when this URL expires.</p>",
         "CreateImageBuilderStreamingURLResult$Expires": "<p>The elapsed time, in seconds after the Unix epoch, when this URL expires.</p>",
         "CreateStreamingURLResult$Expires": "<p>The elapsed time, in seconds after the Unix epoch, when this URL expires.</p>",
         "DirectoryConfig$CreatedTime": "<p>The time the directory configuration was created.</p>",
@@ -1860,6 +2104,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAppBlockBuilderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAppBlockBuilderResult": {
       "base": null,
       "refs": {
       }
@@ -2061,10 +2315,13 @@
     "VpcConfig": {
       "base": "<p>Describes VPC configuration information for fleets and image builders.</p>",
       "refs": {
+        "AppBlockBuilder$VpcConfig": "<p>The VPC configuration for the app block builder.</p>",
+        "CreateAppBlockBuilderRequest$VpcConfig": "<p>The VPC configuration for the app block builder.</p> <p>App block builders require that you specify at least two subnets in different availability zones.</p>",
         "CreateFleetRequest$VpcConfig": "<p>The VPC configuration for the fleet. This is required for Elastic fleets, but not required for other fleet types. Elastic fleets require that you specify at least two subnets in different availability zones.</p>",
         "CreateImageBuilderRequest$VpcConfig": "<p>The VPC configuration for the image builder. You can specify only one subnet.</p>",
         "Fleet$VpcConfig": "<p>The VPC configuration for the fleet.</p>",
         "ImageBuilder$VpcConfig": "<p>The VPC configuration of the image builder.</p>",
+        "UpdateAppBlockBuilderRequest$VpcConfig": "<p>The VPC configuration for the app block builder.</p> <p>App block builders require that you specify at least two subnets in different availability zones.</p>",
         "UpdateFleetRequest$VpcConfig": "<p>The VPC configuration for the fleet. This is required for Elastic fleets, but not required for other fleet types. Elastic fleets require that you specify at least two subnets in different availability zones. </p>"
       }
     }

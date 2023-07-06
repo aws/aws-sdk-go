@@ -3507,6 +3507,23 @@
       "type":"list",
       "member":{"shape":"AgentVersion"}
     },
+    "AggregationTransformationValue":{
+      "type":"string",
+      "enum":[
+        "sum",
+        "avg",
+        "first",
+        "min",
+        "max"
+      ]
+    },
+    "AggregationTransformations":{
+      "type":"map",
+      "key":{"shape":"TransformationAttributeName"},
+      "value":{"shape":"AggregationTransformationValue"},
+      "max":50,
+      "min":1
+    },
     "Alarm":{
       "type":"structure",
       "members":{
@@ -4300,7 +4317,8 @@
         "ModelDeploymentError",
         "GeneratingModelInsightsReport",
         "ModelInsightsError",
-        "TrainingModels"
+        "TrainingModels",
+        "PreTraining"
       ]
     },
     "AutoMLJobStatus":{
@@ -4365,7 +4383,11 @@
         "Precision",
         "PrecisionMacro",
         "Recall",
-        "RecallMacro"
+        "RecallMacro",
+        "MAPE",
+        "MASE",
+        "WAPE",
+        "AverageWeightedQuantileLoss"
       ]
     },
     "AutoMLMetricExtendedEnum":{
@@ -4385,7 +4407,11 @@
         "Recall",
         "RecallMacro",
         "LogLoss",
-        "InferenceLatency"
+        "InferenceLatency",
+        "MAPE",
+        "MASE",
+        "WAPE",
+        "AverageWeightedQuantileLoss"
       ]
     },
     "AutoMLMode":{
@@ -4426,7 +4452,8 @@
       "members":{
         "ImageClassificationJobConfig":{"shape":"ImageClassificationJobConfig"},
         "TextClassificationJobConfig":{"shape":"TextClassificationJobConfig"},
-        "TabularJobConfig":{"shape":"TabularJobConfig"}
+        "TabularJobConfig":{"shape":"TabularJobConfig"},
+        "TimeSeriesForecastingJobConfig":{"shape":"TimeSeriesForecastingJobConfig"}
       },
       "union":true
     },
@@ -4435,7 +4462,8 @@
       "enum":[
         "ImageClassification",
         "TextClassification",
-        "Tabular"
+        "Tabular",
+        "TimeSeriesForecasting"
       ]
     },
     "AutoMLProblemTypeResolvedAttributes":{
@@ -4542,6 +4570,10 @@
         "AWS/Rekognition/DetectModerationLabels/Image/V3",
         "AWS/Textract/AnalyzeDocument/Forms/V1"
       ]
+    },
+    "BacktestResultsLocation":{
+      "type":"string",
+      "min":1
     },
     "BatchDataCaptureConfig":{
       "type":"structure",
@@ -4706,7 +4738,8 @@
       "required":["Explainability"],
       "members":{
         "Explainability":{"shape":"ExplainabilityLocation"},
-        "ModelInsights":{"shape":"ModelInsightsLocation"}
+        "ModelInsights":{"shape":"ModelInsightsLocation"},
+        "BacktestResults":{"shape":"BacktestResultsLocation"}
       }
     },
     "CandidateDefinitionNotebookLocation":{
@@ -5462,7 +5495,8 @@
         "Environment":{"shape":"EnvironmentMap"},
         "ModelPackageName":{"shape":"VersionedArnOrName"},
         "InferenceSpecificationName":{"shape":"InferenceSpecificationName"},
-        "MultiModelConfig":{"shape":"MultiModelConfig"}
+        "MultiModelConfig":{"shape":"MultiModelConfig"},
+        "ModelDataSource":{"shape":"ModelDataSource"}
       }
     },
     "ContainerDefinitionList":{
@@ -7599,10 +7633,10 @@
     },
     "DeploymentConfig":{
       "type":"structure",
-      "required":["BlueGreenUpdatePolicy"],
       "members":{
         "BlueGreenUpdatePolicy":{"shape":"BlueGreenUpdatePolicy"},
-        "AutoRollbackConfiguration":{"shape":"AutoRollbackConfig"}
+        "AutoRollbackConfiguration":{"shape":"AutoRollbackConfig"},
+        "RollingUpdatePolicy":{"shape":"RollingUpdatePolicy"}
       }
     },
     "DeploymentRecommendation":{
@@ -10121,11 +10155,11 @@
     },
     "EndpointInputConfiguration":{
       "type":"structure",
-      "required":["InstanceType"],
       "members":{
         "InstanceType":{"shape":"ProductionVariantInstanceType"},
         "InferenceSpecificationName":{"shape":"InferenceSpecificationName"},
-        "EnvironmentParameterRanges":{"shape":"EnvironmentParameterRanges"}
+        "EnvironmentParameterRanges":{"shape":"EnvironmentParameterRanges"},
+        "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"}
       }
     },
     "EndpointInputConfigurations":{
@@ -10158,15 +10192,14 @@
       "type":"structure",
       "required":[
         "EndpointName",
-        "VariantName",
-        "InstanceType",
-        "InitialInstanceCount"
+        "VariantName"
       ],
       "members":{
         "EndpointName":{"shape":"String"},
         "VariantName":{"shape":"String"},
         "InstanceType":{"shape":"ProductionVariantInstanceType"},
-        "InitialInstanceCount":{"shape":"Integer"}
+        "InitialInstanceCount":{"shape":"InitialInstanceCount"},
+        "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"}
       }
     },
     "EndpointPerformance":{
@@ -10203,7 +10236,8 @@
         "RollingBack",
         "InService",
         "Deleting",
-        "Failed"
+        "Failed",
+        "UpdateRollbackFailed"
       ]
     },
     "EndpointSummary":{
@@ -10658,6 +10692,39 @@
         "FSxLustre"
       ]
     },
+    "FillingTransformationMap":{
+      "type":"map",
+      "key":{"shape":"FillingType"},
+      "value":{"shape":"FillingTransformationValue"},
+      "max":6,
+      "min":1
+    },
+    "FillingTransformationValue":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\_\\-]+$"
+    },
+    "FillingTransformations":{
+      "type":"map",
+      "key":{"shape":"TransformationAttributeName"},
+      "value":{"shape":"FillingTransformationMap"},
+      "max":50,
+      "min":1
+    },
+    "FillingType":{
+      "type":"string",
+      "enum":[
+        "frontfill",
+        "middlefill",
+        "backfill",
+        "futurefill",
+        "frontfill_value",
+        "middlefill_value",
+        "backfill_value",
+        "futurefill_value"
+      ]
+    },
     "Filter":{
       "type":"structure",
       "required":["Name"],
@@ -10798,6 +10865,28 @@
       "min":1,
       "pattern":"^[\\t\\n\\r -\\uD7FF\\uE000-\\uFFFD]*$"
     },
+    "ForecastFrequency":{
+      "type":"string",
+      "max":5,
+      "min":1,
+      "pattern":"^1Y|Y|([1-9]|1[0-1])M|M|[1-4]W|W|[1-6]D|D|([1-9]|1[0-9]|2[0-3])H|H|([1-9]|[1-5][0-9])min$"
+    },
+    "ForecastHorizon":{
+      "type":"integer",
+      "min":1
+    },
+    "ForecastQuantile":{
+      "type":"string",
+      "max":4,
+      "min":2,
+      "pattern":"(^p[1-9]\\d?$)"
+    },
+    "ForecastQuantiles":{
+      "type":"list",
+      "member":{"shape":"ForecastQuantile"},
+      "max":5,
+      "min":1
+    },
     "Framework":{
       "type":"string",
       "enum":[
@@ -10920,6 +11009,17 @@
       "max":63,
       "min":1,
       "pattern":"[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+"
+    },
+    "GroupingAttributeName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "GroupingAttributeNames":{
+      "type":"list",
+      "member":{"shape":"GroupingAttributeName"},
+      "max":5,
+      "min":1
     },
     "Groups":{
       "type":"list",
@@ -12034,6 +12134,10 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$"
     },
+    "InitialInstanceCount":{
+      "type":"integer",
+      "min":1
+    },
     "InitialNumberOfUsers":{
       "type":"integer",
       "min":1
@@ -12238,6 +12342,11 @@
     "IotRoleAlias":{
       "type":"string",
       "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:rolealias/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
+    "ItemIdentifierAttributeName":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "JobDurationInSeconds":{
       "type":"integer",
@@ -14298,7 +14407,7 @@
     },
     "MaximumExecutionTimeoutInSeconds":{
       "type":"integer",
-      "max":14400,
+      "max":28800,
       "min":600
     },
     "MaximumRetryAttempts":{
@@ -14503,7 +14612,8 @@
         "LastModifiedBy":{"shape":"UserContext"},
         "Tags":{"shape":"TagList"},
         "ModelId":{"shape":"String"},
-        "RiskRating":{"shape":"String"}
+        "RiskRating":{"shape":"String"},
+        "ModelPackageGroupName":{"shape":"String"}
       }
     },
     "ModelCardArn":{
@@ -14678,6 +14788,13 @@
         "InvocationsMaxRetries":{"shape":"InvocationsMaxRetries"}
       }
     },
+    "ModelCompressionType":{
+      "type":"string",
+      "enum":[
+        "None",
+        "Gzip"
+      ]
+    },
     "ModelConfiguration":{
       "type":"structure",
       "members":{
@@ -14765,6 +14882,13 @@
       "members":{
         "Statistics":{"shape":"MetricsSource"},
         "Constraints":{"shape":"MetricsSource"}
+      }
+    },
+    "ModelDataSource":{
+      "type":"structure",
+      "required":["S3DataSource"],
+      "members":{
+        "S3DataSource":{"shape":"S3ModelDataSource"}
       }
     },
     "ModelDeployConfig":{
@@ -15201,6 +15325,10 @@
         "Status":{"shape":"FeatureStatus"},
         "CrossAccountModelRegisterRoleArn":{"shape":"RoleArn"}
       }
+    },
+    "ModelSetupTime":{
+      "type":"integer",
+      "min":0
     },
     "ModelSortKey":{
       "type":"string",
@@ -16082,7 +16210,14 @@
       "type":"structure",
       "members":{
         "SecurityConfig":{"shape":"OnlineStoreSecurityConfig"},
-        "EnableOnlineStore":{"shape":"Boolean"}
+        "EnableOnlineStore":{"shape":"Boolean"},
+        "TtlDuration":{"shape":"TtlDuration"}
+      }
+    },
+    "OnlineStoreConfigUpdate":{
+      "type":"structure",
+      "members":{
+        "TtlDuration":{"shape":"TtlDuration"}
       }
     },
     "OnlineStoreSecurityConfig":{
@@ -16120,6 +16255,13 @@
         "Descending"
       ]
     },
+    "OutputCompressionType":{
+      "type":"string",
+      "enum":[
+        "GZIP",
+        "NONE"
+      ]
+    },
     "OutputConfig":{
       "type":"structure",
       "required":["S3OutputLocation"],
@@ -16136,7 +16278,8 @@
       "required":["S3OutputPath"],
       "members":{
         "KmsKeyId":{"shape":"KmsKeyId"},
-        "S3OutputPath":{"shape":"S3Uri"}
+        "S3OutputPath":{"shape":"S3Uri"},
+        "CompressionType":{"shape":"OutputCompressionType"}
       }
     },
     "OutputParameter":{
@@ -17539,7 +17682,8 @@
         "PayloadConfig":{"shape":"RecommendationJobPayloadConfig"},
         "NearestModelName":{"shape":"String"},
         "SupportedInstanceTypes":{"shape":"RecommendationJobSupportedInstanceTypes"},
-        "DataInputConfig":{"shape":"RecommendationJobDataInputConfig"}
+        "DataInputConfig":{"shape":"RecommendationJobDataInputConfig"},
+        "SupportedEndpointType":{"shape":"RecommendationJobSupportedEndpointType"}
       }
     },
     "RecommendationJobDataInputConfig":{
@@ -17629,6 +17773,13 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "RecommendationJobSupportedEndpointType":{
+      "type":"string",
+      "enum":[
+        "RealTime",
+        "Serverless"
+      ]
+    },
     "RecommendationJobSupportedInstanceTypes":{
       "type":"list",
       "member":{"shape":"String"}
@@ -17687,7 +17838,8 @@
         "MaxInvocations":{"shape":"Integer"},
         "ModelLatency":{"shape":"Integer"},
         "CpuUtilization":{"shape":"UtilizationMetric"},
-        "MemoryUtilization":{"shape":"UtilizationMetric"}
+        "MemoryUtilization":{"shape":"UtilizationMetric"},
+        "ModelSetupTime":{"shape":"ModelSetupTime"}
       }
     },
     "RecommendationStatus":{
@@ -18035,6 +18187,19 @@
       "min":20,
       "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
+    "RollingUpdatePolicy":{
+      "type":"structure",
+      "required":[
+        "MaximumBatchSize",
+        "WaitIntervalInSeconds"
+      ],
+      "members":{
+        "MaximumBatchSize":{"shape":"CapacitySize"},
+        "WaitIntervalInSeconds":{"shape":"WaitIntervalInSeconds"},
+        "MaximumExecutionTimeoutInSeconds":{"shape":"MaximumExecutionTimeoutInSeconds"},
+        "RollbackMaximumBatchSize":{"shape":"CapacitySize"}
+      }
+    },
     "RootAccess":{
       "type":"string",
       "enum":[
@@ -18094,6 +18259,31 @@
         "S3Prefix",
         "AugmentedManifestFile"
       ]
+    },
+    "S3ModelDataSource":{
+      "type":"structure",
+      "required":[
+        "S3Uri",
+        "S3DataType",
+        "CompressionType"
+      ],
+      "members":{
+        "S3Uri":{"shape":"S3ModelUri"},
+        "S3DataType":{"shape":"S3ModelDataType"},
+        "CompressionType":{"shape":"ModelCompressionType"}
+      }
+    },
+    "S3ModelDataType":{
+      "type":"string",
+      "enum":[
+        "S3Prefix",
+        "S3Object"
+      ]
+    },
+    "S3ModelUri":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^(https|s3)://([^/]+)/?(.*)$"
     },
     "S3OutputPath":{
       "type":"string",
@@ -19266,6 +19456,37 @@
       "max":128,
       "pattern":"[a-zA-Z0-9:_-]+"
     },
+    "TimeSeriesConfig":{
+      "type":"structure",
+      "required":[
+        "TargetAttributeName",
+        "TimestampAttributeName",
+        "ItemIdentifierAttributeName"
+      ],
+      "members":{
+        "TargetAttributeName":{"shape":"TargetAttributeName"},
+        "TimestampAttributeName":{"shape":"TimestampAttributeName"},
+        "ItemIdentifierAttributeName":{"shape":"ItemIdentifierAttributeName"},
+        "GroupingAttributeNames":{"shape":"GroupingAttributeNames"}
+      }
+    },
+    "TimeSeriesForecastingJobConfig":{
+      "type":"structure",
+      "required":[
+        "ForecastFrequency",
+        "ForecastHorizon",
+        "TimeSeriesConfig"
+      ],
+      "members":{
+        "FeatureSpecificationS3Uri":{"shape":"S3Uri"},
+        "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
+        "ForecastFrequency":{"shape":"ForecastFrequency"},
+        "ForecastHorizon":{"shape":"ForecastHorizon"},
+        "ForecastQuantiles":{"shape":"ForecastQuantiles"},
+        "Transformations":{"shape":"TimeSeriesTransformations"},
+        "TimeSeriesConfig":{"shape":"TimeSeriesConfig"}
+      }
+    },
     "TimeSeriesForecastingSettings":{
       "type":"structure",
       "members":{
@@ -19273,7 +19494,19 @@
         "AmazonForecastRoleArn":{"shape":"RoleArn"}
       }
     },
+    "TimeSeriesTransformations":{
+      "type":"structure",
+      "members":{
+        "Filling":{"shape":"FillingTransformations"},
+        "Aggregation":{"shape":"AggregationTransformations"}
+      }
+    },
     "Timestamp":{"type":"timestamp"},
+    "TimestampAttributeName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "TrafficDurationInSeconds":{
       "type":"integer",
       "min":1
@@ -19419,7 +19652,8 @@
         "ml.g5.24xlarge",
         "ml.g5.48xlarge",
         "ml.trn1.2xlarge",
-        "ml.trn1.32xlarge"
+        "ml.trn1.32xlarge",
+        "ml.trn1n.32xlarge"
       ]
     },
     "TrainingInstanceTypes":{
@@ -19811,6 +20045,11 @@
         "S3Uri":{"shape":"S3Uri"}
       }
     },
+    "TransformationAttributeName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "Trial":{
       "type":"structure",
       "members":{
@@ -20033,6 +20272,27 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"}
       }
+    },
+    "TtlDuration":{
+      "type":"structure",
+      "members":{
+        "Unit":{"shape":"TtlDurationUnit"},
+        "Value":{"shape":"TtlDurationValue"}
+      }
+    },
+    "TtlDurationUnit":{
+      "type":"string",
+      "enum":[
+        "Seconds",
+        "Minutes",
+        "Hours",
+        "Days",
+        "Weeks"
+      ]
+    },
+    "TtlDurationValue":{
+      "type":"integer",
+      "min":1
     },
     "TuningJobCompletionCriteria":{
       "type":"structure",
@@ -20257,7 +20517,8 @@
       "required":["FeatureGroupName"],
       "members":{
         "FeatureGroupName":{"shape":"FeatureGroupName"},
-        "FeatureAdditions":{"shape":"FeatureAdditions"}
+        "FeatureAdditions":{"shape":"FeatureAdditions"},
+        "OnlineStoreConfig":{"shape":"OnlineStoreConfigUpdate"}
       }
     },
     "UpdateFeatureGroupResponse":{

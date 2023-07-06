@@ -378,6 +378,8 @@ func ExampleKMS_CreateGrant_shared00() {
 				fmt.Println(kms.ErrCodeLimitExceededException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -864,6 +866,8 @@ func ExampleKMS_Decrypt_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -914,6 +918,8 @@ func ExampleKMS_Decrypt_shared01() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -968,6 +974,8 @@ func ExampleKMS_Decrypt_shared02() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1660,6 +1668,8 @@ func ExampleKMS_Encrypt_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1705,6 +1715,8 @@ func ExampleKMS_Encrypt_shared01() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1750,6 +1762,8 @@ func ExampleKMS_GenerateDataKey_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1802,6 +1816,8 @@ func ExampleKMS_GenerateDataKey_shared01() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1849,6 +1865,8 @@ func ExampleKMS_GenerateDataKeyPair_shared00() {
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
 			case kms.ErrCodeUnsupportedOperationException:
 				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1904,6 +1922,8 @@ func ExampleKMS_GenerateDataKeyPair_shared01() {
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
 			case kms.ErrCodeUnsupportedOperationException:
 				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1951,6 +1971,8 @@ func ExampleKMS_GenerateDataKeyPairWithoutPlaintext_shared00() {
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
 			case kms.ErrCodeUnsupportedOperationException:
 				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1995,6 +2017,8 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2038,6 +2062,8 @@ func ExampleKMS_GenerateMac_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2815,6 +2841,8 @@ func ExampleKMS_ReEncrypt_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2904,6 +2932,8 @@ func ExampleKMS_RetireGrant_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2943,6 +2973,8 @@ func ExampleKMS_RevokeGrant_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3026,6 +3058,8 @@ func ExampleKMS_Sign_shared00() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3074,6 +3108,8 @@ func ExampleKMS_Sign_shared01() {
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3715,6 +3751,8 @@ func ExampleKMS_Verify_shared00() {
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
 			case kms.ErrCodeKMSInvalidSignatureException:
 				fmt.Println(kms.ErrCodeKMSInvalidSignatureException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3766,6 +3804,8 @@ func ExampleKMS_Verify_shared01() {
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
 			case kms.ErrCodeKMSInvalidSignatureException:
 				fmt.Println(kms.ErrCodeKMSInvalidSignatureException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3813,6 +3853,8 @@ func ExampleKMS_VerifyMac_shared00() {
 				fmt.Println(kms.ErrCodeKMSInvalidMacException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

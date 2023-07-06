@@ -33,6 +33,19 @@
       "input":{"shape":"BatchGetStreamKeyRequest"},
       "output":{"shape":"BatchGetStreamKeyResponse"}
     },
+    "BatchStartViewerSessionRevocation":{
+      "name":"BatchStartViewerSessionRevocation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/BatchStartViewerSessionRevocation",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchStartViewerSessionRevocationRequest"},
+      "output":{"shape":"BatchStartViewerSessionRevocationResponse"},
+      "errors":[
+        {"shape":"ValidationException"}
+      ]
+    },
     "CreateChannel":{
       "name":"CreateChannel",
       "http":{
@@ -122,7 +135,7 @@
       "http":{
         "method":"POST",
         "requestUri":"/DeleteRecordingConfiguration",
-        "responseCode":200
+        "responseCode":204
       },
       "input":{"shape":"DeleteRecordingConfigurationRequest"},
       "errors":[
@@ -365,7 +378,7 @@
       "http":{
         "method":"POST",
         "requestUri":"/PutMetadata",
-        "responseCode":200
+        "responseCode":204
       },
       "input":{"shape":"PutMetadataRequest"},
       "errors":[
@@ -373,6 +386,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ChannelNotBroadcasting"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "StartViewerSessionRevocation":{
+      "name":"StartViewerSessionRevocation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/StartViewerSessionRevocation",
+        "responseCode":200
+      },
+      "input":{"shape":"StartViewerSessionRevocationRequest"},
+      "output":{"shape":"StartViewerSessionRevocationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ]
     },
@@ -502,6 +531,54 @@
         "errors":{"shape":"BatchErrors"},
         "streamKeys":{"shape":"StreamKeys"}
       }
+    },
+    "BatchStartViewerSessionRevocationError":{
+      "type":"structure",
+      "required":[
+        "channelArn",
+        "viewerId"
+      ],
+      "members":{
+        "channelArn":{"shape":"ChannelArn"},
+        "code":{"shape":"errorCode"},
+        "message":{"shape":"errorMessage"},
+        "viewerId":{"shape":"ViewerId"}
+      }
+    },
+    "BatchStartViewerSessionRevocationErrors":{
+      "type":"list",
+      "member":{"shape":"BatchStartViewerSessionRevocationError"}
+    },
+    "BatchStartViewerSessionRevocationRequest":{
+      "type":"structure",
+      "required":["viewerSessions"],
+      "members":{
+        "viewerSessions":{"shape":"BatchStartViewerSessionRevocationViewerSessionList"}
+      }
+    },
+    "BatchStartViewerSessionRevocationResponse":{
+      "type":"structure",
+      "members":{
+        "errors":{"shape":"BatchStartViewerSessionRevocationErrors"}
+      }
+    },
+    "BatchStartViewerSessionRevocationViewerSession":{
+      "type":"structure",
+      "required":[
+        "channelArn",
+        "viewerId"
+      ],
+      "members":{
+        "channelArn":{"shape":"ChannelArn"},
+        "viewerId":{"shape":"ViewerId"},
+        "viewerSessionVersionsLessThanOrEqualTo":{"shape":"ViewerSessionVersion"}
+      }
+    },
+    "BatchStartViewerSessionRevocationViewerSessionList":{
+      "type":"list",
+      "member":{"shape":"BatchStartViewerSessionRevocationViewerSession"},
+      "max":20,
+      "min":1
     },
     "Boolean":{"type":"boolean"},
     "Channel":{
@@ -1121,6 +1198,23 @@
       },
       "exception":true
     },
+    "StartViewerSessionRevocationRequest":{
+      "type":"structure",
+      "required":[
+        "channelArn",
+        "viewerId"
+      ],
+      "members":{
+        "channelArn":{"shape":"ChannelArn"},
+        "viewerId":{"shape":"ViewerId"},
+        "viewerSessionVersionsLessThanOrEqualTo":{"shape":"ViewerSessionVersion"}
+      }
+    },
+    "StartViewerSessionRevocationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "StopStreamRequest":{
       "type":"structure",
       "required":["channelArn"],
@@ -1431,6 +1525,15 @@
         "videoHeight":{"shape":"Integer"},
         "videoWidth":{"shape":"Integer"}
       }
+    },
+    "ViewerId":{
+      "type":"string",
+      "max":40,
+      "min":1
+    },
+    "ViewerSessionVersion":{
+      "type":"integer",
+      "min":0
     },
     "errorCode":{"type":"string"},
     "errorMessage":{"type":"string"}

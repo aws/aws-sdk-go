@@ -278,7 +278,7 @@
     "AutomationRulesActionType": {
       "base": null,
       "refs": {
-        "AutomationRulesAction$Type": "<p> Specifies that the rule action should update the <code>Types</code> finding field. The <code>Types</code> finding field provides one or more finding types in the format of namespace/category/classifier that classify a finding. For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format-type-taxonomy.html\">Types taxonomy for ASFF</a> in the <i>Security Hub User Guide</i>. </p>"
+        "AutomationRulesAction$Type": "<p> Specifies that the rule action should update the <code>Types</code> finding field. The <code>Types</code> finding field classifies findings in the format of namespace/category/classifier. For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format-type-taxonomy.html\">Types taxonomy for ASFF</a> in the <i>Security Hub User Guide</i>. </p>"
       }
     },
     "AutomationRulesArnsList": {
@@ -303,7 +303,7 @@
       }
     },
     "AutomationRulesFindingFieldsUpdate": {
-      "base": "<p> Identifies the finding fields that the automation rule action will update when a finding matches the defined criteria. </p>",
+      "base": "<p> Identifies the finding fields that the automation rule action updates when a finding matches the defined criteria. </p>",
       "refs": {
         "AutomationRulesAction$FindingFieldsUpdate": "<p> Specifies that the automation rule action is an update to a finding field. </p>"
       }
@@ -311,9 +311,9 @@
     "AutomationRulesFindingFilters": {
       "base": "<p> The criteria that determine which findings a rule applies to. </p>",
       "refs": {
-        "AutomationRulesConfig$Criteria": "<p> A set of <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html\">Amazon Web Services Security Finding Format</a> finding field attributes and corresponding expected values that Security Hub uses to filter findings. If a finding matches the conditions specified in this parameter, Security Hub applies the rule action to the finding. </p>",
-        "CreateAutomationRuleRequest$Criteria": "<p> A set of ASFF finding field attributes and corresponding expected values that Security Hub uses to filter findings. If a finding matches the conditions specified in this parameter, Security Hub applies the rule action to the finding. </p>",
-        "UpdateAutomationRulesRequestItem$Criteria": "<p> A set of ASFF finding field attributes and corresponding expected values that Security Hub uses to filter findings. If a finding matches the conditions specified in this parameter, Security Hub applies the rule action to the finding. </p>"
+        "AutomationRulesConfig$Criteria": "<p> A set of <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html\">Amazon Web Services Security Finding Format</a> finding field attributes and corresponding expected values that Security Hub uses to filter findings. If a rule is enabled and a finding matches the conditions specified in this parameter, Security Hub applies the rule action to the finding. </p>",
+        "CreateAutomationRuleRequest$Criteria": "<p> A set of ASFF finding field attributes and corresponding expected values that Security Hub uses to filter findings. If a rule is enabled and a finding matches the conditions specified in this parameter, Security Hub applies the rule action to the finding. </p>",
+        "UpdateAutomationRulesRequestItem$Criteria": "<p> A set of ASFF finding field attributes and corresponding expected values that Security Hub uses to filter findings. If a rule is enabled and a finding matches the conditions specified in this parameter, Security Hub applies the rule action to the finding. </p>"
       }
     },
     "AutomationRulesMetadata": {
@@ -4097,8 +4097,8 @@
       "base": null,
       "refs": {
         "AssociationSetDetails$Main": "<p> Indicates whether this is the main route table. </p>",
-        "AutomationRulesConfig$IsTerminal": "<p>Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If the value of this field is set to <code>true</code> for a rule, Security Hub applies the rule action to a finding that matches the rule criteria and won't evaluate other rules for the finding.&#x2028; The default value of this field is <code>false</code>. </p>",
-        "AutomationRulesMetadata$IsTerminal": "<p> Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If the value of this field is set to <code>true</code> for a rule, Security Hub applies the rule action to a finding that matches the rule criteria and won't evaluate other rules for the finding.&#x2028; The default value of this field is <code>false</code>. </p>",
+        "AutomationRulesConfig$IsTerminal": "<p>Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If the value of this field is set to <code>true</code> for a rule, Security Hub applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding.&#x2028; The default value of this field is <code>false</code>. </p>",
+        "AutomationRulesMetadata$IsTerminal": "<p> Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If the value of this field is set to <code>true</code> for a rule, Security Hub applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding.&#x2028; The default value of this field is <code>false</code>. </p>",
         "AwsAmazonMqBrokerDetails$AutoMinorVersionUpgrade": "<p> Whether automatically upgrade new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot. </p>",
         "AwsAmazonMqBrokerDetails$PubliclyAccessible": "<p> Permits connections from applications outside of the VPC that hosts the broker's subnets. </p>",
         "AwsAmazonMqBrokerEncryptionOptionsDetails$UseAwsOwnedKey": "<p> Specifies that an KMS key should be used for at-rest encryption. Set to <code>true</code> by default if no value is provided (for example, for RabbitMQ brokers). </p>",
@@ -4282,7 +4282,7 @@
         "BooleanFilter$Value": "<p>The value of the boolean.</p>",
         "ClassificationResult$AdditionalOccurrences": "<p>Indicates whether there are additional occurrences of sensitive data that are not included in the finding. This occurs when the number of occurrences exceeds the maximum that can be included.</p>",
         "ContainerDetails$Privileged": "<p>When this parameter is <code>true</code>, the container is given elevated privileges on the host container instance (similar to the root user). </p>",
-        "CreateAutomationRuleRequest$IsTerminal": "<p>Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If the value of this field is set to <code>true</code> for a rule, Security Hub applies the rule action to a finding that matches the rule criteria and won't evaluate other rules for the finding. The default value of this field is <code>false</code>. </p>",
+        "CreateAutomationRuleRequest$IsTerminal": "<p>Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If the value of this field is set to <code>true</code> for a rule, Security Hub applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding. The default value of this field is <code>false</code>. </p>",
         "DescribeHubResponse$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>If set to <code>true</code>, then new controls for enabled standards are enabled automatically. If set to <code>false</code>, then new controls are not enabled.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>If set to <code>true</code>, then Security Hub is enabled for new accounts. If set to false, then new accounts are not added automatically.</p>",
         "DescribeOrganizationConfigurationResponse$MemberAccountLimitReached": "<p>Whether the maximum number of allowed member accounts are already associated with the Security Hub administrator account.</p>",
@@ -4293,7 +4293,7 @@
         "NetworkConnectionAction$Blocked": "<p>Indicates whether the network connection attempt was blocked.</p>",
         "PortProbeAction$Blocked": "<p>Indicates whether the port probe was blocked.</p>",
         "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>",
-        "UpdateAutomationRulesRequestItem$IsTerminal": "<p>Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If the value of this field is set to <code>true</code> for a rule, Security Hub applies the rule action to a finding that matches the rule criteria and won't evaluate other rules for the finding.&#x2028; The default value of this field is <code>false</code>. </p>",
+        "UpdateAutomationRulesRequestItem$IsTerminal": "<p>Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If the value of this field is set to <code>true</code> for a rule, Security Hub applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding.&#x2028; The default value of this field is <code>false</code>. </p>",
         "UpdateOrganizationConfigurationRequest$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>By default, this is <code>false</code>, and new accounts are not added automatically.</p> <p>To automatically enable Security Hub for new accounts, set this to <code>true</code>.</p>",
         "UpdateSecurityHubConfigurationRequest$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>By default, this is set to <code>true</code>, and new controls are enabled automatically. To not automatically enable new controls, set this to <code>false</code>. </p>",
         "VpcInfoPeeringOptionsDetails$AllowDnsResolutionFromRemoteVpc": "<p>Indicates whether a local VPC can resolve public DNS hostnames to private IP addresses when queried from instances in a peer VPC. </p>",
@@ -4390,7 +4390,7 @@
     "ControlStatus": {
       "base": null,
       "refs": {
-        "SecurityControl$SecurityControlStatus": "<p> The status of a security control based on the compliance status of its findings. For more information about how control status is determined, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html\">Determining the overall status of a control from its findings</a> in the <i>Security Hub User Guide</i>. </p>",
+        "SecurityControl$SecurityControlStatus": "<p> The enablement status of a security control in a specific standard. </p>",
         "StandardsControl$ControlStatus": "<p>The current status of the security standard control. Indicates whether the control is enabled or disabled. Security Hub does not check against disabled controls.</p>",
         "UpdateStandardsControlRequest$ControlStatus": "<p>The updated status of the security standard control.</p>"
       }
@@ -4775,7 +4775,7 @@
     "FieldMap": {
       "base": null,
       "refs": {
-        "AutomationRulesFindingFieldsUpdate$UserDefinedFields": "<p> The rule action will update the <code>UserDefinedFields</code> field of a finding. </p>",
+        "AutomationRulesFindingFieldsUpdate$UserDefinedFields": "<p> The rule action updates the <code>UserDefinedFields</code> field of a finding. </p>",
         "AwsApiCallAction$AffectedResources": "<p>Identifies the resources that were affected by the API call.</p>",
         "AwsApiGatewayCanarySettings$StageVariableOverrides": "<p>Stage variables that are overridden in the canary release deployment. The variables include new stage variables that are introduced in the canary.</p> <p>Each variable is represented as a string-to-string map between the stage variable name and the variable value.</p>",
         "AwsApiGatewayStageDetails$Variables": "<p>A map that defines the stage variables for the stage.</p> <p>Variable names can have alphanumeric and underscore characters.</p> <p>Variable values can contain the following characters:</p> <ul> <li> <p>Uppercase and lowercase letters</p> </li> <li> <p>Numbers</p> </li> <li> <p>Special characters -._~:/?#&amp;=,</p> </li> </ul>",
@@ -7494,8 +7494,8 @@
     "RatioScale": {
       "base": null,
       "refs": {
-        "AutomationRulesFindingFieldsUpdate$Confidence": "<p> The rule action will update the <code>Confidence</code> field of a finding. </p>",
-        "AutomationRulesFindingFieldsUpdate$Criticality": "<p> The rule action will update the <code>Criticality</code> field of a finding. </p>",
+        "AutomationRulesFindingFieldsUpdate$Confidence": "<p> The rule action updates the <code>Confidence</code> field of a finding. </p>",
+        "AutomationRulesFindingFieldsUpdate$Criticality": "<p> The rule action updates the <code>Criticality</code> field of a finding. </p>",
         "BatchUpdateFindingsRequest$Confidence": "<p>The updated value for the finding confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "BatchUpdateFindingsRequest$Criticality": "<p>The updated value for the level of importance assigned to the resources associated with the findings.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources. </p>",
         "FindingProviderFields$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
@@ -7543,7 +7543,7 @@
     "RelatedFindingList": {
       "base": null,
       "refs": {
-        "AutomationRulesFindingFieldsUpdate$RelatedFindings": "<p> A list of findings that are related to a finding. </p>",
+        "AutomationRulesFindingFieldsUpdate$RelatedFindings": "<p> The rule action updates the <code>RelatedFindings</code> field of a finding. </p>",
         "AwsSecurityFinding$RelatedFindings": "<p>A list of related findings.</p>",
         "BatchUpdateFindingsRequest$RelatedFindings": "<p>A list of findings that are related to the updated findings.</p>",
         "FindingProviderFields$RelatedFindings": "<p>A list of findings that are related to the current finding.</p>"
@@ -7821,10 +7821,10 @@
     "RuleStatus": {
       "base": null,
       "refs": {
-        "AutomationRulesConfig$RuleStatus": "<p> Whether the rule is active after it is created. If this parameter is equal to <code>&gt;ENABLED</code>, Security Hub will apply the rule to findings and finding updates after the rule is created. </p>",
-        "AutomationRulesMetadata$RuleStatus": "<p> Whether the rule is active after it is created. If this parameter is equal to <code>ENABLED</code>, Security Hub will apply the rule to findings and finding updates after the rule is created. To change the value of this parameter after creating a rule, use <code>BatchUpdateAutomationRules</code>. </p>",
-        "CreateAutomationRuleRequest$RuleStatus": "<p> Whether the rule is active after it is created. If this parameter is equal to <code>Enabled</code>, Security Hub will apply the rule to findings and finding updates after the rule is created. To change the value of this parameter after creating a rule, use <code>BatchUpdateAutomationRules</code>. </p>",
-        "UpdateAutomationRulesRequestItem$RuleStatus": "<p> Whether the rule is active after it is created. If this parameter is equal to <code>ENABLED</code>, Security Hub will apply the rule to findings and finding updates after the rule is created. To change the value of this parameter after creating a rule, use <code>BatchUpdateAutomationRules</code>. </p>"
+        "AutomationRulesConfig$RuleStatus": "<p> Whether the rule is active after it is created. If this parameter is equal to <code>ENABLED</code>, Security Hub starts applying the rule to findings and finding updates after the rule is created. </p>",
+        "AutomationRulesMetadata$RuleStatus": "<p> Whether the rule is active after it is created. If this parameter is equal to <code>ENABLED</code>, Security Hub starts applying the rule to findings and finding updates after the rule is created. To change the value of this parameter after creating a rule, use <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateAutomationRules.html\"> <code>BatchUpdateAutomationRules</code> </a>. </p>",
+        "CreateAutomationRuleRequest$RuleStatus": "<p> Whether the rule is active after it is created. If this parameter is equal to <code>ENABLED</code>, Security Hub starts applying the rule to findings and finding updates after the rule is created. To change the value of this parameter after creating a rule, use <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateAutomationRules.html\"> <code>BatchUpdateAutomationRules</code> </a>. </p>",
+        "UpdateAutomationRulesRequestItem$RuleStatus": "<p> Whether the rule is active after it is created. If this parameter is equal to <code>ENABLED</code>, Security Hub starts applying the rule to findings and finding updates after the rule is created. To change the value of this parameter after creating a rule, use <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateAutomationRules.html\"> <code>BatchUpdateAutomationRules</code> </a>. </p>"
       }
     },
     "SecurityControl": {
@@ -8372,7 +8372,7 @@
     "TypeList": {
       "base": null,
       "refs": {
-        "AutomationRulesFindingFieldsUpdate$Types": "<p> The rule action will update the <code>Types</code> field of a finding. </p>",
+        "AutomationRulesFindingFieldsUpdate$Types": "<p> The rule action updates the <code>Types</code> field of a finding. </p>",
         "AwsSecurityFinding$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
         "BatchUpdateFindingsRequest$Types": "<p>One or more finding types in the format of namespace/category/classifier that classify a finding.</p> <p>Valid namespace values are as follows.</p> <ul> <li> <p>Software and Configuration Checks</p> </li> <li> <p>TTPs</p> </li> <li> <p>Effects</p> </li> <li> <p>Unusual Behaviors</p> </li> <li> <p>Sensitive Data Identifications </p> </li> </ul>",
         "FindingProviderFields$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>"
@@ -8531,7 +8531,7 @@
     "VerificationState": {
       "base": null,
       "refs": {
-        "AutomationRulesFindingFieldsUpdate$VerificationState": "<p> The rule action will update the <code>VerificationState</code> field of a finding. </p>",
+        "AutomationRulesFindingFieldsUpdate$VerificationState": "<p> The rule action updates the <code>VerificationState</code> field of a finding. </p>",
         "AwsSecurityFinding$VerificationState": "<p>Indicates the veracity of a finding. </p>",
         "BatchUpdateFindingsRequest$VerificationState": "<p>Indicates the veracity of a finding.</p> <p>The available values for <code>VerificationState</code> are as follows.</p> <ul> <li> <p> <code>UNKNOWN</code> – The default disposition of a security finding</p> </li> <li> <p> <code>TRUE_POSITIVE</code> – The security finding is confirmed</p> </li> <li> <p> <code>FALSE_POSITIVE</code> – The security finding was determined to be a false alarm</p> </li> <li> <p> <code>BENIGN_POSITIVE</code> – A special case of <code>TRUE_POSITIVE</code> where the finding doesn't pose any threat, is expected, or both</p> </li> </ul>"
       }

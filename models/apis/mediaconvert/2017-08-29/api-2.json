@@ -5280,6 +5280,10 @@
           "shape": "H265AlternateTransferFunctionSei",
           "locationName": "alternateTransferFunctionSei"
         },
+        "BandwidthReductionFilter": {
+          "shape": "BandwidthReductionFilter",
+          "locationName": "bandwidthReductionFilter"
+        },
         "Bitrate": {
           "shape": "__integerMin1000Max1466400000",
           "locationName": "bitrate"
@@ -5806,6 +5810,10 @@
           "shape": "__integerMin0Max3600",
           "locationName": "programDateTimePeriod"
         },
+        "ProgressiveWriteHlsManifest": {
+          "shape": "HlsProgressiveWriteHlsManifest",
+          "locationName": "progressiveWriteHlsManifest"
+        },
         "SegmentControl": {
           "shape": "HlsSegmentControl",
           "locationName": "segmentControl"
@@ -5943,6 +5951,13 @@
       "enum": [
         "INCLUDE",
         "EXCLUDE"
+      ]
+    },
+    "HlsProgressiveWriteHlsManifest": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "HlsRenditionGroupSettings": {

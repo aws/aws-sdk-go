@@ -1663,6 +1663,42 @@
         "shape": "QueryResult"
       }
     },
+    "Retrieve": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "InternalServerException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "RetrieveRequest"
+      },
+      "name": "Retrieve",
+      "output": {
+        "shape": "RetrieveResult"
+      }
+    },
     "StartDataSourceSyncJob": {
       "errors": [
         {
@@ -3100,6 +3136,9 @@
       ],
       "type": "structure"
     },
+    "Content": {
+      "type": "string"
+    },
     "ContentSourceConfiguration": {
       "members": {
         "DataSourceIds": {
@@ -3533,6 +3572,8 @@
     "DataSourceConfiguration": {
       "members": {
         "AlfrescoConfiguration": {
+          "deprecated": true,
+          "deprecatedMessage": "Deprecated AlfrescoConfiguration in favor of TemplateConfiguration",
           "shape": "AlfrescoConfiguration"
         },
         "BoxConfiguration": {
@@ -3639,7 +3680,7 @@
       "type": "list"
     },
     "DataSourceInclusionsExclusionsStrings": {
-      "max": 100,
+      "max": 250,
       "member": {
         "shape": "DataSourceInclusionsExclusionsStringsMember"
       },
@@ -3647,7 +3688,7 @@
       "type": "list"
     },
     "DataSourceInclusionsExclusionsStringsMember": {
-      "max": 150,
+      "max": 300,
       "min": 1,
       "type": "string"
     },
@@ -4899,6 +4940,9 @@
         "shape": "Status"
       },
       "type": "list"
+    },
+    "DocumentTitle": {
+      "type": "string"
     },
     "DocumentsMetadataConfiguration": {
       "members": {
@@ -7250,8 +7294,6 @@
       "type": "string"
     },
     "QueryText": {
-      "max": 1000,
-      "min": 1,
       "type": "string"
     },
     "QueryTextList": {
@@ -7414,6 +7456,79 @@
       "max": 73,
       "min": 1,
       "type": "string"
+    },
+    "RetrieveRequest": {
+      "members": {
+        "AttributeFilter": {
+          "shape": "AttributeFilter"
+        },
+        "DocumentRelevanceOverrideConfigurations": {
+          "shape": "DocumentRelevanceOverrideConfigurationList"
+        },
+        "IndexId": {
+          "shape": "IndexId"
+        },
+        "PageNumber": {
+          "shape": "Integer"
+        },
+        "PageSize": {
+          "shape": "Integer"
+        },
+        "QueryText": {
+          "shape": "QueryText"
+        },
+        "RequestedDocumentAttributes": {
+          "shape": "DocumentAttributeKeyList"
+        },
+        "UserContext": {
+          "shape": "UserContext"
+        }
+      },
+      "required": [
+        "IndexId",
+        "QueryText"
+      ],
+      "type": "structure"
+    },
+    "RetrieveResult": {
+      "members": {
+        "QueryId": {
+          "shape": "QueryId"
+        },
+        "ResultItems": {
+          "shape": "RetrieveResultItemList"
+        }
+      },
+      "type": "structure"
+    },
+    "RetrieveResultItem": {
+      "members": {
+        "Content": {
+          "shape": "Content"
+        },
+        "DocumentAttributes": {
+          "shape": "DocumentAttributeList"
+        },
+        "DocumentId": {
+          "shape": "DocumentId"
+        },
+        "DocumentTitle": {
+          "shape": "DocumentTitle"
+        },
+        "DocumentURI": {
+          "shape": "Url"
+        },
+        "Id": {
+          "shape": "ResultId"
+        }
+      },
+      "type": "structure"
+    },
+    "RetrieveResultItemList": {
+      "member": {
+        "shape": "RetrieveResultItem"
+      },
+      "type": "list"
     },
     "RoleArn": {
       "max": 1284,

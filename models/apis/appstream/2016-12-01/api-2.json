@@ -13,6 +13,22 @@
     "uid":"appstream-2016-12-01"
   },
   "operations":{
+    "AssociateAppBlockBuilderAppBlock":{
+      "name":"AssociateAppBlockBuilderAppBlock",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateAppBlockBuilderAppBlockRequest"},
+      "output":{"shape":"AssociateAppBlockBuilderAppBlockResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
     "AssociateApplicationFleet":{
       "name":"AssociateApplicationFleet",
       "http":{
@@ -118,6 +134,40 @@
         {"shape":"LimitExceededException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"ResourceAlreadyExistsException"}
+      ]
+    },
+    "CreateAppBlockBuilder":{
+      "name":"CreateAppBlockBuilder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAppBlockBuilderRequest"},
+      "output":{"shape":"CreateAppBlockBuilderResult"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"RequestLimitExceededException"},
+        {"shape":"InvalidAccountStatusException"},
+        {"shape":"InvalidRoleException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotAvailableException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
+    "CreateAppBlockBuilderStreamingURL":{
+      "name":"CreateAppBlockBuilderStreamingURL",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAppBlockBuilderStreamingURLRequest"},
+      "output":{"shape":"CreateAppBlockBuilderStreamingURLResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OperationNotPermittedException"}
       ]
     },
     "CreateApplication":{
@@ -320,6 +370,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteAppBlockBuilder":{
+      "name":"DeleteAppBlockBuilder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAppBlockBuilderRequest"},
+      "output":{"shape":"DeleteAppBlockBuilderResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DeleteApplication":{
       "name":"DeleteApplication",
       "http":{
@@ -457,6 +522,32 @@
       "input":{"shape":"DeleteUserRequest"},
       "output":{"shape":"DeleteUserResult"},
       "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeAppBlockBuilderAppBlockAssociations":{
+      "name":"DescribeAppBlockBuilderAppBlockAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAppBlockBuilderAppBlockAssociationsRequest"},
+      "output":{"shape":"DescribeAppBlockBuilderAppBlockAssociationsResult"},
+      "errors":[
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
+    "DescribeAppBlockBuilders":{
+      "name":"DescribeAppBlockBuilders",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAppBlockBuildersRequest"},
+      "output":{"shape":"DescribeAppBlockBuildersResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -650,6 +741,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DisassociateAppBlockBuilderAppBlock":{
+      "name":"DisassociateAppBlockBuilderAppBlock",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateAppBlockBuilderAppBlockRequest"},
+      "output":{"shape":"DisassociateAppBlockBuilderAppBlockResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DisassociateApplicationFleet":{
       "name":"DisassociateApplicationFleet",
       "http":{
@@ -760,6 +866,24 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "StartAppBlockBuilder":{
+      "name":"StartAppBlockBuilder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartAppBlockBuilderRequest"},
+      "output":{"shape":"StartAppBlockBuilderResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InvalidAccountStatusException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"RequestLimitExceededException"},
+        {"shape":"ResourceNotAvailableException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "StartFleet":{
       "name":"StartFleet",
       "http":{
@@ -793,6 +917,20 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidAccountStatusException"},
         {"shape":"IncompatibleImageException"}
+      ]
+    },
+    "StopAppBlockBuilder":{
+      "name":"StopAppBlockBuilder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopAppBlockBuilderRequest"},
+      "output":{"shape":"StopAppBlockBuilderResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "StopFleet":{
@@ -845,6 +983,27 @@
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateAppBlockBuilder":{
+      "name":"UpdateAppBlockBuilder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAppBlockBuilderRequest"},
+      "output":{"shape":"UpdateAppBlockBuilderResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InvalidAccountStatusException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"InvalidRoleException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"RequestLimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotAvailableException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -996,8 +1155,7 @@
       "type":"structure",
       "required":[
         "Name",
-        "Arn",
-        "SetupScriptDetails"
+        "Arn"
       ],
       "members":{
         "Name":{"shape":"String"},
@@ -1006,8 +1164,103 @@
         "DisplayName":{"shape":"String"},
         "SourceS3Location":{"shape":"S3Location"},
         "SetupScriptDetails":{"shape":"ScriptDetails"},
-        "CreatedTime":{"shape":"Timestamp"}
+        "CreatedTime":{"shape":"Timestamp"},
+        "PostSetupScriptDetails":{"shape":"ScriptDetails"},
+        "PackagingType":{"shape":"PackagingType"},
+        "State":{"shape":"AppBlockState"},
+        "AppBlockErrors":{"shape":"ErrorDetailsList"}
       }
+    },
+    "AppBlockBuilder":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "Name",
+        "Platform",
+        "InstanceType",
+        "VpcConfig",
+        "State"
+      ],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"String"},
+        "DisplayName":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "Platform":{"shape":"AppBlockBuilderPlatformType"},
+        "InstanceType":{"shape":"String"},
+        "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
+        "IamRoleArn":{"shape":"Arn"},
+        "VpcConfig":{"shape":"VpcConfig"},
+        "State":{"shape":"AppBlockBuilderState"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "AppBlockBuilderErrors":{"shape":"ResourceErrors"},
+        "StateChangeReason":{"shape":"AppBlockBuilderStateChangeReason"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
+      }
+    },
+    "AppBlockBuilderAppBlockAssociation":{
+      "type":"structure",
+      "required":[
+        "AppBlockArn",
+        "AppBlockBuilderName"
+      ],
+      "members":{
+        "AppBlockArn":{"shape":"Arn"},
+        "AppBlockBuilderName":{"shape":"Name"}
+      }
+    },
+    "AppBlockBuilderAppBlockAssociationsList":{
+      "type":"list",
+      "member":{"shape":"AppBlockBuilderAppBlockAssociation"},
+      "max":25,
+      "min":1
+    },
+    "AppBlockBuilderAttribute":{
+      "type":"string",
+      "enum":[
+        "IAM_ROLE_ARN",
+        "ACCESS_ENDPOINTS",
+        "VPC_CONFIGURATION_SECURITY_GROUP_IDS"
+      ]
+    },
+    "AppBlockBuilderAttributes":{
+      "type":"list",
+      "member":{"shape":"AppBlockBuilderAttribute"}
+    },
+    "AppBlockBuilderList":{
+      "type":"list",
+      "member":{"shape":"AppBlockBuilder"}
+    },
+    "AppBlockBuilderPlatformType":{
+      "type":"string",
+      "enum":["WINDOWS_SERVER_2019"]
+    },
+    "AppBlockBuilderState":{
+      "type":"string",
+      "enum":[
+        "STARTING",
+        "RUNNING",
+        "STOPPING",
+        "STOPPED"
+      ]
+    },
+    "AppBlockBuilderStateChangeReason":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"AppBlockBuilderStateChangeReasonCode"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "AppBlockBuilderStateChangeReasonCode":{
+      "type":"string",
+      "enum":["INTERNAL_ERROR"]
+    },
+    "AppBlockState":{
+      "type":"string",
+      "enum":[
+        "INACTIVE",
+        "ACTIVE"
+      ]
     },
     "AppBlocks":{
       "type":"list",
@@ -1101,6 +1354,23 @@
     "ArnList":{
       "type":"list",
       "member":{"shape":"Arn"}
+    },
+    "AssociateAppBlockBuilderAppBlockRequest":{
+      "type":"structure",
+      "required":[
+        "AppBlockArn",
+        "AppBlockBuilderName"
+      ],
+      "members":{
+        "AppBlockArn":{"shape":"Arn"},
+        "AppBlockBuilderName":{"shape":"Name"}
+      }
+    },
+    "AssociateAppBlockBuilderAppBlockResult":{
+      "type":"structure",
+      "members":{
+        "AppBlockBuilderAppBlockAssociation":{"shape":"AppBlockBuilderAppBlockAssociation"}
+      }
     },
     "AssociateApplicationFleetRequest":{
       "type":"structure",
@@ -1259,12 +1529,53 @@
         "DestinationImageName":{"shape":"Name"}
       }
     },
+    "CreateAppBlockBuilderRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Platform",
+        "InstanceType",
+        "VpcConfig"
+      ],
+      "members":{
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Tags":{"shape":"Tags"},
+        "Platform":{"shape":"AppBlockBuilderPlatformType"},
+        "InstanceType":{"shape":"String"},
+        "VpcConfig":{"shape":"VpcConfig"},
+        "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
+        "IamRoleArn":{"shape":"Arn"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
+      }
+    },
+    "CreateAppBlockBuilderResult":{
+      "type":"structure",
+      "members":{
+        "AppBlockBuilder":{"shape":"AppBlockBuilder"}
+      }
+    },
+    "CreateAppBlockBuilderStreamingURLRequest":{
+      "type":"structure",
+      "required":["AppBlockBuilderName"],
+      "members":{
+        "AppBlockBuilderName":{"shape":"Name"},
+        "Validity":{"shape":"Long"}
+      }
+    },
+    "CreateAppBlockBuilderStreamingURLResult":{
+      "type":"structure",
+      "members":{
+        "StreamingURL":{"shape":"String"},
+        "Expires":{"shape":"Timestamp"}
+      }
+    },
     "CreateAppBlockRequest":{
       "type":"structure",
       "required":[
         "Name",
-        "SourceS3Location",
-        "SetupScriptDetails"
+        "SourceS3Location"
       ],
       "members":{
         "Name":{"shape":"Name"},
@@ -1272,7 +1583,9 @@
         "DisplayName":{"shape":"DisplayName"},
         "SourceS3Location":{"shape":"S3Location"},
         "SetupScriptDetails":{"shape":"ScriptDetails"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "PostSetupScriptDetails":{"shape":"ScriptDetails"},
+        "PackagingType":{"shape":"PackagingType"}
       }
     },
     "CreateAppBlockResult":{
@@ -1360,7 +1673,7 @@
       ],
       "members":{
         "Name":{"shape":"Name"},
-        "ImageName":{"shape":"String"},
+        "ImageName":{"shape":"Name"},
         "ImageArn":{"shape":"Arn"},
         "InstanceType":{"shape":"String"},
         "FleetType":{"shape":"FleetType"},
@@ -1531,6 +1844,18 @@
       "members":{
       }
     },
+    "DeleteAppBlockBuilderRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"Name"}
+      }
+    },
+    "DeleteAppBlockBuilderResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteAppBlockRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1673,6 +1998,37 @@
     "DeleteUserResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeAppBlockBuilderAppBlockAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "AppBlockArn":{"shape":"Arn"},
+        "AppBlockBuilderName":{"shape":"Name"},
+        "MaxResults":{"shape":"Integer"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeAppBlockBuilderAppBlockAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "AppBlockBuilderAppBlockAssociations":{"shape":"AppBlockBuilderAppBlockAssociationsList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeAppBlockBuildersRequest":{
+      "type":"structure",
+      "members":{
+        "Names":{"shape":"StringList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "DescribeAppBlockBuildersResult":{
+      "type":"structure",
+      "members":{
+        "AppBlockBuilders":{"shape":"AppBlockBuilderList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeAppBlocksRequest":{
@@ -1946,6 +2302,22 @@
       "members":{
       }
     },
+    "DisassociateAppBlockBuilderAppBlockRequest":{
+      "type":"structure",
+      "required":[
+        "AppBlockArn",
+        "AppBlockBuilderName"
+      ],
+      "members":{
+        "AppBlockArn":{"shape":"Arn"},
+        "AppBlockBuilderName":{"shape":"Name"}
+      }
+    },
+    "DisassociateAppBlockBuilderAppBlockResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateApplicationFleetRequest":{
       "type":"structure",
       "required":[
@@ -2106,6 +2478,17 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ErrorDetails":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "ErrorDetailsList":{
+      "type":"list",
+      "member":{"shape":"ErrorDetails"}
     },
     "ErrorMessage":{"type":"string"},
     "ExpireSessionRequest":{
@@ -2516,6 +2899,13 @@
       "type":"list",
       "member":{"shape":"OrganizationalUnitDistinguishedName"}
     },
+    "PackagingType":{
+      "type":"string",
+      "enum":[
+        "CUSTOM",
+        "APPSTREAM2"
+      ]
+    },
     "Permission":{
       "type":"string",
       "enum":[
@@ -2618,10 +3008,7 @@
     },
     "S3Location":{
       "type":"structure",
-      "required":[
-        "S3Bucket",
-        "S3Key"
-      ],
+      "required":["S3Bucket"],
       "members":{
         "S3Bucket":{"shape":"S3Bucket"},
         "S3Key":{"shape":"S3Key"}
@@ -2780,6 +3167,19 @@
       "type":"list",
       "member":{"shape":"Stack"}
     },
+    "StartAppBlockBuilderRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"Name"}
+      }
+    },
+    "StartAppBlockBuilderResult":{
+      "type":"structure",
+      "members":{
+        "AppBlockBuilder":{"shape":"AppBlockBuilder"}
+      }
+    },
     "StartFleetRequest":{
       "type":"structure",
       "required":["Name"],
@@ -2804,6 +3204,19 @@
       "type":"structure",
       "members":{
         "ImageBuilder":{"shape":"ImageBuilder"}
+      }
+    },
+    "StopAppBlockBuilderRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"Name"}
+      }
+    },
+    "StopAppBlockBuilderResult":{
+      "type":"structure",
+      "members":{
+        "AppBlockBuilder":{"shape":"AppBlockBuilder"}
       }
     },
     "StopFleetRequest":{
@@ -2939,6 +3352,28 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateAppBlockBuilderRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Platform":{"shape":"PlatformType"},
+        "InstanceType":{"shape":"String"},
+        "VpcConfig":{"shape":"VpcConfig"},
+        "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
+        "IamRoleArn":{"shape":"Arn"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"},
+        "AttributesToDelete":{"shape":"AppBlockBuilderAttributes"}
+      }
+    },
+    "UpdateAppBlockBuilderResult":{
+      "type":"structure",
+      "members":{
+        "AppBlockBuilder":{"shape":"AppBlockBuilder"}
       }
     },
     "UpdateApplicationRequest":{

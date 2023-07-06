@@ -3750,11 +3750,7 @@ type AppInstanceUserEndpoint struct {
 	AllowMessages *string `type:"string" enum:"AllowMessages"`
 
 	// The ARN of the AppInstanceUser.
-	//
-	// AppInstanceUserArn is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by AppInstanceUserEndpoint's
-	// String and GoString methods.
-	AppInstanceUserArn *string `min:"5" type:"string" sensitive:"true"`
+	AppInstanceUserArn *string `min:"5" type:"string"`
 
 	// The time at which an AppInstanceUserEndpoint was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
@@ -3763,11 +3759,7 @@ type AppInstanceUserEndpoint struct {
 	EndpointAttributes *EndpointAttributes `type:"structure"`
 
 	// The unique identifier of the AppInstanceUserEndpoint.
-	//
-	// EndpointId is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by AppInstanceUserEndpoint's
-	// String and GoString methods.
-	EndpointId *string `type:"string" sensitive:"true"`
+	EndpointId *string `type:"string"`
 
 	// A read-only field that represents the state of an AppInstanceUserEndpoint.
 	// Supported values:
@@ -3892,18 +3884,10 @@ type AppInstanceUserEndpointSummary struct {
 	AllowMessages *string `type:"string" enum:"AllowMessages"`
 
 	// The ARN of the AppInstanceUser.
-	//
-	// AppInstanceUserArn is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by AppInstanceUserEndpointSummary's
-	// String and GoString methods.
-	AppInstanceUserArn *string `min:"5" type:"string" sensitive:"true"`
+	AppInstanceUserArn *string `min:"5" type:"string"`
 
 	// The unique identifier of the AppInstanceUserEndpoint.
-	//
-	// EndpointId is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by AppInstanceUserEndpointSummary's
-	// String and GoString methods.
-	EndpointId *string `type:"string" sensitive:"true"`
+	EndpointId *string `type:"string"`
 
 	// A read-only field that represent the state of an AppInstanceUserEndpoint.
 	EndpointState *EndpointState `type:"structure"`
@@ -5150,21 +5134,13 @@ type DeregisterAppInstanceUserEndpointInput struct {
 
 	// The ARN of the AppInstanceUser.
 	//
-	// AppInstanceUserArn is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by DeregisterAppInstanceUserEndpointInput's
-	// String and GoString methods.
-	//
 	// AppInstanceUserArn is a required field
-	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true" sensitive:"true"`
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true"`
 
 	// The unique identifier of the AppInstanceUserEndpoint.
 	//
-	// EndpointId is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by DeregisterAppInstanceUserEndpointInput's
-	// String and GoString methods.
-	//
 	// EndpointId is a required field
-	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true" sensitive:"true"`
+	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5505,21 +5481,13 @@ type DescribeAppInstanceUserEndpointInput struct {
 
 	// The ARN of the AppInstanceUser.
 	//
-	// AppInstanceUserArn is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by DescribeAppInstanceUserEndpointInput's
-	// String and GoString methods.
-	//
 	// AppInstanceUserArn is a required field
-	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" type:"string" required:"true" sensitive:"true"`
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" type:"string" required:"true"`
 
 	// The unique identifier of the AppInstanceUserEndpoint.
 	//
-	// EndpointId is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by DescribeAppInstanceUserEndpointInput's
-	// String and GoString methods.
-	//
 	// EndpointId is a required field
-	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true" sensitive:"true"`
+	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6080,9 +6048,89 @@ func (s *Identity) SetName(v string) *Identity {
 	return s
 }
 
+// Specifies the type of message that triggers a bot.
+type InvokedBy struct {
+	_ struct{} `type:"structure"`
+
+	// Sets standard messages as the bot trigger. For standard messages:
+	//
+	//    * ALL: The bot processes all standard messages.
+	//
+	//    * AUTO: The bot responds to ALL messages when the channel has one other
+	//    non-hidden member, and responds to MENTIONS when the channel has more
+	//    than one other non-hidden member.
+	//
+	//    * MENTIONS: The bot processes all standard messages that have a message
+	//    attribute with CHIME.mentions and a value of the bot ARN.
+	//
+	//    * NONE: The bot processes no standard messages.
+	//
+	// StandardMessages is a required field
+	StandardMessages *string `type:"string" required:"true" enum:"StandardMessages"`
+
+	// Sets targeted messages as the bot trigger. For targeted messages:
+	//
+	//    * ALL: The bot processes all TargetedMessages sent to it. The bot then
+	//    responds with a targeted message back to the sender.
+	//
+	//    * NONE: The bot processes no targeted messages.
+	//
+	// TargetedMessages is a required field
+	TargetedMessages *string `type:"string" required:"true" enum:"TargetedMessages"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvokedBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvokedBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InvokedBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InvokedBy"}
+	if s.StandardMessages == nil {
+		invalidParams.Add(request.NewErrParamRequired("StandardMessages"))
+	}
+	if s.TargetedMessages == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetedMessages"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStandardMessages sets the StandardMessages field's value.
+func (s *InvokedBy) SetStandardMessages(v string) *InvokedBy {
+	s.StandardMessages = &v
+	return s
+}
+
+// SetTargetedMessages sets the TargetedMessages field's value.
+func (s *InvokedBy) SetTargetedMessages(v string) *InvokedBy {
+	s.TargetedMessages = &v
+	return s
+}
+
 // The configuration for an Amazon Lex V2 bot.
 type LexConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies the type of message that triggers a bot.
+	InvokedBy *InvokedBy `type:"structure"`
 
 	// The ARN of the Amazon Lex V2 bot's alias. The ARN uses this format: arn:aws:lex:REGION:ACCOUNT:bot-alias/MYBOTID/MYBOTALIAS
 	//
@@ -6098,11 +6146,12 @@ type LexConfiguration struct {
 	// LocaleId is a required field
 	LocaleId *string `type:"string" required:"true"`
 
+	//
+	// Deprecated. Use InvokedBy instead.
+	//
 	// Determines whether the Amazon Lex V2 bot responds to all standard messages.
 	// Control messages are not supported.
-	//
-	// RespondsTo is a required field
-	RespondsTo *string `type:"string" required:"true" enum:"RespondsTo"`
+	RespondsTo *string `type:"string" enum:"RespondsTo"`
 
 	// The name of the welcome intent configured in the Amazon Lex V2 bot.
 	WelcomeIntent *string `min:"1" type:"string"`
@@ -6138,17 +6187,25 @@ func (s *LexConfiguration) Validate() error {
 	if s.LocaleId == nil {
 		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
 	}
-	if s.RespondsTo == nil {
-		invalidParams.Add(request.NewErrParamRequired("RespondsTo"))
-	}
 	if s.WelcomeIntent != nil && len(*s.WelcomeIntent) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WelcomeIntent", 1))
+	}
+	if s.InvokedBy != nil {
+		if err := s.InvokedBy.Validate(); err != nil {
+			invalidParams.AddNested("InvokedBy", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInvokedBy sets the InvokedBy field's value.
+func (s *LexConfiguration) SetInvokedBy(v *InvokedBy) *LexConfiguration {
+	s.InvokedBy = v
+	return s
 }
 
 // SetLexBotAliasArn sets the LexBotAliasArn field's value.
@@ -7297,18 +7354,10 @@ type RegisterAppInstanceUserEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the AppInstanceUser.
-	//
-	// AppInstanceUserArn is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by RegisterAppInstanceUserEndpointOutput's
-	// String and GoString methods.
-	AppInstanceUserArn *string `min:"5" type:"string" sensitive:"true"`
+	AppInstanceUserArn *string `min:"5" type:"string"`
 
 	// The unique identifier of the AppInstanceUserEndpoint.
-	//
-	// EndpointId is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by RegisterAppInstanceUserEndpointOutput's
-	// String and GoString methods.
-	EndpointId *string `type:"string" sensitive:"true"`
+	EndpointId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -7940,6 +7989,9 @@ type UpdateAppInstanceBotInput struct {
 	// AppInstanceBotArn is a required field
 	AppInstanceBotArn *string `location:"uri" locationName:"appInstanceBotArn" min:"5" type:"string" required:"true"`
 
+	// The configuration for the bot update.
+	Configuration *Configuration `type:"structure"`
+
 	// The metadata of the AppInstanceBot.
 	//
 	// Metadata is a sensitive parameter and its value will be
@@ -7992,6 +8044,11 @@ func (s *UpdateAppInstanceBotInput) Validate() error {
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8002,6 +8059,12 @@ func (s *UpdateAppInstanceBotInput) Validate() error {
 // SetAppInstanceBotArn sets the AppInstanceBotArn field's value.
 func (s *UpdateAppInstanceBotInput) SetAppInstanceBotArn(v string) *UpdateAppInstanceBotInput {
 	s.AppInstanceBotArn = &v
+	return s
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *UpdateAppInstanceBotInput) SetConfiguration(v *Configuration) *UpdateAppInstanceBotInput {
+	s.Configuration = v
 	return s
 }
 
@@ -8177,21 +8240,13 @@ type UpdateAppInstanceUserEndpointInput struct {
 
 	// The ARN of the AppInstanceUser.
 	//
-	// AppInstanceUserArn is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointInput's
-	// String and GoString methods.
-	//
 	// AppInstanceUserArn is a required field
-	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true" sensitive:"true"`
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true"`
 
 	// The unique identifier of the AppInstanceUserEndpoint.
 	//
-	// EndpointId is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointInput's
-	// String and GoString methods.
-	//
 	// EndpointId is a required field
-	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true" sensitive:"true"`
+	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true"`
 
 	// The name of the AppInstanceUserEndpoint.
 	//
@@ -8269,18 +8324,10 @@ type UpdateAppInstanceUserEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the AppInstanceUser.
-	//
-	// AppInstanceUserArn is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointOutput's
-	// String and GoString methods.
-	AppInstanceUserArn *string `min:"5" type:"string" sensitive:"true"`
+	AppInstanceUserArn *string `min:"5" type:"string"`
 
 	// The unique identifier of the AppInstanceUserEndpoint.
-	//
-	// EndpointId is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointOutput's
-	// String and GoString methods.
-	EndpointId *string `type:"string" sensitive:"true"`
+	EndpointId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -8589,5 +8636,45 @@ const (
 func RespondsTo_Values() []string {
 	return []string{
 		RespondsToStandardMessages,
+	}
+}
+
+const (
+	// StandardMessagesAuto is a StandardMessages enum value
+	StandardMessagesAuto = "AUTO"
+
+	// StandardMessagesAll is a StandardMessages enum value
+	StandardMessagesAll = "ALL"
+
+	// StandardMessagesMentions is a StandardMessages enum value
+	StandardMessagesMentions = "MENTIONS"
+
+	// StandardMessagesNone is a StandardMessages enum value
+	StandardMessagesNone = "NONE"
+)
+
+// StandardMessages_Values returns all elements of the StandardMessages enum
+func StandardMessages_Values() []string {
+	return []string{
+		StandardMessagesAuto,
+		StandardMessagesAll,
+		StandardMessagesMentions,
+		StandardMessagesNone,
+	}
+}
+
+const (
+	// TargetedMessagesAll is a TargetedMessages enum value
+	TargetedMessagesAll = "ALL"
+
+	// TargetedMessagesNone is a TargetedMessages enum value
+	TargetedMessagesNone = "NONE"
+)
+
+// TargetedMessages_Values returns all elements of the TargetedMessages enum
+func TargetedMessages_Values() []string {
+	return []string{
+		TargetedMessagesAll,
+		TargetedMessagesNone,
 	}
 }

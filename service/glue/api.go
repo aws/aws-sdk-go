@@ -29080,6 +29080,9 @@ type CrawlerTargets struct {
 	// Specifies Amazon DynamoDB targets.
 	DynamoDBTargets []*DynamoDBTarget `type:"list"`
 
+	// Specifies Apache Iceberg data store targets.
+	IcebergTargets []*IcebergTarget `type:"list"`
+
 	// Specifies JDBC targets.
 	JdbcTargets []*JdbcTarget `type:"list"`
 
@@ -29143,6 +29146,12 @@ func (s *CrawlerTargets) SetDeltaTargets(v []*DeltaTarget) *CrawlerTargets {
 // SetDynamoDBTargets sets the DynamoDBTargets field's value.
 func (s *CrawlerTargets) SetDynamoDBTargets(v []*DynamoDBTarget) *CrawlerTargets {
 	s.DynamoDBTargets = v
+	return s
+}
+
+// SetIcebergTargets sets the IcebergTargets field's value.
+func (s *CrawlerTargets) SetIcebergTargets(v []*IcebergTarget) *CrawlerTargets {
+	s.IcebergTargets = v
 	return s
 }
 
@@ -49505,6 +49514,69 @@ func (s *GrokClassifier) SetVersion(v int64) *GrokClassifier {
 	return s
 }
 
+// Specifies an Apache Iceberg data source where Iceberg tables are stored in
+// Amazon S3.
+type IcebergTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connection to use to connect to the Iceberg target.
+	ConnectionName *string `type:"string"`
+
+	// A list of glob patterns used to exclude from the crawl. For more information,
+	// see Catalog Tables with a Crawler (https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
+	Exclusions []*string `type:"list"`
+
+	// The maximum depth of Amazon S3 paths that the crawler can traverse to discover
+	// the Iceberg metadata folder in your Amazon S3 path. Used to limit the crawler
+	// run time.
+	MaximumTraversalDepth *int64 `type:"integer"`
+
+	// One or more Amazon S3 paths that contains Iceberg metadata folders as s3://bucket/prefix.
+	Paths []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IcebergTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IcebergTarget) GoString() string {
+	return s.String()
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *IcebergTarget) SetConnectionName(v string) *IcebergTarget {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetExclusions sets the Exclusions field's value.
+func (s *IcebergTarget) SetExclusions(v []*string) *IcebergTarget {
+	s.Exclusions = v
+	return s
+}
+
+// SetMaximumTraversalDepth sets the MaximumTraversalDepth field's value.
+func (s *IcebergTarget) SetMaximumTraversalDepth(v int64) *IcebergTarget {
+	s.MaximumTraversalDepth = &v
+	return s
+}
+
+// SetPaths sets the Paths field's value.
+func (s *IcebergTarget) SetPaths(v []*string) *IcebergTarget {
+	s.Paths = v
+	return s
+}
+
 // The same unique identifier was associated with two different records.
 type IdempotentParameterMismatchException struct {
 	_            struct{}                  `type:"structure"`
@@ -52125,6 +52197,13 @@ type KafkaStreamingSourceOptions struct {
 	// values are "earliest" or "latest". The default value is "latest".
 	StartingOffsets *string `type:"string"`
 
+	// The timestamp of the record in the Kafka topic to start reading data from.
+	// The possible values are a timestamp string in UTC format of the pattern yyyy-mm-ddTHH:MM:SSZ
+	// (where Z represents a UTC timezone offset with a +/-. For example: "2023-04-04T08:00:00+08:00").
+	//
+	// Only one of StartingTimestamp or StartingOffsets must be set.
+	StartingTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
 	// A Java regex string that identifies the topic list to subscribe to. You must
 	// specify at least one of "topicName", "assign" or "subscribePattern".
 	SubscribePattern *string `type:"string"`
@@ -52245,6 +52324,12 @@ func (s *KafkaStreamingSourceOptions) SetSecurityProtocol(v string) *KafkaStream
 // SetStartingOffsets sets the StartingOffsets field's value.
 func (s *KafkaStreamingSourceOptions) SetStartingOffsets(v string) *KafkaStreamingSourceOptions {
 	s.StartingOffsets = &v
+	return s
+}
+
+// SetStartingTimestamp sets the StartingTimestamp field's value.
+func (s *KafkaStreamingSourceOptions) SetStartingTimestamp(v time.Time) *KafkaStreamingSourceOptions {
+	s.StartingTimestamp = &v
 	return s
 }
 
@@ -52387,9 +52472,20 @@ type KinesisStreamingSourceOptions struct {
 	RoleSessionName *string `type:"string"`
 
 	// The starting position in the Kinesis data stream to read data from. The possible
-	// values are "latest", "trim_horizon", or "earliest". The default value is
-	// "latest".
+	// values are "latest", "trim_horizon", "earliest", or a timestamp string in
+	// UTC format in the pattern yyyy-mm-ddTHH:MM:SSZ (where Z represents a UTC
+	// timezone offset with a +/-. For example: "2023-04-04T08:00:00-04:00"). The
+	// default value is "latest".
+	//
+	// Note: Using a value that is a timestamp string in UTC format for "startingPosition"
+	// is supported only for Glue version 4.0 or later.
 	StartingPosition *string `type:"string" enum:"StartingPosition"`
+
+	// The timestamp of the record in the Kinesis data stream to start reading data
+	// from. The possible values are a timestamp string in UTC format of the pattern
+	// yyyy-mm-ddTHH:MM:SSZ (where Z represents a UTC timezone offset with a +/-.
+	// For example: "2023-04-04T08:00:00+08:00").
+	StartingTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The Amazon Resource Name (ARN) of the Kinesis data stream.
 	StreamArn *string `type:"string"`
@@ -52521,6 +52617,12 @@ func (s *KinesisStreamingSourceOptions) SetRoleSessionName(v string) *KinesisStr
 // SetStartingPosition sets the StartingPosition field's value.
 func (s *KinesisStreamingSourceOptions) SetStartingPosition(v string) *KinesisStreamingSourceOptions {
 	s.StartingPosition = &v
+	return s
+}
+
+// SetStartingTimestamp sets the StartingTimestamp field's value.
+func (s *KinesisStreamingSourceOptions) SetStartingTimestamp(v time.Time) *KinesisStreamingSourceOptions {
+	s.StartingTimestamp = &v
 	return s
 }
 
@@ -74662,6 +74764,9 @@ const (
 
 	// StartingPositionEarliest is a StartingPosition enum value
 	StartingPositionEarliest = "earliest"
+
+	// StartingPositionTimestamp is a StartingPosition enum value
+	StartingPositionTimestamp = "timestamp"
 )
 
 // StartingPosition_Values returns all elements of the StartingPosition enum
@@ -74670,6 +74775,7 @@ func StartingPosition_Values() []string {
 		StartingPositionLatest,
 		StartingPositionTrimHorizon,
 		StartingPositionEarliest,
+		StartingPositionTimestamp,
 	}
 }
 

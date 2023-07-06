@@ -147,6 +147,28 @@ func TestListOfEnums(t *testing.T) {
 				"X-Amz-Test-Header": {`"f,o,o","\"bar\""`},
 			},
 		},
+		{
+			Input: func() interface{} {
+				type v struct {
+					List []*string `type:"list" location:"header" locationName:"x-amz-test-header" enum:"FooBar"`
+				}
+				return &v{
+					List: nil,
+				}
+			}(),
+			Expected: http.Header{},
+		},
+		{
+			Input: func() interface{} {
+				type v struct {
+					List []*string `type:"list" location:"header" locationName:"x-amz-test-header" enum:"FooBar"`
+				}
+				return &v{
+					List: []*string{},
+				}
+			}(),
+			Expected: http.Header{},
+		},
 	}
 
 	for i, tt := range cases {

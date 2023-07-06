@@ -1,3 +1,162 @@
+Release v1.44.296 (2023-07-05)
+===
+
+### Service Client Updates
+* `service/comprehendmedical`: Updates service documentation
+* `service/connect`: Updates service documentation
+* `service/kms`: Updates service API and documentation
+  * Added Dry Run Feature to cryptographic and cross-account mutating KMS APIs (14 in all). This feature allows users to test their permissions and parameters before making the actual API call.
+* `service/mgn`: Updates service API, documentation, and paginators
+* `service/securityhub`: Updates service documentation
+
+Release v1.44.295 (2023-07-03)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This feature allows customers to use AWS Batch with Linux with ARM64 CPU Architecture and X86_64 CPU Architecture with Windows OS on Fargate Platform.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender now accepts new fields SupportedEndpointType and ServerlessConfiguration to support serverless endpoints.
+
+Release v1.44.294 (2023-06-30)
+===
+
+### Service Client Updates
+* `service/amp`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * Added new field  "credentialspecs" to the ecs task definition to support gMSA of windows/linux in both domainless and domain-joined mode
+* `service/ivs`: Updates service API
+* `service/mediaconvert`: Updates service documentation
+  * This release includes improved color handling of overlays and general updates to user documentation.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for rolling deployment in SageMaker Inference.
+* `service/transfer`: Updates service API and documentation
+  * Add outbound Basic authentication support to AS2 connectors
+* `service/verifiedpermissions`: Updates service documentation
+
+Release v1.44.293 (2023-06-29)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and paginators
+  * This release introduces app block builder, allowing customers to provision a resource to package applications into an app block
+* `service/chime`: Updates service API and documentation
+  * The Amazon Chime SDK APIs in the Chime namespace are no longer supported.  Customers should use APIs in the dedicated Amazon Chime SDK namespaces: ChimeSDKIdentity, ChimeSDKMediaPipelines, ChimeSDKMeetings, ChimeSDKMessaging, and ChimeSDKVoice.
+* `service/cleanrooms`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds ReturnValuesOnConditionCheckFailure parameter to PutItem, UpdateItem, DeleteItem, ExecuteStatement, BatchExecuteStatement and ExecuteTransaction APIs. When set to ALL_OLD,  API returns a copy of the item as it was when a conditional write failed
+* `service/gamelift`: Updates service API and documentation
+  * Amazon GameLift now supports game builds that use the Amazon Linux 2023 (AL2023) operating system.
+* `service/glue`: Updates service API and documentation
+  * This release adds support for AWS Glue Crawler with Iceberg Tables, allowing Crawlers to discover Iceberg Tables in S3 and register them in Glue Data Catalog for query engines to query against.
+* `service/sagemaker`: Updates service API and documentation
+  * Adding support for timeseries forecasting in the CreateAutoMLJobV2 API.
+
+### SDK Bugs
+* `private/protocol`: Fix header serialization of empty enum lists in restxml.
+  * Header was serialized as the empty string if list was nil/empty.
+
+Release v1.44.292 (2023-06-28)
+===
+
+### Service Client Updates
+* `service/internetmonitor`: Updates service API and documentation
+* `service/kinesisanalyticsv2`: Updates service API
+* `service/lambda`: Updates service API and documentation
+  * Surface ResourceConflictException in DeleteEventSourceMapping
+* `service/omics`: Updates service API
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Amazon Relational Database Service (RDS) now supports joining a RDS for SQL Server instance to a self-managed Active Directory.
+* `service/s3`: Updates service API, documentation, and examples
+  * The S3 LISTObjects, ListObjectsV2 and ListObjectVersions API now supports a new optional header x-amz-optional-object-attributes. If header contains RestoreStatus as the value, then S3 will include Glacier restore status i.e. isRestoreInProgress and RestoreExpiryDate in List response.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for Model Cards Model Registry integration.
+
+Release v1.44.291 (2023-06-27)
+===
+
+### Service Client Updates
+* `service/appfabric`: Updates service API, documentation, waiters, paginators, and examples
+* `service/appflow`: Updates service API and documentation
+* `service/emr-serverless`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/kinesisvideo`: Updates service API, documentation, and paginators
+  * General Availability (GA) release of Kinesis Video Streams at Edge, enabling customers to provide a configuration for the Kinesis Video Streams EdgeAgent running on an on-premise IoT device. Customers can now locally record from cameras and stream videos to the cloud on a configured schedule.
+* `service/macie2`: Updates service API and documentation
+* `service/privatenetworks`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Introducing TTL for online store records in feature groups.
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+* `service/ssm`: Updates service documentation
+  * Systems Manager doc-only update for June 2023.
+* `service/verifiedpermissions`: Updates service documentation
+
+Release v1.44.290 (2023-06-26)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * Timestamp Starting Position For Kinesis and Kafka Data Sources in a Glue Streaming Job
+* `service/guardduty`: Updates service API and documentation
+  * Add support for user.extra.sessionName in Kubernetes Audit Logs Findings.
+* `service/iam`: Updates service API, documentation, and paginators
+  * Support for a new API "GetMFADevice" to present MFA device metadata such as device certifications
+* `service/pinpoint`: Updates service API and documentation
+  * Added time zone estimation support for journeys
+
+Release v1.44.289 (2023-06-23)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API and documentation
+* `service/fsx`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation improvements for create, describe, and modify DB clusters and DB instances.
+* `service/verifiedpermissions`: Updates service documentation
+
+Release v1.44.288 (2023-06-22)
+===
+
+### Service Client Updates
+* `service/chime-sdk-identity`: Updates service API and documentation
+* `service/chime-sdk-messaging`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Introducing Amazon Kendra Retrieve API that can be used to retrieve relevant passages or text excerpts given an input query.
+* `service/states`: Updates service API and documentation
+  * Adds support for Versions and Aliases. Adds 8 operations: PublishStateMachineVersion, DeleteStateMachineVersion, ListStateMachineVersions, CreateStateMachineAlias, DescribeStateMachineAlias, UpdateStateMachineAlias, DeleteStateMachineAlias, ListStateMachineAliases
+
+Release v1.44.287 (2023-06-21)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for DynamoDB
+* `service/elasticmapreduce`: Updates service API, documentation, and paginators
+  * This release introduces a new Amazon EMR EPI called ListSupportedInstanceTypes that returns a list of all instance types supported by a given EMR release.
+* `service/inspector2`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release introduces the bandwidth reduction filter for the HEVC encoder, increases the limits of outputs per job, and updates support for the Nagra SDK to version 1.14.7.
+* `service/mq`: Updates service API and documentation
+  * The Cross Region Disaster Recovery feature allows to replicate a brokers state from one region to another in order to provide customers with multi-region resiliency in the event of a regional outage.
+* `service/sagemaker`: Updates service API and documentation
+  * This release provides support in SageMaker for output files in training jobs to be uploaded without compression and enable customer to deploy uncompressed model from S3 to real-time inference Endpoints. In addition, ml.trn1n.32xlarge is added to supported instance type list in training job.
+* `service/transfer`: Updates service API and documentation
+  * This release adds a new parameter StructuredLogDestinations to CreateServer, UpdateServer APIs.
+
+Release v1.44.286 (2023-06-20)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/config`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * Adds support for targeting Dedicated Host allocations by assetIds in AWS Outposts
+* `service/lambda`: Updates service API and documentation
+  * This release adds RecursiveInvocationException to the Invoke API and InvokeWithResponseStream API.
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Added support for custom domain names for Redshift Provisioned clusters. This feature enables customers to create a custom domain name and use ACM to generate fully secure connections to it.
+
 Release v1.44.285 (2023-06-19)
 ===
 

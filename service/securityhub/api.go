@@ -8296,9 +8296,8 @@ type AutomationRulesAction struct {
 	FindingFieldsUpdate *AutomationRulesFindingFieldsUpdate `type:"structure"`
 
 	// Specifies that the rule action should update the Types finding field. The
-	// Types finding field provides one or more finding types in the format of namespace/category/classifier
-	// that classify a finding. For more information, see Types taxonomy for ASFF
-	// (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format-type-taxonomy.html)
+	// Types finding field classifies findings in the format of namespace/category/classifier.
+	// For more information, see Types taxonomy for ASFF (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format-type-taxonomy.html)
 	// in the Security Hub User Guide.
 	Type *string `type:"string" enum:"AutomationRulesActionType"`
 }
@@ -8368,8 +8367,9 @@ type AutomationRulesConfig struct {
 
 	// A set of Amazon Web Services Security Finding Format (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html)
 	// finding field attributes and corresponding expected values that Security
-	// Hub uses to filter findings. If a finding matches the conditions specified
-	// in this parameter, Security Hub applies the rule action to the finding.
+	// Hub uses to filter findings. If a rule is enabled and a finding matches the
+	// conditions specified in this parameter, Security Hub applies the rule action
+	// to the finding.
 	Criteria *AutomationRulesFindingFilters `type:"structure"`
 
 	// A description of the rule.
@@ -8379,7 +8379,7 @@ type AutomationRulesConfig struct {
 	// that matches the rule criteria. This is useful when a finding matches the
 	// criteria for multiple rules, and each rule has different actions. If the
 	// value of this field is set to true for a rule, Security Hub applies the rule
-	// action to a finding that matches the rule criteria and won't evaluate other
+	// action to a finding that matches the rule criteria and doesn't evaluate other
 	// rules for the finding. The default value of this field is false.
 	IsTerminal *bool `type:"boolean"`
 
@@ -8395,8 +8395,8 @@ type AutomationRulesConfig struct {
 	RuleOrder *int64 `min:"1" type:"integer"`
 
 	// Whether the rule is active after it is created. If this parameter is equal
-	// to >ENABLED, Security Hub will apply the rule to findings and finding updates
-	// after the rule is created.
+	// to ENABLED, Security Hub starts applying the rule to findings and finding
+	// updates after the rule is created.
 	RuleStatus *string `type:"string" enum:"RuleStatus"`
 
 	// A timestamp that indicates when the rule was most recently updated.
@@ -8491,33 +8491,33 @@ func (s *AutomationRulesConfig) SetUpdatedAt(v time.Time) *AutomationRulesConfig
 	return s
 }
 
-// Identifies the finding fields that the automation rule action will update
-// when a finding matches the defined criteria.
+// Identifies the finding fields that the automation rule action updates when
+// a finding matches the defined criteria.
 type AutomationRulesFindingFieldsUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The rule action will update the Confidence field of a finding.
+	// The rule action updates the Confidence field of a finding.
 	Confidence *int64 `type:"integer"`
 
-	// The rule action will update the Criticality field of a finding.
+	// The rule action updates the Criticality field of a finding.
 	Criticality *int64 `type:"integer"`
 
 	// The updated note.
 	Note *NoteUpdate `type:"structure"`
 
-	// A list of findings that are related to a finding.
+	// The rule action updates the RelatedFindings field of a finding.
 	RelatedFindings []*RelatedFinding `type:"list"`
 
 	// Updates to the severity information for a finding.
 	Severity *SeverityUpdate `type:"structure"`
 
-	// The rule action will update the Types field of a finding.
+	// The rule action updates the Types field of a finding.
 	Types []*string `type:"list"`
 
-	// The rule action will update the UserDefinedFields field of a finding.
+	// The rule action updates the UserDefinedFields field of a finding.
 	UserDefinedFields map[string]*string `type:"map"`
 
-	// The rule action will update the VerificationState field of a finding.
+	// The rule action updates the VerificationState field of a finding.
 	VerificationState *string `type:"string" enum:"VerificationState"`
 
 	// Used to update information about the investigation into the finding.
@@ -9033,7 +9033,7 @@ type AutomationRulesMetadata struct {
 	// that matches the rule criteria. This is useful when a finding matches the
 	// criteria for multiple rules, and each rule has different actions. If the
 	// value of this field is set to true for a rule, Security Hub applies the rule
-	// action to a finding that matches the rule criteria and won't evaluate other
+	// action to a finding that matches the rule criteria and doesn't evaluate other
 	// rules for the finding. The default value of this field is false.
 	IsTerminal *bool `type:"boolean"`
 
@@ -9049,9 +9049,9 @@ type AutomationRulesMetadata struct {
 	RuleOrder *int64 `min:"1" type:"integer"`
 
 	// Whether the rule is active after it is created. If this parameter is equal
-	// to ENABLED, Security Hub will apply the rule to findings and finding updates
-	// after the rule is created. To change the value of this parameter after creating
-	// a rule, use BatchUpdateAutomationRules.
+	// to ENABLED, Security Hub starts applying the rule to findings and finding
+	// updates after the rule is created. To change the value of this parameter
+	// after creating a rule, use BatchUpdateAutomationRules (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateAutomationRules.html).
 	RuleStatus *string `type:"string" enum:"RuleStatus"`
 
 	// A timestamp that indicates when the rule was most recently updated.
@@ -44528,9 +44528,9 @@ type CreateAutomationRuleInput struct {
 	Actions []*AutomationRulesAction `min:"1" type:"list" required:"true"`
 
 	// A set of ASFF finding field attributes and corresponding expected values
-	// that Security Hub uses to filter findings. If a finding matches the conditions
-	// specified in this parameter, Security Hub applies the rule action to the
-	// finding.
+	// that Security Hub uses to filter findings. If a rule is enabled and a finding
+	// matches the conditions specified in this parameter, Security Hub applies
+	// the rule action to the finding.
 	//
 	// Criteria is a required field
 	Criteria *AutomationRulesFindingFilters `type:"structure" required:"true"`
@@ -44544,7 +44544,7 @@ type CreateAutomationRuleInput struct {
 	// that matches the rule criteria. This is useful when a finding matches the
 	// criteria for multiple rules, and each rule has different actions. If the
 	// value of this field is set to true for a rule, Security Hub applies the rule
-	// action to a finding that matches the rule criteria and won't evaluate other
+	// action to a finding that matches the rule criteria and doesn't evaluate other
 	// rules for the finding. The default value of this field is false.
 	IsTerminal *bool `type:"boolean"`
 
@@ -44561,9 +44561,9 @@ type CreateAutomationRuleInput struct {
 	RuleOrder *int64 `min:"1" type:"integer" required:"true"`
 
 	// Whether the rule is active after it is created. If this parameter is equal
-	// to Enabled, Security Hub will apply the rule to findings and finding updates
-	// after the rule is created. To change the value of this parameter after creating
-	// a rule, use BatchUpdateAutomationRules.
+	// to ENABLED, Security Hub starts applying the rule to findings and finding
+	// updates after the rule is created. To change the value of this parameter
+	// after creating a rule, use BatchUpdateAutomationRules (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateAutomationRules.html).
 	RuleStatus *string `type:"string" enum:"RuleStatus"`
 
 	// User-defined tags that help you label the purpose of a rule.
@@ -54543,10 +54543,7 @@ type SecurityControl struct {
 	// SecurityControlId is a required field
 	SecurityControlId *string `type:"string" required:"true"`
 
-	// The status of a security control based on the compliance status of its findings.
-	// For more information about how control status is determined, see Determining
-	// the overall status of a control from its findings (https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html)
-	// in the Security Hub User Guide.
+	// The enablement status of a security control in a specific standard.
 	//
 	// SecurityControlStatus is a required field
 	SecurityControlStatus *string `type:"string" required:"true" enum:"ControlStatus"`
@@ -56901,9 +56898,9 @@ type UpdateAutomationRulesRequestItem struct {
 	Actions []*AutomationRulesAction `min:"1" type:"list"`
 
 	// A set of ASFF finding field attributes and corresponding expected values
-	// that Security Hub uses to filter findings. If a finding matches the conditions
-	// specified in this parameter, Security Hub applies the rule action to the
-	// finding.
+	// that Security Hub uses to filter findings. If a rule is enabled and a finding
+	// matches the conditions specified in this parameter, Security Hub applies
+	// the rule action to the finding.
 	Criteria *AutomationRulesFindingFilters `type:"structure"`
 
 	// A description of the rule.
@@ -56913,7 +56910,7 @@ type UpdateAutomationRulesRequestItem struct {
 	// that matches the rule criteria. This is useful when a finding matches the
 	// criteria for multiple rules, and each rule has different actions. If the
 	// value of this field is set to true for a rule, Security Hub applies the rule
-	// action to a finding that matches the rule criteria and won't evaluate other
+	// action to a finding that matches the rule criteria and doesn't evaluate other
 	// rules for the finding. The default value of this field is false.
 	IsTerminal *bool `type:"boolean"`
 
@@ -56931,9 +56928,9 @@ type UpdateAutomationRulesRequestItem struct {
 	RuleOrder *int64 `min:"1" type:"integer"`
 
 	// Whether the rule is active after it is created. If this parameter is equal
-	// to ENABLED, Security Hub will apply the rule to findings and finding updates
-	// after the rule is created. To change the value of this parameter after creating
-	// a rule, use BatchUpdateAutomationRules.
+	// to ENABLED, Security Hub starts applying the rule to findings and finding
+	// updates after the rule is created. To change the value of this parameter
+	// after creating a rule, use BatchUpdateAutomationRules (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateAutomationRules.html).
 	RuleStatus *string `type:"string" enum:"RuleStatus"`
 }
 

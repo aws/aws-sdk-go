@@ -6228,7 +6228,8 @@
         "ALL",
         "EXCLUDE",
         "INCLUDE",
-        "NONE"
+        "NONE",
+        "RECOMMENDED"
       ]
     },
     "ManagedDataIdentifierSummary": {

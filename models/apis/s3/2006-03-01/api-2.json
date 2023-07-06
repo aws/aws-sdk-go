@@ -4721,6 +4721,7 @@
     "IsEnabled":{"type":"boolean"},
     "IsLatest":{"type":"boolean"},
     "IsPublic":{"type":"boolean"},
+    "IsRestoreInProgress":{"type":"boolean"},
     "IsTruncated":{"type":"boolean"},
     "JSONInput":{
       "type":"structure",
@@ -5134,6 +5135,11 @@
           "shape":"RequestPayer",
           "location":"header",
           "locationName":"x-amz-request-payer"
+        },
+        "OptionalObjectAttributes":{
+          "shape":"OptionalObjectAttributesList",
+          "location":"header",
+          "locationName":"x-amz-optional-object-attributes"
         }
       }
     },
@@ -5201,6 +5207,11 @@
           "shape":"AccountId",
           "location":"header",
           "locationName":"x-amz-expected-bucket-owner"
+        },
+        "OptionalObjectAttributes":{
+          "shape":"OptionalObjectAttributesList",
+          "location":"header",
+          "locationName":"x-amz-optional-object-attributes"
         }
       }
     },
@@ -5280,6 +5291,11 @@
           "shape":"AccountId",
           "location":"header",
           "locationName":"x-amz-expected-bucket-owner"
+        },
+        "OptionalObjectAttributes":{
+          "shape":"OptionalObjectAttributesList",
+          "location":"header",
+          "locationName":"x-amz-optional-object-attributes"
         }
       }
     },
@@ -5594,7 +5610,8 @@
         "ChecksumAlgorithm":{"shape":"ChecksumAlgorithmList"},
         "Size":{"shape":"Size"},
         "StorageClass":{"shape":"ObjectStorageClass"},
-        "Owner":{"shape":"Owner"}
+        "Owner":{"shape":"Owner"},
+        "RestoreStatus":{"shape":"RestoreStatus"}
       }
     },
     "ObjectAlreadyInActiveTierError":{
@@ -5762,7 +5779,8 @@
         "VersionId":{"shape":"ObjectVersionId"},
         "IsLatest":{"shape":"IsLatest"},
         "LastModified":{"shape":"LastModified"},
-        "Owner":{"shape":"Owner"}
+        "Owner":{"shape":"Owner"},
+        "RestoreStatus":{"shape":"RestoreStatus"}
       }
     },
     "ObjectVersionId":{"type":"string"},
@@ -5774,6 +5792,14 @@
     "ObjectVersionStorageClass":{
       "type":"string",
       "enum":["STANDARD"]
+    },
+    "OptionalObjectAttributes":{
+      "type":"string",
+      "enum":["RestoreStatus"]
+    },
+    "OptionalObjectAttributesList":{
+      "type":"list",
+      "member":{"shape":"OptionalObjectAttributes"}
     },
     "OutputLocation":{
       "type":"structure",
@@ -7506,6 +7532,7 @@
       "timestampFormat":"rfc822"
     },
     "Restore":{"type":"string"},
+    "RestoreExpiryDate":{"type":"timestamp"},
     "RestoreObjectOutput":{
       "type":"structure",
       "members":{
@@ -7583,6 +7610,13 @@
     "RestoreRequestType":{
       "type":"string",
       "enum":["SELECT"]
+    },
+    "RestoreStatus":{
+      "type":"structure",
+      "members":{
+        "IsRestoreInProgress":{"shape":"IsRestoreInProgress"},
+        "RestoreExpiryDate":{"shape":"RestoreExpiryDate"}
+      }
     },
     "Role":{"type":"string"},
     "RoutingRule":{

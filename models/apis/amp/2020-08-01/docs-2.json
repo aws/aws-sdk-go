@@ -381,18 +381,18 @@
         "ResourceNotFoundException$resourceType": "<p>Type of the resource affected.</p>",
         "RuleGroupsNamespaceStatus$statusReason": "<p>The reason for failure if any.</p>",
         "ServiceQuotaExceededException$message": "<p>Description of the error.</p>",
-        "ServiceQuotaExceededException$quotaCode": "<p>Service Quotas requirement to identify originating quota.</p>",
         "ServiceQuotaExceededException$resourceId": "<p>Identifier of the resource affected.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>Type of the resource affected.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>Service Quotas requirement to identify originating service.</p>",
+        "ServiceQuotaExceededException$quotaCode": "<p>Service Quotas requirement to identify originating quota.</p>",
         "TagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "ThrottlingException$message": "<p>Description of the error.</p>",
-        "ThrottlingException$quotaCode": "<p>Service Quotas requirement to identify originating quota.</p>",
         "ThrottlingException$serviceCode": "<p>Service Quotas requirement to identify originating service.</p>",
+        "ThrottlingException$quotaCode": "<p>Service Quotas requirement to identify originating quota.</p>",
         "UntagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "ValidationException$message": "<p>Description of the error.</p>",
-        "ValidationExceptionField$message": "<p>Message describing why the field failed validation.</p>",
-        "ValidationExceptionField$name": "<p>The field name.</p>"
+        "ValidationExceptionField$name": "<p>The field name.</p>",
+        "ValidationExceptionField$message": "<p>Message describing why the field failed validation.</p>"
       }
     },
     "TagKey": {

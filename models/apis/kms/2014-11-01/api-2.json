@@ -106,7 +106,8 @@
         {"shape":"KMSInternalException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"LimitExceededException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "CreateKey":{
@@ -151,7 +152,8 @@
         {"shape":"DependencyTimeoutException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "DeleteAlias":{
@@ -323,7 +325,8 @@
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "GenerateDataKey":{
@@ -342,7 +345,8 @@
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "GenerateDataKeyPair":{
@@ -362,7 +366,8 @@
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
         {"shape":"KMSInvalidStateException"},
-        {"shape":"UnsupportedOperationException"}
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "GenerateDataKeyPairWithoutPlaintext":{
@@ -382,7 +387,8 @@
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
         {"shape":"KMSInvalidStateException"},
-        {"shape":"UnsupportedOperationException"}
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "GenerateDataKeyWithoutPlaintext":{
@@ -401,7 +407,8 @@
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "GenerateMac":{
@@ -419,7 +426,8 @@
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "GenerateRandom":{
@@ -661,7 +669,8 @@
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "ReplicateKey":{
@@ -699,7 +708,8 @@
         {"shape":"NotFoundException"},
         {"shape":"DependencyTimeoutException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "RevokeGrant":{
@@ -715,7 +725,8 @@
         {"shape":"InvalidArnException"},
         {"shape":"InvalidGrantIdException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "ScheduleKeyDeletion":{
@@ -750,7 +761,8 @@
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "TagResource":{
@@ -875,7 +887,8 @@
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
         {"shape":"KMSInvalidStateException"},
-        {"shape":"KMSInvalidSignatureException"}
+        {"shape":"KMSInvalidSignatureException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "VerifyMac":{
@@ -894,7 +907,8 @@
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
         {"shape":"KMSInvalidMacException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     }
   },
@@ -1099,7 +1113,8 @@
         "Operations":{"shape":"GrantOperationList"},
         "Constraints":{"shape":"GrantConstraints"},
         "GrantTokens":{"shape":"GrantTokenList"},
-        "Name":{"shape":"GrantNameType"}
+        "Name":{"shape":"GrantNameType"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "CreateGrantResponse":{
@@ -1248,7 +1263,8 @@
         "GrantTokens":{"shape":"GrantTokenList"},
         "KeyId":{"shape":"KeyIdType"},
         "EncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"},
-        "Recipient":{"shape":"RecipientInfo"}
+        "Recipient":{"shape":"RecipientInfo"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "DecryptResponse":{
@@ -1363,6 +1379,13 @@
       "members":{
       }
     },
+    "DryRunOperationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
     "EnableKeyRequest":{
       "type":"structure",
       "required":["KeyId"],
@@ -1388,7 +1411,8 @@
         "Plaintext":{"shape":"PlaintextType"},
         "EncryptionContext":{"shape":"EncryptionContextType"},
         "GrantTokens":{"shape":"GrantTokenList"},
-        "EncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"}
+        "EncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "EncryptResponse":{
@@ -1445,7 +1469,8 @@
         "KeyId":{"shape":"KeyIdType"},
         "KeyPairSpec":{"shape":"DataKeyPairSpec"},
         "GrantTokens":{"shape":"GrantTokenList"},
-        "Recipient":{"shape":"RecipientInfo"}
+        "Recipient":{"shape":"RecipientInfo"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "GenerateDataKeyPairResponse":{
@@ -1469,7 +1494,8 @@
         "EncryptionContext":{"shape":"EncryptionContextType"},
         "KeyId":{"shape":"KeyIdType"},
         "KeyPairSpec":{"shape":"DataKeyPairSpec"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "GenerateDataKeyPairWithoutPlaintextResponse":{
@@ -1490,7 +1516,8 @@
         "NumberOfBytes":{"shape":"NumberOfBytesType"},
         "KeySpec":{"shape":"DataKeySpec"},
         "GrantTokens":{"shape":"GrantTokenList"},
-        "Recipient":{"shape":"RecipientInfo"}
+        "Recipient":{"shape":"RecipientInfo"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "GenerateDataKeyResponse":{
@@ -1510,7 +1537,8 @@
         "EncryptionContext":{"shape":"EncryptionContextType"},
         "KeySpec":{"shape":"DataKeySpec"},
         "NumberOfBytes":{"shape":"NumberOfBytesType"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "GenerateDataKeyWithoutPlaintextResponse":{
@@ -1531,7 +1559,8 @@
         "Message":{"shape":"PlaintextType"},
         "KeyId":{"shape":"KeyIdType"},
         "MacAlgorithm":{"shape":"MacAlgorithmSpec"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "GenerateMacResponse":{
@@ -2197,7 +2226,8 @@
         "DestinationEncryptionContext":{"shape":"EncryptionContextType"},
         "SourceEncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"},
         "DestinationEncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "ReEncryptResponse":{
@@ -2251,7 +2281,8 @@
       "members":{
         "GrantToken":{"shape":"GrantTokenType"},
         "KeyId":{"shape":"KeyIdType"},
-        "GrantId":{"shape":"GrantIdType"}
+        "GrantId":{"shape":"GrantIdType"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "RevokeGrantRequest":{
@@ -2262,7 +2293,8 @@
       ],
       "members":{
         "KeyId":{"shape":"KeyIdType"},
-        "GrantId":{"shape":"GrantIdType"}
+        "GrantId":{"shape":"GrantIdType"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "ScheduleKeyDeletionRequest":{
@@ -2294,7 +2326,8 @@
         "Message":{"shape":"PlaintextType"},
         "MessageType":{"shape":"MessageType"},
         "GrantTokens":{"shape":"GrantTokenList"},
-        "SigningAlgorithm":{"shape":"SigningAlgorithmSpec"}
+        "SigningAlgorithm":{"shape":"SigningAlgorithmSpec"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "SignResponse":{
@@ -2460,7 +2493,8 @@
         "KeyId":{"shape":"KeyIdType"},
         "MacAlgorithm":{"shape":"MacAlgorithmSpec"},
         "Mac":{"shape":"CiphertextType"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "VerifyMacResponse":{
@@ -2485,7 +2519,8 @@
         "MessageType":{"shape":"MessageType"},
         "Signature":{"shape":"CiphertextType"},
         "SigningAlgorithm":{"shape":"SigningAlgorithmSpec"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "DryRun":{"shape":"NullableBooleanType"}
       }
     },
     "VerifyResponse":{

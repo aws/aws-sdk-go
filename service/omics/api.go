@@ -24273,6 +24273,9 @@ const (
 
 	// WorkflowEngineNextflow is a WorkflowEngine enum value
 	WorkflowEngineNextflow = "NEXTFLOW"
+
+	// WorkflowEngineCwl is a WorkflowEngine enum value
+	WorkflowEngineCwl = "CWL"
 )
 
 // WorkflowEngine_Values returns all elements of the WorkflowEngine enum
@@ -24280,6 +24283,7 @@ func WorkflowEngine_Values() []string {
 	return []string{
 		WorkflowEngineWdl,
 		WorkflowEngineNextflow,
+		WorkflowEngineCwl,
 	}
 }
 

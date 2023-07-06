@@ -11267,8 +11267,9 @@ func (s *CreateAllowListOutput) SetId(v string) *CreateAllowListOutput {
 
 // Specifies the scope, schedule, and other settings for a classification job.
 // You can't change any settings for a classification job after you create it.
-// This helps ensure that you have an immutable history of sensitive data findings
-// and discovery results for data privacy and protection audits or investigations.
+// This helps to ensure that you have an immutable history of sensitive data
+// findings and discovery results for data privacy and protection audits or
+// investigations.
 type CreateClassificationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11478,7 +11479,7 @@ func (s *CreateClassificationJobOutput) SetJobId(v string) *CreateClassification
 
 // Specifies the detection criteria and other settings for a custom data identifier.
 // You can't change a custom data identifier after you create it. This helps
-// ensure that you have an immutable history of sensitive data findings and
+// to ensure that you have an immutable history of sensitive data findings and
 // discovery results for data privacy and protection audits or investigations.
 type CreateCustomDataIdentifierInput struct {
 	_ struct{} `type:"structure"`
@@ -22009,7 +22010,7 @@ func (s *Severity) SetScore(v int64) *Severity {
 
 // Specifies a severity level for findings that a custom data identifier produces.
 // A severity level determines which severity is assigned to the findings, based
-// on the number of occurrences of text that matches the custom data identifier's
+// on the number of occurrences of text that match the custom data identifier's
 // detection criteria.
 type SeverityLevel struct {
 	_ struct{} `type:"structure"`
@@ -25315,6 +25316,9 @@ const (
 
 	// ManagedDataIdentifierSelectorNone is a ManagedDataIdentifierSelector enum value
 	ManagedDataIdentifierSelectorNone = "NONE"
+
+	// ManagedDataIdentifierSelectorRecommended is a ManagedDataIdentifierSelector enum value
+	ManagedDataIdentifierSelectorRecommended = "RECOMMENDED"
 )
 
 // ManagedDataIdentifierSelector_Values returns all elements of the ManagedDataIdentifierSelector enum
@@ -25324,6 +25328,7 @@ func ManagedDataIdentifierSelector_Values() []string {
 		ManagedDataIdentifierSelectorExclude,
 		ManagedDataIdentifierSelectorInclude,
 		ManagedDataIdentifierSelectorNone,
+		ManagedDataIdentifierSelectorRecommended,
 	}
 }
 

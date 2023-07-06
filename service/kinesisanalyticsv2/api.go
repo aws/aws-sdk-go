@@ -15876,6 +15876,9 @@ const (
 
 	// RuntimeEnvironmentFlink115 is a RuntimeEnvironment enum value
 	RuntimeEnvironmentFlink115 = "FLINK-1_15"
+
+	// RuntimeEnvironmentZeppelinFlink30 is a RuntimeEnvironment enum value
+	RuntimeEnvironmentZeppelinFlink30 = "ZEPPELIN-FLINK-3_0"
 )
 
 // RuntimeEnvironment_Values returns all elements of the RuntimeEnvironment enum
@@ -15889,6 +15892,7 @@ func RuntimeEnvironment_Values() []string {
 		RuntimeEnvironmentFlink113,
 		RuntimeEnvironmentZeppelinFlink20,
 		RuntimeEnvironmentFlink115,
+		RuntimeEnvironmentZeppelinFlink30,
 	}
 }
 

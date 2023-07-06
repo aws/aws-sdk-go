@@ -528,6 +528,20 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListManagedAccounts":{
+      "name":"ListManagedAccounts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListManagedAccounts",
+        "responseCode":200
+      },
+      "input":{"shape":"ListManagedAccountsRequest"},
+      "output":{"shape":"ListManagedAccountsResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "ListSourceServerActions":{
       "name":"ListSourceServerActions",
       "http":{
@@ -601,6 +615,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "PauseReplication":{
+      "name":"PauseReplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/PauseReplication",
+        "responseCode":200
+      },
+      "input":{"shape":"PauseReplicationRequest"},
+      "output":{"shape":"SourceServer"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "PutSourceServerAction":{
       "name":"PutSourceServerAction",
       "http":{
@@ -661,6 +692,23 @@
         {"shape":"UninitializedAccountException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "ResumeReplication":{
+      "name":"ResumeReplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ResumeReplication",
+        "responseCode":200
+      },
+      "input":{"shape":"ResumeReplicationRequest"},
+      "output":{"shape":"SourceServer"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"}
       ]
     },
     "RetryDataReplication":{
@@ -754,6 +802,23 @@
       "errors":[
         {"shape":"UninitializedAccountException"},
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "StopReplication":{
+      "name":"StopReplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/StopReplication",
+        "responseCode":200
+      },
+      "input":{"shape":"StopReplicationRequest"},
+      "output":{"shape":"SourceServer"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -1093,6 +1158,7 @@
       "type":"structure",
       "required":["applicationID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationID":{"shape":"ApplicationID"}
       }
     },
@@ -1100,6 +1166,7 @@
       "type":"structure",
       "required":["waveID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "waveID":{"shape":"WaveID"}
       }
     },
@@ -1110,6 +1177,7 @@
         "waveID"
       ],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationIDs":{"shape":"ApplicationIDs"},
         "waveID":{"shape":"WaveID"}
       }
@@ -1126,6 +1194,7 @@
         "sourceServerIDs"
       ],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationID":{"shape":"ApplicationID"},
         "sourceServerIDs":{"shape":"AssociateSourceServersRequestSourceServerIDs"}
       }
@@ -1140,6 +1209,11 @@
       "type":"structure",
       "members":{
       }
+    },
+    "BandwidthThrottling":{
+      "type":"long",
+      "max":10000,
+      "min":0
     },
     "Boolean":{
       "type":"boolean",
@@ -1171,6 +1245,7 @@
         "sourceServerID"
       ],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "lifeCycle":{"shape":"ChangeServerLifeCycleStateSourceServerLifecycle"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
@@ -1230,6 +1305,7 @@
       "type":"structure",
       "required":["name"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "description":{"shape":"ApplicationDescription"},
         "name":{"shape":"ApplicationName"},
         "tags":{"shape":"TagsMap"}
@@ -1271,7 +1347,7 @@
       ],
       "members":{
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
-        "bandwidthThrottling":{"shape":"PositiveInteger"},
+        "bandwidthThrottling":{"shape":"BandwidthThrottling"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
         "defaultLargeStagingDiskType":{"shape":"ReplicationConfigurationDefaultLargeStagingDiskType"},
@@ -1282,13 +1358,15 @@
         "stagingAreaSubnetId":{"shape":"SubnetID"},
         "stagingAreaTags":{"shape":"TagsMap"},
         "tags":{"shape":"TagsMap"},
-        "useDedicatedReplicationServer":{"shape":"Boolean"}
+        "useDedicatedReplicationServer":{"shape":"Boolean"},
+        "useFipsEndpoint":{"shape":"Boolean"}
       }
     },
     "CreateWaveRequest":{
       "type":"structure",
       "required":["name"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "description":{"shape":"WaveDescription"},
         "name":{"shape":"WaveName"},
         "tags":{"shape":"TagsMap"}
@@ -1416,6 +1494,7 @@
       "type":"structure",
       "required":["applicationID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationID":{"shape":"ApplicationID"}
       }
     },
@@ -1428,6 +1507,7 @@
       "type":"structure",
       "required":["jobID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "jobID":{"shape":"JobID"}
       }
     },
@@ -1464,6 +1544,7 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
@@ -1483,6 +1564,7 @@
       "type":"structure",
       "required":["waveID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "waveID":{"shape":"WaveID"}
       }
     },
@@ -1495,6 +1577,7 @@
       "type":"structure",
       "required":["jobID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "jobID":{"shape":"JobID"},
         "maxResults":{"shape":"MaxResultsType"},
         "nextToken":{"shape":"PaginationToken"}
@@ -1510,6 +1593,7 @@
     "DescribeJobsRequest":{
       "type":"structure",
       "members":{
+        "accountID":{"shape":"AccountID"},
         "filters":{"shape":"DescribeJobsRequestFilters"},
         "maxResults":{"shape":"MaxResultsType"},
         "nextToken":{"shape":"PaginationToken"}
@@ -1569,6 +1653,7 @@
     "DescribeSourceServersRequest":{
       "type":"structure",
       "members":{
+        "accountID":{"shape":"AccountID"},
         "filters":{"shape":"DescribeSourceServersRequestFilters"},
         "maxResults":{"shape":"MaxResultsType"},
         "nextToken":{"shape":"PaginationToken"}
@@ -1632,6 +1717,7 @@
         "waveID"
       ],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationIDs":{"shape":"ApplicationIDs"},
         "waveID":{"shape":"WaveID"}
       }
@@ -1648,6 +1734,7 @@
         "sourceServerIDs"
       ],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationID":{"shape":"ApplicationID"},
         "sourceServerIDs":{"shape":"DisassociateSourceServersRequestSourceServerIDs"}
       }
@@ -1667,6 +1754,7 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
@@ -1775,6 +1863,7 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
@@ -1795,6 +1884,7 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
@@ -1802,6 +1892,7 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
@@ -1833,6 +1924,7 @@
     "ImportErrorData":{
       "type":"structure",
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationID":{"shape":"ApplicationID"},
         "ec2LaunchTemplateID":{"shape":"BoundedString"},
         "rawError":{"shape":"LargeBoundedString"},
@@ -1959,6 +2051,11 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "Iops":{
+      "type":"long",
+      "max":64000,
+      "min":100
     },
     "JmesPathString":{
       "type":"string",
@@ -2141,8 +2238,8 @@
     "LaunchTemplateDiskConf":{
       "type":"structure",
       "members":{
-        "iops":{"shape":"PositiveInteger"},
-        "throughput":{"shape":"PositiveInteger"},
+        "iops":{"shape":"Iops"},
+        "throughput":{"shape":"Throughput"},
         "volumeType":{"shape":"VolumeType"}
       }
     },
@@ -2250,6 +2347,7 @@
     "ListApplicationsRequest":{
       "type":"structure",
       "members":{
+        "accountID":{"shape":"AccountID"},
         "filters":{"shape":"ListApplicationsRequestFilters"},
         "maxResults":{"shape":"MaxResultsType"},
         "nextToken":{"shape":"PaginationToken"}
@@ -2350,10 +2448,26 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListManagedAccountsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{"shape":"MaxResultsType"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListManagedAccountsResponse":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"ManagedAccounts"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListSourceServerActionsRequest":{
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "filters":{"shape":"SourceServerActionsRequestFilters"},
         "maxResults":{"shape":"MaxResultsType"},
         "nextToken":{"shape":"PaginationToken"},
@@ -2404,6 +2518,7 @@
     "ListWavesRequest":{
       "type":"structure",
       "members":{
+        "accountID":{"shape":"AccountID"},
         "filters":{"shape":"ListWavesRequestFilters"},
         "maxResults":{"shape":"MaxResultsType"},
         "nextToken":{"shape":"PaginationToken"}
@@ -2423,10 +2538,23 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ManagedAccount":{
+      "type":"structure",
+      "members":{
+        "accountId":{"shape":"AccountID"}
+      }
+    },
+    "ManagedAccounts":{
+      "type":"list",
+      "member":{"shape":"ManagedAccount"},
+      "max":1000,
+      "min":0
+    },
     "MarkAsArchivedRequest":{
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
@@ -2483,6 +2611,14 @@
       "type":"list",
       "member":{"shape":"ParticipatingServer"}
     },
+    "PauseReplicationRequest":{
+      "type":"structure",
+      "required":["sourceServerID"],
+      "members":{
+        "accountID":{"shape":"AccountID"},
+        "sourceServerID":{"shape":"SourceServerID"}
+      }
+    },
     "PositiveInteger":{
       "type":"long",
       "min":0
@@ -2534,6 +2670,7 @@
         "sourceServerID"
       ],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "actionID":{"shape":"ActionID"},
         "actionName":{"shape":"ActionName"},
         "active":{"shape":"Boolean"},
@@ -2582,6 +2719,7 @@
         "sourceServerID"
       ],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "actionID":{"shape":"ActionID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
@@ -2611,7 +2749,7 @@
       "type":"structure",
       "members":{
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
-        "bandwidthThrottling":{"shape":"PositiveInteger"},
+        "bandwidthThrottling":{"shape":"BandwidthThrottling"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
         "defaultLargeStagingDiskType":{"shape":"ReplicationConfigurationDefaultLargeStagingDiskType"},
@@ -2624,7 +2762,8 @@
         "sourceServerID":{"shape":"SourceServerID"},
         "stagingAreaSubnetId":{"shape":"SubnetID"},
         "stagingAreaTags":{"shape":"TagsMap"},
-        "useDedicatedReplicationServer":{"shape":"Boolean"}
+        "useDedicatedReplicationServer":{"shape":"Boolean"},
+        "useFipsEndpoint":{"shape":"Boolean"}
       }
     },
     "ReplicationConfigurationDataPlaneRouting":{
@@ -2684,7 +2823,7 @@
       "members":{
         "arn":{"shape":"ARN"},
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
-        "bandwidthThrottling":{"shape":"PositiveInteger"},
+        "bandwidthThrottling":{"shape":"BandwidthThrottling"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
         "defaultLargeStagingDiskType":{"shape":"ReplicationConfigurationDefaultLargeStagingDiskType"},
@@ -2696,7 +2835,8 @@
         "stagingAreaSubnetId":{"shape":"SubnetID"},
         "stagingAreaTags":{"shape":"TagsMap"},
         "tags":{"shape":"TagsMap"},
-        "useDedicatedReplicationServer":{"shape":"Boolean"}
+        "useDedicatedReplicationServer":{"shape":"Boolean"},
+        "useFipsEndpoint":{"shape":"Boolean"}
       }
     },
     "ReplicationConfigurationTemplateID":{
@@ -2748,10 +2888,19 @@
       },
       "exception":true
     },
+    "ResumeReplicationRequest":{
+      "type":"structure",
+      "required":["sourceServerID"],
+      "members":{
+        "accountID":{"shape":"AccountID"},
+        "sourceServerID":{"shape":"SourceServerID"}
+      }
+    },
     "RetryDataReplicationRequest":{
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
@@ -2970,6 +3119,7 @@
       "type":"structure",
       "required":["sourceServerIDs"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerIDs":{"shape":"StartCutoverRequestSourceServerIDs"},
         "tags":{"shape":"TagsMap"}
       }
@@ -3025,6 +3175,7 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
@@ -3032,6 +3183,7 @@
       "type":"structure",
       "required":["sourceServerIDs"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerIDs":{"shape":"StartTestRequestSourceServerIDs"},
         "tags":{"shape":"TagsMap"}
       }
@@ -3046,6 +3198,14 @@
       "type":"structure",
       "members":{
         "job":{"shape":"Job"}
+      }
+    },
+    "StopReplicationRequest":{
+      "type":"structure",
+      "required":["sourceServerID"],
+      "members":{
+        "accountID":{"shape":"AccountID"},
+        "sourceServerID":{"shape":"SourceServerID"}
       }
     },
     "StrictlyPositiveInteger":{
@@ -3092,6 +3252,8 @@
       "type":"map",
       "key":{"shape":"TagKey"},
       "value":{"shape":"TagValue"},
+      "max":50,
+      "min":0,
       "sensitive":true
     },
     "TargetInstanceTypeRightSizingMethod":{
@@ -3135,6 +3297,7 @@
       "type":"structure",
       "required":["sourceServerIDs"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "sourceServerIDs":{"shape":"TerminateTargetInstancesRequestSourceServerIDs"},
         "tags":{"shape":"TagsMap"}
       }
@@ -3170,10 +3333,16 @@
       },
       "exception":true
     },
+    "Throughput":{
+      "type":"long",
+      "max":1000,
+      "min":125
+    },
     "UnarchiveApplicationRequest":{
       "type":"structure",
       "required":["applicationID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationID":{"shape":"ApplicationID"}
       }
     },
@@ -3181,6 +3350,7 @@
       "type":"structure",
       "required":["waveID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "waveID":{"shape":"WaveID"}
       }
     },
@@ -3219,6 +3389,7 @@
       "type":"structure",
       "required":["applicationID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "applicationID":{"shape":"ApplicationID"},
         "description":{"shape":"ApplicationDescription"},
         "name":{"shape":"ApplicationName"}
@@ -3228,6 +3399,7 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "bootMode":{"shape":"BootMode"},
         "copyPrivateIp":{"shape":"Boolean"},
         "copyTags":{"shape":"Boolean"},
@@ -3265,8 +3437,9 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
-        "bandwidthThrottling":{"shape":"PositiveInteger"},
+        "bandwidthThrottling":{"shape":"BandwidthThrottling"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
         "defaultLargeStagingDiskType":{"shape":"ReplicationConfigurationDefaultLargeStagingDiskType"},
@@ -3279,7 +3452,8 @@
         "sourceServerID":{"shape":"SourceServerID"},
         "stagingAreaSubnetId":{"shape":"SubnetID"},
         "stagingAreaTags":{"shape":"TagsMap"},
-        "useDedicatedReplicationServer":{"shape":"Boolean"}
+        "useDedicatedReplicationServer":{"shape":"Boolean"},
+        "useFipsEndpoint":{"shape":"Boolean"}
       }
     },
     "UpdateReplicationConfigurationTemplateRequest":{
@@ -3288,7 +3462,7 @@
       "members":{
         "arn":{"shape":"ARN"},
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
-        "bandwidthThrottling":{"shape":"PositiveInteger"},
+        "bandwidthThrottling":{"shape":"BandwidthThrottling"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
         "defaultLargeStagingDiskType":{"shape":"ReplicationConfigurationDefaultLargeStagingDiskType"},
@@ -3299,7 +3473,8 @@
         "replicationServersSecurityGroupsIDs":{"shape":"ReplicationServersSecurityGroupsIDs"},
         "stagingAreaSubnetId":{"shape":"SubnetID"},
         "stagingAreaTags":{"shape":"TagsMap"},
-        "useDedicatedReplicationServer":{"shape":"Boolean"}
+        "useDedicatedReplicationServer":{"shape":"Boolean"},
+        "useFipsEndpoint":{"shape":"Boolean"}
       }
     },
     "UpdateSourceServerReplicationTypeRequest":{
@@ -3309,6 +3484,7 @@
         "sourceServerID"
       ],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "replicationType":{"shape":"ReplicationType"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
@@ -3317,6 +3493,7 @@
       "type":"structure",
       "required":["waveID"],
       "members":{
+        "accountID":{"shape":"AccountID"},
         "description":{"shape":"WaveDescription"},
         "name":{"shape":"WaveName"},
         "waveID":{"shape":"WaveID"}

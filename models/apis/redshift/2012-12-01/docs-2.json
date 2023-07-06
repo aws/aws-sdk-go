@@ -19,6 +19,7 @@
     "CreateClusterSecurityGroup": "<p>Creates a new Amazon Redshift security group. You use security groups to control access to non-VPC clusters.</p> <p> For information about managing security groups, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html\">Amazon Redshift Cluster Security Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "CreateClusterSnapshot": "<p>Creates a manual snapshot of the specified cluster. The cluster must be in the <code>available</code> state. </p> <p> For more information about working with snapshots, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html\">Amazon Redshift Snapshots</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "CreateClusterSubnetGroup": "<p>Creates a new Amazon Redshift subnet group. You must provide a list of one or more subnets in your existing Amazon Virtual Private Cloud (Amazon VPC) when creating Amazon Redshift subnet group.</p> <p> For information about subnet groups, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-cluster-subnet-groups.html\">Amazon Redshift Cluster Subnet Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
+    "CreateCustomDomainAssociation": "<p>Used to create a custom domain name for a cluster. Properties include the custom domain name, the cluster the custom domain is associated with, and the certificate Amazon Resource Name (ARN).</p>",
     "CreateEndpointAccess": "<p>Creates a Redshift-managed VPC endpoint.</p>",
     "CreateEventSubscription": "<p>Creates an Amazon Redshift event notification subscription. This action requires an ARN (Amazon Resource Name) of an Amazon SNS topic created by either the Amazon Redshift console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console.</p> <p>You can specify the source type, and lists of Amazon Redshift source IDs, event categories, and event severities. Notifications will be sent for all events you want that match those criteria. For example, you can specify source type = cluster, source ID = my-cluster-1 and mycluster2, event categories = Availability, Backup, and severity = ERROR. The subscription will only send notifications for those ERROR events in the Availability and Backup categories for the specified clusters.</p> <p>If you specify both the source type and source IDs, such as source type = cluster and source identifier = my-cluster-1, notifications will be sent for all the cluster events for my-cluster-1. If you specify a source type but do not specify a source identifier, you will receive notice of the events for the objects of that type in your Amazon Web Services account. If you do not specify either the SourceType nor the SourceIdentifier, you will be notified of events generated from all Amazon Redshift sources belonging to your Amazon Web Services account. You must specify a source type if you specify a source ID.</p>",
     "CreateHsmClientCertificate": "<p>Creates an HSM client certificate that an Amazon Redshift cluster will use to connect to the client's HSM in order to store and retrieve the keys used to encrypt the cluster databases.</p> <p>The command returns a public key, which you must store in the HSM. In addition to creating the HSM certificate, you must create an Amazon Redshift HSM configuration that provides a cluster the information needed to store and use encryption keys in the HSM. For more information, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html#working-with-HSM\">Hardware Security Modules</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
@@ -35,6 +36,7 @@
     "DeleteClusterSecurityGroup": "<p>Deletes an Amazon Redshift security group.</p> <note> <p>You cannot delete a security group that is associated with any clusters. You cannot delete the default security group.</p> </note> <p> For information about managing security groups, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html\">Amazon Redshift Cluster Security Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DeleteClusterSnapshot": "<p>Deletes the specified manual snapshot. The snapshot must be in the <code>available</code> state, with no other users authorized to access the snapshot. </p> <p>Unlike automated snapshots, manual snapshots are retained even after you delete your cluster. Amazon Redshift does not delete your manual snapshots. You must delete manual snapshot explicitly to avoid getting charged. If other accounts are authorized to access the snapshot, you must revoke all of the authorizations before you can delete the snapshot.</p>",
     "DeleteClusterSubnetGroup": "<p>Deletes the specified cluster subnet group.</p>",
+    "DeleteCustomDomainAssociation": "<p>Contains information about deleting a custom domain association for a cluster.</p>",
     "DeleteEndpointAccess": "<p>Deletes a Redshift-managed VPC endpoint.</p>",
     "DeleteEventSubscription": "<p>Deletes an Amazon Redshift event notification subscription.</p>",
     "DeleteHsmClientCertificate": "<p>Deletes the specified HSM client certificate.</p>",
@@ -56,6 +58,7 @@
     "DescribeClusterTracks": "<p>Returns a list of all the available maintenance tracks.</p>",
     "DescribeClusterVersions": "<p>Returns descriptions of the available Amazon Redshift cluster versions. You can call this operation even before creating any clusters to learn more about the Amazon Redshift versions. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DescribeClusters": "<p>Returns properties of provisioned clusters including general cluster properties, cluster database properties, maintenance and backup properties, and security and access properties. This operation supports pagination. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all clusters that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all clusters that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, clusters are returned regardless of whether they have tag keys or values associated with them.</p>",
+    "DescribeCustomDomainAssociations": "<p>Contains information for custom domain associations for a cluster.</p>",
     "DescribeDataShares": "<p>Shows the status of any inbound or outbound datashares available in the specified account.</p>",
     "DescribeDataSharesForConsumer": "<p>Returns a list of datashares where the account identifier being called is a consumer account identifier.</p>",
     "DescribeDataSharesForProducer": "<p>Returns a list of datashares when the account identifier being called is a producer account identifier.</p>",
@@ -101,6 +104,7 @@
     "ModifyClusterSnapshot": "<p>Modifies the settings for a snapshot.</p> <p>This exanmple modifies the manual retention period setting for a cluster snapshot.</p>",
     "ModifyClusterSnapshotSchedule": "<p>Modifies a snapshot schedule for a cluster.</p>",
     "ModifyClusterSubnetGroup": "<p>Modifies a cluster subnet group to include the specified list of VPC subnets. The operation replaces the existing list of subnets with the new list of subnets.</p>",
+    "ModifyCustomDomainAssociation": "<p>Contains information for changing a custom domain association.</p>",
     "ModifyEndpointAccess": "<p>Modifies a Redshift-managed VPC endpoint.</p>",
     "ModifyEventSubscription": "<p>Modifies an existing Amazon Redshift event notification subscription.</p>",
     "ModifyScheduledAction": "<p>Modifies a scheduled action. </p>",
@@ -203,6 +207,18 @@
       "base": null,
       "refs": {
         "SnapshotSchedule$AssociatedClusters": "<p>A list of clusters associated with the schedule. A maximum of 100 clusters is returned.</p>"
+      }
+    },
+    "Association": {
+      "base": "<p>Contains information about the custom domain name association.</p>",
+      "refs": {
+        "AssociationList$member": null
+      }
+    },
+    "AssociationList": {
+      "base": null,
+      "refs": {
+        "CustomDomainAssociationsMessage$Associations": "<p>The associations for the custom domain.</p>"
       }
     },
     "AttributeList": {
@@ -444,6 +460,18 @@
     "CancelResizeMessage": {
       "base": null,
       "refs": {
+      }
+    },
+    "CertificateAssociation": {
+      "base": "<p>A cluster ID and custom domain name tied to a specific certificate. These are typically returned in a list.</p>",
+      "refs": {
+        "CertificateAssociationList$member": null
+      }
+    },
+    "CertificateAssociationList": {
+      "base": null,
+      "refs": {
+        "Association$CertificateAssociations": "<p>A list of all associated clusters and domain names tied to a specific certificate.</p>"
       }
     },
     "Cluster": {
@@ -823,6 +851,16 @@
       "refs": {
       }
     },
+    "CreateCustomDomainAssociationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCustomDomainAssociationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateEndpointAccessMessage": {
       "base": null,
       "refs": {
@@ -886,6 +924,41 @@
     "CreateUsageLimitMessage": {
       "base": null,
       "refs": {
+      }
+    },
+    "CustomCnameAssociationFault": {
+      "base": "<p>An error occurred when an attempt was made to change the custom domain association.</p>",
+      "refs": {
+      }
+    },
+    "CustomDomainAssociationNotFoundFault": {
+      "base": "<p>An error occurred. The custom domain name couldn't be found.</p>",
+      "refs": {
+      }
+    },
+    "CustomDomainAssociationsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CustomDomainCertificateArnString": {
+      "base": null,
+      "refs": {
+        "CreateCustomDomainAssociationMessage$CustomDomainCertificateArn": "<p>The certificate Amazon Resource Name (ARN) for the custom domain name association.</p>",
+        "CreateCustomDomainAssociationResult$CustomDomainCertificateArn": "<p>The Amazon Resource Name (ARN) for the certificate associated with the custom domain name.</p>",
+        "DescribeCustomDomainAssociationsMessage$CustomDomainCertificateArn": "<p>The certificate Amazon Resource Name (ARN) for the custom domain association.</p>",
+        "ModifyCustomDomainAssociationMessage$CustomDomainCertificateArn": "<p>The certificate Amazon Resource Name (ARN) for the changed custom domain association.</p>",
+        "ModifyCustomDomainAssociationResult$CustomDomainCertificateArn": "<p>The certificate Amazon Resource Name (ARN) associated with the result for the changed custom domain association.</p>"
+      }
+    },
+    "CustomDomainNameString": {
+      "base": null,
+      "refs": {
+        "CreateCustomDomainAssociationMessage$CustomDomainName": "<p>The custom domain name for a custom domain association.</p>",
+        "CreateCustomDomainAssociationResult$CustomDomainName": "<p>The custom domain name for the association result.</p>",
+        "DescribeCustomDomainAssociationsMessage$CustomDomainName": "<p>The custom domain name for the custom domain association.</p>",
+        "ModifyCustomDomainAssociationMessage$CustomDomainName": "<p>The custom domain name for a changed custom domain association.</p>",
+        "ModifyCustomDomainAssociationResult$CustomDomainName": "<p>The custom domain name associated with the result for the changed custom domain association.</p>"
       }
     },
     "CustomerStorageMessage": {
@@ -1024,6 +1097,11 @@
       "refs": {
       }
     },
+    "DeleteCustomDomainAssociationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteEndpointAccessMessage": {
       "base": null,
       "refs": {
@@ -1136,6 +1214,11 @@
     },
     "DescribeClustersMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeCustomDomainAssociationsMessage": {
+      "base": null,
       "refs": {
       }
     },
@@ -1738,11 +1821,12 @@
         "DescribeClusterParameterGroupsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeClusterParametersMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeClusterSecurityGroupsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
-        "DescribeClusterSnapshotsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 500.</p>",
+        "DescribeClusterSnapshotsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeClusterSubnetGroupsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeClusterTracksMessage$MaxRecords": "<p>An integer value for the maximum number of maintenance tracks to return.</p>",
         "DescribeClusterVersionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeClustersMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
+        "DescribeCustomDomainAssociationsMessage$MaxRecords": "<p>The maximum records setting for the associated custom domain.</p>",
         "DescribeDataSharesForConsumerMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p>",
         "DescribeDataSharesForProducerMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p>",
         "DescribeDataSharesMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p>",
@@ -2094,6 +2178,16 @@
       }
     },
     "ModifyClusterSubnetGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyCustomDomainAssociationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyCustomDomainAssociationResult": {
       "base": null,
       "refs": {
       }
@@ -2925,6 +3019,7 @@
         "AssociateDataShareConsumerMessage$DataShareArn": "<p>The Amazon Resource Name (ARN) of the datashare that the consumer is to use with the account or the namespace.</p>",
         "AssociateDataShareConsumerMessage$ConsumerArn": "<p>The Amazon Resource Name (ARN) of the consumer that is associated with the datashare.</p>",
         "AssociateDataShareConsumerMessage$ConsumerRegion": "<p>From a datashare consumer account, associates a datashare with all existing and future namespaces in the specified Amazon Web Services Region.</p>",
+        "Association$CustomDomainCertificateArn": "<p>The Amazon Resource Name (ARN) for the certificate associated with the custom domain.</p>",
         "AttributeNameList$member": null,
         "AttributeValueTarget$AttributeValue": "<p>The value of the attribute.</p>",
         "AuthenticationProfile$AuthenticationProfileContent": "<p>The content of the authentication profile in JSON format. The maximum length of the JSON string is determined by a quota for your account.</p>",
@@ -2938,10 +3033,12 @@
         "AuthorizeEndpointAccessMessage$Account": "<p>The Amazon Web Services account ID to grant access to.</p>",
         "AuthorizeSnapshotAccessMessage$SnapshotIdentifier": "<p>The identifier of the snapshot the account is authorized to restore.</p>",
         "AuthorizeSnapshotAccessMessage$SnapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot to authorize access to.</p>",
-        "AuthorizeSnapshotAccessMessage$SnapshotClusterIdentifier": "<p>The identifier of the cluster the snapshot was created from. This parameter is required if your IAM user or role has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p>",
+        "AuthorizeSnapshotAccessMessage$SnapshotClusterIdentifier": "<p>The identifier of the cluster the snapshot was created from. This parameter is required if your IAM user has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p>",
         "AuthorizeSnapshotAccessMessage$AccountWithRestoreAccess": "<p>The identifier of the Amazon Web Services account authorized to restore the specified snapshot.</p> <p>To share a snapshot with Amazon Web Services Support, specify amazon-redshift-support.</p>",
         "AvailabilityZone$Name": "<p>The name of the availability zone.</p>",
         "CancelResizeMessage$ClusterIdentifier": "<p>The unique identifier for the cluster that you want to cancel a resize operation for.</p>",
+        "CertificateAssociation$CustomDomainName": "<p>The custom domain name for the certificate association.</p>",
+        "CertificateAssociation$ClusterIdentifier": "<p>The cluster identifier for the certificate association.</p>",
         "Cluster$ClusterIdentifier": "<p>The unique identifier of the cluster.</p>",
         "Cluster$NodeType": "<p>The node type for the nodes in the cluster.</p>",
         "Cluster$ClusterStatus": "<p> The current state of the cluster. Possible values are the following:</p> <ul> <li> <p> <code>available</code> </p> </li> <li> <p> <code>available, prep-for-resize</code> </p> </li> <li> <p> <code>available, resize-cleanup</code> </p> </li> <li> <p> <code>cancelling-resize</code> </p> </li> <li> <p> <code>creating</code> </p> </li> <li> <p> <code>deleting</code> </p> </li> <li> <p> <code>final-snapshot</code> </p> </li> <li> <p> <code>hardware-failure</code> </p> </li> <li> <p> <code>incompatible-hsm</code> </p> </li> <li> <p> <code>incompatible-network</code> </p> </li> <li> <p> <code>incompatible-parameters</code> </p> </li> <li> <p> <code>incompatible-restore</code> </p> </li> <li> <p> <code>modifying</code> </p> </li> <li> <p> <code>paused</code> </p> </li> <li> <p> <code>rebooting</code> </p> </li> <li> <p> <code>renaming</code> </p> </li> <li> <p> <code>resizing</code> </p> </li> <li> <p> <code>rotating-keys</code> </p> </li> <li> <p> <code>storage-full</code> </p> </li> <li> <p> <code>updating-hsm</code> </p> </li> </ul>",
@@ -2964,6 +3061,8 @@
         "Cluster$AvailabilityZoneRelocationStatus": "<p>Describes the status of the Availability Zone relocation operation.</p>",
         "Cluster$ClusterNamespaceArn": "<p>The namespace Amazon Resource Name (ARN) of the cluster.</p>",
         "Cluster$DefaultIamRoleArn": "<p>The Amazon Resource Name (ARN) for the IAM role set as default for the cluster.</p>",
+        "Cluster$CustomDomainName": "<p>The custom domain name associated with the cluster.</p>",
+        "Cluster$CustomDomainCertificateArn": "<p>The certificate Amazon Resource Name (ARN) for the custom domain name.</p>",
         "ClusterAssociatedToSchedule$ClusterIdentifier": "<p/>",
         "ClusterCredentials$DbUser": "<p>A database user name that is authorized to log on to the database <code>DbName</code> using the password <code>DbPassword</code>. If the specified DbUser exists in the database, the new user name has the same database permissions as the the user named in DbUser. By default, the user is added to PUBLIC. If the <code>DbGroups</code> parameter is specifed, <code>DbUser</code> is added to the listed groups for any sessions created using these credentials.</p>",
         "ClusterDbRevision$ClusterIdentifier": "<p>The unique identifier of the cluster.</p>",
@@ -3006,7 +3105,7 @@
         "ClusterVersionsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "ClustersMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "CopyClusterSnapshotMessage$SourceSnapshotIdentifier": "<p>The identifier for the source snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Must be the identifier for a valid automated snapshot whose state is <code>available</code>.</p> </li> </ul>",
-        "CopyClusterSnapshotMessage$SourceSnapshotClusterIdentifier": "<p>The identifier of the cluster the source snapshot was created from. This parameter is required if your IAM user or role has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p> <p>Constraints:</p> <ul> <li> <p>Must be the identifier for a valid cluster.</p> </li> </ul>",
+        "CopyClusterSnapshotMessage$SourceSnapshotClusterIdentifier": "<p>The identifier of the cluster the source snapshot was created from. This parameter is required if your IAM user has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p> <p>Constraints:</p> <ul> <li> <p>Must be the identifier for a valid cluster.</p> </li> </ul>",
         "CopyClusterSnapshotMessage$TargetSnapshotIdentifier": "<p>The identifier given to the new manual snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Cannot be null, empty, or blank.</p> </li> <li> <p>Must contain from 1 to 255 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique for the Amazon Web Services account that is making the request.</p> </li> </ul>",
         "CreateAuthenticationProfileMessage$AuthenticationProfileContent": "<p>The content of the authentication profile in JSON format. The maximum length of the JSON string is determined by a quota for your account.</p>",
         "CreateAuthenticationProfileResult$AuthenticationProfileContent": "<p>The content of the authentication profile in JSON format.</p>",
@@ -3014,8 +3113,8 @@
         "CreateClusterMessage$ClusterIdentifier": "<p>A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. The identifier also appears in the Amazon Redshift console.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>Alphabetic characters must be lowercase.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique for all clusters within an Amazon Web Services account.</p> </li> </ul> <p>Example: <code>myexamplecluster</code> </p>",
         "CreateClusterMessage$ClusterType": "<p>The type of the cluster. When cluster type is specified as</p> <ul> <li> <p> <code>single-node</code>, the <b>NumberOfNodes</b> parameter is not required.</p> </li> <li> <p> <code>multi-node</code>, the <b>NumberOfNodes</b> parameter is required.</p> </li> </ul> <p>Valid Values: <code>multi-node</code> | <code>single-node</code> </p> <p>Default: <code>multi-node</code> </p>",
         "CreateClusterMessage$NodeType": "<p>The node type to be provisioned for the cluster. For information about node types, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes\"> Working with Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>Valid Values: <code>ds2.xlarge</code> | <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> | <code>dc2.large</code> | <code>dc2.8xlarge</code> | <code>ra3.xlplus</code> | <code>ra3.4xlarge</code> | <code>ra3.16xlarge</code> </p>",
-        "CreateClusterMessage$MasterUsername": "<p>The user name associated with the admin user for the cluster that is being created.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 - 128 alphanumeric characters or hyphens. The user name can't be <code>PUBLIC</code>.</p> </li> <li> <p>Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Must not contain a colon (:) or a slash (/).</p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide. </p> </li> </ul>",
-        "CreateClusterMessage$MasterUserPassword": "<p>The password associated with the admin user for the cluster that is being created.</p> <p>Constraints:</p> <ul> <li> <p>Must be between 8 and 64 characters in length.</p> </li> <li> <p>Must contain at least one uppercase letter.</p> </li> <li> <p>Must contain at least one lowercase letter.</p> </li> <li> <p>Must contain one number.</p> </li> <li> <p>Can be any printable ASCII character (ASCII code 33-126) except <code>'</code> (single quote), <code>\"</code> (double quote), <code>\\</code>, <code>/</code>, or <code>@</code>.</p> </li> </ul>",
+        "CreateClusterMessage$MasterUsername": "<p>The user name associated with the admin user account for the cluster that is being created.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 - 128 alphanumeric characters or hyphens. The user name can't be <code>PUBLIC</code>.</p> </li> <li> <p>Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Must not contain a colon (:) or a slash (/).</p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide. </p> </li> </ul>",
+        "CreateClusterMessage$MasterUserPassword": "<p>The password associated with the admin user account for the cluster that is being created.</p> <p>Constraints:</p> <ul> <li> <p>Must be between 8 and 64 characters in length.</p> </li> <li> <p>Must contain at least one uppercase letter.</p> </li> <li> <p>Must contain at least one lowercase letter.</p> </li> <li> <p>Must contain one number.</p> </li> <li> <p>Can be any printable ASCII character (ASCII code 33-126) except <code>'</code> (single quote), <code>\"</code> (double quote), <code>\\</code>, <code>/</code>, or <code>@</code>.</p> </li> </ul>",
         "CreateClusterMessage$ClusterSubnetGroupName": "<p>The name of a cluster subnet group to be associated with this cluster.</p> <p>If this parameter is not provided the resulting cluster will be deployed outside virtual private cloud (VPC).</p>",
         "CreateClusterMessage$AvailabilityZone": "<p>The EC2 Availability Zone (AZ) in which you want Amazon Redshift to provision the cluster. For example, if you have several EC2 instances running in a specific Availability Zone, then you might want the cluster to be provisioned in the same zone in order to decrease network latency.</p> <p>Default: A random, system-chosen Availability Zone in the region that is specified by the endpoint.</p> <p>Example: <code>us-east-2d</code> </p> <p>Constraint: The specified Availability Zone must be in the same region as the current endpoint.</p>",
         "CreateClusterMessage$PreferredMaintenanceWindow": "<p>The weekly time range (in UTC) during which automated cluster maintenance can occur.</p> <p> Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p> Default: A 30-minute window selected at random from an 8-hour block of time per region, occurring on a random day of the week. For more information about the time blocks for each region, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows\">Maintenance Windows</a> in Amazon Redshift Cluster Management Guide.</p> <p>Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun</p> <p>Constraints: Minimum 30-minute window.</p>",
@@ -3039,6 +3138,9 @@
         "CreateClusterSnapshotMessage$ClusterIdentifier": "<p>The cluster identifier for which you want a snapshot.</p>",
         "CreateClusterSubnetGroupMessage$ClusterSubnetGroupName": "<p>The name for the subnet group. Amazon Redshift stores the value as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain no more than 255 alphanumeric characters or hyphens.</p> </li> <li> <p>Must not be \"Default\".</p> </li> <li> <p>Must be unique for all subnet groups that are created by your Amazon Web Services account.</p> </li> </ul> <p>Example: <code>examplesubnetgroup</code> </p>",
         "CreateClusterSubnetGroupMessage$Description": "<p>A description for the subnet group.</p>",
+        "CreateCustomDomainAssociationMessage$ClusterIdentifier": "<p>The cluster identifier that the custom domain is associated with.</p>",
+        "CreateCustomDomainAssociationResult$ClusterIdentifier": "<p>The identifier of the cluster that the custom domain is associated with.</p>",
+        "CreateCustomDomainAssociationResult$CustomDomainCertExpiryTime": "<p>The expiration time for the certificate for the custom domain.</p>",
         "CreateEndpointAccessMessage$ClusterIdentifier": "<p>The cluster identifier of the cluster to access.</p>",
         "CreateEndpointAccessMessage$ResourceOwner": "<p>The Amazon Web Services account ID of the owner of the cluster. This is only required if the cluster is in another Amazon Web Services account.</p>",
         "CreateEndpointAccessMessage$EndpointName": "<p>The Redshift-managed VPC endpoint name.</p> <p>An endpoint name must contain 1-30 characters. Valid characters are A-Z, a-z, 0-9, and hyphen(-). The first character must be a letter. The name can't contain two consecutive hyphens or end with a hyphen.</p>",
@@ -3064,6 +3166,7 @@
         "CreateSnapshotScheduleMessage$ScheduleDescription": "<p>The description of the snapshot schedule.</p>",
         "CreateTagsMessage$ResourceName": "<p>The Amazon Resource Name (ARN) to which you want to add the tag or tags. For example, <code>arn:aws:redshift:us-east-2:123456789:cluster:t1</code>. </p>",
         "CreateUsageLimitMessage$ClusterIdentifier": "<p>The identifier of the cluster that you want to limit usage.</p>",
+        "CustomDomainAssociationsMessage$Marker": "<p>The marker for the custom domain association.</p>",
         "DataShare$DataShareArn": "<p>An Amazon Resource Name (ARN) that references the datashare that is owned by a specific namespace of the producer cluster. A datashare ARN is in the <code>arn:aws:redshift:{region}:{account-id}:{datashare}:{namespace-guid}/{datashare-name}</code> format.</p>",
         "DataShare$ProducerArn": "<p>The Amazon Resource Name (ARN) of the producer.</p>",
         "DataShare$ManagedBy": "<p>The identifier of a datashare to show its managing entity.</p>",
@@ -3081,8 +3184,9 @@
         "DeleteClusterParameterGroupMessage$ParameterGroupName": "<p>The name of the parameter group to be deleted.</p> <p>Constraints:</p> <ul> <li> <p>Must be the name of an existing cluster parameter group.</p> </li> <li> <p>Cannot delete a default cluster parameter group.</p> </li> </ul>",
         "DeleteClusterSecurityGroupMessage$ClusterSecurityGroupName": "<p>The name of the cluster security group to be deleted.</p>",
         "DeleteClusterSnapshotMessage$SnapshotIdentifier": "<p>The unique identifier of the manual snapshot to be deleted.</p> <p>Constraints: Must be the name of an existing snapshot that is in the <code>available</code>, <code>failed</code>, or <code>cancelled</code> state.</p>",
-        "DeleteClusterSnapshotMessage$SnapshotClusterIdentifier": "<p>The unique identifier of the cluster the snapshot was created from. This parameter is required if your IAM user or role has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p> <p>Constraints: Must be the name of valid cluster.</p>",
+        "DeleteClusterSnapshotMessage$SnapshotClusterIdentifier": "<p>The unique identifier of the cluster the snapshot was created from. This parameter is required if your IAM user has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p> <p>Constraints: Must be the name of valid cluster.</p>",
         "DeleteClusterSubnetGroupMessage$ClusterSubnetGroupName": "<p>The name of the cluster subnet group name to be deleted.</p>",
+        "DeleteCustomDomainAssociationMessage$ClusterIdentifier": "<p>The identifier of the cluster to delete a custom domain association for.</p>",
         "DeleteEndpointAccessMessage$EndpointName": "<p>The Redshift-managed VPC endpoint to delete.</p>",
         "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon Redshift event notification subscription to be deleted.</p>",
         "DeleteHsmClientCertificateMessage$HsmClientCertificateIdentifier": "<p>The identifier of the HSM client certificate to be deleted.</p>",
@@ -3116,6 +3220,7 @@
         "DescribeClusterVersionsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeClusterVersions</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeClustersMessage$ClusterIdentifier": "<p>The unique identifier of a cluster whose properties you are requesting. This parameter is case sensitive.</p> <p>The default is that all clusters defined for an account are returned.</p>",
         "DescribeClustersMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeClusters</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p> <p>Constraints: You can specify either the <b>ClusterIdentifier</b> parameter or the <b>Marker</b> parameter, but not both. </p>",
+        "DescribeCustomDomainAssociationsMessage$Marker": "<p>The marker for the custom domain association.</p>",
         "DescribeDataSharesForConsumerMessage$ConsumerArn": "<p>The Amazon Resource Name (ARN) of the consumer that returns in the list of datashares.</p>",
         "DescribeDataSharesForConsumerMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeDataSharesForConsumer</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeDataSharesForConsumerResult$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeDataSharesForConsumer</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
@@ -3228,8 +3333,10 @@
         "GetClusterCredentialsMessage$DbUser": "<p>The name of a database user. If a user name matching <code>DbUser</code> exists in the database, the temporary user credentials have the same permissions as the existing user. If <code>DbUser</code> doesn't exist in the database and <code>Autocreate</code> is <code>True</code>, a new user is created using the value for <code>DbUser</code> with PUBLIC permissions. If a database user matching the value for <code>DbUser</code> doesn't exist and <code>Autocreate</code> is <code>False</code>, then the command succeeds but the connection attempt will fail because the user doesn't exist in the database.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html\">CREATE USER</a> in the Amazon Redshift Database Developer Guide. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 64 alphanumeric characters or hyphens. The user name can't be <code>PUBLIC</code>.</p> </li> <li> <p>Must contain uppercase or lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Must not contain a colon ( : ) or slash ( / ). </p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide.</p> </li> </ul>",
         "GetClusterCredentialsMessage$DbName": "<p>The name of a database that <code>DbUser</code> is authorized to log on to. If <code>DbName</code> is not specified, <code>DbUser</code> can log on to any existing database.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 64 alphanumeric characters or hyphens</p> </li> <li> <p>Must contain uppercase or lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Must not contain a colon ( : ) or slash ( / ). </p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide.</p> </li> </ul>",
         "GetClusterCredentialsMessage$ClusterIdentifier": "<p>The unique identifier of the cluster that contains the database for which you are requesting credentials. This parameter is case sensitive.</p>",
+        "GetClusterCredentialsMessage$CustomDomainName": "<p>The custom domain name for the cluster credentials.</p>",
         "GetClusterCredentialsWithIAMMessage$DbName": "<p>The name of the database for which you are requesting credentials. If the database name is specified, the IAM policy must allow access to the resource <code>dbname</code> for the specified database name. If the database name is not specified, access to all databases is allowed.</p>",
         "GetClusterCredentialsWithIAMMessage$ClusterIdentifier": "<p>The unique identifier of the cluster that contains the database for which you are requesting credentials. </p>",
+        "GetClusterCredentialsWithIAMMessage$CustomDomainName": "<p>The custom domain name for the IAM message cluster credentials.</p>",
         "GetReservedNodeExchangeConfigurationOptionsInputMessage$ClusterIdentifier": "<p>The identifier for the cluster that is the source for a reserved-node exchange.</p>",
         "GetReservedNodeExchangeConfigurationOptionsInputMessage$SnapshotIdentifier": "<p>The identifier for the snapshot that is the source for the reserved-node exchange.</p>",
         "GetReservedNodeExchangeConfigurationOptionsInputMessage$Marker": "<p>An optional pagination token provided by a previous <code>GetReservedNodeExchangeConfigurationOptions</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by the <code>MaxRecords</code> parameter. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request.</p>",
@@ -3272,7 +3379,7 @@
         "ModifyClusterMessage$ClusterIdentifier": "<p>The unique identifier of the cluster to be modified.</p> <p>Example: <code>examplecluster</code> </p>",
         "ModifyClusterMessage$ClusterType": "<p>The new cluster type.</p> <p>When you submit your cluster resize request, your existing cluster goes into a read-only mode. After Amazon Redshift provisions a new cluster based on your resize requirements, there will be outage for a period while the old cluster is deleted and your connection is switched to the new cluster. You can use <a>DescribeResize</a> to track the progress of the resize request. </p> <p>Valid Values: <code> multi-node | single-node </code> </p>",
         "ModifyClusterMessage$NodeType": "<p>The new node type of the cluster. If you specify a new node type, you must also specify the number of nodes parameter.</p> <p> For more information about resizing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html\">Resizing Clusters in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>Valid Values: <code>ds2.xlarge</code> | <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> | <code>dc2.large</code> | <code>dc2.8xlarge</code> | <code>ra3.xlplus</code> | <code>ra3.4xlarge</code> | <code>ra3.16xlarge</code> </p>",
-        "ModifyClusterMessage$MasterUserPassword": "<p>The new password for the cluster admin user. This change is asynchronously applied as soon as possible. Between the time of the request and the completion of the request, the <code>MasterUserPassword</code> element exists in the <code>PendingModifiedValues</code> element of the operation response. </p> <note> <p>Operations never return the password, so this operation provides a way to regain access to the admin user for a cluster if the password is lost.</p> </note> <p>Default: Uses existing setting.</p> <p>Constraints:</p> <ul> <li> <p>Must be between 8 and 64 characters in length.</p> </li> <li> <p>Must contain at least one uppercase letter.</p> </li> <li> <p>Must contain at least one lowercase letter.</p> </li> <li> <p>Must contain one number.</p> </li> <li> <p>Can be any printable ASCII character (ASCII code 33-126) except <code>'</code> (single quote), <code>\"</code> (double quote), <code>\\</code>, <code>/</code>, or <code>@</code>.</p> </li> </ul>",
+        "ModifyClusterMessage$MasterUserPassword": "<p>The new password for the cluster admin user. This change is asynchronously applied as soon as possible. Between the time of the request and the completion of the request, the <code>MasterUserPassword</code> element exists in the <code>PendingModifiedValues</code> element of the operation response. </p> <note> <p>Operations never return the password, so this operation provides a way to regain access to the admin user account for a cluster if the password is lost.</p> </note> <p>Default: Uses existing setting.</p> <p>Constraints:</p> <ul> <li> <p>Must be between 8 and 64 characters in length.</p> </li> <li> <p>Must contain at least one uppercase letter.</p> </li> <li> <p>Must contain at least one lowercase letter.</p> </li> <li> <p>Must contain one number.</p> </li> <li> <p>Can be any printable ASCII character (ASCII code 33-126) except <code>'</code> (single quote), <code>\"</code> (double quote), <code>\\</code>, <code>/</code>, or <code>@</code>.</p> </li> </ul>",
         "ModifyClusterMessage$ClusterParameterGroupName": "<p>The name of the cluster parameter group to apply to this cluster. This change is applied only after the cluster is rebooted. To reboot a cluster use <a>RebootCluster</a>. </p> <p>Default: Uses existing setting.</p> <p>Constraints: The cluster parameter group must be in the same parameter group family that matches the cluster version.</p>",
         "ModifyClusterMessage$PreferredMaintenanceWindow": "<p>The weekly time range (in UTC) during which system maintenance can occur, if necessary. If system maintenance is necessary during the window, it may result in an outage.</p> <p>This maintenance window change is made immediately. If the new maintenance window indicates the current time, there must be at least 120 minutes between the current time and end of the window in order to ensure that pending changes are applied.</p> <p>Default: Uses existing setting.</p> <p>Format: ddd:hh24:mi-ddd:hh24:mi, for example <code>wed:07:30-wed:08:00</code>.</p> <p>Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun</p> <p>Constraints: Must be at least 30 minutes.</p>",
         "ModifyClusterMessage$ClusterVersion": "<p>The new version number of the Amazon Redshift engine to upgrade to.</p> <p>For major version upgrades, if a non-default cluster parameter group is currently in use, a new cluster parameter group in the cluster parameter group family for the new version must be specified. The new cluster parameter group can be the default for that cluster parameter group family. For more information about parameters and parameter groups, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>Example: <code>1.0</code> </p>",
@@ -3289,6 +3396,9 @@
         "ModifyClusterSnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique alphanumeric identifier for the schedule that you want to associate with the cluster.</p>",
         "ModifyClusterSubnetGroupMessage$ClusterSubnetGroupName": "<p>The name of the subnet group to be modified.</p>",
         "ModifyClusterSubnetGroupMessage$Description": "<p>A text description of the subnet group to be modified.</p>",
+        "ModifyCustomDomainAssociationMessage$ClusterIdentifier": "<p>The identifier of the cluster to change a custom domain association for.</p>",
+        "ModifyCustomDomainAssociationResult$ClusterIdentifier": "<p>The identifier of the cluster associated with the result for the changed custom domain association.</p>",
+        "ModifyCustomDomainAssociationResult$CustomDomainCertExpiryTime": "<p>The certificate expiration time associated with the result for the changed custom domain association.</p>",
         "ModifyEndpointAccessMessage$EndpointName": "<p>The endpoint to be modified.</p>",
         "ModifyEventSubscriptionMessage$SubscriptionName": "<p>The name of the modified Amazon Redshift event notification subscription.</p>",
         "ModifyEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic to be used by the event notification subscription.</p>",
@@ -3365,7 +3475,7 @@
         "RestoreFromClusterSnapshotMessage$ClusterIdentifier": "<p>The identifier of the cluster that will be created from restoring the snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>Alphabetic characters must be lowercase.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique for all clusters within an Amazon Web Services account.</p> </li> </ul>",
         "RestoreFromClusterSnapshotMessage$SnapshotIdentifier": "<p>The name of the snapshot from which to create the new cluster. This parameter isn't case sensitive. You must specify this parameter or <code>snapshotArn</code>, but not both.</p> <p>Example: <code>my-snapshot-id</code> </p>",
         "RestoreFromClusterSnapshotMessage$SnapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot associated with the message to restore from a cluster. You must specify this parameter or <code>snapshotIdentifier</code>, but not both.</p>",
-        "RestoreFromClusterSnapshotMessage$SnapshotClusterIdentifier": "<p>The name of the cluster the source snapshot was created from. This parameter is required if your IAM user or role has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p>",
+        "RestoreFromClusterSnapshotMessage$SnapshotClusterIdentifier": "<p>The name of the cluster the source snapshot was created from. This parameter is required if your IAM user has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p>",
         "RestoreFromClusterSnapshotMessage$AvailabilityZone": "<p>The Amazon EC2 Availability Zone in which to restore the cluster.</p> <p>Default: A random, system-chosen Availability Zone.</p> <p>Example: <code>us-east-2a</code> </p>",
         "RestoreFromClusterSnapshotMessage$ClusterSubnetGroupName": "<p>The name of the subnet group where you want to cluster restored.</p> <p>A snapshot of cluster in VPC can be restored only in VPC. Therefore, you must provide subnet group name where you want the cluster restored.</p>",
         "RestoreFromClusterSnapshotMessage$OwnerAccount": "<p>The Amazon Web Services account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot.</p>",
@@ -3402,7 +3512,7 @@
         "RevokeEndpointAccessMessage$Account": "<p>The Amazon Web Services account ID whose access is to be revoked.</p>",
         "RevokeSnapshotAccessMessage$SnapshotIdentifier": "<p>The identifier of the snapshot that the account can no longer access.</p>",
         "RevokeSnapshotAccessMessage$SnapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot associated with the message to revoke access.</p>",
-        "RevokeSnapshotAccessMessage$SnapshotClusterIdentifier": "<p>The identifier of the cluster the snapshot was created from. This parameter is required if your IAM user or role has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p>",
+        "RevokeSnapshotAccessMessage$SnapshotClusterIdentifier": "<p>The identifier of the cluster the snapshot was created from. This parameter is required if your IAM user has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p>",
         "RevokeSnapshotAccessMessage$AccountWithRestoreAccess": "<p>The identifier of the Amazon Web Services account that can no longer restore the specified snapshot.</p>",
         "RotateEncryptionKeyMessage$ClusterIdentifier": "<p>The unique identifier of the cluster that you want to rotate the encryption keys for.</p> <p>Constraints: Must be the name of valid cluster that has encryption enabled.</p>",
         "ScheduleDefinitionList$member": null,
@@ -3552,9 +3662,11 @@
     "TStamp": {
       "base": null,
       "refs": {
+        "Association$CustomDomainCertificateExpiryDate": "<p>The expiration date for the certificate.</p>",
         "Cluster$ClusterCreateTime": "<p>The date and time that the cluster was created.</p>",
         "Cluster$ExpectedNextSnapshotScheduleTime": "<p>The date and time when the next snapshot is expected to be taken for clusters with a valid snapshot schedule and backups enabled. </p>",
         "Cluster$NextMaintenanceWindowStartTime": "<p>The date and time in UTC when system maintenance can begin.</p>",
+        "Cluster$CustomDomainCertificateExpiryDate": "<p>The expiration date for the certificate associated with the custom domain name.</p>",
         "ClusterCredentials$Expiration": "<p>The date and time the password in <code>DbPassword</code> expires.</p>",
         "ClusterDbRevision$DatabaseRevisionReleaseDate": "<p>The date on which the database revision was released.</p>",
         "ClusterExtendedCredentials$Expiration": "<p>The time (UTC) when the temporary password expires. After this timestamp, a log in with the temporary password fails.</p>",

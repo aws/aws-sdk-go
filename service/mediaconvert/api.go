@@ -6097,25 +6097,25 @@ func (s *CaptionDestinationSettings) SetWebvttDestinationSettings(v *WebvttDesti
 }
 
 // Use captions selectors to specify the captions data from your input that
-// you use in your outputs. You can use up to 20 captions selectors per input.
+// you use in your outputs. You can use up to 100 captions selectors per input.
 type CaptionSelector struct {
 	_ struct{} `type:"structure"`
 
 	// The specific language to extract from source, using the ISO 639-2 or ISO
 	// 639-3 three-letter language code. If input is SCTE-27, complete this field
 	// and/or PID to select the caption language to extract. If input is DVB-Sub
-	// and output is Burn-in or SMPTE-TT, complete this field and/or PID to select
-	// the caption language to extract. If input is DVB-Sub that is being passed
-	// through, omit this field (and PID field); there is no way to extract a specific
-	// language with pass-through captions.
+	// and output is Burn-in, complete this field and/or PID to select the caption
+	// language to extract. If input is DVB-Sub that is being passed through, omit
+	// this field (and PID field); there is no way to extract a specific language
+	// with pass-through captions.
 	CustomLanguageCode *string `locationName:"customLanguageCode" min:"3" type:"string"`
 
 	// The specific language to extract from source. If input is SCTE-27, complete
 	// this field and/or PID to select the caption language to extract. If input
-	// is DVB-Sub and output is Burn-in or SMPTE-TT, complete this field and/or
-	// PID to select the caption language to extract. If input is DVB-Sub that is
-	// being passed through, omit this field (and PID field); there is no way to
-	// extract a specific language with pass-through captions.
+	// is DVB-Sub and output is Burn-in, complete this field and/or PID to select
+	// the caption language to extract. If input is DVB-Sub that is being passed
+	// through, omit this field (and PID field); there is no way to extract a specific
+	// language with pass-through captions.
 	LanguageCode *string `locationName:"languageCode" type:"string" enum:"LanguageCode"`
 
 	// If your input captions are SCC, TTML, STL, SMI, SRT, or IMSC in an xml file,
@@ -10376,9 +10376,9 @@ func (s *DvbSubDestinationSettings) SetYPosition(v int64) *DvbSubDestinationSett
 type DvbSubSourceSettings struct {
 	_ struct{} `type:"structure"`
 
-	// When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source
-	// content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through,
-	// regardless of selectors.
+	// When using DVB-Sub with Burn-in, use this PID for the source content. Unused
+	// for DVB-Sub passthrough. All DVB-Sub content is passed through, regardless
+	// of selectors.
 	Pid *int64 `locationName:"pid" min:"1" type:"integer"`
 }
 
@@ -13107,6 +13107,16 @@ type H265Settings struct {
 	// Log Gamma (HLG) Electro-Optical Transfer Function (EOTF).
 	AlternateTransferFunctionSei *string `locationName:"alternateTransferFunctionSei" type:"string" enum:"H265AlternateTransferFunctionSei"`
 
+	// The Bandwidth reduction filter increases the video quality of your output
+	// relative to its bitrate. Use to lower the bitrate of your constant quality
+	// QVBR output, with little or no perceptual decrease in quality. Or, use to
+	// increase the video quality of outputs with other rate control modes relative
+	// to the bitrate that you specify. Bandwidth reduction increases further when
+	// your input is low quality or noisy. Outputs that use this feature incur pro-tier
+	// pricing. When you include Bandwidth reduction filter, you cannot include
+	// the Noise reducer preprocessor.
+	BandwidthReductionFilter *BandwidthReductionFilter `locationName:"bandwidthReductionFilter" type:"structure"`
+
 	// Specify the average bitrate in bits per second. Required for VBR and CBR.
 	// For MS Smooth outputs, bitrates must be unique when rounded down to the nearest
 	// multiple of 1000.
@@ -13498,6 +13508,12 @@ func (s *H265Settings) SetAdaptiveQuantization(v string) *H265Settings {
 // SetAlternateTransferFunctionSei sets the AlternateTransferFunctionSei field's value.
 func (s *H265Settings) SetAlternateTransferFunctionSei(v string) *H265Settings {
 	s.AlternateTransferFunctionSei = &v
+	return s
+}
+
+// SetBandwidthReductionFilter sets the BandwidthReductionFilter field's value.
+func (s *H265Settings) SetBandwidthReductionFilter(v *BandwidthReductionFilter) *H265Settings {
+	s.BandwidthReductionFilter = v
 	return s
 }
 
@@ -14313,6 +14329,18 @@ type HlsGroupSettings struct {
 	// Period of insertion of EXT-X-PROGRAM-DATE-TIME entry, in seconds.
 	ProgramDateTimePeriod *int64 `locationName:"programDateTimePeriod" type:"integer"`
 
+	// Specify whether MediaConvert generates HLS manifests while your job is running
+	// or when your job is complete. To generate HLS manifests while your job is
+	// running: Choose Enabled. Use if you want to play back your content as soon
+	// as it's available. MediaConvert writes the parent and child manifests after
+	// the first three media segments are written to your destination S3 bucket.
+	// It then writes new updated manifests after each additional segment is written.
+	// The parent manifest includes the latest BANDWIDTH and AVERAGE-BANDWIDTH attributes,
+	// and child manifests include the latest available media segment. When your
+	// job completes, the final child playlists include an EXT-X-ENDLIST tag. To
+	// generate HLS manifests only when your job completes: Choose Disabled.
+	ProgressiveWriteHlsManifest *string `locationName:"progressiveWriteHlsManifest" type:"string" enum:"HlsProgressiveWriteHlsManifest"`
+
 	// When set to SINGLE_FILE, emits program as a single media resource (.ts) file,
 	// uses #EXT-X-BYTERANGE tags to index segment for playback.
 	SegmentControl *string `locationName:"segmentControl" type:"string" enum:"HlsSegmentControl"`
@@ -14569,6 +14597,12 @@ func (s *HlsGroupSettings) SetProgramDateTime(v string) *HlsGroupSettings {
 // SetProgramDateTimePeriod sets the ProgramDateTimePeriod field's value.
 func (s *HlsGroupSettings) SetProgramDateTimePeriod(v int64) *HlsGroupSettings {
 	s.ProgramDateTimePeriod = &v
+	return s
+}
+
+// SetProgressiveWriteHlsManifest sets the ProgressiveWriteHlsManifest field's value.
+func (s *HlsGroupSettings) SetProgressiveWriteHlsManifest(v string) *HlsGroupSettings {
+	s.ProgressiveWriteHlsManifest = &v
 	return s
 }
 
@@ -15194,7 +15228,7 @@ type Input struct {
 	AudioSelectors map[string]*AudioSelector `locationName:"audioSelectors" type:"map"`
 
 	// Use captions selectors to specify the captions data from your input that
-	// you use in your outputs. You can use up to 20 captions selectors per input.
+	// you use in your outputs. You can use up to 100 captions selectors per input.
 	CaptionSelectors map[string]*CaptionSelector `locationName:"captionSelectors" type:"map"`
 
 	// Use Cropping selection (crop) to specify the video area that the service
@@ -15750,7 +15784,7 @@ type InputTemplate struct {
 	AudioSelectors map[string]*AudioSelector `locationName:"audioSelectors" type:"map"`
 
 	// Use captions selectors to specify the captions data from your input that
-	// you use in your outputs. You can use up to 20 captions selectors per input.
+	// you use in your outputs. You can use up to 100 captions selectors per input.
 	CaptionSelectors map[string]*CaptionSelector `locationName:"captionSelectors" type:"map"`
 
 	// Use Cropping selection (crop) to specify the video area that the service
@@ -20565,9 +20599,9 @@ type MxfSettings struct {
 	// video encoding settings.
 	AfdSignaling *string `locationName:"afdSignaling" type:"string" enum:"MxfAfdSignaling"`
 
-	// Specify the MXF profile, also called shim, for this output. When you choose
-	// Auto, MediaConvert chooses a profile based on the video codec and resolution.
-	// For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
+	// Specify the MXF profile, also called shim, for this output. To automatically
+	// select a profile according to your output video codec and resolution, leave
+	// blank. For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
 	// For more information about the automatic selection behavior, see https://docs.aws.amazon.com/mediaconvert/latest/ug/default-automatic-selection-of-mxf-profiles.html.
 	Profile *string `locationName:"profile" type:"string" enum:"MxfProfile"`
 
@@ -25440,7 +25474,7 @@ type VideoPreprocessor struct {
 	// Enable Dolby Vision feature to produce Dolby Vision compatible video output.
 	DolbyVision *DolbyVision `locationName:"dolbyVision" type:"structure"`
 
-	// Enable HDR10+ analyis and metadata injection. Compatible with HEVC only.
+	// Enable HDR10+ analysis and metadata injection. Compatible with HEVC only.
 	Hdr10Plus *Hdr10Plus `locationName:"hdr10Plus" type:"structure"`
 
 	// Enable the Image inserter (ImageInserter) feature to include a graphic overlay
@@ -33412,6 +33446,32 @@ func HlsProgramDateTime_Values() []string {
 	}
 }
 
+// Specify whether MediaConvert generates HLS manifests while your job is running
+// or when your job is complete. To generate HLS manifests while your job is
+// running: Choose Enabled. Use if you want to play back your content as soon
+// as it's available. MediaConvert writes the parent and child manifests after
+// the first three media segments are written to your destination S3 bucket.
+// It then writes new updated manifests after each additional segment is written.
+// The parent manifest includes the latest BANDWIDTH and AVERAGE-BANDWIDTH attributes,
+// and child manifests include the latest available media segment. When your
+// job completes, the final child playlists include an EXT-X-ENDLIST tag. To
+// generate HLS manifests only when your job completes: Choose Disabled.
+const (
+	// HlsProgressiveWriteHlsManifestEnabled is a HlsProgressiveWriteHlsManifest enum value
+	HlsProgressiveWriteHlsManifestEnabled = "ENABLED"
+
+	// HlsProgressiveWriteHlsManifestDisabled is a HlsProgressiveWriteHlsManifest enum value
+	HlsProgressiveWriteHlsManifestDisabled = "DISABLED"
+)
+
+// HlsProgressiveWriteHlsManifest_Values returns all elements of the HlsProgressiveWriteHlsManifest enum
+func HlsProgressiveWriteHlsManifest_Values() []string {
+	return []string{
+		HlsProgressiveWriteHlsManifestEnabled,
+		HlsProgressiveWriteHlsManifestDisabled,
+	}
+}
+
 // When set to SINGLE_FILE, emits program as a single media resource (.ts) file,
 // uses #EXT-X-BYTERANGE tags to index segment for playback.
 const (
@@ -36039,9 +36099,9 @@ func MxfAfdSignaling_Values() []string {
 	}
 }
 
-// Specify the MXF profile, also called shim, for this output. When you choose
-// Auto, MediaConvert chooses a profile based on the video codec and resolution.
-// For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
+// Specify the MXF profile, also called shim, for this output. To automatically
+// select a profile according to your output video codec and resolution, leave
+// blank. For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
 // For more information about the automatic selection behavior, see https://docs.aws.amazon.com/mediaconvert/latest/ug/default-automatic-selection-of-mxf-profiles.html.
 const (
 	// MxfProfileD10 is a MxfProfile enum value

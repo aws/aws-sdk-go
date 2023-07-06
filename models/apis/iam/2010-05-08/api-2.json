@@ -983,6 +983,22 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetMFADevice":{
+      "name":"GetMFADevice",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMFADeviceRequest"},
+      "output":{
+        "shape":"GetMFADeviceResponse",
+        "resultWrapper":"GetMFADeviceResult"
+      },
+      "errors":[
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetOpenIDConnectProvider":{
       "name":"GetOpenIDConnectProvider",
       "http":{
@@ -2606,6 +2622,23 @@
       "type":"blob",
       "sensitive":true
     },
+    "CertificationKeyType":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\u0020-\\u00FF]+"
+    },
+    "CertificationMapType":{
+      "type":"map",
+      "key":{"shape":"CertificationKeyType"},
+      "value":{"shape":"CertificationValueType"}
+    },
+    "CertificationValueType":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"[\\u0020-\\u00FF]+"
+    },
     "ChangePasswordRequest":{
       "type":"structure",
       "required":[
@@ -3527,6 +3560,24 @@
       "required":["LoginProfile"],
       "members":{
         "LoginProfile":{"shape":"LoginProfile"}
+      }
+    },
+    "GetMFADeviceRequest":{
+      "type":"structure",
+      "required":["SerialNumber"],
+      "members":{
+        "SerialNumber":{"shape":"serialNumberType"},
+        "UserName":{"shape":"userNameType"}
+      }
+    },
+    "GetMFADeviceResponse":{
+      "type":"structure",
+      "required":["SerialNumber"],
+      "members":{
+        "UserName":{"shape":"userNameType"},
+        "SerialNumber":{"shape":"serialNumberType"},
+        "EnableDate":{"shape":"dateType"},
+        "Certifications":{"shape":"CertificationMapType"}
       }
     },
     "GetOpenIDConnectProviderRequest":{

@@ -961,8 +961,14 @@
         "EncryptionAlgorithm":{"shape":"EncryptionAlg"},
         "SigningAlgorithm":{"shape":"SigningAlg"},
         "MdnSigningAlgorithm":{"shape":"MdnSigningAlg"},
-        "MdnResponse":{"shape":"MdnResponse"}
+        "MdnResponse":{"shape":"MdnResponse"},
+        "BasicAuthSecretId":{"shape":"As2ConnectorSecretId"}
       }
+    },
+    "As2ConnectorSecretId":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "As2Id":{
       "type":"string",
@@ -1188,7 +1194,8 @@
         "ProtocolDetails":{"shape":"ProtocolDetails"},
         "SecurityPolicyName":{"shape":"SecurityPolicyName"},
         "Tags":{"shape":"Tags"},
-        "WorkflowDetails":{"shape":"WorkflowDetails"}
+        "WorkflowDetails":{"shape":"WorkflowDetails"},
+        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"}
       }
     },
     "CreateServerResponse":{
@@ -1705,7 +1712,8 @@
         "State":{"shape":"State"},
         "Tags":{"shape":"Tags"},
         "UserCount":{"shape":"UserCount"},
-        "WorkflowDetails":{"shape":"WorkflowDetails"}
+        "WorkflowDetails":{"shape":"WorkflowDetails"},
+        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"}
       }
     },
     "DescribedUser":{
@@ -2884,6 +2892,12 @@
         "ServerId":{"shape":"ServerId"}
       }
     },
+    "StructuredLogDestinations":{
+      "type":"list",
+      "member":{"shape":"Arn"},
+      "max":1,
+      "min":0
+    },
     "SubnetId":{"type":"string"},
     "SubnetIds":{
       "type":"list",
@@ -3140,7 +3154,8 @@
         "Protocols":{"shape":"Protocols"},
         "SecurityPolicyName":{"shape":"SecurityPolicyName"},
         "ServerId":{"shape":"ServerId"},
-        "WorkflowDetails":{"shape":"WorkflowDetails"}
+        "WorkflowDetails":{"shape":"WorkflowDetails"},
+        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"}
       }
     },
     "UpdateServerResponse":{

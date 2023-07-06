@@ -6304,6 +6304,38 @@ func (s *AccessDeniedException) RequestID() string {
 type As2ConnectorConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Provides Basic authentication support to the AS2 Connectors API. To use Basic
+	// authentication, you must provide the name or Amazon Resource Name (ARN) of
+	// a secret in Secrets Manager.
+	//
+	// The default value for this parameter is null, which indicates that Basic
+	// authentication is not enabled for the connector.
+	//
+	// If the connector should use Basic authentication, the secret needs to be
+	// in the following format:
+	//
+	// { "Username": "user-name", "Password": "user-password" }
+	//
+	// Replace user-name and user-password with the credentials for the actual user
+	// that is being authenticated.
+	//
+	// Note the following:
+	//
+	//    * You are storing these credentials in Secrets Manager, not passing them
+	//    directly into this API.
+	//
+	//    * If you are using the API, SDKs, or CloudFormation to configure your
+	//    connector, then you must create the secret before you can enable Basic
+	//    authentication. However, if you are using the Amazon Web Services management
+	//    console, you can have the system create the secret for you.
+	//
+	// If you have previously enabled Basic authentication for a connector, you
+	// can disable it by using the UpdateConnector API call. For example, if you
+	// are using the CLI, you can run the following command to remove Basic authentication:
+	//
+	// update-connector --connector-id my-connector-id --as2-config 'BasicAuthSecretId=""'
+	BasicAuthSecretId *string `type:"string"`
+
 	// Specifies whether the AS2 file is compressed.
 	Compression *string `type:"string" enum:"CompressionEnum"`
 
@@ -6378,6 +6410,12 @@ func (s *As2ConnectorConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBasicAuthSecretId sets the BasicAuthSecretId field's value.
+func (s *As2ConnectorConfig) SetBasicAuthSecretId(v string) *As2ConnectorConfig {
+	s.BasicAuthSecretId = &v
+	return s
 }
 
 // SetCompression sets the Compression field's value.
@@ -6869,6 +6907,12 @@ type CreateAgreementInput struct {
 	// provide read and write access to the parent directory of the files that you
 	// intend to send with StartFileTransfer.
 	//
+	// If you are using Basic authentication for your AS2 connector, the access
+	// role requires the secretsmanager:GetSecretValue permission for the secret.
+	// If the secret is encrypted using a customer-managed key instead of the Amazon
+	// Web Services managed key in Secrets Manager, then the role also needs the
+	// kms:Decrypt permission for that key.
+	//
 	// AccessRole is a required field
 	AccessRole *string `min:"20" type:"string" required:"true"`
 
@@ -7072,6 +7116,12 @@ type CreateConnectorInput struct {
 	// location used in the StartFileTransfer request. Additionally, you need to
 	// provide read and write access to the parent directory of the files that you
 	// intend to send with StartFileTransfer.
+	//
+	// If you are using Basic authentication for your AS2 connector, the access
+	// role requires the secretsmanager:GetSecretValue permission for the secret.
+	// If the secret is encrypted using a customer-managed key instead of the Amazon
+	// Web Services managed key in Secrets Manager, then the role also needs the
+	// kms:Decrypt permission for that key.
 	//
 	// AccessRole is a required field
 	AccessRole *string `min:"20" type:"string" required:"true"`
@@ -7571,6 +7621,22 @@ type CreateServerInput struct {
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
+	// Specifies the log groups to which your server logs are sent.
+	//
+	// To specify a log group, you must provide the ARN for an existing log group.
+	// In this case, the format of the log group is as follows:
+	//
+	// arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*
+	//
+	// For example, arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*
+	//
+	// If you have previously specified a log group for a server, you can clear
+	// it, and in effect turn off structured logging, by providing an empty value
+	// for this parameter in an update-server call. For example:
+	//
+	// update-server --server-id s-1234567890abcdef0 --structured-log-destinations
+	StructuredLogDestinations []*string `type:"list"`
+
 	// Key-value pairs that can be used to group and search for servers.
 	Tags []*Tag `min:"1" type:"list"`
 
@@ -7726,6 +7792,12 @@ func (s *CreateServerInput) SetProtocols(v []*string) *CreateServerInput {
 // SetSecurityPolicyName sets the SecurityPolicyName field's value.
 func (s *CreateServerInput) SetSecurityPolicyName(v string) *CreateServerInput {
 	s.SecurityPolicyName = &v
+	return s
+}
+
+// SetStructuredLogDestinations sets the StructuredLogDestinations field's value.
+func (s *CreateServerInput) SetStructuredLogDestinations(v []*string) *CreateServerInput {
+	s.StructuredLogDestinations = v
 	return s
 }
 
@@ -10493,6 +10565,12 @@ type DescribedAgreement struct {
 	// location used in the StartFileTransfer request. Additionally, you need to
 	// provide read and write access to the parent directory of the files that you
 	// intend to send with StartFileTransfer.
+	//
+	// If you are using Basic authentication for your AS2 connector, the access
+	// role requires the secretsmanager:GetSecretValue permission for the secret.
+	// If the secret is encrypted using a customer-managed key instead of the Amazon
+	// Web Services managed key in Secrets Manager, then the role also needs the
+	// kms:Decrypt permission for that key.
 	AccessRole *string `min:"20" type:"string"`
 
 	// A unique identifier for the agreement. This identifier is returned when you
@@ -10783,6 +10861,12 @@ type DescribedConnector struct {
 	// location used in the StartFileTransfer request. Additionally, you need to
 	// provide read and write access to the parent directory of the files that you
 	// intend to send with StartFileTransfer.
+	//
+	// If you are using Basic authentication for your AS2 connector, the access
+	// role requires the secretsmanager:GetSecretValue permission for the secret.
+	// If the secret is encrypted using a customer-managed key instead of the Amazon
+	// Web Services managed key in Secrets Manager, then the role also needs the
+	// kms:Decrypt permission for that key.
 	AccessRole *string `min:"20" type:"string"`
 
 	// The unique Amazon Resource Name (ARN) for the connector.
@@ -11394,6 +11478,22 @@ type DescribedServer struct {
 	// of START_FAILED or STOP_FAILED can indicate an error condition.
 	State *string `type:"string" enum:"State"`
 
+	// Specifies the log groups to which your server logs are sent.
+	//
+	// To specify a log group, you must provide the ARN for an existing log group.
+	// In this case, the format of the log group is as follows:
+	//
+	// arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*
+	//
+	// For example, arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*
+	//
+	// If you have previously specified a log group for a server, you can clear
+	// it, and in effect turn off structured logging, by providing an empty value
+	// for this parameter in an update-server call. For example:
+	//
+	// update-server --server-id s-1234567890abcdef0 --structured-log-destinations
+	StructuredLogDestinations []*string `type:"list"`
+
 	// Specifies the key-value pairs that you can use to search for and group servers
 	// that were assigned to the server that was described.
 	Tags []*Tag `min:"1" type:"list"`
@@ -11523,6 +11623,12 @@ func (s *DescribedServer) SetServerId(v string) *DescribedServer {
 // SetState sets the State field's value.
 func (s *DescribedServer) SetState(v string) *DescribedServer {
 	s.State = &v
+	return s
+}
+
+// SetStructuredLogDestinations sets the StructuredLogDestinations field's value.
+func (s *DescribedServer) SetStructuredLogDestinations(v []*string) *DescribedServer {
+	s.StructuredLogDestinations = v
 	return s
 }
 
@@ -17278,6 +17384,12 @@ type UpdateAgreementInput struct {
 	// location used in the StartFileTransfer request. Additionally, you need to
 	// provide read and write access to the parent directory of the files that you
 	// intend to send with StartFileTransfer.
+	//
+	// If you are using Basic authentication for your AS2 connector, the access
+	// role requires the secretsmanager:GetSecretValue permission for the secret.
+	// If the secret is encrypted using a customer-managed key instead of the Amazon
+	// Web Services managed key in Secrets Manager, then the role also needs the
+	// kms:Decrypt permission for that key.
 	AccessRole *string `min:"20" type:"string"`
 
 	// A unique identifier for the agreement. This identifier is returned when you
@@ -17573,6 +17685,12 @@ type UpdateConnectorInput struct {
 	// location used in the StartFileTransfer request. Additionally, you need to
 	// provide read and write access to the parent directory of the files that you
 	// intend to send with StartFileTransfer.
+	//
+	// If you are using Basic authentication for your AS2 connector, the access
+	// role requires the secretsmanager:GetSecretValue permission for the secret.
+	// If the secret is encrypted using a customer-managed key instead of the Amazon
+	// Web Services managed key in Secrets Manager, then the role also needs the
+	// kms:Decrypt permission for that key.
 	AccessRole *string `min:"20" type:"string"`
 
 	// A structure that contains the parameters for a connector object.
@@ -18106,6 +18224,22 @@ type UpdateServerInput struct {
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
+	// Specifies the log groups to which your server logs are sent.
+	//
+	// To specify a log group, you must provide the ARN for an existing log group.
+	// In this case, the format of the log group is as follows:
+	//
+	// arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*
+	//
+	// For example, arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*
+	//
+	// If you have previously specified a log group for a server, you can clear
+	// it, and in effect turn off structured logging, by providing an empty value
+	// for this parameter in an update-server call. For example:
+	//
+	// update-server --server-id s-1234567890abcdef0 --structured-log-destinations
+	StructuredLogDestinations []*string `type:"list"`
+
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
@@ -18248,6 +18382,12 @@ func (s *UpdateServerInput) SetSecurityPolicyName(v string) *UpdateServerInput {
 // SetServerId sets the ServerId field's value.
 func (s *UpdateServerInput) SetServerId(v string) *UpdateServerInput {
 	s.ServerId = &v
+	return s
+}
+
+// SetStructuredLogDestinations sets the StructuredLogDestinations field's value.
+func (s *UpdateServerInput) SetStructuredLogDestinations(v []*string) *UpdateServerInput {
+	s.StructuredLogDestinations = v
 	return s
 }
 

@@ -1469,6 +1469,12 @@
         "ListOf__EndpointTypesElement$member" : null
       }
     },
+    "__TimezoneEstimationMethodsElement" : {
+      "base" : null,
+      "refs" : {
+        "ListOf__TimezoneEstimationMethodsElement$member" : null
+      }
+    },
     "__boolean" : {
       "base" : null,
       "refs" : {
@@ -1796,6 +1802,13 @@
       "refs" : {
         "CustomDeliveryConfiguration$EndpointTypes" : "<p>The types of endpoints to send the campaign or treatment to. Each valid value maps to a type of channel that you can associate with an endpoint by using the ChannelType property of an endpoint.</p>",
         "CustomMessageActivity$EndpointTypes" : "<p>The types of endpoints to send the custom message to. Each valid value maps to a type of channel that you can associate with an endpoint by using the ChannelType property of an endpoint.</p>"
+      }
+    },
+    "ListOf__TimezoneEstimationMethodsElement" : {
+      "base" : null,
+      "refs" : {
+        "JourneyResponse$TimezoneEstimationMethods" : "<p>An array of time zone estimation methods, if any, to use for determining an <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-endpoints-endpoint-id.html\">Endpoints</a> time zone if the Endpoint does not have a value for the Demographic.Timezone attribute.</p> <ul> <li><p>PHONE_NUMBER - A time zone is determined based on the Endpoint.Address and Endpoint.Location.Country.</p></li> <li><p>POSTAL_CODE - A time zone is determined based on the Endpoint.Location.PostalCode and Endpoint.Location.Country.</p> <note><p>POSTAL_CODE detection is only supported in the United States, United Kingdom, Australia, New Zealand, Canada, France, Italy, Spain, Germany and in regions where Amazon Pinpoint is available.</p></note></li> </ul>",
+        "WriteJourneyRequest$TimezoneEstimationMethods" : "<p>An array of time zone estimation methods, if any, to use for determining an <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-endpoints-endpoint-id.html\">Endpoints</a> time zone if the Endpoint does not have a value for the Demographic.Timezone attribute.</p> <ul> <li><p>PHONE_NUMBER - A time zone is determined based on the Endpoint.Address and Endpoint.Location.Country.</p></li> <li><p>POSTAL_CODE - A time zone is determined based on the Endpoint.Location.PostalCode and Endpoint.Location.Country.</p> <note><p>POSTAL_CODE detection is only supported in the United States, United Kingdom, Australia, New Zealand, Canada, France, Italy, Spain, Germany and in regions where Amazon Pinpoint is available.</p></note></li> </ul>"
       }
     },
     "ListOf__string" : {

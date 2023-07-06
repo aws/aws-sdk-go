@@ -6099,26 +6099,30 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 
 // Query API operation for AWSKendraFrontendService.
 //
-// Searches an active index. Use this API to search your documents using query.
-// The Query API enables to do faceted search and to filter results based on
-// document attributes.
+// Searches an index given an input query.
 //
-// It also enables you to provide user context that Amazon Kendra uses to enforce
-// document access control in the search results.
+// You can configure boosting or relevance tuning at the query level to override
+// boosting at the index level, filter based on document fields/attributes and
+// faceted search, and filter based on the user or their group access to documents.
+// You can also include certain fields in the response that might provide useful
+// additional information.
 //
-// Amazon Kendra searches your index for text content and question and answer
-// (FAQ) content. By default the response contains three types of results.
+// A query response contains three types of results.
 //
-//   - Relevant passages
+//   - Relevant suggested answers. The answers can be either a text excerpt
+//     or table excerpt. The answer can be highlighted in the excerpt.
 //
-//   - Matching FAQs
+//   - Matching FAQs or questions-answer from your FAQ file.
 //
-//   - Relevant documents
+//   - Relevant documents. This result type includes an excerpt of the document
+//     with the document title. The searched terms can be highlighted in the
+//     excerpt.
 //
 // You can specify that the query return only one type of result using the QueryResultTypeFilter
-// parameter.
-//
-// Each query returns the 100 most relevant results.
+// parameter. Each query returns the 100 most relevant results. If you filter
+// result type to only question-answers, a maximum of four results are returned.
+// If you filter result type to only answers, a maximum of three results are
+// returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6177,6 +6181,134 @@ func (c *Kendra) Query(input *QueryInput) (*QueryOutput, error) {
 // for more information on using Contexts.
 func (c *Kendra) QueryWithContext(ctx aws.Context, input *QueryInput, opts ...request.Option) (*QueryOutput, error) {
 	req, out := c.QueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRetrieve = "Retrieve"
+
+// RetrieveRequest generates a "aws/request.Request" representing the
+// client's request for the Retrieve operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See Retrieve for more information on using the Retrieve
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RetrieveRequest method.
+//	req, resp := client.RetrieveRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/Retrieve
+func (c *Kendra) RetrieveRequest(input *RetrieveInput) (req *request.Request, output *RetrieveOutput) {
+	op := &request.Operation{
+		Name:       opRetrieve,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RetrieveInput{}
+	}
+
+	output = &RetrieveOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// Retrieve API operation for AWSKendraFrontendService.
+//
+// Retrieves relevant passages or text excerpts given an input query.
+//
+// This API is similar to the Query (https://docs.aws.amazon.com/kendra/latest/APIReference/API_Query.html)
+// API. However, by default, the Query API only returns excerpt passages of
+// up to 100 token words. With the Retrieve API, you can retrieve longer passages
+// of up to 200 token words and up to 100 semantically relevant passages. This
+// doesn't include question-answer or FAQ type responses from your index. The
+// passages are text excerpts that can be semantically extracted from multiple
+// documents and multiple parts of the same document. If in extreme cases your
+// documents produce no relevant passages using the Retrieve API, you can alternatively
+// use the Query API.
+//
+// You can also do the following:
+//
+//   - Override boosting at the index level
+//
+//   - Filter based on document fields or attributes
+//
+//   - Filter based on the user or their group access to documents
+//
+// You can also include certain fields in the response that might provide useful
+// additional information.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation Retrieve for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints set by the Amazon Kendra service.
+//     Please provide the correct input and try again.
+//
+//   - ConflictException
+//     A conflict occurred with the request. Please fix any inconsistences with
+//     your resources and try again.
+//
+//   - ResourceNotFoundException
+//     The resource you want to use doesn’t exist. Please check you have provided
+//     the correct resource and try again.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please reduce the number
+//     of requests and try again.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action. Please ensure you
+//     have the required permission policies and user accounts and try again.
+//
+//   - ServiceQuotaExceededException
+//     You have exceeded the set limits for your Amazon Kendra service. Please see
+//     Quotas (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html) for more
+//     information, or contact Support (http://aws.amazon.com/contact-us/) to inquire
+//     about an increase of limits.
+//
+//   - InternalServerException
+//     An issue occurred with the internal server used for your Amazon Kendra service.
+//     Please wait a few minutes and try again, or contact Support (http://aws.amazon.com/contact-us/)
+//     for help.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/Retrieve
+func (c *Kendra) Retrieve(input *RetrieveInput) (*RetrieveOutput, error) {
+	req, out := c.RetrieveRequest(input)
+	return out, req.Send()
+}
+
+// RetrieveWithContext is the same as Retrieve with the addition of
+// the ability to pass a context and additional request options.
+//
+// See Retrieve for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) RetrieveWithContext(ctx aws.Context, input *RetrieveInput, opts ...request.Option) (*RetrieveOutput, error) {
+	req, out := c.RetrieveRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7865,9 +7997,10 @@ func (s *AdditionalResultAttributeValue) SetTextWithHighlightsValue(v *TextWithH
 // Provides the configuration information to connect to Alfresco as your data
 // source.
 //
-// Alfresco data source connector is currently in preview mode. Basic authentication
-// is currently supported. If you would like to use Alfresco connector in production,
-// contact Support (http://aws.amazon.com/contact-us/).
+// Support for AlfrescoConfiguration ended May 2023. We recommend migrating
+// to or using the Alfresco data source template schema / TemplateConfiguration
+// (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+// API.
 type AlfrescoConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10329,7 +10462,7 @@ type ConflictingItem struct {
 	_ struct{} `type:"structure"`
 
 	// The text of the conflicting query.
-	QueryText *string `min:"1" type:"string"`
+	QueryText *string `type:"string"`
 
 	// The identifier of the set of featured results that the conflicting query
 	// belongs to.
@@ -12062,6 +12195,8 @@ type CreateFaqInput struct {
 	// a CSV format that includes customs attributes in a header, and a JSON format
 	// that includes custom attributes.
 	//
+	// The default format is CSV.
+	//
 	// The format must match the format of the file stored in the S3 bucket identified
 	// in the S3Path parameter.
 	//
@@ -13148,7 +13283,14 @@ type DataSourceConfiguration struct {
 
 	// Provides the configuration information to connect to Alfresco as your data
 	// source.
-	AlfrescoConfiguration *AlfrescoConfiguration `type:"structure"`
+	//
+	// Support for AlfrescoConfiguration ended May 2023. We recommend migrating
+	// to or using the Alfresco data source template schema / TemplateConfiguration
+	// (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+	// API.
+	//
+	// Deprecated: Deprecated AlfrescoConfiguration in favor of TemplateConfiguration
+	AlfrescoConfiguration *AlfrescoConfiguration `deprecated:"true" type:"structure"`
 
 	// Provides the configuration information to connect to Box as your data source.
 	BoxConfiguration *BoxConfiguration `type:"structure"`
@@ -17076,6 +17218,10 @@ type Document struct {
 	Blob []byte `type:"blob"`
 
 	// The file type of the document in the Blob field.
+	//
+	// If you want to index snippets or subsets of HTML documents instead of the
+	// entirety of the HTML documents, you must add the HTML start and closing tags
+	// (<HTML>content</HTML>) around the content.
 	ContentType *string `type:"string" enum:"ContentType"`
 
 	// The list of principal (https://docs.aws.amazon.com/kendra/latest/dg/API_Principal.html)
@@ -24080,36 +24226,32 @@ func (s PutPrincipalMappingOutput) GoString() string {
 type QueryInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enables filtered searches based on document attributes. You can only provide
+	// Filters search results by document fields/attributes. You can only provide
 	// one attribute filter; however, the AndAllFilters, NotFilter, and OrAllFilters
 	// parameters contain a list of other filters.
 	//
-	// The AttributeFilter parameter enables you to create a set of filtering rules
+	// The AttributeFilter parameter means you can create a set of filtering rules
 	// that a document must satisfy to be included in the query results.
 	AttributeFilter *AttributeFilter `type:"structure"`
 
-	// Overrides relevance tuning configurations of fields or attributes set at
-	// the index level.
+	// Overrides relevance tuning configurations of fields/attributes set at the
+	// index level.
 	//
 	// If you use this API to override the relevance tuning configured at the index
 	// level, but there is no relevance tuning configured at the index level, then
 	// Amazon Kendra does not apply any relevance tuning.
 	//
-	// If there is relevance tuning configured at the index level, but you do not
-	// use this API to override any relevance tuning in the index, then Amazon Kendra
-	// uses the relevance tuning that is configured at the index level.
-	//
-	// If there is relevance tuning configured for fields at the index level, but
+	// If there is relevance tuning configured for fields at the index level, and
 	// you use this API to override only some of these fields, then for the fields
 	// you did not override, the importance is set to 1.
 	DocumentRelevanceOverrideConfigurations []*DocumentRelevanceConfiguration `type:"list"`
 
-	// An array of documents attributes. Amazon Kendra returns a count for each
-	// attribute key specified. This helps your users narrow their search.
+	// An array of documents fields/attributes for faceted search. Amazon Kendra
+	// returns a count for each field key specified. This helps your users narrow
+	// their search.
 	Facets []*Facet `type:"list"`
 
-	// The identifier of the index to search. The identifier is returned in the
-	// response from the CreateIndex API.
+	// The identifier of the index for the search.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -24124,16 +24266,17 @@ type QueryInput struct {
 	// you ask for more than 100 results, only 100 are returned.
 	PageSize *int64 `type:"integer"`
 
-	// Sets the type of query. Only results for the specified query type are returned.
+	// Sets the type of query result or response. Only results for the specified
+	// type are returned.
 	QueryResultTypeFilter *string `type:"string" enum:"QueryResultType"`
 
 	// The input query text for the search. Amazon Kendra truncates queries at 30
 	// token words, which excludes punctuation and stop words. Truncation still
 	// applies if you use Boolean or more advanced, complex queries.
-	QueryText *string `min:"1" type:"string"`
+	QueryText *string `type:"string"`
 
-	// An array of document attributes to include in the response. You can limit
-	// the response to include certain document attributes. By default all document
+	// An array of document fields/attributes to include in the response. You can
+	// limit the response to include certain document fields. By default, all document
 	// attributes are included in the response.
 	RequestedDocumentAttributes []*string `min:"1" type:"list"`
 
@@ -24184,9 +24327,6 @@ func (s *QueryInput) Validate() error {
 	}
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
-	}
-	if s.QueryText != nil && len(*s.QueryText) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("QueryText", 1))
 	}
 	if s.RequestedDocumentAttributes != nil && len(s.RequestedDocumentAttributes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RequestedDocumentAttributes", 1))
@@ -24322,7 +24462,7 @@ func (s *QueryInput) SetVisitorId(v string) *QueryInput {
 type QueryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the facet results. A FacetResult contains the counts for each attribute
+	// Contains the facet results. A FacetResult contains the counts for each field/attribute
 	// key that was specified in the Facets input parameter.
 	FacetResults []*FacetResult `type:"list"`
 
@@ -24332,8 +24472,9 @@ type QueryOutput struct {
 	// featured in the search results.
 	FeaturedResultsItems []*FeaturedResultsItem `type:"list"`
 
-	// The identifier for the search. You use QueryId to identify the search when
-	// using the feedback API.
+	// The identifier for the search. You also use QueryId to identify the search
+	// when using the SubmitFeedback (https://docs.aws.amazon.com/kendra/latest/APIReference/API_SubmitFeedback.html)
+	// API.
 	QueryId *string `min:"1" type:"string"`
 
 	// The results of the search.
@@ -24342,7 +24483,7 @@ type QueryOutput struct {
 	// A list of information related to suggested spell corrections for a query.
 	SpellCorrectedQueries []*SpellCorrectedQuery `type:"list"`
 
-	// The total number of items found by the search; however, you can only retrieve
+	// The total number of items found by the search. However, you can only retrieve
 	// up to 100 items. For example, if the search found 192 items, you can only
 	// retrieve the first 100 of the items.
 	TotalNumberOfResults *int64 `type:"integer"`
@@ -24424,11 +24565,11 @@ func (s *QueryOutput) SetWarnings(v []*Warning) *QueryOutput {
 type QueryResultItem struct {
 	_ struct{} `type:"structure"`
 
-	// One or more additional attributes associated with the query result.
+	// One or more additional fields/attributes associated with the query result.
 	AdditionalAttributes []*AdditionalResultAttribute `type:"list"`
 
-	// An array of document attributes assigned to a document in the search results.
-	// For example, the document author (_author) or the source URI (_source_uri)
+	// An array of document fields/attributes assigned to a document in the search
+	// results. For example, the document author (_author) or the source URI (_source_uri)
 	// of the document.
 	DocumentAttributes []*DocumentAttribute `type:"list"`
 
@@ -24460,13 +24601,13 @@ type QueryResultItem struct {
 	// The identifier for the query result.
 	Id *string `min:"1" type:"string"`
 
-	// Indicates the confidence that Amazon Kendra has that a result matches the
-	// query that you provided. Each result is placed into a bin that indicates
-	// the confidence, VERY_HIGH, HIGH, MEDIUM and LOW. You can use the score to
-	// determine if a response meets the confidence needed for your application.
+	// Indicates the confidence level of Amazon Kendra providing a relevant result
+	// for the query. Each result is placed into a bin that indicates the confidence,
+	// VERY_HIGH, HIGH, MEDIUM and LOW. You can use the score to determine if a
+	// response meets the confidence needed for your application.
 	//
 	// The field is only set to LOW when the Type field is set to DOCUMENT and Amazon
-	// Kendra is not confident that the result matches the query.
+	// Kendra is not confident that the result is relevant to the query.
 	ScoreAttributes *ScoreAttributes `type:"structure"`
 
 	// An excerpt from a table within a document.
@@ -25324,6 +25465,290 @@ func (s *ResourceUnavailableException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type RetrieveInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters search results by document fields/attributes. You can only provide
+	// one attribute filter; however, the AndAllFilters, NotFilter, and OrAllFilters
+	// parameters contain a list of other filters.
+	//
+	// The AttributeFilter parameter means you can create a set of filtering rules
+	// that a document must satisfy to be included in the query results.
+	AttributeFilter *AttributeFilter `type:"structure"`
+
+	// Overrides relevance tuning configurations of fields/attributes set at the
+	// index level.
+	//
+	// If you use this API to override the relevance tuning configured at the index
+	// level, but there is no relevance tuning configured at the index level, then
+	// Amazon Kendra does not apply any relevance tuning.
+	//
+	// If there is relevance tuning configured for fields at the index level, and
+	// you use this API to override only some of these fields, then for the fields
+	// you did not override, the importance is set to 1.
+	DocumentRelevanceOverrideConfigurations []*DocumentRelevanceConfiguration `type:"list"`
+
+	// The identifier of the index to retrieve relevant passages for the search.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// Retrieved relevant passages are returned in pages the size of the PageSize
+	// parameter. By default, Amazon Kendra returns the first page of results. Use
+	// this parameter to get result pages after the first one.
+	PageNumber *int64 `type:"integer"`
+
+	// Sets the number of retrieved relevant passages that are returned in each
+	// page of results. The default page size is 10. The maximum number of results
+	// returned is 100. If you ask for more than 100 results, only 100 are returned.
+	PageSize *int64 `type:"integer"`
+
+	// The input query text to retrieve relevant passages for the search. Amazon
+	// Kendra truncates queries at 30 token words, which excludes punctuation and
+	// stop words. Truncation still applies if you use Boolean or more advanced,
+	// complex queries.
+	//
+	// QueryText is a required field
+	QueryText *string `type:"string" required:"true"`
+
+	// A list of document fields/attributes to include in the response. You can
+	// limit the response to include certain document fields. By default, all document
+	// fields are included in the response.
+	RequestedDocumentAttributes []*string `min:"1" type:"list"`
+
+	// The user context token or user and group information.
+	UserContext *UserContext `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrieveInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrieveInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetrieveInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetrieveInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.QueryText == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryText"))
+	}
+	if s.RequestedDocumentAttributes != nil && len(s.RequestedDocumentAttributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestedDocumentAttributes", 1))
+	}
+	if s.AttributeFilter != nil {
+		if err := s.AttributeFilter.Validate(); err != nil {
+			invalidParams.AddNested("AttributeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DocumentRelevanceOverrideConfigurations != nil {
+		for i, v := range s.DocumentRelevanceOverrideConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentRelevanceOverrideConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UserContext != nil {
+		if err := s.UserContext.Validate(); err != nil {
+			invalidParams.AddNested("UserContext", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeFilter sets the AttributeFilter field's value.
+func (s *RetrieveInput) SetAttributeFilter(v *AttributeFilter) *RetrieveInput {
+	s.AttributeFilter = v
+	return s
+}
+
+// SetDocumentRelevanceOverrideConfigurations sets the DocumentRelevanceOverrideConfigurations field's value.
+func (s *RetrieveInput) SetDocumentRelevanceOverrideConfigurations(v []*DocumentRelevanceConfiguration) *RetrieveInput {
+	s.DocumentRelevanceOverrideConfigurations = v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *RetrieveInput) SetIndexId(v string) *RetrieveInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetPageNumber sets the PageNumber field's value.
+func (s *RetrieveInput) SetPageNumber(v int64) *RetrieveInput {
+	s.PageNumber = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *RetrieveInput) SetPageSize(v int64) *RetrieveInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetQueryText sets the QueryText field's value.
+func (s *RetrieveInput) SetQueryText(v string) *RetrieveInput {
+	s.QueryText = &v
+	return s
+}
+
+// SetRequestedDocumentAttributes sets the RequestedDocumentAttributes field's value.
+func (s *RetrieveInput) SetRequestedDocumentAttributes(v []*string) *RetrieveInput {
+	s.RequestedDocumentAttributes = v
+	return s
+}
+
+// SetUserContext sets the UserContext field's value.
+func (s *RetrieveInput) SetUserContext(v *UserContext) *RetrieveInput {
+	s.UserContext = v
+	return s
+}
+
+type RetrieveOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of query used for the search. You also use QueryId to identify
+	// the search when using the Submitfeedback (https://docs.aws.amazon.com/kendra/latest/APIReference/API_SubmitFeedback.html)
+	// API.
+	QueryId *string `min:"1" type:"string"`
+
+	// The results of the retrieved relevant passages for the search.
+	ResultItems []*RetrieveResultItem `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrieveOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrieveOutput) GoString() string {
+	return s.String()
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *RetrieveOutput) SetQueryId(v string) *RetrieveOutput {
+	s.QueryId = &v
+	return s
+}
+
+// SetResultItems sets the ResultItems field's value.
+func (s *RetrieveOutput) SetResultItems(v []*RetrieveResultItem) *RetrieveOutput {
+	s.ResultItems = v
+	return s
+}
+
+// A single retrieved relevant passage result.
+type RetrieveResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// The contents of the relevant passage.
+	Content *string `type:"string"`
+
+	// An array of document fields/attributes assigned to a document in the search
+	// results. For example, the document author (_author) or the source URI (_source_uri)
+	// of the document.
+	DocumentAttributes []*DocumentAttribute `type:"list"`
+
+	// The identifier of the document.
+	DocumentId *string `min:"1" type:"string"`
+
+	// The title of the document.
+	DocumentTitle *string `type:"string"`
+
+	// The URI of the original location of the document.
+	DocumentURI *string `min:"1" type:"string"`
+
+	// The identifier of the relevant passage result.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrieveResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrieveResultItem) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *RetrieveResultItem) SetContent(v string) *RetrieveResultItem {
+	s.Content = &v
+	return s
+}
+
+// SetDocumentAttributes sets the DocumentAttributes field's value.
+func (s *RetrieveResultItem) SetDocumentAttributes(v []*DocumentAttribute) *RetrieveResultItem {
+	s.DocumentAttributes = v
+	return s
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *RetrieveResultItem) SetDocumentId(v string) *RetrieveResultItem {
+	s.DocumentId = &v
+	return s
+}
+
+// SetDocumentTitle sets the DocumentTitle field's value.
+func (s *RetrieveResultItem) SetDocumentTitle(v string) *RetrieveResultItem {
+	s.DocumentTitle = &v
+	return s
+}
+
+// SetDocumentURI sets the DocumentURI field's value.
+func (s *RetrieveResultItem) SetDocumentURI(v string) *RetrieveResultItem {
+	s.DocumentURI = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *RetrieveResultItem) SetId(v string) *RetrieveResultItem {
+	s.Id = &v
+	return s
 }
 
 // Provides the configuration information to connect to an Amazon S3 bucket.
@@ -26358,11 +26783,11 @@ func (s *SalesforceStandardObjectConfiguration) SetName(v string) *SalesforceSta
 }
 
 // Provides a relative ranking that indicates how confident Amazon Kendra is
-// that the response matches the query.
+// that the response is relevant to the query.
 type ScoreAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// A relative ranking for how well the response matches the query.
+	// A relative ranking for how relevant the response is to the query.
 	ScoreConfidence *string `type:"string" enum:"ScoreConfidence"`
 }
 
@@ -26475,15 +26900,15 @@ type SeedUrlConfiguration struct {
 
 	// You can choose one of the following modes:
 	//
-	//    * HOST_ONLY – crawl only the website host names. For example, if the
-	//    seed URL is "abc.example.com", then only URLs with host name "abc.example.com"
+	//    * HOST_ONLY—crawl only the website host names. For example, if the seed
+	//    URL is "abc.example.com", then only URLs with host name "abc.example.com"
 	//    are crawled.
 	//
-	//    * SUBDOMAINS – crawl the website host names with subdomains. For example,
+	//    * SUBDOMAINS—crawl the website host names with subdomains. For example,
 	//    if the seed URL is "abc.example.com", then "a.abc.example.com" and "b.abc.example.com"
 	//    are also crawled.
 	//
-	//    * EVERYTHING – crawl the website host names with subdomains and other
+	//    * EVERYTHING—crawl the website host names with subdomains and other
 	//    domains that the web pages link to.
 	//
 	// The default mode is set to HOST_ONLY.
@@ -26736,13 +27161,11 @@ type ServiceNowKnowledgeArticleConfiguration struct {
 	// field.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// A list of regular expression patterns to exclude certain attachments of knowledge
-	// articles in your ServiceNow. Item that match the patterns are excluded from
+	// A list of regular expression patterns applied to exclude certain knowledge
+	// article attachments. Attachments that match the patterns are excluded from
 	// the index. Items that don't match the patterns are included in the index.
 	// If an item matches both an inclusion and exclusion pattern, the exclusion
 	// pattern takes precedence and the item isn't included in the index.
-	//
-	// The regex is applied to the field specified in the PatternTargetField.
 	ExcludeAttachmentFilePatterns []*string `type:"list"`
 
 	// Maps attributes or field names of knoweldge articles to Amazon Kendra index
@@ -26760,13 +27183,11 @@ type ServiceNowKnowledgeArticleConfiguration struct {
 	// information, see Specifying documents to index with a query (https://docs.aws.amazon.com/kendra/latest/dg/servicenow-query.html).
 	FilterQuery *string `min:"1" type:"string"`
 
-	// A list of regular expression patterns to include certain attachments of knowledge
-	// articles in your ServiceNow. Item that match the patterns are included in
-	// the index. Items that don't match the patterns are excluded from the index.
-	// If an item matches both an inclusion and exclusion pattern, the exclusion
-	// pattern takes precedence and the item isn't included in the index.
-	//
-	// The regex is applied to the field specified in the PatternTargetField.
+	// A list of regular expression patterns applied to include knowledge article
+	// attachments. Attachments that match the patterns are included in the index.
+	// Items that don't match the patterns are excluded from the index. If an item
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the item isn't included in the index.
 	IncludeAttachmentFilePatterns []*string `type:"list"`
 }
 
@@ -30962,14 +31383,9 @@ type WebCrawlerConfiguration struct {
 	// port is 443, the standard port for HTTPS.
 	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure"`
 
-	// Specifies the number of levels in a website that you want to crawl.
-	//
-	// The first level begins from the website seed or starting point URL. For example,
-	// if a website has three levels—index level (the seed in this example), sections
-	// level, and subsections level—and you are only interested in crawling information
-	// up to the sections level (levels 0-1), you can set your depth to 1.
-	//
-	// The default crawl depth is set to 2.
+	// The 'depth' or number of levels from the seed level to crawl. For example,
+	// the seed URL page is depth 1 and any hyperlinks on this page that are also
+	// crawled are depth 2.
 	CrawlDepth *int64 `type:"integer"`
 
 	// The maximum size (in MB) of a web page or attachment to crawl.

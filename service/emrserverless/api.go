@@ -1438,8 +1438,8 @@ func (c *EMRServerless) UpdateApplicationWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
-// Information about an application. EMR Serverless uses applications to run
-// jobs.
+// Information about an application. Amazon EMR Serverless uses applications
+// to run jobs.
 type Application struct {
 	_ struct{} `type:"structure"`
 
@@ -1485,7 +1485,7 @@ type Application struct {
 	// The network configuration for customer VPC connectivity for the application.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
-	// The EMR release associated with the application.
+	// The Amazon EMR release associated with the application.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -1666,7 +1666,7 @@ type ApplicationSummary struct {
 	// The name of the application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The EMR release associated with the application.
+	// The Amazon EMR release associated with the application.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -2220,7 +2220,7 @@ type CreateApplicationInput struct {
 	// The network configuration for customer VPC connectivity.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
-	// The EMR release associated with the application.
+	// The Amazon EMR release associated with the application.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -3171,7 +3171,7 @@ func (s *JobDriver) SetSparkSubmit(v *SparkSubmit) *JobDriver {
 }
 
 // Information about a job run. A job run is a unit of work, such as a Spark
-// JAR, Hive query, or SparkSQL query, that you submit to an EMR Serverless
+// JAR, Hive query, or SparkSQL query, that you submit to an Amazon EMR Serverless
 // application.
 type JobRun struct {
 	_ struct{} `type:"structure"`
@@ -3186,10 +3186,10 @@ type JobRun struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"60" type:"string" required:"true"`
 
-	// The aggregate vCPU, memory, and storage that AWS has billed for the job run.
-	// The billed resources include a 1-minute minimum usage for workers, plus additional
-	// storage over 20 GB per worker. Note that billed resources do not include
-	// usage for idle pre-initialized workers.
+	// The aggregate vCPU, memory, and storage that Amazon Web Services has billed
+	// for the job run. The billed resources include a 1-minute minimum usage for
+	// workers, plus additional storage over 20 GB per worker. Note that billed
+	// resources do not include usage for idle pre-initialized workers.
 	BilledResourceUtilization *ResourceUtilization `locationName:"billedResourceUtilization" type:"structure"`
 
 	// The configuration settings that are used to override default configuration.
@@ -3230,7 +3230,8 @@ type JobRun struct {
 	// The network configuration for customer VPC connectivity.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
-	// The EMR release associated with the application your job is running on.
+	// The Amazon EMR release associated with the application your job is running
+	// on.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -3432,7 +3433,8 @@ type JobRunSummary struct {
 	// The optional job run name. This doesn't have to be unique.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The EMR release associated with the application your job is running on.
+	// The Amazon EMR release associated with the application your job is running
+	// on.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -5045,6 +5047,10 @@ type UpdateApplicationInput struct {
 	// The network configuration for customer VPC connectivity.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
+	// The Amazon EMR release label for the application. You can change the release
+	// label to use a different release of Amazon EMR.
+	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string"`
+
 	// The key-value pairs that specify worker type to WorkerTypeSpecificationInput.
 	// This parameter must contain all valid worker types for a Spark or Hive application.
 	// Valid worker types include Driver and Executor for Spark applications and
@@ -5083,6 +5089,9 @@ func (s *UpdateApplicationInput) Validate() error {
 	}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ReleaseLabel != nil && len(*s.ReleaseLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReleaseLabel", 1))
 	}
 	if s.AutoStopConfiguration != nil {
 		if err := s.AutoStopConfiguration.Validate(); err != nil {
@@ -5177,6 +5186,12 @@ func (s *UpdateApplicationInput) SetMaximumCapacity(v *MaximumAllowedResources) 
 // SetNetworkConfiguration sets the NetworkConfiguration field's value.
 func (s *UpdateApplicationInput) SetNetworkConfiguration(v *NetworkConfiguration) *UpdateApplicationInput {
 	s.NetworkConfiguration = v
+	return s
+}
+
+// SetReleaseLabel sets the ReleaseLabel field's value.
+func (s *UpdateApplicationInput) SetReleaseLabel(v string) *UpdateApplicationInput {
+	s.ReleaseLabel = &v
 	return s
 }
 

@@ -415,6 +415,29 @@
         "shape" : "ForbiddenException"
       } ]
     },
+    "Promote" : {
+      "name" : "Promote",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/v1/brokers/{broker-id}/promote",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "PromoteRequest"
+      },
+      "output" : {
+        "shape" : "PromoteResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      } ]
+    },
     "RebootBroker" : {
       "name" : "RebootBroker",
       "http" : {
@@ -655,7 +678,7 @@
     },
     "BrokerState" : {
       "type" : "string",
-      "enum" : [ "CREATION_IN_PROGRESS", "CREATION_FAILED", "DELETION_IN_PROGRESS", "RUNNING", "REBOOT_IN_PROGRESS", "CRITICAL_ACTION_REQUIRED" ]
+      "enum" : [ "CREATION_IN_PROGRESS", "CREATION_FAILED", "DELETION_IN_PROGRESS", "RUNNING", "REBOOT_IN_PROGRESS", "CRITICAL_ACTION_REQUIRED", "REPLICA" ]
     },
     "BrokerStorageType" : {
       "type" : "string",
@@ -843,6 +866,14 @@
           "shape" : "DeploymentMode",
           "locationName" : "deploymentMode"
         },
+        "DataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "dataReplicationMode"
+        },
+        "DataReplicationPrimaryBrokerArn" : {
+          "shape" : "__string",
+          "locationName" : "dataReplicationPrimaryBrokerArn"
+        },
         "EncryptionOptions" : {
           "shape" : "EncryptionOptions",
           "locationName" : "encryptionOptions"
@@ -990,6 +1021,14 @@
         "Users" : {
           "shape" : "__listOfUser",
           "locationName" : "users"
+        },
+        "DataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "dataReplicationMode"
+        },
+        "DataReplicationPrimaryBrokerArn" : {
+          "shape" : "__string",
+          "locationName" : "dataReplicationPrimaryBrokerArn"
         }
       },
       "required" : [ "EngineVersion", "HostInstanceType", "AutoMinorVersionUpgrade", "Users", "BrokerName", "DeploymentMode", "EngineType", "PubliclyAccessible" ]
@@ -1147,6 +1186,10 @@
         "Password" : {
           "shape" : "__string",
           "locationName" : "password"
+        },
+        "ReplicationUser" : {
+          "shape" : "__boolean",
+          "locationName" : "replicationUser"
         }
       },
       "required" : [ "Password" ]
@@ -1175,6 +1218,10 @@
           "shape" : "__string",
           "location" : "uri",
           "locationName" : "username"
+        },
+        "ReplicationUser" : {
+          "shape" : "__boolean",
+          "locationName" : "replicationUser"
         }
       },
       "required" : [ "Username", "BrokerId", "Password" ]
@@ -1182,6 +1229,38 @@
     "CreateUserResponse" : {
       "type" : "structure",
       "members" : { }
+    },
+    "DataReplicationCounterpart" : {
+      "type" : "structure",
+      "members" : {
+        "BrokerId" : {
+          "shape" : "__string",
+          "locationName" : "brokerId"
+        },
+        "Region" : {
+          "shape" : "__string",
+          "locationName" : "region"
+        }
+      },
+      "required" : [ "BrokerId", "Region" ]
+    },
+    "DataReplicationMetadataOutput" : {
+      "type" : "structure",
+      "members" : {
+        "DataReplicationCounterpart" : {
+          "shape" : "DataReplicationCounterpart",
+          "locationName" : "dataReplicationCounterpart"
+        },
+        "DataReplicationRole" : {
+          "shape" : "__string",
+          "locationName" : "dataReplicationRole"
+        }
+      },
+      "required" : [ "DataReplicationRole" ]
+    },
+    "DataReplicationMode" : {
+      "type" : "string",
+      "enum" : [ "NONE", "CRDR" ]
     },
     "DayOfWeek" : {
       "type" : "string",
@@ -1387,6 +1466,14 @@
           "shape" : "DeploymentMode",
           "locationName" : "deploymentMode"
         },
+        "DataReplicationMetadata" : {
+          "shape" : "DataReplicationMetadataOutput",
+          "locationName" : "dataReplicationMetadata"
+        },
+        "DataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "dataReplicationMode"
+        },
         "EncryptionOptions" : {
           "shape" : "EncryptionOptions",
           "locationName" : "encryptionOptions"
@@ -1418,6 +1505,14 @@
         "PendingAuthenticationStrategy" : {
           "shape" : "AuthenticationStrategy",
           "locationName" : "pendingAuthenticationStrategy"
+        },
+        "PendingDataReplicationMetadata" : {
+          "shape" : "DataReplicationMetadataOutput",
+          "locationName" : "pendingDataReplicationMetadata"
+        },
+        "PendingDataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "pendingDataReplicationMode"
         },
         "PendingEngineVersion" : {
           "shape" : "__string",
@@ -1591,6 +1686,22 @@
         "Users" : {
           "shape" : "__listOfUserSummary",
           "locationName" : "users"
+        },
+        "DataReplicationMetadata" : {
+          "shape" : "DataReplicationMetadataOutput",
+          "locationName" : "dataReplicationMetadata"
+        },
+        "DataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "dataReplicationMode"
+        },
+        "PendingDataReplicationMetadata" : {
+          "shape" : "DataReplicationMetadataOutput",
+          "locationName" : "pendingDataReplicationMetadata"
+        },
+        "PendingDataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "pendingDataReplicationMode"
         }
       }
     },
@@ -1728,6 +1839,10 @@
           "shape" : "UserPendingChanges",
           "locationName" : "pending"
         },
+        "ReplicationUser" : {
+          "shape" : "__boolean",
+          "locationName" : "replicationUser"
+        },
         "Username" : {
           "shape" : "__string",
           "locationName" : "username"
@@ -1773,6 +1888,10 @@
         "Username" : {
           "shape" : "__string",
           "locationName" : "username"
+        },
+        "ReplicationUser" : {
+          "shape" : "__boolean",
+          "locationName" : "replicationUser"
         }
       }
     },
@@ -2257,6 +2376,53 @@
         }
       }
     },
+    "PromoteInput" : {
+      "type" : "structure",
+      "members" : {
+        "Mode" : {
+          "shape" : "PromoteMode",
+          "locationName" : "mode"
+        }
+      },
+      "required" : [ "Mode" ]
+    },
+    "PromoteMode" : {
+      "type" : "string",
+      "enum" : [ "SWITCHOVER", "FAILOVER" ]
+    },
+    "PromoteOutput" : {
+      "type" : "structure",
+      "members" : {
+        "BrokerId" : {
+          "shape" : "__string",
+          "locationName" : "brokerId"
+        }
+      }
+    },
+    "PromoteRequest" : {
+      "type" : "structure",
+      "members" : {
+        "BrokerId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "broker-id"
+        },
+        "Mode" : {
+          "shape" : "PromoteMode",
+          "locationName" : "mode"
+        }
+      },
+      "required" : [ "BrokerId", "Mode" ]
+    },
+    "PromoteResponse" : {
+      "type" : "structure",
+      "members" : {
+        "BrokerId" : {
+          "shape" : "__string",
+          "locationName" : "brokerId"
+        }
+      }
+    },
     "RebootBrokerRequest" : {
       "type" : "structure",
       "members" : {
@@ -2335,6 +2501,10 @@
           "shape" : "ConfigurationId",
           "locationName" : "configuration"
         },
+        "DataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "dataReplicationMode"
+        },
         "EngineVersion" : {
           "shape" : "__string",
           "locationName" : "engineVersion"
@@ -2380,6 +2550,14 @@
           "shape" : "ConfigurationId",
           "locationName" : "configuration"
         },
+        "DataReplicationMetadata" : {
+          "shape" : "DataReplicationMetadataOutput",
+          "locationName" : "dataReplicationMetadata"
+        },
+        "DataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "dataReplicationMode"
+        },
         "EngineVersion" : {
           "shape" : "__string",
           "locationName" : "engineVersion"
@@ -2399,6 +2577,14 @@
         "MaintenanceWindowStartTime" : {
           "shape" : "WeeklyStartTime",
           "locationName" : "maintenanceWindowStartTime"
+        },
+        "PendingDataReplicationMetadata" : {
+          "shape" : "DataReplicationMetadataOutput",
+          "locationName" : "pendingDataReplicationMetadata"
+        },
+        "PendingDataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "pendingDataReplicationMode"
         },
         "SecurityGroups" : {
           "shape" : "__listOf__string",
@@ -2450,6 +2636,10 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "DataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "dataReplicationMode"
         }
       },
       "required" : [ "BrokerId" ]
@@ -2496,6 +2686,22 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "DataReplicationMetadata" : {
+          "shape" : "DataReplicationMetadataOutput",
+          "locationName" : "dataReplicationMetadata"
+        },
+        "DataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "dataReplicationMode"
+        },
+        "PendingDataReplicationMetadata" : {
+          "shape" : "DataReplicationMetadataOutput",
+          "locationName" : "pendingDataReplicationMetadata"
+        },
+        "PendingDataReplicationMode" : {
+          "shape" : "DataReplicationMode",
+          "locationName" : "pendingDataReplicationMode"
         }
       }
     },
@@ -2605,6 +2811,10 @@
         "Password" : {
           "shape" : "__string",
           "locationName" : "password"
+        },
+        "ReplicationUser" : {
+          "shape" : "__boolean",
+          "locationName" : "replicationUser"
         }
       }
     },
@@ -2632,6 +2842,10 @@
           "shape" : "__string",
           "location" : "uri",
           "locationName" : "username"
+        },
+        "ReplicationUser" : {
+          "shape" : "__boolean",
+          "locationName" : "replicationUser"
         }
       },
       "required" : [ "Username", "BrokerId" ]
@@ -2658,6 +2872,10 @@
         "Username" : {
           "shape" : "__string",
           "locationName" : "username"
+        },
+        "ReplicationUser" : {
+          "shape" : "__boolean",
+          "locationName" : "replicationUser"
         }
       },
       "required" : [ "Username", "Password" ]
@@ -2838,16 +3056,6 @@
     "__timestampUnix" : {
       "type" : "timestamp",
       "timestampFormat" : "unixTimestamp"
-    }
-  },
-  "authorizers" : {
-    "authorization_strategy" : {
-      "name" : "authorization_strategy",
-      "type" : "provided",
-      "placement" : {
-        "location" : "header",
-        "name" : "Authorization"
-      }
     }
   }
 }

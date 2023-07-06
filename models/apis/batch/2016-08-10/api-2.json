@@ -589,7 +589,8 @@
         "secrets":{"shape":"SecretList"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"},
-        "ephemeralStorage":{"shape":"EphemeralStorage"}
+        "ephemeralStorage":{"shape":"EphemeralStorage"},
+        "runtimePlatform":{"shape":"RuntimePlatform"}
       }
     },
     "ContainerOverrides":{
@@ -642,7 +643,8 @@
         "secrets":{"shape":"SecretList"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"},
-        "ephemeralStorage":{"shape":"EphemeralStorage"}
+        "ephemeralStorage":{"shape":"EphemeralStorage"},
+        "runtimePlatform":{"shape":"RuntimePlatform"}
       }
     },
     "ContainerSummary":{
@@ -1698,6 +1700,13 @@
       "members":{
         "attempts":{"shape":"Integer"},
         "evaluateOnExit":{"shape":"EvaluateOnExitList"}
+      }
+    },
+    "RuntimePlatform":{
+      "type":"structure",
+      "members":{
+        "operatingSystemFamily":{"shape":"String"},
+        "cpuArchitecture":{"shape":"String"}
       }
     },
     "SchedulingPolicyDetail":{

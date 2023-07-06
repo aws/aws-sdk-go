@@ -128,6 +128,10 @@ type RedshiftAPI interface {
 	CreateClusterSubnetGroupWithContext(aws.Context, *redshift.CreateClusterSubnetGroupInput, ...request.Option) (*redshift.CreateClusterSubnetGroupOutput, error)
 	CreateClusterSubnetGroupRequest(*redshift.CreateClusterSubnetGroupInput) (*request.Request, *redshift.CreateClusterSubnetGroupOutput)
 
+	CreateCustomDomainAssociation(*redshift.CreateCustomDomainAssociationInput) (*redshift.CreateCustomDomainAssociationOutput, error)
+	CreateCustomDomainAssociationWithContext(aws.Context, *redshift.CreateCustomDomainAssociationInput, ...request.Option) (*redshift.CreateCustomDomainAssociationOutput, error)
+	CreateCustomDomainAssociationRequest(*redshift.CreateCustomDomainAssociationInput) (*request.Request, *redshift.CreateCustomDomainAssociationOutput)
+
 	CreateEndpointAccess(*redshift.CreateEndpointAccessInput) (*redshift.CreateEndpointAccessOutput, error)
 	CreateEndpointAccessWithContext(aws.Context, *redshift.CreateEndpointAccessInput, ...request.Option) (*redshift.CreateEndpointAccessOutput, error)
 	CreateEndpointAccessRequest(*redshift.CreateEndpointAccessInput) (*request.Request, *redshift.CreateEndpointAccessOutput)
@@ -191,6 +195,10 @@ type RedshiftAPI interface {
 	DeleteClusterSubnetGroup(*redshift.DeleteClusterSubnetGroupInput) (*redshift.DeleteClusterSubnetGroupOutput, error)
 	DeleteClusterSubnetGroupWithContext(aws.Context, *redshift.DeleteClusterSubnetGroupInput, ...request.Option) (*redshift.DeleteClusterSubnetGroupOutput, error)
 	DeleteClusterSubnetGroupRequest(*redshift.DeleteClusterSubnetGroupInput) (*request.Request, *redshift.DeleteClusterSubnetGroupOutput)
+
+	DeleteCustomDomainAssociation(*redshift.DeleteCustomDomainAssociationInput) (*redshift.DeleteCustomDomainAssociationOutput, error)
+	DeleteCustomDomainAssociationWithContext(aws.Context, *redshift.DeleteCustomDomainAssociationInput, ...request.Option) (*redshift.DeleteCustomDomainAssociationOutput, error)
+	DeleteCustomDomainAssociationRequest(*redshift.DeleteCustomDomainAssociationInput) (*request.Request, *redshift.DeleteCustomDomainAssociationOutput)
 
 	DeleteEndpointAccess(*redshift.DeleteEndpointAccessInput) (*redshift.DeleteEndpointAccessOutput, error)
 	DeleteEndpointAccessWithContext(aws.Context, *redshift.DeleteEndpointAccessInput, ...request.Option) (*redshift.DeleteEndpointAccessOutput, error)
@@ -302,6 +310,13 @@ type RedshiftAPI interface {
 
 	DescribeClustersPages(*redshift.DescribeClustersInput, func(*redshift.DescribeClustersOutput, bool) bool) error
 	DescribeClustersPagesWithContext(aws.Context, *redshift.DescribeClustersInput, func(*redshift.DescribeClustersOutput, bool) bool, ...request.Option) error
+
+	DescribeCustomDomainAssociations(*redshift.DescribeCustomDomainAssociationsInput) (*redshift.DescribeCustomDomainAssociationsOutput, error)
+	DescribeCustomDomainAssociationsWithContext(aws.Context, *redshift.DescribeCustomDomainAssociationsInput, ...request.Option) (*redshift.DescribeCustomDomainAssociationsOutput, error)
+	DescribeCustomDomainAssociationsRequest(*redshift.DescribeCustomDomainAssociationsInput) (*request.Request, *redshift.DescribeCustomDomainAssociationsOutput)
+
+	DescribeCustomDomainAssociationsPages(*redshift.DescribeCustomDomainAssociationsInput, func(*redshift.DescribeCustomDomainAssociationsOutput, bool) bool) error
+	DescribeCustomDomainAssociationsPagesWithContext(aws.Context, *redshift.DescribeCustomDomainAssociationsInput, func(*redshift.DescribeCustomDomainAssociationsOutput, bool) bool, ...request.Option) error
 
 	DescribeDataShares(*redshift.DescribeDataSharesInput) (*redshift.DescribeDataSharesOutput, error)
 	DescribeDataSharesWithContext(aws.Context, *redshift.DescribeDataSharesInput, ...request.Option) (*redshift.DescribeDataSharesOutput, error)
@@ -551,6 +566,10 @@ type RedshiftAPI interface {
 	ModifyClusterSubnetGroup(*redshift.ModifyClusterSubnetGroupInput) (*redshift.ModifyClusterSubnetGroupOutput, error)
 	ModifyClusterSubnetGroupWithContext(aws.Context, *redshift.ModifyClusterSubnetGroupInput, ...request.Option) (*redshift.ModifyClusterSubnetGroupOutput, error)
 	ModifyClusterSubnetGroupRequest(*redshift.ModifyClusterSubnetGroupInput) (*request.Request, *redshift.ModifyClusterSubnetGroupOutput)
+
+	ModifyCustomDomainAssociation(*redshift.ModifyCustomDomainAssociationInput) (*redshift.ModifyCustomDomainAssociationOutput, error)
+	ModifyCustomDomainAssociationWithContext(aws.Context, *redshift.ModifyCustomDomainAssociationInput, ...request.Option) (*redshift.ModifyCustomDomainAssociationOutput, error)
+	ModifyCustomDomainAssociationRequest(*redshift.ModifyCustomDomainAssociationInput) (*request.Request, *redshift.ModifyCustomDomainAssociationOutput)
 
 	ModifyEndpointAccess(*redshift.ModifyEndpointAccessInput) (*redshift.ModifyEndpointAccessOutput, error)
 	ModifyEndpointAccessWithContext(aws.Context, *redshift.ModifyEndpointAccessInput, ...request.Option) (*redshift.ModifyEndpointAccessOutput, error)

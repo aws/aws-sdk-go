@@ -1154,6 +1154,23 @@ func (c *Connect) ClaimPhoneNumberRequest(input *ClaimPhoneNumberInput) (req *re
 // API to verify the status of a previous ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html)
 // operation.
 //
+// If you plan to claim and release numbers frequently during a 30 day period,
+// contact us for a service quota exception. Otherwise, it is possible you will
+// be blocked from claiming and releasing any more numbers until 30 days past
+// the oldest number released has expired.
+//
+// By default you can claim and release up to 200% of your maximum number of
+// active phone numbers during any 30 day period. If you claim and release phone
+// numbers using the UI or API during a rolling 30 day cycle that exceeds 200%
+// of your phone number service level quota, you will be blocked from claiming
+// any more numbers until 30 days past the oldest number released has expired.
+//
+// For example, if you already have 99 claimed numbers and a service level quota
+// of 99 phone numbers, and in any 30 day period you release 99, claim 99, and
+// then release 99, you will have exceeded the 200% limit. At that point you
+// are blocked from claiming any more numbers until you open an Amazon Web Services
+// support ticket.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2146,6 +2163,12 @@ func (c *Connect) CreateQueueRequest(input *CreateQueueInput) (req *request.Requ
 // Web Services Region associated with the traffic distribution group, you must
 // provide a full phone number ARN. If a UUID is provided in this scenario,
 // you will receive a ResourceNotFoundException.
+//
+// Only use the phone number ARN format that doesn't contain instance in the
+// path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid.
+// This is the same ARN format that is returned when you call the ListPhoneNumbersV2
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+// API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14373,6 +14396,23 @@ func (c *Connect) ReleasePhoneNumberRequest(input *ReleasePhoneNumberInput) (req
 // ended. If you accidentally release a phone number, contact Amazon Web Services
 // Support.
 //
+// If you plan to claim and release numbers frequently during a 30 day period,
+// contact us for a service quota exception. Otherwise, it is possible you will
+// be blocked from claiming and releasing any more numbers until 30 days past
+// the oldest number released has expired.
+//
+// By default you can claim and release up to 200% of your maximum number of
+// active phone numbers during any 30 day period. If you claim and release phone
+// numbers using the UI or API during a rolling 30 day cycle that exceeds 200%
+// of your phone number service level quota, you will be blocked from claiming
+// any more numbers until 30 days past the oldest number released has expired.
+//
+// For example, if you already have 99 claimed numbers and a service level quota
+// of 99 phone numbers, and in any 30 day period you release 99, claim 99, and
+// then release 99, you will have exceeded the 200% limit. At that point you
+// are blocked from claiming any more numbers until you open an Amazon Web Services
+// support ticket.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -15113,8 +15153,6 @@ func (c *Connect) SearchQueuesRequest(input *SearchQueuesInput) (req *request.Re
 
 // SearchQueues API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Searches queues in an Amazon Connect instance, with optional filtering.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -15362,6 +15400,158 @@ func (c *Connect) SearchQuickConnectsPagesWithContext(ctx aws.Context, input *Se
 	return p.Err()
 }
 
+const opSearchResourceTags = "SearchResourceTags"
+
+// SearchResourceTagsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchResourceTags operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchResourceTags for more information on using the SearchResourceTags
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchResourceTagsRequest method.
+//	req, resp := client.SearchResourceTagsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchResourceTags
+func (c *Connect) SearchResourceTagsRequest(input *SearchResourceTagsInput) (req *request.Request, output *SearchResourceTagsOutput) {
+	op := &request.Operation{
+		Name:       opSearchResourceTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-resource-tags",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchResourceTagsInput{}
+	}
+
+	output = &SearchResourceTagsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchResourceTags API operation for Amazon Connect Service.
+//
+// Searches tags used in an Amazon Connect instance using optional search criteria.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchResourceTags for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - MaximumResultReturnedException
+//     Maximum number (1000) of tags have been returned with current request. Consider
+//     changing request parameters to get more tags.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchResourceTags
+func (c *Connect) SearchResourceTags(input *SearchResourceTagsInput) (*SearchResourceTagsOutput, error) {
+	req, out := c.SearchResourceTagsRequest(input)
+	return out, req.Send()
+}
+
+// SearchResourceTagsWithContext is the same as SearchResourceTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchResourceTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchResourceTagsWithContext(ctx aws.Context, input *SearchResourceTagsInput, opts ...request.Option) (*SearchResourceTagsOutput, error) {
+	req, out := c.SearchResourceTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchResourceTagsPages iterates over the pages of a SearchResourceTags operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchResourceTags method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchResourceTags operation.
+//	pageNum := 0
+//	err := client.SearchResourceTagsPages(params,
+//	    func(page *connect.SearchResourceTagsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchResourceTagsPages(input *SearchResourceTagsInput, fn func(*SearchResourceTagsOutput, bool) bool) error {
+	return c.SearchResourceTagsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchResourceTagsPagesWithContext same as SearchResourceTagsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchResourceTagsPagesWithContext(ctx aws.Context, input *SearchResourceTagsInput, fn func(*SearchResourceTagsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchResourceTagsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchResourceTagsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchResourceTagsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchRoutingProfiles = "SearchRoutingProfiles"
 
 // SearchRoutingProfilesRequest generates a "aws/request.Request" representing the
@@ -15410,8 +15600,6 @@ func (c *Connect) SearchRoutingProfilesRequest(input *SearchRoutingProfilesInput
 }
 
 // SearchRoutingProfiles API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Searches routing profiles in an Amazon Connect instance, with optional filtering.
 //
@@ -15560,8 +15748,6 @@ func (c *Connect) SearchSecurityProfilesRequest(input *SearchSecurityProfilesInp
 }
 
 // SearchSecurityProfiles API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Searches security profiles in an Amazon Connect instance, with optional filtering.
 //
@@ -19382,6 +19568,12 @@ func (c *Connect) UpdateQueueOutboundCallerConfigRequest(input *UpdateQueueOutbo
 // Web Services Region associated with the traffic distribution group, you must
 // provide a full phone number ARN. If a UUID is provided in this scenario,
 // you will receive a ResourceNotFoundException.
+//
+// Only use the phone number ARN format that doesn't contain instance in the
+// path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid.
+// This is the same ARN format that is returned when you call the ListPhoneNumbersV2
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+// API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -36334,9 +36526,10 @@ type GetMetricDataV2Input struct {
 	//    | AGENT_HIERARCHY_LEVEL_FIVE
 	//
 	//    * Filter values: A maximum of 100 filter values are supported in a single
-	//    request. For example, a GetMetricDataV2 request can filter by 50 queues,
-	//    35 agents, and 15 routing profiles for a total of 100 filter values. VOICE,
-	//    CHAT, and TASK are valid filterValue for the CHANNEL filter key.
+	//    request. VOICE, CHAT, and TASK are valid filterValue for the CHANNEL filter
+	//    key. They do not count towards limitation of 100 filter values. For example,
+	//    a GetMetricDataV2 request can filter by 50 queues, 35 agents, and 15 routing
+	//    profiles for a total of 100 filter values, along with 3 channel filters.
 	//
 	// Filters is a required field
 	Filters []*FilterV2 `min:"1" type:"list" required:"true"`
@@ -43954,6 +44147,71 @@ func (s *ListUsersOutput) SetUserSummaryList(v []*UserSummary) *ListUsersOutput 
 	return s
 }
 
+// Maximum number (1000) of tags have been returned with current request. Consider
+// changing request parameters to get more tags.
+type MaximumResultReturnedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaximumResultReturnedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaximumResultReturnedException) GoString() string {
+	return s.String()
+}
+
+func newErrorMaximumResultReturnedException(v protocol.ResponseMetadata) error {
+	return &MaximumResultReturnedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *MaximumResultReturnedException) Code() string {
+	return "MaximumResultReturnedException"
+}
+
+// Message returns the exception's message.
+func (s *MaximumResultReturnedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *MaximumResultReturnedException) OrigErr() error {
+	return nil
+}
+
+func (s *MaximumResultReturnedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *MaximumResultReturnedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *MaximumResultReturnedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Contains information about which channels are supported, and how many contacts
 // an agent can have on a channel simultaneously.
 type MediaConcurrency struct {
@@ -47163,6 +47421,38 @@ func (s *ResourceNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The search criteria to be used to search tags.
+type ResourceTagsSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The search criteria to be used to return tags.
+	TagSearchCondition *TagSearchCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceTagsSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceTagsSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetTagSearchCondition sets the TagSearchCondition field's value.
+func (s *ResourceTagsSearchCriteria) SetTagSearchCondition(v *TagSearchCondition) *ResourceTagsSearchCriteria {
+	s.TagSearchCondition = v
+	return s
+}
+
 type ResumeContactRecordingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -49036,6 +49326,141 @@ func (s *SearchQuickConnectsOutput) SetNextToken(v string) *SearchQuickConnectsO
 // SetQuickConnects sets the QuickConnects field's value.
 func (s *SearchQuickConnectsOutput) SetQuickConnects(v []*QuickConnect) *SearchQuickConnectsOutput {
 	s.QuickConnects = v
+	return s
+}
+
+type SearchResourceTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The list of resource types to be used to search tags from. If not provided
+	// or if any empty list is provided, this API will search from all supported
+	// resource types.
+	ResourceTypes []*string `type:"list"`
+
+	// The search criteria to be used to return tags.
+	SearchCriteria *ResourceTagsSearchCriteria `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchResourceTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchResourceTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchResourceTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchResourceTagsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchResourceTagsInput) SetInstanceId(v string) *SearchResourceTagsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchResourceTagsInput) SetMaxResults(v int64) *SearchResourceTagsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchResourceTagsInput) SetNextToken(v string) *SearchResourceTagsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceTypes sets the ResourceTypes field's value.
+func (s *SearchResourceTagsInput) SetResourceTypes(v []*string) *SearchResourceTagsInput {
+	s.ResourceTypes = v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchResourceTagsInput) SetSearchCriteria(v *ResourceTagsSearchCriteria) *SearchResourceTagsInput {
+	s.SearchCriteria = v
+	return s
+}
+
+type SearchResourceTagsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of tags used in the Amazon Connect instance.
+	Tags []*TagSet `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchResourceTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchResourceTagsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchResourceTagsOutput) SetNextToken(v string) *SearchResourceTagsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SearchResourceTagsOutput) SetTags(v []*TagSet) *SearchResourceTagsOutput {
+	s.Tags = v
 	return s
 }
 
@@ -52091,6 +52516,108 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// The search criteria to be used to return tags.
+type TagSearchCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The tag key used in the tag search condition.
+	TagKey *string `locationName:"tagKey" type:"string"`
+
+	// The type of comparison to be made when evaluating the tag key in tag search
+	// condition.
+	TagKeyComparisonType *string `locationName:"tagKeyComparisonType" type:"string" enum:"StringComparisonType"`
+
+	// The tag value used in the tag search condition.
+	TagValue *string `locationName:"tagValue" type:"string"`
+
+	// The type of comparison to be made when evaluating the tag value in tag search
+	// condition.
+	TagValueComparisonType *string `locationName:"tagValueComparisonType" type:"string" enum:"StringComparisonType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagSearchCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagSearchCondition) GoString() string {
+	return s.String()
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *TagSearchCondition) SetTagKey(v string) *TagSearchCondition {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagKeyComparisonType sets the TagKeyComparisonType field's value.
+func (s *TagSearchCondition) SetTagKeyComparisonType(v string) *TagSearchCondition {
+	s.TagKeyComparisonType = &v
+	return s
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *TagSearchCondition) SetTagValue(v string) *TagSearchCondition {
+	s.TagValue = &v
+	return s
+}
+
+// SetTagValueComparisonType sets the TagValueComparisonType field's value.
+func (s *TagSearchCondition) SetTagValueComparisonType(v string) *TagSearchCondition {
+	s.TagValueComparisonType = &v
+	return s
+}
+
+// A tag set contains tag key and tag value.
+type TagSet struct {
+	_ struct{} `type:"structure"`
+
+	// The tag key in the tagSet.
+	Key *string `locationName:"key" min:"1" type:"string"`
+
+	// The tag value in the tagSet.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagSet) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *TagSet) SetKey(v string) *TagSet {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TagSet) SetValue(v string) *TagSet {
+	s.Value = &v
+	return s
 }
 
 // Information about the task action.
