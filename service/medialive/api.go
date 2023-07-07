@@ -2020,6 +2020,94 @@ func (c *MediaLive) DeleteTagsWithContext(ctx aws.Context, input *DeleteTagsInpu
 	return out, req.Send()
 }
 
+const opDescribeAccountConfiguration = "DescribeAccountConfiguration"
+
+// DescribeAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAccountConfiguration for more information on using the DescribeAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeAccountConfigurationRequest method.
+//	req, resp := client.DescribeAccountConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeAccountConfiguration
+func (c *MediaLive) DescribeAccountConfigurationRequest(input *DescribeAccountConfigurationInput) (req *request.Request, output *DescribeAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccountConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/accountConfiguration",
+	}
+
+	if input == nil {
+		input = &DescribeAccountConfigurationInput{}
+	}
+
+	output = &DescribeAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAccountConfiguration API operation for AWS Elemental MediaLive.
+//
+// # Get account configuration
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation DescribeAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - BadGatewayException
+//
+//   - GatewayTimeoutException
+//
+//   - TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeAccountConfiguration
+func (c *MediaLive) DescribeAccountConfiguration(input *DescribeAccountConfigurationInput) (*DescribeAccountConfigurationOutput, error) {
+	req, out := c.DescribeAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAccountConfigurationWithContext is the same as DescribeAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) DescribeAccountConfigurationWithContext(ctx aws.Context, input *DescribeAccountConfigurationInput, opts ...request.Option) (*DescribeAccountConfigurationOutput, error) {
+	req, out := c.DescribeAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeChannel = "DescribeChannel"
 
 // DescribeChannelRequest generates a "aws/request.Request" representing the
@@ -2975,6 +3063,98 @@ func (c *MediaLive) DescribeSchedulePagesWithContext(ctx aws.Context, input *Des
 	}
 
 	return p.Err()
+}
+
+const opDescribeThumbnails = "DescribeThumbnails"
+
+// DescribeThumbnailsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeThumbnails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeThumbnails for more information on using the DescribeThumbnails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeThumbnailsRequest method.
+//	req, resp := client.DescribeThumbnailsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeThumbnails
+func (c *MediaLive) DescribeThumbnailsRequest(input *DescribeThumbnailsInput) (req *request.Request, output *DescribeThumbnailsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeThumbnails,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/channels/{channelId}/thumbnails",
+	}
+
+	if input == nil {
+		input = &DescribeThumbnailsInput{}
+	}
+
+	output = &DescribeThumbnailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeThumbnails API operation for AWS Elemental MediaLive.
+//
+// Describe the latest thumbnails data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation DescribeThumbnails for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - BadGatewayException
+//
+//   - NotFoundException
+//
+//   - GatewayTimeoutException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeThumbnails
+func (c *MediaLive) DescribeThumbnails(input *DescribeThumbnailsInput) (*DescribeThumbnailsOutput, error) {
+	req, out := c.DescribeThumbnailsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeThumbnailsWithContext is the same as DescribeThumbnails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeThumbnails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) DescribeThumbnailsWithContext(ctx aws.Context, input *DescribeThumbnailsInput, opts ...request.Option) (*DescribeThumbnailsOutput, error) {
+	req, out := c.DescribeThumbnailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListChannels = "ListChannels"
@@ -5220,6 +5400,96 @@ func (c *MediaLive) TransferInputDeviceWithContext(ctx aws.Context, input *Trans
 	return out, req.Send()
 }
 
+const opUpdateAccountConfiguration = "UpdateAccountConfiguration"
+
+// UpdateAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAccountConfiguration for more information on using the UpdateAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAccountConfigurationRequest method.
+//	req, resp := client.UpdateAccountConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateAccountConfiguration
+func (c *MediaLive) UpdateAccountConfigurationRequest(input *UpdateAccountConfigurationInput) (req *request.Request, output *UpdateAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAccountConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/prod/accountConfiguration",
+	}
+
+	if input == nil {
+		input = &UpdateAccountConfigurationInput{}
+	}
+
+	output = &UpdateAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAccountConfiguration API operation for AWS Elemental MediaLive.
+//
+// # Update account configuration
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation UpdateAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - UnprocessableEntityException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - BadGatewayException
+//
+//   - GatewayTimeoutException
+//
+//   - TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateAccountConfiguration
+func (c *MediaLive) UpdateAccountConfiguration(input *UpdateAccountConfigurationInput) (*UpdateAccountConfigurationOutput, error) {
+	req, out := c.UpdateAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAccountConfigurationWithContext is the same as UpdateAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) UpdateAccountConfigurationWithContext(ctx aws.Context, input *UpdateAccountConfigurationInput, opts ...request.Option) (*UpdateAccountConfigurationOutput, error) {
+	req, out := c.UpdateAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateChannel = "UpdateChannel"
 
 // UpdateChannelRequest generates a "aws/request.Request" representing the
@@ -6240,6 +6510,36 @@ func (s AcceptInputDeviceTransferOutput) String() string {
 // value will be replaced with "sensitive".
 func (s AcceptInputDeviceTransferOutput) GoString() string {
 	return s.String()
+}
+
+type AccountConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AccountConfiguration) SetKmsKeyId(v string) *AccountConfiguration {
+	s.KmsKeyId = &v
+	return s
 }
 
 // Ancillary Source Settings
@@ -12247,6 +12547,58 @@ func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeAccountConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type DescribeAccountConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	AccountConfiguration *AccountConfiguration `locationName:"accountConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountConfiguration sets the AccountConfiguration field's value.
+func (s *DescribeAccountConfigurationOutput) SetAccountConfiguration(v *AccountConfiguration) *DescribeAccountConfigurationOutput {
+	s.AccountConfiguration = v
+	return s
+}
+
 type DescribeChannelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -13860,6 +14212,107 @@ func (s *DescribeScheduleOutput) SetScheduleActions(v []*ScheduleAction) *Descri
 	return s
 }
 
+type DescribeThumbnailsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ChannelId is a required field
+	ChannelId *string `location:"uri" locationName:"channelId" type:"string" required:"true"`
+
+	// PipelineId is a required field
+	PipelineId *string `location:"querystring" locationName:"pipelineId" type:"string" required:"true"`
+
+	// ThumbnailType is a required field
+	ThumbnailType *string `location:"querystring" locationName:"thumbnailType" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeThumbnailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeThumbnailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeThumbnailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeThumbnailsInput"}
+	if s.ChannelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelId"))
+	}
+	if s.ChannelId != nil && len(*s.ChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelId", 1))
+	}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.ThumbnailType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThumbnailType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelId sets the ChannelId field's value.
+func (s *DescribeThumbnailsInput) SetChannelId(v string) *DescribeThumbnailsInput {
+	s.ChannelId = &v
+	return s
+}
+
+// SetPipelineId sets the PipelineId field's value.
+func (s *DescribeThumbnailsInput) SetPipelineId(v string) *DescribeThumbnailsInput {
+	s.PipelineId = &v
+	return s
+}
+
+// SetThumbnailType sets the ThumbnailType field's value.
+func (s *DescribeThumbnailsInput) SetThumbnailType(v string) *DescribeThumbnailsInput {
+	s.ThumbnailType = &v
+	return s
+}
+
+type DescribeThumbnailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	ThumbnailDetails []*ThumbnailDetail `locationName:"thumbnailDetails" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeThumbnailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeThumbnailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetThumbnailDetails sets the ThumbnailDetails field's value.
+func (s *DescribeThumbnailsOutput) SetThumbnailDetails(v []*ThumbnailDetail) *DescribeThumbnailsOutput {
+	s.ThumbnailDetails = v
+	return s
+}
+
 // Dolby Vision81 Settings
 type DolbyVision81Settings struct {
 	_ struct{} `type:"structure"`
@@ -14964,6 +15417,9 @@ type EncoderSettings struct {
 	// OutputGroups is a required field
 	OutputGroups []*OutputGroup `locationName:"outputGroups" type:"list" required:"true"`
 
+	// Thumbnail configuration settings.
+	ThumbnailConfiguration *ThumbnailConfiguration `locationName:"thumbnailConfiguration" type:"structure"`
+
 	// Contains settings used to acquire and adjust timecode information from inputs.
 	//
 	// TimecodeConfig is a required field
@@ -15061,6 +15517,11 @@ func (s *EncoderSettings) Validate() error {
 			}
 		}
 	}
+	if s.ThumbnailConfiguration != nil {
+		if err := s.ThumbnailConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ThumbnailConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TimecodeConfig != nil {
 		if err := s.TimecodeConfig.Validate(); err != nil {
 			invalidParams.AddNested("TimecodeConfig", err.(request.ErrInvalidParams))
@@ -15140,6 +15601,12 @@ func (s *EncoderSettings) SetNielsenConfiguration(v *NielsenConfiguration) *Enco
 // SetOutputGroups sets the OutputGroups field's value.
 func (s *EncoderSettings) SetOutputGroups(v []*OutputGroup) *EncoderSettings {
 	s.OutputGroups = v
+	return s
+}
+
+// SetThumbnailConfiguration sets the ThumbnailConfiguration field's value.
+func (s *EncoderSettings) SetThumbnailConfiguration(v *ThumbnailConfiguration) *EncoderSettings {
+	s.ThumbnailConfiguration = v
 	return s
 }
 
@@ -29631,6 +30098,152 @@ func (s *TemporalFilterSettings) SetStrength(v string) *TemporalFilterSettings {
 	return s
 }
 
+// Details of a single thumbnail
+type Thumbnail struct {
+	_ struct{} `type:"structure"`
+
+	// The binary data for the latest thumbnail.
+	Body *string `locationName:"body" type:"string"`
+
+	// The content type for the latest thumbnail.
+	ContentType *string `locationName:"contentType" type:"string"`
+
+	// Thumbnail Type
+	ThumbnailType *string `locationName:"thumbnailType" type:"string" enum:"ThumbnailType"`
+
+	TimeStamp *time.Time `locationName:"timeStamp" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Thumbnail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Thumbnail) GoString() string {
+	return s.String()
+}
+
+// SetBody sets the Body field's value.
+func (s *Thumbnail) SetBody(v string) *Thumbnail {
+	s.Body = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *Thumbnail) SetContentType(v string) *Thumbnail {
+	s.ContentType = &v
+	return s
+}
+
+// SetThumbnailType sets the ThumbnailType field's value.
+func (s *Thumbnail) SetThumbnailType(v string) *Thumbnail {
+	s.ThumbnailType = &v
+	return s
+}
+
+// SetTimeStamp sets the TimeStamp field's value.
+func (s *Thumbnail) SetTimeStamp(v time.Time) *Thumbnail {
+	s.TimeStamp = &v
+	return s
+}
+
+// Thumbnail Configuration
+type ThumbnailConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Whether Thumbnail is enabled.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"ThumbnailState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThumbnailConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThumbnailConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ThumbnailConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ThumbnailConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *ThumbnailConfiguration) SetState(v string) *ThumbnailConfiguration {
+	s.State = &v
+	return s
+}
+
+// Thumbnail details for one pipeline of a running channel.
+type ThumbnailDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Pipeline ID
+	PipelineId *string `locationName:"pipelineId" type:"string"`
+
+	// thumbnails of a single pipeline
+	Thumbnails []*Thumbnail `locationName:"thumbnails" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThumbnailDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThumbnailDetail) GoString() string {
+	return s.String()
+}
+
+// SetPipelineId sets the PipelineId field's value.
+func (s *ThumbnailDetail) SetPipelineId(v string) *ThumbnailDetail {
+	s.PipelineId = &v
+	return s
+}
+
+// SetThumbnails sets the Thumbnails field's value.
+func (s *ThumbnailDetail) SetThumbnails(v []*Thumbnail) *ThumbnailDetail {
+	s.Thumbnails = v
+	return s
+}
+
 // Timecode Burnin Settings
 type TimecodeBurninSettings struct {
 	_ struct{} `type:"structure"`
@@ -30277,6 +30890,66 @@ func (s *UnprocessableEntityException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnprocessableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UpdateAccountConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	AccountConfiguration *AccountConfiguration `locationName:"accountConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// SetAccountConfiguration sets the AccountConfiguration field's value.
+func (s *UpdateAccountConfigurationInput) SetAccountConfiguration(v *AccountConfiguration) *UpdateAccountConfigurationInput {
+	s.AccountConfiguration = v
+	return s
+}
+
+type UpdateAccountConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	AccountConfiguration *AccountConfiguration `locationName:"accountConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountConfiguration sets the AccountConfiguration field's value.
+func (s *UpdateAccountConfigurationOutput) SetAccountConfiguration(v *AccountConfiguration) *UpdateAccountConfigurationOutput {
+	s.AccountConfiguration = v
+	return s
 }
 
 type UpdateChannelClassInput struct {
@@ -37313,6 +37986,40 @@ func TemporalFilterStrength_Values() []string {
 		TemporalFilterStrengthStrength14,
 		TemporalFilterStrengthStrength15,
 		TemporalFilterStrengthStrength16,
+	}
+}
+
+// Thumbnail State
+const (
+	// ThumbnailStateAuto is a ThumbnailState enum value
+	ThumbnailStateAuto = "AUTO"
+
+	// ThumbnailStateDisabled is a ThumbnailState enum value
+	ThumbnailStateDisabled = "DISABLED"
+)
+
+// ThumbnailState_Values returns all elements of the ThumbnailState enum
+func ThumbnailState_Values() []string {
+	return []string{
+		ThumbnailStateAuto,
+		ThumbnailStateDisabled,
+	}
+}
+
+// Thumbnail type.
+const (
+	// ThumbnailTypeUnspecified is a ThumbnailType enum value
+	ThumbnailTypeUnspecified = "UNSPECIFIED"
+
+	// ThumbnailTypeCurrentActive is a ThumbnailType enum value
+	ThumbnailTypeCurrentActive = "CURRENT_ACTIVE"
+)
+
+// ThumbnailType_Values returns all elements of the ThumbnailType enum
+func ThumbnailType_Values() []string {
+	return []string{
+		ThumbnailTypeUnspecified,
+		ThumbnailTypeCurrentActive,
 	}
 }
 

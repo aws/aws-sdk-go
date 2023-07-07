@@ -678,6 +678,110 @@ func (c *DatabaseMigrationService) CreateFleetAdvisorCollectorWithContext(ctx aw
 	return out, req.Send()
 }
 
+const opCreateReplicationConfig = "CreateReplicationConfig"
+
+// CreateReplicationConfigRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReplicationConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateReplicationConfig for more information on using the CreateReplicationConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateReplicationConfigRequest method.
+//	req, resp := client.CreateReplicationConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationConfig
+func (c *DatabaseMigrationService) CreateReplicationConfigRequest(input *CreateReplicationConfigInput) (req *request.Request, output *CreateReplicationConfigOutput) {
+	op := &request.Operation{
+		Name:       opCreateReplicationConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateReplicationConfigInput{}
+	}
+
+	output = &CreateReplicationConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateReplicationConfig API operation for AWS Database Migration Service.
+//
+// Creates a configuration that you can later provide to configure and start
+// an DMS Serverless replication. You can also provide options to validate the
+// configuration inputs before you start the replication.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation CreateReplicationConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//     The replication subnet group does not cover enough Availability Zones (AZs).
+//     Edit the replication subnet group and add more AZs.
+//
+//   - InvalidSubnet
+//     The subnet provided isn't valid.
+//
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationConfig
+func (c *DatabaseMigrationService) CreateReplicationConfig(input *CreateReplicationConfigInput) (*CreateReplicationConfigOutput, error) {
+	req, out := c.CreateReplicationConfigRequest(input)
+	return out, req.Send()
+}
+
+// CreateReplicationConfigWithContext is the same as CreateReplicationConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateReplicationConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) CreateReplicationConfigWithContext(ctx aws.Context, input *CreateReplicationConfigInput, opts ...request.Option) (*CreateReplicationConfigOutput, error) {
+	req, out := c.CreateReplicationConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReplicationInstance = "CreateReplicationInstance"
 
 // CreateReplicationInstanceRequest generates a "aws/request.Request" representing the
@@ -765,7 +869,7 @@ func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *Creat
 //     migration.
 //
 //   - InvalidSubnet
-//     The subnet provided is invalid.
+//     The subnet provided isn't valid.
 //
 //   - KMSKeyNotAccessibleFault
 //     DMS cannot access the KMS key.
@@ -841,6 +945,14 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *Cr
 // in the Amazon Web Services Region, otherwise the service will throw a ReplicationSubnetGroupDoesNotCoverEnoughAZs
 // exception.
 //
+// If a replication subnet group exists in your Amazon Web Services account,
+// the CreateReplicationSubnetGroup action returns the following error message:
+// The Replication Subnet Group already exists. In this case, delete the existing
+// replication subnet group. To do so, use the DeleteReplicationSubnetGroup
+// (https://docs.aws.amazon.com/en_us/dms/latest/APIReference/API_DeleteReplicationSubnetGroup.html)
+// action. Optionally, choose Subnet groups in the DMS console, then choose
+// your subnet group. Next, choose Delete from Actions.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -867,7 +979,7 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *Cr
 //     Edit the replication subnet group and add more AZs.
 //
 //   - InvalidSubnet
-//     The subnet provided is invalid.
+//     The subnet provided isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationSubnetGroup
 func (c *DatabaseMigrationService) CreateReplicationSubnetGroup(input *CreateReplicationSubnetGroupInput) (*CreateReplicationSubnetGroupOutput, error) {
@@ -1485,6 +1597,96 @@ func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabases(input *DeleteFlee
 // for more information on using Contexts.
 func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabasesWithContext(ctx aws.Context, input *DeleteFleetAdvisorDatabasesInput, opts ...request.Option) (*DeleteFleetAdvisorDatabasesOutput, error) {
 	req, out := c.DeleteFleetAdvisorDatabasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteReplicationConfig = "DeleteReplicationConfig"
+
+// DeleteReplicationConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicationConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteReplicationConfig for more information on using the DeleteReplicationConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteReplicationConfigRequest method.
+//	req, resp := client.DeleteReplicationConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationConfig
+func (c *DatabaseMigrationService) DeleteReplicationConfigRequest(input *DeleteReplicationConfigInput) (req *request.Request, output *DeleteReplicationConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteReplicationConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteReplicationConfigInput{}
+	}
+
+	output = &DeleteReplicationConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteReplicationConfig API operation for AWS Database Migration Service.
+//
+// Deletes an DMS Serverless replication configuration. This effectively deprovisions
+// any and all replications that use this configuration. You can't delete the
+// configuration for an DMS Serverless replication that is ongoing. You can
+// delete the configuration when the replication is in a non-RUNNING and non-STARTING
+// state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteReplicationConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationConfig
+func (c *DatabaseMigrationService) DeleteReplicationConfig(input *DeleteReplicationConfigInput) (*DeleteReplicationConfigOutput, error) {
+	req, out := c.DeleteReplicationConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteReplicationConfigWithContext is the same as DeleteReplicationConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteReplicationConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DeleteReplicationConfigWithContext(ctx aws.Context, input *DeleteReplicationConfigInput, opts ...request.Option) (*DeleteReplicationConfigOutput, error) {
+	req, out := c.DeleteReplicationConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4405,6 +4607,142 @@ func (c *DatabaseMigrationService) DescribeRefreshSchemasStatusWithContext(ctx a
 	return out, req.Send()
 }
 
+const opDescribeReplicationConfigs = "DescribeReplicationConfigs"
+
+// DescribeReplicationConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplicationConfigs for more information on using the DescribeReplicationConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeReplicationConfigsRequest method.
+//	req, resp := client.DescribeReplicationConfigsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationConfigs
+func (c *DatabaseMigrationService) DescribeReplicationConfigsRequest(input *DescribeReplicationConfigsInput) (req *request.Request, output *DescribeReplicationConfigsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplicationConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeReplicationConfigsInput{}
+	}
+
+	output = &DescribeReplicationConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplicationConfigs API operation for AWS Database Migration Service.
+//
+// Returns one or more existing DMS Serverless replication configurations as
+// a list of structures.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeReplicationConfigs for usage and error information.
+//
+// Returned Error Types:
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationConfigs
+func (c *DatabaseMigrationService) DescribeReplicationConfigs(input *DescribeReplicationConfigsInput) (*DescribeReplicationConfigsOutput, error) {
+	req, out := c.DescribeReplicationConfigsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplicationConfigsWithContext is the same as DescribeReplicationConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplicationConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationConfigsWithContext(ctx aws.Context, input *DescribeReplicationConfigsInput, opts ...request.Option) (*DescribeReplicationConfigsOutput, error) {
+	req, out := c.DescribeReplicationConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeReplicationConfigsPages iterates over the pages of a DescribeReplicationConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReplicationConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeReplicationConfigs operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationConfigsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeReplicationConfigsPages(input *DescribeReplicationConfigsInput, fn func(*DescribeReplicationConfigsOutput, bool) bool) error {
+	return c.DescribeReplicationConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeReplicationConfigsPagesWithContext same as DescribeReplicationConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationConfigsPagesWithContext(ctx aws.Context, input *DescribeReplicationConfigsInput, fn func(*DescribeReplicationConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeReplicationConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeReplicationConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeReplicationConfigsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeReplicationInstanceTaskLogs = "DescribeReplicationInstanceTaskLogs"
 
 // DescribeReplicationInstanceTaskLogsRequest generates a "aws/request.Request" representing the
@@ -4809,6 +5147,147 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsPagesWithConte
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeReplicationSubnetGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeReplicationTableStatistics = "DescribeReplicationTableStatistics"
+
+// DescribeReplicationTableStatisticsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationTableStatistics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplicationTableStatistics for more information on using the DescribeReplicationTableStatistics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeReplicationTableStatisticsRequest method.
+//	req, resp := client.DescribeReplicationTableStatisticsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTableStatistics
+func (c *DatabaseMigrationService) DescribeReplicationTableStatisticsRequest(input *DescribeReplicationTableStatisticsInput) (req *request.Request, output *DescribeReplicationTableStatisticsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplicationTableStatistics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeReplicationTableStatisticsInput{}
+	}
+
+	output = &DescribeReplicationTableStatisticsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplicationTableStatistics API operation for AWS Database Migration Service.
+//
+// Returns table and schema statistics for one or more provisioned replications
+// that use a given DMS Serverless replication configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeReplicationTableStatistics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTableStatistics
+func (c *DatabaseMigrationService) DescribeReplicationTableStatistics(input *DescribeReplicationTableStatisticsInput) (*DescribeReplicationTableStatisticsOutput, error) {
+	req, out := c.DescribeReplicationTableStatisticsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplicationTableStatisticsWithContext is the same as DescribeReplicationTableStatistics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplicationTableStatistics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationTableStatisticsWithContext(ctx aws.Context, input *DescribeReplicationTableStatisticsInput, opts ...request.Option) (*DescribeReplicationTableStatisticsOutput, error) {
+	req, out := c.DescribeReplicationTableStatisticsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeReplicationTableStatisticsPages iterates over the pages of a DescribeReplicationTableStatistics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReplicationTableStatistics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTableStatistics operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTableStatisticsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTableStatisticsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeReplicationTableStatisticsPages(input *DescribeReplicationTableStatisticsInput, fn func(*DescribeReplicationTableStatisticsOutput, bool) bool) error {
+	return c.DescribeReplicationTableStatisticsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeReplicationTableStatisticsPagesWithContext same as DescribeReplicationTableStatisticsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationTableStatisticsPagesWithContext(ctx aws.Context, input *DescribeReplicationTableStatisticsInput, fn func(*DescribeReplicationTableStatisticsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeReplicationTableStatisticsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeReplicationTableStatisticsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeReplicationTableStatisticsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5366,6 +5845,142 @@ func (c *DatabaseMigrationService) DescribeReplicationTasksPagesWithContext(ctx 
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeReplicationTasksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeReplications = "DescribeReplications"
+
+// DescribeReplicationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplications operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplications for more information on using the DescribeReplications
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeReplicationsRequest method.
+//	req, resp := client.DescribeReplicationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplications
+func (c *DatabaseMigrationService) DescribeReplicationsRequest(input *DescribeReplicationsInput) (req *request.Request, output *DescribeReplicationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplications,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeReplicationsInput{}
+	}
+
+	output = &DescribeReplicationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplications API operation for AWS Database Migration Service.
+//
+// Provides details on replication progress by returning status information
+// for one or more provisioned DMS Serverless replications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeReplications for usage and error information.
+//
+// Returned Error Types:
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplications
+func (c *DatabaseMigrationService) DescribeReplications(input *DescribeReplicationsInput) (*DescribeReplicationsOutput, error) {
+	req, out := c.DescribeReplicationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplicationsWithContext is the same as DescribeReplications with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplications for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationsWithContext(ctx aws.Context, input *DescribeReplicationsInput, opts ...request.Option) (*DescribeReplicationsOutput, error) {
+	req, out := c.DescribeReplicationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeReplicationsPages iterates over the pages of a DescribeReplications operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReplications method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeReplications operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeReplicationsPages(input *DescribeReplicationsInput, fn func(*DescribeReplicationsOutput, bool) bool) error {
+	return c.DescribeReplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeReplicationsPagesWithContext same as DescribeReplicationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationsPagesWithContext(ctx aws.Context, input *DescribeReplicationsInput, fn func(*DescribeReplicationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeReplicationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeReplicationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeReplicationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6027,6 +6642,111 @@ func (c *DatabaseMigrationService) ModifyEventSubscriptionWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+const opModifyReplicationConfig = "ModifyReplicationConfig"
+
+// ModifyReplicationConfigRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyReplicationConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyReplicationConfig for more information on using the ModifyReplicationConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyReplicationConfigRequest method.
+//	req, resp := client.ModifyReplicationConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationConfig
+func (c *DatabaseMigrationService) ModifyReplicationConfigRequest(input *ModifyReplicationConfigInput) (req *request.Request, output *ModifyReplicationConfigOutput) {
+	op := &request.Operation{
+		Name:       opModifyReplicationConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyReplicationConfigInput{}
+	}
+
+	output = &ModifyReplicationConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyReplicationConfig API operation for AWS Database Migration Service.
+//
+// Modifies an existing DMS Serverless replication configuration that you can
+// use to start a replication. This command includes input validation and logic
+// to check the state of any replication that uses this configuration. You can
+// only modify a replication configuration before any replication that uses
+// it has started. As soon as you have initially started a replication with
+// a given configuiration, you can't modify that configuration, even if you
+// stop it.
+//
+// Other run statuses that allow you to run this command include FAILED and
+// CREATED. A provisioning state that allows you to run this command is FAILED_PROVISION.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation ModifyReplicationConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//     The replication subnet group does not cover enough Availability Zones (AZs).
+//     Edit the replication subnet group and add more AZs.
+//
+//   - InvalidSubnet
+//     The subnet provided isn't valid.
+//
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationConfig
+func (c *DatabaseMigrationService) ModifyReplicationConfig(input *ModifyReplicationConfigInput) (*ModifyReplicationConfigOutput, error) {
+	req, out := c.ModifyReplicationConfigRequest(input)
+	return out, req.Send()
+}
+
+// ModifyReplicationConfigWithContext is the same as ModifyReplicationConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyReplicationConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) ModifyReplicationConfigWithContext(ctx aws.Context, input *ModifyReplicationConfigInput, opts ...request.Option) (*ModifyReplicationConfigOutput, error) {
+	req, out := c.ModifyReplicationConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyReplicationInstance = "ModifyReplicationInstance"
 
 // ModifyReplicationInstanceRequest generates a "aws/request.Request" representing the
@@ -6200,7 +6920,7 @@ func (c *DatabaseMigrationService) ModifyReplicationSubnetGroupRequest(input *Mo
 //     Edit the replication subnet group and add more AZs.
 //
 //   - InvalidSubnet
-//     The subnet provided is invalid.
+//     The subnet provided isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationSubnetGroup
 func (c *DatabaseMigrationService) ModifyReplicationSubnetGroup(input *ModifyReplicationSubnetGroupInput) (*ModifyReplicationSubnetGroupOutput, error) {
@@ -6589,6 +7309,93 @@ func (c *DatabaseMigrationService) RefreshSchemasWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opReloadReplicationTables = "ReloadReplicationTables"
+
+// ReloadReplicationTablesRequest generates a "aws/request.Request" representing the
+// client's request for the ReloadReplicationTables operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ReloadReplicationTables for more information on using the ReloadReplicationTables
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ReloadReplicationTablesRequest method.
+//	req, resp := client.ReloadReplicationTablesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReloadReplicationTables
+func (c *DatabaseMigrationService) ReloadReplicationTablesRequest(input *ReloadReplicationTablesInput) (req *request.Request, output *ReloadReplicationTablesOutput) {
+	op := &request.Operation{
+		Name:       opReloadReplicationTables,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ReloadReplicationTablesInput{}
+	}
+
+	output = &ReloadReplicationTablesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ReloadReplicationTables API operation for AWS Database Migration Service.
+//
+// Reloads the target database table with the source data for a given DMS Serverless
+// replication configuration.
+//
+// You can only use this operation with a task in the RUNNING state, otherwise
+// the service will throw an InvalidResourceStateFault exception.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation ReloadReplicationTables for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReloadReplicationTables
+func (c *DatabaseMigrationService) ReloadReplicationTables(input *ReloadReplicationTablesInput) (*ReloadReplicationTablesOutput, error) {
+	req, out := c.ReloadReplicationTablesRequest(input)
+	return out, req.Send()
+}
+
+// ReloadReplicationTablesWithContext is the same as ReloadReplicationTables with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ReloadReplicationTables for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) ReloadReplicationTablesWithContext(ctx aws.Context, input *ReloadReplicationTablesInput, opts ...request.Option) (*ReloadReplicationTablesOutput, error) {
+	req, out := c.ReloadReplicationTablesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opReloadTables = "ReloadTables"
 
 // ReloadTablesRequest generates a "aws/request.Request" representing the
@@ -6932,6 +7739,96 @@ func (c *DatabaseMigrationService) StartRecommendationsWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opStartReplication = "StartReplication"
+
+// StartReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StartReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartReplication for more information on using the StartReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartReplicationRequest method.
+//	req, resp := client.StartReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplication
+func (c *DatabaseMigrationService) StartReplicationRequest(input *StartReplicationInput) (req *request.Request, output *StartReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStartReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartReplicationInput{}
+	}
+
+	output = &StartReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartReplication API operation for AWS Database Migration Service.
+//
+// For a given DMS Serverless replication configuration, DMS connects to the
+// source endpoint and collects the metadata to analyze the replication workload.
+// Using this metadata, DMS then computes and provisions the required capacity
+// and starts replicating to the target endpoint using the server resources
+// that DMS has provisioned for the DMS Serverless replication.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation StartReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplication
+func (c *DatabaseMigrationService) StartReplication(input *StartReplicationInput) (*StartReplicationOutput, error) {
+	req, out := c.StartReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StartReplicationWithContext is the same as StartReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) StartReplicationWithContext(ctx aws.Context, input *StartReplicationInput, opts ...request.Option) (*StartReplicationOutput, error) {
+	req, out := c.StartReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartReplicationTask = "StartReplicationTask"
 
 // StartReplicationTaskRequest generates a "aws/request.Request" representing the
@@ -7236,6 +8133,94 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRun(input *Star
 // for more information on using Contexts.
 func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRunWithContext(ctx aws.Context, input *StartReplicationTaskAssessmentRunInput, opts ...request.Option) (*StartReplicationTaskAssessmentRunOutput, error) {
 	req, out := c.StartReplicationTaskAssessmentRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopReplication = "StopReplication"
+
+// StopReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StopReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopReplication for more information on using the StopReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopReplicationRequest method.
+//	req, resp := client.StopReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopReplication
+func (c *DatabaseMigrationService) StopReplicationRequest(input *StopReplicationInput) (req *request.Request, output *StopReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStopReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopReplicationInput{}
+	}
+
+	output = &StopReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopReplication API operation for AWS Database Migration Service.
+//
+// For a given DMS Serverless replication configuration, DMS stops any and all
+// ongoing DMS Serverless replications. This command doesn't deprovision the
+// stopped replications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation StopReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopReplication
+func (c *DatabaseMigrationService) StopReplication(input *StopReplicationInput) (*StopReplicationOutput, error) {
+	req, out := c.StopReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StopReplicationWithContext is the same as StopReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) StopReplicationWithContext(ctx aws.Context, input *StopReplicationInput, opts ...request.Option) (*StopReplicationOutput, error) {
+	req, out := c.StopReplicationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8507,6 +9492,153 @@ func (s *CollectorShortInfoResponse) SetCollectorReferencedId(v string) *Collect
 	return s
 }
 
+// Configuration parameters for provisioning an DMS Serverless replication.
+type ComputeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Availability Zone where the DMS Serverless replication using this configuration
+	// will run. The default value is a random, system-chosen Availability Zone
+	// in the configuration's Amazon Web Services Region, for example, "us-west-2".
+	// You can't set this parameter if the MultiAZ parameter is set to true.
+	AvailabilityZone *string `type:"string"`
+
+	// A list of custom DNS name servers supported for the DMS Serverless replication
+	// to access your source or target database. This list overrides the default
+	// name servers supported by the DMS Serverless replication. You can specify
+	// a comma-separated list of internet addresses for up to four DNS name servers.
+	// For example: "1.1.1.1,2.2.2.2,3.3.3.3,4.4.4.4"
+	DnsNameServers *string `type:"string"`
+
+	// An Key Management Service (KMS) key Amazon Resource Name (ARN) that is used
+	// to encrypt the data during DMS Serverless replication.
+	//
+	// If you don't specify a value for the KmsKeyId parameter, DMS uses your default
+	// encryption key.
+	//
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
+	KmsKeyId *string `type:"string"`
+
+	// Specifies the maximum value of the DMS capacity units (DCUs) for which a
+	// given DMS Serverless replication can be provisioned. A single DCU is 2GB
+	// of RAM, with 2 DCUs as the minimum value allowed. The list of valid DCU values
+	// includes 2, 4, 8, 16, 32, 64, 128, 192, 256, and 384. So, the maximum value
+	// that you can specify for DMS Serverless is 384. The MaxCapacityUnits parameter
+	// is the only DCU parameter you are required to specify.
+	MaxCapacityUnits *int64 `type:"integer"`
+
+	// Specifies the minimum value of the DMS capacity units (DCUs) for which a
+	// given DMS Serverless replication can be provisioned. A single DCU is 2GB
+	// of RAM, with 2 DCUs as the minimum value allowed. The list of valid DCU values
+	// includes 2, 4, 8, 16, 32, 64, 128, 192, 256, and 384. So, the minimum DCU
+	// value that you can specify for DMS Serverless is 2. You don't have to specify
+	// a value for the MinCapacityUnits parameter. If you don't set this value,
+	// DMS scans the current activity of available source tables to identify an
+	// optimum setting for this parameter. If there is no current source activity
+	// or DMS can't otherwise identify a more appropriate value, it sets this parameter
+	// to the minimum DCU value allowed, 2.
+	MinCapacityUnits *int64 `type:"integer"`
+
+	// Specifies whether the DMS Serverless replication is a Multi-AZ deployment.
+	// You can't set the AvailabilityZone parameter if the MultiAZ parameter is
+	// set to true.
+	MultiAZ *bool `type:"boolean"`
+
+	// The weekly time range during which system maintenance can occur for the DMS
+	// Serverless replication, in Universal Coordinated Time (UTC). The format is
+	// ddd:hh24:mi-ddd:hh24:mi.
+	//
+	// The default is a 30-minute window selected at random from an 8-hour block
+	// of time per Amazon Web Services Region. This maintenance occurs on a random
+	// day of the week. Valid values for days of the week include Mon, Tue, Wed,
+	// Thu, Fri, Sat, and Sun.
+	//
+	// Constraints include a minimum 30-minute window.
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Specifies a subnet group identifier to associate with the DMS Serverless
+	// replication.
+	ReplicationSubnetGroupId *string `type:"string"`
+
+	// Specifies the virtual private cloud (VPC) security group to use with the
+	// DMS Serverless replication. The VPC security group must work with the VPC
+	// containing the replication.
+	VpcSecurityGroupIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComputeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComputeConfig) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ComputeConfig) SetAvailabilityZone(v string) *ComputeConfig {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetDnsNameServers sets the DnsNameServers field's value.
+func (s *ComputeConfig) SetDnsNameServers(v string) *ComputeConfig {
+	s.DnsNameServers = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ComputeConfig) SetKmsKeyId(v string) *ComputeConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMaxCapacityUnits sets the MaxCapacityUnits field's value.
+func (s *ComputeConfig) SetMaxCapacityUnits(v int64) *ComputeConfig {
+	s.MaxCapacityUnits = &v
+	return s
+}
+
+// SetMinCapacityUnits sets the MinCapacityUnits field's value.
+func (s *ComputeConfig) SetMinCapacityUnits(v int64) *ComputeConfig {
+	s.MinCapacityUnits = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ComputeConfig) SetMultiAZ(v bool) *ComputeConfig {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *ComputeConfig) SetPreferredMaintenanceWindow(v string) *ComputeConfig {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetReplicationSubnetGroupId sets the ReplicationSubnetGroupId field's value.
+func (s *ComputeConfig) SetReplicationSubnetGroupId(v string) *ComputeConfig {
+	s.ReplicationSubnetGroupId = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *ComputeConfig) SetVpcSecurityGroupIds(v []*string) *ComputeConfig {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 // Status of the connection between an endpoint and a replication instance,
 // including Amazon Resource Names (ARNs) and the last error message issued.
 type Connection struct {
@@ -8797,6 +9929,9 @@ type CreateEndpointInput struct {
 	// One or more tags to be assigned to the endpoint.
 	Tags []*Tag `type:"list"`
 
+	// Settings in JSON format for the target Amazon Timestream endpoint.
+	TimestreamSettings *TimestreamSettings `type:"structure"`
+
 	// The user name to be used to log in to the endpoint database.
 	Username *string `type:"string"`
 }
@@ -8849,6 +9984,11 @@ func (s *CreateEndpointInput) Validate() error {
 	if s.RedisSettings != nil {
 		if err := s.RedisSettings.Validate(); err != nil {
 			invalidParams.AddNested("RedisSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimestreamSettings != nil {
+		if err := s.TimestreamSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimestreamSettings", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -9053,6 +10193,12 @@ func (s *CreateEndpointInput) SetSybaseSettings(v *SybaseSettings) *CreateEndpoi
 // SetTags sets the Tags field's value.
 func (s *CreateEndpointInput) SetTags(v []*Tag) *CreateEndpointInput {
 	s.Tags = v
+	return s
+}
+
+// SetTimestreamSettings sets the TimestreamSettings field's value.
+func (s *CreateEndpointInput) SetTimestreamSettings(v *TimestreamSettings) *CreateEndpointInput {
+	s.TimestreamSettings = v
 	return s
 }
 
@@ -9397,6 +10543,218 @@ func (s *CreateFleetAdvisorCollectorOutput) SetServiceAccessRoleArn(v string) *C
 	return s
 }
 
+type CreateReplicationConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration parameters for provisioning an DMS Serverless replication.
+	//
+	// ComputeConfig is a required field
+	ComputeConfig *ComputeConfig `type:"structure" required:"true"`
+
+	// A unique identifier that you want to use to create a ReplicationConfigArn
+	// that is returned as part of the output from this action. You can then pass
+	// this output ReplicationConfigArn as the value of the ReplicationConfigArn
+	// option for other actions to identify both DMS Serverless replications and
+	// replication configurations that you want those actions to operate on. For
+	// some actions, you can also use either this unique identifier or a corresponding
+	// ARN in action filters to identify the specific replication and replication
+	// configuration to operate on.
+	//
+	// ReplicationConfigIdentifier is a required field
+	ReplicationConfigIdentifier *string `type:"string" required:"true"`
+
+	// Optional JSON settings for DMS Serverless replications that are provisioned
+	// using this replication configuration. For example, see Change processing
+	// tuning settings (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.ChangeProcessingTuning.html).
+	ReplicationSettings *string `type:"string"`
+
+	// The type of DMS Serverless replication to provision using this replication
+	// configuration.
+	//
+	// Possible values:
+	//
+	//    * "full-load"
+	//
+	//    * "cdc"
+	//
+	//    * "full-load-and-cdc"
+	//
+	// ReplicationType is a required field
+	ReplicationType *string `type:"string" required:"true" enum:"MigrationTypeValue"`
+
+	// Optional unique value or name that you set for a given resource that can
+	// be used to construct an Amazon Resource Name (ARN) for that resource. For
+	// more information, see Fine-grained access control using resource names and
+	// tags (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#CHAP_Security.FineGrainedAccess).
+	ResourceIdentifier *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the source endpoint for this DMS Serverless
+	// replication configuration.
+	//
+	// SourceEndpointArn is a required field
+	SourceEndpointArn *string `type:"string" required:"true"`
+
+	// Optional JSON settings for specifying supplemental data. For more information,
+	// see Specifying supplemental data for task settings (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.TaskData.html).
+	SupplementalSettings *string `type:"string"`
+
+	// JSON table mappings for DMS Serverless replications that are provisioned
+	// using this replication configuration. For more information, see Specifying
+	// table selection and transformations rules using JSON (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.html).
+	//
+	// TableMappings is a required field
+	TableMappings *string `type:"string" required:"true"`
+
+	// One or more optional tags associated with resources used by the DMS Serverless
+	// replication. For more information, see Tagging resources in Database Migration
+	// Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tagging.html).
+	Tags []*Tag `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the target endpoint for this DMS serverless
+	// replication configuration.
+	//
+	// TargetEndpointArn is a required field
+	TargetEndpointArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReplicationConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReplicationConfigInput"}
+	if s.ComputeConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComputeConfig"))
+	}
+	if s.ReplicationConfigIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigIdentifier"))
+	}
+	if s.ReplicationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationType"))
+	}
+	if s.SourceEndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceEndpointArn"))
+	}
+	if s.TableMappings == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableMappings"))
+	}
+	if s.TargetEndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetEndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComputeConfig sets the ComputeConfig field's value.
+func (s *CreateReplicationConfigInput) SetComputeConfig(v *ComputeConfig) *CreateReplicationConfigInput {
+	s.ComputeConfig = v
+	return s
+}
+
+// SetReplicationConfigIdentifier sets the ReplicationConfigIdentifier field's value.
+func (s *CreateReplicationConfigInput) SetReplicationConfigIdentifier(v string) *CreateReplicationConfigInput {
+	s.ReplicationConfigIdentifier = &v
+	return s
+}
+
+// SetReplicationSettings sets the ReplicationSettings field's value.
+func (s *CreateReplicationConfigInput) SetReplicationSettings(v string) *CreateReplicationConfigInput {
+	s.ReplicationSettings = &v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *CreateReplicationConfigInput) SetReplicationType(v string) *CreateReplicationConfigInput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateReplicationConfigInput) SetResourceIdentifier(v string) *CreateReplicationConfigInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetSourceEndpointArn sets the SourceEndpointArn field's value.
+func (s *CreateReplicationConfigInput) SetSourceEndpointArn(v string) *CreateReplicationConfigInput {
+	s.SourceEndpointArn = &v
+	return s
+}
+
+// SetSupplementalSettings sets the SupplementalSettings field's value.
+func (s *CreateReplicationConfigInput) SetSupplementalSettings(v string) *CreateReplicationConfigInput {
+	s.SupplementalSettings = &v
+	return s
+}
+
+// SetTableMappings sets the TableMappings field's value.
+func (s *CreateReplicationConfigInput) SetTableMappings(v string) *CreateReplicationConfigInput {
+	s.TableMappings = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateReplicationConfigInput) SetTags(v []*Tag) *CreateReplicationConfigInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetEndpointArn sets the TargetEndpointArn field's value.
+func (s *CreateReplicationConfigInput) SetTargetEndpointArn(v string) *CreateReplicationConfigInput {
+	s.TargetEndpointArn = &v
+	return s
+}
+
+type CreateReplicationConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration parameters returned from the DMS Serverless replication after
+	// it is created.
+	ReplicationConfig *ReplicationConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationConfig sets the ReplicationConfig field's value.
+func (s *CreateReplicationConfigOutput) SetReplicationConfig(v *ReplicationConfig) *CreateReplicationConfigOutput {
+	s.ReplicationConfig = v
+	return s
+}
+
 type CreateReplicationInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9421,7 +10779,7 @@ type CreateReplicationInstanceInput struct {
 
 	// The Availability Zone where the replication instance will be created. The
 	// default value is a random, system-chosen Availability Zone in the endpoint's
-	// Amazon Web Services Region, for example: us-east-1d
+	// Amazon Web Services Region, for example: us-east-1d.
 	AvailabilityZone *string `type:"string"`
 
 	// A list of custom DNS name servers supported for the replication instance
@@ -9481,8 +10839,8 @@ type CreateReplicationInstanceInput struct {
 	// class dms.c4.large, set this parameter to "dms.c4.large".
 	//
 	// For more information on the settings and capacities for the available replication
-	// instance classes, see Selecting the right DMS replication instance for your
-	// migration (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.html#CHAP_ReplicationInstance.InDepth).
+	// instance classes, see Choosing the right DMS replication instance (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.Types.html);
+	// and, Selecting the best size for a replication instance (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_BestPractices.SizingReplicationInstance.html).
 	//
 	// ReplicationInstanceClass is a required field
 	ReplicationInstanceClass *string `type:"string" required:"true"`
@@ -10767,6 +12125,84 @@ func (s *DeleteFleetAdvisorDatabasesOutput) SetDatabaseIds(v []*string) *DeleteF
 	return s
 }
 
+type DeleteReplicationConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The replication config to delete.
+	//
+	// ReplicationConfigArn is a required field
+	ReplicationConfigArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReplicationConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReplicationConfigInput"}
+	if s.ReplicationConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *DeleteReplicationConfigInput) SetReplicationConfigArn(v string) *DeleteReplicationConfigInput {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+type DeleteReplicationConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration parameters returned for the DMS Serverless replication after
+	// it is deleted.
+	ReplicationConfig *ReplicationConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationConfig sets the ReplicationConfig field's value.
+func (s *DeleteReplicationConfigOutput) SetReplicationConfig(v *ReplicationConfig) *DeleteReplicationConfigOutput {
+	s.ReplicationConfig = v
+	return s
+}
+
 type DeleteReplicationInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11520,7 +12956,7 @@ func (s *DescribeConnectionsOutput) SetMarker(v string) *DescribeConnectionsOutp
 type DescribeEndpointSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The databse engine used for your source or target endpoint.
+	// The database engine used for your source or target endpoint.
 	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
@@ -13404,6 +14840,122 @@ func (s *DescribeRefreshSchemasStatusOutput) SetRefreshSchemasStatus(v *RefreshS
 	return s
 }
 
+type DescribeReplicationConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters applied to the replication configs.
+	Filters []*Filter `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationConfigsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReplicationConfigsInput) SetFilters(v []*Filter) *DescribeReplicationConfigsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationConfigsInput) SetMarker(v string) *DescribeReplicationConfigsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationConfigsInput) SetMaxRecords(v int64) *DescribeReplicationConfigsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeReplicationConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// Returned configuration parameters that describe each provisioned DMS Serverless
+	// replication.
+	ReplicationConfigs []*ReplicationConfig `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationConfigsOutput) SetMarker(v string) *DescribeReplicationConfigsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationConfigs sets the ReplicationConfigs field's value.
+func (s *DescribeReplicationConfigsOutput) SetReplicationConfigs(v []*ReplicationConfig) *DescribeReplicationConfigsOutput {
+	s.ReplicationConfigs = v
+	return s
+}
+
 type DescribeReplicationInstanceTaskLogsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13768,6 +15320,145 @@ func (s *DescribeReplicationSubnetGroupsOutput) SetMarker(v string) *DescribeRep
 // SetReplicationSubnetGroups sets the ReplicationSubnetGroups field's value.
 func (s *DescribeReplicationSubnetGroupsOutput) SetReplicationSubnetGroups(v []*ReplicationSubnetGroup) *DescribeReplicationSubnetGroupsOutput {
 	s.ReplicationSubnetGroups = v
+	return s
+}
+
+type DescribeReplicationTableStatisticsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters applied to the replication table statistics.
+	Filters []*Filter `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+
+	// The replication config to describe.
+	//
+	// ReplicationConfigArn is a required field
+	ReplicationConfigArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTableStatisticsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTableStatisticsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationTableStatisticsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationTableStatisticsInput"}
+	if s.ReplicationConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigArn"))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReplicationTableStatisticsInput) SetFilters(v []*Filter) *DescribeReplicationTableStatisticsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationTableStatisticsInput) SetMarker(v string) *DescribeReplicationTableStatisticsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationTableStatisticsInput) SetMaxRecords(v int64) *DescribeReplicationTableStatisticsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *DescribeReplicationTableStatisticsInput) SetReplicationConfigArn(v string) *DescribeReplicationTableStatisticsInput {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+type DescribeReplicationTableStatisticsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The Amazon Resource Name of the replication config.
+	ReplicationConfigArn *string `type:"string"`
+
+	// Returns table statistics on the replication, including table name, rows inserted,
+	// rows updated, and rows deleted.
+	ReplicationTableStatistics []*TableStatistics `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTableStatisticsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTableStatisticsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationTableStatisticsOutput) SetMarker(v string) *DescribeReplicationTableStatisticsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *DescribeReplicationTableStatisticsOutput) SetReplicationConfigArn(v string) *DescribeReplicationTableStatisticsOutput {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+// SetReplicationTableStatistics sets the ReplicationTableStatistics field's value.
+func (s *DescribeReplicationTableStatisticsOutput) SetReplicationTableStatistics(v []*TableStatistics) *DescribeReplicationTableStatisticsOutput {
+	s.ReplicationTableStatistics = v
 	return s
 }
 
@@ -14254,6 +15945,121 @@ func (s *DescribeReplicationTasksOutput) SetReplicationTasks(v []*ReplicationTas
 	return s
 }
 
+type DescribeReplicationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters applied to the replications.
+	Filters []*Filter `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReplicationsInput) SetFilters(v []*Filter) *DescribeReplicationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationsInput) SetMarker(v string) *DescribeReplicationsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationsInput) SetMaxRecords(v int64) *DescribeReplicationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeReplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The replication descriptions.
+	Replications []*Replication `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationsOutput) SetMarker(v string) *DescribeReplicationsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplications sets the Replications field's value.
+func (s *DescribeReplicationsOutput) SetReplications(v []*Replication) *DescribeReplicationsOutput {
+	s.Replications = v
+	return s
+}
+
 type DescribeSchemasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14599,6 +16405,16 @@ type DocDbSettings struct {
 	// The port value for the DocumentDB source endpoint.
 	Port *int64 `type:"integer"`
 
+	// If true, DMS replicates data to shard collections. DMS only uses this setting
+	// if the target endpoint is a DocumentDB elastic cluster.
+	//
+	// When this setting is true, note the following:
+	//
+	//    * You must set TargetTablePrepMode to nothing.
+	//
+	//    * DMS automatically sets useUpdateLookup to false.
+	ReplicateShardCollections *bool `type:"boolean"`
+
 	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
 	// the trusted entity and grants the required permissions to access the value
 	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
@@ -14621,6 +16437,12 @@ type DocDbSettings struct {
 
 	// The name of the server on the DocumentDB source endpoint.
 	ServerName *string `type:"string"`
+
+	// If true, DMS retrieves the entire document from the DocumentDB source during
+	// migration. This may cause a migration failure if the server response exceeds
+	// bandwidth limits. To fetch only updates and deletes during migration, set
+	// this parameter to false.
+	UseUpdateLookUp *bool `type:"boolean"`
 
 	// The user name you use to access the DocumentDB source endpoint.
 	Username *string `type:"string"`
@@ -14686,6 +16508,12 @@ func (s *DocDbSettings) SetPort(v int64) *DocDbSettings {
 	return s
 }
 
+// SetReplicateShardCollections sets the ReplicateShardCollections field's value.
+func (s *DocDbSettings) SetReplicateShardCollections(v bool) *DocDbSettings {
+	s.ReplicateShardCollections = &v
+	return s
+}
+
 // SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
 func (s *DocDbSettings) SetSecretsManagerAccessRoleArn(v string) *DocDbSettings {
 	s.SecretsManagerAccessRoleArn = &v
@@ -14701,6 +16529,12 @@ func (s *DocDbSettings) SetSecretsManagerSecretId(v string) *DocDbSettings {
 // SetServerName sets the ServerName field's value.
 func (s *DocDbSettings) SetServerName(v string) *DocDbSettings {
 	s.ServerName = &v
+	return s
+}
+
+// SetUseUpdateLookUp sets the UseUpdateLookUp field's value.
+func (s *DocDbSettings) SetUseUpdateLookUp(v bool) *DocDbSettings {
+	s.UseUpdateLookUp = &v
 	return s
 }
 
@@ -15004,6 +16838,10 @@ type Endpoint struct {
 	// see the SybaseSettings structure.
 	SybaseSettings *SybaseSettings `type:"structure"`
 
+	// The settings for the Amazon Timestream target endpoint. For more information,
+	// see the TimestreamSettings structure.
+	TimestreamSettings *TimestreamSettings `type:"structure"`
+
 	// The user name used to connect to the endpoint.
 	Username *string `type:"string"`
 }
@@ -15227,6 +17065,12 @@ func (s *Endpoint) SetStatus(v string) *Endpoint {
 // SetSybaseSettings sets the SybaseSettings field's value.
 func (s *Endpoint) SetSybaseSettings(v *SybaseSettings) *Endpoint {
 	s.SybaseSettings = v
+	return s
+}
+
+// SetTimestreamSettings sets the TimestreamSettings field's value.
+func (s *Endpoint) SetTimestreamSettings(v *TimestreamSettings) *Endpoint {
+	s.TimestreamSettings = v
 	return s
 }
 
@@ -16470,7 +18314,7 @@ func (s *InvalidResourceStateFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The subnet provided is invalid.
+// The subnet provided isn't valid.
 type InvalidSubnet struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -17129,6 +18973,10 @@ type KafkaSettings struct {
 	// String and GoString methods.
 	SslClientKeyPassword *string `type:"string" sensitive:"true"`
 
+	// Sets hostname verification for the certificate. This setting is supported
+	// in DMS version 3.5.1 and later.
+	SslEndpointIdentificationAlgorithm *string `type:"string" enum:"KafkaSslEndpointIdentificationAlgorithm"`
+
 	// The topic to which you migrate the data. If you don't specify a topic, DMS
 	// specifies "kafka-default-topic" as the migration topic.
 	Topic *string `type:"string"`
@@ -17257,6 +19105,12 @@ func (s *KafkaSettings) SetSslClientKeyArn(v string) *KafkaSettings {
 // SetSslClientKeyPassword sets the SslClientKeyPassword field's value.
 func (s *KafkaSettings) SetSslClientKeyPassword(v string) *KafkaSettings {
 	s.SslClientKeyPassword = &v
+	return s
+}
+
+// SetSslEndpointIdentificationAlgorithm sets the SslEndpointIdentificationAlgorithm field's value.
+func (s *KafkaSettings) SetSslEndpointIdentificationAlgorithm(v string) *KafkaSettings {
+	s.SslEndpointIdentificationAlgorithm = &v
 	return s
 }
 
@@ -17990,6 +19844,9 @@ type ModifyEndpointInput struct {
 	// in the Database Migration Service User Guide.
 	SybaseSettings *SybaseSettings `type:"structure"`
 
+	// Settings in JSON format for the target Amazon Timestream endpoint.
+	TimestreamSettings *TimestreamSettings `type:"structure"`
+
 	// The user name to be used to login to the endpoint database.
 	Username *string `type:"string"`
 }
@@ -18036,6 +19893,11 @@ func (s *ModifyEndpointInput) Validate() error {
 	if s.RedisSettings != nil {
 		if err := s.RedisSettings.Validate(); err != nil {
 			invalidParams.AddNested("RedisSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimestreamSettings != nil {
+		if err := s.TimestreamSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimestreamSettings", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -18237,6 +20099,12 @@ func (s *ModifyEndpointInput) SetSybaseSettings(v *SybaseSettings) *ModifyEndpoi
 	return s
 }
 
+// SetTimestreamSettings sets the TimestreamSettings field's value.
+func (s *ModifyEndpointInput) SetTimestreamSettings(v *TimestreamSettings) *ModifyEndpointInput {
+	s.TimestreamSettings = v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *ModifyEndpointInput) SetUsername(v string) *ModifyEndpointInput {
 	s.Username = &v
@@ -18390,6 +20258,157 @@ func (s ModifyEventSubscriptionOutput) GoString() string {
 // SetEventSubscription sets the EventSubscription field's value.
 func (s *ModifyEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *ModifyEventSubscriptionOutput {
 	s.EventSubscription = v
+	return s
+}
+
+type ModifyReplicationConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration parameters for provisioning an DMS Serverless replication.
+	ComputeConfig *ComputeConfig `type:"structure"`
+
+	// The Amazon Resource Name of the replication to modify.
+	//
+	// ReplicationConfigArn is a required field
+	ReplicationConfigArn *string `type:"string" required:"true"`
+
+	// The new replication config to apply to the replication.
+	ReplicationConfigIdentifier *string `type:"string"`
+
+	// The settings for the replication.
+	ReplicationSettings *string `type:"string"`
+
+	// The type of replication.
+	ReplicationType *string `type:"string" enum:"MigrationTypeValue"`
+
+	// The Amazon Resource Name (ARN) of the source endpoint for this DMS serverless
+	// replication configuration.
+	SourceEndpointArn *string `type:"string"`
+
+	// Additional settings for the replication.
+	SupplementalSettings *string `type:"string"`
+
+	// Table mappings specified in the replication.
+	TableMappings *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the target endpoint for this DMS serverless
+	// replication configuration.
+	TargetEndpointArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyReplicationConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyReplicationConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyReplicationConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyReplicationConfigInput"}
+	if s.ReplicationConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComputeConfig sets the ComputeConfig field's value.
+func (s *ModifyReplicationConfigInput) SetComputeConfig(v *ComputeConfig) *ModifyReplicationConfigInput {
+	s.ComputeConfig = v
+	return s
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *ModifyReplicationConfigInput) SetReplicationConfigArn(v string) *ModifyReplicationConfigInput {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+// SetReplicationConfigIdentifier sets the ReplicationConfigIdentifier field's value.
+func (s *ModifyReplicationConfigInput) SetReplicationConfigIdentifier(v string) *ModifyReplicationConfigInput {
+	s.ReplicationConfigIdentifier = &v
+	return s
+}
+
+// SetReplicationSettings sets the ReplicationSettings field's value.
+func (s *ModifyReplicationConfigInput) SetReplicationSettings(v string) *ModifyReplicationConfigInput {
+	s.ReplicationSettings = &v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *ModifyReplicationConfigInput) SetReplicationType(v string) *ModifyReplicationConfigInput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceEndpointArn sets the SourceEndpointArn field's value.
+func (s *ModifyReplicationConfigInput) SetSourceEndpointArn(v string) *ModifyReplicationConfigInput {
+	s.SourceEndpointArn = &v
+	return s
+}
+
+// SetSupplementalSettings sets the SupplementalSettings field's value.
+func (s *ModifyReplicationConfigInput) SetSupplementalSettings(v string) *ModifyReplicationConfigInput {
+	s.SupplementalSettings = &v
+	return s
+}
+
+// SetTableMappings sets the TableMappings field's value.
+func (s *ModifyReplicationConfigInput) SetTableMappings(v string) *ModifyReplicationConfigInput {
+	s.TableMappings = &v
+	return s
+}
+
+// SetTargetEndpointArn sets the TargetEndpointArn field's value.
+func (s *ModifyReplicationConfigInput) SetTargetEndpointArn(v string) *ModifyReplicationConfigInput {
+	s.TargetEndpointArn = &v
+	return s
+}
+
+type ModifyReplicationConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the serverless replication config that was modified.
+	ReplicationConfig *ReplicationConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyReplicationConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyReplicationConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationConfig sets the ReplicationConfig field's value.
+func (s *ModifyReplicationConfigOutput) SetReplicationConfig(v *ReplicationConfig) *ModifyReplicationConfigOutput {
+	s.ReplicationConfig = v
 	return s
 }
 
@@ -18973,6 +20992,16 @@ type MongoDbSettings struct {
 	// The port value for the MongoDB source endpoint.
 	Port *int64 `type:"integer"`
 
+	// If true, DMS replicates data to shard collections. DMS only uses this setting
+	// if the target endpoint is a DocumentDB elastic cluster.
+	//
+	// When this setting is true, note the following:
+	//
+	//    * You must set TargetTablePrepMode to nothing.
+	//
+	//    * DMS automatically sets useUpdateLookup to false.
+	ReplicateShardCollections *bool `type:"boolean"`
+
 	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
 	// the trusted entity and grants the required permissions to access the value
 	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
@@ -18995,6 +21024,12 @@ type MongoDbSettings struct {
 
 	// The name of the server on the MongoDB source endpoint.
 	ServerName *string `type:"string"`
+
+	// If true, DMS retrieves the entire document from the MongoDB source during
+	// migration. This may cause a migration failure if the server response exceeds
+	// bandwidth limits. To fetch only updates and deletes during migration, set
+	// this parameter to false.
+	UseUpdateLookUp *bool `type:"boolean"`
 
 	// The user name you use to access the MongoDB source endpoint.
 	Username *string `type:"string"`
@@ -19078,6 +21113,12 @@ func (s *MongoDbSettings) SetPort(v int64) *MongoDbSettings {
 	return s
 }
 
+// SetReplicateShardCollections sets the ReplicateShardCollections field's value.
+func (s *MongoDbSettings) SetReplicateShardCollections(v bool) *MongoDbSettings {
+	s.ReplicateShardCollections = &v
+	return s
+}
+
 // SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
 func (s *MongoDbSettings) SetSecretsManagerAccessRoleArn(v string) *MongoDbSettings {
 	s.SecretsManagerAccessRoleArn = &v
@@ -19093,6 +21134,12 @@ func (s *MongoDbSettings) SetSecretsManagerSecretId(v string) *MongoDbSettings {
 // SetServerName sets the ServerName field's value.
 func (s *MongoDbSettings) SetServerName(v string) *MongoDbSettings {
 	s.ServerName = &v
+	return s
+}
+
+// SetUseUpdateLookUp sets the UseUpdateLookUp field's value.
+func (s *MongoDbSettings) SetUseUpdateLookUp(v bool) *MongoDbSettings {
+	s.UseUpdateLookUp = &v
 	return s
 }
 
@@ -19662,6 +21709,14 @@ type OracleSettings struct {
 	// Example: numberDataTypeScale=12
 	NumberDatatypeScale *int64 `type:"integer"`
 
+	// The timeframe in minutes to check for open transactions for a CDC-only task.
+	//
+	// You can specify an integer value between 0 (the default) and 240 (the maximum).
+	//
+	// This parameter is only valid in DMS version 3.5.0 and later. DMS supports
+	// a window of up to 9.5 hours including the value for OpenTransactionWindow.
+	OpenTransactionWindow *int64 `type:"integer"`
+
 	// Set this string attribute to the required value in order to use the Binary
 	// Reader to capture change data for an Amazon RDS for Oracle as the source.
 	// This value specifies the default Oracle root used to access the redo logs.
@@ -19955,6 +22010,12 @@ func (s *OracleSettings) SetFailTasksOnLobTruncation(v bool) *OracleSettings {
 // SetNumberDatatypeScale sets the NumberDatatypeScale field's value.
 func (s *OracleSettings) SetNumberDatatypeScale(v int64) *OracleSettings {
 	s.NumberDatatypeScale = &v
+	return s
+}
+
+// SetOpenTransactionWindow sets the OpenTransactionWindow field's value.
+func (s *OracleSettings) SetOpenTransactionWindow(v int64) *OracleSettings {
+	s.OpenTransactionWindow = &v
 	return s
 }
 
@@ -20365,6 +22426,12 @@ type PostgreSQLSettings struct {
 	// PostgreSQL migrates booleans as varchar(5).
 	MapBooleanAsBoolean *bool `type:"boolean"`
 
+	// When true, DMS migrates JSONB values as CLOB.
+	MapJsonbAsClob *bool `type:"boolean"`
+
+	// When true, DMS migrates LONG values as VARCHAR.
+	MapLongVarcharAs *string `type:"string" enum:"LongVarcharMappingType"`
+
 	// Specifies the maximum size (in KB) of any .csv file used to transfer data
 	// to PostgreSQL.
 	//
@@ -20427,7 +22494,7 @@ type PostgreSQLSettings struct {
 	// have a valid CdcStartPosition setting, DMS raises an error.
 	//
 	// For more information about setting the CdcStartPosition request parameter,
-	// see Determining a CDC native start point (dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC.StartPoint.Native)
+	// see Determining a CDC native start point (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC.StartPoint.Native)
 	// in the Database Migration Service User Guide. For more information about
 	// using CdcStartPosition, see CreateReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationTask.html),
 	// StartReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html),
@@ -20520,6 +22587,18 @@ func (s *PostgreSQLSettings) SetMapBooleanAsBoolean(v bool) *PostgreSQLSettings 
 	return s
 }
 
+// SetMapJsonbAsClob sets the MapJsonbAsClob field's value.
+func (s *PostgreSQLSettings) SetMapJsonbAsClob(v bool) *PostgreSQLSettings {
+	s.MapJsonbAsClob = &v
+	return s
+}
+
+// SetMapLongVarcharAs sets the MapLongVarcharAs field's value.
+func (s *PostgreSQLSettings) SetMapLongVarcharAs(v string) *PostgreSQLSettings {
+	s.MapLongVarcharAs = &v
+	return s
+}
+
 // SetMaxFileSize sets the MaxFileSize field's value.
 func (s *PostgreSQLSettings) SetMaxFileSize(v int64) *PostgreSQLSettings {
 	s.MaxFileSize = &v
@@ -20580,6 +22659,84 @@ func (s *PostgreSQLSettings) SetUsername(v string) *PostgreSQLSettings {
 	return s
 }
 
+// Information about provisioning resources for an DMS serverless replication.
+type ProvisionData struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when provisioning became available.
+	DateNewProvisioningDataAvailable *time.Time `type:"timestamp"`
+
+	// The timestamp when DMS provisioned replication resources.
+	DateProvisioned *time.Time `type:"timestamp"`
+
+	// Whether the new provisioning is available to the replication.
+	IsNewProvisioningAvailable *bool `type:"boolean"`
+
+	// The current provisioning state
+	ProvisionState *string `type:"string"`
+
+	// The number of capacity units the replication is using.
+	ProvisionedCapacityUnits *int64 `type:"integer"`
+
+	// A message describing the reason that DMS provisioned new resources for the
+	// serverless replication.
+	ReasonForNewProvisioningData *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionData) GoString() string {
+	return s.String()
+}
+
+// SetDateNewProvisioningDataAvailable sets the DateNewProvisioningDataAvailable field's value.
+func (s *ProvisionData) SetDateNewProvisioningDataAvailable(v time.Time) *ProvisionData {
+	s.DateNewProvisioningDataAvailable = &v
+	return s
+}
+
+// SetDateProvisioned sets the DateProvisioned field's value.
+func (s *ProvisionData) SetDateProvisioned(v time.Time) *ProvisionData {
+	s.DateProvisioned = &v
+	return s
+}
+
+// SetIsNewProvisioningAvailable sets the IsNewProvisioningAvailable field's value.
+func (s *ProvisionData) SetIsNewProvisioningAvailable(v bool) *ProvisionData {
+	s.IsNewProvisioningAvailable = &v
+	return s
+}
+
+// SetProvisionState sets the ProvisionState field's value.
+func (s *ProvisionData) SetProvisionState(v string) *ProvisionData {
+	s.ProvisionState = &v
+	return s
+}
+
+// SetProvisionedCapacityUnits sets the ProvisionedCapacityUnits field's value.
+func (s *ProvisionData) SetProvisionedCapacityUnits(v int64) *ProvisionData {
+	s.ProvisionedCapacityUnits = &v
+	return s
+}
+
+// SetReasonForNewProvisioningData sets the ReasonForNewProvisioningData field's value.
+func (s *ProvisionData) SetReasonForNewProvisioningData(v string) *ProvisionData {
+	s.ReasonForNewProvisioningData = &v
+	return s
+}
+
 // Provides information that describes the configuration of the recommended
 // target engine on Amazon RDS.
 type RdsConfiguration struct {
@@ -20592,6 +22749,9 @@ type RdsConfiguration struct {
 
 	// Describes the recommended target Amazon RDS engine edition.
 	EngineEdition *string `type:"string"`
+
+	// Describes the recommended target Amazon RDS engine version.
+	EngineVersion *string `type:"string"`
 
 	// Describes the memory on the recommended Amazon RDS DB instance that meets
 	// your requirements.
@@ -20648,6 +22808,12 @@ func (s *RdsConfiguration) SetDeploymentOption(v string) *RdsConfiguration {
 // SetEngineEdition sets the EngineEdition field's value.
 func (s *RdsConfiguration) SetEngineEdition(v string) *RdsConfiguration {
 	s.EngineEdition = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *RdsConfiguration) SetEngineVersion(v string) *RdsConfiguration {
+	s.EngineVersion = &v
 	return s
 }
 
@@ -20744,6 +22910,9 @@ type RdsRequirements struct {
 	// The required target Amazon RDS engine edition.
 	EngineEdition *string `type:"string"`
 
+	// The required target Amazon RDS engine version.
+	EngineVersion *string `type:"string"`
+
 	// The required memory on the Amazon RDS DB instance.
 	InstanceMemory *float64 `type:"double"`
 
@@ -20785,6 +22954,12 @@ func (s *RdsRequirements) SetDeploymentOption(v string) *RdsRequirements {
 // SetEngineEdition sets the EngineEdition field's value.
 func (s *RdsRequirements) SetEngineEdition(v string) *RdsRequirements {
 	s.EngineEdition = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *RdsRequirements) SetEngineVersion(v string) *RdsRequirements {
+	s.EngineVersion = &v
 	return s
 }
 
@@ -21797,6 +23972,118 @@ func (s *RefreshSchemasStatus) SetStatus(v string) *RefreshSchemasStatus {
 	return s
 }
 
+type ReloadReplicationTablesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Options for reload. Specify data-reload to reload the data and re-validate
+	// it if validation is enabled. Specify validate-only to re-validate the table.
+	// This option applies only when validation is enabled for the replication.
+	ReloadOption *string `type:"string" enum:"ReloadOptionValue"`
+
+	// The Amazon Resource Name of the replication config for which to reload tables.
+	//
+	// ReplicationConfigArn is a required field
+	ReplicationConfigArn *string `type:"string" required:"true"`
+
+	// The list of tables to reload.
+	//
+	// TablesToReload is a required field
+	TablesToReload []*TableToReload `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReloadReplicationTablesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReloadReplicationTablesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReloadReplicationTablesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReloadReplicationTablesInput"}
+	if s.ReplicationConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigArn"))
+	}
+	if s.TablesToReload == nil {
+		invalidParams.Add(request.NewErrParamRequired("TablesToReload"))
+	}
+	if s.TablesToReload != nil {
+		for i, v := range s.TablesToReload {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TablesToReload", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReloadOption sets the ReloadOption field's value.
+func (s *ReloadReplicationTablesInput) SetReloadOption(v string) *ReloadReplicationTablesInput {
+	s.ReloadOption = &v
+	return s
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *ReloadReplicationTablesInput) SetReplicationConfigArn(v string) *ReloadReplicationTablesInput {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+// SetTablesToReload sets the TablesToReload field's value.
+func (s *ReloadReplicationTablesInput) SetTablesToReload(v []*TableToReload) *ReloadReplicationTablesInput {
+	s.TablesToReload = v
+	return s
+}
+
+type ReloadReplicationTablesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name of the replication config for which to reload tables.
+	ReplicationConfigArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReloadReplicationTablesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReloadReplicationTablesOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *ReloadReplicationTablesOutput) SetReplicationConfigArn(v string) *ReloadReplicationTablesOutput {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
 type ReloadTablesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21995,6 +24282,359 @@ func (s RemoveTagsFromResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s RemoveTagsFromResourceOutput) GoString() string {
 	return s.String()
+}
+
+// Provides information that describes a serverless replication created by the
+// CreateReplication operation.
+type Replication struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the start time for a change data capture (CDC) operation. Use either
+	// CdcStartTime or CdcStartPosition to specify when you want a CDC operation
+	// to start. Specifying both values results in an error.
+	CdcStartPosition *string `type:"string"`
+
+	// Indicates the start time for a change data capture (CDC) operation. Use either
+	// CdcStartTime or CdcStartPosition to specify when you want a CDC operation
+	// to start. Specifying both values results in an error.
+	CdcStartTime *time.Time `type:"timestamp"`
+
+	// Indicates when you want a change data capture (CDC) operation to stop. The
+	// value can be either server time or commit time.
+	CdcStopPosition *string `type:"string"`
+
+	// Error and other information about why a serverless replication failed.
+	FailureMessages []*string `type:"list"`
+
+	// Information about provisioning resources for an DMS serverless replication.
+	ProvisionData *ProvisionData `type:"structure"`
+
+	// Indicates the last checkpoint that occurred during a change data capture
+	// (CDC) operation. You can provide this value to the CdcStartPosition parameter
+	// to start a CDC operation that begins at that checkpoint.
+	RecoveryCheckpoint *string `type:"string"`
+
+	// The Amazon Resource Name for the ReplicationConfig associated with the replication.
+	ReplicationConfigArn *string `type:"string"`
+
+	// The identifier for the ReplicationConfig associated with the replication.
+	ReplicationConfigIdentifier *string `type:"string"`
+
+	// The time the serverless replication was created.
+	ReplicationCreateTime *time.Time `type:"timestamp"`
+
+	// The timestamp when replication was last stopped.
+	ReplicationLastStopTime *time.Time `type:"timestamp"`
+
+	// This object provides a collection of statistics about a serverless replication.
+	ReplicationStats *ReplicationStats `type:"structure"`
+
+	// The type of the serverless replication.
+	ReplicationType *string `type:"string" enum:"MigrationTypeValue"`
+
+	// The time the serverless replication was updated.
+	ReplicationUpdateTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name for an existing Endpoint the serverless replication
+	// uses for its data source.
+	SourceEndpointArn *string `type:"string"`
+
+	// The replication type.
+	StartReplicationType *string `type:"string"`
+
+	// The current status of the serverless replication.
+	Status *string `type:"string"`
+
+	// The reason the replication task was stopped. This response parameter can
+	// return one of the following values:
+	//
+	//    * "Stop Reason NORMAL"
+	//
+	//    * "Stop Reason RECOVERABLE_ERROR"
+	//
+	//    * "Stop Reason FATAL_ERROR"
+	//
+	//    * "Stop Reason FULL_LOAD_ONLY_FINISHED"
+	//
+	//    * "Stop Reason STOPPED_AFTER_FULL_LOAD" – Full load completed, with
+	//    cached changes not applied
+	//
+	//    * "Stop Reason STOPPED_AFTER_CACHED_EVENTS" – Full load completed, with
+	//    cached changes applied
+	//
+	//    * "Stop Reason EXPRESS_LICENSE_LIMITS_REACHED"
+	//
+	//    * "Stop Reason STOPPED_AFTER_DDL_APPLY" – User-defined stop task after
+	//    DDL applied
+	//
+	//    * "Stop Reason STOPPED_DUE_TO_LOW_MEMORY"
+	//
+	//    * "Stop Reason STOPPED_DUE_TO_LOW_DISK"
+	//
+	//    * "Stop Reason STOPPED_AT_SERVER_TIME" – User-defined server time for
+	//    stopping task
+	//
+	//    * "Stop Reason STOPPED_AT_COMMIT_TIME" – User-defined commit time for
+	//    stopping task
+	//
+	//    * "Stop Reason RECONFIGURATION_RESTART"
+	//
+	//    * "Stop Reason RECYCLE_TASK"
+	StopReason *string `type:"string"`
+
+	// The Amazon Resource Name for an existing Endpoint the serverless replication
+	// uses for its data target.
+	TargetEndpointArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Replication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Replication) GoString() string {
+	return s.String()
+}
+
+// SetCdcStartPosition sets the CdcStartPosition field's value.
+func (s *Replication) SetCdcStartPosition(v string) *Replication {
+	s.CdcStartPosition = &v
+	return s
+}
+
+// SetCdcStartTime sets the CdcStartTime field's value.
+func (s *Replication) SetCdcStartTime(v time.Time) *Replication {
+	s.CdcStartTime = &v
+	return s
+}
+
+// SetCdcStopPosition sets the CdcStopPosition field's value.
+func (s *Replication) SetCdcStopPosition(v string) *Replication {
+	s.CdcStopPosition = &v
+	return s
+}
+
+// SetFailureMessages sets the FailureMessages field's value.
+func (s *Replication) SetFailureMessages(v []*string) *Replication {
+	s.FailureMessages = v
+	return s
+}
+
+// SetProvisionData sets the ProvisionData field's value.
+func (s *Replication) SetProvisionData(v *ProvisionData) *Replication {
+	s.ProvisionData = v
+	return s
+}
+
+// SetRecoveryCheckpoint sets the RecoveryCheckpoint field's value.
+func (s *Replication) SetRecoveryCheckpoint(v string) *Replication {
+	s.RecoveryCheckpoint = &v
+	return s
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *Replication) SetReplicationConfigArn(v string) *Replication {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+// SetReplicationConfigIdentifier sets the ReplicationConfigIdentifier field's value.
+func (s *Replication) SetReplicationConfigIdentifier(v string) *Replication {
+	s.ReplicationConfigIdentifier = &v
+	return s
+}
+
+// SetReplicationCreateTime sets the ReplicationCreateTime field's value.
+func (s *Replication) SetReplicationCreateTime(v time.Time) *Replication {
+	s.ReplicationCreateTime = &v
+	return s
+}
+
+// SetReplicationLastStopTime sets the ReplicationLastStopTime field's value.
+func (s *Replication) SetReplicationLastStopTime(v time.Time) *Replication {
+	s.ReplicationLastStopTime = &v
+	return s
+}
+
+// SetReplicationStats sets the ReplicationStats field's value.
+func (s *Replication) SetReplicationStats(v *ReplicationStats) *Replication {
+	s.ReplicationStats = v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *Replication) SetReplicationType(v string) *Replication {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetReplicationUpdateTime sets the ReplicationUpdateTime field's value.
+func (s *Replication) SetReplicationUpdateTime(v time.Time) *Replication {
+	s.ReplicationUpdateTime = &v
+	return s
+}
+
+// SetSourceEndpointArn sets the SourceEndpointArn field's value.
+func (s *Replication) SetSourceEndpointArn(v string) *Replication {
+	s.SourceEndpointArn = &v
+	return s
+}
+
+// SetStartReplicationType sets the StartReplicationType field's value.
+func (s *Replication) SetStartReplicationType(v string) *Replication {
+	s.StartReplicationType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Replication) SetStatus(v string) *Replication {
+	s.Status = &v
+	return s
+}
+
+// SetStopReason sets the StopReason field's value.
+func (s *Replication) SetStopReason(v string) *Replication {
+	s.StopReason = &v
+	return s
+}
+
+// SetTargetEndpointArn sets the TargetEndpointArn field's value.
+func (s *Replication) SetTargetEndpointArn(v string) *Replication {
+	s.TargetEndpointArn = &v
+	return s
+}
+
+// This object provides configuration information about a serverless replication.
+type ReplicationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration parameters for provisioning an DMS serverless replication.
+	ComputeConfig *ComputeConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of this DMS Serverless replication configuration.
+	ReplicationConfigArn *string `type:"string"`
+
+	// The time the serverless replication config was created.
+	ReplicationConfigCreateTime *time.Time `type:"timestamp"`
+
+	// The identifier for the ReplicationConfig associated with the replication.
+	ReplicationConfigIdentifier *string `type:"string"`
+
+	// The time the serverless replication config was updated.
+	ReplicationConfigUpdateTime *time.Time `type:"timestamp"`
+
+	// Configuration parameters for an DMS serverless replication.
+	ReplicationSettings *string `type:"string"`
+
+	// The type of the replication.
+	ReplicationType *string `type:"string" enum:"MigrationTypeValue"`
+
+	// The Amazon Resource Name (ARN) of the source endpoint for this DMS serverless
+	// replication configuration.
+	SourceEndpointArn *string `type:"string"`
+
+	// Additional parameters for an DMS serverless replication.
+	SupplementalSettings *string `type:"string"`
+
+	// Table mappings specified in the replication.
+	TableMappings *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the target endpoint for this DMS serverless
+	// replication configuration.
+	TargetEndpointArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationConfig) GoString() string {
+	return s.String()
+}
+
+// SetComputeConfig sets the ComputeConfig field's value.
+func (s *ReplicationConfig) SetComputeConfig(v *ComputeConfig) *ReplicationConfig {
+	s.ComputeConfig = v
+	return s
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *ReplicationConfig) SetReplicationConfigArn(v string) *ReplicationConfig {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+// SetReplicationConfigCreateTime sets the ReplicationConfigCreateTime field's value.
+func (s *ReplicationConfig) SetReplicationConfigCreateTime(v time.Time) *ReplicationConfig {
+	s.ReplicationConfigCreateTime = &v
+	return s
+}
+
+// SetReplicationConfigIdentifier sets the ReplicationConfigIdentifier field's value.
+func (s *ReplicationConfig) SetReplicationConfigIdentifier(v string) *ReplicationConfig {
+	s.ReplicationConfigIdentifier = &v
+	return s
+}
+
+// SetReplicationConfigUpdateTime sets the ReplicationConfigUpdateTime field's value.
+func (s *ReplicationConfig) SetReplicationConfigUpdateTime(v time.Time) *ReplicationConfig {
+	s.ReplicationConfigUpdateTime = &v
+	return s
+}
+
+// SetReplicationSettings sets the ReplicationSettings field's value.
+func (s *ReplicationConfig) SetReplicationSettings(v string) *ReplicationConfig {
+	s.ReplicationSettings = &v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *ReplicationConfig) SetReplicationType(v string) *ReplicationConfig {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceEndpointArn sets the SourceEndpointArn field's value.
+func (s *ReplicationConfig) SetSourceEndpointArn(v string) *ReplicationConfig {
+	s.SourceEndpointArn = &v
+	return s
+}
+
+// SetSupplementalSettings sets the SupplementalSettings field's value.
+func (s *ReplicationConfig) SetSupplementalSettings(v string) *ReplicationConfig {
+	s.SupplementalSettings = &v
+	return s
+}
+
+// SetTableMappings sets the TableMappings field's value.
+func (s *ReplicationConfig) SetTableMappings(v string) *ReplicationConfig {
+	s.TableMappings = &v
+	return s
+}
+
+// SetTargetEndpointArn sets the TargetEndpointArn field's value.
+func (s *ReplicationConfig) SetTargetEndpointArn(v string) *ReplicationConfig {
+	s.TargetEndpointArn = &v
+	return s
 }
 
 // Provides information that defines a replication instance.
@@ -22444,6 +25084,129 @@ func (s *ReplicationPendingModifiedValues) SetNetworkType(v string) *Replication
 // SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
 func (s *ReplicationPendingModifiedValues) SetReplicationInstanceClass(v string) *ReplicationPendingModifiedValues {
 	s.ReplicationInstanceClass = &v
+	return s
+}
+
+// This object provides a collection of statistics about a serverless replication.
+type ReplicationStats struct {
+	_ struct{} `type:"structure"`
+
+	// The elapsed time of the replication, in milliseconds.
+	ElapsedTimeMillis *int64 `type:"long"`
+
+	// The date the replication was started either with a fresh start or a target
+	// reload.
+	FreshStartDate *time.Time `type:"timestamp"`
+
+	// The date the replication full load was finished.
+	FullLoadFinishDate *time.Time `type:"timestamp"`
+
+	// The percent complete for the full load serverless replication.
+	FullLoadProgressPercent *int64 `type:"integer"`
+
+	// The date the replication full load was started.
+	FullLoadStartDate *time.Time `type:"timestamp"`
+
+	// The date the replication is scheduled to start.
+	StartDate *time.Time `type:"timestamp"`
+
+	// The date the replication was stopped.
+	StopDate *time.Time `type:"timestamp"`
+
+	// The number of errors that have occured for this replication.
+	TablesErrored *int64 `type:"integer"`
+
+	// The number of tables loaded for this replication.
+	TablesLoaded *int64 `type:"integer"`
+
+	// The number of tables currently loading for this replication.
+	TablesLoading *int64 `type:"integer"`
+
+	// The number of tables queued for this replication.
+	TablesQueued *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationStats) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationStats) GoString() string {
+	return s.String()
+}
+
+// SetElapsedTimeMillis sets the ElapsedTimeMillis field's value.
+func (s *ReplicationStats) SetElapsedTimeMillis(v int64) *ReplicationStats {
+	s.ElapsedTimeMillis = &v
+	return s
+}
+
+// SetFreshStartDate sets the FreshStartDate field's value.
+func (s *ReplicationStats) SetFreshStartDate(v time.Time) *ReplicationStats {
+	s.FreshStartDate = &v
+	return s
+}
+
+// SetFullLoadFinishDate sets the FullLoadFinishDate field's value.
+func (s *ReplicationStats) SetFullLoadFinishDate(v time.Time) *ReplicationStats {
+	s.FullLoadFinishDate = &v
+	return s
+}
+
+// SetFullLoadProgressPercent sets the FullLoadProgressPercent field's value.
+func (s *ReplicationStats) SetFullLoadProgressPercent(v int64) *ReplicationStats {
+	s.FullLoadProgressPercent = &v
+	return s
+}
+
+// SetFullLoadStartDate sets the FullLoadStartDate field's value.
+func (s *ReplicationStats) SetFullLoadStartDate(v time.Time) *ReplicationStats {
+	s.FullLoadStartDate = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *ReplicationStats) SetStartDate(v time.Time) *ReplicationStats {
+	s.StartDate = &v
+	return s
+}
+
+// SetStopDate sets the StopDate field's value.
+func (s *ReplicationStats) SetStopDate(v time.Time) *ReplicationStats {
+	s.StopDate = &v
+	return s
+}
+
+// SetTablesErrored sets the TablesErrored field's value.
+func (s *ReplicationStats) SetTablesErrored(v int64) *ReplicationStats {
+	s.TablesErrored = &v
+	return s
+}
+
+// SetTablesLoaded sets the TablesLoaded field's value.
+func (s *ReplicationStats) SetTablesLoaded(v int64) *ReplicationStats {
+	s.TablesLoaded = &v
+	return s
+}
+
+// SetTablesLoading sets the TablesLoading field's value.
+func (s *ReplicationStats) SetTablesLoading(v int64) *ReplicationStats {
+	s.TablesLoading = &v
+	return s
+}
+
+// SetTablesQueued sets the TablesQueued field's value.
+func (s *ReplicationStats) SetTablesQueued(v int64) *ReplicationStats {
+	s.TablesQueued = &v
 	return s
 }
 
@@ -23893,14 +26656,15 @@ type S3Settings struct {
 	// y, only INSERTs and UPDATEs from the source database are migrated to the
 	// .csv or .parquet file.
 	//
-	// For .csv file format only, how these INSERTs and UPDATEs are recorded depends
-	// on the value of the IncludeOpForFullLoad parameter. If IncludeOpForFullLoad
-	// is set to true, the first field of every CDC record is set to either I or
-	// U to indicate INSERT and UPDATE operations at the source. But if IncludeOpForFullLoad
-	// is set to false, CDC records are written without an indication of INSERT
-	// or UPDATE operations at the source. For more information about how these
-	// settings work together, see Indicating Source DB Operations in Migrated S3
-	// Data (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring.InsertOps)
+	// DMS supports the use of the .parquet files in versions 3.4.7 and later.
+	//
+	// How these INSERTs and UPDATEs are recorded depends on the value of the IncludeOpForFullLoad
+	// parameter. If IncludeOpForFullLoad is set to true, the first field of every
+	// CDC record is set to either I or U to indicate INSERT and UPDATE operations
+	// at the source. But if IncludeOpForFullLoad is set to false, CDC records are
+	// written without an indication of INSERT or UPDATE operations at the source.
+	// For more information about how these settings work together, see Indicating
+	// Source DB Operations in Migrated S3 Data (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring.InsertOps)
 	// in the Database Migration Service User Guide..
 	//
 	// DMS supports the use of the CdcInsertsAndUpdates parameter in versions 3.3.1
@@ -24138,10 +26902,13 @@ type S3Settings struct {
 	IgnoreHeaderRows *int64 `type:"integer"`
 
 	// A value that enables a full load to write INSERT operations to the comma-separated
-	// value (.csv) output files only to indicate how the rows were added to the
-	// source database.
+	// value (.csv) or .parquet output files only to indicate how the rows were
+	// added to the source database.
 	//
 	// DMS supports the IncludeOpForFullLoad parameter in versions 3.1.4 and later.
+	//
+	// DMS supports the use of the .parquet files with the IncludeOpForFullLoad
+	// parameter in versions 3.4.7 and later.
 	//
 	// For full load, records can only be inserted. By default (the false setting),
 	// no information is recorded in these output files for a full load to indicate
@@ -25056,6 +27823,131 @@ func (s *StartRecommendationsRequestEntry) SetSettings(v *RecommendationSettings
 	return s
 }
 
+type StartReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates when you want a change data capture (CDC) operation to start. Use
+	// either CdcStartPosition or CdcStartTime to specify when you want a CDC operation
+	// to start. Specifying both values results in an error.
+	//
+	// The value can be in date, checkpoint, or LSN/SCN format.
+	CdcStartPosition *string `type:"string"`
+
+	// Indicates the start time for a change data capture (CDC) operation. Use either
+	// CdcStartTime or CdcStartPosition to specify when you want a CDC operation
+	// to start. Specifying both values results in an error.
+	CdcStartTime *time.Time `type:"timestamp"`
+
+	// Indicates when you want a change data capture (CDC) operation to stop. The
+	// value can be either server time or commit time.
+	CdcStopPosition *string `type:"string"`
+
+	// The Amazon Resource Name of the replication for which to start replication.
+	//
+	// ReplicationConfigArn is a required field
+	ReplicationConfigArn *string `type:"string" required:"true"`
+
+	// The replication type.
+	//
+	// StartReplicationType is a required field
+	StartReplicationType *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartReplicationInput"}
+	if s.ReplicationConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigArn"))
+	}
+	if s.StartReplicationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartReplicationType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCdcStartPosition sets the CdcStartPosition field's value.
+func (s *StartReplicationInput) SetCdcStartPosition(v string) *StartReplicationInput {
+	s.CdcStartPosition = &v
+	return s
+}
+
+// SetCdcStartTime sets the CdcStartTime field's value.
+func (s *StartReplicationInput) SetCdcStartTime(v time.Time) *StartReplicationInput {
+	s.CdcStartTime = &v
+	return s
+}
+
+// SetCdcStopPosition sets the CdcStopPosition field's value.
+func (s *StartReplicationInput) SetCdcStopPosition(v string) *StartReplicationInput {
+	s.CdcStopPosition = &v
+	return s
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *StartReplicationInput) SetReplicationConfigArn(v string) *StartReplicationInput {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+// SetStartReplicationType sets the StartReplicationType field's value.
+func (s *StartReplicationInput) SetStartReplicationType(v string) *StartReplicationInput {
+	s.StartReplicationType = &v
+	return s
+}
+
+type StartReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The replication that DMS started.
+	Replication *Replication `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplication sets the Replication field's value.
+func (s *StartReplicationOutput) SetReplication(v *Replication) *StartReplicationOutput {
+	s.Replication = v
+	return s
+}
+
 type StartReplicationTaskAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25486,6 +28378,83 @@ func (s StartReplicationTaskOutput) GoString() string {
 // SetReplicationTask sets the ReplicationTask field's value.
 func (s *StartReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *StartReplicationTaskOutput {
 	s.ReplicationTask = v
+	return s
+}
+
+type StopReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name of the replication to stop.
+	//
+	// ReplicationConfigArn is a required field
+	ReplicationConfigArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopReplicationInput"}
+	if s.ReplicationConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplicationConfigArn sets the ReplicationConfigArn field's value.
+func (s *StopReplicationInput) SetReplicationConfigArn(v string) *StopReplicationInput {
+	s.ReplicationConfigArn = &v
+	return s
+}
+
+type StopReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The replication that DMS stopped.
+	Replication *Replication `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplication sets the Replication field's value.
+func (s *StopReplicationOutput) SetReplication(v *Replication) *StopReplicationOutput {
+	s.Replication = v
 	return s
 }
 
@@ -26414,6 +29383,114 @@ func (s *TestConnectionOutput) SetConnection(v *Connection) *TestConnectionOutpu
 	return s
 }
 
+// Provides information that defines an Amazon Timestream endpoint.
+type TimestreamSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Set this attribute to true to specify that DMS only applies inserts and updates,
+	// and not deletes. Amazon Timestream does not allow deleting records, so if
+	// this value is false, DMS nulls out the corresponding record in the Timestream
+	// database rather than deleting it.
+	CdcInsertsAndUpdates *bool `type:"boolean"`
+
+	// Database name for the endpoint.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `type:"string" required:"true"`
+
+	// Set this attribute to true to enable memory store writes. When this value
+	// is false, DMS does not write records that are older in days than the value
+	// specified in MagneticDuration, because Amazon Timestream does not allow memory
+	// writes by default. For more information, see Storage (https://docs.aws.amazon.com/timestream/latest/developerguide/storage.html)
+	// in the Amazon Timestream Developer Guide (https://docs.aws.amazon.com/timestream/latest/developerguide/).
+	EnableMagneticStoreWrites *bool `type:"boolean"`
+
+	// Set this attribute to specify the default magnetic duration applied to the
+	// Amazon Timestream tables in days. This is the number of days that records
+	// remain in magnetic store before being discarded. For more information, see
+	// Storage (https://docs.aws.amazon.com/timestream/latest/developerguide/storage.html)
+	// in the Amazon Timestream Developer Guide (https://docs.aws.amazon.com/timestream/latest/developerguide/).
+	//
+	// MagneticDuration is a required field
+	MagneticDuration *int64 `type:"integer" required:"true"`
+
+	// Set this attribute to specify the length of time to store all of the tables
+	// in memory that are migrated into Amazon Timestream from the source database.
+	// Time is measured in units of hours. When Timestream data comes in, it first
+	// resides in memory for the specified duration, which allows quick access to
+	// it.
+	//
+	// MemoryDuration is a required field
+	MemoryDuration *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimestreamSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimestreamSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimestreamSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimestreamSettings"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.MagneticDuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("MagneticDuration"))
+	}
+	if s.MemoryDuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemoryDuration"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCdcInsertsAndUpdates sets the CdcInsertsAndUpdates field's value.
+func (s *TimestreamSettings) SetCdcInsertsAndUpdates(v bool) *TimestreamSettings {
+	s.CdcInsertsAndUpdates = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *TimestreamSettings) SetDatabaseName(v string) *TimestreamSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEnableMagneticStoreWrites sets the EnableMagneticStoreWrites field's value.
+func (s *TimestreamSettings) SetEnableMagneticStoreWrites(v bool) *TimestreamSettings {
+	s.EnableMagneticStoreWrites = &v
+	return s
+}
+
+// SetMagneticDuration sets the MagneticDuration field's value.
+func (s *TimestreamSettings) SetMagneticDuration(v int64) *TimestreamSettings {
+	s.MagneticDuration = &v
+	return s
+}
+
+// SetMemoryDuration sets the MemoryDuration field's value.
+func (s *TimestreamSettings) SetMemoryDuration(v int64) *TimestreamSettings {
+	s.MemoryDuration = &v
+	return s
+}
+
 type UpdateSubscriptionsToEventBridgeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -26903,6 +29980,42 @@ func KafkaSecurityProtocol_Values() []string {
 		KafkaSecurityProtocolSslAuthentication,
 		KafkaSecurityProtocolSslEncryption,
 		KafkaSecurityProtocolSaslSsl,
+	}
+}
+
+const (
+	// KafkaSslEndpointIdentificationAlgorithmNone is a KafkaSslEndpointIdentificationAlgorithm enum value
+	KafkaSslEndpointIdentificationAlgorithmNone = "none"
+
+	// KafkaSslEndpointIdentificationAlgorithmHttps is a KafkaSslEndpointIdentificationAlgorithm enum value
+	KafkaSslEndpointIdentificationAlgorithmHttps = "https"
+)
+
+// KafkaSslEndpointIdentificationAlgorithm_Values returns all elements of the KafkaSslEndpointIdentificationAlgorithm enum
+func KafkaSslEndpointIdentificationAlgorithm_Values() []string {
+	return []string{
+		KafkaSslEndpointIdentificationAlgorithmNone,
+		KafkaSslEndpointIdentificationAlgorithmHttps,
+	}
+}
+
+const (
+	// LongVarcharMappingTypeWstring is a LongVarcharMappingType enum value
+	LongVarcharMappingTypeWstring = "wstring"
+
+	// LongVarcharMappingTypeClob is a LongVarcharMappingType enum value
+	LongVarcharMappingTypeClob = "clob"
+
+	// LongVarcharMappingTypeNclob is a LongVarcharMappingType enum value
+	LongVarcharMappingTypeNclob = "nclob"
+)
+
+// LongVarcharMappingType_Values returns all elements of the LongVarcharMappingType enum
+func LongVarcharMappingType_Values() []string {
+	return []string{
+		LongVarcharMappingTypeWstring,
+		LongVarcharMappingTypeClob,
+		LongVarcharMappingTypeNclob,
 	}
 }
 

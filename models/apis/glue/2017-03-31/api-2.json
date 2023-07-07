@@ -5288,7 +5288,8 @@
         "DatabaseName":{"shape":"NameString"},
         "TableInput":{"shape":"TableInput"},
         "PartitionIndexes":{"shape":"PartitionIndexList"},
-        "TransactionId":{"shape":"TransactionIdString"}
+        "TransactionId":{"shape":"TransactionIdString"},
+        "OpenTableFormatInput":{"shape":"OpenTableFormatInput"}
       }
     },
     "CreateTableResponse":{
@@ -8190,6 +8191,14 @@
         "snappy"
       ]
     },
+    "IcebergInput":{
+      "type":"structure",
+      "required":["MetadataOperation"],
+      "members":{
+        "MetadataOperation":{"shape":"MetadataOperation"},
+        "Version":{"shape":"VersionString"}
+      }
+    },
     "IcebergTarget":{
       "type":"structure",
       "members":{
@@ -9289,6 +9298,10 @@
       "type":"list",
       "member":{"shape":"MetadataKeyValuePair"}
     },
+    "MetadataOperation":{
+      "type":"string",
+      "enum":["CREATE"]
+    },
     "MetadataValueString":{
       "type":"string",
       "max":256,
@@ -9485,6 +9498,12 @@
       "member":{"shape":"NodeId"},
       "max":1,
       "min":1
+    },
+    "OpenTableFormatInput":{
+      "type":"structure",
+      "members":{
+        "IcebergInput":{"shape":"IcebergInput"}
+      }
     },
     "OperationTimeoutException":{
       "type":"structure",

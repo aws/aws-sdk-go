@@ -48,7 +48,7 @@ const (
 	// ErrCodeInvalidSubnet for service response error code
 	// "InvalidSubnet".
 	//
-	// The subnet provided is invalid.
+	// The subnet provided isn't valid.
 	ErrCodeInvalidSubnet = "InvalidSubnet"
 
 	// ErrCodeKMSAccessDeniedFault for service response error code
