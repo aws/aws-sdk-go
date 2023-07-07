@@ -34,6 +34,8 @@
     "DescribeOffering": "Get details for an offering.",
     "DescribeReservation": "Get details for a reservation.",
     "DescribeSchedule": "Get a channel schedule",
+    "DescribeAccountConfiguration": "Get account configuration",
+    "DescribeThumbnails": "Describe the latest thumbnails data.",
     "ListChannels": "Produces list of channels that have been created",
     "ListInputDeviceTransfers": "List input devices that are currently being transferred. List input devices that you are transferring from your AWS account or input devices that another AWS account is transferring to you.",
     "ListInputDevices": "List input devices",
@@ -47,6 +49,7 @@
     "PurchaseOffering": "Purchase an offering and create a reservation.",
     "RebootInputDevice": "Send a reboot command to the specified input device. The device will begin rebooting within a few seconds of sending the command. When the reboot is complete, the device\u2019s connection status will change to connected.",
     "RejectInputDeviceTransfer": "Reject the transfer of the specified input device to your AWS account.",
+    "UpdateAccountConfiguration": "Update account configuration",
     "StartChannel": "Starts an existing channel",
     "StartInputDeviceMaintenanceWindow": "Start a maintenance window for the specified input device. Starting a maintenance window will give the device up to two hours to install software. If the device was streaming prior to the maintenance, it will resume streaming when the software is fully installed. Devices automatically install updates while they are powered on and their MediaLive channels are stopped. A maintenance window allows you to update a device without having to stop MediaLive channels that use the device. The device must remain powered on and connected to the internet for the duration of the maintenance.",
     "StartMultiplex": "Start (run) the multiplex. Starting the multiplex does not start the channels. You must explicitly start each channel.",
@@ -156,6 +159,14 @@
       "base": "Accessibility Type",
       "refs": {
         "CaptionDescription$Accessibility": "Indicates whether the caption track implements accessibility features such as written descriptions of spoken dialog, music, and sounds."
+      }
+    },
+    "AccountConfiguration": {
+      "base": null,
+      "refs": {
+        "DescribeAccountConfigurationResultModel$AccountConfiguration": null,
+        "UpdateAccountConfigurationRequestModel$AccountConfiguration": null,
+        "UpdateAccountConfigurationResultModel$AccountConfiguration": null
       }
     },
     "AfdSignaling": {
@@ -1124,6 +1135,16 @@
     },
     "GatewayTimeoutException": {
       "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAccountConfigurationResultModel": {
+      "base": "The account's configuration.",
+      "refs": {
+      }
+    },
+    "DescribeThumbnailsResultModel": {
+      "base": "Thumbnail details for all the pipelines of a running channel.",
       "refs": {
       }
     },
@@ -3102,6 +3123,16 @@
         "Scte35DeliveryRestrictions$WebDeliveryAllowedFlag": "Corresponds to SCTE-35 web_delivery_allowed_flag parameter."
       }
     },
+    "UpdateAccountConfigurationRequestModel": {
+      "base": "The desired new account configuration.",
+      "refs": {
+      }
+    },
+    "UpdateAccountConfigurationResultModel": {
+      "base": "The account's updated configuration.",
+      "refs": {
+      }
+    },
     "SmoothGroupAudioOnlyTimecodeControl": {
       "base": "Smooth Group Audio Only Timecode Control",
       "refs": {
@@ -3256,9 +3287,44 @@
         "TemporalFilterSettings$Strength": "Choose a filter strength. We recommend a strength of 1 or 2. A higher strength might take out good information, resulting in an image that is overly soft."
       }
     },
+    "Thumbnail": {
+      "base": "Details of a single thumbnail",
+      "refs": {
+        "__listOfThumbnail$member": null
+      }
+    },
+    "ThumbnailConfiguration": {
+      "base": "Thumbnail Configuration",
+      "refs": {
+        "EncoderSettings$ThumbnailConfiguration": "Thumbnail configuration settings."
+      }
+    },
     "ThumbnailData": {
       "base": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive.",
       "refs": {
+      }
+    },
+    "ThumbnailDetail": {
+      "base": "Thumbnail details for one pipeline of a running channel.",
+      "refs": {
+        "__listOfThumbnailDetail$member": null
+      }
+    },
+    "ThumbnailNoData": {
+      "base": "Response when thumbnail has no data. It should have no message.",
+      "refs": {
+      }
+    },
+    "ThumbnailState": {
+      "base": "Thumbnail State",
+      "refs": {
+        "ThumbnailConfiguration$State": "Whether Thumbnail is enabled."
+      }
+    },
+    "ThumbnailType": {
+      "base": "Thumbnail type.",
+      "refs": {
+        "Thumbnail$ThumbnailType": "Thumbnail Type"
       }
     },
     "TimecodeBurninFontSize": {
@@ -4359,6 +4425,18 @@
         "Scte35TimeSignalScheduleActionSettings$Scte35Descriptors": "The list of SCTE-35 descriptors accompanying the SCTE-35 time_signal."
       }
     },
+    "__listOfThumbnail": {
+      "base": null,
+      "refs": {
+        "ThumbnailDetail$Thumbnails": "thumbnails of a single pipeline"
+      }
+    },
+    "__listOfThumbnailDetail": {
+      "base": null,
+      "refs": {
+        "DescribeThumbnailsResultModel$ThumbnailDetails": null
+      }
+    },
     "__listOfTransferringInputDeviceSummary": {
       "base": null,
       "refs": {
@@ -4455,6 +4533,7 @@
       "base": null,
       "refs": {
         "AccessDenied$Message": null,
+        "AccountConfiguration$KmsKeyId": "Specifies the KMS key to use for all features that use key encryption. Specify the ARN of a KMS key that you have created. Or leave blank to use the key that MediaLive creates and manages for you.",
         "ArchiveOutputSettings$Extension": "Output file extension. If excluded, this will be auto-selected from the container type.",
         "ArchiveOutputSettings$NameModifier": "String concatenated to the end of the destination filename.  Required for multiple outputs of the same type.",
         "AudioDescription$AudioSelectorName": "The name of the AudioSelector used as the source for this AudioDescription.",
@@ -4668,7 +4747,10 @@
         "StopTimecode$Timecode": "The timecode for the frame where you want to stop the clip. Optional; if not specified, the clip continues to the end of the file. Enter the timecode as HH:MM:SS:FF or HH:MM:SS;FF.",
         "Tags$member": null,
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
+        "Thumbnail$Body": "The binary data for the latest thumbnail.",
+        "Thumbnail$ContentType": "The content type for the latest thumbnail.",
         "ThumbnailData$Body": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive.",
+        "ThumbnailDetail$PipelineId": "Pipeline ID",
         "TransferInputDevice$TargetCustomerId": "The AWS account ID (12 digits) for the recipient of the device transfer.",
         "TransferInputDevice$TargetRegion": "The target AWS region to transfer the device.",
         "TransferInputDevice$TransferMessage": "An optional message for the recipient. Maximum 280 characters.",

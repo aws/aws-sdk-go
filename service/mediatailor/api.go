@@ -3835,6 +3835,10 @@ func (s *AccessConfiguration) SetSecretsManagerAccessTokenConfiguration(v *Secre
 type AdBreak struct {
 	_ struct{} `type:"structure"`
 
+	// Defines a list of key/value pairs that MediaTailor generates within the EXT-X-ASSETtag
+	// for SCTE35_ENHANCED output.
+	AdBreakMetadata []*KeyValuePair `type:"list"`
+
 	// The SCTE-35 ad insertion type. Accepted value: SPLICE_INSERT, TIME_SIGNAL.
 	MessageType *string `type:"string" enum:"MessageType"`
 
@@ -3877,6 +3881,32 @@ func (s AdBreak) String() string {
 // value will be replaced with "sensitive".
 func (s AdBreak) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdBreak) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdBreak"}
+	if s.AdBreakMetadata != nil {
+		for i, v := range s.AdBreakMetadata {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdBreakMetadata", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdBreakMetadata sets the AdBreakMetadata field's value.
+func (s *AdBreak) SetAdBreakMetadata(v []*KeyValuePair) *AdBreak {
+	s.AdBreakMetadata = v
+	return s
 }
 
 // SetMessageType sets the MessageType field's value.
@@ -5449,6 +5479,16 @@ func (s *CreateProgramInput) Validate() error {
 	}
 	if s.SourceLocationName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.AdBreaks != nil {
+		for i, v := range s.AdBreaks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdBreaks", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.ScheduleConfiguration != nil {
 		if err := s.ScheduleConfiguration.Validate(); err != nil {
@@ -8385,6 +8425,11 @@ func (s *HlsConfiguration) SetManifestEndpointPrefix(v string) *HlsConfiguration
 type HlsPlaylistSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Determines the type of SCTE 35 tags to use in ad markup. Specify DATERANGE
+	// to use DATERANGE tags (for live or VOD content). Specify SCTE35_ENHANCED
+	// to use EXT-X-CUE-OUT and EXT-X-CUE-IN tags (for VOD content only).
+	AdMarkupType []*string `type:"list" enum:"AdMarkupType"`
+
 	// The total duration (in seconds) of each manifest. Minimum value: 30 seconds.
 	// Maximum value: 3600 seconds.
 	ManifestWindowSeconds *int64 `type:"integer"`
@@ -8406,6 +8451,12 @@ func (s HlsPlaylistSettings) String() string {
 // value will be replaced with "sensitive".
 func (s HlsPlaylistSettings) GoString() string {
 	return s.String()
+}
+
+// SetAdMarkupType sets the AdMarkupType field's value.
+func (s *HlsPlaylistSettings) SetAdMarkupType(v []*string) *HlsPlaylistSettings {
+	s.AdMarkupType = v
+	return s
 }
 
 // SetManifestWindowSeconds sets the ManifestWindowSeconds field's value.
@@ -8536,6 +8587,72 @@ func (s *HttpPackageConfiguration) SetSourceGroup(v string) *HttpPackageConfigur
 // SetType sets the Type field's value.
 func (s *HttpPackageConfiguration) SetType(v string) *HttpPackageConfiguration {
 	s.Type = &v
+	return s
+}
+
+// For SCTE35_ENHANCED output, defines a key and corresponding value. MediaTailor
+// generates these pairs within the EXT-X-ASSETtag.
+type KeyValuePair struct {
+	_ struct{} `type:"structure"`
+
+	// For SCTE35_ENHANCED output, defines a key. MediaTailor takes this key, and
+	// its associated value, and generates the key/value pair within the EXT-X-ASSETtag.
+	// If you specify a key, you must also specify a corresponding value.
+	//
+	// Key is a required field
+	Key *string `type:"string" required:"true"`
+
+	// For SCTE35_ENHANCED output, defines a vaue. MediaTailor; takes this value,
+	// and its associated key, and generates the key/value pair within the EXT-X-ASSETtag.
+	// If you specify a value, you must also specify a corresponding key.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KeyValuePair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KeyValuePair) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KeyValuePair) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KeyValuePair"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *KeyValuePair) SetKey(v string) *KeyValuePair {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *KeyValuePair) SetValue(v string) *KeyValuePair {
+	s.Value = &v
 	return s
 }
 
@@ -12379,6 +12496,16 @@ func (s *UpdateProgramInput) Validate() error {
 	if s.ScheduleConfiguration == nil {
 		invalidParams.Add(request.NewErrParamRequired("ScheduleConfiguration"))
 	}
+	if s.AdBreaks != nil {
+		for i, v := range s.AdBreaks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdBreaks", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.ScheduleConfiguration != nil {
 		if err := s.ScheduleConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ScheduleConfiguration", err.(request.ErrInvalidParams))
@@ -13126,6 +13253,22 @@ func AccessType_Values() []string {
 	return []string{
 		AccessTypeS3Sigv4,
 		AccessTypeSecretsManagerAccessToken,
+	}
+}
+
+const (
+	// AdMarkupTypeDaterange is a AdMarkupType enum value
+	AdMarkupTypeDaterange = "DATERANGE"
+
+	// AdMarkupTypeScte35Enhanced is a AdMarkupType enum value
+	AdMarkupTypeScte35Enhanced = "SCTE35_ENHANCED"
+)
+
+// AdMarkupType_Values returns all elements of the AdMarkupType enum
+func AdMarkupType_Values() []string {
+	return []string{
+		AdMarkupTypeDaterange,
+		AdMarkupTypeScte35Enhanced,
 	}
 }
 

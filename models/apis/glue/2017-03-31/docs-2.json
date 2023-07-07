@@ -4318,6 +4318,12 @@
         "S3HudiDirectTarget$Compression": "<p>Specifies how the data is compressed. This is generally not necessary if the data has a standard file extension. Possible values are <code>\"gzip\"</code> and <code>\"bzip\"</code>).</p>"
       }
     },
+    "IcebergInput": {
+      "base": "<p>A structure that defines an Apache Iceberg metadata table to create in the catalog.</p>",
+      "refs": {
+        "OpenTableFormatInput$IcebergInput": "<p>Specifies an <code>IcebergInput</code> structure that defines an Apache Iceberg metadata table.</p>"
+      }
+    },
     "IcebergTarget": {
       "base": "<p>Specifies an Apache Iceberg data source where Iceberg tables are stored in Amazon S3.</p>",
       "refs": {
@@ -5219,6 +5225,12 @@
         "QuerySchemaVersionMetadataInput$MetadataList": "<p>Search key-value pairs for metadata, if they are not provided all the metadata information will be fetched.</p>"
       }
     },
+    "MetadataOperation": {
+      "base": null,
+      "refs": {
+        "IcebergInput$MetadataOperation": "<p>A required metadata operation. Can only be set to <code>CREATE</code>.</p>"
+      }
+    },
     "MetadataValueString": {
       "base": null,
       "refs": {
@@ -5927,6 +5939,12 @@
         "SparkConnectorTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "Spigot$Inputs": "<p>The data inputs identified by their node names.</p>",
         "SplitFields$Inputs": "<p>The data inputs identified by their node names.</p>"
+      }
+    },
+    "OpenTableFormatInput": {
+      "base": "<p>A structure representing an open format table.</p>",
+      "refs": {
+        "CreateTableRequest$OpenTableFormatInput": "<p>Specifies an <code>OpenTableFormatInput</code> structure when creating an open format table.</p>"
       }
     },
     "OperationTimeoutException": {
@@ -8523,6 +8541,7 @@
         "BatchDeleteTableVersionList$member": null,
         "DeleteTableVersionRequest$VersionId": "<p>The ID of the table version to be deleted. A <code>VersionID</code> is a string representation of an integer. Each version is incremented by 1.</p>",
         "GetTableVersionRequest$VersionId": "<p>The ID value of the table version to be retrieved. A <code>VersionID</code> is a string representation of an integer. Each version is incremented by 1. </p>",
+        "IcebergInput$Version": "<p>The table version for the Iceberg table. Defaults to 2.</p>",
         "Table$VersionId": "<p>The ID of the table version.</p>",
         "TableVersion$VersionId": "<p>The ID value that identifies this table version. A <code>VersionId</code> is a string representation of an integer. Each version is incremented by 1.</p>",
         "TableVersionError$VersionId": "<p>The ID value of the version in question. A <code>VersionID</code> is a string representation of an integer. Each version is incremented by 1.</p>",

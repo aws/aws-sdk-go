@@ -504,6 +504,7 @@
     "AdBreak":{
       "type":"structure",
       "members":{
+        "AdBreakMetadata":{"shape":"AdBreakMetadataList"},
         "MessageType":{"shape":"MessageType"},
         "OffsetMillis":{"shape":"__long"},
         "Slate":{"shape":"SlateSource"},
@@ -511,11 +512,22 @@
         "TimeSignalMessage":{"shape":"TimeSignalMessage"}
       }
     },
+    "AdBreakMetadataList":{
+      "type":"list",
+      "member":{"shape":"KeyValuePair"}
+    },
     "AdMarkerPassthrough":{
       "type":"structure",
       "members":{
         "Enabled":{"shape":"__boolean"}
       }
+    },
+    "AdMarkupType":{
+      "type":"string",
+      "enum":[
+        "DATERANGE",
+        "SCTE35_ENHANCED"
+      ]
     },
     "Alert":{
       "type":"structure",
@@ -1390,6 +1402,7 @@
     "HlsPlaylistSettings":{
       "type":"structure",
       "members":{
+        "AdMarkupType":{"shape":"adMarkupTypes"},
         "ManifestWindowSeconds":{"shape":"__integer"}
       }
     },
@@ -1420,6 +1433,17 @@
     "Integer":{
       "type":"integer",
       "box":true
+    },
+    "KeyValuePair":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
     },
     "ListAlertsRequest":{
       "type":"structure",
@@ -2391,6 +2415,10 @@
     "__timestampUnix":{
       "type":"timestamp",
       "timestampFormat":"unixTimestamp"
+    },
+    "adMarkupTypes":{
+      "type":"list",
+      "member":{"shape":"AdMarkupType"}
     }
   }
 }

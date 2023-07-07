@@ -1,3 +1,21 @@
+Release v1.44.298 (2023-07-07)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API, documentation, and paginators
+  * Releasing DMS Serverless. Adding support for PostgreSQL 15.x as source and target endpoint. Adding support for DocDB Elastic Clusters with sharded collections, PostgreSQL datatype mapping customization and disabling hostname validation of the certificate authority in Kafka endpoint settings
+* `service/glue`: Updates service API and documentation
+  * This release enables customers to create new Apache Iceberg tables and associated metadata in Amazon S3 by using native AWS Glue CreateTable operation.
+* `service/logs`: Updates service API and documentation
+  * Add CMK encryption support for CloudWatch Logs Insights query result data
+* `service/medialive`: Updates service API and documentation
+  * This release enables the use of Thumbnails in AWS Elemental MediaLive.
+* `service/mediatailor`: Updates service API and documentation
+
+### SDK Bugs
+* `aws/credentials/ssocreds`: Implement SSO token provider support for `sso-session` in AWS shared config.
+  * Fixes [4649](https://github.com/aws/aws-sdk-go/issues/4649)
+
 Release v1.44.297 (2023-07-06)
 ===
 

@@ -71,10 +71,22 @@
         "__listOfAdBreak$member": null
       }
     },
+    "AdBreakMetadataList": {
+      "base": null,
+      "refs": {
+        "AdBreak$AdBreakMetadata": "<p>Defines a list of key/value pairs that MediaTailor generates within the <code>EXT-X-ASSET</code>tag for <code>SCTE35_ENHANCED</code> output.</p>"
+      }
+    },
     "AdMarkerPassthrough": {
       "base": "<p>For HLS, when set to <code>true</code>, MediaTailor passes through <code>EXT-X-CUE-IN</code>, <code>EXT-X-CUE-OUT</code>, and <code>EXT-X-SPLICEPOINT-SCTE35</code> ad markers from the origin manifest to the MediaTailor personalized manifest.</p> <p>No logic is applied to these ad markers. For example, if <code>EXT-X-CUE-OUT</code> has a value of <code>60</code>, but no ads are filled for that ad break, MediaTailor will not set the value to <code>0</code>.</p>",
       "refs": {
         "ManifestProcessingRules$AdMarkerPassthrough": "<p>For HLS, when set to <code>true</code>, MediaTailor passes through <code>EXT-X-CUE-IN</code>, <code>EXT-X-CUE-OUT</code>, and <code>EXT-X-SPLICEPOINT-SCTE35</code> ad markers from the origin manifest to the MediaTailor personalized manifest.</p> <p>No logic is applied to these ad markers. For example, if <code>EXT-X-CUE-OUT</code> has a value of <code>60</code>, but no ads are filled for that ad break, MediaTailor will not set the value to <code>0</code>.</p>"
+      }
+    },
+    "AdMarkupType": {
+      "base": null,
+      "refs": {
+        "adMarkupTypes$member": null
       }
     },
     "Alert": {
@@ -508,6 +520,12 @@
         "SegmentationDescriptor$SubSegmentsExpected": "<p>The number of sub-segments expected, which is assigned to the <code>segmentation_descriptor.sub_segments_expected</code> message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification. Values must be between 0 and 256, inclusive. The default value is null.</p>"
       }
     },
+    "KeyValuePair": {
+      "base": "<p>For <code>SCTE35_ENHANCED</code> output, defines a key and corresponding value. MediaTailor generates these pairs within the <code>EXT-X-ASSET</code>tag.</p>",
+      "refs": {
+        "AdBreakMetadataList$member": null
+      }
+    },
     "ListAlertsRequest": {
       "base": null,
       "refs": {
@@ -869,6 +887,8 @@
     "String": {
       "base": null,
       "refs": {
+        "KeyValuePair$Key": "<p>For <code>SCTE35_ENHANCED</code> output, defines a key. MediaTailor takes this key, and its associated value, and generates the key/value pair within the <code>EXT-X-ASSET</code>tag. If you specify a key, you must also specify a corresponding value.</p>",
+        "KeyValuePair$Value": "<p>For <code>SCTE35_ENHANCED</code> output, defines a vaue. MediaTailor; takes this value, and its associated key, and generates the key/value pair within the <code>EXT-X-ASSET</code>tag. If you specify a value, you must also specify a corresponding key.</p>",
         "SegmentationDescriptor$SegmentationUpid": "<p>The Upid to assign to the <code>segmentation_descriptor.segmentation_upid</code> message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification. The value must be a hexadecimal string containing only the characters 0 though 9 and A through F. The default value is \"\" (an empty string).</p>"
       }
     },
@@ -1438,6 +1458,12 @@
         "UpdateVodSourceResponse$LastModifiedTime": "<p>The timestamp that indicates when the VOD source was last modified.</p>",
         "VodSource$CreationTime": "<p>The timestamp that indicates when the VOD source was created.</p>",
         "VodSource$LastModifiedTime": "<p>The timestamp that indicates when the VOD source was last modified.</p>"
+      }
+    },
+    "adMarkupTypes": {
+      "base": null,
+      "refs": {
+        "HlsPlaylistSettings$AdMarkupType": "<p>Determines the type of SCTE 35 tags to use in ad markup. Specify <code>DATERANGE</code> to use <code>DATERANGE</code> tags (for live or VOD content). Specify <code>SCTE35_ENHANCED</code> to use <code>EXT-X-CUE-OUT</code> and <code>EXT-X-CUE-IN</code> tags (for VOD content only).</p>"
       }
     }
   }

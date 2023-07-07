@@ -32782,6 +32782,10 @@ type CreateTableInput struct {
 	// DatabaseName is a required field
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 
+	// Specifies an OpenTableFormatInput structure when creating an open format
+	// table.
+	OpenTableFormatInput *OpenTableFormatInput_ `type:"structure"`
+
 	// A list of partition indexes, PartitionIndex structures, to create in the
 	// table.
 	PartitionIndexes []*PartitionIndex `type:"list"`
@@ -32831,6 +32835,11 @@ func (s *CreateTableInput) Validate() error {
 	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
 	}
+	if s.OpenTableFormatInput != nil {
+		if err := s.OpenTableFormatInput.Validate(); err != nil {
+			invalidParams.AddNested("OpenTableFormatInput", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PartitionIndexes != nil {
 		for i, v := range s.PartitionIndexes {
 			if v == nil {
@@ -32862,6 +32871,12 @@ func (s *CreateTableInput) SetCatalogId(v string) *CreateTableInput {
 // SetDatabaseName sets the DatabaseName field's value.
 func (s *CreateTableInput) SetDatabaseName(v string) *CreateTableInput {
 	s.DatabaseName = &v
+	return s
+}
+
+// SetOpenTableFormatInput sets the OpenTableFormatInput field's value.
+func (s *CreateTableInput) SetOpenTableFormatInput(v *OpenTableFormatInput_) *CreateTableInput {
+	s.OpenTableFormatInput = v
 	return s
 }
 
@@ -49514,6 +49529,66 @@ func (s *GrokClassifier) SetVersion(v int64) *GrokClassifier {
 	return s
 }
 
+// A structure that defines an Apache Iceberg metadata table to create in the
+// catalog.
+type IcebergInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// A required metadata operation. Can only be set to CREATE.
+	//
+	// MetadataOperation is a required field
+	MetadataOperation *string `type:"string" required:"true" enum:"MetadataOperation"`
+
+	// The table version for the Iceberg table. Defaults to 2.
+	Version *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IcebergInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IcebergInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IcebergInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IcebergInput_"}
+	if s.MetadataOperation == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetadataOperation"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetadataOperation sets the MetadataOperation field's value.
+func (s *IcebergInput_) SetMetadataOperation(v string) *IcebergInput_ {
+	s.MetadataOperation = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *IcebergInput_) SetVersion(v string) *IcebergInput_ {
+	s.Version = &v
+	return s
+}
+
 // Specifies an Apache Iceberg data source where Iceberg tables are stored in
 // Amazon S3.
 type IcebergTarget struct {
@@ -56512,6 +56587,54 @@ func (s *NullValueField) SetDatatype(v *Datatype) *NullValueField {
 // SetValue sets the Value field's value.
 func (s *NullValueField) SetValue(v string) *NullValueField {
 	s.Value = &v
+	return s
+}
+
+// A structure representing an open format table.
+type OpenTableFormatInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies an IcebergInput structure that defines an Apache Iceberg metadata
+	// table.
+	IcebergInput *IcebergInput_ `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenTableFormatInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenTableFormatInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenTableFormatInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenTableFormatInput_"}
+	if s.IcebergInput != nil {
+		if err := s.IcebergInput.Validate(); err != nil {
+			invalidParams.AddNested("IcebergInput", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIcebergInput sets the IcebergInput field's value.
+func (s *OpenTableFormatInput_) SetIcebergInput(v *IcebergInput_) *OpenTableFormatInput_ {
+	s.IcebergInput = v
 	return s
 }
 
@@ -74220,6 +74343,18 @@ func MLUserDataEncryptionModeString_Values() []string {
 	return []string{
 		MLUserDataEncryptionModeStringDisabled,
 		MLUserDataEncryptionModeStringSseKms,
+	}
+}
+
+const (
+	// MetadataOperationCreate is a MetadataOperation enum value
+	MetadataOperationCreate = "CREATE"
+)
+
+// MetadataOperation_Values returns all elements of the MetadataOperation enum
+func MetadataOperation_Values() []string {
+	return []string{
+		MetadataOperationCreate,
 	}
 }
 

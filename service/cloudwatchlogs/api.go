@@ -56,18 +56,44 @@ func (c *CloudWatchLogs) AssociateKmsKeyRequest(input *AssociateKmsKeyInput) (re
 
 // AssociateKmsKey API operation for Amazon CloudWatch Logs.
 //
-// Associates the specified KMS key with the specified log group.
+// Associates the specified KMS key with either one log group in the account,
+// or with all stored CloudWatch Logs query insights results in the account.
 //
-// Associating a KMS key with a log group overrides any existing associations
-// between the log group and a KMS key. After a KMS key is associated with a
-// log group, all newly ingested data for the log group is encrypted using the
-// KMS key. This association is stored as long as the data encrypted with the
-// KMS keyis still within CloudWatch Logs. This enables CloudWatch Logs to decrypt
-// this data whenever it is requested.
+// When you use AssociateKmsKey, you specify either the logGroupName parameter
+// or the resourceIdentifier parameter. You can't specify both of those parameters
+// in the same operation.
+//
+//   - Specify the logGroupName parameter to cause all log events stored in
+//     the log group to be encrypted with that key. Only the log events ingested
+//     after the key is associated are encrypted with that key. Associating a
+//     KMS key with a log group overrides any existing associations between the
+//     log group and a KMS key. After a KMS key is associated with a log group,
+//     all newly ingested data for the log group is encrypted using the KMS key.
+//     This association is stored as long as the data encrypted with the KMS
+//     key is still within CloudWatch Logs. This enables CloudWatch Logs to decrypt
+//     this data whenever it is requested. Associating a key with a log group
+//     does not cause the results of queries of that log group to be encrypted
+//     with that key. To have query results encrypted with a KMS key, you must
+//     use an AssociateKmsKey operation with the resourceIdentifier parameter
+//     that specifies a query-result resource.
+//
+//   - Specify the resourceIdentifier parameter with a query-result resource,
+//     to use that key to encrypt the stored results of all future StartQuery
+//     (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html)
+//     operations in the account. The response from a GetQueryResults (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html)
+//     operation will still return the query results in plain text. Even if you
+//     have not associated a key with your query results, the query results are
+//     encrypted when stored, using the default CloudWatch Logs method. If you
+//     run a query from a monitoring account that queries logs in a source account,
+//     the query results key from the monitoring account, if any, is used.
+//
+// If you delete the key that is used to encrypt log events or log group query
+// results, then all the associated stored log events or query results that
+// were encrypted with that key will be unencryptable and unusable.
 //
 // CloudWatch Logs supports only symmetric KMS keys. Do not use an associate
-// an asymmetric KMS key with your log group. For more information, see Using
-// Symmetric and Asymmetric Keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html).
+// an asymmetric KMS key with your log group or query results. For more information,
+// see Using Symmetric and Asymmetric Keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html).
 //
 // It can take up to 5 minutes for this operation to take effect.
 //
@@ -2662,14 +2688,30 @@ func (c *CloudWatchLogs) DisassociateKmsKeyRequest(input *DisassociateKmsKeyInpu
 
 // DisassociateKmsKey API operation for Amazon CloudWatch Logs.
 //
-// Disassociates the associated KMS key from the specified log group.
+// Disassociates the specified KMS key from the specified log group or from
+// all CloudWatch Logs Insights query results in the account.
 //
-// After the KMS key is disassociated from the log group, CloudWatch Logs stops
-// encrypting newly ingested data for the log group. All previously ingested
-// data remains encrypted, and CloudWatch Logs requires permissions for the
-// KMS key whenever the encrypted data is requested.
+// When you use DisassociateKmsKey, you specify either the logGroupName parameter
+// or the resourceIdentifier parameter. You can't specify both of those parameters
+// in the same operation.
 //
-// Note that it can take up to 5 minutes for this operation to take effect.
+//   - Specify the logGroupName parameter to stop using the KMS key to encrypt
+//     future log events ingested and stored in the log group. Instead, they
+//     will be encrypted with the default CloudWatch Logs method. The log events
+//     that were ingested while the key was associated with the log group are
+//     still encrypted with that key. Therefore, CloudWatch Logs will need permissions
+//     for the key whenever that data is accessed.
+//
+//   - Specify the resourceIdentifier parameter with the query-result resource
+//     to stop using the KMS key to encrypt the results of all future StartQuery
+//     (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html)
+//     operations in the account. They will instead be encrypted with the default
+//     CloudWatch Logs method. The results from queries that ran while the key
+//     was associated with the account are still encrypted with that key. Therefore,
+//     CloudWatch Logs will need permissions for the key whenever that data is
+//     accessed.
+//
+// It can take up to 5 minutes for this operation to take effect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4637,8 +4679,9 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 //   - An Amazon Kinesis data stream belonging to the same account as the subscription
 //     filter, for same-account delivery.
 //
-//   - A logical destination that belongs to a different account, for cross-account
-//     delivery.
+//   - A logical destination created with PutDestination (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html)
+//     that belongs to a different account, for cross-account delivery. We currently
+//     support Kinesis Data Streams and Kinesis Data Firehose as logical destinations.
 //
 //   - An Amazon Kinesis Data Firehose delivery stream that belongs to the
 //     same account as the subscription filter, for same-account delivery.
@@ -4746,6 +4789,16 @@ func (c *CloudWatchLogs) StartQueryRequest(input *StartQueryInput) (req *request
 // the log group and time range to query and the query string to use.
 //
 // For more information, see CloudWatch Logs Insights Query Syntax (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html).
+//
+// After you run a query using StartQuery, the query results are stored by CloudWatch
+// Logs. You can use GetQueryResults (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html)
+// to retrieve the results of a query, using the queryId that StartQuery returns.
+//
+// If you have associated a KMS key with the query results in this account,
+// then StartQuery (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html)
+// uses that key to encrypt the results when it stores them. If no key is associated
+// with query results, the query results are encrypted with the default CloudWatch
+// Logs encryption method.
 //
 // Queries time out after 60 minutes of runtime. If your queries are timing
 // out, reduce the time range being searched or partition your query into a
@@ -5472,8 +5525,24 @@ type AssociateKmsKeyInput struct {
 
 	// The name of the log group.
 	//
-	// LogGroupName is a required field
-	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
+	// In your AssociateKmsKey operation, you must specify either the resourceIdentifier
+	// parameter or the logGroup parameter, but you can't specify both.
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
+
+	// Specifies the target for this operation. You must specify one of the following:
+	//
+	//    * Specify the following ARN to have future GetQueryResults (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html)
+	//    operations in this account encrypt the results with the specified KMS
+	//    key. Replace REGION and ACCOUNT_ID with your Region and account ID. arn:aws:logs:REGION:ACCOUNT_ID:query-result:*
+	//
+	//    * Specify the ARN of a log group to have CloudWatch Logs use the KMS key
+	//    to encrypt log events that are ingested and stored by that log group.
+	//    The log group ARN must be in the following format. Replace REGION and
+	//    ACCOUNT_ID with your Region and account ID. arn:aws:logs:REGION:ACCOUNT_ID:log-group:LOG_GROUP_NAME
+	//
+	// In your AssociateKmsKey operation, you must specify either the resourceIdentifier
+	// parameter or the logGroup parameter, but you can't specify both.
+	ResourceIdentifier *string `locationName:"resourceIdentifier" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -5500,11 +5569,11 @@ func (s *AssociateKmsKeyInput) Validate() error {
 	if s.KmsKeyId == nil {
 		invalidParams.Add(request.NewErrParamRequired("KmsKeyId"))
 	}
-	if s.LogGroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("LogGroupName"))
-	}
 	if s.LogGroupName != nil && len(*s.LogGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LogGroupName", 1))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5522,6 +5591,12 @@ func (s *AssociateKmsKeyInput) SetKmsKeyId(v string) *AssociateKmsKeyInput {
 // SetLogGroupName sets the LogGroupName field's value.
 func (s *AssociateKmsKeyInput) SetLogGroupName(v string) *AssociateKmsKeyInput {
 	s.LogGroupName = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *AssociateKmsKeyInput) SetResourceIdentifier(v string) *AssociateKmsKeyInput {
+	s.ResourceIdentifier = &v
 	return s
 }
 
@@ -8170,8 +8245,27 @@ type DisassociateKmsKeyInput struct {
 
 	// The name of the log group.
 	//
-	// LogGroupName is a required field
-	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
+	// In your DisassociateKmsKey operation, you must specify either the resourceIdentifier
+	// parameter or the logGroup parameter, but you can't specify both.
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
+
+	// Specifies the target for this operation. You must specify one of the following:
+	//
+	//    * Specify the ARN of a log group to stop having CloudWatch Logs use the
+	//    KMS key to encrypt log events that are ingested and stored by that log
+	//    group. After you run this operation, CloudWatch Logs encrypts ingested
+	//    log events with the default CloudWatch Logs method. The log group ARN
+	//    must be in the following format. Replace REGION and ACCOUNT_ID with your
+	//    Region and account ID. arn:aws:logs:REGION:ACCOUNT_ID:log-group:LOG_GROUP_NAME
+	//
+	//    * Specify the following ARN to stop using this key to encrypt the results
+	//    of future StartQuery (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html)
+	//    operations in this account. Replace REGION and ACCOUNT_ID with your Region
+	//    and account ID. arn:aws:logs:REGION:ACCOUNT_ID:query-result:*
+	//
+	// In your DisssociateKmsKey operation, you must specify either the resourceIdentifier
+	// parameter or the logGroup parameter, but you can't specify both.
+	ResourceIdentifier *string `locationName:"resourceIdentifier" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8195,11 +8289,11 @@ func (s DisassociateKmsKeyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DisassociateKmsKeyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DisassociateKmsKeyInput"}
-	if s.LogGroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("LogGroupName"))
-	}
 	if s.LogGroupName != nil && len(*s.LogGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LogGroupName", 1))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8211,6 +8305,12 @@ func (s *DisassociateKmsKeyInput) Validate() error {
 // SetLogGroupName sets the LogGroupName field's value.
 func (s *DisassociateKmsKeyInput) SetLogGroupName(v string) *DisassociateKmsKeyInput {
 	s.LogGroupName = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *DisassociateKmsKeyInput) SetResourceIdentifier(v string) *DisassociateKmsKeyInput {
+	s.ResourceIdentifier = &v
 	return s
 }
 
@@ -9058,9 +9158,9 @@ type GetLogGroupFieldsInput struct {
 	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
-	// The time to set as the center of the query. If you specify time, the 15 minutes
-	// before this time are queries. If you omit time, the 8 minutes before and
-	// 8 minutes after this time are searched.
+	// The time to set as the center of the query. If you specify time, the 8 minutes
+	// before and 8 minutes after this time are searched. If you omit time, the
+	// most recent 15 minutes up to the current time are searched.
 	//
 	// The time value is specified as epoch time, which is the number of seconds
 	// since January 1, 1970, 00:00:00 UTC.
@@ -9294,6 +9394,12 @@ func (s *GetQueryResultsInput) SetQueryId(v string) *GetQueryResultsInput {
 type GetQueryResultsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If you associated an KMS key with the CloudWatch Logs Insights query results
+	// in this account, this field displays the ARN of the key that's used to encrypt
+	// the query results when StartQuery (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html)
+	// stores them.
+	EncryptionKey *string `locationName:"encryptionKey" type:"string"`
+
 	// The log events that matched the query criteria during the most recent time
 	// it ran.
 	//
@@ -9304,8 +9410,8 @@ type GetQueryResultsOutput struct {
 
 	// Includes the number of log events scanned by the query, the number of log
 	// events that matched the query criteria, and the total number of bytes in
-	// the log events that were scanned. These values reflect the full raw results
-	// of the query.
+	// the scanned log events. These values reflect the full raw results of the
+	// query.
 	Statistics *QueryStatistics `locationName:"statistics" type:"structure"`
 
 	// The status of the most recent running of the query. Possible values are Cancelled,
@@ -9333,6 +9439,12 @@ func (s GetQueryResultsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetQueryResultsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEncryptionKey sets the EncryptionKey field's value.
+func (s *GetQueryResultsOutput) SetEncryptionKey(v string) *GetQueryResultsOutput {
+	s.EncryptionKey = &v
+	return s
 }
 
 // SetResults sets the Results field's value.
@@ -10601,9 +10713,9 @@ type PutAccountPolicyInput struct {
 	// PolicyType is a required field
 	PolicyType *string `locationName:"policyType" type:"string" required:"true" enum:"PolicyType"`
 
-	// Currently the only valid value for this parameter is GLOBAL, which specifies
+	// Currently the only valid value for this parameter is ALL, which specifies
 	// that the data protection policy applies to all log groups in the account.
-	// If you omit this parameter, the default of GLOBAL is used.
+	// If you omit this parameter, the default of ALL is used.
 	Scope *string `locationName:"scope" type:"string" enum:"Scope"`
 }
 
@@ -12534,19 +12646,19 @@ type StartQueryInput struct {
 	// If you specify an ARN, the ARN can't end with an asterisk (*).
 	//
 	// A StartQuery operation must include exactly one of the following parameters:
-	// logGroupName, logGroupNames or logGroupIdentifiers.
+	// logGroupName, logGroupNames, or logGroupIdentifiers.
 	LogGroupIdentifiers []*string `locationName:"logGroupIdentifiers" type:"list"`
 
 	// The log group on which to perform the query.
 	//
 	// A StartQuery operation must include exactly one of the following parameters:
-	// logGroupName, logGroupNames or logGroupIdentifiers.
+	// logGroupName, logGroupNames, or logGroupIdentifiers.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
 	// The list of log groups to be queried. You can include up to 50 log groups.
 	//
 	// A StartQuery operation must include exactly one of the following parameters:
-	// logGroupName, logGroupNames or logGroupIdentifiers.
+	// logGroupName, logGroupNames, or logGroupIdentifiers.
 	LogGroupNames []*string `locationName:"logGroupNames" type:"list"`
 
 	// The query string to use. For more information, see CloudWatch Logs Insights
