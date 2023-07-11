@@ -13967,7 +13967,11 @@ type AdminInitiateAuthOutput struct {
 	// determines that the caller must pass another challenge, they return a session
 	// with other challenge parameters. This session should be passed as it is to
 	// the next AdminRespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AdminInitiateAuthOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -14836,7 +14840,11 @@ type AdminRespondToAuthChallengeInput struct {
 	// the AdminInitiateAuth response includes the actual username value in the
 	// USERNAMEUSER_ID_FOR_SRP attribute. This happens even if you specified an
 	// alias in your call to AdminInitiateAuth.
-	ChallengeResponses map[string]*string `type:"map"`
+	//
+	// ChallengeResponses is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AdminRespondToAuthChallengeInput's
+	// String and GoString methods.
+	ChallengeResponses map[string]*string `type:"map" sensitive:"true"`
 
 	// The app client ID.
 	//
@@ -14906,7 +14914,11 @@ type AdminRespondToAuthChallengeInput struct {
 	// that the caller must pass another challenge, it returns a session with other
 	// challenge parameters. This session should be passed as it is to the next
 	// RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AdminRespondToAuthChallengeInput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 
 	// The ID of the Amazon Cognito user pool.
 	//
@@ -15030,7 +15042,11 @@ type AdminRespondToAuthChallengeOutput struct {
 	// the service. If the caller must pass another challenge, they return a session
 	// with other challenge parameters. This session should be passed as it is to
 	// the next RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AdminRespondToAuthChallengeOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -16150,7 +16166,11 @@ type AssociateSoftwareTokenInput struct {
 	// The session that should be passed both ways in challenge-response calls to
 	// the service. This allows authentication of the user as part of the MFA setup
 	// process.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssociateSoftwareTokenInput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -16210,7 +16230,11 @@ type AssociateSoftwareTokenOutput struct {
 	// The session that should be passed both ways in challenge-response calls to
 	// the service. This allows authentication of the user as part of the MFA setup
 	// process.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssociateSoftwareTokenOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -23472,7 +23496,11 @@ type InitiateAuthOutput struct {
 	// service. If the caller must pass another challenge, they return a session
 	// with other challenge parameters. This session should be passed as it is to
 	// the next RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InitiateAuthOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -26951,7 +26979,11 @@ type RespondToAuthChallengeInput struct {
 	//
 	//    * MFA_SETUP requires USERNAME, plus you must use the session value returned
 	//    by VerifySoftwareToken in the Session parameter.
-	ChallengeResponses map[string]*string `type:"map"`
+	//
+	// ChallengeResponses is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RespondToAuthChallengeInput's
+	// String and GoString methods.
+	ChallengeResponses map[string]*string `type:"map" sensitive:"true"`
 
 	// The app client ID.
 	//
@@ -26999,7 +27031,11 @@ type RespondToAuthChallengeInput struct {
 	// that the caller must pass another challenge, they return a session with other
 	// challenge parameters. This session should be passed as it is to the next
 	// RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RespondToAuthChallengeInput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 
 	// Contextual data about your user session, such as the device fingerprint,
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
@@ -27108,7 +27144,11 @@ type RespondToAuthChallengeOutput struct {
 	// the service. If the caller must pass another challenge, they return a session
 	// with other challenge parameters. This session should be passed as it is to
 	// the next RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RespondToAuthChallengeOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -33623,7 +33663,11 @@ type VerifySoftwareTokenInput struct {
 
 	// The session that should be passed both ways in challenge-response calls to
 	// the service.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VerifySoftwareTokenInput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 
 	// The one- time password computed using the secret code returned by AssociateSoftwareToken
 	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html).
@@ -33698,7 +33742,11 @@ type VerifySoftwareTokenOutput struct {
 
 	// The session that should be passed both ways in challenge-response calls to
 	// the service.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VerifySoftwareTokenOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 
 	// The status of the verify software token.
 	Status *string `type:"string" enum:"VerifySoftwareTokenResponseType"`

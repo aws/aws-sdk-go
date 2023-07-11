@@ -1,3 +1,9 @@
+Release v1.44.299 (2023-07-11)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API
+
 Release v1.44.298 (2023-07-07)
 ===
 
