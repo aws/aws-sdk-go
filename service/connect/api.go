@@ -4045,6 +4045,101 @@ func (c *Connect) DeletePromptWithContext(ctx aws.Context, input *DeletePromptIn
 	return out, req.Send()
 }
 
+const opDeleteQueue = "DeleteQueue"
+
+// DeleteQueueRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteQueue operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteQueue for more information on using the DeleteQueue
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteQueueRequest method.
+//	req, resp := client.DeleteQueueRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteQueue
+func (c *Connect) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request, output *DeleteQueueOutput) {
+	op := &request.Operation{
+		Name:       opDeleteQueue,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}",
+	}
+
+	if input == nil {
+		input = &DeleteQueueInput{}
+	}
+
+	output = &DeleteQueueOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteQueue API operation for Amazon Connect Service.
+//
+// Deletes a queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteQueue for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteQueue
+func (c *Connect) DeleteQueue(input *DeleteQueueInput) (*DeleteQueueOutput, error) {
+	req, out := c.DeleteQueueRequest(input)
+	return out, req.Send()
+}
+
+// DeleteQueueWithContext is the same as DeleteQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteQueueWithContext(ctx aws.Context, input *DeleteQueueInput, opts ...request.Option) (*DeleteQueueOutput, error) {
+	req, out := c.DeleteQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteQuickConnect = "DeleteQuickConnect"
 
 // DeleteQuickConnectRequest generates a "aws/request.Request" representing the
@@ -4132,6 +4227,101 @@ func (c *Connect) DeleteQuickConnect(input *DeleteQuickConnectInput) (*DeleteQui
 // for more information on using Contexts.
 func (c *Connect) DeleteQuickConnectWithContext(ctx aws.Context, input *DeleteQuickConnectInput, opts ...request.Option) (*DeleteQuickConnectOutput, error) {
 	req, out := c.DeleteQuickConnectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRoutingProfile = "DeleteRoutingProfile"
+
+// DeleteRoutingProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRoutingProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRoutingProfile for more information on using the DeleteRoutingProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteRoutingProfileRequest method.
+//	req, resp := client.DeleteRoutingProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteRoutingProfile
+func (c *Connect) DeleteRoutingProfileRequest(input *DeleteRoutingProfileInput) (req *request.Request, output *DeleteRoutingProfileOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRoutingProfile,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}",
+	}
+
+	if input == nil {
+		input = &DeleteRoutingProfileInput{}
+	}
+
+	output = &DeleteRoutingProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRoutingProfile API operation for Amazon Connect Service.
+//
+// Deletes a routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteRoutingProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteRoutingProfile
+func (c *Connect) DeleteRoutingProfile(input *DeleteRoutingProfileInput) (*DeleteRoutingProfileOutput, error) {
+	req, out := c.DeleteRoutingProfileRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRoutingProfileWithContext is the same as DeleteRoutingProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRoutingProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteRoutingProfileWithContext(ctx aws.Context, input *DeleteRoutingProfileInput, opts ...request.Option) (*DeleteRoutingProfileOutput, error) {
+	req, out := c.DeleteRoutingProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -28924,6 +29114,96 @@ func (s DeletePromptOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteQueueInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteQueueInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteQueueInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteQueueInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteQueueInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteQueueInput) SetInstanceId(v string) *DeleteQueueInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *DeleteQueueInput) SetQueueId(v string) *DeleteQueueInput {
+	s.QueueId = &v
+	return s
+}
+
+type DeleteQueueOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteQueueOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteQueueOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteQuickConnectInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -29011,6 +29291,96 @@ func (s DeleteQuickConnectOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteQuickConnectOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteRoutingProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoutingProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoutingProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRoutingProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRoutingProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteRoutingProfileInput) SetInstanceId(v string) *DeleteRoutingProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *DeleteRoutingProfileInput) SetRoutingProfileId(v string) *DeleteRoutingProfileInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type DeleteRoutingProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoutingProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoutingProfileOutput) GoString() string {
 	return s.String()
 }
 
@@ -38597,7 +38967,7 @@ type Instance struct {
 	// Whether inbound calls are enabled.
 	InboundCallsEnabled *bool `type:"boolean"`
 
-	// This URL allows contact center users to access Amazon Connect admin website.
+	// This URL allows contact center users to access the Amazon Connect admin website.
 	InstanceAccessUrl *string `type:"string"`
 
 	// The alias of instance.
@@ -38871,7 +39241,7 @@ type InstanceSummary struct {
 	// Whether inbound calls are enabled.
 	InboundCallsEnabled *bool `type:"boolean"`
 
-	// This URL allows contact center users to access Amazon Connect admin website.
+	// This URL allows contact center users to access the Amazon Connect admin website.
 	InstanceAccessUrl *string `type:"string"`
 
 	// The alias of the instance.

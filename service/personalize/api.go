@@ -6901,6 +6901,92 @@ func (c *Personalize) UpdateCampaignWithContext(ctx aws.Context, input *UpdateCa
 	return out, req.Send()
 }
 
+const opUpdateDataset = "UpdateDataset"
+
+// UpdateDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDataset for more information on using the UpdateDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateDatasetRequest method.
+//	req, resp := client.UpdateDatasetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateDataset
+func (c *Personalize) UpdateDatasetRequest(input *UpdateDatasetInput) (req *request.Request, output *UpdateDatasetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDatasetInput{}
+	}
+
+	output = &UpdateDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDataset API operation for Amazon Personalize.
+//
+// Update a dataset to replace its schema with a new or existing one. For more
+// information, see Replacing a dataset's schema (https://docs.aws.amazon.com/personalize/latest/dg/updating-dataset-schema.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation UpdateDataset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateDataset
+func (c *Personalize) UpdateDataset(input *UpdateDatasetInput) (*UpdateDatasetOutput, error) {
+	req, out := c.UpdateDatasetRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDatasetWithContext is the same as UpdateDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) UpdateDatasetWithContext(ctx aws.Context, input *UpdateDatasetInput, opts ...request.Option) (*UpdateDatasetOutput, error) {
+	req, out := c.UpdateDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateMetricAttribution = "UpdateMetricAttribution"
 
 // UpdateMetricAttributionRequest generates a "aws/request.Request" representing the
@@ -10355,7 +10441,7 @@ type CreateSolutionInput struct {
 	// set it to false.
 	PerformHPO *bool `locationName:"performHPO" type:"boolean"`
 
-	// The ARN of the recipe to use for model training. Only specified when performAutoML
+	// The ARN of the recipe to use for model training. This is required when performAutoML
 	// is false.
 	RecipeArn *string `locationName:"recipeArn" type:"string"`
 
@@ -10692,6 +10778,9 @@ type Dataset struct {
 	// A time stamp that shows when the dataset was updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
+	// Describes the latest update to the dataset.
+	LatestDatasetUpdate *DatasetUpdateSummary `locationName:"latestDatasetUpdate" type:"structure"`
+
 	// The name of the dataset.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -10753,6 +10842,12 @@ func (s *Dataset) SetDatasetType(v string) *Dataset {
 // SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
 func (s *Dataset) SetLastUpdatedDateTime(v time.Time) *Dataset {
 	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetLatestDatasetUpdate sets the LatestDatasetUpdate field's value.
+func (s *Dataset) SetLatestDatasetUpdate(v *DatasetUpdateSummary) *Dataset {
+	s.LatestDatasetUpdate = v
 	return s
 }
 
@@ -11720,6 +11815,75 @@ func (s *DatasetSummary) SetName(v string) *DatasetSummary {
 
 // SetStatus sets the Status field's value.
 func (s *DatasetSummary) SetStatus(v string) *DatasetSummary {
+	s.Status = &v
+	return s
+}
+
+// Describes an update to a dataset.
+type DatasetUpdateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time (in Unix time) of the dataset update.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// If updating a dataset fails, provides the reason why.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The last update date and time (in Unix time) of the dataset.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the schema that replaced the previous schema
+	// of the dataset.
+	SchemaArn *string `locationName:"schemaArn" type:"string"`
+
+	// The status of the dataset update.
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetUpdateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetUpdateSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DatasetUpdateSummary) SetCreationDateTime(v time.Time) *DatasetUpdateSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DatasetUpdateSummary) SetFailureReason(v string) *DatasetUpdateSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DatasetUpdateSummary) SetLastUpdatedDateTime(v time.Time) *DatasetUpdateSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetSchemaArn sets the SchemaArn field's value.
+func (s *DatasetUpdateSummary) SetSchemaArn(v string) *DatasetUpdateSummary {
+	s.SchemaArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetUpdateSummary) SetStatus(v string) *DatasetUpdateSummary {
 	s.Status = &v
 	return s
 }
@@ -17913,7 +18077,8 @@ type Solution struct {
 	// The default is false.
 	PerformHPO *bool `locationName:"performHPO" type:"boolean"`
 
-	// The ARN of the recipe used to create the solution.
+	// The ARN of the recipe used to create the solution. This is required when
+	// performAutoML is false.
 	RecipeArn *string `locationName:"recipeArn" type:"string"`
 
 	// The ARN of the solution.
@@ -19274,6 +19439,97 @@ func (s UpdateCampaignOutput) GoString() string {
 // SetCampaignArn sets the CampaignArn field's value.
 func (s *UpdateCampaignOutput) SetCampaignArn(v string) *UpdateCampaignOutput {
 	s.CampaignArn = &v
+	return s
+}
+
+type UpdateDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset that you want to update.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the new schema you want use.
+	//
+	// SchemaArn is a required field
+	SchemaArn *string `locationName:"schemaArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDatasetInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.SchemaArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *UpdateDatasetInput) SetDatasetArn(v string) *UpdateDatasetInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetSchemaArn sets the SchemaArn field's value.
+func (s *UpdateDatasetInput) SetSchemaArn(v string) *UpdateDatasetInput {
+	s.SchemaArn = &v
+	return s
+}
+
+type UpdateDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset you updated.
+	DatasetArn *string `locationName:"datasetArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *UpdateDatasetOutput) SetDatasetArn(v string) *UpdateDatasetOutput {
+	s.DatasetArn = &v
 	return s
 }
 

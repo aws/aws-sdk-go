@@ -51,7 +51,7 @@
           "SecretId": "MyTestDatabaseSecret"
         },
         "output": {
-          "ARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseMasterSecret-a1b2c3",
+          "ARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3",
           "Name": "MyTestDatabaseSecret"
         },
         "comments": {

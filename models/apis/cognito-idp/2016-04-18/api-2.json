@@ -4863,7 +4863,8 @@
       "type":"string",
       "max":6,
       "min":6,
-      "pattern":"[0-9]+"
+      "pattern":"[0-9]+",
+      "sensitive":true
     },
     "SoftwareTokenMfaConfigType":{
       "type":"structure",
@@ -5284,7 +5285,8 @@
       "members":{
         "IpAddress":{"shape":"StringType"},
         "EncodedData":{"shape":"StringType"}
-      }
+      },
+      "sensitive":true
     },
     "UserFilterType":{
       "type":"string",

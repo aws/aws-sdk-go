@@ -1,3 +1,27 @@
+Release v1.44.300 (2023-07-13)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API
+* `service/connect`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Enhanced PostgreSQL target endpoint settings for providing Babelfish support.
+* `service/ec2`: Updates service API
+  * This release adds support for the C7gn and Hpc7g instances. C7gn instances are powered by AWS Graviton3 processors and the fifth-generation AWS Nitro Cards. Hpc7g instances are powered by AWS Graviton 3E processors and provide up to 200 Gbps network bandwidth.
+* `service/fsx`: Updates service API and documentation
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/mediatailor`: Updates service API and documentation
+* `service/personalize`: Updates service API and documentation
+* `service/proton`: Updates service API, documentation, and paginators
+* `service/s3`: Updates service API, documentation, and examples
+  * S3 Inventory now supports Object Access Control List and Object Owner as available object metadata fields in inventory reports.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Canvas adds WorkspeceSettings support for CanvasAppSettings
+* `service/secretsmanager`: Updates service documentation and examples
+  * Documentation updates for Secrets Manager
+
 Release v1.44.299 (2023-07-11)
 ===
 

@@ -4809,7 +4809,8 @@
       "type":"structure",
       "members":{
         "TimeSeriesForecastingSettings":{"shape":"TimeSeriesForecastingSettings"},
-        "ModelRegisterSettings":{"shape":"ModelRegisterSettings"}
+        "ModelRegisterSettings":{"shape":"ModelRegisterSettings"},
+        "WorkspaceSettings":{"shape":"WorkspaceSettings"}
       }
     },
     "CapacitySize":{
@@ -21221,6 +21222,13 @@
     "Workforces":{
       "type":"list",
       "member":{"shape":"Workforce"}
+    },
+    "WorkspaceSettings":{
+      "type":"structure",
+      "members":{
+        "S3ArtifactPath":{"shape":"S3Uri"},
+        "S3KmsKeyId":{"shape":"KmsKeyId"}
+      }
     },
     "Workteam":{
       "type":"structure",

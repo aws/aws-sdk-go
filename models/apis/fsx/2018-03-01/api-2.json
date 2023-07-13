@@ -869,6 +869,30 @@
         "NEW_CHANGED_DELETED"
       ]
     },
+    "AutocommitPeriod":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"AutocommitPeriodType"},
+        "Value":{"shape":"AutocommitPeriodValue"}
+      }
+    },
+    "AutocommitPeriodType":{
+      "type":"string",
+      "enum":[
+        "MINUTES",
+        "HOURS",
+        "DAYS",
+        "MONTHS",
+        "YEARS",
+        "NONE"
+      ]
+    },
+    "AutocommitPeriodValue":{
+      "type":"integer",
+      "max":65535,
+      "min":1
+    },
     "AutomaticBackupRetentionDays":{
       "type":"integer",
       "max":90,
@@ -1314,7 +1338,8 @@
         "TieringPolicy":{"shape":"TieringPolicy"},
         "OntapVolumeType":{"shape":"InputOntapVolumeType"},
         "SnapshotPolicy":{"shape":"SnapshotPolicy"},
-        "CopyTagsToBackups":{"shape":"Flag"}
+        "CopyTagsToBackups":{"shape":"Flag"},
+        "SnaplockConfiguration":{"shape":"CreateSnaplockConfiguration"}
       }
     },
     "CreateOpenZFSOriginSnapshotConfiguration":{
@@ -1342,6 +1367,18 @@
         "ReadOnly":{"shape":"ReadOnly"},
         "NfsExports":{"shape":"OpenZFSNfsExports"},
         "UserAndGroupQuotas":{"shape":"OpenZFSUserAndGroupQuotas"}
+      }
+    },
+    "CreateSnaplockConfiguration":{
+      "type":"structure",
+      "required":["SnaplockType"],
+      "members":{
+        "AuditLogVolume":{"shape":"Flag"},
+        "AutocommitPeriod":{"shape":"AutocommitPeriod"},
+        "PrivilegedDelete":{"shape":"PrivilegedDelete"},
+        "RetentionPeriod":{"shape":"SnaplockRetentionPeriod"},
+        "SnaplockType":{"shape":"SnaplockType"},
+        "VolumeAppendModeEnabled":{"shape":"Flag"}
       }
     },
     "CreateSnapshotRequest":{
@@ -1851,7 +1888,8 @@
       "type":"structure",
       "members":{
         "SkipFinalBackup":{"shape":"Flag"},
-        "FinalBackupTags":{"shape":"Tags"}
+        "FinalBackupTags":{"shape":"Tags"},
+        "BypassSnaplockEnterpriseRetention":{"shape":"Flag"}
       }
     },
     "DeleteVolumeOntapResponse":{
@@ -2793,7 +2831,8 @@
         "UUID":{"shape":"UUID"},
         "OntapVolumeType":{"shape":"OntapVolumeType"},
         "SnapshotPolicy":{"shape":"SnapshotPolicy"},
-        "CopyTagsToBackups":{"shape":"Flag"}
+        "CopyTagsToBackups":{"shape":"Flag"},
+        "SnaplockConfiguration":{"shape":"SnaplockConfiguration"}
       }
     },
     "OntapVolumeType":{
@@ -2963,6 +3002,14 @@
       "max":1000,
       "min":12
     },
+    "PrivilegedDelete":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "ENABLED",
+        "PERMANENTLY_DISABLED"
+      ]
+    },
     "ProgressPercent":{
       "type":"integer",
       "max":100,
@@ -3074,6 +3121,32 @@
         "AdministrativeActions":{"shape":"AdministrativeActions"}
       }
     },
+    "RetentionPeriod":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"RetentionPeriodType"},
+        "Value":{"shape":"RetentionPeriodValue"}
+      }
+    },
+    "RetentionPeriodType":{
+      "type":"string",
+      "enum":[
+        "SECONDS",
+        "MINUTES",
+        "HOURS",
+        "DAYS",
+        "MONTHS",
+        "YEARS",
+        "INFINITE",
+        "UNSPECIFIED"
+      ]
+    },
+    "RetentionPeriodValue":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
     "RouteTableId":{
       "type":"string",
       "max":21,
@@ -3172,6 +3245,37 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "SnaplockConfiguration":{
+      "type":"structure",
+      "members":{
+        "AuditLogVolume":{"shape":"Flag"},
+        "AutocommitPeriod":{"shape":"AutocommitPeriod"},
+        "PrivilegedDelete":{"shape":"PrivilegedDelete"},
+        "RetentionPeriod":{"shape":"SnaplockRetentionPeriod"},
+        "SnaplockType":{"shape":"SnaplockType"},
+        "VolumeAppendModeEnabled":{"shape":"Flag"}
+      }
+    },
+    "SnaplockRetentionPeriod":{
+      "type":"structure",
+      "required":[
+        "DefaultRetention",
+        "MinimumRetention",
+        "MaximumRetention"
+      ],
+      "members":{
+        "DefaultRetention":{"shape":"RetentionPeriod"},
+        "MinimumRetention":{"shape":"RetentionPeriod"},
+        "MaximumRetention":{"shape":"RetentionPeriod"}
+      }
+    },
+    "SnaplockType":{
+      "type":"string",
+      "enum":[
+        "COMPLIANCE",
+        "ENTERPRISE"
+      ]
     },
     "Snapshot":{
       "type":"structure",
@@ -3668,7 +3772,8 @@
         "StorageEfficiencyEnabled":{"shape":"Flag"},
         "TieringPolicy":{"shape":"TieringPolicy"},
         "SnapshotPolicy":{"shape":"SnapshotPolicy"},
-        "CopyTagsToBackups":{"shape":"Flag"}
+        "CopyTagsToBackups":{"shape":"Flag"},
+        "SnaplockConfiguration":{"shape":"UpdateSnaplockConfiguration"}
       }
     },
     "UpdateOpenZFSVolumeConfiguration":{
@@ -3681,6 +3786,16 @@
         "NfsExports":{"shape":"OpenZFSNfsExports"},
         "UserAndGroupQuotas":{"shape":"OpenZFSUserAndGroupQuotas"},
         "ReadOnly":{"shape":"ReadOnly"}
+      }
+    },
+    "UpdateSnaplockConfiguration":{
+      "type":"structure",
+      "members":{
+        "AuditLogVolume":{"shape":"Flag"},
+        "AutocommitPeriod":{"shape":"AutocommitPeriod"},
+        "PrivilegedDelete":{"shape":"PrivilegedDelete"},
+        "RetentionPeriod":{"shape":"SnaplockRetentionPeriod"},
+        "VolumeAppendModeEnabled":{"shape":"Flag"}
       }
     },
     "UpdateSnapshotRequest":{
@@ -3769,7 +3884,7 @@
     },
     "VolumeCapacity":{
       "type":"integer",
-      "max":2147483647,
+      "max":314572800,
       "min":0
     },
     "VolumeFilter":{

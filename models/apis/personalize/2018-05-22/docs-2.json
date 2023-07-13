@@ -66,6 +66,7 @@
     "TagResource": "<p>Add a list of tags to a resource.</p>",
     "UntagResource": "<p>Remove <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html\">tags</a> that are attached to a resource.</p>",
     "UpdateCampaign": "<p>Updates a campaign by either deploying a new solution or changing the value of the campaign's <code>minProvisionedTPS</code> parameter.</p> <p>To update a campaign, the campaign status must be ACTIVE or CREATE FAILED. Check the campaign status using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html\">DescribeCampaign</a> operation.</p> <note> <p>You can still get recommendations from a campaign while an update is in progress. The campaign will use the previous solution version and campaign configuration to generate recommendations until the latest campaign update status is <code>Active</code>. </p> </note> <p>For more information on campaigns, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html\">CreateCampaign</a>.</p>",
+    "UpdateDataset": "<p>Update a dataset to replace its schema with a new or existing one. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/updating-dataset-schema.html\">Replacing a dataset's schema</a>. </p>",
     "UpdateMetricAttribution": "<p>Updates a metric attribution.</p>",
     "UpdateRecommender": "<p>Updates the recommender to modify the recommender configuration. If you update the recommender to modify the columns used in training, Amazon Personalize automatically starts a full retraining of the models backing your recommender. While the update completes, you can still get recommendations from the recommender. The recommender uses the previous configuration until the update completes. To track the status of this update, use the <code>latestRecommenderUpdate</code> returned in the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html\">DescribeRecommender</a> operation. </p>"
   },
@@ -135,7 +136,7 @@
         "CreateRecommenderRequest$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe that the recommender will use. For a recommender, a recipe is a Domain dataset group use case. Only Domain dataset group use cases can be used to create a recommender. For information about use cases see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/domain-use-cases.html\">Choosing recommender use cases</a>. </p>",
         "CreateRecommenderResponse$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender.</p>",
         "CreateSchemaResponse$schemaArn": "<p>The Amazon Resource Name (ARN) of the created schema.</p>",
-        "CreateSolutionRequest$recipeArn": "<p>The ARN of the recipe to use for model training. Only specified when <code>performAutoML</code> is false.</p>",
+        "CreateSolutionRequest$recipeArn": "<p>The ARN of the recipe to use for model training. This is required when <code>performAutoML</code> is false.</p>",
         "CreateSolutionRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that provides the training data.</p>",
         "CreateSolutionResponse$solutionArn": "<p>The ARN of the solution.</p>",
         "CreateSolutionVersionRequest$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution containing the training configuration information.</p>",
@@ -156,6 +157,7 @@
         "DatasetSchema$schemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
         "DatasetSchemaSummary$schemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
         "DatasetSummary$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "DatasetUpdateSummary$schemaArn": "<p>The Amazon Resource Name (ARN) of the schema that replaced the previous schema of the dataset.</p>",
         "DeleteCampaignRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign to delete.</p>",
         "DeleteDatasetGroupRequest$datasetGroupArn": "<p>The ARN of the dataset group to delete.</p>",
         "DeleteDatasetRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to delete.</p>",
@@ -220,7 +222,7 @@
         "RecommenderSummary$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the Domain dataset group that contains the recommender.</p>",
         "RecommenderSummary$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe (Domain dataset group use case) that the recommender was created for.</p>",
         "Solution$solutionArn": "<p>The ARN of the solution.</p>",
-        "Solution$recipeArn": "<p>The ARN of the recipe used to create the solution.</p>",
+        "Solution$recipeArn": "<p>The ARN of the recipe used to create the solution. This is required when <code>performAutoML</code> is false.</p>",
         "Solution$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that provides the training data.</p>",
         "SolutionSummary$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution.</p>",
         "SolutionSummary$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe used by the solution.</p>",
@@ -239,6 +241,9 @@
         "UpdateCampaignRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
         "UpdateCampaignRequest$solutionVersionArn": "<p>The ARN of a new solution version to deploy.</p>",
         "UpdateCampaignResponse$campaignArn": "<p>The same campaign ARN as given in the request.</p>",
+        "UpdateDatasetRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset that you want to update.</p>",
+        "UpdateDatasetRequest$schemaArn": "<p>The Amazon Resource Name (ARN) of the new schema you want use.</p>",
+        "UpdateDatasetResponse$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset you updated.</p>",
         "UpdateMetricAttributionRequest$metricAttributionArn": "<p>The Amazon Resource Name (ARN) for the metric attribution to update.</p>",
         "UpdateMetricAttributionResponse$metricAttributionArn": "<p>The Amazon Resource Name (ARN) for the metric attribution that you updated.</p>",
         "UpdateRecommenderRequest$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender to modify.</p>",
@@ -686,6 +691,12 @@
         "ExcludedDatasetColumns$key": null
       }
     },
+    "DatasetUpdateSummary": {
+      "base": "<p>Describes an update to a dataset.</p>",
+      "refs": {
+        "Dataset$latestDatasetUpdate": "<p>Describes the latest update to the dataset.</p>"
+      }
+    },
     "Datasets": {
       "base": null,
       "refs": {
@@ -731,6 +742,8 @@
         "DatasetSchemaSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the schema was last updated.</p>",
         "DatasetSummary$creationDateTime": "<p>The date and time (in Unix time) that the dataset was created.</p>",
         "DatasetSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the dataset was last updated.</p>",
+        "DatasetUpdateSummary$creationDateTime": "<p>The creation date and time (in Unix time) of the dataset update.</p>",
+        "DatasetUpdateSummary$lastUpdatedDateTime": "<p>The last update date and time (in Unix time) of the dataset.</p>",
         "EventTracker$creationDateTime": "<p>The date and time (in Unix format) that the event tracker was created.</p>",
         "EventTracker$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the event tracker was last updated.</p>",
         "EventTrackerSummary$creationDateTime": "<p>The date and time (in Unix time) that the event tracker was created.</p>",
@@ -1116,6 +1129,7 @@
         "DatasetGroupSummary$failureReason": "<p>If creating a dataset group fails, the reason behind the failure.</p>",
         "DatasetImportJob$failureReason": "<p>If a dataset import job fails, provides the reason why.</p>",
         "DatasetImportJobSummary$failureReason": "<p>If a dataset import job fails, the reason behind the failure.</p>",
+        "DatasetUpdateSummary$failureReason": "<p>If updating a dataset fails, provides the reason why.</p>",
         "Filter$failureReason": "<p>If the filter failed, the reason for its failure.</p>",
         "FilterSummary$failureReason": "<p>If the filter failed, the reason for the failure.</p>",
         "MetricAttribution$failureReason": "<p>The metric attribution's failure reason.</p>",
@@ -1913,6 +1927,7 @@
         "DatasetImportJob$status": "<p>The status of the dataset import job.</p> <p>A dataset import job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
         "DatasetImportJobSummary$status": "<p>The status of the dataset import job.</p> <p>A dataset import job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
         "DatasetSummary$status": "<p>The status of the dataset.</p> <p>A dataset can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
+        "DatasetUpdateSummary$status": "<p>The status of the dataset update. </p>",
         "EventTracker$status": "<p>The status of the event tracker.</p> <p>An event tracker can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "EventTrackerSummary$status": "<p>The status of the event tracker.</p> <p>An event tracker can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "FeatureTransformation$status": "<p>The status of the feature transformation.</p> <p>A feature transformation can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
@@ -2083,6 +2098,16 @@
       }
     },
     "UpdateCampaignResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatasetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatasetResponse": {
       "base": null,
       "refs": {
       }

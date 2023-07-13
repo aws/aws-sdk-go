@@ -17223,7 +17223,11 @@ type ConfirmForgotPasswordInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ConfirmForgotPasswordInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The user name of the user for whom you want to enter a code to retrieve a
 	// forgotten password.
@@ -17432,7 +17436,11 @@ type ConfirmSignUpInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ConfirmSignUpInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The user name of the user whose registration you want to confirm.
 	//
@@ -21759,7 +21767,11 @@ type ForgotPasswordInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ForgotPasswordInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The user name of the user for whom you want to enter a code to reset a forgotten
 	// password.
@@ -23351,7 +23363,11 @@ type InitiateAuthInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InitiateAuthInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -26612,7 +26628,11 @@ type ResendConfirmationCodeInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ResendConfirmationCodeInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The username attribute of the user to whom you want to resend a confirmation
 	// code.
@@ -27041,7 +27061,11 @@ type RespondToAuthChallengeInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RespondToAuthChallengeInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -28330,7 +28354,11 @@ type SignUpInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SignUpInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The user name of the user you want to register.
 	//
@@ -31670,7 +31698,7 @@ func (s *UserAttributeUpdateSettingsType) SetAttributesRequireVerificationBefore
 // used for evaluating the risk of an unexpected event by Amazon Cognito advanced
 // security.
 type UserContextDataType struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Encoded device-fingerprint details that your app collected with the Amazon
 	// Cognito context data collection library. For more information, see Adding
@@ -33672,8 +33700,12 @@ type VerifySoftwareTokenInput struct {
 	// The one- time password computed using the secret code returned by AssociateSoftwareToken
 	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html).
 	//
+	// UserCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VerifySoftwareTokenInput's
+	// String and GoString methods.
+	//
 	// UserCode is a required field
-	UserCode *string `min:"6" type:"string" required:"true"`
+	UserCode *string `min:"6" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

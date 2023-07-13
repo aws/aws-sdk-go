@@ -953,6 +953,21 @@
       ],
       "idempotent":true
     },
+    "UpdateDataset":{
+      "name":"UpdateDataset",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDatasetRequest"},
+      "output":{"shape":"UpdateDatasetResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
     "UpdateMetricAttribution":{
       "name":"UpdateMetricAttribution",
       "http":{
@@ -1557,7 +1572,8 @@
         "schemaArn":{"shape":"Arn"},
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
-        "lastUpdatedDateTime":{"shape":"Date"}
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "latestDatasetUpdate":{"shape":"DatasetUpdateSummary"}
       }
     },
     "DatasetExportJob":{
@@ -1697,6 +1713,16 @@
     "DatasetType":{
       "type":"string",
       "max":256
+    },
+    "DatasetUpdateSummary":{
+      "type":"structure",
+      "members":{
+        "schemaArn":{"shape":"Arn"},
+        "status":{"shape":"Status"},
+        "failureReason":{"shape":"FailureReason"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"}
+      }
     },
     "Datasets":{
       "type":"list",
@@ -3041,6 +3067,23 @@
       "type":"structure",
       "members":{
         "campaignArn":{"shape":"Arn"}
+      }
+    },
+    "UpdateDatasetRequest":{
+      "type":"structure",
+      "required":[
+        "datasetArn",
+        "schemaArn"
+      ],
+      "members":{
+        "datasetArn":{"shape":"Arn"},
+        "schemaArn":{"shape":"Arn"}
+      }
+    },
+    "UpdateDatasetResponse":{
+      "type":"structure",
+      "members":{
+        "datasetArn":{"shape":"Arn"}
       }
     },
     "UpdateMetricAttributionRequest":{

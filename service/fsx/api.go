@@ -4582,6 +4582,8 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //   - DataCompressionType
 //
+//   - LogConfiguration
+//
 //   - LustreRootSquashConfiguration
 //
 //   - StorageCapacity
@@ -5568,6 +5570,82 @@ func (s AutoImportPolicy) GoString() string {
 // SetEvents sets the Events field's value.
 func (s *AutoImportPolicy) SetEvents(v []*string) *AutoImportPolicy {
 	s.Events = v
+	return s
+}
+
+// Sets the autocommit period of files in an FSx for ONTAP SnapLock volume,
+// which determines how long the files must remain unmodified before they're
+// automatically transitioned to the write once, read many (WORM) state.
+//
+// For more information, see Autocommit (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-autocommit).
+type AutocommitPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the type of time for the autocommit period of a file in an FSx for
+	// ONTAP SnapLock volume. Setting this value to NONE disables autocommit. The
+	// default value is NONE.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"AutocommitPeriodType"`
+
+	// Defines the amount of time for the autocommit period of a file in an FSx
+	// for ONTAP SnapLock volume. The following ranges are valid:
+	//
+	//    * Minutes: 5 - 65,535
+	//
+	//    * Hours: 1 - 65,535
+	//
+	//    * Days: 1 - 3,650
+	//
+	//    * Months: 1 - 120
+	//
+	//    * Years: 1 - 10
+	Value *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutocommitPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutocommitPeriod) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutocommitPeriod) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutocommitPeriod"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Value != nil && *s.Value < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *AutocommitPeriod) SetType(v string) *AutocommitPeriod {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AutocommitPeriod) SetValue(v int64) *AutocommitPeriod {
+	s.Value = &v
 	return s
 }
 
@@ -9028,11 +9106,12 @@ type CreateOntapVolumeConfiguration struct {
 	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
 
 	// Specifies the size of the volume, in megabytes (MB), that you are creating.
-	// Provide any whole number in the range of 20–104857600 to specify the size
-	// of the volume.
 	//
 	// SizeInMegabytes is a required field
 	SizeInMegabytes *int64 `type:"integer" required:"true"`
+
+	// Specifies the SnapLock configuration for an FSx for ONTAP volume.
+	SnaplockConfiguration *CreateSnaplockConfiguration `type:"structure"`
 
 	// Specifies the snapshot policy for the volume. There are three built-in snapshot
 	// policies:
@@ -9122,6 +9201,11 @@ func (s *CreateOntapVolumeConfiguration) Validate() error {
 	if s.StorageVirtualMachineId != nil && len(*s.StorageVirtualMachineId) < 21 {
 		invalidParams.Add(request.NewErrParamMinLen("StorageVirtualMachineId", 21))
 	}
+	if s.SnaplockConfiguration != nil {
+		if err := s.SnaplockConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnaplockConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TieringPolicy != nil {
 		if err := s.TieringPolicy.Validate(); err != nil {
 			invalidParams.AddNested("TieringPolicy", err.(request.ErrInvalidParams))
@@ -9161,6 +9245,12 @@ func (s *CreateOntapVolumeConfiguration) SetSecurityStyle(v string) *CreateOntap
 // SetSizeInMegabytes sets the SizeInMegabytes field's value.
 func (s *CreateOntapVolumeConfiguration) SetSizeInMegabytes(v int64) *CreateOntapVolumeConfiguration {
 	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnaplockConfiguration sets the SnaplockConfiguration field's value.
+func (s *CreateOntapVolumeConfiguration) SetSnaplockConfiguration(v *CreateSnaplockConfiguration) *CreateOntapVolumeConfiguration {
+	s.SnaplockConfiguration = v
 	return s
 }
 
@@ -9472,6 +9562,141 @@ func (s *CreateOpenZFSVolumeConfiguration) SetStorageCapacityReservationGiB(v in
 // SetUserAndGroupQuotas sets the UserAndGroupQuotas field's value.
 func (s *CreateOpenZFSVolumeConfiguration) SetUserAndGroupQuotas(v []*OpenZFSUserOrGroupQuota) *CreateOpenZFSVolumeConfiguration {
 	s.UserAndGroupQuotas = v
+	return s
+}
+
+// Defines the SnapLock configuration when creating an FSx for ONTAP SnapLock
+// volume.
+type CreateSnaplockConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the audit log volume for an FSx for ONTAP SnapLock volume.
+	// The default value is false. If you set AuditLogVolume to true, the SnapLock
+	// volume is created as an audit log volume. The minimum retention period for
+	// an audit log volume is six months.
+	//
+	// For more information, see SnapLock audit log volumes (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#snaplock-audit-log-volume).
+	AuditLogVolume *bool `type:"boolean"`
+
+	// The configuration object for setting the autocommit period of files in an
+	// FSx for ONTAP SnapLock volume.
+	AutocommitPeriod *AutocommitPeriod `type:"structure"`
+
+	// Enables, disables, or permanently disables privileged delete on an FSx for
+	// ONTAP SnapLock Enterprise volume. Enabling privileged delete allows SnapLock
+	// administrators to delete WORM files even if they have active retention periods.
+	// PERMANENTLY_DISABLED is a terminal state. If privileged delete is permanently
+	// disabled on a SnapLock volume, you can't re-enable it. The default value
+	// is DISABLED.
+	//
+	// For more information, see Privileged delete (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#privileged-delete).
+	PrivilegedDelete *string `type:"string" enum:"PrivilegedDelete"`
+
+	// Specifies the retention period of an FSx for ONTAP SnapLock volume.
+	RetentionPeriod *SnaplockRetentionPeriod `type:"structure"`
+
+	// Specifies the retention mode of an FSx for ONTAP SnapLock volume. After it
+	// is set, it can't be changed. You can choose one of the following retention
+	// modes:
+	//
+	//    * COMPLIANCE: Files transitioned to write once, read many (WORM) on a
+	//    Compliance volume can't be deleted until their retention periods expire.
+	//    This retention mode is used to address government or industry-specific
+	//    mandates or to protect against ransomware attacks. For more information,
+	//    see SnapLock Compliance (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-compliance.html).
+	//
+	//    * ENTERPRISE: Files transitioned to WORM on an Enterprise volume can be
+	//    deleted by authorized users before their retention periods expire using
+	//    privileged delete. This retention mode is used to advance an organization's
+	//    data integrity and internal compliance or to test retention settings before
+	//    using SnapLock Compliance. For more information, see SnapLock Enterprise
+	//    (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.htmlFile).
+	//
+	// SnaplockType is a required field
+	SnaplockType *string `type:"string" required:"true" enum:"SnaplockType"`
+
+	// Enables or disables volume-append mode on an FSx for ONTAP SnapLock volume.
+	// Volume-append mode allows you to create WORM-appendable files and write data
+	// to them incrementally. The default value is false.
+	//
+	// For more information, see Volume-append mode (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append).
+	VolumeAppendModeEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnaplockConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnaplockConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSnaplockConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSnaplockConfiguration"}
+	if s.SnaplockType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnaplockType"))
+	}
+	if s.AutocommitPeriod != nil {
+		if err := s.AutocommitPeriod.Validate(); err != nil {
+			invalidParams.AddNested("AutocommitPeriod", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RetentionPeriod != nil {
+		if err := s.RetentionPeriod.Validate(); err != nil {
+			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditLogVolume sets the AuditLogVolume field's value.
+func (s *CreateSnaplockConfiguration) SetAuditLogVolume(v bool) *CreateSnaplockConfiguration {
+	s.AuditLogVolume = &v
+	return s
+}
+
+// SetAutocommitPeriod sets the AutocommitPeriod field's value.
+func (s *CreateSnaplockConfiguration) SetAutocommitPeriod(v *AutocommitPeriod) *CreateSnaplockConfiguration {
+	s.AutocommitPeriod = v
+	return s
+}
+
+// SetPrivilegedDelete sets the PrivilegedDelete field's value.
+func (s *CreateSnaplockConfiguration) SetPrivilegedDelete(v string) *CreateSnaplockConfiguration {
+	s.PrivilegedDelete = &v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *CreateSnaplockConfiguration) SetRetentionPeriod(v *SnaplockRetentionPeriod) *CreateSnaplockConfiguration {
+	s.RetentionPeriod = v
+	return s
+}
+
+// SetSnaplockType sets the SnaplockType field's value.
+func (s *CreateSnaplockConfiguration) SetSnaplockType(v string) *CreateSnaplockConfiguration {
+	s.SnaplockType = &v
+	return s
+}
+
+// SetVolumeAppendModeEnabled sets the VolumeAppendModeEnabled field's value.
+func (s *CreateSnaplockConfiguration) SetVolumeAppendModeEnabled(v bool) *CreateSnaplockConfiguration {
+	s.VolumeAppendModeEnabled = &v
 	return s
 }
 
@@ -12414,9 +12639,20 @@ func (s *DeleteVolumeInput) SetVolumeId(v string) *DeleteVolumeInput {
 	return s
 }
 
-// Use to specify skipping a final backup, or to add tags to a final backup.
+// Use to specify skipping a final backup, adding tags to a final backup, or
+// bypassing the retention period of an FSx for ONTAP SnapLock Enterprise volume
+// when deleting an FSx for ONTAP volume.
 type DeleteVolumeOntapConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// Setting this to true allows a SnapLock administrator to delete an FSx for
+	// ONTAP SnapLock Enterprise volume with unexpired write once, read many (WORM)
+	// files. The IAM permission fsx:BypassSnaplockEnterpriseRetention is also required
+	// to delete SnapLock Enterprise volumes with unexpired WORM files. The default
+	// value is false.
+	//
+	// For more information, see Deleting a SnapLock volume (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#snaplock-delete-volume).
+	BypassSnaplockEnterpriseRetention *bool `type:"boolean"`
 
 	// A list of Tag values, with a maximum of 50 elements.
 	FinalBackupTags []*Tag `min:"1" type:"list"`
@@ -12465,6 +12701,12 @@ func (s *DeleteVolumeOntapConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBypassSnaplockEnterpriseRetention sets the BypassSnaplockEnterpriseRetention field's value.
+func (s *DeleteVolumeOntapConfiguration) SetBypassSnaplockEnterpriseRetention(v bool) *DeleteVolumeOntapConfiguration {
+	s.BypassSnaplockEnterpriseRetention = &v
+	return s
 }
 
 // SetFinalBackupTags sets the FinalBackupTags field's value.
@@ -17039,6 +17281,9 @@ type OntapVolumeConfiguration struct {
 	// The configured size of the volume, in megabytes (MBs).
 	SizeInMegabytes *int64 `type:"integer"`
 
+	// The SnapLock configuration object for an FSx for ONTAP SnapLock volume.
+	SnaplockConfiguration *SnaplockConfiguration `type:"structure"`
+
 	// Specifies the snapshot policy for the volume. There are three built-in snapshot
 	// policies:
 	//
@@ -17134,6 +17379,12 @@ func (s *OntapVolumeConfiguration) SetSecurityStyle(v string) *OntapVolumeConfig
 // SetSizeInMegabytes sets the SizeInMegabytes field's value.
 func (s *OntapVolumeConfiguration) SetSizeInMegabytes(v int64) *OntapVolumeConfiguration {
 	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnaplockConfiguration sets the SnaplockConfiguration field's value.
+func (s *OntapVolumeConfiguration) SetSnaplockConfiguration(v *SnaplockConfiguration) *OntapVolumeConfiguration {
+	s.SnaplockConfiguration = v
 	return s
 }
 
@@ -18267,6 +18518,83 @@ func (s *RestoreVolumeFromSnapshotOutput) SetVolumeId(v string) *RestoreVolumeFr
 	return s
 }
 
+// Specifies the retention period of an FSx for ONTAP SnapLock volume. After
+// it is set, it can't be changed. Files can't be deleted or modified during
+// the retention period.
+//
+// For more information, see Working with the retention period in SnapLock (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-retention.html).
+type RetentionPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the type of time for the retention period of an FSx for ONTAP SnapLock
+	// volume. Set it to one of the valid types. If you set it to INFINITE, the
+	// files are retained forever. If you set it to UNSPECIFIED, the files are retained
+	// until you set an explicit retention period.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"RetentionPeriodType"`
+
+	// Defines the amount of time for the retention period of an FSx for ONTAP SnapLock
+	// volume. You can't set a value for INFINITE or UNSPECIFIED. For all other
+	// options, the following ranges are valid:
+	//
+	//    * Seconds: 0 - 65,535
+	//
+	//    * Minutes: 0 - 65,535
+	//
+	//    * Hours: 0 - 24
+	//
+	//    * Days: 0 - 365
+	//
+	//    * Months: 0 - 12
+	//
+	//    * Years: 0 - 100
+	Value *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetentionPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetentionPeriod) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetentionPeriod) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetentionPeriod"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *RetentionPeriod) SetType(v string) *RetentionPeriod {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *RetentionPeriod) SetValue(v int64) *RetentionPeriod {
+	s.Value = &v
+	return s
+}
+
 // The configuration for an Amazon S3 data repository linked to an Amazon FSx
 // for Lustre file system with a data repository association. The configuration
 // consists of an AutoImportPolicy that defines which file events on the data
@@ -18738,6 +19066,213 @@ func (s *ServiceLimitExceeded) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Specifies the SnapLock configuration for an FSx for ONTAP SnapLock volume.
+type SnaplockConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the audit log volume for an FSx for ONTAP SnapLock volume.
+	// The default value is false. If you set AuditLogVolume to true, the SnapLock
+	// volume is created as an audit log volume. The minimum retention period for
+	// an audit log volume is six months.
+	//
+	// For more information, see SnapLock audit log volumes (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#snaplock-audit-log-volume).
+	AuditLogVolume *bool `type:"boolean"`
+
+	// The configuration object for setting the autocommit period of files in an
+	// FSx for ONTAP SnapLock volume.
+	AutocommitPeriod *AutocommitPeriod `type:"structure"`
+
+	// Enables, disables, or permanently disables privileged delete on an FSx for
+	// ONTAP SnapLock Enterprise volume. Enabling privileged delete allows SnapLock
+	// administrators to delete write once, read many (WORM) files even if they
+	// have active retention periods. PERMANENTLY_DISABLED is a terminal state.
+	// If privileged delete is permanently disabled on a SnapLock volume, you can't
+	// re-enable it. The default value is DISABLED.
+	//
+	// For more information, see Privileged delete (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#privileged-delete).
+	PrivilegedDelete *string `type:"string" enum:"PrivilegedDelete"`
+
+	// Specifies the retention period of an FSx for ONTAP SnapLock volume.
+	RetentionPeriod *SnaplockRetentionPeriod `type:"structure"`
+
+	// Specifies the retention mode of an FSx for ONTAP SnapLock volume. After it
+	// is set, it can't be changed. You can choose one of the following retention
+	// modes:
+	//
+	//    * COMPLIANCE: Files transitioned to write once, read many (WORM) on a
+	//    Compliance volume can't be deleted until their retention periods expire.
+	//    This retention mode is used to address government or industry-specific
+	//    mandates or to protect against ransomware attacks. For more information,
+	//    see SnapLock Compliance (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-compliance.html).
+	//
+	//    * ENTERPRISE: Files transitioned to WORM on an Enterprise volume can be
+	//    deleted by authorized users before their retention periods expire using
+	//    privileged delete. This retention mode is used to advance an organization's
+	//    data integrity and internal compliance or to test retention settings before
+	//    using SnapLock Compliance. For more information, see SnapLock Enterprise
+	//    (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.htmlFile).
+	SnaplockType *string `type:"string" enum:"SnaplockType"`
+
+	// Enables or disables volume-append mode on an FSx for ONTAP SnapLock volume.
+	// Volume-append mode allows you to create WORM-appendable files and write data
+	// to them incrementally. The default value is false.
+	//
+	// For more information, see Volume-append mode (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append).
+	VolumeAppendModeEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnaplockConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnaplockConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAuditLogVolume sets the AuditLogVolume field's value.
+func (s *SnaplockConfiguration) SetAuditLogVolume(v bool) *SnaplockConfiguration {
+	s.AuditLogVolume = &v
+	return s
+}
+
+// SetAutocommitPeriod sets the AutocommitPeriod field's value.
+func (s *SnaplockConfiguration) SetAutocommitPeriod(v *AutocommitPeriod) *SnaplockConfiguration {
+	s.AutocommitPeriod = v
+	return s
+}
+
+// SetPrivilegedDelete sets the PrivilegedDelete field's value.
+func (s *SnaplockConfiguration) SetPrivilegedDelete(v string) *SnaplockConfiguration {
+	s.PrivilegedDelete = &v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *SnaplockConfiguration) SetRetentionPeriod(v *SnaplockRetentionPeriod) *SnaplockConfiguration {
+	s.RetentionPeriod = v
+	return s
+}
+
+// SetSnaplockType sets the SnaplockType field's value.
+func (s *SnaplockConfiguration) SetSnaplockType(v string) *SnaplockConfiguration {
+	s.SnaplockType = &v
+	return s
+}
+
+// SetVolumeAppendModeEnabled sets the VolumeAppendModeEnabled field's value.
+func (s *SnaplockConfiguration) SetVolumeAppendModeEnabled(v bool) *SnaplockConfiguration {
+	s.VolumeAppendModeEnabled = &v
+	return s
+}
+
+// The configuration to set the retention period of an FSx for ONTAP SnapLock
+// volume. The retention period includes default, maximum, and minimum settings.
+// For more information, see Working with the retention period in SnapLock (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-retention.html).
+type SnaplockRetentionPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// The retention period assigned to a write once, read many (WORM) file by default
+	// if an explicit retention period is not set for an FSx for ONTAP SnapLock
+	// volume. The default retention period must be greater than or equal to the
+	// minimum retention period and less than or equal to the maximum retention
+	// period.
+	//
+	// DefaultRetention is a required field
+	DefaultRetention *RetentionPeriod `type:"structure" required:"true"`
+
+	// The longest retention period that can be assigned to a WORM file on an FSx
+	// for ONTAP SnapLock volume.
+	//
+	// MaximumRetention is a required field
+	MaximumRetention *RetentionPeriod `type:"structure" required:"true"`
+
+	// The shortest retention period that can be assigned to a WORM file on an FSx
+	// for ONTAP SnapLock volume.
+	//
+	// MinimumRetention is a required field
+	MinimumRetention *RetentionPeriod `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnaplockRetentionPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnaplockRetentionPeriod) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnaplockRetentionPeriod) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnaplockRetentionPeriod"}
+	if s.DefaultRetention == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultRetention"))
+	}
+	if s.MaximumRetention == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaximumRetention"))
+	}
+	if s.MinimumRetention == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinimumRetention"))
+	}
+	if s.DefaultRetention != nil {
+		if err := s.DefaultRetention.Validate(); err != nil {
+			invalidParams.AddNested("DefaultRetention", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MaximumRetention != nil {
+		if err := s.MaximumRetention.Validate(); err != nil {
+			invalidParams.AddNested("MaximumRetention", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MinimumRetention != nil {
+		if err := s.MinimumRetention.Validate(); err != nil {
+			invalidParams.AddNested("MinimumRetention", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultRetention sets the DefaultRetention field's value.
+func (s *SnaplockRetentionPeriod) SetDefaultRetention(v *RetentionPeriod) *SnaplockRetentionPeriod {
+	s.DefaultRetention = v
+	return s
+}
+
+// SetMaximumRetention sets the MaximumRetention field's value.
+func (s *SnaplockRetentionPeriod) SetMaximumRetention(v *RetentionPeriod) *SnaplockRetentionPeriod {
+	s.MaximumRetention = v
+	return s
+}
+
+// SetMinimumRetention sets the MinimumRetention field's value.
+func (s *SnaplockRetentionPeriod) SetMinimumRetention(v *RetentionPeriod) *SnaplockRetentionPeriod {
+	s.MinimumRetention = v
+	return s
 }
 
 // A snapshot of an Amazon FSx for OpenZFS volume.
@@ -20948,11 +21483,15 @@ type UpdateOntapVolumeConfiguration struct {
 	// The JunctionPath must have a leading forward slash, such as /vol3.
 	JunctionPath *string `min:"1" type:"string"`
 
-	// The security style for the volume, which can be UNIX. NTFS, or MIXED.
+	// The security style for the volume, which can be UNIX, NTFS, or MIXED.
 	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
 
 	// Specifies the size of the volume in megabytes.
 	SizeInMegabytes *int64 `type:"integer"`
+
+	// The configuration object for updating the SnapLock configuration of an FSx
+	// for ONTAP SnapLock volume.
+	SnaplockConfiguration *UpdateSnaplockConfiguration `type:"structure"`
 
 	// Specifies the snapshot policy for the volume. There are three built-in snapshot
 	// policies:
@@ -21010,6 +21549,11 @@ func (s *UpdateOntapVolumeConfiguration) Validate() error {
 	if s.SnapshotPolicy != nil && len(*s.SnapshotPolicy) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SnapshotPolicy", 1))
 	}
+	if s.SnaplockConfiguration != nil {
+		if err := s.SnaplockConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnaplockConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TieringPolicy != nil {
 		if err := s.TieringPolicy.Validate(); err != nil {
 			invalidParams.AddNested("TieringPolicy", err.(request.ErrInvalidParams))
@@ -21043,6 +21587,12 @@ func (s *UpdateOntapVolumeConfiguration) SetSecurityStyle(v string) *UpdateOntap
 // SetSizeInMegabytes sets the SizeInMegabytes field's value.
 func (s *UpdateOntapVolumeConfiguration) SetSizeInMegabytes(v int64) *UpdateOntapVolumeConfiguration {
 	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnaplockConfiguration sets the SnaplockConfiguration field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSnaplockConfiguration(v *UpdateSnaplockConfiguration) *UpdateOntapVolumeConfiguration {
+	s.SnaplockConfiguration = v
 	return s
 }
 
@@ -21209,6 +21759,111 @@ func (s *UpdateOpenZFSVolumeConfiguration) SetStorageCapacityReservationGiB(v in
 // SetUserAndGroupQuotas sets the UserAndGroupQuotas field's value.
 func (s *UpdateOpenZFSVolumeConfiguration) SetUserAndGroupQuotas(v []*OpenZFSUserOrGroupQuota) *UpdateOpenZFSVolumeConfiguration {
 	s.UserAndGroupQuotas = v
+	return s
+}
+
+// Updates the SnapLock configuration for an existing FSx for ONTAP volume.
+type UpdateSnaplockConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the audit log volume for an FSx for ONTAP SnapLock volume.
+	// The default value is false. If you set AuditLogVolume to true, the SnapLock
+	// volume is created as an audit log volume. The minimum retention period for
+	// an audit log volume is six months.
+	//
+	// For more information, see SnapLock audit log volumes (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#snaplock-audit-log-volume).
+	AuditLogVolume *bool `type:"boolean"`
+
+	// The configuration object for setting the autocommit period of files in an
+	// FSx for ONTAP SnapLock volume.
+	AutocommitPeriod *AutocommitPeriod `type:"structure"`
+
+	// Enables, disables, or permanently disables privileged delete on an FSx for
+	// ONTAP SnapLock Enterprise volume. Enabling privileged delete allows SnapLock
+	// administrators to delete write once, read many (WORM) files even if they
+	// have active retention periods. PERMANENTLY_DISABLED is a terminal state.
+	// If privileged delete is permanently disabled on a SnapLock volume, you can't
+	// re-enable it. The default value is DISABLED.
+	//
+	// For more information, see Privileged delete (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#privileged-delete).
+	PrivilegedDelete *string `type:"string" enum:"PrivilegedDelete"`
+
+	// Specifies the retention period of an FSx for ONTAP SnapLock volume.
+	RetentionPeriod *SnaplockRetentionPeriod `type:"structure"`
+
+	// Enables or disables volume-append mode on an FSx for ONTAP SnapLock volume.
+	// Volume-append mode allows you to create WORM-appendable files and write data
+	// to them incrementally. The default value is false.
+	//
+	// For more information, see Volume-append mode (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append).
+	VolumeAppendModeEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSnaplockConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSnaplockConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSnaplockConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSnaplockConfiguration"}
+	if s.AutocommitPeriod != nil {
+		if err := s.AutocommitPeriod.Validate(); err != nil {
+			invalidParams.AddNested("AutocommitPeriod", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RetentionPeriod != nil {
+		if err := s.RetentionPeriod.Validate(); err != nil {
+			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditLogVolume sets the AuditLogVolume field's value.
+func (s *UpdateSnaplockConfiguration) SetAuditLogVolume(v bool) *UpdateSnaplockConfiguration {
+	s.AuditLogVolume = &v
+	return s
+}
+
+// SetAutocommitPeriod sets the AutocommitPeriod field's value.
+func (s *UpdateSnaplockConfiguration) SetAutocommitPeriod(v *AutocommitPeriod) *UpdateSnaplockConfiguration {
+	s.AutocommitPeriod = v
+	return s
+}
+
+// SetPrivilegedDelete sets the PrivilegedDelete field's value.
+func (s *UpdateSnaplockConfiguration) SetPrivilegedDelete(v string) *UpdateSnaplockConfiguration {
+	s.PrivilegedDelete = &v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *UpdateSnaplockConfiguration) SetRetentionPeriod(v *SnaplockRetentionPeriod) *UpdateSnaplockConfiguration {
+	s.RetentionPeriod = v
+	return s
+}
+
+// SetVolumeAppendModeEnabled sets the VolumeAppendModeEnabled field's value.
+func (s *UpdateSnaplockConfiguration) SetVolumeAppendModeEnabled(v bool) *UpdateSnaplockConfiguration {
+	s.VolumeAppendModeEnabled = &v
 	return s
 }
 
@@ -22483,6 +23138,38 @@ func AutoImportPolicyType_Values() []string {
 	}
 }
 
+const (
+	// AutocommitPeriodTypeMinutes is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeMinutes = "MINUTES"
+
+	// AutocommitPeriodTypeHours is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeHours = "HOURS"
+
+	// AutocommitPeriodTypeDays is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeDays = "DAYS"
+
+	// AutocommitPeriodTypeMonths is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeMonths = "MONTHS"
+
+	// AutocommitPeriodTypeYears is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeYears = "YEARS"
+
+	// AutocommitPeriodTypeNone is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeNone = "NONE"
+)
+
+// AutocommitPeriodType_Values returns all elements of the AutocommitPeriodType enum
+func AutocommitPeriodType_Values() []string {
+	return []string{
+		AutocommitPeriodTypeMinutes,
+		AutocommitPeriodTypeHours,
+		AutocommitPeriodTypeDays,
+		AutocommitPeriodTypeMonths,
+		AutocommitPeriodTypeYears,
+		AutocommitPeriodTypeNone,
+	}
+}
+
 // The lifecycle status of the backup.
 //
 //   - AVAILABLE - The backup is fully available.
@@ -23130,6 +23817,26 @@ func OpenZFSQuotaType_Values() []string {
 }
 
 const (
+	// PrivilegedDeleteDisabled is a PrivilegedDelete enum value
+	PrivilegedDeleteDisabled = "DISABLED"
+
+	// PrivilegedDeleteEnabled is a PrivilegedDelete enum value
+	PrivilegedDeleteEnabled = "ENABLED"
+
+	// PrivilegedDeletePermanentlyDisabled is a PrivilegedDelete enum value
+	PrivilegedDeletePermanentlyDisabled = "PERMANENTLY_DISABLED"
+)
+
+// PrivilegedDelete_Values returns all elements of the PrivilegedDelete enum
+func PrivilegedDelete_Values() []string {
+	return []string{
+		PrivilegedDeleteDisabled,
+		PrivilegedDeleteEnabled,
+		PrivilegedDeletePermanentlyDisabled,
+	}
+}
+
+const (
 	// ReportFormatReportCsv20191124 is a ReportFormat enum value
 	ReportFormatReportCsv20191124 = "REPORT_CSV_20191124"
 )
@@ -23182,6 +23889,46 @@ func RestoreOpenZFSVolumeOption_Values() []string {
 	return []string{
 		RestoreOpenZFSVolumeOptionDeleteIntermediateSnapshots,
 		RestoreOpenZFSVolumeOptionDeleteClonedVolumes,
+	}
+}
+
+const (
+	// RetentionPeriodTypeSeconds is a RetentionPeriodType enum value
+	RetentionPeriodTypeSeconds = "SECONDS"
+
+	// RetentionPeriodTypeMinutes is a RetentionPeriodType enum value
+	RetentionPeriodTypeMinutes = "MINUTES"
+
+	// RetentionPeriodTypeHours is a RetentionPeriodType enum value
+	RetentionPeriodTypeHours = "HOURS"
+
+	// RetentionPeriodTypeDays is a RetentionPeriodType enum value
+	RetentionPeriodTypeDays = "DAYS"
+
+	// RetentionPeriodTypeMonths is a RetentionPeriodType enum value
+	RetentionPeriodTypeMonths = "MONTHS"
+
+	// RetentionPeriodTypeYears is a RetentionPeriodType enum value
+	RetentionPeriodTypeYears = "YEARS"
+
+	// RetentionPeriodTypeInfinite is a RetentionPeriodType enum value
+	RetentionPeriodTypeInfinite = "INFINITE"
+
+	// RetentionPeriodTypeUnspecified is a RetentionPeriodType enum value
+	RetentionPeriodTypeUnspecified = "UNSPECIFIED"
+)
+
+// RetentionPeriodType_Values returns all elements of the RetentionPeriodType enum
+func RetentionPeriodType_Values() []string {
+	return []string{
+		RetentionPeriodTypeSeconds,
+		RetentionPeriodTypeMinutes,
+		RetentionPeriodTypeHours,
+		RetentionPeriodTypeDays,
+		RetentionPeriodTypeMonths,
+		RetentionPeriodTypeYears,
+		RetentionPeriodTypeInfinite,
+		RetentionPeriodTypeUnspecified,
 	}
 }
 
@@ -23255,6 +24002,22 @@ func ServiceLimit_Values() []string {
 		ServiceLimitVolumesPerFileSystem,
 		ServiceLimitTotalSsdIops,
 		ServiceLimitFileCacheCount,
+	}
+}
+
+const (
+	// SnaplockTypeCompliance is a SnaplockType enum value
+	SnaplockTypeCompliance = "COMPLIANCE"
+
+	// SnaplockTypeEnterprise is a SnaplockType enum value
+	SnaplockTypeEnterprise = "ENTERPRISE"
+)
+
+// SnaplockType_Values returns all elements of the SnaplockType enum
+func SnaplockType_Values() []string {
+	return []string{
+		SnaplockTypeCompliance,
+		SnaplockTypeEnterprise,
 	}
 }
 

@@ -43,7 +43,9 @@
     "DeleteInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the Amazon Connect instance.</p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "DeleteIntegrationAssociation": "<p>Deletes an Amazon Web Services resource association from an Amazon Connect instance. The association must not have any use cases associated with it.</p>",
     "DeletePrompt": "<p>Deletes a prompt.</p>",
+    "DeleteQueue": "<p>Deletes a queue.</p>",
     "DeleteQuickConnect": "<p>Deletes a quick connect.</p>",
+    "DeleteRoutingProfile": "<p>Deletes a routing profile.</p>",
     "DeleteRule": "<p>Deletes a rule for the specified Amazon Connect instance.</p>",
     "DeleteSecurityProfile": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes a security profile.</p>",
     "DeleteTaskTemplate": "<p>Deletes the task template.</p>",
@@ -1497,7 +1499,17 @@
       "refs": {
       }
     },
+    "DeleteQueueRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteQuickConnectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRoutingProfileRequest": {
       "base": null,
       "refs": {
       }
@@ -2858,7 +2870,9 @@
         "DeleteInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteIntegrationAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeletePromptRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DeleteQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteQuickConnectRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DeleteRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteRuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteSecurityProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteTaskTemplateRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -4399,6 +4413,7 @@
         "AssociateQueueQuickConnectsRequest$QueueId": "<p>The identifier for the queue.</p>",
         "CreateQueueResponse$QueueId": "<p>The identifier for the queue.</p>",
         "CreateRoutingProfileRequest$DefaultOutboundQueueId": "<p>The default outbound queue for the routing profile.</p>",
+        "DeleteQueueRequest$QueueId": "<p>The identifier for the queue.</p>",
         "DescribeQueueRequest$QueueId": "<p>The identifier for the queue.</p>",
         "DisassociateQueueQuickConnectsRequest$QueueId": "<p>The identifier for the queue.</p>",
         "ListQueueQuickConnectsRequest$QueueId": "<p>The identifier for the queue.</p>",
@@ -4854,6 +4869,7 @@
         "AssociateRoutingProfileQueuesRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "CreateRoutingProfileResponse$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "CreateUserRequest$RoutingProfileId": "<p>The identifier of the routing profile for the user.</p>",
+        "DeleteRoutingProfileRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "DescribeRoutingProfileRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "DisassociateRoutingProfileQueuesRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "ListRoutingProfileQueuesRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
@@ -6311,8 +6327,8 @@
       "base": null,
       "refs": {
         "GetFederationTokenResponse$SignInUrl": "<p>The URL to sign into the user's instance. </p>",
-        "Instance$InstanceAccessUrl": "<p>This URL allows contact center users to access Amazon Connect admin website.</p>",
-        "InstanceSummary$InstanceAccessUrl": "<p>This URL allows contact center users to access Amazon Connect admin website.</p>"
+        "Instance$InstanceAccessUrl": "<p>This URL allows contact center users to access the Amazon Connect admin website.</p>",
+        "InstanceSummary$InstanceAccessUrl": "<p>This URL allows contact center users to access the Amazon Connect admin website.</p>"
       }
     },
     "UrlReference": {

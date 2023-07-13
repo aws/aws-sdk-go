@@ -232,24 +232,18 @@ func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Req
 
 // CreateAgent API operation for AWS DataSync.
 //
-// Activates an DataSync agent that you have deployed in your storage environment.
-// The activation process associates your agent with your account. In the activation
-// process, you specify information such as the Amazon Web Services Region that
-// you want to activate the agent in. You activate the agent in the Amazon Web
-// Services Region where your target locations (in Amazon S3 or Amazon EFS)
-// reside. Your tasks are created in this Amazon Web Services Region.
+// Activates an DataSync agent that you've deployed in your storage environment.
+// The activation process associates the agent with your Amazon Web Services
+// account.
 //
-// You can activate the agent in a VPC (virtual private cloud) or provide the
-// agent access to a VPC endpoint so you can run tasks without going over the
-// public internet.
+// If you haven't deployed an agent yet, see the following topics to learn more:
 //
-// You can use an agent for more than one location. If a task uses multiple
-// agents, all of them need to have status AVAILABLE for the task to run. If
-// you use multiple agents for a source location, the status of all the agents
-// must be AVAILABLE for the task to run.
+//   - Agent requirements (https://docs.aws.amazon.com/datasync/latest/userguide/agent-requirements.html)
 //
-// Agents are automatically updated by Amazon Web Services on a regular basis,
-// using a mechanism that ensures minimal interruption to your tasks.
+//   - Create an agent (https://docs.aws.amazon.com/datasync/latest/userguide/configure-agent.html)
+//
+// If you're transferring between Amazon Web Services storage services, you
+// don't need a DataSync agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5759,53 +5753,35 @@ func (s *Capacity) SetUsed(v int64) *Capacity {
 type CreateAgentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Your agent activation key. You can get the activation key either by sending
-	// an HTTP GET request with redirects that enable you to get the agent IP address
-	// (port 80). Alternatively, you can get it from the DataSync console.
-	//
-	// The redirect URL returned in the response provides you the activation key
-	// for your agent in the query string parameter activationKey. It might also
-	// include other activation-related parameters; however, these are merely defaults.
-	// The arguments you pass to this API call determine the actual configuration
-	// of your agent.
-	//
-	// For more information, see Activating an Agent in the DataSync User Guide.
+	// Specifies your DataSync agent's activation key. If you don't have an activation
+	// key, see Activate your agent (https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html).
 	//
 	// ActivationKey is a required field
 	ActivationKey *string `type:"string" required:"true"`
 
-	// The name you configured for your agent. This value is a text reference that
-	// is used to identify the agent in the console.
+	// Specifies a name for your agent. You can see this name in the DataSync console.
 	AgentName *string `min:"1" type:"string"`
 
-	// The ARNs of the security groups used to protect your data transfer task subnets.
-	// See SecurityGroupArns (https://docs.aws.amazon.com/datasync/latest/userguide/API_Ec2Config.html#DataSync-Type-Ec2Config-SecurityGroupArns).
+	// Specifies the Amazon Resource Name (ARN) of the security group that protects
+	// your task's network interfaces (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
+	// when using a virtual private cloud (VPC) endpoint (https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#choose-service-endpoint-vpc).
 	SecurityGroupArns []*string `min:"1" type:"list"`
 
-	// The Amazon Resource Names (ARNs) of the subnets in which DataSync will create
-	// elastic network interfaces for each data transfer task. The agent that runs
-	// a task must be private. When you start a task that is associated with an
-	// agent created in a VPC, or one that has access to an IP address in a VPC,
-	// then the task is also private. In this case, DataSync creates four network
-	// interfaces for each task in your subnet. For a data transfer to work, the
-	// agent must be able to route to all these four network interfaces.
+	// Specifies the ARN of the subnet where you want to run your DataSync task
+	// when using a VPC endpoint. This is the subnet where DataSync creates and
+	// manages the network interfaces (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
+	// for your transfer.
 	SubnetArns []*string `min:"1" type:"list"`
 
-	// The key-value pair that represents the tag that you want to associate with
-	// the agent. The value can be an empty string. This value helps you manage,
-	// filter, and search for your agents.
-	//
-	// Valid characters for key and value are letters, spaces, and numbers representable
-	// in UTF-8 format, and the following special characters: + - = . _ : / @.
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least one tag for your agent.
 	Tags []*TagListEntry `type:"list"`
 
-	// The ID of the VPC (virtual private cloud) endpoint that the agent has access
-	// to. This is the client-side VPC endpoint, also called a PrivateLink. If you
-	// don't have a PrivateLink VPC endpoint, see Creating a VPC Endpoint Service
-	// Configuration (https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html#create-endpoint-service)
-	// in the Amazon VPC User Guide.
+	// Specifies the ID of the VPC endpoint that you want your agent to connect
+	// to. For example, a VPC endpoint ID looks like vpce-01234d5aff67890e1.
 	//
-	// VPC endpoint ID looks like this: vpce-01234d5aff67890e1.
+	// The VPC endpoint you use must include the DataSync service name (for example,
+	// com.amazonaws.us-east-2.datasync).
 	VpcEndpointId *string `type:"string"`
 }
 
@@ -5899,8 +5875,9 @@ func (s *CreateAgentInput) SetVpcEndpointId(v string) *CreateAgentInput {
 type CreateAgentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the agent. Use the ListAgents operation
-	// to return a list of agents for your account and Amazon Web Services Region.
+	// The ARN of the agent that you just activated. Use the ListAgents (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListAgents.html)
+	// operation to return a list of agents in your Amazon Web Services account
+	// and Amazon Web Services Region.
 	AgentArn *string `type:"string"`
 }
 
@@ -6583,11 +6560,11 @@ type CreateLocationFsxWindowsInput struct {
 	// location.
 	Tags []*TagListEntry `type:"list"`
 
-	// Specifies the user who has the permissions to access files and folders in
-	// the file system.
+	// Specifies the user who has the permissions to access files, folders, and
+	// metadata in your file system.
 	//
-	// For information about choosing a user name that ensures sufficient permissions
-	// to files, folders, and metadata, see user (create-fsx-location.html#FSxWuser).
+	// For information about choosing a user with sufficient permissions, see Required
+	// permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions).
 	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
@@ -7190,10 +7167,19 @@ type CreateLocationObjectStorageInput struct {
 	// String and GoString methods.
 	SecretKey *string `min:"1" type:"string" sensitive:"true"`
 
-	// Specifies a certificate to authenticate with an object storage system that
-	// uses a private or self-signed certificate authority (CA). You must specify
-	// a Base64-encoded .pem file (for example, file:///home/user/.ssh/storage_sys_certificate.pem).
-	// The certificate can be up to 32768 bytes (before Base64 encoding).
+	// Specifies a file with the certificates that are used to sign the object storage
+	// server's certificate (for example, file:///home/user/.ssh/storage_sys_certificate.pem).
+	// The file you specify must include the following:
+	//
+	//    * The certificate of the signing certificate authority (CA)
+	//
+	//    * Any intermediate certificates
+	//
+	//    * base64 encoding
+	//
+	//    * A .pem extension
+	//
+	// The file can be up to 32768 bytes (before base64 encoding).
 	//
 	// To use this parameter, configure ServerProtocol to HTTPS.
 	// ServerCertificate is automatically base64 encoded/decoded by the SDK.
@@ -12633,6 +12619,9 @@ type NetAppONTAPCluster struct {
 	// The name of the cluster.
 	ClusterName *string `type:"string"`
 
+	// The number of LUNs (logical unit numbers) in the cluster.
+	LunCount *int64 `type:"long"`
+
 	// The performance data that DataSync Discovery collects about the cluster.
 	MaxP95Performance *MaxP95Performance `type:"structure"`
 
@@ -12702,6 +12691,12 @@ func (s *NetAppONTAPCluster) SetClusterName(v string) *NetAppONTAPCluster {
 	return s
 }
 
+// SetLunCount sets the LunCount field's value.
+func (s *NetAppONTAPCluster) SetLunCount(v int64) *NetAppONTAPCluster {
+	s.LunCount = &v
+	return s
+}
+
 // SetMaxP95Performance sets the MaxP95Performance field's value.
 func (s *NetAppONTAPCluster) SetMaxP95Performance(v *MaxP95Performance) *NetAppONTAPCluster {
 	s.MaxP95Performance = v
@@ -12746,6 +12741,9 @@ type NetAppONTAPSVM struct {
 
 	// The data transfer protocols (such as NFS) configured for the SVM.
 	EnabledProtocols []*string `type:"list"`
+
+	// The number of LUNs (logical unit numbers) in the SVM.
+	LunCount *int64 `type:"long"`
 
 	// The performance data that DataSync Discovery collects about the SVM.
 	MaxP95Performance *MaxP95Performance `type:"structure"`
@@ -12817,6 +12815,12 @@ func (s *NetAppONTAPSVM) SetClusterUuid(v string) *NetAppONTAPSVM {
 // SetEnabledProtocols sets the EnabledProtocols field's value.
 func (s *NetAppONTAPSVM) SetEnabledProtocols(v []*string) *NetAppONTAPSVM {
 	s.EnabledProtocols = v
+	return s
+}
+
+// SetLunCount sets the LunCount field's value.
+func (s *NetAppONTAPSVM) SetLunCount(v int64) *NetAppONTAPSVM {
+	s.LunCount = &v
 	return s
 }
 
@@ -12898,6 +12902,9 @@ type NetAppONTAPVolume struct {
 	// compression or deduplication.
 	LogicalCapacityUsed *int64 `type:"long"`
 
+	// The number of LUNs (logical unit numbers) in the volume.
+	LunCount *int64 `type:"long"`
+
 	// The performance data that DataSync Discovery collects about the volume.
 	MaxP95Performance *MaxP95Performance `type:"structure"`
 
@@ -12973,6 +12980,12 @@ func (s *NetAppONTAPVolume) SetCifsShareCount(v int64) *NetAppONTAPVolume {
 // SetLogicalCapacityUsed sets the LogicalCapacityUsed field's value.
 func (s *NetAppONTAPVolume) SetLogicalCapacityUsed(v int64) *NetAppONTAPVolume {
 	s.LogicalCapacityUsed = &v
+	return s
+}
+
+// SetLunCount sets the LunCount field's value.
+func (s *NetAppONTAPVolume) SetLunCount(v int64) *NetAppONTAPVolume {
+	s.LunCount = &v
 	return s
 }
 
@@ -13304,11 +13317,9 @@ type Options struct {
 	// location. DACLs and SACLs are set based on the destination server’s configuration.
 	SecurityDescriptorCopyFlags *string `type:"string" enum:"SmbSecurityDescriptorCopyFlags"`
 
-	// Specifies whether tasks should be queued before executing the tasks. The
-	// default is ENABLED, which means the tasks will be queued.
-	//
-	// If you use the same agent to run multiple tasks, you can enable the tasks
-	// to run in series. For more information, see Queueing task executions (https://docs.aws.amazon.com/datasync/latest/userguide/run-task.html#queue-task-execution).
+	// Specifies whether your transfer tasks should be put into a queue during certain
+	// scenarios when running multiple tasks (https://docs.aws.amazon.com/datasync/latest/userguide/run-task.html#running-multiple-tasks).
+	// This is ENABLED by default.
 	TaskQueueing *string `type:"string" enum:"TaskQueueing"`
 
 	// Determines whether DataSync transfers only the data and metadata that differ

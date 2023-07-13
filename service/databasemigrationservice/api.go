@@ -22382,12 +22382,20 @@ type PostgreSQLSettings struct {
 	// Example: afterConnectScript=SET session_replication_role='replica'
 	AfterConnectScript *string `type:"string"`
 
+	// The Babelfish for Aurora PostgreSQL database name for the endpoint.
+	BabelfishDatabaseName *string `type:"string"`
+
 	// To capture DDL events, DMS creates various artifacts in the PostgreSQL database
 	// when the task starts. You can later remove these artifacts.
 	//
 	// If this value is set to N, you don't have to create tables or triggers on
 	// the source database.
 	CaptureDdls *bool `type:"boolean"`
+
+	// Specifies whether to use default or custom replication behavior for PostgreSQL-compatible
+	// endpoints. You can use this setting to specify replication behavior for endpoints
+	// that require additional configuration, such as Babelfish endpoints.
+	DatabaseMode *string `type:"string" enum:"DatabaseMode"`
 
 	// Database name for the endpoint.
 	DatabaseName *string `type:"string"`
@@ -22533,9 +22541,21 @@ func (s *PostgreSQLSettings) SetAfterConnectScript(v string) *PostgreSQLSettings
 	return s
 }
 
+// SetBabelfishDatabaseName sets the BabelfishDatabaseName field's value.
+func (s *PostgreSQLSettings) SetBabelfishDatabaseName(v string) *PostgreSQLSettings {
+	s.BabelfishDatabaseName = &v
+	return s
+}
+
 // SetCaptureDdls sets the CaptureDdls field's value.
 func (s *PostgreSQLSettings) SetCaptureDdls(v bool) *PostgreSQLSettings {
 	s.CaptureDdls = &v
+	return s
+}
+
+// SetDatabaseMode sets the DatabaseMode field's value.
+func (s *PostgreSQLSettings) SetDatabaseMode(v string) *PostgreSQLSettings {
+	s.DatabaseMode = &v
 	return s
 }
 
@@ -29804,6 +29824,22 @@ func DataFormatValue_Values() []string {
 	return []string{
 		DataFormatValueCsv,
 		DataFormatValueParquet,
+	}
+}
+
+const (
+	// DatabaseModeDefault is a DatabaseMode enum value
+	DatabaseModeDefault = "default"
+
+	// DatabaseModeBabelfish is a DatabaseMode enum value
+	DatabaseModeBabelfish = "babelfish"
+)
+
+// DatabaseMode_Values returns all elements of the DatabaseMode enum
+func DatabaseMode_Values() []string {
+	return []string{
+		DatabaseModeDefault,
+		DatabaseModeBabelfish,
 	}
 }
 

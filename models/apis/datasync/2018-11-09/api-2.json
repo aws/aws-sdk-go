@@ -2166,7 +2166,8 @@
         "ClusterBlockStorageUsed":{"shape":"NonNegativeLong"},
         "ClusterBlockStorageLogicalUsed":{"shape":"NonNegativeLong"},
         "Recommendations":{"shape":"Recommendations"},
-        "RecommendationStatus":{"shape":"RecommendationStatus"}
+        "RecommendationStatus":{"shape":"RecommendationStatus"},
+        "LunCount":{"shape":"NonNegativeLong"}
       }
     },
     "NetAppONTAPClusters":{
@@ -2188,7 +2189,8 @@
         "Recommendations":{"shape":"Recommendations"},
         "NfsExportedVolumes":{"shape":"NonNegativeLong"},
         "RecommendationStatus":{"shape":"RecommendationStatus"},
-        "TotalSnapshotCapacityUsed":{"shape":"NonNegativeLong"}
+        "TotalSnapshotCapacityUsed":{"shape":"NonNegativeLong"},
+        "LunCount":{"shape":"NonNegativeLong"}
       }
     },
     "NetAppONTAPSVMs":{
@@ -2211,7 +2213,8 @@
         "SnapshotCapacityUsed":{"shape":"NonNegativeLong"},
         "MaxP95Performance":{"shape":"MaxP95Performance"},
         "Recommendations":{"shape":"Recommendations"},
-        "RecommendationStatus":{"shape":"RecommendationStatus"}
+        "RecommendationStatus":{"shape":"RecommendationStatus"},
+        "LunCount":{"shape":"NonNegativeLong"}
       }
     },
     "NetAppONTAPVolumes":{

@@ -2481,9 +2481,11 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 // Required permissions: secretsmanager:UpdateSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
-// If you use a customer managed key, you must also have kms:GenerateDataKey
-// and kms:Decrypt permissions on the key. For more information, see Secret
-// encryption and decryption (https://docs.aws.amazon.com/secretsmanager/latest/userguide/security-encryption.html).
+// If you use a customer managed key, you must also have kms:GenerateDataKey,
+// kms:Encrypt, and kms:Decrypt permissions on the key. If you change the KMS
+// key and you don't have kms:Encrypt permission to the new key, Secrets Manager
+// does not re-ecrypt existing secret versions with the new key. For more information,
+// see Secret encryption and decryption (https://docs.aws.amazon.com/secretsmanager/latest/userguide/security-encryption.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7086,8 +7088,10 @@ type UpdateSecretInput struct {
 
 	// The ARN, key ID, or alias of the KMS key that Secrets Manager uses to encrypt
 	// new secret versions as well as any existing versions with the staging labels
-	// AWSCURRENT, AWSPENDING, or AWSPREVIOUS. For more information about versions
-	// and staging labels, see Concepts: Version (https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version).
+	// AWSCURRENT, AWSPENDING, or AWSPREVIOUS. If you don't have kms:Encrypt permission
+	// to the new key, Secrets Manager does not re-ecrypt existing secret versions
+	// with the new key. For more information about versions and staging labels,
+	// see Concepts: Version (https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version).
 	//
 	// A key alias is always prefixed by alias/, for example alias/aws/secretsmanager.
 	// For more information, see About aliases (https://docs.aws.amazon.com/kms/latest/developerguide/alias-about.html).
