@@ -1328,7 +1328,9 @@
         "us-gov-east-1",
         "us-gov-west-1",
         "us-west-1",
-        "us-west-2"
+        "us-west-2",
+        "ap-south-2",
+        "eu-south-2"
       ]
     },
     "BucketLoggingStatus":{
@@ -4687,7 +4689,9 @@
         "ObjectLockLegalHoldStatus",
         "IntelligentTieringAccessTier",
         "BucketKeyStatus",
-        "ChecksumAlgorithm"
+        "ChecksumAlgorithm",
+        "ObjectAccessControlList",
+        "ObjectOwner"
       ]
     },
     "InventoryOptionalFields":{

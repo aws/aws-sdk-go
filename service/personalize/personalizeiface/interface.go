@@ -364,6 +364,10 @@ type PersonalizeAPI interface {
 	UpdateCampaignWithContext(aws.Context, *personalize.UpdateCampaignInput, ...request.Option) (*personalize.UpdateCampaignOutput, error)
 	UpdateCampaignRequest(*personalize.UpdateCampaignInput) (*request.Request, *personalize.UpdateCampaignOutput)
 
+	UpdateDataset(*personalize.UpdateDatasetInput) (*personalize.UpdateDatasetOutput, error)
+	UpdateDatasetWithContext(aws.Context, *personalize.UpdateDatasetInput, ...request.Option) (*personalize.UpdateDatasetOutput, error)
+	UpdateDatasetRequest(*personalize.UpdateDatasetInput) (*request.Request, *personalize.UpdateDatasetOutput)
+
 	UpdateMetricAttribution(*personalize.UpdateMetricAttributionInput) (*personalize.UpdateMetricAttributionOutput, error)
 	UpdateMetricAttributionWithContext(aws.Context, *personalize.UpdateMetricAttributionInput, ...request.Option) (*personalize.UpdateMetricAttributionOutput, error)
 	UpdateMetricAttributionRequest(*personalize.UpdateMetricAttributionInput) (*request.Request, *personalize.UpdateMetricAttributionOutput)

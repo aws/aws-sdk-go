@@ -338,6 +338,23 @@
       ],
       "idempotent":true
     },
+    "DeleteDeployment":{
+      "name":"DeleteDeployment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDeploymentInput"},
+      "output":{"shape":"DeleteDeploymentOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "DeleteEnvironment":{
       "name":"DeleteEnvironment",
       "http":{
@@ -542,6 +559,22 @@
       },
       "input":{"shape":"GetComponentInput"},
       "output":{"shape":"GetComponentOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetDeployment":{
+      "name":"GetDeployment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDeploymentInput"},
+      "output":{"shape":"GetDeploymentOutput"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
@@ -849,6 +882,22 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListDeployments":{
+      "name":"ListDeployments",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDeploymentsInput"},
+      "output":{"shape":"ListDeploymentsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1603,10 +1652,12 @@
         "deploymentStatusMessage":{"shape":"StatusMessage"},
         "description":{"shape":"Description"},
         "environmentName":{"shape":"ResourceName"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
         "lastClientRequestToken":{"shape":"String"},
         "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
         "lastDeploymentSucceededAt":{"shape":"Timestamp"},
         "lastModifiedAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
         "name":{"shape":"ResourceName"},
         "serviceInstanceName":{"shape":"ResourceName"},
         "serviceName":{"shape":"ResourceName"},
@@ -1614,12 +1665,27 @@
       }
     },
     "ComponentArn":{"type":"string"},
+    "ComponentDeploymentIdList":{
+      "type":"list",
+      "member":{"shape":"DeploymentId"},
+      "max":1,
+      "min":0
+    },
     "ComponentDeploymentUpdateType":{
       "type":"string",
       "enum":[
         "NONE",
         "CURRENT_VERSION"
       ]
+    },
+    "ComponentState":{
+      "type":"structure",
+      "members":{
+        "serviceInstanceName":{"shape":"ResourceNameOrEmpty"},
+        "serviceName":{"shape":"ResourceNameOrEmpty"},
+        "serviceSpec":{"shape":"SpecContents"},
+        "templateFile":{"shape":"TemplateFileContents"}
+      }
     },
     "ComponentSummary":{
       "type":"structure",
@@ -1637,9 +1703,11 @@
         "deploymentStatus":{"shape":"DeploymentStatus"},
         "deploymentStatusMessage":{"shape":"StatusMessage"},
         "environmentName":{"shape":"ResourceName"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
         "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
         "lastDeploymentSucceededAt":{"shape":"Timestamp"},
         "lastModifiedAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
         "name":{"shape":"ResourceName"},
         "serviceInstanceName":{"shape":"ResourceName"},
         "serviceName":{"shape":"ResourceName"}
@@ -1983,6 +2051,19 @@
         "component":{"shape":"Component"}
       }
     },
+    "DeleteDeploymentInput":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{"shape":"DeploymentId"}
+      }
+    },
+    "DeleteDeploymentOutput":{
+      "type":"structure",
+      "members":{
+        "deployment":{"shape":"Deployment"}
+      }
+    },
     "DeleteEnvironmentAccountConnectionInput":{
       "type":"structure",
       "required":["id"],
@@ -2133,9 +2214,54 @@
         "templateSyncConfig":{"shape":"TemplateSyncConfig"}
       }
     },
+    "Deployment":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createdAt",
+        "deploymentStatus",
+        "environmentName",
+        "id",
+        "lastModifiedAt",
+        "targetArn",
+        "targetResourceCreatedAt",
+        "targetResourceType"
+      ],
+      "members":{
+        "arn":{"shape":"DeploymentArn"},
+        "completedAt":{"shape":"Timestamp"},
+        "componentName":{"shape":"ResourceName"},
+        "createdAt":{"shape":"Timestamp"},
+        "deploymentStatus":{"shape":"DeploymentStatus"},
+        "deploymentStatusMessage":{"shape":"StatusMessage"},
+        "environmentName":{"shape":"ResourceName"},
+        "id":{"shape":"DeploymentId"},
+        "initialState":{"shape":"DeploymentState"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
+        "lastModifiedAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
+        "serviceInstanceName":{"shape":"ResourceName"},
+        "serviceName":{"shape":"ResourceName"},
+        "targetArn":{"shape":"Arn"},
+        "targetResourceCreatedAt":{"shape":"Timestamp"},
+        "targetResourceType":{"shape":"DeploymentTargetResourceType"},
+        "targetState":{"shape":"DeploymentState"}
+      }
+    },
+    "DeploymentArn":{"type":"string"},
     "DeploymentId":{
       "type":"string",
       "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "DeploymentState":{
+      "type":"structure",
+      "members":{
+        "component":{"shape":"ComponentState"},
+        "environment":{"shape":"EnvironmentState"},
+        "serviceInstance":{"shape":"ServiceInstanceState"},
+        "servicePipeline":{"shape":"ServicePipelineState"}
+      },
+      "union":true
     },
     "DeploymentStatus":{
       "type":"string",
@@ -2148,6 +2274,50 @@
         "DELETE_COMPLETE",
         "CANCELLING",
         "CANCELLED"
+      ]
+    },
+    "DeploymentSummary":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createdAt",
+        "deploymentStatus",
+        "environmentName",
+        "id",
+        "lastModifiedAt",
+        "targetArn",
+        "targetResourceCreatedAt",
+        "targetResourceType"
+      ],
+      "members":{
+        "arn":{"shape":"DeploymentArn"},
+        "completedAt":{"shape":"Timestamp"},
+        "componentName":{"shape":"ResourceName"},
+        "createdAt":{"shape":"Timestamp"},
+        "deploymentStatus":{"shape":"DeploymentStatus"},
+        "environmentName":{"shape":"ResourceName"},
+        "id":{"shape":"DeploymentId"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
+        "lastModifiedAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
+        "serviceInstanceName":{"shape":"ResourceName"},
+        "serviceName":{"shape":"ResourceName"},
+        "targetArn":{"shape":"Arn"},
+        "targetResourceCreatedAt":{"shape":"Timestamp"},
+        "targetResourceType":{"shape":"DeploymentTargetResourceType"}
+      }
+    },
+    "DeploymentSummaryList":{
+      "type":"list",
+      "member":{"shape":"DeploymentSummary"}
+    },
+    "DeploymentTargetResourceType":{
+      "type":"string",
+      "enum":[
+        "ENVIRONMENT",
+        "SERVICE_PIPELINE",
+        "SERVICE_INSTANCE",
+        "COMPONENT"
       ]
     },
     "DeploymentUpdateType":{
@@ -2199,8 +2369,10 @@
         "description":{"shape":"Description"},
         "environmentAccountConnectionId":{"shape":"EnvironmentAccountConnectionId"},
         "environmentAccountId":{"shape":"AwsAccountId"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
         "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
         "lastDeploymentSucceededAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
         "name":{"shape":"ResourceName"},
         "protonServiceRoleArn":{"shape":"Arn"},
         "provisioning":{"shape":"Provisioning"},
@@ -2293,6 +2465,20 @@
       "member":{"shape":"EnvironmentAccountConnectionSummary"}
     },
     "EnvironmentArn":{"type":"string"},
+    "EnvironmentState":{
+      "type":"structure",
+      "required":[
+        "templateMajorVersion",
+        "templateMinorVersion",
+        "templateName"
+      ],
+      "members":{
+        "spec":{"shape":"SpecContents"},
+        "templateMajorVersion":{"shape":"TemplateVersionPart"},
+        "templateMinorVersion":{"shape":"TemplateVersionPart"},
+        "templateName":{"shape":"ResourceName"}
+      }
+    },
     "EnvironmentSummary":{
       "type":"structure",
       "required":[
@@ -2315,8 +2501,10 @@
         "description":{"shape":"Description"},
         "environmentAccountConnectionId":{"shape":"EnvironmentAccountConnectionId"},
         "environmentAccountId":{"shape":"AwsAccountId"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
         "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
         "lastDeploymentSucceededAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
         "name":{"shape":"ResourceName"},
         "protonServiceRoleArn":{"shape":"Arn"},
         "provisioning":{"shape":"Provisioning"},
@@ -2474,6 +2662,23 @@
       "type":"structure",
       "members":{
         "component":{"shape":"Component"}
+      }
+    },
+    "GetDeploymentInput":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "componentName":{"shape":"ResourceName"},
+        "environmentName":{"shape":"ResourceName"},
+        "id":{"shape":"DeploymentId"},
+        "serviceInstanceName":{"shape":"ResourceName"},
+        "serviceName":{"shape":"ResourceName"}
+      }
+    },
+    "GetDeploymentOutput":{
+      "type":"structure",
+      "members":{
+        "deployment":{"shape":"Deployment"}
       }
     },
     "GetEnvironmentAccountConnectionInput":{
@@ -2766,6 +2971,7 @@
       "required":["componentName"],
       "members":{
         "componentName":{"shape":"ResourceName"},
+        "deploymentId":{"shape":"DeploymentId"},
         "nextToken":{"shape":"EmptyNextToken"}
       }
     },
@@ -2811,6 +3017,25 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListDeploymentsInput":{
+      "type":"structure",
+      "members":{
+        "componentName":{"shape":"ResourceName"},
+        "environmentName":{"shape":"ResourceName"},
+        "maxResults":{"shape":"MaxPageResults"},
+        "nextToken":{"shape":"NextToken"},
+        "serviceInstanceName":{"shape":"ResourceName"},
+        "serviceName":{"shape":"ResourceName"}
+      }
+    },
+    "ListDeploymentsOutput":{
+      "type":"structure",
+      "required":["deployments"],
+      "members":{
+        "deployments":{"shape":"DeploymentSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListEnvironmentAccountConnectionsInput":{
       "type":"structure",
       "required":["requestedBy"],
@@ -2834,6 +3059,7 @@
       "type":"structure",
       "required":["environmentName"],
       "members":{
+        "deploymentId":{"shape":"DeploymentId"},
         "environmentName":{"shape":"ResourceName"},
         "nextToken":{"shape":"EmptyNextToken"}
       }
@@ -2955,6 +3181,7 @@
         "serviceName"
       ],
       "members":{
+        "deploymentId":{"shape":"DeploymentId"},
         "nextToken":{"shape":"EmptyNextToken"},
         "serviceInstanceName":{"shape":"ResourceName"},
         "serviceName":{"shape":"ResourceName"}
@@ -3050,6 +3277,7 @@
       "type":"structure",
       "required":["serviceName"],
       "members":{
+        "deploymentId":{"shape":"DeploymentId"},
         "nextToken":{"shape":"EmptyNextToken"},
         "serviceName":{"shape":"ResourceName"}
       }
@@ -3588,9 +3816,11 @@
         "deploymentStatus":{"shape":"DeploymentStatus"},
         "deploymentStatusMessage":{"shape":"StatusMessage"},
         "environmentName":{"shape":"ResourceName"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
         "lastClientRequestToken":{"shape":"String"},
         "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
         "lastDeploymentSucceededAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
         "name":{"shape":"ResourceName"},
         "serviceName":{"shape":"ResourceName"},
         "spec":{"shape":"SpecContents"},
@@ -3600,6 +3830,24 @@
       }
     },
     "ServiceInstanceArn":{"type":"string"},
+    "ServiceInstanceState":{
+      "type":"structure",
+      "required":[
+        "spec",
+        "templateMajorVersion",
+        "templateMinorVersion",
+        "templateName"
+      ],
+      "members":{
+        "lastSuccessfulComponentDeploymentIds":{"shape":"ComponentDeploymentIdList"},
+        "lastSuccessfulEnvironmentDeploymentId":{"shape":"DeploymentId"},
+        "lastSuccessfulServicePipelineDeploymentId":{"shape":"DeploymentId"},
+        "spec":{"shape":"SpecContents"},
+        "templateMajorVersion":{"shape":"TemplateVersionPart"},
+        "templateMinorVersion":{"shape":"TemplateVersionPart"},
+        "templateName":{"shape":"ResourceName"}
+      }
+    },
     "ServiceInstanceSummary":{
       "type":"structure",
       "required":[
@@ -3621,8 +3869,10 @@
         "deploymentStatus":{"shape":"DeploymentStatus"},
         "deploymentStatusMessage":{"shape":"StatusMessage"},
         "environmentName":{"shape":"ResourceName"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
         "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
         "lastDeploymentSucceededAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
         "name":{"shape":"ResourceName"},
         "serviceName":{"shape":"ResourceName"},
         "templateMajorVersion":{"shape":"TemplateVersionPart"},
@@ -3651,8 +3901,24 @@
         "createdAt":{"shape":"Timestamp"},
         "deploymentStatus":{"shape":"DeploymentStatus"},
         "deploymentStatusMessage":{"shape":"StatusMessage"},
+        "lastAttemptedDeploymentId":{"shape":"DeploymentId"},
         "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
         "lastDeploymentSucceededAt":{"shape":"Timestamp"},
+        "lastSucceededDeploymentId":{"shape":"DeploymentId"},
+        "spec":{"shape":"SpecContents"},
+        "templateMajorVersion":{"shape":"TemplateVersionPart"},
+        "templateMinorVersion":{"shape":"TemplateVersionPart"},
+        "templateName":{"shape":"ResourceName"}
+      }
+    },
+    "ServicePipelineState":{
+      "type":"structure",
+      "required":[
+        "templateMajorVersion",
+        "templateMinorVersion",
+        "templateName"
+      ],
+      "members":{
         "spec":{"shape":"SpecContents"},
         "templateMajorVersion":{"shape":"TemplateVersionPart"},
         "templateMinorVersion":{"shape":"TemplateVersionPart"},

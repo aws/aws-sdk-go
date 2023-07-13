@@ -1558,6 +1558,13 @@
       "type":"list",
       "member":{"shape":"DatabaseResponse"}
     },
+    "DatabaseMode":{
+      "type":"string",
+      "enum":[
+        "default",
+        "babelfish"
+      ]
+    },
     "DatabaseResponse":{
       "type":"structure",
       "members":{
@@ -3128,7 +3135,9 @@
         "TrimSpaceInChar":{"shape":"BooleanOptional"},
         "MapBooleanAsBoolean":{"shape":"BooleanOptional"},
         "MapJsonbAsClob":{"shape":"BooleanOptional"},
-        "MapLongVarcharAs":{"shape":"LongVarcharMappingType"}
+        "MapLongVarcharAs":{"shape":"LongVarcharMappingType"},
+        "DatabaseMode":{"shape":"DatabaseMode"},
+        "BabelfishDatabaseName":{"shape":"String"}
       }
     },
     "ProvisionData":{

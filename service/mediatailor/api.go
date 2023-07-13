@@ -3992,6 +3992,9 @@ type Alert struct {
 	// AlertMessage is a required field
 	AlertMessage *string `type:"string" required:"true"`
 
+	// The category that MediaTailor assigns to the alert.
+	Category *string `type:"string" enum:"AlertCategory"`
+
 	// The timestamp when the alert was last modified.
 	//
 	// LastModifiedTime is a required field
@@ -4035,6 +4038,12 @@ func (s *Alert) SetAlertCode(v string) *Alert {
 // SetAlertMessage sets the AlertMessage field's value.
 func (s *Alert) SetAlertMessage(v string) *Alert {
 	s.AlertMessage = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *Alert) SetCategory(v string) *Alert {
+	s.Category = &v
 	return s
 }
 
@@ -8602,7 +8611,7 @@ type KeyValuePair struct {
 	// Key is a required field
 	Key *string `type:"string" required:"true"`
 
-	// For SCTE35_ENHANCED output, defines a vaue. MediaTailor; takes this value,
+	// For SCTE35_ENHANCED output, defines a value. MediaTailor; takes this value,
 	// and its associated key, and generates the key/value pair within the EXT-X-ASSETtag.
 	// If you specify a value, you must also specify a corresponding key.
 	//
@@ -13269,6 +13278,26 @@ func AdMarkupType_Values() []string {
 	return []string{
 		AdMarkupTypeDaterange,
 		AdMarkupTypeScte35Enhanced,
+	}
+}
+
+const (
+	// AlertCategorySchedulingError is a AlertCategory enum value
+	AlertCategorySchedulingError = "SCHEDULING_ERROR"
+
+	// AlertCategoryPlaybackWarning is a AlertCategory enum value
+	AlertCategoryPlaybackWarning = "PLAYBACK_WARNING"
+
+	// AlertCategoryInfo is a AlertCategory enum value
+	AlertCategoryInfo = "INFO"
+)
+
+// AlertCategory_Values returns all elements of the AlertCategory enum
+func AlertCategory_Values() []string {
+	return []string{
+		AlertCategorySchedulingError,
+		AlertCategoryPlaybackWarning,
+		AlertCategoryInfo,
 	}
 }
 

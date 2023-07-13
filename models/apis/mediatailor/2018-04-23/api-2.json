@@ -541,10 +541,19 @@
       "members":{
         "AlertCode":{"shape":"__string"},
         "AlertMessage":{"shape":"__string"},
+        "Category":{"shape":"AlertCategory"},
         "LastModifiedTime":{"shape":"__timestampUnix"},
         "RelatedResourceArns":{"shape":"__listOf__string"},
         "ResourceArn":{"shape":"__string"}
       }
+    },
+    "AlertCategory":{
+      "type":"string",
+      "enum":[
+        "SCHEDULING_ERROR",
+        "PLAYBACK_WARNING",
+        "INFO"
+      ]
     },
     "AvailMatchingCriteria":{
       "type":"structure",

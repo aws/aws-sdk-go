@@ -1884,6 +1884,98 @@ func (c *Proton) DeleteComponentWithContext(ctx aws.Context, input *DeleteCompon
 	return out, req.Send()
 }
 
+const opDeleteDeployment = "DeleteDeployment"
+
+// DeleteDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDeployment for more information on using the DeleteDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteDeploymentRequest method.
+//	req, resp := client.DeleteDeploymentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/DeleteDeployment
+func (c *Proton) DeleteDeploymentRequest(input *DeleteDeploymentInput) (req *request.Request, output *DeleteDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDeploymentInput{}
+	}
+
+	output = &DeleteDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteDeployment API operation for AWS Proton.
+//
+// Delete the deployment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation DeleteDeployment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input is invalid or an out-of-range value was supplied for the input
+//     parameter.
+//
+//   - AccessDeniedException
+//     There isn't sufficient access for performing this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The requested resource wasn't found.
+//
+//   - InternalServerException
+//     The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/DeleteDeployment
+func (c *Proton) DeleteDeployment(input *DeleteDeploymentInput) (*DeleteDeploymentOutput, error) {
+	req, out := c.DeleteDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDeploymentWithContext is the same as DeleteDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) DeleteDeploymentWithContext(ctx aws.Context, input *DeleteDeploymentInput, opts ...request.Option) (*DeleteDeploymentOutput, error) {
+	req, out := c.DeleteDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteEnvironment = "DeleteEnvironment"
 
 // DeleteEnvironmentRequest generates a "aws/request.Request" representing the
@@ -3051,6 +3143,98 @@ func (c *Proton) GetComponent(input *GetComponentInput) (*GetComponentOutput, er
 // for more information on using Contexts.
 func (c *Proton) GetComponentWithContext(ctx aws.Context, input *GetComponentInput, opts ...request.Option) (*GetComponentOutput, error) {
 	req, out := c.GetComponentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDeployment = "GetDeployment"
+
+// GetDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the GetDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDeployment for more information on using the GetDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDeploymentRequest method.
+//	req, resp := client.GetDeploymentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetDeployment
+func (c *Proton) GetDeploymentRequest(input *GetDeploymentInput) (req *request.Request, output *GetDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opGetDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDeploymentInput{}
+	}
+
+	output = &GetDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDeployment API operation for AWS Proton.
+//
+// Get detailed data for a deployment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation GetDeployment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input is invalid or an out-of-range value was supplied for the input
+//     parameter.
+//
+//   - AccessDeniedException
+//     There isn't sufficient access for performing this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The requested resource wasn't found.
+//
+//   - InternalServerException
+//     The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetDeployment
+func (c *Proton) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOutput, error) {
+	req, out := c.GetDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// GetDeploymentWithContext is the same as GetDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) GetDeploymentWithContext(ctx aws.Context, input *GetDeploymentInput, opts ...request.Option) (*GetDeploymentOutput, error) {
+	req, out := c.GetDeploymentRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5004,6 +5188,156 @@ func (c *Proton) ListComponentsPagesWithContext(ctx aws.Context, input *ListComp
 
 	for p.Next() {
 		if !fn(p.Page().(*ListComponentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDeployments = "ListDeployments"
+
+// ListDeploymentsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDeployments operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDeployments for more information on using the ListDeployments
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDeploymentsRequest method.
+//	req, resp := client.ListDeploymentsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListDeployments
+func (c *Proton) ListDeploymentsRequest(input *ListDeploymentsInput) (req *request.Request, output *ListDeploymentsOutput) {
+	op := &request.Operation{
+		Name:       opListDeployments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDeploymentsInput{}
+	}
+
+	output = &ListDeploymentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDeployments API operation for AWS Proton.
+//
+// List deployments. You can filter the result list by environment, service,
+// or a single service instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListDeployments for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input is invalid or an out-of-range value was supplied for the input
+//     parameter.
+//
+//   - AccessDeniedException
+//     There isn't sufficient access for performing this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The requested resource wasn't found.
+//
+//   - InternalServerException
+//     The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListDeployments
+func (c *Proton) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, error) {
+	req, out := c.ListDeploymentsRequest(input)
+	return out, req.Send()
+}
+
+// ListDeploymentsWithContext is the same as ListDeployments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDeployments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListDeploymentsWithContext(ctx aws.Context, input *ListDeploymentsInput, opts ...request.Option) (*ListDeploymentsOutput, error) {
+	req, out := c.ListDeploymentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDeploymentsPages iterates over the pages of a ListDeployments operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDeployments method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDeployments operation.
+//	pageNum := 0
+//	err := client.ListDeploymentsPages(params,
+//	    func(page *proton.ListDeploymentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Proton) ListDeploymentsPages(input *ListDeploymentsInput, fn func(*ListDeploymentsOutput, bool) bool) error {
+	return c.ListDeploymentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDeploymentsPagesWithContext same as ListDeploymentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListDeploymentsPagesWithContext(ctx aws.Context, input *ListDeploymentsInput, fn func(*ListDeploymentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDeploymentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDeploymentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDeploymentsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -10103,6 +10437,9 @@ type Component struct {
 	// EnvironmentName is a required field
 	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
 
+	// The ID of the last attempted deployment of this component.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
 	// The last token the client requested.
 	LastClientRequestToken *string `locationName:"lastClientRequestToken" type:"string"`
 
@@ -10116,6 +10453,9 @@ type Component struct {
 	//
 	// LastModifiedAt is a required field
 	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment of this component.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
 
 	// The name of the component.
 	//
@@ -10193,6 +10533,12 @@ func (s *Component) SetEnvironmentName(v string) *Component {
 	return s
 }
 
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *Component) SetLastAttemptedDeploymentId(v string) *Component {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
 // SetLastClientRequestToken sets the LastClientRequestToken field's value.
 func (s *Component) SetLastClientRequestToken(v string) *Component {
 	s.LastClientRequestToken = &v
@@ -10217,6 +10563,12 @@ func (s *Component) SetLastModifiedAt(v time.Time) *Component {
 	return s
 }
 
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *Component) SetLastSucceededDeploymentId(v string) *Component {
+	s.LastSucceededDeploymentId = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *Component) SetName(v string) *Component {
 	s.Name = &v
@@ -10238,6 +10590,76 @@ func (s *Component) SetServiceName(v string) *Component {
 // SetServiceSpec sets the ServiceSpec field's value.
 func (s *Component) SetServiceSpec(v string) *Component {
 	s.ServiceSpec = &v
+	return s
+}
+
+// The detailed data about the current state of the component.
+type ComponentState struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the service instance that this component is attached to. Provided
+	// when a component is attached to a service instance.
+	ServiceInstanceName *string `locationName:"serviceInstanceName" type:"string"`
+
+	// The name of the service that serviceInstanceName is associated with. Provided
+	// when a component is attached to a service instance.
+	ServiceName *string `locationName:"serviceName" type:"string"`
+
+	// The service spec that the component uses to access service inputs. Provided
+	// when a component is attached to a service instance.
+	//
+	// ServiceSpec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ComponentState's
+	// String and GoString methods.
+	ServiceSpec *string `locationName:"serviceSpec" min:"1" type:"string" sensitive:"true"`
+
+	// The template file used.
+	//
+	// TemplateFile is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ComponentState's
+	// String and GoString methods.
+	TemplateFile *string `locationName:"templateFile" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentState) GoString() string {
+	return s.String()
+}
+
+// SetServiceInstanceName sets the ServiceInstanceName field's value.
+func (s *ComponentState) SetServiceInstanceName(v string) *ComponentState {
+	s.ServiceInstanceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ComponentState) SetServiceName(v string) *ComponentState {
+	s.ServiceName = &v
+	return s
+}
+
+// SetServiceSpec sets the ServiceSpec field's value.
+func (s *ComponentState) SetServiceSpec(v string) *ComponentState {
+	s.ServiceSpec = &v
+	return s
+}
+
+// SetTemplateFile sets the TemplateFile field's value.
+func (s *ComponentState) SetTemplateFile(v string) *ComponentState {
+	s.TemplateFile = &v
 	return s
 }
 
@@ -10275,6 +10697,9 @@ type ComponentSummary struct {
 	// EnvironmentName is a required field
 	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
 
+	// The ID of the last attempted deployment of this component.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
 	// The time when a deployment of the component was last attempted.
 	LastDeploymentAttemptedAt *time.Time `locationName:"lastDeploymentAttemptedAt" type:"timestamp"`
 
@@ -10285,6 +10710,9 @@ type ComponentSummary struct {
 	//
 	// LastModifiedAt is a required field
 	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment of this component.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
 
 	// The name of the component.
 	//
@@ -10348,6 +10776,12 @@ func (s *ComponentSummary) SetEnvironmentName(v string) *ComponentSummary {
 	return s
 }
 
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *ComponentSummary) SetLastAttemptedDeploymentId(v string) *ComponentSummary {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
 // SetLastDeploymentAttemptedAt sets the LastDeploymentAttemptedAt field's value.
 func (s *ComponentSummary) SetLastDeploymentAttemptedAt(v time.Time) *ComponentSummary {
 	s.LastDeploymentAttemptedAt = &v
@@ -10363,6 +10797,12 @@ func (s *ComponentSummary) SetLastDeploymentSucceededAt(v time.Time) *ComponentS
 // SetLastModifiedAt sets the LastModifiedAt field's value.
 func (s *ComponentSummary) SetLastModifiedAt(v time.Time) *ComponentSummary {
 	s.LastModifiedAt = &v
+	return s
+}
+
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *ComponentSummary) SetLastSucceededDeploymentId(v string) *ComponentSummary {
+	s.LastSucceededDeploymentId = &v
 	return s
 }
 
@@ -12867,6 +13307,83 @@ func (s *DeleteComponentOutput) SetComponent(v *Component) *DeleteComponentOutpu
 	return s
 }
 
+type DeleteDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the deployment to delete.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDeploymentInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteDeploymentInput) SetId(v string) *DeleteDeploymentInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The detailed data of the deployment being deleted.
+	Deployment *Deployment `locationName:"deployment" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeployment sets the Deployment field's value.
+func (s *DeleteDeploymentOutput) SetDeployment(v *Deployment) *DeleteDeploymentOutput {
+	s.Deployment = v
+	return s
+}
+
 type DeleteEnvironmentAccountConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13761,6 +14278,450 @@ func (s *DeleteTemplateSyncConfigOutput) SetTemplateSyncConfig(v *TemplateSyncCo
 	return s
 }
 
+// The detailed information about a deployment.
+type Deployment struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the deployment.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The date and time the deployment was completed.
+	CompletedAt *time.Time `locationName:"completedAt" type:"timestamp"`
+
+	// The name of the component associated with this deployment.
+	ComponentName *string `locationName:"componentName" min:"1" type:"string"`
+
+	// The date and time the deployment was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The status of the deployment.
+	//
+	// DeploymentStatus is a required field
+	DeploymentStatus *string `locationName:"deploymentStatus" type:"string" required:"true" enum:"DeploymentStatus"`
+
+	// The deployment status message.
+	//
+	// DeploymentStatusMessage is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Deployment's
+	// String and GoString methods.
+	DeploymentStatusMessage *string `locationName:"deploymentStatusMessage" type:"string" sensitive:"true"`
+
+	// The name of the environment associated with this deployment.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
+
+	// The ID of the deployment.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The initial state of the target resource at the time of the deployment.
+	InitialState *DeploymentState `locationName:"initialState" type:"structure"`
+
+	// The ID of the last attempted deployment.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
+	// The date and time the deployment was last modified.
+	//
+	// LastModifiedAt is a required field
+	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
+
+	// The name of the deployment's service instance.
+	ServiceInstanceName *string `locationName:"serviceInstanceName" min:"1" type:"string"`
+
+	// The name of the service in this deployment.
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the target of the deployment.
+	//
+	// TargetArn is a required field
+	TargetArn *string `locationName:"targetArn" min:"1" type:"string" required:"true"`
+
+	// The date and time the depoyment target was created.
+	//
+	// TargetResourceCreatedAt is a required field
+	TargetResourceCreatedAt *time.Time `locationName:"targetResourceCreatedAt" type:"timestamp" required:"true"`
+
+	// The resource type of the deployment target. It can be an environment, service,
+	// service instance, or component.
+	//
+	// TargetResourceType is a required field
+	TargetResourceType *string `locationName:"targetResourceType" type:"string" required:"true" enum:"DeploymentTargetResourceType"`
+
+	// The target state of the target resource at the time of the deployment.
+	TargetState *DeploymentState `locationName:"targetState" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Deployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Deployment) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Deployment) SetArn(v string) *Deployment {
+	s.Arn = &v
+	return s
+}
+
+// SetCompletedAt sets the CompletedAt field's value.
+func (s *Deployment) SetCompletedAt(v time.Time) *Deployment {
+	s.CompletedAt = &v
+	return s
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *Deployment) SetComponentName(v string) *Deployment {
+	s.ComponentName = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *Deployment) SetCreatedAt(v time.Time) *Deployment {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDeploymentStatus sets the DeploymentStatus field's value.
+func (s *Deployment) SetDeploymentStatus(v string) *Deployment {
+	s.DeploymentStatus = &v
+	return s
+}
+
+// SetDeploymentStatusMessage sets the DeploymentStatusMessage field's value.
+func (s *Deployment) SetDeploymentStatusMessage(v string) *Deployment {
+	s.DeploymentStatusMessage = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *Deployment) SetEnvironmentName(v string) *Deployment {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Deployment) SetId(v string) *Deployment {
+	s.Id = &v
+	return s
+}
+
+// SetInitialState sets the InitialState field's value.
+func (s *Deployment) SetInitialState(v *DeploymentState) *Deployment {
+	s.InitialState = v
+	return s
+}
+
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *Deployment) SetLastAttemptedDeploymentId(v string) *Deployment {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
+// SetLastModifiedAt sets the LastModifiedAt field's value.
+func (s *Deployment) SetLastModifiedAt(v time.Time) *Deployment {
+	s.LastModifiedAt = &v
+	return s
+}
+
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *Deployment) SetLastSucceededDeploymentId(v string) *Deployment {
+	s.LastSucceededDeploymentId = &v
+	return s
+}
+
+// SetServiceInstanceName sets the ServiceInstanceName field's value.
+func (s *Deployment) SetServiceInstanceName(v string) *Deployment {
+	s.ServiceInstanceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *Deployment) SetServiceName(v string) *Deployment {
+	s.ServiceName = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *Deployment) SetTargetArn(v string) *Deployment {
+	s.TargetArn = &v
+	return s
+}
+
+// SetTargetResourceCreatedAt sets the TargetResourceCreatedAt field's value.
+func (s *Deployment) SetTargetResourceCreatedAt(v time.Time) *Deployment {
+	s.TargetResourceCreatedAt = &v
+	return s
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *Deployment) SetTargetResourceType(v string) *Deployment {
+	s.TargetResourceType = &v
+	return s
+}
+
+// SetTargetState sets the TargetState field's value.
+func (s *Deployment) SetTargetState(v *DeploymentState) *Deployment {
+	s.TargetState = v
+	return s
+}
+
+// The detailed data about the current state of the deployment.
+type DeploymentState struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the component associated with the deployment.
+	Component *ComponentState `locationName:"component" type:"structure"`
+
+	// The state of the environment associated with the deployment.
+	Environment *EnvironmentState `locationName:"environment" type:"structure"`
+
+	// The state of the service instance associated with the deployment.
+	ServiceInstance *ServiceInstanceState `locationName:"serviceInstance" type:"structure"`
+
+	// The state of the service pipeline associated with the deployment.
+	ServicePipeline *ServicePipelineState `locationName:"servicePipeline" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentState) GoString() string {
+	return s.String()
+}
+
+// SetComponent sets the Component field's value.
+func (s *DeploymentState) SetComponent(v *ComponentState) *DeploymentState {
+	s.Component = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *DeploymentState) SetEnvironment(v *EnvironmentState) *DeploymentState {
+	s.Environment = v
+	return s
+}
+
+// SetServiceInstance sets the ServiceInstance field's value.
+func (s *DeploymentState) SetServiceInstance(v *ServiceInstanceState) *DeploymentState {
+	s.ServiceInstance = v
+	return s
+}
+
+// SetServicePipeline sets the ServicePipeline field's value.
+func (s *DeploymentState) SetServicePipeline(v *ServicePipelineState) *DeploymentState {
+	s.ServicePipeline = v
+	return s
+}
+
+// Summary data of the deployment.
+type DeploymentSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the deployment.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The date and time the deployment was completed.
+	CompletedAt *time.Time `locationName:"completedAt" type:"timestamp"`
+
+	// The name of the component associated with the deployment.
+	ComponentName *string `locationName:"componentName" min:"1" type:"string"`
+
+	// The date and time the deployment was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The current status of the deployment.
+	//
+	// DeploymentStatus is a required field
+	DeploymentStatus *string `locationName:"deploymentStatus" type:"string" required:"true" enum:"DeploymentStatus"`
+
+	// The name of the environment associated with the deployment.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
+
+	// The ID of the deployment.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The ID of the last attempted deployment.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
+	// The date and time the deployment was last modified.
+	//
+	// LastModifiedAt is a required field
+	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
+
+	// The name of the service instance associated with the deployment.
+	ServiceInstanceName *string `locationName:"serviceInstanceName" min:"1" type:"string"`
+
+	// The name of the service associated with the deployment.
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the target of the deployment.
+	//
+	// TargetArn is a required field
+	TargetArn *string `locationName:"targetArn" min:"1" type:"string" required:"true"`
+
+	// The date and time the target resource was created.
+	//
+	// TargetResourceCreatedAt is a required field
+	TargetResourceCreatedAt *time.Time `locationName:"targetResourceCreatedAt" type:"timestamp" required:"true"`
+
+	// The resource type of the deployment target. It can be an environment, service,
+	// service instance, or component.
+	//
+	// TargetResourceType is a required field
+	TargetResourceType *string `locationName:"targetResourceType" type:"string" required:"true" enum:"DeploymentTargetResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeploymentSummary) SetArn(v string) *DeploymentSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCompletedAt sets the CompletedAt field's value.
+func (s *DeploymentSummary) SetCompletedAt(v time.Time) *DeploymentSummary {
+	s.CompletedAt = &v
+	return s
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *DeploymentSummary) SetComponentName(v string) *DeploymentSummary {
+	s.ComponentName = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DeploymentSummary) SetCreatedAt(v time.Time) *DeploymentSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDeploymentStatus sets the DeploymentStatus field's value.
+func (s *DeploymentSummary) SetDeploymentStatus(v string) *DeploymentSummary {
+	s.DeploymentStatus = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DeploymentSummary) SetEnvironmentName(v string) *DeploymentSummary {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DeploymentSummary) SetId(v string) *DeploymentSummary {
+	s.Id = &v
+	return s
+}
+
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *DeploymentSummary) SetLastAttemptedDeploymentId(v string) *DeploymentSummary {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
+// SetLastModifiedAt sets the LastModifiedAt field's value.
+func (s *DeploymentSummary) SetLastModifiedAt(v time.Time) *DeploymentSummary {
+	s.LastModifiedAt = &v
+	return s
+}
+
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *DeploymentSummary) SetLastSucceededDeploymentId(v string) *DeploymentSummary {
+	s.LastSucceededDeploymentId = &v
+	return s
+}
+
+// SetServiceInstanceName sets the ServiceInstanceName field's value.
+func (s *DeploymentSummary) SetServiceInstanceName(v string) *DeploymentSummary {
+	s.ServiceInstanceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *DeploymentSummary) SetServiceName(v string) *DeploymentSummary {
+	s.ServiceName = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *DeploymentSummary) SetTargetArn(v string) *DeploymentSummary {
+	s.TargetArn = &v
+	return s
+}
+
+// SetTargetResourceCreatedAt sets the TargetResourceCreatedAt field's value.
+func (s *DeploymentSummary) SetTargetResourceCreatedAt(v time.Time) *DeploymentSummary {
+	s.TargetResourceCreatedAt = &v
+	return s
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *DeploymentSummary) SetTargetResourceType(v string) *DeploymentSummary {
+	s.TargetResourceType = &v
+	return s
+}
+
 // Detailed data of an Proton environment resource. An Proton environment is
 // a set of resources shared across Proton services.
 type Environment struct {
@@ -13818,6 +14779,9 @@ type Environment struct {
 	// are provisioned in.
 	EnvironmentAccountId *string `locationName:"environmentAccountId" type:"string"`
 
+	// The ID of the last attempted deployment of this environment.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
 	// The time when a deployment of the environment was last attempted.
 	//
 	// LastDeploymentAttemptedAt is a required field
@@ -13827,6 +14791,9 @@ type Environment struct {
 	//
 	// LastDeploymentSucceededAt is a required field
 	LastDeploymentSucceededAt *time.Time `locationName:"lastDeploymentSucceededAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment of this environment.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
 
 	// The name of the environment.
 	//
@@ -13941,6 +14908,12 @@ func (s *Environment) SetEnvironmentAccountId(v string) *Environment {
 	return s
 }
 
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *Environment) SetLastAttemptedDeploymentId(v string) *Environment {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
 // SetLastDeploymentAttemptedAt sets the LastDeploymentAttemptedAt field's value.
 func (s *Environment) SetLastDeploymentAttemptedAt(v time.Time) *Environment {
 	s.LastDeploymentAttemptedAt = &v
@@ -13950,6 +14923,12 @@ func (s *Environment) SetLastDeploymentAttemptedAt(v time.Time) *Environment {
 // SetLastDeploymentSucceededAt sets the LastDeploymentSucceededAt field's value.
 func (s *Environment) SetLastDeploymentSucceededAt(v time.Time) *Environment {
 	s.LastDeploymentSucceededAt = &v
+	return s
+}
+
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *Environment) SetLastSucceededDeploymentId(v string) *Environment {
+	s.LastSucceededDeploymentId = &v
 	return s
 }
 
@@ -14299,6 +15278,77 @@ func (s *EnvironmentAccountConnectionSummary) SetStatus(v string) *EnvironmentAc
 	return s
 }
 
+// The detailed data about the current state of the environment.
+type EnvironmentState struct {
+	_ struct{} `type:"structure"`
+
+	// The environment spec that was used to create the environment.
+	//
+	// Spec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EnvironmentState's
+	// String and GoString methods.
+	Spec *string `locationName:"spec" min:"1" type:"string" sensitive:"true"`
+
+	// The major version of the environment template that was used to create the
+	// environment.
+	//
+	// TemplateMajorVersion is a required field
+	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
+
+	// The minor version of the environment template that was used to create the
+	// environment.
+	//
+	// TemplateMinorVersion is a required field
+	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string" required:"true"`
+
+	// The name of the environment template that was used to create the environment.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnvironmentState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnvironmentState) GoString() string {
+	return s.String()
+}
+
+// SetSpec sets the Spec field's value.
+func (s *EnvironmentState) SetSpec(v string) *EnvironmentState {
+	s.Spec = &v
+	return s
+}
+
+// SetTemplateMajorVersion sets the TemplateMajorVersion field's value.
+func (s *EnvironmentState) SetTemplateMajorVersion(v string) *EnvironmentState {
+	s.TemplateMajorVersion = &v
+	return s
+}
+
+// SetTemplateMinorVersion sets the TemplateMinorVersion field's value.
+func (s *EnvironmentState) SetTemplateMinorVersion(v string) *EnvironmentState {
+	s.TemplateMinorVersion = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *EnvironmentState) SetTemplateName(v string) *EnvironmentState {
+	s.TemplateName = &v
+	return s
+}
+
 // Summary data of an Proton environment resource. An Proton environment is
 // a set of resources shared across Proton services.
 type EnvironmentSummary struct {
@@ -14352,6 +15402,9 @@ type EnvironmentSummary struct {
 	// are provisioned in.
 	EnvironmentAccountId *string `locationName:"environmentAccountId" type:"string"`
 
+	// The ID of the last attempted deployment of this environment.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
 	// The time when a deployment of the environment was last attempted.
 	//
 	// LastDeploymentAttemptedAt is a required field
@@ -14361,6 +15414,9 @@ type EnvironmentSummary struct {
 	//
 	// LastDeploymentSucceededAt is a required field
 	LastDeploymentSucceededAt *time.Time `locationName:"lastDeploymentSucceededAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment of this environment.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
 
 	// The name of the environment.
 	//
@@ -14457,6 +15513,12 @@ func (s *EnvironmentSummary) SetEnvironmentAccountId(v string) *EnvironmentSumma
 	return s
 }
 
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *EnvironmentSummary) SetLastAttemptedDeploymentId(v string) *EnvironmentSummary {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
 // SetLastDeploymentAttemptedAt sets the LastDeploymentAttemptedAt field's value.
 func (s *EnvironmentSummary) SetLastDeploymentAttemptedAt(v time.Time) *EnvironmentSummary {
 	s.LastDeploymentAttemptedAt = &v
@@ -14466,6 +15528,12 @@ func (s *EnvironmentSummary) SetLastDeploymentAttemptedAt(v time.Time) *Environm
 // SetLastDeploymentSucceededAt sets the LastDeploymentSucceededAt field's value.
 func (s *EnvironmentSummary) SetLastDeploymentSucceededAt(v time.Time) *EnvironmentSummary {
 	s.LastDeploymentSucceededAt = &v
+	return s
+}
+
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *EnvironmentSummary) SetLastSucceededDeploymentId(v string) *EnvironmentSummary {
+	s.LastSucceededDeploymentId = &v
 	return s
 }
 
@@ -15220,6 +16288,132 @@ func (s GetComponentOutput) GoString() string {
 // SetComponent sets the Component field's value.
 func (s *GetComponentOutput) SetComponent(v *Component) *GetComponentOutput {
 	s.Component = v
+	return s
+}
+
+type GetDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a component that you want to get the detailed data for.
+	ComponentName *string `locationName:"componentName" min:"1" type:"string"`
+
+	// The name of a environment that you want to get the detailed data for.
+	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string"`
+
+	// The ID of the deployment that you want to get the detailed data for.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the service instance associated with the given deployment ID.
+	// serviceName must be specified to identify the service instance.
+	ServiceInstanceName *string `locationName:"serviceInstanceName" min:"1" type:"string"`
+
+	// The name of the service associated with the given deployment ID.
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDeploymentInput"}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.ServiceInstanceName != nil && len(*s.ServiceInstanceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceInstanceName", 1))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *GetDeploymentInput) SetComponentName(v string) *GetDeploymentInput {
+	s.ComponentName = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *GetDeploymentInput) SetEnvironmentName(v string) *GetDeploymentInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetDeploymentInput) SetId(v string) *GetDeploymentInput {
+	s.Id = &v
+	return s
+}
+
+// SetServiceInstanceName sets the ServiceInstanceName field's value.
+func (s *GetDeploymentInput) SetServiceInstanceName(v string) *GetDeploymentInput {
+	s.ServiceInstanceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *GetDeploymentInput) SetServiceName(v string) *GetDeploymentInput {
+	s.ServiceName = &v
+	return s
+}
+
+type GetDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The detailed data of the requested deployment.
+	Deployment *Deployment `locationName:"deployment" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeployment sets the Deployment field's value.
+func (s *GetDeploymentOutput) SetDeployment(v *Deployment) *GetDeploymentOutput {
+	s.Deployment = v
 	return s
 }
 
@@ -16828,6 +18022,9 @@ type ListComponentOutputsInput struct {
 	// ComponentName is a required field
 	ComponentName *string `locationName:"componentName" min:"1" type:"string" required:"true"`
 
+	// The ID of the deployment whose outputs you want.
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
+
 	// A token that indicates the location of the next output in the array of outputs,
 	// after the list of outputs that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -16870,6 +18067,12 @@ func (s *ListComponentOutputsInput) Validate() error {
 // SetComponentName sets the ComponentName field's value.
 func (s *ListComponentOutputsInput) SetComponentName(v string) *ListComponentOutputsInput {
 	s.ComponentName = &v
+	return s
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *ListComponentOutputsInput) SetDeploymentId(v string) *ListComponentOutputsInput {
+	s.DeploymentId = &v
 	return s
 }
 
@@ -17163,6 +18366,155 @@ func (s *ListComponentsOutput) SetNextToken(v string) *ListComponentsOutput {
 	return s
 }
 
+type ListDeploymentsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a component for result list filtering. Proton returns deployments
+	// associated with that component.
+	ComponentName *string `locationName:"componentName" min:"1" type:"string"`
+
+	// The name of an environment for result list filtering. Proton returns deployments
+	// associated with the environment.
+	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string"`
+
+	// The maximum number of deployments to list.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token that indicates the location of the next deployment in the array of
+	// deployment, after the list of deployment that was previously requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The name of a service instance for result list filtering. Proton returns
+	// the deployments associated with the service instance.
+	ServiceInstanceName *string `locationName:"serviceInstanceName" min:"1" type:"string"`
+
+	// The name of a service for result list filtering. Proton returns deployments
+	// associated with service instances of the service.
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDeploymentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDeploymentsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDeploymentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDeploymentsInput"}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ServiceInstanceName != nil && len(*s.ServiceInstanceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceInstanceName", 1))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *ListDeploymentsInput) SetComponentName(v string) *ListDeploymentsInput {
+	s.ComponentName = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *ListDeploymentsInput) SetEnvironmentName(v string) *ListDeploymentsInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDeploymentsInput) SetMaxResults(v int64) *ListDeploymentsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDeploymentsInput) SetNextToken(v string) *ListDeploymentsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceInstanceName sets the ServiceInstanceName field's value.
+func (s *ListDeploymentsInput) SetServiceInstanceName(v string) *ListDeploymentsInput {
+	s.ServiceInstanceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ListDeploymentsInput) SetServiceName(v string) *ListDeploymentsInput {
+	s.ServiceName = &v
+	return s
+}
+
+type ListDeploymentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of deployment with summary data.
+	//
+	// Deployments is a required field
+	Deployments []*DeploymentSummary `locationName:"deployments" type:"list" required:"true"`
+
+	// A token that indicates the location of the next deployment in the array of
+	// deployment, after the current requested list of deployment.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDeploymentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDeploymentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeployments sets the Deployments field's value.
+func (s *ListDeploymentsOutput) SetDeployments(v []*DeploymentSummary) *ListDeploymentsOutput {
+	s.Deployments = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDeploymentsOutput) SetNextToken(v string) *ListDeploymentsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListEnvironmentAccountConnectionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17302,6 +18654,9 @@ func (s *ListEnvironmentAccountConnectionsOutput) SetNextToken(v string) *ListEn
 type ListEnvironmentOutputsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the deployment whose outputs you want.
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
+
 	// The environment name.
 	//
 	// EnvironmentName is a required field
@@ -17345,6 +18700,12 @@ func (s *ListEnvironmentOutputsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *ListEnvironmentOutputsInput) SetDeploymentId(v string) *ListEnvironmentOutputsInput {
+	s.DeploymentId = &v
+	return s
 }
 
 // SetEnvironmentName sets the EnvironmentName field's value.
@@ -18087,6 +19448,9 @@ func (s *ListRepositorySyncDefinitionsOutput) SetSyncDefinitions(v []*Repository
 type ListServiceInstanceOutputsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the deployment whose outputs you want.
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
+
 	// A token that indicates the location of the next output in the array of outputs,
 	// after the list of outputs that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -18140,6 +19504,12 @@ func (s *ListServiceInstanceOutputsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *ListServiceInstanceOutputsInput) SetDeploymentId(v string) *ListServiceInstanceOutputsInput {
+	s.DeploymentId = &v
+	return s
 }
 
 // SetNextToken sets the NextToken field's value.
@@ -18517,6 +19887,9 @@ func (s *ListServiceInstancesOutput) SetServiceInstances(v []*ServiceInstanceSum
 type ListServicePipelineOutputsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the deployment you want the outputs for.
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
+
 	// A token that indicates the location of the next output in the array of outputs,
 	// after the list of outputs that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -18559,6 +19932,12 @@ func (s *ListServicePipelineOutputsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *ListServicePipelineOutputsInput) SetDeploymentId(v string) *ListServicePipelineOutputsInput {
+	s.DeploymentId = &v
+	return s
 }
 
 // SetNextToken sets the NextToken field's value.
@@ -20595,6 +21974,9 @@ type ServiceInstance struct {
 	// EnvironmentName is a required field
 	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
 
+	// The ID of the last attempted deployment of this service instance.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
 	// The last client request token received.
 	LastClientRequestToken *string `locationName:"lastClientRequestToken" type:"string"`
 
@@ -20607,6 +21989,9 @@ type ServiceInstance struct {
 	//
 	// LastDeploymentSucceededAt is a required field
 	LastDeploymentSucceededAt *time.Time `locationName:"lastDeploymentSucceededAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment of this service instance.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
 
 	// The name of the service instance.
 	//
@@ -20691,6 +22076,12 @@ func (s *ServiceInstance) SetEnvironmentName(v string) *ServiceInstance {
 	return s
 }
 
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *ServiceInstance) SetLastAttemptedDeploymentId(v string) *ServiceInstance {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
 // SetLastClientRequestToken sets the LastClientRequestToken field's value.
 func (s *ServiceInstance) SetLastClientRequestToken(v string) *ServiceInstance {
 	s.LastClientRequestToken = &v
@@ -20706,6 +22097,12 @@ func (s *ServiceInstance) SetLastDeploymentAttemptedAt(v time.Time) *ServiceInst
 // SetLastDeploymentSucceededAt sets the LastDeploymentSucceededAt field's value.
 func (s *ServiceInstance) SetLastDeploymentSucceededAt(v time.Time) *ServiceInstance {
 	s.LastDeploymentSucceededAt = &v
+	return s
+}
+
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *ServiceInstance) SetLastSucceededDeploymentId(v string) *ServiceInstance {
+	s.LastSucceededDeploymentId = &v
 	return s
 }
 
@@ -20745,6 +22142,107 @@ func (s *ServiceInstance) SetTemplateName(v string) *ServiceInstance {
 	return s
 }
 
+// The detailed data about the current state of this service instance.
+type ServiceInstanceState struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs for the last successful components deployed for this service instance.
+	LastSuccessfulComponentDeploymentIds []*string `locationName:"lastSuccessfulComponentDeploymentIds" type:"list"`
+
+	// The ID for the last successful environment deployed for this service instance.
+	LastSuccessfulEnvironmentDeploymentId *string `locationName:"lastSuccessfulEnvironmentDeploymentId" type:"string"`
+
+	// The ID for the last successful service pipeline deployed for this service
+	// instance.
+	LastSuccessfulServicePipelineDeploymentId *string `locationName:"lastSuccessfulServicePipelineDeploymentId" type:"string"`
+
+	// The service spec that was used to create the service instance.
+	//
+	// Spec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ServiceInstanceState's
+	// String and GoString methods.
+	//
+	// Spec is a required field
+	Spec *string `locationName:"spec" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The major version of the service template that was used to create the service
+	// pipeline.
+	//
+	// TemplateMajorVersion is a required field
+	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
+
+	// The minor version of the service template that was used to create the service
+	// pipeline.
+	//
+	// TemplateMinorVersion is a required field
+	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string" required:"true"`
+
+	// The name of the service template that was used to create the service instance.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceInstanceState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceInstanceState) GoString() string {
+	return s.String()
+}
+
+// SetLastSuccessfulComponentDeploymentIds sets the LastSuccessfulComponentDeploymentIds field's value.
+func (s *ServiceInstanceState) SetLastSuccessfulComponentDeploymentIds(v []*string) *ServiceInstanceState {
+	s.LastSuccessfulComponentDeploymentIds = v
+	return s
+}
+
+// SetLastSuccessfulEnvironmentDeploymentId sets the LastSuccessfulEnvironmentDeploymentId field's value.
+func (s *ServiceInstanceState) SetLastSuccessfulEnvironmentDeploymentId(v string) *ServiceInstanceState {
+	s.LastSuccessfulEnvironmentDeploymentId = &v
+	return s
+}
+
+// SetLastSuccessfulServicePipelineDeploymentId sets the LastSuccessfulServicePipelineDeploymentId field's value.
+func (s *ServiceInstanceState) SetLastSuccessfulServicePipelineDeploymentId(v string) *ServiceInstanceState {
+	s.LastSuccessfulServicePipelineDeploymentId = &v
+	return s
+}
+
+// SetSpec sets the Spec field's value.
+func (s *ServiceInstanceState) SetSpec(v string) *ServiceInstanceState {
+	s.Spec = &v
+	return s
+}
+
+// SetTemplateMajorVersion sets the TemplateMajorVersion field's value.
+func (s *ServiceInstanceState) SetTemplateMajorVersion(v string) *ServiceInstanceState {
+	s.TemplateMajorVersion = &v
+	return s
+}
+
+// SetTemplateMinorVersion sets the TemplateMinorVersion field's value.
+func (s *ServiceInstanceState) SetTemplateMinorVersion(v string) *ServiceInstanceState {
+	s.TemplateMinorVersion = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ServiceInstanceState) SetTemplateName(v string) *ServiceInstanceState {
+	s.TemplateName = &v
+	return s
+}
+
 // Summary data of an Proton service instance resource.
 type ServiceInstanceSummary struct {
 	_ struct{} `type:"structure"`
@@ -20776,6 +22274,9 @@ type ServiceInstanceSummary struct {
 	// EnvironmentName is a required field
 	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
 
+	// The ID of the last attempted deployment of this service instance.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
 	// The time when a deployment of the service was last attempted.
 	//
 	// LastDeploymentAttemptedAt is a required field
@@ -20785,6 +22286,9 @@ type ServiceInstanceSummary struct {
 	//
 	// LastDeploymentSucceededAt is a required field
 	LastDeploymentSucceededAt *time.Time `locationName:"lastDeploymentSucceededAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment of this service instance.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
 
 	// The name of the service instance.
 	//
@@ -20860,6 +22364,12 @@ func (s *ServiceInstanceSummary) SetEnvironmentName(v string) *ServiceInstanceSu
 	return s
 }
 
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *ServiceInstanceSummary) SetLastAttemptedDeploymentId(v string) *ServiceInstanceSummary {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
 // SetLastDeploymentAttemptedAt sets the LastDeploymentAttemptedAt field's value.
 func (s *ServiceInstanceSummary) SetLastDeploymentAttemptedAt(v time.Time) *ServiceInstanceSummary {
 	s.LastDeploymentAttemptedAt = &v
@@ -20869,6 +22379,12 @@ func (s *ServiceInstanceSummary) SetLastDeploymentAttemptedAt(v time.Time) *Serv
 // SetLastDeploymentSucceededAt sets the LastDeploymentSucceededAt field's value.
 func (s *ServiceInstanceSummary) SetLastDeploymentSucceededAt(v time.Time) *ServiceInstanceSummary {
 	s.LastDeploymentSucceededAt = &v
+	return s
+}
+
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *ServiceInstanceSummary) SetLastSucceededDeploymentId(v string) *ServiceInstanceSummary {
+	s.LastSucceededDeploymentId = &v
 	return s
 }
 
@@ -20928,6 +22444,9 @@ type ServicePipeline struct {
 	// String and GoString methods.
 	DeploymentStatusMessage *string `locationName:"deploymentStatusMessage" type:"string" sensitive:"true"`
 
+	// The ID of the last attempted deployment of this service pipeline.
+	LastAttemptedDeploymentId *string `locationName:"lastAttemptedDeploymentId" type:"string"`
+
 	// The time when a deployment of the service pipeline was last attempted.
 	//
 	// LastDeploymentAttemptedAt is a required field
@@ -20937,6 +22456,9 @@ type ServicePipeline struct {
 	//
 	// LastDeploymentSucceededAt is a required field
 	LastDeploymentSucceededAt *time.Time `locationName:"lastDeploymentSucceededAt" type:"timestamp" required:"true"`
+
+	// The ID of the last successful deployment of this service pipeline.
+	LastSucceededDeploymentId *string `locationName:"lastSucceededDeploymentId" type:"string"`
 
 	// The service spec that was used to create the service pipeline.
 	//
@@ -21005,6 +22527,12 @@ func (s *ServicePipeline) SetDeploymentStatusMessage(v string) *ServicePipeline 
 	return s
 }
 
+// SetLastAttemptedDeploymentId sets the LastAttemptedDeploymentId field's value.
+func (s *ServicePipeline) SetLastAttemptedDeploymentId(v string) *ServicePipeline {
+	s.LastAttemptedDeploymentId = &v
+	return s
+}
+
 // SetLastDeploymentAttemptedAt sets the LastDeploymentAttemptedAt field's value.
 func (s *ServicePipeline) SetLastDeploymentAttemptedAt(v time.Time) *ServicePipeline {
 	s.LastDeploymentAttemptedAt = &v
@@ -21014,6 +22542,12 @@ func (s *ServicePipeline) SetLastDeploymentAttemptedAt(v time.Time) *ServicePipe
 // SetLastDeploymentSucceededAt sets the LastDeploymentSucceededAt field's value.
 func (s *ServicePipeline) SetLastDeploymentSucceededAt(v time.Time) *ServicePipeline {
 	s.LastDeploymentSucceededAt = &v
+	return s
+}
+
+// SetLastSucceededDeploymentId sets the LastSucceededDeploymentId field's value.
+func (s *ServicePipeline) SetLastSucceededDeploymentId(v string) *ServicePipeline {
+	s.LastSucceededDeploymentId = &v
 	return s
 }
 
@@ -21037,6 +22571,77 @@ func (s *ServicePipeline) SetTemplateMinorVersion(v string) *ServicePipeline {
 
 // SetTemplateName sets the TemplateName field's value.
 func (s *ServicePipeline) SetTemplateName(v string) *ServicePipeline {
+	s.TemplateName = &v
+	return s
+}
+
+// The detailed data about the current state of the service pipeline.
+type ServicePipelineState struct {
+	_ struct{} `type:"structure"`
+
+	// The service spec that was used to create the service pipeline.
+	//
+	// Spec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ServicePipelineState's
+	// String and GoString methods.
+	Spec *string `locationName:"spec" min:"1" type:"string" sensitive:"true"`
+
+	// The major version of the service template that was used to create the service
+	// pipeline.
+	//
+	// TemplateMajorVersion is a required field
+	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
+
+	// The minor version of the service template that was used to create the service
+	// pipeline.
+	//
+	// TemplateMinorVersion is a required field
+	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string" required:"true"`
+
+	// The name of the service template that was used to create the service pipeline.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServicePipelineState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServicePipelineState) GoString() string {
+	return s.String()
+}
+
+// SetSpec sets the Spec field's value.
+func (s *ServicePipelineState) SetSpec(v string) *ServicePipelineState {
+	s.Spec = &v
+	return s
+}
+
+// SetTemplateMajorVersion sets the TemplateMajorVersion field's value.
+func (s *ServicePipelineState) SetTemplateMajorVersion(v string) *ServicePipelineState {
+	s.TemplateMajorVersion = &v
+	return s
+}
+
+// SetTemplateMinorVersion sets the TemplateMinorVersion field's value.
+func (s *ServicePipelineState) SetTemplateMinorVersion(v string) *ServicePipelineState {
+	s.TemplateMinorVersion = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ServicePipelineState) SetTemplateName(v string) *ServicePipelineState {
 	s.TemplateName = &v
 	return s
 }
@@ -24779,6 +26384,30 @@ func DeploymentStatus_Values() []string {
 		DeploymentStatusDeleteComplete,
 		DeploymentStatusCancelling,
 		DeploymentStatusCancelled,
+	}
+}
+
+const (
+	// DeploymentTargetResourceTypeEnvironment is a DeploymentTargetResourceType enum value
+	DeploymentTargetResourceTypeEnvironment = "ENVIRONMENT"
+
+	// DeploymentTargetResourceTypeServicePipeline is a DeploymentTargetResourceType enum value
+	DeploymentTargetResourceTypeServicePipeline = "SERVICE_PIPELINE"
+
+	// DeploymentTargetResourceTypeServiceInstance is a DeploymentTargetResourceType enum value
+	DeploymentTargetResourceTypeServiceInstance = "SERVICE_INSTANCE"
+
+	// DeploymentTargetResourceTypeComponent is a DeploymentTargetResourceType enum value
+	DeploymentTargetResourceTypeComponent = "COMPONENT"
+)
+
+// DeploymentTargetResourceType_Values returns all elements of the DeploymentTargetResourceType enum
+func DeploymentTargetResourceType_Values() []string {
+	return []string{
+		DeploymentTargetResourceTypeEnvironment,
+		DeploymentTargetResourceTypeServicePipeline,
+		DeploymentTargetResourceTypeServiceInstance,
+		DeploymentTargetResourceTypeComponent,
 	}
 }
 
