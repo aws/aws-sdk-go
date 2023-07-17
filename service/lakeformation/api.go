@@ -3172,7 +3172,7 @@ func (c *LakeFormation) ListPermissionsRequest(input *ListPermissionsInput) (req
 // This operation returns only those permissions that have been explicitly granted.
 //
 // For information about permissions, see Security and Access Control to Metadata
-// and Data (https://docs-aws.amazon.com/lake-formation/latest/dg/security-data-access.html).
+// and Data (https://docs.aws.amazon.com/lake-formation/latest/dg/security-data-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6459,7 +6459,9 @@ func (s CreateLFTagOutput) GoString() string {
 type DataCellsFilter struct {
 	_ struct{} `type:"structure"`
 
-	// A list of column names.
+	// A list of column names and/or nested column attributes. When specifying nested
+	// attributes, use a qualified dot (.) delimited format such as "address"."zip".
+	// Nested attributes within this list may not exceed a depth of 5.
 	ColumnNames []*string `type:"list"`
 
 	// A wildcard with exclusions.
@@ -6737,8 +6739,12 @@ type DataLakeSettings struct {
 	// If false or null, no Amazon EMR clusters will be able to access data in Amazon
 	// S3 locations that are registered with Lake Formation.
 	//
-	// For more information, see (Optional) Allow Data Filtering on Amazon EMR (https://docs-aws.amazon.com/lake-formation/latest/dg/getting-started-setup.html#emr-switch).
+	// For more information, see (Optional) Allow external data filtering (https://docs.aws.amazon.com/lake-formation/latest/dg/initial-LF-setup.html#external-data-filter).
 	AllowExternalDataFiltering *bool `type:"boolean"`
+
+	// Whether to allow a third-party query engine to get data access credentials
+	// without session tags when a caller has full data access permissions.
+	AllowFullTableExternalDataAccess *bool `type:"boolean"`
 
 	// Lake Formation relies on a privileged process secured by Amazon EMR or the
 	// third party integrator to tag the user's role while assuming it. Lake Formation
@@ -6792,6 +6798,11 @@ type DataLakeSettings struct {
 	// CrossAccountVersion is the key you can configure in the Parameters field.
 	// Accepted values for the CrossAccountVersion key are 1, 2, and 3.
 	Parameters map[string]*string `type:"map"`
+
+	// A list of Lake Formation principals with only view access to the resources,
+	// without the ability to make changes. Supported principals are IAM users or
+	// IAM roles.
+	ReadOnlyAdmins []*DataLakePrincipal `type:"list"`
 
 	// A list of the resource-owning account IDs that the caller's account can use
 	// to share their user access details (user ARNs). The user ARNs can be logged
@@ -6863,6 +6874,16 @@ func (s *DataLakeSettings) Validate() error {
 			}
 		}
 	}
+	if s.ReadOnlyAdmins != nil {
+		for i, v := range s.ReadOnlyAdmins {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ReadOnlyAdmins", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6873,6 +6894,12 @@ func (s *DataLakeSettings) Validate() error {
 // SetAllowExternalDataFiltering sets the AllowExternalDataFiltering field's value.
 func (s *DataLakeSettings) SetAllowExternalDataFiltering(v bool) *DataLakeSettings {
 	s.AllowExternalDataFiltering = &v
+	return s
+}
+
+// SetAllowFullTableExternalDataAccess sets the AllowFullTableExternalDataAccess field's value.
+func (s *DataLakeSettings) SetAllowFullTableExternalDataAccess(v bool) *DataLakeSettings {
+	s.AllowFullTableExternalDataAccess = &v
 	return s
 }
 
@@ -6909,6 +6936,12 @@ func (s *DataLakeSettings) SetExternalDataFilteringAllowList(v []*DataLakePrinci
 // SetParameters sets the Parameters field's value.
 func (s *DataLakeSettings) SetParameters(v map[string]*string) *DataLakeSettings {
 	s.Parameters = v
+	return s
+}
+
+// SetReadOnlyAdmins sets the ReadOnlyAdmins field's value.
+func (s *DataLakeSettings) SetReadOnlyAdmins(v []*DataLakePrincipal) *DataLakeSettings {
+	s.ReadOnlyAdmins = v
 	return s
 }
 
@@ -9029,9 +9062,7 @@ type GetTemporaryGluePartitionCredentialsInput struct {
 
 	// A list of supported permission types for the partition. Valid values are
 	// COLUMN_PERMISSION and CELL_FILTER_PERMISSION.
-	//
-	// SupportedPermissionTypes is a required field
-	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true" enum:"PermissionType"`
+	SupportedPermissionTypes []*string `min:"1" type:"list" enum:"PermissionType"`
 
 	// The ARN of the partitions' table.
 	//
@@ -9065,9 +9096,6 @@ func (s *GetTemporaryGluePartitionCredentialsInput) Validate() error {
 	}
 	if s.Partition == nil {
 		invalidParams.Add(request.NewErrParamRequired("Partition"))
-	}
-	if s.SupportedPermissionTypes == nil {
-		invalidParams.Add(request.NewErrParamRequired("SupportedPermissionTypes"))
 	}
 	if s.SupportedPermissionTypes != nil && len(s.SupportedPermissionTypes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SupportedPermissionTypes", 1))
@@ -9198,9 +9226,7 @@ type GetTemporaryGlueTableCredentialsInput struct {
 
 	// A list of supported permission types for the table. Valid values are COLUMN_PERMISSION
 	// and CELL_FILTER_PERMISSION.
-	//
-	// SupportedPermissionTypes is a required field
-	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true" enum:"PermissionType"`
+	SupportedPermissionTypes []*string `min:"1" type:"list" enum:"PermissionType"`
 
 	// The ARN identifying a table in the Data Catalog for the temporary credentials
 	// request.
@@ -9232,9 +9258,6 @@ func (s *GetTemporaryGlueTableCredentialsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetTemporaryGlueTableCredentialsInput"}
 	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
 		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
-	}
-	if s.SupportedPermissionTypes == nil {
-		invalidParams.Add(request.NewErrParamRequired("SupportedPermissionTypes"))
 	}
 	if s.SupportedPermissionTypes != nil && len(s.SupportedPermissionTypes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SupportedPermissionTypes", 1))
@@ -14589,11 +14612,14 @@ const (
 	// PermissionDataLocationAccess is a Permission enum value
 	PermissionDataLocationAccess = "DATA_LOCATION_ACCESS"
 
-	// PermissionCreateTag is a Permission enum value
-	PermissionCreateTag = "CREATE_TAG"
+	// PermissionCreateLfTag is a Permission enum value
+	PermissionCreateLfTag = "CREATE_LF_TAG"
 
 	// PermissionAssociate is a Permission enum value
 	PermissionAssociate = "ASSOCIATE"
+
+	// PermissionGrantWithLfTagExpression is a Permission enum value
+	PermissionGrantWithLfTagExpression = "GRANT_WITH_LF_TAG_EXPRESSION"
 )
 
 // Permission_Values returns all elements of the Permission enum
@@ -14609,8 +14635,9 @@ func Permission_Values() []string {
 		PermissionCreateDatabase,
 		PermissionCreateTable,
 		PermissionDataLocationAccess,
-		PermissionCreateTag,
+		PermissionCreateLfTag,
 		PermissionAssociate,
+		PermissionGrantWithLfTagExpression,
 	}
 }
 
@@ -14620,6 +14647,12 @@ const (
 
 	// PermissionTypeCellFilterPermission is a PermissionType enum value
 	PermissionTypeCellFilterPermission = "CELL_FILTER_PERMISSION"
+
+	// PermissionTypeNestedPermission is a PermissionType enum value
+	PermissionTypeNestedPermission = "NESTED_PERMISSION"
+
+	// PermissionTypeNestedCellPermission is a PermissionType enum value
+	PermissionTypeNestedCellPermission = "NESTED_CELL_PERMISSION"
 )
 
 // PermissionType_Values returns all elements of the PermissionType enum
@@ -14627,6 +14660,8 @@ func PermissionType_Values() []string {
 	return []string{
 		PermissionTypeColumnPermission,
 		PermissionTypeCellFilterPermission,
+		PermissionTypeNestedPermission,
+		PermissionTypeNestedCellPermission,
 	}
 }
 

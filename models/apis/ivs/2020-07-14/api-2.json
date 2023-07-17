@@ -43,7 +43,10 @@
       "input":{"shape":"BatchStartViewerSessionRevocationRequest"},
       "output":{"shape":"BatchStartViewerSessionRevocationResponse"},
       "errors":[
-        {"shape":"ValidationException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateChannel":{
@@ -399,9 +402,11 @@
       "input":{"shape":"StartViewerSessionRevocationRequest"},
       "output":{"shape":"StartViewerSessionRevocationResponse"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
         {"shape":"ThrottlingException"}
       ]
     },
@@ -708,6 +713,7 @@
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
         "name":{"shape":"RecordingConfigurationName"},
         "recordingReconnectWindowSeconds":{"shape":"RecordingReconnectWindowSeconds"},
+        "renditionConfiguration":{"shape":"RenditionConfiguration"},
         "tags":{"shape":"Tags"},
         "thumbnailConfiguration":{"shape":"ThumbnailConfiguration"}
       }
@@ -1101,6 +1107,7 @@
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
         "name":{"shape":"RecordingConfigurationName"},
         "recordingReconnectWindowSeconds":{"shape":"RecordingReconnectWindowSeconds"},
+        "renditionConfiguration":{"shape":"RenditionConfiguration"},
         "state":{"shape":"RecordingConfigurationState"},
         "tags":{"shape":"Tags"},
         "thumbnailConfiguration":{"shape":"ThumbnailConfiguration"}
@@ -1156,6 +1163,34 @@
       "type":"integer",
       "max":300,
       "min":0
+    },
+    "RenditionConfiguration":{
+      "type":"structure",
+      "members":{
+        "renditionSelection":{"shape":"RenditionConfigurationRenditionSelection"},
+        "renditions":{"shape":"RenditionConfigurationRenditionList"}
+      }
+    },
+    "RenditionConfigurationRendition":{
+      "type":"string",
+      "enum":[
+        "FULL_HD",
+        "HD",
+        "SD",
+        "LOWEST_RESOLUTION"
+      ]
+    },
+    "RenditionConfigurationRenditionList":{
+      "type":"list",
+      "member":{"shape":"RenditionConfigurationRendition"}
+    },
+    "RenditionConfigurationRenditionSelection":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "NONE",
+        "CUSTOM"
+      ]
     },
     "ResourceArn":{
       "type":"string",
@@ -1444,8 +1479,30 @@
       "type":"structure",
       "members":{
         "recordingMode":{"shape":"RecordingMode"},
+        "resolution":{"shape":"ThumbnailConfigurationResolution"},
+        "storage":{"shape":"ThumbnailConfigurationStorageList"},
         "targetIntervalSeconds":{"shape":"TargetIntervalSeconds"}
       }
+    },
+    "ThumbnailConfigurationResolution":{
+      "type":"string",
+      "enum":[
+        "FULL_HD",
+        "HD",
+        "SD",
+        "LOWEST_RESOLUTION"
+      ]
+    },
+    "ThumbnailConfigurationStorage":{
+      "type":"string",
+      "enum":[
+        "SEQUENTIAL",
+        "LATEST"
+      ]
+    },
+    "ThumbnailConfigurationStorageList":{
+      "type":"list",
+      "member":{"shape":"ThumbnailConfigurationStorage"}
     },
     "Time":{
       "type":"timestamp",

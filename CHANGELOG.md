@@ -1,3 +1,17 @@
+Release v1.44.301 (2023-07-17)
+===
+
+### Service Client Updates
+* `service/codeartifact`: Updates service documentation
+* `service/docdb`: Updates service API and documentation
+  * Added major version upgrade option in ModifyDBCluster API
+* `service/ec2`: Updates service API and documentation
+  * Add Nitro TPM support on DescribeInstanceTypes
+* `service/glue`: Updates service API
+  * Adding new supported permission type flags to get-unfiltered endpoints that callers may pass to indicate support for enforcing Lake Formation fine-grained access control on nested column attributes.
+* `service/ivs`: Updates service API and documentation
+* `service/lakeformation`: Updates service API and documentation
+
 Release v1.44.300 (2023-07-13)
 ===
 

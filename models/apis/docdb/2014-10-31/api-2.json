@@ -2511,6 +2511,7 @@
         "PreferredMaintenanceWindow":{"shape":"String"},
         "CloudwatchLogsExportConfiguration":{"shape":"CloudwatchLogsExportConfiguration"},
         "EngineVersion":{"shape":"String"},
+        "AllowMajorVersionUpgrade":{"shape":"Boolean"},
         "DeletionProtection":{"shape":"BooleanOptional"}
       }
     },

@@ -10096,6 +10096,8 @@ type PublishPackageVersionInput struct {
 	// A format that specifies the type of the package version with the requested
 	// asset file.
 	//
+	// The only supported value is generic.
+	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 

@@ -32,7 +32,7 @@
     "GrantPermissions": "<p>Grants permissions to the principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3.</p> <p>For information about permissions, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
     "ListDataCellsFilter": "<p>Lists all the data cell filters on a table.</p>",
     "ListLFTags": "<p>Lists LF-tags that the requester has permission to view. </p>",
-    "ListPermissions": "<p>Returns a list of the principal permissions on the resource, filtered by the permissions of the caller. For example, if you are granted an ALTER permission, you are able to see only the principal permissions for ALTER.</p> <p>This operation returns only those permissions that have been explicitly granted.</p> <p>For information about permissions, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
+    "ListPermissions": "<p>Returns a list of the principal permissions on the resource, filtered by the permissions of the caller. For example, if you are granted an ALTER permission, you are able to see only the principal permissions for ALTER.</p> <p>This operation returns only those permissions that have been explicitly granted.</p> <p>For information about permissions, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
     "ListResources": "<p>Lists the resources registered to be managed by the Data Catalog.</p>",
     "ListTableStorageOptimizers": "<p>Returns the configuration of all storage optimizers associated with a specified table.</p>",
     "ListTransactions": "<p>Returns metadata about transactions and their status. To prevent the response from growing indefinitely, only uncommitted transactions and those available for time-travel queries are returned.</p> <p>This operation can help you identify uncommitted transactions or to get information about transactions.</p>",
@@ -249,7 +249,7 @@
       "base": null,
       "refs": {
         "ColumnWildcard$ExcludedColumnNames": "<p>Excludes column names. Any column with this name will be excluded.</p>",
-        "DataCellsFilter$ColumnNames": "<p>A list of column names.</p>",
+        "DataCellsFilter$ColumnNames": "<p>A list of column names and/or nested column attributes. When specifying nested attributes, use a qualified dot (.) delimited format such as \"address\".\"zip\". Nested attributes within this list may not exceed a depth of 5.</p>",
         "TableWithColumnsResource$ColumnNames": "<p>The list of column names for the table. At least one of <code>ColumnNames</code> or <code>ColumnWildcard</code> is required.</p>"
       }
     },
@@ -346,6 +346,7 @@
       "base": null,
       "refs": {
         "DataLakeSettings$DataLakeAdmins": "<p>A list of Lake Formation principals. Supported principals are IAM users or IAM roles.</p>",
+        "DataLakeSettings$ReadOnlyAdmins": "<p>A list of Lake Formation principals with only view access to the resources, without the ability to make changes. Supported principals are IAM users or IAM roles.</p>",
         "DataLakeSettings$ExternalDataFilteringAllowList": "<p>A list of the account IDs of Amazon Web Services accounts with Amazon EMR clusters that are to perform data filtering.&gt;</p>"
       }
     },
@@ -963,7 +964,8 @@
     "NullableBoolean": {
       "base": null,
       "refs": {
-        "DataLakeSettings$AllowExternalDataFiltering": "<p>Whether to allow Amazon EMR clusters to access data managed by Lake Formation. </p> <p>If true, you allow Amazon EMR clusters to access data in Amazon S3 locations that are registered with Lake Formation.</p> <p>If false or null, no Amazon EMR clusters will be able to access data in Amazon S3 locations that are registered with Lake Formation.</p> <p>For more information, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/getting-started-setup.html#emr-switch\">(Optional) Allow Data Filtering on Amazon EMR</a>.</p>",
+        "DataLakeSettings$AllowExternalDataFiltering": "<p>Whether to allow Amazon EMR clusters to access data managed by Lake Formation. </p> <p>If true, you allow Amazon EMR clusters to access data in Amazon S3 locations that are registered with Lake Formation.</p> <p>If false or null, no Amazon EMR clusters will be able to access data in Amazon S3 locations that are registered with Lake Formation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/initial-LF-setup.html#external-data-filter\">(Optional) Allow external data filtering</a>.</p>",
+        "DataLakeSettings$AllowFullTableExternalDataAccess": "<p>Whether to allow a third-party query engine to get data access credentials without session tags when a caller has full data access permissions.</p>",
         "RegisterResourceRequest$UseServiceLinkedRole": "<p>Designates an Identity and Access Management (IAM) service-linked role by registering this role with the Data Catalog. A service-linked role is a unique type of IAM role that is linked directly to Lake Formation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html\">Using Service-Linked Roles for Lake Formation</a>.</p>",
         "RegisterResourceRequest$WithFederation": "<p>Whether or not the resource is a federated resource.</p>",
         "ResourceInfo$WithFederation": "<p>Whether or not the resource is a federated resource.</p>",
