@@ -15198,6 +15198,30 @@
         "InstanceTypeInfo$NitroEnclavesSupport": "<p>Indicates whether Nitro Enclaves is supported.</p>"
       }
     },
+    "NitroTpmInfo": {
+      "base": "<p>Describes the supported NitroTPM versions for the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$NitroTpmInfo": "<p>Describes the supported NitroTPM versions for the instance type.</p>"
+      }
+    },
+    "NitroTpmSupport": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$NitroTpmSupport": "<p>Indicates whether NitroTPM is supported.</p>"
+      }
+    },
+    "NitroTpmSupportedVersionType": {
+      "base": null,
+      "refs": {
+        "NitroTpmSupportedVersionsList$member": null
+      }
+    },
+    "NitroTpmSupportedVersionsList": {
+      "base": null,
+      "refs": {
+        "NitroTpmInfo$SupportedVersions": "<p>Indicates the supported NitroTPM versions.</p>"
+      }
+    },
     "OccurrenceDayRequestSet": {
       "base": null,
       "refs": {

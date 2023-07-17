@@ -6150,7 +6150,7 @@
       "type":"string",
       "max":30,
       "min":1,
-      "pattern":"[a-zA-Z0-9\\.\\*]+"
+      "pattern":"[a-zA-Z0-9\\.\\*\\-]+"
     },
     "AllowedInstanceTypeSet":{
       "type":"list",
@@ -20884,7 +20884,7 @@
       "type":"string",
       "max":30,
       "min":1,
-      "pattern":"[a-zA-Z0-9\\.\\*]+"
+      "pattern":"[a-zA-Z0-9\\.\\*\\-]+"
     },
     "ExcludedInstanceTypeSet":{
       "type":"list",
@@ -27404,6 +27404,14 @@
         "NitroEnclavesSupport":{
           "shape":"NitroEnclavesSupport",
           "locationName":"nitroEnclavesSupport"
+        },
+        "NitroTpmSupport":{
+          "shape":"NitroTpmSupport",
+          "locationName":"nitroTpmSupport"
+        },
+        "NitroTpmInfo":{
+          "shape":"NitroTpmInfo",
+          "locationName":"nitroTpmInfo"
         }
       }
     },
@@ -33537,6 +33545,30 @@
         "unsupported",
         "supported"
       ]
+    },
+    "NitroTpmInfo":{
+      "type":"structure",
+      "members":{
+        "SupportedVersions":{
+          "shape":"NitroTpmSupportedVersionsList",
+          "locationName":"supportedVersions"
+        }
+      }
+    },
+    "NitroTpmSupport":{
+      "type":"string",
+      "enum":[
+        "unsupported",
+        "supported"
+      ]
+    },
+    "NitroTpmSupportedVersionType":{"type":"string"},
+    "NitroTpmSupportedVersionsList":{
+      "type":"list",
+      "member":{
+        "shape":"NitroTpmSupportedVersionType",
+        "locationName":"item"
+      }
     },
     "OccurrenceDayRequestSet":{
       "type":"list",

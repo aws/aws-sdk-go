@@ -705,7 +705,7 @@
         "PackageDescription$format": "<p>A format that specifies the type of the package.</p>",
         "PackageSummary$format": "<p> The format of the package. </p>",
         "PackageVersionDescription$format": "<p> The format of the package version. </p>",
-        "PublishPackageVersionRequest$format": "<p>A format that specifies the type of the package version with the requested asset file.</p>",
+        "PublishPackageVersionRequest$format": "<p>A format that specifies the type of the package version with the requested asset file.</p> <p>The only supported value is <code>generic</code>.</p>",
         "PublishPackageVersionResult$format": "<p>The format of the package version.</p>",
         "PutPackageOriginConfigurationRequest$format": "<p>A format that specifies the type of the package to be updated.</p>",
         "RepositoryExternalConnectionInfo$packageFormat": "<p> The package format associated with a repository's external connection. The valid package formats are: </p> <ul> <li> <p> <code>npm</code>: A Node Package Manager (npm) package. </p> </li> <li> <p> <code>pypi</code>: A Python Package Index (PyPI) package. </p> </li> <li> <p> <code>maven</code>: A Maven package that contains compiled code in a distributable format, such as a JAR file. </p> </li> <li> <p> <code>nuget</code>: A NuGet package. </p> </li> </ul>",

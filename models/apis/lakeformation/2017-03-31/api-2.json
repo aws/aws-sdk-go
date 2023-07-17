@@ -1102,11 +1102,13 @@
       "type":"structure",
       "members":{
         "DataLakeAdmins":{"shape":"DataLakePrincipalList"},
+        "ReadOnlyAdmins":{"shape":"DataLakePrincipalList"},
         "CreateDatabaseDefaultPermissions":{"shape":"PrincipalPermissionsList"},
         "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
         "Parameters":{"shape":"ParametersMap"},
         "TrustedResourceOwners":{"shape":"TrustedResourceOwners"},
         "AllowExternalDataFiltering":{"shape":"NullableBoolean"},
+        "AllowFullTableExternalDataAccess":{"shape":"NullableBoolean"},
         "ExternalDataFilteringAllowList":{"shape":"DataLakePrincipalList"},
         "AuthorizedSessionTagValueList":{"shape":"AuthorizedSessionTagValueList"}
       }
@@ -1471,8 +1473,7 @@
       "type":"structure",
       "required":[
         "TableArn",
-        "Partition",
-        "SupportedPermissionTypes"
+        "Partition"
       ],
       "members":{
         "TableArn":{"shape":"ResourceArnString"},
@@ -1494,10 +1495,7 @@
     },
     "GetTemporaryGlueTableCredentialsRequest":{
       "type":"structure",
-      "required":[
-        "TableArn",
-        "SupportedPermissionTypes"
-      ],
+      "required":["TableArn"],
       "members":{
         "TableArn":{"shape":"ResourceArnString"},
         "Permissions":{"shape":"PermissionList"},
@@ -1906,8 +1904,9 @@
         "CREATE_DATABASE",
         "CREATE_TABLE",
         "DATA_LOCATION_ACCESS",
-        "CREATE_TAG",
-        "ASSOCIATE"
+        "CREATE_LF_TAG",
+        "ASSOCIATE",
+        "GRANT_WITH_LF_TAG_EXPRESSION"
       ]
     },
     "PermissionList":{
@@ -1918,7 +1917,9 @@
       "type":"string",
       "enum":[
         "COLUMN_PERMISSION",
-        "CELL_FILTER_PERMISSION"
+        "CELL_FILTER_PERMISSION",
+        "NESTED_PERMISSION",
+        "NESTED_CELL_PERMISSION"
       ]
     },
     "PermissionTypeList":{

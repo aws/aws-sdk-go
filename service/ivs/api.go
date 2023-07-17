@@ -213,7 +213,14 @@ func (c *IVS) BatchStartViewerSessionRevocationRequest(input *BatchStartViewerSe
 // API operation BatchStartViewerSessionRevocation for usage and error information.
 //
 // Returned Error Types:
+//
+//   - AccessDeniedException
+//
 //   - ValidationException
+//
+//   - PendingVerification
+//
+//   - ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/BatchStartViewerSessionRevocation
 func (c *IVS) BatchStartViewerSessionRevocation(input *BatchStartViewerSessionRevocationInput) (*BatchStartViewerSessionRevocationOutput, error) {
@@ -2535,11 +2542,15 @@ func (c *IVS) StartViewerSessionRevocationRequest(input *StartViewerSessionRevoc
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//
 //   - InternalServerException
 //
 //   - AccessDeniedException
 //
 //   - ValidationException
+//
+//   - PendingVerification
 //
 //   - ThrottlingException
 //
@@ -4182,6 +4193,9 @@ type CreateRecordingConfigurationInput struct {
 	// Default: 0.
 	RecordingReconnectWindowSeconds *int64 `locationName:"recordingReconnectWindowSeconds" type:"integer"`
 
+	// Object that describes which renditions should be recorded for a stream.
+	RenditionConfiguration *RenditionConfiguration `locationName:"renditionConfiguration" type:"structure"`
+
 	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
 	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
@@ -4251,6 +4265,12 @@ func (s *CreateRecordingConfigurationInput) SetName(v string) *CreateRecordingCo
 // SetRecordingReconnectWindowSeconds sets the RecordingReconnectWindowSeconds field's value.
 func (s *CreateRecordingConfigurationInput) SetRecordingReconnectWindowSeconds(v int64) *CreateRecordingConfigurationInput {
 	s.RecordingReconnectWindowSeconds = &v
+	return s
+}
+
+// SetRenditionConfiguration sets the RenditionConfiguration field's value.
+func (s *CreateRecordingConfigurationInput) SetRenditionConfiguration(v *RenditionConfiguration) *CreateRecordingConfigurationInput {
+	s.RenditionConfiguration = v
 	return s
 }
 
@@ -6445,6 +6465,9 @@ type RecordingConfiguration struct {
 	// Default: 0.
 	RecordingReconnectWindowSeconds *int64 `locationName:"recordingReconnectWindowSeconds" type:"integer"`
 
+	// Object that describes which renditions should be recorded for a stream.
+	RenditionConfiguration *RenditionConfiguration `locationName:"renditionConfiguration" type:"structure"`
+
 	// Indicates the current state of the recording configuration. When the state
 	// is ACTIVE, the configuration is ready for recording a channel stream.
 	//
@@ -6503,6 +6526,12 @@ func (s *RecordingConfiguration) SetName(v string) *RecordingConfiguration {
 // SetRecordingReconnectWindowSeconds sets the RecordingReconnectWindowSeconds field's value.
 func (s *RecordingConfiguration) SetRecordingReconnectWindowSeconds(v int64) *RecordingConfiguration {
 	s.RecordingReconnectWindowSeconds = &v
+	return s
+}
+
+// SetRenditionConfiguration sets the RenditionConfiguration field's value.
+func (s *RecordingConfiguration) SetRenditionConfiguration(v *RenditionConfiguration) *RecordingConfiguration {
+	s.RenditionConfiguration = v
 	return s
 }
 
@@ -6601,6 +6630,54 @@ func (s *RecordingConfigurationSummary) SetState(v string) *RecordingConfigurati
 // SetTags sets the Tags field's value.
 func (s *RecordingConfigurationSummary) SetTags(v map[string]*string) *RecordingConfigurationSummary {
 	s.Tags = v
+	return s
+}
+
+// Object that describes which renditions should be recorded for a stream.
+type RenditionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates which set of renditions are recorded for a stream. For BASIC channels,
+	// the CUSTOM value has no effect. If CUSTOM is specified, a set of renditions
+	// must be specified in the renditions field. Default: ALL.
+	RenditionSelection *string `locationName:"renditionSelection" type:"string" enum:"RenditionConfigurationRenditionSelection"`
+
+	// Indicates which renditions are recorded for a stream, if renditionSelection
+	// is CUSTOM; otherwise, this field is irrelevant. The selected renditions are
+	// recorded if they are available during the stream. If a selected rendition
+	// is unavailable, the best available rendition is recorded. For details on
+	// the resolution dimensions of each rendition, see Auto-Record to Amazon S3
+	// (https://docs.aws.amazon.com/ivs/latest/userguide/record-to-s3.html).
+	Renditions []*string `locationName:"renditions" type:"list" enum:"RenditionConfigurationRendition"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RenditionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RenditionConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetRenditionSelection sets the RenditionSelection field's value.
+func (s *RenditionConfiguration) SetRenditionSelection(v string) *RenditionConfiguration {
+	s.RenditionSelection = &v
+	return s
+}
+
+// SetRenditions sets the Renditions field's value.
+func (s *RenditionConfiguration) SetRenditions(v []*string) *RenditionConfiguration {
+	s.Renditions = v
 	return s
 }
 
@@ -7721,14 +7798,29 @@ type ThumbnailConfiguration struct {
 	// Thumbnail recording mode. Default: INTERVAL.
 	RecordingMode *string `locationName:"recordingMode" type:"string" enum:"RecordingMode"`
 
+	// Indicates the desired resolution of recorded thumbnails. Thumbnails are recorded
+	// at the selected resolution if the corresponding rendition is available during
+	// the stream; otherwise, they are recorded at source resolution. For more information
+	// about resolution values and their corresponding height and width dimensions,
+	// see Auto-Record to Amazon S3 (https://docs.aws.amazon.com/ivs/latest/userguide/record-to-s3.html).
+	// Default: Null (source resolution is returned).
+	Resolution *string `locationName:"resolution" type:"string" enum:"ThumbnailConfigurationResolution"`
+
+	// Indicates the format in which thumbnails are recorded. SEQUENTIAL records
+	// all generated thumbnails in a serial manner, to the media/thumbnails directory.
+	// LATEST saves the latest thumbnail in media/latest_thumbnail/thumb.jpg and
+	// overwrites it at the interval specified by targetIntervalSeconds. You can
+	// enable both SEQUENTIAL and LATEST. Default: SEQUENTIAL.
+	Storage []*string `locationName:"storage" type:"list" enum:"ThumbnailConfigurationStorage"`
+
 	// The targeted thumbnail-generation interval in seconds. This is configurable
 	// (and required) only if recordingMode is INTERVAL. Default: 60.
 	//
-	// Important: Setting a value for targetIntervalSeconds does not guarantee that
-	// thumbnails are generated at the specified interval. For thumbnails to be
-	// generated at the targetIntervalSeconds interval, the IDR/Keyframe value for
-	// the input video must be less than the targetIntervalSeconds value. See Amazon
-	// IVS Streaming Configuration (https://docs.aws.amazon.com/ivs/latest/userguide/streaming-config.html)
+	// Important: For the BASIC channel type, setting a value for targetIntervalSeconds
+	// does not guarantee that thumbnails are generated at the specified interval.
+	// For thumbnails to be generated at the targetIntervalSeconds interval, the
+	// IDR/Keyframe value for the input video must be less than the targetIntervalSeconds
+	// value. See Amazon IVS Streaming Configuration (https://docs.aws.amazon.com/ivs/latest/userguide/streaming-config.html)
 	// for information on setting IDR/Keyframe to the recommended value in video-encoder
 	// settings.
 	TargetIntervalSeconds *int64 `locationName:"targetIntervalSeconds" min:"1" type:"long"`
@@ -7768,6 +7860,18 @@ func (s *ThumbnailConfiguration) Validate() error {
 // SetRecordingMode sets the RecordingMode field's value.
 func (s *ThumbnailConfiguration) SetRecordingMode(v string) *ThumbnailConfiguration {
 	s.RecordingMode = &v
+	return s
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *ThumbnailConfiguration) SetResolution(v string) *ThumbnailConfiguration {
+	s.Resolution = &v
+	return s
+}
+
+// SetStorage sets the Storage field's value.
+func (s *ThumbnailConfiguration) SetStorage(v []*string) *ThumbnailConfiguration {
+	s.Storage = v
 	return s
 }
 
@@ -8307,6 +8411,50 @@ func RecordingMode_Values() []string {
 }
 
 const (
+	// RenditionConfigurationRenditionFullHd is a RenditionConfigurationRendition enum value
+	RenditionConfigurationRenditionFullHd = "FULL_HD"
+
+	// RenditionConfigurationRenditionHd is a RenditionConfigurationRendition enum value
+	RenditionConfigurationRenditionHd = "HD"
+
+	// RenditionConfigurationRenditionSd is a RenditionConfigurationRendition enum value
+	RenditionConfigurationRenditionSd = "SD"
+
+	// RenditionConfigurationRenditionLowestResolution is a RenditionConfigurationRendition enum value
+	RenditionConfigurationRenditionLowestResolution = "LOWEST_RESOLUTION"
+)
+
+// RenditionConfigurationRendition_Values returns all elements of the RenditionConfigurationRendition enum
+func RenditionConfigurationRendition_Values() []string {
+	return []string{
+		RenditionConfigurationRenditionFullHd,
+		RenditionConfigurationRenditionHd,
+		RenditionConfigurationRenditionSd,
+		RenditionConfigurationRenditionLowestResolution,
+	}
+}
+
+const (
+	// RenditionConfigurationRenditionSelectionAll is a RenditionConfigurationRenditionSelection enum value
+	RenditionConfigurationRenditionSelectionAll = "ALL"
+
+	// RenditionConfigurationRenditionSelectionNone is a RenditionConfigurationRenditionSelection enum value
+	RenditionConfigurationRenditionSelectionNone = "NONE"
+
+	// RenditionConfigurationRenditionSelectionCustom is a RenditionConfigurationRenditionSelection enum value
+	RenditionConfigurationRenditionSelectionCustom = "CUSTOM"
+)
+
+// RenditionConfigurationRenditionSelection_Values returns all elements of the RenditionConfigurationRenditionSelection enum
+func RenditionConfigurationRenditionSelection_Values() []string {
+	return []string{
+		RenditionConfigurationRenditionSelectionAll,
+		RenditionConfigurationRenditionSelectionNone,
+		RenditionConfigurationRenditionSelectionCustom,
+	}
+}
+
+const (
 	// StreamHealthHealthy is a StreamHealth enum value
 	StreamHealthHealthy = "HEALTHY"
 
@@ -8339,6 +8487,46 @@ func StreamState_Values() []string {
 	return []string{
 		StreamStateLive,
 		StreamStateOffline,
+	}
+}
+
+const (
+	// ThumbnailConfigurationResolutionFullHd is a ThumbnailConfigurationResolution enum value
+	ThumbnailConfigurationResolutionFullHd = "FULL_HD"
+
+	// ThumbnailConfigurationResolutionHd is a ThumbnailConfigurationResolution enum value
+	ThumbnailConfigurationResolutionHd = "HD"
+
+	// ThumbnailConfigurationResolutionSd is a ThumbnailConfigurationResolution enum value
+	ThumbnailConfigurationResolutionSd = "SD"
+
+	// ThumbnailConfigurationResolutionLowestResolution is a ThumbnailConfigurationResolution enum value
+	ThumbnailConfigurationResolutionLowestResolution = "LOWEST_RESOLUTION"
+)
+
+// ThumbnailConfigurationResolution_Values returns all elements of the ThumbnailConfigurationResolution enum
+func ThumbnailConfigurationResolution_Values() []string {
+	return []string{
+		ThumbnailConfigurationResolutionFullHd,
+		ThumbnailConfigurationResolutionHd,
+		ThumbnailConfigurationResolutionSd,
+		ThumbnailConfigurationResolutionLowestResolution,
+	}
+}
+
+const (
+	// ThumbnailConfigurationStorageSequential is a ThumbnailConfigurationStorage enum value
+	ThumbnailConfigurationStorageSequential = "SEQUENTIAL"
+
+	// ThumbnailConfigurationStorageLatest is a ThumbnailConfigurationStorage enum value
+	ThumbnailConfigurationStorageLatest = "LATEST"
+)
+
+// ThumbnailConfigurationStorage_Values returns all elements of the ThumbnailConfigurationStorage enum
+func ThumbnailConfigurationStorage_Values() []string {
+	return []string{
+		ThumbnailConfigurationStorageSequential,
+		ThumbnailConfigurationStorageLatest,
 	}
 }
 
