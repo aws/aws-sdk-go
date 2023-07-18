@@ -55,12 +55,32 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListIntentMetrics": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListIntentStageMetrics": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListIntents": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
     "ListRecommendedIntents": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListSessionAnalyticsData": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListSessionMetrics": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"
@@ -91,6 +111,16 @@
       "limit_key": "maxResults"
     },
     "ListTestSets": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListUtteranceAnalyticsData": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListUtteranceMetrics": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

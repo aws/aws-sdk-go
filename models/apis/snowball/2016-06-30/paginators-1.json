@@ -35,6 +35,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "LongTermPricingEntries"
+    },
+    "ListPickupLocations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
     }
   }
 }

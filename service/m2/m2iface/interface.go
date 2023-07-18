@@ -120,6 +120,10 @@ type M2API interface {
 	GetEnvironmentWithContext(aws.Context, *m2.GetEnvironmentInput, ...request.Option) (*m2.GetEnvironmentOutput, error)
 	GetEnvironmentRequest(*m2.GetEnvironmentInput) (*request.Request, *m2.GetEnvironmentOutput)
 
+	GetSignedBluinsightsUrl(*m2.GetSignedBluinsightsUrlInput) (*m2.GetSignedBluinsightsUrlOutput, error)
+	GetSignedBluinsightsUrlWithContext(aws.Context, *m2.GetSignedBluinsightsUrlInput, ...request.Option) (*m2.GetSignedBluinsightsUrlOutput, error)
+	GetSignedBluinsightsUrlRequest(*m2.GetSignedBluinsightsUrlInput) (*request.Request, *m2.GetSignedBluinsightsUrlOutput)
+
 	ListApplicationVersions(*m2.ListApplicationVersionsInput) (*m2.ListApplicationVersionsOutput, error)
 	ListApplicationVersionsWithContext(aws.Context, *m2.ListApplicationVersionsInput, ...request.Option) (*m2.ListApplicationVersionsOutput, error)
 	ListApplicationVersionsRequest(*m2.ListApplicationVersionsInput) (*request.Request, *m2.ListApplicationVersionsOutput)

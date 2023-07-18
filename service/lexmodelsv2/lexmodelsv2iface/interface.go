@@ -325,6 +325,24 @@ type LexModelsV2API interface {
 	ListImportsPages(*lexmodelsv2.ListImportsInput, func(*lexmodelsv2.ListImportsOutput, bool) bool) error
 	ListImportsPagesWithContext(aws.Context, *lexmodelsv2.ListImportsInput, func(*lexmodelsv2.ListImportsOutput, bool) bool, ...request.Option) error
 
+	ListIntentMetrics(*lexmodelsv2.ListIntentMetricsInput) (*lexmodelsv2.ListIntentMetricsOutput, error)
+	ListIntentMetricsWithContext(aws.Context, *lexmodelsv2.ListIntentMetricsInput, ...request.Option) (*lexmodelsv2.ListIntentMetricsOutput, error)
+	ListIntentMetricsRequest(*lexmodelsv2.ListIntentMetricsInput) (*request.Request, *lexmodelsv2.ListIntentMetricsOutput)
+
+	ListIntentMetricsPages(*lexmodelsv2.ListIntentMetricsInput, func(*lexmodelsv2.ListIntentMetricsOutput, bool) bool) error
+	ListIntentMetricsPagesWithContext(aws.Context, *lexmodelsv2.ListIntentMetricsInput, func(*lexmodelsv2.ListIntentMetricsOutput, bool) bool, ...request.Option) error
+
+	ListIntentPaths(*lexmodelsv2.ListIntentPathsInput) (*lexmodelsv2.ListIntentPathsOutput, error)
+	ListIntentPathsWithContext(aws.Context, *lexmodelsv2.ListIntentPathsInput, ...request.Option) (*lexmodelsv2.ListIntentPathsOutput, error)
+	ListIntentPathsRequest(*lexmodelsv2.ListIntentPathsInput) (*request.Request, *lexmodelsv2.ListIntentPathsOutput)
+
+	ListIntentStageMetrics(*lexmodelsv2.ListIntentStageMetricsInput) (*lexmodelsv2.ListIntentStageMetricsOutput, error)
+	ListIntentStageMetricsWithContext(aws.Context, *lexmodelsv2.ListIntentStageMetricsInput, ...request.Option) (*lexmodelsv2.ListIntentStageMetricsOutput, error)
+	ListIntentStageMetricsRequest(*lexmodelsv2.ListIntentStageMetricsInput) (*request.Request, *lexmodelsv2.ListIntentStageMetricsOutput)
+
+	ListIntentStageMetricsPages(*lexmodelsv2.ListIntentStageMetricsInput, func(*lexmodelsv2.ListIntentStageMetricsOutput, bool) bool) error
+	ListIntentStageMetricsPagesWithContext(aws.Context, *lexmodelsv2.ListIntentStageMetricsInput, func(*lexmodelsv2.ListIntentStageMetricsOutput, bool) bool, ...request.Option) error
+
 	ListIntents(*lexmodelsv2.ListIntentsInput) (*lexmodelsv2.ListIntentsOutput, error)
 	ListIntentsWithContext(aws.Context, *lexmodelsv2.ListIntentsInput, ...request.Option) (*lexmodelsv2.ListIntentsOutput, error)
 	ListIntentsRequest(*lexmodelsv2.ListIntentsInput) (*request.Request, *lexmodelsv2.ListIntentsOutput)
@@ -338,6 +356,20 @@ type LexModelsV2API interface {
 
 	ListRecommendedIntentsPages(*lexmodelsv2.ListRecommendedIntentsInput, func(*lexmodelsv2.ListRecommendedIntentsOutput, bool) bool) error
 	ListRecommendedIntentsPagesWithContext(aws.Context, *lexmodelsv2.ListRecommendedIntentsInput, func(*lexmodelsv2.ListRecommendedIntentsOutput, bool) bool, ...request.Option) error
+
+	ListSessionAnalyticsData(*lexmodelsv2.ListSessionAnalyticsDataInput) (*lexmodelsv2.ListSessionAnalyticsDataOutput, error)
+	ListSessionAnalyticsDataWithContext(aws.Context, *lexmodelsv2.ListSessionAnalyticsDataInput, ...request.Option) (*lexmodelsv2.ListSessionAnalyticsDataOutput, error)
+	ListSessionAnalyticsDataRequest(*lexmodelsv2.ListSessionAnalyticsDataInput) (*request.Request, *lexmodelsv2.ListSessionAnalyticsDataOutput)
+
+	ListSessionAnalyticsDataPages(*lexmodelsv2.ListSessionAnalyticsDataInput, func(*lexmodelsv2.ListSessionAnalyticsDataOutput, bool) bool) error
+	ListSessionAnalyticsDataPagesWithContext(aws.Context, *lexmodelsv2.ListSessionAnalyticsDataInput, func(*lexmodelsv2.ListSessionAnalyticsDataOutput, bool) bool, ...request.Option) error
+
+	ListSessionMetrics(*lexmodelsv2.ListSessionMetricsInput) (*lexmodelsv2.ListSessionMetricsOutput, error)
+	ListSessionMetricsWithContext(aws.Context, *lexmodelsv2.ListSessionMetricsInput, ...request.Option) (*lexmodelsv2.ListSessionMetricsOutput, error)
+	ListSessionMetricsRequest(*lexmodelsv2.ListSessionMetricsInput) (*request.Request, *lexmodelsv2.ListSessionMetricsOutput)
+
+	ListSessionMetricsPages(*lexmodelsv2.ListSessionMetricsInput, func(*lexmodelsv2.ListSessionMetricsOutput, bool) bool) error
+	ListSessionMetricsPagesWithContext(aws.Context, *lexmodelsv2.ListSessionMetricsInput, func(*lexmodelsv2.ListSessionMetricsOutput, bool) bool, ...request.Option) error
 
 	ListSlotTypes(*lexmodelsv2.ListSlotTypesInput) (*lexmodelsv2.ListSlotTypesOutput, error)
 	ListSlotTypesWithContext(aws.Context, *lexmodelsv2.ListSlotTypesInput, ...request.Option) (*lexmodelsv2.ListSlotTypesOutput, error)
@@ -384,6 +416,20 @@ type LexModelsV2API interface {
 
 	ListTestSetsPages(*lexmodelsv2.ListTestSetsInput, func(*lexmodelsv2.ListTestSetsOutput, bool) bool) error
 	ListTestSetsPagesWithContext(aws.Context, *lexmodelsv2.ListTestSetsInput, func(*lexmodelsv2.ListTestSetsOutput, bool) bool, ...request.Option) error
+
+	ListUtteranceAnalyticsData(*lexmodelsv2.ListUtteranceAnalyticsDataInput) (*lexmodelsv2.ListUtteranceAnalyticsDataOutput, error)
+	ListUtteranceAnalyticsDataWithContext(aws.Context, *lexmodelsv2.ListUtteranceAnalyticsDataInput, ...request.Option) (*lexmodelsv2.ListUtteranceAnalyticsDataOutput, error)
+	ListUtteranceAnalyticsDataRequest(*lexmodelsv2.ListUtteranceAnalyticsDataInput) (*request.Request, *lexmodelsv2.ListUtteranceAnalyticsDataOutput)
+
+	ListUtteranceAnalyticsDataPages(*lexmodelsv2.ListUtteranceAnalyticsDataInput, func(*lexmodelsv2.ListUtteranceAnalyticsDataOutput, bool) bool) error
+	ListUtteranceAnalyticsDataPagesWithContext(aws.Context, *lexmodelsv2.ListUtteranceAnalyticsDataInput, func(*lexmodelsv2.ListUtteranceAnalyticsDataOutput, bool) bool, ...request.Option) error
+
+	ListUtteranceMetrics(*lexmodelsv2.ListUtteranceMetricsInput) (*lexmodelsv2.ListUtteranceMetricsOutput, error)
+	ListUtteranceMetricsWithContext(aws.Context, *lexmodelsv2.ListUtteranceMetricsInput, ...request.Option) (*lexmodelsv2.ListUtteranceMetricsOutput, error)
+	ListUtteranceMetricsRequest(*lexmodelsv2.ListUtteranceMetricsInput) (*request.Request, *lexmodelsv2.ListUtteranceMetricsOutput)
+
+	ListUtteranceMetricsPages(*lexmodelsv2.ListUtteranceMetricsInput, func(*lexmodelsv2.ListUtteranceMetricsOutput, bool) bool) error
+	ListUtteranceMetricsPagesWithContext(aws.Context, *lexmodelsv2.ListUtteranceMetricsInput, func(*lexmodelsv2.ListUtteranceMetricsOutput, bool) bool, ...request.Option) error
 
 	SearchAssociatedTranscripts(*lexmodelsv2.SearchAssociatedTranscriptsInput) (*lexmodelsv2.SearchAssociatedTranscriptsOutput, error)
 	SearchAssociatedTranscriptsWithContext(aws.Context, *lexmodelsv2.SearchAssociatedTranscriptsInput, ...request.Option) (*lexmodelsv2.SearchAssociatedTranscriptsOutput, error)

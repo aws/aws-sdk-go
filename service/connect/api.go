@@ -36882,6 +36882,8 @@ type GetMetricDataV2Input struct {
 	//
 	//    * User hierarchy groups
 	//
+	//    * Feature
+	//
 	// At least one filter must be passed from queues, routing profiles, agents,
 	// or user hierarchy groups.
 	//
@@ -36893,13 +36895,16 @@ type GetMetricDataV2Input struct {
 	//    * Filter keys: A maximum of 5 filter keys are supported in a single request.
 	//    Valid filter keys: QUEUE | ROUTING_PROFILE | AGENT | CHANNEL | AGENT_HIERARCHY_LEVEL_ONE
 	//    | AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR
-	//    | AGENT_HIERARCHY_LEVEL_FIVE
+	//    | AGENT_HIERARCHY_LEVEL_FIVE | FEATURE
 	//
 	//    * Filter values: A maximum of 100 filter values are supported in a single
 	//    request. VOICE, CHAT, and TASK are valid filterValue for the CHANNEL filter
 	//    key. They do not count towards limitation of 100 filter values. For example,
 	//    a GetMetricDataV2 request can filter by 50 queues, 35 agents, and 15 routing
 	//    profiles for a total of 100 filter values, along with 3 channel filters.
+	//    contact_lens_conversational_analytics is a valid filterValue for the FEATURE
+	//    filter key. It is available only to contacts analyzed by Contact Lens
+	//    conversational analytics.
 	//
 	// Filters is a required field
 	Filters []*FilterV2 `min:"1" type:"list" required:"true"`
@@ -36982,6 +36987,18 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
+	//
+	// AVG_AGENT_CONNECTING_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid metric filter key: INITIATION_METHOD. For now, this metric only supports
+	// the following as INITIATION_METHOD: INBOUND | OUTBOUND | CALLBACK | API
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy
 	//
 	// AVG_AGENT_CONNECTING_TIME
@@ -36994,19 +37011,58 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy
 	//
-	// AVG_HANDLE_TIME
+	// AVG_CONTACT_DURATION
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
+	//
+	// AVG_CONVERSATION_DURATION
 	//
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy
+	//
+	// AVG_GREETING_TIME_AGENT
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_HANDLE_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
 	//
 	// AVG_HOLD_TIME
 	//
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
+	//
+	// AVG_HOLDS
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
 	//
 	// AVG_INTERACTION_AND_HOLD_TIME
 	//
@@ -37019,13 +37075,77 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Seconds
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
+	//
+	// AVG_INTERRUPTIONS_AGENT
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_INTERRUPTION_TIME_AGENT
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_NON_TALK_TIME
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
 	//
 	// AVG_QUEUE_ANSWER_TIME
 	//
 	// Unit: Seconds
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
+	//
+	// AVG_TALK_TIME
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_TALK_TIME_AGENT
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_TALK_TIME_CUSTOMER
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
 	//
 	// CONTACTS_ABANDONED
 	//
@@ -37040,7 +37160,9 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid metric filter key: INITIATION_METHOD
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
 	//
 	// CONTACTS_HANDLED
 	//
@@ -37049,7 +37171,9 @@ type GetMetricDataV2Input struct {
 	// Valid metric filter key: INITIATION_METHOD, DISCONNECT_REASON
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
 	//
 	// CONTACTS_HOLD_ABANDONS
 	//
@@ -37070,7 +37194,9 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Feature
+	//
+	// Feature is a valid filter but not a valid grouping.
 	//
 	// CONTACTS_TRANSFERRED_OUT_BY_AGENT
 	//

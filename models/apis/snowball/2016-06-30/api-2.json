@@ -287,6 +287,18 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "ListPickupLocations":{
+      "name":"ListPickupLocations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPickupLocationsRequest"},
+      "output":{"shape":"ListPickupLocationsResult"},
+      "errors":[
+        {"shape":"InvalidResourceException"}
+      ]
+    },
     "ListServiceVersions":{
       "name":"ListServiceVersions",
       "http":{
@@ -376,7 +388,8 @@
         "Country":{"shape":"String"},
         "PostalCode":{"shape":"String"},
         "PhoneNumber":{"shape":"String"},
-        "IsRestricted":{"shape":"Boolean"}
+        "IsRestricted":{"shape":"Boolean"},
+        "Type":{"shape":"AddressType"}
       }
     },
     "AddressId":{
@@ -388,6 +401,13 @@
     "AddressList":{
       "type":"list",
       "member":{"shape":"Address"}
+    },
+    "AddressType":{
+      "type":"string",
+      "enum":[
+        "CUST_PICKUP",
+        "AWS_SHIP"
+      ]
     },
     "AmiId":{
       "type":"string",
@@ -562,7 +582,9 @@
         "TaxDocuments":{"shape":"TaxDocuments"},
         "DeviceConfiguration":{"shape":"DeviceConfiguration"},
         "RemoteManagement":{"shape":"RemoteManagement"},
-        "LongTermPricingId":{"shape":"LongTermPricingId"}
+        "LongTermPricingId":{"shape":"LongTermPricingId"},
+        "ImpactLevel":{"shape":"ImpactLevel"},
+        "PickupDetails":{"shape":"PickupDetails"}
       }
     },
     "CreateJobResult":{
@@ -573,7 +595,10 @@
     },
     "CreateLongTermPricingRequest":{
       "type":"structure",
-      "required":["LongTermPricingType"],
+      "required":[
+        "LongTermPricingType",
+        "SnowballType"
+      ],
       "members":{
         "LongTermPricingType":{"shape":"LongTermPricingType"},
         "IsLongTermPricingAutoRenew":{"shape":"JavaBoolean"},
@@ -695,6 +720,12 @@
         "SnowconeDeviceConfiguration":{"shape":"SnowconeDeviceConfiguration"}
       }
     },
+    "DevicePickupId":{
+      "type":"string",
+      "max":40,
+      "min":40,
+      "pattern":"DPID[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+    },
     "DeviceServiceName":{
       "type":"string",
       "enum":[
@@ -727,6 +758,13 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "Email":{
+      "type":"string",
+      "max":320,
+      "min":3,
+      "pattern":"^(?=.{3,100}$).+@.+[.].+$",
+      "sensitive":true
     },
     "EventTriggerDefinition":{
       "type":"structure",
@@ -800,6 +838,16 @@
       "members":{
         "GSTIN":{"shape":"GSTIN"}
       }
+    },
+    "ImpactLevel":{
+      "type":"string",
+      "enum":[
+        "IL2",
+        "IL4",
+        "IL5",
+        "IL6",
+        "IL99"
+      ]
     },
     "InitialClusterSize":{
       "type":"integer",
@@ -898,7 +946,10 @@
         "DeviceConfiguration":{"shape":"DeviceConfiguration"},
         "RemoteManagement":{"shape":"RemoteManagement"},
         "LongTermPricingId":{"shape":"LongTermPricingId"},
-        "OnDeviceServiceConfiguration":{"shape":"OnDeviceServiceConfiguration"}
+        "OnDeviceServiceConfiguration":{"shape":"OnDeviceServiceConfiguration"},
+        "ImpactLevel":{"shape":"ImpactLevel"},
+        "PickupDetails":{"shape":"PickupDetails"},
+        "SnowballId":{"shape":"String"}
       }
     },
     "JobMetadataList":{
@@ -1050,6 +1101,20 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListPickupLocationsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"ListLimit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListPickupLocationsResult":{
+      "type":"structure",
+      "members":{
+        "Addresses":{"shape":"AddressList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListServiceVersionsRequest":{
       "type":"structure",
       "required":["ServiceName"],
@@ -1132,7 +1197,8 @@
       "members":{
         "SnsTopicARN":{"shape":"SnsTopicARN"},
         "JobStatesToNotify":{"shape":"JobStateList"},
-        "NotifyAll":{"shape":"Boolean"}
+        "NotifyAll":{"shape":"Boolean"},
+        "DevicePickupSnsTopicARN":{"shape":"SnsTopicARN"}
       }
     },
     "OnDeviceServiceConfiguration":{
@@ -1144,11 +1210,31 @@
         "S3OnDeviceService":{"shape":"S3OnDeviceServiceConfiguration"}
       }
     },
+    "PhoneNumber":{
+      "type":"string",
+      "max":30,
+      "min":7,
+      "pattern":"^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$",
+      "sensitive":true
+    },
+    "PickupDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "PhoneNumber":{"shape":"PhoneNumber"},
+        "Email":{"shape":"Email"},
+        "IdentificationNumber":{"shape":"String"},
+        "IdentificationExpirationDate":{"shape":"Timestamp"},
+        "IdentificationIssuingOrg":{"shape":"String"},
+        "DevicePickupId":{"shape":"DevicePickupId"}
+      }
+    },
     "RemoteManagement":{
       "type":"string",
       "enum":[
         "INSTALLED_ONLY",
-        "INSTALLED_AUTOSTART"
+        "INSTALLED_AUTOSTART",
+        "NOT_INSTALLED"
       ]
     },
     "ResourceARN":{
@@ -1267,7 +1353,8 @@
         "T14",
         "T32",
         "NoPreference",
-        "T240"
+        "T240",
+        "T13"
       ]
     },
     "SnowballType":{
@@ -1281,7 +1368,8 @@
         "SNC1_HDD",
         "SNC1_SSD",
         "V3_5C",
-        "V3_5S"
+        "V3_5S",
+        "RACK_5U_C"
       ]
     },
     "SnowconeDeviceConfiguration":{
@@ -1382,7 +1470,8 @@
         "ShippingOption":{"shape":"ShippingOption"},
         "Description":{"shape":"String"},
         "SnowballCapacityPreference":{"shape":"SnowballCapacity"},
-        "ForwardingAddressId":{"shape":"AddressId"}
+        "ForwardingAddressId":{"shape":"AddressId"},
+        "PickupDetails":{"shape":"PickupDetails"}
       }
     },
     "UpdateJobResult":{

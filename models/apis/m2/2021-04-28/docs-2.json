@@ -17,6 +17,7 @@
     "GetDataSetImportTask": "<p>Gets the status of a data set import task initiated with the <a>CreateDataSetImportTask</a> operation.</p>",
     "GetDeployment": "<p>Gets details of a specific deployment with a given deployment identifier.</p>",
     "GetEnvironment": "<p>Describes a specific runtime environment.</p>",
+    "GetSignedBluinsightsUrl": "<p>Gets a single sign-on URL that can be used to connect to AWS Blu Insights.</p>",
     "ListApplicationVersions": "<p>Returns a list of the application versions for a specific application.</p>",
     "ListApplications": "<p>Lists the applications associated with a specific Amazon Web Services account. You can provide the unique identifier of a specific runtime environment in a query parameter to see all applications associated with that environment.</p>",
     "ListBatchJobDefinitions": "<p>Lists all the available batch job definitions based on the batch job resources uploaded during the application creation. You can use the batch job definitions in the list to start a batch job.</p>",
@@ -106,7 +107,7 @@
         "ApplicationSummary$applicationArn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
         "ApplicationSummary$roleArn": "<p>The Amazon Resource Name (ARN) of the role associated with the application.</p>",
         "ArnList$member": null,
-        "CreateApplicationRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the role associated with the application.</p>",
+        "CreateApplicationRequest$roleArn": "<p>The Amazon Resource Name (ARN) that identifies a role that the application uses to access Amazon Web Services resources that are not part of the application or are in a different Amazon Web Services account.</p>",
         "CreateApplicationResponse$applicationArn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
         "EnvironmentSummary$environmentArn": "<p>The Amazon Resource Name (ARN) of a particular runtime environment.</p>",
         "GetApplicationResponse$applicationArn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
@@ -216,8 +217,8 @@
       "base": null,
       "refs": {
         "GetEnvironmentResponse$actualCapacity": "<p>The number of instances included in the runtime environment. A standalone runtime environment has a maxiumum of one instance. Currently, a high availability runtime environment has a maximum of two instances. </p>",
-        "HighAvailabilityConfig$desiredCapacity": "<p>The number of instances in a high availability configuration.</p>",
-        "UpdateEnvironmentRequest$desiredCapacity": "<p>The desired capacity for the runtime environment to update.</p>"
+        "HighAvailabilityConfig$desiredCapacity": "<p>The number of instances in a high availability configuration. The minimum possible value is 1 and the maximum is 100.</p>",
+        "UpdateEnvironmentRequest$desiredCapacity": "<p>The desired capacity for the runtime environment to update. The minimum possible value is 0 and the maximum is 100.</p>"
       }
     },
     "ConflictException": {
@@ -595,6 +596,11 @@
       }
     },
     "GetEnvironmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSignedBluinsightsUrlResponse": {
       "base": null,
       "refs": {
       }
@@ -1013,6 +1019,7 @@
         "GetEnvironmentResponse$kmsKeyId": "<p>The identifier of a customer managed key.</p>",
         "GetEnvironmentResponse$loadBalancerArn": "<p>The Amazon Resource Name (ARN) for the load balancer used with the runtime environment.</p>",
         "GetEnvironmentResponse$statusReason": "<p>The reason for the reported status.</p>",
+        "GetSignedBluinsightsUrlResponse$signedBiUrl": "<p>Single sign-on AWS Blu Insights URL.</p>",
         "InternalServerException$message": null,
         "ListBatchJobDefinitionsRequest$prefix": "<p>If the batch job definition is a FileBatchJobDefinition, the prefix allows you to search on the file names of FileBatchJobDefinitions.</p>",
         "PendingMaintenance$engineVersion": "<p>The specific runtime engine that the maintenance schedule applies to.</p>",

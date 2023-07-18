@@ -68,23 +68,23 @@ func (c *M2) CancelBatchJobExecutionRequest(input *CancelBatchJobExecutionInput)
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ThrottlingException
 //     The number of requests made exceeds the limit.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CancelBatchJobExecution
 func (c *M2) CancelBatchJobExecution(input *CancelBatchJobExecutionInput) (*CancelBatchJobExecutionOutput, error) {
@@ -163,24 +163,24 @@ func (c *M2) CreateApplicationRequest(input *CreateApplicationInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
 //   - ServiceQuotaExceededException
 //     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
 //     the limit.
 //
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
 //
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateApplication
 func (c *M2) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -258,27 +258,27 @@ func (c *M2) CreateDataSetImportTaskRequest(input *CreateDataSetImportTaskInput)
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ServiceQuotaExceededException
 //     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
 //     the limit.
 //
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
 //
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateDataSetImportTask
 func (c *M2) CreateDataSetImportTask(input *CreateDataSetImportTaskInput) (*CreateDataSetImportTaskOutput, error) {
@@ -356,27 +356,27 @@ func (c *M2) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ServiceQuotaExceededException
 //     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
 //     the limit.
 //
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
 //
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateDeployment
 func (c *M2) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, error) {
@@ -454,24 +454,24 @@ func (c *M2) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
 //   - ServiceQuotaExceededException
 //     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
 //     the limit.
 //
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
 //
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateEnvironment
 func (c *M2) CreateEnvironment(input *CreateEnvironmentInput) (*CreateEnvironmentOutput, error) {
@@ -550,20 +550,20 @@ func (c *M2) DeleteApplicationRequest(input *DeleteApplicationInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
 //
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteApplication
 func (c *M2) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
@@ -646,23 +646,23 @@ func (c *M2) DeleteApplicationFromEnvironmentRequest(input *DeleteApplicationFro
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ThrottlingException
 //     The number of requests made exceeds the limit.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteApplicationFromEnvironment
 func (c *M2) DeleteApplicationFromEnvironment(input *DeleteApplicationFromEnvironmentInput) (*DeleteApplicationFromEnvironmentOutput, error) {
@@ -743,20 +743,20 @@ func (c *M2) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
 //
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteEnvironment
 func (c *M2) DeleteEnvironment(input *DeleteEnvironmentInput) (*DeleteEnvironmentOutput, error) {
@@ -834,20 +834,20 @@ func (c *M2) GetApplicationRequest(input *GetApplicationInput) (req *request.Req
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetApplication
 func (c *M2) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
@@ -925,20 +925,20 @@ func (c *M2) GetApplicationVersionRequest(input *GetApplicationVersionInput) (re
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetApplicationVersion
 func (c *M2) GetApplicationVersion(input *GetApplicationVersionInput) (*GetApplicationVersionOutput, error) {
@@ -1016,20 +1016,20 @@ func (c *M2) GetBatchJobExecutionRequest(input *GetBatchJobExecutionInput) (req 
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetBatchJobExecution
 func (c *M2) GetBatchJobExecution(input *GetBatchJobExecutionInput) (*GetBatchJobExecutionOutput, error) {
@@ -1107,20 +1107,20 @@ func (c *M2) GetDataSetDetailsRequest(input *GetDataSetDetailsInput) (req *reque
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDataSetDetails
 func (c *M2) GetDataSetDetails(input *GetDataSetDetailsInput) (*GetDataSetDetailsOutput, error) {
@@ -1199,20 +1199,20 @@ func (c *M2) GetDataSetImportTaskRequest(input *GetDataSetImportTaskInput) (req 
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDataSetImportTask
 func (c *M2) GetDataSetImportTask(input *GetDataSetImportTaskInput) (*GetDataSetImportTaskOutput, error) {
@@ -1290,20 +1290,20 @@ func (c *M2) GetDeploymentRequest(input *GetDeploymentInput) (req *request.Reque
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDeployment
 func (c *M2) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOutput, error) {
@@ -1381,20 +1381,20 @@ func (c *M2) GetEnvironmentRequest(input *GetEnvironmentInput) (req *request.Req
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetEnvironment
 func (c *M2) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentOutput, error) {
@@ -1413,6 +1413,91 @@ func (c *M2) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentOutput, 
 // for more information on using Contexts.
 func (c *M2) GetEnvironmentWithContext(ctx aws.Context, input *GetEnvironmentInput, opts ...request.Option) (*GetEnvironmentOutput, error) {
 	req, out := c.GetEnvironmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSignedBluinsightsUrl = "GetSignedBluinsightsUrl"
+
+// GetSignedBluinsightsUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GetSignedBluinsightsUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSignedBluinsightsUrl for more information on using the GetSignedBluinsightsUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSignedBluinsightsUrlRequest method.
+//	req, resp := client.GetSignedBluinsightsUrlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetSignedBluinsightsUrl
+func (c *M2) GetSignedBluinsightsUrlRequest(input *GetSignedBluinsightsUrlInput) (req *request.Request, output *GetSignedBluinsightsUrlOutput) {
+	op := &request.Operation{
+		Name:       opGetSignedBluinsightsUrl,
+		HTTPMethod: "GET",
+		HTTPPath:   "/signed-bi-url",
+	}
+
+	if input == nil {
+		input = &GetSignedBluinsightsUrlInput{}
+	}
+
+	output = &GetSignedBluinsightsUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSignedBluinsightsUrl API operation for AWSMainframeModernization.
+//
+// Gets a single sign-on URL that can be used to connect to AWS Blu Insights.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSMainframeModernization's
+// API operation GetSignedBluinsightsUrl for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetSignedBluinsightsUrl
+func (c *M2) GetSignedBluinsightsUrl(input *GetSignedBluinsightsUrlInput) (*GetSignedBluinsightsUrlOutput, error) {
+	req, out := c.GetSignedBluinsightsUrlRequest(input)
+	return out, req.Send()
+}
+
+// GetSignedBluinsightsUrlWithContext is the same as GetSignedBluinsightsUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSignedBluinsightsUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *M2) GetSignedBluinsightsUrlWithContext(ctx aws.Context, input *GetSignedBluinsightsUrlInput, opts ...request.Option) (*GetSignedBluinsightsUrlOutput, error) {
+	req, out := c.GetSignedBluinsightsUrlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1478,20 +1563,20 @@ func (c *M2) ListApplicationVersionsRequest(input *ListApplicationVersionsInput)
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListApplicationVersions
 func (c *M2) ListApplicationVersions(input *ListApplicationVersionsInput) (*ListApplicationVersionsOutput, error) {
@@ -1628,17 +1713,17 @@ func (c *M2) ListApplicationsRequest(input *ListApplicationsInput) (req *request
 //
 // Returned Error Types:
 //
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListApplications
 func (c *M2) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
@@ -1775,20 +1860,20 @@ func (c *M2) ListBatchJobDefinitionsRequest(input *ListBatchJobDefinitionsInput)
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobDefinitions
 func (c *M2) ListBatchJobDefinitions(input *ListBatchJobDefinitionsInput) (*ListBatchJobDefinitionsOutput, error) {
@@ -1924,20 +2009,20 @@ func (c *M2) ListBatchJobExecutionsRequest(input *ListBatchJobExecutionsInput) (
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobExecutions
 func (c *M2) ListBatchJobExecutions(input *ListBatchJobExecutionsInput) (*ListBatchJobExecutionsOutput, error) {
@@ -2072,20 +2157,20 @@ func (c *M2) ListDataSetImportHistoryRequest(input *ListDataSetImportHistoryInpu
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDataSetImportHistory
 func (c *M2) ListDataSetImportHistory(input *ListDataSetImportHistoryInput) (*ListDataSetImportHistoryOutput, error) {
@@ -2224,20 +2309,20 @@ func (c *M2) ListDataSetsRequest(input *ListDataSetsInput) (req *request.Request
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDataSets
 func (c *M2) ListDataSets(input *ListDataSetsInput) (*ListDataSetsOutput, error) {
@@ -2374,20 +2459,20 @@ func (c *M2) ListDeploymentsRequest(input *ListDeploymentsInput) (req *request.R
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDeployments
 func (c *M2) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, error) {
@@ -2522,17 +2607,17 @@ func (c *M2) ListEngineVersionsRequest(input *ListEngineVersionsInput) (req *req
 //
 // Returned Error Types:
 //
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListEngineVersions
 func (c *M2) ListEngineVersions(input *ListEngineVersionsInput) (*ListEngineVersionsOutput, error) {
@@ -2667,17 +2752,17 @@ func (c *M2) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *request
 //
 // Returned Error Types:
 //
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListEnvironments
 func (c *M2) ListEnvironments(input *ListEnvironmentsInput) (*ListEnvironmentsOutput, error) {
@@ -2806,20 +2891,20 @@ func (c *M2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *r
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListTagsForResource
 func (c *M2) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2898,23 +2983,23 @@ func (c *M2) StartApplicationRequest(input *StartApplicationInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ThrottlingException
 //     The number of requests made exceeds the limit.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StartApplication
 func (c *M2) StartApplication(input *StartApplicationInput) (*StartApplicationOutput, error) {
@@ -2994,23 +3079,23 @@ func (c *M2) StartBatchJobRequest(input *StartBatchJobInput) (req *request.Reque
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ThrottlingException
 //     The number of requests made exceeds the limit.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StartBatchJob
 func (c *M2) StartBatchJob(input *StartBatchJobInput) (*StartBatchJobOutput, error) {
@@ -3089,23 +3174,23 @@ func (c *M2) StopApplicationRequest(input *StopApplicationInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ThrottlingException
 //     The number of requests made exceeds the limit.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StopApplication
 func (c *M2) StopApplication(input *StopApplicationInput) (*StopApplicationOutput, error) {
@@ -3184,24 +3269,24 @@ func (c *M2) TagResourceRequest(input *TagResourceInput) (req *request.Request, 
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ServiceQuotaExceededException
 //     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
 //     the limit.
 //
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
 //
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/TagResource
 func (c *M2) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3280,20 +3365,20 @@ func (c *M2) UntagResourceRequest(input *UntagResourceInput) (req *request.Reque
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
 //
 //   - InternalServerException
 //     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
-//
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
-//
-//   - ResourceNotFoundException
-//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UntagResource
 func (c *M2) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3371,23 +3456,23 @@ func (c *M2) UpdateApplicationRequest(input *UpdateApplicationInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
-//
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
-//
-//   - AccessDeniedException
-//     The account or role doesn't have the right permissions to make the request.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ThrottlingException
 //     The number of requests made exceeds the limit.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UpdateApplication
 func (c *M2) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -3465,27 +3550,27 @@ func (c *M2) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     One or more parameters provided in the request is not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 //   - ServiceQuotaExceededException
 //     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
 //     the limit.
 //
-//   - ConflictException
-//     The parameters provided in the request conflict with existing resources.
-//
-//   - InternalServerException
-//     An unexpected error occurred during the processing of the request.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
 //
-//   - ThrottlingException
-//     The number of requests made exceeds the limit.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   - ResourceNotFoundException
-//     The specified resource was not found.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UpdateEnvironment
 func (c *M2) UpdateEnvironment(input *UpdateEnvironmentInput) (*UpdateEnvironmentOutput, error) {
@@ -4296,7 +4381,9 @@ type CreateApplicationInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the role associated with the application.
+	// The Amazon Resource Name (ARN) that identifies a role that the application
+	// uses to access Amazon Web Services resources that are not part of the application
+	// or are in a different Amazon Web Services account.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// A list of tags to apply to the application.
@@ -7597,7 +7684,7 @@ type GetEnvironmentOutput struct {
 	// The number of instances included in the runtime environment. A standalone
 	// runtime environment has a maxiumum of one instance. Currently, a high availability
 	// runtime environment has a maximum of two instances.
-	ActualCapacity *int64 `locationName:"actualCapacity" min:"1" type:"integer"`
+	ActualCapacity *int64 `locationName:"actualCapacity" type:"integer"`
 
 	// The timestamp when the runtime environment was created.
 	//
@@ -7838,14 +7925,70 @@ func (s *GetEnvironmentOutput) SetVpcId(v string) *GetEnvironmentOutput {
 	return s
 }
 
+type GetSignedBluinsightsUrlInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSignedBluinsightsUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSignedBluinsightsUrlInput) GoString() string {
+	return s.String()
+}
+
+type GetSignedBluinsightsUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Single sign-on AWS Blu Insights URL.
+	//
+	// SignedBiUrl is a required field
+	SignedBiUrl *string `locationName:"signedBiUrl" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSignedBluinsightsUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSignedBluinsightsUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetSignedBiUrl sets the SignedBiUrl field's value.
+func (s *GetSignedBluinsightsUrlOutput) SetSignedBiUrl(v string) *GetSignedBluinsightsUrlOutput {
+	s.SignedBiUrl = &v
+	return s
+}
+
 // Defines the details of a high availability configuration.
 type HighAvailabilityConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The number of instances in a high availability configuration.
+	// The number of instances in a high availability configuration. The minimum
+	// possible value is 1 and the maximum is 100.
 	//
 	// DesiredCapacity is a required field
-	DesiredCapacity *int64 `locationName:"desiredCapacity" min:"1" type:"integer" required:"true"`
+	DesiredCapacity *int64 `locationName:"desiredCapacity" type:"integer" required:"true"`
 }
 
 // String returns the string representation.
@@ -7871,9 +8014,6 @@ func (s *HighAvailabilityConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "HighAvailabilityConfig"}
 	if s.DesiredCapacity == nil {
 		invalidParams.Add(request.NewErrParamRequired("DesiredCapacity"))
-	}
-	if s.DesiredCapacity != nil && *s.DesiredCapacity < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("DesiredCapacity", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10557,8 +10697,9 @@ type UpdateEnvironmentInput struct {
 	// it will fail if applyDuringMaintenanceWindow is set to true.
 	ApplyDuringMaintenanceWindow *bool `locationName:"applyDuringMaintenanceWindow" type:"boolean"`
 
-	// The desired capacity for the runtime environment to update.
-	DesiredCapacity *int64 `locationName:"desiredCapacity" min:"1" type:"integer"`
+	// The desired capacity for the runtime environment to update. The minimum possible
+	// value is 0 and the maximum is 100.
+	DesiredCapacity *int64 `locationName:"desiredCapacity" type:"integer"`
 
 	// The version of the runtime engine for the runtime environment.
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
@@ -10597,9 +10738,6 @@ func (s UpdateEnvironmentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateEnvironmentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateEnvironmentInput"}
-	if s.DesiredCapacity != nil && *s.DesiredCapacity < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("DesiredCapacity", 1))
-	}
 	if s.EnvironmentId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EnvironmentId"))
 	}
@@ -11196,14 +11334,14 @@ const (
 	// EnvironmentLifecycleAvailable is a EnvironmentLifecycle enum value
 	EnvironmentLifecycleAvailable = "Available"
 
+	// EnvironmentLifecycleUpdating is a EnvironmentLifecycle enum value
+	EnvironmentLifecycleUpdating = "Updating"
+
 	// EnvironmentLifecycleDeleting is a EnvironmentLifecycle enum value
 	EnvironmentLifecycleDeleting = "Deleting"
 
 	// EnvironmentLifecycleFailed is a EnvironmentLifecycle enum value
 	EnvironmentLifecycleFailed = "Failed"
-
-	// EnvironmentLifecycleUpdating is a EnvironmentLifecycle enum value
-	EnvironmentLifecycleUpdating = "Updating"
 )
 
 // EnvironmentLifecycle_Values returns all elements of the EnvironmentLifecycle enum
@@ -11211,9 +11349,9 @@ func EnvironmentLifecycle_Values() []string {
 	return []string{
 		EnvironmentLifecycleCreating,
 		EnvironmentLifecycleAvailable,
+		EnvironmentLifecycleUpdating,
 		EnvironmentLifecycleDeleting,
 		EnvironmentLifecycleFailed,
-		EnvironmentLifecycleUpdating,
 	}
 }
 

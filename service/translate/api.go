@@ -2779,6 +2779,9 @@ type Document struct {
 	//    * text/plain - The input data consists of unformatted text. Amazon Translate
 	//    translates every character in the content.
 	//
+	//    * application/vnd.openxmlformats-officedocument.wordprocessingml.document
+	//    - The input data consists of a Word document (.docx).
+	//
 	// ContentType is a required field
 	ContentType *string `type:"string" required:"true"`
 }
