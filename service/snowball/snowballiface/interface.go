@@ -162,6 +162,13 @@ type SnowballAPI interface {
 	ListLongTermPricingPages(*snowball.ListLongTermPricingInput, func(*snowball.ListLongTermPricingOutput, bool) bool) error
 	ListLongTermPricingPagesWithContext(aws.Context, *snowball.ListLongTermPricingInput, func(*snowball.ListLongTermPricingOutput, bool) bool, ...request.Option) error
 
+	ListPickupLocations(*snowball.ListPickupLocationsInput) (*snowball.ListPickupLocationsOutput, error)
+	ListPickupLocationsWithContext(aws.Context, *snowball.ListPickupLocationsInput, ...request.Option) (*snowball.ListPickupLocationsOutput, error)
+	ListPickupLocationsRequest(*snowball.ListPickupLocationsInput) (*request.Request, *snowball.ListPickupLocationsOutput)
+
+	ListPickupLocationsPages(*snowball.ListPickupLocationsInput, func(*snowball.ListPickupLocationsOutput, bool) bool) error
+	ListPickupLocationsPagesWithContext(aws.Context, *snowball.ListPickupLocationsInput, func(*snowball.ListPickupLocationsOutput, bool) bool, ...request.Option) error
+
 	ListServiceVersions(*snowball.ListServiceVersionsInput) (*snowball.ListServiceVersionsOutput, error)
 	ListServiceVersionsWithContext(aws.Context, *snowball.ListServiceVersionsInput, ...request.Option) (*snowball.ListServiceVersionsOutput, error)
 	ListServiceVersionsRequest(*snowball.ListServiceVersionsInput) (*request.Request, *snowball.ListServiceVersionsOutput)

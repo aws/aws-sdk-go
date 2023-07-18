@@ -1,3 +1,17 @@
+Release v1.44.302 (2023-07-18)
+===
+
+### Service Client Updates
+* `service/codeguru-security`: Updates service documentation
+* `service/connect`: Updates service documentation
+* `service/es`: Updates service API
+  * Regex Validation on the ElasticSearch Engine Version attribute
+* `service/m2`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API, documentation, and paginators
+* `service/snowball`: Updates service API, documentation, paginators, and examples
+  * Adds support for RACK_5U_C. This is the first AWS Snow Family device designed to meet U.S. Military Ruggedization Standards (MIL-STD-810H) with 208 vCPU device in a portable, compact 5U, half-rack width form-factor.
+* `service/translate`: Updates service documentation
+
 Release v1.44.301 (2023-07-17)
 ===
 

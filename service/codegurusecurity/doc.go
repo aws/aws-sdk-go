@@ -3,9 +3,11 @@
 // Package codegurusecurity provides the client and types for making API
 // requests to Amazon CodeGuru Security.
 //
-// This section provides documentation for the Amazon CodeGuru Security (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/codeguru/latest/security-ug/what-is-codeguru-security.html)
-// API operations. CodeGuru Security is a service that uses program analysis
-// and machine learning to detect security policy violations and vulnerabilities,
+// Amazon CodeGuru Security is in preview release and is subject to change.
+//
+// This section provides documentation for the Amazon CodeGuru Security API
+// operations. CodeGuru Security is a service that uses program analysis and
+// machine learning to detect security policy violations and vulnerabilities,
 // and recommends ways to address these security risks.
 //
 // By proactively detecting and providing recommendations for addressing security

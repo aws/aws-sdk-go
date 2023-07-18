@@ -452,7 +452,7 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //     Optimized without GPU
 //
 //   - Device type: EDGE Capacity: T100 Description: Snowball Edge Storage
-//     Optimized with EC2 Compute
+//     Optimized with EC2 Compute This device is replaced with T98.
 //
 //   - Device type: STANDARD Capacity: T50 Description: Original Snowball device
 //     This device is only available in the Ningxia, Beijing, and Singapore Amazon
@@ -462,8 +462,7 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //     This device is only available in the Ningxia, Beijing, and Singapore Amazon
 //     Web Services Region.
 //
-//   - Device type: V3_5C Capacity: T32 Description: Snowball Edge Compute
-//     Optimized without GPU
+//   - Snow Family device type: RACK_5U_C Capacity: T13 Description: Snowblade.
 //
 //   - Device type: V3_5S Capacity: T240 Description: Snowball Edge Storage
 //     Optimized 210TB
@@ -1870,13 +1869,14 @@ func (c *Snowball) ListCompatibleImagesRequest(input *ListCompatibleImagesInput)
 
 // ListCompatibleImages API operation for Amazon Import/Export Snowball.
 //
-// This action returns a list of the different Amazon EC2 Amazon Machine Images
-// (AMIs) that are owned by your Amazon Web Services accountthat would be supported
-// for use on a Snow device. Currently, supported AMIs are based on the Amazon
-// Linux-2, Ubuntu 20.04 LTS - Focal, or Ubuntu 22.04 LTS - Jammy images, available
-// on the Amazon Web Services Marketplace. Ubuntu 16.04 LTS - Xenial (HVM) images
-// are no longer supported in the Market, but still supported for use on devices
-// through Amazon EC2 VM Import/Export and running locally in AMIs.
+// This action returns a list of the different Amazon EC2-compatible Amazon
+// Machine Images (AMIs) that are owned by your Amazon Web Services accountthat
+// would be supported for use on a Snow device. Currently, supported AMIs are
+// based on the Amazon Linux-2, Ubuntu 20.04 LTS - Focal, or Ubuntu 22.04 LTS
+// - Jammy images, available on the Amazon Web Services Marketplace. Ubuntu
+// 16.04 LTS - Xenial (HVM) images are no longer supported in the Market, but
+// still supported for use on devices through Amazon EC2 VM Import/Export and
+// running locally in AMIs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2242,6 +2242,142 @@ func (c *Snowball) ListLongTermPricingPagesWithContext(ctx aws.Context, input *L
 
 	for p.Next() {
 		if !fn(p.Page().(*ListLongTermPricingOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPickupLocations = "ListPickupLocations"
+
+// ListPickupLocationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPickupLocations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPickupLocations for more information on using the ListPickupLocations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPickupLocationsRequest method.
+//	req, resp := client.ListPickupLocationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListPickupLocations
+func (c *Snowball) ListPickupLocationsRequest(input *ListPickupLocationsInput) (req *request.Request, output *ListPickupLocationsOutput) {
+	op := &request.Operation{
+		Name:       opListPickupLocations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPickupLocationsInput{}
+	}
+
+	output = &ListPickupLocationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPickupLocations API operation for Amazon Import/Export Snowball.
+//
+// A list of locations from which the customer can choose to pickup a device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation ListPickupLocations for usage and error information.
+//
+// Returned Error Types:
+//   - InvalidResourceException
+//     The specified resource can't be found. Check the information you provided
+//     in your last request, and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListPickupLocations
+func (c *Snowball) ListPickupLocations(input *ListPickupLocationsInput) (*ListPickupLocationsOutput, error) {
+	req, out := c.ListPickupLocationsRequest(input)
+	return out, req.Send()
+}
+
+// ListPickupLocationsWithContext is the same as ListPickupLocations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPickupLocations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) ListPickupLocationsWithContext(ctx aws.Context, input *ListPickupLocationsInput, opts ...request.Option) (*ListPickupLocationsOutput, error) {
+	req, out := c.ListPickupLocationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPickupLocationsPages iterates over the pages of a ListPickupLocations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPickupLocations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPickupLocations operation.
+//	pageNum := 0
+//	err := client.ListPickupLocationsPages(params,
+//	    func(page *snowball.ListPickupLocationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Snowball) ListPickupLocationsPages(input *ListPickupLocationsInput, fn func(*ListPickupLocationsOutput, bool) bool) error {
+	return c.ListPickupLocationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPickupLocationsPagesWithContext same as ListPickupLocationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) ListPickupLocationsPagesWithContext(ctx aws.Context, input *ListPickupLocationsInput, fn func(*ListPickupLocationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPickupLocationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPickupLocationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPickupLocationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2762,6 +2898,10 @@ type Address struct {
 	// The third line in a street address that a Snow device is to be delivered
 	// to.
 	Street3 *string `min:"1" type:"string"`
+
+	// Differentiates between delivery address and pickup address in the customer
+	// account. Provided at job creation.
+	Type *string `type:"string" enum:"AddressType"`
 }
 
 // String returns the string representation.
@@ -2912,6 +3052,12 @@ func (s *Address) SetStreet2(v string) *Address {
 // SetStreet3 sets the Street3 field's value.
 func (s *Address) SetStreet3(v string) *Address {
 	s.Street3 = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Address) SetType(v string) *Address {
+	s.Type = &v
 	return s
 }
 
@@ -3869,7 +4015,7 @@ type CreateClusterOutput struct {
 	ClusterId *string `min:"39" type:"string"`
 
 	// List of jobs created for this cluster. For syntax, see ListJobsResult$JobListEntries
-	// (https://docs.aws.amazon.com/snowball/latest/api-reference/API_ListJobs.html#API_ListJobs_ResponseSyntax)
+	// (http://amazonaws.com/snowball/latest/api-reference/API_ListJobs.html#API_ListJobs_ResponseSyntax)
 	// in this guide.
 	JobListEntries []*JobListEntry `type:"list"`
 }
@@ -3930,6 +4076,10 @@ type CreateJobInput struct {
 	// Regions.
 	ForwardingAddressId *string `min:"40" type:"string"`
 
+	// The highest impact level of data that will be stored or processed on the
+	// device, provided at job creation.
+	ImpactLevel *string `type:"string" enum:"ImpactLevel"`
+
 	// Defines the type of job that you're creating.
 	JobType *string `type:"string" enum:"JobType"`
 
@@ -3951,10 +4101,15 @@ type CreateJobInput struct {
 	// Storage Gateway service Tape Gateway type.
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
+	// Information identifying the person picking up the device.
+	PickupDetails *PickupDetails `type:"structure"`
+
 	// Allows you to securely operate and manage Snowcone devices remotely from
 	// outside of your internal network. When set to INSTALLED_AUTOSTART, remote
 	// management will automatically be available when the device arrives at your
-	// location. Otherwise, you need to use the Snowball Client to manage the device.
+	// location. Otherwise, you need to use the Snowball Edge client to manage the
+	// device. When set to NOT_INSTALLED, remote management will not be available
+	// on the device.
 	RemoteManagement *string `type:"string" enum:"RemoteManagement"`
 
 	// Defines the Amazon S3 buckets associated with this job.
@@ -4061,6 +4216,11 @@ func (s *CreateJobInput) Validate() error {
 			invalidParams.AddNested("OnDeviceServiceConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PickupDetails != nil {
+		if err := s.PickupDetails.Validate(); err != nil {
+			invalidParams.AddNested("PickupDetails", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
@@ -4108,6 +4268,12 @@ func (s *CreateJobInput) SetForwardingAddressId(v string) *CreateJobInput {
 	return s
 }
 
+// SetImpactLevel sets the ImpactLevel field's value.
+func (s *CreateJobInput) SetImpactLevel(v string) *CreateJobInput {
+	s.ImpactLevel = &v
+	return s
+}
+
 // SetJobType sets the JobType field's value.
 func (s *CreateJobInput) SetJobType(v string) *CreateJobInput {
 	s.JobType = &v
@@ -4135,6 +4301,12 @@ func (s *CreateJobInput) SetNotification(v *Notification) *CreateJobInput {
 // SetOnDeviceServiceConfiguration sets the OnDeviceServiceConfiguration field's value.
 func (s *CreateJobInput) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfiguration) *CreateJobInput {
 	s.OnDeviceServiceConfiguration = v
+	return s
+}
+
+// SetPickupDetails sets the PickupDetails field's value.
+func (s *CreateJobInput) SetPickupDetails(v *PickupDetails) *CreateJobInput {
+	s.PickupDetails = v
 	return s
 }
 
@@ -4225,7 +4397,9 @@ type CreateLongTermPricingInput struct {
 	LongTermPricingType *string `type:"string" required:"true" enum:"LongTermPricingType"`
 
 	// The type of Snow Family devices to use for the long-term pricing job.
-	SnowballType *string `type:"string" enum:"Type"`
+	//
+	// SnowballType is a required field
+	SnowballType *string `type:"string" required:"true" enum:"Type"`
 }
 
 // String returns the string representation.
@@ -4251,6 +4425,9 @@ func (s *CreateLongTermPricingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateLongTermPricingInput"}
 	if s.LongTermPricingType == nil {
 		invalidParams.Add(request.NewErrParamRequired("LongTermPricingType"))
+	}
+	if s.SnowballType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnowballType"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5063,9 +5240,9 @@ func (s *EKSOnDeviceServiceConfiguration) SetKubernetesVersion(v string) *EKSOnD
 }
 
 // A JSON-formatted object that contains the IDs for an Amazon Machine Image
-// (AMI), including the Amazon EC2 AMI ID and the Snow device AMI ID. Each AMI
-// has these two IDs to simplify identifying the AMI in both the Amazon Web
-// Services Cloud and on the device.
+// (AMI), including the Amazon EC2-compatible AMI ID and the Snow device AMI
+// ID. Each AMI has these two IDs to simplify identifying the AMI in both the
+// Amazon Web Services Cloud and on the device.
 type Ec2AmiResource struct {
 	_ struct{} `type:"structure"`
 
@@ -6103,6 +6280,10 @@ type JobMetadata struct {
 	// to its primary address. This field is not supported in most regions.
 	ForwardingAddressId *string `min:"40" type:"string"`
 
+	// The highest impact level of data that will be stored or processed on the
+	// device, provided at job creation.
+	ImpactLevel *string `type:"string" enum:"ImpactLevel"`
+
 	// The automatically generated ID for a job, for example JID123e4567-e89b-12d3-a456-426655440000.
 	JobId *string `min:"1" type:"string"`
 
@@ -6136,6 +6317,9 @@ type JobMetadata struct {
 	// Web Services Snow Family device.
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
+	// Information identifying the person picking up the device.
+	PickupDetails *PickupDetails `type:"structure"`
+
 	// Allows you to securely operate and manage Snowcone devices remotely from
 	// outside of your internal network. When set to INSTALLED_AUTOSTART, remote
 	// management will automatically be available when the device arrives at your
@@ -6163,6 +6347,9 @@ type JobMetadata struct {
 	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
 	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	SnowballCapacityPreference *string `type:"string" enum:"Capacity"`
+
+	// Unique ID associated with a device.
+	SnowballId *string `min:"1" type:"string"`
 
 	// The type of device used with this job.
 	SnowballType *string `type:"string" enum:"Type"`
@@ -6232,6 +6419,12 @@ func (s *JobMetadata) SetForwardingAddressId(v string) *JobMetadata {
 	return s
 }
 
+// SetImpactLevel sets the ImpactLevel field's value.
+func (s *JobMetadata) SetImpactLevel(v string) *JobMetadata {
+	s.ImpactLevel = &v
+	return s
+}
+
 // SetJobId sets the JobId field's value.
 func (s *JobMetadata) SetJobId(v string) *JobMetadata {
 	s.JobId = &v
@@ -6280,6 +6473,12 @@ func (s *JobMetadata) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfigur
 	return s
 }
 
+// SetPickupDetails sets the PickupDetails field's value.
+func (s *JobMetadata) SetPickupDetails(v *PickupDetails) *JobMetadata {
+	s.PickupDetails = v
+	return s
+}
+
 // SetRemoteManagement sets the RemoteManagement field's value.
 func (s *JobMetadata) SetRemoteManagement(v string) *JobMetadata {
 	s.RemoteManagement = &v
@@ -6307,6 +6506,12 @@ func (s *JobMetadata) SetShippingDetails(v *ShippingDetails) *JobMetadata {
 // SetSnowballCapacityPreference sets the SnowballCapacityPreference field's value.
 func (s *JobMetadata) SetSnowballCapacityPreference(v string) *JobMetadata {
 	s.SnowballCapacityPreference = &v
+	return s
+}
+
+// SetSnowballId sets the SnowballId field's value.
+func (s *JobMetadata) SetSnowballId(v string) *JobMetadata {
+	s.SnowballId = &v
 	return s
 }
 
@@ -7079,6 +7284,103 @@ func (s *ListLongTermPricingOutput) SetNextToken(v string) *ListLongTermPricingO
 	return s
 }
 
+type ListPickupLocationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of locations to list per page.
+	MaxResults *int64 `type:"integer"`
+
+	// HTTP requests are stateless. To identify what object comes "next" in the
+	// list of ListPickupLocationsRequest objects, you have the option of specifying
+	// NextToken as the starting point for your returned list.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPickupLocationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPickupLocationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPickupLocationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPickupLocationsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPickupLocationsInput) SetMaxResults(v int64) *ListPickupLocationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPickupLocationsInput) SetNextToken(v string) *ListPickupLocationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPickupLocationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the address of pickup locations.
+	Addresses []*Address `type:"list"`
+
+	// HTTP requests are stateless. To identify what object comes "next" in the
+	// list of ListPickupLocationsResult objects, you have the option of specifying
+	// NextToken as the starting point for your returned list.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPickupLocationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPickupLocationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddresses sets the Addresses field's value.
+func (s *ListPickupLocationsOutput) SetAddresses(v []*Address) *ListPickupLocationsOutput {
+	s.Addresses = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPickupLocationsOutput) SetNextToken(v string) *ListPickupLocationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListServiceVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7402,6 +7704,10 @@ func (s *NFSOnDeviceServiceConfiguration) SetStorageUnit(v string) *NFSOnDeviceS
 type Notification struct {
 	_ struct{} `type:"structure"`
 
+	// Used to send SNS notifications for the person picking up the device (identified
+	// during job creation).
+	DevicePickupSnsTopicARN *string `type:"string"`
+
 	// The list of job states that will trigger a notification for this job.
 	JobStatesToNotify []*string `type:"list" enum:"JobState"`
 
@@ -7434,6 +7740,12 @@ func (s Notification) String() string {
 // value will be replaced with "sensitive".
 func (s Notification) GoString() string {
 	return s.String()
+}
+
+// SetDevicePickupSnsTopicARN sets the DevicePickupSnsTopicARN field's value.
+func (s *Notification) SetDevicePickupSnsTopicARN(v string) *Notification {
+	s.DevicePickupSnsTopicARN = &v
+	return s
 }
 
 // SetJobStatesToNotify sets the JobStatesToNotify field's value.
@@ -7532,6 +7844,129 @@ func (s *OnDeviceServiceConfiguration) SetS3OnDeviceService(v *S3OnDeviceService
 // SetTGWOnDeviceService sets the TGWOnDeviceService field's value.
 func (s *OnDeviceServiceConfiguration) SetTGWOnDeviceService(v *TGWOnDeviceServiceConfiguration) *OnDeviceServiceConfiguration {
 	s.TGWOnDeviceService = v
+	return s
+}
+
+// Information identifying the person picking up the device.
+type PickupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID for a device that will be picked up.
+	DevicePickupId *string `min:"40" type:"string"`
+
+	// The email address of the person picking up the device.
+	//
+	// Email is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PickupDetails's
+	// String and GoString methods.
+	Email *string `min:"3" type:"string" sensitive:"true"`
+
+	// Expiration date of the credential identifying the person picking up the device.
+	IdentificationExpirationDate *time.Time `type:"timestamp"`
+
+	// Organization that issued the credential identifying the person picking up
+	// the device.
+	IdentificationIssuingOrg *string `min:"1" type:"string"`
+
+	// The number on the credential identifying the person picking up the device.
+	IdentificationNumber *string `min:"1" type:"string"`
+
+	// The name of the person picking up the device.
+	Name *string `min:"1" type:"string"`
+
+	// The phone number of the person picking up the device.
+	//
+	// PhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PickupDetails's
+	// String and GoString methods.
+	PhoneNumber *string `min:"7" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PickupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PickupDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PickupDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PickupDetails"}
+	if s.DevicePickupId != nil && len(*s.DevicePickupId) < 40 {
+		invalidParams.Add(request.NewErrParamMinLen("DevicePickupId", 40))
+	}
+	if s.Email != nil && len(*s.Email) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Email", 3))
+	}
+	if s.IdentificationIssuingOrg != nil && len(*s.IdentificationIssuingOrg) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentificationIssuingOrg", 1))
+	}
+	if s.IdentificationNumber != nil && len(*s.IdentificationNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentificationNumber", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PhoneNumber != nil && len(*s.PhoneNumber) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumber", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDevicePickupId sets the DevicePickupId field's value.
+func (s *PickupDetails) SetDevicePickupId(v string) *PickupDetails {
+	s.DevicePickupId = &v
+	return s
+}
+
+// SetEmail sets the Email field's value.
+func (s *PickupDetails) SetEmail(v string) *PickupDetails {
+	s.Email = &v
+	return s
+}
+
+// SetIdentificationExpirationDate sets the IdentificationExpirationDate field's value.
+func (s *PickupDetails) SetIdentificationExpirationDate(v time.Time) *PickupDetails {
+	s.IdentificationExpirationDate = &v
+	return s
+}
+
+// SetIdentificationIssuingOrg sets the IdentificationIssuingOrg field's value.
+func (s *PickupDetails) SetIdentificationIssuingOrg(v string) *PickupDetails {
+	s.IdentificationIssuingOrg = &v
+	return s
+}
+
+// SetIdentificationNumber sets the IdentificationNumber field's value.
+func (s *PickupDetails) SetIdentificationNumber(v string) *PickupDetails {
+	s.IdentificationNumber = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PickupDetails) SetName(v string) *PickupDetails {
+	s.Name = &v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *PickupDetails) SetPhoneNumber(v string) *PickupDetails {
+	s.PhoneNumber = &v
 	return s
 }
 
@@ -8349,6 +8784,9 @@ type UpdateJobInput struct {
 	// Storage Gateway service Tape Gateway type.
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
+	// Information identifying the person picking up the device.
+	PickupDetails *PickupDetails `type:"structure"`
+
 	// The updated JobResource object, or the updated JobResource object.
 	Resources *JobResource `type:"structure"`
 
@@ -8410,6 +8848,11 @@ func (s *UpdateJobInput) Validate() error {
 			invalidParams.AddNested("OnDeviceServiceConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PickupDetails != nil {
+		if err := s.PickupDetails.Validate(); err != nil {
+			invalidParams.AddNested("PickupDetails", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
@@ -8455,6 +8898,12 @@ func (s *UpdateJobInput) SetNotification(v *Notification) *UpdateJobInput {
 // SetOnDeviceServiceConfiguration sets the OnDeviceServiceConfiguration field's value.
 func (s *UpdateJobInput) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfiguration) *UpdateJobInput {
 	s.OnDeviceServiceConfiguration = v
+	return s
+}
+
+// SetPickupDetails sets the PickupDetails field's value.
+func (s *UpdateJobInput) SetPickupDetails(v *PickupDetails) *UpdateJobInput {
+	s.PickupDetails = v
 	return s
 }
 
@@ -8722,6 +9171,22 @@ func (s *WirelessConnection) SetIsWifiEnabled(v bool) *WirelessConnection {
 }
 
 const (
+	// AddressTypeCustPickup is a AddressType enum value
+	AddressTypeCustPickup = "CUST_PICKUP"
+
+	// AddressTypeAwsShip is a AddressType enum value
+	AddressTypeAwsShip = "AWS_SHIP"
+)
+
+// AddressType_Values returns all elements of the AddressType enum
+func AddressType_Values() []string {
+	return []string{
+		AddressTypeCustPickup,
+		AddressTypeAwsShip,
+	}
+}
+
+const (
 	// CapacityT50 is a Capacity enum value
 	CapacityT50 = "T50"
 
@@ -8751,6 +9216,9 @@ const (
 
 	// CapacityT240 is a Capacity enum value
 	CapacityT240 = "T240"
+
+	// CapacityT13 is a Capacity enum value
+	CapacityT13 = "T13"
 )
 
 // Capacity_Values returns all elements of the Capacity enum
@@ -8766,6 +9234,7 @@ func Capacity_Values() []string {
 		CapacityT32,
 		CapacityNoPreference,
 		CapacityT240,
+		CapacityT13,
 	}
 }
 
@@ -8810,6 +9279,34 @@ func DeviceServiceName_Values() []string {
 	return []string{
 		DeviceServiceNameNfsOnDeviceService,
 		DeviceServiceNameS3OnDeviceService,
+	}
+}
+
+const (
+	// ImpactLevelIl2 is a ImpactLevel enum value
+	ImpactLevelIl2 = "IL2"
+
+	// ImpactLevelIl4 is a ImpactLevel enum value
+	ImpactLevelIl4 = "IL4"
+
+	// ImpactLevelIl5 is a ImpactLevel enum value
+	ImpactLevelIl5 = "IL5"
+
+	// ImpactLevelIl6 is a ImpactLevel enum value
+	ImpactLevelIl6 = "IL6"
+
+	// ImpactLevelIl99 is a ImpactLevel enum value
+	ImpactLevelIl99 = "IL99"
+)
+
+// ImpactLevel_Values returns all elements of the ImpactLevel enum
+func ImpactLevel_Values() []string {
+	return []string{
+		ImpactLevelIl2,
+		ImpactLevelIl4,
+		ImpactLevelIl5,
+		ImpactLevelIl6,
+		ImpactLevelIl99,
 	}
 }
 
@@ -8919,6 +9416,9 @@ const (
 
 	// RemoteManagementInstalledAutostart is a RemoteManagement enum value
 	RemoteManagementInstalledAutostart = "INSTALLED_AUTOSTART"
+
+	// RemoteManagementNotInstalled is a RemoteManagement enum value
+	RemoteManagementNotInstalled = "NOT_INSTALLED"
 )
 
 // RemoteManagement_Values returns all elements of the RemoteManagement enum
@@ -8926,6 +9426,7 @@ func RemoteManagement_Values() []string {
 	return []string{
 		RemoteManagementInstalledOnly,
 		RemoteManagementInstalledAutostart,
+		RemoteManagementNotInstalled,
 	}
 }
 
@@ -9068,6 +9569,9 @@ const (
 
 	// TypeV35s is a Type enum value
 	TypeV35s = "V3_5S"
+
+	// TypeRack5uC is a Type enum value
+	TypeRack5uC = "RACK_5U_C"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -9082,5 +9586,6 @@ func Type_Values() []string {
 		TypeSnc1Ssd,
 		TypeV35c,
 		TypeV35s,
+		TypeRack5uC,
 	}
 }

@@ -6217,6 +6217,457 @@ func (c *LexModelsV2) ListImportsPagesWithContext(ctx aws.Context, input *ListIm
 	return p.Err()
 }
 
+const opListIntentMetrics = "ListIntentMetrics"
+
+// ListIntentMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIntentMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIntentMetrics for more information on using the ListIntentMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIntentMetricsRequest method.
+//	req, resp := client.ListIntentMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListIntentMetrics
+func (c *LexModelsV2) ListIntentMetricsRequest(input *ListIntentMetricsInput) (req *request.Request, output *ListIntentMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListIntentMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/analytics/intentmetrics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIntentMetricsInput{}
+	}
+
+	output = &ListIntentMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIntentMetrics API operation for Amazon Lex Model Building V2.
+//
+// Retrieves summary metrics for the intents in your bot. The following fields
+// are required:
+//
+//   - metrics – A list of AnalyticsIntentMetric (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_AnalyticsIntentMetric.html)
+//     objects. In each object, use the name field to specify the metric to calculate,
+//     the statistic field to specify whether to calculate the Sum, Average,
+//     or Max number, and the order field to specify whether to sort the results
+//     in Ascending or Descending order.
+//
+//   - startDateTime and endDateTime – Define a time range for which you
+//     want to retrieve results.
+//
+// Of the optional fields, you can organize the results in the following ways:
+//
+//   - Use the filters field to filter the results, the groupBy field to specify
+//     categories by which to group the results, and the binBy field to specify
+//     time intervals by which to group the results.
+//
+//   - Use the maxResults field to limit the number of results to return in
+//     a single response and the nextToken field to return the next batch of
+//     results if the response does not return the full set of results.
+//
+// Note that an order field exists in both binBy and metrics. You can specify
+// only one order in a given request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListIntentMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListIntentMetrics
+func (c *LexModelsV2) ListIntentMetrics(input *ListIntentMetricsInput) (*ListIntentMetricsOutput, error) {
+	req, out := c.ListIntentMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListIntentMetricsWithContext is the same as ListIntentMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIntentMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListIntentMetricsWithContext(ctx aws.Context, input *ListIntentMetricsInput, opts ...request.Option) (*ListIntentMetricsOutput, error) {
+	req, out := c.ListIntentMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIntentMetricsPages iterates over the pages of a ListIntentMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIntentMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIntentMetrics operation.
+//	pageNum := 0
+//	err := client.ListIntentMetricsPages(params,
+//	    func(page *lexmodelsv2.ListIntentMetricsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListIntentMetricsPages(input *ListIntentMetricsInput, fn func(*ListIntentMetricsOutput, bool) bool) error {
+	return c.ListIntentMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIntentMetricsPagesWithContext same as ListIntentMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListIntentMetricsPagesWithContext(ctx aws.Context, input *ListIntentMetricsInput, fn func(*ListIntentMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIntentMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIntentMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIntentMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListIntentPaths = "ListIntentPaths"
+
+// ListIntentPathsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIntentPaths operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIntentPaths for more information on using the ListIntentPaths
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIntentPathsRequest method.
+//	req, resp := client.ListIntentPathsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListIntentPaths
+func (c *LexModelsV2) ListIntentPathsRequest(input *ListIntentPathsInput) (req *request.Request, output *ListIntentPathsOutput) {
+	op := &request.Operation{
+		Name:       opListIntentPaths,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/analytics/intentpaths",
+	}
+
+	if input == nil {
+		input = &ListIntentPathsInput{}
+	}
+
+	output = &ListIntentPathsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIntentPaths API operation for Amazon Lex Model Building V2.
+//
+// Retrieves summary statistics for a path of intents that users take over sessions
+// with your bot. The following fields are required:
+//
+//   - startDateTime and endDateTime – Define a time range for which you
+//     want to retrieve results.
+//
+//   - intentPath – Define an order of intents for which you want to retrieve
+//     metrics. Separate intents in the path with a forward slash. For example,
+//     populate the intentPath field with /BookCar/BookHotel to see details about
+//     how many times users invoked the BookCar and BookHotel intents in that
+//     order.
+//
+// Use the optional filters field to filter the results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListIntentPaths for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListIntentPaths
+func (c *LexModelsV2) ListIntentPaths(input *ListIntentPathsInput) (*ListIntentPathsOutput, error) {
+	req, out := c.ListIntentPathsRequest(input)
+	return out, req.Send()
+}
+
+// ListIntentPathsWithContext is the same as ListIntentPaths with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIntentPaths for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListIntentPathsWithContext(ctx aws.Context, input *ListIntentPathsInput, opts ...request.Option) (*ListIntentPathsOutput, error) {
+	req, out := c.ListIntentPathsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListIntentStageMetrics = "ListIntentStageMetrics"
+
+// ListIntentStageMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIntentStageMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIntentStageMetrics for more information on using the ListIntentStageMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIntentStageMetricsRequest method.
+//	req, resp := client.ListIntentStageMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListIntentStageMetrics
+func (c *LexModelsV2) ListIntentStageMetricsRequest(input *ListIntentStageMetricsInput) (req *request.Request, output *ListIntentStageMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListIntentStageMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/analytics/intentstagemetrics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIntentStageMetricsInput{}
+	}
+
+	output = &ListIntentStageMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIntentStageMetrics API operation for Amazon Lex Model Building V2.
+//
+// Retrieves summary metrics for the intent stages in your bot. The following
+// fields are required:
+//
+//   - metrics – A list of AnalyticsIntentStageMetric (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_AnalyticsIntentStageMetric.html)
+//     objects. In each object, use the name field to specify the metric to calculate,
+//     the statistic field to specify whether to calculate the Sum, Average,
+//     or Max number, and the order field to specify whether to sort the results
+//     in Ascending or Descending order.
+//
+//   - startDateTime and endDateTime – Define a time range for which you
+//     want to retrieve results.
+//
+// Of the optional fields, you can organize the results in the following ways:
+//
+//   - Use the filters field to filter the results, the groupBy field to specify
+//     categories by which to group the results, and the binBy field to specify
+//     time intervals by which to group the results.
+//
+//   - Use the maxResults field to limit the number of results to return in
+//     a single response and the nextToken field to return the next batch of
+//     results if the response does not return the full set of results.
+//
+// Note that an order field exists in both binBy and metrics. You can only specify
+// one order in a given request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListIntentStageMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListIntentStageMetrics
+func (c *LexModelsV2) ListIntentStageMetrics(input *ListIntentStageMetricsInput) (*ListIntentStageMetricsOutput, error) {
+	req, out := c.ListIntentStageMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListIntentStageMetricsWithContext is the same as ListIntentStageMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIntentStageMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListIntentStageMetricsWithContext(ctx aws.Context, input *ListIntentStageMetricsInput, opts ...request.Option) (*ListIntentStageMetricsOutput, error) {
+	req, out := c.ListIntentStageMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIntentStageMetricsPages iterates over the pages of a ListIntentStageMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIntentStageMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIntentStageMetrics operation.
+//	pageNum := 0
+//	err := client.ListIntentStageMetricsPages(params,
+//	    func(page *lexmodelsv2.ListIntentStageMetricsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListIntentStageMetricsPages(input *ListIntentStageMetricsInput, fn func(*ListIntentStageMetricsOutput, bool) bool) error {
+	return c.ListIntentStageMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIntentStageMetricsPagesWithContext same as ListIntentStageMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListIntentStageMetricsPagesWithContext(ctx aws.Context, input *ListIntentStageMetricsInput, fn func(*ListIntentStageMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIntentStageMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIntentStageMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIntentStageMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListIntents = "ListIntents"
 
 // ListIntentsRequest generates a "aws/request.Request" representing the
@@ -6507,6 +6958,339 @@ func (c *LexModelsV2) ListRecommendedIntentsPagesWithContext(ctx aws.Context, in
 
 	for p.Next() {
 		if !fn(p.Page().(*ListRecommendedIntentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSessionAnalyticsData = "ListSessionAnalyticsData"
+
+// ListSessionAnalyticsDataRequest generates a "aws/request.Request" representing the
+// client's request for the ListSessionAnalyticsData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSessionAnalyticsData for more information on using the ListSessionAnalyticsData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSessionAnalyticsDataRequest method.
+//	req, resp := client.ListSessionAnalyticsDataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListSessionAnalyticsData
+func (c *LexModelsV2) ListSessionAnalyticsDataRequest(input *ListSessionAnalyticsDataInput) (req *request.Request, output *ListSessionAnalyticsDataOutput) {
+	op := &request.Operation{
+		Name:       opListSessionAnalyticsData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/analytics/sessions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSessionAnalyticsDataInput{}
+	}
+
+	output = &ListSessionAnalyticsDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSessionAnalyticsData API operation for Amazon Lex Model Building V2.
+//
+// Retrieves a list of metadata for individual user sessions with your bot.
+// The startDateTime and endDateTime fields are required. These fields define
+// a time range for which you want to retrieve results. Of the optional fields,
+// you can organize the results in the following ways:
+//
+//   - Use the filters field to filter the results and the sortBy field to
+//     specify the values by which to sort the results.
+//
+//   - Use the maxResults field to limit the number of results to return in
+//     a single response and the nextToken field to return the next batch of
+//     results if the response does not return the full set of results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListSessionAnalyticsData for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListSessionAnalyticsData
+func (c *LexModelsV2) ListSessionAnalyticsData(input *ListSessionAnalyticsDataInput) (*ListSessionAnalyticsDataOutput, error) {
+	req, out := c.ListSessionAnalyticsDataRequest(input)
+	return out, req.Send()
+}
+
+// ListSessionAnalyticsDataWithContext is the same as ListSessionAnalyticsData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSessionAnalyticsData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListSessionAnalyticsDataWithContext(ctx aws.Context, input *ListSessionAnalyticsDataInput, opts ...request.Option) (*ListSessionAnalyticsDataOutput, error) {
+	req, out := c.ListSessionAnalyticsDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSessionAnalyticsDataPages iterates over the pages of a ListSessionAnalyticsData operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSessionAnalyticsData method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSessionAnalyticsData operation.
+//	pageNum := 0
+//	err := client.ListSessionAnalyticsDataPages(params,
+//	    func(page *lexmodelsv2.ListSessionAnalyticsDataOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListSessionAnalyticsDataPages(input *ListSessionAnalyticsDataInput, fn func(*ListSessionAnalyticsDataOutput, bool) bool) error {
+	return c.ListSessionAnalyticsDataPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSessionAnalyticsDataPagesWithContext same as ListSessionAnalyticsDataPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListSessionAnalyticsDataPagesWithContext(ctx aws.Context, input *ListSessionAnalyticsDataInput, fn func(*ListSessionAnalyticsDataOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSessionAnalyticsDataInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSessionAnalyticsDataRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSessionAnalyticsDataOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSessionMetrics = "ListSessionMetrics"
+
+// ListSessionMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSessionMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSessionMetrics for more information on using the ListSessionMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSessionMetricsRequest method.
+//	req, resp := client.ListSessionMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListSessionMetrics
+func (c *LexModelsV2) ListSessionMetricsRequest(input *ListSessionMetricsInput) (req *request.Request, output *ListSessionMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListSessionMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/analytics/sessionmetrics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSessionMetricsInput{}
+	}
+
+	output = &ListSessionMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSessionMetrics API operation for Amazon Lex Model Building V2.
+//
+// Retrieves summary metrics for the user sessions with your bot. The following
+// fields are required:
+//
+//   - metrics – A list of AnalyticsSessionMetric (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_AnalyticsSessionMetric.html)
+//     objects. In each object, use the name field to specify the metric to calculate,
+//     the statistic field to specify whether to calculate the Sum, Average,
+//     or Max number, and the order field to specify whether to sort the results
+//     in Ascending or Descending order.
+//
+//   - startDateTime and endDateTime – Define a time range for which you
+//     want to retrieve results.
+//
+// Of the optional fields, you can organize the results in the following ways:
+//
+//   - Use the filters field to filter the results, the groupBy field to specify
+//     categories by which to group the results, and the binBy field to specify
+//     time intervals by which to group the results.
+//
+//   - Use the maxResults field to limit the number of results to return in
+//     a single response and the nextToken field to return the next batch of
+//     results if the response does not return the full set of results.
+//
+// Note that an order field exists in both binBy and metrics. Currently, you
+// can specify it in either field, but not in both.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListSessionMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListSessionMetrics
+func (c *LexModelsV2) ListSessionMetrics(input *ListSessionMetricsInput) (*ListSessionMetricsOutput, error) {
+	req, out := c.ListSessionMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListSessionMetricsWithContext is the same as ListSessionMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSessionMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListSessionMetricsWithContext(ctx aws.Context, input *ListSessionMetricsInput, opts ...request.Option) (*ListSessionMetricsOutput, error) {
+	req, out := c.ListSessionMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSessionMetricsPages iterates over the pages of a ListSessionMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSessionMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSessionMetrics operation.
+//	pageNum := 0
+//	err := client.ListSessionMetricsPages(params,
+//	    func(page *lexmodelsv2.ListSessionMetricsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListSessionMetricsPages(input *ListSessionMetricsInput, fn func(*ListSessionMetricsOutput, bool) bool) error {
+	return c.ListSessionMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSessionMetricsPagesWithContext same as ListSessionMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListSessionMetricsPagesWithContext(ctx aws.Context, input *ListSessionMetricsInput, fn func(*ListSessionMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSessionMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSessionMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSessionMetricsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -7482,6 +8266,339 @@ func (c *LexModelsV2) ListTestSetsPagesWithContext(ctx aws.Context, input *ListT
 
 	for p.Next() {
 		if !fn(p.Page().(*ListTestSetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListUtteranceAnalyticsData = "ListUtteranceAnalyticsData"
+
+// ListUtteranceAnalyticsDataRequest generates a "aws/request.Request" representing the
+// client's request for the ListUtteranceAnalyticsData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUtteranceAnalyticsData for more information on using the ListUtteranceAnalyticsData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUtteranceAnalyticsDataRequest method.
+//	req, resp := client.ListUtteranceAnalyticsDataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListUtteranceAnalyticsData
+func (c *LexModelsV2) ListUtteranceAnalyticsDataRequest(input *ListUtteranceAnalyticsDataInput) (req *request.Request, output *ListUtteranceAnalyticsDataOutput) {
+	op := &request.Operation{
+		Name:       opListUtteranceAnalyticsData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/analytics/utterances",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListUtteranceAnalyticsDataInput{}
+	}
+
+	output = &ListUtteranceAnalyticsDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUtteranceAnalyticsData API operation for Amazon Lex Model Building V2.
+//
+// Retrieves a list of metadata for individual user utterances to your bot.
+// The startDateTime and endDateTime fields are required. These fields define
+// a time range for which you want to retrieve results. Of the optional fields,
+// you can organize the results in the following ways:
+//
+//   - Use the filters field to filter the results and the sortBy field to
+//     specify the values by which to sort the results.
+//
+//   - Use the maxResults field to limit the number of results to return in
+//     a single response and the nextToken field to return the next batch of
+//     results if the response does not return the full set of results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListUtteranceAnalyticsData for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListUtteranceAnalyticsData
+func (c *LexModelsV2) ListUtteranceAnalyticsData(input *ListUtteranceAnalyticsDataInput) (*ListUtteranceAnalyticsDataOutput, error) {
+	req, out := c.ListUtteranceAnalyticsDataRequest(input)
+	return out, req.Send()
+}
+
+// ListUtteranceAnalyticsDataWithContext is the same as ListUtteranceAnalyticsData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUtteranceAnalyticsData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListUtteranceAnalyticsDataWithContext(ctx aws.Context, input *ListUtteranceAnalyticsDataInput, opts ...request.Option) (*ListUtteranceAnalyticsDataOutput, error) {
+	req, out := c.ListUtteranceAnalyticsDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListUtteranceAnalyticsDataPages iterates over the pages of a ListUtteranceAnalyticsData operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUtteranceAnalyticsData method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListUtteranceAnalyticsData operation.
+//	pageNum := 0
+//	err := client.ListUtteranceAnalyticsDataPages(params,
+//	    func(page *lexmodelsv2.ListUtteranceAnalyticsDataOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListUtteranceAnalyticsDataPages(input *ListUtteranceAnalyticsDataInput, fn func(*ListUtteranceAnalyticsDataOutput, bool) bool) error {
+	return c.ListUtteranceAnalyticsDataPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUtteranceAnalyticsDataPagesWithContext same as ListUtteranceAnalyticsDataPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListUtteranceAnalyticsDataPagesWithContext(ctx aws.Context, input *ListUtteranceAnalyticsDataInput, fn func(*ListUtteranceAnalyticsDataOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUtteranceAnalyticsDataInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUtteranceAnalyticsDataRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUtteranceAnalyticsDataOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListUtteranceMetrics = "ListUtteranceMetrics"
+
+// ListUtteranceMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListUtteranceMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUtteranceMetrics for more information on using the ListUtteranceMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUtteranceMetricsRequest method.
+//	req, resp := client.ListUtteranceMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListUtteranceMetrics
+func (c *LexModelsV2) ListUtteranceMetricsRequest(input *ListUtteranceMetricsInput) (req *request.Request, output *ListUtteranceMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListUtteranceMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/analytics/utterancemetrics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListUtteranceMetricsInput{}
+	}
+
+	output = &ListUtteranceMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUtteranceMetrics API operation for Amazon Lex Model Building V2.
+//
+// Retrieves summary metrics for the utterances in your bot. The following fields
+// are required:
+//
+//   - metrics – A list of AnalyticsUtteranceMetric (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_AnalyticsUtteranceMetric.html)
+//     objects. In each object, use the name field to specify the metric to calculate,
+//     the statistic field to specify whether to calculate the Sum, Average,
+//     or Max number, and the order field to specify whether to sort the results
+//     in Ascending or Descending order.
+//
+//   - startDateTime and endDateTime – Define a time range for which you
+//     want to retrieve results.
+//
+// Of the optional fields, you can organize the results in the following ways:
+//
+//   - Use the filters field to filter the results, the groupBy field to specify
+//     categories by which to group the results, and the binBy field to specify
+//     time intervals by which to group the results.
+//
+//   - Use the maxResults field to limit the number of results to return in
+//     a single response and the nextToken field to return the next batch of
+//     results if the response does not return the full set of results.
+//
+// Note that an order field exists in both binBy and metrics. Currently, you
+// can specify it in either field, but not in both.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListUtteranceMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListUtteranceMetrics
+func (c *LexModelsV2) ListUtteranceMetrics(input *ListUtteranceMetricsInput) (*ListUtteranceMetricsOutput, error) {
+	req, out := c.ListUtteranceMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListUtteranceMetricsWithContext is the same as ListUtteranceMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUtteranceMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListUtteranceMetricsWithContext(ctx aws.Context, input *ListUtteranceMetricsInput, opts ...request.Option) (*ListUtteranceMetricsOutput, error) {
+	req, out := c.ListUtteranceMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListUtteranceMetricsPages iterates over the pages of a ListUtteranceMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUtteranceMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListUtteranceMetrics operation.
+//	pageNum := 0
+//	err := client.ListUtteranceMetricsPages(params,
+//	    func(page *lexmodelsv2.ListUtteranceMetricsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListUtteranceMetricsPages(input *ListUtteranceMetricsInput, fn func(*ListUtteranceMetricsOutput, bool) bool) error {
+	return c.ListUtteranceMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUtteranceMetricsPagesWithContext same as ListUtteranceMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListUtteranceMetricsPagesWithContext(ctx aws.Context, input *ListUtteranceMetricsInput, fn func(*ListUtteranceMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUtteranceMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUtteranceMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUtteranceMetricsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -9731,6 +10848,2259 @@ func (s *AllowedInputTypes) SetAllowAudioInput(v bool) *AllowedInputTypes {
 // SetAllowDTMFInput sets the AllowDTMFInput field's value.
 func (s *AllowedInputTypes) SetAllowDTMFInput(v bool) *AllowedInputTypes {
 	s.AllowDTMFInput = &v
+	return s
+}
+
+// Contains the time metric, interval, and method by which to bin the analytics
+// data.
+type AnalyticsBinBySpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the interval of time by which to bin the analytics data.
+	//
+	// Interval is a required field
+	Interval *string `locationName:"interval" type:"string" required:"true" enum:"AnalyticsInterval"`
+
+	// Specifies the time metric by which to bin the analytics data.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsBinByName"`
+
+	// Specifies whether to bin the analytics data in ascending or descending order.
+	// If this field is left blank, the default order is by the key of the bin in
+	// descending order.
+	Order *string `locationName:"order" type:"string" enum:"AnalyticsSortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsBinBySpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsBinBySpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsBinBySpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsBinBySpecification"}
+	if s.Interval == nil {
+		invalidParams.Add(request.NewErrParamRequired("Interval"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInterval sets the Interval field's value.
+func (s *AnalyticsBinBySpecification) SetInterval(v string) *AnalyticsBinBySpecification {
+	s.Interval = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsBinBySpecification) SetName(v string) *AnalyticsBinBySpecification {
+	s.Name = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *AnalyticsBinBySpecification) SetOrder(v string) *AnalyticsBinBySpecification {
+	s.Order = &v
+	return s
+}
+
+// An object containing the criterion by which to bin the results and the value
+// that defines that bin.
+type AnalyticsBinKey struct {
+	_ struct{} `type:"structure"`
+
+	// The criterion by which to bin the results.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsBinByName"`
+
+	// The value of the criterion that defines the bin.
+	Value *int64 `locationName:"value" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsBinKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsBinKey) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsBinKey) SetName(v string) *AnalyticsBinKey {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsBinKey) SetValue(v int64) *AnalyticsBinKey {
+	s.Value = &v
+	return s
+}
+
+// Contains fields describing a condition by which to filter the intents. The
+// expression may be understood as name operator values. For example:
+//
+//   - IntentName CO Book – The intent name contains the string "Book."
+//
+//   - BotVersion EQ 2 – The bot version is equal to two.
+//
+// The operators that each filter supports are listed below:
+//
+//   - BotAlias – EQ.
+//
+//   - BotVersion – EQ.
+//
+//   - LocaleId – EQ.
+//
+//   - Modality – EQ.
+//
+//   - Channel – EQ.
+//
+//   - SessionId – EQ.
+//
+//   - OriginatingRequestId – EQ.
+//
+//   - IntentName – EQ, CO.
+//
+//   - IntentEndState – EQ, CO.
+type AnalyticsIntentFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The category by which to filter the intents. The descriptions for each option
+	// are as follows:
+	//
+	//    * BotAlias – The name of the bot alias.
+	//
+	//    * BotVersion – The version of the bot.
+	//
+	//    * LocaleId – The locale of the bot.
+	//
+	//    * Modality – The modality of the session with the bot (audio, DTMF,
+	//    or text).
+	//
+	//    * Channel – The channel that the bot is integrated with.
+	//
+	//    * SessionId – The identifier of the session with the bot.
+	//
+	//    * OriginatingRequestId – The identifier of the first request in a session.
+	//
+	//    * IntentName – The name of the intent.
+	//
+	//    * IntentEndState – The final state of the intent.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsIntentFilterName"`
+
+	// The operation by which to filter the category. The following operations are
+	// possible:
+	//
+	//    * CO – Contains
+	//
+	//    * EQ – Equals
+	//
+	//    * GT – Greater than
+	//
+	//    * LT – Less than
+	//
+	// The operators that each filter supports are listed below:
+	//
+	//    * BotAlias – EQ.
+	//
+	//    * BotVersion – EQ.
+	//
+	//    * LocaleId – EQ.
+	//
+	//    * Modality – EQ.
+	//
+	//    * Channel – EQ.
+	//
+	//    * SessionId – EQ.
+	//
+	//    * OriginatingRequestId – EQ.
+	//
+	//    * IntentName – EQ, CO.
+	//
+	//    * IntentEndState – EQ, CO.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"AnalyticsFilterOperator"`
+
+	// An array containing the values of the category by which to apply the operator
+	// to filter the results. You can provide multiple values if the operator is
+	// EQ or CO. If you provide multiple values, you filter for results that equal/contain
+	// any of the values. For example, if the name, operator, and values fields
+	// are Modality, EQ, and [Speech, Text], the operation filters for results where
+	// the modality was either Speech or Text.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsIntentFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsIntentFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentFilter) SetName(v string) *AnalyticsIntentFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *AnalyticsIntentFilter) SetOperator(v string) *AnalyticsIntentFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AnalyticsIntentFilter) SetValues(v []*string) *AnalyticsIntentFilter {
+	s.Values = v
+	return s
+}
+
+// Contains the category by which the intent analytics were grouped and a member
+// of that category.
+type AnalyticsIntentGroupByKey struct {
+	_ struct{} `type:"structure"`
+
+	// A category by which the intent analytics were grouped.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsIntentField"`
+
+	// A member of the category by which the intent analytics were grouped.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentGroupByKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentGroupByKey) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentGroupByKey) SetName(v string) *AnalyticsIntentGroupByKey {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsIntentGroupByKey) SetValue(v string) *AnalyticsIntentGroupByKey {
+	s.Value = &v
+	return s
+}
+
+// Contains the category by which to group the intents.
+type AnalyticsIntentGroupBySpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to group the intent stages by their name or their end state.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsIntentField"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentGroupBySpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentGroupBySpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsIntentGroupBySpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsIntentGroupBySpecification"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentGroupBySpecification) SetName(v string) *AnalyticsIntentGroupBySpecification {
+	s.Name = &v
+	return s
+}
+
+// Contains the metric and the summary statistic you want to calculate, and
+// the order in which to sort the results, for the intents in the bot.
+type AnalyticsIntentMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The metric for which you want to get intent summary statistics.
+	//
+	//    * Count – The number of times the intent was invoked.
+	//
+	//    * Success – The number of times the intent succeeded.
+	//
+	//    * Failure – The number of times the intent failed.
+	//
+	//    * Switched – The number of times there was a switch to a different intent.
+	//
+	//    * Dropped – The number of times the user dropped the intent.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsIntentMetricName"`
+
+	// Specifies whether to sort the results in ascending or descending order.
+	Order *string `locationName:"order" type:"string" enum:"AnalyticsSortOrder"`
+
+	// The summary statistic to calculate.
+	//
+	//    * Sum – The total count for the category you provide in name.
+	//
+	//    * Average – The total count divided by the number of intents in the
+	//    category you provide in name.
+	//
+	//    * Max – The highest count in the category you provide in name.
+	//
+	// Statistic is a required field
+	Statistic *string `locationName:"statistic" type:"string" required:"true" enum:"AnalyticsMetricStatistic"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsIntentMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsIntentMetric"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Statistic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistic"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentMetric) SetName(v string) *AnalyticsIntentMetric {
+	s.Name = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *AnalyticsIntentMetric) SetOrder(v string) *AnalyticsIntentMetric {
+	s.Order = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AnalyticsIntentMetric) SetStatistic(v string) *AnalyticsIntentMetric {
+	s.Statistic = &v
+	return s
+}
+
+// An object containing the results for the intent metric you requested.
+type AnalyticsIntentMetricResult struct {
+	_ struct{} `type:"structure"`
+
+	// The metric that you requested. See Key definitions (https://docs.aws.amazon.com/lexv2/latest/dg/analytics-key-definitions.html)
+	// for more details about these metrics.
+	//
+	//    * Count – The number of times the intent was invoked.
+	//
+	//    * Success – The number of times the intent succeeded.
+	//
+	//    * Failure – The number of times the intent failed.
+	//
+	//    * Switched – The number of times there was a switch to a different intent.
+	//
+	//    * Dropped – The number of times the user dropped the intent.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsIntentMetricName"`
+
+	// The statistic that you requested to calculate.
+	//
+	//    * Sum – The total count for the category you provide in name.
+	//
+	//    * Average – The total count divided by the number of intents in the
+	//    category you provide in name.
+	//
+	//    * Max – The highest count in the category you provide in name.
+	Statistic *string `locationName:"statistic" type:"string" enum:"AnalyticsMetricStatistic"`
+
+	// The value of the summary statistic for the metric that you requested.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentMetricResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentMetricResult) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentMetricResult) SetName(v string) *AnalyticsIntentMetricResult {
+	s.Name = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AnalyticsIntentMetricResult) SetStatistic(v string) *AnalyticsIntentMetricResult {
+	s.Statistic = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsIntentMetricResult) SetValue(v float64) *AnalyticsIntentMetricResult {
+	s.Value = &v
+	return s
+}
+
+// An object containing information about the requested path.
+type AnalyticsIntentNodeSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of sessions that follow the given path to the given intent.
+	IntentCount *int64 `locationName:"intentCount" type:"integer"`
+
+	// The number of intents up to and including the requested path.
+	IntentLevel *int64 `locationName:"intentLevel" type:"integer"`
+
+	// The name of the intent at the end of the requested path.
+	IntentName *string `locationName:"intentName" min:"1" type:"string"`
+
+	// The path.
+	IntentPath *string `locationName:"intentPath" min:"1" type:"string"`
+
+	// Specifies whether the node is the end of a path (Exit) or not (Inner).
+	NodeType *string `locationName:"nodeType" type:"string" enum:"AnalyticsNodeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentNodeSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentNodeSummary) GoString() string {
+	return s.String()
+}
+
+// SetIntentCount sets the IntentCount field's value.
+func (s *AnalyticsIntentNodeSummary) SetIntentCount(v int64) *AnalyticsIntentNodeSummary {
+	s.IntentCount = &v
+	return s
+}
+
+// SetIntentLevel sets the IntentLevel field's value.
+func (s *AnalyticsIntentNodeSummary) SetIntentLevel(v int64) *AnalyticsIntentNodeSummary {
+	s.IntentLevel = &v
+	return s
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *AnalyticsIntentNodeSummary) SetIntentName(v string) *AnalyticsIntentNodeSummary {
+	s.IntentName = &v
+	return s
+}
+
+// SetIntentPath sets the IntentPath field's value.
+func (s *AnalyticsIntentNodeSummary) SetIntentPath(v string) *AnalyticsIntentNodeSummary {
+	s.IntentPath = &v
+	return s
+}
+
+// SetNodeType sets the NodeType field's value.
+func (s *AnalyticsIntentNodeSummary) SetNodeType(v string) *AnalyticsIntentNodeSummary {
+	s.NodeType = &v
+	return s
+}
+
+// An object containing the results for the intent metrics you requested and
+// the bin and/or group(s) they refer to, if applicable.
+type AnalyticsIntentResult struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects containing the criteria you requested for binning results
+	// and the values of the bins.
+	BinKeys []*AnalyticsBinKey `locationName:"binKeys" min:"1" type:"list"`
+
+	// A list of objects containing the criteria you requested for grouping results
+	// and the values of the groups.
+	GroupByKeys []*AnalyticsIntentGroupByKey `locationName:"groupByKeys" type:"list"`
+
+	// A list of objects, each of which contains a metric you want to list, the
+	// statistic for the metric you want to return, and the method by which to organize
+	// the results.
+	MetricsResults []*AnalyticsIntentMetricResult `locationName:"metricsResults" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentResult) GoString() string {
+	return s.String()
+}
+
+// SetBinKeys sets the BinKeys field's value.
+func (s *AnalyticsIntentResult) SetBinKeys(v []*AnalyticsBinKey) *AnalyticsIntentResult {
+	s.BinKeys = v
+	return s
+}
+
+// SetGroupByKeys sets the GroupByKeys field's value.
+func (s *AnalyticsIntentResult) SetGroupByKeys(v []*AnalyticsIntentGroupByKey) *AnalyticsIntentResult {
+	s.GroupByKeys = v
+	return s
+}
+
+// SetMetricsResults sets the MetricsResults field's value.
+func (s *AnalyticsIntentResult) SetMetricsResults(v []*AnalyticsIntentMetricResult) *AnalyticsIntentResult {
+	s.MetricsResults = v
+	return s
+}
+
+// Contains fields describing a condition by which to filter the intent stages.
+// The expression may be understood as name operator values. For example:
+//
+//   - IntentName CO Book – The intent name contains the string "Book."
+//
+//   - BotVersion EQ 2 – The bot version is equal to two.
+//
+// The operators that each filter supports are listed below:
+//
+//   - BotAlias – EQ.
+//
+//   - BotVersion – EQ.
+//
+//   - LocaleId – EQ.
+//
+//   - Modality – EQ.
+//
+//   - Channel – EQ.
+//
+//   - SessionId – EQ.
+//
+//   - OriginatingRequestId – EQ.
+//
+//   - IntentName – EQ, CO.
+//
+//   - IntentStageName – EQ, CO.
+type AnalyticsIntentStageFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The category by which to filter the intent stages. The descriptions for each
+	// option are as follows:
+	//
+	//    * BotAlias – The name of the bot alias.
+	//
+	//    * BotVersion – The version of the bot.
+	//
+	//    * LocaleId – The locale of the bot.
+	//
+	//    * Modality – The modality of the session with the bot (audio, DTMF,
+	//    or text).
+	//
+	//    * Channel – The channel that the bot is integrated with.
+	//
+	//    * SessionId – The identifier of the session with the bot.
+	//
+	//    * OriginatingRequestId – The identifier of the first request in a session.
+	//
+	//    * IntentName – The name of the intent.
+	//
+	//    * IntentStageName – The stage in the intent.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsIntentStageFilterName"`
+
+	// The operation by which to filter the category. The following operations are
+	// possible:
+	//
+	//    * CO – Contains
+	//
+	//    * EQ – Equals
+	//
+	//    * GT – Greater than
+	//
+	//    * LT – Less than
+	//
+	// The operators that each filter supports are listed below:
+	//
+	//    * BotAlias – EQ.
+	//
+	//    * BotVersion – EQ.
+	//
+	//    * LocaleId – EQ.
+	//
+	//    * Modality – EQ.
+	//
+	//    * Channel – EQ.
+	//
+	//    * SessionId – EQ.
+	//
+	//    * OriginatingRequestId – EQ.
+	//
+	//    * IntentName – EQ, CO.
+	//
+	//    * IntentStageName – EQ, CO.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"AnalyticsFilterOperator"`
+
+	// An array containing the values of the category by which to apply the operator
+	// to filter the results. You can provide multiple values if the operator is
+	// EQ or CO. If you provide multiple values, you filter for results that equal/contain
+	// any of the values. For example, if the name, operator, and values fields
+	// are Modality, EQ, and [Speech, Text], the operation filters for results where
+	// the modality was either Speech or Text.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsIntentStageFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsIntentStageFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentStageFilter) SetName(v string) *AnalyticsIntentStageFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *AnalyticsIntentStageFilter) SetOperator(v string) *AnalyticsIntentStageFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AnalyticsIntentStageFilter) SetValues(v []*string) *AnalyticsIntentStageFilter {
+	s.Values = v
+	return s
+}
+
+// Contains the category by which the intent stage analytics and the values
+// for that category were grouped.
+type AnalyticsIntentStageGroupByKey struct {
+	_ struct{} `type:"structure"`
+
+	// A category by which the intent stage analytics were grouped.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsIntentStageField"`
+
+	// A member of the category by which the intent stage analytics were grouped.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageGroupByKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageGroupByKey) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentStageGroupByKey) SetName(v string) *AnalyticsIntentStageGroupByKey {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsIntentStageGroupByKey) SetValue(v string) *AnalyticsIntentStageGroupByKey {
+	s.Value = &v
+	return s
+}
+
+// Contains the category by which to group the intent stages.
+type AnalyticsIntentStageGroupBySpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to group the intent stages by their name or the intent
+	// to which the session was switched.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsIntentStageField"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageGroupBySpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageGroupBySpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsIntentStageGroupBySpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsIntentStageGroupBySpecification"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentStageGroupBySpecification) SetName(v string) *AnalyticsIntentStageGroupBySpecification {
+	s.Name = &v
+	return s
+}
+
+// Contains the metric and the summary statistic you want to calculate, and
+// the order in which to sort the results, for the intent stages across the
+// user sessions with the bot.
+type AnalyticsIntentStageMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The metric for which you want to get intent stage summary statistics. See
+	// Key definitions (https://docs.aws.amazon.com/lexv2/latest/dg/analytics-key-definitions.html)
+	// for more details about these metrics.
+	//
+	//    * Count – The number of times the intent stage occurred.
+	//
+	//    * Success – The number of times the intent stage succeeded.
+	//
+	//    * Failure – The number of times the intent stage failed.
+	//
+	//    * Dropped – The number of times the user dropped the intent stage.
+	//
+	//    * Retry – The number of times the bot tried to elicit a response from
+	//    the user at this stage.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsIntentStageMetricName"`
+
+	// Specifies whether to sort the results in ascending or descending order of
+	// the summary statistic (value in the response).
+	Order *string `locationName:"order" type:"string" enum:"AnalyticsSortOrder"`
+
+	// The summary statistic to calculate.
+	//
+	//    * Sum – The total count for the category you provide in name.
+	//
+	//    * Average – The total count divided by the number of intent stages in
+	//    the category you provide in name.
+	//
+	//    * Max – The highest count in the category you provide in name.
+	//
+	// Statistic is a required field
+	Statistic *string `locationName:"statistic" type:"string" required:"true" enum:"AnalyticsMetricStatistic"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsIntentStageMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsIntentStageMetric"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Statistic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistic"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentStageMetric) SetName(v string) *AnalyticsIntentStageMetric {
+	s.Name = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *AnalyticsIntentStageMetric) SetOrder(v string) *AnalyticsIntentStageMetric {
+	s.Order = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AnalyticsIntentStageMetric) SetStatistic(v string) *AnalyticsIntentStageMetric {
+	s.Statistic = &v
+	return s
+}
+
+// An object containing the results for an intent stage metric you requested.
+type AnalyticsIntentStageMetricResult struct {
+	_ struct{} `type:"structure"`
+
+	// The metric that you requested.
+	//
+	//    * Count – The number of times the intent stage occurred.
+	//
+	//    * Success – The number of times the intent stage succeeded.
+	//
+	//    * Failure – The number of times the intent stage failed.
+	//
+	//    * Dropped – The number of times the user dropped the intent stage.
+	//
+	//    * Retry – The number of times the bot tried to elicit a response from
+	//    the user at this stage.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsIntentStageMetricName"`
+
+	// The summary statistic that you requested to calculate.
+	//
+	//    * Sum – The total count for the category you provide in name.
+	//
+	//    * Average – The total count divided by the number of intent stages in
+	//    the category you provide in name.
+	//
+	//    * Max – The highest count in the category you provide in name.
+	Statistic *string `locationName:"statistic" type:"string" enum:"AnalyticsMetricStatistic"`
+
+	// The value of the summary statistic for the metric that you requested.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageMetricResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageMetricResult) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsIntentStageMetricResult) SetName(v string) *AnalyticsIntentStageMetricResult {
+	s.Name = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AnalyticsIntentStageMetricResult) SetStatistic(v string) *AnalyticsIntentStageMetricResult {
+	s.Statistic = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsIntentStageMetricResult) SetValue(v float64) *AnalyticsIntentStageMetricResult {
+	s.Value = &v
+	return s
+}
+
+// An object containing the results for the intent stage metrics you requested
+// and the bin and/or group they refer to, if applicable.
+type AnalyticsIntentStageResult struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects containing the criteria you requested for binning results
+	// and the values of the bins.
+	BinKeys []*AnalyticsBinKey `locationName:"binKeys" min:"1" type:"list"`
+
+	// A list of objects containing the criteria you requested for grouping results
+	// and the values of the bins.
+	GroupByKeys []*AnalyticsIntentStageGroupByKey `locationName:"groupByKeys" type:"list"`
+
+	// A list of objects, each of which contains a metric you want to list, the
+	// statistic for the metric you want to return, and the method by which to organize
+	// the results.
+	MetricsResults []*AnalyticsIntentStageMetricResult `locationName:"metricsResults" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsIntentStageResult) GoString() string {
+	return s.String()
+}
+
+// SetBinKeys sets the BinKeys field's value.
+func (s *AnalyticsIntentStageResult) SetBinKeys(v []*AnalyticsBinKey) *AnalyticsIntentStageResult {
+	s.BinKeys = v
+	return s
+}
+
+// SetGroupByKeys sets the GroupByKeys field's value.
+func (s *AnalyticsIntentStageResult) SetGroupByKeys(v []*AnalyticsIntentStageGroupByKey) *AnalyticsIntentStageResult {
+	s.GroupByKeys = v
+	return s
+}
+
+// SetMetricsResults sets the MetricsResults field's value.
+func (s *AnalyticsIntentStageResult) SetMetricsResults(v []*AnalyticsIntentStageMetricResult) *AnalyticsIntentStageResult {
+	s.MetricsResults = v
+	return s
+}
+
+// Contains fields describing a condition by which to filter the paths. The
+// expression may be understood as name operator values. For example:
+//
+//   - LocaleId EQ en – The locale is "en".
+//
+//   - BotVersion EQ 2 – The bot version is equal to two.
+//
+// The operators that each filter supports are listed below:
+//
+//   - BotAlias – EQ.
+//
+//   - BotVersion – EQ.
+//
+//   - LocaleId – EQ.
+//
+//   - Modality – EQ.
+//
+//   - Channel – EQ.
+type AnalyticsPathFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The category by which to filter the intent paths. The descriptions for each
+	// option are as follows:
+	//
+	//    * BotAlias – The name of the bot alias.
+	//
+	//    * BotVersion – The version of the bot.
+	//
+	//    * LocaleId – The locale of the bot.
+	//
+	//    * Modality – The modality of the session with the bot (audio, DTMF,
+	//    or text).
+	//
+	//    * Channel – The channel that the bot is integrated with.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsCommonFilterName"`
+
+	// The operation by which to filter the category. The following operations are
+	// possible:
+	//
+	//    * CO – Contains
+	//
+	//    * EQ – Equals
+	//
+	//    * GT – Greater than
+	//
+	//    * LT – Less than
+	//
+	// The operators that each filter supports are listed below:
+	//
+	//    * BotAlias – EQ.
+	//
+	//    * BotVersion – EQ.
+	//
+	//    * LocaleId – EQ.
+	//
+	//    * Modality – EQ.
+	//
+	//    * Channel – EQ.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"AnalyticsFilterOperator"`
+
+	// An array containing the values of the category by which to apply the operator
+	// to filter the results. You can provide multiple values if the operator is
+	// EQ or CO. If you provide multiple values, you filter for results that equal/contain
+	// any of the values. For example, if the name, operator, and values fields
+	// are Modality, EQ, and [Speech, Text], the operation filters for results where
+	// the modality was either Speech or Text.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsPathFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsPathFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsPathFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsPathFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsPathFilter) SetName(v string) *AnalyticsPathFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *AnalyticsPathFilter) SetOperator(v string) *AnalyticsPathFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AnalyticsPathFilter) SetValues(v []*string) *AnalyticsPathFilter {
+	s.Values = v
+	return s
+}
+
+// Contains fields describing a condition by which to filter the sessions. The
+// expression may be understood as name operator values. For example:
+//
+//   - LocaleId EQ en – The locale is "en".
+//
+//   - Duration GT 200 – The duration is greater than 200 seconds.
+//
+// The operators that each filter supports are listed below:
+//
+//   - BotAlias – EQ.
+//
+//   - BotVersion – EQ.
+//
+//   - LocaleId – EQ.
+//
+//   - Modality – EQ.
+//
+//   - Channel – EQ.
+//
+//   - Duration – EQ, GT, LT.
+//
+//   - conversationEndState – EQ, CO.
+//
+//   - SessionId – EQ.
+//
+//   - OriginatingRequestId – EQ.
+//
+//   - IntentPath – EQ.
+type AnalyticsSessionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The category by which to filter the sessions. The descriptions for each option
+	// are as follows:
+	//
+	//    * BotAlias – The name of the bot alias.
+	//
+	//    * BotVersion – The version of the bot.
+	//
+	//    * LocaleId – The locale of the bot.
+	//
+	//    * Modality – The modality of the session with the bot (audio, DTMF,
+	//    or text).
+	//
+	//    * Channel – The channel that the bot is integrated with.
+	//
+	//    * Duration – The duration of the session.
+	//
+	//    * conversationEndState – The final state of the session.
+	//
+	//    * SessionId – The identifier of the session with the bot.
+	//
+	//    * OriginatingRequestId – The identifier of the first request in a session.
+	//
+	//    * IntentPath – The order of intents taken in a session.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsSessionFilterName"`
+
+	// The operation by which to filter the category. The following operations are
+	// possible:
+	//
+	//    * CO – Contains
+	//
+	//    * EQ – Equals
+	//
+	//    * GT – Greater than
+	//
+	//    * LT – Less than
+	//
+	// The operators that each filter supports are listed below:
+	//
+	//    * BotAlias – EQ.
+	//
+	//    * BotVersion – EQ.
+	//
+	//    * LocaleId – EQ.
+	//
+	//    * Modality – EQ.
+	//
+	//    * Channel – EQ.
+	//
+	//    * Duration – EQ, GT, LT.
+	//
+	//    * conversationEndState – EQ, CO.
+	//
+	//    * SessionId – EQ.
+	//
+	//    * OriginatingRequestId – EQ.
+	//
+	//    * IntentPath – EQ.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"AnalyticsFilterOperator"`
+
+	// An array containing the values of the category by which to apply the operator
+	// to filter the results. You can provide multiple values if the operator is
+	// EQ or CO. If you provide multiple values, you filter for results that equal/contain
+	// any of the values. For example, if the name, operator, and values fields
+	// are Modality, EQ, and [Speech, Text], the operation filters for results where
+	// the modality was either Speech or Text.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsSessionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsSessionFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsSessionFilter) SetName(v string) *AnalyticsSessionFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *AnalyticsSessionFilter) SetOperator(v string) *AnalyticsSessionFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AnalyticsSessionFilter) SetValues(v []*string) *AnalyticsSessionFilter {
+	s.Values = v
+	return s
+}
+
+// Contains the category by which the session analytics were grouped and a member
+// of that category.
+type AnalyticsSessionGroupByKey struct {
+	_ struct{} `type:"structure"`
+
+	// The category by which the session analytics were grouped.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsSessionField"`
+
+	// A member of the category by which the session analytics were grouped.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionGroupByKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionGroupByKey) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsSessionGroupByKey) SetName(v string) *AnalyticsSessionGroupByKey {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsSessionGroupByKey) SetValue(v string) *AnalyticsSessionGroupByKey {
+	s.Value = &v
+	return s
+}
+
+// Contains the category by which to group the sessions.
+type AnalyticsSessionGroupBySpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to group the session by their end state or their locale.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsSessionField"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionGroupBySpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionGroupBySpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsSessionGroupBySpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsSessionGroupBySpecification"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsSessionGroupBySpecification) SetName(v string) *AnalyticsSessionGroupBySpecification {
+	s.Name = &v
+	return s
+}
+
+// Contains the metric and the summary statistic you want to calculate, and
+// the order in which to sort the results, for the user sessions with the bot.
+type AnalyticsSessionMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The metric for which you want to get session summary statistics.
+	//
+	//    * Count – The number of sessions.
+	//
+	//    * Success – The number of sessions that succeeded.
+	//
+	//    * Failure – The number of sessions that failed.
+	//
+	//    * Dropped – The number of sessions that the user dropped.
+	//
+	//    * Duration – The duration of sessions.
+	//
+	//    * TurnsPerSession – The number of turns in the sessions.
+	//
+	//    * Concurrency – The number of sessions occurring in the same period
+	//    of time.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsSessionMetricName"`
+
+	// Specifies whether to sort the results in ascending or descending order.
+	Order *string `locationName:"order" type:"string" enum:"AnalyticsSortOrder"`
+
+	// The summary statistic to calculate.
+	//
+	//    * Sum – The total count for the category you provide in name.
+	//
+	//    * Average – The total count divided by the number of sessions in the
+	//    category you provide in name.
+	//
+	//    * Max – The highest count in the category you provide in name.
+	//
+	// Statistic is a required field
+	Statistic *string `locationName:"statistic" type:"string" required:"true" enum:"AnalyticsMetricStatistic"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsSessionMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsSessionMetric"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Statistic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistic"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsSessionMetric) SetName(v string) *AnalyticsSessionMetric {
+	s.Name = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *AnalyticsSessionMetric) SetOrder(v string) *AnalyticsSessionMetric {
+	s.Order = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AnalyticsSessionMetric) SetStatistic(v string) *AnalyticsSessionMetric {
+	s.Statistic = &v
+	return s
+}
+
+// An object containing the results for a session metric you requested.
+type AnalyticsSessionMetricResult struct {
+	_ struct{} `type:"structure"`
+
+	// The metric that you requested.
+	//
+	//    * Count – The number of sessions.
+	//
+	//    * Success – The number of sessions that succeeded.
+	//
+	//    * Failure – The number of sessions that failed.
+	//
+	//    * Dropped – The number of sessions that the user dropped.
+	//
+	//    * Duration – The duration of sessions.
+	//
+	//    * TurnPersession – The number of turns in the sessions.
+	//
+	//    * Concurrency – The number of sessions occurring in the same period
+	//    of time.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsSessionMetricName"`
+
+	// The summary statistic that you requested to calculate.
+	//
+	//    * Sum – The total count for the category you provide in name.
+	//
+	//    * Average – The total count divided by the number of sessions in the
+	//    category you provide in name.
+	//
+	//    * Max – The highest count in the category you provide in name.
+	Statistic *string `locationName:"statistic" type:"string" enum:"AnalyticsMetricStatistic"`
+
+	// The value of the summary statistic for the metric that you requested.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionMetricResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionMetricResult) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsSessionMetricResult) SetName(v string) *AnalyticsSessionMetricResult {
+	s.Name = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AnalyticsSessionMetricResult) SetStatistic(v string) *AnalyticsSessionMetricResult {
+	s.Statistic = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsSessionMetricResult) SetValue(v float64) *AnalyticsSessionMetricResult {
+	s.Value = &v
+	return s
+}
+
+// An object containing the results for the session metrics you requested and
+// the bin and/or group(s) they refer to, if applicable.
+type AnalyticsSessionResult struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects containing the criteria you requested for binning results
+	// and the values of the bins.
+	BinKeys []*AnalyticsBinKey `locationName:"binKeys" min:"1" type:"list"`
+
+	// A list of objects containing the criteria you requested for grouping results
+	// and the values of the bins.
+	GroupByKeys []*AnalyticsSessionGroupByKey `locationName:"groupByKeys" type:"list"`
+
+	// A list of objects, each of which contains a metric you want to list, the
+	// statistic for the metric you want to return, and the method by which to organize
+	// the results.
+	MetricsResults []*AnalyticsSessionMetricResult `locationName:"metricsResults" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsSessionResult) GoString() string {
+	return s.String()
+}
+
+// SetBinKeys sets the BinKeys field's value.
+func (s *AnalyticsSessionResult) SetBinKeys(v []*AnalyticsBinKey) *AnalyticsSessionResult {
+	s.BinKeys = v
+	return s
+}
+
+// SetGroupByKeys sets the GroupByKeys field's value.
+func (s *AnalyticsSessionResult) SetGroupByKeys(v []*AnalyticsSessionGroupByKey) *AnalyticsSessionResult {
+	s.GroupByKeys = v
+	return s
+}
+
+// SetMetricsResults sets the MetricsResults field's value.
+func (s *AnalyticsSessionResult) SetMetricsResults(v []*AnalyticsSessionMetricResult) *AnalyticsSessionResult {
+	s.MetricsResults = v
+	return s
+}
+
+// An object that specifies the last used intent at the time of the utterance
+// as an attribute to return.
+type AnalyticsUtteranceAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// An attribute to return. The only available attribute is the intent that the
+	// bot mapped the utterance to.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsUtteranceAttributeName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceAttribute) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsUtteranceAttribute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsUtteranceAttribute"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsUtteranceAttribute) SetName(v string) *AnalyticsUtteranceAttribute {
+	s.Name = &v
+	return s
+}
+
+// An object containing the intent that the bot mapped the utterance to.
+type AnalyticsUtteranceAttributeResult struct {
+	_ struct{} `type:"structure"`
+
+	// The intent that the bot mapped the utterance to.
+	LastUsedIntent *string `locationName:"lastUsedIntent" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceAttributeResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceAttributeResult) GoString() string {
+	return s.String()
+}
+
+// SetLastUsedIntent sets the LastUsedIntent field's value.
+func (s *AnalyticsUtteranceAttributeResult) SetLastUsedIntent(v string) *AnalyticsUtteranceAttributeResult {
+	s.LastUsedIntent = &v
+	return s
+}
+
+// Contains fields describing a condition by which to filter the utterances.
+// The expression may be understood as name operator values. For example:
+//
+//   - LocaleId EQ Book – The locale is the string "en".
+//
+//   - UtteranceText CO help – The text of the utterance contains the string
+//     "help".
+//
+// The operators that each filter supports are listed below:
+//
+//   - BotAlias – EQ.
+//
+//   - BotVersion – EQ.
+//
+//   - LocaleId – EQ.
+//
+//   - Modality – EQ.
+//
+//   - Channel – EQ.
+//
+//   - SessionId – EQ.
+//
+//   - OriginatingRequestId – EQ.
+//
+//   - UtteranceState – EQ.
+//
+//   - UtteranceText – EQ, CO.
+type AnalyticsUtteranceFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The category by which to filter the utterances. The descriptions for each
+	// option are as follows:
+	//
+	//    * BotAlias – The name of the bot alias.
+	//
+	//    * BotVersion – The version of the bot.
+	//
+	//    * LocaleId – The locale of the bot.
+	//
+	//    * Modality – The modality of the session with the bot (audio, DTMF,
+	//    or text).
+	//
+	//    * Channel – The channel that the bot is integrated with.
+	//
+	//    * SessionId – The identifier of the session with the bot.
+	//
+	//    * OriginatingRequestId – The identifier of the first request in a session.
+	//
+	//    * UtteranceState – The state of the utterance.
+	//
+	//    * UtteranceText – The text in the utterance.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsUtteranceFilterName"`
+
+	// The operation by which to filter the category. The following operations are
+	// possible:
+	//
+	//    * CO – Contains
+	//
+	//    * EQ – Equals
+	//
+	//    * GT – Greater than
+	//
+	//    * LT – Less than
+	//
+	// The operators that each filter supports are listed below:
+	//
+	//    * BotAlias – EQ.
+	//
+	//    * BotVersion – EQ.
+	//
+	//    * LocaleId – EQ.
+	//
+	//    * Modality – EQ.
+	//
+	//    * Channel – EQ.
+	//
+	//    * SessionId – EQ.
+	//
+	//    * OriginatingRequestId – EQ.
+	//
+	//    * UtteranceState – EQ.
+	//
+	//    * UtteranceText – EQ, CO.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"AnalyticsFilterOperator"`
+
+	// An array containing the values of the category by which to apply the operator
+	// to filter the results. You can provide multiple values if the operator is
+	// EQ or CO. If you provide multiple values, you filter for results that equal/contain
+	// any of the values. For example, if the name, operator, and values fields
+	// are Modality, EQ, and [Speech, Text], the operation filters for results where
+	// the modality was either Speech or Text.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsUtteranceFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsUtteranceFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsUtteranceFilter) SetName(v string) *AnalyticsUtteranceFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *AnalyticsUtteranceFilter) SetOperator(v string) *AnalyticsUtteranceFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AnalyticsUtteranceFilter) SetValues(v []*string) *AnalyticsUtteranceFilter {
+	s.Values = v
+	return s
+}
+
+// Contains the category by which the utterance analytics were grouped and the
+// values for that category.
+type AnalyticsUtteranceGroupByKey struct {
+	_ struct{} `type:"structure"`
+
+	// The category by which the utterance analytics were grouped.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsUtteranceField"`
+
+	// A member of the category by which the utterance analytics were grouped.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceGroupByKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceGroupByKey) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsUtteranceGroupByKey) SetName(v string) *AnalyticsUtteranceGroupByKey {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsUtteranceGroupByKey) SetValue(v string) *AnalyticsUtteranceGroupByKey {
+	s.Value = &v
+	return s
+}
+
+// Contains the category by which to group the utterances.
+type AnalyticsUtteranceGroupBySpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to group the utterances by their text or their state.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsUtteranceField"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceGroupBySpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceGroupBySpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsUtteranceGroupBySpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsUtteranceGroupBySpecification"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsUtteranceGroupBySpecification) SetName(v string) *AnalyticsUtteranceGroupBySpecification {
+	s.Name = &v
+	return s
+}
+
+// Contains the metric and the summary statistic you want to calculate, and
+// the order in which to sort the results, for the utterances across the user
+// sessions with the bot.
+type AnalyticsUtteranceMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The metric for which you want to get utterance summary statistics.
+	//
+	//    * Count – The number of utterances.
+	//
+	//    * Missed – The number of utterances that Amazon Lex failed to recognize.
+	//
+	//    * Detected – The number of utterances that Amazon Lex managed to detect.
+	//
+	//    * UtteranceTimestamp – The date and time of the utterance.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsUtteranceMetricName"`
+
+	// Specifies whether to sort the results in ascending or descending order.
+	Order *string `locationName:"order" type:"string" enum:"AnalyticsSortOrder"`
+
+	// The summary statistic to calculate.
+	//
+	//    * Sum – The total count for the category you provide in name.
+	//
+	//    * Average – The total count divided by the number of utterances in the
+	//    category you provide in name.
+	//
+	//    * Max – The highest count in the category you provide in name.
+	//
+	// Statistic is a required field
+	Statistic *string `locationName:"statistic" type:"string" required:"true" enum:"AnalyticsMetricStatistic"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyticsUtteranceMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyticsUtteranceMetric"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Statistic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistic"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsUtteranceMetric) SetName(v string) *AnalyticsUtteranceMetric {
+	s.Name = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *AnalyticsUtteranceMetric) SetOrder(v string) *AnalyticsUtteranceMetric {
+	s.Order = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AnalyticsUtteranceMetric) SetStatistic(v string) *AnalyticsUtteranceMetric {
+	s.Statistic = &v
+	return s
+}
+
+// An object containing the results for the utterance metric you requested.
+type AnalyticsUtteranceMetricResult struct {
+	_ struct{} `type:"structure"`
+
+	// The metric that you requested.
+	//
+	//    * Count – The number of utterances.
+	//
+	//    * Missed – The number of utterances that Amazon Lex failed to recognize.
+	//
+	//    * Detected – The number of utterances that Amazon Lex managed to detect.
+	//
+	//    * UtteranceTimeStamp – The date and time of the utterance.
+	Name *string `locationName:"name" type:"string" enum:"AnalyticsUtteranceMetricName"`
+
+	// The summary statistic that you requested to calculate.
+	//
+	//    * Sum – The total count for the category you provide in name.
+	//
+	//    * Average – The total count divided by the number of utterances in the
+	//    category you provide in name.
+	//
+	//    * Max – The highest count in the category you provide in name.
+	Statistic *string `locationName:"statistic" type:"string" enum:"AnalyticsMetricStatistic"`
+
+	// The value of the summary statistic for the metric that you requested.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceMetricResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceMetricResult) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnalyticsUtteranceMetricResult) SetName(v string) *AnalyticsUtteranceMetricResult {
+	s.Name = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AnalyticsUtteranceMetricResult) SetStatistic(v string) *AnalyticsUtteranceMetricResult {
+	s.Statistic = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AnalyticsUtteranceMetricResult) SetValue(v float64) *AnalyticsUtteranceMetricResult {
+	s.Value = &v
+	return s
+}
+
+// An object containing the results for the utterance metrics you requested
+// and the bin and/or group(s) they refer to, if applicable.
+type AnalyticsUtteranceResult struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects containing information about the last used intent at the
+	// time of an utterance.
+	AttributeResults []*AnalyticsUtteranceAttributeResult `locationName:"attributeResults" type:"list"`
+
+	// A list of objects containing the criteria you requested for binning results
+	// and the values of the bins.
+	BinKeys []*AnalyticsBinKey `locationName:"binKeys" min:"1" type:"list"`
+
+	// A list of objects containing the criteria you requested for grouping results
+	// and the values of the bins.
+	GroupByKeys []*AnalyticsUtteranceGroupByKey `locationName:"groupByKeys" type:"list"`
+
+	// A list of objects, each of which contains a metric you want to list, the
+	// statistic for the metric you want to return, and the method by which to organize
+	// the results.
+	MetricsResults []*AnalyticsUtteranceMetricResult `locationName:"metricsResults" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyticsUtteranceResult) GoString() string {
+	return s.String()
+}
+
+// SetAttributeResults sets the AttributeResults field's value.
+func (s *AnalyticsUtteranceResult) SetAttributeResults(v []*AnalyticsUtteranceAttributeResult) *AnalyticsUtteranceResult {
+	s.AttributeResults = v
+	return s
+}
+
+// SetBinKeys sets the BinKeys field's value.
+func (s *AnalyticsUtteranceResult) SetBinKeys(v []*AnalyticsBinKey) *AnalyticsUtteranceResult {
+	s.BinKeys = v
+	return s
+}
+
+// SetGroupByKeys sets the GroupByKeys field's value.
+func (s *AnalyticsUtteranceResult) SetGroupByKeys(v []*AnalyticsUtteranceGroupByKey) *AnalyticsUtteranceResult {
+	s.GroupByKeys = v
+	return s
+}
+
+// SetMetricsResults sets the MetricsResults field's value.
+func (s *AnalyticsUtteranceResult) SetMetricsResults(v []*AnalyticsUtteranceMetricResult) *AnalyticsUtteranceResult {
+	s.MetricsResults = v
 	return s
 }
 
@@ -25077,6 +28447,38 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object containing the name of an intent that was invoked.
+type InvokedIntentSample struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an intent that was invoked.
+	IntentName *string `locationName:"intentName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvokedIntentSample) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvokedIntentSample) GoString() string {
+	return s.String()
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *InvokedIntentSample) SetIntentName(v string) *InvokedIntentSample {
+	s.IntentName = &v
+	return s
+}
+
 // Provides configuration information for the AMAZON.KendraSearchIntent intent.
 // When you use this intent, Amazon Lex searches the specified Amazon Kendra
 // index and returns documents from the index that match the user's utterance.
@@ -27256,6 +30658,697 @@ func (s *ListImportsOutput) SetNextToken(v string) *ListImportsOutput {
 	return s
 }
 
+type ListIntentMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects, each of which contains specifications for organizing the
+	// results by time.
+	BinBy []*AnalyticsBinBySpecification `locationName:"binBy" min:"1" type:"list"`
+
+	// The identifier for the bot for which you want to retrieve intent metrics.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The date and time that marks the end of the range of time for which you want
+	// to see intent metrics.
+	//
+	// EndDateTime is a required field
+	EndDateTime *time.Time `locationName:"endDateTime" type:"timestamp" required:"true"`
+
+	// A list of objects, each of which describes a condition by which you want
+	// to filter the results.
+	Filters []*AnalyticsIntentFilter `locationName:"filters" min:"1" type:"list"`
+
+	// A list of objects, each of which specifies how to group the results. You
+	// can group by the following criteria:
+	//
+	//    * IntentName – The name of the intent.
+	//
+	//    * IntentEndState – The final state of the intent. The possible end states
+	//    are detailed in Key definitions (https://docs.aws.amazon.com/analytics-key-definitions-intents)
+	//    in the user guide.
+	GroupBy []*AnalyticsIntentGroupBySpecification `locationName:"groupBy" min:"1" type:"list"`
+
+	// The maximum number of results to return in each page of results. If there
+	// are fewer results than the maximum page size, only the actual number of results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A list of objects, each of which contains a metric you want to list, the
+	// statistic for the metric you want to return, and the order by which to organize
+	// the results.
+	//
+	// Metrics is a required field
+	Metrics []*AnalyticsIntentMetric `locationName:"metrics" min:"1" type:"list" required:"true"`
+
+	// If the response from the ListIntentMetrics operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListIntentMetrics
+	// request to return the next page of results. For a complete set of results,
+	// call the ListIntentMetrics operation until the nextToken returned in the
+	// response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The timestamp that marks the beginning of the range of time for which you
+	// want to see intent metrics.
+	//
+	// StartDateTime is a required field
+	StartDateTime *time.Time `locationName:"startDateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIntentMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIntentMetricsInput"}
+	if s.BinBy != nil && len(s.BinBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BinBy", 1))
+	}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.EndDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDateTime"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.GroupBy != nil && len(s.GroupBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupBy", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Metrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metrics"))
+	}
+	if s.Metrics != nil && len(s.Metrics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metrics", 1))
+	}
+	if s.StartDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDateTime"))
+	}
+	if s.BinBy != nil {
+		for i, v := range s.BinBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BinBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GroupBy != nil {
+		for i, v := range s.GroupBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GroupBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBinBy sets the BinBy field's value.
+func (s *ListIntentMetricsInput) SetBinBy(v []*AnalyticsBinBySpecification) *ListIntentMetricsInput {
+	s.BinBy = v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListIntentMetricsInput) SetBotId(v string) *ListIntentMetricsInput {
+	s.BotId = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ListIntentMetricsInput) SetEndDateTime(v time.Time) *ListIntentMetricsInput {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListIntentMetricsInput) SetFilters(v []*AnalyticsIntentFilter) *ListIntentMetricsInput {
+	s.Filters = v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *ListIntentMetricsInput) SetGroupBy(v []*AnalyticsIntentGroupBySpecification) *ListIntentMetricsInput {
+	s.GroupBy = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIntentMetricsInput) SetMaxResults(v int64) *ListIntentMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ListIntentMetricsInput) SetMetrics(v []*AnalyticsIntentMetric) *ListIntentMetricsInput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIntentMetricsInput) SetNextToken(v string) *ListIntentMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ListIntentMetricsInput) SetStartDateTime(v time.Time) *ListIntentMetricsInput {
+	s.StartDateTime = &v
+	return s
+}
+
+type ListIntentMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the bot for which you retrieved intent metrics.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// If the response from the ListIntentMetrics operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListIntentMetrics
+	// request to return the next page of results. For a complete set of results,
+	// call the ListIntentMetrics operation until the nextToken returned in the
+	// response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The results for the intent metrics.
+	Results []*AnalyticsIntentResult `locationName:"results" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListIntentMetricsOutput) SetBotId(v string) *ListIntentMetricsOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIntentMetricsOutput) SetNextToken(v string) *ListIntentMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *ListIntentMetricsOutput) SetResults(v []*AnalyticsIntentResult) *ListIntentMetricsOutput {
+	s.Results = v
+	return s
+}
+
+type ListIntentPathsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the bot for which you want to retrieve intent path metrics.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The date and time that marks the end of the range of time for which you want
+	// to see intent path metrics.
+	//
+	// EndDateTime is a required field
+	EndDateTime *time.Time `locationName:"endDateTime" type:"timestamp" required:"true"`
+
+	// A list of objects, each describes a condition by which you want to filter
+	// the results.
+	Filters []*AnalyticsPathFilter `locationName:"filters" min:"1" type:"list"`
+
+	// The intent path for which you want to retrieve metrics. Use a forward slash
+	// to separate intents in the path. For example:
+	//
+	//    * /BookCar
+	//
+	//    * /BookCar/BookHotel
+	//
+	//    * /BookHotel/BookCar
+	//
+	// IntentPath is a required field
+	IntentPath *string `locationName:"intentPath" min:"1" type:"string" required:"true"`
+
+	// The date and time that marks the beginning of the range of time for which
+	// you want to see intent path metrics.
+	//
+	// StartDateTime is a required field
+	StartDateTime *time.Time `locationName:"startDateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentPathsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentPathsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIntentPathsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIntentPathsInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.EndDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDateTime"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.IntentPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntentPath"))
+	}
+	if s.IntentPath != nil && len(*s.IntentPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntentPath", 1))
+	}
+	if s.StartDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDateTime"))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListIntentPathsInput) SetBotId(v string) *ListIntentPathsInput {
+	s.BotId = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ListIntentPathsInput) SetEndDateTime(v time.Time) *ListIntentPathsInput {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListIntentPathsInput) SetFilters(v []*AnalyticsPathFilter) *ListIntentPathsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIntentPath sets the IntentPath field's value.
+func (s *ListIntentPathsInput) SetIntentPath(v string) *ListIntentPathsInput {
+	s.IntentPath = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ListIntentPathsInput) SetStartDateTime(v time.Time) *ListIntentPathsInput {
+	s.StartDateTime = &v
+	return s
+}
+
+type ListIntentPathsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects, each of which contains information about a node in the
+	// intent path for which you requested metrics.
+	NodeSummaries []*AnalyticsIntentNodeSummary `locationName:"nodeSummaries" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentPathsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentPathsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNodeSummaries sets the NodeSummaries field's value.
+func (s *ListIntentPathsOutput) SetNodeSummaries(v []*AnalyticsIntentNodeSummary) *ListIntentPathsOutput {
+	s.NodeSummaries = v
+	return s
+}
+
+type ListIntentStageMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects, each of which contains specifications for organizing the
+	// results by time.
+	BinBy []*AnalyticsBinBySpecification `locationName:"binBy" min:"1" type:"list"`
+
+	// The identifier for the bot for which you want to retrieve intent stage metrics.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The date and time that marks the end of the range of time for which you want
+	// to see intent stage metrics.
+	//
+	// EndDateTime is a required field
+	EndDateTime *time.Time `locationName:"endDateTime" type:"timestamp" required:"true"`
+
+	// A list of objects, each of which describes a condition by which you want
+	// to filter the results.
+	Filters []*AnalyticsIntentStageFilter `locationName:"filters" min:"1" type:"list"`
+
+	// A list of objects, each of which specifies how to group the results. You
+	// can group by the following criteria:
+	//
+	//    * IntentStageName – The name of the intent stage.
+	//
+	//    * SwitchedToIntent – The intent to which the conversation was switched
+	//    (if any).
+	GroupBy []*AnalyticsIntentStageGroupBySpecification `locationName:"groupBy" min:"1" type:"list"`
+
+	// The maximum number of results to return in each page of results. If there
+	// are fewer results than the maximum page size, only the actual number of results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A list of objects, each of which contains a metric you want to list, the
+	// statistic for the metric you want to return, and the method by which to organize
+	// the results.
+	//
+	// Metrics is a required field
+	Metrics []*AnalyticsIntentStageMetric `locationName:"metrics" min:"1" type:"list" required:"true"`
+
+	// If the response from the ListIntentStageMetrics operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListIntentStageMetrics
+	// request to return the next page of results. For a complete set of results,
+	// call the ListIntentStageMetrics operation until the nextToken returned in
+	// the response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The date and time that marks the beginning of the range of time for which
+	// you want to see intent stage metrics.
+	//
+	// StartDateTime is a required field
+	StartDateTime *time.Time `locationName:"startDateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentStageMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentStageMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIntentStageMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIntentStageMetricsInput"}
+	if s.BinBy != nil && len(s.BinBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BinBy", 1))
+	}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.EndDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDateTime"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.GroupBy != nil && len(s.GroupBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupBy", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Metrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metrics"))
+	}
+	if s.Metrics != nil && len(s.Metrics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metrics", 1))
+	}
+	if s.StartDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDateTime"))
+	}
+	if s.BinBy != nil {
+		for i, v := range s.BinBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BinBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GroupBy != nil {
+		for i, v := range s.GroupBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GroupBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBinBy sets the BinBy field's value.
+func (s *ListIntentStageMetricsInput) SetBinBy(v []*AnalyticsBinBySpecification) *ListIntentStageMetricsInput {
+	s.BinBy = v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListIntentStageMetricsInput) SetBotId(v string) *ListIntentStageMetricsInput {
+	s.BotId = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ListIntentStageMetricsInput) SetEndDateTime(v time.Time) *ListIntentStageMetricsInput {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListIntentStageMetricsInput) SetFilters(v []*AnalyticsIntentStageFilter) *ListIntentStageMetricsInput {
+	s.Filters = v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *ListIntentStageMetricsInput) SetGroupBy(v []*AnalyticsIntentStageGroupBySpecification) *ListIntentStageMetricsInput {
+	s.GroupBy = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIntentStageMetricsInput) SetMaxResults(v int64) *ListIntentStageMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ListIntentStageMetricsInput) SetMetrics(v []*AnalyticsIntentStageMetric) *ListIntentStageMetricsInput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIntentStageMetricsInput) SetNextToken(v string) *ListIntentStageMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ListIntentStageMetricsInput) SetStartDateTime(v time.Time) *ListIntentStageMetricsInput {
+	s.StartDateTime = &v
+	return s
+}
+
+type ListIntentStageMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the bot for which you retrieved intent stage metrics.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// If the response from the ListIntentStageMetrics operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListIntentStageMetrics
+	// request to return the next page of results. For a complete set of results,
+	// call the ListIntentStageMetrics operation until the nextToken returned in
+	// the response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The results for the intent stage metrics.
+	Results []*AnalyticsIntentStageResult `locationName:"results" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentStageMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIntentStageMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListIntentStageMetricsOutput) SetBotId(v string) *ListIntentStageMetricsOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIntentStageMetricsOutput) SetNextToken(v string) *ListIntentStageMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *ListIntentStageMetricsOutput) SetResults(v []*AnalyticsIntentStageResult) *ListIntentStageMetricsOutput {
+	s.Results = v
+	return s
+}
+
 type ListIntentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27688,6 +31781,477 @@ func (s *ListRecommendedIntentsOutput) SetNextToken(v string) *ListRecommendedIn
 // SetSummaryList sets the SummaryList field's value.
 func (s *ListRecommendedIntentsOutput) SetSummaryList(v []*RecommendedIntentSummary) *ListRecommendedIntentsOutput {
 	s.SummaryList = v
+	return s
+}
+
+type ListSessionAnalyticsDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the bot for which you want to retrieve session analytics.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The date and time that marks the end of the range of time for which you want
+	// to see session analytics.
+	//
+	// EndDateTime is a required field
+	EndDateTime *time.Time `locationName:"endDateTime" type:"timestamp" required:"true"`
+
+	// A list of objects, each of which describes a condition by which you want
+	// to filter the results.
+	Filters []*AnalyticsSessionFilter `locationName:"filters" min:"1" type:"list"`
+
+	// The maximum number of results to return in each page of results. If there
+	// are fewer results than the maximum page size, only the actual number of results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListSessionAnalyticsData operation contains more
+	// results than specified in the maxResults parameter, a token is returned in
+	// the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListSessionAnalyticsData
+	// request to return the next page of results. For a complete set of results,
+	// call the ListSessionAnalyticsData operation until the nextToken returned
+	// in the response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An object specifying the measure and method by which to sort the session
+	// analytics data.
+	SortBy *SessionDataSortBy `locationName:"sortBy" type:"structure"`
+
+	// The date and time that marks the beginning of the range of time for which
+	// you want to see session analytics.
+	//
+	// StartDateTime is a required field
+	StartDateTime *time.Time `locationName:"startDateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionAnalyticsDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionAnalyticsDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSessionAnalyticsDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSessionAnalyticsDataInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.EndDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDateTime"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StartDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDateTime"))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListSessionAnalyticsDataInput) SetBotId(v string) *ListSessionAnalyticsDataInput {
+	s.BotId = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ListSessionAnalyticsDataInput) SetEndDateTime(v time.Time) *ListSessionAnalyticsDataInput {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListSessionAnalyticsDataInput) SetFilters(v []*AnalyticsSessionFilter) *ListSessionAnalyticsDataInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSessionAnalyticsDataInput) SetMaxResults(v int64) *ListSessionAnalyticsDataInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSessionAnalyticsDataInput) SetNextToken(v string) *ListSessionAnalyticsDataInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListSessionAnalyticsDataInput) SetSortBy(v *SessionDataSortBy) *ListSessionAnalyticsDataInput {
+	s.SortBy = v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ListSessionAnalyticsDataInput) SetStartDateTime(v time.Time) *ListSessionAnalyticsDataInput {
+	s.StartDateTime = &v
+	return s
+}
+
+type ListSessionAnalyticsDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot that the sessions belong to.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// If the response from the ListSessionAnalyticsData operation contains more
+	// results than specified in the maxResults parameter, a token is returned in
+	// the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListSessionAnalyticsData
+	// request to return the next page of results. For a complete set of results,
+	// call the ListSessionAnalyticsData operation until the nextToken returned
+	// in the response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of objects, each of which contains information about a session with
+	// the bot.
+	Sessions []*SessionSpecification `locationName:"sessions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionAnalyticsDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionAnalyticsDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListSessionAnalyticsDataOutput) SetBotId(v string) *ListSessionAnalyticsDataOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSessionAnalyticsDataOutput) SetNextToken(v string) *ListSessionAnalyticsDataOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSessions sets the Sessions field's value.
+func (s *ListSessionAnalyticsDataOutput) SetSessions(v []*SessionSpecification) *ListSessionAnalyticsDataOutput {
+	s.Sessions = v
+	return s
+}
+
+type ListSessionMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects, each of which contains specifications for organizing the
+	// results by time.
+	BinBy []*AnalyticsBinBySpecification `locationName:"binBy" min:"1" type:"list"`
+
+	// The identifier for the bot for which you want to retrieve session metrics.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The date and time that marks the end of the range of time for which you want
+	// to see session metrics.
+	//
+	// EndDateTime is a required field
+	EndDateTime *time.Time `locationName:"endDateTime" type:"timestamp" required:"true"`
+
+	// A list of objects, each of which describes a condition by which you want
+	// to filter the results.
+	Filters []*AnalyticsSessionFilter `locationName:"filters" min:"1" type:"list"`
+
+	// A list of objects, each of which specifies how to group the results. You
+	// can group by the following criteria:
+	//
+	//    * ConversationEndState – The final state of the conversation. The possible
+	//    end states are detailed in Key definitions (https://docs.aws.amazon.com/analytics-key-definitions-conversations)
+	//    in the user guide.
+	//
+	//    * LocaleId – The unique identifier of the bot locale.
+	GroupBy []*AnalyticsSessionGroupBySpecification `locationName:"groupBy" min:"1" type:"list"`
+
+	// The maximum number of results to return in each page of results. If there
+	// are fewer results than the maximum page size, only the actual number of results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A list of objects, each of which contains a metric you want to list, the
+	// statistic for the metric you want to return, and the method by which to organize
+	// the results.
+	//
+	// Metrics is a required field
+	Metrics []*AnalyticsSessionMetric `locationName:"metrics" min:"1" type:"list" required:"true"`
+
+	// If the response from the ListSessionMetrics operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListSessionMetrics
+	// request to return the next page of results. For a complete set of results,
+	// call the ListSessionMetrics operation until the nextToken returned in the
+	// response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The date and time that marks the beginning of the range of time for which
+	// you want to see session metrics.
+	//
+	// StartDateTime is a required field
+	StartDateTime *time.Time `locationName:"startDateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSessionMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSessionMetricsInput"}
+	if s.BinBy != nil && len(s.BinBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BinBy", 1))
+	}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.EndDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDateTime"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.GroupBy != nil && len(s.GroupBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupBy", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Metrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metrics"))
+	}
+	if s.Metrics != nil && len(s.Metrics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metrics", 1))
+	}
+	if s.StartDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDateTime"))
+	}
+	if s.BinBy != nil {
+		for i, v := range s.BinBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BinBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GroupBy != nil {
+		for i, v := range s.GroupBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GroupBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBinBy sets the BinBy field's value.
+func (s *ListSessionMetricsInput) SetBinBy(v []*AnalyticsBinBySpecification) *ListSessionMetricsInput {
+	s.BinBy = v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListSessionMetricsInput) SetBotId(v string) *ListSessionMetricsInput {
+	s.BotId = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ListSessionMetricsInput) SetEndDateTime(v time.Time) *ListSessionMetricsInput {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListSessionMetricsInput) SetFilters(v []*AnalyticsSessionFilter) *ListSessionMetricsInput {
+	s.Filters = v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *ListSessionMetricsInput) SetGroupBy(v []*AnalyticsSessionGroupBySpecification) *ListSessionMetricsInput {
+	s.GroupBy = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSessionMetricsInput) SetMaxResults(v int64) *ListSessionMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ListSessionMetricsInput) SetMetrics(v []*AnalyticsSessionMetric) *ListSessionMetricsInput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSessionMetricsInput) SetNextToken(v string) *ListSessionMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ListSessionMetricsInput) SetStartDateTime(v time.Time) *ListSessionMetricsInput {
+	s.StartDateTime = &v
+	return s
+}
+
+type ListSessionMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the bot for which you retrieved session metrics.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// If the response from the ListSessionMetrics operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListSessionMetrics
+	// request to return the next page of results. For a complete set of results,
+	// call the ListSessionMetrics operation until the nextToken returned in the
+	// response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The results for the session metrics.
+	Results []*AnalyticsSessionResult `locationName:"results" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListSessionMetricsOutput) SetBotId(v string) *ListSessionMetricsOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSessionMetricsOutput) SetNextToken(v string) *ListSessionMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *ListSessionMetricsOutput) SetResults(v []*AnalyticsSessionResult) *ListSessionMetricsOutput {
+	s.Results = v
 	return s
 }
 
@@ -28721,6 +33285,502 @@ func (s *ListTestSetsOutput) SetNextToken(v string) *ListTestSetsOutput {
 // SetTestSets sets the TestSets field's value.
 func (s *ListTestSetsOutput) SetTestSets(v []*TestSetSummary) *ListTestSetsOutput {
 	s.TestSets = v
+	return s
+}
+
+type ListUtteranceAnalyticsDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the bot for which you want to retrieve utterance analytics.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The date and time that marks the end of the range of time for which you want
+	// to see utterance analytics.
+	//
+	// EndDateTime is a required field
+	EndDateTime *time.Time `locationName:"endDateTime" type:"timestamp" required:"true"`
+
+	// A list of objects, each of which describes a condition by which you want
+	// to filter the results.
+	Filters []*AnalyticsUtteranceFilter `locationName:"filters" min:"1" type:"list"`
+
+	// The maximum number of results to return in each page of results. If there
+	// are fewer results than the maximum page size, only the actual number of results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListUtteranceAnalyticsData operation contains more
+	// results than specified in the maxResults parameter, a token is returned in
+	// the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListUtteranceAnalyticsData
+	// request to return the next page of results. For a complete set of results,
+	// call the ListUtteranceAnalyticsData operation until the nextToken returned
+	// in the response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An object specifying the measure and method by which to sort the utterance
+	// analytics data.
+	SortBy *UtteranceDataSortBy `locationName:"sortBy" type:"structure"`
+
+	// The date and time that marks the beginning of the range of time for which
+	// you want to see utterance analytics.
+	//
+	// StartDateTime is a required field
+	StartDateTime *time.Time `locationName:"startDateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUtteranceAnalyticsDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUtteranceAnalyticsDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUtteranceAnalyticsDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUtteranceAnalyticsDataInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.EndDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDateTime"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StartDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDateTime"))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListUtteranceAnalyticsDataInput) SetBotId(v string) *ListUtteranceAnalyticsDataInput {
+	s.BotId = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ListUtteranceAnalyticsDataInput) SetEndDateTime(v time.Time) *ListUtteranceAnalyticsDataInput {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListUtteranceAnalyticsDataInput) SetFilters(v []*AnalyticsUtteranceFilter) *ListUtteranceAnalyticsDataInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListUtteranceAnalyticsDataInput) SetMaxResults(v int64) *ListUtteranceAnalyticsDataInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUtteranceAnalyticsDataInput) SetNextToken(v string) *ListUtteranceAnalyticsDataInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListUtteranceAnalyticsDataInput) SetSortBy(v *UtteranceDataSortBy) *ListUtteranceAnalyticsDataInput {
+	s.SortBy = v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ListUtteranceAnalyticsDataInput) SetStartDateTime(v time.Time) *ListUtteranceAnalyticsDataInput {
+	s.StartDateTime = &v
+	return s
+}
+
+type ListUtteranceAnalyticsDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot that the utterances belong to.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// If the response from the ListUtteranceAnalyticsData operation contains more
+	// results than specified in the maxResults parameter, a token is returned in
+	// the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListUtteranceAnalyticsData
+	// request to return the next page of results. For a complete set of results,
+	// call the ListUtteranceAnalyticsData operation until the nextToken returned
+	// in the response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of objects, each of which contains information about an utterance
+	// in a user session with your bot.
+	Utterances []*UtteranceSpecification `locationName:"utterances" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUtteranceAnalyticsDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUtteranceAnalyticsDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListUtteranceAnalyticsDataOutput) SetBotId(v string) *ListUtteranceAnalyticsDataOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUtteranceAnalyticsDataOutput) SetNextToken(v string) *ListUtteranceAnalyticsDataOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUtterances sets the Utterances field's value.
+func (s *ListUtteranceAnalyticsDataOutput) SetUtterances(v []*UtteranceSpecification) *ListUtteranceAnalyticsDataOutput {
+	s.Utterances = v
+	return s
+}
+
+type ListUtteranceMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list containing attributes related to the utterance that you want the response
+	// to return. The following attributes are possible:
+	//
+	//    * LastUsedIntent – The last used intent at the time of the utterance.
+	Attributes []*AnalyticsUtteranceAttribute `locationName:"attributes" min:"1" type:"list"`
+
+	// A list of objects, each of which contains specifications for organizing the
+	// results by time.
+	BinBy []*AnalyticsBinBySpecification `locationName:"binBy" min:"1" type:"list"`
+
+	// The identifier for the bot for which you want to retrieve utterance metrics.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The date and time that marks the end of the range of time for which you want
+	// to see utterance metrics.
+	//
+	// EndDateTime is a required field
+	EndDateTime *time.Time `locationName:"endDateTime" type:"timestamp" required:"true"`
+
+	// A list of objects, each of which describes a condition by which you want
+	// to filter the results.
+	Filters []*AnalyticsUtteranceFilter `locationName:"filters" min:"1" type:"list"`
+
+	// A list of objects, each of which specifies how to group the results. You
+	// can group by the following criteria:
+	//
+	//    * UtteranceText – The transcription of the utterance.
+	//
+	//    * UtteranceState – The state of the utterance. The possible states are
+	//    detailed in Key definitions (https://docs.aws.amazon.com/analytics-key-definitions-utterances)
+	//    in the user guide.
+	GroupBy []*AnalyticsUtteranceGroupBySpecification `locationName:"groupBy" min:"1" type:"list"`
+
+	// The maximum number of results to return in each page of results. If there
+	// are fewer results than the maximum page size, only the actual number of results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A list of objects, each of which contains a metric you want to list, the
+	// statistic for the metric you want to return, and the method by which to organize
+	// the results.
+	//
+	// Metrics is a required field
+	Metrics []*AnalyticsUtteranceMetric `locationName:"metrics" min:"1" type:"list" required:"true"`
+
+	// If the response from the ListUtteranceMetrics operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListUtteranceMetrics
+	// request to return the next page of results. For a complete set of results,
+	// call the ListUtteranceMetrics operation until the nextToken returned in the
+	// response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The date and time that marks the beginning of the range of time for which
+	// you want to see utterance metrics.
+	//
+	// StartDateTime is a required field
+	StartDateTime *time.Time `locationName:"startDateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUtteranceMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUtteranceMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUtteranceMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUtteranceMetricsInput"}
+	if s.Attributes != nil && len(s.Attributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Attributes", 1))
+	}
+	if s.BinBy != nil && len(s.BinBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BinBy", 1))
+	}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.EndDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDateTime"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.GroupBy != nil && len(s.GroupBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupBy", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Metrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metrics"))
+	}
+	if s.Metrics != nil && len(s.Metrics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metrics", 1))
+	}
+	if s.StartDateTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDateTime"))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.BinBy != nil {
+		for i, v := range s.BinBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BinBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GroupBy != nil {
+		for i, v := range s.GroupBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GroupBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *ListUtteranceMetricsInput) SetAttributes(v []*AnalyticsUtteranceAttribute) *ListUtteranceMetricsInput {
+	s.Attributes = v
+	return s
+}
+
+// SetBinBy sets the BinBy field's value.
+func (s *ListUtteranceMetricsInput) SetBinBy(v []*AnalyticsBinBySpecification) *ListUtteranceMetricsInput {
+	s.BinBy = v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListUtteranceMetricsInput) SetBotId(v string) *ListUtteranceMetricsInput {
+	s.BotId = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ListUtteranceMetricsInput) SetEndDateTime(v time.Time) *ListUtteranceMetricsInput {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListUtteranceMetricsInput) SetFilters(v []*AnalyticsUtteranceFilter) *ListUtteranceMetricsInput {
+	s.Filters = v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *ListUtteranceMetricsInput) SetGroupBy(v []*AnalyticsUtteranceGroupBySpecification) *ListUtteranceMetricsInput {
+	s.GroupBy = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListUtteranceMetricsInput) SetMaxResults(v int64) *ListUtteranceMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ListUtteranceMetricsInput) SetMetrics(v []*AnalyticsUtteranceMetric) *ListUtteranceMetricsInput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUtteranceMetricsInput) SetNextToken(v string) *ListUtteranceMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ListUtteranceMetricsInput) SetStartDateTime(v time.Time) *ListUtteranceMetricsInput {
+	s.StartDateTime = &v
+	return s
+}
+
+type ListUtteranceMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the bot for which you retrieved utterance metrics.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// If the response from the ListUtteranceMetrics operation contains more results
+	// than specified in the maxResults parameter, a token is returned in the response.
+	//
+	// Use the returned token in the nextToken parameter of a ListUtteranceMetrics
+	// request to return the next page of results. For a complete set of results,
+	// call the ListUtteranceMetrics operation until the nextToken returned in the
+	// response is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The results for the utterance metrics.
+	Results []*AnalyticsUtteranceResult `locationName:"results" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUtteranceMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUtteranceMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListUtteranceMetricsOutput) SetBotId(v string) *ListUtteranceMetricsOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUtteranceMetricsOutput) SetNextToken(v string) *ListUtteranceMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *ListUtteranceMetricsOutput) SetResults(v []*AnalyticsUtteranceResult) *ListUtteranceMetricsOutput {
+	s.Results = v
 	return s
 }
 
@@ -31164,6 +36224,229 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// An object specifying the measure and method by which to sort the session
+// analytics data.
+type SessionDataSortBy struct {
+	_ struct{} `type:"structure"`
+
+	// The measure by which to sort the session analytics data.
+	//
+	//    * conversationStartTime – The date and time when the conversation began.
+	//    A conversation is defined as a unique combination of a sessionId and an
+	//    originatingRequestId.
+	//
+	//    * numberOfTurns – The number of turns that the session took.
+	//
+	//    * conversationDurationSeconds – The duration of the conversation in
+	//    seconds.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsSessionSortByName"`
+
+	// Specifies whether to sort the results in ascending or descending order.
+	//
+	// Order is a required field
+	Order *string `locationName:"order" type:"string" required:"true" enum:"AnalyticsSortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionDataSortBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionDataSortBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SessionDataSortBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SessionDataSortBy"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *SessionDataSortBy) SetName(v string) *SessionDataSortBy {
+	s.Name = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *SessionDataSortBy) SetOrder(v string) *SessionDataSortBy {
+	s.Order = &v
+	return s
+}
+
+// An object containing information about a specific session.
+type SessionSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the alias of the bot that the session was held with.
+	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string"`
+
+	// The version of the bot that the session was held with.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// The channel that is integrated with the bot that the session was held with.
+	Channel *string `locationName:"channel" type:"string" enum:"BotChannelType"`
+
+	// The duration of the conversation in seconds. A conversation is defined as
+	// a unique combination of a sessionId and an originatingRequestId.
+	ConversationDurationSeconds *int64 `locationName:"conversationDurationSeconds" type:"long"`
+
+	// The final state of the conversation. A conversation is defined as a unique
+	// combination of a sessionId and an originatingRequestId.
+	ConversationEndState *string `locationName:"conversationEndState" type:"string" enum:"ConversationEndState"`
+
+	// The date and time when the conversation ended. A conversation is defined
+	// as a unique combination of a sessionId and an originatingRequestId.
+	ConversationEndTime *time.Time `locationName:"conversationEndTime" type:"timestamp"`
+
+	// The date and time when the conversation began. A conversation is defined
+	// as a unique combination of a sessionId and an originatingRequestId.
+	ConversationStartTime *time.Time `locationName:"conversationStartTime" type:"timestamp"`
+
+	// A list of objects containing the name of an intent that was invoked.
+	InvokedIntentSamples []*InvokedIntentSample `locationName:"invokedIntentSamples" type:"list"`
+
+	// The locale of the bot that the session was held with.
+	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// The mode of the session. The possible values are as follows:
+	//
+	//    * Speech – The session was spoken.
+	//
+	//    * Text – The session was written.
+	//
+	//    * DTMF – The session used a touch-tone keypad (Dual Tone Multi-Frequency).
+	//
+	//    * MultiMode – The session used multiple modes.
+	Mode *string `locationName:"mode" type:"string" enum:"AnalyticsModality"`
+
+	// The number of turns that the session took.
+	NumberOfTurns *int64 `locationName:"numberOfTurns" type:"long"`
+
+	// The identifier of the first request in a session.
+	OriginatingRequestId *string `locationName:"originatingRequestId" type:"string"`
+
+	// The identifier of the session.
+	SessionId *string `locationName:"sessionId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionSpecification) GoString() string {
+	return s.String()
+}
+
+// SetBotAliasId sets the BotAliasId field's value.
+func (s *SessionSpecification) SetBotAliasId(v string) *SessionSpecification {
+	s.BotAliasId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *SessionSpecification) SetBotVersion(v string) *SessionSpecification {
+	s.BotVersion = &v
+	return s
+}
+
+// SetChannel sets the Channel field's value.
+func (s *SessionSpecification) SetChannel(v string) *SessionSpecification {
+	s.Channel = &v
+	return s
+}
+
+// SetConversationDurationSeconds sets the ConversationDurationSeconds field's value.
+func (s *SessionSpecification) SetConversationDurationSeconds(v int64) *SessionSpecification {
+	s.ConversationDurationSeconds = &v
+	return s
+}
+
+// SetConversationEndState sets the ConversationEndState field's value.
+func (s *SessionSpecification) SetConversationEndState(v string) *SessionSpecification {
+	s.ConversationEndState = &v
+	return s
+}
+
+// SetConversationEndTime sets the ConversationEndTime field's value.
+func (s *SessionSpecification) SetConversationEndTime(v time.Time) *SessionSpecification {
+	s.ConversationEndTime = &v
+	return s
+}
+
+// SetConversationStartTime sets the ConversationStartTime field's value.
+func (s *SessionSpecification) SetConversationStartTime(v time.Time) *SessionSpecification {
+	s.ConversationStartTime = &v
+	return s
+}
+
+// SetInvokedIntentSamples sets the InvokedIntentSamples field's value.
+func (s *SessionSpecification) SetInvokedIntentSamples(v []*InvokedIntentSample) *SessionSpecification {
+	s.InvokedIntentSamples = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *SessionSpecification) SetLocaleId(v string) *SessionSpecification {
+	s.LocaleId = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *SessionSpecification) SetMode(v string) *SessionSpecification {
+	s.Mode = &v
+	return s
+}
+
+// SetNumberOfTurns sets the NumberOfTurns field's value.
+func (s *SessionSpecification) SetNumberOfTurns(v int64) *SessionSpecification {
+	s.NumberOfTurns = &v
+	return s
+}
+
+// SetOriginatingRequestId sets the OriginatingRequestId field's value.
+func (s *SessionSpecification) SetOriginatingRequestId(v string) *SessionSpecification {
+	s.OriginatingRequestId = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *SessionSpecification) SetSessionId(v string) *SessionSpecification {
+	s.SessionId = &v
+	return s
 }
 
 // Settings used when Amazon Lex successfully captures a slot value from a user.
@@ -38999,6 +44282,138 @@ func (s *UtteranceAudioInputSpecification) SetAudioFileS3Location(v string) *Utt
 	return s
 }
 
+// An object that contains a response to the utterance from the bot.
+type UtteranceBotResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The text of the response to the utterance from the bot.
+	Content *string `locationName:"content" type:"string"`
+
+	// The type of the response. The following values are possible:
+	//
+	//    * PlainText – A plain text string.
+	//
+	//    * CustomPayload – A response string that you can customize to include
+	//    data or metadata for your application.
+	//
+	//    * SSML – A string that includes Speech Synthesis Markup Language to
+	//    customize the audio response.
+	//
+	//    * ImageResponseCard – An image with buttons that the customer can select.
+	//    See ImageResponseCard (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_runtime_ImageResponseCard.html)
+	//    for more information.
+	ContentType *string `locationName:"contentType" type:"string" enum:"UtteranceContentType"`
+
+	// A card that is shown to the user by a messaging platform. You define the
+	// contents of the card, the card is displayed by the platform.
+	//
+	// When you use a response card, the response from the user is constrained to
+	// the text associated with a button on the card.
+	ImageResponseCard *ImageResponseCard `locationName:"imageResponseCard" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceBotResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceBotResponse) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *UtteranceBotResponse) SetContent(v string) *UtteranceBotResponse {
+	s.Content = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *UtteranceBotResponse) SetContentType(v string) *UtteranceBotResponse {
+	s.ContentType = &v
+	return s
+}
+
+// SetImageResponseCard sets the ImageResponseCard field's value.
+func (s *UtteranceBotResponse) SetImageResponseCard(v *ImageResponseCard) *UtteranceBotResponse {
+	s.ImageResponseCard = v
+	return s
+}
+
+// An object specifying the measure and method by which to sort the utterance
+// data.
+type UtteranceDataSortBy struct {
+	_ struct{} `type:"structure"`
+
+	// The measure by which to sort the utterance analytics data.
+	//
+	//    * Count – The number of utterances.
+	//
+	//    * UtteranceTimeStamp – The date and time of the utterance.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsUtteranceSortByName"`
+
+	// Specifies whether to sort the results in ascending or descending order.
+	//
+	// Order is a required field
+	Order *string `locationName:"order" type:"string" required:"true" enum:"AnalyticsSortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceDataSortBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceDataSortBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UtteranceDataSortBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UtteranceDataSortBy"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *UtteranceDataSortBy) SetName(v string) *UtteranceDataSortBy {
+	s.Name = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *UtteranceDataSortBy) SetOrder(v string) *UtteranceDataSortBy {
+	s.Order = &v
+	return s
+}
+
 // Contains information about input of an utterance.
 type UtteranceInputSpecification struct {
 	_ struct{} `type:"structure"`
@@ -39128,6 +44543,260 @@ func (s UtteranceLevelTestResults) GoString() string {
 // SetItems sets the Items field's value.
 func (s *UtteranceLevelTestResults) SetItems(v []*UtteranceLevelTestResultItem) *UtteranceLevelTestResults {
 	s.Items = v
+	return s
+}
+
+// An object containing information about a specific utterance.
+type UtteranceSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the intent that the utterance is associated to.
+	AssociatedIntentName *string `locationName:"associatedIntentName" min:"1" type:"string"`
+
+	// The name of the slot that the utterance is associated to.
+	AssociatedSlotName *string `locationName:"associatedSlotName" min:"1" type:"string"`
+
+	// The duration in milliseconds of the audio associated with the utterance.
+	AudioVoiceDurationMillis *int64 `locationName:"audioVoiceDurationMillis" type:"long"`
+
+	// The identifier of the alias of the bot that the utterance was made to.
+	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string"`
+
+	// The identifier for the audio of the bot response.
+	BotResponseAudioVoiceId *string `locationName:"botResponseAudioVoiceId" type:"string"`
+
+	// A list of objects containing information about the bot response to the utterance.
+	BotResponses []*UtteranceBotResponse `locationName:"botResponses" type:"list"`
+
+	// The version of the bot that the utterance was made to.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// The channel that is integrated with the bot that the utterance was made to.
+	Channel *string `locationName:"channel" type:"string" enum:"BotChannelType"`
+
+	// The date and time when the conversation in which the utterance took place
+	// ended. A conversation is defined as a unique combination of a sessionId and
+	// an originatingRequestId.
+	ConversationEndTime *time.Time `locationName:"conversationEndTime" type:"timestamp"`
+
+	// The date and time when the conversation in which the utterance took place
+	// began. A conversation is defined as a unique combination of a sessionId and
+	// an originatingRequestId.
+	ConversationStartTime *time.Time `locationName:"conversationStartTime" type:"timestamp"`
+
+	// The type of dialog action that the utterance is associated to. See the type
+	// field in DialogAction (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_runtime_DialogAction.html)
+	// for more information.
+	DialogActionType *string `locationName:"dialogActionType" type:"string"`
+
+	// The input type of the utterance. The possible values are as follows:
+	//
+	//    * PCM format: audio data must be in little-endian byte order. audio/l16;
+	//    rate=16000; channels=1 audio/x-l16; sample-rate=16000; channel-count=1
+	//    audio/lpcm; sample-rate=8000; sample-size-bits=16; channel-count=1; is-big-endian=false
+	//
+	//    * Opus format audio/x-cbr-opus-with-preamble;preamble-size=0;bit-rate=256000;frame-size-milliseconds=4
+	//
+	//    * Text format text/plain; charset=utf-8
+	InputType *string `locationName:"inputType" type:"string"`
+
+	// The state of the intent that the utterance is associated to.
+	IntentState *string `locationName:"intentState" type:"string" enum:"IntentState"`
+
+	// The locale of the bot that the utterance was made to.
+	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// The mode of the session. The possible values are as follows:
+	//
+	//    * Speech – The session consisted of spoken dialogue.
+	//
+	//    * Text – The session consisted of written dialogue.
+	//
+	//    * DTMF – The session consisted of touch-tone keypad (Dual Tone Multi-Frequency)
+	//    key presses.
+	//
+	//    * MultiMode – The session consisted of multiple modes.
+	Mode *string `locationName:"mode" type:"string" enum:"AnalyticsModality"`
+
+	// The output type of the utterance. The possible values are as follows:
+	//
+	//    * audio/mpeg
+	//
+	//    * audio/ogg
+	//
+	//    * audio/pcm (16 KHz)
+	//
+	//    * audio/ (defaults to mpeg)
+	//
+	//    * text/plain; charset=utf-8
+	OutputType *string `locationName:"outputType" type:"string"`
+
+	// The identifier of the session that the utterance was made in.
+	SessionId *string `locationName:"sessionId" type:"string"`
+
+	// The slots that have been filled in the session by the time of the utterance.
+	SlotsFilledInSession *string `locationName:"slotsFilledInSession" type:"string"`
+
+	// The text of the utterance.
+	Utterance *string `locationName:"utterance" type:"string"`
+
+	// The identifier of the request associated with the utterance.
+	UtteranceRequestId *string `locationName:"utteranceRequestId" min:"10" type:"string"`
+
+	// The date and time when the utterance took place.
+	UtteranceTimestamp *time.Time `locationName:"utteranceTimestamp" type:"timestamp"`
+
+	// Specifies whether the bot understood the utterance or not.
+	UtteranceUnderstood *bool `locationName:"utteranceUnderstood" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceSpecification) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedIntentName sets the AssociatedIntentName field's value.
+func (s *UtteranceSpecification) SetAssociatedIntentName(v string) *UtteranceSpecification {
+	s.AssociatedIntentName = &v
+	return s
+}
+
+// SetAssociatedSlotName sets the AssociatedSlotName field's value.
+func (s *UtteranceSpecification) SetAssociatedSlotName(v string) *UtteranceSpecification {
+	s.AssociatedSlotName = &v
+	return s
+}
+
+// SetAudioVoiceDurationMillis sets the AudioVoiceDurationMillis field's value.
+func (s *UtteranceSpecification) SetAudioVoiceDurationMillis(v int64) *UtteranceSpecification {
+	s.AudioVoiceDurationMillis = &v
+	return s
+}
+
+// SetBotAliasId sets the BotAliasId field's value.
+func (s *UtteranceSpecification) SetBotAliasId(v string) *UtteranceSpecification {
+	s.BotAliasId = &v
+	return s
+}
+
+// SetBotResponseAudioVoiceId sets the BotResponseAudioVoiceId field's value.
+func (s *UtteranceSpecification) SetBotResponseAudioVoiceId(v string) *UtteranceSpecification {
+	s.BotResponseAudioVoiceId = &v
+	return s
+}
+
+// SetBotResponses sets the BotResponses field's value.
+func (s *UtteranceSpecification) SetBotResponses(v []*UtteranceBotResponse) *UtteranceSpecification {
+	s.BotResponses = v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *UtteranceSpecification) SetBotVersion(v string) *UtteranceSpecification {
+	s.BotVersion = &v
+	return s
+}
+
+// SetChannel sets the Channel field's value.
+func (s *UtteranceSpecification) SetChannel(v string) *UtteranceSpecification {
+	s.Channel = &v
+	return s
+}
+
+// SetConversationEndTime sets the ConversationEndTime field's value.
+func (s *UtteranceSpecification) SetConversationEndTime(v time.Time) *UtteranceSpecification {
+	s.ConversationEndTime = &v
+	return s
+}
+
+// SetConversationStartTime sets the ConversationStartTime field's value.
+func (s *UtteranceSpecification) SetConversationStartTime(v time.Time) *UtteranceSpecification {
+	s.ConversationStartTime = &v
+	return s
+}
+
+// SetDialogActionType sets the DialogActionType field's value.
+func (s *UtteranceSpecification) SetDialogActionType(v string) *UtteranceSpecification {
+	s.DialogActionType = &v
+	return s
+}
+
+// SetInputType sets the InputType field's value.
+func (s *UtteranceSpecification) SetInputType(v string) *UtteranceSpecification {
+	s.InputType = &v
+	return s
+}
+
+// SetIntentState sets the IntentState field's value.
+func (s *UtteranceSpecification) SetIntentState(v string) *UtteranceSpecification {
+	s.IntentState = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *UtteranceSpecification) SetLocaleId(v string) *UtteranceSpecification {
+	s.LocaleId = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *UtteranceSpecification) SetMode(v string) *UtteranceSpecification {
+	s.Mode = &v
+	return s
+}
+
+// SetOutputType sets the OutputType field's value.
+func (s *UtteranceSpecification) SetOutputType(v string) *UtteranceSpecification {
+	s.OutputType = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *UtteranceSpecification) SetSessionId(v string) *UtteranceSpecification {
+	s.SessionId = &v
+	return s
+}
+
+// SetSlotsFilledInSession sets the SlotsFilledInSession field's value.
+func (s *UtteranceSpecification) SetSlotsFilledInSession(v string) *UtteranceSpecification {
+	s.SlotsFilledInSession = &v
+	return s
+}
+
+// SetUtterance sets the Utterance field's value.
+func (s *UtteranceSpecification) SetUtterance(v string) *UtteranceSpecification {
+	s.Utterance = &v
+	return s
+}
+
+// SetUtteranceRequestId sets the UtteranceRequestId field's value.
+func (s *UtteranceSpecification) SetUtteranceRequestId(v string) *UtteranceSpecification {
+	s.UtteranceRequestId = &v
+	return s
+}
+
+// SetUtteranceTimestamp sets the UtteranceTimestamp field's value.
+func (s *UtteranceSpecification) SetUtteranceTimestamp(v time.Time) *UtteranceSpecification {
+	s.UtteranceTimestamp = &v
+	return s
+}
+
+// SetUtteranceUnderstood sets the UtteranceUnderstood field's value.
+func (s *UtteranceSpecification) SetUtteranceUnderstood(v bool) *UtteranceSpecification {
+	s.UtteranceUnderstood = &v
 	return s
 }
 
@@ -39402,6 +45071,570 @@ func AggregatedUtterancesSortAttribute_Values() []string {
 }
 
 const (
+	// AnalyticsBinByNameConversationStartTime is a AnalyticsBinByName enum value
+	AnalyticsBinByNameConversationStartTime = "ConversationStartTime"
+
+	// AnalyticsBinByNameUtteranceTimestamp is a AnalyticsBinByName enum value
+	AnalyticsBinByNameUtteranceTimestamp = "UtteranceTimestamp"
+)
+
+// AnalyticsBinByName_Values returns all elements of the AnalyticsBinByName enum
+func AnalyticsBinByName_Values() []string {
+	return []string{
+		AnalyticsBinByNameConversationStartTime,
+		AnalyticsBinByNameUtteranceTimestamp,
+	}
+}
+
+const (
+	// AnalyticsCommonFilterNameBotAliasId is a AnalyticsCommonFilterName enum value
+	AnalyticsCommonFilterNameBotAliasId = "BotAliasId"
+
+	// AnalyticsCommonFilterNameBotVersion is a AnalyticsCommonFilterName enum value
+	AnalyticsCommonFilterNameBotVersion = "BotVersion"
+
+	// AnalyticsCommonFilterNameLocaleId is a AnalyticsCommonFilterName enum value
+	AnalyticsCommonFilterNameLocaleId = "LocaleId"
+
+	// AnalyticsCommonFilterNameModality is a AnalyticsCommonFilterName enum value
+	AnalyticsCommonFilterNameModality = "Modality"
+
+	// AnalyticsCommonFilterNameChannel is a AnalyticsCommonFilterName enum value
+	AnalyticsCommonFilterNameChannel = "Channel"
+)
+
+// AnalyticsCommonFilterName_Values returns all elements of the AnalyticsCommonFilterName enum
+func AnalyticsCommonFilterName_Values() []string {
+	return []string{
+		AnalyticsCommonFilterNameBotAliasId,
+		AnalyticsCommonFilterNameBotVersion,
+		AnalyticsCommonFilterNameLocaleId,
+		AnalyticsCommonFilterNameModality,
+		AnalyticsCommonFilterNameChannel,
+	}
+}
+
+const (
+	// AnalyticsFilterOperatorEq is a AnalyticsFilterOperator enum value
+	AnalyticsFilterOperatorEq = "EQ"
+
+	// AnalyticsFilterOperatorGt is a AnalyticsFilterOperator enum value
+	AnalyticsFilterOperatorGt = "GT"
+
+	// AnalyticsFilterOperatorLt is a AnalyticsFilterOperator enum value
+	AnalyticsFilterOperatorLt = "LT"
+)
+
+// AnalyticsFilterOperator_Values returns all elements of the AnalyticsFilterOperator enum
+func AnalyticsFilterOperator_Values() []string {
+	return []string{
+		AnalyticsFilterOperatorEq,
+		AnalyticsFilterOperatorGt,
+		AnalyticsFilterOperatorLt,
+	}
+}
+
+const (
+	// AnalyticsIntentFieldIntentName is a AnalyticsIntentField enum value
+	AnalyticsIntentFieldIntentName = "IntentName"
+
+	// AnalyticsIntentFieldIntentEndState is a AnalyticsIntentField enum value
+	AnalyticsIntentFieldIntentEndState = "IntentEndState"
+
+	// AnalyticsIntentFieldIntentLevel is a AnalyticsIntentField enum value
+	AnalyticsIntentFieldIntentLevel = "IntentLevel"
+)
+
+// AnalyticsIntentField_Values returns all elements of the AnalyticsIntentField enum
+func AnalyticsIntentField_Values() []string {
+	return []string{
+		AnalyticsIntentFieldIntentName,
+		AnalyticsIntentFieldIntentEndState,
+		AnalyticsIntentFieldIntentLevel,
+	}
+}
+
+const (
+	// AnalyticsIntentFilterNameBotAliasId is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameBotAliasId = "BotAliasId"
+
+	// AnalyticsIntentFilterNameBotVersion is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameBotVersion = "BotVersion"
+
+	// AnalyticsIntentFilterNameLocaleId is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameLocaleId = "LocaleId"
+
+	// AnalyticsIntentFilterNameModality is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameModality = "Modality"
+
+	// AnalyticsIntentFilterNameChannel is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameChannel = "Channel"
+
+	// AnalyticsIntentFilterNameSessionId is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameSessionId = "SessionId"
+
+	// AnalyticsIntentFilterNameOriginatingRequestId is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameOriginatingRequestId = "OriginatingRequestId"
+
+	// AnalyticsIntentFilterNameIntentName is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameIntentName = "IntentName"
+
+	// AnalyticsIntentFilterNameIntentEndState is a AnalyticsIntentFilterName enum value
+	AnalyticsIntentFilterNameIntentEndState = "IntentEndState"
+)
+
+// AnalyticsIntentFilterName_Values returns all elements of the AnalyticsIntentFilterName enum
+func AnalyticsIntentFilterName_Values() []string {
+	return []string{
+		AnalyticsIntentFilterNameBotAliasId,
+		AnalyticsIntentFilterNameBotVersion,
+		AnalyticsIntentFilterNameLocaleId,
+		AnalyticsIntentFilterNameModality,
+		AnalyticsIntentFilterNameChannel,
+		AnalyticsIntentFilterNameSessionId,
+		AnalyticsIntentFilterNameOriginatingRequestId,
+		AnalyticsIntentFilterNameIntentName,
+		AnalyticsIntentFilterNameIntentEndState,
+	}
+}
+
+const (
+	// AnalyticsIntentMetricNameCount is a AnalyticsIntentMetricName enum value
+	AnalyticsIntentMetricNameCount = "Count"
+
+	// AnalyticsIntentMetricNameSuccess is a AnalyticsIntentMetricName enum value
+	AnalyticsIntentMetricNameSuccess = "Success"
+
+	// AnalyticsIntentMetricNameFailure is a AnalyticsIntentMetricName enum value
+	AnalyticsIntentMetricNameFailure = "Failure"
+
+	// AnalyticsIntentMetricNameSwitched is a AnalyticsIntentMetricName enum value
+	AnalyticsIntentMetricNameSwitched = "Switched"
+
+	// AnalyticsIntentMetricNameDropped is a AnalyticsIntentMetricName enum value
+	AnalyticsIntentMetricNameDropped = "Dropped"
+)
+
+// AnalyticsIntentMetricName_Values returns all elements of the AnalyticsIntentMetricName enum
+func AnalyticsIntentMetricName_Values() []string {
+	return []string{
+		AnalyticsIntentMetricNameCount,
+		AnalyticsIntentMetricNameSuccess,
+		AnalyticsIntentMetricNameFailure,
+		AnalyticsIntentMetricNameSwitched,
+		AnalyticsIntentMetricNameDropped,
+	}
+}
+
+const (
+	// AnalyticsIntentStageFieldIntentStageName is a AnalyticsIntentStageField enum value
+	AnalyticsIntentStageFieldIntentStageName = "IntentStageName"
+
+	// AnalyticsIntentStageFieldSwitchedToIntent is a AnalyticsIntentStageField enum value
+	AnalyticsIntentStageFieldSwitchedToIntent = "SwitchedToIntent"
+)
+
+// AnalyticsIntentStageField_Values returns all elements of the AnalyticsIntentStageField enum
+func AnalyticsIntentStageField_Values() []string {
+	return []string{
+		AnalyticsIntentStageFieldIntentStageName,
+		AnalyticsIntentStageFieldSwitchedToIntent,
+	}
+}
+
+const (
+	// AnalyticsIntentStageFilterNameBotAliasId is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameBotAliasId = "BotAliasId"
+
+	// AnalyticsIntentStageFilterNameBotVersion is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameBotVersion = "BotVersion"
+
+	// AnalyticsIntentStageFilterNameLocaleId is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameLocaleId = "LocaleId"
+
+	// AnalyticsIntentStageFilterNameModality is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameModality = "Modality"
+
+	// AnalyticsIntentStageFilterNameChannel is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameChannel = "Channel"
+
+	// AnalyticsIntentStageFilterNameSessionId is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameSessionId = "SessionId"
+
+	// AnalyticsIntentStageFilterNameOriginatingRequestId is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameOriginatingRequestId = "OriginatingRequestId"
+
+	// AnalyticsIntentStageFilterNameIntentName is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameIntentName = "IntentName"
+
+	// AnalyticsIntentStageFilterNameIntentStageName is a AnalyticsIntentStageFilterName enum value
+	AnalyticsIntentStageFilterNameIntentStageName = "IntentStageName"
+)
+
+// AnalyticsIntentStageFilterName_Values returns all elements of the AnalyticsIntentStageFilterName enum
+func AnalyticsIntentStageFilterName_Values() []string {
+	return []string{
+		AnalyticsIntentStageFilterNameBotAliasId,
+		AnalyticsIntentStageFilterNameBotVersion,
+		AnalyticsIntentStageFilterNameLocaleId,
+		AnalyticsIntentStageFilterNameModality,
+		AnalyticsIntentStageFilterNameChannel,
+		AnalyticsIntentStageFilterNameSessionId,
+		AnalyticsIntentStageFilterNameOriginatingRequestId,
+		AnalyticsIntentStageFilterNameIntentName,
+		AnalyticsIntentStageFilterNameIntentStageName,
+	}
+}
+
+const (
+	// AnalyticsIntentStageMetricNameCount is a AnalyticsIntentStageMetricName enum value
+	AnalyticsIntentStageMetricNameCount = "Count"
+
+	// AnalyticsIntentStageMetricNameSuccess is a AnalyticsIntentStageMetricName enum value
+	AnalyticsIntentStageMetricNameSuccess = "Success"
+
+	// AnalyticsIntentStageMetricNameFailed is a AnalyticsIntentStageMetricName enum value
+	AnalyticsIntentStageMetricNameFailed = "Failed"
+
+	// AnalyticsIntentStageMetricNameDropped is a AnalyticsIntentStageMetricName enum value
+	AnalyticsIntentStageMetricNameDropped = "Dropped"
+
+	// AnalyticsIntentStageMetricNameRetry is a AnalyticsIntentStageMetricName enum value
+	AnalyticsIntentStageMetricNameRetry = "Retry"
+)
+
+// AnalyticsIntentStageMetricName_Values returns all elements of the AnalyticsIntentStageMetricName enum
+func AnalyticsIntentStageMetricName_Values() []string {
+	return []string{
+		AnalyticsIntentStageMetricNameCount,
+		AnalyticsIntentStageMetricNameSuccess,
+		AnalyticsIntentStageMetricNameFailed,
+		AnalyticsIntentStageMetricNameDropped,
+		AnalyticsIntentStageMetricNameRetry,
+	}
+}
+
+const (
+	// AnalyticsIntervalOneHour is a AnalyticsInterval enum value
+	AnalyticsIntervalOneHour = "OneHour"
+
+	// AnalyticsIntervalOneDay is a AnalyticsInterval enum value
+	AnalyticsIntervalOneDay = "OneDay"
+)
+
+// AnalyticsInterval_Values returns all elements of the AnalyticsInterval enum
+func AnalyticsInterval_Values() []string {
+	return []string{
+		AnalyticsIntervalOneHour,
+		AnalyticsIntervalOneDay,
+	}
+}
+
+const (
+	// AnalyticsMetricStatisticSum is a AnalyticsMetricStatistic enum value
+	AnalyticsMetricStatisticSum = "Sum"
+
+	// AnalyticsMetricStatisticAvg is a AnalyticsMetricStatistic enum value
+	AnalyticsMetricStatisticAvg = "Avg"
+
+	// AnalyticsMetricStatisticMax is a AnalyticsMetricStatistic enum value
+	AnalyticsMetricStatisticMax = "Max"
+)
+
+// AnalyticsMetricStatistic_Values returns all elements of the AnalyticsMetricStatistic enum
+func AnalyticsMetricStatistic_Values() []string {
+	return []string{
+		AnalyticsMetricStatisticSum,
+		AnalyticsMetricStatisticAvg,
+		AnalyticsMetricStatisticMax,
+	}
+}
+
+const (
+	// AnalyticsModalitySpeech is a AnalyticsModality enum value
+	AnalyticsModalitySpeech = "Speech"
+
+	// AnalyticsModalityText is a AnalyticsModality enum value
+	AnalyticsModalityText = "Text"
+
+	// AnalyticsModalityDtmf is a AnalyticsModality enum value
+	AnalyticsModalityDtmf = "DTMF"
+
+	// AnalyticsModalityMultiMode is a AnalyticsModality enum value
+	AnalyticsModalityMultiMode = "MultiMode"
+)
+
+// AnalyticsModality_Values returns all elements of the AnalyticsModality enum
+func AnalyticsModality_Values() []string {
+	return []string{
+		AnalyticsModalitySpeech,
+		AnalyticsModalityText,
+		AnalyticsModalityDtmf,
+		AnalyticsModalityMultiMode,
+	}
+}
+
+const (
+	// AnalyticsNodeTypeInner is a AnalyticsNodeType enum value
+	AnalyticsNodeTypeInner = "Inner"
+
+	// AnalyticsNodeTypeExit is a AnalyticsNodeType enum value
+	AnalyticsNodeTypeExit = "Exit"
+)
+
+// AnalyticsNodeType_Values returns all elements of the AnalyticsNodeType enum
+func AnalyticsNodeType_Values() []string {
+	return []string{
+		AnalyticsNodeTypeInner,
+		AnalyticsNodeTypeExit,
+	}
+}
+
+const (
+	// AnalyticsSessionFieldConversationEndState is a AnalyticsSessionField enum value
+	AnalyticsSessionFieldConversationEndState = "ConversationEndState"
+
+	// AnalyticsSessionFieldLocaleId is a AnalyticsSessionField enum value
+	AnalyticsSessionFieldLocaleId = "LocaleId"
+)
+
+// AnalyticsSessionField_Values returns all elements of the AnalyticsSessionField enum
+func AnalyticsSessionField_Values() []string {
+	return []string{
+		AnalyticsSessionFieldConversationEndState,
+		AnalyticsSessionFieldLocaleId,
+	}
+}
+
+const (
+	// AnalyticsSessionFilterNameBotAliasId is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameBotAliasId = "BotAliasId"
+
+	// AnalyticsSessionFilterNameBotVersion is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameBotVersion = "BotVersion"
+
+	// AnalyticsSessionFilterNameLocaleId is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameLocaleId = "LocaleId"
+
+	// AnalyticsSessionFilterNameModality is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameModality = "Modality"
+
+	// AnalyticsSessionFilterNameChannel is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameChannel = "Channel"
+
+	// AnalyticsSessionFilterNameDuration is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameDuration = "Duration"
+
+	// AnalyticsSessionFilterNameConversationEndState is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameConversationEndState = "ConversationEndState"
+
+	// AnalyticsSessionFilterNameSessionId is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameSessionId = "SessionId"
+
+	// AnalyticsSessionFilterNameOriginatingRequestId is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameOriginatingRequestId = "OriginatingRequestId"
+
+	// AnalyticsSessionFilterNameIntentPath is a AnalyticsSessionFilterName enum value
+	AnalyticsSessionFilterNameIntentPath = "IntentPath"
+)
+
+// AnalyticsSessionFilterName_Values returns all elements of the AnalyticsSessionFilterName enum
+func AnalyticsSessionFilterName_Values() []string {
+	return []string{
+		AnalyticsSessionFilterNameBotAliasId,
+		AnalyticsSessionFilterNameBotVersion,
+		AnalyticsSessionFilterNameLocaleId,
+		AnalyticsSessionFilterNameModality,
+		AnalyticsSessionFilterNameChannel,
+		AnalyticsSessionFilterNameDuration,
+		AnalyticsSessionFilterNameConversationEndState,
+		AnalyticsSessionFilterNameSessionId,
+		AnalyticsSessionFilterNameOriginatingRequestId,
+		AnalyticsSessionFilterNameIntentPath,
+	}
+}
+
+const (
+	// AnalyticsSessionMetricNameCount is a AnalyticsSessionMetricName enum value
+	AnalyticsSessionMetricNameCount = "Count"
+
+	// AnalyticsSessionMetricNameSuccess is a AnalyticsSessionMetricName enum value
+	AnalyticsSessionMetricNameSuccess = "Success"
+
+	// AnalyticsSessionMetricNameFailure is a AnalyticsSessionMetricName enum value
+	AnalyticsSessionMetricNameFailure = "Failure"
+
+	// AnalyticsSessionMetricNameDropped is a AnalyticsSessionMetricName enum value
+	AnalyticsSessionMetricNameDropped = "Dropped"
+
+	// AnalyticsSessionMetricNameDuration is a AnalyticsSessionMetricName enum value
+	AnalyticsSessionMetricNameDuration = "Duration"
+
+	// AnalyticsSessionMetricNameTurnsPerConversation is a AnalyticsSessionMetricName enum value
+	AnalyticsSessionMetricNameTurnsPerConversation = "TurnsPerConversation"
+
+	// AnalyticsSessionMetricNameConcurrency is a AnalyticsSessionMetricName enum value
+	AnalyticsSessionMetricNameConcurrency = "Concurrency"
+)
+
+// AnalyticsSessionMetricName_Values returns all elements of the AnalyticsSessionMetricName enum
+func AnalyticsSessionMetricName_Values() []string {
+	return []string{
+		AnalyticsSessionMetricNameCount,
+		AnalyticsSessionMetricNameSuccess,
+		AnalyticsSessionMetricNameFailure,
+		AnalyticsSessionMetricNameDropped,
+		AnalyticsSessionMetricNameDuration,
+		AnalyticsSessionMetricNameTurnsPerConversation,
+		AnalyticsSessionMetricNameConcurrency,
+	}
+}
+
+const (
+	// AnalyticsSessionSortByNameConversationStartTime is a AnalyticsSessionSortByName enum value
+	AnalyticsSessionSortByNameConversationStartTime = "ConversationStartTime"
+
+	// AnalyticsSessionSortByNameNumberOfTurns is a AnalyticsSessionSortByName enum value
+	AnalyticsSessionSortByNameNumberOfTurns = "NumberOfTurns"
+
+	// AnalyticsSessionSortByNameDuration is a AnalyticsSessionSortByName enum value
+	AnalyticsSessionSortByNameDuration = "Duration"
+)
+
+// AnalyticsSessionSortByName_Values returns all elements of the AnalyticsSessionSortByName enum
+func AnalyticsSessionSortByName_Values() []string {
+	return []string{
+		AnalyticsSessionSortByNameConversationStartTime,
+		AnalyticsSessionSortByNameNumberOfTurns,
+		AnalyticsSessionSortByNameDuration,
+	}
+}
+
+const (
+	// AnalyticsSortOrderAscending is a AnalyticsSortOrder enum value
+	AnalyticsSortOrderAscending = "Ascending"
+
+	// AnalyticsSortOrderDescending is a AnalyticsSortOrder enum value
+	AnalyticsSortOrderDescending = "Descending"
+)
+
+// AnalyticsSortOrder_Values returns all elements of the AnalyticsSortOrder enum
+func AnalyticsSortOrder_Values() []string {
+	return []string{
+		AnalyticsSortOrderAscending,
+		AnalyticsSortOrderDescending,
+	}
+}
+
+const (
+	// AnalyticsUtteranceAttributeNameLastUsedIntent is a AnalyticsUtteranceAttributeName enum value
+	AnalyticsUtteranceAttributeNameLastUsedIntent = "LastUsedIntent"
+)
+
+// AnalyticsUtteranceAttributeName_Values returns all elements of the AnalyticsUtteranceAttributeName enum
+func AnalyticsUtteranceAttributeName_Values() []string {
+	return []string{
+		AnalyticsUtteranceAttributeNameLastUsedIntent,
+	}
+}
+
+const (
+	// AnalyticsUtteranceFieldUtteranceText is a AnalyticsUtteranceField enum value
+	AnalyticsUtteranceFieldUtteranceText = "UtteranceText"
+
+	// AnalyticsUtteranceFieldUtteranceState is a AnalyticsUtteranceField enum value
+	AnalyticsUtteranceFieldUtteranceState = "UtteranceState"
+)
+
+// AnalyticsUtteranceField_Values returns all elements of the AnalyticsUtteranceField enum
+func AnalyticsUtteranceField_Values() []string {
+	return []string{
+		AnalyticsUtteranceFieldUtteranceText,
+		AnalyticsUtteranceFieldUtteranceState,
+	}
+}
+
+const (
+	// AnalyticsUtteranceFilterNameBotAliasId is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameBotAliasId = "BotAliasId"
+
+	// AnalyticsUtteranceFilterNameBotVersion is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameBotVersion = "BotVersion"
+
+	// AnalyticsUtteranceFilterNameLocaleId is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameLocaleId = "LocaleId"
+
+	// AnalyticsUtteranceFilterNameModality is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameModality = "Modality"
+
+	// AnalyticsUtteranceFilterNameChannel is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameChannel = "Channel"
+
+	// AnalyticsUtteranceFilterNameSessionId is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameSessionId = "SessionId"
+
+	// AnalyticsUtteranceFilterNameOriginatingRequestId is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameOriginatingRequestId = "OriginatingRequestId"
+
+	// AnalyticsUtteranceFilterNameUtteranceState is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameUtteranceState = "UtteranceState"
+
+	// AnalyticsUtteranceFilterNameUtteranceText is a AnalyticsUtteranceFilterName enum value
+	AnalyticsUtteranceFilterNameUtteranceText = "UtteranceText"
+)
+
+// AnalyticsUtteranceFilterName_Values returns all elements of the AnalyticsUtteranceFilterName enum
+func AnalyticsUtteranceFilterName_Values() []string {
+	return []string{
+		AnalyticsUtteranceFilterNameBotAliasId,
+		AnalyticsUtteranceFilterNameBotVersion,
+		AnalyticsUtteranceFilterNameLocaleId,
+		AnalyticsUtteranceFilterNameModality,
+		AnalyticsUtteranceFilterNameChannel,
+		AnalyticsUtteranceFilterNameSessionId,
+		AnalyticsUtteranceFilterNameOriginatingRequestId,
+		AnalyticsUtteranceFilterNameUtteranceState,
+		AnalyticsUtteranceFilterNameUtteranceText,
+	}
+}
+
+const (
+	// AnalyticsUtteranceMetricNameCount is a AnalyticsUtteranceMetricName enum value
+	AnalyticsUtteranceMetricNameCount = "Count"
+
+	// AnalyticsUtteranceMetricNameMissed is a AnalyticsUtteranceMetricName enum value
+	AnalyticsUtteranceMetricNameMissed = "Missed"
+
+	// AnalyticsUtteranceMetricNameDetected is a AnalyticsUtteranceMetricName enum value
+	AnalyticsUtteranceMetricNameDetected = "Detected"
+
+	// AnalyticsUtteranceMetricNameUtteranceTimestamp is a AnalyticsUtteranceMetricName enum value
+	AnalyticsUtteranceMetricNameUtteranceTimestamp = "UtteranceTimestamp"
+)
+
+// AnalyticsUtteranceMetricName_Values returns all elements of the AnalyticsUtteranceMetricName enum
+func AnalyticsUtteranceMetricName_Values() []string {
+	return []string{
+		AnalyticsUtteranceMetricNameCount,
+		AnalyticsUtteranceMetricNameMissed,
+		AnalyticsUtteranceMetricNameDetected,
+		AnalyticsUtteranceMetricNameUtteranceTimestamp,
+	}
+}
+
+const (
+	// AnalyticsUtteranceSortByNameUtteranceTimestamp is a AnalyticsUtteranceSortByName enum value
+	AnalyticsUtteranceSortByNameUtteranceTimestamp = "UtteranceTimestamp"
+)
+
+// AnalyticsUtteranceSortByName_Values returns all elements of the AnalyticsUtteranceSortByName enum
+func AnalyticsUtteranceSortByName_Values() []string {
+	return []string{
+		AnalyticsUtteranceSortByNameUtteranceTimestamp,
+	}
+}
+
+const (
 	// AssociatedTranscriptFilterNameIntentId is a AssociatedTranscriptFilterName enum value
 	AssociatedTranscriptFilterNameIntentId = "IntentId"
 
@@ -39450,6 +45683,26 @@ func BotAliasStatus_Values() []string {
 		BotAliasStatusAvailable,
 		BotAliasStatusDeleting,
 		BotAliasStatusFailed,
+	}
+}
+
+const (
+	// BotChannelTypeFacebook is a BotChannelType enum value
+	BotChannelTypeFacebook = "Facebook"
+
+	// BotChannelTypeSlack is a BotChannelType enum value
+	BotChannelTypeSlack = "Slack"
+
+	// BotChannelTypeTwilioSms is a BotChannelType enum value
+	BotChannelTypeTwilioSms = "TwilioSms"
+)
+
+// BotChannelType_Values returns all elements of the BotChannelType enum
+func BotChannelType_Values() []string {
+	return []string{
+		BotChannelTypeFacebook,
+		BotChannelTypeSlack,
+		BotChannelTypeTwilioSms,
 	}
 }
 
@@ -39718,6 +45971,26 @@ const (
 func BuiltInSlotTypeSortAttribute_Values() []string {
 	return []string{
 		BuiltInSlotTypeSortAttributeSlotTypeSignature,
+	}
+}
+
+const (
+	// ConversationEndStateSuccess is a ConversationEndState enum value
+	ConversationEndStateSuccess = "Success"
+
+	// ConversationEndStateFailure is a ConversationEndState enum value
+	ConversationEndStateFailure = "Failure"
+
+	// ConversationEndStateDropped is a ConversationEndState enum value
+	ConversationEndStateDropped = "Dropped"
+)
+
+// ConversationEndState_Values returns all elements of the ConversationEndState enum
+func ConversationEndState_Values() []string {
+	return []string{
+		ConversationEndStateSuccess,
+		ConversationEndStateFailure,
+		ConversationEndStateDropped,
 	}
 }
 
@@ -40062,6 +46335,38 @@ func IntentSortAttribute_Values() []string {
 	return []string{
 		IntentSortAttributeIntentName,
 		IntentSortAttributeLastUpdatedDateTime,
+	}
+}
+
+const (
+	// IntentStateFailed is a IntentState enum value
+	IntentStateFailed = "Failed"
+
+	// IntentStateFulfilled is a IntentState enum value
+	IntentStateFulfilled = "Fulfilled"
+
+	// IntentStateInProgress is a IntentState enum value
+	IntentStateInProgress = "InProgress"
+
+	// IntentStateReadyForFulfillment is a IntentState enum value
+	IntentStateReadyForFulfillment = "ReadyForFulfillment"
+
+	// IntentStateWaiting is a IntentState enum value
+	IntentStateWaiting = "Waiting"
+
+	// IntentStateFulfillmentInProgress is a IntentState enum value
+	IntentStateFulfillmentInProgress = "FulfillmentInProgress"
+)
+
+// IntentState_Values returns all elements of the IntentState enum
+func IntentState_Values() []string {
+	return []string{
+		IntentStateFailed,
+		IntentStateFulfilled,
+		IntentStateInProgress,
+		IntentStateReadyForFulfillment,
+		IntentStateWaiting,
+		IntentStateFulfillmentInProgress,
 	}
 }
 
@@ -40615,6 +46920,30 @@ const (
 func TranscriptFormat_Values() []string {
 	return []string{
 		TranscriptFormatLex,
+	}
+}
+
+const (
+	// UtteranceContentTypePlainText is a UtteranceContentType enum value
+	UtteranceContentTypePlainText = "PlainText"
+
+	// UtteranceContentTypeCustomPayload is a UtteranceContentType enum value
+	UtteranceContentTypeCustomPayload = "CustomPayload"
+
+	// UtteranceContentTypeSsml is a UtteranceContentType enum value
+	UtteranceContentTypeSsml = "SSML"
+
+	// UtteranceContentTypeImageResponseCard is a UtteranceContentType enum value
+	UtteranceContentTypeImageResponseCard = "ImageResponseCard"
+)
+
+// UtteranceContentType_Values returns all elements of the UtteranceContentType enum
+func UtteranceContentType_Values() []string {
+	return []string{
+		UtteranceContentTypePlainText,
+		UtteranceContentTypeCustomPayload,
+		UtteranceContentTypeSsml,
+		UtteranceContentTypeImageResponseCard,
 	}
 }
 

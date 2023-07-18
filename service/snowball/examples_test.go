@@ -562,6 +562,33 @@ func ExampleSnowball_ListJobs_shared00() {
 	fmt.Println(result)
 }
 
+// To get a list of locations from which the customer can choose to pickup a device.
+// Returns a specified number of Address objects. Each Address is a pickup location
+// address for Snow Family devices.
+func ExampleSnowball_ListPickupLocations_shared00() {
+	svc := snowball.New(session.New())
+	input := &snowball.ListPickupLocationsInput{}
+
+	result, err := svc.ListPickupLocations(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case snowball.ErrCodeInvalidResourceException:
+				fmt.Println(snowball.ErrCodeInvalidResourceException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To update a cluster
 // This action allows you to update certain parameters for a cluster. Once the cluster
 // changes to a different state, usually within 60 minutes of it being created, this
