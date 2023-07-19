@@ -16,6 +16,7 @@
     "ListTagsForResource": "<p>Lists all tags on an SAP HANA application and/or database registered with AWS Systems Manager for SAP.</p>",
     "PutResourcePermission": "<p>Adds permissions to the target database.</p>",
     "RegisterApplication": "<p>Register an SAP application with AWS Systems Manager for SAP. You must meet the following requirements before registering. </p> <p>The SAP application you want to register with AWS Systems Manager for SAP is running on Amazon EC2.</p> <p>AWS Systems Manager Agent must be setup on an Amazon EC2 instance along with the required IAM permissions.</p> <p>Amazon EC2 instance(s) must have access to the secrets created in AWS Secrets Manager to manage SAP applications and components.</p>",
+    "StartApplicationRefresh": "<p>Refreshes a registered application.</p>",
     "TagResource": "<p>Creates tag for a resource by specifying the ARN.</p>",
     "UntagResource": "<p>Delete the tags for a resource.</p>",
     "UpdateApplicationSettings": "<p>Updates the settings of an application registered with AWS Systems Manager for SAP.</p>"
@@ -50,6 +51,12 @@
         "UpdateApplicationSettingsInput$CredentialsToRemove": "<p>The credentials to be removed.</p>"
       }
     },
+    "ApplicationDiscoveryStatus": {
+      "base": null,
+      "refs": {
+        "Application$DiscoveryStatus": "<p>The latest discovery result for the application.</p>"
+      }
+    },
     "ApplicationId": {
       "base": null,
       "refs": {
@@ -67,6 +74,7 @@
         "ListDatabasesInput$ApplicationId": "<p>The ID of the application.</p>",
         "ListOperationsInput$ApplicationId": "<p>The ID of the application.</p>",
         "RegisterApplicationInput$ApplicationId": "<p>The ID of the application.</p>",
+        "StartApplicationRefreshInput$ApplicationId": "<p>The ID of the application.</p>",
         "UpdateApplicationSettingsInput$ApplicationId": "<p>The ID of the application.</p>"
       }
     },
@@ -107,6 +115,36 @@
         "PutResourcePermissionInput$ResourceArn": "<p/>"
       }
     },
+    "AssociatedHost": {
+      "base": "<p>Describes the properties of the associated host.</p>",
+      "refs": {
+        "Component$AssociatedHost": "<p>The associated host of the component.</p>"
+      }
+    },
+    "BackintConfig": {
+      "base": "<p>Configuration parameters for AWS Backint Agent for SAP HANA. You can backup your SAP HANA database with AWS Backup or Amazon S3.</p>",
+      "refs": {
+        "UpdateApplicationSettingsInput$Backint": "<p>Installation of AWS Backint Agent for SAP HANA.</p>"
+      }
+    },
+    "BackintMode": {
+      "base": null,
+      "refs": {
+        "BackintConfig$BackintMode": "<p>AWS service for your database backup.</p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "BackintConfig$EnsureNoBackupInProcess": "<p/>"
+      }
+    },
+    "ClusterStatus": {
+      "base": null,
+      "refs": {
+        "Resilience$ClusterStatus": "<p>The cluster status of the component.</p>"
+      }
+    },
     "Component": {
       "base": "<p>The SAP component of your application.</p>",
       "refs": {
@@ -117,6 +155,7 @@
       "base": null,
       "refs": {
         "Component$ComponentId": "<p>The ID of the component.</p>",
+        "Component$ParentComponent": "<p>The parent component of a highly available environment. For example, in a highly available SAP on AWS workload, the parent component consists of the entire setup, including the child components.</p>",
         "ComponentIdList$member": null,
         "ComponentSummary$ComponentId": "<p>The ID of the component.</p>",
         "Database$ComponentId": "<p>The ID of the component.</p>",
@@ -129,7 +168,8 @@
     "ComponentIdList": {
       "base": null,
       "refs": {
-        "Application$Components": "<p>The components of the application.</p>"
+        "Application$Components": "<p>The components of the application.</p>",
+        "Component$ChildComponents": "<p>The child components of a highly available environment. For example, in a highly available SAP on AWS workload, the child component consists of the primary and secondar instances.</p>"
       }
     },
     "ComponentStatus": {
@@ -446,7 +486,8 @@
         "GetOperationInput$OperationId": "<p>The ID of the operation.</p>",
         "Operation$Id": "<p>The ID of the operation.</p>",
         "OperationIdList$member": null,
-        "RegisterApplicationOutput$OperationId": "<p>The ID of the operation.</p>"
+        "RegisterApplicationOutput$OperationId": "<p>The ID of the operation.</p>",
+        "StartApplicationRefreshOutput$OperationId": "<p>The ID of the operation.</p>"
       }
     },
     "OperationIdList": {
@@ -459,6 +500,12 @@
       "base": null,
       "refs": {
         "ListOperationsOutput$Operations": "<p>List of operations performed by AWS Systems Manager for SAP.</p>"
+      }
+    },
+    "OperationMode": {
+      "base": null,
+      "refs": {
+        "Resilience$HsrOperationMode": "<p>The operation mode of the component.</p>"
       }
     },
     "OperationProperties": {
@@ -507,6 +554,18 @@
       "refs": {
       }
     },
+    "ReplicationMode": {
+      "base": null,
+      "refs": {
+        "Resilience$HsrReplicationMode": "<p>The replication mode of the component.</p>"
+      }
+    },
+    "Resilience": {
+      "base": "<p>Details of the SAP HANA system replication for the instance.</p>",
+      "refs": {
+        "Component$Resilience": "<p>Details of the SAP HANA system replication for the component.</p>"
+      }
+    },
     "ResourceId": {
       "base": null,
       "refs": {
@@ -547,6 +606,8 @@
       "refs": {
         "Application$Arn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
         "ApplicationSummary$Arn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
+        "Component$Arn": "<p>The Amazon Resource Name (ARN) of the component.</p>",
+        "ComponentSummary$Arn": "<p>The Amazon Resource Name (ARN) of the component summary.</p>",
         "Database$Arn": "<p>The Amazon Resource Name (ARN) of the database.</p>",
         "DatabaseSummary$Arn": "<p>The Amazon Resource Name (ARN) of the database.</p>",
         "GetApplicationInput$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the application. </p>",
@@ -556,10 +617,26 @@
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
       }
     },
+    "StartApplicationRefreshInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartApplicationRefreshOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "String": {
       "base": null,
       "refs": {
         "Application$StatusMessage": "<p>The status message.</p>",
+        "AssociatedHost$Hostname": "<p>The name of the host.</p>",
+        "AssociatedHost$Ec2InstanceId": "<p>The ID of the Amazon EC2 instance.</p>",
+        "AssociatedHost$OsVersion": "<p>The version of the operating system.</p>",
+        "Component$SapHostname": "<p>The hostname of the component.</p>",
+        "Component$SapKernelVersion": "<p>The kernel version of the component.</p>",
+        "Component$HdbVersion": "<p>The SAP HANA version of the component.</p>",
         "Component$PrimaryHost": "<p>The primary host of the component.</p>",
         "ConflictException$Message": null,
         "Database$DatabaseName": "<p>The name of the database.</p>",
@@ -568,12 +645,15 @@
         "GetResourcePermissionOutput$Policy": "<p/>",
         "Host$HostName": "<p>The name of the Dedicated Host.</p>",
         "Host$HostIp": "<p>The IP address of the Dedicated Host. </p>",
+        "Host$EC2InstanceId": "<p>The ID of Amazon EC2 instance.</p>",
         "Host$InstanceId": "<p>The instance ID of the instance on the Dedicated Host.</p>",
+        "Host$OsVersion": "<p>The version of the operating system.</p>",
         "InternalServerException$Message": null,
         "Operation$StatusMessage": "<p>The status message of the operation.</p>",
         "OperationProperties$key": null,
         "OperationProperties$value": null,
         "PutResourcePermissionOutput$Policy": "<p/>",
+        "Resilience$HsrTier": "<p>The tier of the component.</p>",
         "ResourceNotFoundException$Message": null,
         "UpdateApplicationSettingsOutput$Message": "<p>The update message.</p>",
         "ValidationException$Message": null
@@ -599,6 +679,7 @@
         "ComponentSummary$Tags": "<p>The tags of the component.</p>",
         "DatabaseSummary$Tags": "<p>The tags of the database.</p>",
         "GetApplicationOutput$Tags": "<p>The tags of a registered application.</p>",
+        "GetComponentOutput$Tags": "<p>The tags of a component.</p>",
         "GetDatabaseOutput$Tags": "<p>The tags of a database.</p>",
         "ListTagsForResourceResponse$tags": "<p/>",
         "RegisterApplicationInput$Tags": "<p>The tags to be attached to the SAP application.</p>",

@@ -3190,7 +3190,8 @@
         "HTTPMethod":{"shape":"RateLimitHTTPMethod"},
         "ForwardedIP":{"shape":"RateLimitForwardedIP"},
         "IP":{"shape":"RateLimitIP"},
-        "LabelNamespace":{"shape":"RateLimitLabelNamespace"}
+        "LabelNamespace":{"shape":"RateLimitLabelNamespace"},
+        "UriPath":{"shape":"RateLimitUriPath"}
       }
     },
     "RateBasedStatementCustomKeys":{
@@ -3267,6 +3268,13 @@
       }
     },
     "RateLimitQueryString":{
+      "type":"structure",
+      "required":["TextTransformations"],
+      "members":{
+        "TextTransformations":{"shape":"TextTransformations"}
+      }
+    },
+    "RateLimitUriPath":{
       "type":"structure",
       "required":["TextTransformations"],
       "members":{

@@ -128,6 +128,10 @@ type SsmSapAPI interface {
 	RegisterApplicationWithContext(aws.Context, *ssmsap.RegisterApplicationInput, ...request.Option) (*ssmsap.RegisterApplicationOutput, error)
 	RegisterApplicationRequest(*ssmsap.RegisterApplicationInput) (*request.Request, *ssmsap.RegisterApplicationOutput)
 
+	StartApplicationRefresh(*ssmsap.StartApplicationRefreshInput) (*ssmsap.StartApplicationRefreshOutput, error)
+	StartApplicationRefreshWithContext(aws.Context, *ssmsap.StartApplicationRefreshInput, ...request.Option) (*ssmsap.StartApplicationRefreshOutput, error)
+	StartApplicationRefreshRequest(*ssmsap.StartApplicationRefreshInput) (*request.Request, *ssmsap.StartApplicationRefreshOutput)
+
 	TagResource(*ssmsap.TagResourceInput) (*ssmsap.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *ssmsap.TagResourceInput, ...request.Option) (*ssmsap.TagResourceOutput, error)
 	TagResourceRequest(*ssmsap.TagResourceInput) (*request.Request, *ssmsap.TagResourceOutput)

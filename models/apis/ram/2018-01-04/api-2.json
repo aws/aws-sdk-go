@@ -135,6 +135,7 @@
         {"shape":"OperationNotPermittedException"},
         {"shape":"ResourceShareLimitExceededException"},
         {"shape":"TagPolicyViolationException"},
+        {"shape":"TagLimitExceededException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -688,7 +689,8 @@
         "resourceShareArn":{"shape":"String"},
         "resourceArns":{"shape":"ResourceArnList"},
         "principals":{"shape":"PrincipalArnOrIdList"},
-        "clientToken":{"shape":"String"}
+        "clientToken":{"shape":"String"},
+        "sources":{"shape":"SourceArnOrAccountList"}
       }
     },
     "AssociateResourceShareResponse":{
@@ -767,7 +769,8 @@
         "tags":{"shape":"TagList"},
         "allowExternalPrincipals":{"shape":"Boolean"},
         "clientToken":{"shape":"String"},
-        "permissionArns":{"shape":"PermissionArnList"}
+        "permissionArns":{"shape":"PermissionArnList"},
+        "sources":{"shape":"SourceArnOrAccountList"}
       }
     },
     "CreateResourceShareResponse":{
@@ -883,7 +886,8 @@
         "resourceShareArn":{"shape":"String"},
         "resourceArns":{"shape":"ResourceArnList"},
         "principals":{"shape":"PrincipalArnOrIdList"},
-        "clientToken":{"shape":"String"}
+        "clientToken":{"shape":"String"},
+        "sources":{"shape":"SourceArnOrAccountList"}
       }
     },
     "DisassociateResourceShareResponse":{
@@ -1763,6 +1767,10 @@
         "returnValue":{"shape":"Boolean"},
         "clientToken":{"shape":"String"}
       }
+    },
+    "SourceArnOrAccountList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "String":{"type":"string"},
     "Tag":{

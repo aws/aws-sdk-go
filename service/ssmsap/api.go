@@ -1430,6 +1430,94 @@ func (c *SsmSap) RegisterApplicationWithContext(ctx aws.Context, input *Register
 	return out, req.Send()
 }
 
+const opStartApplicationRefresh = "StartApplicationRefresh"
+
+// StartApplicationRefreshRequest generates a "aws/request.Request" representing the
+// client's request for the StartApplicationRefresh operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartApplicationRefresh for more information on using the StartApplicationRefresh
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartApplicationRefreshRequest method.
+//	req, resp := client.StartApplicationRefreshRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplicationRefresh
+func (c *SsmSap) StartApplicationRefreshRequest(input *StartApplicationRefreshInput) (req *request.Request, output *StartApplicationRefreshOutput) {
+	op := &request.Operation{
+		Name:       opStartApplicationRefresh,
+		HTTPMethod: "POST",
+		HTTPPath:   "/start-application-refresh",
+	}
+
+	if input == nil {
+		input = &StartApplicationRefreshInput{}
+	}
+
+	output = &StartApplicationRefreshOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartApplicationRefresh API operation for AWS Systems Manager for SAP.
+//
+// Refreshes a registered application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager for SAP's
+// API operation StartApplicationRefresh for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource is not available.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ConflictException
+//     A conflict has occurred.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplicationRefresh
+func (c *SsmSap) StartApplicationRefresh(input *StartApplicationRefreshInput) (*StartApplicationRefreshOutput, error) {
+	req, out := c.StartApplicationRefreshRequest(input)
+	return out, req.Send()
+}
+
+// StartApplicationRefreshWithContext is the same as StartApplicationRefresh with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartApplicationRefresh for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SsmSap) StartApplicationRefreshWithContext(ctx aws.Context, input *StartApplicationRefreshInput, opts ...request.Option) (*StartApplicationRefreshOutput, error) {
+	req, out := c.StartApplicationRefreshRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1663,6 +1751,9 @@ func (c *SsmSap) UpdateApplicationSettingsRequest(input *UpdateApplicationSettin
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by an AWS service.
 //
+//   - ConflictException
+//     A conflict has occurred.
+//
 //   - InternalServerException
 //     An internal error has occurred.
 //
@@ -1700,6 +1791,9 @@ type Application struct {
 
 	// The components of the application.
 	Components []*string `type:"list"`
+
+	// The latest discovery result for the application.
+	DiscoveryStatus *string `type:"string" enum:"ApplicationDiscoveryStatus"`
 
 	// The ID of the application.
 	Id *string `type:"string"`
@@ -1750,6 +1844,12 @@ func (s *Application) SetArn(v string) *Application {
 // SetComponents sets the Components field's value.
 func (s *Application) SetComponents(v []*string) *Application {
 	s.Components = v
+	return s
+}
+
+// SetDiscoveryStatus sets the DiscoveryStatus field's value.
+func (s *Application) SetDiscoveryStatus(v string) *Application {
+	s.DiscoveryStatus = &v
 	return s
 }
 
@@ -1929,12 +2029,133 @@ func (s *ApplicationSummary) SetType(v string) *ApplicationSummary {
 	return s
 }
 
+// Describes the properties of the associated host.
+type AssociatedHost struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon EC2 instance.
+	Ec2InstanceId *string `type:"string"`
+
+	// The name of the host.
+	Hostname *string `type:"string"`
+
+	// The version of the operating system.
+	OsVersion *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatedHost) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatedHost) GoString() string {
+	return s.String()
+}
+
+// SetEc2InstanceId sets the Ec2InstanceId field's value.
+func (s *AssociatedHost) SetEc2InstanceId(v string) *AssociatedHost {
+	s.Ec2InstanceId = &v
+	return s
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *AssociatedHost) SetHostname(v string) *AssociatedHost {
+	s.Hostname = &v
+	return s
+}
+
+// SetOsVersion sets the OsVersion field's value.
+func (s *AssociatedHost) SetOsVersion(v string) *AssociatedHost {
+	s.OsVersion = &v
+	return s
+}
+
+// Configuration parameters for AWS Backint Agent for SAP HANA. You can backup
+// your SAP HANA database with AWS Backup or Amazon S3.
+type BackintConfig struct {
+	_ struct{} `type:"structure"`
+
+	// AWS service for your database backup.
+	//
+	// BackintMode is a required field
+	BackintMode *string `type:"string" required:"true" enum:"BackintMode"`
+
+	// EnsureNoBackupInProcess is a required field
+	EnsureNoBackupInProcess *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackintConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackintConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BackintConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BackintConfig"}
+	if s.BackintMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackintMode"))
+	}
+	if s.EnsureNoBackupInProcess == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnsureNoBackupInProcess"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackintMode sets the BackintMode field's value.
+func (s *BackintConfig) SetBackintMode(v string) *BackintConfig {
+	s.BackintMode = &v
+	return s
+}
+
+// SetEnsureNoBackupInProcess sets the EnsureNoBackupInProcess field's value.
+func (s *BackintConfig) SetEnsureNoBackupInProcess(v bool) *BackintConfig {
+	s.EnsureNoBackupInProcess = &v
+	return s
+}
+
 // The SAP component of your application.
 type Component struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the application.
 	ApplicationId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the component.
+	Arn *string `type:"string"`
+
+	// The associated host of the component.
+	AssociatedHost *AssociatedHost `type:"structure"`
+
+	// The child components of a highly available environment. For example, in a
+	// highly available SAP on AWS workload, the child component consists of the
+	// primary and secondar instances.
+	ChildComponents []*string `type:"list"`
 
 	// The ID of the component.
 	ComponentId *string `type:"string"`
@@ -1945,14 +2166,35 @@ type Component struct {
 	// The SAP HANA databases of the component.
 	Databases []*string `type:"list"`
 
+	// The SAP HANA version of the component.
+	HdbVersion *string `type:"string"`
+
 	// The hosts of the component.
-	Hosts []*Host `type:"list"`
+	//
+	// Deprecated: This shape is no longer used. Please use AssociatedHost.
+	Hosts []*Host `deprecated:"true" type:"list"`
 
 	// The time at which the component was last updated.
 	LastUpdated *time.Time `type:"timestamp"`
 
+	// The parent component of a highly available environment. For example, in a
+	// highly available SAP on AWS workload, the parent component consists of the
+	// entire setup, including the child components.
+	ParentComponent *string `type:"string"`
+
 	// The primary host of the component.
-	PrimaryHost *string `type:"string"`
+	//
+	// Deprecated: This shape is no longer used. Please use AssociatedHost.
+	PrimaryHost *string `deprecated:"true" type:"string"`
+
+	// Details of the SAP HANA system replication for the component.
+	Resilience *Resilience `type:"structure"`
+
+	// The hostname of the component.
+	SapHostname *string `type:"string"`
+
+	// The kernel version of the component.
+	SapKernelVersion *string `type:"string"`
 
 	// The status of the component.
 	Status *string `type:"string" enum:"ComponentStatus"`
@@ -1982,6 +2224,24 @@ func (s *Component) SetApplicationId(v string) *Component {
 	return s
 }
 
+// SetArn sets the Arn field's value.
+func (s *Component) SetArn(v string) *Component {
+	s.Arn = &v
+	return s
+}
+
+// SetAssociatedHost sets the AssociatedHost field's value.
+func (s *Component) SetAssociatedHost(v *AssociatedHost) *Component {
+	s.AssociatedHost = v
+	return s
+}
+
+// SetChildComponents sets the ChildComponents field's value.
+func (s *Component) SetChildComponents(v []*string) *Component {
+	s.ChildComponents = v
+	return s
+}
+
 // SetComponentId sets the ComponentId field's value.
 func (s *Component) SetComponentId(v string) *Component {
 	s.ComponentId = &v
@@ -2000,6 +2260,12 @@ func (s *Component) SetDatabases(v []*string) *Component {
 	return s
 }
 
+// SetHdbVersion sets the HdbVersion field's value.
+func (s *Component) SetHdbVersion(v string) *Component {
+	s.HdbVersion = &v
+	return s
+}
+
 // SetHosts sets the Hosts field's value.
 func (s *Component) SetHosts(v []*Host) *Component {
 	s.Hosts = v
@@ -2012,9 +2278,33 @@ func (s *Component) SetLastUpdated(v time.Time) *Component {
 	return s
 }
 
+// SetParentComponent sets the ParentComponent field's value.
+func (s *Component) SetParentComponent(v string) *Component {
+	s.ParentComponent = &v
+	return s
+}
+
 // SetPrimaryHost sets the PrimaryHost field's value.
 func (s *Component) SetPrimaryHost(v string) *Component {
 	s.PrimaryHost = &v
+	return s
+}
+
+// SetResilience sets the Resilience field's value.
+func (s *Component) SetResilience(v *Resilience) *Component {
+	s.Resilience = v
+	return s
+}
+
+// SetSapHostname sets the SapHostname field's value.
+func (s *Component) SetSapHostname(v string) *Component {
+	s.SapHostname = &v
+	return s
+}
+
+// SetSapKernelVersion sets the SapKernelVersion field's value.
+func (s *Component) SetSapKernelVersion(v string) *Component {
+	s.SapKernelVersion = &v
 	return s
 }
 
@@ -2030,6 +2320,9 @@ type ComponentSummary struct {
 
 	// The ID of the application.
 	ApplicationId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the component summary.
+	Arn *string `type:"string"`
 
 	// The ID of the component.
 	ComponentId *string `type:"string"`
@@ -2062,6 +2355,12 @@ func (s ComponentSummary) GoString() string {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *ComponentSummary) SetApplicationId(v string) *ComponentSummary {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *ComponentSummary) SetArn(v string) *ComponentSummary {
+	s.Arn = &v
 	return s
 }
 
@@ -2748,6 +3047,9 @@ type GetComponentOutput struct {
 
 	// The component of an application registered with AWS Systems Manager for SAP.
 	Component *Component `type:"structure"`
+
+	// The tags of a component.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -2771,6 +3073,12 @@ func (s GetComponentOutput) GoString() string {
 // SetComponent sets the Component field's value.
 func (s *GetComponentOutput) SetComponent(v *Component) *GetComponentOutput {
 	s.Component = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetComponentOutput) SetTags(v map[string]*string) *GetComponentOutput {
+	s.Tags = v
 	return s
 }
 
@@ -3038,6 +3346,9 @@ func (s *GetResourcePermissionOutput) SetPolicy(v string) *GetResourcePermission
 type Host struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of Amazon EC2 instance.
+	EC2InstanceId *string `type:"string"`
+
 	// The IP address of the Dedicated Host.
 	HostIp *string `type:"string"`
 
@@ -3049,6 +3360,9 @@ type Host struct {
 
 	// The instance ID of the instance on the Dedicated Host.
 	InstanceId *string `type:"string"`
+
+	// The version of the operating system.
+	OsVersion *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -3067,6 +3381,12 @@ func (s Host) String() string {
 // value will be replaced with "sensitive".
 func (s Host) GoString() string {
 	return s.String()
+}
+
+// SetEC2InstanceId sets the EC2InstanceId field's value.
+func (s *Host) SetEC2InstanceId(v string) *Host {
+	s.EC2InstanceId = &v
+	return s
 }
 
 // SetHostIp sets the HostIp field's value.
@@ -3090,6 +3410,12 @@ func (s *Host) SetHostRole(v string) *Host {
 // SetInstanceId sets the InstanceId field's value.
 func (s *Host) SetInstanceId(v string) *Host {
 	s.InstanceId = &v
+	return s
+}
+
+// SetOsVersion sets the OsVersion field's value.
+func (s *Host) SetOsVersion(v string) *Host {
+	s.OsVersion = &v
 	return s
 }
 
@@ -4077,6 +4403,65 @@ func (s *RegisterApplicationOutput) SetOperationId(v string) *RegisterApplicatio
 	return s
 }
 
+// Details of the SAP HANA system replication for the instance.
+type Resilience struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster status of the component.
+	ClusterStatus *string `type:"string" enum:"ClusterStatus"`
+
+	// The operation mode of the component.
+	HsrOperationMode *string `type:"string" enum:"OperationMode"`
+
+	// The replication mode of the component.
+	HsrReplicationMode *string `type:"string" enum:"ReplicationMode"`
+
+	// The tier of the component.
+	HsrTier *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Resilience) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Resilience) GoString() string {
+	return s.String()
+}
+
+// SetClusterStatus sets the ClusterStatus field's value.
+func (s *Resilience) SetClusterStatus(v string) *Resilience {
+	s.ClusterStatus = &v
+	return s
+}
+
+// SetHsrOperationMode sets the HsrOperationMode field's value.
+func (s *Resilience) SetHsrOperationMode(v string) *Resilience {
+	s.HsrOperationMode = &v
+	return s
+}
+
+// SetHsrReplicationMode sets the HsrReplicationMode field's value.
+func (s *Resilience) SetHsrReplicationMode(v string) *Resilience {
+	s.HsrReplicationMode = &v
+	return s
+}
+
+// SetHsrTier sets the HsrTier field's value.
+func (s *Resilience) SetHsrTier(v string) *Resilience {
+	s.HsrTier = &v
+	return s
+}
+
 // The resource is not available.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -4139,6 +4524,83 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type StartApplicationRefreshInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the application.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartApplicationRefreshInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartApplicationRefreshInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartApplicationRefreshInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartApplicationRefreshInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *StartApplicationRefreshInput) SetApplicationId(v string) *StartApplicationRefreshInput {
+	s.ApplicationId = &v
+	return s
+}
+
+type StartApplicationRefreshOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the operation.
+	OperationId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartApplicationRefreshOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartApplicationRefreshOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *StartApplicationRefreshOutput) SetOperationId(v string) *StartApplicationRefreshOutput {
+	s.OperationId = &v
+	return s
 }
 
 type TagResourceInput struct {
@@ -4320,6 +4782,9 @@ type UpdateApplicationSettingsInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `type:"string" required:"true"`
 
+	// Installation of AWS Backint Agent for SAP HANA.
+	Backint *BackintConfig `type:"structure"`
+
 	// The credentials to be added or updated.
 	CredentialsToAddOrUpdate []*ApplicationCredential `min:"1" type:"list"`
 
@@ -4357,6 +4822,11 @@ func (s *UpdateApplicationSettingsInput) Validate() error {
 	if s.CredentialsToRemove != nil && len(s.CredentialsToRemove) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CredentialsToRemove", 1))
 	}
+	if s.Backint != nil {
+		if err := s.Backint.Validate(); err != nil {
+			invalidParams.AddNested("Backint", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CredentialsToAddOrUpdate != nil {
 		for i, v := range s.CredentialsToAddOrUpdate {
 			if v == nil {
@@ -4387,6 +4857,12 @@ func (s *UpdateApplicationSettingsInput) Validate() error {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *UpdateApplicationSettingsInput) SetApplicationId(v string) *UpdateApplicationSettingsInput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetBackint sets the Backint field's value.
+func (s *UpdateApplicationSettingsInput) SetBackint(v *BackintConfig) *UpdateApplicationSettingsInput {
+	s.Backint = v
 	return s
 }
 
@@ -4507,6 +4983,34 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// ApplicationDiscoveryStatusSuccess is a ApplicationDiscoveryStatus enum value
+	ApplicationDiscoveryStatusSuccess = "SUCCESS"
+
+	// ApplicationDiscoveryStatusRegistrationFailed is a ApplicationDiscoveryStatus enum value
+	ApplicationDiscoveryStatusRegistrationFailed = "REGISTRATION_FAILED"
+
+	// ApplicationDiscoveryStatusRefreshFailed is a ApplicationDiscoveryStatus enum value
+	ApplicationDiscoveryStatusRefreshFailed = "REFRESH_FAILED"
+
+	// ApplicationDiscoveryStatusRegistering is a ApplicationDiscoveryStatus enum value
+	ApplicationDiscoveryStatusRegistering = "REGISTERING"
+
+	// ApplicationDiscoveryStatusDeleting is a ApplicationDiscoveryStatus enum value
+	ApplicationDiscoveryStatusDeleting = "DELETING"
+)
+
+// ApplicationDiscoveryStatus_Values returns all elements of the ApplicationDiscoveryStatus enum
+func ApplicationDiscoveryStatus_Values() []string {
+	return []string{
+		ApplicationDiscoveryStatusSuccess,
+		ApplicationDiscoveryStatusRegistrationFailed,
+		ApplicationDiscoveryStatusRefreshFailed,
+		ApplicationDiscoveryStatusRegistering,
+		ApplicationDiscoveryStatusDeleting,
+	}
+}
+
+const (
 	// ApplicationStatusActivated is a ApplicationStatus enum value
 	ApplicationStatusActivated = "ACTIVATED"
 
@@ -4559,26 +5063,94 @@ func ApplicationType_Values() []string {
 }
 
 const (
+	// BackintModeAwsbackup is a BackintMode enum value
+	BackintModeAwsbackup = "AWSBackup"
+)
+
+// BackintMode_Values returns all elements of the BackintMode enum
+func BackintMode_Values() []string {
+	return []string{
+		BackintModeAwsbackup,
+	}
+}
+
+const (
+	// ClusterStatusOnline is a ClusterStatus enum value
+	ClusterStatusOnline = "ONLINE"
+
+	// ClusterStatusStandby is a ClusterStatus enum value
+	ClusterStatusStandby = "STANDBY"
+
+	// ClusterStatusMaintenance is a ClusterStatus enum value
+	ClusterStatusMaintenance = "MAINTENANCE"
+
+	// ClusterStatusOffline is a ClusterStatus enum value
+	ClusterStatusOffline = "OFFLINE"
+
+	// ClusterStatusNone is a ClusterStatus enum value
+	ClusterStatusNone = "NONE"
+)
+
+// ClusterStatus_Values returns all elements of the ClusterStatus enum
+func ClusterStatus_Values() []string {
+	return []string{
+		ClusterStatusOnline,
+		ClusterStatusStandby,
+		ClusterStatusMaintenance,
+		ClusterStatusOffline,
+		ClusterStatusNone,
+	}
+}
+
+const (
 	// ComponentStatusActivated is a ComponentStatus enum value
 	ComponentStatusActivated = "ACTIVATED"
+
+	// ComponentStatusStarting is a ComponentStatus enum value
+	ComponentStatusStarting = "STARTING"
+
+	// ComponentStatusStopped is a ComponentStatus enum value
+	ComponentStatusStopped = "STOPPED"
+
+	// ComponentStatusStopping is a ComponentStatus enum value
+	ComponentStatusStopping = "STOPPING"
+
+	// ComponentStatusRunning is a ComponentStatus enum value
+	ComponentStatusRunning = "RUNNING"
+
+	// ComponentStatusRunningWithError is a ComponentStatus enum value
+	ComponentStatusRunningWithError = "RUNNING_WITH_ERROR"
+
+	// ComponentStatusUndefined is a ComponentStatus enum value
+	ComponentStatusUndefined = "UNDEFINED"
 )
 
 // ComponentStatus_Values returns all elements of the ComponentStatus enum
 func ComponentStatus_Values() []string {
 	return []string{
 		ComponentStatusActivated,
+		ComponentStatusStarting,
+		ComponentStatusStopped,
+		ComponentStatusStopping,
+		ComponentStatusRunning,
+		ComponentStatusRunningWithError,
+		ComponentStatusUndefined,
 	}
 }
 
 const (
 	// ComponentTypeHana is a ComponentType enum value
 	ComponentTypeHana = "HANA"
+
+	// ComponentTypeHanaNode is a ComponentType enum value
+	ComponentTypeHanaNode = "HANA_NODE"
 )
 
 // ComponentType_Values returns all elements of the ComponentType enum
 func ComponentType_Values() []string {
 	return []string{
 		ComponentTypeHana,
+		ComponentTypeHanaNode,
 	}
 }
 
@@ -4609,6 +5181,9 @@ const (
 
 	// DatabaseStatusUnknown is a DatabaseStatus enum value
 	DatabaseStatusUnknown = "UNKNOWN"
+
+	// DatabaseStatusError is a DatabaseStatus enum value
+	DatabaseStatusError = "ERROR"
 )
 
 // DatabaseStatus_Values returns all elements of the DatabaseStatus enum
@@ -4619,6 +5194,7 @@ func DatabaseStatus_Values() []string {
 		DatabaseStatusStopped,
 		DatabaseStatusWarning,
 		DatabaseStatusUnknown,
+		DatabaseStatusError,
 	}
 }
 
@@ -4683,6 +5259,34 @@ func HostRole_Values() []string {
 }
 
 const (
+	// OperationModePrimary is a OperationMode enum value
+	OperationModePrimary = "PRIMARY"
+
+	// OperationModeLogreplay is a OperationMode enum value
+	OperationModeLogreplay = "LOGREPLAY"
+
+	// OperationModeDeltaDatashipping is a OperationMode enum value
+	OperationModeDeltaDatashipping = "DELTA_DATASHIPPING"
+
+	// OperationModeLogreplayReadaccess is a OperationMode enum value
+	OperationModeLogreplayReadaccess = "LOGREPLAY_READACCESS"
+
+	// OperationModeNone is a OperationMode enum value
+	OperationModeNone = "NONE"
+)
+
+// OperationMode_Values returns all elements of the OperationMode enum
+func OperationMode_Values() []string {
+	return []string{
+		OperationModePrimary,
+		OperationModeLogreplay,
+		OperationModeDeltaDatashipping,
+		OperationModeLogreplayReadaccess,
+		OperationModeNone,
+	}
+}
+
+const (
 	// OperationStatusInprogress is a OperationStatus enum value
 	OperationStatusInprogress = "INPROGRESS"
 
@@ -4711,5 +5315,33 @@ const (
 func PermissionActionType_Values() []string {
 	return []string{
 		PermissionActionTypeRestore,
+	}
+}
+
+const (
+	// ReplicationModePrimary is a ReplicationMode enum value
+	ReplicationModePrimary = "PRIMARY"
+
+	// ReplicationModeNone is a ReplicationMode enum value
+	ReplicationModeNone = "NONE"
+
+	// ReplicationModeSync is a ReplicationMode enum value
+	ReplicationModeSync = "SYNC"
+
+	// ReplicationModeSyncmem is a ReplicationMode enum value
+	ReplicationModeSyncmem = "SYNCMEM"
+
+	// ReplicationModeAsync is a ReplicationMode enum value
+	ReplicationModeAsync = "ASYNC"
+)
+
+// ReplicationMode_Values returns all elements of the ReplicationMode enum
+func ReplicationMode_Values() []string {
+	return []string{
+		ReplicationModePrimary,
+		ReplicationModeNone,
+		ReplicationModeSync,
+		ReplicationModeSyncmem,
+		ReplicationModeAsync,
 	}
 }

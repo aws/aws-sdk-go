@@ -107,6 +107,13 @@ type ManagedGrafanaAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *managedgrafana.ListTagsForResourceInput, ...request.Option) (*managedgrafana.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*managedgrafana.ListTagsForResourceInput) (*request.Request, *managedgrafana.ListTagsForResourceOutput)
 
+	ListVersions(*managedgrafana.ListVersionsInput) (*managedgrafana.ListVersionsOutput, error)
+	ListVersionsWithContext(aws.Context, *managedgrafana.ListVersionsInput, ...request.Option) (*managedgrafana.ListVersionsOutput, error)
+	ListVersionsRequest(*managedgrafana.ListVersionsInput) (*request.Request, *managedgrafana.ListVersionsOutput)
+
+	ListVersionsPages(*managedgrafana.ListVersionsInput, func(*managedgrafana.ListVersionsOutput, bool) bool) error
+	ListVersionsPagesWithContext(aws.Context, *managedgrafana.ListVersionsInput, func(*managedgrafana.ListVersionsOutput, bool) bool, ...request.Option) error
+
 	ListWorkspaces(*managedgrafana.ListWorkspacesInput) (*managedgrafana.ListWorkspacesOutput, error)
 	ListWorkspacesWithContext(aws.Context, *managedgrafana.ListWorkspacesInput, ...request.Option) (*managedgrafana.ListWorkspacesOutput, error)
 	ListWorkspacesRequest(*managedgrafana.ListWorkspacesInput) (*request.Request, *managedgrafana.ListWorkspacesOutput)

@@ -2122,7 +2122,8 @@
         "CreateChangeSetInput$ResourceTypes": "<p>The template resource types that you have permissions to work with if you execute this change set, such as <code>AWS::EC2::Instance</code>, <code>AWS::EC2::*</code>, or <code>Custom::MyCustomInstance</code>.</p> <p>If the list of resource types doesn't include a resource type that you're updating, the stack update fails. By default, CloudFormation grants permissions to all resource types. Identity and Access Management (IAM) uses this parameter for condition keys in IAM policies for CloudFormation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html\">Controlling access with Identity and Access Management</a> in the CloudFormation User Guide.</p>",
         "CreateStackInput$ResourceTypes": "<p>The template resource types that you have permissions to work with for this create stack action, such as <code>AWS::EC2::Instance</code>, <code>AWS::EC2::*</code>, or <code>Custom::MyCustomInstance</code>. Use the following syntax to describe template resource types: <code>AWS::*</code> (for all Amazon Web Services resources), <code>Custom::*</code> (for all custom resources), <code>Custom::<i>logical_ID</i> </code> (for a specific custom resource), <code>AWS::<i>service_name</i>::*</code> (for all resources of a particular Amazon Web Services service), and <code>AWS::<i>service_name</i>::<i>resource_logical_ID</i> </code> (for a specific Amazon Web Services resource).</p> <p>If the list of resource types doesn't include a resource that you're creating, the stack creation fails. By default, CloudFormation grants permissions to all resource types. Identity and Access Management (IAM) uses this parameter for CloudFormation-specific condition keys in IAM policies. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html\">Controlling Access with Identity and Access Management</a>.</p>",
         "GetTemplateSummaryOutput$ResourceTypes": "<p>A list of all the template resource types that are defined in the template, such as <code>AWS::EC2::Instance</code>, <code>AWS::Dynamo::Table</code>, and <code>Custom::MyCustomInstance</code>.</p>",
-        "UpdateStackInput$ResourceTypes": "<p>The template resource types that you have permissions to work with for this update stack action, such as <code>AWS::EC2::Instance</code>, <code>AWS::EC2::*</code>, or <code>Custom::MyCustomInstance</code>.</p> <p>If the list of resource types doesn't include a resource that you're updating, the stack update fails. By default, CloudFormation grants permissions to all resource types. Identity and Access Management (IAM) uses this parameter for CloudFormation-specific condition keys in IAM policies. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html\">Controlling Access with Identity and Access Management</a>.</p>"
+        "UpdateStackInput$ResourceTypes": "<p>The template resource types that you have permissions to work with for this update stack action, such as <code>AWS::EC2::Instance</code>, <code>AWS::EC2::*</code>, or <code>Custom::MyCustomInstance</code>.</p> <p>If the list of resource types doesn't include a resource that you're updating, the stack update fails. By default, CloudFormation grants permissions to all resource types. Identity and Access Management (IAM) uses this parameter for CloudFormation-specific condition keys in IAM policies. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html\">Controlling Access with Identity and Access Management</a>.</p>",
+        "Warnings$UnrecognizedResourceTypes": "<p>A list of all of the unrecognized resource types. This is only returned if the <code>TemplateSummaryConfig</code> parameter has the <code>TreatUnrecognizedResourceTypesAsWarning</code> configuration set to <code>True</code>.</p>"
       }
     },
     "ResourcesToImport": {
@@ -2911,6 +2912,12 @@
         "StageList$member": null
       }
     },
+    "TemplateSummaryConfig": {
+      "base": "<p>Options for the <code>GetTemplateSummary</code> API action.</p>",
+      "refs": {
+        "GetTemplateSummaryInput$TemplateSummaryConfig": "<p>Specifies options for the <code>GetTemplateSummary</code> API action.</p>"
+      }
+    },
     "TemplateURL": {
       "base": null,
       "refs": {
@@ -3008,6 +3015,12 @@
       "refs": {
         "GetTemplateSummaryOutput$DeclaredTransforms": "<p>A list of the transforms that are declared in the template.</p>",
         "ValidateTemplateOutput$DeclaredTransforms": "<p>A list of the transforms that are declared in the template.</p>"
+      }
+    },
+    "TreatUnrecognizedResourceTypesAsWarnings": {
+      "base": null,
+      "refs": {
+        "TemplateSummaryConfig$TreatUnrecognizedResourceTypesAsWarnings": "<p>If set to <code>True</code>, any unrecognized resource types generate warnings and not an error. Any unrecognized resource types are returned in the <code>Warnings</code> output parameter.</p>"
       }
     },
     "Type": {
@@ -3292,6 +3305,12 @@
       "refs": {
         "DescribeTypeOutput$Visibility": "<p>The scope at which the extension is visible and usable in CloudFormation operations.</p> <p>Valid values include:</p> <ul> <li> <p> <code>PRIVATE</code>: The extension is only visible and usable within the account in which it is registered. CloudFormation marks any extensions you register as <code>PRIVATE</code>.</p> </li> <li> <p> <code>PUBLIC</code>: The extension is publicly visible and usable within any Amazon Web Services account.</p> </li> </ul>",
         "ListTypesInput$Visibility": "<p>The scope at which the extensions are visible and usable in CloudFormation operations.</p> <p>Valid values include:</p> <ul> <li> <p> <code>PRIVATE</code>: Extensions that are visible and usable within this account and Region. This includes:</p> <ul> <li> <p>Private extensions you have registered in this account and Region.</p> </li> <li> <p>Public extensions that you have activated in this account and Region.</p> </li> </ul> </li> <li> <p> <code>PUBLIC</code>: Extensions that are publicly visible and available to be activated within any Amazon Web Services account. This includes extensions from Amazon Web Services, in addition to third-party publishers.</p> </li> </ul> <p>The default is <code>PRIVATE</code>.</p>"
+      }
+    },
+    "Warnings": {
+      "base": "<p>Contains any warnings returned by the <code>GetTemplateSummary</code> API action.</p>",
+      "refs": {
+        "GetTemplateSummaryOutput$Warnings": "<p>An object containing any warnings returned.</p>"
       }
     }
   }

@@ -2173,7 +2173,8 @@
         "TemplateURL":{"shape":"TemplateURL"},
         "StackName":{"shape":"StackNameOrId"},
         "StackSetName":{"shape":"StackSetNameOrId"},
-        "CallAs":{"shape":"CallAs"}
+        "CallAs":{"shape":"CallAs"},
+        "TemplateSummaryConfig":{"shape":"TemplateSummaryConfig"}
       }
     },
     "GetTemplateSummaryOutput":{
@@ -2187,7 +2188,8 @@
         "Version":{"shape":"Version"},
         "Metadata":{"shape":"Metadata"},
         "DeclaredTransforms":{"shape":"TransformsList"},
-        "ResourceIdentifierSummaries":{"shape":"ResourceIdentifierSummaries"}
+        "ResourceIdentifierSummaries":{"shape":"ResourceIdentifierSummaries"},
+        "Warnings":{"shape":"Warnings"}
       }
     },
     "HandlerErrorCode":{
@@ -4099,6 +4101,12 @@
         "Processed"
       ]
     },
+    "TemplateSummaryConfig":{
+      "type":"structure",
+      "members":{
+        "TreatUnrecognizedResourceTypesAsWarnings":{"shape":"TreatUnrecognizedResourceTypesAsWarnings"}
+      }
+    },
     "TemplateURL":{
       "type":"string",
       "max":1024,
@@ -4158,6 +4166,7 @@
       "type":"list",
       "member":{"shape":"TransformName"}
     },
+    "TreatUnrecognizedResourceTypesAsWarnings":{"type":"boolean"},
     "Type":{"type":"string"},
     "TypeArn":{
       "type":"string",
@@ -4465,6 +4474,12 @@
         "PUBLIC",
         "PRIVATE"
       ]
+    },
+    "Warnings":{
+      "type":"structure",
+      "members":{
+        "UnrecognizedResourceTypes":{"shape":"ResourceTypes"}
+      }
     }
   }
 }

@@ -13,6 +13,7 @@
     "DisassociateLicense": "<p>Removes the Grafana Enterprise license from a workspace.</p>",
     "ListPermissions": "<p>Lists the users and groups who have the Grafana <code>Admin</code> and <code>Editor</code> roles in this workspace. If you use this operation without specifying <code>userId</code> or <code>groupId</code>, the operation returns the roles of all users and groups. If you specify a <code>userId</code> or a <code>groupId</code>, only the roles for that user or group are returned. If you do this, you can specify only one <code>userId</code> or one <code>groupId</code>.</p>",
     "ListTagsForResource": "<p>The <code>ListTagsForResource</code> operation returns the tags that are associated with the Amazon Managed Service for Grafana resource specified by the <code>resourceArn</code>. Currently, the only resource that can be tagged is a workspace. </p>",
+    "ListVersions": "<p>Lists available versions of Grafana. These are available when calling <code>CreateWorkspace</code>. Optionally, include a workspace to list the versions to which it can be upgraded.</p>",
     "ListWorkspaces": "<p>Returns a list of Amazon Managed Grafana workspaces in the account, with some information about each workspace. For more complete information about one workspace, use <a href=\"https://docs.aws.amazon.com/AAMG/latest/APIReference/API_DescribeWorkspace.html\">DescribeWorkspace</a>.</p>",
     "TagResource": "<p>The <code>TagResource</code> operation associates tags with an Amazon Managed Grafana resource. Currently, the only resource that can be tagged is workspaces. </p> <p>If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p>",
     "UntagResource": "<p>The <code>UntagResource</code> operation removes the association of the tag with the Amazon Managed Grafana resource. </p>",
@@ -262,9 +263,18 @@
     "GrafanaVersion": {
       "base": null,
       "refs": {
-        "CreateWorkspaceRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace.</p> <p>Supported values are <code>8.4</code> and <code>9.4</code>.</p>",
+        "CreateWorkspaceRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace.</p> <p>To get a list of supported version, use the <code>ListVersions</code> operation.</p>",
+        "DescribeWorkspaceConfigurationResponse$grafanaVersion": "<p>The supported Grafana version for the workspace.</p>",
+        "GrafanaVersionList$member": null,
+        "UpdateWorkspaceConfigurationRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace.</p> <p>Can only be used to upgrade (for example, from 8.4 to 9.4), not downgrade (for example, from 9.4 to 8.4).</p> <p>To know what versions are available to upgrade to for a specific workspace, see the <code>ListVersions</code> operation.</p>",
         "WorkspaceDescription$grafanaVersion": "<p>The version of Grafana supported in this workspace.</p>",
         "WorkspaceSummary$grafanaVersion": "<p>The Grafana version that the workspace is running.</p>"
+      }
+    },
+    "GrafanaVersionList": {
+      "base": null,
+      "refs": {
+        "ListVersionsResponse$grafanaVersions": "<p>The Grafana versions available to create. If a workspace ID is included in the request, the Grafana versions to which this workspace can be upgraded.</p>"
       }
     },
     "IamRoleArn": {
@@ -333,6 +343,22 @@
       "refs": {
       }
     },
+    "ListVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVersionsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListVersionsRequest$maxResults": "<p>The maximum number of results to include in the response.</p>"
+      }
+    },
+    "ListVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWorkspacesRequest": {
       "base": null,
       "refs": {
@@ -356,7 +382,7 @@
       }
     },
     "NetworkAccessConfiguration": {
-      "base": "<p>The configuration settings for in-bound network access to your workspace.</p> <p>When this is configured, only listed IP addresses and VPC endpoints will be able to access your workspace. Standard Grafana authentication and authorization will still be required.</p> <p>If this is not configured, or is removed, then all IP addresses and VPC endpoints will be allowed. Standard Grafana authentication and authorization will still be required.</p>",
+      "base": "<p>The configuration settings for in-bound network access to your workspace.</p> <p>When this is configured, only listed IP addresses and VPC endpoints will be able to access your workspace. Standard Grafana authentication and authorization are still required.</p> <p>Access is granted to a caller that is in either the IP address list or the VPC endpoint list - they do not need to be in both.</p> <p>If this is not configured, or is removed, then all IP addresses and VPC endpoints are allowed. Standard Grafana authentication and authorization are still required.</p> <note> <p>While both <code>prefixListIds</code> and <code>vpceIds</code> are required, you can pass in an empty array of strings for either parameter if you do not want to allow any of that type.</p> <p>If both are passed as empty arrays, no traffic is allowed to the workspace, because only <i>explicitly</i> allowed connections are accepted.</p> </note>",
       "refs": {
         "CreateWorkspaceRequest$networkAccessControl": "<p>Configuration for network access to your workspace.</p> <p>When this is configured, only listed IP addresses and VPC endpoints will be able to access your workspace. Standard Grafana authentication and authorization will still be required.</p> <p>If this is not configured, or is removed, then all IP addresses and VPC endpoints will be allowed. Standard Grafana authentication and authorization will still be required.</p>",
         "UpdateWorkspaceRequest$networkAccessControl": "<p>The configuration settings for network access to your workspace.</p> <p>When this is configured, only listed IP addresses and VPC endpoints will be able to access your workspace. Standard Grafana authentication and authorization will still be required.</p> <p>If this is not configured, or is removed, then all IP addresses and VPC endpoints will be allowed. Standard Grafana authentication and authorization will still be required.</p>",
@@ -413,6 +439,8 @@
       "refs": {
         "ListPermissionsRequest$nextToken": "<p>The token to use when requesting the next set of results. You received this token from a previous <code>ListPermissions</code> operation.</p>",
         "ListPermissionsResponse$nextToken": "<p>The token to use in a subsequent <code>ListPermissions</code> operation to return the next set of results.</p>",
+        "ListVersionsRequest$nextToken": "<p>The token to use when requesting the next set of results. You receive this token from a previous <code>ListVersions</code> operation.</p>",
+        "ListVersionsResponse$nextToken": "<p>The token to use in a subsequent <code>ListVersions</code> operation to return the next set of results.</p>",
         "ListWorkspacesRequest$nextToken": "<p>The token for the next set of workspaces to return. (You receive this token from a previous <code>ListWorkspaces</code> operation.)</p>",
         "ListWorkspacesResponse$nextToken": "<p>The token to use when requesting the next set of workspaces.</p>"
       }
@@ -446,7 +474,7 @@
     "PrefixListIds": {
       "base": null,
       "refs": {
-        "NetworkAccessConfiguration$prefixListIds": "<p>An array of prefix list IDs. A prefix list is a list of CIDR ranges of IP addresses. The IP addresses specified are allowed to access your workspace. If the list is not included in the configuration then no IP addresses will be allowed to access the workspace. You create a prefix list using the Amazon VPC console.</p> <p>Prefix list IDs have the format <code>pl-<i>1a2b3c4d</i> </code>.</p> <p>For more information about prefix lists, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html\">Group CIDR blocks using managed prefix lists</a>in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>"
+        "NetworkAccessConfiguration$prefixListIds": "<p>An array of prefix list IDs. A prefix list is a list of CIDR ranges of IP addresses. The IP addresses specified are allowed to access your workspace. If the list is not included in the configuration (passed an empty array) then no IP addresses are allowed to access the workspace. You create a prefix list using the Amazon VPC console.</p> <p>Prefix list IDs have the format <code>pl-<i>1a2b3c4d</i> </code>.</p> <p>For more information about prefix lists, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html\">Group CIDR blocks using managed prefix lists</a>in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -767,9 +795,9 @@
       }
     },
     "VpcConfiguration": {
-      "base": "<p>The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.</p> <note> <p>Provided <code>securityGroupIds</code> and <code>subnetIds</code> must be part of the same VPC.</p> </note>",
+      "base": "<p>The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.</p> <note> <p>Provided <code>securityGroupIds</code> and <code>subnetIds</code> must be part of the same VPC.</p> <p>Connecting to a private VPC is not yet available in the Asia Pacific (Seoul) Region (ap-northeast-2).</p> </note>",
       "refs": {
-        "CreateWorkspaceRequest$vpcConfiguration": "<p>The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.</p>",
+        "CreateWorkspaceRequest$vpcConfiguration": "<p>The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.</p> <note> <p>Connecting to a private VPC is not yet available in the Asia Pacific (Seoul) Region (ap-northeast-2).</p> </note>",
         "UpdateWorkspaceRequest$vpcConfiguration": "<p>The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.</p>",
         "WorkspaceDescription$vpcConfiguration": "<p>The configuration for connecting to data sources in a private VPC (Amazon Virtual Private Cloud).</p>"
       }
@@ -783,7 +811,7 @@
     "VpceIds": {
       "base": null,
       "refs": {
-        "NetworkAccessConfiguration$vpceIds": "<p>An array of Amazon VPC endpoint IDs for the workspace. You can create VPC endpoints to your Amazon Managed Grafana workspace for access from within a VPC. If a <code>NetworkAccessConfiguration</code> is specified then only VPC endpoints specified here will be allowed to access the workspace.</p> <p>VPC endpoint IDs have the format <code>vpce-<i>1a2b3c4d</i> </code>.</p> <p>For more information about creating an interface VPC endpoint, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/VPC-endpoints\">Interface VPC endpoints</a> in the <i>Amazon Managed Grafana User Guide</i>.</p> <note> <p>The only VPC endpoints that can be specified here are interface VPC endpoints for Grafana workspaces (using the <code>com.amazonaws.[region].grafana-workspace</code> service endpoint). Other VPC endpoints will be ignored.</p> </note>"
+        "NetworkAccessConfiguration$vpceIds": "<p>An array of Amazon VPC endpoint IDs for the workspace. You can create VPC endpoints to your Amazon Managed Grafana workspace for access from within a VPC. If a <code>NetworkAccessConfiguration</code> is specified then only VPC endpoints specified here are allowed to access the workspace. If you pass in an empty array of strings, then no VPCs are allowed to access the workspace.</p> <p>VPC endpoint IDs have the format <code>vpce-<i>1a2b3c4d</i> </code>.</p> <p>For more information about creating an interface VPC endpoint, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/VPC-endpoints\">Interface VPC endpoints</a> in the <i>Amazon Managed Grafana User Guide</i>.</p> <note> <p>The only VPC endpoints that can be specified here are interface VPC endpoints for Grafana workspaces (using the <code>com.amazonaws.[region].grafana-workspace</code> service endpoint). Other VPC endpoints are ignored.</p> </note>"
       }
     },
     "WorkspaceDescription": {
@@ -811,6 +839,7 @@
         "DescribeWorkspaceRequest$workspaceId": "<p>The ID of the workspace to display information about.</p>",
         "DisassociateLicenseRequest$workspaceId": "<p>The ID of the workspace to remove the Grafana Enterprise license from.</p>",
         "ListPermissionsRequest$workspaceId": "<p>The ID of the workspace to list permissions for. This parameter is required.</p>",
+        "ListVersionsRequest$workspaceId": "<p>The ID of the workspace to list the available upgrade versions. If not included, lists all versions of Grafana that are supported for <code>CreateWorkspace</code>.</p>",
         "UpdatePermissionsRequest$workspaceId": "<p>The ID of the workspace to update.</p>",
         "UpdateWorkspaceAuthenticationRequest$workspaceId": "<p>The ID of the workspace to update the authentication for.</p>",
         "UpdateWorkspaceConfigurationRequest$workspaceId": "<p>The ID of the workspace to update.</p>",
