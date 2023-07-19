@@ -3737,6 +3737,7 @@ func (c *Lambda) InvokeWithResponseStreamWithContext(ctx aws.Context, input *Inv
 }
 
 var _ awserr.Error
+var _ time.Time
 
 // InvokeWithResponseStreamEventStream provides the event stream handling for the InvokeWithResponseStream.
 //
