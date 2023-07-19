@@ -191,7 +191,11 @@ func resolveSSOCredentials(cfg *aws.Config, sharedCfg sharedConfig, handlers req
 		if err != nil {
 			return nil, err
 		}
-		mySession := Must(NewSession())
+		// create oidcClient with default profile to avoid stack overflow while
+		// configuring shared config file and profile via env var
+		mySession := Must(NewSessionWithOptions(Options{
+			Profile: DefaultSharedConfigProfile,
+		}))
 		oidcClient := ssooidc.New(mySession, cfgCopy)
 		tokenProvider := ssocreds.NewSSOTokenProvider(oidcClient, cachedPath)
 		optFns = append(optFns, func(p *ssocreds.Provider) {
