@@ -13710,6 +13710,9 @@ type GetTemplateSummaryInput struct {
 	// StackSetName, TemplateBody, or TemplateURL.
 	TemplateBody *string `min:"1" type:"string"`
 
+	// Specifies options for the GetTemplateSummary API action.
+	TemplateSummaryConfig *TemplateSummaryConfig `type:"structure"`
+
 	// Location of file containing the template body. The URL must point to a template
 	// (max size: 460,800 bytes) that's located in an Amazon S3 bucket or a Systems
 	// Manager document. For more information about templates, see Template anatomy
@@ -13782,6 +13785,12 @@ func (s *GetTemplateSummaryInput) SetTemplateBody(v string) *GetTemplateSummaryI
 	return s
 }
 
+// SetTemplateSummaryConfig sets the TemplateSummaryConfig field's value.
+func (s *GetTemplateSummaryInput) SetTemplateSummaryConfig(v *TemplateSummaryConfig) *GetTemplateSummaryInput {
+	s.TemplateSummaryConfig = v
+	return s
+}
+
 // SetTemplateURL sets the TemplateURL field's value.
 func (s *GetTemplateSummaryInput) SetTemplateURL(v string) *GetTemplateSummaryInput {
 	s.TemplateURL = &v
@@ -13832,6 +13841,9 @@ type GetTemplateSummaryOutput struct {
 	// The Amazon Web Services template format version, which identifies the capabilities
 	// of the template.
 	Version *string `type:"string"`
+
+	// An object containing any warnings returned.
+	Warnings *Warnings `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13903,6 +13915,12 @@ func (s *GetTemplateSummaryOutput) SetResourceTypes(v []*string) *GetTemplateSum
 // SetVersion sets the Version field's value.
 func (s *GetTemplateSummaryOutput) SetVersion(v string) *GetTemplateSummaryOutput {
 	s.Version = &v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetTemplateSummaryOutput) SetWarnings(v *Warnings) *GetTemplateSummaryOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -21319,6 +21337,40 @@ func (s *TemplateParameter) SetParameterKey(v string) *TemplateParameter {
 	return s
 }
 
+// Options for the GetTemplateSummary API action.
+type TemplateSummaryConfig struct {
+	_ struct{} `type:"structure"`
+
+	// If set to True, any unrecognized resource types generate warnings and not
+	// an error. Any unrecognized resource types are returned in the Warnings output
+	// parameter.
+	TreatUnrecognizedResourceTypesAsWarnings *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSummaryConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSummaryConfig) GoString() string {
+	return s.String()
+}
+
+// SetTreatUnrecognizedResourceTypesAsWarnings sets the TreatUnrecognizedResourceTypesAsWarnings field's value.
+func (s *TemplateSummaryConfig) SetTreatUnrecognizedResourceTypesAsWarnings(v bool) *TemplateSummaryConfig {
+	s.TreatUnrecognizedResourceTypesAsWarnings = &v
+	return s
+}
+
 type TestTypeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23348,6 +23400,40 @@ func (s *ValidateTemplateOutput) SetDescription(v string) *ValidateTemplateOutpu
 // SetParameters sets the Parameters field's value.
 func (s *ValidateTemplateOutput) SetParameters(v []*TemplateParameter) *ValidateTemplateOutput {
 	s.Parameters = v
+	return s
+}
+
+// Contains any warnings returned by the GetTemplateSummary API action.
+type Warnings struct {
+	_ struct{} `type:"structure"`
+
+	// A list of all of the unrecognized resource types. This is only returned if
+	// the TemplateSummaryConfig parameter has the TreatUnrecognizedResourceTypesAsWarning
+	// configuration set to True.
+	UnrecognizedResourceTypes []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Warnings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Warnings) GoString() string {
+	return s.String()
+}
+
+// SetUnrecognizedResourceTypes sets the UnrecognizedResourceTypes field's value.
+func (s *Warnings) SetUnrecognizedResourceTypes(v []*string) *Warnings {
+	s.UnrecognizedResourceTypes = v
 	return s
 }
 

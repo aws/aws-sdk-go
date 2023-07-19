@@ -1,3 +1,17 @@
+Release v1.44.303 (2023-07-19)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * SDK and documentation updates for GetTemplateSummary API (unrecognized resources)
+* `service/ec2`: Updates service documentation
+  * Amazon EC2 documentation updates.
+* `service/grafana`: Updates service API, documentation, and paginators
+* `service/medical-imaging`: Adds new service
+* `service/ram`: Updates service API and documentation
+* `service/ssm-sap`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.302 (2023-07-18)
 ===
 
