@@ -181,7 +181,7 @@
       "base": null,
       "refs": {
         "DescribeSavingsPlanRatesRequest$nextToken": "<p>The token for the next page of results.</p>",
-        "DescribeSavingsPlanRatesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
+        "DescribeSavingsPlanRatesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeSavingsPlansOfferingRatesRequest$nextToken": "<p>The token for the next page of results.</p>",
         "DescribeSavingsPlansOfferingRatesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "DescribeSavingsPlansOfferingsRequest$nextToken": "<p>The token for the next page of results.</p>",
