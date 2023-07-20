@@ -36,6 +36,12 @@
       "limit_key": "MaxResults",
       "result_key": "FirewallRules"
     },
+    "ListOutpostResolvers": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "OutpostResolvers"
+    },
     "ListResolverConfigs": {
       "input_token": "NextToken",
       "output_token": "NextToken",

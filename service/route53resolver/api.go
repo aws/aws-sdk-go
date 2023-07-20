@@ -717,6 +717,102 @@ func (c *Route53Resolver) CreateFirewallRuleGroupWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opCreateOutpostResolver = "CreateOutpostResolver"
+
+// CreateOutpostResolverRequest generates a "aws/request.Request" representing the
+// client's request for the CreateOutpostResolver operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateOutpostResolver for more information on using the CreateOutpostResolver
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateOutpostResolverRequest method.
+//	req, resp := client.CreateOutpostResolverRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateOutpostResolver
+func (c *Route53Resolver) CreateOutpostResolverRequest(input *CreateOutpostResolverInput) (req *request.Request, output *CreateOutpostResolverOutput) {
+	op := &request.Operation{
+		Name:       opCreateOutpostResolver,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateOutpostResolverInput{}
+	}
+
+	output = &CreateOutpostResolverOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateOutpostResolver API operation for Amazon Route 53 Resolver.
+//
+// Creates an Route 53 Resolver on an Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation CreateOutpostResolver for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ServiceQuotaExceededException
+//     Fulfilling the request would cause one or more quotas to be exceeded.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateOutpostResolver
+func (c *Route53Resolver) CreateOutpostResolver(input *CreateOutpostResolverInput) (*CreateOutpostResolverOutput, error) {
+	req, out := c.CreateOutpostResolverRequest(input)
+	return out, req.Send()
+}
+
+// CreateOutpostResolverWithContext is the same as CreateOutpostResolver with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateOutpostResolver for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) CreateOutpostResolverWithContext(ctx aws.Context, input *CreateOutpostResolverInput, opts ...request.Option) (*CreateOutpostResolverOutput, error) {
+	req, out := c.CreateOutpostResolverRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateResolverEndpoint = "CreateResolverEndpoint"
 
 // CreateResolverEndpointRequest generates a "aws/request.Request" representing the
@@ -1312,6 +1408,104 @@ func (c *Route53Resolver) DeleteFirewallRuleGroup(input *DeleteFirewallRuleGroup
 // for more information on using Contexts.
 func (c *Route53Resolver) DeleteFirewallRuleGroupWithContext(ctx aws.Context, input *DeleteFirewallRuleGroupInput, opts ...request.Option) (*DeleteFirewallRuleGroupOutput, error) {
 	req, out := c.DeleteFirewallRuleGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteOutpostResolver = "DeleteOutpostResolver"
+
+// DeleteOutpostResolverRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteOutpostResolver operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteOutpostResolver for more information on using the DeleteOutpostResolver
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteOutpostResolverRequest method.
+//	req, resp := client.DeleteOutpostResolverRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteOutpostResolver
+func (c *Route53Resolver) DeleteOutpostResolverRequest(input *DeleteOutpostResolverInput) (req *request.Request, output *DeleteOutpostResolverOutput) {
+	op := &request.Operation{
+		Name:       opDeleteOutpostResolver,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteOutpostResolverInput{}
+	}
+
+	output = &DeleteOutpostResolverOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteOutpostResolver API operation for Amazon Route 53 Resolver.
+//
+// Deletes a Resolver on the Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation DeleteOutpostResolver for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteOutpostResolver
+func (c *Route53Resolver) DeleteOutpostResolver(input *DeleteOutpostResolverInput) (*DeleteOutpostResolverOutput, error) {
+	req, out := c.DeleteOutpostResolverRequest(input)
+	return out, req.Send()
+}
+
+// DeleteOutpostResolverWithContext is the same as DeleteOutpostResolver with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteOutpostResolver for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) DeleteOutpostResolverWithContext(ctx aws.Context, input *DeleteOutpostResolverInput, opts ...request.Option) (*DeleteOutpostResolverOutput, error) {
+	req, out := c.DeleteOutpostResolverRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2465,6 +2659,100 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicy(input *GetFirewallRuleGroup
 // for more information on using Contexts.
 func (c *Route53Resolver) GetFirewallRuleGroupPolicyWithContext(ctx aws.Context, input *GetFirewallRuleGroupPolicyInput, opts ...request.Option) (*GetFirewallRuleGroupPolicyOutput, error) {
 	req, out := c.GetFirewallRuleGroupPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetOutpostResolver = "GetOutpostResolver"
+
+// GetOutpostResolverRequest generates a "aws/request.Request" representing the
+// client's request for the GetOutpostResolver operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetOutpostResolver for more information on using the GetOutpostResolver
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetOutpostResolverRequest method.
+//	req, resp := client.GetOutpostResolverRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetOutpostResolver
+func (c *Route53Resolver) GetOutpostResolverRequest(input *GetOutpostResolverInput) (req *request.Request, output *GetOutpostResolverOutput) {
+	op := &request.Operation{
+		Name:       opGetOutpostResolver,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetOutpostResolverInput{}
+	}
+
+	output = &GetOutpostResolverOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetOutpostResolver API operation for Amazon Route 53 Resolver.
+//
+// Gets information about a specified Resolver on the Outpost, such as its instance
+// count and type, name, and the current status of the Resolver.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetOutpostResolver for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetOutpostResolver
+func (c *Route53Resolver) GetOutpostResolver(input *GetOutpostResolverInput) (*GetOutpostResolverOutput, error) {
+	req, out := c.GetOutpostResolverRequest(input)
+	return out, req.Send()
+}
+
+// GetOutpostResolverWithContext is the same as GetOutpostResolver with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetOutpostResolver for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetOutpostResolverWithContext(ctx aws.Context, input *GetOutpostResolverInput, opts ...request.Option) (*GetOutpostResolverOutput, error) {
+	req, out := c.GetOutpostResolverRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4331,6 +4619,157 @@ func (c *Route53Resolver) ListFirewallRulesPagesWithContext(ctx aws.Context, inp
 
 	for p.Next() {
 		if !fn(p.Page().(*ListFirewallRulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListOutpostResolvers = "ListOutpostResolvers"
+
+// ListOutpostResolversRequest generates a "aws/request.Request" representing the
+// client's request for the ListOutpostResolvers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOutpostResolvers for more information on using the ListOutpostResolvers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListOutpostResolversRequest method.
+//	req, resp := client.ListOutpostResolversRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListOutpostResolvers
+func (c *Route53Resolver) ListOutpostResolversRequest(input *ListOutpostResolversInput) (req *request.Request, output *ListOutpostResolversOutput) {
+	op := &request.Operation{
+		Name:       opListOutpostResolvers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOutpostResolversInput{}
+	}
+
+	output = &ListOutpostResolversOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOutpostResolvers API operation for Amazon Route 53 Resolver.
+//
+// Lists all the Resolvers on Outposts that were created using the current Amazon
+// Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListOutpostResolvers for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListOutpostResolvers
+func (c *Route53Resolver) ListOutpostResolvers(input *ListOutpostResolversInput) (*ListOutpostResolversOutput, error) {
+	req, out := c.ListOutpostResolversRequest(input)
+	return out, req.Send()
+}
+
+// ListOutpostResolversWithContext is the same as ListOutpostResolvers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOutpostResolvers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListOutpostResolversWithContext(ctx aws.Context, input *ListOutpostResolversInput, opts ...request.Option) (*ListOutpostResolversOutput, error) {
+	req, out := c.ListOutpostResolversRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOutpostResolversPages iterates over the pages of a ListOutpostResolvers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOutpostResolvers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListOutpostResolvers operation.
+//	pageNum := 0
+//	err := client.ListOutpostResolversPages(params,
+//	    func(page *route53resolver.ListOutpostResolversOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Route53Resolver) ListOutpostResolversPages(input *ListOutpostResolversInput, fn func(*ListOutpostResolversOutput, bool) bool) error {
+	return c.ListOutpostResolversPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOutpostResolversPagesWithContext same as ListOutpostResolversPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListOutpostResolversPagesWithContext(ctx aws.Context, input *ListOutpostResolversInput, fn func(*ListOutpostResolversOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOutpostResolversInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOutpostResolversRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOutpostResolversOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6570,6 +7009,108 @@ func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationWithContext(ctx aws.
 	return out, req.Send()
 }
 
+const opUpdateOutpostResolver = "UpdateOutpostResolver"
+
+// UpdateOutpostResolverRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateOutpostResolver operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateOutpostResolver for more information on using the UpdateOutpostResolver
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateOutpostResolverRequest method.
+//	req, resp := client.UpdateOutpostResolverRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateOutpostResolver
+func (c *Route53Resolver) UpdateOutpostResolverRequest(input *UpdateOutpostResolverInput) (req *request.Request, output *UpdateOutpostResolverOutput) {
+	op := &request.Operation{
+		Name:       opUpdateOutpostResolver,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateOutpostResolverInput{}
+	}
+
+	output = &UpdateOutpostResolverOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateOutpostResolver API operation for Amazon Route 53 Resolver.
+//
+// You can use UpdateOutpostResolver to update the instance count, type, or
+// name of a Resolver on an Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateOutpostResolver for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ServiceQuotaExceededException
+//     Fulfilling the request would cause one or more quotas to be exceeded.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateOutpostResolver
+func (c *Route53Resolver) UpdateOutpostResolver(input *UpdateOutpostResolverInput) (*UpdateOutpostResolverOutput, error) {
+	req, out := c.UpdateOutpostResolverRequest(input)
+	return out, req.Send()
+}
+
+// UpdateOutpostResolverWithContext is the same as UpdateOutpostResolver with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateOutpostResolver for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateOutpostResolverWithContext(ctx aws.Context, input *UpdateOutpostResolverInput, opts ...request.Option) (*UpdateOutpostResolverOutput, error) {
+	req, out := c.UpdateOutpostResolverRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateResolverConfig = "UpdateResolverConfig"
 
 // UpdateResolverConfigRequest generates a "aws/request.Request" representing the
@@ -8042,6 +8583,173 @@ func (s *CreateFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *CreateFirew
 	return s
 }
 
+type CreateOutpostResolverInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies the request and that allows failed requests
+	// to be retried without the risk of running the operation twice.
+	//
+	// CreatorRequestId can be any unique string, for example, a date/time stamp.
+	//
+	// CreatorRequestId is a required field
+	CreatorRequestId *string `min:"1" type:"string" required:"true"`
+
+	// Number of Amazon EC2 instances for the Resolver on Outpost. The default and
+	// minimal value is 4.
+	InstanceCount *int64 `type:"integer"`
+
+	// A friendly name that lets you easily find a configuration in the Resolver
+	// dashboard in the Route 53 console.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must
+	// also specify a value for the PreferredInstanceType.
+	//
+	// OutpostArn is a required field
+	OutpostArn *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon EC2 instance type. If you specify this, you must also specify
+	// a value for the OutpostArn.
+	//
+	// PreferredInstanceType is a required field
+	PreferredInstanceType *string `min:"1" type:"string" required:"true"`
+
+	// A string that helps identify the Route 53 Resolvers on Outpost.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOutpostResolverInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOutpostResolverInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateOutpostResolverInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateOutpostResolverInput"}
+	if s.CreatorRequestId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CreatorRequestId"))
+	}
+	if s.CreatorRequestId != nil && len(*s.CreatorRequestId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreatorRequestId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.OutpostArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostArn"))
+	}
+	if s.OutpostArn != nil && len(*s.OutpostArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostArn", 1))
+	}
+	if s.PreferredInstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PreferredInstanceType"))
+	}
+	if s.PreferredInstanceType != nil && len(*s.PreferredInstanceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredInstanceType", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *CreateOutpostResolverInput) SetCreatorRequestId(v string) *CreateOutpostResolverInput {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *CreateOutpostResolverInput) SetInstanceCount(v int64) *CreateOutpostResolverInput {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateOutpostResolverInput) SetName(v string) *CreateOutpostResolverInput {
+	s.Name = &v
+	return s
+}
+
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *CreateOutpostResolverInput) SetOutpostArn(v string) *CreateOutpostResolverInput {
+	s.OutpostArn = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *CreateOutpostResolverInput) SetPreferredInstanceType(v string) *CreateOutpostResolverInput {
+	s.PreferredInstanceType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateOutpostResolverInput) SetTags(v []*Tag) *CreateOutpostResolverInput {
+	s.Tags = v
+	return s
+}
+
+type CreateOutpostResolverOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the CreateOutpostResolver request, including the status
+	// of the request.
+	OutpostResolver *OutpostResolver `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOutpostResolverOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOutpostResolverOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpostResolver sets the OutpostResolver field's value.
+func (s *CreateOutpostResolverOutput) SetOutpostResolver(v *OutpostResolver) *CreateOutpostResolverOutput {
+	s.OutpostResolver = v
+	return s
+}
+
 type CreateResolverEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8074,7 +8782,15 @@ type CreateResolverEndpointInput struct {
 	// dashboard in the Route 53 console.
 	Name *string `type:"string"`
 
-	// For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A
+	// The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must
+	// also specify a value for the PreferredInstanceType.
+	OutpostArn *string `min:"1" type:"string"`
+
+	// The instance type. If you specify this, you must also specify a value for
+	// the OutpostArn.
+	PreferredInstanceType *string `min:"1" type:"string"`
+
+	// For the endpoint type you can choose either IPv4, IPv6, or dual-stack. A
 	// dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This
 	// endpoint type is applied to all IP addresses.
 	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
@@ -8129,6 +8845,12 @@ func (s *CreateResolverEndpointInput) Validate() error {
 	if s.IpAddresses != nil && len(s.IpAddresses) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IpAddresses", 1))
 	}
+	if s.OutpostArn != nil && len(*s.OutpostArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostArn", 1))
+	}
+	if s.PreferredInstanceType != nil && len(*s.PreferredInstanceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredInstanceType", 1))
+	}
 	if s.SecurityGroupIds == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
 	}
@@ -8180,6 +8902,18 @@ func (s *CreateResolverEndpointInput) SetIpAddresses(v []*IpAddressRequest) *Cre
 // SetName sets the Name field's value.
 func (s *CreateResolverEndpointInput) SetName(v string) *CreateResolverEndpointInput {
 	s.Name = &v
+	return s
+}
+
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *CreateResolverEndpointInput) SetOutpostArn(v string) *CreateResolverEndpointInput {
+	s.OutpostArn = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *CreateResolverEndpointInput) SetPreferredInstanceType(v string) *CreateResolverEndpointInput {
+	s.PreferredInstanceType = &v
 	return s
 }
 
@@ -8422,7 +9156,8 @@ type CreateResolverRuleInput struct {
 	Tags []*Tag `type:"list"`
 
 	// The IPs that you want Resolver to forward DNS queries to. You can specify
-	// only IPv4 addresses. Separate IP addresses with a space.
+	// either Ipv4 or Ipv6 addresses but not both in the same rule. Separate IP
+	// addresses with a space.
 	//
 	// TargetIps is available only when the value of Rule type is FORWARD.
 	TargetIps []*TargetAddress `min:"1" type:"list"`
@@ -8826,6 +9561,87 @@ func (s DeleteFirewallRuleOutput) GoString() string {
 // SetFirewallRule sets the FirewallRule field's value.
 func (s *DeleteFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *DeleteFirewallRuleOutput {
 	s.FirewallRule = v
+	return s
+}
+
+type DeleteOutpostResolverInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies the Resolver on the Outpost.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOutpostResolverInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOutpostResolverInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteOutpostResolverInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteOutpostResolverInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteOutpostResolverInput) SetId(v string) *DeleteOutpostResolverInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteOutpostResolverOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the DeleteOutpostResolver request, including the status
+	// of the request.
+	OutpostResolver *OutpostResolver `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOutpostResolverOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOutpostResolverOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpostResolver sets the OutpostResolver field's value.
+func (s *DeleteOutpostResolverOutput) SetOutpostResolver(v *OutpostResolver) *DeleteOutpostResolverOutput {
+	s.OutpostResolver = v
 	return s
 }
 
@@ -10863,6 +11679,87 @@ func (s GetFirewallRuleGroupPolicyOutput) GoString() string {
 // SetFirewallRuleGroupPolicy sets the FirewallRuleGroupPolicy field's value.
 func (s *GetFirewallRuleGroupPolicyOutput) SetFirewallRuleGroupPolicy(v string) *GetFirewallRuleGroupPolicyOutput {
 	s.FirewallRuleGroupPolicy = &v
+	return s
+}
+
+type GetOutpostResolverInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Resolver on the Outpost.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostResolverInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostResolverInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetOutpostResolverInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetOutpostResolverInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetOutpostResolverInput) SetId(v string) *GetOutpostResolverInput {
+	s.Id = &v
+	return s
+}
+
+type GetOutpostResolverOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the GetOutpostResolver request, including the status of
+	// the request.
+	OutpostResolver *OutpostResolver `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostResolverOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostResolverOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpostResolver sets the OutpostResolver field's value.
+func (s *GetOutpostResolverOutput) SetOutpostResolver(v *OutpostResolver) *GetOutpostResolverOutput {
+	s.OutpostResolver = v
 	return s
 }
 
@@ -13223,6 +14120,116 @@ func (s *ListFirewallRulesOutput) SetNextToken(v string) *ListFirewallRulesOutpu
 	return s
 }
 
+type ListOutpostResolversInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of Resolvers on the Outpost that you want to return in
+	// the response to a ListOutpostResolver request. If you don't specify a value
+	// for MaxResults, the request returns up to 100 Resolvers.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// For the first ListOutpostResolver request, omit this value.
+	NextToken *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Outpost.
+	OutpostArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOutpostResolversInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOutpostResolversInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOutpostResolversInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOutpostResolversInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.OutpostArn != nil && len(*s.OutpostArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOutpostResolversInput) SetMaxResults(v int64) *ListOutpostResolversInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOutpostResolversInput) SetNextToken(v string) *ListOutpostResolversInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *ListOutpostResolversInput) SetOutpostArn(v string) *ListOutpostResolversInput {
+	s.OutpostArn = &v
+	return s
+}
+
+type ListOutpostResolversOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If more than MaxResults Resolvers match the specified criteria, you can submit
+	// another ListOutpostResolver request to get the next group of results. In
+	// the next request, specify the value of NextToken from the previous response.
+	NextToken *string `type:"string"`
+
+	// The Resolvers on Outposts that were created by using the current Amazon Web
+	// Services account, and that match the specified filters, if any.
+	OutpostResolvers []*OutpostResolver `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOutpostResolversOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOutpostResolversOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOutpostResolversOutput) SetNextToken(v string) *ListOutpostResolversOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostResolvers sets the OutpostResolvers field's value.
+func (s *ListOutpostResolversOutput) SetOutpostResolvers(v []*OutpostResolver) *ListOutpostResolversOutput {
+	s.OutpostResolvers = v
+	return s
+}
+
 type ListResolverConfigsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14550,6 +15557,132 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+// A complex type that contains settings for an existing Resolver on an Outpost.
+type OutpostResolver struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) for the Resolver on an Outpost.
+	Arn *string `min:"1" type:"string"`
+
+	// The date and time that the Outpost Resolver was created, in Unix time format
+	// and Coordinated Universal Time (UTC).
+	CreationTime *string `min:"20" type:"string"`
+
+	// A unique string that identifies the request that created the Resolver endpoint.
+	// The CreatorRequestId allows failed requests to be retried without the risk
+	// of running the operation twice.
+	CreatorRequestId *string `min:"1" type:"string"`
+
+	// The ID of the Resolver on Outpost.
+	Id *string `min:"1" type:"string"`
+
+	// Amazon EC2 instance count for the Resolver on the Outpost.
+	InstanceCount *int64 `type:"integer"`
+
+	// The date and time that the Outpost Resolver was modified, in Unix time format
+	// and Coordinated Universal Time (UTC).
+	ModificationTime *string `min:"20" type:"string"`
+
+	// Name of the Resolver.
+	Name *string `min:"1" type:"string"`
+
+	// The ARN (Amazon Resource Name) for the Outpost.
+	OutpostArn *string `min:"1" type:"string"`
+
+	// The Amazon EC2 instance type.
+	PreferredInstanceType *string `min:"1" type:"string"`
+
+	// Status of the Resolver.
+	Status *string `type:"string" enum:"OutpostResolverStatus"`
+
+	// A detailed description of the Resolver.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostResolver) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostResolver) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *OutpostResolver) SetArn(v string) *OutpostResolver {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *OutpostResolver) SetCreationTime(v string) *OutpostResolver {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *OutpostResolver) SetCreatorRequestId(v string) *OutpostResolver {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *OutpostResolver) SetId(v string) *OutpostResolver {
+	s.Id = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *OutpostResolver) SetInstanceCount(v int64) *OutpostResolver {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetModificationTime sets the ModificationTime field's value.
+func (s *OutpostResolver) SetModificationTime(v string) *OutpostResolver {
+	s.ModificationTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OutpostResolver) SetName(v string) *OutpostResolver {
+	s.Name = &v
+	return s
+}
+
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *OutpostResolver) SetOutpostArn(v string) *OutpostResolver {
+	s.OutpostArn = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *OutpostResolver) SetPreferredInstanceType(v string) *OutpostResolver {
+	s.PreferredInstanceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *OutpostResolver) SetStatus(v string) *OutpostResolver {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *OutpostResolver) SetStatusMessage(v string) *OutpostResolver {
+	s.StatusMessage = &v
+	return s
+}
+
 type PutFirewallRuleGroupPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14661,8 +15794,6 @@ type PutResolverQueryLogConfigPolicyInput struct {
 	//    * route53resolver:AssociateResolverQueryLogConfig
 	//
 	//    * route53resolver:DisassociateResolverQueryLogConfig
-	//
-	//    * route53resolver:ListResolverQueryLogConfigAssociations
 	//
 	//    * route53resolver:ListResolverQueryLogConfigs
 	//
@@ -15059,6 +16190,12 @@ type ResolverEndpoint struct {
 	// request.
 	Name *string `type:"string"`
 
+	// The ARN (Amazon Resource Name) for the Outpost.
+	OutpostArn *string `min:"1" type:"string"`
+
+	// The Amazon EC2 instance type.
+	PreferredInstanceType *string `min:"1" type:"string"`
+
 	// The Resolver endpoint IP address type.
 	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
 
@@ -15176,6 +16313,18 @@ func (s *ResolverEndpoint) SetModificationTime(v string) *ResolverEndpoint {
 // SetName sets the Name field's value.
 func (s *ResolverEndpoint) SetName(v string) *ResolverEndpoint {
 	s.Name = &v
+	return s
+}
+
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *ResolverEndpoint) SetOutpostArn(v string) *ResolverEndpoint {
+	s.OutpostArn = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *ResolverEndpoint) SetPreferredInstanceType(v string) *ResolverEndpoint {
+	s.PreferredInstanceType = &v
 	return s
 }
 
@@ -15531,7 +16680,7 @@ type ResolverRule struct {
 
 	// An array that contains the IP addresses and ports that an outbound endpoint
 	// forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers
-	// on your network. Specify IPv4 addresses. IPv6 is not supported.
+	// on your network.
 	TargetIps []*TargetAddress `min:"1" type:"list"`
 }
 
@@ -16073,6 +17222,70 @@ func (s *ResourceUnavailableException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Fulfilling the request would cause one or more quotas to be exceeded.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -17184,6 +18397,119 @@ func (s *UpdateIpAddress) SetIpv6(v string) *UpdateIpAddress {
 	return s
 }
 
+type UpdateOutpostResolverInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies Resolver on an Outpost.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon EC2 instance count for a Resolver on the Outpost.
+	InstanceCount *int64 `type:"integer"`
+
+	// Name of the Resolver on the Outpost.
+	Name *string `min:"1" type:"string"`
+
+	// Amazon EC2 instance type.
+	PreferredInstanceType *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostResolverInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostResolverInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOutpostResolverInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOutpostResolverInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PreferredInstanceType != nil && len(*s.PreferredInstanceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredInstanceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateOutpostResolverInput) SetId(v string) *UpdateOutpostResolverInput {
+	s.Id = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *UpdateOutpostResolverInput) SetInstanceCount(v int64) *UpdateOutpostResolverInput {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateOutpostResolverInput) SetName(v string) *UpdateOutpostResolverInput {
+	s.Name = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *UpdateOutpostResolverInput) SetPreferredInstanceType(v string) *UpdateOutpostResolverInput {
+	s.PreferredInstanceType = &v
+	return s
+}
+
+type UpdateOutpostResolverOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The response to an UpdateOutpostResolver request.
+	OutpostResolver *OutpostResolver `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostResolverOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostResolverOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpostResolver sets the OutpostResolver field's value.
+func (s *UpdateOutpostResolverOutput) SetOutpostResolver(v *OutpostResolver) *UpdateOutpostResolverOutput {
+	s.OutpostResolver = v
+	return s
+}
+
 type UpdateResolverConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17401,9 +18727,13 @@ type UpdateResolverEndpointInput struct {
 
 	// Specifies the endpoint type for what type of IP address the endpoint uses
 	// to forward DNS queries.
+	//
+	// Updating to IPV6 type isn't currently supported.
 	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
 
-	// Updates the Resolver endpoint type to IpV4, Ipv6, or dual-stack.
+	// Specifies the IPv6 address when you update the Resolver endpoint from IPv4
+	// to dual-stack. If you don't specify an IPv6 address, one will be automatically
+	// chosen from your subnet.
 	UpdateIpAddresses []*UpdateIpAddress `type:"list"`
 }
 
@@ -17895,6 +19225,9 @@ const (
 
 	// IpAddressStatusUpdating is a IpAddressStatus enum value
 	IpAddressStatusUpdating = "UPDATING"
+
+	// IpAddressStatusUpdateFailed is a IpAddressStatus enum value
+	IpAddressStatusUpdateFailed = "UPDATE_FAILED"
 )
 
 // IpAddressStatus_Values returns all elements of the IpAddressStatus enum
@@ -17911,6 +19244,7 @@ func IpAddressStatus_Values() []string {
 		IpAddressStatusDeleting,
 		IpAddressStatusDeleteFailedFasExpired,
 		IpAddressStatusUpdating,
+		IpAddressStatusUpdateFailed,
 	}
 }
 
@@ -17927,6 +19261,42 @@ func MutationProtectionStatus_Values() []string {
 	return []string{
 		MutationProtectionStatusEnabled,
 		MutationProtectionStatusDisabled,
+	}
+}
+
+const (
+	// OutpostResolverStatusCreating is a OutpostResolverStatus enum value
+	OutpostResolverStatusCreating = "CREATING"
+
+	// OutpostResolverStatusOperational is a OutpostResolverStatus enum value
+	OutpostResolverStatusOperational = "OPERATIONAL"
+
+	// OutpostResolverStatusUpdating is a OutpostResolverStatus enum value
+	OutpostResolverStatusUpdating = "UPDATING"
+
+	// OutpostResolverStatusDeleting is a OutpostResolverStatus enum value
+	OutpostResolverStatusDeleting = "DELETING"
+
+	// OutpostResolverStatusActionNeeded is a OutpostResolverStatus enum value
+	OutpostResolverStatusActionNeeded = "ACTION_NEEDED"
+
+	// OutpostResolverStatusFailedCreation is a OutpostResolverStatus enum value
+	OutpostResolverStatusFailedCreation = "FAILED_CREATION"
+
+	// OutpostResolverStatusFailedDeletion is a OutpostResolverStatus enum value
+	OutpostResolverStatusFailedDeletion = "FAILED_DELETION"
+)
+
+// OutpostResolverStatus_Values returns all elements of the OutpostResolverStatus enum
+func OutpostResolverStatus_Values() []string {
+	return []string{
+		OutpostResolverStatusCreating,
+		OutpostResolverStatusOperational,
+		OutpostResolverStatusUpdating,
+		OutpostResolverStatusDeleting,
+		OutpostResolverStatusActionNeeded,
+		OutpostResolverStatusFailedCreation,
+		OutpostResolverStatusFailedDeletion,
 	}
 }
 

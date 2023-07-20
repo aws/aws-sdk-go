@@ -9,12 +9,14 @@
     "CreateFirewallDomainList": "<p>Creates an empty firewall domain list for use in DNS Firewall rules. You can populate the domains for the new list with a file, using <a>ImportFirewallDomains</a>, or with domain strings, using <a>UpdateFirewallDomains</a>. </p>",
     "CreateFirewallRule": "<p>Creates a single DNS Firewall rule in the specified rule group, using the specified domain list.</p>",
     "CreateFirewallRuleGroup": "<p>Creates an empty DNS Firewall rule group for filtering DNS network traffic in a VPC. You can add rules to the new rule group by calling <a>CreateFirewallRule</a>. </p>",
+    "CreateOutpostResolver": "<p>Creates an Route 53 Resolver on an Outpost.</p>",
     "CreateResolverEndpoint": "<p>Creates a Resolver endpoint. There are two types of Resolver endpoints, inbound and outbound:</p> <ul> <li> <p>An <i>inbound Resolver endpoint</i> forwards DNS queries to the DNS service for a VPC from your network.</p> </li> <li> <p>An <i>outbound Resolver endpoint</i> forwards DNS queries from the DNS service for a VPC to your network.</p> </li> </ul>",
     "CreateResolverQueryLogConfig": "<p>Creates a Resolver query logging configuration, which defines where you want Resolver to save DNS query logs that originate in your VPCs. Resolver can log queries only for VPCs that are in the same Region as the query logging configuration.</p> <p>To specify which VPCs you want to log queries for, you use <code>AssociateResolverQueryLogConfig</code>. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_AssociateResolverQueryLogConfig.html\">AssociateResolverQueryLogConfig</a>. </p> <p>You can optionally use Resource Access Manager (RAM) to share a query logging configuration with other Amazon Web Services accounts. The other accounts can then associate VPCs with the configuration. The query logs that Resolver creates for a configuration include all DNS queries that originate in all VPCs that are associated with the configuration.</p>",
     "CreateResolverRule": "<p>For DNS queries that originate in your VPCs, specifies which Resolver endpoint the queries pass through, one domain name that you want to forward to your network, and the IP addresses of the DNS resolvers in your network.</p>",
     "DeleteFirewallDomainList": "<p>Deletes the specified domain list. </p>",
     "DeleteFirewallRule": "<p>Deletes the specified firewall rule.</p>",
     "DeleteFirewallRuleGroup": "<p>Deletes the specified firewall rule group. </p>",
+    "DeleteOutpostResolver": "<p>Deletes a Resolver on the Outpost.</p>",
     "DeleteResolverEndpoint": "<p>Deletes a Resolver endpoint. The effect of deleting a Resolver endpoint depends on whether it's an inbound or an outbound Resolver endpoint:</p> <ul> <li> <p> <b>Inbound</b>: DNS queries from your network are no longer routed to the DNS service for the specified VPC.</p> </li> <li> <p> <b>Outbound</b>: DNS queries from a VPC are no longer routed to your network.</p> </li> </ul>",
     "DeleteResolverQueryLogConfig": "<p>Deletes a query logging configuration. When you delete a configuration, Resolver stops logging DNS queries for all of the Amazon VPCs that are associated with the configuration. This also applies if the query logging configuration is shared with other Amazon Web Services accounts, and the other accounts have associated VPCs with the shared configuration.</p> <p>Before you can delete a query logging configuration, you must first disassociate all VPCs from the configuration. See <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverQueryLogConfig.html\">DisassociateResolverQueryLogConfig</a>.</p> <p>If you used Resource Access Manager (RAM) to share a query logging configuration with other accounts, you must stop sharing the configuration before you can delete a configuration. The accounts that you shared the configuration with can first disassociate VPCs that they associated with the configuration, but that's not necessary. If you stop sharing the configuration, those VPCs are automatically disassociated from the configuration.</p>",
     "DeleteResolverRule": "<p>Deletes a Resolver rule. Before you can delete a Resolver rule, you must disassociate it from all the VPCs that you associated the Resolver rule with. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverRule.html\">DisassociateResolverRule</a>.</p>",
@@ -27,6 +29,7 @@
     "GetFirewallRuleGroup": "<p>Retrieves the specified firewall rule group. </p>",
     "GetFirewallRuleGroupAssociation": "<p>Retrieves a firewall rule group association, which enables DNS filtering for a VPC with one rule group. A VPC can have more than one firewall rule group association, and a rule group can be associated with more than one VPC.</p>",
     "GetFirewallRuleGroupPolicy": "<p>Returns the Identity and Access Management (Amazon Web Services IAM) policy for sharing the specified rule group. You can use the policy to share the rule group using Resource Access Manager (RAM). </p>",
+    "GetOutpostResolver": "<p>Gets information about a specified Resolver on the Outpost, such as its instance count and type, name, and the current status of the Resolver.</p>",
     "GetResolverConfig": "<p>Retrieves the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
     "GetResolverDnssecConfig": "<p>Gets DNSSEC validation information for a specified resource.</p>",
     "GetResolverEndpoint": "<p>Gets information about a specified Resolver endpoint, such as whether it's an inbound or an outbound Resolver endpoint, and the current status of the endpoint.</p>",
@@ -43,6 +46,7 @@
     "ListFirewallRuleGroupAssociations": "<p>Retrieves the firewall rule group associations that you have defined. Each association enables DNS filtering for a VPC with one rule group. </p> <p>A single call might return only a partial list of the associations. For information, see <code>MaxResults</code>. </p>",
     "ListFirewallRuleGroups": "<p>Retrieves the minimal high-level information for the rule groups that you have defined. </p> <p>A single call might return only a partial list of the rule groups. For information, see <code>MaxResults</code>. </p>",
     "ListFirewallRules": "<p>Retrieves the firewall rules that you have defined for the specified firewall rule group. DNS Firewall uses the rules in a rule group to filter DNS network traffic for a VPC. </p> <p>A single call might return only a partial list of the rules. For information, see <code>MaxResults</code>. </p>",
+    "ListOutpostResolvers": "<p>Lists all the Resolvers on Outposts that were created using the current Amazon Web Services account.</p>",
     "ListResolverConfigs": "<p>Retrieves the Resolver configurations that you have defined. Route 53 Resolver uses the configurations to manage DNS resolution behavior for your VPCs.</p>",
     "ListResolverDnssecConfigs": "<p>Lists the configurations for DNSSEC validation that are associated with the current Amazon Web Services account.</p>",
     "ListResolverEndpointIpAddresses": "<p>Gets the IP addresses for a specified Resolver endpoint.</p>",
@@ -61,6 +65,7 @@
     "UpdateFirewallDomains": "<p>Updates the firewall domain list from an array of domain specifications. </p>",
     "UpdateFirewallRule": "<p>Updates the specified firewall rule. </p>",
     "UpdateFirewallRuleGroupAssociation": "<p>Changes the association of a <a>FirewallRuleGroup</a> with a VPC. The association enables DNS filtering for the VPC. </p>",
+    "UpdateOutpostResolver": "<p>You can use <code>UpdateOutpostResolver</code> to update the instance count, type, or name of a Resolver on an Outpost.</p>",
     "UpdateResolverConfig": "<p>Updates the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
     "UpdateResolverDnssecConfig": "<p>Updates an existing DNSSEC validation configuration. If there is no existing DNSSEC validation configuration, one is created.</p>",
     "UpdateResolverEndpoint": "<p>Updates the name, or enpoint type for an inbound or an outbound Resolver endpoint. You can only update between IPV4 and DUALSTACK, IPV6 endpoint type can't be updated to other type. </p>",
@@ -105,6 +110,7 @@
         "GetResolverQueryLogConfigPolicyRequest$Arn": "<p>The ARN of the query logging configuration that you want to get the query logging policy for.</p>",
         "GetResolverRulePolicyRequest$Arn": "<p>The ID of the Resolver rule that you want to get the Resolver rule policy for.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) for the resource that you want to list tags for.</p>",
+        "OutpostResolver$Arn": "<p>The ARN (Amazon Resource Name) for the Resolver on an Outpost.</p>",
         "PutFirewallRuleGroupPolicyRequest$Arn": "<p>The ARN (Amazon Resource Name) for the rule group that you want to share.</p>",
         "PutResolverQueryLogConfigPolicyRequest$Arn": "<p>The Amazon Resource Name (ARN) of the account that you want to share rules with.</p>",
         "PutResolverRulePolicyRequest$Arn": "<p>The Amazon Resource Name (ARN) of the rule that you want to share with another account.</p>",
@@ -245,6 +251,16 @@
       "refs": {
       }
     },
+    "CreateOutpostResolverRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateOutpostResolverResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateResolverEndpointRequest": {
       "base": null,
       "refs": {
@@ -282,6 +298,7 @@
         "CreateFirewallDomainListRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows you to retry failed requests without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
         "CreateFirewallRuleGroupRequest$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
         "CreateFirewallRuleRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows you to retry failed requests without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
+        "CreateOutpostResolverRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of running the operation twice. </p> <p> <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp.</p>",
         "CreateResolverEndpointRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
         "CreateResolverQueryLogConfigRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
         "CreateResolverRuleRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
@@ -291,6 +308,7 @@
         "FirewallRuleGroup$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
         "FirewallRuleGroupAssociation$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
         "FirewallRuleGroupMetadata$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
+        "OutpostResolver$CreatorRequestId": "<p>A unique string that identifies the request that created the Resolver endpoint. The <code>CreatorRequestId</code> allows failed requests to be retried without the risk of running the operation twice.</p>",
         "ResolverEndpoint$CreatorRequestId": "<p>A unique string that identifies the request that created the Resolver endpoint. The <code>CreatorRequestId</code> allows failed requests to be retried without the risk of running the operation twice.</p>",
         "ResolverQueryLogConfig$CreatorRequestId": "<p>A unique string that identifies the request that created the query logging configuration. The <code>CreatorRequestId</code> allows failed requests to be retried without the risk of running the operation twice.</p>",
         "ResolverRule$CreatorRequestId": "<p>A unique string that you specified when you created the Resolver rule. <code>CreatorRequestId</code> identifies the request and allows failed requests to be retried without the risk of running the operation twice. </p>"
@@ -322,6 +340,16 @@
       }
     },
     "DeleteFirewallRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOutpostResolverRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOutpostResolverResponse": {
       "base": null,
       "refs": {
       }
@@ -426,6 +454,7 @@
         "InvalidPolicyDocument$Message": null,
         "InvalidRequestException$Message": null,
         "InvalidTagException$Message": null,
+        "ServiceQuotaExceededException$Message": null,
         "ThrottlingException$Message": null,
         "UnknownResourceException$Message": null,
         "ValidationException$Message": null
@@ -661,6 +690,16 @@
       "refs": {
       }
     },
+    "GetOutpostResolverRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOutpostResolverResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetResolverConfigRequest": {
       "base": null,
       "refs": {
@@ -759,6 +798,14 @@
     "ImportFirewallDomainsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "InstanceCount": {
+      "base": null,
+      "refs": {
+        "CreateOutpostResolverRequest$InstanceCount": "<p>Number of Amazon EC2 instances for the Resolver on Outpost. The default and minimal value is 4.</p>",
+        "OutpostResolver$InstanceCount": "<p>Amazon EC2 instance count for the Resolver on the Outpost.</p>",
+        "UpdateOutpostResolverRequest$InstanceCount": "<p>The Amazon EC2 instance count for a Resolver on the Outpost.</p>"
       }
     },
     "InternalServiceErrorException": {
@@ -930,6 +977,16 @@
       "refs": {
       }
     },
+    "ListOutpostResolversRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOutpostResolversResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListResolverConfigsMaxResult": {
       "base": null,
       "refs": {
@@ -1033,6 +1090,7 @@
         "ListFirewallRuleGroupAssociationsRequest$MaxResults": "<p>The maximum number of objects that you want Resolver to return for this request. If more objects are available, in the response, Resolver provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p> <p>If you don't specify a value for <code>MaxResults</code>, Resolver returns up to 100 objects. </p>",
         "ListFirewallRuleGroupsRequest$MaxResults": "<p>The maximum number of objects that you want Resolver to return for this request. If more objects are available, in the response, Resolver provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p> <p>If you don't specify a value for <code>MaxResults</code>, Resolver returns up to 100 objects. </p>",
         "ListFirewallRulesRequest$MaxResults": "<p>The maximum number of objects that you want Resolver to return for this request. If more objects are available, in the response, Resolver provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p> <p>If you don't specify a value for <code>MaxResults</code>, Resolver returns up to 100 objects. </p>",
+        "ListOutpostResolversRequest$MaxResults": "<p>The maximum number of Resolvers on the Outpost that you want to return in the response to a <code>ListOutpostResolver</code> request. If you don't specify a value for <code>MaxResults</code>, the request returns up to 100 Resolvers.</p>",
         "ListResolverDnssecConfigsRequest$MaxResults": "<p> <i>Optional</i>: An integer that specifies the maximum number of DNSSEC configuration results that you want Amazon Route 53 to return. If you don't specify a value for <code>MaxResults</code>, Route 53 returns up to 100 configuration per page.</p>",
         "ListResolverEndpointIpAddressesRequest$MaxResults": "<p>The maximum number of IP addresses that you want to return in the response to a <code>ListResolverEndpointIpAddresses</code> request. If you don't specify a value for <code>MaxResults</code>, Resolver returns up to 100 IP addresses. </p>",
         "ListResolverEndpointIpAddressesResponse$MaxResults": "<p>The value that you specified for <code>MaxResults</code> in the request.</p>",
@@ -1097,6 +1155,8 @@
         "ListFirewallRuleGroupsResponse$NextToken": "<p>If objects are still available for retrieval, Resolver returns this token in the response. To retrieve the next batch of objects, provide this token in your next request.</p>",
         "ListFirewallRulesRequest$NextToken": "<p>For the first call to this list request, omit this value.</p> <p>When you request a list of objects, Resolver returns at most the number of objects specified in <code>MaxResults</code>. If more objects are available for retrieval, Resolver returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.</p>",
         "ListFirewallRulesResponse$NextToken": "<p>If objects are still available for retrieval, Resolver returns this token in the response. To retrieve the next batch of objects, provide this token in your next request.</p>",
+        "ListOutpostResolversRequest$NextToken": "<p>For the first <code>ListOutpostResolver</code> request, omit this value.</p> <p/>",
+        "ListOutpostResolversResponse$NextToken": "<p>If more than <code>MaxResults</code> Resolvers match the specified criteria, you can submit another <code>ListOutpostResolver</code> request to get the next group of results. In the next request, specify the value of <code>NextToken</code> from the previous response.</p>",
         "ListResolverConfigsRequest$NextToken": "<p>(Optional) If the current Amazon Web Services account has more than <code>MaxResults</code> Resolver configurations, use <code>NextToken</code> to get the second and subsequent pages of results.</p> <p>For the first <code>ListResolverConfigs</code> request, omit this value.</p> <p>For the second and subsequent requests, get the value of <code>NextToken</code> from the previous response and specify that value for <code>NextToken</code> in the request.</p>",
         "ListResolverConfigsResponse$NextToken": "<p>If a response includes the last of the Resolver configurations that are associated with the current Amazon Web Services account, <code>NextToken</code> doesn't appear in the response.</p> <p>If a response doesn't include the last of the configurations, you can get more configurations by submitting another <code>ListResolverConfigs</code> request. Get the value of <code>NextToken</code> that Amazon Route 53 returned in the previous response and include it in <code>NextToken</code> in the next request.</p>",
         "ListResolverDnssecConfigsRequest$NextToken": "<p>(Optional) If the current Amazon Web Services account has more than <code>MaxResults</code> DNSSEC configurations, use <code>NextToken</code> to get the second and subsequent pages of results.</p> <p>For the first <code>ListResolverDnssecConfigs</code> request, omit this value.</p> <p>For the second and subsequent requests, get the value of <code>NextToken</code> from the previous response and specify that value for <code>NextToken</code> in the request.</p>",
@@ -1115,6 +1175,62 @@
         "ListResolverRulesResponse$NextToken": "<p>If more than <code>MaxResults</code> Resolver rules match the specified criteria, you can submit another <code>ListResolverRules</code> request to get the next group of results. In the next request, specify the value of <code>NextToken</code> from the previous response. </p>",
         "ListTagsForResourceRequest$NextToken": "<p>For the first <code>ListTagsForResource</code> request, omit this value.</p> <p>If you have more than <code>MaxResults</code> tags, you can submit another <code>ListTagsForResource</code> request to get the next group of tags for the resource. In the next request, specify the value of <code>NextToken</code> from the previous response. </p>",
         "ListTagsForResourceResponse$NextToken": "<p>If more than <code>MaxResults</code> tags match the specified criteria, you can submit another <code>ListTagsForResource</code> request to get the next group of results. In the next request, specify the value of <code>NextToken</code> from the previous response. </p>"
+      }
+    },
+    "OutpostArn": {
+      "base": null,
+      "refs": {
+        "CreateOutpostResolverRequest$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must also specify a value for the <code>PreferredInstanceType</code>.</p>",
+        "CreateResolverEndpointRequest$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must also specify a value for the <code>PreferredInstanceType</code>. </p>",
+        "ListOutpostResolversRequest$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost.</p>",
+        "OutpostResolver$OutpostArn": "<p>The ARN (Amazon Resource Name) for the Outpost.</p>",
+        "ResolverEndpoint$OutpostArn": "<p>The ARN (Amazon Resource Name) for the Outpost.</p>"
+      }
+    },
+    "OutpostInstanceType": {
+      "base": null,
+      "refs": {
+        "CreateOutpostResolverRequest$PreferredInstanceType": "<p> The Amazon EC2 instance type. If you specify this, you must also specify a value for the <code>OutpostArn</code>. </p>",
+        "CreateResolverEndpointRequest$PreferredInstanceType": "<p>The instance type. If you specify this, you must also specify a value for the <code>OutpostArn</code>.</p>",
+        "OutpostResolver$PreferredInstanceType": "<p> The Amazon EC2 instance type. </p>",
+        "ResolverEndpoint$PreferredInstanceType": "<p> The Amazon EC2 instance type. </p>",
+        "UpdateOutpostResolverRequest$PreferredInstanceType": "<p> Amazon EC2 instance type. </p>"
+      }
+    },
+    "OutpostResolver": {
+      "base": "<p>A complex type that contains settings for an existing Resolver on an Outpost.</p>",
+      "refs": {
+        "CreateOutpostResolverResponse$OutpostResolver": "<p>Information about the <code>CreateOutpostResolver</code> request, including the status of the request.</p>",
+        "DeleteOutpostResolverResponse$OutpostResolver": "<p>Information about the <code>DeleteOutpostResolver</code> request, including the status of the request.</p>",
+        "GetOutpostResolverResponse$OutpostResolver": "<p>Information about the <code>GetOutpostResolver</code> request, including the status of the request.</p>",
+        "OutpostResolverList$member": null,
+        "UpdateOutpostResolverResponse$OutpostResolver": "<p>The response to an <code>UpdateOutpostResolver</code> request.</p>"
+      }
+    },
+    "OutpostResolverList": {
+      "base": null,
+      "refs": {
+        "ListOutpostResolversResponse$OutpostResolvers": "<p>The Resolvers on Outposts that were created by using the current Amazon Web Services account, and that match the specified filters, if any.</p>"
+      }
+    },
+    "OutpostResolverName": {
+      "base": null,
+      "refs": {
+        "CreateOutpostResolverRequest$Name": "<p>A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console.</p>",
+        "OutpostResolver$Name": "<p>Name of the Resolver.</p>",
+        "UpdateOutpostResolverRequest$Name": "<p>Name of the Resolver on the Outpost.</p>"
+      }
+    },
+    "OutpostResolverStatus": {
+      "base": null,
+      "refs": {
+        "OutpostResolver$Status": "<p>Status of the Resolver.</p>"
+      }
+    },
+    "OutpostResolverStatusMessage": {
+      "base": null,
+      "refs": {
+        "OutpostResolver$StatusMessage": "<p>A detailed description of the Resolver.</p>"
       }
     },
     "Port": {
@@ -1234,9 +1350,9 @@
     "ResolverEndpointType": {
       "base": null,
       "refs": {
-        "CreateResolverEndpointRequest$ResolverEndpointType": "<p> For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses. </p>",
+        "CreateResolverEndpointRequest$ResolverEndpointType": "<p> For the endpoint type you can choose either IPv4, IPv6, or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses. </p>",
         "ResolverEndpoint$ResolverEndpointType": "<p> The Resolver endpoint IP address type. </p>",
-        "UpdateResolverEndpointRequest$ResolverEndpointType": "<p> Specifies the endpoint type for what type of IP address the endpoint uses to forward DNS queries. </p>"
+        "UpdateResolverEndpointRequest$ResolverEndpointType": "<p> Specifies the endpoint type for what type of IP address the endpoint uses to forward DNS queries. </p> <p>Updating to <code>IPV6</code> type isn't currently supported.</p>"
       }
     },
     "ResolverEndpoints": {
@@ -1304,7 +1420,7 @@
       "base": null,
       "refs": {
         "GetResolverQueryLogConfigPolicyResponse$ResolverQueryLogConfigPolicy": "<p>Information about the query logging policy for the query logging configuration that you specified in a <code>GetResolverQueryLogConfigPolicy</code> request.</p>",
-        "PutResolverQueryLogConfigPolicyRequest$ResolverQueryLogConfigPolicy": "<p>An Identity and Access Management policy statement that lists the query logging configurations that you want to share with another Amazon Web Services account and the operations that you want the account to be able to perform. You can specify the following operations in the <code>Actions</code> section of the statement:</p> <ul> <li> <p> <code>route53resolver:AssociateResolverQueryLogConfig</code> </p> </li> <li> <p> <code>route53resolver:DisassociateResolverQueryLogConfig</code> </p> </li> <li> <p> <code>route53resolver:ListResolverQueryLogConfigAssociations</code> </p> </li> <li> <p> <code>route53resolver:ListResolverQueryLogConfigs</code> </p> </li> </ul> <p>In the <code>Resource</code> section of the statement, you specify the ARNs for the query logging configurations that you want to share with the account that you specified in <code>Arn</code>. </p>"
+        "PutResolverQueryLogConfigPolicyRequest$ResolverQueryLogConfigPolicy": "<p>An Identity and Access Management policy statement that lists the query logging configurations that you want to share with another Amazon Web Services account and the operations that you want the account to be able to perform. You can specify the following operations in the <code>Actions</code> section of the statement:</p> <ul> <li> <p> <code>route53resolver:AssociateResolverQueryLogConfig</code> </p> </li> <li> <p> <code>route53resolver:DisassociateResolverQueryLogConfig</code> </p> </li> <li> <p> <code>route53resolver:ListResolverQueryLogConfigs</code> </p> </li> </ul> <p>In the <code>Resource</code> section of the statement, you specify the ARNs for the query logging configurations that you want to share with the account that you specified in <code>Arn</code>. </p>"
       }
     },
     "ResolverQueryLogConfigStatus": {
@@ -1391,6 +1507,7 @@
         "DeleteFirewallRuleGroupRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group that you want to delete. </p>",
         "DeleteFirewallRuleRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group that you want to delete the rule from. </p>",
         "DeleteFirewallRuleRequest$FirewallDomainListId": "<p>The ID of the domain list that's used in the rule. </p>",
+        "DeleteOutpostResolverRequest$Id": "<p>A unique string that identifies the Resolver on the Outpost.</p>",
         "DeleteResolverEndpointRequest$ResolverEndpointId": "<p>The ID of the Resolver endpoint that you want to delete.</p>",
         "DeleteResolverQueryLogConfigRequest$ResolverQueryLogConfigId": "<p>The ID of the query logging configuration that you want to delete.</p>",
         "DeleteResolverRuleRequest$ResolverRuleId": "<p>The ID of the Resolver rule that you want to delete.</p>",
@@ -1415,6 +1532,7 @@
         "GetFirewallDomainListRequest$FirewallDomainListId": "<p>The ID of the domain list. </p>",
         "GetFirewallRuleGroupAssociationRequest$FirewallRuleGroupAssociationId": "<p>The identifier of the <a>FirewallRuleGroupAssociation</a>. </p>",
         "GetFirewallRuleGroupRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group. </p>",
+        "GetOutpostResolverRequest$Id": "<p>The ID of the Resolver on the Outpost.</p>",
         "GetResolverConfigRequest$ResourceId": "<p>Resource ID of the Amazon VPC that you want to get information about.</p>",
         "GetResolverDnssecConfigRequest$ResourceId": "<p>The ID of the virtual private cloud (VPC) for the DNSSEC validation status.</p>",
         "GetResolverEndpointRequest$ResolverEndpointId": "<p>The ID of the Resolver endpoint that you want to get information about.</p>",
@@ -1431,6 +1549,7 @@
         "ListFirewallRuleGroupAssociationsRequest$VpcId": "<p>The unique identifier of the VPC that you want to retrieve the associations for. Leave this blank to retrieve associations for any VPC. </p>",
         "ListFirewallRulesRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group that you want to retrieve the rules for. </p>",
         "ListResolverEndpointIpAddressesRequest$ResolverEndpointId": "<p>The ID of the Resolver endpoint that you want to get IP addresses for.</p>",
+        "OutpostResolver$Id": "<p>The ID of the Resolver on Outpost.</p>",
         "ResolverConfig$Id": "<p>ID for the Resolver configuration.</p>",
         "ResolverConfig$ResourceId": "<p>The ID of the Amazon Virtual Private Cloud VPC that you're configuring Resolver for.</p>",
         "ResolverDnssecConfig$Id": "<p>The ID for a configuration for DNSSEC validation.</p>",
@@ -1455,6 +1574,7 @@
         "UpdateFirewallRuleRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group for the rule. </p>",
         "UpdateFirewallRuleRequest$FirewallDomainListId": "<p>The ID of the domain list to use in the rule. </p>",
         "UpdateIpAddress$IpId": "<p> The ID of the IP address, specified by the <code>ResolverEndpointId</code>. </p>",
+        "UpdateOutpostResolverRequest$Id": "<p>A unique string that identifies Resolver on an Outpost.</p>",
         "UpdateResolverConfigRequest$ResourceId": "<p>Resource ID of the Amazon VPC that you want to update the Resolver configuration for.</p>",
         "UpdateResolverDnssecConfigRequest$ResourceId": "<p>The ID of the virtual private cloud (VPC) that you're updating the DNSSEC validation status for.</p>",
         "UpdateResolverEndpointRequest$ResolverEndpointId": "<p>The ID of the Resolver endpoint that you want to update.</p>",
@@ -1489,6 +1609,8 @@
         "FirewallRuleGroupAssociation$ModificationTime": "<p>The date and time that the association was last modified, in Unix time format and Coordinated Universal Time (UTC).</p>",
         "IpAddressResponse$CreationTime": "<p>The date and time that the IP address was created, in Unix time format and Coordinated Universal Time (UTC).</p>",
         "IpAddressResponse$ModificationTime": "<p>The date and time that the IP address was last modified, in Unix time format and Coordinated Universal Time (UTC).</p>",
+        "OutpostResolver$CreationTime": "<p>The date and time that the Outpost Resolver was created, in Unix time format and Coordinated Universal Time (UTC).</p>",
+        "OutpostResolver$ModificationTime": "<p>The date and time that the Outpost Resolver was modified, in Unix time format and Coordinated Universal Time (UTC).</p>",
         "ResolverEndpoint$CreationTime": "<p>The date and time that the endpoint was created, in Unix time format and Coordinated Universal Time (UTC).</p>",
         "ResolverEndpoint$ModificationTime": "<p>The date and time that the endpoint was last modified, in Unix time format and Coordinated Universal Time (UTC).</p>",
         "ResolverQueryLogConfig$CreationTime": "<p>The date and time that the query logging configuration was created, in Unix time format and Coordinated Universal Time (UTC).</p>",
@@ -1517,6 +1639,11 @@
         "FirewallDomainList$ManagedOwnerName": "<p>The owner of the list, used only for lists that are not managed by you. For example, the managed domain list <code>AWSManagedDomainsMalwareDomainList</code> has the managed owner name <code>Route 53 Resolver DNS Firewall</code>.</p>",
         "FirewallDomainListMetadata$ManagedOwnerName": "<p>The owner of the list, used only for lists that are not managed by you. For example, the managed domain list <code>AWSManagedDomainsMalwareDomainList</code> has the managed owner name <code>Route 53 Resolver DNS Firewall</code>.</p>",
         "FirewallRuleGroupAssociation$ManagedOwnerName": "<p>The owner of the association, used only for associations that are not managed by you. If you use Firewall Manager to manage your DNS Firewalls, then this reports Firewall Manager as the managed owner.</p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>Fulfilling the request would cause one or more quotas to be exceeded.</p>",
+      "refs": {
       }
     },
     "ShareStatus": {
@@ -1606,6 +1733,7 @@
         "AssociateFirewallRuleGroupRequest$Tags": "<p>A list of the tag keys and values that you want to associate with the rule group association. </p>",
         "CreateFirewallDomainListRequest$Tags": "<p>A list of the tag keys and values that you want to associate with the domain list. </p>",
         "CreateFirewallRuleGroupRequest$Tags": "<p>A list of the tag keys and values that you want to associate with the rule group. </p>",
+        "CreateOutpostResolverRequest$Tags": "<p> A string that helps identify the Route 53 Resolvers on Outpost. </p>",
         "CreateResolverEndpointRequest$Tags": "<p>A list of the tag keys and values that you want to associate with the endpoint.</p>",
         "CreateResolverQueryLogConfigRequest$Tags": "<p>A list of the tag keys and values that you want to associate with the query logging configuration.</p>",
         "CreateResolverRuleRequest$Tags": "<p>A list of the tag keys and values that you want to associate with the endpoint.</p>",
@@ -1638,8 +1766,8 @@
     "TargetList": {
       "base": null,
       "refs": {
-        "CreateResolverRuleRequest$TargetIps": "<p>The IPs that you want Resolver to forward DNS queries to. You can specify only IPv4 addresses. Separate IP addresses with a space.</p> <p> <code>TargetIps</code> is available only when the value of <code>Rule type</code> is <code>FORWARD</code>.</p>",
-        "ResolverRule$TargetIps": "<p>An array that contains the IP addresses and ports that an outbound endpoint forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers on your network. Specify IPv4 addresses. IPv6 is not supported.</p>",
+        "CreateResolverRuleRequest$TargetIps": "<p>The IPs that you want Resolver to forward DNS queries to. You can specify either Ipv4 or Ipv6 addresses but not both in the same rule. Separate IP addresses with a space.</p> <p> <code>TargetIps</code> is available only when the value of <code>Rule type</code> is <code>FORWARD</code>.</p>",
+        "ResolverRule$TargetIps": "<p>An array that contains the IP addresses and ports that an outbound endpoint forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers on your network. </p>",
         "ResolverRuleConfig$TargetIps": "<p>For DNS queries that originate in your VPC, the new IP addresses that you want to route outbound DNS queries to.</p>"
       }
     },
@@ -1720,7 +1848,17 @@
     "UpdateIpAddresses": {
       "base": null,
       "refs": {
-        "UpdateResolverEndpointRequest$UpdateIpAddresses": "<p> Updates the Resolver endpoint type to IpV4, Ipv6, or dual-stack. </p>"
+        "UpdateResolverEndpointRequest$UpdateIpAddresses": "<p> Specifies the IPv6 address when you update the Resolver endpoint from IPv4 to dual-stack. If you don't specify an IPv6 address, one will be automatically chosen from your subnet. </p>"
+      }
+    },
+    "UpdateOutpostResolverRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateOutpostResolverResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateResolverConfigRequest": {

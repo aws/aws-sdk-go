@@ -136,6 +136,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CreateOutpostResolver":{
+      "name":"CreateOutpostResolver",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateOutpostResolverRequest"},
+      "output":{"shape":"CreateOutpostResolverResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "CreateResolverEndpoint":{
       "name":"CreateResolverEndpoint",
       "http":{
@@ -238,6 +255,23 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteOutpostResolver":{
+      "name":"DeleteOutpostResolver",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteOutpostResolverRequest"},
+      "output":{"shape":"DeleteOutpostResolverResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteResolverEndpoint":{
@@ -430,6 +464,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetOutpostResolver":{
+      "name":"GetOutpostResolver",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetOutpostResolverRequest"},
+      "output":{"shape":"GetOutpostResolverResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetResolverConfig":{
@@ -684,6 +734,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListOutpostResolvers":{
+      "name":"ListOutpostResolvers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListOutpostResolversRequest"},
+      "output":{"shape":"ListOutpostResolversResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListResolverConfigs":{
@@ -985,6 +1051,24 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "UpdateOutpostResolver":{
+      "name":"UpdateOutpostResolver",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateOutpostResolverRequest"},
+      "output":{"shape":"UpdateOutpostResolverResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "UpdateResolverConfig":{
@@ -1302,6 +1386,35 @@
         "FirewallRule":{"shape":"FirewallRule"}
       }
     },
+    "CreateOutpostResolverRequest":{
+      "type":"structure",
+      "required":[
+        "CreatorRequestId",
+        "Name",
+        "PreferredInstanceType",
+        "OutpostArn"
+      ],
+      "members":{
+        "CreatorRequestId":{"shape":"CreatorRequestId"},
+        "Name":{"shape":"OutpostResolverName"},
+        "InstanceCount":{
+          "shape":"InstanceCount",
+          "box":true
+        },
+        "PreferredInstanceType":{"shape":"OutpostInstanceType"},
+        "OutpostArn":{"shape":"OutpostArn"},
+        "Tags":{
+          "shape":"TagList",
+          "box":true
+        }
+      }
+    },
+    "CreateOutpostResolverResponse":{
+      "type":"structure",
+      "members":{
+        "OutpostResolver":{"shape":"OutpostResolver"}
+      }
+    },
     "CreateResolverEndpointRequest":{
       "type":"structure",
       "required":[
@@ -1325,6 +1438,14 @@
         },
         "ResolverEndpointType":{
           "shape":"ResolverEndpointType",
+          "box":true
+        },
+        "OutpostArn":{
+          "shape":"OutpostArn",
+          "box":true
+        },
+        "PreferredInstanceType":{
+          "shape":"OutpostInstanceType",
           "box":true
         }
       }
@@ -1439,6 +1560,19 @@
       "type":"structure",
       "members":{
         "FirewallRule":{"shape":"FirewallRule"}
+      }
+    },
+    "DeleteOutpostResolverRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"ResourceId"}
+      }
+    },
+    "DeleteOutpostResolverResponse":{
+      "type":"structure",
+      "members":{
+        "OutpostResolver":{"shape":"OutpostResolver"}
       }
     },
     "DeleteResolverEndpointRequest":{
@@ -1825,6 +1959,19 @@
         "FirewallRuleGroup":{"shape":"FirewallRuleGroup"}
       }
     },
+    "GetOutpostResolverRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"ResourceId"}
+      }
+    },
+    "GetOutpostResolverResponse":{
+      "type":"structure",
+      "members":{
+        "OutpostResolver":{"shape":"OutpostResolver"}
+      }
+    },
     "GetResolverConfigRequest":{
       "type":"structure",
       "required":["ResourceId"],
@@ -1964,6 +2111,7 @@
         "StatusMessage":{"shape":"StatusMessage"}
       }
     },
+    "InstanceCount":{"type":"integer"},
     "InternalServiceErrorException":{
       "type":"structure",
       "members":{
@@ -2055,7 +2203,8 @@
         "FAILED_RESOURCE_GONE",
         "DELETING",
         "DELETE_FAILED_FAS_EXPIRED",
-        "UPDATING"
+        "UPDATING",
+        "UPDATE_FAILED"
       ]
     },
     "IpAddressUpdate":{
@@ -2258,6 +2407,30 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "FirewallRules":{"shape":"FirewallRules"}
+      }
+    },
+    "ListOutpostResolversRequest":{
+      "type":"structure",
+      "members":{
+        "OutpostArn":{
+          "shape":"OutpostArn",
+          "box":true
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "box":true
+        }
+      }
+    },
+    "ListOutpostResolversResponse":{
+      "type":"structure",
+      "members":{
+        "OutpostResolvers":{"shape":"OutpostResolverList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "ListResolverConfigsMaxResult":{
@@ -2494,6 +2667,58 @@
       "pattern":"(?!^[0-9]+$)([a-zA-Z0-9\\-_' ']+)"
     },
     "NextToken":{"type":"string"},
+    "OutpostArn":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:outpost/op-[a-f0-9]{17}$"
+    },
+    "OutpostInstanceType":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "OutpostResolver":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "CreationTime":{"shape":"Rfc3339TimeString"},
+        "ModificationTime":{"shape":"Rfc3339TimeString"},
+        "CreatorRequestId":{"shape":"CreatorRequestId"},
+        "Id":{"shape":"ResourceId"},
+        "InstanceCount":{"shape":"InstanceCount"},
+        "PreferredInstanceType":{"shape":"OutpostInstanceType"},
+        "Name":{"shape":"OutpostResolverName"},
+        "Status":{"shape":"OutpostResolverStatus"},
+        "StatusMessage":{"shape":"OutpostResolverStatusMessage"},
+        "OutpostArn":{"shape":"OutpostArn"}
+      }
+    },
+    "OutpostResolverList":{
+      "type":"list",
+      "member":{"shape":"OutpostResolver"}
+    },
+    "OutpostResolverName":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "OutpostResolverStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "OPERATIONAL",
+        "UPDATING",
+        "DELETING",
+        "ACTION_NEEDED",
+        "FAILED_CREATION",
+        "FAILED_DELETION"
+      ]
+    },
+    "OutpostResolverStatusMessage":{
+      "type":"string",
+      "max":4096
+    },
     "Port":{
       "type":"integer",
       "max":65535,
@@ -2614,7 +2839,9 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "CreationTime":{"shape":"Rfc3339TimeString"},
         "ModificationTime":{"shape":"Rfc3339TimeString"},
-        "ResolverEndpointType":{"shape":"ResolverEndpointType"}
+        "ResolverEndpointType":{"shape":"ResolverEndpointType"},
+        "OutpostArn":{"shape":"OutpostArn"},
+        "PreferredInstanceType":{"shape":"OutpostInstanceType"}
       }
     },
     "ResolverEndpointDirection":{
@@ -2848,6 +3075,13 @@
       "type":"string",
       "max":512,
       "min":1
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
     },
     "ShareStatus":{
       "type":"string",
@@ -3104,6 +3338,31 @@
       "member":{"shape":"UpdateIpAddress"},
       "max":50,
       "min":0
+    },
+    "UpdateOutpostResolverRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"ResourceId"},
+        "Name":{
+          "shape":"OutpostResolverName",
+          "box":true
+        },
+        "InstanceCount":{
+          "shape":"InstanceCount",
+          "box":true
+        },
+        "PreferredInstanceType":{
+          "shape":"OutpostInstanceType",
+          "box":true
+        }
+      }
+    },
+    "UpdateOutpostResolverResponse":{
+      "type":"structure",
+      "members":{
+        "OutpostResolver":{"shape":"OutpostResolver"}
+      }
     },
     "UpdateResolverConfigRequest":{
       "type":"structure",

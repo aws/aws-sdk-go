@@ -1753,6 +1753,11 @@
       "min":1
     },
     "AnalyticsBinValue":{"type":"long"},
+    "AnalyticsChannel":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
     "AnalyticsCommonFilterName":{
       "type":"string",
       "enum":[
@@ -2662,14 +2667,6 @@
         "botAliasId":{"shape":"BotAliasId"},
         "localeId":{"shape":"LocaleId"}
       }
-    },
-    "BotChannelType":{
-      "type":"string",
-      "enum":[
-        "Facebook",
-        "Slack",
-        "TwilioSms"
-      ]
     },
     "BotExportSpecification":{
       "type":"structure",
@@ -6998,7 +6995,7 @@
         "botAliasId":{"shape":"BotAliasId"},
         "botVersion":{"shape":"NumericalBotVersion"},
         "localeId":{"shape":"LocaleId"},
-        "channel":{"shape":"BotChannelType"},
+        "channel":{"shape":"AnalyticsChannel"},
         "sessionId":{"shape":"AnalyticsSessionId"},
         "conversationStartTime":{"shape":"Timestamp"},
         "conversationEndTime":{"shape":"Timestamp"},
@@ -8724,7 +8721,7 @@
         "botVersion":{"shape":"NumericalBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "sessionId":{"shape":"AnalyticsSessionId"},
-        "channel":{"shape":"BotChannelType"},
+        "channel":{"shape":"AnalyticsChannel"},
         "mode":{"shape":"AnalyticsModality"},
         "conversationStartTime":{"shape":"Timestamp"},
         "conversationEndTime":{"shape":"Timestamp"},

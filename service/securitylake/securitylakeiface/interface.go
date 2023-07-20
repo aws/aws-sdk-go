@@ -164,9 +164,21 @@ type SecurityLakeAPI interface {
 	ListSubscribersPages(*securitylake.ListSubscribersInput, func(*securitylake.ListSubscribersOutput, bool) bool) error
 	ListSubscribersPagesWithContext(aws.Context, *securitylake.ListSubscribersInput, func(*securitylake.ListSubscribersOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*securitylake.ListTagsForResourceInput) (*securitylake.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *securitylake.ListTagsForResourceInput, ...request.Option) (*securitylake.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*securitylake.ListTagsForResourceInput) (*request.Request, *securitylake.ListTagsForResourceOutput)
+
 	RegisterDataLakeDelegatedAdministrator(*securitylake.RegisterDataLakeDelegatedAdministratorInput) (*securitylake.RegisterDataLakeDelegatedAdministratorOutput, error)
 	RegisterDataLakeDelegatedAdministratorWithContext(aws.Context, *securitylake.RegisterDataLakeDelegatedAdministratorInput, ...request.Option) (*securitylake.RegisterDataLakeDelegatedAdministratorOutput, error)
 	RegisterDataLakeDelegatedAdministratorRequest(*securitylake.RegisterDataLakeDelegatedAdministratorInput) (*request.Request, *securitylake.RegisterDataLakeDelegatedAdministratorOutput)
+
+	TagResource(*securitylake.TagResourceInput) (*securitylake.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *securitylake.TagResourceInput, ...request.Option) (*securitylake.TagResourceOutput, error)
+	TagResourceRequest(*securitylake.TagResourceInput) (*request.Request, *securitylake.TagResourceOutput)
+
+	UntagResource(*securitylake.UntagResourceInput) (*securitylake.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *securitylake.UntagResourceInput, ...request.Option) (*securitylake.UntagResourceOutput, error)
+	UntagResourceRequest(*securitylake.UntagResourceInput) (*request.Request, *securitylake.UntagResourceOutput)
 
 	UpdateDataLake(*securitylake.UpdateDataLakeInput) (*securitylake.UpdateDataLakeOutput, error)
 	UpdateDataLakeWithContext(aws.Context, *securitylake.UpdateDataLakeInput, ...request.Option) (*securitylake.UpdateDataLakeOutput, error)

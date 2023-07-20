@@ -688,11 +688,18 @@
       "members":{
         "andAll":{"shape":"CaseFilterAndAllList"},
         "field":{"shape":"FieldFilter"},
-        "not":{"shape":"CaseFilter"}
+        "not":{"shape":"CaseFilter"},
+        "orAll":{"shape":"CaseFilterOrAllList"}
       },
       "union":true
     },
     "CaseFilterAndAllList":{
+      "type":"list",
+      "member":{"shape":"CaseFilter"},
+      "max":10,
+      "min":0
+    },
+    "CaseFilterOrAllList":{
       "type":"list",
       "member":{"shape":"CaseFilter"},
       "max":10,
@@ -1047,6 +1054,11 @@
       "type":"double",
       "box":true
     },
+    "EmptyFieldValue":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "EventBridgeConfiguration":{
       "type":"structure",
       "required":["enabled"],
@@ -1233,6 +1245,7 @@
       "members":{
         "booleanValue":{"shape":"Boolean"},
         "doubleValue":{"shape":"Double"},
+        "emptyValue":{"shape":"EmptyFieldValue"},
         "stringValue":{"shape":"FieldValueUnionStringValueString"}
       },
       "union":true

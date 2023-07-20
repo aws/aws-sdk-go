@@ -2,9 +2,9 @@
   "version": "2.0",
   "service": "<p>Amazon Security Lake is a fully managed security data lake service. You can use Security Lake to automatically centralize security data from cloud, on-premises, and custom sources into a data lake that's stored in your Amazon Web Services account. Amazon Web Services Organizations is an account management service that lets you consolidate multiple Amazon Web Services accounts into an organization that you create and centrally manage. With Organizations, you can create member accounts and invite existing accounts to join your organization. Security Lake helps you analyze security data for a more complete understanding of your security posture across the entire organization. It can also help you improve the protection of your workloads, applications, and data.</p> <p>The data lake is backed by Amazon Simple Storage Service (Amazon S3) buckets, and you retain ownership over your data.</p> <p>Amazon Security Lake integrates with CloudTrail, a service that provides a record of actions taken by a user, role, or an Amazon Web Services service. In Security Lake, CloudTrail captures API calls for Security Lake as events. The calls captured include calls from the Security Lake console and code calls to the Security Lake API operations. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Security Lake. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in Event history. Using the information collected by CloudTrail you can determine the request that was made to Security Lake, the IP address from which the request was made, who made the request, when it was made, and additional details. To learn more about Security Lake information in CloudTrail, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/securitylake-cloudtrail.html\">Amazon Security Lake User Guide</a>.</p> <p>Security Lake automates the collection of security-related log and event data from integrated Amazon Web Services and third-party services. It also helps you manage the lifecycle of data with customizable retention and replication settings. Security Lake converts ingested data into Apache Parquet format and a standard open-source schema called the Open Cybersecurity Schema Framework (OCSF).</p> <p>Other Amazon Web Services and third-party services can subscribe to the data that's stored in Security Lake for incident response and security data analytics.</p>",
   "operations": {
-    "CreateAwsLogSource": "<p>Adds a natively supported Amazon Web Service as an Amazon Security Lake source. Enables source types for member accounts in required Amazon Web Services Regions, based on the parameters you specify. You can choose any source type in any Region for either accounts that are part of a trusted organization or standalone accounts. Once you add an Amazon Web Service as a source, Security Lake starts collecting logs and events from it, </p> <p>You can use this API only to enable natively supported Amazon Web Services as a source. Use <code>CreateCustomLogSource</code> to enable data collection from a custom source.</p>",
+    "CreateAwsLogSource": "<p>Adds a natively supported Amazon Web Service as an Amazon Security Lake source. Enables source types for member accounts in required Amazon Web Services Regions, based on the parameters you specify. You can choose any source type in any Region for either accounts that are part of a trusted organization or standalone accounts. Once you add an Amazon Web Service as a source, Security Lake starts collecting logs and events from it.</p> <p>You can use this API only to enable natively supported Amazon Web Services as a source. Use <code>CreateCustomLogSource</code> to enable data collection from a custom source.</p>",
     "CreateCustomLogSource": "<p>Adds a third-party custom source in Amazon Security Lake, from the Amazon Web Services Region where you want to create a custom source. Security Lake can collect logs and events from third-party custom sources. After creating the appropriate IAM role to invoke Glue crawler, use this API to add a custom source name in Security Lake. This operation creates a partition in the Amazon S3 bucket for Security Lake as the target location for log files from the custom source. In addition, this operation also creates an associated Glue table and an Glue crawler.</p>",
-    "CreateDataLake": "<p>Initializes an Amazon Security Lake instance with the provided (or default) configuration. You can enable Security Lake in Amazon Web Services Regions with customized settings before enabling log collection in Regions. By default, the <code>CreateDataLake</code> Security Lake in all Regions. To specify particular Regions, configure these Regions using the <code>configurations</code> parameter. If you have already enabled Security Lake in a Region when you call this command, the command will update the Region if you provide new configuration parameters. If you have not already enabled Security Lake in the Region when you call this API, it will set up the data lake in the Region with the specified configurations.</p> <p>When you enable Security Lake, it starts ingesting security data after the <code>CreateAwsLogSource</code> call. This includes ingesting security data from sources, storing data, and making data accessible to subscribers. Security Lake also enables all the existing settings and resources that it stores or maintains for your Amazon Web Services account in the current Region, including security log and event data. For more information, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html\">Amazon Security Lake User Guide</a>.</p>",
+    "CreateDataLake": "<p>Initializes an Amazon Security Lake instance with the provided (or default) configuration. You can enable Security Lake in Amazon Web Services Regions with customized settings before enabling log collection in Regions. To specify particular Regions, configure these Regions using the <code>configurations</code> parameter. If you have already enabled Security Lake in a Region when you call this command, the command will update the Region if you provide new configuration parameters. If you have not already enabled Security Lake in the Region when you call this API, it will set up the data lake in the Region with the specified configurations.</p> <p>When you enable Security Lake, it starts ingesting security data after the <code>CreateAwsLogSource</code> call. This includes ingesting security data from sources, storing data, and making data accessible to subscribers. Security Lake also enables all the existing settings and resources that it stores or maintains for your Amazon Web Services account in the current Region, including security log and event data. For more information, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html\">Amazon Security Lake User Guide</a>.</p>",
     "CreateDataLakeExceptionSubscription": "<p>Creates the specified notification subscription in Amazon Security Lake for the organization you specify.</p>",
     "CreateDataLakeOrganizationConfiguration": "<p>Automatically enables Amazon Security Lake for new member accounts in your organization. Security Lake is not automatically enabled for any existing member accounts in your organization.</p>",
     "CreateSubscriber": "<p>Creates a subscription permission for accounts that are already enabled in Amazon Security Lake. You can create a subscriber with access to data in the current Amazon Web Services Region.</p>",
@@ -13,7 +13,7 @@
     "DeleteCustomLogSource": "<p>Removes a custom log source from Amazon Security Lake, to stop sending data from the custom source to Security Lake.</p>",
     "DeleteDataLake": "<p>When you disable Amazon Security Lake from your account, Security Lake is disabled in all Amazon Web Services Regions and it stops collecting data from your sources. Also, this API automatically takes steps to remove the account from Security Lake. However, Security Lake retains all of your existing settings and the resources that it created in your Amazon Web Services account in the current Amazon Web Services Region.</p> <p>The <code>DeleteDataLake</code> operation does not delete the data that is stored in your Amazon S3 bucket, which is owned by your Amazon Web Services account. For more information, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html\">Amazon Security Lake User Guide</a>.</p>",
     "DeleteDataLakeExceptionSubscription": "<p>Deletes the specified notification subscription in Amazon Security Lake for the organization you specify.</p>",
-    "DeleteDataLakeOrganizationConfiguration": "<p>Removes automatic the enablement of configuration settings for new member accounts (but retains the settings for the delegated administrator) from Amazon Security Lake. You must run this API using the credentials of the delegated administrator. When you run this API, new member accounts that are added after the organization enables Security Lake won't contribute to the data lake.</p>",
+    "DeleteDataLakeOrganizationConfiguration": "<p>Turns off automatic enablement of Amazon Security Lake for member accounts that are added to an organization in Organizations. Only the delegated Security Lake administrator for an organization can perform this operation. If the delegated Security Lake administrator performs this operation, new member accounts won't automatically contribute data to the data lake.</p>",
     "DeleteSubscriber": "<p>Deletes the subscription permission and all notification settings for accounts that are already enabled in Amazon Security Lake. When you run <code>DeleteSubscriber</code>, the subscriber will no longer consume data from Security Lake and the subscriber is removed. This operation deletes the subscriber and removes access to data in the current Amazon Web Services Region.</p>",
     "DeleteSubscriberNotification": "<p>Deletes the specified notification subscription in Amazon Security Lake for the organization you specify.</p>",
     "DeregisterDataLakeDelegatedAdministrator": "<p>Deletes the Amazon Security Lake delegated administrator account for the organization. This API can only be called by the organization management account. The organization management account cannot be the delegated administrator account.</p>",
@@ -22,10 +22,13 @@
     "GetDataLakeSources": "<p>Retrieves a snapshot of the current Region, including whether Amazon Security Lake is enabled for those accounts and which sources Security Lake is collecting data from.</p>",
     "GetSubscriber": "<p>Retrieves the subscription information for the specified subscription ID. You can get information about a specific subscriber.</p>",
     "ListDataLakeExceptions": "<p>Lists the Amazon Security Lake exceptions that you can use to find the source of problems and fix them.</p>",
-    "ListDataLakes": "<p>Retrieves the Amazon Security Lake configuration object for the specified Amazon Web Services account ID. You can use the <code>ListDataLakes</code> API to know whether Security Lake is enabled for any region.</p>",
+    "ListDataLakes": "<p>Retrieves the Amazon Security Lake configuration object for the specified Amazon Web Services Regions. You can use this operation to determine whether Security Lake is enabled for a Region.</p>",
     "ListLogSources": "<p>Retrieves the log sources in the current Amazon Web Services Region.</p>",
     "ListSubscribers": "<p>List all subscribers for the specific Amazon Security Lake account ID. You can retrieve a list of subscriptions associated with a specific organization or Amazon Web Services account.</p>",
+    "ListTagsForResource": "<p>Retrieves the tags (keys and values) that are associated with an Amazon Security Lake resource: a subscriber, or the data lake configuration for your Amazon Web Services account in a particular Amazon Web Services Region.</p>",
     "RegisterDataLakeDelegatedAdministrator": "<p>Designates the Amazon Security Lake delegated administrator account for the organization. This API can only be called by the organization management account. The organization management account cannot be the delegated administrator account.</p>",
+    "TagResource": "<p>Adds or updates one or more tags that are associated with an Amazon Security Lake resource: a subscriber, or the data lake configuration for your Amazon Web Services account in a particular Amazon Web Services Region. A <i>tag</i> is a label that you can define and associate with Amazon Web Services resources. Each tag consists of a required <i>tag key</i> and an associated <i>tag value</i>. A <i>tag key</i> is a general label that acts as a category for a more specific tag value. A <i>tag value</i> acts as a descriptor for a tag key. Tags can help you identify, categorize, and manage resources in different ways, such as by owner, environment, or other criteria. For more information, see <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/tagging-resources.html\">Tagging Amazon Security Lake resources</a> in the <i>Amazon Security Lake User Guide</i>.</p>",
+    "UntagResource": "<p>Removes one or more tags (keys and values) from an Amazon Security Lake resource: a subscriber, or the data lake configuration for your Amazon Web Services account in a particular Amazon Web Services Region.</p>",
     "UpdateDataLake": "<p>Specifies where to store your security data and for how long. You can add a rollup Region to consolidate data from multiple Amazon Web Services Regions.</p>",
     "UpdateDataLakeExceptionSubscription": "<p>Updates the specified notification subscription in Amazon Security Lake for the organization you specify.</p>",
     "UpdateSubscriber": "<p>Updates an existing subscription for the given Amazon Security Lake account ID. You can update a subscriber by changing the sources that the subscriber consumes data from.</p>",
@@ -68,7 +71,10 @@
         "CustomLogSourceAttributes$tableArn": "<p>The ARN of the Glue table.</p>",
         "DataLakeResource$dataLakeArn": "<p>The Amazon Resource Name (ARN) created by you to provide to the subscriber. For more information about ARNs and how to use them in policies, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/subscriber-management.html\">Amazon Security Lake User Guide</a>.</p>",
         "GetDataLakeSourcesResponse$dataLakeArn": "<p>The Amazon Resource Name (ARN) created by you to provide to the subscriber. For more information about ARNs and how to use them in policies, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/subscriber-management.html\">Amazon Security Lake User Guide</a>.</p>",
-        "SubscriberResource$subscriberArn": "<p>The subscriber ARN of the Amazon Security Lake subscriber account.</p>"
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Security Lake resource to retrieve the tags for.</p>",
+        "SubscriberResource$subscriberArn": "<p>The subscriber ARN of the Amazon Security Lake subscriber account.</p>",
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Security Lake resource to add or update the tags for.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Security Lake resource to remove one or more tags from.</p>"
       }
     },
     "AwsAccountId": {
@@ -111,7 +117,7 @@
       "base": "<p>Amazon Security Lake can collect logs and events from natively-supported Amazon Web Services services.</p>",
       "refs": {
         "AwsLogSourceResourceList$member": null,
-        "LogSourceResource$awsLogSource": "<p>Amazon Security Lake supports log and event collection for natively supported Amazon Web Services.</p>"
+        "LogSourceResource$awsLogSource": "<p>Amazon Security Lake supports log and event collection for natively supported Amazon Web Services. For more information, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html\">Amazon Security Lake User Guide</a>.</p>"
       }
     },
     "AwsLogSourceResourceList": {
@@ -261,7 +267,7 @@
       "base": "<p>Amazon Security Lake can collect logs and events from third-party custom sources.</p>",
       "refs": {
         "CreateCustomLogSourceResponse$source": "<p>The created third-party custom source.</p>",
-        "LogSourceResource$customLogSource": "<p>Amazon Security Lake supports custom source types. For a detailed list, see the Amazon Security Lake User Guide.</p>"
+        "LogSourceResource$customLogSource": "<p>Amazon Security Lake supports custom source types. For more information, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/custom-sources.html\">Amazon Security Lake User Guide</a>.</p>"
       }
     },
     "CustomLogSourceVersion": {
@@ -282,7 +288,7 @@
       "base": null,
       "refs": {
         "CreateDataLakeOrganizationConfigurationRequest$autoEnableNewAccount": "<p>Enable Security Lake with the specified configuration settings, to begin collecting security data for new accounts in your organization.</p>",
-        "DeleteDataLakeOrganizationConfigurationRequest$autoEnableNewAccount": "<p>Removes the automatic enablement of configuration settings for new member accounts in Security Lake.</p>",
+        "DeleteDataLakeOrganizationConfigurationRequest$autoEnableNewAccount": "<p>Turns off automatic enablement of Security Lake for member accounts that are added to an organization.</p>",
         "GetDataLakeOrganizationConfigurationResponse$autoEnableNewAccount": "<p>The configuration for new accounts.</p>"
       }
     },
@@ -307,7 +313,7 @@
       }
     },
     "DataLakeException": {
-      "base": "<p>The details for a Security Lake exception</p>",
+      "base": "<p>The details for an Amazon Security Lake exception.</p>",
       "refs": {
         "DataLakeExceptionList$member": null
       }
@@ -627,6 +633,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LogSource": {
       "base": "<p>Amazon Security Lake can collect logs and events from natively-supported Amazon Web Services services and custom sources. </p>",
       "refs": {
@@ -640,7 +656,7 @@
       }
     },
     "LogSourceResource": {
-      "base": "<p>The supported source types from which logs and events are collected in Amazon Security Lake. For the list of supported Amazon Web Services, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html\">Amazon Security Lake User Guide</a>.</p>",
+      "base": "<p>The supported source types from which logs and events are collected in Amazon Security Lake. For a list of supported Amazon Web Services, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html\">Amazon Security Lake User Guide</a>.</p>",
       "refs": {
         "LogSourceResourceList$member": null
       }
@@ -651,7 +667,7 @@
         "CreateSubscriberRequest$sources": "<p>The supported Amazon Web Services from which logs and events are collected. Security Lake supports log and event collection for natively supported Amazon Web Services.</p>",
         "ListLogSourcesRequest$sources": "<p>The list of sources for which log sources are displayed.</p>",
         "LogSource$sources": "<p>Specify the sources from which you want to collect logs.</p>",
-        "SubscriberResource$sources": "<p>Amazon Security Lake supports log and event collection for natively supported Amazon Web Services. For more information, see the Amazon Security Lake User Guide.</p>",
+        "SubscriberResource$sources": "<p>Amazon Security Lake supports log and event collection for natively supported Amazon Web Services. For more information, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/source-management.html\">Amazon Security Lake User Guide</a>.</p>",
         "UpdateSubscriberRequest$sources": "<p>The supported Amazon Web Services from which logs and events are collected. For the list of supported Amazon Web Services, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html\">Amazon Security Lake User Guide</a>.</p>"
       }
     },
@@ -759,7 +775,7 @@
         "CustomLogSourceCrawlerConfiguration$roleArn": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role to be used by the Glue crawler. The recommended IAM policies are:</p> <ul> <li> <p>The managed policy <code>AWSGlueServiceRole</code> </p> </li> <li> <p>A custom policy granting access to your Amazon S3 Data Lake</p> </li> </ul>",
         "CustomLogSourceProvider$roleArn": "<p>The ARN of the IAM role to be used by the entity putting logs into your custom source partition. Security Lake will apply the correct access policies to this role, but you must first manually create the trust policy for this role. The IAM role name must start with the text 'Security Lake'. The IAM role must trust the <code>logProviderAccountId</code> to assume the role.</p>",
         "DataLakeReplicationConfiguration$roleArn": "<p>Replication settings for the Amazon S3 buckets. This parameter uses the Identity and Access Management (IAM) role you created that is managed by Security Lake, to ensure the replication setting is correct.</p>",
-        "HttpsNotificationConfiguration$targetRoleArn": "<p>The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role that you created. For more information about ARNs and how to use them in policies, see <a href=\"https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html\">Managing data access</a> and <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html\">Amazon Web Services Managed Policies</a> in the Amazon Security Lake User Guide.</p>",
+        "HttpsNotificationConfiguration$targetRoleArn": "<p>The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role that you created. For more information about ARNs and how to use them in policies, see <a href=\"https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html\">Managing data access</a> and <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html\">Amazon Web Services Managed Policies</a> in the <i>Amazon Security Lake User Guide</i>.</p>",
         "SubscriberResource$roleArn": "<p>The Amazon Resource Name (ARN) specifying the role of the subscriber.</p>"
       }
     },
@@ -868,6 +884,50 @@
         "SubscriberResource$updatedAt": "<p>The date and time when the subscriber was last updated.</p>"
       }
     },
+    "Tag": {
+      "base": "<p>A <i>tag</i> is a label that you can define and associate with Amazon Web Services resources, including certain types of Amazon Security Lake resources. Tags can help you identify, categorize, and manage resources in different ways, such as by owner, environment, or other criteria. You can associate tags with the following types of Security Lake resources: subscribers, and the data lake configuration for your Amazon Web Services account in individual Amazon Web Services Regions.</p> <p>A resource can have up to 50 tags. Each tag consists of a required <i>tag key</i> and an associated <i>tag value</i>. A <i>tag key</i> is a general label that acts as a category for a more specific tag value. Each tag key must be unique and it can have only one tag value. A <i>tag value</i> acts as a descriptor for a tag key. Tag keys and values are case sensitive. They can contain letters, numbers, spaces, or the following symbols: _ . : / = + @ -</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/tagging-resources.html\">Tagging Amazon Security Lake resources</a> in the <i>Amazon Security Lake User Guide</i>.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$key": "<p>The name of the tag. This is a general label that acts as a category for a more specific tag value (<code>value</code>).</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>A list of one or more tag keys. For each value in the list, specify the tag key for a tag to remove from the Amazon Security Lake resource.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateDataLakeRequest$tags": "<p>An array of objects, one for each tag to associate with the data lake configuration. For each tag, you must specify both a tag key and a tag value. A tag value cannot be null, but it can be an empty string.</p>",
+        "CreateSubscriberRequest$tags": "<p>An array of objects, one for each tag to associate with the subscriber. For each tag, you must specify both a tag key and a tag value. A tag value cannot be null, but it can be an empty string.</p>",
+        "ListTagsForResourceResponse$tags": "<p>An array of objects, one for each tag (key and value) that’s associated with the Amazon Security Lake resource.</p>",
+        "TagResourceRequest$tags": "<p>An array of objects, one for each tag (key and value) to associate with the Amazon Security Lake resource. For each tag, you must specify both a tag key and a tag value. A tag value cannot be null, but it can be an empty string.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$value": "<p>The value that’s associated with the specified tag key (<code>key</code>). This value acts as a descriptor for the tag key. A tag value cannot be null, but it can be an empty string.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>The limit on the number of requests per second was exceeded.</p>",
       "refs": {
@@ -883,6 +943,16 @@
         "SubscriberResource$subscriberId": "<p>The subscriber ID of the Amazon Security Lake subscriber account.</p>",
         "UpdateSubscriberNotificationRequest$subscriberId": "<p>The subscription ID for which the subscription notification is specified.</p>",
         "UpdateSubscriberRequest$subscriberId": "<p>A value created by Security Lake that uniquely identifies your subscription.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateDataLakeExceptionSubscriptionRequest": {
