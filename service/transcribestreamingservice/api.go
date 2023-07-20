@@ -165,6 +165,7 @@ func (c *TranscribeStreamingService) StartCallAnalyticsStreamTranscriptionWithCo
 }
 
 var _ awserr.Error
+var _ time.Time
 
 // StartCallAnalyticsStreamTranscriptionEventStream provides the event stream handling for the StartCallAnalyticsStreamTranscription.
 //
@@ -557,6 +558,7 @@ func (c *TranscribeStreamingService) StartMedicalStreamTranscriptionWithContext(
 }
 
 var _ awserr.Error
+var _ time.Time
 
 // StartMedicalStreamTranscriptionEventStream provides the event stream handling for the StartMedicalStreamTranscription.
 //
@@ -947,6 +949,7 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionWithContext(ctx aws
 }
 
 var _ awserr.Error
+var _ time.Time
 
 // StartStreamTranscriptionEventStream provides the event stream handling for the StartStreamTranscription.
 //
