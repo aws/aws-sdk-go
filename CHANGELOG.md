@@ -1,3 +1,9 @@
+Release v1.44.304 (2023-07-20)
+===
+
+### Service Client Updates
+* `service/savingsplans`: Updates service documentation
+
 Release v1.44.303 (2023-07-19)
 ===
 
