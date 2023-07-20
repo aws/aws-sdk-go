@@ -1141,6 +1141,13 @@ type SageMakerAPI interface {
 	ListProjectsPages(*sagemaker.ListProjectsInput, func(*sagemaker.ListProjectsOutput, bool) bool) error
 	ListProjectsPagesWithContext(aws.Context, *sagemaker.ListProjectsInput, func(*sagemaker.ListProjectsOutput, bool) bool, ...request.Option) error
 
+	ListResourceCatalogs(*sagemaker.ListResourceCatalogsInput) (*sagemaker.ListResourceCatalogsOutput, error)
+	ListResourceCatalogsWithContext(aws.Context, *sagemaker.ListResourceCatalogsInput, ...request.Option) (*sagemaker.ListResourceCatalogsOutput, error)
+	ListResourceCatalogsRequest(*sagemaker.ListResourceCatalogsInput) (*request.Request, *sagemaker.ListResourceCatalogsOutput)
+
+	ListResourceCatalogsPages(*sagemaker.ListResourceCatalogsInput, func(*sagemaker.ListResourceCatalogsOutput, bool) bool) error
+	ListResourceCatalogsPagesWithContext(aws.Context, *sagemaker.ListResourceCatalogsInput, func(*sagemaker.ListResourceCatalogsOutput, bool) bool, ...request.Option) error
+
 	ListSpaces(*sagemaker.ListSpacesInput) (*sagemaker.ListSpacesOutput, error)
 	ListSpacesWithContext(aws.Context, *sagemaker.ListSpacesInput, ...request.Option) (*sagemaker.ListSpacesOutput, error)
 	ListSpacesRequest(*sagemaker.ListSpacesInput) (*request.Request, *sagemaker.ListSpacesOutput)

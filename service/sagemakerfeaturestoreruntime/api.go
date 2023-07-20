@@ -346,11 +346,22 @@ func (c *SageMakerFeatureStoreRuntime) PutRecordRequest(input *PutRecordInput) (
 
 // PutRecord API operation for Amazon SageMaker Feature Store Runtime.
 //
-// Used for data ingestion into the FeatureStore. The PutRecord API writes to
-// both the OnlineStore and OfflineStore. If the record is the latest record
-// for the recordIdentifier, the record is written to both the OnlineStore and
-// OfflineStore. If the record is a historic record, it is written only to the
-// OfflineStore.
+// The PutRecord API is used to ingest a list of Records into your feature group.
+//
+// If a new record’s EventTime is greater, the new record is written to both
+// the OnlineStore and OfflineStore. Otherwise, the record is a historic record
+// and it is written only to the OfflineStore.
+//
+// You can specify the ingestion to be applied to the OnlineStore, OfflineStore,
+// or both by using the TargetStores request parameter.
+//
+// You can set the ingested record to expire at a given time to live (TTL) duration
+// after the record’s event time, ExpiresAt = EventTime + TtlDuration, by
+// specifying the TtlDuration parameter. A record level TtlDuration is set when
+// specifying the TtlDuration parameter using the PutRecord API call. If the
+// input TtlDuration is null or unspecified, TtlDuration is set to the default
+// feature group level TtlDuration. A record level TtlDuration supersedes the
+// group level TtlDuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -535,7 +546,8 @@ func (s *BatchGetRecordError) SetRecordIdentifierValueAsString(v string) *BatchG
 type BatchGetRecordIdentifier struct {
 	_ struct{} `type:"structure"`
 
-	// A FeatureGroupName containing Records you are retrieving in a batch.
+	// The name or Amazon Resource Name (ARN) of the FeatureGroup containing the
+	// records you are retrieving in a batch.
 	//
 	// FeatureGroupName is a required field
 	FeatureGroupName *string `min:"1" type:"string" required:"true"`
@@ -619,8 +631,9 @@ type BatchGetRecordInput struct {
 	// will return null.
 	ExpirationTimeResponse *string `type:"string" enum:"ExpirationTimeResponse"`
 
-	// A list of FeatureGroup names, with their corresponding RecordIdentifier value,
-	// and Feature name that have been requested to be retrieved in batch.
+	// A list containing the name or Amazon Resource Name (ARN) of the FeatureGroup,
+	// the list of names of Features to be retrieved, and the corresponding RecordIdentifier
+	// values as strings.
 	//
 	// Identifiers is a required field
 	Identifiers []*BatchGetRecordIdentifier `min:"1" type:"list" required:"true"`
@@ -738,7 +751,7 @@ func (s *BatchGetRecordOutput) SetUnprocessedIdentifiers(v []*BatchGetRecordIden
 	return s
 }
 
-// The output of Records that have been retrieved in a batch.
+// The output of records that have been retrieved in a batch.
 type BatchGetRecordResultDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -816,7 +829,8 @@ type DeleteRecordInput struct {
 	// EventTime is a required field
 	EventTime *string `location:"querystring" locationName:"EventTime" type:"string" required:"true"`
 
-	// The name of the feature group to delete the record from.
+	// The name or Amazon Resource Name (ARN) of the feature group to delete the
+	// record from.
 	//
 	// FeatureGroupName is a required field
 	FeatureGroupName *string `location:"uri" locationName:"FeatureGroupName" min:"1" type:"string" required:"true"`
@@ -997,12 +1011,13 @@ func (s *FeatureValue) SetValueAsString(v string) *FeatureValue {
 type GetRecordInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Parameter to request ExpiresAt in response. If Enabled, BatchGetRecord will
-	// return the value of ExpiresAt, if it is not null. If Disabled and null, BatchGetRecord
+	// Parameter to request ExpiresAt in response. If Enabled, GetRecord will return
+	// the value of ExpiresAt, if it is not null. If Disabled and null, GetRecord
 	// will return null.
 	ExpirationTimeResponse *string `location:"querystring" locationName:"ExpirationTimeResponse" type:"string" enum:"ExpirationTimeResponse"`
 
-	// The name of the feature group from which you want to retrieve a record.
+	// The name or Amazon Resource Name (ARN) of the feature group from which you
+	// want to retrieve a record.
 	//
 	// FeatureGroupName is a required field
 	FeatureGroupName *string `location:"uri" locationName:"FeatureGroupName" min:"1" type:"string" required:"true"`
@@ -1190,7 +1205,8 @@ func (s *InternalFailure) RequestID() string {
 type PutRecordInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the feature group that you want to insert the record into.
+	// The name or Amazon Resource Name (ARN) of the feature group that you want
+	// to insert the record into.
 	//
 	// FeatureGroupName is a required field
 	FeatureGroupName *string `location:"uri" locationName:"FeatureGroupName" min:"1" type:"string" required:"true"`

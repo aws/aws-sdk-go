@@ -1135,6 +1135,32 @@
         "NonTalkTimeFilter$Threshold": "<p>Specify the duration, in milliseconds, of the period of silence that you want to flag. For example, you can flag a silent period that lasts 30,000 milliseconds.</p>"
       }
     },
+    "ToxicityCategories": {
+      "base": null,
+      "refs": {
+        "ToxicityDetectionSettings$ToxicityCategories": "<p> If you include <code>ToxicityDetection</code> in your transcription request, you must also include <code>ToxicityCategories</code>. The only accepted value for this parameter is <code>ALL</code>.</p>"
+      }
+    },
+    "ToxicityCategory": {
+      "base": null,
+      "refs": {
+        "ToxicityCategories$member": null
+      }
+    },
+    "ToxicityDetection": {
+      "base": null,
+      "refs": {
+        "StartTranscriptionJobRequest$ToxicityDetection": "<p>Enables toxic speech detection in your transcript. If you include <code>ToxicityDetection</code> in your request, you must also include <code>ToxicityCategories</code>.</p> <p>For information on the types of toxic speech Amazon Transcribe can detect, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/toxic-language.html\">Detecting toxic speech</a>.</p>",
+        "TranscriptionJob$ToxicityDetection": "<p>Provides information about the toxicity detection settings applied to your transcription.</p>",
+        "TranscriptionJobSummary$ToxicityDetection": "<p>Indicates whether toxicity detection was enabled for the specified transcription job.</p>"
+      }
+    },
+    "ToxicityDetectionSettings": {
+      "base": "<p>Contains <code>ToxicityCategories</code>, which is a required parameter if you want to enable toxicity detection (<code>ToxicityDetection</code>) in your transcription request.</p>",
+      "refs": {
+        "ToxicityDetection$member": null
+      }
+    },
     "TranscribeArn": {
       "base": null,
       "refs": {

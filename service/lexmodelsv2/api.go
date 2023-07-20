@@ -6544,8 +6544,8 @@ func (c *LexModelsV2) ListIntentStageMetricsRequest(input *ListIntentStageMetric
 
 // ListIntentStageMetrics API operation for Amazon Lex Model Building V2.
 //
-// Retrieves summary metrics for the intent stages in your bot. The following
-// fields are required:
+// Retrieves summary metrics for the stages within intents in your bot. The
+// following fields are required:
 //
 //   - metrics – A list of AnalyticsIntentStageMetric (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_AnalyticsIntentStageMetric.html)
 //     objects. In each object, use the name field to specify the metric to calculate,
@@ -8322,10 +8322,19 @@ func (c *LexModelsV2) ListUtteranceAnalyticsDataRequest(input *ListUtteranceAnal
 
 // ListUtteranceAnalyticsData API operation for Amazon Lex Model Building V2.
 //
+// To use this API operation, your IAM role must have permissions to perform
+// the ListAggregatedUtterances (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListAggregatedUtterances.html)
+// operation, which provides access to utterance-related analytics. See Viewing
+// utterance statistics (https://docs.aws.amazon.com/lexv2/latest/dg/monitoring-utterances.html)
+// for the IAM policy to apply to the IAM role.
+//
 // Retrieves a list of metadata for individual user utterances to your bot.
-// The startDateTime and endDateTime fields are required. These fields define
-// a time range for which you want to retrieve results. Of the optional fields,
-// you can organize the results in the following ways:
+// The following fields are required:
+//
+//   - startDateTime and endDateTime – Define a time range for which you
+//     want to retrieve results.
+//
+// Of the optional fields, you can organize the results in the following ways:
 //
 //   - Use the filters field to filter the results and the sortBy field to
 //     specify the values by which to sort the results.
@@ -8481,6 +8490,12 @@ func (c *LexModelsV2) ListUtteranceMetricsRequest(input *ListUtteranceMetricsInp
 }
 
 // ListUtteranceMetrics API operation for Amazon Lex Model Building V2.
+//
+// To use this API operation, your IAM role must have permissions to perform
+// the ListAggregatedUtterances (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListAggregatedUtterances.html)
+// operation, which provides access to utterance-related analytics. See Viewing
+// utterance statistics (https://docs.aws.amazon.com/lexv2/latest/dg/monitoring-utterances.html)
+// for the IAM policy to apply to the IAM role.
 //
 // Retrieves summary metrics for the utterances in your bot. The following fields
 // are required:
@@ -12986,7 +13001,7 @@ type AnalyticsUtteranceMetricResult struct {
 	//
 	//    * Detected – The number of utterances that Amazon Lex managed to detect.
 	//
-	//    * UtteranceTimeStamp – The date and time of the utterance.
+	//    * UtteranceTimestamp – The date and time of the utterance.
 	Name *string `locationName:"name" type:"string" enum:"AnalyticsUtteranceMetricName"`
 
 	// The summary statistic that you requested to calculate.
@@ -36308,7 +36323,7 @@ type SessionSpecification struct {
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
 	// The channel that is integrated with the bot that the session was held with.
-	Channel *string `locationName:"channel" type:"string" enum:"BotChannelType"`
+	Channel *string `locationName:"channel" min:"1" type:"string"`
 
 	// The duration of the conversation in seconds. A conversation is defined as
 	// a unique combination of a sessionId and an originatingRequestId.
@@ -44357,7 +44372,7 @@ type UtteranceDataSortBy struct {
 	//
 	//    * Count – The number of utterances.
 	//
-	//    * UtteranceTimeStamp – The date and time of the utterance.
+	//    * UtteranceTimestamp – The date and time of the utterance.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"AnalyticsUtteranceSortByName"`
@@ -44572,7 +44587,7 @@ type UtteranceSpecification struct {
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
 	// The channel that is integrated with the bot that the utterance was made to.
-	Channel *string `locationName:"channel" type:"string" enum:"BotChannelType"`
+	Channel *string `locationName:"channel" min:"1" type:"string"`
 
 	// The date and time when the conversation in which the utterance took place
 	// ended. A conversation is defined as a unique combination of a sessionId and
@@ -45683,26 +45698,6 @@ func BotAliasStatus_Values() []string {
 		BotAliasStatusAvailable,
 		BotAliasStatusDeleting,
 		BotAliasStatusFailed,
-	}
-}
-
-const (
-	// BotChannelTypeFacebook is a BotChannelType enum value
-	BotChannelTypeFacebook = "Facebook"
-
-	// BotChannelTypeSlack is a BotChannelType enum value
-	BotChannelTypeSlack = "Slack"
-
-	// BotChannelTypeTwilioSms is a BotChannelType enum value
-	BotChannelTypeTwilioSms = "TwilioSms"
-)
-
-// BotChannelType_Values returns all elements of the BotChannelType enum
-func BotChannelType_Values() []string {
-	return []string{
-		BotChannelTypeFacebook,
-		BotChannelTypeSlack,
-		BotChannelTypeTwilioSms,
 	}
 }
 

@@ -1748,15 +1748,16 @@ func ExampleS3_PutBucketWebsite_shared00() {
 	fmt.Println(result)
 }
 
-// To create an object.
-// The following example creates an object. If the bucket is versioning enabled, S3
-// returns version ID in response.
+// To upload an object
+// The following example uploads an object to a versioning-enabled bucket. The source
+// file is specified using Windows file syntax. S3 returns VersionId of the newly created
+// object.
 func ExampleS3_PutObject_shared00() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
+		Body:   aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
 		Bucket: aws.String("examplebucket"),
-		Key:    aws.String("objectkey"),
+		Key:    aws.String("HappyFace.jpg"),
 	}
 
 	result, err := svc.PutObject(input)
@@ -1810,71 +1811,10 @@ func ExampleS3_PutObject_shared01() {
 	fmt.Println(result)
 }
 
-// To upload an object
-// The following example uploads an object to a versioning-enabled bucket. The source
-// file is specified using Windows file syntax. S3 returns VersionId of the newly created
-// object.
-func ExampleS3_PutObject_shared02() {
-	svc := s3.New(session.New())
-	input := &s3.PutObjectInput{
-		Body:   aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
-		Bucket: aws.String("examplebucket"),
-		Key:    aws.String("HappyFace.jpg"),
-	}
-
-	result, err := svc.PutObject(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To upload an object and specify canned ACL.
-// The following example uploads and object. The request specifies optional canned ACL
-// (access control list) to all READ access to authenticated users. If the bucket is
-// versioning enabled, S3 returns version ID in response.
-func ExampleS3_PutObject_shared03() {
-	svc := s3.New(session.New())
-	input := &s3.PutObjectInput{
-		ACL:    aws.String("authenticated-read"),
-		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
-		Bucket: aws.String("examplebucket"),
-		Key:    aws.String("exampleobject"),
-	}
-
-	result, err := svc.PutObject(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To upload an object (specify optional headers)
 // The following example uploads an object. The request specifies optional request headers
 // to directs S3 to use specific storage class and use server-side encryption.
-func ExampleS3_PutObject_shared04() {
+func ExampleS3_PutObject_shared02() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
 		Body:                 aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
@@ -1882,6 +1822,67 @@ func ExampleS3_PutObject_shared04() {
 		Key:                  aws.String("HappyFace.jpg"),
 		ServerSideEncryption: aws.String("AES256"),
 		StorageClass:         aws.String("STANDARD_IA"),
+	}
+
+	result, err := svc.PutObject(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To create an object.
+// The following example creates an object. If the bucket is versioning enabled, S3
+// returns version ID in response.
+func ExampleS3_PutObject_shared03() {
+	svc := s3.New(session.New())
+	input := &s3.PutObjectInput{
+		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
+		Bucket: aws.String("examplebucket"),
+		Key:    aws.String("objectkey"),
+	}
+
+	result, err := svc.PutObject(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To upload an object and specify server-side encryption and object tags
+// The following example uploads an object. The request specifies the optional server-side
+// encryption option. The request also specifies optional object tags. If the bucket
+// is versioning enabled, S3 returns version ID in response.
+func ExampleS3_PutObject_shared04() {
+	svc := s3.New(session.New())
+	input := &s3.PutObjectInput{
+		Body:                 aws.ReadSeekCloser(strings.NewReader("filetoupload")),
+		Bucket:               aws.String("examplebucket"),
+		Key:                  aws.String("exampleobject"),
+		ServerSideEncryption: aws.String("AES256"),
+		Tagging:              aws.String("key1=value1&key2=value2"),
 	}
 
 	result, err := svc.PutObject(input)
@@ -1932,18 +1933,17 @@ func ExampleS3_PutObject_shared05() {
 	fmt.Println(result)
 }
 
-// To upload an object and specify server-side encryption and object tags
-// The following example uploads an object. The request specifies the optional server-side
-// encryption option. The request also specifies optional object tags. If the bucket
-// is versioning enabled, S3 returns version ID in response.
+// To upload an object and specify canned ACL.
+// The following example uploads and object. The request specifies optional canned ACL
+// (access control list) to all READ access to authenticated users. If the bucket is
+// versioning enabled, S3 returns version ID in response.
 func ExampleS3_PutObject_shared06() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:                 aws.ReadSeekCloser(strings.NewReader("filetoupload")),
-		Bucket:               aws.String("examplebucket"),
-		Key:                  aws.String("exampleobject"),
-		ServerSideEncryption: aws.String("AES256"),
-		Tagging:              aws.String("key1=value1&key2=value2"),
+		ACL:    aws.String("authenticated-read"),
+		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
+		Bucket: aws.String("examplebucket"),
+		Key:    aws.String("exampleobject"),
 	}
 
 	result, err := svc.PutObject(input)

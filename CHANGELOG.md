@@ -1,3 +1,18 @@
+Release v1.44.305 (2023-07-20)
+===
+
+### Service Client Updates
+* `service/connectcases`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/route53resolver`: Updates service API, documentation, and paginators
+* `service/s3`: Updates service examples
+  * Improve performance of S3 clients by simplifying and optimizing endpoint resolution.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Cross account support for SageMaker Feature Store
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+* `service/securitylake`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.44.304 (2023-07-20)
 ===
 
