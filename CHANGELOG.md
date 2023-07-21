@@ -1,3 +1,20 @@
+Release v1.44.306 (2023-07-21)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * This release adds support for AWS Glue Crawler with Apache Hudi Tables, allowing Crawlers to discover Hudi Tables in S3 and register them in Glue Data Catalog for query engines to query against.
+* `service/mediaconvert`: Updates service documentation
+  * This release includes improvements to Preserve 444 handling, compatibility of HEVC sources without frame rates, and general improvements to MP4 outputs.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for the DBSystemID parameter of CreateDBInstance to RDS Custom for Oracle.
+* `service/workspaces`: Updates service documentation
+  * Fixed VolumeEncryptionKey descriptions
+
+### SDK Bugs
+* `codegen`: Prevent unused imports from being generated for event streams.
+  * Potentially-unused `"time"` import was causing vet failures on generated code.
+
 Release v1.44.305 (2023-07-20)
 ===
 

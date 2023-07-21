@@ -1998,8 +1998,8 @@
       "base": null,
       "refs": {
         "StandbyWorkspace$VolumeEncryptionKey": "<p>The volume encryption key of the standby WorkSpace.</p>",
-        "Workspace$VolumeEncryptionKey": "<p>The symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric KMS keys.</p>",
-        "WorkspaceRequest$VolumeEncryptionKey": "<p>The symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric KMS keys.</p>"
+        "Workspace$VolumeEncryptionKey": "<p>The ARN of the symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric KMS keys.</p>",
+        "WorkspaceRequest$VolumeEncryptionKey": "<p>The ARN of the symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric KMS keys.</p>"
       }
     },
     "Workspace": {
