@@ -1100,6 +1100,155 @@ func (c *ManagedGrafana) ListTagsForResourceWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opListVersions = "ListVersions"
+
+// ListVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVersions for more information on using the ListVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVersionsRequest method.
+//	req, resp := client.ListVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/ListVersions
+func (c *ManagedGrafana) ListVersionsRequest(input *ListVersionsInput) (req *request.Request, output *ListVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/versions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListVersionsInput{}
+	}
+
+	output = &ListVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVersions API operation for Amazon Managed Grafana.
+//
+// Lists available versions of Grafana. These are available when calling CreateWorkspace.
+// Optionally, include a workspace to list the versions to which it can be upgraded.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Grafana's
+// API operation ListVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The request references a resource that does not exist.
+//
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
+//
+//   - ValidationException
+//     The value of a parameter in the request caused an error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InternalServerException
+//     Unexpected error while processing the request. Retry the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/ListVersions
+func (c *ManagedGrafana) ListVersions(input *ListVersionsInput) (*ListVersionsOutput, error) {
+	req, out := c.ListVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListVersionsWithContext is the same as ListVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) ListVersionsWithContext(ctx aws.Context, input *ListVersionsInput, opts ...request.Option) (*ListVersionsOutput, error) {
+	req, out := c.ListVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListVersionsPages iterates over the pages of a ListVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListVersions operation.
+//	pageNum := 0
+//	err := client.ListVersionsPages(params,
+//	    func(page *managedgrafana.ListVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ManagedGrafana) ListVersionsPages(input *ListVersionsInput, fn func(*ListVersionsOutput, bool) bool) error {
+	return c.ListVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVersionsPagesWithContext same as ListVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) ListVersionsPagesWithContext(ctx aws.Context, input *ListVersionsInput, fn func(*ListVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListWorkspaces = "ListWorkspaces"
 
 // ListWorkspacesRequest generates a "aws/request.Request" representing the
@@ -2502,7 +2651,7 @@ type CreateWorkspaceInput struct {
 
 	// Specifies the version of Grafana to support in the new workspace.
 	//
-	// Supported values are 8.4 and 9.4.
+	// To get a list of supported version, use the ListVersions operation.
 	GrafanaVersion *string `locationName:"grafanaVersion" min:"1" type:"string"`
 
 	// Configuration for network access to your workspace.
@@ -2556,6 +2705,9 @@ type CreateWorkspaceInput struct {
 
 	// The configuration settings for an Amazon VPC that contains data sources for
 	// your Grafana workspace to connect to.
+	//
+	// Connecting to a private VPC is not yet available in the Asia Pacific (Seoul)
+	// Region (ap-northeast-2).
 	VpcConfiguration *VpcConfiguration `locationName:"vpcConfiguration" type:"structure"`
 
 	// This parameter is for internal use only, and should not be used.
@@ -3131,6 +3283,9 @@ type DescribeWorkspaceConfigurationOutput struct {
 	//
 	// Configuration is a required field
 	Configuration *string `locationName:"configuration" min:"2" type:"string" required:"true"`
+
+	// The supported Grafana version for the workspace.
+	GrafanaVersion *string `locationName:"grafanaVersion" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -3154,6 +3309,12 @@ func (s DescribeWorkspaceConfigurationOutput) GoString() string {
 // SetConfiguration sets the Configuration field's value.
 func (s *DescribeWorkspaceConfigurationOutput) SetConfiguration(v string) *DescribeWorkspaceConfigurationOutput {
 	s.Configuration = &v
+	return s
+}
+
+// SetGrafanaVersion sets the GrafanaVersion field's value.
+func (s *DescribeWorkspaceConfigurationOutput) SetGrafanaVersion(v string) *DescribeWorkspaceConfigurationOutput {
+	s.GrafanaVersion = &v
 	return s
 }
 
@@ -3693,6 +3854,112 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type ListVersionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to include in the response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to use when requesting the next set of results. You receive this
+	// token from a previous ListVersions operation.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The ID of the workspace to list the available upgrade versions. If not included,
+	// lists all versions of Grafana that are supported for CreateWorkspace.
+	WorkspaceId *string `location:"querystring" locationName:"workspace-id" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVersionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListVersionsInput) SetMaxResults(v int64) *ListVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVersionsInput) SetNextToken(v string) *ListVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *ListVersionsInput) SetWorkspaceId(v string) *ListVersionsInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type ListVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Grafana versions available to create. If a workspace ID is included in
+	// the request, the Grafana versions to which this workspace can be upgraded.
+	GrafanaVersions []*string `locationName:"grafanaVersions" type:"list"`
+
+	// The token to use in a subsequent ListVersions operation to return the next
+	// set of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGrafanaVersions sets the GrafanaVersions field's value.
+func (s *ListVersionsOutput) SetGrafanaVersions(v []*string) *ListVersionsOutput {
+	s.GrafanaVersions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVersionsOutput) SetNextToken(v string) *ListVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListWorkspacesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3794,19 +4061,29 @@ func (s *ListWorkspacesOutput) SetWorkspaces(v []*WorkspaceSummary) *ListWorkspa
 //
 // When this is configured, only listed IP addresses and VPC endpoints will
 // be able to access your workspace. Standard Grafana authentication and authorization
-// will still be required.
+// are still required.
+//
+// Access is granted to a caller that is in either the IP address list or the
+// VPC endpoint list - they do not need to be in both.
 //
 // If this is not configured, or is removed, then all IP addresses and VPC endpoints
-// will be allowed. Standard Grafana authentication and authorization will still
-// be required.
+// are allowed. Standard Grafana authentication and authorization are still
+// required.
+//
+// While both prefixListIds and vpceIds are required, you can pass in an empty
+// array of strings for either parameter if you do not want to allow any of
+// that type.
+//
+// If both are passed as empty arrays, no traffic is allowed to the workspace,
+// because only explicitly allowed connections are accepted.
 type NetworkAccessConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// An array of prefix list IDs. A prefix list is a list of CIDR ranges of IP
 	// addresses. The IP addresses specified are allowed to access your workspace.
-	// If the list is not included in the configuration then no IP addresses will
-	// be allowed to access the workspace. You create a prefix list using the Amazon
-	// VPC console.
+	// If the list is not included in the configuration (passed an empty array)
+	// then no IP addresses are allowed to access the workspace. You create a prefix
+	// list using the Amazon VPC console.
 	//
 	// Prefix list IDs have the format pl-1a2b3c4d .
 	//
@@ -3820,7 +4097,8 @@ type NetworkAccessConfiguration struct {
 	// An array of Amazon VPC endpoint IDs for the workspace. You can create VPC
 	// endpoints to your Amazon Managed Grafana workspace for access from within
 	// a VPC. If a NetworkAccessConfiguration is specified then only VPC endpoints
-	// specified here will be allowed to access the workspace.
+	// specified here are allowed to access the workspace. If you pass in an empty
+	// array of strings, then no VPCs are allowed to access the workspace.
 	//
 	// VPC endpoint IDs have the format vpce-1a2b3c4d .
 	//
@@ -3830,7 +4108,7 @@ type NetworkAccessConfiguration struct {
 	//
 	// The only VPC endpoints that can be specified here are interface VPC endpoints
 	// for Grafana workspaces (using the com.amazonaws.[region].grafana-workspace
-	// service endpoint). Other VPC endpoints will be ignored.
+	// service endpoint). Other VPC endpoints are ignored.
 	//
 	// VpceIds is a required field
 	VpceIds []*string `locationName:"vpceIds" type:"list" required:"true"`
@@ -4900,6 +5178,15 @@ type UpdateWorkspaceConfigurationInput struct {
 	// Configuration is a required field
 	Configuration *string `locationName:"configuration" min:"2" type:"string" required:"true"`
 
+	// Specifies the version of Grafana to support in the new workspace.
+	//
+	// Can only be used to upgrade (for example, from 8.4 to 9.4), not downgrade
+	// (for example, from 9.4 to 8.4).
+	//
+	// To know what versions are available to upgrade to for a specific workspace,
+	// see the ListVersions operation.
+	GrafanaVersion *string `locationName:"grafanaVersion" min:"1" type:"string"`
+
 	// The ID of the workspace to update.
 	//
 	// WorkspaceId is a required field
@@ -4933,6 +5220,9 @@ func (s *UpdateWorkspaceConfigurationInput) Validate() error {
 	if s.Configuration != nil && len(*s.Configuration) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("Configuration", 2))
 	}
+	if s.GrafanaVersion != nil && len(*s.GrafanaVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GrafanaVersion", 1))
+	}
 	if s.WorkspaceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
 	}
@@ -4949,6 +5239,12 @@ func (s *UpdateWorkspaceConfigurationInput) Validate() error {
 // SetConfiguration sets the Configuration field's value.
 func (s *UpdateWorkspaceConfigurationInput) SetConfiguration(v string) *UpdateWorkspaceConfigurationInput {
 	s.Configuration = &v
+	return s
+}
+
+// SetGrafanaVersion sets the GrafanaVersion field's value.
+func (s *UpdateWorkspaceConfigurationInput) SetGrafanaVersion(v string) *UpdateWorkspaceConfigurationInput {
+	s.GrafanaVersion = &v
 	return s
 }
 
@@ -5468,6 +5764,9 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 // your Grafana workspace to connect to.
 //
 // Provided securityGroupIds and subnetIds must be part of the same VPC.
+//
+// Connecting to a private VPC is not yet available in the Asia Pacific (Seoul)
+// Region (ap-northeast-2).
 type VpcConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6242,6 +6541,12 @@ const (
 
 	// WorkspaceStatusLicenseRemovalFailed is a WorkspaceStatus enum value
 	WorkspaceStatusLicenseRemovalFailed = "LICENSE_REMOVAL_FAILED"
+
+	// WorkspaceStatusVersionUpdating is a WorkspaceStatus enum value
+	WorkspaceStatusVersionUpdating = "VERSION_UPDATING"
+
+	// WorkspaceStatusVersionUpdateFailed is a WorkspaceStatus enum value
+	WorkspaceStatusVersionUpdateFailed = "VERSION_UPDATE_FAILED"
 )
 
 // WorkspaceStatus_Values returns all elements of the WorkspaceStatus enum
@@ -6258,5 +6563,7 @@ func WorkspaceStatus_Values() []string {
 		WorkspaceStatusUpdateFailed,
 		WorkspaceStatusUpgradeFailed,
 		WorkspaceStatusLicenseRemovalFailed,
+		WorkspaceStatusVersionUpdating,
+		WorkspaceStatusVersionUpdateFailed,
 	}
 }

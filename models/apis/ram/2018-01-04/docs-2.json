@@ -834,6 +834,14 @@
       "refs": {
       }
     },
+    "SourceArnOrAccountList": {
+      "base": null,
+      "refs": {
+        "AssociateResourceShareRequest$sources": "<p>Specifies from which source accounts the service principal has access to the resources in this resource share.</p>",
+        "CreateResourceShareRequest$sources": "<p>Specifies from which source accounts the service principal has access to the resources in this resource share.</p>",
+        "DisassociateResourceShareRequest$sources": "<p>Specifies from which source accounts the service principal no longer has access to the resources in this resource share.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -882,7 +890,7 @@
         "GetResourcePoliciesRequest$nextToken": "<p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>",
         "GetResourcePoliciesResponse$nextToken": "<p>If present, this value indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>. This indicates that this is the last page of results.</p>",
         "GetResourceShareAssociationsRequest$resourceArn": "<p>Specifies the <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Name (ARN)</a> of a resource whose resource shares you want to retrieve.</p> <p>You cannot specify this parameter if the association type is <code>PRINCIPAL</code>.</p>",
-        "GetResourceShareAssociationsRequest$principal": "<p>Specifies the ID of the principal whose resource shares you want to retrieve. This can be an Amazon Web Services account ID, an organization ID, an organizational unit ID, or the <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Name (ARN)</a> of an individual IAM user or role.</p> <p>You cannot specify this parameter if the association type is <code>RESOURCE</code>.</p>",
+        "GetResourceShareAssociationsRequest$principal": "<p>Specifies the ID of the principal whose resource shares you want to retrieve. This can be an Amazon Web Services account ID, an organization ID, an organizational unit ID, or the <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Name (ARN)</a> of an individual IAM role or user.</p> <p>You cannot specify this parameter if the association type is <code>RESOURCE</code>.</p>",
         "GetResourceShareAssociationsRequest$nextToken": "<p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>",
         "GetResourceShareAssociationsResponse$nextToken": "<p>If present, this value indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>. This indicates that this is the last page of results.</p>",
         "GetResourceShareInvitationsRequest$nextToken": "<p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>",
@@ -1002,6 +1010,7 @@
         "SetDefaultPermissionVersionRequest$permissionArn": "<p>Specifies the <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Name (ARN)</a> of the customer managed permission whose default version you want to change.</p>",
         "SetDefaultPermissionVersionRequest$clientToken": "<p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value.</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>ClientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>",
         "SetDefaultPermissionVersionResponse$clientToken": "<p>The idempotency identifier associated with this request. If you want to repeat the same operation in an idempotent manner then you must include this value in the <code>clientToken</code> request parameter of that later call. All other parameters must also have the same values that you used in the first call.</p>",
+        "SourceArnOrAccountList$member": null,
         "TagLimitExceededException$message": null,
         "TagPolicyViolationException$message": null,
         "TagResourceRequest$resourceShareArn": "<p>Specifies the <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Name (ARN)</a> of the resource share that you want to add tags to. You must specify <i>either</i> <code>resourceShareArn</code>, or <code>resourceArn</code>, but not both.</p>",

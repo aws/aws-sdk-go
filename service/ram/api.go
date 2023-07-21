@@ -691,6 +691,10 @@ func (c *RAM) CreateResourceShareRequest(input *CreateResourceShareInput) (req *
 //     The operation failed because the specified tag key is a reserved word and
 //     can't be used.
 //
+//   - TagLimitExceededException
+//     The operation failed because it would exceed the limit for tags for your
+//     Amazon Web Services account.
+//
 //   - ServerInternalException
 //     The operation failed because the service could not respond to the request
 //     due to an internal problem. Try again later.
@@ -4563,6 +4567,10 @@ type AssociateResourceShareInput struct {
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
+
+	// Specifies from which source accounts the service principal has access to
+	// the resources in this resource share.
+	Sources []*string `locationName:"sources" type:"list"`
 }
 
 // String returns the string representation.
@@ -4617,6 +4625,12 @@ func (s *AssociateResourceShareInput) SetResourceArns(v []*string) *AssociateRes
 // SetResourceShareArn sets the ResourceShareArn field's value.
 func (s *AssociateResourceShareInput) SetResourceShareArn(v string) *AssociateResourceShareInput {
 	s.ResourceShareArn = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *AssociateResourceShareInput) SetSources(v []*string) *AssociateResourceShareInput {
+	s.Sources = v
 	return s
 }
 
@@ -5344,6 +5358,10 @@ type CreateResourceShareInput struct {
 	// resource share.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
+	// Specifies from which source accounts the service principal has access to
+	// the resources in this resource share.
+	Sources []*string `locationName:"sources" type:"list"`
+
 	// Specifies one or more tags to attach to the resource share itself. It doesn't
 	// attach the tags to the resources associated with the resource share.
 	Tags []*Tag `locationName:"tags" type:"list"`
@@ -5413,6 +5431,12 @@ func (s *CreateResourceShareInput) SetPrincipals(v []*string) *CreateResourceSha
 // SetResourceArns sets the ResourceArns field's value.
 func (s *CreateResourceShareInput) SetResourceArns(v []*string) *CreateResourceShareInput {
 	s.ResourceArns = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *CreateResourceShareInput) SetSources(v []*string) *CreateResourceShareInput {
+	s.Sources = v
 	return s
 }
 
@@ -5891,6 +5915,10 @@ type DisassociateResourceShareInput struct {
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
+
+	// Specifies from which source accounts the service principal no longer has
+	// access to the resources in this resource share.
+	Sources []*string `locationName:"sources" type:"list"`
 }
 
 // String returns the string representation.
@@ -5945,6 +5973,12 @@ func (s *DisassociateResourceShareInput) SetResourceArns(v []*string) *Disassoci
 // SetResourceShareArn sets the ResourceShareArn field's value.
 func (s *DisassociateResourceShareInput) SetResourceShareArn(v string) *DisassociateResourceShareInput {
 	s.ResourceShareArn = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *DisassociateResourceShareInput) SetSources(v []*string) *DisassociateResourceShareInput {
+	s.Sources = v
 	return s
 }
 
@@ -6437,7 +6471,7 @@ type GetResourceShareAssociationsInput struct {
 	// Specifies the ID of the principal whose resource shares you want to retrieve.
 	// This can be an Amazon Web Services account ID, an organization ID, an organizational
 	// unit ID, or the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of an individual IAM user or role.
+	// of an individual IAM role or user.
 	//
 	// You cannot specify this parameter if the association type is RESOURCE.
 	Principal *string `locationName:"principal" type:"string"`

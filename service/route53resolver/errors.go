@@ -89,6 +89,12 @@ const (
 	// The specified resource isn't available.
 	ErrCodeResourceUnavailableException = "ResourceUnavailableException"
 
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// Fulfilling the request would cause one or more quotas to be exceeded.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -123,6 +129,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceInUseException":        newErrorResourceInUseException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ResourceUnavailableException":  newErrorResourceUnavailableException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
 	"ThrottlingException":           newErrorThrottlingException,
 	"UnknownResourceException":      newErrorUnknownResourceException,
 	"ValidationException":           newErrorValidationException,

@@ -1,3 +1,38 @@
+Release v1.44.305 (2023-07-20)
+===
+
+### Service Client Updates
+* `service/connectcases`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/route53resolver`: Updates service API, documentation, and paginators
+* `service/s3`: Updates service examples
+  * Improve performance of S3 clients by simplifying and optimizing endpoint resolution.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Cross account support for SageMaker Feature Store
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+* `service/securitylake`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
+Release v1.44.304 (2023-07-20)
+===
+
+### Service Client Updates
+* `service/savingsplans`: Updates service documentation
+
+Release v1.44.303 (2023-07-19)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * SDK and documentation updates for GetTemplateSummary API (unrecognized resources)
+* `service/ec2`: Updates service documentation
+  * Amazon EC2 documentation updates.
+* `service/grafana`: Updates service API, documentation, and paginators
+* `service/medical-imaging`: Adds new service
+* `service/ram`: Updates service API and documentation
+* `service/ssm-sap`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.302 (2023-07-18)
 ===
 

@@ -231,6 +231,7 @@
     "ListPipelines": "<p>Gets a list of pipelines.</p>",
     "ListProcessingJobs": "<p>Lists processing jobs that satisfy various filters.</p>",
     "ListProjects": "<p>Gets a list of the projects in an Amazon Web Services account.</p>",
+    "ListResourceCatalogs": "<p> Lists Amazon SageMaker Catalogs based on given filters and orders. The maximum number of <code>ResourceCatalog</code>s viewable is 1000. </p>",
     "ListSpaces": "<p>Lists spaces.</p>",
     "ListStageDevices": "<p>Lists devices allocated to the stage, containing detailed device information and deployment status.</p>",
     "ListStudioLifecycleConfigs": "<p>Lists the Studio Lifecycle Configurations in your Amazon Web Services Account.</p>",
@@ -282,7 +283,7 @@
     "UpdateEndpoint": "<p>Deploys the new <code>EndpointConfig</code> specified in the request, switches to using newly created endpoint, and then deletes resources provisioned for the endpoint using the previous <code>EndpointConfig</code> (there is no availability loss). </p> <p>When SageMaker receives the request, it sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html\">DescribeEndpoint</a> API. </p> <note> <p>You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations are being performed on the endpoint. To update an endpoint, you must create a new <code>EndpointConfig</code>.</p> <p>If you delete the <code>EndpointConfig</code> of an endpoint that is active or being created or updated you may lose visibility into the instance type the endpoint is using. The endpoint must be deleted in order to stop incurring charges.</p> </note>",
     "UpdateEndpointWeightsAndCapacities": "<p>Updates variant weight of one or more variants associated with an existing endpoint, or capacity of one variant associated with an existing endpoint. When it receives the request, SageMaker sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html\">DescribeEndpoint</a> API. </p>",
     "UpdateExperiment": "<p>Adds, updates, or removes the description of an experiment. Updates the display name of an experiment.</p>",
-    "UpdateFeatureGroup": "<p>Updates the feature group.</p>",
+    "UpdateFeatureGroup": "<p>Updates the feature group by either adding features or updating the online store configuration. Use one of the following request parameters at a time while using the <code>UpdateFeatureGroup</code> API.</p> <p>You can add features for your feature group using the <code>FeatureAdditions</code> request parameter. Features cannot be removed from a feature group.</p> <p>You can update the online store configuration by using the <code>OnlineStoreConfig</code> request parameter. If a <code>TtlDuration</code> is specified, the default <code>TtlDuration</code> applies for all records added to the feature group <i>after the feature group is updated</i>. If a record level <code>TtlDuration</code> exists from using the <code>PutRecord</code> API, the record level <code>TtlDuration</code> applies to that record instead of the default <code>TtlDuration</code>.</p>",
     "UpdateFeatureMetadata": "<p>Updates the description and parameters of the feature group.</p>",
     "UpdateHub": "<p>Update a hub.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
     "UpdateImage": "<p>Updates the properties of a SageMaker image. To change the image's tags, use the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html\">AddTags</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteTags.html\">DeleteTags</a> APIs.</p>",
@@ -2847,6 +2848,12 @@
         "UserProfileDetails$CreationTime": "<p>The creation time.</p>"
       }
     },
+    "CrossAccountFilterOption": {
+      "base": null,
+      "refs": {
+        "SearchRequest$CrossAccountFilterOption": "<p> A cross account filter option. When the value is <code>\"CrossAccount\"</code> the search results will only include resources made discoverable to you from other accounts. When the value is <code>\"SameAccount\"</code> or <code>null</code> the search results will only include resources from your account. Default is <code>null</code>. For more information on searching for resources made discoverable to your account, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store-cross-account-discoverability-use.html\"> Search discoverable resources</a> in the SageMaker Developer Guide. The maximum number of <code>ResourceCatalog</code>s viewable is 1000. </p>"
+      }
+    },
     "CsvContentType": {
       "base": null,
       "refs": {
@@ -5300,22 +5307,27 @@
       "refs": {
         "CreateFeatureGroupRequest$FeatureGroupName": "<p>The name of the <code>FeatureGroup</code>. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name:</p> <ul> <li> <p>Must start and end with an alphanumeric character.</p> </li> <li> <p>Can only contain alphanumeric character and hyphens. Spaces are not allowed. </p> </li> </ul>",
         "DeleteFeatureGroupRequest$FeatureGroupName": "<p>The name of the <code>FeatureGroup</code> you want to delete. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. </p>",
-        "DescribeFeatureGroupRequest$FeatureGroupName": "<p>The name of the <code>FeatureGroup</code> you want described. </p>",
         "DescribeFeatureGroupResponse$FeatureGroupName": "<p>he name of the <code>FeatureGroup</code>.</p>",
-        "DescribeFeatureMetadataRequest$FeatureGroupName": "<p>The name of the feature group containing the feature.</p>",
         "DescribeFeatureMetadataResponse$FeatureGroupName": "<p>The name of the feature group that you've specified.</p>",
         "FeatureGroup$FeatureGroupName": "<p>The name of the <code>FeatureGroup</code>.</p>",
         "FeatureGroupSummary$FeatureGroupName": "<p>The name of <code>FeatureGroup</code>.</p>",
         "FeatureMetadata$FeatureGroupName": "<p>The name of the feature group containing the feature.</p>",
-        "ProcessingFeatureStoreOutput$FeatureGroupName": "<p>The name of the Amazon SageMaker FeatureGroup to use as the destination for processing job output. Note that your processing script is responsible for putting records into your Feature Store.</p>",
-        "UpdateFeatureGroupRequest$FeatureGroupName": "<p>The name of the feature group that you're updating.</p>",
-        "UpdateFeatureMetadataRequest$FeatureGroupName": "<p>The name of the feature group containing the feature that you're updating.</p>"
+        "ProcessingFeatureStoreOutput$FeatureGroupName": "<p>The name of the Amazon SageMaker FeatureGroup to use as the destination for processing job output. Note that your processing script is responsible for putting records into your Feature Store.</p>"
       }
     },
     "FeatureGroupNameContains": {
       "base": null,
       "refs": {
         "ListFeatureGroupsRequest$NameContains": "<p>A string that partially matches one or more <code>FeatureGroup</code>s names. Filters <code>FeatureGroup</code>s by name. </p>"
+      }
+    },
+    "FeatureGroupNameOrArn": {
+      "base": null,
+      "refs": {
+        "DescribeFeatureGroupRequest$FeatureGroupName": "<p>The name or Amazon Resource Name (ARN) of the <code>FeatureGroup</code> you want described. </p>",
+        "DescribeFeatureMetadataRequest$FeatureGroupName": "<p>The name or Amazon Resource Name (ARN) of the feature group containing the feature.</p>",
+        "UpdateFeatureGroupRequest$FeatureGroupName": "<p>The name or Amazon Resource Name (ARN) of the feature group that you're updating.</p>",
+        "UpdateFeatureMetadataRequest$FeatureGroupName": "<p>The name or Amazon Resource Name (ARN) of the feature group containing the feature that you're updating.</p>"
       }
     },
     "FeatureGroupSortBy": {
@@ -5346,7 +5358,7 @@
       }
     },
     "FeatureGroupSummary": {
-      "base": "<p>The name, Arn, <code>CreationTime</code>, <code>FeatureGroup</code> values, <code>LastUpdatedTime</code> and <code>EnableOnlineStorage</code> status of a <code>FeatureGroup</code>.</p>",
+      "base": "<p>The name, ARN, <code>CreationTime</code>, <code>FeatureGroup</code> values, <code>LastUpdatedTime</code> and <code>EnableOnlineStorage</code> status of a <code>FeatureGroup</code>.</p>",
       "refs": {
         "FeatureGroupSummaries$member": null
       }
@@ -8005,6 +8017,16 @@
       "refs": {
       }
     },
+    "ListResourceCatalogsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourceCatalogsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListSpacesRequest": {
       "base": null,
       "refs": {
@@ -8325,6 +8347,7 @@
         "ListPipelinesRequest$MaxResults": "<p>The maximum number of pipelines to return in the response.</p>",
         "ListProcessingJobsRequest$MaxResults": "<p>The maximum number of processing jobs to return in the response.</p>",
         "ListProjectsInput$MaxResults": "<p>The maximum number of projects to return in the response.</p>",
+        "ListResourceCatalogsRequest$MaxResults": "<p> The maximum number of results returned by <code>ListResourceCatalogs</code>. </p>",
         "ListSpacesRequest$MaxResults": "<p>The total number of items to return in the response. If the total number of items available is more than the value specified, a <code>NextToken</code> is provided in the response. To resume pagination, provide the <code>NextToken</code> value in the as part of a subsequent call. The default value is 10.</p>",
         "ListStudioLifecycleConfigsRequest$MaxResults": "<p>The total number of items to return in the response. If the total number of items available is more than the value specified, a <code>NextToken</code> is provided in the response. To resume pagination, provide the <code>NextToken</code> value in the as part of a subsequent call. The default value is 10.</p>",
         "ListSubscribedWorkteamsRequest$MaxResults": "<p>The maximum number of work teams to return in each page of the response.</p>",
@@ -9906,6 +9929,8 @@
         "ListProcessingJobsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of processing jobs, use it in the subsequent request.</p>",
         "ListProjectsInput$NextToken": "<p>If the result of the previous <code>ListProjects</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of projects, use the token in the next request.</p>",
         "ListProjectsOutput$NextToken": "<p>If the result of the previous <code>ListCompilationJobs</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of model compilation jobs, use the token in the next request.</p>",
+        "ListResourceCatalogsRequest$NextToken": "<p> A token to resume pagination of <code>ListResourceCatalogs</code> results. </p>",
+        "ListResourceCatalogsResponse$NextToken": "<p> A token to resume pagination of <code>ListResourceCatalogs</code> results. </p>",
         "ListSpacesRequest$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
         "ListSpacesResponse$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
         "ListStageDevicesRequest$NextToken": "<p>The response from the last list when returning a list large enough to neeed tokening.</p>",
@@ -11714,6 +11739,49 @@
         "AddTagsInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to tag.</p>",
         "DeleteTagsInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource whose tags you want to delete.</p>",
         "ListTagsInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve.</p>"
+      }
+    },
+    "ResourceCatalog": {
+      "base": "<p> A resource catalog containing all of the resources of a specific resource type within a resource owner account. For an example on sharing the Amazon SageMaker Feature Store <code>DefaultFeatureGroupCatalog</code>, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/feature-store-cross-account-discoverability-share-sagemaker-catalog.html\">Share Amazon SageMaker Catalog resource type</a> in the Amazon SageMaker Developer Guide. </p>",
+      "refs": {
+        "ResourceCatalogList$member": null
+      }
+    },
+    "ResourceCatalogArn": {
+      "base": null,
+      "refs": {
+        "ResourceCatalog$ResourceCatalogArn": "<p> The Amazon Resource Name (ARN) of the <code>ResourceCatalog</code>. </p>"
+      }
+    },
+    "ResourceCatalogDescription": {
+      "base": null,
+      "refs": {
+        "ResourceCatalog$Description": "<p> A free form description of the <code>ResourceCatalog</code>. </p>"
+      }
+    },
+    "ResourceCatalogList": {
+      "base": null,
+      "refs": {
+        "ListResourceCatalogsResponse$ResourceCatalogs": "<p> A list of the requested <code>ResourceCatalog</code>s. </p>"
+      }
+    },
+    "ResourceCatalogName": {
+      "base": null,
+      "refs": {
+        "ListResourceCatalogsRequest$NameContains": "<p> A string that partially matches one or more <code>ResourceCatalog</code>s names. Filters <code>ResourceCatalog</code> by name. </p>",
+        "ResourceCatalog$ResourceCatalogName": "<p> The name of the <code>ResourceCatalog</code>. </p>"
+      }
+    },
+    "ResourceCatalogSortBy": {
+      "base": null,
+      "refs": {
+        "ListResourceCatalogsRequest$SortBy": "<p> The value on which the resource catalog list is sorted. </p>"
+      }
+    },
+    "ResourceCatalogSortOrder": {
+      "base": null,
+      "refs": {
+        "ListResourceCatalogsRequest$SortOrder": "<p> The order in which the resource catalogs are listed. </p>"
       }
     },
     "ResourceConfig": {
@@ -13674,6 +13742,8 @@
         "ListProcessingJobsRequest$LastModifiedTimeBefore": "<p>A filter that returns only processing jobs modified before the specified time.</p>",
         "ListProjectsInput$CreationTimeAfter": "<p>A filter that returns the projects that were created after a specified time.</p>",
         "ListProjectsInput$CreationTimeBefore": "<p>A filter that returns the projects that were created before a specified time.</p>",
+        "ListResourceCatalogsRequest$CreationTimeAfter": "<p> Use this parameter to search for <code>ResourceCatalog</code>s created after a specific date and time. </p>",
+        "ListResourceCatalogsRequest$CreationTimeBefore": "<p> Use this parameter to search for <code>ResourceCatalog</code>s created before a specific date and time. </p>",
         "ListStudioLifecycleConfigsRequest$CreationTimeBefore": "<p>A filter that returns only Lifecycle Configurations created on or before the specified time.</p>",
         "ListStudioLifecycleConfigsRequest$CreationTimeAfter": "<p>A filter that returns only Lifecycle Configurations created on or after the specified time.</p>",
         "ListStudioLifecycleConfigsRequest$ModifiedTimeBefore": "<p>A filter that returns only Lifecycle Configurations modified before the specified time.</p>",
@@ -13747,6 +13817,7 @@
         "QueryFilters$CreatedAfter": "<p>Filter the lineage entities connected to the <code>StartArn</code>(s) after the create date.</p>",
         "QueryFilters$ModifiedBefore": "<p>Filter the lineage entities connected to the <code>StartArn</code>(s) before the last modified date.</p>",
         "QueryFilters$ModifiedAfter": "<p>Filter the lineage entities connected to the <code>StartArn</code>(s) after the last modified date.</p>",
+        "ResourceCatalog$CreationTime": "<p> The time the <code>ResourceCatalog</code> was created. </p>",
         "SecondaryStatusTransition$StartTime": "<p>A timestamp that shows when the training job transitioned to the current secondary status state.</p>",
         "SecondaryStatusTransition$EndTime": "<p>A timestamp that shows when the training job transitioned out of this secondary status state into another secondary status state or when the training job has ended.</p>",
         "StudioLifecycleConfigDetails$CreationTime": "<p>The creation time of the Studio Lifecycle Configuration.</p>",

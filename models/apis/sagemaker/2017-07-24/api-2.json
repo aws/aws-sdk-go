@@ -2551,6 +2551,15 @@
       "input":{"shape":"ListProjectsInput"},
       "output":{"shape":"ListProjectsOutput"}
     },
+    "ListResourceCatalogs":{
+      "name":"ListResourceCatalogs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceCatalogsRequest"},
+      "output":{"shape":"ListResourceCatalogsResponse"}
+    },
     "ListSpaces":{
       "name":"ListSpaces",
       "http":{
@@ -6913,6 +6922,13 @@
       }
     },
     "CreationTime":{"type":"timestamp"},
+    "CrossAccountFilterOption":{
+      "type":"string",
+      "enum":[
+        "SameAccount",
+        "CrossAccount"
+      ]
+    },
     "CsvContentType":{
       "type":"string",
       "max":256,
@@ -8283,7 +8299,7 @@
       "type":"structure",
       "required":["FeatureGroupName"],
       "members":{
-        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureGroupName":{"shape":"FeatureGroupNameOrArn"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -8325,7 +8341,7 @@
         "FeatureName"
       ],
       "members":{
-        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureGroupName":{"shape":"FeatureGroupNameOrArn"},
         "FeatureName":{"shape":"FeatureName"}
       }
     },
@@ -10521,6 +10537,12 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "FeatureGroupNameOrArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:feature-group\\/)?([a-zA-Z0-9]([_-]*[a-zA-Z0-9]){0,63})"
     },
     "FeatureGroupSortBy":{
       "type":"string",
@@ -14023,6 +14045,25 @@
       "required":["ProjectSummaryList"],
       "members":{
         "ProjectSummaryList":{"shape":"ProjectSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListResourceCatalogsRequest":{
+      "type":"structure",
+      "members":{
+        "NameContains":{"shape":"ResourceCatalogName"},
+        "CreationTimeAfter":{"shape":"Timestamp"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "SortOrder":{"shape":"ResourceCatalogSortOrder"},
+        "SortBy":{"shape":"ResourceCatalogSortBy"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListResourceCatalogsResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceCatalogs":{"shape":"ResourceCatalogList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -18035,6 +18076,50 @@
       "max":256,
       "pattern":"arn:aws[a-z-]*:sagemaker:[a-z0-9-]*:[0-9]{12}:.+"
     },
+    "ResourceCatalog":{
+      "type":"structure",
+      "required":[
+        "ResourceCatalogArn",
+        "ResourceCatalogName",
+        "Description",
+        "CreationTime"
+      ],
+      "members":{
+        "ResourceCatalogArn":{"shape":"ResourceCatalogArn"},
+        "ResourceCatalogName":{"shape":"ResourceCatalogName"},
+        "Description":{"shape":"ResourceCatalogDescription"},
+        "CreationTime":{"shape":"Timestamp"}
+      }
+    },
+    "ResourceCatalogArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:sagemaker-catalog/.*"
+    },
+    "ResourceCatalogDescription":{
+      "type":"string",
+      "max":256
+    },
+    "ResourceCatalogList":{
+      "type":"list",
+      "member":{"shape":"ResourceCatalog"}
+    },
+    "ResourceCatalogName":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ResourceCatalogSortBy":{
+      "type":"string",
+      "enum":["CreationTime"]
+    },
+    "ResourceCatalogSortOrder":{
+      "type":"string",
+      "enum":[
+        "Ascending",
+        "Descending"
+      ]
+    },
     "ResourceConfig":{
       "type":"structure",
       "required":["VolumeSizeInGB"],
@@ -18401,7 +18486,8 @@
         "MaxResults":{
           "shape":"MaxResults",
           "box":true
-        }
+        },
+        "CrossAccountFilterOption":{"shape":"CrossAccountFilterOption"}
       }
     },
     "SearchResponse":{
@@ -20517,7 +20603,7 @@
       "type":"structure",
       "required":["FeatureGroupName"],
       "members":{
-        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureGroupName":{"shape":"FeatureGroupNameOrArn"},
         "FeatureAdditions":{"shape":"FeatureAdditions"},
         "OnlineStoreConfig":{"shape":"OnlineStoreConfigUpdate"}
       }
@@ -20536,7 +20622,7 @@
         "FeatureName"
       ],
       "members":{
-        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureGroupName":{"shape":"FeatureGroupNameOrArn"},
         "FeatureName":{"shape":"FeatureName"},
         "Description":{"shape":"FeatureDescription"},
         "ParameterAdditions":{"shape":"FeatureParameterAdditions"},

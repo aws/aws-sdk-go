@@ -7949,8 +7949,8 @@ func (s *Condition) SetLabelNameCondition(v *LabelNameCondition) *Condition {
 //
 // You must specify exactly one setting: either All, IncludedCookies, or ExcludedCookies.
 //
-// Example JSON: "MatchPattern": { "IncludedCookies": {"KeyToInclude1", "KeyToInclude2",
-// "KeyToInclude3"} }
+// Example JSON: "MatchPattern": { "IncludedCookies": [ "session-id-time", "session-id"
+// ] }
 type CookieMatchPattern struct {
 	_ struct{} `type:"structure"`
 
@@ -8034,8 +8034,8 @@ type Cookies struct {
 	//
 	// You must specify exactly one setting: either All, IncludedCookies, or ExcludedCookies.
 	//
-	// Example JSON: "MatchPattern": { "IncludedCookies": {"KeyToInclude1", "KeyToInclude2",
-	// "KeyToInclude3"} }
+	// Example JSON: "MatchPattern": { "IncludedCookies": [ "session-id-time", "session-id"
+	// ] }
 	//
 	// MatchPattern is a required field
 	MatchPattern *CookieMatchPattern `type:"structure" required:"true"`
@@ -13496,8 +13496,8 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 //
 // You must specify exactly one setting: either All, IncludedHeaders, or ExcludedHeaders.
 //
-// Example JSON: "MatchPattern": { "ExcludedHeaders": {"KeyToExclude1", "KeyToExclude2"}
-// }
+// Example JSON: "MatchPattern": { "ExcludedHeaders": [ "KeyToExclude1", "KeyToExclude2"
+// ] }
 type HeaderMatchPattern struct {
 	_ struct{} `type:"structure"`
 
@@ -13649,8 +13649,8 @@ type Headers struct {
 	//
 	// You must specify exactly one setting: either All, IncludedHeaders, or ExcludedHeaders.
 	//
-	// Example JSON: "MatchPattern": { "ExcludedHeaders": {"KeyToExclude1", "KeyToExclude2"}
-	// }
+	// Example JSON: "MatchPattern": { "ExcludedHeaders": [ "KeyToExclude1", "KeyToExclude2"
+	// ] }
 	//
 	// MatchPattern is a required field
 	MatchPattern *HeaderMatchPattern `type:"structure" required:"true"`
@@ -18633,6 +18633,11 @@ type RateBasedStatementCustomKey struct {
 	// contributes to the aggregation instance. If you use just the query string
 	// as your custom key, then each string fully defines an aggregation instance.
 	QueryString *RateLimitQueryString `type:"structure"`
+
+	// Use the request's URI path as an aggregate key. Each distinct URI path contributes
+	// to the aggregation instance. If you use just the URI path as your custom
+	// key, then each URI path fully defines an aggregation instance.
+	UriPath *RateLimitUriPath `type:"structure"`
 }
 
 // String returns the string representation.
@@ -18679,6 +18684,11 @@ func (s *RateBasedStatementCustomKey) Validate() error {
 	if s.QueryString != nil {
 		if err := s.QueryString.Validate(); err != nil {
 			invalidParams.AddNested("QueryString", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UriPath != nil {
+		if err := s.UriPath.Validate(); err != nil {
+			invalidParams.AddNested("UriPath", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -18733,6 +18743,12 @@ func (s *RateBasedStatementCustomKey) SetQueryArgument(v *RateLimitQueryArgument
 // SetQueryString sets the QueryString field's value.
 func (s *RateBasedStatementCustomKey) SetQueryString(v *RateLimitQueryString) *RateBasedStatementCustomKey {
 	s.QueryString = v
+	return s
+}
+
+// SetUriPath sets the UriPath field's value.
+func (s *RateBasedStatementCustomKey) SetUriPath(v *RateLimitUriPath) *RateBasedStatementCustomKey {
+	s.UriPath = v
 	return s
 }
 
@@ -19278,6 +19294,76 @@ func (s *RateLimitQueryString) Validate() error {
 
 // SetTextTransformations sets the TextTransformations field's value.
 func (s *RateLimitQueryString) SetTextTransformations(v []*TextTransformation) *RateLimitQueryString {
+	s.TextTransformations = v
+	return s
+}
+
+// Specifies the request's URI path as an aggregate key for a rate-based rule.
+// Each distinct URI path contributes to the aggregation instance. If you use
+// just the URI path as your custom key, then each URI path fully defines an
+// aggregation instance.
+type RateLimitUriPath struct {
+	_ struct{} `type:"structure"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass detection. Text transformations
+	// are used in rule match statements, to transform the FieldToMatch request
+	// component before inspecting it, and they're used in rate-based rule statements,
+	// to transform request components before using them as custom aggregation keys.
+	// If you specify one or more transformations to apply, WAF performs all transformations
+	// on the specified content, starting from the lowest priority setting, and
+	// then uses the component contents.
+	//
+	// TextTransformations is a required field
+	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitUriPath) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RateLimitUriPath) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RateLimitUriPath) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RateLimitUriPath"}
+	if s.TextTransformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformations"))
+	}
+	if s.TextTransformations != nil && len(s.TextTransformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextTransformations", 1))
+	}
+	if s.TextTransformations != nil {
+		for i, v := range s.TextTransformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextTransformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTextTransformations sets the TextTransformations field's value.
+func (s *RateLimitUriPath) SetTextTransformations(v []*TextTransformation) *RateLimitUriPath {
 	s.TextTransformations = v
 	return s
 }

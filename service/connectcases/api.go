@@ -366,6 +366,8 @@ func (c *ConnectCases) CreateDomainRequest(input *CreateDomainInput) (req *reque
 // API. You need specific IAM permissions to successfully associate the Cases
 // domain. For more information, see Onboard to Cases (https://docs.aws.amazon.com/connect/latest/adminguide/required-permissions-iam-cases.html#onboard-cases-iam).
 //
+//	</important>
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -896,7 +898,13 @@ func (c *ConnectCases) DeleteDomainRequest(input *DeleteDomainInput) (req *reque
 
 // DeleteDomain API operation for Amazon Connect Cases.
 //
-// Deletes a domain.
+// Deletes a Cases domain.
+//
+//	<note> <p>After deleting your domain you must disassociate the deleted
+//	domain from your Amazon Connect instance with another API call before
+//	being able to use Cases again with this Amazon Connect instance. See <a
+//	href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteIntegrationAssociation.html">DeleteIntegrationAssociation</a>.</p>
+//	</note>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3924,6 +3932,9 @@ type CaseFilter struct {
 
 	// A filter for cases. Only one value can be provided.
 	Not *CaseFilter `locationName:"not" type:"structure"`
+
+	// Provides "or all" filtering.
+	OrAll []*CaseFilter `locationName:"orAll" type:"list"`
 }
 
 // String returns the string representation.
@@ -3957,6 +3968,16 @@ func (s *CaseFilter) Validate() error {
 			invalidParams.AddNested("Not", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OrAll != nil {
+		for i, v := range s.OrAll {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OrAll", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3979,6 +4000,12 @@ func (s *CaseFilter) SetField(v *FieldFilter) *CaseFilter {
 // SetNot sets the Not field's value.
 func (s *CaseFilter) SetNot(v *CaseFilter) *CaseFilter {
 	s.Not = v
+	return s
+}
+
+// SetOrAll sets the OrAll field's value.
+func (s *CaseFilter) SetOrAll(v []*CaseFilter) *CaseFilter {
+	s.OrAll = v
 	return s
 }
 
@@ -5289,6 +5316,33 @@ func (s *DomainSummary) SetName(v string) *DomainSummary {
 	return s
 }
 
+// An empty value. You cannot set EmptyFieldValue on a field that is required
+// on a case template.
+//
+// This structure will never have any data members. It signifies an empty value
+// on a case field.
+type EmptyFieldValue struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmptyFieldValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmptyFieldValue) GoString() string {
+	return s.String()
+}
+
 // Configuration to enable EventBridge case event delivery and determine what
 // data is delivered.
 type EventBridgeConfiguration struct {
@@ -6042,6 +6096,9 @@ type FieldValueUnion struct {
 	// be provided.
 	DoubleValue *float64 `locationName:"doubleValue" type:"double"`
 
+	// An empty value.
+	EmptyValue *EmptyFieldValue `locationName:"emptyValue" type:"structure"`
+
 	// String value type.
 	StringValue *string `locationName:"stringValue" type:"string"`
 }
@@ -6073,6 +6130,12 @@ func (s *FieldValueUnion) SetBooleanValue(v bool) *FieldValueUnion {
 // SetDoubleValue sets the DoubleValue field's value.
 func (s *FieldValueUnion) SetDoubleValue(v float64) *FieldValueUnion {
 	s.DoubleValue = &v
+	return s
+}
+
+// SetEmptyValue sets the EmptyValue field's value.
+func (s *FieldValueUnion) SetEmptyValue(v *EmptyFieldValue) *FieldValueUnion {
+	s.EmptyValue = v
 	return s
 }
 

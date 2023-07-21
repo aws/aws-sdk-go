@@ -11709,6 +11709,13 @@ type StartTranscriptionJobInput struct {
 	// (https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html).
 	Tags []*Tag `min:"1" type:"list"`
 
+	// Enables toxic speech detection in your transcript. If you include ToxicityDetection
+	// in your request, you must also include ToxicityCategories.
+	//
+	// For information on the types of toxic speech Amazon Transcribe can detect,
+	// see Detecting toxic speech (https://docs.aws.amazon.com/transcribe/latest/dg/toxic-language.html).
+	ToxicityDetection []*ToxicityDetectionSettings `min:"1" type:"list"`
+
 	// A unique name, chosen by you, for your transcription job. The name that you
 	// specify is also used as the default name of your transcription output file.
 	// If you want to specify a different name for your transcription output, use
@@ -11767,6 +11774,9 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.ToxicityDetection != nil && len(s.ToxicityDetection) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ToxicityDetection", 1))
+	}
 	if s.TranscriptionJobName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TranscriptionJobName"))
 	}
@@ -11815,6 +11825,16 @@ func (s *StartTranscriptionJobInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ToxicityDetection != nil {
+		for i, v := range s.ToxicityDetection {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ToxicityDetection", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -11930,6 +11950,12 @@ func (s *StartTranscriptionJobInput) SetSubtitles(v *Subtitles) *StartTranscript
 // SetTags sets the Tags field's value.
 func (s *StartTranscriptionJobInput) SetTags(v []*Tag) *StartTranscriptionJobInput {
 	s.Tags = v
+	return s
+}
+
+// SetToxicityDetection sets the ToxicityDetection field's value.
+func (s *StartTranscriptionJobInput) SetToxicityDetection(v []*ToxicityDetectionSettings) *StartTranscriptionJobInput {
+	s.ToxicityDetection = v
 	return s
 }
 
@@ -12276,6 +12302,59 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains ToxicityCategories, which is a required parameter if you want to
+// enable toxicity detection (ToxicityDetection) in your transcription request.
+type ToxicityDetectionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// If you include ToxicityDetection in your transcription request, you must
+	// also include ToxicityCategories. The only accepted value for this parameter
+	// is ALL.
+	//
+	// ToxicityCategories is a required field
+	ToxicityCategories []*string `min:"1" type:"list" required:"true" enum:"ToxicityCategory"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToxicityDetectionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToxicityDetectionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ToxicityDetectionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ToxicityDetectionSettings"}
+	if s.ToxicityCategories == nil {
+		invalidParams.Add(request.NewErrParamRequired("ToxicityCategories"))
+	}
+	if s.ToxicityCategories != nil && len(s.ToxicityCategories) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ToxicityCategories", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetToxicityCategories sets the ToxicityCategories field's value.
+func (s *ToxicityDetectionSettings) SetToxicityCategories(v []*string) *ToxicityDetectionSettings {
+	s.ToxicityCategories = v
+	return s
+}
+
 // Provides you with the Amazon S3 URI you can use to access your transcript.
 type Transcript struct {
 	_ struct{} `type:"structure"`
@@ -12598,6 +12677,10 @@ type TranscriptionJob struct {
 	// transcription job.
 	Tags []*Tag `min:"1" type:"list"`
 
+	// Provides information about the toxicity detection settings applied to your
+	// transcription.
+	ToxicityDetection []*ToxicityDetectionSettings `min:"1" type:"list"`
+
 	// Provides you with the Amazon S3 URI you can use to access your transcript.
 	Transcript *Transcript `type:"structure"`
 
@@ -12752,6 +12835,12 @@ func (s *TranscriptionJob) SetTags(v []*Tag) *TranscriptionJob {
 	return s
 }
 
+// SetToxicityDetection sets the ToxicityDetection field's value.
+func (s *TranscriptionJob) SetToxicityDetection(v []*ToxicityDetectionSettings) *TranscriptionJob {
+	s.ToxicityDetection = v
+	return s
+}
+
 // SetTranscript sets the Transcript field's value.
 func (s *TranscriptionJob) SetTranscript(v *Transcript) *TranscriptionJob {
 	s.Transcript = v
@@ -12845,6 +12934,10 @@ type TranscriptionJobSummary struct {
 	// 2022-05-04T12:32:58.789000-07:00 represents a transcription job that started
 	// processing at 12:32 PM UTC-7 on May 4, 2022.
 	StartTime *time.Time `type:"timestamp"`
+
+	// Indicates whether toxicity detection was enabled for the specified transcription
+	// job.
+	ToxicityDetection []*ToxicityDetectionSettings `min:"1" type:"list"`
 
 	// The name of the transcription job. Job names are case sensitive and must
 	// be unique within an Amazon Web Services account.
@@ -12946,6 +13039,12 @@ func (s *TranscriptionJobSummary) SetOutputLocationType(v string) *Transcription
 // SetStartTime sets the StartTime field's value.
 func (s *TranscriptionJobSummary) SetStartTime(v time.Time) *TranscriptionJobSummary {
 	s.StartTime = &v
+	return s
+}
+
+// SetToxicityDetection sets the ToxicityDetection field's value.
+func (s *TranscriptionJobSummary) SetToxicityDetection(v []*ToxicityDetectionSettings) *TranscriptionJobSummary {
+	s.ToxicityDetection = v
 	return s
 }
 
@@ -14318,6 +14417,18 @@ func SubtitleFormat_Values() []string {
 	return []string{
 		SubtitleFormatVtt,
 		SubtitleFormatSrt,
+	}
+}
+
+const (
+	// ToxicityCategoryAll is a ToxicityCategory enum value
+	ToxicityCategoryAll = "ALL"
+)
+
+// ToxicityCategory_Values returns all elements of the ToxicityCategory enum
+func ToxicityCategory_Values() []string {
+	return []string{
+		ToxicityCategoryAll,
 	}
 }
 

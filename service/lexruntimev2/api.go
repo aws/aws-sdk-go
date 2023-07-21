@@ -723,6 +723,7 @@ func (c *LexRuntimeV2) StartConversationWithContext(ctx aws.Context, input *Star
 }
 
 var _ awserr.Error
+var _ time.Time
 
 // StartConversationEventStream provides the event stream handling for the StartConversation.
 //
