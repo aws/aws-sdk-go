@@ -18942,15 +18942,20 @@
       },
       "savingsplans" : {
         "endpoints" : {
-          "aws-cn" : {
+          "cn-north-1" : {
+            "credentialScope" : {
+              "region" : "cn-north-1"
+            },
+            "hostname" : "savingsplans.cn-north-1.amazonaws.com.cn"
+          },
+          "cn-northwest-1" : {
             "credentialScope" : {
               "region" : "cn-northwest-1"
             },
             "hostname" : "savingsplans.cn-northwest-1.amazonaws.com.cn"
           }
         },
-        "isRegionalized" : false,
-        "partitionEndpoint" : "aws-cn"
+        "isRegionalized" : true
       },
       "secretsmanager" : {
         "endpoints" : {

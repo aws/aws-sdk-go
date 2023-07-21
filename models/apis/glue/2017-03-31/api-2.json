@@ -4816,7 +4816,8 @@
         "DynamoDBTargets":{"shape":"DynamoDBTargetList"},
         "CatalogTargets":{"shape":"CatalogTargetList"},
         "DeltaTargets":{"shape":"DeltaTargetList"},
-        "IcebergTargets":{"shape":"IcebergTargetList"}
+        "IcebergTargets":{"shape":"IcebergTargetList"},
+        "HudiTargets":{"shape":"HudiTargetList"}
       }
     },
     "CrawlsFilter":{
@@ -8182,6 +8183,15 @@
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
+    "HudiTarget":{
+      "type":"structure",
+      "members":{
+        "Paths":{"shape":"PathList"},
+        "ConnectionName":{"shape":"ConnectionName"},
+        "Exclusions":{"shape":"PathList"},
+        "MaximumTraversalDepth":{"shape":"NullableInteger"}
+      }
+    },
     "HudiTargetCompressionType":{
       "type":"string",
       "enum":[
@@ -8190,6 +8200,10 @@
         "uncompressed",
         "snappy"
       ]
+    },
+    "HudiTargetList":{
+      "type":"list",
+      "member":{"shape":"HudiTarget"}
     },
     "IcebergInput":{
       "type":"structure",
