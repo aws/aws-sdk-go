@@ -22303,16 +22303,12 @@ type ProresSettings struct {
 	// you create from inputs that use 4:4:4 chroma sampling. Set Preserve 4:4:4
 	// sampling (PRESERVE_444_SAMPLING) to allow outputs to also use 4:4:4 chroma
 	// sampling. You must specify a value for this setting when your output codec
-	// profile supports 4:4:4 chroma sampling. Related Settings: When you set Chroma
-	// sampling to Preserve 4:4:4 sampling (PRESERVE_444_SAMPLING), you must choose
-	// an output codec profile that supports 4:4:4 chroma sampling. These values
-	// for Profile (CodecProfile) support 4:4:4 chroma sampling: Apple ProRes 4444
-	// (APPLE_PRORES_4444) or Apple ProRes 4444 XQ (APPLE_PRORES_4444_XQ). When
-	// you set Chroma sampling to Preserve 4:4:4 sampling, you must disable all
-	// video preprocessors except for Nexguard file marker (PartnerWatermarking).
-	// When you set Chroma sampling to Preserve 4:4:4 sampling and use framerate
-	// conversion, you must set Frame rate conversion algorithm (FramerateConversionAlgorithm)
-	// to Drop duplicate (DUPLICATE_DROP).
+	// profile supports 4:4:4 chroma sampling. Related Settings: For Apple ProRes
+	// outputs with 4:4:4 chroma sampling: Choose Preserve 4:4:4 sampling. Use when
+	// your input has 4:4:4 chroma sampling and your output codec Profile is Apple
+	// ProRes 4444 or 4444 XQ. Note that when you choose Preserve 4:4:4 sampling,
+	// you cannot include any of the following Preprocessors: Dolby Vision, HDR10+,
+	// or Noise reducer.
 	ChromaSampling *string `locationName:"chromaSampling" type:"string" enum:"ProresChromaSampling"`
 
 	// Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec
@@ -36468,16 +36464,12 @@ func PricingPlan_Values() []string {
 // you create from inputs that use 4:4:4 chroma sampling. Set Preserve 4:4:4
 // sampling (PRESERVE_444_SAMPLING) to allow outputs to also use 4:4:4 chroma
 // sampling. You must specify a value for this setting when your output codec
-// profile supports 4:4:4 chroma sampling. Related Settings: When you set Chroma
-// sampling to Preserve 4:4:4 sampling (PRESERVE_444_SAMPLING), you must choose
-// an output codec profile that supports 4:4:4 chroma sampling. These values
-// for Profile (CodecProfile) support 4:4:4 chroma sampling: Apple ProRes 4444
-// (APPLE_PRORES_4444) or Apple ProRes 4444 XQ (APPLE_PRORES_4444_XQ). When
-// you set Chroma sampling to Preserve 4:4:4 sampling, you must disable all
-// video preprocessors except for Nexguard file marker (PartnerWatermarking).
-// When you set Chroma sampling to Preserve 4:4:4 sampling and use framerate
-// conversion, you must set Frame rate conversion algorithm (FramerateConversionAlgorithm)
-// to Drop duplicate (DUPLICATE_DROP).
+// profile supports 4:4:4 chroma sampling. Related Settings: For Apple ProRes
+// outputs with 4:4:4 chroma sampling: Choose Preserve 4:4:4 sampling. Use when
+// your input has 4:4:4 chroma sampling and your output codec Profile is Apple
+// ProRes 4444 or 4444 XQ. Note that when you choose Preserve 4:4:4 sampling,
+// you cannot include any of the following Preprocessors: Dolby Vision, HDR10+,
+// or Noise reducer.
 const (
 	// ProresChromaSamplingPreserve444Sampling is a ProresChromaSampling enum value
 	ProresChromaSamplingPreserve444Sampling = "PRESERVE_444_SAMPLING"

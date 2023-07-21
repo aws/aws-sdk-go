@@ -4917,7 +4917,7 @@ func (c *RDS) DescribeBlueGreenDeploymentsRequest(input *DescribeBlueGreenDeploy
 
 // DescribeBlueGreenDeployments API operation for Amazon Relational Database Service.
 //
-// Returns information about blue/green deployments.
+// Describes one or more blue/green deployments.
 //
 // For more information, see Using Amazon RDS Blue/Green Deployments for database
 // updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
@@ -16658,7 +16658,7 @@ func (s *BacktrackDBClusterOutput) SetStatus(v string) *BacktrackDBClusterOutput
 	return s
 }
 
-// Contains the details about a blue/green deployment.
+// Details about a blue/green deployment.
 //
 // For more information, see Using Amazon RDS Blue/Green Deployments for database
 // updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
@@ -16668,18 +16668,18 @@ func (s *BacktrackDBClusterOutput) SetStatus(v string) *BacktrackDBClusterOutput
 type BlueGreenDeployment struct {
 	_ struct{} `type:"structure"`
 
-	// The system-generated identifier of the blue/green deployment.
+	// The unique identifier of the blue/green deployment.
 	BlueGreenDeploymentIdentifier *string `min:"1" type:"string"`
 
 	// The user-supplied name of the blue/green deployment.
 	BlueGreenDeploymentName *string `min:"1" type:"string"`
 
-	// Specifies the time when the blue/green deployment was created, in Universal
-	// Coordinated Time (UTC).
+	// The time when the blue/green deployment was created, in Universal Coordinated
+	// Time (UTC).
 	CreateTime *time.Time `type:"timestamp"`
 
-	// Specifies the time when the blue/green deployment was deleted, in Universal
-	// Coordinated Time (UTC).
+	// The time when the blue/green deployment was deleted, in Universal Coordinated
+	// Time (UTC).
 	DeleteTime *time.Time `type:"timestamp"`
 
 	// The source database for the blue/green deployment.
@@ -16690,7 +16690,7 @@ type BlueGreenDeployment struct {
 
 	// The status of the blue/green deployment.
 	//
-	// Values:
+	// Valid Values:
 	//
 	//    * PROVISIONING - Resources are being created in the green environment.
 	//
@@ -16815,7 +16815,7 @@ func (s *BlueGreenDeployment) SetTasks(v []*BlueGreenDeploymentTask) *BlueGreenD
 	return s
 }
 
-// Contains the details about a task for a blue/green deployment.
+// Details about a task for a blue/green deployment.
 //
 // For more information, see Using Amazon RDS Blue/Green Deployments for database
 // updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
@@ -16830,9 +16830,9 @@ type BlueGreenDeploymentTask struct {
 
 	// The status of the blue/green deployment task.
 	//
-	// Values:
+	// Valid Values:
 	//
-	//    * PENDING - The resources are being prepared for deployment.
+	//    * PENDING - The resource is being prepared for deployment.
 	//
 	//    * IN_PROGRESS - The resource is being deployed.
 	//
@@ -18746,7 +18746,7 @@ func (s *CreateBlueGreenDeploymentInput) SetTargetEngineVersion(v string) *Creat
 type CreateBlueGreenDeploymentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details about a blue/green deployment.
+	// Details about a blue/green deployment.
 	//
 	// For more information, see Using Amazon RDS Blue/Green Deployments for database
 	// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
@@ -21150,58 +21150,13 @@ type CreateDBInstanceInput struct {
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
-	// The meaning of this parameter differs depending on the database engine.
+	// The meaning of this parameter differs according to the database engine you
+	// use.
 	//
-	// Amazon Aurora MySQL
+	// MySQL
 	//
-	// The name of the database to create when the primary DB instance of the Aurora
-	// MySQL DB cluster is created. If you don't specify a value, Amazon RDS doesn't
-	// create a database in the DB cluster.
-	//
-	// Constraints:
-	//
-	//    * Must contain 1 to 64 alphanumeric characters.
-	//
-	//    * Can't be a word reserved by the database engine.
-	//
-	// Amazon Aurora PostgreSQL
-	//
-	// The name of the database to create when the primary DB instance of the Aurora
-	// PostgreSQL DB cluster is created.
-	//
-	// Default: postgres
-	//
-	// Constraints:
-	//
-	//    * Must contain 1 to 63 alphanumeric characters.
-	//
-	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
-	//    or digits (0 to 9).
-	//
-	//    * Can't be a word reserved by the database engine.
-	//
-	// Amazon RDS Custom for Oracle
-	//
-	// The Oracle System ID (SID) of the created RDS Custom DB instance.
-	//
-	// Default: ORCL
-	//
-	// Constraints:
-	//
-	//    * Must contain 1 to 8 alphanumeric characters.
-	//
-	//    * Must contain a letter.
-	//
-	//    * Can't be a word reserved by the database engine.
-	//
-	// Amazon RDS Custom for SQL Server
-	//
-	// Not applicable. Must be null.
-	//
-	// RDS for MariaDB
-	//
-	// The name of the database to create when the DB instance is created. If you
-	// don't specify a value, Amazon RDS doesn't create a database in the DB instance.
+	// The name of the database to create when the DB instance is created. If this
+	// parameter isn't specified, no database is created in the DB instance.
 	//
 	// Constraints:
 	//
@@ -21210,12 +21165,12 @@ type CreateDBInstanceInput struct {
 	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
 	//    or digits (0-9).
 	//
-	//    * Can't be a word reserved by the database engine.
+	//    * Can't be a word reserved by the specified database engine
 	//
-	// RDS for MySQL
+	// MariaDB
 	//
-	// The name of the database to create when the DB instance is created. If you
-	// don't specify a value, Amazon RDS doesn't create a database in the DB instance.
+	// The name of the database to create when the DB instance is created. If this
+	// parameter isn't specified, no database is created in the DB instance.
 	//
 	// Constraints:
 	//
@@ -21224,26 +21179,13 @@ type CreateDBInstanceInput struct {
 	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
 	//    or digits (0-9).
 	//
-	//    * Can't be a word reserved by the database engine.
+	//    * Can't be a word reserved by the specified database engine
 	//
-	// RDS for Oracle
+	// PostgreSQL
 	//
-	// The Oracle System ID (SID) of the created DB instance.
-	//
-	// Default: ORCL
-	//
-	// Constraints:
-	//
-	//    * Can't be longer than 8 characters.
-	//
-	//    * Can't be a word reserved by the database engine, such as the string
-	//    NULL.
-	//
-	// RDS for PostgreSQL
-	//
-	// The name of the database to create when the DB instance is created.
-	//
-	// Default: postgres
+	// The name of the database to create when the DB instance is created. If this
+	// parameter isn't specified, a database named postgres is created in the DB
+	// instance.
 	//
 	// Constraints:
 	//
@@ -21252,11 +21194,71 @@ type CreateDBInstanceInput struct {
 	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
 	//    or digits (0-9).
 	//
-	//    * Can't be a word reserved by the database engine.
+	//    * Can't be a word reserved by the specified database engine
 	//
-	// RDS for SQL Server
+	// Oracle
+	//
+	// The Oracle System ID (SID) of the created DB instance. If you don't specify
+	// a value, the default value is ORCL. You can't specify the string null, or
+	// any other reserved word, for DBName.
+	//
+	// Default: ORCL
+	//
+	// Constraints:
+	//
+	//    * Can't be longer than 8 characters
+	//
+	// Amazon RDS Custom for Oracle
+	//
+	// The Oracle System ID (SID) of the created RDS Custom DB instance. If you
+	// don't specify a value, the default value is ORCL for non-CDBs and RDSCDB
+	// for CDBs.
+	//
+	// Default: ORCL
+	//
+	// Constraints:
+	//
+	//    * It must contain 1 to 8 alphanumeric characters.
+	//
+	//    * It must contain a letter.
+	//
+	//    * It can't be a word reserved by the database engine.
+	//
+	// Amazon RDS Custom for SQL Server
 	//
 	// Not applicable. Must be null.
+	//
+	// SQL Server
+	//
+	// Not applicable. Must be null.
+	//
+	// Amazon Aurora MySQL
+	//
+	// The name of the database to create when the primary DB instance of the Aurora
+	// MySQL DB cluster is created. If this parameter isn't specified for an Aurora
+	// MySQL DB cluster, no database is created in the DB cluster.
+	//
+	// Constraints:
+	//
+	//    * It must contain 1 to 64 alphanumeric characters.
+	//
+	//    * It can't be a word reserved by the database engine.
+	//
+	// Amazon Aurora PostgreSQL
+	//
+	// The name of the database to create when the primary DB instance of the Aurora
+	// PostgreSQL DB cluster is created. If this parameter isn't specified for an
+	// Aurora PostgreSQL DB cluster, a database named postgres is created in the
+	// DB cluster.
+	//
+	// Constraints:
+	//
+	//    * It must contain 1 to 63 alphanumeric characters.
+	//
+	//    * It must begin with a letter. Subsequent characters can be letters, underscores,
+	//    or digits (0 to 9).
+	//
+	//    * It can't be a word reserved by the database engine.
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance. If
@@ -21290,6 +21292,13 @@ type CreateDBInstanceInput struct {
 	//
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
+
+	// The Oracle system identifier (SID), which is the name of the Oracle database
+	// instance that manages your database files. In this context, the term "Oracle
+	// database instance" refers exclusively to the system global area (SGA) and
+	// Oracle background processes. If you don't specify a SID, the value defaults
+	// to RDSCDB. The Oracle SID is also the name of your CDB.
+	DBSystemId *string `type:"string"`
 
 	// Specifies whether the DB instance has deletion protection enabled. The database
 	// can't be deleted when deletion protection is enabled. By default, deletion
@@ -22064,6 +22073,12 @@ func (s *CreateDBInstanceInput) SetDBSecurityGroups(v []*string) *CreateDBInstan
 // SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
 func (s *CreateDBInstanceInput) SetDBSubnetGroupName(v string) *CreateDBInstanceInput {
 	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDBSystemId sets the DBSystemId field's value.
+func (s *CreateDBInstanceInput) SetDBSystemId(v string) *CreateDBInstanceInput {
+	s.DBSystemId = &v
 	return s
 }
 
@@ -26757,15 +26772,10 @@ type DBInstance struct {
 	// in the Amazon RDS User Guide.
 	DBInstanceStatus *string `type:"string"`
 
-	// The meaning of this parameter differs depending on the database engine.
-	//
-	//    * For RDS for MariaDB, Microsoft SQL Server, MySQL, and PostgreSQL - The
-	//    name of the initial database specified for this DB instance when it was
-	//    created, if one was provided. This same name is returned for the life
-	//    of the DB instance.
-	//
-	//    * For RDS for Oracle - The Oracle System ID (SID) of the created DB instance.
-	//    This value is only returned when the object returned is an Oracle DB instance.
+	// Contains the initial database name that you provided (if required) when you
+	// created the DB instance. This name is returned for the life of your DB instance.
+	// For an RDS for Oracle CDB instance, the name identifies the PDB rather than
+	// the CDB.
 	DBName *string `type:"string"`
 
 	// The list of DB parameter groups applied to this DB instance.
@@ -28852,6 +28862,11 @@ type DBSnapshot struct {
 	// Specifies the identifier for the DB snapshot.
 	DBSnapshotIdentifier *string `type:"string"`
 
+	// The Oracle system identifier (SID), which is the name of the Oracle database
+	// instance that manages your database files. The Oracle SID is also the name
+	// of your CDB.
+	DBSystemId *string `type:"string"`
+
 	// The identifier for the source DB instance, which can't be changed and which
 	// is unique to an Amazon Web Services Region.
 	DbiResourceId *string `type:"string"`
@@ -29009,6 +29024,12 @@ func (s *DBSnapshot) SetDBSnapshotArn(v string) *DBSnapshot {
 // SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
 func (s *DBSnapshot) SetDBSnapshotIdentifier(v string) *DBSnapshot {
 	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetDBSystemId sets the DBSystemId field's value.
+func (s *DBSnapshot) SetDBSystemId(v string) *DBSnapshot {
+	s.DBSystemId = &v
 	return s
 }
 
@@ -29385,8 +29406,8 @@ func (s *DBSubnetGroup) SetVpcId(v string) *DBSubnetGroup {
 type DeleteBlueGreenDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The blue/green deployment identifier of the deployment to be deleted. This
-	// parameter isn't case-sensitive.
+	// The unique identifier of the blue/green deployment to delete. This parameter
+	// isn't case-sensitive.
 	//
 	// Constraints:
 	//
@@ -29395,8 +29416,8 @@ type DeleteBlueGreenDeploymentInput struct {
 	// BlueGreenDeploymentIdentifier is a required field
 	BlueGreenDeploymentIdentifier *string `min:"1" type:"string" required:"true"`
 
-	// A value that indicates whether to delete the resources in the green environment.
-	// You can't specify this option if the blue/green deployment status (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_BlueGreenDeployment.html)
+	// Specifies whether to delete the resources in the green environment. You can't
+	// specify this option if the blue/green deployment status (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_BlueGreenDeployment.html)
 	// is SWITCHOVER_COMPLETED.
 	DeleteTarget *bool `type:"boolean"`
 }
@@ -29450,7 +29471,7 @@ func (s *DeleteBlueGreenDeploymentInput) SetDeleteTarget(v bool) *DeleteBlueGree
 type DeleteBlueGreenDeploymentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details about a blue/green deployment.
+	// Details about a blue/green deployment.
 	//
 	// For more information, see Using Amazon RDS Blue/Green Deployments for database
 	// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
@@ -31448,18 +31469,18 @@ func (s *DescribeAccountAttributesOutput) SetAccountQuotas(v []*AccountQuota) *D
 type DescribeBlueGreenDeploymentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The blue/green deployment identifier. If this parameter is specified, information
-	// from only the specific blue/green deployment is returned. This parameter
-	// isn't case-sensitive.
+	// The blue/green deployment identifier. If you specify this parameter, the
+	// response only includes information about the specific blue/green deployment.
+	// This parameter isn't case-sensitive.
 	//
 	// Constraints:
 	//
-	//    * If supplied, must match an existing blue/green deployment identifier.
+	//    * Must match an existing blue/green deployment identifier.
 	BlueGreenDeploymentIdentifier *string `min:"1" type:"string"`
 
 	// A filter that specifies one or more blue/green deployments to describe.
 	//
-	// Supported filters:
+	// Valid Values:
 	//
 	//    * blue-green-deployment-identifier - Accepts system-generated identifiers
 	//    for blue/green deployments. The results list only includes information
@@ -31479,7 +31500,7 @@ type DescribeBlueGreenDeploymentsInput struct {
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// An optional pagination token provided by a previous DescribeBlueGreenDeployments
-	// request. If this parameter is specified, the response includes only records
+	// request. If you specify this parameter, the response only includes records
 	// beyond the marker, up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
@@ -31489,7 +31510,11 @@ type DescribeBlueGreenDeploymentsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: Minimum 20, maximum 100.
+	// Constraints:
+	//
+	//    * Must be a minimum of 20.
+	//
+	//    * Can't exceed 100.
 	MaxRecords *int64 `min:"20" type:"integer"`
 }
 
@@ -31564,7 +31589,8 @@ func (s *DescribeBlueGreenDeploymentsInput) SetMaxRecords(v int64) *DescribeBlue
 type DescribeBlueGreenDeploymentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains a list of blue/green deployments for the user.
+	// A list of blue/green deployments in the current account and Amazon Web Services
+	// Region.
 	BlueGreenDeployments []*BlueGreenDeployment `type:"list"`
 
 	// A pagination token that can be used in a later DescribeBlueGreenDeployments
@@ -53234,7 +53260,7 @@ func (s *Subnet) SetSubnetStatus(v string) *Subnet {
 type SwitchoverBlueGreenDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The blue/green deployment identifier.
+	// The unique identifier of the blue/green deployment.
 	//
 	// Constraints:
 	//
@@ -53243,8 +53269,9 @@ type SwitchoverBlueGreenDeploymentInput struct {
 	// BlueGreenDeploymentIdentifier is a required field
 	BlueGreenDeploymentIdentifier *string `min:"1" type:"string" required:"true"`
 
-	// The amount of time, in seconds, for the switchover to complete. The default
-	// is 300.
+	// The amount of time, in seconds, for the switchover to complete.
+	//
+	// Default: 300
 	//
 	// If the switchover takes longer than the specified duration, then any changes
 	// are rolled back, and no changes are made to the environments.
@@ -53303,7 +53330,7 @@ func (s *SwitchoverBlueGreenDeploymentInput) SetSwitchoverTimeout(v int64) *Swit
 type SwitchoverBlueGreenDeploymentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details about a blue/green deployment.
+	// Details about a blue/green deployment.
 	//
 	// For more information, see Using Amazon RDS Blue/Green Deployments for database
 	// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
