@@ -2501,6 +2501,12 @@ func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCusto
 //   - ThrottlingException
 //     Access is throttled.
 //
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
 //   - InternalFailureException
 //     An internal failure occurred.
 //
@@ -5895,6 +5901,218 @@ func (c *QuickSight) DescribeDashboardPermissions(input *DescribeDashboardPermis
 // for more information on using Contexts.
 func (c *QuickSight) DescribeDashboardPermissionsWithContext(ctx aws.Context, input *DescribeDashboardPermissionsInput, opts ...request.Option) (*DescribeDashboardPermissionsOutput, error) {
 	req, out := c.DescribeDashboardPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDashboardSnapshotJob = "DescribeDashboardSnapshotJob"
+
+// DescribeDashboardSnapshotJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDashboardSnapshotJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDashboardSnapshotJob for more information on using the DescribeDashboardSnapshotJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDashboardSnapshotJobRequest method.
+//	req, resp := client.DescribeDashboardSnapshotJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeDashboardSnapshotJob
+func (c *QuickSight) DescribeDashboardSnapshotJobRequest(input *DescribeDashboardSnapshotJobInput) (req *request.Request, output *DescribeDashboardSnapshotJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDashboardSnapshotJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs/{SnapshotJobId}",
+	}
+
+	if input == nil {
+		input = &DescribeDashboardSnapshotJobInput{}
+	}
+
+	output = &DescribeDashboardSnapshotJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDashboardSnapshotJob API operation for Amazon QuickSight.
+//
+// Describes an existing snapshot job.
+//
+// Poll job descriptions after a job starts to know the status of the job. For
+// information on available status codes, see JobStatus.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeDashboardSnapshotJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeDashboardSnapshotJob
+func (c *QuickSight) DescribeDashboardSnapshotJob(input *DescribeDashboardSnapshotJobInput) (*DescribeDashboardSnapshotJobOutput, error) {
+	req, out := c.DescribeDashboardSnapshotJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDashboardSnapshotJobWithContext is the same as DescribeDashboardSnapshotJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDashboardSnapshotJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeDashboardSnapshotJobWithContext(ctx aws.Context, input *DescribeDashboardSnapshotJobInput, opts ...request.Option) (*DescribeDashboardSnapshotJobOutput, error) {
+	req, out := c.DescribeDashboardSnapshotJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDashboardSnapshotJobResult = "DescribeDashboardSnapshotJobResult"
+
+// DescribeDashboardSnapshotJobResultRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDashboardSnapshotJobResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDashboardSnapshotJobResult for more information on using the DescribeDashboardSnapshotJobResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDashboardSnapshotJobResultRequest method.
+//	req, resp := client.DescribeDashboardSnapshotJobResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeDashboardSnapshotJobResult
+func (c *QuickSight) DescribeDashboardSnapshotJobResultRequest(input *DescribeDashboardSnapshotJobResultInput) (req *request.Request, output *DescribeDashboardSnapshotJobResultOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDashboardSnapshotJobResult,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs/{SnapshotJobId}/result",
+	}
+
+	if input == nil {
+		input = &DescribeDashboardSnapshotJobResultInput{}
+	}
+
+	output = &DescribeDashboardSnapshotJobResultOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDashboardSnapshotJobResult API operation for Amazon QuickSight.
+//
+// Describes the result of an existing snapshot job that has finished running.
+//
+// A finished snapshot job will return a COMPLETED or FAILED status when you
+// poll the job with a DescribeDashboardSnapshotJob API call.
+//
+// If the job has not finished running, this operation returns a message that
+// says Dashboard Snapshot Job with id <SnapshotjobId> has not reached a terminal
+// state..
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeDashboardSnapshotJobResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeDashboardSnapshotJobResult
+func (c *QuickSight) DescribeDashboardSnapshotJobResult(input *DescribeDashboardSnapshotJobResultInput) (*DescribeDashboardSnapshotJobResultOutput, error) {
+	req, out := c.DescribeDashboardSnapshotJobResultRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDashboardSnapshotJobResultWithContext is the same as DescribeDashboardSnapshotJobResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDashboardSnapshotJobResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeDashboardSnapshotJobResultWithContext(ctx aws.Context, input *DescribeDashboardSnapshotJobResultInput, opts ...request.Option) (*DescribeDashboardSnapshotJobResultOutput, error) {
+	req, out := c.DescribeDashboardSnapshotJobResultRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10562,6 +10780,12 @@ func (c *QuickSight) ListGroupMembershipsRequest(input *ListGroupMembershipsInpu
 		Name:       opListGroupMemberships,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}/members",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -10636,6 +10860,57 @@ func (c *QuickSight) ListGroupMembershipsWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+// ListGroupMembershipsPages iterates over the pages of a ListGroupMemberships operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListGroupMemberships method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListGroupMemberships operation.
+//	pageNum := 0
+//	err := client.ListGroupMembershipsPages(params,
+//	    func(page *quicksight.ListGroupMembershipsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListGroupMembershipsPages(input *ListGroupMembershipsInput, fn func(*ListGroupMembershipsOutput, bool) bool) error {
+	return c.ListGroupMembershipsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListGroupMembershipsPagesWithContext same as ListGroupMembershipsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListGroupMembershipsPagesWithContext(ctx aws.Context, input *ListGroupMembershipsInput, fn func(*ListGroupMembershipsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListGroupMembershipsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListGroupMembershipsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListGroupMembershipsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListGroups = "ListGroups"
 
 // ListGroupsRequest generates a "aws/request.Request" representing the
@@ -10666,6 +10941,12 @@ func (c *QuickSight) ListGroupsRequest(input *ListGroupsInput) (req *request.Req
 		Name:       opListGroups,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -10740,6 +11021,57 @@ func (c *QuickSight) ListGroupsWithContext(ctx aws.Context, input *ListGroupsInp
 	return out, req.Send()
 }
 
+// ListGroupsPages iterates over the pages of a ListGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListGroups operation.
+//	pageNum := 0
+//	err := client.ListGroupsPages(params,
+//	    func(page *quicksight.ListGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListGroupsPages(input *ListGroupsInput, fn func(*ListGroupsOutput, bool) bool) error {
+	return c.ListGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListGroupsPagesWithContext same as ListGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListGroupsPagesWithContext(ctx aws.Context, input *ListGroupsInput, fn func(*ListGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListIAMPolicyAssignments = "ListIAMPolicyAssignments"
 
 // ListIAMPolicyAssignmentsRequest generates a "aws/request.Request" representing the
@@ -10770,6 +11102,12 @@ func (c *QuickSight) ListIAMPolicyAssignmentsRequest(input *ListIAMPolicyAssignm
 		Name:       opListIAMPolicyAssignments,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/v2/iam-policy-assignments",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -10838,6 +11176,57 @@ func (c *QuickSight) ListIAMPolicyAssignmentsWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// ListIAMPolicyAssignmentsPages iterates over the pages of a ListIAMPolicyAssignments operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIAMPolicyAssignments method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIAMPolicyAssignments operation.
+//	pageNum := 0
+//	err := client.ListIAMPolicyAssignmentsPages(params,
+//	    func(page *quicksight.ListIAMPolicyAssignmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListIAMPolicyAssignmentsPages(input *ListIAMPolicyAssignmentsInput, fn func(*ListIAMPolicyAssignmentsOutput, bool) bool) error {
+	return c.ListIAMPolicyAssignmentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIAMPolicyAssignmentsPagesWithContext same as ListIAMPolicyAssignmentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListIAMPolicyAssignmentsPagesWithContext(ctx aws.Context, input *ListIAMPolicyAssignmentsInput, fn func(*ListIAMPolicyAssignmentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIAMPolicyAssignmentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIAMPolicyAssignmentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIAMPolicyAssignmentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListIAMPolicyAssignmentsForUser = "ListIAMPolicyAssignmentsForUser"
 
 // ListIAMPolicyAssignmentsForUserRequest generates a "aws/request.Request" representing the
@@ -10868,6 +11257,12 @@ func (c *QuickSight) ListIAMPolicyAssignmentsForUserRequest(input *ListIAMPolicy
 		Name:       opListIAMPolicyAssignmentsForUser,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}/iam-policy-assignments",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -10940,6 +11335,57 @@ func (c *QuickSight) ListIAMPolicyAssignmentsForUserWithContext(ctx aws.Context,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListIAMPolicyAssignmentsForUserPages iterates over the pages of a ListIAMPolicyAssignmentsForUser operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIAMPolicyAssignmentsForUser method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIAMPolicyAssignmentsForUser operation.
+//	pageNum := 0
+//	err := client.ListIAMPolicyAssignmentsForUserPages(params,
+//	    func(page *quicksight.ListIAMPolicyAssignmentsForUserOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListIAMPolicyAssignmentsForUserPages(input *ListIAMPolicyAssignmentsForUserInput, fn func(*ListIAMPolicyAssignmentsForUserOutput, bool) bool) error {
+	return c.ListIAMPolicyAssignmentsForUserPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIAMPolicyAssignmentsForUserPagesWithContext same as ListIAMPolicyAssignmentsForUserPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListIAMPolicyAssignmentsForUserPagesWithContext(ctx aws.Context, input *ListIAMPolicyAssignmentsForUserInput, fn func(*ListIAMPolicyAssignmentsForUserOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIAMPolicyAssignmentsForUserInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIAMPolicyAssignmentsForUserRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIAMPolicyAssignmentsForUserOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListIngestions = "ListIngestions"
@@ -12623,6 +13069,12 @@ func (c *QuickSight) ListUserGroupsRequest(input *ListUserGroupsInput) (req *req
 		Name:       opListUserGroups,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}/groups",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -12695,6 +13147,57 @@ func (c *QuickSight) ListUserGroupsWithContext(ctx aws.Context, input *ListUserG
 	return out, req.Send()
 }
 
+// ListUserGroupsPages iterates over the pages of a ListUserGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUserGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListUserGroups operation.
+//	pageNum := 0
+//	err := client.ListUserGroupsPages(params,
+//	    func(page *quicksight.ListUserGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListUserGroupsPages(input *ListUserGroupsInput, fn func(*ListUserGroupsOutput, bool) bool) error {
+	return c.ListUserGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUserGroupsPagesWithContext same as ListUserGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListUserGroupsPagesWithContext(ctx aws.Context, input *ListUserGroupsInput, fn func(*ListUserGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUserGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUserGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUserGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListUsers = "ListUsers"
 
 // ListUsersRequest generates a "aws/request.Request" representing the
@@ -12725,6 +13228,12 @@ func (c *QuickSight) ListUsersRequest(input *ListUsersInput) (req *request.Reque
 		Name:       opListUsers,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/users",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -12797,6 +13306,57 @@ func (c *QuickSight) ListUsersWithContext(ctx aws.Context, input *ListUsersInput
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListUsersPages iterates over the pages of a ListUsers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUsers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListUsers operation.
+//	pageNum := 0
+//	err := client.ListUsersPages(params,
+//	    func(page *quicksight.ListUsersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListUsersPages(input *ListUsersInput, fn func(*ListUsersOutput, bool) bool) error {
+	return c.ListUsersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUsersPagesWithContext same as ListUsersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInput, fn func(*ListUsersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUsersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUsersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUsersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListVPCConnections = "ListVPCConnections"
@@ -14039,6 +14599,12 @@ func (c *QuickSight) SearchGroupsRequest(input *SearchGroupsInput) (req *request
 		Name:       opSearchGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups-search",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -14112,6 +14678,57 @@ func (c *QuickSight) SearchGroupsWithContext(ctx aws.Context, input *SearchGroup
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// SearchGroupsPages iterates over the pages of a SearchGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchGroups operation.
+//	pageNum := 0
+//	err := client.SearchGroupsPages(params,
+//	    func(page *quicksight.SearchGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) SearchGroupsPages(input *SearchGroupsInput, fn func(*SearchGroupsOutput, bool) bool) error {
+	return c.SearchGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchGroupsPagesWithContext same as SearchGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchGroupsPagesWithContext(ctx aws.Context, input *SearchGroupsInput, fn func(*SearchGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opStartAssetBundleExportJob = "StartAssetBundleExportJob"
@@ -14339,6 +14956,128 @@ func (c *QuickSight) StartAssetBundleImportJob(input *StartAssetBundleImportJobI
 // for more information on using Contexts.
 func (c *QuickSight) StartAssetBundleImportJobWithContext(ctx aws.Context, input *StartAssetBundleImportJobInput, opts ...request.Option) (*StartAssetBundleImportJobOutput, error) {
 	req, out := c.StartAssetBundleImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartDashboardSnapshotJob = "StartDashboardSnapshotJob"
+
+// StartDashboardSnapshotJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartDashboardSnapshotJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDashboardSnapshotJob for more information on using the StartDashboardSnapshotJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartDashboardSnapshotJobRequest method.
+//	req, resp := client.StartDashboardSnapshotJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/StartDashboardSnapshotJob
+func (c *QuickSight) StartDashboardSnapshotJobRequest(input *StartDashboardSnapshotJobInput) (req *request.Request, output *StartDashboardSnapshotJobOutput) {
+	op := &request.Operation{
+		Name:       opStartDashboardSnapshotJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs",
+	}
+
+	if input == nil {
+		input = &StartDashboardSnapshotJobInput{}
+	}
+
+	output = &StartDashboardSnapshotJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDashboardSnapshotJob API operation for Amazon QuickSight.
+//
+// Starts an asynchronous job that generates a dashboard snapshot. You can request
+// up to one paginated PDF and up to five CSVs per API call.
+//
+// Poll job descriptions with a DescribeDashboardSnapshotJob API call. Once
+// the job succeeds, use the DescribeDashboardSnapshotJobResult API to obtain
+// the download URIs that the job generates.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation StartDashboardSnapshotJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - UnsupportedPricingPlanException
+//     This error indicates that you are calling an embedding operation in Amazon
+//     QuickSight without the required pricing plan on your Amazon Web Services
+//     account. Before you can use embedding for anonymous users, a QuickSight administrator
+//     needs to add capacity pricing to Amazon QuickSight. You can do this on the
+//     Manage Amazon QuickSight page.
+//
+//     After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+//     API operation with the --identity-type ANONYMOUS option.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/StartDashboardSnapshotJob
+func (c *QuickSight) StartDashboardSnapshotJob(input *StartDashboardSnapshotJobInput) (*StartDashboardSnapshotJobOutput, error) {
+	req, out := c.StartDashboardSnapshotJobRequest(input)
+	return out, req.Send()
+}
+
+// StartDashboardSnapshotJobWithContext is the same as StartDashboardSnapshotJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDashboardSnapshotJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) StartDashboardSnapshotJobWithContext(ctx aws.Context, input *StartDashboardSnapshotJobInput, opts ...request.Option) (*StartDashboardSnapshotJobOutput, error) {
+	req, out := c.StartDashboardSnapshotJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -17916,6 +18655,9 @@ func (s *AdHocFilteringOption) SetAvailabilityStatus(v string) *AdHocFilteringOp
 type AggregationFunction struct {
 	_ struct{} `type:"structure"`
 
+	// Aggregation for attributes.
+	AttributeAggregationFunction *AttributeAggregationFunction `type:"structure"`
+
 	// Aggregation for categorical values.
 	//
 	//    * COUNT: Aggregate by the total number of values, including duplicates.
@@ -17954,6 +18696,12 @@ func (s AggregationFunction) String() string {
 // value will be replaced with "sensitive".
 func (s AggregationFunction) GoString() string {
 	return s.String()
+}
+
+// SetAttributeAggregationFunction sets the AttributeAggregationFunction field's value.
+func (s *AggregationFunction) SetAttributeAggregationFunction(v *AttributeAggregationFunction) *AggregationFunction {
+	s.AttributeAggregationFunction = v
+	return s
 }
 
 // SetCategoricalAggregationFunction sets the CategoricalAggregationFunction field's value.
@@ -19136,6 +19884,43 @@ func (s *AnonymousUserQSearchBarEmbeddingConfiguration) Validate() error {
 // SetInitialTopicId sets the InitialTopicId field's value.
 func (s *AnonymousUserQSearchBarEmbeddingConfiguration) SetInitialTopicId(v string) *AnonymousUserQSearchBarEmbeddingConfiguration {
 	s.InitialTopicId = &v
+	return s
+}
+
+// A structure that contains the file groups that are requested for the artifact
+// generation in a StartDashboardSnapshotJob API call.
+type AnonymousUserSnapshotJobResult struct {
+	_ struct{} `type:"structure"`
+
+	// A list of SnapshotJobResultFileGroup objects that contain information on
+	// the files that are requested during a StartDashboardSnapshotJob API call.
+	// If the job succeeds, these objects contain the location where the snapshot
+	// artifacts are stored. If the job fails, the objects contain information about
+	// the error that caused the job to fail.
+	FileGroups []*SnapshotJobResultFileGroup `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnonymousUserSnapshotJobResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnonymousUserSnapshotJobResult) GoString() string {
+	return s.String()
+}
+
+// SetFileGroups sets the FileGroups field's value.
+func (s *AnonymousUserSnapshotJobResult) SetFileGroups(v []*SnapshotJobResultFileGroup) *AnonymousUserSnapshotJobResult {
+	s.FileGroups = v
 	return s
 }
 
@@ -21288,6 +22073,52 @@ func (s *AthenaParameters) SetRoleArn(v string) *AthenaParameters {
 // SetWorkGroup sets the WorkGroup field's value.
 func (s *AthenaParameters) SetWorkGroup(v string) *AthenaParameters {
 	s.WorkGroup = &v
+	return s
+}
+
+// Aggregation for attributes.
+type AttributeAggregationFunction struct {
+	_ struct{} `type:"structure"`
+
+	// The built-in aggregation functions for attributes.
+	//
+	//    * UNIQUE_VALUE: Returns the unique value for a field, aggregated by the
+	//    dimension fields.
+	SimpleAttributeAggregation *string `type:"string" enum:"SimpleAttributeAggregationFunction"`
+
+	// Used by the UNIQUE_VALUE aggregation function. If there are multiple values
+	// for the field used by the aggregation, the value for this property will be
+	// returned instead. Defaults to '*'.
+	ValueForMultipleValues *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeAggregationFunction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeAggregationFunction) GoString() string {
+	return s.String()
+}
+
+// SetSimpleAttributeAggregation sets the SimpleAttributeAggregation field's value.
+func (s *AttributeAggregationFunction) SetSimpleAttributeAggregation(v string) *AttributeAggregationFunction {
+	s.SimpleAttributeAggregation = &v
+	return s
+}
+
+// SetValueForMultipleValues sets the ValueForMultipleValues field's value.
+func (s *AttributeAggregationFunction) SetValueForMultipleValues(v string) *AttributeAggregationFunction {
+	s.ValueForMultipleValues = &v
 	return s
 }
 
@@ -37675,6 +38506,9 @@ type DateTimePickerControlDisplayOptions struct {
 	// Customize how dates are formatted in controls.
 	DateTimeFormat *string `min:"1" type:"string"`
 
+	// The configuration of info icon label options.
+	InfoIconLabelOptions *SheetControlInfoIconLabelOptions `type:"structure"`
+
 	// The options to configure the title visibility, name, and font size.
 	TitleOptions *LabelOptions `type:"structure"`
 }
@@ -37703,6 +38537,11 @@ func (s *DateTimePickerControlDisplayOptions) Validate() error {
 	if s.DateTimeFormat != nil && len(*s.DateTimeFormat) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DateTimeFormat", 1))
 	}
+	if s.InfoIconLabelOptions != nil {
+		if err := s.InfoIconLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("InfoIconLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -37713,6 +38552,12 @@ func (s *DateTimePickerControlDisplayOptions) Validate() error {
 // SetDateTimeFormat sets the DateTimeFormat field's value.
 func (s *DateTimePickerControlDisplayOptions) SetDateTimeFormat(v string) *DateTimePickerControlDisplayOptions {
 	s.DateTimeFormat = &v
+	return s
+}
+
+// SetInfoIconLabelOptions sets the InfoIconLabelOptions field's value.
+func (s *DateTimePickerControlDisplayOptions) SetInfoIconLabelOptions(v *SheetControlInfoIconLabelOptions) *DateTimePickerControlDisplayOptions {
+	s.InfoIconLabelOptions = v
 	return s
 }
 
@@ -43383,6 +44228,409 @@ func (s *DescribeDashboardPermissionsOutput) SetStatus(v int64) *DescribeDashboa
 	return s
 }
 
+type DescribeDashboardSnapshotJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that the dashboard snapshot job
+	// is executed in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dashboard that you have started a snapshot job for.
+	//
+	// DashboardId is a required field
+	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
+
+	// The ID of the job to be described. The job ID is set when you start a new
+	// job with a StartDashboardSnapshotJob API call.
+	//
+	// SnapshotJobId is a required field
+	SnapshotJobId *string `location:"uri" locationName:"SnapshotJobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDashboardSnapshotJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDashboardSnapshotJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDashboardSnapshotJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDashboardSnapshotJobInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DashboardId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardId"))
+	}
+	if s.DashboardId != nil && len(*s.DashboardId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DashboardId", 1))
+	}
+	if s.SnapshotJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotJobId"))
+	}
+	if s.SnapshotJobId != nil && len(*s.SnapshotJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotJobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeDashboardSnapshotJobInput) SetAwsAccountId(v string) *DescribeDashboardSnapshotJobInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDashboardId sets the DashboardId field's value.
+func (s *DescribeDashboardSnapshotJobInput) SetDashboardId(v string) *DescribeDashboardSnapshotJobInput {
+	s.DashboardId = &v
+	return s
+}
+
+// SetSnapshotJobId sets the SnapshotJobId field's value.
+func (s *DescribeDashboardSnapshotJobInput) SetSnapshotJobId(v string) *DescribeDashboardSnapshotJobInput {
+	s.SnapshotJobId = &v
+	return s
+}
+
+type DescribeDashboardSnapshotJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the snapshot job. The job ARN is generated
+	// when you start a new job with a StartDashboardSnapshotJob API call.
+	Arn *string `type:"string"`
+
+	// The ID of the Amazon Web Services account that the dashboard snapshot job
+	// is executed in.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// The time that the snapshot job was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The ID of the dashboard that you have started a snapshot job for.
+	DashboardId *string `min:"1" type:"string"`
+
+	// Indicates the status of a job. The status updates as the job executes. This
+	// shows one of the following values.
+	//
+	//    * COMPLETED - The job was completed successfully.
+	//
+	//    * FAILED - The job failed to execute.
+	//
+	//    * QUEUED - The job is queued and hasn't started yet.
+	//
+	//    * RUNNING - The job is still running.
+	JobStatus *string `type:"string" enum:"SnapshotJobStatus"`
+
+	// The time that the snapshot job status was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The snapshot configuration of the job. This information is provided when
+	// you make a StartDashboardSnapshotJob API call.
+	SnapshotConfiguration *SnapshotConfiguration `type:"structure"`
+
+	// The ID of the job to be described. The job ID is set when you start a new
+	// job with a StartDashboardSnapshotJob API call.
+	SnapshotJobId *string `min:"1" type:"string"`
+
+	// The HTTP status of the request
+	Status *int64 `type:"integer"`
+
+	// The user configuration for the snapshot job. This information is provided
+	// when you make a StartDashboardSnapshotJob API call.
+	UserConfiguration *SnapshotUserConfigurationRedacted `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDashboardSnapshotJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDashboardSnapshotJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetArn(v string) *DescribeDashboardSnapshotJobOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetAwsAccountId(v string) *DescribeDashboardSnapshotJobOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetCreatedTime(v time.Time) *DescribeDashboardSnapshotJobOutput {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDashboardId sets the DashboardId field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetDashboardId(v string) *DescribeDashboardSnapshotJobOutput {
+	s.DashboardId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetJobStatus(v string) *DescribeDashboardSnapshotJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetLastUpdatedTime(v time.Time) *DescribeDashboardSnapshotJobOutput {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetRequestId(v string) *DescribeDashboardSnapshotJobOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetSnapshotConfiguration sets the SnapshotConfiguration field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetSnapshotConfiguration(v *SnapshotConfiguration) *DescribeDashboardSnapshotJobOutput {
+	s.SnapshotConfiguration = v
+	return s
+}
+
+// SetSnapshotJobId sets the SnapshotJobId field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetSnapshotJobId(v string) *DescribeDashboardSnapshotJobOutput {
+	s.SnapshotJobId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetStatus(v int64) *DescribeDashboardSnapshotJobOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUserConfiguration sets the UserConfiguration field's value.
+func (s *DescribeDashboardSnapshotJobOutput) SetUserConfiguration(v *SnapshotUserConfigurationRedacted) *DescribeDashboardSnapshotJobOutput {
+	s.UserConfiguration = v
+	return s
+}
+
+type DescribeDashboardSnapshotJobResultInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that the dashboard snapshot job
+	// is executed in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dashboard that you have started a snapshot job for.
+	//
+	// DashboardId is a required field
+	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
+
+	// The ID of the job to be described. The job ID is set when you start a new
+	// job with a StartDashboardSnapshotJob API call.
+	//
+	// SnapshotJobId is a required field
+	SnapshotJobId *string `location:"uri" locationName:"SnapshotJobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDashboardSnapshotJobResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDashboardSnapshotJobResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDashboardSnapshotJobResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDashboardSnapshotJobResultInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DashboardId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardId"))
+	}
+	if s.DashboardId != nil && len(*s.DashboardId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DashboardId", 1))
+	}
+	if s.SnapshotJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotJobId"))
+	}
+	if s.SnapshotJobId != nil && len(*s.SnapshotJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotJobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeDashboardSnapshotJobResultInput) SetAwsAccountId(v string) *DescribeDashboardSnapshotJobResultInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDashboardId sets the DashboardId field's value.
+func (s *DescribeDashboardSnapshotJobResultInput) SetDashboardId(v string) *DescribeDashboardSnapshotJobResultInput {
+	s.DashboardId = &v
+	return s
+}
+
+// SetSnapshotJobId sets the SnapshotJobId field's value.
+func (s *DescribeDashboardSnapshotJobResultInput) SetSnapshotJobId(v string) *DescribeDashboardSnapshotJobResultInput {
+	s.SnapshotJobId = &v
+	return s
+}
+
+type DescribeDashboardSnapshotJobResultOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the snapshot job. The job ARN is generated
+	// when you start a new job with a StartDashboardSnapshotJob API call.
+	Arn *string `type:"string"`
+
+	// The time that a snapshot job was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// Displays information for the error that caused a job to fail.
+	ErrorInfo *SnapshotJobErrorInfo `type:"structure"`
+
+	// Indicates the status of a job after it has reached a terminal state. A finished
+	// snapshot job will retuen a COMPLETED or FAILED status.
+	JobStatus *string `type:"string" enum:"SnapshotJobStatus"`
+
+	// The time that a snapshot job status was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The result of the snapshot job. Jobs that have successfully completed will
+	// return the S3Uri where they are located. Jobs that have failedwill return
+	// information on the error that caused the job to fail.
+	Result *SnapshotJobResult `type:"structure"`
+
+	// The HTTP status of the request
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDashboardSnapshotJobResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDashboardSnapshotJobResultOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeDashboardSnapshotJobResultOutput) SetArn(v string) *DescribeDashboardSnapshotJobResultOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *DescribeDashboardSnapshotJobResultOutput) SetCreatedTime(v time.Time) *DescribeDashboardSnapshotJobResultOutput {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *DescribeDashboardSnapshotJobResultOutput) SetErrorInfo(v *SnapshotJobErrorInfo) *DescribeDashboardSnapshotJobResultOutput {
+	s.ErrorInfo = v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *DescribeDashboardSnapshotJobResultOutput) SetJobStatus(v string) *DescribeDashboardSnapshotJobResultOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *DescribeDashboardSnapshotJobResultOutput) SetLastUpdatedTime(v time.Time) *DescribeDashboardSnapshotJobResultOutput {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeDashboardSnapshotJobResultOutput) SetRequestId(v string) *DescribeDashboardSnapshotJobResultOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *DescribeDashboardSnapshotJobResultOutput) SetResult(v *SnapshotJobResult) *DescribeDashboardSnapshotJobResultOutput {
+	s.Result = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeDashboardSnapshotJobResultOutput) SetStatus(v int64) *DescribeDashboardSnapshotJobResultOutput {
+	s.Status = &v
+	return s
+}
+
 type DescribeDataSetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -47696,6 +48944,9 @@ func (s *DrillDownFilter) SetTimeRangeFilter(v *TimeRangeDrillDownFilter) *Drill
 type DropDownControlDisplayOptions struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration of info icon label options.
+	InfoIconLabelOptions *SheetControlInfoIconLabelOptions `type:"structure"`
+
 	// The configuration of the Select all options in a dropdown control.
 	SelectAllOptions *ListControlSelectAllOptions `type:"structure"`
 
@@ -47719,6 +48970,27 @@ func (s DropDownControlDisplayOptions) String() string {
 // value will be replaced with "sensitive".
 func (s DropDownControlDisplayOptions) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DropDownControlDisplayOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DropDownControlDisplayOptions"}
+	if s.InfoIconLabelOptions != nil {
+		if err := s.InfoIconLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("InfoIconLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInfoIconLabelOptions sets the InfoIconLabelOptions field's value.
+func (s *DropDownControlDisplayOptions) SetInfoIconLabelOptions(v *SheetControlInfoIconLabelOptions) *DropDownControlDisplayOptions {
+	s.InfoIconLabelOptions = v
+	return s
 }
 
 // SetSelectAllOptions sets the SelectAllOptions field's value.
@@ -49832,6 +51104,11 @@ func (s *FilterDropDownControl) Validate() error {
 			invalidParams.AddNested("CascadingControlConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -50158,6 +51435,11 @@ func (s *FilterListControl) Validate() error {
 	if s.CascadingControlConfiguration != nil {
 		if err := s.CascadingControlConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("CascadingControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -50669,6 +51951,11 @@ func (s *FilterSliderControl) Validate() error {
 	if s.Title != nil && len(*s.Title) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
 	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -50792,6 +52079,11 @@ func (s *FilterTextAreaControl) Validate() error {
 	if s.Title != nil && len(*s.Title) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
 	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -50890,6 +52182,11 @@ func (s *FilterTextFieldControl) Validate() error {
 	}
 	if s.Title != nil && len(*s.Title) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
+	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -60824,6 +62121,9 @@ func (s *ListAssetBundleImportJobsOutput) SetStatus(v int64) *ListAssetBundleImp
 type ListControlDisplayOptions struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration of info icon label options.
+	InfoIconLabelOptions *SheetControlInfoIconLabelOptions `type:"structure"`
+
 	// The configuration of the search options in a list control.
 	SearchOptions *ListControlSearchOptions `type:"structure"`
 
@@ -60850,6 +62150,27 @@ func (s ListControlDisplayOptions) String() string {
 // value will be replaced with "sensitive".
 func (s ListControlDisplayOptions) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListControlDisplayOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListControlDisplayOptions"}
+	if s.InfoIconLabelOptions != nil {
+		if err := s.InfoIconLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("InfoIconLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInfoIconLabelOptions sets the InfoIconLabelOptions field's value.
+func (s *ListControlDisplayOptions) SetInfoIconLabelOptions(v *SheetControlInfoIconLabelOptions) *ListControlDisplayOptions {
+	s.InfoIconLabelOptions = v
+	return s
 }
 
 // SetSearchOptions sets the SearchOptions field's value.
@@ -67965,6 +69286,11 @@ func (s *ParameterDropDownControl) Validate() error {
 			invalidParams.AddNested("CascadingControlConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SelectableValues != nil {
 		if err := s.SelectableValues.Validate(); err != nil {
 			invalidParams.AddNested("SelectableValues", err.(request.ErrInvalidParams))
@@ -68095,6 +69421,11 @@ func (s *ParameterListControl) Validate() error {
 	if s.CascadingControlConfiguration != nil {
 		if err := s.CascadingControlConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("CascadingControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SelectableValues != nil {
@@ -68294,6 +69625,11 @@ func (s *ParameterSliderControl) Validate() error {
 	if s.Title != nil && len(*s.Title) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
 	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -68411,6 +69747,11 @@ func (s *ParameterTextAreaControl) Validate() error {
 	if s.Title != nil && len(*s.Title) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
 	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -68509,6 +69850,11 @@ func (s *ParameterTextFieldControl) Validate() error {
 	}
 	if s.Title != nil && len(*s.Title) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
+	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -74402,6 +75748,9 @@ type RelativeDateTimeControlDisplayOptions struct {
 	// Customize how dates are formatted in controls.
 	DateTimeFormat *string `min:"1" type:"string"`
 
+	// The configuration of info icon label options.
+	InfoIconLabelOptions *SheetControlInfoIconLabelOptions `type:"structure"`
+
 	// The options to configure the title visibility, name, and font size.
 	TitleOptions *LabelOptions `type:"structure"`
 }
@@ -74430,6 +75779,11 @@ func (s *RelativeDateTimeControlDisplayOptions) Validate() error {
 	if s.DateTimeFormat != nil && len(*s.DateTimeFormat) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DateTimeFormat", 1))
 	}
+	if s.InfoIconLabelOptions != nil {
+		if err := s.InfoIconLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("InfoIconLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -74440,6 +75794,12 @@ func (s *RelativeDateTimeControlDisplayOptions) Validate() error {
 // SetDateTimeFormat sets the DateTimeFormat field's value.
 func (s *RelativeDateTimeControlDisplayOptions) SetDateTimeFormat(v string) *RelativeDateTimeControlDisplayOptions {
 	s.DateTimeFormat = &v
+	return s
+}
+
+// SetInfoIconLabelOptions sets the InfoIconLabelOptions field's value.
+func (s *RelativeDateTimeControlDisplayOptions) SetInfoIconLabelOptions(v *SheetControlInfoIconLabelOptions) *RelativeDateTimeControlDisplayOptions {
+	s.InfoIconLabelOptions = v
 	return s
 }
 
@@ -75552,6 +76912,86 @@ func (s *RowLevelPermissionTagRule) SetTagKey(v string) *RowLevelPermissionTagRu
 // SetTagMultiValueDelimiter sets the TagMultiValueDelimiter field's value.
 func (s *RowLevelPermissionTagRule) SetTagMultiValueDelimiter(v string) *RowLevelPermissionTagRule {
 	s.TagMultiValueDelimiter = &v
+	return s
+}
+
+// An optional structure that contains the Amazon S3 bucket configuration that
+// the generated snapshots are stored in. If you don't provide this information,
+// generated snapshots are stored in the default Amazon QuickSight bucket.
+type S3BucketConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an existing Amazon S3 bucket where the generated snapshot artifacts
+	// are sent.
+	//
+	// BucketName is a required field
+	BucketName *string `type:"string" required:"true"`
+
+	// The prefix of the Amazon S3 bucket that the generated snapshots are stored
+	// in.
+	//
+	// BucketPrefix is a required field
+	BucketPrefix *string `type:"string" required:"true"`
+
+	// The region that the Amazon S3 bucket is located in. The bucket must be located
+	// in the same region that the StartDashboardSnapshotJob API call is made.
+	//
+	// BucketRegion is a required field
+	BucketRegion *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BucketConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BucketConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketConfiguration"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketPrefix == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketPrefix"))
+	}
+	if s.BucketRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketRegion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3BucketConfiguration) SetBucketName(v string) *S3BucketConfiguration {
+	s.BucketName = &v
+	return s
+}
+
+// SetBucketPrefix sets the BucketPrefix field's value.
+func (s *S3BucketConfiguration) SetBucketPrefix(v string) *S3BucketConfiguration {
+	s.BucketPrefix = &v
+	return s
+}
+
+// SetBucketRegion sets the BucketRegion field's value.
+func (s *S3BucketConfiguration) SetBucketRegion(v string) *S3BucketConfiguration {
+	s.BucketRegion = &v
 	return s
 }
 
@@ -78854,6 +80294,60 @@ func (s *Sheet) SetSheetId(v string) *Sheet {
 	return s
 }
 
+// A control to display info icons for filters and parameters.
+type SheetControlInfoIconLabelOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The text content of info icon.
+	InfoIconText *string `min:"1" type:"string"`
+
+	// The visibility configuration of info icon label options.
+	Visibility *string `type:"string" enum:"Visibility"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SheetControlInfoIconLabelOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SheetControlInfoIconLabelOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SheetControlInfoIconLabelOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SheetControlInfoIconLabelOptions"}
+	if s.InfoIconText != nil && len(*s.InfoIconText) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InfoIconText", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInfoIconText sets the InfoIconText field's value.
+func (s *SheetControlInfoIconLabelOptions) SetInfoIconText(v string) *SheetControlInfoIconLabelOptions {
+	s.InfoIconText = &v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *SheetControlInfoIconLabelOptions) SetVisibility(v string) *SheetControlInfoIconLabelOptions {
+	s.Visibility = &v
+	return s
+}
+
 // A grid layout to define the placement of sheet control.
 type SheetControlLayout struct {
 	_ struct{} `type:"structure"`
@@ -79691,6 +81185,9 @@ func (s *SimpleClusterMarker) SetColor(v string) *SimpleClusterMarker {
 type SliderControlDisplayOptions struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration of info icon label options.
+	InfoIconLabelOptions *SheetControlInfoIconLabelOptions `type:"structure"`
+
 	// The options to configure the title visibility, name, and font size.
 	TitleOptions *LabelOptions `type:"structure"`
 }
@@ -79711,6 +81208,27 @@ func (s SliderControlDisplayOptions) String() string {
 // value will be replaced with "sensitive".
 func (s SliderControlDisplayOptions) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SliderControlDisplayOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SliderControlDisplayOptions"}
+	if s.InfoIconLabelOptions != nil {
+		if err := s.InfoIconLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("InfoIconLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInfoIconLabelOptions sets the InfoIconLabelOptions field's value.
+func (s *SliderControlDisplayOptions) SetInfoIconLabelOptions(v *SheetControlInfoIconLabelOptions) *SliderControlDisplayOptions {
+	s.InfoIconLabelOptions = v
+	return s
 }
 
 // SetTitleOptions sets the TitleOptions field's value.
@@ -79853,6 +81371,832 @@ func (s *SmallMultiplesOptions) SetXAxis(v *SmallMultiplesAxisProperties) *Small
 // SetYAxis sets the YAxis field's value.
 func (s *SmallMultiplesOptions) SetYAxis(v *SmallMultiplesAxisProperties) *SmallMultiplesOptions {
 	s.YAxis = v
+	return s
+}
+
+// A structure that contains information on the anonymous user configuration.
+type SnapshotAnonymousUser struct {
+	_ struct{} `type:"structure"`
+
+	// The tags to be used for row-level security (RLS). Make sure that the relevant
+	// datasets have RLS tags configured before you start a snapshot export job.
+	// You can configure the RLS tags of a dataset with a DataSet$RowLevelPermissionTagConfiguration
+	// API call.
+	//
+	// These are not the tags that are used for Amazon Web Services resource tagging.
+	// For more information on row level security in Amazon QuickSight, see Using
+	// Row-Level Security (RLS) with Tags (https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-rls-tags.html)in
+	// the Amazon QuickSight User Guide.
+	RowLevelPermissionTags []*SessionTag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotAnonymousUser) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotAnonymousUser) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnapshotAnonymousUser) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnapshotAnonymousUser"}
+	if s.RowLevelPermissionTags != nil && len(s.RowLevelPermissionTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RowLevelPermissionTags", 1))
+	}
+	if s.RowLevelPermissionTags != nil {
+		for i, v := range s.RowLevelPermissionTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RowLevelPermissionTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRowLevelPermissionTags sets the RowLevelPermissionTags field's value.
+func (s *SnapshotAnonymousUser) SetRowLevelPermissionTags(v []*SessionTag) *SnapshotAnonymousUser {
+	s.RowLevelPermissionTags = v
+	return s
+}
+
+// Use this structure to redact sensitive information that you provide about
+// an anonymous user from the snapshot.
+type SnapshotAnonymousUserRedacted struct {
+	_ struct{} `type:"structure"`
+
+	// The tag keys for the RowLevelPermissionTags.
+	RowLevelPermissionTagKeys []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotAnonymousUserRedacted) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotAnonymousUserRedacted) GoString() string {
+	return s.String()
+}
+
+// SetRowLevelPermissionTagKeys sets the RowLevelPermissionTagKeys field's value.
+func (s *SnapshotAnonymousUserRedacted) SetRowLevelPermissionTagKeys(v []*string) *SnapshotAnonymousUserRedacted {
+	s.RowLevelPermissionTagKeys = v
+	return s
+}
+
+// Describes the configuration of the dashboard snapshot.
+type SnapshotConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains information on the Amazon S3 bucket that the generated
+	// snapshot is stored in.
+	DestinationConfiguration *SnapshotDestinationConfiguration `type:"structure"`
+
+	// A list of SnapshotJobResultFileGroup objects that contain information about
+	// the snapshot that is generated. This list can hold a maximum of 6 FileGroup
+	// configurations.
+	//
+	// FileGroups is a required field
+	FileGroups []*SnapshotFileGroup `min:"1" type:"list" required:"true"`
+
+	// A list of Amazon QuickSight parameters and the list's override values.
+	Parameters *Parameters `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnapshotConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnapshotConfiguration"}
+	if s.FileGroups == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileGroups"))
+	}
+	if s.FileGroups != nil && len(s.FileGroups) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileGroups", 1))
+	}
+	if s.DestinationConfiguration != nil {
+		if err := s.DestinationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DestinationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FileGroups != nil {
+		for i, v := range s.FileGroups {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FileGroups", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Parameters != nil {
+		if err := s.Parameters.Validate(); err != nil {
+			invalidParams.AddNested("Parameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationConfiguration sets the DestinationConfiguration field's value.
+func (s *SnapshotConfiguration) SetDestinationConfiguration(v *SnapshotDestinationConfiguration) *SnapshotConfiguration {
+	s.DestinationConfiguration = v
+	return s
+}
+
+// SetFileGroups sets the FileGroups field's value.
+func (s *SnapshotConfiguration) SetFileGroups(v []*SnapshotFileGroup) *SnapshotConfiguration {
+	s.FileGroups = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *SnapshotConfiguration) SetParameters(v *Parameters) *SnapshotConfiguration {
+	s.Parameters = v
+	return s
+}
+
+// A structure that contains information on the Amazon S3 destinations of the
+// generated snapshot.
+type SnapshotDestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of SnapshotS3DestinationConfiguration objects that contain Amazon
+	// S3 destination configurations. This structure can hold a maximum of 1 S3DestinationConfiguration.
+	S3Destinations []*SnapshotS3DestinationConfiguration `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotDestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotDestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnapshotDestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnapshotDestinationConfiguration"}
+	if s.S3Destinations != nil && len(s.S3Destinations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Destinations", 1))
+	}
+	if s.S3Destinations != nil {
+		for i, v := range s.S3Destinations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "S3Destinations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Destinations sets the S3Destinations field's value.
+func (s *SnapshotDestinationConfiguration) SetS3Destinations(v []*SnapshotS3DestinationConfiguration) *SnapshotDestinationConfiguration {
+	s.S3Destinations = v
+	return s
+}
+
+// A structure that contains the information for the snapshot that you want
+// to generate. This information is provided by you when you start a new snapshot
+// job.
+type SnapshotFile struct {
+	_ struct{} `type:"structure"`
+
+	// The format of the snapshot file to be generated. You can choose between CSV
+	// and PDF.
+	//
+	// FormatType is a required field
+	FormatType *string `type:"string" required:"true" enum:"SnapshotFileFormatType"`
+
+	// A list of SnapshotFileSheetSelection objects that contain information on
+	// the dashboard sheet that is exported. These objects provide information about
+	// the snapshot artifacts that are generated during the job. This structure
+	// can hold a maximum of 5 CSV configurations or 1 configuration for PDF.
+	//
+	// SheetSelections is a required field
+	SheetSelections []*SnapshotFileSheetSelection `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotFile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotFile) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnapshotFile) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnapshotFile"}
+	if s.FormatType == nil {
+		invalidParams.Add(request.NewErrParamRequired("FormatType"))
+	}
+	if s.SheetSelections == nil {
+		invalidParams.Add(request.NewErrParamRequired("SheetSelections"))
+	}
+	if s.SheetSelections != nil && len(s.SheetSelections) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SheetSelections", 1))
+	}
+	if s.SheetSelections != nil {
+		for i, v := range s.SheetSelections {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SheetSelections", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFormatType sets the FormatType field's value.
+func (s *SnapshotFile) SetFormatType(v string) *SnapshotFile {
+	s.FormatType = &v
+	return s
+}
+
+// SetSheetSelections sets the SheetSelections field's value.
+func (s *SnapshotFile) SetSheetSelections(v []*SnapshotFileSheetSelection) *SnapshotFile {
+	s.SheetSelections = v
+	return s
+}
+
+// A structure that contains the information on the snapshot files.
+type SnapshotFileGroup struct {
+	_ struct{} `type:"structure"`
+
+	// A list of SnapshotFile objects that contain the information on the snapshot
+	// files that need to be generated. This structure can hold 1 configuration
+	// at a time.
+	Files []*SnapshotFile `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotFileGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotFileGroup) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnapshotFileGroup) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnapshotFileGroup"}
+	if s.Files != nil && len(s.Files) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Files", 1))
+	}
+	if s.Files != nil {
+		for i, v := range s.Files {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Files", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFiles sets the Files field's value.
+func (s *SnapshotFileGroup) SetFiles(v []*SnapshotFile) *SnapshotFileGroup {
+	s.Files = v
+	return s
+}
+
+// A structure that contains information that identifies the snapshot that needs
+// to be generated.
+type SnapshotFileSheetSelection struct {
+	_ struct{} `type:"structure"`
+
+	// The selection scope of the visuals on a sheet of a dashboard that you are
+	// generating a snapthot of. You can choose one of the following options.
+	//
+	//    * ALL_VISUALS - Selects all visuals that are on the sheet. This value
+	//    is required if the snapshot is a PDF.
+	//
+	//    * SELECTED_VISUALS - Select the visual that you want to add to the snapshot.
+	//    This value is required if the snapshot is a CSV.
+	//
+	// SelectionScope is a required field
+	SelectionScope *string `type:"string" required:"true" enum:"SnapshotFileSheetSelectionScope"`
+
+	// The sheet ID of the dashboard to generate the snapshot artifact from. This
+	// value is required for CSV or PDF format types.
+	//
+	// SheetId is a required field
+	SheetId *string `min:"1" type:"string" required:"true"`
+
+	// A structure that lists the IDs of the visuals in the selected sheet. Supported
+	// visual types are table, pivot table visuals. This value is required if you
+	// are generating a CSV. This value supports a maximum of 1 visual ID.
+	VisualIds []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotFileSheetSelection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotFileSheetSelection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnapshotFileSheetSelection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnapshotFileSheetSelection"}
+	if s.SelectionScope == nil {
+		invalidParams.Add(request.NewErrParamRequired("SelectionScope"))
+	}
+	if s.SheetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SheetId"))
+	}
+	if s.SheetId != nil && len(*s.SheetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SheetId", 1))
+	}
+	if s.VisualIds != nil && len(s.VisualIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VisualIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSelectionScope sets the SelectionScope field's value.
+func (s *SnapshotFileSheetSelection) SetSelectionScope(v string) *SnapshotFileSheetSelection {
+	s.SelectionScope = &v
+	return s
+}
+
+// SetSheetId sets the SheetId field's value.
+func (s *SnapshotFileSheetSelection) SetSheetId(v string) *SnapshotFileSheetSelection {
+	s.SheetId = &v
+	return s
+}
+
+// SetVisualIds sets the VisualIds field's value.
+func (s *SnapshotFileSheetSelection) SetVisualIds(v []*string) *SnapshotFileSheetSelection {
+	s.VisualIds = v
+	return s
+}
+
+// An object that contains information on the error that caused the snapshot
+// job to fail.
+type SnapshotJobErrorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The error message.
+	ErrorMessage *string `type:"string"`
+
+	// The error type.
+	ErrorType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobErrorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobErrorInfo) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *SnapshotJobErrorInfo) SetErrorMessage(v string) *SnapshotJobErrorInfo {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetErrorType sets the ErrorType field's value.
+func (s *SnapshotJobErrorInfo) SetErrorType(v string) *SnapshotJobErrorInfo {
+	s.ErrorType = &v
+	return s
+}
+
+// An object that provides information on the result of a snapshot job. This
+// object provides information about the job, the job status, and the location
+// of the generated file.
+type SnapshotJobResult struct {
+	_ struct{} `type:"structure"`
+
+	// A list of AnonymousUserSnapshotJobResult objects that contain information
+	// on anonymous users and their user configurations. This data provided by you
+	// when you make a StartDashboardSnapshotJob API call.
+	AnonymousUsers []*AnonymousUserSnapshotJobResult `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobResult) GoString() string {
+	return s.String()
+}
+
+// SetAnonymousUsers sets the AnonymousUsers field's value.
+func (s *SnapshotJobResult) SetAnonymousUsers(v []*AnonymousUserSnapshotJobResult) *SnapshotJobResult {
+	s.AnonymousUsers = v
+	return s
+}
+
+// Information on the error that caused the snapshot job to fail.
+type SnapshotJobResultErrorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The error message.
+	ErrorMessage *string `type:"string"`
+
+	// The error type.
+	ErrorType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobResultErrorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobResultErrorInfo) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *SnapshotJobResultErrorInfo) SetErrorMessage(v string) *SnapshotJobResultErrorInfo {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetErrorType sets the ErrorType field's value.
+func (s *SnapshotJobResultErrorInfo) SetErrorType(v string) *SnapshotJobResultErrorInfo {
+	s.ErrorType = &v
+	return s
+}
+
+// A structure that contains information on the generated snapshot file groups.
+type SnapshotJobResultFileGroup struct {
+	_ struct{} `type:"structure"`
+
+	// A list of SnapshotFile objects.
+	Files []*SnapshotFile `min:"1" type:"list"`
+
+	// A list of SnapshotJobS3Result objects.
+	S3Results []*SnapshotJobS3Result `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobResultFileGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobResultFileGroup) GoString() string {
+	return s.String()
+}
+
+// SetFiles sets the Files field's value.
+func (s *SnapshotJobResultFileGroup) SetFiles(v []*SnapshotFile) *SnapshotJobResultFileGroup {
+	s.Files = v
+	return s
+}
+
+// SetS3Results sets the S3Results field's value.
+func (s *SnapshotJobResultFileGroup) SetS3Results(v []*SnapshotJobS3Result) *SnapshotJobResultFileGroup {
+	s.S3Results = v
+	return s
+}
+
+// The Amazon S3 result from the snapshot job. The result includes the DestinationConfiguration
+// and the Amazon S3 Uri. If an error occured during the job, the result returns
+// information on the error.
+type SnapshotJobS3Result struct {
+	_ struct{} `type:"structure"`
+
+	// An array of error records that describe any failures that occur while the
+	// dashboard snapshot job runs.
+	ErrorInfo []*SnapshotJobResultErrorInfo `type:"list"`
+
+	// A list of Amazon S3 bucket configurations that are provided when you make
+	// a StartDashboardSnapshotJob API call.
+	S3DestinationConfiguration *SnapshotS3DestinationConfiguration `type:"structure"`
+
+	// The Amazon S3 Uri.
+	//
+	// S3Uri is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnapshotJobS3Result's
+	// String and GoString methods.
+	S3Uri *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobS3Result) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotJobS3Result) GoString() string {
+	return s.String()
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *SnapshotJobS3Result) SetErrorInfo(v []*SnapshotJobResultErrorInfo) *SnapshotJobS3Result {
+	s.ErrorInfo = v
+	return s
+}
+
+// SetS3DestinationConfiguration sets the S3DestinationConfiguration field's value.
+func (s *SnapshotJobS3Result) SetS3DestinationConfiguration(v *SnapshotS3DestinationConfiguration) *SnapshotJobS3Result {
+	s.S3DestinationConfiguration = v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *SnapshotJobS3Result) SetS3Uri(v string) *SnapshotJobS3Result {
+	s.S3Uri = &v
+	return s
+}
+
+// A structure that describes the Amazon S3 settings to use to save the generated
+// dashboard snapshot.
+type SnapshotS3DestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains details about the Amazon S3 bucket that the generated
+	// dashboard snapshot is saved in.
+	BucketConfiguration *S3BucketConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotS3DestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotS3DestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnapshotS3DestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnapshotS3DestinationConfiguration"}
+	if s.BucketConfiguration != nil {
+		if err := s.BucketConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("BucketConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketConfiguration sets the BucketConfiguration field's value.
+func (s *SnapshotS3DestinationConfiguration) SetBucketConfiguration(v *S3BucketConfiguration) *SnapshotS3DestinationConfiguration {
+	s.BucketConfiguration = v
+	return s
+}
+
+// A structure that contains information about the users that the dashboard
+// snapshot is generated for.
+type SnapshotUserConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An array of records that describe the anonymous users that the dashboard
+	// snapshot is generated for.
+	AnonymousUsers []*SnapshotAnonymousUser `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotUserConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotUserConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnapshotUserConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnapshotUserConfiguration"}
+	if s.AnonymousUsers != nil && len(s.AnonymousUsers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnonymousUsers", 1))
+	}
+	if s.AnonymousUsers != nil {
+		for i, v := range s.AnonymousUsers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AnonymousUsers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnonymousUsers sets the AnonymousUsers field's value.
+func (s *SnapshotUserConfiguration) SetAnonymousUsers(v []*SnapshotAnonymousUser) *SnapshotUserConfiguration {
+	s.AnonymousUsers = v
+	return s
+}
+
+// A structure that contains information about the users that the dashboard
+// snapshot is generated for. Sensitive user information is excluded.
+type SnapshotUserConfigurationRedacted struct {
+	_ struct{} `type:"structure"`
+
+	// An array of records that describe anonymous users that the dashboard snapshot
+	// is generated for. Sensitive user information is excluded.
+	AnonymousUsers []*SnapshotAnonymousUserRedacted `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotUserConfigurationRedacted) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotUserConfigurationRedacted) GoString() string {
+	return s.String()
+}
+
+// SetAnonymousUsers sets the AnonymousUsers field's value.
+func (s *SnapshotUserConfigurationRedacted) SetAnonymousUsers(v []*SnapshotAnonymousUserRedacted) *SnapshotUserConfigurationRedacted {
+	s.AnonymousUsers = v
 	return s
 }
 
@@ -80553,6 +82897,192 @@ func (s *StartAssetBundleImportJobOutput) SetRequestId(v string) *StartAssetBund
 
 // SetStatus sets the Status field's value.
 func (s *StartAssetBundleImportJobOutput) SetStatus(v int64) *StartAssetBundleImportJobOutput {
+	s.Status = &v
+	return s
+}
+
+type StartDashboardSnapshotJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that the dashboard snapshot job
+	// is executed in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dashboard that you want to start a snapshot job for.
+	//
+	// DashboardId is a required field
+	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
+
+	// A structure that describes the configuration of the dashboard snapshot.
+	//
+	// SnapshotConfiguration is a required field
+	SnapshotConfiguration *SnapshotConfiguration `type:"structure" required:"true"`
+
+	// An ID for the dashboard snapshot job. This ID is unique to the dashboard
+	// while the job is running. This ID can be used to poll the status of a job
+	// with a DescribeDashboardSnapshotJob while the job runs. You can reuse this
+	// ID for another job 24 hours after the current job is completed.
+	//
+	// SnapshotJobId is a required field
+	SnapshotJobId *string `min:"1" type:"string" required:"true"`
+
+	// A structure that contains information about the anonymous users that the
+	// generated snapshot is for. This API will not return information about registered
+	// Amazon QuickSight.
+	//
+	// UserConfiguration is a required field
+	UserConfiguration *SnapshotUserConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDashboardSnapshotJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDashboardSnapshotJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDashboardSnapshotJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDashboardSnapshotJobInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DashboardId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardId"))
+	}
+	if s.DashboardId != nil && len(*s.DashboardId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DashboardId", 1))
+	}
+	if s.SnapshotConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotConfiguration"))
+	}
+	if s.SnapshotJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotJobId"))
+	}
+	if s.SnapshotJobId != nil && len(*s.SnapshotJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotJobId", 1))
+	}
+	if s.UserConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserConfiguration"))
+	}
+	if s.SnapshotConfiguration != nil {
+		if err := s.SnapshotConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnapshotConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UserConfiguration != nil {
+		if err := s.UserConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("UserConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *StartDashboardSnapshotJobInput) SetAwsAccountId(v string) *StartDashboardSnapshotJobInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDashboardId sets the DashboardId field's value.
+func (s *StartDashboardSnapshotJobInput) SetDashboardId(v string) *StartDashboardSnapshotJobInput {
+	s.DashboardId = &v
+	return s
+}
+
+// SetSnapshotConfiguration sets the SnapshotConfiguration field's value.
+func (s *StartDashboardSnapshotJobInput) SetSnapshotConfiguration(v *SnapshotConfiguration) *StartDashboardSnapshotJobInput {
+	s.SnapshotConfiguration = v
+	return s
+}
+
+// SetSnapshotJobId sets the SnapshotJobId field's value.
+func (s *StartDashboardSnapshotJobInput) SetSnapshotJobId(v string) *StartDashboardSnapshotJobInput {
+	s.SnapshotJobId = &v
+	return s
+}
+
+// SetUserConfiguration sets the UserConfiguration field's value.
+func (s *StartDashboardSnapshotJobInput) SetUserConfiguration(v *SnapshotUserConfiguration) *StartDashboardSnapshotJobInput {
+	s.UserConfiguration = v
+	return s
+}
+
+type StartDashboardSnapshotJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the dashboard snapshot job.
+	Arn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The ID of the job. The job ID is set when you start a new job with a StartDashboardSnapshotJob
+	// API call.
+	SnapshotJobId *string `min:"1" type:"string"`
+
+	// The HTTP status of the request
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDashboardSnapshotJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDashboardSnapshotJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartDashboardSnapshotJobOutput) SetArn(v string) *StartDashboardSnapshotJobOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *StartDashboardSnapshotJobOutput) SetRequestId(v string) *StartDashboardSnapshotJobOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetSnapshotJobId sets the SnapshotJobId field's value.
+func (s *StartDashboardSnapshotJobOutput) SetSnapshotJobId(v string) *StartDashboardSnapshotJobOutput {
+	s.SnapshotJobId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartDashboardSnapshotJobOutput) SetStatus(v int64) *StartDashboardSnapshotJobOutput {
 	s.Status = &v
 	return s
 }
@@ -84060,6 +86590,9 @@ func (s *TeradataParameters) SetPort(v int64) *TeradataParameters {
 type TextAreaControlDisplayOptions struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration of info icon label options.
+	InfoIconLabelOptions *SheetControlInfoIconLabelOptions `type:"structure"`
+
 	// The configuration of the placeholder options in a text area control.
 	PlaceholderOptions *TextControlPlaceholderOptions `type:"structure"`
 
@@ -84083,6 +86616,27 @@ func (s TextAreaControlDisplayOptions) String() string {
 // value will be replaced with "sensitive".
 func (s TextAreaControlDisplayOptions) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TextAreaControlDisplayOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TextAreaControlDisplayOptions"}
+	if s.InfoIconLabelOptions != nil {
+		if err := s.InfoIconLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("InfoIconLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInfoIconLabelOptions sets the InfoIconLabelOptions field's value.
+func (s *TextAreaControlDisplayOptions) SetInfoIconLabelOptions(v *SheetControlInfoIconLabelOptions) *TextAreaControlDisplayOptions {
+	s.InfoIconLabelOptions = v
+	return s
 }
 
 // SetPlaceholderOptions sets the PlaceholderOptions field's value.
@@ -84208,6 +86762,9 @@ func (s *TextControlPlaceholderOptions) SetVisibility(v string) *TextControlPlac
 type TextFieldControlDisplayOptions struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration of info icon label options.
+	InfoIconLabelOptions *SheetControlInfoIconLabelOptions `type:"structure"`
+
 	// The configuration of the placeholder options in a text field control.
 	PlaceholderOptions *TextControlPlaceholderOptions `type:"structure"`
 
@@ -84231,6 +86788,27 @@ func (s TextFieldControlDisplayOptions) String() string {
 // value will be replaced with "sensitive".
 func (s TextFieldControlDisplayOptions) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TextFieldControlDisplayOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TextFieldControlDisplayOptions"}
+	if s.InfoIconLabelOptions != nil {
+		if err := s.InfoIconLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("InfoIconLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInfoIconLabelOptions sets the InfoIconLabelOptions field's value.
+func (s *TextFieldControlDisplayOptions) SetInfoIconLabelOptions(v *SheetControlInfoIconLabelOptions) *TextFieldControlDisplayOptions {
+	s.InfoIconLabelOptions = v
+	return s
 }
 
 // SetPlaceholderOptions sets the PlaceholderOptions field's value.
@@ -100521,6 +103099,18 @@ func SheetControlSliderType_Values() []string {
 }
 
 const (
+	// SimpleAttributeAggregationFunctionUniqueValue is a SimpleAttributeAggregationFunction enum value
+	SimpleAttributeAggregationFunctionUniqueValue = "UNIQUE_VALUE"
+)
+
+// SimpleAttributeAggregationFunction_Values returns all elements of the SimpleAttributeAggregationFunction enum
+func SimpleAttributeAggregationFunction_Values() []string {
+	return []string{
+		SimpleAttributeAggregationFunctionUniqueValue,
+	}
+}
+
+const (
 	// SimpleNumericalAggregationFunctionSum is a SimpleNumericalAggregationFunction enum value
 	SimpleNumericalAggregationFunctionSum = "SUM"
 
@@ -100601,6 +103191,62 @@ func SmallMultiplesAxisScale_Values() []string {
 	return []string{
 		SmallMultiplesAxisScaleShared,
 		SmallMultiplesAxisScaleIndependent,
+	}
+}
+
+const (
+	// SnapshotFileFormatTypeCsv is a SnapshotFileFormatType enum value
+	SnapshotFileFormatTypeCsv = "CSV"
+
+	// SnapshotFileFormatTypePdf is a SnapshotFileFormatType enum value
+	SnapshotFileFormatTypePdf = "PDF"
+)
+
+// SnapshotFileFormatType_Values returns all elements of the SnapshotFileFormatType enum
+func SnapshotFileFormatType_Values() []string {
+	return []string{
+		SnapshotFileFormatTypeCsv,
+		SnapshotFileFormatTypePdf,
+	}
+}
+
+const (
+	// SnapshotFileSheetSelectionScopeAllVisuals is a SnapshotFileSheetSelectionScope enum value
+	SnapshotFileSheetSelectionScopeAllVisuals = "ALL_VISUALS"
+
+	// SnapshotFileSheetSelectionScopeSelectedVisuals is a SnapshotFileSheetSelectionScope enum value
+	SnapshotFileSheetSelectionScopeSelectedVisuals = "SELECTED_VISUALS"
+)
+
+// SnapshotFileSheetSelectionScope_Values returns all elements of the SnapshotFileSheetSelectionScope enum
+func SnapshotFileSheetSelectionScope_Values() []string {
+	return []string{
+		SnapshotFileSheetSelectionScopeAllVisuals,
+		SnapshotFileSheetSelectionScopeSelectedVisuals,
+	}
+}
+
+const (
+	// SnapshotJobStatusQueued is a SnapshotJobStatus enum value
+	SnapshotJobStatusQueued = "QUEUED"
+
+	// SnapshotJobStatusRunning is a SnapshotJobStatus enum value
+	SnapshotJobStatusRunning = "RUNNING"
+
+	// SnapshotJobStatusCompleted is a SnapshotJobStatus enum value
+	SnapshotJobStatusCompleted = "COMPLETED"
+
+	// SnapshotJobStatusFailed is a SnapshotJobStatus enum value
+	SnapshotJobStatusFailed = "FAILED"
+)
+
+// SnapshotJobStatus_Values returns all elements of the SnapshotJobStatus enum
+func SnapshotJobStatus_Values() []string {
+	return []string{
+		SnapshotJobStatusQueued,
+		SnapshotJobStatusRunning,
+		SnapshotJobStatusCompleted,
+		SnapshotJobStatusFailed,
 	}
 }
 

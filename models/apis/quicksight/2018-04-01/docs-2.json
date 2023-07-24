@@ -58,6 +58,8 @@
     "DescribeDashboard": "<p>Provides a summary for a dashboard.</p>",
     "DescribeDashboardDefinition": "<p>Provides a detailed description of the definition of a dashboard.</p> <note> <p>If you do not need to know details about the content of a dashboard, for instance if you are trying to check the status of a recently created or updated dashboard, use the <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeDashboard.html\"> <code>DescribeDashboard</code> </a> instead. </p> </note>",
     "DescribeDashboardPermissions": "<p>Describes read and write permissions for a dashboard.</p>",
+    "DescribeDashboardSnapshotJob": "<p>Describes an existing snapshot job.</p> <p>Poll job descriptions after a job starts to know the status of the job. For information on available status codes, see <code>JobStatus</code>.</p>",
+    "DescribeDashboardSnapshotJobResult": "<p>Describes the result of an existing snapshot job that has finished running.</p> <p>A finished snapshot job will return a <code>COMPLETED</code> or <code>FAILED</code> status when you poll the job with a <code>DescribeDashboardSnapshotJob</code> API call.</p> <p>If the job has not finished running, this operation returns a message that says <code>Dashboard Snapshot Job with id &lt;SnapshotjobId&gt; has not reached a terminal state.</code>.</p>",
     "DescribeDataSet": "<p>Describes a dataset. This operation doesn't support datasets that include uploaded files as a source.</p>",
     "DescribeDataSetPermissions": "<p>Describes the permissions on a dataset.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</code>.</p>",
     "DescribeDataSetRefreshProperties": "<p>Describes the refresh properties of a dataset.</p>",
@@ -129,6 +131,7 @@
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
     "StartAssetBundleExportJob": "<p>Starts an Asset Bundle export job.</p> <p>An Asset Bundle export job exports specified Amazon QuickSight assets. You can also choose to export any asset dependencies in the same job. Export jobs run asynchronously and can be polled with a <code>DescribeAssetBundleExportJob</code> API call. When a job is successfully completed, a download URL that contains the exported assets is returned. The URL is valid for 5 minutes and can be refreshed with a <code>DescribeAssetBundleExportJob</code> API call. Each Amazon QuickSight account can run up to 5 export jobs concurrently.</p> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>",
     "StartAssetBundleImportJob": "<p>Starts an Asset Bundle import job.</p> <p>An Asset Bundle import job imports specified Amazon QuickSight assets into an Amazon QuickSight account. You can also choose to import a naming prefix and specified configuration overrides. The assets that are contained in the bundle file that you provide are used to create or update a new or existing asset in your Amazon QuickSight account. Each Amazon QuickSight account can run up to 5 import jobs concurrently.</p> <p>The API caller must have the necessary <code>\"create\"</code>, <code>\"describe\"</code>, and <code>\"update\"</code> permissions in their IAM role to access each resource type that is contained in the bundle file before the resources can be imported.</p>",
+    "StartDashboardSnapshotJob": "<p>Starts an asynchronous job that generates a dashboard snapshot. You can request up to one paginated PDF and up to five CSVs per API call.</p> <p>Poll job descriptions with a <code>DescribeDashboardSnapshotJob</code> API call. Once the job succeeds, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the download URIs that the job generates.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, and topic. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, the only customization that you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
@@ -413,6 +416,18 @@
         "AnonymousUserEmbeddingExperienceConfiguration$QSearchBar": "<p>The Q search bar that you want to use for anonymous user embedding.</p>"
       }
     },
+    "AnonymousUserSnapshotJobResult": {
+      "base": "<p>A structure that contains the file groups that are requested for the artifact generation in a <code>StartDashboardSnapshotJob</code> API call. </p>",
+      "refs": {
+        "AnonymousUserSnapshotJobResultList$member": null
+      }
+    },
+    "AnonymousUserSnapshotJobResultList": {
+      "base": null,
+      "refs": {
+        "SnapshotJobResult$AnonymousUsers": "<p> A list of <code>AnonymousUserSnapshotJobResult</code> objects that contain information on anonymous users and their user configurations. This data provided by you when you make a <code>StartDashboardSnapshotJob</code> API call.</p>"
+      }
+    },
     "ArcAxisConfiguration": {
       "base": "<p>The arc axis configuration of a <code>GaugeChartVisual</code>.</p>",
       "refs": {
@@ -537,6 +552,8 @@
         "DescribeAssetBundleImportJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the import job.</p>",
         "DescribeDashboardDefinitionResponse$ThemeArn": "<p>The ARN of the theme of the dashboard.</p>",
         "DescribeDashboardPermissionsResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
+        "DescribeDashboardSnapshotJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the snapshot job. The job ARN is generated when you start a new job with a <code>StartDashboardSnapshotJob</code> API call.</p>",
+        "DescribeDashboardSnapshotJobResultResponse$Arn": "<p>The Amazon Resource Name (ARN) for the snapshot job. The job ARN is generated when you start a new job with a <code>StartDashboardSnapshotJob</code> API call.</p>",
         "DescribeDataSetPermissionsResponse$DataSetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DescribeDataSourcePermissionsResponse$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "DescribeFolderPermissionsResponse$Arn": "<p>The Amazon Resource Name (ARN) for the folder.</p>",
@@ -572,6 +589,7 @@
         "S3Source$DataSourceArn": "<p>The Amazon Resource Name (ARN) for the data source.</p>",
         "StartAssetBundleExportJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the export job.</p>",
         "StartAssetBundleImportJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the import job.</p>",
+        "StartDashboardSnapshotJobResponse$Arn": "<p>The Amazon Resource Name (ARN) for the dashboard snapshot job.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to tag.</p>",
         "Template$Arn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "TemplateAlias$Arn": "<p>The Amazon Resource Name (ARN) of the template alias.</p>",
@@ -1045,6 +1063,12 @@
         "DataSourceParameters$AthenaParameters": "<p>The parameters for Amazon Athena.</p>"
       }
     },
+    "AttributeAggregationFunction": {
+      "base": "<p>Aggregation for attributes.</p>",
+      "refs": {
+        "AggregationFunction$AttributeAggregationFunction": "<p>Aggregation for attributes.</p>"
+      }
+    },
     "AuroraParameters": {
       "base": "<p>Parameters for Amazon Aurora.</p>",
       "refs": {
@@ -1141,6 +1165,9 @@
         "DescribeDashboardDefinitionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing.</p>",
         "DescribeDashboardPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing permissions for.</p>",
         "DescribeDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing.</p>",
+        "DescribeDashboardSnapshotJobRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that the dashboard snapshot job is executed in.</p>",
+        "DescribeDashboardSnapshotJobResponse$AwsAccountId": "<p> The ID of the Amazon Web Services account that the dashboard snapshot job is executed in. </p>",
+        "DescribeDashboardSnapshotJobResultRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that the dashboard snapshot job is executed in.</p>",
         "DescribeDataSetPermissionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeDataSetRefreshPropertiesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
@@ -1212,6 +1239,7 @@
         "SearchGroupsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "StartAssetBundleExportJobRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account to export assets from.</p>",
         "StartAssetBundleImportJobRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account to import assets into. </p>",
+        "StartDashboardSnapshotJobRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that the dashboard snapshot job is executed in.</p>",
         "UpdateAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountCustomizationResponse$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountSettingsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight settings that you want to list.</p>",
@@ -3823,6 +3851,26 @@
       }
     },
     "DescribeDashboardResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDashboardSnapshotJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDashboardSnapshotJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDashboardSnapshotJobResultRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDashboardSnapshotJobResultResponse": {
       "base": null,
       "refs": {
       }
@@ -7019,13 +7067,19 @@
         "DecimalParameter$Name": "<p>A display name for the decimal parameter.</p>",
         "DescribeAssetBundleExportJobResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAssetBundleImportJobResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeDashboardSnapshotJobResponse$RequestId": "<p> The Amazon Web Services request ID for this operation. </p>",
+        "DescribeDashboardSnapshotJobResultResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "Entity$Path": "<p>The hierarchical path of the entity within the analysis, template, or dashboard definition tree.</p>",
         "IntegerParameter$Name": "<p>The name of the integer parameter.</p>",
         "ListAssetBundleExportJobsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListAssetBundleImportJobsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ReferenceLineCustomLabelConfiguration$CustomLabel": "<p>The string text of the custom label.</p>",
+        "S3BucketConfiguration$BucketName": "<p>The name of an existing Amazon S3 bucket where the generated snapshot artifacts are sent.</p>",
+        "S3BucketConfiguration$BucketPrefix": "<p>The prefix of the Amazon S3 bucket that the generated snapshots are stored in.</p>",
+        "S3BucketConfiguration$BucketRegion": "<p>The region that the Amazon S3 bucket is located in. The bucket must be located in the same region that the <code>StartDashboardSnapshotJob</code> API call is made.</p>",
         "StartAssetBundleExportJobResponse$RequestId": "<p>The Amazon Web Services response ID for this operation.</p>",
         "StartAssetBundleImportJobResponse$RequestId": "<p>The Amazon Web Services response ID for this operation.</p>",
+        "StartDashboardSnapshotJobResponse$RequestId": "<p> The Amazon Web Services request ID for this operation. </p>",
         "StringParameter$Name": "<p>A display name for a string parameter.</p>",
         "TemplateError$Message": "<p>Description of the error type.</p>",
         "ThemeError$Message": "<p>The error message.</p>"
@@ -7367,6 +7421,7 @@
       "refs": {
         "CreateAnalysisRequest$Parameters": "<p>The parameter names and override values that you want to use. An analysis can have any parameter type, and some parameters might accept multiple values. </p>",
         "CreateDashboardRequest$Parameters": "<p>The parameters for the creation of the dashboard, which you want to use to override the default settings. A dashboard can have any type of parameters, and some parameters might accept multiple values. </p>",
+        "SnapshotConfiguration$Parameters": null,
         "UpdateAnalysisRequest$Parameters": "<p>The parameter names and override values that you want to use. An analysis can have any parameter type, and some parameters might accept multiple values. </p>",
         "UpdateDashboardRequest$Parameters": "<p>A structure that contains the parameters of the dashboard. These are parameter overrides for a dashboard. A dashboard can have any type of parameters, and some parameters might accept multiple values.</p>"
       }
@@ -8522,6 +8577,12 @@
         "ManifestFileLocation$Bucket": "<p>Amazon S3 bucket.</p>"
       }
     },
+    "S3BucketConfiguration": {
+      "base": "<p>An optional structure that contains the Amazon S3 bucket configuration that the generated snapshots are stored in. If you don't provide this information, generated snapshots are stored in the default Amazon QuickSight bucket.</p>",
+      "refs": {
+        "SnapshotS3DestinationConfiguration$BucketConfiguration": "<p>A structure that contains details about the Amazon S3 bucket that the generated dashboard snapshot is saved in.</p>"
+      }
+    },
     "S3Key": {
       "base": null,
       "refs": {
@@ -8854,6 +8915,12 @@
         "IntegerDefaultValueList$member": null
       }
     },
+    "SensitiveS3Uri": {
+      "base": null,
+      "refs": {
+        "SnapshotJobS3Result$S3Uri": "<p>The Amazon S3 Uri.</p>"
+      }
+    },
     "SensitiveString": {
       "base": null,
       "refs": {
@@ -8935,13 +9002,21 @@
       "refs": {
         "RowLevelPermissionTagRule$TagKey": "<p>The unique key for a tag.</p>",
         "RowLevelPermissionTagRuleConfiguration$member": null,
-        "SessionTag$Key": "<p>The key for the tag.</p>"
+        "SessionTag$Key": "<p>The key for the tag.</p>",
+        "SessionTagKeyList$member": null
+      }
+    },
+    "SessionTagKeyList": {
+      "base": null,
+      "refs": {
+        "SnapshotAnonymousUserRedacted$RowLevelPermissionTagKeys": "<p>The tag keys for the <code>RowLevelPermissionTags</code>.</p>"
       }
     },
     "SessionTagList": {
       "base": null,
       "refs": {
-        "GenerateEmbedUrlForAnonymousUserRequest$SessionTags": "<p>The session tags used for row-level security. Before you use this parameter, make sure that you have configured the relevant datasets using the <code>DataSet$RowLevelPermissionTagConfiguration</code> parameter so that session tags can be used to provide row-level security.</p> <p>These are not the tags used for the Amazon Web Services resource tagging feature. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-rls-tags.html\">Using Row-Level Security (RLS) with Tags</a>in the <i>Amazon QuickSight User Guide</i>.</p>"
+        "GenerateEmbedUrlForAnonymousUserRequest$SessionTags": "<p>The session tags used for row-level security. Before you use this parameter, make sure that you have configured the relevant datasets using the <code>DataSet$RowLevelPermissionTagConfiguration</code> parameter so that session tags can be used to provide row-level security.</p> <p>These are not the tags used for the Amazon Web Services resource tagging feature. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-rls-tags.html\">Using Row-Level Security (RLS) with Tags</a>in the <i>Amazon QuickSight User Guide</i>.</p>",
+        "SnapshotAnonymousUser$RowLevelPermissionTags": "<p>The tags to be used for row-level security (RLS). Make sure that the relevant datasets have RLS tags configured before you start a snapshot export job. You can configure the RLS tags of a dataset with a <code>DataSet$RowLevelPermissionTagConfiguration</code> API call.</p> <p>These are not the tags that are used for Amazon Web Services resource tagging. For more information on row level security in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-rls-tags.html\">Using Row-Level Security (RLS) with Tags</a>in the <i>Amazon QuickSight User Guide</i>.</p>"
       }
     },
     "SessionTagValue": {
@@ -8986,6 +9061,24 @@
       "base": null,
       "refs": {
         "FilterDateTimePickerControl$Type": "<p>The date time picker type of a <code>FilterDateTimePickerControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>SINGLE_VALUED</code>: The filter condition is a fixed date.</p> </li> <li> <p> <code>DATE_RANGE</code>: The filter condition is a date time range.</p> </li> </ul>"
+      }
+    },
+    "SheetControlInfoIconLabelOptions": {
+      "base": "<p>A control to display info icons for filters and parameters.</p>",
+      "refs": {
+        "DateTimePickerControlDisplayOptions$InfoIconLabelOptions": "<p>The configuration of info icon label options.</p>",
+        "DropDownControlDisplayOptions$InfoIconLabelOptions": "<p>The configuration of info icon label options.</p>",
+        "ListControlDisplayOptions$InfoIconLabelOptions": "<p>The configuration of info icon label options.</p>",
+        "RelativeDateTimeControlDisplayOptions$InfoIconLabelOptions": "<p>The configuration of info icon label options.</p>",
+        "SliderControlDisplayOptions$InfoIconLabelOptions": "<p>The configuration of info icon label options.</p>",
+        "TextAreaControlDisplayOptions$InfoIconLabelOptions": "<p>The configuration of info icon label options.</p>",
+        "TextFieldControlDisplayOptions$InfoIconLabelOptions": "<p>The configuration of info icon label options.</p>"
+      }
+    },
+    "SheetControlInfoIconText": {
+      "base": null,
+      "refs": {
+        "SheetControlInfoIconLabelOptions$InfoIconText": "<p> The text content of info icon.</p>"
       }
     },
     "SheetControlLayout": {
@@ -9215,6 +9308,12 @@
         "DescribeDashboardPermissionsRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAM policy.</p>",
         "DescribeDashboardPermissionsResponse$DashboardId": "<p>The ID for the dashboard.</p>",
         "DescribeDashboardRequest$DashboardId": "<p>The ID for the dashboard.</p>",
+        "DescribeDashboardSnapshotJobRequest$DashboardId": "<p>The ID of the dashboard that you have started a snapshot job for.</p>",
+        "DescribeDashboardSnapshotJobRequest$SnapshotJobId": "<p>The ID of the job to be described. The job ID is set when you start a new job with a <code>StartDashboardSnapshotJob</code> API call.</p>",
+        "DescribeDashboardSnapshotJobResponse$DashboardId": "<p>The ID of the dashboard that you have started a snapshot job for.</p>",
+        "DescribeDashboardSnapshotJobResponse$SnapshotJobId": "<p>The ID of the job to be described. The job ID is set when you start a new job with a <code>StartDashboardSnapshotJob</code> API call.</p>",
+        "DescribeDashboardSnapshotJobResultRequest$DashboardId": "<p>The ID of the dashboard that you have started a snapshot job for.</p>",
+        "DescribeDashboardSnapshotJobResultRequest$SnapshotJobId": "<p>The ID of the job to be described. The job ID is set when you start a new job with a <code>StartDashboardSnapshotJob</code> API call.</p>",
         "DescribeTemplateAliasRequest$TemplateId": "<p>The ID for the template.</p>",
         "DescribeTemplateDefinitionRequest$TemplateId": "<p>The ID of the template that you're describing.</p>",
         "DescribeTemplateDefinitionResponse$TemplateId": "<p>The ID of the template described.</p>",
@@ -9288,10 +9387,15 @@
         "SheetDefinition$SheetId": "<p>The unique identifier of a sheet.</p>",
         "SheetTextBox$SheetTextBoxId": "<p>The unique identifier for a text box. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have text boxes that share identifiers.</p>",
         "SheetVisualScopingConfiguration$SheetId": "<p>The selected sheet that the filter is applied to.</p>",
+        "SnapshotFileSheetSelection$SheetId": "<p>The sheet ID of the dashboard to generate the snapshot artifact from. This value is required for CSV or PDF format types.</p>",
+        "SnapshotFileSheetSelectionVisualIdList$member": null,
         "StartAssetBundleExportJobRequest$AssetBundleExportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
         "StartAssetBundleExportJobResponse$AssetBundleExportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
         "StartAssetBundleImportJobRequest$AssetBundleImportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
         "StartAssetBundleImportJobResponse$AssetBundleImportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
+        "StartDashboardSnapshotJobRequest$DashboardId": "<p>The ID of the dashboard that you want to start a snapshot job for. </p>",
+        "StartDashboardSnapshotJobRequest$SnapshotJobId": "<p>An ID for the dashboard snapshot job. This ID is unique to the dashboard while the job is running. This ID can be used to poll the status of a job with a <code>DescribeDashboardSnapshotJob</code> while the job runs. You can reuse this ID for another job 24 hours after the current job is completed.</p>",
+        "StartDashboardSnapshotJobResponse$SnapshotJobId": "<p>The ID of the job. The job ID is set when you start a new job with a <code>StartDashboardSnapshotJob</code> API call.</p>",
         "TableVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers..</p>",
         "TargetVisualList$member": null,
         "Template$TemplateId": "<p>The ID for the template. This is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
@@ -9343,6 +9447,12 @@
       "base": "<p>A <code>SignupResponse</code> object that contains a summary of a newly created account.</p>",
       "refs": {
         "CreateAccountSubscriptionResponse$SignupResponse": "<p>A <code>SignupResponse</code> object that returns information about a newly created Amazon QuickSight account.</p>"
+      }
+    },
+    "SimpleAttributeAggregationFunction": {
+      "base": null,
+      "refs": {
+        "AttributeAggregationFunction$SimpleAttributeAggregation": "<p>The built-in aggregation functions for attributes.</p> <ul> <li> <p> <code>UNIQUE_VALUE</code>: Returns the unique value for a field, aggregated by the dimension fields.</p> </li> </ul>"
       }
     },
     "SimpleClusterMarker": {
@@ -9404,6 +9514,178 @@
         "BarChartConfiguration$SmallMultiplesOptions": "<p>The small multiples setup for the visual.</p>",
         "LineChartConfiguration$SmallMultiplesOptions": "<p>The small multiples setup for the visual.</p>",
         "PieChartConfiguration$SmallMultiplesOptions": "<p>The small multiples setup for the visual.</p>"
+      }
+    },
+    "SnapshotAnonymousUser": {
+      "base": "<p>A structure that contains information on the anonymous user configuration.</p>",
+      "refs": {
+        "SnapshotAnonymousUserList$member": null
+      }
+    },
+    "SnapshotAnonymousUserList": {
+      "base": null,
+      "refs": {
+        "SnapshotUserConfiguration$AnonymousUsers": "<p>An array of records that describe the anonymous users that the dashboard snapshot is generated for.</p>"
+      }
+    },
+    "SnapshotAnonymousUserRedacted": {
+      "base": "<p>Use this structure to redact sensitive information that you provide about an anonymous user from the snapshot.</p>",
+      "refs": {
+        "SnapshotAnonymousUserRedactedList$member": null
+      }
+    },
+    "SnapshotAnonymousUserRedactedList": {
+      "base": null,
+      "refs": {
+        "SnapshotUserConfigurationRedacted$AnonymousUsers": "<p> An array of records that describe anonymous users that the dashboard snapshot is generated for. Sensitive user information is excluded. </p>"
+      }
+    },
+    "SnapshotConfiguration": {
+      "base": "<p>Describes the configuration of the dashboard snapshot.</p>",
+      "refs": {
+        "DescribeDashboardSnapshotJobResponse$SnapshotConfiguration": "<p>The snapshot configuration of the job. This information is provided when you make a <code>StartDashboardSnapshotJob</code> API call.</p>",
+        "StartDashboardSnapshotJobRequest$SnapshotConfiguration": "<p>A structure that describes the configuration of the dashboard snapshot.</p>"
+      }
+    },
+    "SnapshotDestinationConfiguration": {
+      "base": "<p>A structure that contains information on the Amazon S3 destinations of the generated snapshot.</p>",
+      "refs": {
+        "SnapshotConfiguration$DestinationConfiguration": "<p>A structure that contains information on the Amazon S3 bucket that the generated snapshot is stored in.</p>"
+      }
+    },
+    "SnapshotFile": {
+      "base": "<p>A structure that contains the information for the snapshot that you want to generate. This information is provided by you when you start a new snapshot job.</p>",
+      "refs": {
+        "SnapshotFileList$member": null
+      }
+    },
+    "SnapshotFileFormatType": {
+      "base": null,
+      "refs": {
+        "SnapshotFile$FormatType": "<p>The format of the snapshot file to be generated. You can choose between <code>CSV</code> and <code>PDF</code>.</p>"
+      }
+    },
+    "SnapshotFileGroup": {
+      "base": "<p>A structure that contains the information on the snapshot files.</p>",
+      "refs": {
+        "SnapshotFileGroupList$member": null
+      }
+    },
+    "SnapshotFileGroupList": {
+      "base": null,
+      "refs": {
+        "SnapshotConfiguration$FileGroups": "<p>A list of <code>SnapshotJobResultFileGroup</code> objects that contain information about the snapshot that is generated. This list can hold a maximum of 6 <code>FileGroup</code> configurations.</p>"
+      }
+    },
+    "SnapshotFileList": {
+      "base": null,
+      "refs": {
+        "SnapshotFileGroup$Files": "<p>A list of <code>SnapshotFile</code> objects that contain the information on the snapshot files that need to be generated. This structure can hold 1 configuration at a time.</p>",
+        "SnapshotJobResultFileGroup$Files": "<p> A list of <code>SnapshotFile</code> objects.</p>"
+      }
+    },
+    "SnapshotFileSheetSelection": {
+      "base": "<p>A structure that contains information that identifies the snapshot that needs to be generated.</p>",
+      "refs": {
+        "SnapshotFileSheetSelectionList$member": null
+      }
+    },
+    "SnapshotFileSheetSelectionList": {
+      "base": null,
+      "refs": {
+        "SnapshotFile$SheetSelections": "<p>A list of <code>SnapshotFileSheetSelection</code> objects that contain information on the dashboard sheet that is exported. These objects provide information about the snapshot artifacts that are generated during the job. This structure can hold a maximum of 5 CSV configurations or 1 configuration for PDF.</p>"
+      }
+    },
+    "SnapshotFileSheetSelectionScope": {
+      "base": null,
+      "refs": {
+        "SnapshotFileSheetSelection$SelectionScope": "<p>The selection scope of the visuals on a sheet of a dashboard that you are generating a snapthot of. You can choose one of the following options.</p> <ul> <li> <p> <code>ALL_VISUALS</code> - Selects all visuals that are on the sheet. This value is required if the snapshot is a PDF.</p> </li> <li> <p> <code>SELECTED_VISUALS</code> - Select the visual that you want to add to the snapshot. This value is required if the snapshot is a CSV.</p> </li> </ul>"
+      }
+    },
+    "SnapshotFileSheetSelectionVisualIdList": {
+      "base": null,
+      "refs": {
+        "SnapshotFileSheetSelection$VisualIds": "<p> A structure that lists the IDs of the visuals in the selected sheet. Supported visual types are table, pivot table visuals. This value is required if you are generating a CSV. This value supports a maximum of 1 visual ID. </p>"
+      }
+    },
+    "SnapshotJobErrorInfo": {
+      "base": "<p>An object that contains information on the error that caused the snapshot job to fail.</p>",
+      "refs": {
+        "DescribeDashboardSnapshotJobResultResponse$ErrorInfo": "<p>Displays information for the error that caused a job to fail.</p>"
+      }
+    },
+    "SnapshotJobResult": {
+      "base": "<p>An object that provides information on the result of a snapshot job. This object provides information about the job, the job status, and the location of the generated file.</p>",
+      "refs": {
+        "DescribeDashboardSnapshotJobResultResponse$Result": "<p>The result of the snapshot job. Jobs that have successfully completed will return the S3Uri where they are located. Jobs that have failedwill return information on the error that caused the job to fail.</p>"
+      }
+    },
+    "SnapshotJobResultErrorInfo": {
+      "base": "<p>Information on the error that caused the snapshot job to fail.</p>",
+      "refs": {
+        "SnapshotJobResultErrorInfoList$member": null
+      }
+    },
+    "SnapshotJobResultErrorInfoList": {
+      "base": null,
+      "refs": {
+        "SnapshotJobS3Result$ErrorInfo": "<p>An array of error records that describe any failures that occur while the dashboard snapshot job runs.</p>"
+      }
+    },
+    "SnapshotJobResultFileGroup": {
+      "base": "<p>A structure that contains information on the generated snapshot file groups.</p>",
+      "refs": {
+        "SnapshotJobResultFileGroupList$member": null
+      }
+    },
+    "SnapshotJobResultFileGroupList": {
+      "base": null,
+      "refs": {
+        "AnonymousUserSnapshotJobResult$FileGroups": "<p>A list of <code>SnapshotJobResultFileGroup</code> objects that contain information on the files that are requested during a <code>StartDashboardSnapshotJob</code> API call. If the job succeeds, these objects contain the location where the snapshot artifacts are stored. If the job fails, the objects contain information about the error that caused the job to fail.</p>"
+      }
+    },
+    "SnapshotJobS3Result": {
+      "base": "<p>The Amazon S3 result from the snapshot job. The result includes the <code>DestinationConfiguration</code> and the Amazon S3 Uri. If an error occured during the job, the result returns information on the error.</p>",
+      "refs": {
+        "SnapshotJobS3ResultList$member": null
+      }
+    },
+    "SnapshotJobS3ResultList": {
+      "base": null,
+      "refs": {
+        "SnapshotJobResultFileGroup$S3Results": "<p> A list of <code>SnapshotJobS3Result</code> objects.</p>"
+      }
+    },
+    "SnapshotJobStatus": {
+      "base": null,
+      "refs": {
+        "DescribeDashboardSnapshotJobResponse$JobStatus": "<p>Indicates the status of a job. The status updates as the job executes. This shows one of the following values.</p> <ul> <li> <p> <code>COMPLETED</code> - The job was completed successfully.</p> </li> <li> <p> <code>FAILED</code> - The job failed to execute.</p> </li> <li> <p> <code>QUEUED</code> - The job is queued and hasn't started yet.</p> </li> <li> <p> <code>RUNNING</code> - The job is still running.</p> </li> </ul>",
+        "DescribeDashboardSnapshotJobResultResponse$JobStatus": "<p>Indicates the status of a job after it has reached a terminal state. A finished snapshot job will retuen a <code>COMPLETED</code> or <code>FAILED</code> status.</p>"
+      }
+    },
+    "SnapshotS3DestinationConfiguration": {
+      "base": "<p>A structure that describes the Amazon S3 settings to use to save the generated dashboard snapshot.</p>",
+      "refs": {
+        "SnapshotJobS3Result$S3DestinationConfiguration": "<p>A list of Amazon S3 bucket configurations that are provided when you make a <code>StartDashboardSnapshotJob</code> API call. </p>",
+        "SnapshotS3DestinationConfigurationList$member": null
+      }
+    },
+    "SnapshotS3DestinationConfigurationList": {
+      "base": null,
+      "refs": {
+        "SnapshotDestinationConfiguration$S3Destinations": "<p> A list of <code>SnapshotS3DestinationConfiguration</code> objects that contain Amazon S3 destination configurations. This structure can hold a maximum of 1 <code>S3DestinationConfiguration</code>. </p>"
+      }
+    },
+    "SnapshotUserConfiguration": {
+      "base": "<p>A structure that contains information about the users that the dashboard snapshot is generated for.</p>",
+      "refs": {
+        "StartDashboardSnapshotJobRequest$UserConfiguration": "<p> A structure that contains information about the anonymous users that the generated snapshot is for. This API will not return information about registered Amazon QuickSight.</p>"
+      }
+    },
+    "SnapshotUserConfigurationRedacted": {
+      "base": "<p>A structure that contains information about the users that the dashboard snapshot is generated for. Sensitive user information is excluded. </p>",
+      "refs": {
+        "DescribeDashboardSnapshotJobResponse$UserConfiguration": "<p>The user configuration for the snapshot job. This information is provided when you make a <code>StartDashboardSnapshotJob</code> API call.</p>"
       }
     },
     "SnowflakeParameters": {
@@ -9487,6 +9769,16 @@
       "refs": {
       }
     },
+    "StartDashboardSnapshotJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartDashboardSnapshotJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StatePersistenceConfigurations": {
       "base": "<p>The state perssitence configuration of an embedded dashboard.</p>",
       "refs": {
@@ -9560,6 +9852,8 @@
         "DescribeDashboardDefinitionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDashboardPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDashboardResponse$Status": "<p>The HTTP status of this request.</p>",
+        "DescribeDashboardSnapshotJobResponse$Status": "<p>The HTTP status of the request</p>",
+        "DescribeDashboardSnapshotJobResultResponse$Status": "<p>The HTTP status of the request</p>",
         "DescribeDataSetPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDataSetRefreshPropertiesResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -9631,6 +9925,7 @@
         "SearchGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "StartAssetBundleExportJobResponse$Status": "<p>The HTTP status of the response.</p>",
         "StartAssetBundleImportJobResponse$Status": "<p>The HTTP status of the response.</p>",
+        "StartDashboardSnapshotJobResponse$Status": "<p>The HTTP status of the request</p>",
         "TagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UntagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -9680,6 +9975,7 @@
         "AssetBundleImportJobRefreshScheduleOverrideParameters$ScheduleId": "<p>A partial identifier for the specific <code>RefreshSchedule</code> resource being overridden. This structure is used together with the <code>DataSetId</code> structure.</p>",
         "AssetBundleImportJobResourceIdOverrideConfiguration$PrefixForAllResources": "<p>An option to request a CloudFormation variable for a prefix to be prepended to each resource's ID before import. The prefix is only added to the asset IDs and does not change the name of the asset.</p>",
         "AssetBundleImportSourceDescription$Body": "<p>An HTTPS download URL for the provided asset bundle that you optionally provided at the start of the import job. This URL is valid for five minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed. The downloaded asset bundle is a <code>.qs</code> zip file.</p>",
+        "AttributeAggregationFunction$ValueForMultipleValues": "<p>Used by the <code>UNIQUE_VALUE</code> aggregation function. If there are multiple values for the field used by the aggregation, the value for this property will be returned instead. Defaults to '*'.</p>",
         "AxisLabelOptions$CustomLabel": "<p>The text for the axis label.</p>",
         "CancelIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
         "CancelIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -9974,6 +10270,10 @@
         "SignupResponse$userLoginName": "<p>The user login name for your Amazon QuickSight account.</p>",
         "SignupResponse$accountName": "<p>The name of your Amazon QuickSight account.</p>",
         "SignupResponse$directoryType": "<p>The type of Active Directory that is being used to authenticate the Amazon QuickSight account. Valid values are <code>SIMPLE_AD</code>, <code>AD_CONNECTOR</code>, and <code>MICROSOFT_AD</code>.</p>",
+        "SnapshotJobErrorInfo$ErrorMessage": "<p>The error message.</p>",
+        "SnapshotJobErrorInfo$ErrorType": "<p>The error type.</p>",
+        "SnapshotJobResultErrorInfo$ErrorMessage": "<p>The error message.</p>",
+        "SnapshotJobResultErrorInfo$ErrorType": "<p>The error type.</p>",
         "StringList$member": null,
         "SubtotalOptions$CustomLabel": "<p>The custom label string for the subtotal cells.</p>",
         "TableFieldCustomTextContent$Value": "<p>The string value of the custom text content for the table URL link content.</p>",
@@ -10820,6 +11120,10 @@
         "DeleteAnalysisResponse$DeletionTime": "<p>The date and time that the analysis is scheduled to be deleted.</p>",
         "DescribeAssetBundleExportJobResponse$CreatedTime": "<p>The time that the export job was created.</p>",
         "DescribeAssetBundleImportJobResponse$CreatedTime": "<p>The time that the import job was created.</p>",
+        "DescribeDashboardSnapshotJobResponse$CreatedTime": "<p> The time that the snapshot job was created. </p>",
+        "DescribeDashboardSnapshotJobResponse$LastUpdatedTime": "<p> The time that the snapshot job status was last updated. </p>",
+        "DescribeDashboardSnapshotJobResultResponse$CreatedTime": "<p>The time that a snapshot job was created.</p>",
+        "DescribeDashboardSnapshotJobResultResponse$LastUpdatedTime": "<p>The time that a snapshot job status was last updated.</p>",
         "Folder$CreatedTime": "<p>The time that the folder was created.</p>",
         "Folder$LastUpdatedTime": "<p>The time that the folder was last updated.</p>",
         "FolderSummary$CreatedTime": "<p>The time that the folder was created.</p>",
@@ -11843,6 +12147,7 @@
         "RangeEndsLabelType$Visibility": "<p>The visibility of the range ends label.</p>",
         "ScrollBarOptions$Visibility": "<p>The visibility of the data zoom scroll bar.</p>",
         "SecondaryValueOptions$Visibility": "<p>Determines the visibility of the secondary value.</p>",
+        "SheetControlInfoIconLabelOptions$Visibility": "<p>The visibility configuration of info icon label options.</p>",
         "SheetElementConfigurationOverrides$Visibility": "<p>Determines whether or not the overrides are visible. Choose one of the following options:</p> <ul> <li> <p> <code>VISIBLE</code> </p> </li> <li> <p> <code>HIDDEN</code> </p> </li> </ul>",
         "SubtotalOptions$TotalsVisibility": "<p>The visibility configuration for the subtotal cells.</p>",
         "TableCellStyle$Visibility": "<p>The visibility of the table cells.</p>",

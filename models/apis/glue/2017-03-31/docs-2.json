@@ -2867,6 +2867,7 @@
         "PostgreSQLCatalogSource$Table": "<p>The name of the table in the database to read from.</p>",
         "PostgreSQLCatalogTarget$Database": "<p>The name of the database to write to.</p>",
         "PostgreSQLCatalogTarget$Table": "<p>The name of the table in the database to write to.</p>",
+        "RecipeReference$RecipeArn": "<p>The ARN of the DataBrew recipe.</p>",
         "RedshiftSource$Database": "<p>The database to read from.</p>",
         "RedshiftSource$Table": "<p>The database table to read from.</p>",
         "RedshiftSource$RedshiftTmpDir": "<p>The Amazon S3 path where temporary data can be staged when copying out of the database.</p>",
@@ -5713,6 +5714,7 @@
         "PIIDetection$Name": "<p>The name of the transform node.</p>",
         "PostgreSQLCatalogSource$Name": "<p>The name of the data source.</p>",
         "PostgreSQLCatalogTarget$Name": "<p>The name of the data target.</p>",
+        "Recipe$Name": "<p>The name of the Glue Studio node.</p>",
         "RedshiftSource$Name": "<p>The name of the Amazon Redshift data store.</p>",
         "RedshiftTarget$Name": "<p>The name of the data target.</p>",
         "RelationalCatalogSource$Name": "<p>The name of the data source.</p>",
@@ -5939,6 +5941,7 @@
         "OracleSQLCatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "PIIDetection$Inputs": "<p>The node ID inputs to the transform.</p>",
         "PostgreSQLCatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
+        "Recipe$Inputs": "<p>The nodes that are inputs to the recipe node, identified by id.</p>",
         "RedshiftTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "RenameField$Inputs": "<p>The data inputs identified by their node names.</p>",
         "S3CatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
@@ -6523,6 +6526,24 @@
       "base": null,
       "refs": {
         "S3CsvSource$QuoteChar": "<p>Specifies the character to use for quoting. The default is a double quote: <code>'\"'</code>. Set this to <code>-1</code> to turn off quoting entirely.</p>"
+      }
+    },
+    "Recipe": {
+      "base": "<p>A Glue Studio node that uses a Glue DataBrew recipe in Glue jobs.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$Recipe": "<p>Specifies a Glue DataBrew recipe node.</p>"
+      }
+    },
+    "RecipeReference": {
+      "base": "<p>A reference to a Glue DataBrew recipe.</p>",
+      "refs": {
+        "Recipe$RecipeReference": "<p>A reference to the DataBrew recipe used by the node.</p>"
+      }
+    },
+    "RecipeVersion": {
+      "base": null,
+      "refs": {
+        "RecipeReference$RecipeVersion": "<p>The RecipeVersion of the DataBrew recipe.</p>"
       }
     },
     "RecordsCount": {

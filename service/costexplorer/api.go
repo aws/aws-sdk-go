@@ -1727,6 +1727,90 @@ func (c *CostExplorer) GetRightsizingRecommendationWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opGetSavingsPlanPurchaseRecommendationDetails = "GetSavingsPlanPurchaseRecommendationDetails"
+
+// GetSavingsPlanPurchaseRecommendationDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetSavingsPlanPurchaseRecommendationDetails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSavingsPlanPurchaseRecommendationDetails for more information on using the GetSavingsPlanPurchaseRecommendationDetails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSavingsPlanPurchaseRecommendationDetailsRequest method.
+//	req, resp := client.GetSavingsPlanPurchaseRecommendationDetailsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlanPurchaseRecommendationDetails
+func (c *CostExplorer) GetSavingsPlanPurchaseRecommendationDetailsRequest(input *GetSavingsPlanPurchaseRecommendationDetailsInput) (req *request.Request, output *GetSavingsPlanPurchaseRecommendationDetailsOutput) {
+	op := &request.Operation{
+		Name:       opGetSavingsPlanPurchaseRecommendationDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSavingsPlanPurchaseRecommendationDetailsInput{}
+	}
+
+	output = &GetSavingsPlanPurchaseRecommendationDetailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSavingsPlanPurchaseRecommendationDetails API operation for AWS Cost Explorer Service.
+//
+// Retrieves the details for a Savings Plan recommendation. These details include
+// the hourly data-points that construct the new cost, coverage, and utilization
+// charts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetSavingsPlanPurchaseRecommendationDetails for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     You made too many calls in a short period of time. Try again later.
+//
+//   - DataUnavailableException
+//     The requested data is unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlanPurchaseRecommendationDetails
+func (c *CostExplorer) GetSavingsPlanPurchaseRecommendationDetails(input *GetSavingsPlanPurchaseRecommendationDetailsInput) (*GetSavingsPlanPurchaseRecommendationDetailsOutput, error) {
+	req, out := c.GetSavingsPlanPurchaseRecommendationDetailsRequest(input)
+	return out, req.Send()
+}
+
+// GetSavingsPlanPurchaseRecommendationDetailsWithContext is the same as GetSavingsPlanPurchaseRecommendationDetails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSavingsPlanPurchaseRecommendationDetails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetSavingsPlanPurchaseRecommendationDetailsWithContext(ctx aws.Context, input *GetSavingsPlanPurchaseRecommendationDetailsInput, opts ...request.Option) (*GetSavingsPlanPurchaseRecommendationDetailsOutput, error) {
+	req, out := c.GetSavingsPlanPurchaseRecommendationDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetSavingsPlansCoverage = "GetSavingsPlansCoverage"
 
 // GetSavingsPlansCoverageRequest generates a "aws/request.Request" representing the
@@ -2727,6 +2811,9 @@ func (c *CostExplorer) ListSavingsPlansPurchaseRecommendationGenerationRequest(i
 //   - InvalidNextTokenException
 //     The pagination token is invalid. Try again without a pagination token.
 //
+//   - DataUnavailableException
+//     The requested data is unavailable.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListSavingsPlansPurchaseRecommendationGeneration
 func (c *CostExplorer) ListSavingsPlansPurchaseRecommendationGeneration(input *ListSavingsPlansPurchaseRecommendationGenerationInput) (*ListSavingsPlansPurchaseRecommendationGenerationOutput, error) {
 	req, out := c.ListSavingsPlansPurchaseRecommendationGenerationRequest(input)
@@ -2980,6 +3067,9 @@ func (c *CostExplorer) StartSavingsPlansPurchaseRecommendationGenerationRequest(
 //
 //   - GenerationExistsException
 //     A request to generate a recommendation is already in progress.
+//
+//   - DataUnavailableException
+//     The requested data is unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartSavingsPlansPurchaseRecommendationGeneration
 func (c *CostExplorer) StartSavingsPlansPurchaseRecommendationGeneration(input *StartSavingsPlansPurchaseRecommendationGenerationInput) (*StartSavingsPlansPurchaseRecommendationGenerationOutput, error) {
@@ -3309,7 +3399,12 @@ func (c *CostExplorer) UpdateAnomalySubscriptionRequest(input *UpdateAnomalySubs
 
 // UpdateAnomalySubscription API operation for AWS Cost Explorer Service.
 //
-// Updates an existing cost anomaly monitor subscription.
+// Updates an existing cost anomaly subscription. Specify the fields that you
+// want to update. Omitted fields are unchanged.
+//
+// The JSON below describes the generic construct for each type. See Request
+// Parameters (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_UpdateAnomalySubscription.html#API_UpdateAnomalySubscription_RequestParameters)
+// for possible values as they apply to AnomalySubscription.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3736,13 +3831,13 @@ type AnomalyMonitor struct {
 	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
 	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
 	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
-	//    example, lists of dimension values are combined with OR when applying
-	//    the filter. You can also set different match options to further control
-	//    how the filter behaves. Not all APIs support match options. Refer to the
-	//    documentation for each specific API to see what is supported. For example,
-	//    you can filter for linked account names that start with “a”. The corresponding
-	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "Values": [ "us-east-1", "us-west-1" ] } } As shown in the previous example,
+	//    lists of dimension values are combined with OR when applying the filter.
+	//    You can also set different match options to further control how the filter
+	//    behaves. Not all APIs support match options. Refer to the documentation
+	//    for each specific API to see what is supported. For example, you can filter
+	//    for linked account names that start with "a". The corresponding Expression
+	//    for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
 	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
 	//
 	//    * Compound Expression types with logical operations. You can use multiple
@@ -3915,17 +4010,31 @@ func (s *AnomalyScore) SetMaxScore(v float64) *AnomalyScore {
 	return s
 }
 
-// The association between a monitor, threshold, and list of subscribers used
-// to deliver notifications about anomalies detected by a monitor that exceeds
-// a threshold. The content consists of the detailed metadata and the current
-// status of the AnomalySubscription object.
+// An AnomalySubscription resource (also referred to as an alert subscription)
+// sends notifications about specific anomalies that meet an alerting criteria
+// defined by you.
+//
+// You can specify the frequency of the alerts and the subscribers to notify.
+//
+// Anomaly subscriptions can be associated with one or more AnomalyMonitor (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalyMonitor.html)
+// resources, and they only send notifications about anomalies detected by those
+// associated monitors. You can also configure a threshold to further control
+// which anomalies are included in the notifications.
+//
+// Anomalies that don’t exceed the chosen threshold and therefore don’t
+// trigger notifications from an anomaly subscription will still be available
+// on the console and from the GetAnomalies (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalies.html)
+// API.
 type AnomalySubscription struct {
 	_ struct{} `type:"structure"`
 
 	// Your unique account identifier.
 	AccountId *string `type:"string"`
 
-	// The frequency that anomaly reports are sent over email.
+	// The frequency that anomaly notifications are sent. Notifications are sent
+	// either over email (for DAILY and WEEKLY frequencies) or SNS (for IMMEDIATE
+	// frequency). For more information, see Creating an Amazon SNS topic for anomaly
+	// notifications (https://docs.aws.amazon.com/cost-management/latest/userguide/ad-SNS.html).
 	//
 	// Frequency is a required field
 	Frequency *string `type:"string" required:"true" enum:"AnomalySubscriptionFrequency"`
@@ -3950,12 +4059,15 @@ type AnomalySubscription struct {
 
 	// (deprecated)
 	//
-	// The dollar value that triggers a notification if the threshold is exceeded.
+	// An absolute dollar value that must be exceeded by the anomaly's total impact
+	// (see Impact (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Impact.html)
+	// for more details) for an anomaly notification to be generated.
 	//
 	// This field has been deprecated. To specify a threshold, use ThresholdExpression.
 	// Continued use of Threshold will be treated as shorthand syntax for a ThresholdExpression.
 	//
-	// One of Threshold or ThresholdExpression is required for this resource.
+	// One of Threshold or ThresholdExpression is required for this resource. You
+	// cannot specify both.
 	//
 	// Deprecated: Threshold has been deprecated in favor of ThresholdExpression
 	Threshold *float64 `deprecated:"true" type:"double"`
@@ -3963,11 +4075,15 @@ type AnomalySubscription struct {
 	// An Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object used to specify the anomalies that you want to generate alerts for.
 	// This supports dimensions and nested expressions. The supported dimensions
-	// are ANOMALY_TOTAL_IMPACT_ABSOLUTE and ANOMALY_TOTAL_IMPACT_PERCENTAGE. The
-	// supported nested expression types are AND and OR. The match option GREATER_THAN_OR_EQUAL
-	// is required. Values must be numbers between 0 and 10,000,000,000.
+	// are ANOMALY_TOTAL_IMPACT_ABSOLUTE and ANOMALY_TOTAL_IMPACT_PERCENTAGE, corresponding
+	// to an anomaly’s TotalImpact and TotalImpactPercentage, respectively (see
+	// Impact (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Impact.html)
+	// for more details). The supported nested expression types are AND and OR.
+	// The match option GREATER_THAN_OR_EQUAL is required. Values must be numbers
+	// between 0 and 10,000,000,000 in string format.
 	//
-	// One of Threshold or ThresholdExpression is required for this resource.
+	// One of Threshold or ThresholdExpression is required for this resource. You
+	// cannot specify both.
 	//
 	// The following are examples of valid ThresholdExpressions:
 	//
@@ -4604,10 +4720,7 @@ type CostCategoryRule struct {
 	// An Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object used to categorize costs. This supports dimensions, tags, and nested
 	// expressions. Currently the only dimensions supported are LINKED_ACCOUNT,
-	// SERVICE_CODE, RECORD_TYPE, and LINKED_ACCOUNT_NAME.
-	//
-	// Root level OR isn't supported. We recommend that you create a separate rule
-	// instead.
+	// SERVICE_CODE, RECORD_TYPE, LINKED_ACCOUNT_NAME, REGION, and USAGE_TYPE.
 	//
 	// RECORD_TYPE is a dimension used for Cost Explorer APIs, and is also supported
 	// for Cost Category expressions. This dimension uses different terms, depending
@@ -6964,13 +7077,13 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //     OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
 //     a full name (for example, REGION==US East (N. Virginia). The corresponding
 //     Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
-//     "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
-//     example, lists of dimension values are combined with OR when applying
-//     the filter. You can also set different match options to further control
-//     how the filter behaves. Not all APIs support match options. Refer to the
-//     documentation for each specific API to see what is supported. For example,
-//     you can filter for linked account names that start with “a”. The corresponding
-//     Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+//     "Values": [ "us-east-1", "us-west-1" ] } } As shown in the previous example,
+//     lists of dimension values are combined with OR when applying the filter.
+//     You can also set different match options to further control how the filter
+//     behaves. Not all APIs support match options. Refer to the documentation
+//     for each specific API to see what is supported. For example, you can filter
+//     for linked account names that start with "a". The corresponding Expression
+//     for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
 //     "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
 //
 //   - Compound Expression types with logical operations. You can use multiple
@@ -8093,13 +8206,13 @@ type GetCostCategoriesInput struct {
 	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
 	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
 	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
-	//    example, lists of dimension values are combined with OR when applying
-	//    the filter. You can also set different match options to further control
-	//    how the filter behaves. Not all APIs support match options. Refer to the
-	//    documentation for each specific API to see what is supported. For example,
-	//    you can filter for linked account names that start with “a”. The corresponding
-	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "Values": [ "us-east-1", "us-west-1" ] } } As shown in the previous example,
+	//    lists of dimension values are combined with OR when applying the filter.
+	//    You can also set different match options to further control how the filter
+	//    behaves. Not all APIs support match options. Refer to the documentation
+	//    for each specific API to see what is supported. For example, you can filter
+	//    for linked account names that start with "a". The corresponding Expression
+	//    for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
 	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
 	//
 	//    * Compound Expression types with logical operations. You can use multiple
@@ -8730,13 +8843,13 @@ type GetDimensionValuesInput struct {
 	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
 	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
 	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
-	//    example, lists of dimension values are combined with OR when applying
-	//    the filter. You can also set different match options to further control
-	//    how the filter behaves. Not all APIs support match options. Refer to the
-	//    documentation for each specific API to see what is supported. For example,
-	//    you can filter for linked account names that start with “a”. The corresponding
-	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "Values": [ "us-east-1", "us-west-1" ] } } As shown in the previous example,
+	//    lists of dimension values are combined with OR when applying the filter.
+	//    You can also set different match options to further control how the filter
+	//    behaves. Not all APIs support match options. Refer to the documentation
+	//    for each specific API to see what is supported. For example, you can filter
+	//    for linked account names that start with "a". The corresponding Expression
+	//    for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
 	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
 	//
 	//    * Compound Expression types with logical operations. You can use multiple
@@ -9387,13 +9500,13 @@ type GetReservationPurchaseRecommendationInput struct {
 	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
 	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
 	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
-	//    example, lists of dimension values are combined with OR when applying
-	//    the filter. You can also set different match options to further control
-	//    how the filter behaves. Not all APIs support match options. Refer to the
-	//    documentation for each specific API to see what is supported. For example,
-	//    you can filter for linked account names that start with “a”. The corresponding
-	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "Values": [ "us-east-1", "us-west-1" ] } } As shown in the previous example,
+	//    lists of dimension values are combined with OR when applying the filter.
+	//    You can also set different match options to further control how the filter
+	//    behaves. Not all APIs support match options. Refer to the documentation
+	//    for each specific API to see what is supported. For example, you can filter
+	//    for linked account names that start with "a". The corresponding Expression
+	//    for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
 	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
 	//
 	//    * Compound Expression types with logical operations. You can use multiple
@@ -9872,13 +9985,13 @@ type GetRightsizingRecommendationInput struct {
 	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
 	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
 	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
-	//    example, lists of dimension values are combined with OR when applying
-	//    the filter. You can also set different match options to further control
-	//    how the filter behaves. Not all APIs support match options. Refer to the
-	//    documentation for each specific API to see what is supported. For example,
-	//    you can filter for linked account names that start with “a”. The corresponding
-	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "Values": [ "us-east-1", "us-west-1" ] } } As shown in the previous example,
+	//    lists of dimension values are combined with OR when applying the filter.
+	//    You can also set different match options to further control how the filter
+	//    behaves. Not all APIs support match options. Refer to the documentation
+	//    for each specific API to see what is supported. For example, you can filter
+	//    for linked account names that start with "a". The corresponding Expression
+	//    for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
 	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
 	//
 	//    * Compound Expression types with logical operations. You can use multiple
@@ -10061,6 +10174,95 @@ func (s *GetRightsizingRecommendationOutput) SetRightsizingRecommendations(v []*
 // SetSummary sets the Summary field's value.
 func (s *GetRightsizingRecommendationOutput) SetSummary(v *RightsizingRecommendationSummary) *GetRightsizingRecommendationOutput {
 	s.Summary = v
+	return s
+}
+
+type GetSavingsPlanPurchaseRecommendationDetailsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID that is associated with the Savings Plan recommendation.
+	//
+	// RecommendationDetailId is a required field
+	RecommendationDetailId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSavingsPlanPurchaseRecommendationDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSavingsPlanPurchaseRecommendationDetailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSavingsPlanPurchaseRecommendationDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSavingsPlanPurchaseRecommendationDetailsInput"}
+	if s.RecommendationDetailId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommendationDetailId"))
+	}
+	if s.RecommendationDetailId != nil && len(*s.RecommendationDetailId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("RecommendationDetailId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommendationDetailId sets the RecommendationDetailId field's value.
+func (s *GetSavingsPlanPurchaseRecommendationDetailsInput) SetRecommendationDetailId(v string) *GetSavingsPlanPurchaseRecommendationDetailsInput {
+	s.RecommendationDetailId = &v
+	return s
+}
+
+type GetSavingsPlanPurchaseRecommendationDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains detailed information about a specific Savings Plan recommendation.
+	RecommendationDetailData *RecommendationDetailData `type:"structure"`
+
+	// The ID that is associated with the Savings Plan recommendation.
+	RecommendationDetailId *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSavingsPlanPurchaseRecommendationDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSavingsPlanPurchaseRecommendationDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommendationDetailData sets the RecommendationDetailData field's value.
+func (s *GetSavingsPlanPurchaseRecommendationDetailsOutput) SetRecommendationDetailData(v *RecommendationDetailData) *GetSavingsPlanPurchaseRecommendationDetailsOutput {
+	s.RecommendationDetailData = v
+	return s
+}
+
+// SetRecommendationDetailId sets the RecommendationDetailId field's value.
+func (s *GetSavingsPlanPurchaseRecommendationDetailsOutput) SetRecommendationDetailId(v string) *GetSavingsPlanPurchaseRecommendationDetailsOutput {
+	s.RecommendationDetailId = &v
 	return s
 }
 
@@ -10872,13 +11074,13 @@ type GetTagsInput struct {
 	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
 	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
 	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
-	//    example, lists of dimension values are combined with OR when applying
-	//    the filter. You can also set different match options to further control
-	//    how the filter behaves. Not all APIs support match options. Refer to the
-	//    documentation for each specific API to see what is supported. For example,
-	//    you can filter for linked account names that start with “a”. The corresponding
-	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "Values": [ "us-east-1", "us-west-1" ] } } As shown in the previous example,
+	//    lists of dimension values are combined with OR when applying the filter.
+	//    You can also set different match options to further control how the filter
+	//    behaves. Not all APIs support match options. Refer to the documentation
+	//    for each specific API to see what is supported. For example, you can filter
+	//    for linked account names that start with "a". The corresponding Expression
+	//    for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
 	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
 	//
 	//    * Compound Expression types with logical operations. You can use multiple
@@ -12445,6 +12647,378 @@ func (s *RDSInstanceDetails) SetRegion(v string) *RDSInstanceDetails {
 // SetSizeFlexEligible sets the SizeFlexEligible field's value.
 func (s *RDSInstanceDetails) SetSizeFlexEligible(v bool) *RDSInstanceDetails {
 	s.SizeFlexEligible = &v
+	return s
+}
+
+// The details and metrics for the given recommendation.
+type RecommendationDetailData struct {
+	_ struct{} `type:"structure"`
+
+	// The AccountID that the recommendation is generated for.
+	AccountId *string `type:"string"`
+
+	// The account scope that you want your recommendations for. Amazon Web Services
+	// calculates recommendations including the management account and member accounts
+	// if the value is set to PAYER. If the value is LINKED, recommendations are
+	// calculated for individual member accounts only.
+	AccountScope *string `type:"string" enum:"AccountScope"`
+
+	// The currency code that Amazon Web Services used to generate the recommendation
+	// and present potential savings.
+	CurrencyCode *string `type:"string"`
+
+	// The average value of hourly coverage over the lookback period.
+	CurrentAverageCoverage *string `type:"string"`
+
+	// The average value of hourly On-Demand spend over the lookback period of the
+	// applicable usage type.
+	CurrentAverageHourlyOnDemandSpend *string `type:"string"`
+
+	// The highest value of hourly On-Demand spend over the lookback period of the
+	// applicable usage type.
+	CurrentMaximumHourlyOnDemandSpend *string `type:"string"`
+
+	// The lowest value of hourly On-Demand spend over the lookback period of the
+	// applicable usage type.
+	CurrentMinimumHourlyOnDemandSpend *string `type:"string"`
+
+	// The estimated coverage of the recommended Savings Plan.
+	EstimatedAverageCoverage *string `type:"string"`
+
+	// The estimated utilization of the recommended Savings Plan.
+	EstimatedAverageUtilization *string `type:"string"`
+
+	// The estimated monthly savings amount based on the recommended Savings Plan.
+	EstimatedMonthlySavingsAmount *string `type:"string"`
+
+	// The remaining On-Demand cost estimated to not be covered by the recommended
+	// Savings Plan, over the length of the lookback period.
+	EstimatedOnDemandCost *string `type:"string"`
+
+	// The estimated On-Demand costs you expect with no additional commitment, based
+	// on your usage of the selected time period and the Savings Plan you own.
+	EstimatedOnDemandCostWithCurrentCommitment *string `type:"string"`
+
+	// The estimated return on investment that's based on the recommended Savings
+	// Plan that you purchased. This is calculated as estimatedSavingsAmount/estimatedSPCost*100.
+	EstimatedROI *string `type:"string"`
+
+	// The cost of the recommended Savings Plan over the length of the lookback
+	// period.
+	EstimatedSPCost *string `type:"string"`
+
+	// The estimated savings amount that's based on the recommended Savings Plan
+	// over the length of the lookback period.
+	EstimatedSavingsAmount *string `type:"string"`
+
+	// The estimated savings percentage relative to the total cost of applicable
+	// On-Demand usage over the lookback period.
+	EstimatedSavingsPercentage *string `type:"string"`
+
+	// The existing hourly commitment for the Savings Plan type.
+	ExistingHourlyCommitment *string `type:"string"`
+
+	// The period of time that you want the usage and costs for.
+	GenerationTimestamp *string `min:"20" type:"string"`
+
+	// The recommended hourly commitment level for the Savings Plan type and the
+	// configuration that's based on the usage during the lookback period.
+	HourlyCommitmentToPurchase *string `type:"string"`
+
+	// The instance family of the recommended Savings Plan.
+	InstanceFamily *string `type:"string"`
+
+	// The period of time that you want the usage and costs for.
+	LatestUsageTimestamp *string `min:"20" type:"string"`
+
+	// How many days of previous usage that Amazon Web Services considers when making
+	// this recommendation.
+	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
+
+	// The related hourly cost, coverage, and utilization metrics over the lookback
+	// period.
+	MetricsOverLookbackPeriod []*RecommendationDetailHourlyMetrics `type:"list"`
+
+	// The unique ID that's used to distinguish Savings Plans from one another.
+	OfferingId *string `type:"string"`
+
+	// The payment option for the commitment (for example, All Upfront or No Upfront).
+	PaymentOption *string `type:"string" enum:"PaymentOption"`
+
+	// The region the recommendation is generated for.
+	Region *string `type:"string"`
+
+	// The requested Savings Plan recommendation type.
+	SavingsPlansType *string `type:"string" enum:"SupportedSavingsPlansType"`
+
+	// The term of the commitment in years.
+	TermInYears *string `type:"string" enum:"TermInYears"`
+
+	// The upfront cost of the recommended Savings Plan, based on the selected payment
+	// option.
+	UpfrontCost *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationDetailData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationDetailData) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RecommendationDetailData) SetAccountId(v string) *RecommendationDetailData {
+	s.AccountId = &v
+	return s
+}
+
+// SetAccountScope sets the AccountScope field's value.
+func (s *RecommendationDetailData) SetAccountScope(v string) *RecommendationDetailData {
+	s.AccountScope = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *RecommendationDetailData) SetCurrencyCode(v string) *RecommendationDetailData {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetCurrentAverageCoverage sets the CurrentAverageCoverage field's value.
+func (s *RecommendationDetailData) SetCurrentAverageCoverage(v string) *RecommendationDetailData {
+	s.CurrentAverageCoverage = &v
+	return s
+}
+
+// SetCurrentAverageHourlyOnDemandSpend sets the CurrentAverageHourlyOnDemandSpend field's value.
+func (s *RecommendationDetailData) SetCurrentAverageHourlyOnDemandSpend(v string) *RecommendationDetailData {
+	s.CurrentAverageHourlyOnDemandSpend = &v
+	return s
+}
+
+// SetCurrentMaximumHourlyOnDemandSpend sets the CurrentMaximumHourlyOnDemandSpend field's value.
+func (s *RecommendationDetailData) SetCurrentMaximumHourlyOnDemandSpend(v string) *RecommendationDetailData {
+	s.CurrentMaximumHourlyOnDemandSpend = &v
+	return s
+}
+
+// SetCurrentMinimumHourlyOnDemandSpend sets the CurrentMinimumHourlyOnDemandSpend field's value.
+func (s *RecommendationDetailData) SetCurrentMinimumHourlyOnDemandSpend(v string) *RecommendationDetailData {
+	s.CurrentMinimumHourlyOnDemandSpend = &v
+	return s
+}
+
+// SetEstimatedAverageCoverage sets the EstimatedAverageCoverage field's value.
+func (s *RecommendationDetailData) SetEstimatedAverageCoverage(v string) *RecommendationDetailData {
+	s.EstimatedAverageCoverage = &v
+	return s
+}
+
+// SetEstimatedAverageUtilization sets the EstimatedAverageUtilization field's value.
+func (s *RecommendationDetailData) SetEstimatedAverageUtilization(v string) *RecommendationDetailData {
+	s.EstimatedAverageUtilization = &v
+	return s
+}
+
+// SetEstimatedMonthlySavingsAmount sets the EstimatedMonthlySavingsAmount field's value.
+func (s *RecommendationDetailData) SetEstimatedMonthlySavingsAmount(v string) *RecommendationDetailData {
+	s.EstimatedMonthlySavingsAmount = &v
+	return s
+}
+
+// SetEstimatedOnDemandCost sets the EstimatedOnDemandCost field's value.
+func (s *RecommendationDetailData) SetEstimatedOnDemandCost(v string) *RecommendationDetailData {
+	s.EstimatedOnDemandCost = &v
+	return s
+}
+
+// SetEstimatedOnDemandCostWithCurrentCommitment sets the EstimatedOnDemandCostWithCurrentCommitment field's value.
+func (s *RecommendationDetailData) SetEstimatedOnDemandCostWithCurrentCommitment(v string) *RecommendationDetailData {
+	s.EstimatedOnDemandCostWithCurrentCommitment = &v
+	return s
+}
+
+// SetEstimatedROI sets the EstimatedROI field's value.
+func (s *RecommendationDetailData) SetEstimatedROI(v string) *RecommendationDetailData {
+	s.EstimatedROI = &v
+	return s
+}
+
+// SetEstimatedSPCost sets the EstimatedSPCost field's value.
+func (s *RecommendationDetailData) SetEstimatedSPCost(v string) *RecommendationDetailData {
+	s.EstimatedSPCost = &v
+	return s
+}
+
+// SetEstimatedSavingsAmount sets the EstimatedSavingsAmount field's value.
+func (s *RecommendationDetailData) SetEstimatedSavingsAmount(v string) *RecommendationDetailData {
+	s.EstimatedSavingsAmount = &v
+	return s
+}
+
+// SetEstimatedSavingsPercentage sets the EstimatedSavingsPercentage field's value.
+func (s *RecommendationDetailData) SetEstimatedSavingsPercentage(v string) *RecommendationDetailData {
+	s.EstimatedSavingsPercentage = &v
+	return s
+}
+
+// SetExistingHourlyCommitment sets the ExistingHourlyCommitment field's value.
+func (s *RecommendationDetailData) SetExistingHourlyCommitment(v string) *RecommendationDetailData {
+	s.ExistingHourlyCommitment = &v
+	return s
+}
+
+// SetGenerationTimestamp sets the GenerationTimestamp field's value.
+func (s *RecommendationDetailData) SetGenerationTimestamp(v string) *RecommendationDetailData {
+	s.GenerationTimestamp = &v
+	return s
+}
+
+// SetHourlyCommitmentToPurchase sets the HourlyCommitmentToPurchase field's value.
+func (s *RecommendationDetailData) SetHourlyCommitmentToPurchase(v string) *RecommendationDetailData {
+	s.HourlyCommitmentToPurchase = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *RecommendationDetailData) SetInstanceFamily(v string) *RecommendationDetailData {
+	s.InstanceFamily = &v
+	return s
+}
+
+// SetLatestUsageTimestamp sets the LatestUsageTimestamp field's value.
+func (s *RecommendationDetailData) SetLatestUsageTimestamp(v string) *RecommendationDetailData {
+	s.LatestUsageTimestamp = &v
+	return s
+}
+
+// SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.
+func (s *RecommendationDetailData) SetLookbackPeriodInDays(v string) *RecommendationDetailData {
+	s.LookbackPeriodInDays = &v
+	return s
+}
+
+// SetMetricsOverLookbackPeriod sets the MetricsOverLookbackPeriod field's value.
+func (s *RecommendationDetailData) SetMetricsOverLookbackPeriod(v []*RecommendationDetailHourlyMetrics) *RecommendationDetailData {
+	s.MetricsOverLookbackPeriod = v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *RecommendationDetailData) SetOfferingId(v string) *RecommendationDetailData {
+	s.OfferingId = &v
+	return s
+}
+
+// SetPaymentOption sets the PaymentOption field's value.
+func (s *RecommendationDetailData) SetPaymentOption(v string) *RecommendationDetailData {
+	s.PaymentOption = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *RecommendationDetailData) SetRegion(v string) *RecommendationDetailData {
+	s.Region = &v
+	return s
+}
+
+// SetSavingsPlansType sets the SavingsPlansType field's value.
+func (s *RecommendationDetailData) SetSavingsPlansType(v string) *RecommendationDetailData {
+	s.SavingsPlansType = &v
+	return s
+}
+
+// SetTermInYears sets the TermInYears field's value.
+func (s *RecommendationDetailData) SetTermInYears(v string) *RecommendationDetailData {
+	s.TermInYears = &v
+	return s
+}
+
+// SetUpfrontCost sets the UpfrontCost field's value.
+func (s *RecommendationDetailData) SetUpfrontCost(v string) *RecommendationDetailData {
+	s.UpfrontCost = &v
+	return s
+}
+
+// Contains the hourly metrics for the given recommendation over the lookback
+// period.
+type RecommendationDetailHourlyMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The current amount of Savings Plans eligible usage that the Savings Plan
+	// covered.
+	CurrentCoverage *string `type:"string"`
+
+	// The estimated coverage amount based on the recommended Savings Plan.
+	EstimatedCoverage *string `type:"string"`
+
+	// The estimated utilization for the recommended Savings Plan.
+	EstimatedNewCommitmentUtilization *string `type:"string"`
+
+	// The remaining On-Demand cost estimated to not be covered by the recommended
+	// Savings Plan, over the length of the lookback period.
+	EstimatedOnDemandCost *string `type:"string"`
+
+	// The period of time that you want the usage and costs for.
+	StartTime *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationDetailHourlyMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationDetailHourlyMetrics) GoString() string {
+	return s.String()
+}
+
+// SetCurrentCoverage sets the CurrentCoverage field's value.
+func (s *RecommendationDetailHourlyMetrics) SetCurrentCoverage(v string) *RecommendationDetailHourlyMetrics {
+	s.CurrentCoverage = &v
+	return s
+}
+
+// SetEstimatedCoverage sets the EstimatedCoverage field's value.
+func (s *RecommendationDetailHourlyMetrics) SetEstimatedCoverage(v string) *RecommendationDetailHourlyMetrics {
+	s.EstimatedCoverage = &v
+	return s
+}
+
+// SetEstimatedNewCommitmentUtilization sets the EstimatedNewCommitmentUtilization field's value.
+func (s *RecommendationDetailHourlyMetrics) SetEstimatedNewCommitmentUtilization(v string) *RecommendationDetailHourlyMetrics {
+	s.EstimatedNewCommitmentUtilization = &v
+	return s
+}
+
+// SetEstimatedOnDemandCost sets the EstimatedOnDemandCost field's value.
+func (s *RecommendationDetailHourlyMetrics) SetEstimatedOnDemandCost(v string) *RecommendationDetailHourlyMetrics {
+	s.EstimatedOnDemandCost = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *RecommendationDetailHourlyMetrics) SetStartTime(v string) *RecommendationDetailHourlyMetrics {
+	s.StartTime = &v
 	return s
 }
 
@@ -14233,6 +14807,9 @@ type SavingsPlansPurchaseRecommendationDetail struct {
 	// configuration that's based on the usage during the lookback period.
 	HourlyCommitmentToPurchase *string `type:"string"`
 
+	// Contains detailed information about a specific Savings Plan recommendation.
+	RecommendationDetailId *string `min:"36" type:"string"`
+
 	// Details for your recommended Savings Plans.
 	SavingsPlansDetails *SavingsPlansDetails `type:"structure"`
 
@@ -14340,6 +14917,12 @@ func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedSavingsPercentage
 // SetHourlyCommitmentToPurchase sets the HourlyCommitmentToPurchase field's value.
 func (s *SavingsPlansPurchaseRecommendationDetail) SetHourlyCommitmentToPurchase(v string) *SavingsPlansPurchaseRecommendationDetail {
 	s.HourlyCommitmentToPurchase = &v
+	return s
+}
+
+// SetRecommendationDetailId sets the RecommendationDetailId field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetRecommendationDetailId(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.RecommendationDetailId = &v
 	return s
 }
 
@@ -15975,15 +16558,22 @@ type UpdateAnomalySubscriptionInput struct {
 	// This field has been deprecated. To update a threshold, use ThresholdExpression.
 	// Continued use of Threshold will be treated as shorthand syntax for a ThresholdExpression.
 	//
+	// You can specify either Threshold or ThresholdExpression, but not both.
+	//
 	// Deprecated: Threshold has been deprecated in favor of ThresholdExpression
 	Threshold *float64 `deprecated:"true" type:"double"`
 
 	// The update to the Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object used to specify the anomalies that you want to generate alerts for.
 	// This supports dimensions and nested expressions. The supported dimensions
-	// are ANOMALY_TOTAL_IMPACT_ABSOLUTE and ANOMALY_TOTAL_IMPACT_PERCENTAGE. The
-	// supported nested expression types are AND and OR. The match option GREATER_THAN_OR_EQUAL
-	// is required. Values must be numbers between 0 and 10,000,000,000.
+	// are ANOMALY_TOTAL_IMPACT_ABSOLUTE and ANOMALY_TOTAL_IMPACT_PERCENTAGE, corresponding
+	// to an anomaly’s TotalImpact and TotalImpactPercentage, respectively (see
+	// Impact (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Impact.html)
+	// for more details). The supported nested expression types are AND and OR.
+	// The match option GREATER_THAN_OR_EQUAL is required. Values must be numbers
+	// between 0 and 10,000,000,000 in string format.
+	//
+	// You can specify either Threshold or ThresholdExpression, but not both.
 	//
 	// The following are examples of valid ThresholdExpressions:
 	//

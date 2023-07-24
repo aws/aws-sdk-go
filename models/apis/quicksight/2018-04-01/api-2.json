@@ -445,6 +445,8 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
       ]
@@ -1015,6 +1017,40 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DescribeDashboardSnapshotJob":{
+      "name":"DescribeDashboardSnapshotJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs/{SnapshotJobId}"
+      },
+      "input":{"shape":"DescribeDashboardSnapshotJobRequest"},
+      "output":{"shape":"DescribeDashboardSnapshotJobResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DescribeDashboardSnapshotJobResult":{
+      "name":"DescribeDashboardSnapshotJobResult",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs/{SnapshotJobId}/result"
+      },
+      "input":{"shape":"DescribeDashboardSnapshotJobResultRequest"},
+      "output":{"shape":"DescribeDashboardSnapshotJobResultResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -2258,6 +2294,26 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "StartDashboardSnapshotJob":{
+      "name":"StartDashboardSnapshotJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs"
+      },
+      "input":{"shape":"StartDashboardSnapshotJobRequest"},
+      "output":{"shape":"StartDashboardSnapshotJobResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"UnsupportedPricingPlanException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -2886,7 +2942,8 @@
       "members":{
         "NumericalAggregationFunction":{"shape":"NumericalAggregationFunction"},
         "CategoricalAggregationFunction":{"shape":"CategoricalAggregationFunction"},
-        "DateAggregationFunction":{"shape":"DateAggregationFunction"}
+        "DateAggregationFunction":{"shape":"DateAggregationFunction"},
+        "AttributeAggregationFunction":{"shape":"AttributeAggregationFunction"}
       }
     },
     "AggregationFunctionParameters":{
@@ -3097,6 +3154,16 @@
       "members":{
         "InitialTopicId":{"shape":"RestrictiveResourceId"}
       }
+    },
+    "AnonymousUserSnapshotJobResult":{
+      "type":"structure",
+      "members":{
+        "FileGroups":{"shape":"SnapshotJobResultFileGroupList"}
+      }
+    },
+    "AnonymousUserSnapshotJobResultList":{
+      "type":"list",
+      "member":{"shape":"AnonymousUserSnapshotJobResult"}
     },
     "ArcAxisConfiguration":{
       "type":"structure",
@@ -3640,6 +3707,13 @@
       "members":{
         "WorkGroup":{"shape":"WorkGroup"},
         "RoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "AttributeAggregationFunction":{
+      "type":"structure",
+      "members":{
+        "SimpleAttributeAggregation":{"shape":"SimpleAttributeAggregationFunction"},
+        "ValueForMultipleValues":{"shape":"String"}
       }
     },
     "AuroraParameters":{
@@ -6739,7 +6813,8 @@
       "type":"structure",
       "members":{
         "TitleOptions":{"shape":"LabelOptions"},
-        "DateTimeFormat":{"shape":"DateTimeFormat"}
+        "DateTimeFormat":{"shape":"DateTimeFormat"},
+        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
       }
     },
     "DateTimeValueWhenUnsetConfiguration":{
@@ -8085,6 +8160,88 @@
         "RequestId":{"shape":"String"}
       }
     },
+    "DescribeDashboardSnapshotJobRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DashboardId",
+        "SnapshotJobId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DashboardId":{
+          "shape":"ShortRestrictiveResourceId",
+          "location":"uri",
+          "locationName":"DashboardId"
+        },
+        "SnapshotJobId":{
+          "shape":"ShortRestrictiveResourceId",
+          "location":"uri",
+          "locationName":"SnapshotJobId"
+        }
+      }
+    },
+    "DescribeDashboardSnapshotJobResponse":{
+      "type":"structure",
+      "members":{
+        "AwsAccountId":{"shape":"AwsAccountId"},
+        "DashboardId":{"shape":"ShortRestrictiveResourceId"},
+        "SnapshotJobId":{"shape":"ShortRestrictiveResourceId"},
+        "UserConfiguration":{"shape":"SnapshotUserConfigurationRedacted"},
+        "SnapshotConfiguration":{"shape":"SnapshotConfiguration"},
+        "Arn":{"shape":"Arn"},
+        "JobStatus":{"shape":"SnapshotJobStatus"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{"shape":"StatusCode"}
+      }
+    },
+    "DescribeDashboardSnapshotJobResultRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DashboardId",
+        "SnapshotJobId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DashboardId":{
+          "shape":"ShortRestrictiveResourceId",
+          "location":"uri",
+          "locationName":"DashboardId"
+        },
+        "SnapshotJobId":{
+          "shape":"ShortRestrictiveResourceId",
+          "location":"uri",
+          "locationName":"SnapshotJobId"
+        }
+      }
+    },
+    "DescribeDashboardSnapshotJobResultResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "JobStatus":{"shape":"SnapshotJobStatus"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "Result":{"shape":"SnapshotJobResult"},
+        "ErrorInfo":{"shape":"SnapshotJobErrorInfo"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "DescribeDataSetPermissionsRequest":{
       "type":"structure",
       "required":[
@@ -9138,7 +9295,8 @@
       "type":"structure",
       "members":{
         "SelectAllOptions":{"shape":"ListControlSelectAllOptions"},
-        "TitleOptions":{"shape":"LabelOptions"}
+        "TitleOptions":{"shape":"LabelOptions"},
+        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
       }
     },
     "DynamicDefaultValue":{
@@ -11689,7 +11847,8 @@
       "members":{
         "SearchOptions":{"shape":"ListControlSearchOptions"},
         "SelectAllOptions":{"shape":"ListControlSelectAllOptions"},
-        "TitleOptions":{"shape":"LabelOptions"}
+        "TitleOptions":{"shape":"LabelOptions"},
+        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
       }
     },
     "ListControlSearchOptions":{
@@ -14610,7 +14769,8 @@
       "type":"structure",
       "members":{
         "TitleOptions":{"shape":"LabelOptions"},
-        "DateTimeFormat":{"shape":"DateTimeFormat"}
+        "DateTimeFormat":{"shape":"DateTimeFormat"},
+        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
       }
     },
     "RelativeDateType":{
@@ -14914,6 +15074,19 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "S3BucketConfiguration":{
+      "type":"structure",
+      "required":[
+        "BucketName",
+        "BucketPrefix",
+        "BucketRegion"
+      ],
+      "members":{
+        "BucketName":{"shape":"NonEmptyString"},
+        "BucketPrefix":{"shape":"NonEmptyString"},
+        "BucketRegion":{"shape":"NonEmptyString"}
+      }
     },
     "S3Key":{
       "type":"string",
@@ -15425,6 +15598,11 @@
       "type":"long",
       "sensitive":true
     },
+    "SensitiveS3Uri":{
+      "type":"string",
+      "pattern":"^(https|s3)://([^/]+)/?(.*)$",
+      "sensitive":true
+    },
     "SensitiveString":{
       "type":"string",
       "sensitive":true
@@ -15494,6 +15672,12 @@
       "max":128,
       "min":1
     },
+    "SessionTagKeyList":{
+      "type":"list",
+      "member":{"shape":"SessionTagKey"},
+      "max":50,
+      "min":1
+    },
     "SessionTagList":{
       "type":"list",
       "member":{"shape":"SessionTag"},
@@ -15550,6 +15734,18 @@
         "SINGLE_VALUED",
         "DATE_RANGE"
       ]
+    },
+    "SheetControlInfoIconLabelOptions":{
+      "type":"structure",
+      "members":{
+        "Visibility":{"shape":"Visibility"},
+        "InfoIconText":{"shape":"SheetControlInfoIconText"}
+      }
+    },
+    "SheetControlInfoIconText":{
+      "type":"string",
+      "max":100,
+      "min":1
     },
     "SheetControlLayout":{
       "type":"structure",
@@ -15739,6 +15935,10 @@
         "directoryType":{"shape":"String"}
       }
     },
+    "SimpleAttributeAggregationFunction":{
+      "type":"string",
+      "enum":["UNIQUE_VALUE"]
+    },
     "SimpleClusterMarker":{
       "type":"structure",
       "members":{
@@ -15769,7 +15969,8 @@
     "SliderControlDisplayOptions":{
       "type":"structure",
       "members":{
-        "TitleOptions":{"shape":"LabelOptions"}
+        "TitleOptions":{"shape":"LabelOptions"},
+        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
       }
     },
     "SmallMultiplesAxisPlacement":{
@@ -15806,6 +16007,192 @@
         "PanelConfiguration":{"shape":"PanelConfiguration"},
         "XAxis":{"shape":"SmallMultiplesAxisProperties"},
         "YAxis":{"shape":"SmallMultiplesAxisProperties"}
+      }
+    },
+    "SnapshotAnonymousUser":{
+      "type":"structure",
+      "members":{
+        "RowLevelPermissionTags":{"shape":"SessionTagList"}
+      }
+    },
+    "SnapshotAnonymousUserList":{
+      "type":"list",
+      "member":{"shape":"SnapshotAnonymousUser"},
+      "max":1,
+      "min":1
+    },
+    "SnapshotAnonymousUserRedacted":{
+      "type":"structure",
+      "members":{
+        "RowLevelPermissionTagKeys":{"shape":"SessionTagKeyList"}
+      }
+    },
+    "SnapshotAnonymousUserRedactedList":{
+      "type":"list",
+      "member":{"shape":"SnapshotAnonymousUserRedacted"},
+      "max":1,
+      "min":1
+    },
+    "SnapshotConfiguration":{
+      "type":"structure",
+      "required":["FileGroups"],
+      "members":{
+        "FileGroups":{"shape":"SnapshotFileGroupList"},
+        "DestinationConfiguration":{"shape":"SnapshotDestinationConfiguration"},
+        "Parameters":{"shape":"Parameters"}
+      }
+    },
+    "SnapshotDestinationConfiguration":{
+      "type":"structure",
+      "members":{
+        "S3Destinations":{"shape":"SnapshotS3DestinationConfigurationList"}
+      }
+    },
+    "SnapshotFile":{
+      "type":"structure",
+      "required":[
+        "SheetSelections",
+        "FormatType"
+      ],
+      "members":{
+        "SheetSelections":{"shape":"SnapshotFileSheetSelectionList"},
+        "FormatType":{"shape":"SnapshotFileFormatType"}
+      }
+    },
+    "SnapshotFileFormatType":{
+      "type":"string",
+      "enum":[
+        "CSV",
+        "PDF"
+      ]
+    },
+    "SnapshotFileGroup":{
+      "type":"structure",
+      "members":{
+        "Files":{"shape":"SnapshotFileList"}
+      }
+    },
+    "SnapshotFileGroupList":{
+      "type":"list",
+      "member":{"shape":"SnapshotFileGroup"},
+      "max":6,
+      "min":1
+    },
+    "SnapshotFileList":{
+      "type":"list",
+      "member":{"shape":"SnapshotFile"},
+      "max":1,
+      "min":1
+    },
+    "SnapshotFileSheetSelection":{
+      "type":"structure",
+      "required":[
+        "SheetId",
+        "SelectionScope"
+      ],
+      "members":{
+        "SheetId":{"shape":"ShortRestrictiveResourceId"},
+        "SelectionScope":{"shape":"SnapshotFileSheetSelectionScope"},
+        "VisualIds":{"shape":"SnapshotFileSheetSelectionVisualIdList"}
+      }
+    },
+    "SnapshotFileSheetSelectionList":{
+      "type":"list",
+      "member":{"shape":"SnapshotFileSheetSelection"},
+      "max":1,
+      "min":1
+    },
+    "SnapshotFileSheetSelectionScope":{
+      "type":"string",
+      "enum":[
+        "ALL_VISUALS",
+        "SELECTED_VISUALS"
+      ]
+    },
+    "SnapshotFileSheetSelectionVisualIdList":{
+      "type":"list",
+      "member":{"shape":"ShortRestrictiveResourceId"},
+      "max":1,
+      "min":1
+    },
+    "SnapshotJobErrorInfo":{
+      "type":"structure",
+      "members":{
+        "ErrorMessage":{"shape":"String"},
+        "ErrorType":{"shape":"String"}
+      }
+    },
+    "SnapshotJobResult":{
+      "type":"structure",
+      "members":{
+        "AnonymousUsers":{"shape":"AnonymousUserSnapshotJobResultList"}
+      }
+    },
+    "SnapshotJobResultErrorInfo":{
+      "type":"structure",
+      "members":{
+        "ErrorMessage":{"shape":"String"},
+        "ErrorType":{"shape":"String"}
+      }
+    },
+    "SnapshotJobResultErrorInfoList":{
+      "type":"list",
+      "member":{"shape":"SnapshotJobResultErrorInfo"}
+    },
+    "SnapshotJobResultFileGroup":{
+      "type":"structure",
+      "members":{
+        "Files":{"shape":"SnapshotFileList"},
+        "S3Results":{"shape":"SnapshotJobS3ResultList"}
+      }
+    },
+    "SnapshotJobResultFileGroupList":{
+      "type":"list",
+      "member":{"shape":"SnapshotJobResultFileGroup"}
+    },
+    "SnapshotJobS3Result":{
+      "type":"structure",
+      "members":{
+        "S3DestinationConfiguration":{"shape":"SnapshotS3DestinationConfiguration"},
+        "S3Uri":{"shape":"SensitiveS3Uri"},
+        "ErrorInfo":{"shape":"SnapshotJobResultErrorInfoList"}
+      }
+    },
+    "SnapshotJobS3ResultList":{
+      "type":"list",
+      "member":{"shape":"SnapshotJobS3Result"}
+    },
+    "SnapshotJobStatus":{
+      "type":"string",
+      "enum":[
+        "QUEUED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "SnapshotS3DestinationConfiguration":{
+      "type":"structure",
+      "members":{
+        "BucketConfiguration":{"shape":"S3BucketConfiguration"}
+      }
+    },
+    "SnapshotS3DestinationConfigurationList":{
+      "type":"list",
+      "member":{"shape":"SnapshotS3DestinationConfiguration"},
+      "max":1,
+      "min":1
+    },
+    "SnapshotUserConfiguration":{
+      "type":"structure",
+      "members":{
+        "AnonymousUsers":{"shape":"SnapshotAnonymousUserList"}
+      }
+    },
+    "SnapshotUserConfigurationRedacted":{
+      "type":"structure",
+      "members":{
+        "AnonymousUsers":{"shape":"SnapshotAnonymousUserRedactedList"}
       }
     },
     "SnowflakeParameters":{
@@ -15942,6 +16329,43 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "AssetBundleImportJobId":{"shape":"ShortRestrictiveResourceId"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "StartDashboardSnapshotJobRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DashboardId",
+        "SnapshotJobId",
+        "UserConfiguration",
+        "SnapshotConfiguration"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DashboardId":{
+          "shape":"ShortRestrictiveResourceId",
+          "location":"uri",
+          "locationName":"DashboardId"
+        },
+        "SnapshotJobId":{"shape":"ShortRestrictiveResourceId"},
+        "UserConfiguration":{"shape":"SnapshotUserConfiguration"},
+        "SnapshotConfiguration":{"shape":"SnapshotConfiguration"}
+      }
+    },
+    "StartDashboardSnapshotJobResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "SnapshotJobId":{"shape":"ShortRestrictiveResourceId"},
         "RequestId":{"shape":"NonEmptyString"},
         "Status":{
           "shape":"StatusCode",
@@ -16592,7 +17016,8 @@
       "type":"structure",
       "members":{
         "TitleOptions":{"shape":"LabelOptions"},
-        "PlaceholderOptions":{"shape":"TextControlPlaceholderOptions"}
+        "PlaceholderOptions":{"shape":"TextControlPlaceholderOptions"},
+        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
       }
     },
     "TextConditionalFormat":{
@@ -16613,7 +17038,8 @@
       "type":"structure",
       "members":{
         "TitleOptions":{"shape":"LabelOptions"},
-        "PlaceholderOptions":{"shape":"TextControlPlaceholderOptions"}
+        "PlaceholderOptions":{"shape":"TextControlPlaceholderOptions"},
+        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
       }
     },
     "TextQualifier":{

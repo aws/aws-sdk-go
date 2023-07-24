@@ -1,3 +1,20 @@
+Release v1.44.307 (2023-07-24)
+===
+
+### Service Client Updates
+* `service/apigatewayv2`: Adds new service
+  * Documentation updates for Amazon API Gateway.
+* `service/ce`: Updates service API and documentation
+* `service/chime-sdk-media-pipelines`: Updates service API and documentation
+* `service/cloudformation`: Updates service API and documentation
+  * This release supports filtering by DRIFT_STATUS for existing API ListStackInstances and adds support for a new API ListStackInstanceResourceDrifts. Customers can now view resource drift information from their StackSet management accounts.
+* `service/ec2`: Updates service API
+  * Add "disabled" enum value to SpotInstanceState.
+* `service/glue`: Updates service API and documentation
+  * Added support for Data Preparation Recipe node in Glue Studio jobs
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * This release launches new Snapshot APIs for CSV and PDF exports, adds support for info icon for filters and parameters in Exploration APIs, adds modeled exception to the DeleteAccountCustomization API, and introduces AttributeAggregationFunction's ability to add UNIQUE_VALUE aggregation in tooltips.
+
 Release v1.44.306 (2023-07-21)
 ===
 

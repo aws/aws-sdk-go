@@ -23,6 +23,18 @@
     "UpdateMediaInsightsPipelineStatus": "<p>Updates the status of a media insights pipeline.</p>"
   },
   "shapes": {
+    "ActiveSpeakerOnlyConfiguration": {
+      "base": "<p>Defines the configuration for an <code>ActiveSpeakerOnly</code> video tile.</p>",
+      "refs": {
+        "GridViewConfiguration$ActiveSpeakerOnlyConfiguration": "<p>The configuration settings for an <code>ActiveSpeakerOnly</code> video tile.</p>"
+      }
+    },
+    "ActiveSpeakerPosition": {
+      "base": null,
+      "refs": {
+        "ActiveSpeakerOnlyConfiguration$ActiveSpeakerPosition": "<p>The position of the <code>ActiveSpeakerOnly</code> video tile.</p>"
+      }
+    },
     "AmazonResourceName": {
       "base": null,
       "refs": {
@@ -159,15 +171,35 @@
         "AmazonTranscribeProcessorConfiguration$ShowSpeakerLabel": "<p>Enables speaker partitioning (diarization) in your transcription output. Speaker partitioning labels the speech from individual speakers in your media file.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html\">Partitioning speakers (diarization)</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>",
         "AmazonTranscribeProcessorConfiguration$EnablePartialResultsStabilization": "<p>Enables partial result stabilization for your transcription. Partial result stabilization can reduce latency in your output, but may impact accuracy.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/streaming.html#streaming-partial-result-stabilization\">Partial-result stabilization</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>",
         "AmazonTranscribeProcessorConfiguration$FilterPartialResults": "<p>If true, <code>TranscriptEvents</code> with <code>IsPartial: true</code> are filtered out of the insights target.</p>",
+        "AmazonTranscribeProcessorConfiguration$IdentifyLanguage": "<p>Turns language identification on or off.</p>",
         "KeywordMatchConfiguration$Negate": "<p>Matches keywords or phrases on their presence or absence. If set to <code>TRUE</code>, the rule matches when all the specified keywords or phrases are absent. Default: <code>FALSE</code>.</p>",
         "RealTimeAlertConfiguration$Disabled": "<p>Turns off real-time alerts.</p>"
+      }
+    },
+    "BorderColor": {
+      "base": null,
+      "refs": {
+        "VideoAttribute$BorderColor": "<p>Defines the border color of all video tiles.</p>"
+      }
+    },
+    "BorderThickness": {
+      "base": null,
+      "refs": {
+        "VideoAttribute$BorderThickness": "<p>Defines the border thickness for all video tiles.</p>"
       }
     },
     "CallAnalyticsLanguageCode": {
       "base": null,
       "refs": {
         "AmazonTranscribeCallAnalyticsProcessorConfiguration$LanguageCode": "<p>The language code in the configuration.</p>",
-        "AmazonTranscribeProcessorConfiguration$LanguageCode": "<p>The language code that represents the language spoken in your audio.</p> <p>If you're unsure of the language spoken in your audio, consider using <code>IdentifyLanguage</code> to enable automatic language identification.</p> <p>For a list of languages that real-time Call Analytics supports, see the <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html\">Supported languages table</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>"
+        "AmazonTranscribeProcessorConfiguration$LanguageCode": "<p>The language code that represents the language spoken in your audio.</p> <p>If you're unsure of the language spoken in your audio, consider using <code>IdentifyLanguage</code> to enable automatic language identification.</p> <p>For a list of languages that real-time Call Analytics supports, see the <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html\">Supported languages table</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>",
+        "AmazonTranscribeProcessorConfiguration$PreferredLanguage": "<p>The preferred language for the transcription.</p>"
+      }
+    },
+    "CanvasOrientation": {
+      "base": null,
+      "refs": {
+        "GridViewConfiguration$CanvasOrientation": "<p>The orientation setting, horizontal or vertical.</p>"
       }
     },
     "CategoryName": {
@@ -322,6 +354,12 @@
         "AmazonTranscribeCallAnalyticsProcessorConfiguration$ContentRedactionType": "<p>Redacts all personally identifiable information (PII) identified in your transcript.</p> <p>Content redaction is performed at the segment level; PII specified in <code>PiiEntityTypes</code> is redacted upon complete transcription of an audio segment.</p> <p>You can’t set <code>ContentRedactionType</code> and <code>ContentIdentificationType</code> in the same request. If you do, your request returns a <code>BadRequestException</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/pii-redaction.html\">Redacting or identifying personally identifiable information</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>",
         "AmazonTranscribeProcessorConfiguration$ContentIdentificationType": "<p>Labels all personally identifiable information (PII) identified in your transcript.</p> <p>Content identification is performed at the segment level; PII specified in <code>PiiEntityTypes</code> is flagged upon complete transcription of an audio segment.</p> <p>You can’t set <code>ContentIdentificationType</code> and <code>ContentRedactionType</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/pii-redaction.html\">Redacting or identifying personally identifiable information</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>",
         "AmazonTranscribeProcessorConfiguration$ContentRedactionType": "<p>Redacts all personally identifiable information (PII) identified in your transcript.</p> <p>Content redaction is performed at the segment level; PII specified in PiiEntityTypes is redacted upon complete transcription of an audio segment.</p> <p>You can’t set ContentRedactionType and ContentIdentificationType in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/pii-redaction.html\">Redacting or identifying personally identifiable information</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>"
+      }
+    },
+    "CornerRadius": {
+      "base": null,
+      "refs": {
+        "VideoAttribute$CornerRadius": "<p>Sets the corner radius of all video tiles.</p>"
       }
     },
     "CreateMediaCapturePipelineRequest": {
@@ -498,6 +536,24 @@
         "MediaPipelineSummary$MediaPipelineId": "<p>The ID of the media pipeline in the summary.</p>"
       }
     },
+    "HighlightColor": {
+      "base": null,
+      "refs": {
+        "VideoAttribute$HighlightColor": "<p>Defines the highlight color for the active video tile.</p>"
+      }
+    },
+    "HorizontalLayoutConfiguration": {
+      "base": "<p>Defines the configuration settings for the horizontal layout.</p>",
+      "refs": {
+        "GridViewConfiguration$HorizontalLayoutConfiguration": "<p>The configuration settings for a horizontal layout.</p>"
+      }
+    },
+    "HorizontalTilePosition": {
+      "base": null,
+      "refs": {
+        "HorizontalLayoutConfiguration$TilePosition": "<p>Sets the position of horizontal tiles.</p>"
+      }
+    },
     "Iso8601Timestamp": {
       "base": null,
       "refs": {
@@ -567,6 +623,12 @@
       "base": "<p>A structure that contains the configuration settings for an AWS Lambda function's data sink.</p>",
       "refs": {
         "MediaInsightsPipelineConfigurationElement$LambdaFunctionSinkConfiguration": "<p>The configuration settings for the Amazon Web Services Lambda sink in a media insights pipeline configuration element.</p>"
+      }
+    },
+    "LanguageOptions": {
+      "base": null,
+      "refs": {
+        "AmazonTranscribeProcessorConfiguration$LanguageOptions": "<p>The language options for the transcription, such as automatic language detection.</p>"
       }
     },
     "LayoutOption": {
@@ -985,7 +1047,7 @@
     "S3RecordingSinkRuntimeConfiguration": {
       "base": "<p>A structure that holds the settings for transmitting media files to the Amazon S3 bucket. If specified, the settings in this structure override any settings in <code>S3RecordingSinkConfiguration</code>.</p>",
       "refs": {
-        "CreateMediaInsightsPipelineRequest$S3RecordingSinkRuntimeConfiguration": "<p>The runtime configuration for the S3 recording sink.</p>",
+        "CreateMediaInsightsPipelineRequest$S3RecordingSinkRuntimeConfiguration": "<p>The runtime configuration for the S3 recording sink. If specified, the settings in this structure override any settings in <code>S3RecordingSinkConfiguration</code>.</p>",
         "MediaInsightsPipeline$S3RecordingSinkRuntimeConfiguration": "<p>The runtime configuration of the Amazon S3 bucket that stores recordings in a media insights pipeline.</p>"
       }
     },
@@ -1151,6 +1213,27 @@
       "refs": {
       }
     },
+    "TileAspectRatio": {
+      "base": null,
+      "refs": {
+        "HorizontalLayoutConfiguration$TileAspectRatio": "<p>Sets the aspect ratio of the video tiles, such as 16:9.</p>",
+        "VerticalLayoutConfiguration$TileAspectRatio": "<p>Sets the aspect ratio of the video tiles, such as 16:9.</p>"
+      }
+    },
+    "TileCount": {
+      "base": null,
+      "refs": {
+        "HorizontalLayoutConfiguration$TileCount": "<p>The maximum number of video tiles to display.</p>",
+        "VerticalLayoutConfiguration$TileCount": "<p>The maximum number of tiles to display.</p>"
+      }
+    },
+    "TileOrder": {
+      "base": null,
+      "refs": {
+        "HorizontalLayoutConfiguration$TileOrder": "<p>Sets the automatic ordering of the video tiles.</p>",
+        "VerticalLayoutConfiguration$TileOrder": "<p>Sets the automatic ordering of the video tiles.</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
@@ -1200,10 +1283,28 @@
       "refs": {
       }
     },
+    "VerticalLayoutConfiguration": {
+      "base": "<p>Defines the configuration settings for a vertial layout.</p>",
+      "refs": {
+        "GridViewConfiguration$VerticalLayoutConfiguration": "<p>The configuration settings for a vertical layout.</p>"
+      }
+    },
+    "VerticalTilePosition": {
+      "base": null,
+      "refs": {
+        "VerticalLayoutConfiguration$TilePosition": "<p>Sets the position of vertical tiles.</p>"
+      }
+    },
     "VideoArtifactsConfiguration": {
       "base": "<p>The video artifact configuration object.</p>",
       "refs": {
         "ArtifactsConfiguration$Video": "<p>The configuration for the video artifacts.</p>"
+      }
+    },
+    "VideoAttribute": {
+      "base": "<p>Defines the settings for a video tile.</p>",
+      "refs": {
+        "GridViewConfiguration$VideoAttribute": "<p>The attribute settings for the video tiles.</p>"
       }
     },
     "VideoConcatenationConfiguration": {
@@ -1232,11 +1333,23 @@
         "AmazonTranscribeProcessorConfiguration$VocabularyFilterName": "<p>The name of the custom vocabulary filter that you specified in your Call Analytics request.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 200.</p>"
       }
     },
+    "VocabularyFilterNames": {
+      "base": null,
+      "refs": {
+        "AmazonTranscribeProcessorConfiguration$VocabularyFilterNames": "<p>The names of the custom vocabulary filter or filters using during transcription.</p>"
+      }
+    },
     "VocabularyName": {
       "base": null,
       "refs": {
         "AmazonTranscribeCallAnalyticsProcessorConfiguration$VocabularyName": "<p>Specifies the name of the custom vocabulary to use when processing a transcription. Note that vocabulary names are case sensitive.</p> <p>If the language of the specified custom vocabulary doesn't match the language identified in your media, the custom vocabulary is not applied to your transcription.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html\">Custom vocabularies</a> in the <i>Amazon Transcribe Developer Guide</i>.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 200. </p>",
         "AmazonTranscribeProcessorConfiguration$VocabularyName": "<p>The name of the custom vocabulary that you specified in your Call Analytics request.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 200.</p>"
+      }
+    },
+    "VocabularyNames": {
+      "base": null,
+      "refs": {
+        "AmazonTranscribeProcessorConfiguration$VocabularyNames": "<p>The names of the custom vocabulary or vocabularies used during transcription.</p>"
       }
     },
     "VoiceAnalyticsConfigurationStatus": {

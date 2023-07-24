@@ -2053,6 +2053,38 @@ func (c *ChimeSDKMediaPipelines) UpdateMediaInsightsPipelineStatusWithContext(ct
 	return out, req.Send()
 }
 
+// Defines the configuration for an ActiveSpeakerOnly video tile.
+type ActiveSpeakerOnlyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The position of the ActiveSpeakerOnly video tile.
+	ActiveSpeakerPosition *string `type:"string" enum:"ActiveSpeakerPosition"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActiveSpeakerOnlyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActiveSpeakerOnlyConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetActiveSpeakerPosition sets the ActiveSpeakerPosition field's value.
+func (s *ActiveSpeakerOnlyConfiguration) SetActiveSpeakerPosition(v string) *ActiveSpeakerOnlyConfiguration {
+	s.ActiveSpeakerPosition = &v
+	return s
+}
+
 // A structure that contains the configuration settings for an Amazon Transcribe
 // call analytics processor.
 type AmazonTranscribeCallAnalyticsProcessorConfiguration struct {
@@ -2352,6 +2384,9 @@ type AmazonTranscribeProcessorConfiguration struct {
 	// target.
 	FilterPartialResults *bool `type:"boolean"`
 
+	// Turns language identification on or off.
+	IdentifyLanguage *bool `type:"boolean"`
+
 	// The language code that represents the language spoken in your audio.
 	//
 	// If you're unsure of the language spoken in your audio, consider using IdentifyLanguage
@@ -2360,9 +2395,7 @@ type AmazonTranscribeProcessorConfiguration struct {
 	// For a list of languages that real-time Call Analytics supports, see the Supported
 	// languages table (https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html)
 	// in the Amazon Transcribe Developer Guide.
-	//
-	// LanguageCode is a required field
-	LanguageCode *string `type:"string" required:"true" enum:"CallAnalyticsLanguageCode"`
+	LanguageCode *string `type:"string" enum:"CallAnalyticsLanguageCode"`
 
 	// The name of the custom language model that you want to use when processing
 	// your transcription. Note that language model names are case sensitive.
@@ -2375,6 +2408,9 @@ type AmazonTranscribeProcessorConfiguration struct {
 	// For more information, see Custom language models (https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html)
 	// in the Amazon Transcribe Developer Guide.
 	LanguageModelName *string `min:"1" type:"string"`
+
+	// The language options for the transcription, such as automatic language detection.
+	LanguageOptions *string `min:"1" type:"string"`
 
 	// The level of stability to use when you enable partial results stabilization
 	// (EnablePartialResultsStabilization).
@@ -2401,6 +2437,9 @@ type AmazonTranscribeProcessorConfiguration struct {
 	// ALL.
 	PiiEntityTypes *string `min:"1" type:"string"`
 
+	// The preferred language for the transcription.
+	PreferredLanguage *string `type:"string" enum:"CallAnalyticsLanguageCode"`
+
 	// Enables speaker partitioning (diarization) in your transcription output.
 	// Speaker partitioning labels the speech from individual speakers in your media
 	// file.
@@ -2418,11 +2457,17 @@ type AmazonTranscribeProcessorConfiguration struct {
 	// Length Constraints: Minimum length of 1. Maximum length of 200.
 	VocabularyFilterName *string `min:"1" type:"string"`
 
+	// The names of the custom vocabulary filter or filters using during transcription.
+	VocabularyFilterNames *string `min:"1" type:"string"`
+
 	// The name of the custom vocabulary that you specified in your Call Analytics
 	// request.
 	//
 	// Length Constraints: Minimum length of 1. Maximum length of 200.
 	VocabularyName *string `min:"1" type:"string"`
+
+	// The names of the custom vocabulary or vocabularies used during transcription.
+	VocabularyNames *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -2446,11 +2491,11 @@ func (s AmazonTranscribeProcessorConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AmazonTranscribeProcessorConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AmazonTranscribeProcessorConfiguration"}
-	if s.LanguageCode == nil {
-		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
-	}
 	if s.LanguageModelName != nil && len(*s.LanguageModelName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LanguageModelName", 1))
+	}
+	if s.LanguageOptions != nil && len(*s.LanguageOptions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageOptions", 1))
 	}
 	if s.PiiEntityTypes != nil && len(*s.PiiEntityTypes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PiiEntityTypes", 1))
@@ -2458,8 +2503,14 @@ func (s *AmazonTranscribeProcessorConfiguration) Validate() error {
 	if s.VocabularyFilterName != nil && len(*s.VocabularyFilterName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyFilterName", 1))
 	}
+	if s.VocabularyFilterNames != nil && len(*s.VocabularyFilterNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyFilterNames", 1))
+	}
 	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+	if s.VocabularyNames != nil && len(*s.VocabularyNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyNames", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2492,6 +2543,12 @@ func (s *AmazonTranscribeProcessorConfiguration) SetFilterPartialResults(v bool)
 	return s
 }
 
+// SetIdentifyLanguage sets the IdentifyLanguage field's value.
+func (s *AmazonTranscribeProcessorConfiguration) SetIdentifyLanguage(v bool) *AmazonTranscribeProcessorConfiguration {
+	s.IdentifyLanguage = &v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *AmazonTranscribeProcessorConfiguration) SetLanguageCode(v string) *AmazonTranscribeProcessorConfiguration {
 	s.LanguageCode = &v
@@ -2504,6 +2561,12 @@ func (s *AmazonTranscribeProcessorConfiguration) SetLanguageModelName(v string) 
 	return s
 }
 
+// SetLanguageOptions sets the LanguageOptions field's value.
+func (s *AmazonTranscribeProcessorConfiguration) SetLanguageOptions(v string) *AmazonTranscribeProcessorConfiguration {
+	s.LanguageOptions = &v
+	return s
+}
+
 // SetPartialResultsStability sets the PartialResultsStability field's value.
 func (s *AmazonTranscribeProcessorConfiguration) SetPartialResultsStability(v string) *AmazonTranscribeProcessorConfiguration {
 	s.PartialResultsStability = &v
@@ -2513,6 +2576,12 @@ func (s *AmazonTranscribeProcessorConfiguration) SetPartialResultsStability(v st
 // SetPiiEntityTypes sets the PiiEntityTypes field's value.
 func (s *AmazonTranscribeProcessorConfiguration) SetPiiEntityTypes(v string) *AmazonTranscribeProcessorConfiguration {
 	s.PiiEntityTypes = &v
+	return s
+}
+
+// SetPreferredLanguage sets the PreferredLanguage field's value.
+func (s *AmazonTranscribeProcessorConfiguration) SetPreferredLanguage(v string) *AmazonTranscribeProcessorConfiguration {
+	s.PreferredLanguage = &v
 	return s
 }
 
@@ -2534,9 +2603,21 @@ func (s *AmazonTranscribeProcessorConfiguration) SetVocabularyFilterName(v strin
 	return s
 }
 
+// SetVocabularyFilterNames sets the VocabularyFilterNames field's value.
+func (s *AmazonTranscribeProcessorConfiguration) SetVocabularyFilterNames(v string) *AmazonTranscribeProcessorConfiguration {
+	s.VocabularyFilterNames = &v
+	return s
+}
+
 // SetVocabularyName sets the VocabularyName field's value.
 func (s *AmazonTranscribeProcessorConfiguration) SetVocabularyName(v string) *AmazonTranscribeProcessorConfiguration {
 	s.VocabularyName = &v
+	return s
+}
+
+// SetVocabularyNames sets the VocabularyNames field's value.
+func (s *AmazonTranscribeProcessorConfiguration) SetVocabularyNames(v string) *AmazonTranscribeProcessorConfiguration {
+	s.VocabularyNames = &v
 	return s
 }
 
@@ -4225,7 +4306,8 @@ type CreateMediaInsightsPipelineInput struct {
 	// String and GoString methods.
 	MediaInsightsRuntimeMetadata map[string]*string `type:"map" sensitive:"true"`
 
-	// The runtime configuration for the S3 recording sink.
+	// The runtime configuration for the S3 recording sink. If specified, the settings
+	// in this structure override any settings in S3RecordingSinkConfiguration.
 	S3RecordingSinkRuntimeConfiguration *S3RecordingSinkRuntimeConfiguration `type:"structure"`
 
 	// The tags assigned to the media insights pipeline.
@@ -5185,13 +5267,28 @@ func (s *GetMediaPipelineOutput) SetMediaPipeline(v *MediaPipeline) *GetMediaPip
 type GridViewConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration settings for an ActiveSpeakerOnly video tile.
+	ActiveSpeakerOnlyConfiguration *ActiveSpeakerOnlyConfiguration `type:"structure"`
+
+	// The orientation setting, horizontal or vertical.
+	CanvasOrientation *string `type:"string" enum:"CanvasOrientation"`
+
 	// Defines the layout of the video tiles when content sharing is enabled.
 	//
 	// ContentShareLayout is a required field
 	ContentShareLayout *string `type:"string" required:"true" enum:"ContentShareLayoutOption"`
 
+	// The configuration settings for a horizontal layout.
+	HorizontalLayoutConfiguration *HorizontalLayoutConfiguration `type:"structure"`
+
 	// Defines the configuration options for a presenter only video tile.
 	PresenterOnlyConfiguration *PresenterOnlyConfiguration `type:"structure"`
+
+	// The configuration settings for a vertical layout.
+	VerticalLayoutConfiguration *VerticalLayoutConfiguration `type:"structure"`
+
+	// The attribute settings for the video tiles.
+	VideoAttribute *VideoAttribute `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5218,11 +5315,38 @@ func (s *GridViewConfiguration) Validate() error {
 	if s.ContentShareLayout == nil {
 		invalidParams.Add(request.NewErrParamRequired("ContentShareLayout"))
 	}
+	if s.HorizontalLayoutConfiguration != nil {
+		if err := s.HorizontalLayoutConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("HorizontalLayoutConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VerticalLayoutConfiguration != nil {
+		if err := s.VerticalLayoutConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VerticalLayoutConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VideoAttribute != nil {
+		if err := s.VideoAttribute.Validate(); err != nil {
+			invalidParams.AddNested("VideoAttribute", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActiveSpeakerOnlyConfiguration sets the ActiveSpeakerOnlyConfiguration field's value.
+func (s *GridViewConfiguration) SetActiveSpeakerOnlyConfiguration(v *ActiveSpeakerOnlyConfiguration) *GridViewConfiguration {
+	s.ActiveSpeakerOnlyConfiguration = v
+	return s
+}
+
+// SetCanvasOrientation sets the CanvasOrientation field's value.
+func (s *GridViewConfiguration) SetCanvasOrientation(v string) *GridViewConfiguration {
+	s.CanvasOrientation = &v
+	return s
 }
 
 // SetContentShareLayout sets the ContentShareLayout field's value.
@@ -5231,9 +5355,99 @@ func (s *GridViewConfiguration) SetContentShareLayout(v string) *GridViewConfigu
 	return s
 }
 
+// SetHorizontalLayoutConfiguration sets the HorizontalLayoutConfiguration field's value.
+func (s *GridViewConfiguration) SetHorizontalLayoutConfiguration(v *HorizontalLayoutConfiguration) *GridViewConfiguration {
+	s.HorizontalLayoutConfiguration = v
+	return s
+}
+
 // SetPresenterOnlyConfiguration sets the PresenterOnlyConfiguration field's value.
 func (s *GridViewConfiguration) SetPresenterOnlyConfiguration(v *PresenterOnlyConfiguration) *GridViewConfiguration {
 	s.PresenterOnlyConfiguration = v
+	return s
+}
+
+// SetVerticalLayoutConfiguration sets the VerticalLayoutConfiguration field's value.
+func (s *GridViewConfiguration) SetVerticalLayoutConfiguration(v *VerticalLayoutConfiguration) *GridViewConfiguration {
+	s.VerticalLayoutConfiguration = v
+	return s
+}
+
+// SetVideoAttribute sets the VideoAttribute field's value.
+func (s *GridViewConfiguration) SetVideoAttribute(v *VideoAttribute) *GridViewConfiguration {
+	s.VideoAttribute = v
+	return s
+}
+
+// Defines the configuration settings for the horizontal layout.
+type HorizontalLayoutConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Sets the aspect ratio of the video tiles, such as 16:9.
+	TileAspectRatio *string `type:"string"`
+
+	// The maximum number of video tiles to display.
+	TileCount *int64 `min:"1" type:"integer"`
+
+	// Sets the automatic ordering of the video tiles.
+	TileOrder *string `type:"string" enum:"TileOrder"`
+
+	// Sets the position of horizontal tiles.
+	TilePosition *string `type:"string" enum:"HorizontalTilePosition"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HorizontalLayoutConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HorizontalLayoutConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HorizontalLayoutConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HorizontalLayoutConfiguration"}
+	if s.TileCount != nil && *s.TileCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TileCount", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTileAspectRatio sets the TileAspectRatio field's value.
+func (s *HorizontalLayoutConfiguration) SetTileAspectRatio(v string) *HorizontalLayoutConfiguration {
+	s.TileAspectRatio = &v
+	return s
+}
+
+// SetTileCount sets the TileCount field's value.
+func (s *HorizontalLayoutConfiguration) SetTileCount(v int64) *HorizontalLayoutConfiguration {
+	s.TileCount = &v
+	return s
+}
+
+// SetTileOrder sets the TileOrder field's value.
+func (s *HorizontalLayoutConfiguration) SetTileOrder(v string) *HorizontalLayoutConfiguration {
+	s.TileOrder = &v
+	return s
+}
+
+// SetTilePosition sets the TilePosition field's value.
+func (s *HorizontalLayoutConfiguration) SetTilePosition(v string) *HorizontalLayoutConfiguration {
+	s.TilePosition = &v
 	return s
 }
 
@@ -9156,6 +9370,78 @@ func (s UpdateMediaInsightsPipelineStatusOutput) GoString() string {
 	return s.String()
 }
 
+// Defines the configuration settings for a vertial layout.
+type VerticalLayoutConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Sets the aspect ratio of the video tiles, such as 16:9.
+	TileAspectRatio *string `type:"string"`
+
+	// The maximum number of tiles to display.
+	TileCount *int64 `min:"1" type:"integer"`
+
+	// Sets the automatic ordering of the video tiles.
+	TileOrder *string `type:"string" enum:"TileOrder"`
+
+	// Sets the position of vertical tiles.
+	TilePosition *string `type:"string" enum:"VerticalTilePosition"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerticalLayoutConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerticalLayoutConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerticalLayoutConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerticalLayoutConfiguration"}
+	if s.TileCount != nil && *s.TileCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TileCount", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTileAspectRatio sets the TileAspectRatio field's value.
+func (s *VerticalLayoutConfiguration) SetTileAspectRatio(v string) *VerticalLayoutConfiguration {
+	s.TileAspectRatio = &v
+	return s
+}
+
+// SetTileCount sets the TileCount field's value.
+func (s *VerticalLayoutConfiguration) SetTileCount(v int64) *VerticalLayoutConfiguration {
+	s.TileCount = &v
+	return s
+}
+
+// SetTileOrder sets the TileOrder field's value.
+func (s *VerticalLayoutConfiguration) SetTileOrder(v string) *VerticalLayoutConfiguration {
+	s.TileOrder = &v
+	return s
+}
+
+// SetTilePosition sets the TilePosition field's value.
+func (s *VerticalLayoutConfiguration) SetTilePosition(v string) *VerticalLayoutConfiguration {
+	s.TilePosition = &v
+	return s
+}
+
 // The video artifact configuration object.
 type VideoArtifactsConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -9209,6 +9495,81 @@ func (s *VideoArtifactsConfiguration) SetMuxType(v string) *VideoArtifactsConfig
 // SetState sets the State field's value.
 func (s *VideoArtifactsConfiguration) SetState(v string) *VideoArtifactsConfiguration {
 	s.State = &v
+	return s
+}
+
+// Defines the settings for a video tile.
+type VideoAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the border color of all video tiles.
+	BorderColor *string `type:"string" enum:"BorderColor"`
+
+	// Defines the border thickness for all video tiles.
+	BorderThickness *int64 `min:"1" type:"integer"`
+
+	// Sets the corner radius of all video tiles.
+	CornerRadius *int64 `min:"1" type:"integer"`
+
+	// Defines the highlight color for the active video tile.
+	HighlightColor *string `type:"string" enum:"HighlightColor"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoAttribute) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VideoAttribute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VideoAttribute"}
+	if s.BorderThickness != nil && *s.BorderThickness < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("BorderThickness", 1))
+	}
+	if s.CornerRadius != nil && *s.CornerRadius < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("CornerRadius", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBorderColor sets the BorderColor field's value.
+func (s *VideoAttribute) SetBorderColor(v string) *VideoAttribute {
+	s.BorderColor = &v
+	return s
+}
+
+// SetBorderThickness sets the BorderThickness field's value.
+func (s *VideoAttribute) SetBorderThickness(v int64) *VideoAttribute {
+	s.BorderThickness = &v
+	return s
+}
+
+// SetCornerRadius sets the CornerRadius field's value.
+func (s *VideoAttribute) SetCornerRadius(v int64) *VideoAttribute {
+	s.CornerRadius = &v
+	return s
+}
+
+// SetHighlightColor sets the HighlightColor field's value.
+func (s *VideoAttribute) SetHighlightColor(v string) *VideoAttribute {
+	s.HighlightColor = &v
 	return s
 }
 
@@ -9301,6 +9662,30 @@ func (s *VoiceAnalyticsProcessorConfiguration) SetVoiceToneAnalysisStatus(v stri
 }
 
 const (
+	// ActiveSpeakerPositionTopLeft is a ActiveSpeakerPosition enum value
+	ActiveSpeakerPositionTopLeft = "TopLeft"
+
+	// ActiveSpeakerPositionTopRight is a ActiveSpeakerPosition enum value
+	ActiveSpeakerPositionTopRight = "TopRight"
+
+	// ActiveSpeakerPositionBottomLeft is a ActiveSpeakerPosition enum value
+	ActiveSpeakerPositionBottomLeft = "BottomLeft"
+
+	// ActiveSpeakerPositionBottomRight is a ActiveSpeakerPosition enum value
+	ActiveSpeakerPositionBottomRight = "BottomRight"
+)
+
+// ActiveSpeakerPosition_Values returns all elements of the ActiveSpeakerPosition enum
+func ActiveSpeakerPosition_Values() []string {
+	return []string{
+		ActiveSpeakerPositionTopLeft,
+		ActiveSpeakerPositionTopRight,
+		ActiveSpeakerPositionBottomLeft,
+		ActiveSpeakerPositionBottomRight,
+	}
+}
+
+const (
 	// ArtifactsConcatenationStateEnabled is a ArtifactsConcatenationState enum value
 	ArtifactsConcatenationStateEnabled = "Enabled"
 
@@ -9381,6 +9766,38 @@ func AudioMuxType_Values() []string {
 }
 
 const (
+	// BorderColorBlack is a BorderColor enum value
+	BorderColorBlack = "Black"
+
+	// BorderColorBlue is a BorderColor enum value
+	BorderColorBlue = "Blue"
+
+	// BorderColorRed is a BorderColor enum value
+	BorderColorRed = "Red"
+
+	// BorderColorGreen is a BorderColor enum value
+	BorderColorGreen = "Green"
+
+	// BorderColorWhite is a BorderColor enum value
+	BorderColorWhite = "White"
+
+	// BorderColorYellow is a BorderColor enum value
+	BorderColorYellow = "Yellow"
+)
+
+// BorderColor_Values returns all elements of the BorderColor enum
+func BorderColor_Values() []string {
+	return []string{
+		BorderColorBlack,
+		BorderColorBlue,
+		BorderColorRed,
+		BorderColorGreen,
+		BorderColorWhite,
+		BorderColorYellow,
+	}
+}
+
+const (
 	// CallAnalyticsLanguageCodeEnUs is a CallAnalyticsLanguageCode enum value
 	CallAnalyticsLanguageCodeEnUs = "en-US"
 
@@ -9421,6 +9838,22 @@ func CallAnalyticsLanguageCode_Values() []string {
 		CallAnalyticsLanguageCodeItIt,
 		CallAnalyticsLanguageCodeDeDe,
 		CallAnalyticsLanguageCodePtBr,
+	}
+}
+
+const (
+	// CanvasOrientationLandscape is a CanvasOrientation enum value
+	CanvasOrientationLandscape = "Landscape"
+
+	// CanvasOrientationPortrait is a CanvasOrientation enum value
+	CanvasOrientationPortrait = "Portrait"
+)
+
+// CanvasOrientation_Values returns all elements of the CanvasOrientation enum
+func CanvasOrientation_Values() []string {
+	return []string{
+		CanvasOrientationLandscape,
+		CanvasOrientationPortrait,
 	}
 }
 
@@ -9485,6 +9918,9 @@ const (
 
 	// ContentShareLayoutOptionVertical is a ContentShareLayoutOption enum value
 	ContentShareLayoutOptionVertical = "Vertical"
+
+	// ContentShareLayoutOptionActiveSpeakerOnly is a ContentShareLayoutOption enum value
+	ContentShareLayoutOptionActiveSpeakerOnly = "ActiveSpeakerOnly"
 )
 
 // ContentShareLayoutOption_Values returns all elements of the ContentShareLayoutOption enum
@@ -9493,6 +9929,7 @@ func ContentShareLayoutOption_Values() []string {
 		ContentShareLayoutOptionPresenterOnly,
 		ContentShareLayoutOptionHorizontal,
 		ContentShareLayoutOptionVertical,
+		ContentShareLayoutOptionActiveSpeakerOnly,
 	}
 }
 
@@ -9557,6 +9994,54 @@ func FragmentSelectorType_Values() []string {
 	return []string{
 		FragmentSelectorTypeProducerTimestamp,
 		FragmentSelectorTypeServerTimestamp,
+	}
+}
+
+const (
+	// HighlightColorBlack is a HighlightColor enum value
+	HighlightColorBlack = "Black"
+
+	// HighlightColorBlue is a HighlightColor enum value
+	HighlightColorBlue = "Blue"
+
+	// HighlightColorRed is a HighlightColor enum value
+	HighlightColorRed = "Red"
+
+	// HighlightColorGreen is a HighlightColor enum value
+	HighlightColorGreen = "Green"
+
+	// HighlightColorWhite is a HighlightColor enum value
+	HighlightColorWhite = "White"
+
+	// HighlightColorYellow is a HighlightColor enum value
+	HighlightColorYellow = "Yellow"
+)
+
+// HighlightColor_Values returns all elements of the HighlightColor enum
+func HighlightColor_Values() []string {
+	return []string{
+		HighlightColorBlack,
+		HighlightColorBlue,
+		HighlightColorRed,
+		HighlightColorGreen,
+		HighlightColorWhite,
+		HighlightColorYellow,
+	}
+}
+
+const (
+	// HorizontalTilePositionTop is a HorizontalTilePosition enum value
+	HorizontalTilePositionTop = "Top"
+
+	// HorizontalTilePositionBottom is a HorizontalTilePosition enum value
+	HorizontalTilePositionBottom = "Bottom"
+)
+
+// HorizontalTilePosition_Values returns all elements of the HorizontalTilePosition enum
+func HorizontalTilePosition_Values() []string {
+	return []string{
+		HorizontalTilePositionTop,
+		HorizontalTilePositionBottom,
 	}
 }
 
@@ -9857,6 +10342,38 @@ const (
 func SentimentType_Values() []string {
 	return []string{
 		SentimentTypeNegative,
+	}
+}
+
+const (
+	// TileOrderJoinSequence is a TileOrder enum value
+	TileOrderJoinSequence = "JoinSequence"
+
+	// TileOrderSpeakerSequence is a TileOrder enum value
+	TileOrderSpeakerSequence = "SpeakerSequence"
+)
+
+// TileOrder_Values returns all elements of the TileOrder enum
+func TileOrder_Values() []string {
+	return []string{
+		TileOrderJoinSequence,
+		TileOrderSpeakerSequence,
+	}
+}
+
+const (
+	// VerticalTilePositionLeft is a VerticalTilePosition enum value
+	VerticalTilePositionLeft = "Left"
+
+	// VerticalTilePositionRight is a VerticalTilePosition enum value
+	VerticalTilePositionRight = "Right"
+)
+
+// VerticalTilePosition_Values returns all elements of the VerticalTilePosition enum
+func VerticalTilePosition_Values() []string {
+	return []string{
+		VerticalTilePositionLeft,
+		VerticalTilePositionRight,
 	}
 }
 

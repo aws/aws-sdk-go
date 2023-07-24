@@ -284,6 +284,14 @@ type QuickSightAPI interface {
 	DescribeDashboardPermissionsWithContext(aws.Context, *quicksight.DescribeDashboardPermissionsInput, ...request.Option) (*quicksight.DescribeDashboardPermissionsOutput, error)
 	DescribeDashboardPermissionsRequest(*quicksight.DescribeDashboardPermissionsInput) (*request.Request, *quicksight.DescribeDashboardPermissionsOutput)
 
+	DescribeDashboardSnapshotJob(*quicksight.DescribeDashboardSnapshotJobInput) (*quicksight.DescribeDashboardSnapshotJobOutput, error)
+	DescribeDashboardSnapshotJobWithContext(aws.Context, *quicksight.DescribeDashboardSnapshotJobInput, ...request.Option) (*quicksight.DescribeDashboardSnapshotJobOutput, error)
+	DescribeDashboardSnapshotJobRequest(*quicksight.DescribeDashboardSnapshotJobInput) (*request.Request, *quicksight.DescribeDashboardSnapshotJobOutput)
+
+	DescribeDashboardSnapshotJobResult(*quicksight.DescribeDashboardSnapshotJobResultInput) (*quicksight.DescribeDashboardSnapshotJobResultOutput, error)
+	DescribeDashboardSnapshotJobResultWithContext(aws.Context, *quicksight.DescribeDashboardSnapshotJobResultInput, ...request.Option) (*quicksight.DescribeDashboardSnapshotJobResultOutput, error)
+	DescribeDashboardSnapshotJobResultRequest(*quicksight.DescribeDashboardSnapshotJobResultInput) (*request.Request, *quicksight.DescribeDashboardSnapshotJobResultOutput)
+
 	DescribeDataSet(*quicksight.DescribeDataSetInput) (*quicksight.DescribeDataSetOutput, error)
 	DescribeDataSetWithContext(aws.Context, *quicksight.DescribeDataSetInput, ...request.Option) (*quicksight.DescribeDataSetOutput, error)
 	DescribeDataSetRequest(*quicksight.DescribeDataSetInput) (*request.Request, *quicksight.DescribeDataSetOutput)
@@ -473,17 +481,29 @@ type QuickSightAPI interface {
 	ListGroupMembershipsWithContext(aws.Context, *quicksight.ListGroupMembershipsInput, ...request.Option) (*quicksight.ListGroupMembershipsOutput, error)
 	ListGroupMembershipsRequest(*quicksight.ListGroupMembershipsInput) (*request.Request, *quicksight.ListGroupMembershipsOutput)
 
+	ListGroupMembershipsPages(*quicksight.ListGroupMembershipsInput, func(*quicksight.ListGroupMembershipsOutput, bool) bool) error
+	ListGroupMembershipsPagesWithContext(aws.Context, *quicksight.ListGroupMembershipsInput, func(*quicksight.ListGroupMembershipsOutput, bool) bool, ...request.Option) error
+
 	ListGroups(*quicksight.ListGroupsInput) (*quicksight.ListGroupsOutput, error)
 	ListGroupsWithContext(aws.Context, *quicksight.ListGroupsInput, ...request.Option) (*quicksight.ListGroupsOutput, error)
 	ListGroupsRequest(*quicksight.ListGroupsInput) (*request.Request, *quicksight.ListGroupsOutput)
+
+	ListGroupsPages(*quicksight.ListGroupsInput, func(*quicksight.ListGroupsOutput, bool) bool) error
+	ListGroupsPagesWithContext(aws.Context, *quicksight.ListGroupsInput, func(*quicksight.ListGroupsOutput, bool) bool, ...request.Option) error
 
 	ListIAMPolicyAssignments(*quicksight.ListIAMPolicyAssignmentsInput) (*quicksight.ListIAMPolicyAssignmentsOutput, error)
 	ListIAMPolicyAssignmentsWithContext(aws.Context, *quicksight.ListIAMPolicyAssignmentsInput, ...request.Option) (*quicksight.ListIAMPolicyAssignmentsOutput, error)
 	ListIAMPolicyAssignmentsRequest(*quicksight.ListIAMPolicyAssignmentsInput) (*request.Request, *quicksight.ListIAMPolicyAssignmentsOutput)
 
+	ListIAMPolicyAssignmentsPages(*quicksight.ListIAMPolicyAssignmentsInput, func(*quicksight.ListIAMPolicyAssignmentsOutput, bool) bool) error
+	ListIAMPolicyAssignmentsPagesWithContext(aws.Context, *quicksight.ListIAMPolicyAssignmentsInput, func(*quicksight.ListIAMPolicyAssignmentsOutput, bool) bool, ...request.Option) error
+
 	ListIAMPolicyAssignmentsForUser(*quicksight.ListIAMPolicyAssignmentsForUserInput) (*quicksight.ListIAMPolicyAssignmentsForUserOutput, error)
 	ListIAMPolicyAssignmentsForUserWithContext(aws.Context, *quicksight.ListIAMPolicyAssignmentsForUserInput, ...request.Option) (*quicksight.ListIAMPolicyAssignmentsForUserOutput, error)
 	ListIAMPolicyAssignmentsForUserRequest(*quicksight.ListIAMPolicyAssignmentsForUserInput) (*request.Request, *quicksight.ListIAMPolicyAssignmentsForUserOutput)
+
+	ListIAMPolicyAssignmentsForUserPages(*quicksight.ListIAMPolicyAssignmentsForUserInput, func(*quicksight.ListIAMPolicyAssignmentsForUserOutput, bool) bool) error
+	ListIAMPolicyAssignmentsForUserPagesWithContext(aws.Context, *quicksight.ListIAMPolicyAssignmentsForUserInput, func(*quicksight.ListIAMPolicyAssignmentsForUserOutput, bool) bool, ...request.Option) error
 
 	ListIngestions(*quicksight.ListIngestionsInput) (*quicksight.ListIngestionsOutput, error)
 	ListIngestionsWithContext(aws.Context, *quicksight.ListIngestionsInput, ...request.Option) (*quicksight.ListIngestionsOutput, error)
@@ -561,9 +581,15 @@ type QuickSightAPI interface {
 	ListUserGroupsWithContext(aws.Context, *quicksight.ListUserGroupsInput, ...request.Option) (*quicksight.ListUserGroupsOutput, error)
 	ListUserGroupsRequest(*quicksight.ListUserGroupsInput) (*request.Request, *quicksight.ListUserGroupsOutput)
 
+	ListUserGroupsPages(*quicksight.ListUserGroupsInput, func(*quicksight.ListUserGroupsOutput, bool) bool) error
+	ListUserGroupsPagesWithContext(aws.Context, *quicksight.ListUserGroupsInput, func(*quicksight.ListUserGroupsOutput, bool) bool, ...request.Option) error
+
 	ListUsers(*quicksight.ListUsersInput) (*quicksight.ListUsersOutput, error)
 	ListUsersWithContext(aws.Context, *quicksight.ListUsersInput, ...request.Option) (*quicksight.ListUsersOutput, error)
 	ListUsersRequest(*quicksight.ListUsersInput) (*request.Request, *quicksight.ListUsersOutput)
+
+	ListUsersPages(*quicksight.ListUsersInput, func(*quicksight.ListUsersOutput, bool) bool) error
+	ListUsersPagesWithContext(aws.Context, *quicksight.ListUsersInput, func(*quicksight.ListUsersOutput, bool) bool, ...request.Option) error
 
 	ListVPCConnections(*quicksight.ListVPCConnectionsInput) (*quicksight.ListVPCConnectionsOutput, error)
 	ListVPCConnectionsWithContext(aws.Context, *quicksight.ListVPCConnectionsInput, ...request.Option) (*quicksight.ListVPCConnectionsOutput, error)
@@ -620,6 +646,9 @@ type QuickSightAPI interface {
 	SearchGroupsWithContext(aws.Context, *quicksight.SearchGroupsInput, ...request.Option) (*quicksight.SearchGroupsOutput, error)
 	SearchGroupsRequest(*quicksight.SearchGroupsInput) (*request.Request, *quicksight.SearchGroupsOutput)
 
+	SearchGroupsPages(*quicksight.SearchGroupsInput, func(*quicksight.SearchGroupsOutput, bool) bool) error
+	SearchGroupsPagesWithContext(aws.Context, *quicksight.SearchGroupsInput, func(*quicksight.SearchGroupsOutput, bool) bool, ...request.Option) error
+
 	StartAssetBundleExportJob(*quicksight.StartAssetBundleExportJobInput) (*quicksight.StartAssetBundleExportJobOutput, error)
 	StartAssetBundleExportJobWithContext(aws.Context, *quicksight.StartAssetBundleExportJobInput, ...request.Option) (*quicksight.StartAssetBundleExportJobOutput, error)
 	StartAssetBundleExportJobRequest(*quicksight.StartAssetBundleExportJobInput) (*request.Request, *quicksight.StartAssetBundleExportJobOutput)
@@ -627,6 +656,10 @@ type QuickSightAPI interface {
 	StartAssetBundleImportJob(*quicksight.StartAssetBundleImportJobInput) (*quicksight.StartAssetBundleImportJobOutput, error)
 	StartAssetBundleImportJobWithContext(aws.Context, *quicksight.StartAssetBundleImportJobInput, ...request.Option) (*quicksight.StartAssetBundleImportJobOutput, error)
 	StartAssetBundleImportJobRequest(*quicksight.StartAssetBundleImportJobInput) (*request.Request, *quicksight.StartAssetBundleImportJobOutput)
+
+	StartDashboardSnapshotJob(*quicksight.StartDashboardSnapshotJobInput) (*quicksight.StartDashboardSnapshotJobOutput, error)
+	StartDashboardSnapshotJobWithContext(aws.Context, *quicksight.StartDashboardSnapshotJobInput, ...request.Option) (*quicksight.StartDashboardSnapshotJobOutput, error)
+	StartDashboardSnapshotJobRequest(*quicksight.StartDashboardSnapshotJobInput) (*request.Request, *quicksight.StartDashboardSnapshotJobOutput)
 
 	TagResource(*quicksight.TagResourceInput) (*quicksight.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *quicksight.TagResourceInput, ...request.Option) (*quicksight.TagResourceOutput, error)

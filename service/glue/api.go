@@ -25849,6 +25849,9 @@ type CodeGenConfigurationNode struct {
 	// Specifies a target that uses Postgres SQL.
 	PostgreSQLCatalogTarget *PostgreSQLCatalogTarget `type:"structure"`
 
+	// Specifies a Glue DataBrew recipe node.
+	Recipe *Recipe `type:"structure"`
+
 	// Specifies an Amazon Redshift data store.
 	RedshiftSource *RedshiftSource `type:"structure"`
 
@@ -26150,6 +26153,11 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.PostgreSQLCatalogTarget != nil {
 		if err := s.PostgreSQLCatalogTarget.Validate(); err != nil {
 			invalidParams.AddNested("PostgreSQLCatalogTarget", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Recipe != nil {
+		if err := s.Recipe.Validate(); err != nil {
+			invalidParams.AddNested("Recipe", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.RedshiftSource != nil {
@@ -26525,6 +26533,12 @@ func (s *CodeGenConfigurationNode) SetPostgreSQLCatalogSource(v *PostgreSQLCatal
 // SetPostgreSQLCatalogTarget sets the PostgreSQLCatalogTarget field's value.
 func (s *CodeGenConfigurationNode) SetPostgreSQLCatalogTarget(v *PostgreSQLCatalogTarget) *CodeGenConfigurationNode {
 	s.PostgreSQLCatalogTarget = v
+	return s
+}
+
+// SetRecipe sets the Recipe field's value.
+func (s *CodeGenConfigurationNode) SetRecipe(v *Recipe) *CodeGenConfigurationNode {
+	s.Recipe = v
 	return s
 }
 
@@ -58929,6 +58943,153 @@ func (s *QuerySchemaVersionMetadataOutput) SetNextToken(v string) *QuerySchemaVe
 // SetSchemaVersionId sets the SchemaVersionId field's value.
 func (s *QuerySchemaVersionMetadataOutput) SetSchemaVersionId(v string) *QuerySchemaVersionMetadataOutput {
 	s.SchemaVersionId = &v
+	return s
+}
+
+// A Glue Studio node that uses a Glue DataBrew recipe in Glue jobs.
+type Recipe struct {
+	_ struct{} `type:"structure"`
+
+	// The nodes that are inputs to the recipe node, identified by id.
+	//
+	// Inputs is a required field
+	Inputs []*string `min:"1" type:"list" required:"true"`
+
+	// The name of the Glue Studio node.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// A reference to the DataBrew recipe used by the node.
+	//
+	// RecipeReference is a required field
+	RecipeReference *RecipeReference `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recipe) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recipe) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Recipe) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Recipe"}
+	if s.Inputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Inputs"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.RecipeReference == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecipeReference"))
+	}
+	if s.RecipeReference != nil {
+		if err := s.RecipeReference.Validate(); err != nil {
+			invalidParams.AddNested("RecipeReference", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *Recipe) SetInputs(v []*string) *Recipe {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Recipe) SetName(v string) *Recipe {
+	s.Name = &v
+	return s
+}
+
+// SetRecipeReference sets the RecipeReference field's value.
+func (s *Recipe) SetRecipeReference(v *RecipeReference) *Recipe {
+	s.RecipeReference = v
+	return s
+}
+
+// A reference to a Glue DataBrew recipe.
+type RecipeReference struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the DataBrew recipe.
+	//
+	// RecipeArn is a required field
+	RecipeArn *string `type:"string" required:"true"`
+
+	// The RecipeVersion of the DataBrew recipe.
+	//
+	// RecipeVersion is a required field
+	RecipeVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecipeReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecipeReference) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecipeReference) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecipeReference"}
+	if s.RecipeArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecipeArn"))
+	}
+	if s.RecipeVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecipeVersion"))
+	}
+	if s.RecipeVersion != nil && len(*s.RecipeVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecipeVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecipeArn sets the RecipeArn field's value.
+func (s *RecipeReference) SetRecipeArn(v string) *RecipeReference {
+	s.RecipeArn = &v
+	return s
+}
+
+// SetRecipeVersion sets the RecipeVersion field's value.
+func (s *RecipeReference) SetRecipeVersion(v string) *RecipeReference {
+	s.RecipeVersion = &v
 	return s
 }
 
