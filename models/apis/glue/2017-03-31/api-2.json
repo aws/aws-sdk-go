@@ -4268,7 +4268,8 @@
         "S3DeltaDirectTarget":{"shape":"S3DeltaDirectTarget"},
         "AmazonRedshiftSource":{"shape":"AmazonRedshiftSource"},
         "AmazonRedshiftTarget":{"shape":"AmazonRedshiftTarget"},
-        "EvaluateDataQualityMultiFrame":{"shape":"EvaluateDataQualityMultiFrame"}
+        "EvaluateDataQualityMultiFrame":{"shape":"EvaluateDataQualityMultiFrame"},
+        "Recipe":{"shape":"Recipe"}
       }
     },
     "CodeGenConfigurationNodes":{
@@ -10067,6 +10068,35 @@
         "single_quote",
         "disabled"
       ]
+    },
+    "Recipe":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Inputs",
+        "RecipeReference"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Inputs":{"shape":"OneInput"},
+        "RecipeReference":{"shape":"RecipeReference"}
+      }
+    },
+    "RecipeReference":{
+      "type":"structure",
+      "required":[
+        "RecipeArn",
+        "RecipeVersion"
+      ],
+      "members":{
+        "RecipeArn":{"shape":"EnclosedInStringProperty"},
+        "RecipeVersion":{"shape":"RecipeVersion"}
+      }
+    },
+    "RecipeVersion":{
+      "type":"string",
+      "max":16,
+      "min":1
     },
     "RecordsCount":{
       "type":"long",

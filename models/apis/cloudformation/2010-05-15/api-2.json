@@ -665,6 +665,23 @@
         "resultWrapper":"ListImportsResult"
       }
     },
+    "ListStackInstanceResourceDrifts":{
+      "name":"ListStackInstanceResourceDrifts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStackInstanceResourceDriftsInput"},
+      "output":{
+        "shape":"ListStackInstanceResourceDriftsOutput",
+        "resultWrapper":"ListStackInstanceResourceDriftsResult"
+      },
+      "errors":[
+        {"shape":"StackSetNotFoundException"},
+        {"shape":"StackInstanceNotFoundException"},
+        {"shape":"OperationNotFoundException"}
+      ]
+    },
     "ListStackInstances":{
       "name":"ListStackInstances",
       "http":{
@@ -2426,6 +2443,32 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListStackInstanceResourceDriftsInput":{
+      "type":"structure",
+      "required":[
+        "StackSetName",
+        "StackInstanceAccount",
+        "StackInstanceRegion",
+        "OperationId"
+      ],
+      "members":{
+        "StackSetName":{"shape":"StackSetNameOrId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "StackInstanceResourceDriftStatuses":{"shape":"StackResourceDriftStatusFilters"},
+        "StackInstanceAccount":{"shape":"Account"},
+        "StackInstanceRegion":{"shape":"Region"},
+        "OperationId":{"shape":"ClientRequestToken"},
+        "CallAs":{"shape":"CallAs"}
+      }
+    },
+    "ListStackInstanceResourceDriftsOutput":{
+      "type":"structure",
+      "members":{
+        "Summaries":{"shape":"StackInstanceResourceDriftsSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListStackInstancesInput":{
       "type":"structure",
       "required":["StackSetName"],
@@ -3517,7 +3560,8 @@
       "type":"string",
       "enum":[
         "DETAILED_STATUS",
-        "LAST_OPERATION_ID"
+        "LAST_OPERATION_ID",
+        "DRIFT_STATUS"
       ]
     },
     "StackInstanceFilterValues":{
@@ -3529,7 +3573,7 @@
     "StackInstanceFilters":{
       "type":"list",
       "member":{"shape":"StackInstanceFilter"},
-      "max":2
+      "max":3
     },
     "StackInstanceNotFoundException":{
       "type":"structure",
@@ -3541,6 +3585,30 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "StackInstanceResourceDriftsSummaries":{
+      "type":"list",
+      "member":{"shape":"StackInstanceResourceDriftsSummary"}
+    },
+    "StackInstanceResourceDriftsSummary":{
+      "type":"structure",
+      "required":[
+        "StackId",
+        "LogicalResourceId",
+        "ResourceType",
+        "StackResourceDriftStatus",
+        "Timestamp"
+      ],
+      "members":{
+        "StackId":{"shape":"StackId"},
+        "LogicalResourceId":{"shape":"LogicalResourceId"},
+        "PhysicalResourceId":{"shape":"PhysicalResourceId"},
+        "PhysicalResourceIdContext":{"shape":"PhysicalResourceIdContext"},
+        "ResourceType":{"shape":"ResourceType"},
+        "PropertyDifferences":{"shape":"PropertyDifferences"},
+        "StackResourceDriftStatus":{"shape":"StackResourceDriftStatus"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
     },
     "StackInstanceStatus":{
       "type":"string",
