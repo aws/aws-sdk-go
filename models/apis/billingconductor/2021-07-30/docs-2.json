@@ -38,7 +38,7 @@
     "AWSCost": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$AWSCost": "<p>The actual Amazon Web Services charges for the billing group. </p>"
+        "BillingGroupCostReportElement$AWSCost": "<p>The actual Amazon Web Services charges for the billing group.</p>"
       }
     },
     "AccessDeniedException": {
@@ -53,7 +53,7 @@
       }
     },
     "AccountAssociationsListElement": {
-      "base": "<p> A representation of a linked account. </p>",
+      "base": "<p>A representation of a linked account.</p>",
       "refs": {
         "AccountAssociationsList$member": null
       }
@@ -61,24 +61,24 @@
     "AccountEmail": {
       "base": null,
       "refs": {
-        "AccountAssociationsListElement$AccountEmail": "<p> The Amazon Web Services account email. </p>"
+        "AccountAssociationsListElement$AccountEmail": "<p>The Amazon Web Services account email.</p>"
       }
     },
     "AccountGrouping": {
-      "base": "<p> The set of accounts that will be under the billing group. The set of accounts resemble the linked accounts in a consolidated family. </p>",
+      "base": "<p>The set of accounts that will be under the billing group. The set of accounts resemble the linked accounts in a consolidated billing family.</p>",
       "refs": {
-        "CreateBillingGroupInput$AccountGrouping": "<p> The set of accounts that will be under the billing group. The set of accounts resemble the linked accounts in a consolidated family. </p>"
+        "CreateBillingGroupInput$AccountGrouping": "<p> The set of accounts that will be under the billing group. The set of accounts resemble the linked accounts in a consolidated billing family. </p>"
       }
     },
     "AccountId": {
       "base": null,
       "refs": {
-        "AccountAssociationsListElement$AccountId": "<p> The associating array of account IDs. </p>",
+        "AccountAssociationsListElement$AccountId": "<p>The associating array of account IDs.</p>",
         "AccountIdFilterList$member": null,
         "AccountIdList$member": null,
-        "BillingGroupListElement$PrimaryAccountId": "<p>The account ID that serves as the main account in a billing group. </p>",
+        "BillingGroupListElement$PrimaryAccountId": "<p>The account ID that serves as the main account in a billing group.</p>",
         "CreateBillingGroupInput$PrimaryAccountId": "<p> The account ID that serves as the main account in a billing group. </p>",
-        "ListAccountAssociationsFilter$AccountId": "<p> The Amazon Web Services account ID to filter on. </p>",
+        "ListAccountAssociationsFilter$AccountId": "<p>The Amazon Web Services account ID to filter on.</p>",
         "UpdateBillingGroupOutput$PrimaryAccountId": "<p> The account ID that serves as the main account in a billing group. </p>"
       }
     },
@@ -91,7 +91,7 @@
     "AccountIdList": {
       "base": null,
       "refs": {
-        "AccountGrouping$LinkedAccountIds": "<p> The account IDs that make up the billing group. Account IDs must be a part of the consolidated billing family, and not associated with another billing group. </p>",
+        "AccountGrouping$LinkedAccountIds": "<p>The account IDs that make up the billing group. Account IDs must be a part of the consolidated billing family, and not associated with another billing group.</p>",
         "AssociateAccountsInput$AccountIds": "<p> The associating array of account IDs. </p>",
         "DisassociateAccountsInput$AccountIds": "<p>The array of account IDs to disassociate. </p>"
       }
@@ -99,7 +99,7 @@
     "AccountName": {
       "base": null,
       "refs": {
-        "AccountAssociationsListElement$AccountName": "<p> The Amazon Web Services account name. </p>"
+        "AccountAssociationsListElement$AccountName": "<p>The Amazon Web Services account name.</p>"
       }
     },
     "Arn": {
@@ -131,20 +131,20 @@
       }
     },
     "AssociateResourceError": {
-      "base": "<p> A representation of a resource association error. </p>",
+      "base": "<p>A representation of a resource association error.</p>",
       "refs": {
-        "AssociateResourceResponseElement$Error": "<p> An <code>AssociateResourceError</code> that will populate if the resource association fails. </p>",
+        "AssociateResourceResponseElement$Error": "<p>An <code>AssociateResourceError</code> that will populate if the resource association fails.</p>",
         "DisassociateResourceResponseElement$Error": "<p> An <code>AssociateResourceError</code> that's shown if the resource disassociation fails. </p>"
       }
     },
     "AssociateResourceErrorReason": {
       "base": null,
       "refs": {
-        "AssociateResourceError$Reason": "<p> A static error code that's used to classify the type of failure. </p>"
+        "AssociateResourceError$Reason": "<p>A static error code that's used to classify the type of failure.</p>"
       }
     },
     "AssociateResourceResponseElement": {
-      "base": "<p> A resource association result for a percentage custom line item. </p>",
+      "base": "<p>A resource association result for a percentage custom line item.</p>",
       "refs": {
         "AssociateResourcesResponseList$member": null
       }
@@ -159,7 +159,7 @@
     "Association": {
       "base": null,
       "refs": {
-        "ListAccountAssociationsFilter$Association": "<p> <code>MONITORED</code>: linked accounts that are associated to billing groups.</p> <p> <code>UNMONITORED</code>: linked accounts that are not associated to billing groups.</p> <p> <code>Billing Group Arn</code>: linked accounts that are associated to the provided Billing Group Arn. </p>"
+        "ListAccountAssociationsFilter$Association": "<p> <code>MONITORED</code>: linked accounts that are associated to billing groups.</p> <p> <code>UNMONITORED</code>: linked accounts that are not associated to billing groups.</p> <p> <code>Billing Group Arn</code>: linked accounts that are associated to the provided Billing Group Arn.</p>"
       }
     },
     "BatchAssociateResourcesToCustomLineItemInput": {
@@ -193,15 +193,15 @@
     "BillingGroupArn": {
       "base": null,
       "refs": {
-        "AccountAssociationsListElement$BillingGroupArn": "<p> The Billing Group Arn that the linked account is associated to. </p>",
+        "AccountAssociationsListElement$BillingGroupArn": "<p>The Billing Group Arn that the linked account is associated to.</p>",
         "AssociateAccountsInput$Arn": "<p> The Amazon Resource Name (ARN) of the billing group that associates the array of account IDs. </p>",
         "AssociateAccountsOutput$Arn": "<p> The Amazon Resource Name (ARN) of the billing group that associates the array of account IDs. </p>",
         "BillingGroupArnList$member": null,
-        "BillingGroupCostReportElement$Arn": "<p>The Amazon Resource Name (ARN) of a billing group. </p>",
-        "BillingGroupListElement$Arn": "<p>The Amazon Resource Number (ARN) that can be used to uniquely identify the billing group. </p>",
+        "BillingGroupCostReportElement$Arn": "<p>The Amazon Resource Name (ARN) of a billing group.</p>",
+        "BillingGroupListElement$Arn": "<p>The Amazon Resource Number (ARN) that can be used to uniquely identify the billing group.</p>",
         "CreateBillingGroupOutput$Arn": "<p>The Amazon Resource Name (ARN) of the created billing group. </p>",
         "CreateCustomLineItemInput$BillingGroupArn": "<p> The Amazon Resource Name (ARN) that references the billing group where the custom line item applies to. </p>",
-        "CustomLineItemListElement$BillingGroupArn": "<p> The Amazon Resource Name (ARN) that references the billing group where the custom line item applies to. </p>",
+        "CustomLineItemListElement$BillingGroupArn": "<p>The Amazon Resource Name (ARN) that references the billing group where the custom line item applies to.</p>",
         "CustomLineItemVersionListElement$BillingGroupArn": "<p>The Amazon Resource Name (ARN) of the billing group that the custom line item applies to.</p>",
         "DeleteBillingGroupInput$Arn": "<p>The Amazon Resource Name (ARN) of the billing group that you're deleting.</p>",
         "DeleteBillingGroupOutput$Arn": "<p>The Amazon Resource Name (ARN) of the deleted billing group.</p>",
@@ -215,12 +215,12 @@
       "base": null,
       "refs": {
         "ListBillingGroupCostReportsFilter$BillingGroupArns": "<p>The list of Amazon Resource Names (ARNs) used to filter billing groups to retrieve reports. </p>",
-        "ListBillingGroupsFilter$Arns": "<p>The list of billing group Amazon Resource Names (ARNs) to retrieve information. </p>",
-        "ListCustomLineItemsFilter$BillingGroups": "<p> The billing group Amazon Resource Names (ARNs) to retrieve information. </p>"
+        "ListBillingGroupsFilter$Arns": "<p>The list of billing group Amazon Resource Names (ARNs) to retrieve information.</p>",
+        "ListCustomLineItemsFilter$BillingGroups": "<p>The billing group Amazon Resource Names (ARNs) to retrieve information.</p>"
       }
     },
     "BillingGroupCostReportElement": {
-      "base": "<p>A summary report of actual Amazon Web Services charges and calculated Amazon Web Services charges, based on the associated pricing plan of a billing group. </p>",
+      "base": "<p>A summary report of actual Amazon Web Services charges and calculated Amazon Web Services charges, based on the associated pricing plan of a billing group.</p>",
       "refs": {
         "BillingGroupCostReportList$member": null
       }
@@ -234,7 +234,7 @@
     "BillingGroupDescription": {
       "base": null,
       "refs": {
-        "BillingGroupListElement$Description": "<p>The description of the billing group. </p>",
+        "BillingGroupListElement$Description": "<p>The description of the billing group.</p>",
         "CreateBillingGroupInput$Description": "<p>The description of the billing group. </p>",
         "UpdateBillingGroupInput$Description": "<p>A description of the billing group. </p>",
         "UpdateBillingGroupOutput$Description": "<p> A description of the billing group. </p>"
@@ -253,7 +253,7 @@
       }
     },
     "BillingGroupListElement": {
-      "base": "<p>A representation of a billing group. </p>",
+      "base": "<p>A representation of a billing group.</p>",
       "refs": {
         "BillingGroupList$member": null
       }
@@ -261,7 +261,7 @@
     "BillingGroupName": {
       "base": null,
       "refs": {
-        "BillingGroupListElement$Name": "<p>The name of the billing group. </p>",
+        "BillingGroupListElement$Name": "<p>The name of the billing group.</p>",
         "CreateBillingGroupInput$Name": "<p> The billing group name. The names must be unique. </p>",
         "UpdateBillingGroupInput$Name": "<p>The name of the billing group. The names must be unique to each billing group. </p>",
         "UpdateBillingGroupOutput$Name": "<p> The name of the billing group. The names must be unique to each billing group. </p>"
@@ -270,7 +270,7 @@
     "BillingGroupStatus": {
       "base": null,
       "refs": {
-        "BillingGroupListElement$Status": "<p>The billing group status. Only one of the valid values can be used. </p>",
+        "BillingGroupListElement$Status": "<p>The billing group status. Only one of the valid values can be used.</p>",
         "BillingGroupStatusList$member": null,
         "UpdateBillingGroupInput$Status": "<p>The status of the billing group. Only one of the valid values can be used. </p>",
         "UpdateBillingGroupOutput$Status": "<p> The status of the billing group. Only one of the valid values can be used. </p>"
@@ -285,15 +285,15 @@
     "BillingGroupStatusReason": {
       "base": null,
       "refs": {
-        "BillingGroupListElement$StatusReason": "<p>The reason why the billing group is in its current status. </p>",
+        "BillingGroupListElement$StatusReason": "<p>The reason why the billing group is in its current status.</p>",
         "UpdateBillingGroupOutput$StatusReason": "<p> The reason why the billing group is in its current status. </p>"
       }
     },
     "BillingPeriod": {
       "base": null,
       "refs": {
-        "CustomLineItemBillingPeriodRange$InclusiveStartBillingPeriod": "<p> The inclusive start billing period that defines a billing period range where a custom line is applied. </p>",
-        "CustomLineItemBillingPeriodRange$ExclusiveEndBillingPeriod": "<p> The inclusive end billing period that defines a billing period range where a custom line is applied. </p>",
+        "CustomLineItemBillingPeriodRange$InclusiveStartBillingPeriod": "<p>The inclusive start billing period that defines a billing period range where a custom line is applied.</p>",
+        "CustomLineItemBillingPeriodRange$ExclusiveEndBillingPeriod": "<p>The inclusive end billing period that defines a billing period range where a custom line is applied.</p>",
         "CustomLineItemVersionListElement$StartBillingPeriod": "<p>The start billing period of the custom line item version.</p>",
         "CustomLineItemVersionListElement$EndBillingPeriod": "<p>The end billing period of the custom line item version.</p>",
         "ListAccountAssociationsInput$BillingPeriod": "<p> The preferred billing period to get account associations. </p>",
@@ -314,6 +314,15 @@
         "ListResourcesAssociatedToCustomLineItemResponseElement$EndBillingPeriod": "<p>The end billing period of the associated resource.</p>"
       }
     },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "AccountGrouping$AutoAssociate": "<p>Specifies if this billing group will automatically associate newly added Amazon Web Services accounts that join your consolidated billing family.</p>",
+        "ListBillingGroupAccountGrouping$AutoAssociate": "<p>Specifies if this billing group will automatically associate newly added Amazon Web Services accounts that join your consolidated billing family.</p>",
+        "ListBillingGroupsFilter$AutoAssociate": "<p>Specifies if this billing group will automatically associate newly added Amazon Web Services accounts that join your consolidated billing family.</p>",
+        "UpdateBillingGroupAccountGrouping$AutoAssociate": "<p>Specifies if this billing group will automatically associate newly added Amazon Web Services accounts that join your consolidated billing family.</p>"
+      }
+    },
     "ClientToken": {
       "base": null,
       "refs": {
@@ -324,7 +333,7 @@
       }
     },
     "ComputationPreference": {
-      "base": "<p> The preferences and settings that will be used to compute the Amazon Web Services charges for a billing group. </p>",
+      "base": "<p>The preferences and settings that will be used to compute the Amazon Web Services charges for a billing group.</p>",
       "refs": {
         "BillingGroupListElement$ComputationPreference": null,
         "CreateBillingGroupInput$ComputationPreference": "<p> The preferences and settings that will be used to compute the Amazon Web Services charges for a billing group. </p>",
@@ -397,13 +406,13 @@
     "Currency": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$Currency": "<p>The displayed currency. </p>"
+        "BillingGroupCostReportElement$Currency": "<p>The displayed currency.</p>"
       }
     },
     "CurrencyCode": {
       "base": null,
       "refs": {
-        "CustomLineItemListElement$CurrencyCode": "<p> The custom line item's charge value currency. Only one of the valid values can be used. </p>",
+        "CustomLineItemListElement$CurrencyCode": "<p>The custom line item's charge value currency. Only one of the valid values can be used.</p>",
         "CustomLineItemVersionListElement$CurrencyCode": "<p>The charge value currency of the custom line item.</p>"
       }
     },
@@ -414,7 +423,7 @@
         "BatchDisassociateResourcesFromCustomLineItemInput$TargetArn": "<p> A percentage custom line item ARN to disassociate the resources from. </p>",
         "CreateCustomLineItemOutput$Arn": "<p> The Amazon Resource Name (ARN) of the created custom line item. </p>",
         "CustomLineItemArns$member": null,
-        "CustomLineItemListElement$Arn": "<p> The Amazon Resource Names (ARNs) for custom line items. </p>",
+        "CustomLineItemListElement$Arn": "<p>The Amazon Resource Names (ARNs) for custom line items.</p>",
         "CustomLineItemVersionListElement$Arn": "<p> A list of custom line item Amazon Resource Names (ARNs) to retrieve information. </p>",
         "DeleteCustomLineItemInput$Arn": "<p> The ARN of the custom line item to be deleted. </p>",
         "DeleteCustomLineItemOutput$Arn": "<p> Then ARN of the deleted custom line item. </p>",
@@ -428,24 +437,24 @@
     "CustomLineItemArns": {
       "base": null,
       "refs": {
-        "ListCustomLineItemsFilter$Arns": "<p> A list of custom line item ARNs to retrieve information. </p>"
+        "ListCustomLineItemsFilter$Arns": "<p>A list of custom line item ARNs to retrieve information.</p>"
       }
     },
     "CustomLineItemAssociationElement": {
       "base": null,
       "refs": {
-        "AssociateResourceResponseElement$Arn": "<p> The resource ARN that was associated to the custom line item. </p>",
+        "AssociateResourceResponseElement$Arn": "<p>The resource ARN that was associated to the custom line item.</p>",
         "CustomLineItemAssociationsList$member": null,
         "CustomLineItemBatchAssociationsList$member": null,
         "CustomLineItemBatchDisassociationsList$member": null,
-        "DisassociateResourceResponseElement$Arn": "<p> The resource ARN that was disassociated from the custom line item. </p>",
+        "DisassociateResourceResponseElement$Arn": "<p>The resource ARN that was disassociated from the custom line item. </p>",
         "ListResourcesAssociatedToCustomLineItemResponseElement$Arn": "<p> The ARN of the associated resource. </p>"
       }
     },
     "CustomLineItemAssociationsList": {
       "base": null,
       "refs": {
-        "CustomLineItemPercentageChargeDetails$AssociatedValues": "<p> A list of resource ARNs to associate to the percentage custom line item. </p>"
+        "CustomLineItemPercentageChargeDetails$AssociatedValues": "<p>A list of resource ARNs to associate to the percentage custom line item.</p>"
       }
     },
     "CustomLineItemBatchAssociationsList": {
@@ -461,7 +470,7 @@
       }
     },
     "CustomLineItemBillingPeriodRange": {
-      "base": "<p> The billing period range in which the custom line item request will be applied. </p>",
+      "base": "<p>The billing period range in which the custom line item request will be applied.</p>",
       "refs": {
         "BatchAssociateResourcesToCustomLineItemInput$BillingPeriodRange": null,
         "BatchDisassociateResourcesFromCustomLineItemInput$BillingPeriodRange": null,
@@ -471,7 +480,7 @@
       }
     },
     "CustomLineItemChargeDetails": {
-      "base": "<p> The charge details of a custom line item. It should contain only one of <code>Flat</code> or <code>Percentage</code>. </p>",
+      "base": "<p>The charge details of a custom line item. It should contain only one of <code>Flat</code> or <code>Percentage</code>.</p>",
       "refs": {
         "CreateCustomLineItemInput$ChargeDetails": "<p> A <code>CustomLineItemChargeDetails</code> that describes the charge details for a custom line item. </p>"
       }
@@ -479,7 +488,7 @@
     "CustomLineItemChargeValue": {
       "base": null,
       "refs": {
-        "CustomLineItemFlatChargeDetails$ChargeValue": "<p> The custom line item's fixed charge value in USD. </p>",
+        "CustomLineItemFlatChargeDetails$ChargeValue": "<p>The custom line item's fixed charge value in USD.</p>",
         "ListCustomLineItemFlatChargeDetails$ChargeValue": "<p> The custom line item's fixed charge value in USD. </p>",
         "UpdateCustomLineItemFlatChargeDetails$ChargeValue": "<p> The custom line item's new fixed charge value in USD. </p>"
       }
@@ -488,16 +497,16 @@
       "base": null,
       "refs": {
         "CreateCustomLineItemInput$Description": "<p> The description of the custom line item. This is shown on the Bills page in association with the charge value. </p>",
-        "CustomLineItemListElement$Description": "<p> The custom line item's description. This is shown on the Bills page in association with the charge value. </p>",
+        "CustomLineItemListElement$Description": "<p>The custom line item's description. This is shown on the Bills page in association with the charge value.</p>",
         "CustomLineItemVersionListElement$Description": "<p>The description of the custom line item.</p>",
         "UpdateCustomLineItemInput$Description": "<p> The new line item description of the custom line item. </p>",
         "UpdateCustomLineItemOutput$Description": "<p> The description of the successfully updated custom line item. </p>"
       }
     },
     "CustomLineItemFlatChargeDetails": {
-      "base": "<p> A representation of the charge details that are associated with a flat custom line item. </p>",
+      "base": "<p>A representation of the charge details that are associated with a flat custom line item.</p>",
       "refs": {
-        "CustomLineItemChargeDetails$Flat": "<p> A <code>CustomLineItemFlatChargeDetails</code> that describes the charge details of a flat custom line item. </p>"
+        "CustomLineItemChargeDetails$Flat": "<p>A <code>CustomLineItemFlatChargeDetails</code> that describes the charge details of a flat custom line item.</p>"
       }
     },
     "CustomLineItemList": {
@@ -507,7 +516,7 @@
       }
     },
     "CustomLineItemListElement": {
-      "base": "<p> A representation of a custom line item. </p>",
+      "base": "<p>A representation of a custom line item.</p>",
       "refs": {
         "CustomLineItemList$member": null
       }
@@ -516,7 +525,7 @@
       "base": null,
       "refs": {
         "CreateCustomLineItemInput$Name": "<p> The name of the custom line item. </p>",
-        "CustomLineItemListElement$Name": "<p> The custom line item's name. </p>",
+        "CustomLineItemListElement$Name": "<p>The custom line item's name.</p>",
         "CustomLineItemNameList$member": null,
         "CustomLineItemVersionListElement$Name": "<p>The name of the custom line item.</p>",
         "UpdateCustomLineItemInput$Name": "<p> The new name for the custom line item. </p>",
@@ -526,19 +535,19 @@
     "CustomLineItemNameList": {
       "base": null,
       "refs": {
-        "ListCustomLineItemsFilter$Names": "<p> A list of custom line items to retrieve information. </p>"
+        "ListCustomLineItemsFilter$Names": "<p>A list of custom line items to retrieve information.</p>"
       }
     },
     "CustomLineItemPercentageChargeDetails": {
-      "base": "<p> A representation of the charge details that are associated with a percentage custom line item. </p>",
+      "base": "<p>A representation of the charge details that are associated with a percentage custom line item.</p>",
       "refs": {
-        "CustomLineItemChargeDetails$Percentage": "<p> A <code>CustomLineItemPercentageChargeDetails</code> that describes the charge details of a percentage custom line item. </p>"
+        "CustomLineItemChargeDetails$Percentage": "<p>A <code>CustomLineItemPercentageChargeDetails</code> that describes the charge details of a percentage custom line item.</p>"
       }
     },
     "CustomLineItemPercentageChargeValue": {
       "base": null,
       "refs": {
-        "CustomLineItemPercentageChargeDetails$PercentageValue": "<p> The custom line item's percentage value. This will be multiplied against the combined value of its associated resources to determine its charge value. </p>",
+        "CustomLineItemPercentageChargeDetails$PercentageValue": "<p>The custom line item's percentage value. This will be multiplied against the combined value of its associated resources to determine its charge value. </p>",
         "ListCustomLineItemPercentageChargeDetails$PercentageValue": "<p> The custom line item's percentage value. This will be multiplied against the combined value of its associated resources to determine its charge value. </p>",
         "UpdateCustomLineItemPercentageChargeDetails$PercentageValue": "<p> The custom line item's new percentage value. This will be multiplied against the combined value of its associated resources to determine its charge value. </p>"
       }
@@ -546,7 +555,7 @@
     "CustomLineItemProductCode": {
       "base": null,
       "refs": {
-        "CustomLineItemListElement$ProductCode": "<p> The product code that's associated with the custom line item. </p>",
+        "CustomLineItemListElement$ProductCode": "<p>The product code that's associated with the custom line item.</p>",
         "CustomLineItemVersionListElement$ProductCode": "<p>The product code that’s associated with the custom line item.</p>"
       }
     },
@@ -560,7 +569,7 @@
     "CustomLineItemType": {
       "base": null,
       "refs": {
-        "CustomLineItemChargeDetails$Type": "<p> The type of the custom line item that indicates whether the charge is a fee or credit. </p>",
+        "CustomLineItemChargeDetails$Type": "<p>The type of the custom line item that indicates whether the charge is a fee or credit.</p>",
         "ListCustomLineItemChargeDetails$Type": "<p> The type of the custom line item that indicates whether the charge is a <code>fee</code> or <code>credit</code>. </p>"
       }
     },
@@ -637,7 +646,7 @@
       }
     },
     "DisassociateResourceResponseElement": {
-      "base": "<p> A resource disassociation result for a percentage custom line item. </p>",
+      "base": "<p>A resource disassociation result for a percentage custom line item.</p>",
       "refs": {
         "DisassociateResourcesResponseList$member": null
       }
@@ -658,17 +667,17 @@
     "Instant": {
       "base": null,
       "refs": {
-        "BillingGroupListElement$CreationTime": "<p> The time when the billing group was created. </p>",
-        "BillingGroupListElement$LastModifiedTime": "<p> The most recent time when the billing group was modified. </p>",
-        "CustomLineItemListElement$CreationTime": "<p> The time created. </p>",
-        "CustomLineItemListElement$LastModifiedTime": "<p> The most recent time when the custom line item was modified. </p>",
+        "BillingGroupListElement$CreationTime": "<p>The time when the billing group was created.</p>",
+        "BillingGroupListElement$LastModifiedTime": "<p>The most recent time when the billing group was modified.</p>",
+        "CustomLineItemListElement$CreationTime": "<p>The time created.</p>",
+        "CustomLineItemListElement$LastModifiedTime": "<p>The most recent time when the custom line item was modified.</p>",
         "CustomLineItemVersionListElement$CreationTime": "<p>The time when the custom line item version was created.</p>",
         "CustomLineItemVersionListElement$LastModifiedTime": "<p>The most recent time that the custom line item version was modified.</p>",
         "CustomLineItemVersionListElement$StartTime": "<p> The inclusive start time. </p>",
-        "PricingPlanListElement$CreationTime": "<p> The time when the pricing plan was created. </p>",
-        "PricingPlanListElement$LastModifiedTime": "<p> The most recent time when the pricing plan was modified. </p>",
-        "PricingRuleListElement$CreationTime": "<p> The time when the pricing rule was created. </p>",
-        "PricingRuleListElement$LastModifiedTime": "<p> The most recent time when the pricing rule was modified. </p>",
+        "PricingPlanListElement$CreationTime": "<p>The time when the pricing plan was created.</p>",
+        "PricingPlanListElement$LastModifiedTime": "<p>The most recent time when the pricing plan was modified.</p>",
+        "PricingRuleListElement$CreationTime": "<p>The time when the pricing rule was created.</p>",
+        "PricingRuleListElement$LastModifiedTime": "<p> The most recent time when the pricing rule was modified.</p>",
         "UpdateBillingGroupOutput$LastModifiedTime": "<p> The most recent time when the billing group was modified. </p>",
         "UpdateCustomLineItemOutput$LastModifiedTime": "<p> The most recent time when the custom line item was modified. </p>",
         "UpdatePricingPlanOutput$LastModifiedTime": "<p> The most recent time when the pricing plan was modified. </p>",
@@ -681,7 +690,7 @@
       }
     },
     "ListAccountAssociationsFilter": {
-      "base": "<p>The filter on the account ID of the linked account, or any of the following:</p> <p> <code>MONITORED</code>: linked accounts that are associated to billing groups.</p> <p> <code>UNMONITORED</code>: linked accounts that are not associated to billing groups.</p> <p> <code>Billing Group Arn</code>: linked accounts that are associated to the provided Billing Group Arn. </p>",
+      "base": "<p>The filter on the account ID of the linked account, or any of the following:</p> <p> <code>MONITORED</code>: linked accounts that are associated to billing groups.</p> <p> <code>UNMONITORED</code>: linked accounts that are not associated to billing groups.</p> <p> <code>Billing Group Arn</code>: linked accounts that are associated to the provided Billing Group Arn.</p>",
       "refs": {
         "ListAccountAssociationsInput$Filters": "<p>The filter on the account ID of the linked account, or any of the following:</p> <p> <code>MONITORED</code>: linked accounts that are associated to billing groups.</p> <p> <code>UNMONITORED</code>: linked accounts that aren't associated to billing groups.</p> <p> <code>Billing Group Arn</code>: linked accounts that are associated to the provided billing group Arn. </p>"
       }
@@ -696,8 +705,14 @@
       "refs": {
       }
     },
+    "ListBillingGroupAccountGrouping": {
+      "base": "<p>Specifies if the billing group has the following features enabled.</p>",
+      "refs": {
+        "BillingGroupListElement$AccountGrouping": "<p>Specifies if the billing group has automatic account association (<code>AutoAssociate</code>) enabled.</p>"
+      }
+    },
     "ListBillingGroupCostReportsFilter": {
-      "base": "<p>The filter used to retrieve specific <code>BillingGroupCostReportElements</code>. </p>",
+      "base": "<p>The filter used to retrieve specific <code>BillingGroupCostReportElements</code>.</p>",
       "refs": {
         "ListBillingGroupCostReportsInput$Filters": "<p>A <code>ListBillingGroupCostReportsFilter</code> to specify billing groups to retrieve reports from. </p>"
       }
@@ -713,7 +728,7 @@
       }
     },
     "ListBillingGroupsFilter": {
-      "base": "<p>The filter that specifies the billing groups and pricing plans to retrieve billing group information. </p>",
+      "base": "<p>The filter that specifies the billing groups and pricing plans to retrieve billing group information.</p>",
       "refs": {
         "ListBillingGroupsInput$Filters": "<p>A <code>ListBillingGroupsFilter</code> that specifies the billing group and pricing plan to retrieve billing group information. </p>"
       }
@@ -731,7 +746,7 @@
     "ListCustomLineItemChargeDetails": {
       "base": "<p> A representation of the charge details of a custom line item. </p>",
       "refs": {
-        "CustomLineItemListElement$ChargeDetails": "<p> A <code>ListCustomLineItemChargeDetails</code> that describes the charge details of a custom line item. </p>",
+        "CustomLineItemListElement$ChargeDetails": "<p>A <code>ListCustomLineItemChargeDetails</code> that describes the charge details of a custom line item.</p>",
         "CustomLineItemVersionListElement$ChargeDetails": null,
         "UpdateCustomLineItemOutput$ChargeDetails": "<p> A <code>ListCustomLineItemChargeDetails</code> containing the charge details of the successfully updated custom line item. </p>"
       }
@@ -771,7 +786,7 @@
       }
     },
     "ListCustomLineItemsFilter": {
-      "base": "<p> A filter that specifies the custom line items and billing groups to retrieve FFLI information. </p>",
+      "base": "<p>A filter that specifies the custom line items and billing groups to retrieve FFLI information.</p>",
       "refs": {
         "ListCustomLineItemsInput$Filters": "<p>A <code>ListCustomLineItemsFilter</code> that specifies the custom line item names and/or billing group Amazon Resource Names (ARNs) to retrieve FFLI information.</p>"
       }
@@ -797,7 +812,7 @@
       }
     },
     "ListPricingPlansFilter": {
-      "base": "<p>The filter that specifies the Amazon Resource Names (ARNs) of pricing plans, to retrieve pricing plan information. </p>",
+      "base": "<p>The filter that specifies the Amazon Resource Names (ARNs) of pricing plans, to retrieve pricing plan information.</p>",
       "refs": {
         "ListPricingPlansInput$Filters": "<p>A <code>ListPricingPlansFilter</code> that specifies the Amazon Resource Name (ARNs) of pricing plans to retrieve pricing plans information.</p>"
       }
@@ -823,7 +838,7 @@
       }
     },
     "ListPricingRulesFilter": {
-      "base": "<p> The filter that specifies criteria that the pricing rules returned by the <code>ListPricingRules</code> API will adhere to. </p>",
+      "base": "<p> The filter that specifies criteria that the pricing rules returned by the <code>ListPricingRules</code> API will adhere to.</p>",
       "refs": {
         "ListPricingRulesInput$Filters": "<p> A <code>DescribePricingRuleFilter</code> that specifies the Amazon Resource Name (ARNs) of pricing rules to retrieve pricing rules information. </p>"
       }
@@ -879,13 +894,13 @@
     "Margin": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$Margin": "<p> The billing group margin. </p>"
+        "BillingGroupCostReportElement$Margin": "<p>The billing group margin.</p>"
       }
     },
     "MarginPercentage": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$MarginPercentage": "<p> The percentage of billing group margin. </p>"
+        "BillingGroupCostReportElement$MarginPercentage": "<p>The percentage of billing group margin.</p>"
       }
     },
     "MaxBillingGroupResults": {
@@ -921,7 +936,7 @@
       "base": null,
       "refs": {
         "CreatePricingRuleInput$ModifierPercentage": "<p> A percentage modifier that's applied on the public pricing rates. </p>",
-        "PricingRuleListElement$ModifierPercentage": "<p> A percentage modifier applied on the public pricing rates. </p>",
+        "PricingRuleListElement$ModifierPercentage": "<p>A percentage modifier applied on the public pricing rates.</p>",
         "UpdatePricingRuleInput$ModifierPercentage": "<p> The new modifier to show pricing plan rates as a percentage. </p>",
         "UpdatePricingRuleOutput$ModifierPercentage": "<p> The new modifier to show pricing plan rates as a percentage. </p>"
       }
@@ -929,21 +944,21 @@
     "NumberOfAccounts": {
       "base": null,
       "refs": {
-        "BillingGroupListElement$Size": "<p>The number of accounts in the particular billing group. </p>",
+        "BillingGroupListElement$Size": "<p>The number of accounts in the particular billing group.</p>",
         "UpdateBillingGroupOutput$Size": "<p> The number of accounts in the particular billing group. </p>"
       }
     },
     "NumberOfAssociatedPricingRules": {
       "base": null,
       "refs": {
-        "PricingPlanListElement$Size": "<p> The pricing rules count that's currently associated with this pricing plan list element. </p>",
+        "PricingPlanListElement$Size": "<p>The pricing rules count that's currently associated with this pricing plan list element.</p>",
         "UpdatePricingPlanOutput$Size": "<p> The pricing rules count that's currently associated with this pricing plan list. </p>"
       }
     },
     "NumberOfAssociations": {
       "base": null,
       "refs": {
-        "CustomLineItemListElement$AssociationSize": "<p> The number of resources that are associated to the custom line item. </p>",
+        "CustomLineItemListElement$AssociationSize": "<p>The number of resources that are associated to the custom line item.</p>",
         "CustomLineItemVersionListElement$AssociationSize": "<p>The number of resources that are associated with the custom line item.</p>",
         "UpdateCustomLineItemOutput$AssociationSize": "<p> The number of resources that are associated to the custom line item. </p>"
       }
@@ -951,7 +966,7 @@
     "NumberOfPricingPlansAssociatedWith": {
       "base": null,
       "refs": {
-        "PricingRuleListElement$AssociatedPricingPlanCount": "<p> The pricing plans count that this pricing rule is associated with. </p>",
+        "PricingRuleListElement$AssociatedPricingPlanCount": "<p>The pricing plans count that this pricing rule is associated with.</p>",
         "UpdatePricingRuleOutput$AssociatedPricingPlanCount": "<p> The pricing plans count that this pricing rule is associated with. </p>"
       }
     },
@@ -976,7 +991,7 @@
         "ListPricingRulesAssociatedToPricingPlanInput$PricingPlanArn": "<p> The Amazon Resource Name (ARN) of the pricing plan for which associations are to be listed.</p>",
         "ListPricingRulesAssociatedToPricingPlanOutput$PricingPlanArn": "<p> The Amazon Resource Name (ARN) of the pricing plan for which associations are listed.</p>",
         "PricingPlanArns$member": null,
-        "PricingPlanListElement$Arn": "<p>The pricing plan Amazon Resource Names (ARN). This can be used to uniquely identify a pricing plan. </p>",
+        "PricingPlanListElement$Arn": "<p>The pricing plan Amazon Resource Names (ARN). This can be used to uniquely identify a pricing plan.</p>",
         "UpdateBillingGroupOutput$PricingPlanArn": "<p> The Amazon Resource Name (ARN) of the pricing plan to compute Amazon Web Services charges for the billing group. </p>",
         "UpdatePricingPlanInput$Arn": "<p>The Amazon Resource Name (ARN) of the pricing plan that you're updating. </p>",
         "UpdatePricingPlanOutput$Arn": "<p>The Amazon Resource Name (ARN) of the updated pricing plan. </p>"
@@ -986,14 +1001,14 @@
       "base": null,
       "refs": {
         "ListPricingPlansAssociatedWithPricingRuleOutput$PricingPlanArns": "<p> The list containing pricing plans that are associated with the requested pricing rule. </p>",
-        "ListPricingPlansFilter$Arns": "<p>A list of pricing plan Amazon Resource Names (ARNs) to retrieve information. </p>"
+        "ListPricingPlansFilter$Arns": "<p>A list of pricing plan Amazon Resource Names (ARNs) to retrieve information.</p>"
       }
     },
     "PricingPlanDescription": {
       "base": null,
       "refs": {
         "CreatePricingPlanInput$Description": "<p>The description of the pricing plan. </p>",
-        "PricingPlanListElement$Description": "<p>The pricing plan description. </p>",
+        "PricingPlanListElement$Description": "<p>The pricing plan description.</p>",
         "UpdatePricingPlanInput$Description": "<p>The description of the pricing plan. </p>",
         "UpdatePricingPlanOutput$Description": "<p> The new description for the pricing rule. </p>"
       }
@@ -1002,7 +1017,7 @@
       "base": null,
       "refs": {
         "ComputationPreference$PricingPlanArn": "<p> The Amazon Resource Name (ARN) of the pricing plan that's used to compute the Amazon Web Services charges for a billing group. </p>",
-        "ListBillingGroupsFilter$PricingPlan": "<p>The pricing plan Amazon Resource Names (ARNs) to retrieve information. </p>"
+        "ListBillingGroupsFilter$PricingPlan": "<p>The pricing plan Amazon Resource Names (ARNs) to retrieve information.</p>"
       }
     },
     "PricingPlanList": {
@@ -1012,7 +1027,7 @@
       }
     },
     "PricingPlanListElement": {
-      "base": "<p>A representation of a pricing plan. </p>",
+      "base": "<p>A representation of a pricing plan.</p>",
       "refs": {
         "PricingPlanList$member": null
       }
@@ -1021,7 +1036,7 @@
       "base": null,
       "refs": {
         "CreatePricingPlanInput$Name": "<p>The name of the pricing plan. The names must be unique to each pricing plan. </p>",
-        "PricingPlanListElement$Name": "<p>The name of a pricing plan. </p>",
+        "PricingPlanListElement$Name": "<p>The name of a pricing plan.</p>",
         "UpdatePricingPlanInput$Name": "<p>The name of the pricing plan. The name must be unique to each pricing plan. </p>",
         "UpdatePricingPlanOutput$Name": "<p> The name of the pricing plan. The name must be unique to each pricing plan. </p>"
       }
@@ -1037,7 +1052,7 @@
         "PricingRuleArns$member": null,
         "PricingRuleArnsInput$member": null,
         "PricingRuleArnsNonEmptyInput$member": null,
-        "PricingRuleListElement$Arn": "<p> The Amazon Resource Name (ARN) used to uniquely identify a pricing rule. </p>",
+        "PricingRuleListElement$Arn": "<p>The Amazon Resource Name (ARN) used to uniquely identify a pricing rule.</p>",
         "UpdatePricingRuleInput$Arn": "<p> The Amazon Resource Name (ARN) of the pricing rule to update. </p>",
         "UpdatePricingRuleOutput$Arn": "<p> The Amazon Resource Name (ARN) of the successfully updated pricing rule. </p>"
       }
@@ -1046,7 +1061,7 @@
       "base": null,
       "refs": {
         "ListPricingRulesAssociatedToPricingPlanOutput$PricingRuleArns": "<p> A list containing pricing rules that are associated with the requested pricing plan. </p>",
-        "ListPricingRulesFilter$Arns": "<p> A list containing the pricing rule Amazon Resource Names (ARNs) to include in the API response. </p>"
+        "ListPricingRulesFilter$Arns": "<p>A list containing the pricing rule Amazon Resource Names (ARNs) to include in the API response.</p>"
       }
     },
     "PricingRuleArnsInput": {
@@ -1066,7 +1081,7 @@
       "base": null,
       "refs": {
         "CreatePricingRuleInput$Description": "<p> The pricing rule description. </p>",
-        "PricingRuleListElement$Description": "<p> The pricing rule description. </p>",
+        "PricingRuleListElement$Description": "<p>The pricing rule description.</p>",
         "UpdatePricingRuleInput$Description": "<p> The new description for the pricing rule. </p>",
         "UpdatePricingRuleOutput$Description": "<p> The new description for the pricing rule. </p>"
       }
@@ -1078,7 +1093,7 @@
       }
     },
     "PricingRuleListElement": {
-      "base": "<p> A representation of a pricing rule. </p>",
+      "base": "<p>A representation of a pricing rule.</p>",
       "refs": {
         "PricingRuleList$member": null
       }
@@ -1087,7 +1102,7 @@
       "base": null,
       "refs": {
         "CreatePricingRuleInput$Name": "<p> The pricing rule name. The names must be unique to each pricing rule. </p>",
-        "PricingRuleListElement$Name": "<p> The name of a pricing rule. </p>",
+        "PricingRuleListElement$Name": "<p>The name of a pricing rule.</p>",
         "UpdatePricingRuleInput$Name": "<p> The new name of the pricing rule. The name must be unique to each pricing rule. </p>",
         "UpdatePricingRuleOutput$Name": "<p> The new name of the pricing rule. The name must be unique to each pricing rule. </p>"
       }
@@ -1096,7 +1111,7 @@
       "base": null,
       "refs": {
         "CreatePricingRuleInput$Scope": "<p> The scope of pricing rule that indicates if it's globally applicable, or it's service-specific. </p>",
-        "PricingRuleListElement$Scope": "<p> The scope of pricing rule that indicates if it is globally applicable, or if it is service-specific. </p>",
+        "PricingRuleListElement$Scope": "<p>The scope of pricing rule that indicates if it is globally applicable, or if it is service-specific.</p>",
         "UpdatePricingRuleOutput$Scope": "<p> The scope of pricing rule that indicates if it's globally applicable, or it's service-specific. </p>"
       }
     },
@@ -1104,7 +1119,7 @@
       "base": null,
       "refs": {
         "CreatePricingRuleInput$Type": "<p> The type of pricing rule. </p>",
-        "PricingRuleListElement$Type": "<p> The type of pricing rule. </p>",
+        "PricingRuleListElement$Type": "<p>The type of pricing rule.</p>",
         "UpdatePricingRuleInput$Type": "<p> The new pricing rule type. </p>",
         "UpdatePricingRuleOutput$Type": "<p> The new pricing rule type. </p>"
       }
@@ -1112,7 +1127,7 @@
     "ProformaCost": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$ProformaCost": "<p>The hypothetical Amazon Web Services charges based on the associated pricing plan of a billing group. </p>"
+        "BillingGroupCostReportElement$ProformaCost": "<p>The hypothetical Amazon Web Services charges based on the associated pricing plan of a billing group.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1131,7 +1146,7 @@
       "base": null,
       "refs": {
         "CreatePricingRuleInput$Service": "<p> If the <code>Scope</code> attribute is set to <code>SERVICE</code> or <code>SKU</code>, the attribute indicates which service the <code>PricingRule</code> is applicable for. </p>",
-        "PricingRuleListElement$Service": "<p> If the <code>Scope</code> attribute is <code>SERVICE</code>, this attribute indicates which service the <code>PricingRule</code> is applicable for. </p>",
+        "PricingRuleListElement$Service": "<p>If the <code>Scope</code> attribute is <code>SERVICE</code>, this attribute indicates which service the <code>PricingRule</code> is applicable for.</p>",
         "UpdatePricingRuleOutput$Service": "<p> If the <code>Scope</code> attribute is set to <code>SERVICE</code>, the attribute indicates which service the <code>PricingRule</code> is applicable for. </p>"
       }
     },
@@ -1144,7 +1159,7 @@
       "base": null,
       "refs": {
         "AccessDeniedException$Message": null,
-        "AssociateResourceError$Message": "<p> The reason why the resource association failed. </p>",
+        "AssociateResourceError$Message": "<p>The reason why the resource association failed.</p>",
         "ConflictException$Message": null,
         "ConflictException$ResourceId": "<p>Identifier of the resource in use. </p>",
         "ConflictException$ResourceType": "<p>Type of the resource in use. </p>",
@@ -1159,8 +1174,8 @@
         "ServiceLimitExceededException$ServiceCode": "<p>The unique code for the service of the limit that is being exceeded. </p>",
         "ThrottlingException$Message": null,
         "ValidationException$Message": null,
-        "ValidationExceptionField$Name": "<p>The field name. </p>",
-        "ValidationExceptionField$Message": "<p>The message describing why the field failed validation. </p>"
+        "ValidationExceptionField$Name": "<p>The field name.</p>",
+        "ValidationExceptionField$Message": "<p>The message describing why the field failed validation.</p>"
       }
     },
     "TagKey": {
@@ -1257,6 +1272,13 @@
       "refs": {
       }
     },
+    "UpdateBillingGroupAccountGrouping": {
+      "base": "<p>Specifies if the billing group has the following features enabled.</p>",
+      "refs": {
+        "UpdateBillingGroupInput$AccountGrouping": "<p>Specifies if the billing group has automatic account association (<code>AutoAssociate</code>) enabled.</p>",
+        "UpdateBillingGroupOutput$AccountGrouping": "<p>Specifies if the billing group has automatic account association (<code>AutoAssociate</code>) enabled.</p>"
+      }
+    },
     "UpdateBillingGroupInput": {
       "base": null,
       "refs": {
@@ -1337,12 +1359,12 @@
       }
     },
     "ValidationException": {
-      "base": "<p>The input doesn't match with the constraints specified by Amazon Web Services services.</p>",
+      "base": "<p>The input doesn't match with the constraints specified by Amazon Web Services.</p>",
       "refs": {
       }
     },
     "ValidationExceptionField": {
-      "base": "<p>The field's information of a request that resulted in an exception. </p>",
+      "base": "<p>The field's information of a request that resulted in an exception.</p>",
       "refs": {
         "ValidationExceptionFieldList$member": null
       }

@@ -72,6 +72,10 @@ type DataSyncAPI interface {
 	CreateAgentWithContext(aws.Context, *datasync.CreateAgentInput, ...request.Option) (*datasync.CreateAgentOutput, error)
 	CreateAgentRequest(*datasync.CreateAgentInput) (*request.Request, *datasync.CreateAgentOutput)
 
+	CreateLocationAzureBlob(*datasync.CreateLocationAzureBlobInput) (*datasync.CreateLocationAzureBlobOutput, error)
+	CreateLocationAzureBlobWithContext(aws.Context, *datasync.CreateLocationAzureBlobInput, ...request.Option) (*datasync.CreateLocationAzureBlobOutput, error)
+	CreateLocationAzureBlobRequest(*datasync.CreateLocationAzureBlobInput) (*request.Request, *datasync.CreateLocationAzureBlobOutput)
+
 	CreateLocationEfs(*datasync.CreateLocationEfsInput) (*datasync.CreateLocationEfsOutput, error)
 	CreateLocationEfsWithContext(aws.Context, *datasync.CreateLocationEfsInput, ...request.Option) (*datasync.CreateLocationEfsOutput, error)
 	CreateLocationEfsRequest(*datasync.CreateLocationEfsInput) (*request.Request, *datasync.CreateLocationEfsOutput)
@@ -135,6 +139,10 @@ type DataSyncAPI interface {
 	DescribeDiscoveryJob(*datasync.DescribeDiscoveryJobInput) (*datasync.DescribeDiscoveryJobOutput, error)
 	DescribeDiscoveryJobWithContext(aws.Context, *datasync.DescribeDiscoveryJobInput, ...request.Option) (*datasync.DescribeDiscoveryJobOutput, error)
 	DescribeDiscoveryJobRequest(*datasync.DescribeDiscoveryJobInput) (*request.Request, *datasync.DescribeDiscoveryJobOutput)
+
+	DescribeLocationAzureBlob(*datasync.DescribeLocationAzureBlobInput) (*datasync.DescribeLocationAzureBlobOutput, error)
+	DescribeLocationAzureBlobWithContext(aws.Context, *datasync.DescribeLocationAzureBlobInput, ...request.Option) (*datasync.DescribeLocationAzureBlobOutput, error)
+	DescribeLocationAzureBlobRequest(*datasync.DescribeLocationAzureBlobInput) (*request.Request, *datasync.DescribeLocationAzureBlobOutput)
 
 	DescribeLocationEfs(*datasync.DescribeLocationEfsInput) (*datasync.DescribeLocationEfsOutput, error)
 	DescribeLocationEfsWithContext(aws.Context, *datasync.DescribeLocationEfsInput, ...request.Option) (*datasync.DescribeLocationEfsOutput, error)
@@ -286,6 +294,10 @@ type DataSyncAPI interface {
 	UpdateDiscoveryJob(*datasync.UpdateDiscoveryJobInput) (*datasync.UpdateDiscoveryJobOutput, error)
 	UpdateDiscoveryJobWithContext(aws.Context, *datasync.UpdateDiscoveryJobInput, ...request.Option) (*datasync.UpdateDiscoveryJobOutput, error)
 	UpdateDiscoveryJobRequest(*datasync.UpdateDiscoveryJobInput) (*request.Request, *datasync.UpdateDiscoveryJobOutput)
+
+	UpdateLocationAzureBlob(*datasync.UpdateLocationAzureBlobInput) (*datasync.UpdateLocationAzureBlobOutput, error)
+	UpdateLocationAzureBlobWithContext(aws.Context, *datasync.UpdateLocationAzureBlobInput, ...request.Option) (*datasync.UpdateLocationAzureBlobOutput, error)
+	UpdateLocationAzureBlobRequest(*datasync.UpdateLocationAzureBlobInput) (*request.Request, *datasync.UpdateLocationAzureBlobOutput)
 
 	UpdateLocationHdfs(*datasync.UpdateLocationHdfsInput) (*datasync.UpdateLocationHdfsOutput, error)
 	UpdateLocationHdfsWithContext(aws.Context, *datasync.UpdateLocationHdfsInput, ...request.Option) (*datasync.UpdateLocationHdfsOutput, error)

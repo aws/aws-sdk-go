@@ -414,6 +414,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetSimilarProfiles":{
+      "name":"GetSimilarProfiles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/matches"
+      },
+      "input":{"shape":"GetSimilarProfilesRequest"},
+      "output":{"shape":"GetSimilarProfilesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetWorkflow":{
       "name":"GetWorkflow",
       "http":{
@@ -598,6 +614,22 @@
       },
       "input":{"shape":"ListProfileObjectsRequest"},
       "output":{"shape":"ListProfileObjectsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListRuleBasedMatches":{
+      "name":"ListRuleBasedMatches",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/profiles/ruleBasedMatches"
+      },
+      "input":{"shape":"ListRuleBasedMatchesRequest"},
+      "output":{"shape":"ListRuleBasedMatchesResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"AccessDeniedException"},
@@ -859,6 +891,12 @@
         "PostalCode":{"shape":"string1To255"}
       }
     },
+    "AddressList":{
+      "type":"list",
+      "member":{"shape":"string1To255"},
+      "max":4,
+      "min":1
+    },
     "AppflowIntegration":{
       "type":"structure",
       "required":["FlowDefinition"],
@@ -939,10 +977,27 @@
       "max":2,
       "min":1
     },
+    "AttributeMatchingModel":{
+      "type":"string",
+      "enum":[
+        "ONE_TO_ONE",
+        "MANY_TO_MANY"
+      ]
+    },
     "AttributeSourceIdMap":{
       "type":"map",
       "key":{"shape":"string1To255"},
       "value":{"shape":"uuid"}
+    },
+    "AttributeTypesSelector":{
+      "type":"structure",
+      "required":["AttributeMatchingModel"],
+      "members":{
+        "AttributeMatchingModel":{"shape":"AttributeMatchingModel"},
+        "Address":{"shape":"AddressList"},
+        "PhoneNumber":{"shape":"PhoneNumberList"},
+        "EmailAddress":{"shape":"EmailList"}
+      }
     },
     "Attributes":{
       "type":"map",
@@ -1103,6 +1158,7 @@
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
         "Matching":{"shape":"MatchingRequest"},
+        "RuleBasedMatching":{"shape":"RuleBasedMatchingRequest"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -1120,6 +1176,7 @@
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
         "Matching":{"shape":"MatchingResponse"},
+        "RuleBasedMatching":{"shape":"RuleBasedMatchingResponse"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
@@ -1487,6 +1544,12 @@
       "max":1.0,
       "min":0.0
     },
+    "EmailList":{
+      "type":"list",
+      "member":{"shape":"string1To255"},
+      "max":3,
+      "min":1
+    },
     "EventStreamDestinationDetails":{
       "type":"structure",
       "required":[
@@ -1757,6 +1820,7 @@
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
         "Stats":{"shape":"DomainStats"},
         "Matching":{"shape":"MatchingResponse"},
+        "RuleBasedMatching":{"shape":"RuleBasedMatchingResponse"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
@@ -1961,6 +2025,46 @@
         "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
         "Fields":{"shape":"FieldMap"},
         "Keys":{"shape":"KeyMap"}
+      }
+    },
+    "GetSimilarProfilesRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "MatchType",
+        "SearchKey",
+        "SearchValue"
+      ],
+      "members":{
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "MatchType":{"shape":"MatchType"},
+        "SearchKey":{"shape":"string1To255"},
+        "SearchValue":{"shape":"string1To255"}
+      }
+    },
+    "GetSimilarProfilesResponse":{
+      "type":"structure",
+      "members":{
+        "ProfileIds":{"shape":"ProfileIdList"},
+        "MatchId":{"shape":"string1To255"},
+        "MatchType":{"shape":"MatchType"},
+        "RuleLevel":{"shape":"RuleLevel"},
+        "ConfidenceScore":{"shape":"Double"},
+        "NextToken":{"shape":"token"}
       }
     },
     "GetWorkflowRequest":{
@@ -2508,6 +2612,34 @@
         "NextToken":{"shape":"token"}
       }
     },
+    "ListRuleBasedMatchesRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        }
+      }
+    },
+    "ListRuleBasedMatchesResponse":{
+      "type":"structure",
+      "members":{
+        "MatchIds":{"shape":"MatchIdList"},
+        "NextToken":{"shape":"token"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -2604,6 +2736,10 @@
         "Object":{"shape":"Object"}
       }
     },
+    "MatchIdList":{
+      "type":"list",
+      "member":{"shape":"string1To255"}
+    },
     "MatchItem":{
       "type":"structure",
       "members":{
@@ -2611,6 +2747,13 @@
         "ProfileIds":{"shape":"ProfileIdList"},
         "ConfidenceScore":{"shape":"Double"}
       }
+    },
+    "MatchType":{
+      "type":"string",
+      "enum":[
+        "RULE_BASED_MATCHING",
+        "ML_BASED_MATCHING"
+      ]
     },
     "MatchesList":{
       "type":"list",
@@ -2646,6 +2789,35 @@
         "AutoMerging":{"shape":"AutoMerging"},
         "ExportingConfig":{"shape":"ExportingConfig"}
       }
+    },
+    "MatchingRule":{
+      "type":"structure",
+      "required":["Rule"],
+      "members":{
+        "Rule":{"shape":"MatchingRuleAttributeList"}
+      }
+    },
+    "MatchingRuleAttributeList":{
+      "type":"list",
+      "member":{"shape":"string1To255"},
+      "max":15,
+      "min":1
+    },
+    "MatchingRules":{
+      "type":"list",
+      "member":{"shape":"MatchingRule"},
+      "max":15,
+      "min":1
+    },
+    "MaxAllowedRuleLevelForMatching":{
+      "type":"integer",
+      "max":15,
+      "min":1
+    },
+    "MaxAllowedRuleLevelForMerging":{
+      "type":"integer",
+      "max":15,
+      "min":1
     },
     "MergeProfilesRequest":{
       "type":"structure",
@@ -2752,6 +2924,12 @@
         "BUSINESS",
         "OTHER"
       ]
+    },
+    "PhoneNumberList":{
+      "type":"list",
+      "member":{"shape":"string1To255"},
+      "max":4,
+      "min":1
     },
     "Profile":{
       "type":"structure",
@@ -2946,6 +3124,45 @@
       "type":"string",
       "max":512,
       "pattern":"arn:aws:iam:.*:[0-9]+:.*"
+    },
+    "RuleBasedMatchingRequest":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"optionalBoolean"},
+        "MatchingRules":{"shape":"MatchingRules"},
+        "MaxAllowedRuleLevelForMerging":{"shape":"MaxAllowedRuleLevelForMerging"},
+        "MaxAllowedRuleLevelForMatching":{"shape":"MaxAllowedRuleLevelForMatching"},
+        "AttributeTypesSelector":{"shape":"AttributeTypesSelector"},
+        "ConflictResolution":{"shape":"ConflictResolution"},
+        "ExportingConfig":{"shape":"ExportingConfig"}
+      }
+    },
+    "RuleBasedMatchingResponse":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"optionalBoolean"},
+        "MatchingRules":{"shape":"MatchingRules"},
+        "Status":{"shape":"RuleBasedMatchingStatus"},
+        "MaxAllowedRuleLevelForMerging":{"shape":"MaxAllowedRuleLevelForMerging"},
+        "MaxAllowedRuleLevelForMatching":{"shape":"MaxAllowedRuleLevelForMatching"},
+        "AttributeTypesSelector":{"shape":"AttributeTypesSelector"},
+        "ConflictResolution":{"shape":"ConflictResolution"},
+        "ExportingConfig":{"shape":"ExportingConfig"}
+      }
+    },
+    "RuleBasedMatchingStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "IN_PROGRESS",
+        "ACTIVE"
+      ]
+    },
+    "RuleLevel":{
+      "type":"integer",
+      "max":15,
+      "min":1
     },
     "S3ConnectorOperator":{
       "type":"string",
@@ -3430,6 +3647,7 @@
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
         "Matching":{"shape":"MatchingRequest"},
+        "RuleBasedMatching":{"shape":"RuleBasedMatchingRequest"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -3446,6 +3664,7 @@
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
         "Matching":{"shape":"MatchingResponse"},
+        "RuleBasedMatching":{"shape":"RuleBasedMatchingResponse"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}

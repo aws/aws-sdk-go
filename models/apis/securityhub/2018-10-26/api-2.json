@@ -1669,6 +1669,34 @@
         "UserPoolId":{"shape":"NonEmptyString"}
       }
     },
+    "AwsAthenaWorkGroupConfigurationDetails":{
+      "type":"structure",
+      "members":{
+        "ResultConfiguration":{"shape":"AwsAthenaWorkGroupConfigurationResultConfigurationDetails"}
+      }
+    },
+    "AwsAthenaWorkGroupConfigurationResultConfigurationDetails":{
+      "type":"structure",
+      "members":{
+        "EncryptionConfiguration":{"shape":"AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails"}
+      }
+    },
+    "AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails":{
+      "type":"structure",
+      "members":{
+        "EncryptionOption":{"shape":"NonEmptyString"},
+        "KmsKey":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsAthenaWorkGroupDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "State":{"shape":"NonEmptyString"},
+        "Configuration":{"shape":"AwsAthenaWorkGroupConfigurationDetails"}
+      }
+    },
     "AwsAutoScalingAutoScalingGroupAvailabilityZonesList":{
       "type":"list",
       "member":{"shape":"AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails"}
@@ -5021,6 +5049,17 @@
       "type":"list",
       "member":{"shape":"AwsRdsDbClusterOptionGroupMembership"}
     },
+    "AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute":{
+      "type":"structure",
+      "members":{
+        "AttributeName":{"shape":"NonEmptyString"},
+        "AttributeValues":{"shape":"NonEmptyStringList"}
+      }
+    },
+    "AwsRdsDbClusterSnapshotDbClusterSnapshotAttributes":{
+      "type":"list",
+      "member":{"shape":"AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute"}
+    },
     "AwsRdsDbClusterSnapshotDetails":{
       "type":"structure",
       "members":{
@@ -5041,7 +5080,8 @@
         "KmsKeyId":{"shape":"NonEmptyString"},
         "DbClusterIdentifier":{"shape":"NonEmptyString"},
         "DbClusterSnapshotIdentifier":{"shape":"NonEmptyString"},
-        "IamDatabaseAuthenticationEnabled":{"shape":"Boolean"}
+        "IamDatabaseAuthenticationEnabled":{"shape":"Boolean"},
+        "DbClusterSnapshotAttributes":{"shape":"AwsRdsDbClusterSnapshotDbClusterSnapshotAttributes"}
       }
     },
     "AwsRdsDbDomainMembership":{
@@ -8073,7 +8113,9 @@
       "type":"string",
       "enum":[
         "EQUALS",
-        "NOT_EQUALS"
+        "NOT_EQUALS",
+        "CONTAINS",
+        "NOT_CONTAINS"
       ]
     },
     "MapFilterList":{
@@ -8536,7 +8578,8 @@
         "AwsAppSyncGraphQlApi":{"shape":"AwsAppSyncGraphQlApiDetails"},
         "AwsEventSchemasRegistry":{"shape":"AwsEventSchemasRegistryDetails"},
         "AwsGuardDutyDetector":{"shape":"AwsGuardDutyDetectorDetails"},
-        "AwsStepFunctionStateMachine":{"shape":"AwsStepFunctionStateMachineDetails"}
+        "AwsStepFunctionStateMachine":{"shape":"AwsStepFunctionStateMachineDetails"},
+        "AwsAthenaWorkGroup":{"shape":"AwsAthenaWorkGroupDetails"}
       }
     },
     "ResourceList":{
@@ -9178,7 +9221,9 @@
         "EQUALS",
         "PREFIX",
         "NOT_EQUALS",
-        "PREFIX_NOT_EQUALS"
+        "PREFIX_NOT_EQUALS",
+        "CONTAINS",
+        "NOT_CONTAINS"
       ]
     },
     "StringFilterList":{

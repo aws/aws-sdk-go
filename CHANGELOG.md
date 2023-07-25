@@ -1,3 +1,28 @@
+Release v1.44.308 (2023-07-25)
+===
+
+### Service Client Updates
+* `service/billingconductor`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for DynamoDB
+* `service/ec2`: Updates service API and documentation
+  * This release adds an instance's peak and baseline network bandwidth as well as the memory sizes of an instance's inference accelerators to DescribeInstanceTypes.
+* `service/emr-serverless`: Updates service API and documentation
+* `service/lambda`: Updates service API
+  * Add Python 3.11 (python3.11) support to AWS Lambda
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for monitoring storage optimization progress on the DescribeDBInstances API.
+* `service/sagemaker`: Updates service API and documentation
+  * Mark ContentColumn and TargetLabelColumn as required Targets in TextClassificationJobConfig in CreateAutoMLJobV2API
+* `service/securityhub`: Updates service API and documentation
+* `service/sts`: Updates service API and documentation
+  * API updates for the AWS Security Token Service
+* `service/transfer`: Updates service API and documentation
+  * This release adds support for SFTP Connectors.
+* `service/wisdom`: Updates service API and documentation
+
 Release v1.44.307 (2023-07-24)
 ===
 

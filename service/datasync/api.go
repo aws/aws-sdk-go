@@ -282,6 +282,96 @@ func (c *DataSync) CreateAgentWithContext(ctx aws.Context, input *CreateAgentInp
 	return out, req.Send()
 }
 
+const opCreateLocationAzureBlob = "CreateLocationAzureBlob"
+
+// CreateLocationAzureBlobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationAzureBlob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationAzureBlob for more information on using the CreateLocationAzureBlob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLocationAzureBlobRequest method.
+//	req, resp := client.CreateLocationAzureBlobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationAzureBlob
+func (c *DataSync) CreateLocationAzureBlobRequest(input *CreateLocationAzureBlobInput) (req *request.Request, output *CreateLocationAzureBlobOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationAzureBlob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationAzureBlobInput{}
+	}
+
+	output = &CreateLocationAzureBlobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationAzureBlob API operation for AWS DataSync.
+//
+// Creates an endpoint for a Microsoft Azure Blob Storage container that DataSync
+// can use as a transfer source or destination.
+//
+// Before you begin, make sure you know how DataSync accesses Azure Blob Storage
+// (https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-access)
+// and works with access tiers (https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-access-tiers)
+// and blob types (https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#blob-types).
+// You also need a DataSync agent (https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-creating-agent)
+// that can connect to your container.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationAzureBlob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationAzureBlob
+func (c *DataSync) CreateLocationAzureBlob(input *CreateLocationAzureBlobInput) (*CreateLocationAzureBlobOutput, error) {
+	req, out := c.CreateLocationAzureBlobRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationAzureBlobWithContext is the same as CreateLocationAzureBlob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationAzureBlob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationAzureBlobWithContext(ctx aws.Context, input *CreateLocationAzureBlobInput, opts ...request.Option) (*CreateLocationAzureBlobOutput, error) {
+	req, out := c.CreateLocationAzureBlobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLocationEfs = "CreateLocationEfs"
 
 // CreateLocationEfsRequest generates a "aws/request.Request" representing the
@@ -826,8 +916,8 @@ func (c *DataSync) CreateLocationNfsRequest(input *CreateLocationNfsInput) (req 
 
 // CreateLocationNfs API operation for AWS DataSync.
 //
-// Defines a file system on a Network File System (NFS) server that can be read
-// from or written to.
+// Creates an endpoint for an Network File System (NFS) file server that DataSync
+// can use for a data transfer.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1085,8 +1175,10 @@ func (c *DataSync) CreateLocationSmbRequest(input *CreateLocationSmbInput) (req 
 // CreateLocationSmb API operation for AWS DataSync.
 //
 // Creates an endpoint for a Server Message Block (SMB) file server that DataSync
-// can access for a transfer. For more information, see Creating an SMB location
-// (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html).
+// can use for a data transfer.
+//
+// Before you begin, make sure that you understand how DataSync accesses an
+// SMB file server (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1630,6 +1722,89 @@ func (c *DataSync) DescribeDiscoveryJob(input *DescribeDiscoveryJobInput) (*Desc
 // for more information on using Contexts.
 func (c *DataSync) DescribeDiscoveryJobWithContext(ctx aws.Context, input *DescribeDiscoveryJobInput, opts ...request.Option) (*DescribeDiscoveryJobOutput, error) {
 	req, out := c.DescribeDiscoveryJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLocationAzureBlob = "DescribeLocationAzureBlob"
+
+// DescribeLocationAzureBlobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationAzureBlob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationAzureBlob for more information on using the DescribeLocationAzureBlob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLocationAzureBlobRequest method.
+//	req, resp := client.DescribeLocationAzureBlobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationAzureBlob
+func (c *DataSync) DescribeLocationAzureBlobRequest(input *DescribeLocationAzureBlobInput) (req *request.Request, output *DescribeLocationAzureBlobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationAzureBlob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationAzureBlobInput{}
+	}
+
+	output = &DescribeLocationAzureBlobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationAzureBlob API operation for AWS DataSync.
+//
+// Provides details about how an DataSync transfer location for Microsoft Azure
+// Blob Storage is configured.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationAzureBlob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationAzureBlob
+func (c *DataSync) DescribeLocationAzureBlob(input *DescribeLocationAzureBlobInput) (*DescribeLocationAzureBlobOutput, error) {
+	req, out := c.DescribeLocationAzureBlobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationAzureBlobWithContext is the same as DescribeLocationAzureBlob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationAzureBlob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationAzureBlobWithContext(ctx aws.Context, input *DescribeLocationAzureBlobInput, opts ...request.Option) (*DescribeLocationAzureBlobOutput, error) {
+	req, out := c.DescribeLocationAzureBlobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2879,7 +3054,7 @@ func (c *DataSync) DescribeTaskRequest(input *DescribeTaskInput) (req *request.R
 
 // DescribeTask API operation for AWS DataSync.
 //
-// Returns metadata about a task.
+// Provides information about an DataSync transfer task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2961,7 +3136,7 @@ func (c *DataSync) DescribeTaskExecutionRequest(input *DescribeTaskExecutionInpu
 
 // DescribeTaskExecution API operation for AWS DataSync.
 //
-// Returns detailed metadata about a task that is being executed.
+// Provides information about an DataSync transfer task that's running.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4784,6 +4959,90 @@ func (c *DataSync) UpdateDiscoveryJobWithContext(ctx aws.Context, input *UpdateD
 	return out, req.Send()
 }
 
+const opUpdateLocationAzureBlob = "UpdateLocationAzureBlob"
+
+// UpdateLocationAzureBlobRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationAzureBlob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationAzureBlob for more information on using the UpdateLocationAzureBlob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLocationAzureBlobRequest method.
+//	req, resp := client.UpdateLocationAzureBlobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationAzureBlob
+func (c *DataSync) UpdateLocationAzureBlobRequest(input *UpdateLocationAzureBlobInput) (req *request.Request, output *UpdateLocationAzureBlobOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationAzureBlob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationAzureBlobInput{}
+	}
+
+	output = &UpdateLocationAzureBlobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationAzureBlob API operation for AWS DataSync.
+//
+// Modifies some configurations of the Microsoft Azure Blob Storage transfer
+// location that you're using with DataSync.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationAzureBlob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationAzureBlob
+func (c *DataSync) UpdateLocationAzureBlob(input *UpdateLocationAzureBlobInput) (*UpdateLocationAzureBlobOutput, error) {
+	req, out := c.UpdateLocationAzureBlobRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationAzureBlobWithContext is the same as UpdateLocationAzureBlob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationAzureBlob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationAzureBlobWithContext(ctx aws.Context, input *UpdateLocationAzureBlobInput, opts ...request.Option) (*UpdateLocationAzureBlobOutput, error) {
+	req, out := c.UpdateLocationAzureBlobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateLocationHdfs = "UpdateLocationHdfs"
 
 // UpdateLocationHdfsRequest generates a "aws/request.Request" representing the
@@ -5384,6 +5643,7 @@ type AddStorageSystemInput struct {
 
 	// Specifies the Amazon Resource Name (ARN) of the DataSync agent that connects
 	// to and reads from your on-premises storage system's management interface.
+	// You can only specify one ARN.
 	//
 	// AgentArns is a required field
 	AgentArns []*string `min:"1" type:"list" required:"true"`
@@ -5628,6 +5888,70 @@ func (s *AgentListEntry) SetStatus(v string) *AgentListEntry {
 	return s
 }
 
+// The shared access signature (SAS) configuration that allows DataSync to access
+// your Microsoft Azure Blob Storage.
+//
+// For more information, see SAS tokens (https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-sas-tokens)
+// for accessing your Azure Blob Storage.
+type AzureBlobSasConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a SAS token that provides permissions at the Azure storage account,
+	// container, or folder level.
+	//
+	// The token is part of the SAS URI string that comes after the storage resource
+	// URI and a question mark. A token looks something like this:
+	//
+	// sp=r&st=2023-12-20T14:54:52Z&se=2023-12-20T22:54:52Z&spr=https&sv=2021-06-08&sr=c&sig=aBBKDWQvyuVcTPH9EBp%2FXTI9E%2F%2Fmq171%2BZU178wcwqU%3D
+	//
+	// Token is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AzureBlobSasConfiguration's
+	// String and GoString methods.
+	//
+	// Token is a required field
+	Token *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AzureBlobSasConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AzureBlobSasConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AzureBlobSasConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AzureBlobSasConfiguration"}
+	if s.Token == nil {
+		invalidParams.Add(request.NewErrParamRequired("Token"))
+	}
+	if s.Token != nil && len(*s.Token) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Token", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetToken sets the Token field's value.
+func (s *AzureBlobSasConfiguration) SetToken(v string) *AzureBlobSasConfiguration {
+	s.Token = &v
+	return s
+}
+
 // CancelTaskExecutionRequest
 type CancelTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
@@ -5765,12 +6089,13 @@ type CreateAgentInput struct {
 	// Specifies the Amazon Resource Name (ARN) of the security group that protects
 	// your task's network interfaces (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
 	// when using a virtual private cloud (VPC) endpoint (https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#choose-service-endpoint-vpc).
+	// You can only specify one ARN.
 	SecurityGroupArns []*string `min:"1" type:"list"`
 
 	// Specifies the ARN of the subnet where you want to run your DataSync task
 	// when using a VPC endpoint. This is the subnet where DataSync creates and
 	// manages the network interfaces (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
-	// for your transfer.
+	// for your transfer. You can only specify one ARN.
 	SubnetArns []*string `min:"1" type:"list"`
 
 	// Specifies labels that help you categorize, filter, and search for your Amazon
@@ -5902,6 +6227,189 @@ func (s CreateAgentOutput) GoString() string {
 // SetAgentArn sets the AgentArn field's value.
 func (s *CreateAgentOutput) SetAgentArn(v string) *CreateAgentOutput {
 	s.AgentArn = &v
+	return s
+}
+
+type CreateLocationAzureBlobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the access tier that you want your objects or files transferred
+	// into. This only applies when using the location as a transfer destination.
+	// For more information, see Access tiers (https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-access-tiers).
+	AccessTier *string `type:"string" enum:"AzureAccessTier"`
+
+	// Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect
+	// with your Azure Blob Storage container.
+	//
+	// You can specify more than one agent. For more information, see Using multiple
+	// agents for your transfer (https://docs.aws.amazon.com/datasync/latest/userguide/multiple-agents.html).
+	//
+	// AgentArns is a required field
+	AgentArns []*string `min:"1" type:"list" required:"true"`
+
+	// Specifies the authentication method DataSync uses to access your Azure Blob
+	// Storage. DataSync can access blob storage using a shared access signature
+	// (SAS).
+	//
+	// AuthenticationType is a required field
+	AuthenticationType *string `type:"string" required:"true" enum:"AzureBlobAuthenticationType"`
+
+	// Specifies the type of blob that you want your objects or files to be when
+	// transferring them into Azure Blob Storage. Currently, DataSync only supports
+	// moving data into Azure Blob Storage as block blobs. For more information
+	// on blob types, see the Azure Blob Storage documentation (https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs).
+	BlobType *string `type:"string" enum:"AzureBlobType"`
+
+	// Specifies the URL of the Azure Blob Storage container involved in your transfer.
+	//
+	// ContainerUrl is a required field
+	ContainerUrl *string `type:"string" required:"true"`
+
+	// Specifies the SAS configuration that allows DataSync to access your Azure
+	// Blob Storage.
+	SasConfiguration *AzureBlobSasConfiguration `type:"structure"`
+
+	// Specifies path segments if you want to limit your transfer to a virtual directory
+	// in your container (for example, /my/images).
+	Subdirectory *string `type:"string"`
+
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least a name tag for your
+	// transfer location.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationAzureBlobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationAzureBlobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationAzureBlobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationAzureBlobInput"}
+	if s.AgentArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentArns"))
+	}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.AuthenticationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationType"))
+	}
+	if s.ContainerUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerUrl"))
+	}
+	if s.SasConfiguration != nil {
+		if err := s.SasConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SasConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessTier sets the AccessTier field's value.
+func (s *CreateLocationAzureBlobInput) SetAccessTier(v string) *CreateLocationAzureBlobInput {
+	s.AccessTier = &v
+	return s
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *CreateLocationAzureBlobInput) SetAgentArns(v []*string) *CreateLocationAzureBlobInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *CreateLocationAzureBlobInput) SetAuthenticationType(v string) *CreateLocationAzureBlobInput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlobType sets the BlobType field's value.
+func (s *CreateLocationAzureBlobInput) SetBlobType(v string) *CreateLocationAzureBlobInput {
+	s.BlobType = &v
+	return s
+}
+
+// SetContainerUrl sets the ContainerUrl field's value.
+func (s *CreateLocationAzureBlobInput) SetContainerUrl(v string) *CreateLocationAzureBlobInput {
+	s.ContainerUrl = &v
+	return s
+}
+
+// SetSasConfiguration sets the SasConfiguration field's value.
+func (s *CreateLocationAzureBlobInput) SetSasConfiguration(v *AzureBlobSasConfiguration) *CreateLocationAzureBlobInput {
+	s.SasConfiguration = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationAzureBlobInput) SetSubdirectory(v string) *CreateLocationAzureBlobInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationAzureBlobInput) SetTags(v []*TagListEntry) *CreateLocationAzureBlobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationAzureBlobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Azure Blob Storage transfer location that you created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationAzureBlobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationAzureBlobOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationAzureBlobOutput) SetLocationArn(v string) *CreateLocationAzureBlobOutput {
+	s.LocationArn = &v
 	return s
 }
 
@@ -6965,11 +7473,11 @@ func (s *CreateLocationHdfsOutput) SetLocationArn(v string) *CreateLocationHdfsO
 type CreateLocationNfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The NFS mount options that DataSync can use to mount your NFS share.
+	// Specifies the mount options that DataSync can use to mount your NFS share.
 	MountOptions *NfsMountOptions `type:"structure"`
 
-	// Contains a list of Amazon Resource Names (ARNs) of agents that are used to
-	// connect to an NFS server.
+	// Specifies the Amazon Resource Names (ARNs) of agents that DataSync uses to
+	// connect to your NFS file server.
 	//
 	// If you are copying data to or from your Snowcone device, see NFS Server on
 	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
@@ -6978,25 +7486,24 @@ type CreateLocationNfsInput struct {
 	// OnPremConfig is a required field
 	OnPremConfig *OnPremConfig `type:"structure" required:"true"`
 
-	// The name of the NFS server. This value is the IP address or Domain Name Service
-	// (DNS) name of the NFS server. An agent that is installed on-premises uses
-	// this hostname to mount the NFS server in a network.
+	// Specifies the IP address or domain name of your NFS file server. An agent
+	// that is installed on-premises uses this hostname to mount the NFS server
+	// in a network.
 	//
 	// If you are copying data to or from your Snowcone device, see NFS Server on
 	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
 	// for more information.
 	//
-	// This name must either be DNS-compliant or must be an IP version 4 (IPv4)
-	// address.
+	// You must specify be an IP version 4 address or Domain Name System (DNS)-compliant
+	// name.
 	//
 	// ServerHostname is a required field
 	ServerHostname *string `type:"string" required:"true"`
 
-	// The subdirectory in the NFS file system that is used to read data from the
-	// NFS source location or write data to the NFS destination. The NFS path should
-	// be a path that's exported by the NFS server, or a subdirectory of that path.
-	// The path should be such that it can be mounted by other NFS clients in your
-	// network.
+	// Specifies the subdirectory in the NFS file server that DataSync transfers
+	// to or from. The NFS path should be a path that's exported by the NFS server,
+	// or a subdirectory of that path. The path should be such that it can be mounted
+	// by other NFS clients in your network.
 	//
 	// To see all the paths exported by your NFS server, run "showmount -e nfs-server-name"
 	// from an NFS client that has access to your server. You can specify any directory
@@ -7014,14 +7521,12 @@ type CreateLocationNfsInput struct {
 	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
 	// for more information.
 	//
-	// For information about NFS export configuration, see 18.7. The /etc/exports
-	// Configuration File in the Red Hat Enterprise Linux documentation.
-	//
 	// Subdirectory is a required field
 	Subdirectory *string `type:"string" required:"true"`
 
-	// The key-value pair that represents the tag that you want to add to the location.
-	// The value can be an empty string. We recommend using tags to name your resources.
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least a name tag for your
+	// location.
 	Tags []*TagListEntry `type:"list"`
 }
 
@@ -7111,8 +7616,7 @@ func (s *CreateLocationNfsInput) SetTags(v []*TagListEntry) *CreateLocationNfsIn
 type CreateLocationNfsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the source NFS file system location that
-	// is created.
+	// The ARN of the transfer location that you created for your NFS file server.
 	LocationArn *string `type:"string"`
 }
 
@@ -8477,6 +8981,145 @@ func (s *DescribeDiscoveryJobOutput) SetStorageSystemArn(v string) *DescribeDisc
 	return s
 }
 
+type DescribeLocationAzureBlobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of your Azure Blob Storage transfer
+	// location.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationAzureBlobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationAzureBlobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationAzureBlobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationAzureBlobInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationAzureBlobInput) SetLocationArn(v string) *DescribeLocationAzureBlobInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationAzureBlobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The access tier that you want your objects or files transferred into. This
+	// only applies when using the location as a transfer destination. For more
+	// information, see Access tiers (https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-access-tiers).
+	AccessTier *string `type:"string" enum:"AzureAccessTier"`
+
+	// The ARNs of the DataSync agents that can connect with your Azure Blob Storage
+	// container.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The authentication method DataSync uses to access your Azure Blob Storage.
+	// DataSync can access blob storage using a shared access signature (SAS).
+	AuthenticationType *string `type:"string" enum:"AzureBlobAuthenticationType"`
+
+	// The type of blob that you want your objects or files to be when transferring
+	// them into Azure Blob Storage. Currently, DataSync only supports moving data
+	// into Azure Blob Storage as block blobs. For more information on blob types,
+	// see the Azure Blob Storage documentation (https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs).
+	BlobType *string `type:"string" enum:"AzureBlobType"`
+
+	// The time that your Azure Blob Storage transfer location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The ARN of your Azure Blob Storage transfer location.
+	LocationArn *string `type:"string"`
+
+	// The URL of the Azure Blob Storage container involved in your transfer.
+	LocationUri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationAzureBlobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationAzureBlobOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessTier sets the AccessTier field's value.
+func (s *DescribeLocationAzureBlobOutput) SetAccessTier(v string) *DescribeLocationAzureBlobOutput {
+	s.AccessTier = &v
+	return s
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *DescribeLocationAzureBlobOutput) SetAgentArns(v []*string) *DescribeLocationAzureBlobOutput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *DescribeLocationAzureBlobOutput) SetAuthenticationType(v string) *DescribeLocationAzureBlobOutput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlobType sets the BlobType field's value.
+func (s *DescribeLocationAzureBlobOutput) SetBlobType(v string) *DescribeLocationAzureBlobOutput {
+	s.BlobType = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationAzureBlobOutput) SetCreationTime(v time.Time) *DescribeLocationAzureBlobOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationAzureBlobOutput) SetLocationArn(v string) *DescribeLocationAzureBlobOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationAzureBlobOutput) SetLocationUri(v string) *DescribeLocationAzureBlobOutput {
+	s.LocationUri = &v
+	return s
+}
+
 // DescribeLocationEfsRequest
 type DescribeLocationEfsInput struct {
 	_ struct{} `type:"structure"`
@@ -9340,7 +9983,7 @@ type DescribeLocationNfsOutput struct {
 	// The URL of the source NFS location that was described.
 	LocationUri *string `type:"string"`
 
-	// The NFS mount options that DataSync used to mount your NFS share.
+	// The mount options that DataSync uses to mount your NFS share.
 	MountOptions *NfsMountOptions `type:"structure"`
 
 	// A list of Amazon Resource Names (ARNs) of agents to use for a Network File
@@ -10305,7 +10948,7 @@ func (s *DescribeStorageSystemResourcesOutput) SetResourceDetails(v *ResourceDet
 type DescribeTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the task that is being executed.
+	// Specifies the Amazon Resource Name (ARN) of the transfer task that's running.
 	//
 	// TaskExecutionArn is a required field
 	TaskExecutionArn *string `type:"string" required:"true"`
@@ -10528,7 +11171,7 @@ func (s *DescribeTaskExecutionOutput) SetTaskExecutionArn(v string) *DescribeTas
 type DescribeTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the task to describe.
+	// Specifies the Amazon Resource Name (ARN) of the transfer task.
 	//
 	// TaskArn is a required field
 	TaskArn *string `type:"string" required:"true"`
@@ -13546,29 +14189,25 @@ func (s *P95Metrics) SetThroughput(v *Throughput) *P95Metrics {
 	return s
 }
 
-// The VPC endpoint, subnet, and security group that an agent uses to access
-// IP addresses in a VPC (Virtual Private Cloud).
+// Specifies how your DataSync agent connects to Amazon Web Services using a
+// virtual private cloud (VPC) service endpoint. An agent that uses a VPC endpoint
+// isn't accessible over the public internet.
 type PrivateLinkConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The private endpoint that is configured for an agent that has access to IP
-	// addresses in a PrivateLink (https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html).
-	// An agent that is configured with this endpoint will not be accessible over
-	// the public internet.
+	// Specifies the VPC endpoint provided by Amazon Web Services PrivateLink (https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html)
+	// that your agent connects to.
 	PrivateLinkEndpoint *string `min:"7" type:"string"`
 
-	// The Amazon Resource Names (ARNs) of the security groups that are configured
-	// for the EC2 resource that hosts an agent activated in a VPC or an agent that
-	// has access to a VPC endpoint.
+	// Specifies the Amazon Resource Names (ARN) of the security group that provides
+	// DataSync access to your VPC endpoint. You can only specify one ARN.
 	SecurityGroupArns []*string `min:"1" type:"list"`
 
-	// The Amazon Resource Names (ARNs) of the subnets that are configured for an
-	// agent activated in a VPC or an agent that has access to a VPC endpoint.
+	// Specifies the ARN of the subnet where your VPC endpoint is located. You can
+	// only specify one ARN.
 	SubnetArns []*string `min:"1" type:"list"`
 
-	// The ID of the VPC endpoint that is configured for an agent. An agent that
-	// is configured with a VPC endpoint will not be accessible over the public
-	// internet.
+	// Specifies the ID of the VPC endpoint that your agent connects to.
 	VpcEndpointId *string `type:"string"`
 }
 
@@ -15218,6 +15857,150 @@ func (s UpdateDiscoveryJobOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateLocationAzureBlobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the access tier that you want your objects or files transferred
+	// into. This only applies when using the location as a transfer destination.
+	// For more information, see Access tiers (https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-access-tiers).
+	AccessTier *string `type:"string" enum:"AzureAccessTier"`
+
+	// Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect
+	// with your Azure Blob Storage container.
+	//
+	// You can specify more than one agent. For more information, see Using multiple
+	// agents for your transfer (https://docs.aws.amazon.com/datasync/latest/userguide/multiple-agents.html).
+	AgentArns []*string `min:"1" type:"list"`
+
+	// Specifies the authentication method DataSync uses to access your Azure Blob
+	// Storage. DataSync can access blob storage using a shared access signature
+	// (SAS).
+	AuthenticationType *string `type:"string" enum:"AzureBlobAuthenticationType"`
+
+	// Specifies the type of blob that you want your objects or files to be when
+	// transferring them into Azure Blob Storage. Currently, DataSync only supports
+	// moving data into Azure Blob Storage as block blobs. For more information
+	// on blob types, see the Azure Blob Storage documentation (https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs).
+	BlobType *string `type:"string" enum:"AzureBlobType"`
+
+	// Specifies the ARN of the Azure Blob Storage transfer location that you're
+	// updating.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// Specifies the SAS configuration that allows DataSync to access your Azure
+	// Blob Storage.
+	SasConfiguration *AzureBlobSasConfiguration `type:"structure"`
+
+	// Specifies path segments if you want to limit your transfer to a virtual directory
+	// in your container (for example, /my/images).
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationAzureBlobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationAzureBlobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationAzureBlobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationAzureBlobInput"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+	if s.SasConfiguration != nil {
+		if err := s.SasConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SasConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessTier sets the AccessTier field's value.
+func (s *UpdateLocationAzureBlobInput) SetAccessTier(v string) *UpdateLocationAzureBlobInput {
+	s.AccessTier = &v
+	return s
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateLocationAzureBlobInput) SetAgentArns(v []*string) *UpdateLocationAzureBlobInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *UpdateLocationAzureBlobInput) SetAuthenticationType(v string) *UpdateLocationAzureBlobInput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlobType sets the BlobType field's value.
+func (s *UpdateLocationAzureBlobInput) SetBlobType(v string) *UpdateLocationAzureBlobInput {
+	s.BlobType = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationAzureBlobInput) SetLocationArn(v string) *UpdateLocationAzureBlobInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetSasConfiguration sets the SasConfiguration field's value.
+func (s *UpdateLocationAzureBlobInput) SetSasConfiguration(v *AzureBlobSasConfiguration) *UpdateLocationAzureBlobInput {
+	s.SasConfiguration = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationAzureBlobInput) SetSubdirectory(v string) *UpdateLocationAzureBlobInput {
+	s.Subdirectory = &v
+	return s
+}
+
+type UpdateLocationAzureBlobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationAzureBlobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationAzureBlobOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateLocationHdfsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15443,7 +16226,8 @@ func (s UpdateLocationHdfsOutput) GoString() string {
 type UpdateLocationNfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the NFS location to update.
+	// Specifies the Amazon Resource Name (ARN) of the NFS location that you want
+	// to update.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
@@ -15455,11 +16239,10 @@ type UpdateLocationNfsInput struct {
 	// System (NFS) location.
 	OnPremConfig *OnPremConfig `type:"structure"`
 
-	// The subdirectory in the NFS file system that is used to read data from the
-	// NFS source location or write data to the NFS destination. The NFS path should
-	// be a path that's exported by the NFS server, or a subdirectory of that path.
-	// The path should be such that it can be mounted by other NFS clients in your
-	// network.
+	// Specifies the subdirectory in your NFS file system that DataSync uses to
+	// read from or write to during a transfer. The NFS path should be exported
+	// by the NFS server, or a subdirectory of that path. The path should be such
+	// that it can be mounted by other NFS clients in your network.
 	//
 	// To see all the paths exported by your NFS server, run "showmount -e nfs-server-name"
 	// from an NFS client that has access to your server. You can specify any directory
@@ -15476,9 +16259,6 @@ type UpdateLocationNfsInput struct {
 	// If you are copying data to or from your Snowcone device, see NFS Server on
 	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
 	// for more information.
-	//
-	// For information about NFS export configuration, see 18.7. The /etc/exports
-	// Configuration File in the Red Hat Enterprise Linux documentation.
 	Subdirectory *string `type:"string"`
 }
 
@@ -15882,7 +16662,7 @@ type UpdateStorageSystemInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the Amazon Resource Name (ARN) of the DataSync agent that connects
-	// to and reads your on-premises storage system.
+	// to and reads your on-premises storage system. You can only specify one ARN.
 	AgentArns []*string `min:"1" type:"list"`
 
 	// Specifies the ARN of the Amazon CloudWatch log group for monitoring and logging
@@ -16285,6 +17065,50 @@ func Atime_Values() []string {
 	return []string{
 		AtimeNone,
 		AtimeBestEffort,
+	}
+}
+
+const (
+	// AzureAccessTierHot is a AzureAccessTier enum value
+	AzureAccessTierHot = "HOT"
+
+	// AzureAccessTierCool is a AzureAccessTier enum value
+	AzureAccessTierCool = "COOL"
+
+	// AzureAccessTierArchive is a AzureAccessTier enum value
+	AzureAccessTierArchive = "ARCHIVE"
+)
+
+// AzureAccessTier_Values returns all elements of the AzureAccessTier enum
+func AzureAccessTier_Values() []string {
+	return []string{
+		AzureAccessTierHot,
+		AzureAccessTierCool,
+		AzureAccessTierArchive,
+	}
+}
+
+const (
+	// AzureBlobAuthenticationTypeSas is a AzureBlobAuthenticationType enum value
+	AzureBlobAuthenticationTypeSas = "SAS"
+)
+
+// AzureBlobAuthenticationType_Values returns all elements of the AzureBlobAuthenticationType enum
+func AzureBlobAuthenticationType_Values() []string {
+	return []string{
+		AzureBlobAuthenticationTypeSas,
+	}
+}
+
+const (
+	// AzureBlobTypeBlock is a AzureBlobType enum value
+	AzureBlobTypeBlock = "BLOCK"
+)
+
+// AzureBlobType_Values returns all elements of the AzureBlobType enum
+func AzureBlobType_Values() []string {
+	return []string{
+		AzureBlobTypeBlock,
 	}
 }
 

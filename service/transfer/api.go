@@ -260,9 +260,12 @@ func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *req
 // CreateConnector API operation for AWS Transfer Family.
 //
 // Creates the connector, which captures the parameters for an outbound connection
-// for the AS2 protocol. The connector is required for sending files to an externally
-// hosted AS2 server. For more details about connectors, see Create AS2 connectors
-// (https://docs.aws.amazon.com/transfer/latest/userguide/create-b2b-server.html#configure-as2-connector).
+// for the AS2 or SFTP protocol. The connector is required for sending files
+// to an externally hosted AS2 or SFTP server. For more details about AS2 connectors,
+// see Create AS2 connectors (https://docs.aws.amazon.com/transfer/latest/userguide/create-b2b-server.html#configure-as2-connector).
+//
+// You must specify exactly one configuration object: either for AS2 (As2Config)
+// or SFTP (SftpConfig).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1033,7 +1036,7 @@ func (c *Transfer) DeleteConnectorRequest(input *DeleteConnectorInput) (req *req
 
 // DeleteConnector API operation for AWS Transfer Family.
 //
-// Deletes the agreement that's specified in the provided ConnectorId.
+// Deletes the connector that's specified in the provided ConnectorId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4871,8 +4874,22 @@ func (c *Transfer) StartFileTransferRequest(input *StartFileTransferInput) (req 
 
 // StartFileTransfer API operation for AWS Transfer Family.
 //
-// Begins an outbound file transfer to a remote AS2 server. You specify the
-// ConnectorId and the file paths for where to send the files.
+// Begins a file transfer between local Amazon Web Services storage and a remote
+// AS2 or SFTP server.
+//
+//   - For an AS2 connector, you specify the ConnectorId and one or more SendFilePaths
+//     to identify the files you want to transfer.
+//
+//   - For an SFTP connector, the file transfer can be either outbound or inbound.
+//     In both cases, you specify the ConnectorId. Depending on the direction
+//     of the transfer, you also specify the following items: If you are transferring
+//     file from a partner's SFTP server to a Transfer Family server, you specify
+//     one or more RetreiveFilePaths to identify the files you want to transfer,
+//     and a LocalDirectoryPath to specify the destination folder. If you are
+//     transferring file to a partner's SFTP server from Amazon Web Services
+//     storage, you specify one or more SendFilePaths to identify the files you
+//     want to transfer, and a RemoteDirectoryPath to specify the destination
+//     folder.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5223,6 +5240,99 @@ func (c *Transfer) TagResource(input *TagResourceInput) (*TagResourceOutput, err
 // for more information on using Contexts.
 func (c *Transfer) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTestConnection = "TestConnection"
+
+// TestConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the TestConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TestConnection for more information on using the TestConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TestConnectionRequest method.
+//	req, resp := client.TestConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/TestConnection
+func (c *Transfer) TestConnectionRequest(input *TestConnectionInput) (req *request.Request, output *TestConnectionOutput) {
+	op := &request.Operation{
+		Name:       opTestConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TestConnectionInput{}
+	}
+
+	output = &TestConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// TestConnection API operation for AWS Transfer Family.
+//
+// Tests whether your SFTP connector is set up successfully. We highly recommend
+// that you call this operation to test your ability to transfer files between
+// a Transfer Family server and a trading partner's SFTP server.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation TestConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/TestConnection
+func (c *Transfer) TestConnection(input *TestConnectionInput) (*TestConnectionOutput, error) {
+	req, out := c.TestConnectionRequest(input)
+	return out, req.Send()
+}
+
+// TestConnectionWithContext is the same as TestConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TestConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) TestConnectionWithContext(ctx aws.Context, input *TestConnectionInput, opts ...request.Option) (*TestConnectionOutput, error) {
+	req, out := c.TestConnectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6298,9 +6408,9 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains the details for a connector object. The connector object is used
-// for AS2 outbound processes, to connect the Transfer Family customer with
-// the trading partner.
+// Contains the details for an AS2 connector object. The connector object is
+// used for AS2 outbound processes, to connect the Transfer Family customer
+// with the trading partner.
 type As2ConnectorConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7126,21 +7236,22 @@ type CreateConnectorInput struct {
 	// AccessRole is a required field
 	AccessRole *string `min:"20" type:"string" required:"true"`
 
-	// A structure that contains the parameters for a connector object.
-	//
-	// As2Config is a required field
-	As2Config *As2ConnectorConfig `type:"structure" required:"true"`
+	// A structure that contains the parameters for an AS2 connector object.
+	As2Config *As2ConnectorConfig `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
 	// role that allows a connector to turn on CloudWatch logging for Amazon S3
 	// events. When set, you can view connector activity in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
+	// A structure that contains the parameters for an SFTP connector object.
+	SftpConfig *SftpConnectorConfig `type:"structure"`
+
 	// Key-value pairs that can be used to group and search for connectors. Tags
 	// are metadata attached to connectors for any purpose.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The URL of the partner's AS2 endpoint.
+	// The URL of the partner's AS2 or SFTP endpoint.
 	//
 	// Url is a required field
 	Url *string `type:"string" required:"true"`
@@ -7173,9 +7284,6 @@ func (s *CreateConnectorInput) Validate() error {
 	if s.AccessRole != nil && len(*s.AccessRole) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("AccessRole", 20))
 	}
-	if s.As2Config == nil {
-		invalidParams.Add(request.NewErrParamRequired("As2Config"))
-	}
 	if s.LoggingRole != nil && len(*s.LoggingRole) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("LoggingRole", 20))
 	}
@@ -7188,6 +7296,11 @@ func (s *CreateConnectorInput) Validate() error {
 	if s.As2Config != nil {
 		if err := s.As2Config.Validate(); err != nil {
 			invalidParams.AddNested("As2Config", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SftpConfig != nil {
+		if err := s.SftpConfig.Validate(); err != nil {
+			invalidParams.AddNested("SftpConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -7222,6 +7335,12 @@ func (s *CreateConnectorInput) SetAs2Config(v *As2ConnectorConfig) *CreateConnec
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *CreateConnectorInput) SetLoggingRole(v string) *CreateConnectorInput {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetSftpConfig sets the SftpConfig field's value.
+func (s *CreateConnectorInput) SetSftpConfig(v *SftpConnectorConfig) *CreateConnectorInput {
+	s.SftpConfig = v
 	return s
 }
 
@@ -7869,7 +7988,8 @@ type CreateUserInput struct {
 	//
 	// In most cases, you can use this value instead of the session policy to lock
 	// your user down to the designated home directory ("chroot"). To do this, you
-	// can set Entry to / and set Target to the HomeDirectory parameter value.
+	// can set Entry to / and set Target to the value the user should see for their
+	// home directory when they log in.
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
@@ -10874,7 +10994,7 @@ type DescribedConnector struct {
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
-	// A structure that contains the parameters for a connector object.
+	// A structure that contains the parameters for an AS2 connector object.
 	As2Config *As2ConnectorConfig `type:"structure"`
 
 	// The unique identifier for the connector.
@@ -10885,10 +11005,13 @@ type DescribedConnector struct {
 	// events. When set, you can view connector activity in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
+	// A structure that contains the parameters for an SFTP connector object.
+	SftpConfig *SftpConnectorConfig `type:"structure"`
+
 	// Key-value pairs that can be used to group and search for connectors.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The URL of the partner's AS2 endpoint.
+	// The URL of the partner's AS2 or SFTP endpoint.
 	Url *string `type:"string"`
 }
 
@@ -10937,6 +11060,12 @@ func (s *DescribedConnector) SetConnectorId(v string) *DescribedConnector {
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *DescribedConnector) SetLoggingRole(v string) *DescribedConnector {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetSftpConfig sets the SftpConfig field's value.
+func (s *DescribedConnector) SetSftpConfig(v *SftpConnectorConfig) *DescribedConnector {
+	s.SftpConfig = v
 	return s
 }
 
@@ -14874,7 +15003,7 @@ type ListedConnector struct {
 	// The unique identifier for the connector.
 	ConnectorId *string `min:"19" type:"string"`
 
-	// The URL of the partner's AS2 endpoint.
+	// The URL of the partner's AS2 or SFTP endpoint.
 	Url *string `type:"string"`
 }
 
@@ -16228,6 +16357,78 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains the details for an SFTP connector object. The connector object is
+// used for transferring files to and from a partner's SFTP server.
+type SftpConnectorConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The public portion of the host key, or keys, that are used to authenticate
+	// the user to the external server to which you are connecting. You can use
+	// the ssh-keyscan command against the SFTP server to retrieve the necessary
+	// key.
+	//
+	// The three standard SSH public key format elements are <key type>, <body base64>,
+	// and an optional <comment>, with spaces between each element.
+	//
+	// For the trusted host key, Transfer Family accepts RSA and ECDSA keys.
+	//
+	//    * For RSA keys, the key type is ssh-rsa.
+	//
+	//    * For ECDSA keys, the key type is either ecdsa-sha2-nistp256, ecdsa-sha2-nistp384,
+	//    or ecdsa-sha2-nistp521, depending on the size of the key you generated.
+	TrustedHostKeys []*string `min:"1" type:"list"`
+
+	// The identifiers for the secrets (in Amazon Web Services Secrets Manager)
+	// that contain the SFTP user's private keys or passwords.
+	UserSecretId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SftpConnectorConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SftpConnectorConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SftpConnectorConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SftpConnectorConfig"}
+	if s.TrustedHostKeys != nil && len(s.TrustedHostKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrustedHostKeys", 1))
+	}
+	if s.UserSecretId != nil && len(*s.UserSecretId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserSecretId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTrustedHostKeys sets the TrustedHostKeys field's value.
+func (s *SftpConnectorConfig) SetTrustedHostKeys(v []*string) *SftpConnectorConfig {
+	s.TrustedHostKeys = v
+	return s
+}
+
+// SetUserSecretId sets the UserSecretId field's value.
+func (s *SftpConnectorConfig) SetUserSecretId(v string) *SftpConnectorConfig {
+	s.UserSecretId = &v
+	return s
+}
+
 // Provides information about the public Secure Shell (SSH) key that is associated
 // with a Transfer Family user for the specific file transfer protocol-enabled
 // server (as identified by ServerId). The information returned includes the
@@ -16300,11 +16501,23 @@ type StartFileTransferInput struct {
 	// ConnectorId is a required field
 	ConnectorId *string `min:"19" type:"string" required:"true"`
 
-	// An array of strings. Each string represents the absolute path for one outbound
-	// file transfer. For example, DOC-EXAMPLE-BUCKET/myfile.txt .
-	//
-	// SendFilePaths is a required field
-	SendFilePaths []*string `min:"1" type:"list" required:"true"`
+	// For an inbound transfer, the LocaDirectoryPath specifies the destination
+	// for one or more files that are transferred from the partner's SFTP server.
+	LocalDirectoryPath *string `min:"1" type:"string"`
+
+	// For an outbound transfer, the RemoteDirectoryPath specifies the destination
+	// for one or more files that are transferred to the partner's SFTP server.
+	// If you don't specify a RemoteDirectoryPath, the destination for transferred
+	// files is the SFTP user's home directory.
+	RemoteDirectoryPath *string `min:"1" type:"string"`
+
+	// One or more source paths for the partner's SFTP server. Each string represents
+	// a source file path for one inbound file transfer.
+	RetrieveFilePaths []*string `min:"1" type:"list"`
+
+	// One or more source paths for the Transfer Family server. Each string represents
+	// a source file path for one outbound file transfer. For example, DOC-EXAMPLE-BUCKET/myfile.txt .
+	SendFilePaths []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -16334,8 +16547,14 @@ func (s *StartFileTransferInput) Validate() error {
 	if s.ConnectorId != nil && len(*s.ConnectorId) < 19 {
 		invalidParams.Add(request.NewErrParamMinLen("ConnectorId", 19))
 	}
-	if s.SendFilePaths == nil {
-		invalidParams.Add(request.NewErrParamRequired("SendFilePaths"))
+	if s.LocalDirectoryPath != nil && len(*s.LocalDirectoryPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocalDirectoryPath", 1))
+	}
+	if s.RemoteDirectoryPath != nil && len(*s.RemoteDirectoryPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RemoteDirectoryPath", 1))
+	}
+	if s.RetrieveFilePaths != nil && len(s.RetrieveFilePaths) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RetrieveFilePaths", 1))
 	}
 	if s.SendFilePaths != nil && len(s.SendFilePaths) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SendFilePaths", 1))
@@ -16353,6 +16572,24 @@ func (s *StartFileTransferInput) SetConnectorId(v string) *StartFileTransferInpu
 	return s
 }
 
+// SetLocalDirectoryPath sets the LocalDirectoryPath field's value.
+func (s *StartFileTransferInput) SetLocalDirectoryPath(v string) *StartFileTransferInput {
+	s.LocalDirectoryPath = &v
+	return s
+}
+
+// SetRemoteDirectoryPath sets the RemoteDirectoryPath field's value.
+func (s *StartFileTransferInput) SetRemoteDirectoryPath(v string) *StartFileTransferInput {
+	s.RemoteDirectoryPath = &v
+	return s
+}
+
+// SetRetrieveFilePaths sets the RetrieveFilePaths field's value.
+func (s *StartFileTransferInput) SetRetrieveFilePaths(v []*string) *StartFileTransferInput {
+	s.RetrieveFilePaths = v
+	return s
+}
+
 // SetSendFilePaths sets the SendFilePaths field's value.
 func (s *StartFileTransferInput) SetSendFilePaths(v []*string) *StartFileTransferInput {
 	s.SendFilePaths = v
@@ -16362,7 +16599,7 @@ func (s *StartFileTransferInput) SetSendFilePaths(v []*string) *StartFileTransfe
 type StartFileTransferOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the unique identifier for this file transfer.
+	// Returns the unique identifier for the file transfer.
 	//
 	// TransferId is a required field
 	TransferId *string `min:"1" type:"string" required:"true"`
@@ -16782,6 +17019,119 @@ func (s *TagStepDetails) SetSourceFileLocation(v string) *TagStepDetails {
 // SetTags sets the Tags field's value.
 func (s *TagStepDetails) SetTags(v []*S3Tag) *TagStepDetails {
 	s.Tags = v
+	return s
+}
+
+type TestConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the connector.
+	//
+	// ConnectorId is a required field
+	ConnectorId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestConnectionInput"}
+	if s.ConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorId"))
+	}
+	if s.ConnectorId != nil && len(*s.ConnectorId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *TestConnectionInput) SetConnectorId(v string) *TestConnectionInput {
+	s.ConnectorId = &v
+	return s
+}
+
+type TestConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the identifier of the connector object that you are testing.
+	ConnectorId *string `min:"19" type:"string"`
+
+	// Returns OK for successful test, or ERROR if the test fails.
+	Status *string `type:"string"`
+
+	// Returns Connection succeeded if the test is successful. Or, returns a descriptive
+	// error message if the test fails. The following list provides the details
+	// for some error messages and troubleshooting steps for each.
+	//
+	//    * Unable to access secrets manager: Verify that your secret name aligns
+	//    with the one in Transfer Role permissions.
+	//
+	//    * Unknown Host/Connection failed: Verify the server URL in the connector
+	//    configuration , and verify that the login credentials work successfully
+	//    outside of the connector.
+	//
+	//    * Private key not found: Verify that the secret exists and is formatted
+	//    correctly.
+	//
+	//    * Invalid trusted host keys: Verify that the trusted host key in the connector
+	//    configuration matches the ssh-keyscan output.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *TestConnectionOutput) SetConnectorId(v string) *TestConnectionOutput {
+	s.ConnectorId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TestConnectionOutput) SetStatus(v string) *TestConnectionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *TestConnectionOutput) SetStatusMessage(v string) *TestConnectionOutput {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -17693,7 +18043,7 @@ type UpdateConnectorInput struct {
 	// kms:Decrypt permission for that key.
 	AccessRole *string `min:"20" type:"string"`
 
-	// A structure that contains the parameters for a connector object.
+	// A structure that contains the parameters for an AS2 connector object.
 	As2Config *As2ConnectorConfig `type:"structure"`
 
 	// The unique identifier for the connector.
@@ -17706,7 +18056,10 @@ type UpdateConnectorInput struct {
 	// events. When set, you can view connector activity in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
-	// The URL of the partner's AS2 endpoint.
+	// A structure that contains the parameters for an SFTP connector object.
+	SftpConfig *SftpConnectorConfig `type:"structure"`
+
+	// The URL of the partner's AS2 or SFTP endpoint.
 	Url *string `type:"string"`
 }
 
@@ -17748,6 +18101,11 @@ func (s *UpdateConnectorInput) Validate() error {
 			invalidParams.AddNested("As2Config", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SftpConfig != nil {
+		if err := s.SftpConfig.Validate(); err != nil {
+			invalidParams.AddNested("SftpConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -17776,6 +18134,12 @@ func (s *UpdateConnectorInput) SetConnectorId(v string) *UpdateConnectorInput {
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *UpdateConnectorInput) SetLoggingRole(v string) *UpdateConnectorInput {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetSftpConfig sets the SftpConfig field's value.
+func (s *UpdateConnectorInput) SetSftpConfig(v *SftpConnectorConfig) *UpdateConnectorInput {
+	s.SftpConfig = v
 	return s
 }
 

@@ -3574,6 +3574,9 @@ type AssistantData struct {
 	// The description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The configuration information for the Wisdom assistant integration.
+	IntegrationConfiguration *AssistantIntegrationConfiguration `locationName:"integrationConfiguration" type:"structure"`
+
 	// The name.
 	//
 	// Name is a required field
@@ -3632,6 +3635,12 @@ func (s *AssistantData) SetDescription(v string) *AssistantData {
 	return s
 }
 
+// SetIntegrationConfiguration sets the IntegrationConfiguration field's value.
+func (s *AssistantData) SetIntegrationConfiguration(v *AssistantIntegrationConfiguration) *AssistantData {
+	s.IntegrationConfiguration = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *AssistantData) SetName(v string) *AssistantData {
 	s.Name = &v
@@ -3662,6 +3671,39 @@ func (s *AssistantData) SetType(v string) *AssistantData {
 	return s
 }
 
+// The configuration information for the Wisdom assistant integration.
+type AssistantIntegrationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the integrated Amazon SNS topic used for
+	// streaming chat messages.
+	TopicIntegrationArn *string `locationName:"topicIntegrationArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssistantIntegrationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssistantIntegrationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTopicIntegrationArn sets the TopicIntegrationArn field's value.
+func (s *AssistantIntegrationConfiguration) SetTopicIntegrationArn(v string) *AssistantIntegrationConfiguration {
+	s.TopicIntegrationArn = &v
+	return s
+}
+
 // Summary information about the assistant.
 type AssistantSummary struct {
 	_ struct{} `type:"structure"`
@@ -3678,6 +3720,9 @@ type AssistantSummary struct {
 
 	// The description of the assistant.
 	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The configuration information for the Wisdom assistant integration.
+	IntegrationConfiguration *AssistantIntegrationConfiguration `locationName:"integrationConfiguration" type:"structure"`
 
 	// The name of the assistant.
 	//
@@ -3734,6 +3779,12 @@ func (s *AssistantSummary) SetAssistantId(v string) *AssistantSummary {
 // SetDescription sets the Description field's value.
 func (s *AssistantSummary) SetDescription(v string) *AssistantSummary {
 	s.Description = &v
+	return s
+}
+
+// SetIntegrationConfiguration sets the IntegrationConfiguration field's value.
+func (s *AssistantSummary) SetIntegrationConfiguration(v *AssistantIntegrationConfiguration) *AssistantSummary {
+	s.IntegrationConfiguration = v
 	return s
 }
 
@@ -8315,6 +8366,9 @@ type SessionData struct {
 	// The description of the session.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The configuration information for the session integration.
+	IntegrationConfiguration *SessionIntegrationConfiguration `locationName:"integrationConfiguration" type:"structure"`
+
 	// The name of the session.
 	//
 	// Name is a required field
@@ -8358,6 +8412,12 @@ func (s *SessionData) SetDescription(v string) *SessionData {
 	return s
 }
 
+// SetIntegrationConfiguration sets the IntegrationConfiguration field's value.
+func (s *SessionData) SetIntegrationConfiguration(v *SessionIntegrationConfiguration) *SessionData {
+	s.IntegrationConfiguration = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *SessionData) SetName(v string) *SessionData {
 	s.Name = &v
@@ -8379,6 +8439,39 @@ func (s *SessionData) SetSessionId(v string) *SessionData {
 // SetTags sets the Tags field's value.
 func (s *SessionData) SetTags(v map[string]*string) *SessionData {
 	s.Tags = v
+	return s
+}
+
+// The configuration information for the session integration.
+type SessionIntegrationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the integrated Amazon SNS topic used for
+	// streaming chat messages.
+	TopicIntegrationArn *string `locationName:"topicIntegrationArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionIntegrationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionIntegrationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTopicIntegrationArn sets the TopicIntegrationArn field's value.
+func (s *SessionIntegrationConfiguration) SetTopicIntegrationArn(v string) *SessionIntegrationConfiguration {
+	s.TopicIntegrationArn = &v
 	return s
 }
 

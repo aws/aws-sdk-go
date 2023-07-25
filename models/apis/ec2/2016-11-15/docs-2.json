@@ -1791,6 +1791,12 @@
         "InstanceTypeInfo$BareMetal": "<p>Indicates whether the instance is a bare metal instance type.</p>"
       }
     },
+    "BaselineBandwidthInGbps": {
+      "base": null,
+      "refs": {
+        "NetworkCardInfo$BaselineBandwidthInGbps": "<p>The baseline network performance of the network card, in Gbps.</p>"
+      }
+    },
     "BaselineBandwidthInMbps": {
       "base": null,
       "refs": {
@@ -10708,6 +10714,18 @@
         "InferenceDeviceInfo$Manufacturer": "<p>The manufacturer of the Inference accelerator.</p>"
       }
     },
+    "InferenceDeviceMemoryInfo": {
+      "base": "<p>Describes the memory available to the inference accelerator.</p>",
+      "refs": {
+        "InferenceDeviceInfo$MemoryInfo": "<p>Describes the memory available to the inference accelerator.</p>"
+      }
+    },
+    "InferenceDeviceMemorySize": {
+      "base": null,
+      "refs": {
+        "InferenceDeviceMemoryInfo$SizeInMiB": "<p>The size of the memory available to the inference accelerator, in MiB.</p>"
+      }
+    },
     "InferenceDeviceName": {
       "base": null,
       "refs": {
@@ -15401,6 +15419,12 @@
       "base": "<p>Describes the data that identifies an Amazon FPGA image (AFI) on the PCI bus.</p>",
       "refs": {
         "FpgaImage$PciId": "<p>Information about the PCI bus.</p>"
+      }
+    },
+    "PeakBandwidthInGbps": {
+      "base": null,
+      "refs": {
+        "NetworkCardInfo$PeakBandwidthInGbps": "<p>The peak (burst) network performance of the network card, in Gbps.</p>"
       }
     },
     "PeeringAttachmentStatus": {
@@ -23384,6 +23408,12 @@
       "base": null,
       "refs": {
         "GpuInfo$TotalGpuMemoryInMiB": "<p>The total size of the memory for the GPU accelerators for the instance type, in MiB.</p>"
+      }
+    },
+    "totalInferenceMemory": {
+      "base": null,
+      "refs": {
+        "InferenceAcceleratorInfo$TotalInferenceMemoryInMiB": "<p>The total size of the memory for the inference accelerators for the instance type, in MiB.</p>"
       }
     }
   }
