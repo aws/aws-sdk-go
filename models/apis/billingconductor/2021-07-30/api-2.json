@@ -605,7 +605,8 @@
       "type":"structure",
       "required":["LinkedAccountIds"],
       "members":{
-        "LinkedAccountIds":{"shape":"AccountIdList"}
+        "LinkedAccountIds":{"shape":"AccountIdList"},
+        "AutoAssociate":{"shape":"Boolean"}
       }
     },
     "AccountId":{
@@ -793,7 +794,8 @@
         "CreationTime":{"shape":"Instant"},
         "LastModifiedTime":{"shape":"Instant"},
         "Status":{"shape":"BillingGroupStatus"},
-        "StatusReason":{"shape":"BillingGroupStatusReason"}
+        "StatusReason":{"shape":"BillingGroupStatusReason"},
+        "AccountGrouping":{"shape":"ListBillingGroupAccountGrouping"}
       }
     },
     "BillingGroupName":{
@@ -820,6 +822,10 @@
     "BillingPeriod":{
       "type":"string",
       "pattern":"\\d{4}-(0?[1-9]|1[012])"
+    },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
     },
     "ClientToken":{
       "type":"string",
@@ -1296,6 +1302,12 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "ListBillingGroupAccountGrouping":{
+      "type":"structure",
+      "members":{
+        "AutoAssociate":{"shape":"Boolean"}
+      }
+    },
     "ListBillingGroupCostReportsFilter":{
       "type":"structure",
       "members":{
@@ -1323,7 +1335,8 @@
       "members":{
         "Arns":{"shape":"BillingGroupArnList"},
         "PricingPlan":{"shape":"PricingPlanFullArn"},
-        "Statuses":{"shape":"BillingGroupStatusList"}
+        "Statuses":{"shape":"BillingGroupStatusList"},
+        "AutoAssociate":{"shape":"Boolean"}
       }
     },
     "ListBillingGroupsInput":{
@@ -1870,6 +1883,12 @@
       "members":{
       }
     },
+    "UpdateBillingGroupAccountGrouping":{
+      "type":"structure",
+      "members":{
+        "AutoAssociate":{"shape":"Boolean"}
+      }
+    },
     "UpdateBillingGroupInput":{
       "type":"structure",
       "required":["Arn"],
@@ -1878,7 +1897,8 @@
         "Name":{"shape":"BillingGroupName"},
         "Status":{"shape":"BillingGroupStatus"},
         "ComputationPreference":{"shape":"ComputationPreference"},
-        "Description":{"shape":"BillingGroupDescription"}
+        "Description":{"shape":"BillingGroupDescription"},
+        "AccountGrouping":{"shape":"UpdateBillingGroupAccountGrouping"}
       }
     },
     "UpdateBillingGroupOutput":{
@@ -1892,7 +1912,8 @@
         "Size":{"shape":"NumberOfAccounts"},
         "LastModifiedTime":{"shape":"Instant"},
         "Status":{"shape":"BillingGroupStatus"},
-        "StatusReason":{"shape":"BillingGroupStatusReason"}
+        "StatusReason":{"shape":"BillingGroupStatusReason"},
+        "AccountGrouping":{"shape":"UpdateBillingGroupAccountGrouping"}
       }
     },
     "UpdateCustomLineItemChargeDetails":{
@@ -2096,7 +2117,9 @@
         "ILLEGAL_OPERATION",
         "ILLEGAL_USAGE_TYPE",
         "INVALID_SKU_COMBO",
-        "INVALID_FILTER"
+        "INVALID_FILTER",
+        "TOO_MANY_AUTO_ASSOCIATE_BILLING_GROUPS",
+        "CANNOT_DELETE_AUTO_ASSOCIATE_BILLING_GROUP"
       ]
     }
   }

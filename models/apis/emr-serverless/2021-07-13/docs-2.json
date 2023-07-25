@@ -6,7 +6,7 @@
     "CreateApplication": "<p>Creates an application.</p>",
     "DeleteApplication": "<p>Deletes an application. An application has to be in a stopped or created state in order to be deleted.</p>",
     "GetApplication": "<p>Displays detailed information about a specified application.</p>",
-    "GetDashboardForJobRun": "<p>Returns a URL to access the job run dashboard. The generated URL is valid for one hour, after which you must invoke the API again to generate a new URL.</p>",
+    "GetDashboardForJobRun": "<p>Creates and returns a URL that you can use to access the application UIs for a job run.</p> <p>For jobs in a running state, the application UI is a live user interface such as the Spark or Tez web UI. For completed jobs, the application UI is a persistent application user interface such as the Spark History Server or persistent Tez UI.</p> <note> <p>The URL is valid for one hour after you generate it. To access the application UI after that hour elapses, you must invoke the API again to generate a new URL.</p> </note>",
     "GetJobRun": "<p>Displays detailed information about a job run.</p>",
     "ListApplications": "<p>Lists applications based on a set of parameters.</p>",
     "ListJobRuns": "<p>Lists job runs based on a set of parameters.</p>",
@@ -127,6 +127,7 @@
       "refs": {
         "AutoStartConfig$enabled": "<p>Enables the application to automatically start on job submission. Defaults to true.</p>",
         "AutoStopConfig$enabled": "<p>Enables the application to automatically stop after a certain amount of time being idle. Defaults to true.</p>",
+        "CloudWatchLoggingConfiguration$enabled": "<p>Enables CloudWatch logging.</p>",
         "ManagedPersistenceMonitoringConfiguration$enabled": "<p>Enables managed logging and defaults to true. If set to false, managed logging will be turned off.</p>"
       }
     },
@@ -146,6 +147,12 @@
         "CreateApplicationRequest$clientToken": "<p>The client idempotency token of the application to create. Its value must be unique for each request.</p>",
         "StartJobRunRequest$clientToken": "<p>The client idempotency token of the job run to start. Its value must be unique for each request.</p>",
         "UpdateApplicationRequest$clientToken": "<p>The client idempotency token of the application to update. Its value must be unique for each request.</p>"
+      }
+    },
+    "CloudWatchLoggingConfiguration": {
+      "base": "<p>The Amazon CloudWatch configuration for monitoring logs. You can configure your jobs to send log information to CloudWatch.</p>",
+      "refs": {
+        "MonitoringConfiguration$cloudWatchLoggingConfiguration": "<p>The Amazon CloudWatch configuration for monitoring logs. You can configure your jobs to send log information to CloudWatch.</p>"
       }
     },
     "Configuration": {
@@ -243,6 +250,7 @@
     "EncryptionKeyArn": {
       "base": null,
       "refs": {
+        "CloudWatchLoggingConfiguration$encryptionKeyArn": "<p>The Key Management Service (KMS) key ARN to encrypt the logs that you store in CloudWatch Logs.</p>",
         "ManagedPersistenceMonitoringConfiguration$encryptionKeyArn": "<p>The KMS key ARN to encrypt the logs stored in managed log persistence.</p>",
         "S3MonitoringConfiguration$encryptionKeyArn": "<p>The KMS key ARN to encrypt the logs published to the given Amazon S3 destination.</p>"
       }
@@ -487,6 +495,36 @@
     "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "LogGroupName": {
+      "base": null,
+      "refs": {
+        "CloudWatchLoggingConfiguration$logGroupName": "<p>The name of the log group in Amazon CloudWatch Logs where you want to publish your logs.</p>"
+      }
+    },
+    "LogStreamNamePrefix": {
+      "base": null,
+      "refs": {
+        "CloudWatchLoggingConfiguration$logStreamNamePrefix": "<p>Prefix for the CloudWatch log stream name.</p>"
+      }
+    },
+    "LogTypeList": {
+      "base": null,
+      "refs": {
+        "LogTypeMap$value": null
+      }
+    },
+    "LogTypeMap": {
+      "base": null,
+      "refs": {
+        "CloudWatchLoggingConfiguration$logTypes": "<p>The types of logs that you want to publish to CloudWatch. If you don't specify any log types, driver STDOUT and STDERR logs will be published to CloudWatch Logs by default. For more information including the supported worker types for Hive and Spark, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/logging.html#jobs-log-storage-cw\">Logging for EMR Serverless with CloudWatch</a>.</p> <ul> <li> <p> <b>Key Valid Values</b>: <code>SPARK_DRIVER</code>, <code>SPARK_EXECUTOR</code>, <code>HIVE_DRIVER</code>, <code>TEZ_TASK</code> </p> </li> <li> <p> <b>Array Members Valid Values</b>: <code>STDOUT</code>, <code>STDERR</code>, <code>HIVE_LOG</code>, <code>TEZ_AM</code>, <code>SYSTEM_LOGS</code> </p> </li> </ul>"
+      }
+    },
+    "LogTypeString": {
+      "base": "<p>Log type for a Spark/Hive job-run.</p>",
+      "refs": {
+        "LogTypeList$member": null
       }
     },
     "ManagedPersistenceMonitoringConfiguration": {
@@ -806,9 +844,10 @@
       }
     },
     "WorkerTypeString": {
-      "base": null,
+      "base": "<p>Worker type for an analytics framework.</p>",
       "refs": {
         "InitialCapacityConfigMap$key": null,
+        "LogTypeMap$key": null,
         "WorkerTypeSpecificationInputMap$key": null,
         "WorkerTypeSpecificationMap$key": null
       }

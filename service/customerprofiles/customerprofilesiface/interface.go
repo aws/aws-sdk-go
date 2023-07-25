@@ -160,6 +160,10 @@ type CustomerProfilesAPI interface {
 	GetProfileObjectTypeTemplateWithContext(aws.Context, *customerprofiles.GetProfileObjectTypeTemplateInput, ...request.Option) (*customerprofiles.GetProfileObjectTypeTemplateOutput, error)
 	GetProfileObjectTypeTemplateRequest(*customerprofiles.GetProfileObjectTypeTemplateInput) (*request.Request, *customerprofiles.GetProfileObjectTypeTemplateOutput)
 
+	GetSimilarProfiles(*customerprofiles.GetSimilarProfilesInput) (*customerprofiles.GetSimilarProfilesOutput, error)
+	GetSimilarProfilesWithContext(aws.Context, *customerprofiles.GetSimilarProfilesInput, ...request.Option) (*customerprofiles.GetSimilarProfilesOutput, error)
+	GetSimilarProfilesRequest(*customerprofiles.GetSimilarProfilesInput) (*request.Request, *customerprofiles.GetSimilarProfilesOutput)
+
 	GetWorkflow(*customerprofiles.GetWorkflowInput) (*customerprofiles.GetWorkflowOutput, error)
 	GetWorkflowWithContext(aws.Context, *customerprofiles.GetWorkflowInput, ...request.Option) (*customerprofiles.GetWorkflowOutput, error)
 	GetWorkflowRequest(*customerprofiles.GetWorkflowInput) (*request.Request, *customerprofiles.GetWorkflowOutput)
@@ -210,6 +214,10 @@ type CustomerProfilesAPI interface {
 	ListProfileObjects(*customerprofiles.ListProfileObjectsInput) (*customerprofiles.ListProfileObjectsOutput, error)
 	ListProfileObjectsWithContext(aws.Context, *customerprofiles.ListProfileObjectsInput, ...request.Option) (*customerprofiles.ListProfileObjectsOutput, error)
 	ListProfileObjectsRequest(*customerprofiles.ListProfileObjectsInput) (*request.Request, *customerprofiles.ListProfileObjectsOutput)
+
+	ListRuleBasedMatches(*customerprofiles.ListRuleBasedMatchesInput) (*customerprofiles.ListRuleBasedMatchesOutput, error)
+	ListRuleBasedMatchesWithContext(aws.Context, *customerprofiles.ListRuleBasedMatchesInput, ...request.Option) (*customerprofiles.ListRuleBasedMatchesOutput, error)
+	ListRuleBasedMatchesRequest(*customerprofiles.ListRuleBasedMatchesInput) (*request.Request, *customerprofiles.ListRuleBasedMatchesOutput)
 
 	ListTagsForResource(*customerprofiles.ListTagsForResourceInput) (*customerprofiles.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *customerprofiles.ListTagsForResourceInput, ...request.Option) (*customerprofiles.ListTagsForResourceOutput, error)

@@ -754,6 +754,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "TestConnection":{
+      "name":"TestConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TestConnectionRequest"},
+      "output":{"shape":"TestConnectionResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "TestIdentityProvider":{
       "name":"TestIdentityProvider",
       "http":{
@@ -1139,7 +1154,6 @@
       "type":"structure",
       "required":[
         "Url",
-        "As2Config",
         "AccessRole"
       ],
       "members":{
@@ -1147,7 +1161,8 @@
         "As2Config":{"shape":"As2ConnectorConfig"},
         "AccessRole":{"shape":"Role"},
         "LoggingRole":{"shape":"Role"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "SftpConfig":{"shape":"SftpConnectorConfig"}
       }
     },
     "CreateConnectorResponse":{
@@ -1637,7 +1652,8 @@
         "As2Config":{"shape":"As2ConnectorConfig"},
         "AccessRole":{"shape":"Role"},
         "LoggingRole":{"shape":"Role"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "SftpConfig":{"shape":"SftpConnectorConfig"}
       }
     },
     "DescribedExecution":{
@@ -2703,6 +2719,11 @@
       "max":16,
       "min":0
     },
+    "SecretId":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "SecurityGroupId":{
       "type":"string",
       "max":20,
@@ -2795,6 +2816,24 @@
         "PUBLIC_KEY_AND_PASSWORD"
       ]
     },
+    "SftpConnectorConfig":{
+      "type":"structure",
+      "members":{
+        "UserSecretId":{"shape":"SecretId"},
+        "TrustedHostKeys":{"shape":"SftpConnectorTrustedHostKeyList"}
+      }
+    },
+    "SftpConnectorTrustedHostKey":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "SftpConnectorTrustedHostKeyList":{
+      "type":"list",
+      "member":{"shape":"SftpConnectorTrustedHostKey"},
+      "max":10,
+      "min":1
+    },
     "SigningAlg":{
       "type":"string",
       "enum":[
@@ -2846,13 +2885,13 @@
     },
     "StartFileTransferRequest":{
       "type":"structure",
-      "required":[
-        "ConnectorId",
-        "SendFilePaths"
-      ],
+      "required":["ConnectorId"],
       "members":{
         "ConnectorId":{"shape":"ConnectorId"},
-        "SendFilePaths":{"shape":"FilePaths"}
+        "SendFilePaths":{"shape":"FilePaths"},
+        "RetrieveFilePaths":{"shape":"FilePaths"},
+        "LocalDirectoryPath":{"shape":"FilePath"},
+        "RemoteDirectoryPath":{"shape":"FilePath"}
       }
     },
     "StartFileTransferResponse":{
@@ -2880,6 +2919,7 @@
         "STOP_FAILED"
       ]
     },
+    "Status":{"type":"string"},
     "StatusCode":{"type":"integer"},
     "StepResultOutputsJson":{
       "type":"string",
@@ -2952,6 +2992,21 @@
       "member":{"shape":"Tag"},
       "max":50,
       "min":1
+    },
+    "TestConnectionRequest":{
+      "type":"structure",
+      "required":["ConnectorId"],
+      "members":{
+        "ConnectorId":{"shape":"ConnectorId"}
+      }
+    },
+    "TestConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "ConnectorId":{"shape":"ConnectorId"},
+        "Status":{"shape":"Status"},
+        "StatusMessage":{"shape":"Message"}
+      }
     },
     "TestIdentityProviderRequest":{
       "type":"structure",
@@ -3089,7 +3144,8 @@
         "Url":{"shape":"Url"},
         "As2Config":{"shape":"As2ConnectorConfig"},
         "AccessRole":{"shape":"Role"},
-        "LoggingRole":{"shape":"Role"}
+        "LoggingRole":{"shape":"Role"},
+        "SftpConfig":{"shape":"SftpConnectorConfig"}
       }
     },
     "UpdateConnectorResponse":{

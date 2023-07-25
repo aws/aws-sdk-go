@@ -19532,6 +19532,10 @@
     },
     "TextClassificationJobConfig":{
       "type":"structure",
+      "required":[
+        "ContentColumn",
+        "TargetLabelColumn"
+      ],
       "members":{
         "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
         "ContentColumn":{"shape":"ContentColumn"},

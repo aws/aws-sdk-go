@@ -162,7 +162,8 @@
         "ExternalId":{"shape":"externalIdType"},
         "SerialNumber":{"shape":"serialNumberType"},
         "TokenCode":{"shape":"tokenCodeType"},
-        "SourceIdentity":{"shape":"sourceIdentityType"}
+        "SourceIdentity":{"shape":"sourceIdentityType"},
+        "ProvidedContexts":{"shape":"ProvidedContextsListType"}
       }
     },
     "AssumeRoleResponse":{
@@ -435,6 +436,18 @@
         "arn":{"shape":"arnType"}
       }
     },
+    "ProvidedContext":{
+      "type":"structure",
+      "members":{
+        "ProviderArn":{"shape":"arnType"},
+        "ContextAssertion":{"shape":"contextAssertionType"}
+      }
+    },
+    "ProvidedContextsListType":{
+      "type":"list",
+      "member":{"shape":"ProvidedContext"},
+      "max":5
+    },
     "RegionDisabledException":{
       "type":"structure",
       "members":{
@@ -494,6 +507,11 @@
       "max":20000,
       "min":4,
       "sensitive":true
+    },
+    "contextAssertionType":{
+      "type":"string",
+      "max":2048,
+      "min":4
     },
     "dateType":{"type":"timestamp"},
     "decodedMessageType":{"type":"string"},

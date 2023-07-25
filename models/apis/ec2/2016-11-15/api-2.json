@@ -7676,6 +7676,7 @@
       ]
     },
     "BareMetalFlag":{"type":"boolean"},
+    "BaselineBandwidthInGbps":{"type":"double"},
     "BaselineBandwidthInMbps":{"type":"integer"},
     "BaselineEbsBandwidthMbps":{
       "type":"structure",
@@ -25038,6 +25039,10 @@
         "Accelerators":{
           "shape":"InferenceDeviceInfoList",
           "locationName":"accelerators"
+        },
+        "TotalInferenceMemoryInMiB":{
+          "shape":"totalInferenceMemory",
+          "locationName":"totalInferenceMemoryInMiB"
         }
       }
     },
@@ -25056,6 +25061,10 @@
         "Manufacturer":{
           "shape":"InferenceDeviceManufacturerName",
           "locationName":"manufacturer"
+        },
+        "MemoryInfo":{
+          "shape":"InferenceDeviceMemoryInfo",
+          "locationName":"memoryInfo"
         }
       }
     },
@@ -25065,6 +25074,16 @@
       "locationName":"item"
     },
     "InferenceDeviceManufacturerName":{"type":"string"},
+    "InferenceDeviceMemoryInfo":{
+      "type":"structure",
+      "members":{
+        "SizeInMiB":{
+          "shape":"InferenceDeviceMemorySize",
+          "locationName":"sizeInMiB"
+        }
+      }
+    },
+    "InferenceDeviceMemorySize":{"type":"integer"},
     "InferenceDeviceName":{"type":"string"},
     "InsideCidrBlocksStringList":{
       "type":"list",
@@ -32768,6 +32787,14 @@
         "MaximumNetworkInterfaces":{
           "shape":"MaxNetworkInterfaces",
           "locationName":"maximumNetworkInterfaces"
+        },
+        "BaselineBandwidthInGbps":{
+          "shape":"BaselineBandwidthInGbps",
+          "locationName":"baselineBandwidthInGbps"
+        },
+        "PeakBandwidthInGbps":{
+          "shape":"PeakBandwidthInGbps",
+          "locationName":"peakBandwidthInGbps"
         }
       }
     },
@@ -33953,6 +33980,7 @@
         "SubsystemVendorId":{"shape":"String"}
       }
     },
+    "PeakBandwidthInGbps":{"type":"double"},
     "PeeringAttachmentStatus":{
       "type":"structure",
       "members":{
@@ -45100,6 +45128,7 @@
       }
     },
     "totalFpgaMemory":{"type":"integer"},
-    "totalGpuMemory":{"type":"integer"}
+    "totalGpuMemory":{"type":"integer"},
+    "totalInferenceMemory":{"type":"integer"}
   }
 }

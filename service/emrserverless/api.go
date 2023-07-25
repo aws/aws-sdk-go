@@ -406,8 +406,16 @@ func (c *EMRServerless) GetDashboardForJobRunRequest(input *GetDashboardForJobRu
 
 // GetDashboardForJobRun API operation for EMR Serverless.
 //
-// Returns a URL to access the job run dashboard. The generated URL is valid
-// for one hour, after which you must invoke the API again to generate a new
+// Creates and returns a URL that you can use to access the application UIs
+// for a job run.
+//
+// For jobs in a running state, the application UI is a live user interface
+// such as the Spark or Tez web UI. For completed jobs, the application UI is
+// a persistent application user interface such as the Spark History Server
+// or persistent Tez UI.
+//
+// The URL is valid for one hour after you generate it. To access the application
+// UI after that hour elapses, you must invoke the API again to generate a new
 // URL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1965,6 +1973,111 @@ func (s *CancelJobRunOutput) SetApplicationId(v string) *CancelJobRunOutput {
 // SetJobRunId sets the JobRunId field's value.
 func (s *CancelJobRunOutput) SetJobRunId(v string) *CancelJobRunOutput {
 	s.JobRunId = &v
+	return s
+}
+
+// The Amazon CloudWatch configuration for monitoring logs. You can configure
+// your jobs to send log information to CloudWatch.
+type CloudWatchLoggingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables CloudWatch logging.
+	//
+	// Enabled is a required field
+	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
+
+	// The Key Management Service (KMS) key ARN to encrypt the logs that you store
+	// in CloudWatch Logs.
+	EncryptionKeyArn *string `locationName:"encryptionKeyArn" min:"20" type:"string"`
+
+	// The name of the log group in Amazon CloudWatch Logs where you want to publish
+	// your logs.
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
+
+	// Prefix for the CloudWatch log stream name.
+	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" min:"1" type:"string"`
+
+	// The types of logs that you want to publish to CloudWatch. If you don't specify
+	// any log types, driver STDOUT and STDERR logs will be published to CloudWatch
+	// Logs by default. For more information including the supported worker types
+	// for Hive and Spark, see Logging for EMR Serverless with CloudWatch (https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/logging.html#jobs-log-storage-cw).
+	//
+	//    * Key Valid Values: SPARK_DRIVER, SPARK_EXECUTOR, HIVE_DRIVER, TEZ_TASK
+	//
+	//    * Array Members Valid Values: STDOUT, STDERR, HIVE_LOG, TEZ_AM, SYSTEM_LOGS
+	LogTypes map[string][]*string `locationName:"logTypes" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchLoggingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchLoggingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudWatchLoggingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudWatchLoggingConfiguration"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.EncryptionKeyArn != nil && len(*s.EncryptionKeyArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("EncryptionKeyArn", 20))
+	}
+	if s.LogGroupName != nil && len(*s.LogGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LogGroupName", 1))
+	}
+	if s.LogStreamNamePrefix != nil && len(*s.LogStreamNamePrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LogStreamNamePrefix", 1))
+	}
+	if s.LogTypes != nil && len(s.LogTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LogTypes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CloudWatchLoggingConfiguration) SetEnabled(v bool) *CloudWatchLoggingConfiguration {
+	s.Enabled = &v
+	return s
+}
+
+// SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
+func (s *CloudWatchLoggingConfiguration) SetEncryptionKeyArn(v string) *CloudWatchLoggingConfiguration {
+	s.EncryptionKeyArn = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *CloudWatchLoggingConfiguration) SetLogGroupName(v string) *CloudWatchLoggingConfiguration {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamNamePrefix sets the LogStreamNamePrefix field's value.
+func (s *CloudWatchLoggingConfiguration) SetLogStreamNamePrefix(v string) *CloudWatchLoggingConfiguration {
+	s.LogStreamNamePrefix = &v
+	return s
+}
+
+// SetLogTypes sets the LogTypes field's value.
+func (s *CloudWatchLoggingConfiguration) SetLogTypes(v map[string][]*string) *CloudWatchLoggingConfiguration {
+	s.LogTypes = v
 	return s
 }
 
@@ -4026,6 +4139,10 @@ func (s *MaximumAllowedResources) SetMemory(v string) *MaximumAllowedResources {
 type MonitoringConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon CloudWatch configuration for monitoring logs. You can configure
+	// your jobs to send log information to CloudWatch.
+	CloudWatchLoggingConfiguration *CloudWatchLoggingConfiguration `locationName:"cloudWatchLoggingConfiguration" type:"structure"`
+
 	// The managed log persistence configuration for a job run.
 	ManagedPersistenceMonitoringConfiguration *ManagedPersistenceMonitoringConfiguration `locationName:"managedPersistenceMonitoringConfiguration" type:"structure"`
 
@@ -4054,6 +4171,11 @@ func (s MonitoringConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MonitoringConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MonitoringConfiguration"}
+	if s.CloudWatchLoggingConfiguration != nil {
+		if err := s.CloudWatchLoggingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CloudWatchLoggingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ManagedPersistenceMonitoringConfiguration != nil {
 		if err := s.ManagedPersistenceMonitoringConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ManagedPersistenceMonitoringConfiguration", err.(request.ErrInvalidParams))
@@ -4069,6 +4191,12 @@ func (s *MonitoringConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCloudWatchLoggingConfiguration sets the CloudWatchLoggingConfiguration field's value.
+func (s *MonitoringConfiguration) SetCloudWatchLoggingConfiguration(v *CloudWatchLoggingConfiguration) *MonitoringConfiguration {
+	s.CloudWatchLoggingConfiguration = v
+	return s
 }
 
 // SetManagedPersistenceMonitoringConfiguration sets the ManagedPersistenceMonitoringConfiguration field's value.

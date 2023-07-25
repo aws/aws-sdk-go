@@ -54,6 +54,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationAzureBlob":{
+      "name":"CreateLocationAzureBlob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationAzureBlobRequest"},
+      "output":{"shape":"CreateLocationAzureBlobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationEfs":{
       "name":"CreateLocationEfs",
       "http":{
@@ -262,6 +275,19 @@
         {"shape":"InternalException"}
       ],
       "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "DescribeLocationAzureBlob":{
+      "name":"DescribeLocationAzureBlob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationAzureBlobRequest"},
+      "output":{"shape":"DescribeLocationAzureBlobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
     },
     "DescribeLocationEfs":{
       "name":"DescribeLocationEfs",
@@ -676,6 +702,19 @@
       ],
       "endpoint":{"hostPrefix":"discovery-"}
     },
+    "UpdateLocationAzureBlob":{
+      "name":"UpdateLocationAzureBlob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationAzureBlobRequest"},
+      "output":{"shape":"UpdateLocationAzureBlobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "UpdateLocationHdfs":{
       "name":"UpdateLocationHdfs",
       "http":{
@@ -842,6 +881,46 @@
         "BEST_EFFORT"
       ]
     },
+    "AzureAccessTier":{
+      "type":"string",
+      "enum":[
+        "HOT",
+        "COOL",
+        "ARCHIVE"
+      ]
+    },
+    "AzureBlobAuthenticationType":{
+      "type":"string",
+      "enum":["SAS"]
+    },
+    "AzureBlobContainerUrl":{
+      "type":"string",
+      "max":325,
+      "pattern":"^https:\\/\\/[A-Za-z0-9]((\\.|-+)?[A-Za-z0-9]){0,252}\\/[a-z0-9](-?[a-z0-9]){2,62}$"
+    },
+    "AzureBlobSasConfiguration":{
+      "type":"structure",
+      "required":["Token"],
+      "members":{
+        "Token":{"shape":"AzureBlobSasToken"}
+      }
+    },
+    "AzureBlobSasToken":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^.+$",
+      "sensitive":true
+    },
+    "AzureBlobSubdirectory":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}\\p{C}]*$"
+    },
+    "AzureBlobType":{
+      "type":"string",
+      "enum":["BLOCK"]
+    },
     "BytesPerSecond":{
       "type":"long",
       "min":-1
@@ -887,6 +966,30 @@
       "type":"structure",
       "members":{
         "AgentArn":{"shape":"AgentArn"}
+      }
+    },
+    "CreateLocationAzureBlobRequest":{
+      "type":"structure",
+      "required":[
+        "ContainerUrl",
+        "AuthenticationType",
+        "AgentArns"
+      ],
+      "members":{
+        "ContainerUrl":{"shape":"AzureBlobContainerUrl"},
+        "AuthenticationType":{"shape":"AzureBlobAuthenticationType"},
+        "SasConfiguration":{"shape":"AzureBlobSasConfiguration"},
+        "BlobType":{"shape":"AzureBlobType"},
+        "AccessTier":{"shape":"AzureAccessTier"},
+        "Subdirectory":{"shape":"AzureBlobSubdirectory"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationAzureBlobResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
       }
     },
     "CreateLocationEfsRequest":{
@@ -1225,6 +1328,25 @@
         "Status":{"shape":"DiscoveryJobStatus"},
         "JobStartTime":{"shape":"DiscoveryTime"},
         "JobEndTime":{"shape":"DiscoveryTime"}
+      }
+    },
+    "DescribeLocationAzureBlobRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationAzureBlobResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "AuthenticationType":{"shape":"AzureBlobAuthenticationType"},
+        "BlobType":{"shape":"AzureBlobType"},
+        "AccessTier":{"shape":"AzureAccessTier"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "CreationTime":{"shape":"Time"}
       }
     },
     "DescribeLocationEfsRequest":{
@@ -2914,6 +3036,24 @@
       }
     },
     "UpdateDiscoveryJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationAzureBlobRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"AzureBlobSubdirectory"},
+        "AuthenticationType":{"shape":"AzureBlobAuthenticationType"},
+        "SasConfiguration":{"shape":"AzureBlobSasConfiguration"},
+        "BlobType":{"shape":"AzureBlobType"},
+        "AccessTier":{"shape":"AzureAccessTier"},
+        "AgentArns":{"shape":"AgentArnList"}
+      }
+    },
+    "UpdateLocationAzureBlobResponse":{
       "type":"structure",
       "members":{
       }
