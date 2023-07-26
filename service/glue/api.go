@@ -21513,7 +21513,7 @@ func (s *AmazonRedshiftSource) SetName(v string) *AmazonRedshiftSource {
 type AmazonRedshiftTarget struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the data of the Amazon Reshift target node.
+	// Specifies the data of the Amazon Redshift target node.
 	Data *AmazonRedshiftNodeData `type:"structure"`
 
 	// The nodes that are inputs to the data target.
@@ -25921,6 +25921,12 @@ type CodeGenConfigurationNode struct {
 	// DynamicFrames. The output is the selected DynamicFrame
 	SelectFromCollection *SelectFromCollection `type:"structure"`
 
+	// Specifies a Snowflake data source.
+	SnowflakeSource *SnowflakeSource `type:"structure"`
+
+	// Specifies a target that writes to a Snowflake data source.
+	SnowflakeTarget *SnowflakeTarget `type:"structure"`
+
 	// Specifies a connector to an Apache Spark data source.
 	SparkConnectorSource *SparkConnectorSource `type:"structure"`
 
@@ -26263,6 +26269,16 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.SelectFromCollection != nil {
 		if err := s.SelectFromCollection.Validate(); err != nil {
 			invalidParams.AddNested("SelectFromCollection", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SnowflakeSource != nil {
+		if err := s.SnowflakeSource.Validate(); err != nil {
+			invalidParams.AddNested("SnowflakeSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SnowflakeTarget != nil {
+		if err := s.SnowflakeTarget.Validate(); err != nil {
+			invalidParams.AddNested("SnowflakeTarget", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SparkConnectorSource != nil {
@@ -26665,6 +26681,18 @@ func (s *CodeGenConfigurationNode) SetSelectFields(v *SelectFields) *CodeGenConf
 // SetSelectFromCollection sets the SelectFromCollection field's value.
 func (s *CodeGenConfigurationNode) SetSelectFromCollection(v *SelectFromCollection) *CodeGenConfigurationNode {
 	s.SelectFromCollection = v
+	return s
+}
+
+// SetSnowflakeSource sets the SnowflakeSource field's value.
+func (s *CodeGenConfigurationNode) SetSnowflakeSource(v *SnowflakeSource) *CodeGenConfigurationNode {
+	s.SnowflakeSource = v
+	return s
+}
+
+// SetSnowflakeTarget sets the SnowflakeTarget field's value.
+func (s *CodeGenConfigurationNode) SetSnowflakeTarget(v *SnowflakeTarget) *CodeGenConfigurationNode {
+	s.SnowflakeTarget = v
 	return s
 }
 
@@ -64135,6 +64163,386 @@ func (s *SkewedInfo) SetSkewedColumnValueLocationMaps(v map[string]*string) *Ske
 // SetSkewedColumnValues sets the SkewedColumnValues field's value.
 func (s *SkewedInfo) SetSkewedColumnValues(v []*string) *SkewedInfo {
 	s.SkewedColumnValues = v
+	return s
+}
+
+// Specifies configuration for Snowflake nodes in Glue Studio.
+type SnowflakeNodeData struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies what action to take when writing to a table with preexisting data.
+	// Valid values: append, merge, truncate, drop.
+	Action *string `type:"string"`
+
+	// Specifies additional options passed to the Snowflake connector. If options
+	// are specified elsewhere in this node, this will take precedence.
+	AdditionalOptions map[string]*string `type:"map"`
+
+	// Specifies whether automatic query pushdown is enabled. If pushdown is enabled,
+	// then when a query is run on Spark, if part of the query can be "pushed down"
+	// to the Snowflake server, it is pushed down. This improves performance of
+	// some queries.
+	AutoPushdown *bool `type:"boolean"`
+
+	// Specifies a Glue Data Catalog Connection to a Snowflake endpoint.
+	Connection *Option `type:"structure"`
+
+	// Specifies a Snowflake database for your node to use.
+	Database *string `type:"string"`
+
+	// Not currently used.
+	IamRole *Option `type:"structure"`
+
+	// Specifies a merge action. Valid values: simple, custom. If simple, merge
+	// behavior is defined by MergeWhenMatched and MergeWhenNotMatched. If custom,
+	// defined by MergeClause.
+	MergeAction *string `type:"string"`
+
+	// A SQL statement that specifies a custom merge behavior.
+	MergeClause *string `type:"string"`
+
+	// Specifies how to resolve records that match preexisting data when merging.
+	// Valid values: update, delete.
+	MergeWhenMatched *string `type:"string"`
+
+	// Specifies how to process records that do not match preexisting data when
+	// merging. Valid values: insert, none.
+	MergeWhenNotMatched *string `type:"string"`
+
+	// A SQL string run after the Snowflake connector performs its standard actions.
+	PostAction *string `type:"string"`
+
+	// A SQL string run before the Snowflake connector performs its standard actions.
+	PreAction *string `type:"string"`
+
+	// A SQL string used to retrieve data with the query sourcetype.
+	SampleQuery *string `type:"string"`
+
+	// Specifies a Snowflake database schema for your node to use.
+	Schema *string `type:"string"`
+
+	// Specifies the columns combined to identify a record when detecting matches
+	// for merges and upserts. A list of structures with value, label and description
+	// keys. Each structure describes a column.
+	SelectedColumns []*Option `type:"list"`
+
+	// Specifies how retrieved data is specified. Valid values: "table", "query".
+	SourceType *string `type:"string"`
+
+	// The name of a staging table used when performing merge or upsert append actions.
+	// Data is written to this table, then moved to table by a generated postaction.
+	StagingTable *string `type:"string"`
+
+	// Specifies a Snowflake table for your node to use.
+	Table *string `type:"string"`
+
+	// Manually defines the target schema for the node. A list of structures with
+	// value , label and description keys. Each structure defines a column.
+	TableSchema []*Option `type:"list"`
+
+	// Not currently used.
+	TempDir *string `type:"string"`
+
+	// Used when Action is append. Specifies the resolution behavior when a row
+	// already exists. If true, preexisting rows will be updated. If false, those
+	// rows will be inserted.
+	Upsert *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeNodeData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeNodeData) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *SnowflakeNodeData) SetAction(v string) *SnowflakeNodeData {
+	s.Action = &v
+	return s
+}
+
+// SetAdditionalOptions sets the AdditionalOptions field's value.
+func (s *SnowflakeNodeData) SetAdditionalOptions(v map[string]*string) *SnowflakeNodeData {
+	s.AdditionalOptions = v
+	return s
+}
+
+// SetAutoPushdown sets the AutoPushdown field's value.
+func (s *SnowflakeNodeData) SetAutoPushdown(v bool) *SnowflakeNodeData {
+	s.AutoPushdown = &v
+	return s
+}
+
+// SetConnection sets the Connection field's value.
+func (s *SnowflakeNodeData) SetConnection(v *Option) *SnowflakeNodeData {
+	s.Connection = v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *SnowflakeNodeData) SetDatabase(v string) *SnowflakeNodeData {
+	s.Database = &v
+	return s
+}
+
+// SetIamRole sets the IamRole field's value.
+func (s *SnowflakeNodeData) SetIamRole(v *Option) *SnowflakeNodeData {
+	s.IamRole = v
+	return s
+}
+
+// SetMergeAction sets the MergeAction field's value.
+func (s *SnowflakeNodeData) SetMergeAction(v string) *SnowflakeNodeData {
+	s.MergeAction = &v
+	return s
+}
+
+// SetMergeClause sets the MergeClause field's value.
+func (s *SnowflakeNodeData) SetMergeClause(v string) *SnowflakeNodeData {
+	s.MergeClause = &v
+	return s
+}
+
+// SetMergeWhenMatched sets the MergeWhenMatched field's value.
+func (s *SnowflakeNodeData) SetMergeWhenMatched(v string) *SnowflakeNodeData {
+	s.MergeWhenMatched = &v
+	return s
+}
+
+// SetMergeWhenNotMatched sets the MergeWhenNotMatched field's value.
+func (s *SnowflakeNodeData) SetMergeWhenNotMatched(v string) *SnowflakeNodeData {
+	s.MergeWhenNotMatched = &v
+	return s
+}
+
+// SetPostAction sets the PostAction field's value.
+func (s *SnowflakeNodeData) SetPostAction(v string) *SnowflakeNodeData {
+	s.PostAction = &v
+	return s
+}
+
+// SetPreAction sets the PreAction field's value.
+func (s *SnowflakeNodeData) SetPreAction(v string) *SnowflakeNodeData {
+	s.PreAction = &v
+	return s
+}
+
+// SetSampleQuery sets the SampleQuery field's value.
+func (s *SnowflakeNodeData) SetSampleQuery(v string) *SnowflakeNodeData {
+	s.SampleQuery = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *SnowflakeNodeData) SetSchema(v string) *SnowflakeNodeData {
+	s.Schema = &v
+	return s
+}
+
+// SetSelectedColumns sets the SelectedColumns field's value.
+func (s *SnowflakeNodeData) SetSelectedColumns(v []*Option) *SnowflakeNodeData {
+	s.SelectedColumns = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *SnowflakeNodeData) SetSourceType(v string) *SnowflakeNodeData {
+	s.SourceType = &v
+	return s
+}
+
+// SetStagingTable sets the StagingTable field's value.
+func (s *SnowflakeNodeData) SetStagingTable(v string) *SnowflakeNodeData {
+	s.StagingTable = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *SnowflakeNodeData) SetTable(v string) *SnowflakeNodeData {
+	s.Table = &v
+	return s
+}
+
+// SetTableSchema sets the TableSchema field's value.
+func (s *SnowflakeNodeData) SetTableSchema(v []*Option) *SnowflakeNodeData {
+	s.TableSchema = v
+	return s
+}
+
+// SetTempDir sets the TempDir field's value.
+func (s *SnowflakeNodeData) SetTempDir(v string) *SnowflakeNodeData {
+	s.TempDir = &v
+	return s
+}
+
+// SetUpsert sets the Upsert field's value.
+func (s *SnowflakeNodeData) SetUpsert(v bool) *SnowflakeNodeData {
+	s.Upsert = &v
+	return s
+}
+
+// Specifies a Snowflake data source.
+type SnowflakeSource struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration for the Snowflake data source.
+	//
+	// Data is a required field
+	Data *SnowflakeNodeData `type:"structure" required:"true"`
+
+	// The name of the Snowflake data source.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies user-defined schemas for your output data.
+	OutputSchemas []*GlueSchema `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnowflakeSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnowflakeSource"}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.OutputSchemas != nil {
+		for i, v := range s.OutputSchemas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSchemas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetData sets the Data field's value.
+func (s *SnowflakeSource) SetData(v *SnowflakeNodeData) *SnowflakeSource {
+	s.Data = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SnowflakeSource) SetName(v string) *SnowflakeSource {
+	s.Name = &v
+	return s
+}
+
+// SetOutputSchemas sets the OutputSchemas field's value.
+func (s *SnowflakeSource) SetOutputSchemas(v []*GlueSchema) *SnowflakeSource {
+	s.OutputSchemas = v
+	return s
+}
+
+// Specifies a Snowflake target.
+type SnowflakeTarget struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the data of the Snowflake target node.
+	//
+	// Data is a required field
+	Data *SnowflakeNodeData `type:"structure" required:"true"`
+
+	// The nodes that are inputs to the data target.
+	Inputs []*string `min:"1" type:"list"`
+
+	// The name of the Snowflake target.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnowflakeTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnowflakeTarget"}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetData sets the Data field's value.
+func (s *SnowflakeTarget) SetData(v *SnowflakeNodeData) *SnowflakeTarget {
+	s.Data = v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *SnowflakeTarget) SetInputs(v []*string) *SnowflakeTarget {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SnowflakeTarget) SetName(v string) *SnowflakeTarget {
+	s.Name = &v
 	return s
 }
 

@@ -588,7 +588,7 @@
       }
     },
     "OcuLimitExceededException": {
-      "base": "<p>OCU Limit Exceeded for service limits</p>",
+      "base": "<p>Thrown when the collection you're attempting to create results in a number of search or indexing OCUs that exceeds the account limit. </p>",
       "refs": {
       }
     },

@@ -3,9 +3,9 @@
 // Package omics provides the client and types for making API
 // requests to Amazon Omics.
 //
-// This is the Amazon Omics API Reference. For an introduction to the service,
-// see What is Amazon Omics? (https://docs.aws.amazon.com/omics/latest/dev/)
-// in the Amazon Omics User Guide.
+// This is the AWS HealthOmics API Reference. For an introduction to the service,
+// see What is AWS HealthOmics? (https://docs.aws.amazon.com/omics/latest/dev/)
+// in the AWS HealthOmics User Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28 for more information on this service.
 //

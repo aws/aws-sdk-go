@@ -251,6 +251,7 @@
         "S3HudiCatalogTarget$AdditionalOptions": "<p>Specifies additional connection options for the connector.</p>",
         "S3HudiDirectTarget$AdditionalOptions": "<p>Specifies additional connection options for the connector.</p>",
         "S3HudiSource$AdditionalHudiOptions": "<p>Specifies additional connection options.</p>",
+        "SnowflakeNodeData$AdditionalOptions": "<p>Specifies additional options passed to the Snowflake connector. If options are specified elsewhere in this node, this will take precedence.</p>",
         "SparkConnectorSource$AdditionalOptions": "<p>Additional connection options for the connector.</p>",
         "SparkConnectorTarget$AdditionalOptions": "<p>Additional connection options for the connector.</p>"
       }
@@ -306,7 +307,7 @@
       "base": "<p>Specifies an Amazon Redshift node.</p>",
       "refs": {
         "AmazonRedshiftSource$Data": "<p>Specifies the data of the Amazon Reshift source node.</p>",
-        "AmazonRedshiftTarget$Data": "<p>Specifies the data of the Amazon Reshift target node.</p>"
+        "AmazonRedshiftTarget$Data": "<p>Specifies the data of the Amazon Redshift target node.</p>"
       }
     },
     "AmazonRedshiftSource": {
@@ -767,6 +768,8 @@
         "CreateTriggerRequest$StartOnCreation": "<p>Set to <code>true</code> to start <code>SCHEDULED</code> and <code>CONDITIONAL</code> triggers when created. True is not supported for <code>ON_DEMAND</code> triggers.</p>",
         "GetJobRunRequest$PredecessorsIncluded": "<p>True if a list of predecessor runs should be returned.</p>",
         "S3CsvSource$OptimizePerformance": "<p>A Boolean value that specifies whether to use the advanced SIMD CSV reader along with Apache Arrow based columnar memory formats. Only available in Glue version 3.0.</p>",
+        "SnowflakeNodeData$Upsert": "<p>Used when Action is <code>append</code>. Specifies the resolution behavior when a row already exists. If true, preexisting rows will be updated. If false, those rows will be inserted.</p>",
+        "SnowflakeNodeData$AutoPushdown": "<p>Specifies whether automatic query pushdown is enabled. If pushdown is enabled, then when a query is run on Spark, if part of the query can be \"pushed down\" to the Snowflake server, it is pushed down. This improves performance of some queries.</p>",
         "UpdateDevEndpointRequest$UpdateEtlLibraries": "<p> <code>True</code> if the list of custom libraries to be loaded in the development endpoint needs to be updated, or <code>False</code> if otherwise.</p>"
       }
     },
@@ -2904,6 +2907,7 @@
         "S3JsonSource$JsonPath": "<p>A JsonPath string defining the JSON data.</p>",
         "S3ParquetSource$GroupSize": "<p>The target group size in bytes. The default is computed based on the input data size and the size of your cluster. When there are fewer than 50,000 input files, <code>\"groupFiles\"</code> must be set to <code>\"inPartition\"</code> for this to take effect.</p>",
         "S3ParquetSource$GroupFiles": "<p>Grouping files is turned on by default when the input contains more than 50,000 files. To turn on grouping with fewer than 50,000 files, set this parameter to \"inPartition\". To disable grouping when there are more than 50,000 files, set this parameter to <code>\"none\"</code>.</p>",
+        "SnowflakeNodeData$TempDir": "<p>Not currently used.</p>",
         "SparkConnectorSource$ConnectionName": "<p>The name of the connection that is associated with the connector.</p>",
         "SparkConnectorSource$ConnectorName": "<p>The name of a connector that assists with accessing the data store in Glue Studio.</p>",
         "SparkConnectorSource$ConnectionType": "<p>The type of connection, such as marketplace.spark or custom.spark, designating a connection to an Apache Spark data store.</p>",
@@ -3266,7 +3270,11 @@
         "DQResultsPublishingOptions$EvaluationContext": "<p>The context of the evaluation.</p>",
         "Datatype$Id": "<p>The datatype of the value.</p>",
         "Datatype$Label": "<p>A label assigned to the datatype.</p>",
-        "LimitedStringList$member": null
+        "LimitedStringList$member": null,
+        "SnowflakeNodeData$SourceType": "<p>Specifies how retrieved data is specified. Valid values: <code>\"table\"</code>, <code> \"query\"</code>.</p>",
+        "SnowflakeNodeData$MergeAction": "<p>Specifies a merge action. Valid values: <code>simple</code>, <code>custom</code>. If simple, merge behavior is defined by <code>MergeWhenMatched</code> and <code> MergeWhenNotMatched</code>. If custom, defined by <code>MergeClause</code>.</p>",
+        "SnowflakeNodeData$MergeWhenMatched": "<p>Specifies how to resolve records that match preexisting data when merging. Valid values: <code> update</code>, <code>delete</code>.</p>",
+        "SnowflakeNodeData$MergeWhenNotMatched": "<p>Specifies how to process records that do not match preexisting data when merging. Valid values: <code>insert</code>, <code>none</code>.</p>"
       }
     },
     "GenericMap": {
@@ -3377,6 +3385,15 @@
         "MapValue$value": null,
         "OrchestrationStringList$member": null,
         "PublicKeysList$member": null,
+        "SnowflakeNodeData$Schema": "<p>Specifies a Snowflake database schema for your node to use.</p>",
+        "SnowflakeNodeData$Table": "<p>Specifies a Snowflake table for your node to use.</p>",
+        "SnowflakeNodeData$Database": "<p>Specifies a Snowflake database for your node to use.</p>",
+        "SnowflakeNodeData$SampleQuery": "<p>A SQL string used to retrieve data with the <code>query</code> sourcetype.</p>",
+        "SnowflakeNodeData$PreAction": "<p>A SQL string run before the Snowflake connector performs its standard actions.</p>",
+        "SnowflakeNodeData$PostAction": "<p>A SQL string run after the Snowflake connector performs its standard actions.</p>",
+        "SnowflakeNodeData$Action": "<p>Specifies what action to take when writing to a table with preexisting data. Valid values: <code> append</code>, <code>merge</code>, <code>truncate</code>, <code>drop</code>.</p>",
+        "SnowflakeNodeData$MergeClause": "<p>A SQL statement that specifies a custom merge behavior.</p>",
+        "SnowflakeNodeData$StagingTable": "<p>The name of a staging table used when performing <code>merge</code> or upsert <code>append</code> actions. Data is written to this table, then moved to <code>table</code> by a generated postaction.</p>",
         "Statement$Code": "<p>The execution code of the statement.</p>",
         "StatementOutput$ErrorName": "<p>The name of the error in the output.</p>",
         "StatementOutput$ErrorValue": "<p>The error value of the output.</p>",
@@ -4139,6 +4156,7 @@
         "S3HudiSource$OutputSchemas": "<p>Specifies the data schema for the Hudi source.</p>",
         "S3JsonSource$OutputSchemas": "<p>Specifies the data schema for the S3 JSON source.</p>",
         "S3ParquetSource$OutputSchemas": "<p>Specifies the data schema for the S3 Parquet source.</p>",
+        "SnowflakeSource$OutputSchemas": "<p>Specifies user-defined schemas for your output data.</p>",
         "SparkConnectorSource$OutputSchemas": "<p>Specifies data schema for the custom spark source.</p>",
         "SparkConnectorTarget$OutputSchemas": "<p>Specifies the data schema for the custom spark target.</p>",
         "SparkSQL$OutputSchemas": "<p>Specifies the data schema for the SparkSQL transform.</p>"
@@ -5736,6 +5754,8 @@
         "S3ParquetSource$Name": "<p>The name of the data store.</p>",
         "SelectFields$Name": "<p>The name of the transform node.</p>",
         "SelectFromCollection$Name": "<p>The name of the transform node.</p>",
+        "SnowflakeSource$Name": "<p>The name of the Snowflake data source.</p>",
+        "SnowflakeTarget$Name": "<p>The name of the Snowflake target.</p>",
         "SparkConnectorSource$Name": "<p>The name of the data source.</p>",
         "SparkConnectorTarget$Name": "<p>The name of the data target.</p>",
         "SparkSQL$Name": "<p>The name of the transform node.</p>",
@@ -5953,6 +5973,7 @@
         "S3HudiDirectTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "SelectFields$Inputs": "<p>The data inputs identified by their node names.</p>",
         "SelectFromCollection$Inputs": "<p>The data inputs identified by their node names.</p>",
+        "SnowflakeTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "SparkConnectorTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "Spigot$Inputs": "<p>The data inputs identified by their node names.</p>",
         "SplitFields$Inputs": "<p>The data inputs identified by their node names.</p>"
@@ -5978,14 +5999,18 @@
         "AmazonRedshiftNodeData$CatalogDatabase": "<p>The name of the Glue Data Catalog database when working with a data catalog.</p>",
         "AmazonRedshiftNodeData$CatalogTable": "<p>The Glue Data Catalog table name when working with a data catalog.</p>",
         "AmazonRedshiftNodeData$IamRole": "<p>Optional. The role name use when connection to S3. The IAM role ill default to the role on the job when left blank.</p>",
-        "OptionList$member": null
+        "OptionList$member": null,
+        "SnowflakeNodeData$Connection": "<p>Specifies a Glue Data Catalog Connection to a Snowflake endpoint.</p>",
+        "SnowflakeNodeData$IamRole": "<p>Not currently used.</p>"
       }
     },
     "OptionList": {
       "base": null,
       "refs": {
         "AmazonRedshiftNodeData$TableSchema": "<p>The array of schema output for a given node.</p>",
-        "AmazonRedshiftNodeData$SelectedColumns": "<p>The list of column names used to determine a matching record when doing a MERGE or APPEND with upsert.</p>"
+        "AmazonRedshiftNodeData$SelectedColumns": "<p>The list of column names used to determine a matching record when doing a MERGE or APPEND with upsert.</p>",
+        "SnowflakeNodeData$SelectedColumns": "<p>Specifies the columns combined to identify a record when detecting matches for merges and upserts. A list of structures with <code>value</code>, <code>label</code> and <code> description</code> keys. Each structure describes a column.</p>",
+        "SnowflakeNodeData$TableSchema": "<p>Manually defines the target schema for the node. A list of structures with <code>value</code> , <code>label</code> and <code>description</code> keys. Each structure defines a column.</p>"
       }
     },
     "OracleSQLCatalogSource": {
@@ -7264,6 +7289,25 @@
       "base": "<p>Specifies skewed values in a table. Skewed values are those that occur with very high frequency.</p>",
       "refs": {
         "StorageDescriptor$SkewedInfo": "<p>The information about values that appear frequently in a column (skewed values).</p>"
+      }
+    },
+    "SnowflakeNodeData": {
+      "base": "<p>Specifies configuration for Snowflake nodes in Glue Studio.</p>",
+      "refs": {
+        "SnowflakeSource$Data": "<p>Configuration for the Snowflake data source.</p>",
+        "SnowflakeTarget$Data": "<p>Specifies the data of the Snowflake target node.</p>"
+      }
+    },
+    "SnowflakeSource": {
+      "base": "<p>Specifies a Snowflake data source.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$SnowflakeSource": "<p>Specifies a Snowflake data source.</p>"
+      }
+    },
+    "SnowflakeTarget": {
+      "base": "<p>Specifies a Snowflake target.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$SnowflakeTarget": "<p>Specifies a target that writes to a Snowflake data source.</p>"
       }
     },
     "Sort": {

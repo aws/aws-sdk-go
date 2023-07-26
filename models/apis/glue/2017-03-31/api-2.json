@@ -4269,7 +4269,9 @@
         "AmazonRedshiftSource":{"shape":"AmazonRedshiftSource"},
         "AmazonRedshiftTarget":{"shape":"AmazonRedshiftTarget"},
         "EvaluateDataQualityMultiFrame":{"shape":"EvaluateDataQualityMultiFrame"},
-        "Recipe":{"shape":"Recipe"}
+        "Recipe":{"shape":"Recipe"},
+        "SnowflakeSource":{"shape":"SnowflakeSource"},
+        "SnowflakeTarget":{"shape":"SnowflakeTarget"}
       }
     },
     "CodeGenConfigurationNodes":{
@@ -11012,6 +11014,56 @@
         "SkewedColumnNames":{"shape":"NameStringList"},
         "SkewedColumnValues":{"shape":"ColumnValueStringList"},
         "SkewedColumnValueLocationMaps":{"shape":"LocationMap"}
+      }
+    },
+    "SnowflakeNodeData":{
+      "type":"structure",
+      "members":{
+        "SourceType":{"shape":"GenericLimitedString"},
+        "Connection":{"shape":"Option"},
+        "Schema":{"shape":"GenericString"},
+        "Table":{"shape":"GenericString"},
+        "Database":{"shape":"GenericString"},
+        "TempDir":{"shape":"EnclosedInStringProperty"},
+        "IamRole":{"shape":"Option"},
+        "AdditionalOptions":{"shape":"AdditionalOptions"},
+        "SampleQuery":{"shape":"GenericString"},
+        "PreAction":{"shape":"GenericString"},
+        "PostAction":{"shape":"GenericString"},
+        "Action":{"shape":"GenericString"},
+        "Upsert":{"shape":"BooleanValue"},
+        "MergeAction":{"shape":"GenericLimitedString"},
+        "MergeWhenMatched":{"shape":"GenericLimitedString"},
+        "MergeWhenNotMatched":{"shape":"GenericLimitedString"},
+        "MergeClause":{"shape":"GenericString"},
+        "StagingTable":{"shape":"GenericString"},
+        "SelectedColumns":{"shape":"OptionList"},
+        "AutoPushdown":{"shape":"BooleanValue"},
+        "TableSchema":{"shape":"OptionList"}
+      }
+    },
+    "SnowflakeSource":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Data"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Data":{"shape":"SnowflakeNodeData"},
+        "OutputSchemas":{"shape":"GlueSchemas"}
+      }
+    },
+    "SnowflakeTarget":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Data"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Data":{"shape":"SnowflakeNodeData"},
+        "Inputs":{"shape":"OneInput"}
       }
     },
     "Sort":{
