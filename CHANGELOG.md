@@ -1,3 +1,22 @@
+Release v1.44.309 (2023-07-26)
+===
+
+### Service Client Updates
+* `service/cloudcontrol`: Updates service documentation
+* `service/entityresolution`: Adds new service
+* `service/glue`: Updates service API and documentation
+  * Release Glue Studio Snowflake Connector Node for SDK/CLI
+* `service/healthlake`: Updates service documentation
+* `service/managedblockchain-query`: Adds new service
+* `service/mediaconvert`: Updates service API and documentation
+  * This release includes general updates to user documentation.
+* `service/omics`: Updates service documentation
+* `service/opensearchserverless`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds 1 new voice - Lisa (nl-BE)
+* `service/route53`: Updates service documentation
+  * Update that corrects the documents for received feedback.
+
 Release v1.44.308 (2023-07-25)
 ===
 

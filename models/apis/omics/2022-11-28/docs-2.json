@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>This is the <i>Amazon Omics API Reference</i>. For an introduction to the service, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/\">What is Amazon Omics?</a> in the <i>Amazon Omics User Guide</i>.</p>",
+  "service": "<p>This is the <i>AWS HealthOmics API Reference</i>. For an introduction to the service, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/\">What is AWS HealthOmics?</a> in the <i>AWS HealthOmics User Guide</i>.</p>",
   "operations": {
     "AbortMultipartReadSetUpload": "<p> Stops a multipart upload. </p>",
     "BatchDeleteReadSet": "<p>Deletes one or more read sets.</p>",

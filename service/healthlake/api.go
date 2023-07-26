@@ -56,7 +56,7 @@ func (c *HealthLake) CreateFHIRDatastoreRequest(input *CreateFHIRDatastoreInput)
 
 // CreateFHIRDatastore API operation for Amazon HealthLake.
 //
-// Creates a Data Store that can ingest and export FHIR formatted data.
+// Creates a data store that can ingest and export FHIR formatted data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -145,7 +145,7 @@ func (c *HealthLake) DeleteFHIRDatastoreRequest(input *DeleteFHIRDatastoreInput)
 
 // DeleteFHIRDatastore API operation for Amazon HealthLake.
 //
-// Deletes a Data Store.
+// Deletes a data store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -160,14 +160,14 @@ func (c *HealthLake) DeleteFHIRDatastoreRequest(input *DeleteFHIRDatastoreInput)
 //     Access is denied. Your account is not authorized to perform this operation.
 //
 //   - ConflictException
-//     The Data Store is in a transition state and the user requested action can
+//     The data store is in a transition state and the user requested action can
 //     not be performed.
 //
 //   - ValidationException
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 //   - ThrottlingException
 //     The user has exceeded their maximum number of allowed calls to the given
@@ -241,9 +241,9 @@ func (c *HealthLake) DescribeFHIRDatastoreRequest(input *DescribeFHIRDatastoreIn
 
 // DescribeFHIRDatastore API operation for Amazon HealthLake.
 //
-// Gets the properties associated with the FHIR Data Store, including the Data
-// Store ID, Data Store ARN, Data Store name, Data Store status, created at,
-// Data Store type version, and Data Store endpoint.
+// Gets the properties associated with the FHIR data store, including the data
+// store ID, data store ARN, data store name, data store status, when the data
+// store was created, data store type version, and the data store's endpoint.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -258,7 +258,7 @@ func (c *HealthLake) DescribeFHIRDatastoreRequest(input *DescribeFHIRDatastoreIn
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 //   - ThrottlingException
 //     The user has exceeded their maximum number of allowed calls to the given
@@ -348,7 +348,7 @@ func (c *HealthLake) DescribeFHIRExportJobRequest(input *DescribeFHIRExportJobIn
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 //   - ThrottlingException
 //     The user has exceeded their maximum number of allowed calls to the given
@@ -438,7 +438,7 @@ func (c *HealthLake) DescribeFHIRImportJobRequest(input *DescribeFHIRImportJobIn
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 //   - ThrottlingException
 //     The user has exceeded their maximum number of allowed calls to the given
@@ -518,8 +518,8 @@ func (c *HealthLake) ListFHIRDatastoresRequest(input *ListFHIRDatastoresInput) (
 
 // ListFHIRDatastores API operation for Amazon HealthLake.
 //
-// Lists all FHIR Data Stores that are in the user’s account, regardless of
-// Data Store status.
+// Lists all FHIR data stores that are in the user’s account, regardless of
+// data store status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -677,7 +677,7 @@ func (c *HealthLake) ListFHIRExportJobsRequest(input *ListFHIRExportJobsInput) (
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 //   - AccessDeniedException
 //     Access is denied. Your account is not authorized to perform this operation.
@@ -826,7 +826,7 @@ func (c *HealthLake) ListFHIRImportJobsRequest(input *ListFHIRImportJobsInput) (
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 //   - AccessDeniedException
 //     Access is denied. Your account is not authorized to perform this operation.
@@ -954,7 +954,7 @@ func (c *HealthLake) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 
 // ListTagsForResource API operation for Amazon HealthLake.
 //
-// Returns a list of all existing tags associated with a Data Store.
+// Returns a list of all existing tags associated with a data store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -969,7 +969,7 @@ func (c *HealthLake) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/ListTagsForResource
 func (c *HealthLake) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1058,7 +1058,7 @@ func (c *HealthLake) StartFHIRExportJobRequest(input *StartFHIRExportJobInput) (
 //     Access is denied. Your account is not authorized to perform this operation.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 //   - InternalServerException
 //     Unknown error occurs in the service.
@@ -1150,7 +1150,7 @@ func (c *HealthLake) StartFHIRImportJobRequest(input *StartFHIRImportJobInput) (
 //     Access is denied. Your account is not authorized to perform this operation.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 //   - InternalServerException
 //     Unknown error occurs in the service.
@@ -1221,7 +1221,7 @@ func (c *HealthLake) TagResourceRequest(input *TagResourceInput) (req *request.R
 
 // TagResource API operation for Amazon HealthLake.
 //
-// Adds a user specified key and value tag to a Data Store.
+// Adds a user specified key and value tag to a data store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1236,7 +1236,7 @@ func (c *HealthLake) TagResourceRequest(input *TagResourceInput) (req *request.R
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/TagResource
 func (c *HealthLake) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1304,7 +1304,7 @@ func (c *HealthLake) UntagResourceRequest(input *UntagResourceInput) (req *reque
 
 // UntagResource API operation for Amazon HealthLake.
 //
-// Removes tags from a Data Store.
+// Removes tags from a data store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1319,7 +1319,7 @@ func (c *HealthLake) UntagResourceRequest(input *UntagResourceInput) (req *reque
 //     The user input parameter was invalid.
 //
 //   - ResourceNotFoundException
-//     The requested Data Store was not found.
+//     The requested data store was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/UntagResource
 func (c *HealthLake) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1407,7 +1407,7 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Data Store is in a transition state and the user requested action can
+// The data store is in a transition state and the user requested action can
 // not be performed.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -1478,27 +1478,27 @@ type CreateFHIRDatastoreInput struct {
 	// Optional user provided token used for ensuring idempotency.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The user generated name for the Data Store.
+	// The user generated name for the data store.
 	DatastoreName *string `min:"1" type:"string"`
 
-	// The FHIR version of the Data Store. The only supported version is R4.
+	// The FHIR version of the data store. The only supported version is R4.
 	//
 	// DatastoreTypeVersion is a required field
 	DatastoreTypeVersion *string `type:"string" required:"true" enum:"FHIRVersion"`
 
 	// The configuration of the identity provider that you want to use for your
-	// Data Store.
+	// data store.
 	IdentityProviderConfiguration *IdentityProviderConfiguration `type:"structure"`
 
-	// Optional parameter to preload data upon creation of the Data Store. Currently,
+	// Optional parameter to preload data upon creation of the data store. Currently,
 	// the only supported preloaded data is synthetic data generated from Synthea.
 	PreloadDataConfig *PreloadDataConfig `type:"structure"`
 
 	// The server-side encryption key configuration for a customer provided encryption
-	// key specified for creating a Data Store.
+	// key specified for creating a data store.
 	SseConfiguration *SseConfiguration `type:"structure"`
 
-	// Resource tags that are applied to a Data Store when it is created.
+	// Resource tags that are applied to a data store when it is created.
 	Tags []*Tag `type:"list"`
 }
 
@@ -1609,25 +1609,24 @@ func (s *CreateFHIRDatastoreInput) SetTags(v []*Tag) *CreateFHIRDatastoreInput {
 type CreateFHIRDatastoreOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Data Store ARN is generated during the creation of the Data Store and
-	// can be found in the output from the initial Data Store creation call.
+	// The data store ARN is generated during the creation of the data store and
+	// can be found in the output from the initial data store creation call.
 	//
 	// DatastoreArn is a required field
 	DatastoreArn *string `type:"string" required:"true"`
 
-	// The AWS endpoint for the created Data Store.
+	// The AWS endpoint for the created data store.
 	//
 	// DatastoreEndpoint is a required field
 	DatastoreEndpoint *string `min:"1" type:"string" required:"true"`
 
-	// The AWS-generated Data Store id. This id is in the output from the initial
-	// Data Store creation call.
+	// The AWS-generated data store id. This id is in the output from the initial
+	// data store creation call.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
 
-	// The status of the FHIR Data Store. Possible statuses are ‘CREATING’,
-	// ‘ACTIVE’, ‘DELETING’, ‘DELETED’.
+	// The status of the FHIR data store.
 	//
 	// DatastoreStatus is a required field
 	DatastoreStatus *string `type:"string" required:"true" enum:"DatastoreStatus"`
@@ -1675,22 +1674,22 @@ func (s *CreateFHIRDatastoreOutput) SetDatastoreStatus(v string) *CreateFHIRData
 	return s
 }
 
-// The filters applied to Data Store query.
+// The filters applied to data store query.
 type DatastoreFilter struct {
 	_ struct{} `type:"structure"`
 
-	// A filter that allows the user to set cutoff dates for records. All Data Stores
+	// A filter that allows the user to set cutoff dates for records. All data stores
 	// created after the specified date will be included in the results.
 	CreatedAfter *time.Time `type:"timestamp"`
 
-	// A filter that allows the user to set cutoff dates for records. All Data Stores
+	// A filter that allows the user to set cutoff dates for records. All data stores
 	// created before the specified date will be included in the results.
 	CreatedBefore *time.Time `type:"timestamp"`
 
-	// Allows the user to filter Data Store results by name.
+	// Allows the user to filter data store results by name.
 	DatastoreName *string `min:"1" type:"string"`
 
-	// Allows the user to filter Data Store results by status.
+	// Allows the user to filter data store results by status.
 	DatastoreStatus *string `type:"string" enum:"DatastoreStatus"`
 }
 
@@ -1749,35 +1748,34 @@ func (s *DatastoreFilter) SetDatastoreStatus(v string) *DatastoreFilter {
 	return s
 }
 
-// Displays the properties of the Data Store, including the ID, ARN, name, and
-// the status of the Data Store.
+// Displays the properties of the data store, including the ID, ARN, name, and
+// the status of the data store.
 type DatastoreProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The time that a Data Store was created.
+	// The time that a data store was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name used in the creation of the Data Store.
+	// The Amazon Resource Name used in the creation of the data store.
 	//
 	// DatastoreArn is a required field
 	DatastoreArn *string `type:"string" required:"true"`
 
-	// The AWS endpoint for the Data Store. Each Data Store will have it's own endpoint
-	// with Data Store ID in the endpoint URL.
+	// The AWS endpoint for the data store. Each data store will have it's own endpoint
+	// with data store ID in the endpoint URL.
 	//
 	// DatastoreEndpoint is a required field
 	DatastoreEndpoint *string `type:"string" required:"true"`
 
-	// The AWS-generated ID number for the Data Store.
+	// The AWS-generated ID number for the data store.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
 
-	// The user-generated name for the Data Store.
+	// The user-generated name for the data store.
 	DatastoreName *string `min:"1" type:"string"`
 
-	// The status of the Data Store. Possible statuses are 'CREATING', 'ACTIVE',
-	// 'DELETING', or 'DELETED'.
+	// The status of the data store.
 	//
 	// DatastoreStatus is a required field
 	DatastoreStatus *string `type:"string" required:"true" enum:"DatastoreStatus"`
@@ -1787,10 +1785,10 @@ type DatastoreProperties struct {
 	// DatastoreTypeVersion is a required field
 	DatastoreTypeVersion *string `type:"string" required:"true" enum:"FHIRVersion"`
 
-	// The identity provider that you selected when you created the Data Store.
+	// The identity provider that you selected when you created the data store.
 	IdentityProviderConfiguration *IdentityProviderConfiguration `type:"structure"`
 
-	// The preloaded data configuration for the Data Store. Only data preloaded
+	// The preloaded data configuration for the data store. Only data preloaded
 	// from Synthea is supported.
 	PreloadDataConfig *PreloadDataConfig `type:"structure"`
 
@@ -1880,7 +1878,7 @@ func (s *DatastoreProperties) SetSseConfiguration(v *SseConfiguration) *Datastor
 type DeleteFHIRDatastoreInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated ID for the Data Store to be deleted.
+	// The AWS-generated ID for the data store to be deleted.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
@@ -1929,22 +1927,22 @@ func (s *DeleteFHIRDatastoreInput) SetDatastoreId(v string) *DeleteFHIRDatastore
 type DeleteFHIRDatastoreOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon HealthLake access permission.
+	// The Amazon Resource Name (ARN) that gives AWS HealthLake access permission.
 	//
 	// DatastoreArn is a required field
 	DatastoreArn *string `type:"string" required:"true"`
 
-	// The AWS endpoint for the Data Store the user has requested to be deleted.
+	// The AWS endpoint for the data store the user has requested to be deleted.
 	//
 	// DatastoreEndpoint is a required field
 	DatastoreEndpoint *string `min:"1" type:"string" required:"true"`
 
-	// The AWS-generated ID for the Data Store to be deleted.
+	// The AWS-generated ID for the data store to be deleted.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
 
-	// The status of the Data Store that the user has requested to be deleted.
+	// The status of the data store that the user has requested to be deleted.
 	//
 	// DatastoreStatus is a required field
 	DatastoreStatus *string `type:"string" required:"true" enum:"DatastoreStatus"`
@@ -1995,7 +1993,7 @@ func (s *DeleteFHIRDatastoreOutput) SetDatastoreStatus(v string) *DeleteFHIRData
 type DescribeFHIRDatastoreInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated Data Store ID.
+	// The AWS-generated data store ID.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
@@ -2044,9 +2042,9 @@ func (s *DescribeFHIRDatastoreInput) SetDatastoreId(v string) *DescribeFHIRDatas
 type DescribeFHIRDatastoreOutput struct {
 	_ struct{} `type:"structure"`
 
-	// All properties associated with a Data Store, including the Data Store ID,
-	// Data Store ARN, Data Store name, Data Store status, created at, Data Store
-	// type version, and Data Store endpoint.
+	// All properties associated with a data store, including the data store ID,
+	// data store ARN, data store name, data store status, when the data store was
+	// created, data store type version, and the data store's endpoint.
 	//
 	// DatastoreProperties is a required field
 	DatastoreProperties *DatastoreProperties `type:"structure" required:"true"`
@@ -2079,7 +2077,7 @@ func (s *DescribeFHIRDatastoreOutput) SetDatastoreProperties(v *DatastorePropert
 type DescribeFHIRExportJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS generated ID for the Data Store from which files are being exported
+	// The AWS generated ID for the data store from which files are being exported
 	// from for an export job.
 	//
 	// DatastoreId is a required field
@@ -2180,7 +2178,7 @@ func (s *DescribeFHIRExportJobOutput) SetExportJobProperties(v *ExportJobPropert
 type DescribeFHIRImportJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated ID of the Data Store.
+	// The AWS-generated ID of the data store.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
@@ -2285,7 +2283,7 @@ type ExportJobProperties struct {
 	// The Amazon Resource Name used during the initiation of the job.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
-	// The AWS generated ID for the Data Store from which files are being exported
+	// The AWS generated ID for the data store from which files are being exported
 	// for an export job.
 	//
 	// DatastoreId is a required field
@@ -2394,17 +2392,17 @@ func (s *ExportJobProperties) SetSubmitTime(v time.Time) *ExportJobProperties {
 	return s
 }
 
-// The identity provider configuration that you gave when the Data Store was
+// The identity provider configuration that you gave when the data store was
 // created.
 type IdentityProviderConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The authorization strategy that you selected when you created the Data Store.
+	// The authorization strategy that you selected when you created the data store.
 	//
 	// AuthorizationStrategy is a required field
 	AuthorizationStrategy *string `type:"string" required:"true" enum:"AuthorizationStrategy"`
 
-	// If you enabled fine-grained authorization when you created the Data Store.
+	// If you enabled fine-grained authorization when you created the data store.
 	FineGrainedAuthorizationEnabled *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the Lambda function that you want to use
@@ -2493,12 +2491,12 @@ func (s *IdentityProviderConfiguration) SetMetadata(v string) *IdentityProviderC
 }
 
 // Displays the properties of the import job, including the ID, Arn, Name, and
-// the status of the Data Store.
+// the status of the data store.
 type ImportJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon HealthLake access to your
-	// input data.
+	// The Amazon Resource Name (ARN) that gives AWS HealthLake access to your input
+	// data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The datastore id used when the Import job was created.
@@ -2624,7 +2622,7 @@ type InputDataConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The S3Uri is the user specified S3 location of the FHIR data to be imported
-	// into Amazon HealthLake.
+	// into AWS HealthLake.
 	S3Uri *string `type:"string"`
 }
 
@@ -2716,18 +2714,18 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The customer-managed-key(CMK) used when creating a Data Store. If a customer
+// The customer-managed-key(CMK) used when creating a data store. If a customer
 // owned key is not specified, an AWS owned key will be used for encryption.
 type KmsEncryptionConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The type of customer-managed-key(CMK) used for encyrption. The two types
+	// The type of customer-managed-key(CMK) used for encryption. The two types
 	// of supported CMKs are customer owned CMKs and AWS owned CMKs.
 	//
 	// CmkType is a required field
 	CmkType *string `type:"string" required:"true" enum:"CmkType"`
 
-	// The KMS encryption key id/alias used to encrypt the Data Store contents at
+	// The KMS encryption key id/alias used to encrypt the data store contents at
 	// rest.
 	KmsKeyId *string `min:"1" type:"string"`
 }
@@ -2781,14 +2779,14 @@ func (s *KmsEncryptionConfig) SetKmsKeyId(v string) *KmsEncryptionConfig {
 type ListFHIRDatastoresInput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists all filters associated with a FHIR Data Store request.
+	// Lists all filters associated with a FHIR data store request.
 	Filter *DatastoreFilter `type:"structure"`
 
-	// The maximum number of Data Stores returned in a single page of a ListFHIRDatastoresRequest
+	// The maximum number of data stores returned in a single page of a ListFHIRDatastoresRequest
 	// call.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Fetches the next page of Data Stores when results are paginated.
+	// Fetches the next page of data stores when results are paginated.
 	NextToken *string `type:"string"`
 }
 
@@ -2849,7 +2847,7 @@ func (s *ListFHIRDatastoresInput) SetNextToken(v string) *ListFHIRDatastoresInpu
 type ListFHIRDatastoresOutput struct {
 	_ struct{} `type:"structure"`
 
-	// All properties associated with the listed Data Stores.
+	// All properties associated with the listed data stores.
 	//
 	// DatastorePropertiesList is a required field
 	DatastorePropertiesList []*DatastoreProperties `type:"list" required:"true"`
@@ -2891,8 +2889,8 @@ func (s *ListFHIRDatastoresOutput) SetNextToken(v string) *ListFHIRDatastoresOut
 type ListFHIRExportJobsInput struct {
 	_ struct{} `type:"structure"`
 
-	// This parameter limits the response to the export job with the specified Data
-	// Store ID.
+	// This parameter limits the response to the export job with the specified data
+	// store ID.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
@@ -3051,8 +3049,8 @@ func (s *ListFHIRExportJobsOutput) SetNextToken(v string) *ListFHIRExportJobsOut
 type ListFHIRImportJobsInput struct {
 	_ struct{} `type:"structure"`
 
-	// This parameter limits the response to the import job with the specified Data
-	// Store ID.
+	// This parameter limits the response to the import job with the specified data
+	// store ID.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
@@ -3211,7 +3209,7 @@ func (s *ListFHIRImportJobsOutput) SetNextToken(v string) *ListFHIRImportJobsOut
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name(ARN) of the Data Store for which tags are being
+	// The Amazon Resource Name(ARN) of the data store for which tags are being
 	// added.
 	//
 	// ResourceARN is a required field
@@ -3261,7 +3259,7 @@ func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns a list of tags associated with a Data Store.
+	// Returns a list of tags associated with a data store.
 	Tags []*Tag `type:"list"`
 }
 
@@ -3336,7 +3334,7 @@ func (s *OutputDataConfig) SetS3Configuration(v *S3Configuration) *OutputDataCon
 	return s
 }
 
-// The input properties for the preloaded Data Store. Only data preloaded from
+// The input properties for the preloaded data store. Only data preloaded from
 // Synthea is supported.
 type PreloadDataConfig struct {
 	_ struct{} `type:"structure"`
@@ -3384,7 +3382,7 @@ func (s *PreloadDataConfig) SetPreloadDataType(v string) *PreloadDataConfig {
 	return s
 }
 
-// The requested Data Store was not found.
+// The requested data store was not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3459,7 +3457,7 @@ type S3Configuration struct {
 	KmsKeyId *string `min:"1" type:"string" required:"true"`
 
 	// The S3Uri is the user specified S3 location of the FHIR data to be imported
-	// into Amazon HealthLake.
+	// into AWS HealthLake.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
@@ -3578,7 +3576,7 @@ type StartFHIRExportJobInput struct {
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
 
-	// The AWS generated ID for the Data Store from which files are being exported
+	// The AWS generated ID for the data store from which files are being exported
 	// for an export job.
 	//
 	// DatastoreId is a required field
@@ -3680,7 +3678,7 @@ func (s *StartFHIRExportJobInput) SetOutputDataConfig(v *OutputDataConfig) *Star
 type StartFHIRExportJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS generated ID for the Data Store from which files are being exported
+	// The AWS generated ID for the data store from which files are being exported
 	// for an export job.
 	DatastoreId *string `min:"1" type:"string"`
 
@@ -3738,12 +3736,12 @@ type StartFHIRImportJobInput struct {
 	// Optional user provided token used for ensuring idempotency.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon HealthLake access permission.
+	// The Amazon Resource Name (ARN) that gives AWS HealthLake access permission.
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
 
-	// The AWS-generated Data Store ID.
+	// The AWS-generated data store ID.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
@@ -3858,7 +3856,7 @@ func (s *StartFHIRImportJobInput) SetJobOutputDataConfig(v *OutputDataConfig) *S
 type StartFHIRImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated Data Store ID.
+	// The AWS-generated data store ID.
 	DatastoreId *string `min:"1" type:"string"`
 
 	// The AWS-generated job ID.
@@ -3976,13 +3974,13 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name(ARN)that gives Amazon HealthLake access to the Data
-	// Store which tags are being added to.
+	// The Amazon Resource Name(ARN)that gives AWS HealthLake access to the data
+	// store which tags are being added to.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
-	// The user specified key and value pair tags being added to a Data Store.
+	// The user specified key and value pair tags being added to a data store.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -4137,13 +4135,13 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// "The Amazon Resource Name(ARN) of the Data Store for which tags are being
-	// removed
+	// The Amazon Resource Name(ARN) of the data store for which tags are being
+	// removed.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
-	// The keys for the tags to be removed from the Healthlake Data Store.
+	// The keys for the tags to be removed from the HealthLake data store.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`

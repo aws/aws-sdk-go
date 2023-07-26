@@ -1,0 +1,453 @@
+{
+  "version": "2.0",
+  "service": "<p>Amazon Managed Blockchain (AMB) Query provides you with convenient access to multi-blockchain network data, which makes it easier for you to extract contextual data related to blockchain activity. You can use AMB Query to read data from public blockchain networks, such as Bitcoin Mainnet and Ethereum Mainnet. You can also get information such as the current and historical balances of addresses, or you can get a list of blockchain transactions for a given time period. Additionally, you can get details of a given transaction, such as transaction events, which you can further analyze or use in business logic for your applications.</p>",
+  "operations": {
+    "BatchGetTokenBalance": "<p>Gets the token balance for a batch of tokens by using the <code>GetTokenBalance</code> action for every token in the request.</p> <note> <p>Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards are supported.</p> </note>",
+    "GetTokenBalance": "<p>Gets the balance of a specific token, including native tokens, for a given address (wallet or contract) on the blockchain.</p> <note> <p>Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards are supported.</p> </note>",
+    "GetTransaction": "<p>Get the details of a transaction.</p>",
+    "ListTokenBalances": "<p>This action returns the following for a given a blockchain network:</p> <ul> <li> <p>Lists all token balances owned by an address (either a contact address or a wallet address).</p> </li> <li> <p>Lists all token balances for all tokens created by a contract.</p> </li> <li> <p>Lists all token balances for a given token.</p> </li> </ul> <note> <p>You must always specify the network property of the <code>tokenFilter</code> when using this operation.</p> </note>",
+    "ListTransactionEvents": "<p>An array of <code>TransactionEvent</code> objects. Each object contains details about the transaction event.</p>",
+    "ListTransactions": "<p>Lists all of the transactions on a given wallet address or to a specific contract.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>The Amazon Web Services account doesn’t have access to this resource. </p>",
+      "refs": {
+      }
+    },
+    "BatchGetTokenBalanceErrorItem": {
+      "base": "<p>Error generated from a failed <code>BatchGetTokenBalance</code> request.</p>",
+      "refs": {
+        "BatchGetTokenBalanceErrors$member": null
+      }
+    },
+    "BatchGetTokenBalanceErrors": {
+      "base": null,
+      "refs": {
+        "BatchGetTokenBalanceOutput$errors": "<p>An array of <code>BatchGetTokenBalanceErrorItem</code> objects returned from the request.</p>"
+      }
+    },
+    "BatchGetTokenBalanceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetTokenBalanceInputItem": {
+      "base": "<p>The container for the input for getting a token balance.</p>",
+      "refs": {
+        "GetTokenBalanceInputList$member": null
+      }
+    },
+    "BatchGetTokenBalanceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetTokenBalanceOutputItem": {
+      "base": "<p>The container for the properties of a token balance output.</p>",
+      "refs": {
+        "BatchGetTokenBalanceOutputList$member": null
+      }
+    },
+    "BatchGetTokenBalanceOutputList": {
+      "base": null,
+      "refs": {
+        "BatchGetTokenBalanceOutput$tokenBalances": "<p>An array of <code>BatchGetTokenBalanceOutputItem</code> objects returned by the response.</p>"
+      }
+    },
+    "BlockHash": {
+      "base": null,
+      "refs": {
+        "Transaction$blockHash": "<p>The block hash is a unique identifier for a block. It is a fixed-size string that is calculated by using the information in the block. The block hash is used to verify the integrity of the data in the block.</p>"
+      }
+    },
+    "BlockchainInstant": {
+      "base": "<p>The container for time.</p>",
+      "refs": {
+        "BatchGetTokenBalanceErrorItem$atBlockchainInstant": null,
+        "BatchGetTokenBalanceInputItem$atBlockchainInstant": null,
+        "BatchGetTokenBalanceOutputItem$atBlockchainInstant": null,
+        "BatchGetTokenBalanceOutputItem$lastUpdatedTime": null,
+        "GetTokenBalanceInput$atBlockchainInstant": "<p>The time for when the TokenBalance is requested or the current time if a time is not provided in the request.</p> <note> <p>This time will only be recorded up to the second.</p> </note>",
+        "GetTokenBalanceOutput$atBlockchainInstant": null,
+        "GetTokenBalanceOutput$lastUpdatedTime": null,
+        "ListTransactionsInput$fromBlockchainInstant": null,
+        "ListTransactionsInput$toBlockchainInstant": null,
+        "TokenBalance$atBlockchainInstant": "<p>The time for when the TokenBalance is requested or the current time if a time is not provided in the request.</p> <note> <p>This time will only be recorded up to the second.</p> </note>",
+        "TokenBalance$lastUpdatedTime": "<p>The <code>timestamp</code> of the last transaction at which the balance for the token in the wallet was updated.</p>"
+      }
+    },
+    "ChainAddress": {
+      "base": null,
+      "refs": {
+        "ListTransactionsInput$address": "<p>The address (either a contract or wallet), whose transactions are being requested.</p>",
+        "OwnerFilter$address": "<p>The contract or wallet address.</p>",
+        "OwnerIdentifier$address": "<p>The contract or wallet address for the owner.</p>",
+        "TokenFilter$contractAddress": "<p>This is the address of the contract.</p>",
+        "TokenIdentifier$contractAddress": "<p>This is the token's contract address.</p>",
+        "Transaction$to": "<p>The identifier of the transaction. It is generated whenever a transaction is verified and added to the blockchain.</p>",
+        "Transaction$from": "<p>The initiator of the transaction. It is either in the form a public key or a contract address.</p>",
+        "Transaction$contractAddress": "<p>The blockchain address for the contract.</p>",
+        "TransactionEvent$from": "<p>The wallet address initiating the transaction. It can either be a public key or a contract.</p>",
+        "TransactionEvent$to": "<p>The wallet address receiving the transaction. It can either be a public key or a contract.</p>",
+        "TransactionEvent$contractAddress": "<p>The blockchain address. for the contract</p>"
+      }
+    },
+    "ErrorType": {
+      "base": null,
+      "refs": {
+        "BatchGetTokenBalanceErrorItem$errorType": "<p>The type of error.</p>"
+      }
+    },
+    "ExceptionMessage": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": "<p>The container for the exception message.</p>",
+        "InternalServerException$message": "<p>The container for the exception message.</p>",
+        "ResourceNotFoundException$message": "<p>The container for the exception message.</p>",
+        "ServiceQuotaExceededException$message": "<p>The container for the exception message.</p>",
+        "ThrottlingException$message": "<p>The container for the exception message.</p>",
+        "ValidationException$message": "<p>The container for the exception message.</p>"
+      }
+    },
+    "GetTokenBalanceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTokenBalanceInputList": {
+      "base": null,
+      "refs": {
+        "BatchGetTokenBalanceInput$getTokenBalanceInputs": "<p>An array of <code>GetTokenBalanceInput</code> objects whose balance is being requested.</p>"
+      }
+    },
+    "GetTokenBalanceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTransactionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTransactionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "InternalServerException$retryAfterSeconds": "<p>The container of the <code>retryAfterSeconds</code> value.</p>",
+        "ThrottlingException$retryAfterSeconds": "<p>The container of the <code>retryAfterSeconds</code> value.</p>",
+        "Transaction$signatureV": "<p>The signature of the transaction. The Z coordinate of a point V.</p>",
+        "TransactionEvent$voutIndex": "<p>The position of the vout in the transaction output list.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>The request processing has failed because of an internal error in the service.</p>",
+      "refs": {
+      }
+    },
+    "ListTokenBalancesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTokenBalancesInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListTokenBalancesInput$maxResults": "<p>The maximum number of token balances to return.</p>"
+      }
+    },
+    "ListTokenBalancesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTransactionEventsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTransactionEventsInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListTransactionEventsInput$maxResults": "<p>The maximum number of transaction events to list.</p> <note> <p>Even if additional results can be retrieved, the request can return less results than <code>maxResults</code> or an empty array of results.</p> <p>To retrieve the next set of results, make another request with the returned <code>nextToken</code> value. The value of <code>nextToken</code> is <code>null</code> when there are no more results to return</p> </note>"
+      }
+    },
+    "ListTransactionEventsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTransactionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTransactionsInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListTransactionsInput$maxResults": "<p>The maximum number of transactions to list.</p> <note> <p>Even if additional results can be retrieved, the request can return less results than <code>maxResults</code> or an empty array of results.</p> <p>To retrieve the next set of results, make another request with the returned <code>nextToken</code> value. The value of <code>nextToken</code> is <code>null</code> when there are no more results to return</p> </note>"
+      }
+    },
+    "ListTransactionsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTransactionsSort": {
+      "base": "<p>The container for determining how the list transaction result will be sorted.</p>",
+      "refs": {
+        "ListTransactionsInput$sort": "<p>Sorts items in an ascending order if the first page starts at <code>fromTime</code>. Sorts items in a descending order if the first page starts at <code>toTime</code>.</p>"
+      }
+    },
+    "ListTransactionsSortBy": {
+      "base": null,
+      "refs": {
+        "ListTransactionsSort$sortBy": "<p>Defaults to the value <code>TRANSACTION_TIMESTAMP</code>.</p>"
+      }
+    },
+    "Long": {
+      "base": null,
+      "refs": {
+        "Transaction$transactionIndex": "<p>The index of the transaction within a blockchain.</p>",
+        "Transaction$numberOfTransactions": "<p>The number of transactions in the block.</p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListTokenBalancesInput$nextToken": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListTokenBalancesOutput$nextToken": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListTransactionEventsInput$nextToken": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListTransactionEventsOutput$nextToken": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListTransactionsInput$nextToken": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListTransactionsOutput$nextToken": "<p>The pagination token that indicates the next set of results to retrieve.</p>"
+      }
+    },
+    "OwnerFilter": {
+      "base": "<p>The container for the owner information to filter by.</p>",
+      "refs": {
+        "ListTokenBalancesInput$ownerFilter": "<p>The contract or wallet address on the blockchain network by which to filter the request. You must specify the <code>address</code> property of the <code>ownerFilter</code> when listing balances of tokens owned by the address.</p>"
+      }
+    },
+    "OwnerIdentifier": {
+      "base": "<p>The container for the identifier of the owner.</p>",
+      "refs": {
+        "BatchGetTokenBalanceErrorItem$ownerIdentifier": null,
+        "BatchGetTokenBalanceInputItem$ownerIdentifier": null,
+        "BatchGetTokenBalanceOutputItem$ownerIdentifier": null,
+        "GetTokenBalanceInput$ownerIdentifier": "<p>The container for the identifier for the owner.</p>",
+        "GetTokenBalanceOutput$ownerIdentifier": null,
+        "TokenBalance$ownerIdentifier": "<p>The container for the identifier of the owner.</p>"
+      }
+    },
+    "QueryNetwork": {
+      "base": null,
+      "refs": {
+        "GetTransactionInput$network": "<p>The blockchain network where the transaction occurred.</p>",
+        "ListTransactionEventsInput$network": "<p>The blockchain network where the transaction events occurred.</p>",
+        "ListTransactionsInput$network": "<p>The blockchain network where the transactions occurred.</p>",
+        "TokenFilter$network": "<p>The blockchain network of the token.</p>",
+        "TokenIdentifier$network": "<p>The blockchain network of the token.</p>",
+        "Transaction$network": "<p>The blockchain network where the transaction occured.</p>",
+        "TransactionEvent$network": "<p>The blockchain network where the transaction occurred.</p>",
+        "TransactionOutputItem$network": "<p>The blockchain network where the transaction occurred.</p>"
+      }
+    },
+    "QueryTokenId": {
+      "base": null,
+      "refs": {
+        "TokenFilter$tokenId": "<p>The unique identifier of the token.</p>",
+        "TokenIdentifier$tokenId": "<p>The unique identifier of the token.</p>",
+        "TransactionEvent$tokenId": "<p>The unique identifier for the token involved in the transaction.</p>"
+      }
+    },
+    "QueryTransactionEventType": {
+      "base": null,
+      "refs": {
+        "TransactionEvent$eventType": "<p>The type of transaction event.</p>"
+      }
+    },
+    "QueryTransactionHash": {
+      "base": null,
+      "refs": {
+        "GetTransactionInput$transactionHash": "<p>The hash of the transaction. It is generated whenever a transaction is verified and added to the blockchain.</p>",
+        "ListTransactionEventsInput$transactionHash": "<p>The hash of the transaction. It is generated whenever a transaction is verified and added to the blockchain.</p>",
+        "Transaction$transactionHash": "<p>The hash of the transaction. It is generated whenever a transaction is verified and added to the blockchain.</p>",
+        "TransactionEvent$transactionHash": "<p>The hash of the transaction. It is generated whenever a transaction is verified and added to the blockchain.</p>",
+        "TransactionOutputItem$transactionHash": "<p>The hash of the transaction. It is generated whenever a transaction is verified and added to the blockchain.</p>"
+      }
+    },
+    "QueryTransactionStatus": {
+      "base": null,
+      "refs": {
+        "Transaction$status": "<p>The status of the transaction.</p>"
+      }
+    },
+    "QuotaCode": {
+      "base": null,
+      "refs": {
+        "ServiceQuotaExceededException$quotaCode": "<p>The container for the <code>quotaCode</code>.</p>",
+        "ThrottlingException$quotaCode": "<p>The container for the <code>quotaCode</code>.</p>"
+      }
+    },
+    "ResourceId": {
+      "base": null,
+      "refs": {
+        "ResourceNotFoundException$resourceId": "<p>The <code>resourceId</code> of the resource that caused the exception.</p>",
+        "ServiceQuotaExceededException$resourceId": "<p>The <code>resourceId</code> of the resource that caused the exception.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The resource was not found.</p>",
+      "refs": {
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "ResourceNotFoundException$resourceType": "<p>The <code>resourceType</code> of the resource that caused the exception.</p>",
+        "ServiceQuotaExceededException$resourceType": "<p>The <code>resourceType</code> of the resource that caused the exception.</p>"
+      }
+    },
+    "ServiceCode": {
+      "base": null,
+      "refs": {
+        "ServiceQuotaExceededException$serviceCode": "<p>The container for the <code>serviceCode</code>.</p>",
+        "ThrottlingException$serviceCode": "<p>The container for the <code>serviceCode</code>.</p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The service quota has been exceeded for this resource.</p>",
+      "refs": {
+      }
+    },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "ListTransactionsSort$sortOrder": "<p>The container for the <i>sort order</i> for <code>ListTransactions</code>. The <code>SortOrder</code> field only accepts the values <code>ASCENDING</code> and <code>DESCENDING</code>. Not providing <code>SortOrder</code> will default to <code>ASCENDING</code>.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "BatchGetTokenBalanceErrorItem$errorCode": "<p>The error code associated with the error.</p>",
+        "BatchGetTokenBalanceErrorItem$errorMessage": "<p>The message associated with the error.</p>",
+        "BatchGetTokenBalanceOutputItem$balance": "<p>The container for the token balance.</p>",
+        "GetTokenBalanceOutput$balance": "<p>The container for the token balance.</p>",
+        "TokenBalance$balance": "<p>The container of the token balance.</p>",
+        "Transaction$blockNumber": "<p>The block number in which the transaction is recorded.</p>",
+        "Transaction$gasUsed": "<p>The amount of gas used for the transaction.</p>",
+        "Transaction$cumulativeGasUsed": "<p>The amount of gas used up to the specified point in the block.</p>",
+        "Transaction$effectiveGasPrice": "<p>The effective gas price.</p>",
+        "Transaction$signatureR": "<p>The signature of the transaction. The X coordinate of a point R.</p>",
+        "Transaction$signatureS": "<p>The signature of the transaction. The Y coordinate of a point S.</p>",
+        "Transaction$transactionFee": "<p>The transaction fee.</p>",
+        "Transaction$transactionId": "<p>The unique identifier of the transaction. It is generated whenever a transaction is verified and added to the blockchain.</p>",
+        "TransactionEvent$value": "<p>The value that was transacted.</p>",
+        "TransactionEvent$transactionId": "<p>The unique identifier of the transaction. It is generated whenever a transaction is verified and added to the blockchain.</p>",
+        "ValidationExceptionField$name": "<p>The name of the field that triggered the <code>ValidationException</code>.</p>",
+        "ValidationExceptionField$message": "<p>The <code>ValidationException</code> message.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The request or operation couldn't be performed because a service is throttling requests. The most common source of throttling errors is when you create resources that exceed your service limit for this resource type. Request a limit increase or delete unused resources, if possible.</p>",
+      "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "BlockchainInstant$time": "<p>The container of the <code>Timestamp</code> of the blockchain instant.</p> <note> <p>This <code>timestamp</code> will only be recorded up to the second.</p> </note>",
+        "Transaction$transactionTimestamp": "<p>The <code>Timestamp</code> of the transaction. </p>",
+        "TransactionOutputItem$transactionTimestamp": "<p>The time when the transaction occurred.</p>"
+      }
+    },
+    "TokenBalance": {
+      "base": "<p>The balance of the token.</p>",
+      "refs": {
+        "TokenBalanceList$member": null
+      }
+    },
+    "TokenBalanceList": {
+      "base": null,
+      "refs": {
+        "ListTokenBalancesOutput$tokenBalances": "<p>An array of <code>TokenBalance</code> objects. Each object contains details about the token balance.</p>"
+      }
+    },
+    "TokenFilter": {
+      "base": "<p>The container of the token filter like the contract address on a given blockchain network or a unique token identifier on a given blockchain network.</p> <note> <p>You must always specify the network property of this container when using this operation.</p> </note>",
+      "refs": {
+        "ListTokenBalancesInput$tokenFilter": "<p>The contract address or a token identifier on the blockchain network by which to filter the request. You must specify the contractAddress property of this container when listing tokens minted by a contract.</p> <note> <p>You must always specify the network property of this container when using this operation.</p> </note>"
+      }
+    },
+    "TokenIdentifier": {
+      "base": "<p>The container for the identifier for the token including the unique token ID and its blockchain network.</p> <note> <p>Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards are supported.</p> </note>",
+      "refs": {
+        "BatchGetTokenBalanceErrorItem$tokenIdentifier": null,
+        "BatchGetTokenBalanceInputItem$tokenIdentifier": null,
+        "BatchGetTokenBalanceOutputItem$tokenIdentifier": null,
+        "GetTokenBalanceInput$tokenIdentifier": "<p>The container for the identifier for the token, including the unique token ID and its blockchain network.</p>",
+        "GetTokenBalanceOutput$tokenIdentifier": null,
+        "TokenBalance$tokenIdentifier": "<p>The identifier for the token, including the unique token ID and its blockchain network.</p>"
+      }
+    },
+    "Transaction": {
+      "base": "<p>There are two possible types of transactions used for this data type:</p> <ul> <li> <p>A Bitcoin transaction is a movement of BTC from one address to another.</p> </li> <li> <p>An Ethereum transaction refers to an action initiated by an externally owned account, which is an account managed by a human, not a contract. For example, if Bob sends Alice 1 ETH, Bob's account must be debited and Alice's must be credited. This state-changing action occurs within a transaction.</p> </li> </ul>",
+      "refs": {
+        "GetTransactionOutput$transaction": "<p>Contains the details of the transaction.</p>"
+      }
+    },
+    "TransactionEvent": {
+      "base": "<p>The container for the properties of a transaction event.</p>",
+      "refs": {
+        "TransactionEventList$member": null
+      }
+    },
+    "TransactionEventList": {
+      "base": null,
+      "refs": {
+        "ListTransactionEventsOutput$events": "<p>An array of <code>TransactionEvent</code> objects. Each object contains details about the transaction events.</p>"
+      }
+    },
+    "TransactionOutputItem": {
+      "base": "<p>The container of the transaction output.</p>",
+      "refs": {
+        "TransactionOutputList$member": null
+      }
+    },
+    "TransactionOutputList": {
+      "base": null,
+      "refs": {
+        "ListTransactionsOutput$transactions": "<p>The array of transactions returned by the request.</p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The resource passed is invalid.</p>",
+      "refs": {
+      }
+    },
+    "ValidationExceptionField": {
+      "base": "<p>The resource passed is invalid.</p>",
+      "refs": {
+        "ValidationExceptionFieldList$member": null
+      }
+    },
+    "ValidationExceptionFieldList": {
+      "base": null,
+      "refs": {
+        "ValidationException$fieldList": "<p>The container for the <code>fieldList</code> of the exception.</p>"
+      }
+    },
+    "ValidationExceptionReason": {
+      "base": null,
+      "refs": {
+        "ValidationException$reason": "<p>The container for the reason for the exception</p>"
+      }
+    }
+  }
+}
