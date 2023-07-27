@@ -1,3 +1,16 @@
+Release v1.44.310 (2023-07-27)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API, documentation, paginators, and examples
+  * This release updates validation for instance types used in the AllowedInstanceTypes and ExcludedInstanceTypes parameters of the InstanceRequirements property of a MixedInstancesPolicy.
+* `service/ebs`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and waiters
+  * SDK and documentation updates for Amazon Elastic Block Store APIs
+* `service/eks`: Updates service API
+* `service/sagemaker`: Updates service API and documentation
+  * Expose ProfilerConfig attribute in SageMaker Search API response.
+
 Release v1.44.309 (2023-07-26)
 ===
 

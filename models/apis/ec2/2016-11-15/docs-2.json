@@ -17369,6 +17369,16 @@
         "Storage$S3": "<p>An Amazon S3 storage location.</p>"
       }
     },
+    "SSEType": {
+      "base": null,
+      "refs": {
+        "GetEbsEncryptionByDefaultResult$SseType": "<p>Reserved for future use.</p>",
+        "RestoreSnapshotFromRecycleBinResult$SseType": "<p>Reserved for future use.</p>",
+        "Snapshot$SseType": "<p>Reserved for future use.</p>",
+        "SnapshotInfo$SseType": "<p>Reserved for future use.</p>",
+        "Volume$SseType": "<p>Reserved for future use.</p>"
+      }
+    },
     "ScheduledInstance": {
       "base": "<p>Describes a Scheduled Instance.</p>",
       "refs": {

@@ -807,7 +807,7 @@ func ExampleAutoScaling_DescribeAutoScalingInstances_shared00() {
 	svc := autoscaling.New(session.New())
 	input := &autoscaling.DescribeAutoScalingInstancesInput{
 		InstanceIds: []*string{
-			aws.String("i-4ba0837f"),
+			aws.String("i-05b4f7d5be44822a6"),
 		},
 	}
 
