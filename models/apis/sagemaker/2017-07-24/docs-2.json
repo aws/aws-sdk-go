@@ -11096,7 +11096,8 @@
       "base": "<p>Configuration information for Amazon SageMaker Debugger system monitoring, framework profiling, and storage paths.</p>",
       "refs": {
         "CreateTrainingJobRequest$ProfilerConfig": null,
-        "DescribeTrainingJobResponse$ProfilerConfig": null
+        "DescribeTrainingJobResponse$ProfilerConfig": null,
+        "TrainingJob$ProfilerConfig": null
       }
     },
     "ProfilerConfigForUpdate": {

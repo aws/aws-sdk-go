@@ -22633,6 +22633,10 @@
         "EbsEncryptionByDefault":{
           "shape":"Boolean",
           "locationName":"ebsEncryptionByDefault"
+        },
+        "SseType":{
+          "shape":"SSEType",
+          "locationName":"sseType"
         }
       }
     },
@@ -37332,6 +37336,10 @@
         "VolumeSize":{
           "shape":"Integer",
           "locationName":"volumeSize"
+        },
+        "SseType":{
+          "shape":"SSEType",
+          "locationName":"sseType"
         }
       }
     },
@@ -37944,6 +37952,14 @@
           "locationName":"uploadPolicySignature"
         }
       }
+    },
+    "SSEType":{
+      "type":"string",
+      "enum":[
+        "sse-ebs",
+        "sse-kms",
+        "none"
+      ]
     },
     "ScheduledInstance":{
       "type":"structure",
@@ -38884,6 +38900,10 @@
         "RestoreExpiryTime":{
           "shape":"MillisecondDateTime",
           "locationName":"restoreExpiryTime"
+        },
+        "SseType":{
+          "shape":"SSEType",
+          "locationName":"sseType"
         }
       }
     },
@@ -39009,6 +39029,10 @@
         "OutpostArn":{
           "shape":"String",
           "locationName":"outpostArn"
+        },
+        "SseType":{
+          "shape":"SSEType",
+          "locationName":"sseType"
         }
       }
     },
@@ -43840,6 +43864,10 @@
         "Throughput":{
           "shape":"Integer",
           "locationName":"throughput"
+        },
+        "SseType":{
+          "shape":"SSEType",
+          "locationName":"sseType"
         }
       }
     },

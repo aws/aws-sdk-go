@@ -1099,7 +1099,7 @@
       "type":"string",
       "max":30,
       "min":1,
-      "pattern":"[a-zA-Z0-9\\.\\*]+"
+      "pattern":"[a-zA-Z0-9\\.\\*\\-]+"
     },
     "AllowedInstanceTypes":{
       "type":"list",
@@ -1968,7 +1968,7 @@
       "type":"string",
       "max":30,
       "min":1,
-      "pattern":"[a-zA-Z0-9\\.\\*]+"
+      "pattern":"[a-zA-Z0-9\\.\\*\\-]+"
     },
     "ExcludedInstanceTypes":{
       "type":"list",
@@ -3097,6 +3097,7 @@
     },
     "RollbackInstanceRefreshType":{
       "type":"structure",
+      "required":["AutoScalingGroupName"],
       "members":{
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"}
       }
