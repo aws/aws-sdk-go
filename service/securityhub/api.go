@@ -8377,10 +8377,10 @@ type AutomationRulesConfig struct {
 
 	// Specifies whether a rule is the last to be applied with respect to a finding
 	// that matches the rule criteria. This is useful when a finding matches the
-	// criteria for multiple rules, and each rule has different actions. If the
-	// value of this field is set to true for a rule, Security Hub applies the rule
-	// action to a finding that matches the rule criteria and doesn't evaluate other
-	// rules for the finding. The default value of this field is false.
+	// criteria for multiple rules, and each rule has different actions. If a rule
+	// is terminal, Security Hub applies the rule action to a finding that matches
+	// the rule criteria and doesn't evaluate other rules for the finding. By default,
+	// a rule isn't terminal.
 	IsTerminal *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of a rule.
@@ -9031,10 +9031,10 @@ type AutomationRulesMetadata struct {
 
 	// Specifies whether a rule is the last to be applied with respect to a finding
 	// that matches the rule criteria. This is useful when a finding matches the
-	// criteria for multiple rules, and each rule has different actions. If the
-	// value of this field is set to true for a rule, Security Hub applies the rule
-	// action to a finding that matches the rule criteria and doesn't evaluate other
-	// rules for the finding. The default value of this field is false.
+	// criteria for multiple rules, and each rule has different actions. If a rule
+	// is terminal, Security Hub applies the rule action to a finding that matches
+	// the rule criteria and doesn't evaluate other rules for the finding. By default,
+	// a rule isn't terminal.
 	IsTerminal *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) for the rule.
@@ -11281,6 +11281,191 @@ func (s *AwsAppSyncGraphQlApiUserPoolConfigDetails) SetDefaultAction(v string) *
 // SetUserPoolId sets the UserPoolId field's value.
 func (s *AwsAppSyncGraphQlApiUserPoolConfigDetails) SetUserPoolId(v string) *AwsAppSyncGraphQlApiUserPoolConfigDetails {
 	s.UserPoolId = &v
+	return s
+}
+
+// The configuration of the workgroup, which includes the location in Amazon
+// Simple Storage Service (Amazon S3) where query results are stored, the encryption
+// option, if any, used for query results, whether Amazon CloudWatch metrics
+// are enabled for the workgroup, and the limit for the amount of bytes scanned
+// (cutoff) per query, if it is specified.
+type AwsAthenaWorkGroupConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The location in Amazon S3 where query and calculation results are stored
+	// and the encryption option, if any, used for query and calculation results.
+	// These are known as client-side settings. If workgroup settings override client-side
+	// settings, then the query uses the workgroup settings.
+	ResultConfiguration *AwsAthenaWorkGroupConfigurationResultConfigurationDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAthenaWorkGroupConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAthenaWorkGroupConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetResultConfiguration sets the ResultConfiguration field's value.
+func (s *AwsAthenaWorkGroupConfigurationDetails) SetResultConfiguration(v *AwsAthenaWorkGroupConfigurationResultConfigurationDetails) *AwsAthenaWorkGroupConfigurationDetails {
+	s.ResultConfiguration = v
+	return s
+}
+
+// The location in Amazon Simple Storage Service (Amazon S3) where query and
+// calculation results are stored and the encryption option, if any, used for
+// query and calculation results. These are known as client-side settings. If
+// workgroup settings override client-side settings, then the query uses the
+// workgroup settings.
+type AwsAthenaWorkGroupConfigurationResultConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the method used to encrypt the user’s data stores in the Athena
+	// workgroup.
+	EncryptionConfiguration *AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAthenaWorkGroupConfigurationResultConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAthenaWorkGroupConfigurationResultConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *AwsAthenaWorkGroupConfigurationResultConfigurationDetails) SetEncryptionConfiguration(v *AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails) *AwsAthenaWorkGroupConfigurationResultConfigurationDetails {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// Specifies the method used to encrypt the user’s data stores in the Athena
+// workgroup.
+type AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether Amazon Simple Storage Service (Amazon S3) server-side encryption
+	// with Amazon S3 managed keys (SSE_S3), server-side encryption with KMS keys
+	// (SSE_KMS), or client-side encryption with KMS customer managed keys (CSE_KMS)
+	// is used.
+	EncryptionOption *string `type:"string"`
+
+	// For SSE_KMS and CSE_KMS, this is the KMS key Amazon Resource Name (ARN) or
+	// ID.
+	KmsKey *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionOption sets the EncryptionOption field's value.
+func (s *AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails) SetEncryptionOption(v string) *AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails {
+	s.EncryptionOption = &v
+	return s
+}
+
+// SetKmsKey sets the KmsKey field's value.
+func (s *AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails) SetKmsKey(v string) *AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails {
+	s.KmsKey = &v
+	return s
+}
+
+// Provides information about an Amazon Athena workgroup.
+type AwsAthenaWorkGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of the workgroup, which includes the location in Amazon
+	// Simple Storage Service (Amazon S3) where query results are stored, the encryption
+	// option, if any, used for query results, whether Amazon CloudWatch metrics
+	// are enabled for the workgroup, and the limit for the amount of bytes scanned
+	// (cutoff) per query, if it is specified.
+	Configuration *AwsAthenaWorkGroupConfigurationDetails `type:"structure"`
+
+	// The workgroup description.
+	Description *string `type:"string"`
+
+	// The workgroup name.
+	Name *string `type:"string"`
+
+	// Whether the workgroup is enabled or disabled.
+	State *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAthenaWorkGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAthenaWorkGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *AwsAthenaWorkGroupDetails) SetConfiguration(v *AwsAthenaWorkGroupConfigurationDetails) *AwsAthenaWorkGroupDetails {
+	s.Configuration = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsAthenaWorkGroupDetails) SetDescription(v string) *AwsAthenaWorkGroupDetails {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsAthenaWorkGroupDetails) SetName(v string) *AwsAthenaWorkGroupDetails {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AwsAthenaWorkGroupDetails) SetState(v string) *AwsAthenaWorkGroupDetails {
+	s.State = &v
 	return s
 }
 
@@ -32618,6 +32803,55 @@ func (s *AwsRdsDbClusterOptionGroupMembership) SetStatus(v string) *AwsRdsDbClus
 	return s
 }
 
+// Contains the name and values of a manual Amazon Relational Database Service
+// (RDS) DB cluster snapshot attribute.
+type AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the manual DB cluster snapshot attribute. The attribute named
+	// restore refers to the list of Amazon Web Services accounts that have permission
+	// to copy or restore the manual DB cluster snapshot.
+	AttributeName *string `type:"string"`
+
+	// The value(s) for the manual DB cluster snapshot attribute. If the AttributeName
+	// field is set to restore, then this element returns a list of IDs of the Amazon
+	// Web Services accounts that are authorized to copy or restore the manual DB
+	// cluster snapshot. If a value of all is in the list, then the manual DB cluster
+	// snapshot is public and available for any Amazon Web Services account to copy
+	// or restore.
+	AttributeValues []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute) GoString() string {
+	return s.String()
+}
+
+// SetAttributeName sets the AttributeName field's value.
+func (s *AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute) SetAttributeName(v string) *AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute {
+	s.AttributeName = &v
+	return s
+}
+
+// SetAttributeValues sets the AttributeValues field's value.
+func (s *AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute) SetAttributeValues(v []*string) *AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute {
+	s.AttributeValues = v
+	return s
+}
+
 // Information about an Amazon RDS DB cluster snapshot.
 type AwsRdsDbClusterSnapshotDetails struct {
 	_ struct{} `type:"structure"`
@@ -32639,6 +32873,9 @@ type AwsRdsDbClusterSnapshotDetails struct {
 
 	// The DB cluster identifier.
 	DbClusterIdentifier *string `type:"string"`
+
+	// Contains the name and values of a manual DB cluster snapshot attribute.
+	DbClusterSnapshotAttributes []*AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute `type:"list"`
 
 	// The identifier of the DB cluster snapshot.
 	DbClusterSnapshotIdentifier *string `type:"string"`
@@ -32728,6 +32965,12 @@ func (s *AwsRdsDbClusterSnapshotDetails) SetClusterCreateTime(v string) *AwsRdsD
 // SetDbClusterIdentifier sets the DbClusterIdentifier field's value.
 func (s *AwsRdsDbClusterSnapshotDetails) SetDbClusterIdentifier(v string) *AwsRdsDbClusterSnapshotDetails {
 	s.DbClusterIdentifier = &v
+	return s
+}
+
+// SetDbClusterSnapshotAttributes sets the DbClusterSnapshotAttributes field's value.
+func (s *AwsRdsDbClusterSnapshotDetails) SetDbClusterSnapshotAttributes(v []*AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute) *AwsRdsDbClusterSnapshotDetails {
+	s.DbClusterSnapshotAttributes = v
 	return s
 }
 
@@ -44542,10 +44785,10 @@ type CreateAutomationRuleInput struct {
 
 	// Specifies whether a rule is the last to be applied with respect to a finding
 	// that matches the rule criteria. This is useful when a finding matches the
-	// criteria for multiple rules, and each rule has different actions. If the
-	// value of this field is set to true for a rule, Security Hub applies the rule
-	// action to a finding that matches the rule criteria and doesn't evaluate other
-	// rules for the finding. The default value of this field is false.
+	// criteria for multiple rules, and each rule has different actions. If a rule
+	// is terminal, Security Hub applies the rule action to a finding that matches
+	// the rule criteria and doesn't evaluate other rules for the finding. By default,
+	// a rule isn't terminal.
 	IsTerminal *bool `type:"boolean"`
 
 	// The name of the rule.
@@ -50604,30 +50847,61 @@ func (s *Malware) SetType(v string) *Malware {
 	return s
 }
 
-// A map filter for querying findings. Each map filter provides the field to
-// check, the value to look for, and the comparison operator.
+// A map filter for filtering Security Hub findings. Each map filter provides
+// the field to check for, the value to check for, and the comparison operator.
 type MapFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The condition to apply to the key value when querying for findings with a
-	// map filter.
+	// The condition to apply to the key value when filtering Security Hub findings
+	// with a map filter.
 	//
-	// To search for values that exactly match the filter value, use EQUALS. For
-	// example, for the ResourceTags field, the filter Department EQUALS Security
-	// matches findings that have the value Security for the tag Department.
+	// To search for values that have the filter value, use one of the following
+	// comparison operators:
 	//
-	// To search for values other than the filter value, use NOT_EQUALS. For example,
-	// for the ResourceTags field, the filter Department NOT_EQUALS Finance matches
-	// findings that do not have the value Finance for the tag Department.
+	//    * To search for values that include the filter value, use CONTAINS. For
+	//    example, for the ResourceTags field, the filter Department CONTAINS Security
+	//    matches findings that include the value Security for the Department tag.
+	//    In the same example, a finding with a value of Security team for the Department
+	//    tag is a match.
 	//
-	// EQUALS filters on the same field are joined by OR. A finding matches if it
-	// matches any one of those filters.
+	//    * To search for values that exactly match the filter value, use EQUALS.
+	//    For example, for the ResourceTags field, the filter Department EQUALS
+	//    Security matches findings that have the value Security for the Department
+	//    tag.
 	//
-	// NOT_EQUALS filters on the same field are joined by AND. A finding matches
-	// only if it matches all of those filters.
+	// CONTAINS and EQUALS filters on the same field are joined by OR. A finding
+	// matches if it matches any one of those filters. For example, the filters
+	// Department CONTAINS Security OR Department CONTAINS Finance match a finding
+	// that includes either Security, Finance, or both values.
 	//
-	// You cannot have both an EQUALS filter and a NOT_EQUALS filter on the same
-	// field.
+	// To search for values that don't have the filter value, use one of the following
+	// comparison operators:
+	//
+	//    * To search for values that exclude the filter value, use NOT_CONTAINS.
+	//    For example, for the ResourceTags field, the filter Department NOT_CONTAINS
+	//    Finance matches findings that exclude the value Finance for the Department
+	//    tag.
+	//
+	//    * To search for values other than the filter value, use NOT_EQUALS. For
+	//    example, for the ResourceTags field, the filter Department NOT_EQUALS
+	//    Finance matches findings that don’t have the value Finance for the Department
+	//    tag.
+	//
+	// NOT_CONTAINS and NOT_EQUALS filters on the same field are joined by AND.
+	// A finding matches only if it matches all of those filters. For example, the
+	// filters Department NOT_CONTAINS Security AND Department NOT_CONTAINS Finance
+	// match a finding that excludes both the Security and Finance values.
+	//
+	// CONTAINS filters can only be used with other CONTAINS filters. NOT_CONTAINS
+	// filters can only be used with other NOT_CONTAINS filters.
+	//
+	// You can’t have both a CONTAINS filter and a NOT_CONTAINS filter on the
+	// same field. Similarly, you can’t have both an EQUALS filter and a NOT_EQUALS
+	// filter on the same field. Combining filters in this way returns an error.
+	//
+	// CONTAINS and NOT_CONTAINS operators can be used only with automation rules.
+	// For more information, see Automation rules (https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html)
+	// in the Security Hub User Guide.
 	Comparison *string `type:"string" enum:"MapFilterComparison"`
 
 	// The key of the map filter. For example, for ResourceTags, Key identifies
@@ -50636,7 +50910,7 @@ type MapFilter struct {
 
 	// The value for the key in the map filter. Filter values are case sensitive.
 	// For example, one of the values for a tag called Department might be Security.
-	// If you provide security as the filter value, then there is no match.
+	// If you provide security as the filter value, then there's no match.
 	Value *string `type:"string"`
 }
 
@@ -52514,6 +52788,11 @@ type ResourceDetails struct {
 	// databases, microservices, and APIs from a single GraphQL endpoint.
 	AwsAppSyncGraphQlApi *AwsAppSyncGraphQlApiDetails `type:"structure"`
 
+	// Provides information about an Amazon Athena workgroup. A workgroup helps
+	// you separate users, teams, applications, or workloads. It also helps you
+	// set limits on data processing and track costs.
+	AwsAthenaWorkGroup *AwsAthenaWorkGroupDetails `type:"structure"`
+
 	// Details for an autoscaling group.
 	AwsAutoScalingAutoScalingGroup *AwsAutoScalingAutoScalingGroupDetails `type:"structure"`
 
@@ -52858,6 +53137,12 @@ func (s *ResourceDetails) SetAwsApiGatewayV2Stage(v *AwsApiGatewayV2StageDetails
 // SetAwsAppSyncGraphQlApi sets the AwsAppSyncGraphQlApi field's value.
 func (s *ResourceDetails) SetAwsAppSyncGraphQlApi(v *AwsAppSyncGraphQlApiDetails) *ResourceDetails {
 	s.AwsAppSyncGraphQlApi = v
+	return s
+}
+
+// SetAwsAthenaWorkGroup sets the AwsAthenaWorkGroup field's value.
+func (s *ResourceDetails) SetAwsAthenaWorkGroup(v *AwsAthenaWorkGroupDetails) *ResourceDetails {
+	s.AwsAthenaWorkGroup = v
 	return s
 }
 
@@ -56154,52 +56439,66 @@ func (s *StatusReason) SetReasonCode(v string) *StatusReason {
 	return s
 }
 
-// A string filter for querying findings.
+// A string filter for filtering Security Hub findings.
 type StringFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The condition to apply to a string value when querying for findings. To search
-	// for values that contain the filter criteria value, use one of the following
+	// The condition to apply to a string value when filtering Security Hub findings.
+	//
+	// To search for values that have the filter value, use one of the following
 	// comparison operators:
 	//
+	//    * To search for values that include the filter value, use CONTAINS. For
+	//    example, the filter Title CONTAINS CloudFront matches findings that have
+	//    a Title that includes the string CloudFront.
+	//
 	//    * To search for values that exactly match the filter value, use EQUALS.
-	//    For example, the filter ResourceType EQUALS AwsEc2SecurityGroup only matches
-	//    findings that have a resource type of AwsEc2SecurityGroup.
+	//    For example, the filter AwsAccountId EQUALS 123456789012 only matches
+	//    findings that have an account ID of 123456789012.
 	//
 	//    * To search for values that start with the filter value, use PREFIX. For
-	//    example, the filter ResourceType PREFIX AwsIam matches findings that have
-	//    a resource type that starts with AwsIam. Findings with a resource type
-	//    of AwsIamPolicy, AwsIamRole, or AwsIamUser would all match.
+	//    example, the filter ResourceRegion PREFIX us matches findings that have
+	//    a ResourceRegion that starts with us. A ResourceRegion that starts with
+	//    a different value, such as af, ap, or ca, doesn't match.
 	//
-	// EQUALS and PREFIX filters on the same field are joined by OR. A finding matches
-	// if it matches any one of those filters.
+	// CONTAINS, EQUALS, and PREFIX filters on the same field are joined by OR.
+	// A finding matches if it matches any one of those filters. For example, the
+	// filters Title CONTAINS CloudFront OR Title CONTAINS CloudWatch match a finding
+	// that includes either CloudFront, CloudWatch, or both strings in the title.
 	//
-	// To search for values that do not contain the filter criteria value, use one
-	// of the following comparison operators:
+	// To search for values that don’t have the filter value, use one of the following
+	// comparison operators:
 	//
-	//    * To search for values that do not exactly match the filter value, use
-	//    NOT_EQUALS. For example, the filter ResourceType NOT_EQUALS AwsIamPolicy
-	//    matches findings that have a resource type other than AwsIamPolicy.
+	//    * To search for values that exclude the filter value, use NOT_CONTAINS.
+	//    For example, the filter Title NOT_CONTAINS CloudFront matches findings
+	//    that have a Title that excludes the string CloudFront.
 	//
-	//    * To search for values that do not start with the filter value, use PREFIX_NOT_EQUALS.
-	//    For example, the filter ResourceType PREFIX_NOT_EQUALS AwsIam matches
-	//    findings that have a resource type that does not start with AwsIam. Findings
-	//    with a resource type of AwsIamPolicy, AwsIamRole, or AwsIamUser would
-	//    all be excluded from the results.
+	//    * To search for values other than the filter value, use NOT_EQUALS. For
+	//    example, the filter AwsAccountId NOT_EQUALS 123456789012 only matches
+	//    findings that have an account ID other than 123456789012.
 	//
-	// NOT_EQUALS and PREFIX_NOT_EQUALS filters on the same field are joined by
-	// AND. A finding matches only if it matches all of those filters.
+	//    * To search for values that don't start with the filter value, use PREFIX_NOT_EQUALS.
+	//    For example, the filter ResourceRegion PREFIX_NOT_EQUALS us matches findings
+	//    with a ResourceRegion that starts with a value other than us.
 	//
-	// For filters on the same field, you cannot provide both an EQUALS filter and
-	// a NOT_EQUALS or PREFIX_NOT_EQUALS filter. Combining filters in this way always
-	// returns an error, even if the provided filter values would return valid results.
+	// NOT_CONTAINS, NOT_EQUALS, and PREFIX_NOT_EQUALS filters on the same field
+	// are joined by AND. A finding matches only if it matches all of those filters.
+	// For example, the filters Title NOT_CONTAINS CloudFront AND Title NOT_CONTAINS
+	// CloudWatch match a finding that excludes both CloudFront and CloudWatch in
+	// the title.
+	//
+	// You can’t have both a CONTAINS filter and a NOT_CONTAINS filter on the
+	// same field. Similarly, you can't provide both an EQUALS filter and a NOT_EQUALS
+	// or PREFIX_NOT_EQUALS filter on the same field. Combining filters in this
+	// way returns an error. CONTAINS filters can only be used with other CONTAINS
+	// filters. NOT_CONTAINS filters can only be used with other NOT_CONTAINS filters.
 	//
 	// You can combine PREFIX filters with NOT_EQUALS or PREFIX_NOT_EQUALS filters
-	// for the same field. Security Hub first processes the PREFIX filters, then
-	// the NOT_EQUALS or PREFIX_NOT_EQUALS filters.
+	// for the same field. Security Hub first processes the PREFIX filters, and
+	// then the NOT_EQUALS or PREFIX_NOT_EQUALS filters.
 	//
-	// For example, for the following filter, Security Hub first identifies findings
-	// that have resource types that start with either AwsIAM or AwsEc2. It then
+	// For example, for the following filters, Security Hub first identifies findings
+	// that have resource types that start with either AwsIam or AwsEc2. It then
 	// excludes findings that have a resource type of AwsIamPolicy and findings
 	// that have a resource type of AwsEc2NetworkInterface.
 	//
@@ -56210,11 +56509,15 @@ type StringFilter struct {
 	//    * ResourceType NOT_EQUALS AwsIamPolicy
 	//
 	//    * ResourceType NOT_EQUALS AwsEc2NetworkInterface
+	//
+	// CONTAINS and NOT_CONTAINS operators can be used only with automation rules.
+	// For more information, see Automation rules (https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html)
+	// in the Security Hub User Guide.
 	Comparison *string `type:"string" enum:"StringFilterComparison"`
 
 	// The string filter value. Filter values are case sensitive. For example, the
 	// product name for control-based findings is Security Hub. If you provide security
-	// hub as the filter text, then there is no match.
+	// hub as the filter value, there's no match.
 	Value *string `type:"string"`
 }
 
@@ -56908,10 +57211,10 @@ type UpdateAutomationRulesRequestItem struct {
 
 	// Specifies whether a rule is the last to be applied with respect to a finding
 	// that matches the rule criteria. This is useful when a finding matches the
-	// criteria for multiple rules, and each rule has different actions. If the
-	// value of this field is set to true for a rule, Security Hub applies the rule
-	// action to a finding that matches the rule criteria and doesn't evaluate other
-	// rules for the finding. The default value of this field is false.
+	// criteria for multiple rules, and each rule has different actions. If a rule
+	// is terminal, Security Hub applies the rule action to a finding that matches
+	// the rule criteria and doesn't evaluate other rules for the finding. By default,
+	// a rule isn't terminal.
 	IsTerminal *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) for the rule.
@@ -58500,6 +58803,12 @@ const (
 
 	// MapFilterComparisonNotEquals is a MapFilterComparison enum value
 	MapFilterComparisonNotEquals = "NOT_EQUALS"
+
+	// MapFilterComparisonContains is a MapFilterComparison enum value
+	MapFilterComparisonContains = "CONTAINS"
+
+	// MapFilterComparisonNotContains is a MapFilterComparison enum value
+	MapFilterComparisonNotContains = "NOT_CONTAINS"
 )
 
 // MapFilterComparison_Values returns all elements of the MapFilterComparison enum
@@ -58507,6 +58816,8 @@ func MapFilterComparison_Values() []string {
 	return []string{
 		MapFilterComparisonEquals,
 		MapFilterComparisonNotEquals,
+		MapFilterComparisonContains,
+		MapFilterComparisonNotContains,
 	}
 }
 
@@ -58718,6 +59029,12 @@ const (
 
 	// StringFilterComparisonPrefixNotEquals is a StringFilterComparison enum value
 	StringFilterComparisonPrefixNotEquals = "PREFIX_NOT_EQUALS"
+
+	// StringFilterComparisonContains is a StringFilterComparison enum value
+	StringFilterComparisonContains = "CONTAINS"
+
+	// StringFilterComparisonNotContains is a StringFilterComparison enum value
+	StringFilterComparisonNotContains = "NOT_CONTAINS"
 )
 
 // StringFilterComparison_Values returns all elements of the StringFilterComparison enum
@@ -58727,6 +59044,8 @@ func StringFilterComparison_Values() []string {
 		StringFilterComparisonPrefix,
 		StringFilterComparisonNotEquals,
 		StringFilterComparisonPrefixNotEquals,
+		StringFilterComparisonContains,
+		StringFilterComparisonNotContains,
 	}
 }
 

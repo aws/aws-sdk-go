@@ -80,8 +80,7 @@ func (c *BillingConductor) AssociateAccountsRequest(input *AssociateAccountsInpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - ServiceLimitExceededException
 //     The request would cause a service limit to exceed.
@@ -179,8 +178,7 @@ func (c *BillingConductor) AssociatePricingRulesRequest(input *AssociatePricingR
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - ServiceLimitExceededException
 //     The request would cause a service limit to exceed.
@@ -277,8 +275,7 @@ func (c *BillingConductor) BatchAssociateResourcesToCustomLineItemRequest(input 
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - ServiceLimitExceededException
 //     The request would cause a service limit to exceed.
@@ -375,8 +372,7 @@ func (c *BillingConductor) BatchDisassociateResourcesFromCustomLineItemRequest(i
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -471,8 +467,7 @@ func (c *BillingConductor) CreateBillingGroupRequest(input *CreateBillingGroupIn
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - ServiceLimitExceededException
 //     The request would cause a service limit to exceed.
@@ -568,8 +563,7 @@ func (c *BillingConductor) CreateCustomLineItemRequest(input *CreateCustomLineIt
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - ServiceLimitExceededException
 //     The request would cause a service limit to exceed.
@@ -664,8 +658,7 @@ func (c *BillingConductor) CreatePricingPlanRequest(input *CreatePricingPlanInpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - ServiceLimitExceededException
 //     The request would cause a service limit to exceed.
@@ -763,8 +756,7 @@ func (c *BillingConductor) CreatePricingRuleRequest(input *CreatePricingRuleInpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - ServiceLimitExceededException
 //     The request would cause a service limit to exceed.
@@ -855,8 +847,7 @@ func (c *BillingConductor) DeleteBillingGroupRequest(input *DeleteBillingGroupIn
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -948,8 +939,7 @@ func (c *BillingConductor) DeleteCustomLineItemRequest(input *DeleteCustomLineIt
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -1041,8 +1031,7 @@ func (c *BillingConductor) DeletePricingPlanRequest(input *DeletePricingPlanInpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -1134,8 +1123,7 @@ func (c *BillingConductor) DeletePricingRuleRequest(input *DeletePricingRuleInpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -1226,8 +1214,7 @@ func (c *BillingConductor) DisassociateAccountsRequest(input *DisassociateAccoun
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -1321,8 +1308,7 @@ func (c *BillingConductor) DisassociatePricingRulesRequest(input *DisassociatePr
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -1422,8 +1408,7 @@ func (c *BillingConductor) ListAccountAssociationsRequest(input *ListAccountAsso
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -1573,8 +1558,7 @@ func (c *BillingConductor) ListBillingGroupCostReportsRequest(input *ListBilling
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -1724,8 +1708,7 @@ func (c *BillingConductor) ListBillingGroupsRequest(input *ListBillingGroupsInpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -1873,8 +1856,7 @@ func (c *BillingConductor) ListCustomLineItemVersionsRequest(input *ListCustomLi
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -2021,8 +2003,7 @@ func (c *BillingConductor) ListCustomLineItemsRequest(input *ListCustomLineItems
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -2171,8 +2152,7 @@ func (c *BillingConductor) ListPricingPlansRequest(input *ListPricingPlansInput)
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -2317,8 +2297,7 @@ func (c *BillingConductor) ListPricingPlansAssociatedWithPricingRuleRequest(inpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -2467,8 +2446,7 @@ func (c *BillingConductor) ListPricingRulesRequest(input *ListPricingRulesInput)
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -2613,8 +2591,7 @@ func (c *BillingConductor) ListPricingRulesAssociatedToPricingPlanRequest(input 
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -2762,8 +2739,7 @@ func (c *BillingConductor) ListResourcesAssociatedToCustomLineItemRequest(input 
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -2905,8 +2881,7 @@ func (c *BillingConductor) ListTagsForResourceRequest(input *ListTagsForResource
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -3000,8 +2975,7 @@ func (c *BillingConductor) TagResourceRequest(input *TagResourceInput) (req *req
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -3093,8 +3067,7 @@ func (c *BillingConductor) UntagResourceRequest(input *UntagResourceInput) (req 
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -3188,8 +3161,7 @@ func (c *BillingConductor) UpdateBillingGroupRequest(input *UpdateBillingGroupIn
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -3280,8 +3252,7 @@ func (c *BillingConductor) UpdateCustomLineItemRequest(input *UpdateCustomLineIt
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -3375,8 +3346,7 @@ func (c *BillingConductor) UpdatePricingPlanRequest(input *UpdatePricingPlanInpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -3470,8 +3440,7 @@ func (c *BillingConductor) UpdatePricingRuleRequest(input *UpdatePricingRuleInpu
 //     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input doesn't match with the constraints specified by Amazon Web Services
-//     services.
+//     The input doesn't match with the constraints specified by Amazon Web Services.
 //
 //   - InternalServerException
 //     An unexpected error occurred while processing a request.
@@ -3633,9 +3602,13 @@ func (s *AccountAssociationsListElement) SetBillingGroupArn(v string) *AccountAs
 }
 
 // The set of accounts that will be under the billing group. The set of accounts
-// resemble the linked accounts in a consolidated family.
+// resemble the linked accounts in a consolidated billing family.
 type AccountGrouping struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies if this billing group will automatically associate newly added
+	// Amazon Web Services accounts that join your consolidated billing family.
+	AutoAssociate *bool `type:"boolean"`
 
 	// The account IDs that make up the billing group. Account IDs must be a part
 	// of the consolidated billing family, and not associated with another billing
@@ -3677,6 +3650,12 @@ func (s *AccountGrouping) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoAssociate sets the AutoAssociate field's value.
+func (s *AccountGrouping) SetAutoAssociate(v bool) *AccountGrouping {
+	s.AutoAssociate = &v
+	return s
 }
 
 // SetLinkedAccountIds sets the LinkedAccountIds field's value.
@@ -4279,6 +4258,10 @@ func (s *BillingGroupCostReportElement) SetProformaCost(v string) *BillingGroupC
 type BillingGroupListElement struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies if the billing group has automatic account association (AutoAssociate)
+	// enabled.
+	AccountGrouping *ListBillingGroupAccountGrouping `type:"structure"`
+
 	// The Amazon Resource Number (ARN) that can be used to uniquely identify the
 	// billing group.
 	Arn *string `type:"string"`
@@ -4336,6 +4319,12 @@ func (s BillingGroupListElement) String() string {
 // value will be replaced with "sensitive".
 func (s BillingGroupListElement) GoString() string {
 	return s.String()
+}
+
+// SetAccountGrouping sets the AccountGrouping field's value.
+func (s *BillingGroupListElement) SetAccountGrouping(v *ListBillingGroupAccountGrouping) *BillingGroupListElement {
+	s.AccountGrouping = v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -4528,7 +4517,7 @@ type CreateBillingGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The set of accounts that will be under the billing group. The set of accounts
-	// resemble the linked accounts in a consolidated family.
+	// resemble the linked accounts in a consolidated billing family.
 	//
 	// AccountGrouping is a required field
 	AccountGrouping *AccountGrouping `type:"structure" required:"true"`
@@ -6697,6 +6686,39 @@ func (s *ListAccountAssociationsOutput) SetNextToken(v string) *ListAccountAssoc
 	return s
 }
 
+// Specifies if the billing group has the following features enabled.
+type ListBillingGroupAccountGrouping struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if this billing group will automatically associate newly added
+	// Amazon Web Services accounts that join your consolidated billing family.
+	AutoAssociate *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBillingGroupAccountGrouping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBillingGroupAccountGrouping) GoString() string {
+	return s.String()
+}
+
+// SetAutoAssociate sets the AutoAssociate field's value.
+func (s *ListBillingGroupAccountGrouping) SetAutoAssociate(v bool) *ListBillingGroupAccountGrouping {
+	s.AutoAssociate = &v
+	return s
+}
+
 // The filter used to retrieve specific BillingGroupCostReportElements.
 type ListBillingGroupCostReportsFilter struct {
 	_ struct{} `type:"structure"`
@@ -6868,6 +6890,10 @@ type ListBillingGroupsFilter struct {
 	// The list of billing group Amazon Resource Names (ARNs) to retrieve information.
 	Arns []*string `min:"1" type:"list"`
 
+	// Specifies if this billing group will automatically associate newly added
+	// Amazon Web Services accounts that join your consolidated billing family.
+	AutoAssociate *bool `type:"boolean"`
+
 	// The pricing plan Amazon Resource Names (ARNs) to retrieve information.
 	PricingPlan *string `type:"string"`
 
@@ -6913,6 +6939,12 @@ func (s *ListBillingGroupsFilter) Validate() error {
 // SetArns sets the Arns field's value.
 func (s *ListBillingGroupsFilter) SetArns(v []*string) *ListBillingGroupsFilter {
 	s.Arns = v
+	return s
+}
+
+// SetAutoAssociate sets the AutoAssociate field's value.
+func (s *ListBillingGroupsFilter) SetAutoAssociate(v bool) *ListBillingGroupsFilter {
+	s.AutoAssociate = &v
 	return s
 }
 
@@ -9161,8 +9193,45 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies if the billing group has the following features enabled.
+type UpdateBillingGroupAccountGrouping struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if this billing group will automatically associate newly added
+	// Amazon Web Services accounts that join your consolidated billing family.
+	AutoAssociate *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBillingGroupAccountGrouping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBillingGroupAccountGrouping) GoString() string {
+	return s.String()
+}
+
+// SetAutoAssociate sets the AutoAssociate field's value.
+func (s *UpdateBillingGroupAccountGrouping) SetAutoAssociate(v bool) *UpdateBillingGroupAccountGrouping {
+	s.AutoAssociate = &v
+	return s
+}
+
 type UpdateBillingGroupInput struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies if the billing group has automatic account association (AutoAssociate)
+	// enabled.
+	AccountGrouping *UpdateBillingGroupAccountGrouping `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the billing group being updated.
 	//
@@ -9230,6 +9299,12 @@ func (s *UpdateBillingGroupInput) Validate() error {
 	return nil
 }
 
+// SetAccountGrouping sets the AccountGrouping field's value.
+func (s *UpdateBillingGroupInput) SetAccountGrouping(v *UpdateBillingGroupAccountGrouping) *UpdateBillingGroupInput {
+	s.AccountGrouping = v
+	return s
+}
+
 // SetArn sets the Arn field's value.
 func (s *UpdateBillingGroupInput) SetArn(v string) *UpdateBillingGroupInput {
 	s.Arn = &v
@@ -9262,6 +9337,10 @@ func (s *UpdateBillingGroupInput) SetStatus(v string) *UpdateBillingGroupInput {
 
 type UpdateBillingGroupOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies if the billing group has automatic account association (AutoAssociate)
+	// enabled.
+	AccountGrouping *UpdateBillingGroupAccountGrouping `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the billing group that was updated.
 	Arn *string `type:"string"`
@@ -9316,6 +9395,12 @@ func (s UpdateBillingGroupOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateBillingGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountGrouping sets the AccountGrouping field's value.
+func (s *UpdateBillingGroupOutput) SetAccountGrouping(v *UpdateBillingGroupAccountGrouping) *UpdateBillingGroupOutput {
+	s.AccountGrouping = v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -10254,8 +10339,7 @@ func (s *UpdateTieringInput_) SetFreeTier(v *UpdateFreeTierConfig) *UpdateTierin
 	return s
 }
 
-// The input doesn't match with the constraints specified by Amazon Web Services
-// services.
+// The input doesn't match with the constraints specified by Amazon Web Services.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10705,6 +10789,12 @@ const (
 
 	// ValidationExceptionReasonInvalidFilter is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidFilter = "INVALID_FILTER"
+
+	// ValidationExceptionReasonTooManyAutoAssociateBillingGroups is a ValidationExceptionReason enum value
+	ValidationExceptionReasonTooManyAutoAssociateBillingGroups = "TOO_MANY_AUTO_ASSOCIATE_BILLING_GROUPS"
+
+	// ValidationExceptionReasonCannotDeleteAutoAssociateBillingGroup is a ValidationExceptionReason enum value
+	ValidationExceptionReasonCannotDeleteAutoAssociateBillingGroup = "CANNOT_DELETE_AUTO_ASSOCIATE_BILLING_GROUP"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -10767,5 +10857,7 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonIllegalUsageType,
 		ValidationExceptionReasonInvalidSkuCombo,
 		ValidationExceptionReasonInvalidFilter,
+		ValidationExceptionReasonTooManyAutoAssociateBillingGroups,
+		ValidationExceptionReasonCannotDeleteAutoAssociateBillingGroup,
 	}
 }

@@ -22975,6 +22975,9 @@ const (
 
 	// RuntimeRuby32 is a Runtime enum value
 	RuntimeRuby32 = "ruby3.2"
+
+	// RuntimePython311 is a Runtime enum value
+	RuntimePython311 = "python3.11"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -23011,6 +23014,7 @@ func Runtime_Values() []string {
 		RuntimePython310,
 		RuntimeJava17,
 		RuntimeRuby32,
+		RuntimePython311,
 	}
 }
 

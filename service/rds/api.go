@@ -3015,10 +3015,10 @@ func (c *RDS) CreateGlobalClusterRequest(input *CreateGlobalClusterInput) (req *
 // primary cluster through high-speed replication performed by the Aurora storage
 // subsystem.
 //
-// You can create a global database that is initially empty, and then add a
-// primary cluster and a secondary cluster to it. Or you can specify an existing
-// Aurora cluster during the create operation, and this cluster becomes the
-// primary cluster of the global database.
+// You can create a global database that is initially empty, and then create
+// the primary and secondary DB clusters in the global database. Or you can
+// specify an existing Aurora cluster during the create operation, and this
+// cluster becomes the primary cluster of the global database.
 //
 // This operation applies only to Aurora DB clusters.
 //
@@ -12104,13 +12104,13 @@ func (c *RDS) ModifyGlobalClusterRequest(input *ModifyGlobalClusterInput) (req *
 
 // ModifyGlobalCluster API operation for Amazon Relational Database Service.
 //
-// Modify a setting for an Amazon Aurora global cluster. You can change one
+// Modifies a setting for an Amazon Aurora global cluster. You can change one
 // or more database configuration parameters by specifying these parameters
 // and the new values in the request. For more information on Amazon Aurora,
 // see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// This operation only applies to Aurora global database clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -26920,6 +26920,9 @@ type DBInstance struct {
 	// by subelements.
 	PendingModifiedValues *PendingModifiedValues `type:"structure"`
 
+	// The progress of the storage optimization operation as a percentage.
+	PercentProgress *string `type:"string"`
+
 	// Indicates whether Performance Insights is enabled for the DB instance.
 	PerformanceInsightsEnabled *bool `type:"boolean"`
 
@@ -27406,6 +27409,12 @@ func (s *DBInstance) SetOptionGroupMemberships(v []*OptionGroupMembership) *DBIn
 // SetPendingModifiedValues sets the PendingModifiedValues field's value.
 func (s *DBInstance) SetPendingModifiedValues(v *PendingModifiedValues) *DBInstance {
 	s.PendingModifiedValues = v
+	return s
+}
+
+// SetPercentProgress sets the PercentProgress field's value.
+func (s *DBInstance) SetPercentProgress(v string) *DBInstance {
+	s.PercentProgress = &v
 	return s
 }
 
@@ -41423,7 +41432,7 @@ type ModifyDBInstanceInput struct {
 	//    * Can't be set to 0 for an RDS Custom for Oracle DB instance.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
-	// The CA certificate identifier to use for the DB instance6's server certificate.
+	// The CA certificate identifier to use for the DB instance's server certificate.
 	//
 	// This setting doesn't apply to RDS Custom DB instances.
 	//
@@ -43565,25 +43574,23 @@ func (s *ModifyEventSubscriptionOutput) SetEventSubscription(v *EventSubscriptio
 type ModifyGlobalClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether major version upgrades are allowed.
+	// Specifies whether to allow major version upgrades.
 	//
-	// Constraints: You must allow major version upgrades when specifying a value
-	// for the EngineVersion parameter that is a different major version than the
-	// DB cluster's current version.
+	// Constraints: Must be enabled if you specify a value for the EngineVersion
+	// parameter that's a different major version than the global cluster's current
+	// version.
 	//
 	// If you upgrade the major version of a global database, the cluster and DB
 	// instance parameter groups are set to the default parameter groups for the
 	// new version. Apply any custom parameter groups after completing the upgrade.
 	AllowMajorVersionUpgrade *bool `type:"boolean"`
 
-	// Indicates if the global database cluster has deletion protection enabled.
+	// Specifies whether to enable deletion protection for the global database cluster.
 	// The global database cluster can't be deleted when deletion protection is
 	// enabled.
 	DeletionProtection *bool `type:"boolean"`
 
-	// The version number of the database engine to which you want to upgrade. Changing
-	// this parameter results in an outage. The change is applied during the next
-	// maintenance window unless ApplyImmediately is enabled.
+	// The version number of the database engine to which you want to upgrade.
 	//
 	// To list all of the available engine versions for aurora-mysql (for MySQL-based
 	// Aurora global databases), use the following command:
@@ -43598,24 +43605,24 @@ type ModifyGlobalClusterInput struct {
 	// == `true`].[EngineVersion]'
 	EngineVersion *string `type:"string"`
 
-	// The DB cluster identifier for the global cluster being modified. This parameter
-	// isn't case-sensitive.
+	// The cluster identifier for the global cluster to modify. This parameter isn't
+	// case-sensitive.
 	//
 	// Constraints:
 	//
 	//    * Must match the identifier of an existing global database cluster.
 	GlobalClusterIdentifier *string `type:"string"`
 
-	// The new cluster identifier for the global database cluster when modifying
-	// a global database cluster. This value is stored as a lowercase string.
+	// The new cluster identifier for the global database cluster. This value is
+	// stored as a lowercase string.
 	//
 	// Constraints:
 	//
-	//    * Must contain from 1 to 63 letters, numbers, or hyphens
+	//    * Must contain from 1 to 63 letters, numbers, or hyphens.
 	//
-	//    * The first character must be a letter
+	//    * The first character must be a letter.
 	//
-	//    * Can't end with a hyphen or contain two consecutive hyphens
+	//    * Can't end with a hyphen or contain two consecutive hyphens.
 	//
 	// Example: my-cluster2
 	NewGlobalClusterIdentifier *string `type:"string"`

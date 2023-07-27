@@ -4219,7 +4219,8 @@
         "DBSystemId":{"shape":"String"},
         "MasterUserSecret":{"shape":"MasterUserSecret"},
         "CertificateDetails":{"shape":"CertificateDetails"},
-        "ReadReplicaSourceDBClusterIdentifier":{"shape":"String"}
+        "ReadReplicaSourceDBClusterIdentifier":{"shape":"String"},
+        "PercentProgress":{"shape":"String"}
       },
       "wrapper":true
     },

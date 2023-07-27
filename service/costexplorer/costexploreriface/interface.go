@@ -136,6 +136,10 @@ type CostExplorerAPI interface {
 	GetRightsizingRecommendationWithContext(aws.Context, *costexplorer.GetRightsizingRecommendationInput, ...request.Option) (*costexplorer.GetRightsizingRecommendationOutput, error)
 	GetRightsizingRecommendationRequest(*costexplorer.GetRightsizingRecommendationInput) (*request.Request, *costexplorer.GetRightsizingRecommendationOutput)
 
+	GetSavingsPlanPurchaseRecommendationDetails(*costexplorer.GetSavingsPlanPurchaseRecommendationDetailsInput) (*costexplorer.GetSavingsPlanPurchaseRecommendationDetailsOutput, error)
+	GetSavingsPlanPurchaseRecommendationDetailsWithContext(aws.Context, *costexplorer.GetSavingsPlanPurchaseRecommendationDetailsInput, ...request.Option) (*costexplorer.GetSavingsPlanPurchaseRecommendationDetailsOutput, error)
+	GetSavingsPlanPurchaseRecommendationDetailsRequest(*costexplorer.GetSavingsPlanPurchaseRecommendationDetailsInput) (*request.Request, *costexplorer.GetSavingsPlanPurchaseRecommendationDetailsOutput)
+
 	GetSavingsPlansCoverage(*costexplorer.GetSavingsPlansCoverageInput) (*costexplorer.GetSavingsPlansCoverageOutput, error)
 	GetSavingsPlansCoverageWithContext(aws.Context, *costexplorer.GetSavingsPlansCoverageInput, ...request.Option) (*costexplorer.GetSavingsPlansCoverageOutput, error)
 	GetSavingsPlansCoverageRequest(*costexplorer.GetSavingsPlansCoverageInput) (*request.Request, *costexplorer.GetSavingsPlansCoverageOutput)

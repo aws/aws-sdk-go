@@ -19532,6 +19532,10 @@
     },
     "TextClassificationJobConfig":{
       "type":"structure",
+      "required":[
+        "ContentColumn",
+        "TargetLabelColumn"
+      ],
       "members":{
         "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
         "ContentColumn":{"shape":"ContentColumn"},
@@ -19784,6 +19788,7 @@
         "DebugRuleConfigurations":{"shape":"DebugRuleConfigurations"},
         "TensorBoardOutputConfig":{"shape":"TensorBoardOutputConfig"},
         "DebugRuleEvaluationStatuses":{"shape":"DebugRuleEvaluationStatuses"},
+        "ProfilerConfig":{"shape":"ProfilerConfig"},
         "Environment":{"shape":"TrainingEnvironmentMap"},
         "RetryStrategy":{"shape":"RetryStrategy"},
         "Tags":{"shape":"TagList"}

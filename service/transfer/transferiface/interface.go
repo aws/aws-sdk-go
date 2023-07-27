@@ -285,6 +285,10 @@ type TransferAPI interface {
 	TagResourceWithContext(aws.Context, *transfer.TagResourceInput, ...request.Option) (*transfer.TagResourceOutput, error)
 	TagResourceRequest(*transfer.TagResourceInput) (*request.Request, *transfer.TagResourceOutput)
 
+	TestConnection(*transfer.TestConnectionInput) (*transfer.TestConnectionOutput, error)
+	TestConnectionWithContext(aws.Context, *transfer.TestConnectionInput, ...request.Option) (*transfer.TestConnectionOutput, error)
+	TestConnectionRequest(*transfer.TestConnectionInput) (*request.Request, *transfer.TestConnectionOutput)
+
 	TestIdentityProvider(*transfer.TestIdentityProviderInput) (*transfer.TestIdentityProviderOutput, error)
 	TestIdentityProviderWithContext(aws.Context, *transfer.TestIdentityProviderInput, ...request.Option) (*transfer.TestIdentityProviderOutput, error)
 	TestIdentityProviderRequest(*transfer.TestIdentityProviderInput) (*request.Request, *transfer.TestIdentityProviderOutput)

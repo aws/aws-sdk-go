@@ -375,6 +375,21 @@
     }
   },
   "shapes":{
+    "ActiveSpeakerOnlyConfiguration":{
+      "type":"structure",
+      "members":{
+        "ActiveSpeakerPosition":{"shape":"ActiveSpeakerPosition"}
+      }
+    },
+    "ActiveSpeakerPosition":{
+      "type":"string",
+      "enum":[
+        "TopLeft",
+        "TopRight",
+        "BottomLeft",
+        "BottomRight"
+      ]
+    },
     "AmazonResourceName":{
       "type":"string",
       "max":1011,
@@ -402,7 +417,6 @@
     },
     "AmazonTranscribeProcessorConfiguration":{
       "type":"structure",
-      "required":["LanguageCode"],
       "members":{
         "LanguageCode":{"shape":"CallAnalyticsLanguageCode"},
         "VocabularyName":{"shape":"VocabularyName"},
@@ -415,7 +429,12 @@
         "ContentRedactionType":{"shape":"ContentType"},
         "PiiEntityTypes":{"shape":"PiiEntityTypes"},
         "LanguageModelName":{"shape":"ModelName"},
-        "FilterPartialResults":{"shape":"Boolean"}
+        "FilterPartialResults":{"shape":"Boolean"},
+        "IdentifyLanguage":{"shape":"Boolean"},
+        "LanguageOptions":{"shape":"LanguageOptions"},
+        "PreferredLanguage":{"shape":"CallAnalyticsLanguageCode"},
+        "VocabularyNames":{"shape":"VocabularyNames"},
+        "VocabularyFilterNames":{"shape":"VocabularyFilterNames"}
       }
     },
     "Arn":{
@@ -527,6 +546,22 @@
       "exception":true
     },
     "Boolean":{"type":"boolean"},
+    "BorderColor":{
+      "type":"string",
+      "enum":[
+        "Black",
+        "Blue",
+        "Red",
+        "Green",
+        "White",
+        "Yellow"
+      ]
+    },
+    "BorderThickness":{
+      "type":"integer",
+      "max":20,
+      "min":1
+    },
     "CallAnalyticsLanguageCode":{
       "type":"string",
       "enum":[
@@ -539,6 +574,13 @@
         "it-IT",
         "de-DE",
         "pt-BR"
+      ]
+    },
+    "CanvasOrientation":{
+      "type":"string",
+      "enum":[
+        "Landscape",
+        "Portrait"
       ]
     },
     "CategoryName":{
@@ -705,12 +747,18 @@
       "enum":[
         "PresenterOnly",
         "Horizontal",
-        "Vertical"
+        "Vertical",
+        "ActiveSpeakerOnly"
       ]
     },
     "ContentType":{
       "type":"string",
       "enum":["PII"]
+    },
+    "CornerRadius":{
+      "type":"integer",
+      "max":20,
+      "min":1
     },
     "CreateMediaCapturePipelineRequest":{
       "type":"structure",
@@ -984,7 +1032,12 @@
       "required":["ContentShareLayout"],
       "members":{
         "ContentShareLayout":{"shape":"ContentShareLayoutOption"},
-        "PresenterOnlyConfiguration":{"shape":"PresenterOnlyConfiguration"}
+        "PresenterOnlyConfiguration":{"shape":"PresenterOnlyConfiguration"},
+        "ActiveSpeakerOnlyConfiguration":{"shape":"ActiveSpeakerOnlyConfiguration"},
+        "HorizontalLayoutConfiguration":{"shape":"HorizontalLayoutConfiguration"},
+        "VerticalLayoutConfiguration":{"shape":"VerticalLayoutConfiguration"},
+        "VideoAttribute":{"shape":"VideoAttribute"},
+        "CanvasOrientation":{"shape":"CanvasOrientation"}
       }
     },
     "GuidString":{
@@ -992,6 +1045,33 @@
       "max":36,
       "min":36,
       "pattern":"[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}"
+    },
+    "HighlightColor":{
+      "type":"string",
+      "enum":[
+        "Black",
+        "Blue",
+        "Red",
+        "Green",
+        "White",
+        "Yellow"
+      ]
+    },
+    "HorizontalLayoutConfiguration":{
+      "type":"structure",
+      "members":{
+        "TileOrder":{"shape":"TileOrder"},
+        "TilePosition":{"shape":"HorizontalTilePosition"},
+        "TileCount":{"shape":"TileCount"},
+        "TileAspectRatio":{"shape":"TileAspectRatio"}
+      }
+    },
+    "HorizontalTilePosition":{
+      "type":"string",
+      "enum":[
+        "Top",
+        "Bottom"
+      ]
     },
     "Iso8601Timestamp":{
       "type":"timestamp",
@@ -1069,6 +1149,12 @@
       "members":{
         "InsightsTarget":{"shape":"Arn"}
       }
+    },
+    "LanguageOptions":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[a-zA-Z-,]+"
     },
     "LayoutOption":{
       "type":"string",
@@ -1764,6 +1850,22 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TileAspectRatio":{
+      "type":"string",
+      "pattern":"^\\d{1,2}\\/\\d{1,2}$"
+    },
+    "TileCount":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
+    "TileOrder":{
+      "type":"string",
+      "enum":[
+        "JoinSequence",
+        "SpeakerSequence"
+      ]
+    },
     "Timestamp":{"type":"timestamp"},
     "TimestampRange":{
       "type":"structure",
@@ -1848,12 +1950,37 @@
         "UpdateStatus":{"shape":"MediaPipelineStatusUpdate"}
       }
     },
+    "VerticalLayoutConfiguration":{
+      "type":"structure",
+      "members":{
+        "TileOrder":{"shape":"TileOrder"},
+        "TilePosition":{"shape":"VerticalTilePosition"},
+        "TileCount":{"shape":"TileCount"},
+        "TileAspectRatio":{"shape":"TileAspectRatio"}
+      }
+    },
+    "VerticalTilePosition":{
+      "type":"string",
+      "enum":[
+        "Left",
+        "Right"
+      ]
+    },
     "VideoArtifactsConfiguration":{
       "type":"structure",
       "required":["State"],
       "members":{
         "State":{"shape":"ArtifactsState"},
         "MuxType":{"shape":"VideoMuxType"}
+      }
+    },
+    "VideoAttribute":{
+      "type":"structure",
+      "members":{
+        "CornerRadius":{"shape":"CornerRadius"},
+        "BorderColor":{"shape":"BorderColor"},
+        "HighlightColor":{"shape":"HighlightColor"},
+        "BorderThickness":{"shape":"BorderThickness"}
       }
     },
     "VideoConcatenationConfiguration":{
@@ -1881,11 +2008,23 @@
       "min":1,
       "pattern":"^[0-9a-zA-Z._-]+"
     },
+    "VocabularyFilterNames":{
+      "type":"string",
+      "max":3000,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9,-._]+"
+    },
     "VocabularyName":{
       "type":"string",
       "max":200,
       "min":1,
       "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "VocabularyNames":{
+      "type":"string",
+      "max":3000,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9,-._]+"
     },
     "VoiceAnalyticsConfigurationStatus":{
       "type":"string",

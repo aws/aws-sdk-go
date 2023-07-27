@@ -25,7 +25,8 @@ const (
 	// ErrCodeOcuLimitExceededException for service response error code
 	// "OcuLimitExceededException".
 	//
-	// OCU Limit Exceeded for service limits
+	// Thrown when the collection you're attempting to create results in a number
+	// of search or indexing OCUs that exceeds the account limit.
 	ErrCodeOcuLimitExceededException = "OcuLimitExceededException"
 
 	// ErrCodeResourceNotFoundException for service response error code

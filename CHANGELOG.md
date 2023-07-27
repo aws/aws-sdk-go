@@ -1,3 +1,77 @@
+Release v1.44.310 (2023-07-27)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API, documentation, paginators, and examples
+  * This release updates validation for instance types used in the AllowedInstanceTypes and ExcludedInstanceTypes parameters of the InstanceRequirements property of a MixedInstancesPolicy.
+* `service/ebs`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and waiters
+  * SDK and documentation updates for Amazon Elastic Block Store APIs
+* `service/eks`: Updates service API
+* `service/sagemaker`: Updates service API and documentation
+  * Expose ProfilerConfig attribute in SageMaker Search API response.
+
+Release v1.44.309 (2023-07-26)
+===
+
+### Service Client Updates
+* `service/cloudcontrol`: Updates service documentation
+* `service/entityresolution`: Adds new service
+* `service/glue`: Updates service API and documentation
+  * Release Glue Studio Snowflake Connector Node for SDK/CLI
+* `service/healthlake`: Updates service documentation
+* `service/managedblockchain-query`: Adds new service
+* `service/mediaconvert`: Updates service API and documentation
+  * This release includes general updates to user documentation.
+* `service/omics`: Updates service documentation
+* `service/opensearchserverless`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds 1 new voice - Lisa (nl-BE)
+* `service/route53`: Updates service documentation
+  * Update that corrects the documents for received feedback.
+
+Release v1.44.308 (2023-07-25)
+===
+
+### Service Client Updates
+* `service/billingconductor`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for DynamoDB
+* `service/ec2`: Updates service API and documentation
+  * This release adds an instance's peak and baseline network bandwidth as well as the memory sizes of an instance's inference accelerators to DescribeInstanceTypes.
+* `service/emr-serverless`: Updates service API and documentation
+* `service/lambda`: Updates service API
+  * Add Python 3.11 (python3.11) support to AWS Lambda
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for monitoring storage optimization progress on the DescribeDBInstances API.
+* `service/sagemaker`: Updates service API and documentation
+  * Mark ContentColumn and TargetLabelColumn as required Targets in TextClassificationJobConfig in CreateAutoMLJobV2API
+* `service/securityhub`: Updates service API and documentation
+* `service/sts`: Updates service API and documentation
+  * API updates for the AWS Security Token Service
+* `service/transfer`: Updates service API and documentation
+  * This release adds support for SFTP Connectors.
+* `service/wisdom`: Updates service API and documentation
+
+Release v1.44.307 (2023-07-24)
+===
+
+### Service Client Updates
+* `service/apigatewayv2`: Adds new service
+  * Documentation updates for Amazon API Gateway.
+* `service/ce`: Updates service API and documentation
+* `service/chime-sdk-media-pipelines`: Updates service API and documentation
+* `service/cloudformation`: Updates service API and documentation
+  * This release supports filtering by DRIFT_STATUS for existing API ListStackInstances and adds support for a new API ListStackInstanceResourceDrifts. Customers can now view resource drift information from their StackSet management accounts.
+* `service/ec2`: Updates service API
+  * Add "disabled" enum value to SpotInstanceState.
+* `service/glue`: Updates service API and documentation
+  * Added support for Data Preparation Recipe node in Glue Studio jobs
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * This release launches new Snapshot APIs for CSV and PDF exports, adds support for info icon for filters and parameters in Exploration APIs, adds modeled exception to the DeleteAccountCustomization API, and introduces AttributeAggregationFunction's ability to add UNIQUE_VALUE aggregation in tooltips.
+
 Release v1.44.306 (2023-07-21)
 ===
 

@@ -523,7 +523,17 @@
       "type":"string",
       "enum":[
         "SNAPSHOT_NOT_FOUND",
-        "DEPENDENCY_RESOURCE_NOT_FOUND"
+        "GRANT_NOT_FOUND",
+        "DEPENDENCY_RESOURCE_NOT_FOUND",
+        "IMAGE_NOT_FOUND"
+      ]
+    },
+    "SSEType":{
+      "type":"string",
+      "enum":[
+        "sse-ebs",
+        "sse-kms",
+        "none"
       ]
     },
     "ServiceQuotaExceededException":{
@@ -574,7 +584,8 @@
         "BlockSize":{"shape":"BlockSize"},
         "Tags":{"shape":"Tags"},
         "ParentSnapshotId":{"shape":"SnapshotId"},
-        "KmsKeyArn":{"shape":"KmsKeyArn"}
+        "KmsKeyArn":{"shape":"KmsKeyArn"},
+        "SseType":{"shape":"SSEType"}
       }
     },
     "Status":{
@@ -628,6 +639,7 @@
         "INVALID_CUSTOMER_KEY",
         "INVALID_PAGE_TOKEN",
         "INVALID_BLOCK_TOKEN",
+        "INVALID_GRANT_TOKEN",
         "INVALID_SNAPSHOT_ID",
         "UNRELATED_SNAPSHOTS",
         "INVALID_BLOCK",
@@ -636,7 +648,9 @@
         "INVALID_DEPENDENCY_REQUEST",
         "INVALID_PARAMETER_VALUE",
         "INVALID_VOLUME_SIZE",
-        "CONFLICTING_BLOCK_UPDATE"
+        "CONFLICTING_BLOCK_UPDATE",
+        "INVALID_IMAGE_ID",
+        "WRITE_REQUEST_TIMEOUT"
       ]
     },
     "VolumeSize":{

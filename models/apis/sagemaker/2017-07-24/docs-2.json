@@ -2185,7 +2185,7 @@
     "ContentColumn": {
       "base": null,
       "refs": {
-        "TextClassificationJobConfig$ContentColumn": "<p>The name of the column used to provide the sentences to be classified. It should not be the same as the target column (Required).</p>"
+        "TextClassificationJobConfig$ContentColumn": "<p>The name of the column used to provide the sentences to be classified. It should not be the same as the target column.</p>"
       }
     },
     "ContentDigest": {
@@ -11096,7 +11096,8 @@
       "base": "<p>Configuration information for Amazon SageMaker Debugger system monitoring, framework profiling, and storage paths.</p>",
       "refs": {
         "CreateTrainingJobRequest$ProfilerConfig": null,
-        "DescribeTrainingJobResponse$ProfilerConfig": null
+        "DescribeTrainingJobResponse$ProfilerConfig": null,
+        "TrainingJob$ProfilerConfig": null
       }
     },
     "ProfilerConfigForUpdate": {
@@ -13291,7 +13292,7 @@
     "TargetLabelColumn": {
       "base": null,
       "refs": {
-        "TextClassificationJobConfig$TargetLabelColumn": "<p>The name of the column used to provide the class labels. It should not be same as the content column (Required).</p>"
+        "TextClassificationJobConfig$TargetLabelColumn": "<p>The name of the column used to provide the class labels. It should not be same as the content column.</p>"
       }
     },
     "TargetObjectiveMetricValue": {

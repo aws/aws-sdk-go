@@ -257,6 +257,10 @@ type CloudFormationAPI interface {
 	ListImportsPages(*cloudformation.ListImportsInput, func(*cloudformation.ListImportsOutput, bool) bool) error
 	ListImportsPagesWithContext(aws.Context, *cloudformation.ListImportsInput, func(*cloudformation.ListImportsOutput, bool) bool, ...request.Option) error
 
+	ListStackInstanceResourceDrifts(*cloudformation.ListStackInstanceResourceDriftsInput) (*cloudformation.ListStackInstanceResourceDriftsOutput, error)
+	ListStackInstanceResourceDriftsWithContext(aws.Context, *cloudformation.ListStackInstanceResourceDriftsInput, ...request.Option) (*cloudformation.ListStackInstanceResourceDriftsOutput, error)
+	ListStackInstanceResourceDriftsRequest(*cloudformation.ListStackInstanceResourceDriftsInput) (*request.Request, *cloudformation.ListStackInstanceResourceDriftsOutput)
+
 	ListStackInstances(*cloudformation.ListStackInstancesInput) (*cloudformation.ListStackInstancesOutput, error)
 	ListStackInstancesWithContext(aws.Context, *cloudformation.ListStackInstancesInput, ...request.Option) (*cloudformation.ListStackInstancesOutput, error)
 	ListStackInstancesRequest(*cloudformation.ListStackInstancesInput) (*request.Request, *cloudformation.ListStackInstancesOutput)

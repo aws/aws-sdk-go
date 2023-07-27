@@ -13160,6 +13160,9 @@ const (
 	// NodegroupIssueCodeIamInstanceProfileNotFound is a NodegroupIssueCode enum value
 	NodegroupIssueCodeIamInstanceProfileNotFound = "IamInstanceProfileNotFound"
 
+	// NodegroupIssueCodeEc2subnetMissingIpv6assignment is a NodegroupIssueCode enum value
+	NodegroupIssueCodeEc2subnetMissingIpv6assignment = "Ec2SubnetMissingIpv6Assignment"
+
 	// NodegroupIssueCodeIamLimitExceeded is a NodegroupIssueCode enum value
 	NodegroupIssueCodeIamLimitExceeded = "IamLimitExceeded"
 
@@ -13187,8 +13190,47 @@ const (
 	// NodegroupIssueCodeClusterUnreachable is a NodegroupIssueCode enum value
 	NodegroupIssueCodeClusterUnreachable = "ClusterUnreachable"
 
-	// NodegroupIssueCodeEc2subnetMissingIpv6assignment is a NodegroupIssueCode enum value
-	NodegroupIssueCodeEc2subnetMissingIpv6assignment = "Ec2SubnetMissingIpv6Assignment"
+	// NodegroupIssueCodeAmiIdNotFound is a NodegroupIssueCode enum value
+	NodegroupIssueCodeAmiIdNotFound = "AmiIdNotFound"
+
+	// NodegroupIssueCodeAutoScalingGroupOptInRequired is a NodegroupIssueCode enum value
+	NodegroupIssueCodeAutoScalingGroupOptInRequired = "AutoScalingGroupOptInRequired"
+
+	// NodegroupIssueCodeAutoScalingGroupRateLimitExceeded is a NodegroupIssueCode enum value
+	NodegroupIssueCodeAutoScalingGroupRateLimitExceeded = "AutoScalingGroupRateLimitExceeded"
+
+	// NodegroupIssueCodeEc2launchTemplateDeletionFailure is a NodegroupIssueCode enum value
+	NodegroupIssueCodeEc2launchTemplateDeletionFailure = "Ec2LaunchTemplateDeletionFailure"
+
+	// NodegroupIssueCodeEc2launchTemplateInvalidConfiguration is a NodegroupIssueCode enum value
+	NodegroupIssueCodeEc2launchTemplateInvalidConfiguration = "Ec2LaunchTemplateInvalidConfiguration"
+
+	// NodegroupIssueCodeEc2launchTemplateMaxLimitExceeded is a NodegroupIssueCode enum value
+	NodegroupIssueCodeEc2launchTemplateMaxLimitExceeded = "Ec2LaunchTemplateMaxLimitExceeded"
+
+	// NodegroupIssueCodeEc2subnetListTooLong is a NodegroupIssueCode enum value
+	NodegroupIssueCodeEc2subnetListTooLong = "Ec2SubnetListTooLong"
+
+	// NodegroupIssueCodeIamThrottling is a NodegroupIssueCode enum value
+	NodegroupIssueCodeIamThrottling = "IamThrottling"
+
+	// NodegroupIssueCodeNodeTerminationFailure is a NodegroupIssueCode enum value
+	NodegroupIssueCodeNodeTerminationFailure = "NodeTerminationFailure"
+
+	// NodegroupIssueCodePodEvictionFailure is a NodegroupIssueCode enum value
+	NodegroupIssueCodePodEvictionFailure = "PodEvictionFailure"
+
+	// NodegroupIssueCodeSourceEc2launchTemplateNotFound is a NodegroupIssueCode enum value
+	NodegroupIssueCodeSourceEc2launchTemplateNotFound = "SourceEc2LaunchTemplateNotFound"
+
+	// NodegroupIssueCodeLimitExceeded is a NodegroupIssueCode enum value
+	NodegroupIssueCodeLimitExceeded = "LimitExceeded"
+
+	// NodegroupIssueCodeUnknown is a NodegroupIssueCode enum value
+	NodegroupIssueCodeUnknown = "Unknown"
+
+	// NodegroupIssueCodeAutoScalingGroupInstanceRefreshActive is a NodegroupIssueCode enum value
+	NodegroupIssueCodeAutoScalingGroupInstanceRefreshActive = "AutoScalingGroupInstanceRefreshActive"
 )
 
 // NodegroupIssueCode_Values returns all elements of the NodegroupIssueCode enum
@@ -13203,6 +13245,7 @@ func NodegroupIssueCode_Values() []string {
 		NodegroupIssueCodeEc2subnetNotFound,
 		NodegroupIssueCodeEc2subnetInvalidConfiguration,
 		NodegroupIssueCodeIamInstanceProfileNotFound,
+		NodegroupIssueCodeEc2subnetMissingIpv6assignment,
 		NodegroupIssueCodeIamLimitExceeded,
 		NodegroupIssueCodeIamNodeRoleNotFound,
 		NodegroupIssueCodeNodeCreationFailure,
@@ -13212,7 +13255,20 @@ func NodegroupIssueCode_Values() []string {
 		NodegroupIssueCodeAccessDenied,
 		NodegroupIssueCodeInternalFailure,
 		NodegroupIssueCodeClusterUnreachable,
-		NodegroupIssueCodeEc2subnetMissingIpv6assignment,
+		NodegroupIssueCodeAmiIdNotFound,
+		NodegroupIssueCodeAutoScalingGroupOptInRequired,
+		NodegroupIssueCodeAutoScalingGroupRateLimitExceeded,
+		NodegroupIssueCodeEc2launchTemplateDeletionFailure,
+		NodegroupIssueCodeEc2launchTemplateInvalidConfiguration,
+		NodegroupIssueCodeEc2launchTemplateMaxLimitExceeded,
+		NodegroupIssueCodeEc2subnetListTooLong,
+		NodegroupIssueCodeIamThrottling,
+		NodegroupIssueCodeNodeTerminationFailure,
+		NodegroupIssueCodePodEvictionFailure,
+		NodegroupIssueCodeSourceEc2launchTemplateNotFound,
+		NodegroupIssueCodeLimitExceeded,
+		NodegroupIssueCodeUnknown,
+		NodegroupIssueCodeAutoScalingGroupInstanceRefreshActive,
 	}
 }
 

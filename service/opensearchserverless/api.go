@@ -334,7 +334,8 @@ func (c *OpenSearchServerless) CreateCollectionRequest(input *CreateCollectionIn
 // Returned Error Types:
 //
 //   - OcuLimitExceededException
-//     OCU Limit Exceeded for service limits
+//     Thrown when the collection you're attempting to create results in a number
+//     of search or indexing OCUs that exceeds the account limit.
 //
 //   - InternalServerException
 //     Thrown when an error internal to the service occurs while processing a request.
@@ -6427,7 +6428,8 @@ func (s *ListVpcEndpointsOutput) SetVpcEndpointSummaries(v []*VpcEndpointSummary
 	return s
 }
 
-// OCU Limit Exceeded for service limits
+// Thrown when the collection you're attempting to create results in a number
+// of search or indexing OCUs that exceeds the account limit.
 type OcuLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8614,6 +8616,9 @@ const (
 
 	// CollectionTypeTimeseries is a CollectionType enum value
 	CollectionTypeTimeseries = "TIMESERIES"
+
+	// CollectionTypeVectorsearch is a CollectionType enum value
+	CollectionTypeVectorsearch = "VECTORSEARCH"
 )
 
 // CollectionType_Values returns all elements of the CollectionType enum
@@ -8621,6 +8626,7 @@ func CollectionType_Values() []string {
 	return []string{
 		CollectionTypeSearch,
 		CollectionTypeTimeseries,
+		CollectionTypeVectorsearch,
 	}
 }
 

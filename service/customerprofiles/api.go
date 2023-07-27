@@ -2396,6 +2396,99 @@ func (c *CustomerProfiles) GetProfileObjectTypeTemplateWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opGetSimilarProfiles = "GetSimilarProfiles"
+
+// GetSimilarProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the GetSimilarProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSimilarProfiles for more information on using the GetSimilarProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSimilarProfilesRequest method.
+//	req, resp := client.GetSimilarProfilesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSimilarProfiles
+func (c *CustomerProfiles) GetSimilarProfilesRequest(input *GetSimilarProfilesInput) (req *request.Request, output *GetSimilarProfilesOutput) {
+	op := &request.Operation{
+		Name:       opGetSimilarProfiles,
+		HTTPMethod: "POST",
+		HTTPPath:   "/domains/{DomainName}/matches",
+	}
+
+	if input == nil {
+		input = &GetSimilarProfilesInput{}
+	}
+
+	output = &GetSimilarProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSimilarProfiles API operation for Amazon Connect Customer Profiles.
+//
+// Returns a set of profiles that belong to the same matching group using the
+// matchId or profileId. You can also specify the type of matching that you
+// want for finding similar profiles using either RULE_BASED_MATCHING or ML_BASED_MATCHING.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation GetSimilarProfiles for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSimilarProfiles
+func (c *CustomerProfiles) GetSimilarProfiles(input *GetSimilarProfilesInput) (*GetSimilarProfilesOutput, error) {
+	req, out := c.GetSimilarProfilesRequest(input)
+	return out, req.Send()
+}
+
+// GetSimilarProfilesWithContext is the same as GetSimilarProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSimilarProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) GetSimilarProfilesWithContext(ctx aws.Context, input *GetSimilarProfilesInput, opts ...request.Option) (*GetSimilarProfilesOutput, error) {
+	req, out := c.GetSimilarProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetWorkflow = "GetWorkflow"
 
 // GetWorkflowRequest generates a "aws/request.Request" representing the
@@ -3541,6 +3634,97 @@ func (c *CustomerProfiles) ListProfileObjects(input *ListProfileObjectsInput) (*
 // for more information on using Contexts.
 func (c *CustomerProfiles) ListProfileObjectsWithContext(ctx aws.Context, input *ListProfileObjectsInput, opts ...request.Option) (*ListProfileObjectsOutput, error) {
 	req, out := c.ListProfileObjectsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListRuleBasedMatches = "ListRuleBasedMatches"
+
+// ListRuleBasedMatchesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRuleBasedMatches operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRuleBasedMatches for more information on using the ListRuleBasedMatches
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRuleBasedMatchesRequest method.
+//	req, resp := client.ListRuleBasedMatchesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListRuleBasedMatches
+func (c *CustomerProfiles) ListRuleBasedMatchesRequest(input *ListRuleBasedMatchesInput) (req *request.Request, output *ListRuleBasedMatchesOutput) {
+	op := &request.Operation{
+		Name:       opListRuleBasedMatches,
+		HTTPMethod: "GET",
+		HTTPPath:   "/domains/{DomainName}/profiles/ruleBasedMatches",
+	}
+
+	if input == nil {
+		input = &ListRuleBasedMatchesInput{}
+	}
+
+	output = &ListRuleBasedMatchesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRuleBasedMatches API operation for Amazon Connect Customer Profiles.
+//
+// Returns a set of MatchIds that belong to the given domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation ListRuleBasedMatches for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListRuleBasedMatches
+func (c *CustomerProfiles) ListRuleBasedMatches(input *ListRuleBasedMatchesInput) (*ListRuleBasedMatchesOutput, error) {
+	req, out := c.ListRuleBasedMatchesRequest(input)
+	return out, req.Send()
+}
+
+// ListRuleBasedMatchesWithContext is the same as ListRuleBasedMatches with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRuleBasedMatches for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) ListRuleBasedMatchesWithContext(ctx aws.Context, input *ListRuleBasedMatchesInput, opts ...request.Option) (*ListRuleBasedMatchesOutput, error) {
+	req, out := c.ListRuleBasedMatchesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5569,6 +5753,128 @@ func (s *AttributeItem) SetName(v string) *AttributeItem {
 	return s
 }
 
+// Configuration information about the AttributeTypesSelector where the rule-based
+// identity resolution uses to match profiles. You can choose how profiles are
+// compared across attribute types and which attribute to use for matching from
+// each type. There are three attribute types you can configure:
+//
+//   - Email type You can choose from Email, BusinessEmail, and PersonalEmail
+//
+//   - Phone number type You can choose from Phone, HomePhone, and MobilePhone
+//
+//   - Address type You can choose from Address, BusinessAddress, MaillingAddress,
+//     and ShippingAddress
+//
+// You can either choose ONE_TO_ONE or MANY_TO_MANY as the AttributeMatchingModel.
+// When choosing MANY_TO_MANY, the system can match attribute across the sub-types
+// of an attribute type. For example, if the value of the Email field of Profile
+// A and the value of BusinessEmail field of Profile B matches, the two profiles
+// are matched on the Email type. When choosing ONE_TO_ONE the system can only
+// match if the sub-types are exact matches. For example, only when the value
+// of the Email field of Profile A and the value of the Email field of Profile
+// B matches, the two profiles are matched on the Email type.
+type AttributeTypesSelector struct {
+	_ struct{} `type:"structure"`
+
+	// The Address type. You can choose from Address, BusinessAddress, MaillingAddress,
+	// and ShippingAddress.
+	//
+	// You only can use the Address type in the MatchingRule. For example, if you
+	// want to match profile based on BusinessAddress.City or MaillingAddress.City,
+	// you need to choose the BusinessAddress and the MaillingAddress to represent
+	// the Address type and specify the Address.City on the matching rule.
+	Address []*string `min:"1" type:"list"`
+
+	// Configures the AttributeMatchingModel, you can either choose ONE_TO_ONE or
+	// MANY_TO_MANY.
+	//
+	// AttributeMatchingModel is a required field
+	AttributeMatchingModel *string `type:"string" required:"true" enum:"AttributeMatchingModel"`
+
+	// The Email type. You can choose from EmailAddress, BusinessEmailAddress and
+	// PersonalEmailAddress.
+	//
+	// You only can use the EmailAddress type in the MatchingRule. For example,
+	// if you want to match profile based on PersonalEmailAddress or BusinessEmailAddress,
+	// you need to choose the PersonalEmailAddress and the BusinessEmailAddress
+	// to represent the EmailAddress type and only specify the EmailAddress on the
+	// matching rule.
+	EmailAddress []*string `min:"1" type:"list"`
+
+	// The PhoneNumber type. You can choose from PhoneNumber, HomePhoneNumber, and
+	// MobilePhoneNumber.
+	//
+	// You only can use the PhoneNumber type in the MatchingRule. For example, if
+	// you want to match a profile based on Phone or HomePhone, you need to choose
+	// the Phone and the HomePhone to represent the PhoneNumber type and only specify
+	// the PhoneNumber on the matching rule.
+	PhoneNumber []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeTypesSelector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeTypesSelector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttributeTypesSelector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttributeTypesSelector"}
+	if s.Address != nil && len(s.Address) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Address", 1))
+	}
+	if s.AttributeMatchingModel == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeMatchingModel"))
+	}
+	if s.EmailAddress != nil && len(s.EmailAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 1))
+	}
+	if s.PhoneNumber != nil && len(s.PhoneNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumber", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddress sets the Address field's value.
+func (s *AttributeTypesSelector) SetAddress(v []*string) *AttributeTypesSelector {
+	s.Address = v
+	return s
+}
+
+// SetAttributeMatchingModel sets the AttributeMatchingModel field's value.
+func (s *AttributeTypesSelector) SetAttributeMatchingModel(v string) *AttributeTypesSelector {
+	s.AttributeMatchingModel = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *AttributeTypesSelector) SetEmailAddress(v []*string) *AttributeTypesSelector {
+	s.EmailAddress = v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *AttributeTypesSelector) SetPhoneNumber(v []*string) *AttributeTypesSelector {
+	s.PhoneNumber = v
+	return s
+}
+
 // Configuration settings for how to perform the auto-merging of profiles.
 type AutoMerging struct {
 	_ struct{} `type:"structure"`
@@ -6334,6 +6640,14 @@ type CreateDomainInput struct {
 	// in the MatchingRequest, you can download the results from S3.
 	Matching *MatchingRequest `type:"structure"`
 
+	// The process of matching duplicate profiles using the Rule-Based matching.
+	// If RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+	// to match and merge your profiles according to your configuration in the RuleBasedMatchingRequest.
+	// You can use the ListRuleBasedMatches and GetSimilarProfiles API to return
+	// and review the results. Also, if you have configured ExportingConfig in the
+	// RuleBasedMatchingRequest, you can download the results from S3.
+	RuleBasedMatching *RuleBasedMatchingRequest `type:"structure"`
+
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
@@ -6379,6 +6693,11 @@ func (s *CreateDomainInput) Validate() error {
 			invalidParams.AddNested("Matching", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RuleBasedMatching != nil {
+		if err := s.RuleBasedMatching.Validate(); err != nil {
+			invalidParams.AddNested("RuleBasedMatching", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6413,6 +6732,12 @@ func (s *CreateDomainInput) SetDomainName(v string) *CreateDomainInput {
 // SetMatching sets the Matching field's value.
 func (s *CreateDomainInput) SetMatching(v *MatchingRequest) *CreateDomainInput {
 	s.Matching = v
+	return s
+}
+
+// SetRuleBasedMatching sets the RuleBasedMatching field's value.
+func (s *CreateDomainInput) SetRuleBasedMatching(v *RuleBasedMatchingRequest) *CreateDomainInput {
+	s.RuleBasedMatching = v
 	return s
 }
 
@@ -6464,6 +6789,14 @@ type CreateDomainOutput struct {
 	// API to return and review the results. Or, if you have configured ExportingConfig
 	// in the MatchingRequest, you can download the results from S3.
 	Matching *MatchingResponse `type:"structure"`
+
+	// The process of matching duplicate profiles using the Rule-Based matching.
+	// If RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+	// to match and merge your profiles according to your configuration in the RuleBasedMatchingRequest.
+	// You can use the ListRuleBasedMatches and GetSimilarProfiles API to return
+	// and review the results. Also, if you have configured ExportingConfig in the
+	// RuleBasedMatchingRequest, you can download the results from S3.
+	RuleBasedMatching *RuleBasedMatchingResponse `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -6526,6 +6859,12 @@ func (s *CreateDomainOutput) SetLastUpdatedAt(v time.Time) *CreateDomainOutput {
 // SetMatching sets the Matching field's value.
 func (s *CreateDomainOutput) SetMatching(v *MatchingResponse) *CreateDomainOutput {
 	s.Matching = v
+	return s
+}
+
+// SetRuleBasedMatching sets the RuleBasedMatching field's value.
+func (s *CreateDomainOutput) SetRuleBasedMatching(v *RuleBasedMatchingResponse) *CreateDomainOutput {
+	s.RuleBasedMatching = v
 	return s
 }
 
@@ -9414,6 +9753,14 @@ type GetDomainOutput struct {
 	// in the MatchingRequest, you can download the results from S3.
 	Matching *MatchingResponse `type:"structure"`
 
+	// The process of matching duplicate profiles using the Rule-Based matching.
+	// If RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+	// to match and merge your profiles according to your configuration in the RuleBasedMatchingRequest.
+	// You can use the ListRuleBasedMatches and GetSimilarProfiles API to return
+	// and review the results. Also, if you have configured ExportingConfig in the
+	// RuleBasedMatchingRequest, you can download the results from S3.
+	RuleBasedMatching *RuleBasedMatchingResponse `type:"structure"`
+
 	// Usage-specific statistics about the domain.
 	Stats *DomainStats `type:"structure"`
 
@@ -9478,6 +9825,12 @@ func (s *GetDomainOutput) SetLastUpdatedAt(v time.Time) *GetDomainOutput {
 // SetMatching sets the Matching field's value.
 func (s *GetDomainOutput) SetMatching(v *MatchingResponse) *GetDomainOutput {
 	s.Matching = v
+	return s
+}
+
+// SetRuleBasedMatching sets the RuleBasedMatching field's value.
+func (s *GetDomainOutput) SetRuleBasedMatching(v *RuleBasedMatchingResponse) *GetDomainOutput {
+	s.RuleBasedMatching = v
 	return s
 }
 
@@ -10519,6 +10872,211 @@ func (s *GetProfileObjectTypeTemplateOutput) SetSourceObject(v string) *GetProfi
 // SetTemplateId sets the TemplateId field's value.
 func (s *GetProfileObjectTypeTemplateOutput) SetTemplateId(v string) *GetProfileObjectTypeTemplateOutput {
 	s.TemplateId = &v
+	return s
+}
+
+type GetSimilarProfilesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// Specify the type of matching to get similar profiles for.
+	//
+	// MatchType is a required field
+	MatchType *string `type:"string" required:"true" enum:"MatchType"`
+
+	// The maximum number of objects returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The pagination token from the previous GetSimilarProfiles API call.
+	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
+
+	// The string indicating the search key to be used.
+	//
+	// SearchKey is a required field
+	SearchKey *string `min:"1" type:"string" required:"true"`
+
+	// The string based on SearchKey to be searched for similar profiles.
+	//
+	// SearchValue is a required field
+	SearchValue *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSimilarProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSimilarProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSimilarProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSimilarProfilesInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.MatchType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchType"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.SearchKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("SearchKey"))
+	}
+	if s.SearchKey != nil && len(*s.SearchKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SearchKey", 1))
+	}
+	if s.SearchValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("SearchValue"))
+	}
+	if s.SearchValue != nil && len(*s.SearchValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SearchValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *GetSimilarProfilesInput) SetDomainName(v string) *GetSimilarProfilesInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetMatchType sets the MatchType field's value.
+func (s *GetSimilarProfilesInput) SetMatchType(v string) *GetSimilarProfilesInput {
+	s.MatchType = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetSimilarProfilesInput) SetMaxResults(v int64) *GetSimilarProfilesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSimilarProfilesInput) SetNextToken(v string) *GetSimilarProfilesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchKey sets the SearchKey field's value.
+func (s *GetSimilarProfilesInput) SetSearchKey(v string) *GetSimilarProfilesInput {
+	s.SearchKey = &v
+	return s
+}
+
+// SetSearchValue sets the SearchValue field's value.
+func (s *GetSimilarProfilesInput) SetSearchValue(v string) *GetSimilarProfilesInput {
+	s.SearchValue = &v
+	return s
+}
+
+type GetSimilarProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// It only has value when the MatchType is ML_BASED_MATCHING.A number between
+	// 0 and 1, where a higher score means higher similarity. Examining match confidence
+	// scores lets you distinguish between groups of similar records in which the
+	// system is highly confident (which you may decide to merge), groups of similar
+	// records about which the system is uncertain (which you may decide to have
+	// reviewed by a human), and groups of similar records that the system deems
+	// to be unlikely (which you may decide to reject). Given confidence scores
+	// vary as per the data input, it should not be used as an absolute measure
+	// of matching quality.
+	ConfidenceScore *float64 `type:"double"`
+
+	// The string matchId that the similar profiles belong to.
+	MatchId *string `min:"1" type:"string"`
+
+	// Specify the type of matching to get similar profiles for.
+	MatchType *string `type:"string" enum:"MatchType"`
+
+	// The pagination token from the previous GetSimilarProfiles API call.
+	NextToken *string `min:"1" type:"string"`
+
+	// Set of profileIds that belong to the same matching group.
+	ProfileIds []*string `type:"list"`
+
+	// The integer rule level that the profiles matched on.
+	RuleLevel *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSimilarProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSimilarProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfidenceScore sets the ConfidenceScore field's value.
+func (s *GetSimilarProfilesOutput) SetConfidenceScore(v float64) *GetSimilarProfilesOutput {
+	s.ConfidenceScore = &v
+	return s
+}
+
+// SetMatchId sets the MatchId field's value.
+func (s *GetSimilarProfilesOutput) SetMatchId(v string) *GetSimilarProfilesOutput {
+	s.MatchId = &v
+	return s
+}
+
+// SetMatchType sets the MatchType field's value.
+func (s *GetSimilarProfilesOutput) SetMatchType(v string) *GetSimilarProfilesOutput {
+	s.MatchType = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSimilarProfilesOutput) SetNextToken(v string) *GetSimilarProfilesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProfileIds sets the ProfileIds field's value.
+func (s *GetSimilarProfilesOutput) SetProfileIds(v []*string) *GetSimilarProfilesOutput {
+	s.ProfileIds = v
+	return s
+}
+
+// SetRuleLevel sets the RuleLevel field's value.
+func (s *GetSimilarProfilesOutput) SetRuleLevel(v int64) *GetSimilarProfilesOutput {
+	s.RuleLevel = &v
 	return s
 }
 
@@ -12879,6 +13437,119 @@ func (s *ListProfileObjectsOutput) SetNextToken(v string) *ListProfileObjectsOut
 	return s
 }
 
+type ListRuleBasedMatchesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The maximum number of MatchIds returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The pagination token from the previous ListRuleBasedMatches API call.
+	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleBasedMatchesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleBasedMatchesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRuleBasedMatchesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRuleBasedMatchesInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ListRuleBasedMatchesInput) SetDomainName(v string) *ListRuleBasedMatchesInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRuleBasedMatchesInput) SetMaxResults(v int64) *ListRuleBasedMatchesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRuleBasedMatchesInput) SetNextToken(v string) *ListRuleBasedMatchesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRuleBasedMatchesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of MatchIds for the given domain.
+	MatchIds []*string `type:"list"`
+
+	// The pagination token from the previous ListRuleBasedMatches API call.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleBasedMatchesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleBasedMatchesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMatchIds sets the MatchIds field's value.
+func (s *ListRuleBasedMatchesOutput) SetMatchIds(v []*string) *ListRuleBasedMatchesOutput {
+	s.MatchIds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRuleBasedMatchesOutput) SetNextToken(v string) *ListRuleBasedMatchesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -13451,6 +14122,92 @@ func (s *MatchingResponse) SetExportingConfig(v *ExportingConfig) *MatchingRespo
 // SetJobSchedule sets the JobSchedule field's value.
 func (s *MatchingResponse) SetJobSchedule(v *JobSchedule) *MatchingResponse {
 	s.JobSchedule = v
+	return s
+}
+
+// Specifies how does the rule-based matching process should match profiles.
+// You can choose from the following attributes to build the matching Rule:
+//
+//   - AccountNumber
+//
+//   - Address.Address
+//
+//   - Address.City
+//
+//   - Address.Country
+//
+//   - Address.County
+//
+//   - Address.PostalCode
+//
+//   - Address.State
+//
+//   - Address.Province
+//
+//   - BirthDate
+//
+//   - BusinessName
+//
+//   - EmailAddress
+//
+//   - FirstName
+//
+//   - Gender
+//
+//   - LastName
+//
+//   - MiddleName
+//
+//   - PhoneNumber
+//
+//   - Any customized profile attributes that start with the Attributes
+type MatchingRule struct {
+	_ struct{} `type:"structure"`
+
+	// A single rule level of the MatchRules. Configures how the rule-based matching
+	// process should match profiles.
+	//
+	// Rule is a required field
+	Rule []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchingRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchingRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MatchingRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MatchingRule"}
+	if s.Rule == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rule"))
+	}
+	if s.Rule != nil && len(s.Rule) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rule", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRule sets the Rule field's value.
+func (s *MatchingRule) SetRule(v []*string) *MatchingRule {
+	s.Rule = v
 	return s
 }
 
@@ -14836,6 +15593,268 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The request to enable the rule-based matching.
+type RuleBasedMatchingRequest struct {
+	_ struct{} `type:"structure"`
+
+	// Configures information about the AttributeTypesSelector where the rule-based
+	// identity resolution uses to match profiles.
+	AttributeTypesSelector *AttributeTypesSelector `type:"structure"`
+
+	// How the auto-merging process should resolve conflicts between different profiles.
+	ConflictResolution *ConflictResolution `type:"structure"`
+
+	// The flag that enables the rule-based matching process of duplicate profiles.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// Configuration information about the S3 bucket where Identity Resolution Jobs
+	// writes result files.
+	//
+	// You need to give Customer Profiles service principal write permission to
+	// your S3 bucket. Otherwise, you'll get an exception in the API response. For
+	// an example policy, see Amazon Connect Customer Profiles cross-service confused
+	// deputy prevention (https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html#customer-profiles-cross-service).
+	ExportingConfig *ExportingConfig `type:"structure"`
+
+	// Configures how the rule-based matching process should match profiles. You
+	// can have up to 15 MatchingRule in the MatchingRules.
+	MatchingRules []*MatchingRule `min:"1" type:"list"`
+
+	// Indicates the maximum allowed rule level.
+	MaxAllowedRuleLevelForMatching *int64 `min:"1" type:"integer"`
+
+	// MatchingRule (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_MatchingRule.html)
+	MaxAllowedRuleLevelForMerging *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleBasedMatchingRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleBasedMatchingRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleBasedMatchingRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleBasedMatchingRequest"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.MatchingRules != nil && len(s.MatchingRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MatchingRules", 1))
+	}
+	if s.MaxAllowedRuleLevelForMatching != nil && *s.MaxAllowedRuleLevelForMatching < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxAllowedRuleLevelForMatching", 1))
+	}
+	if s.MaxAllowedRuleLevelForMerging != nil && *s.MaxAllowedRuleLevelForMerging < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxAllowedRuleLevelForMerging", 1))
+	}
+	if s.AttributeTypesSelector != nil {
+		if err := s.AttributeTypesSelector.Validate(); err != nil {
+			invalidParams.AddNested("AttributeTypesSelector", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConflictResolution != nil {
+		if err := s.ConflictResolution.Validate(); err != nil {
+			invalidParams.AddNested("ConflictResolution", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExportingConfig != nil {
+		if err := s.ExportingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ExportingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MatchingRules != nil {
+		for i, v := range s.MatchingRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MatchingRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeTypesSelector sets the AttributeTypesSelector field's value.
+func (s *RuleBasedMatchingRequest) SetAttributeTypesSelector(v *AttributeTypesSelector) *RuleBasedMatchingRequest {
+	s.AttributeTypesSelector = v
+	return s
+}
+
+// SetConflictResolution sets the ConflictResolution field's value.
+func (s *RuleBasedMatchingRequest) SetConflictResolution(v *ConflictResolution) *RuleBasedMatchingRequest {
+	s.ConflictResolution = v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *RuleBasedMatchingRequest) SetEnabled(v bool) *RuleBasedMatchingRequest {
+	s.Enabled = &v
+	return s
+}
+
+// SetExportingConfig sets the ExportingConfig field's value.
+func (s *RuleBasedMatchingRequest) SetExportingConfig(v *ExportingConfig) *RuleBasedMatchingRequest {
+	s.ExportingConfig = v
+	return s
+}
+
+// SetMatchingRules sets the MatchingRules field's value.
+func (s *RuleBasedMatchingRequest) SetMatchingRules(v []*MatchingRule) *RuleBasedMatchingRequest {
+	s.MatchingRules = v
+	return s
+}
+
+// SetMaxAllowedRuleLevelForMatching sets the MaxAllowedRuleLevelForMatching field's value.
+func (s *RuleBasedMatchingRequest) SetMaxAllowedRuleLevelForMatching(v int64) *RuleBasedMatchingRequest {
+	s.MaxAllowedRuleLevelForMatching = &v
+	return s
+}
+
+// SetMaxAllowedRuleLevelForMerging sets the MaxAllowedRuleLevelForMerging field's value.
+func (s *RuleBasedMatchingRequest) SetMaxAllowedRuleLevelForMerging(v int64) *RuleBasedMatchingRequest {
+	s.MaxAllowedRuleLevelForMerging = &v
+	return s
+}
+
+// The response of the Rule-based matching request.
+type RuleBasedMatchingResponse struct {
+	_ struct{} `type:"structure"`
+
+	// Configures information about the AttributeTypesSelector where the rule-based
+	// identity resolution uses to match profiles.
+	AttributeTypesSelector *AttributeTypesSelector `type:"structure"`
+
+	// How the auto-merging process should resolve conflicts between different profiles.
+	ConflictResolution *ConflictResolution `type:"structure"`
+
+	// The flag that enables the rule-based matching process of duplicate profiles.
+	Enabled *bool `type:"boolean"`
+
+	// Configuration information about the S3 bucket where Identity Resolution Jobs
+	// writes result files.
+	//
+	// You need to give Customer Profiles service principal write permission to
+	// your S3 bucket. Otherwise, you'll get an exception in the API response. For
+	// an example policy, see Amazon Connect Customer Profiles cross-service confused
+	// deputy prevention (https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html#customer-profiles-cross-service).
+	ExportingConfig *ExportingConfig `type:"structure"`
+
+	// Configures how the rule-based matching process should match profiles. You
+	// can have up to 15 MatchingRule in the MatchingRules.
+	MatchingRules []*MatchingRule `min:"1" type:"list"`
+
+	// Indicates the maximum allowed rule level.
+	MaxAllowedRuleLevelForMatching *int64 `min:"1" type:"integer"`
+
+	// MatchingRule (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_MatchingRule.html)
+	MaxAllowedRuleLevelForMerging *int64 `min:"1" type:"integer"`
+
+	// PENDING
+	//
+	//    * The first status after configuration a rule-based matching rule. If
+	//    it is an existing domain, the rule-based Identity Resolution waits one
+	//    hour before creating the matching rule. If it is a new domain, the system
+	//    will skip the PENDING stage.
+	//
+	// IN_PROGRESS
+	//
+	//    * The system is creating the rule-based matching rule. Under this status,
+	//    the system is evaluating the existing data and you can no longer change
+	//    the Rule-based matching configuration.
+	//
+	// ACTIVE
+	//
+	//    * The rule is ready to use. You can change the rule a day after the status
+	//    is in ACTIVE.
+	Status *string `type:"string" enum:"RuleBasedMatchingStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleBasedMatchingResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleBasedMatchingResponse) GoString() string {
+	return s.String()
+}
+
+// SetAttributeTypesSelector sets the AttributeTypesSelector field's value.
+func (s *RuleBasedMatchingResponse) SetAttributeTypesSelector(v *AttributeTypesSelector) *RuleBasedMatchingResponse {
+	s.AttributeTypesSelector = v
+	return s
+}
+
+// SetConflictResolution sets the ConflictResolution field's value.
+func (s *RuleBasedMatchingResponse) SetConflictResolution(v *ConflictResolution) *RuleBasedMatchingResponse {
+	s.ConflictResolution = v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *RuleBasedMatchingResponse) SetEnabled(v bool) *RuleBasedMatchingResponse {
+	s.Enabled = &v
+	return s
+}
+
+// SetExportingConfig sets the ExportingConfig field's value.
+func (s *RuleBasedMatchingResponse) SetExportingConfig(v *ExportingConfig) *RuleBasedMatchingResponse {
+	s.ExportingConfig = v
+	return s
+}
+
+// SetMatchingRules sets the MatchingRules field's value.
+func (s *RuleBasedMatchingResponse) SetMatchingRules(v []*MatchingRule) *RuleBasedMatchingResponse {
+	s.MatchingRules = v
+	return s
+}
+
+// SetMaxAllowedRuleLevelForMatching sets the MaxAllowedRuleLevelForMatching field's value.
+func (s *RuleBasedMatchingResponse) SetMaxAllowedRuleLevelForMatching(v int64) *RuleBasedMatchingResponse {
+	s.MaxAllowedRuleLevelForMatching = &v
+	return s
+}
+
+// SetMaxAllowedRuleLevelForMerging sets the MaxAllowedRuleLevelForMerging field's value.
+func (s *RuleBasedMatchingResponse) SetMaxAllowedRuleLevelForMerging(v int64) *RuleBasedMatchingResponse {
+	s.MaxAllowedRuleLevelForMerging = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RuleBasedMatchingResponse) SetStatus(v string) *RuleBasedMatchingResponse {
+	s.Status = &v
+	return s
 }
 
 // Configuration information about the S3 bucket where Identity Resolution Jobs
@@ -16486,6 +17505,14 @@ type UpdateDomainInput struct {
 	// in the MatchingRequest, you can download the results from S3.
 	Matching *MatchingRequest `type:"structure"`
 
+	// The process of matching duplicate profiles using the rule-Based matching.
+	// If RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+	// to match and merge your profiles according to your configuration in the RuleBasedMatchingRequest.
+	// You can use the ListRuleBasedMatches and GetSimilarProfiles API to return
+	// and review the results. Also, if you have configured ExportingConfig in the
+	// RuleBasedMatchingRequest, you can download the results from S3.
+	RuleBasedMatching *RuleBasedMatchingRequest `type:"structure"`
+
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
@@ -16528,6 +17555,11 @@ func (s *UpdateDomainInput) Validate() error {
 			invalidParams.AddNested("Matching", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RuleBasedMatching != nil {
+		if err := s.RuleBasedMatching.Validate(); err != nil {
+			invalidParams.AddNested("RuleBasedMatching", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -16562,6 +17594,12 @@ func (s *UpdateDomainInput) SetDomainName(v string) *UpdateDomainInput {
 // SetMatching sets the Matching field's value.
 func (s *UpdateDomainInput) SetMatching(v *MatchingRequest) *UpdateDomainInput {
 	s.Matching = v
+	return s
+}
+
+// SetRuleBasedMatching sets the RuleBasedMatching field's value.
+func (s *UpdateDomainInput) SetRuleBasedMatching(v *RuleBasedMatchingRequest) *UpdateDomainInput {
+	s.RuleBasedMatching = v
 	return s
 }
 
@@ -16611,6 +17649,14 @@ type UpdateDomainOutput struct {
 	// API to return and review the results. Or, if you have configured ExportingConfig
 	// in the MatchingRequest, you can download the results from S3.
 	Matching *MatchingResponse `type:"structure"`
+
+	// The process of matching duplicate profiles using the rule-Based matching.
+	// If RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+	// to match and merge your profiles according to your configuration in the RuleBasedMatchingRequest.
+	// You can use the ListRuleBasedMatches and GetSimilarProfiles API to return
+	// and review the results. Also, if you have configured ExportingConfig in the
+	// RuleBasedMatchingRequest, you can download the results from S3.
+	RuleBasedMatching *RuleBasedMatchingResponse `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -16673,6 +17719,12 @@ func (s *UpdateDomainOutput) SetLastUpdatedAt(v time.Time) *UpdateDomainOutput {
 // SetMatching sets the Matching field's value.
 func (s *UpdateDomainOutput) SetMatching(v *MatchingResponse) *UpdateDomainOutput {
 	s.Matching = v
+	return s
+}
+
+// SetRuleBasedMatching sets the RuleBasedMatching field's value.
+func (s *UpdateDomainOutput) SetRuleBasedMatching(v *RuleBasedMatchingResponse) *UpdateDomainOutput {
+	s.RuleBasedMatching = v
 	return s
 }
 
@@ -17132,6 +18184,22 @@ func (s *ZendeskSourceProperties) SetObject(v string) *ZendeskSourceProperties {
 }
 
 const (
+	// AttributeMatchingModelOneToOne is a AttributeMatchingModel enum value
+	AttributeMatchingModelOneToOne = "ONE_TO_ONE"
+
+	// AttributeMatchingModelManyToMany is a AttributeMatchingModel enum value
+	AttributeMatchingModelManyToMany = "MANY_TO_MANY"
+)
+
+// AttributeMatchingModel_Values returns all elements of the AttributeMatchingModel enum
+func AttributeMatchingModel_Values() []string {
+	return []string{
+		AttributeMatchingModelOneToOne,
+		AttributeMatchingModelManyToMany,
+	}
+}
+
+const (
 	// ConflictResolvingModelRecency is a ConflictResolvingModel enum value
 	ConflictResolvingModelRecency = "RECENCY"
 
@@ -17404,6 +18472,22 @@ func MarketoConnectorOperator_Values() []string {
 }
 
 const (
+	// MatchTypeRuleBasedMatching is a MatchType enum value
+	MatchTypeRuleBasedMatching = "RULE_BASED_MATCHING"
+
+	// MatchTypeMlBasedMatching is a MatchType enum value
+	MatchTypeMlBasedMatching = "ML_BASED_MATCHING"
+)
+
+// MatchType_Values returns all elements of the MatchType enum
+func MatchType_Values() []string {
+	return []string{
+		MatchTypeRuleBasedMatching,
+		MatchTypeMlBasedMatching,
+	}
+}
+
+const (
 	// OperatorEqualTo is a Operator enum value
 	OperatorEqualTo = "EQUAL_TO"
 
@@ -17508,6 +18592,26 @@ func PartyType_Values() []string {
 		PartyTypeIndividual,
 		PartyTypeBusiness,
 		PartyTypeOther,
+	}
+}
+
+const (
+	// RuleBasedMatchingStatusPending is a RuleBasedMatchingStatus enum value
+	RuleBasedMatchingStatusPending = "PENDING"
+
+	// RuleBasedMatchingStatusInProgress is a RuleBasedMatchingStatus enum value
+	RuleBasedMatchingStatusInProgress = "IN_PROGRESS"
+
+	// RuleBasedMatchingStatusActive is a RuleBasedMatchingStatus enum value
+	RuleBasedMatchingStatusActive = "ACTIVE"
+)
+
+// RuleBasedMatchingStatus_Values returns all elements of the RuleBasedMatchingStatus enum
+func RuleBasedMatchingStatus_Values() []string {
+	return []string{
+		RuleBasedMatchingStatusPending,
+		RuleBasedMatchingStatusInProgress,
+		RuleBasedMatchingStatusActive,
 	}
 }
 

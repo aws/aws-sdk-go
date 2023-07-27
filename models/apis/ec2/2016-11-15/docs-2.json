@@ -1791,6 +1791,12 @@
         "InstanceTypeInfo$BareMetal": "<p>Indicates whether the instance is a bare metal instance type.</p>"
       }
     },
+    "BaselineBandwidthInGbps": {
+      "base": null,
+      "refs": {
+        "NetworkCardInfo$BaselineBandwidthInGbps": "<p>The baseline network performance of the network card, in Gbps.</p>"
+      }
+    },
     "BaselineBandwidthInMbps": {
       "base": null,
       "refs": {
@@ -10708,6 +10714,18 @@
         "InferenceDeviceInfo$Manufacturer": "<p>The manufacturer of the Inference accelerator.</p>"
       }
     },
+    "InferenceDeviceMemoryInfo": {
+      "base": "<p>Describes the memory available to the inference accelerator.</p>",
+      "refs": {
+        "InferenceDeviceInfo$MemoryInfo": "<p>Describes the memory available to the inference accelerator.</p>"
+      }
+    },
+    "InferenceDeviceMemorySize": {
+      "base": null,
+      "refs": {
+        "InferenceDeviceMemoryInfo$SizeInMiB": "<p>The size of the memory available to the inference accelerator, in MiB.</p>"
+      }
+    },
     "InferenceDeviceName": {
       "base": null,
       "refs": {
@@ -15403,6 +15421,12 @@
         "FpgaImage$PciId": "<p>Information about the PCI bus.</p>"
       }
     },
+    "PeakBandwidthInGbps": {
+      "base": null,
+      "refs": {
+        "NetworkCardInfo$PeakBandwidthInGbps": "<p>The peak (burst) network performance of the network card, in Gbps.</p>"
+      }
+    },
     "PeeringAttachmentStatus": {
       "base": "<p>The status of the transit gateway peering attachment.</p>",
       "refs": {
@@ -17343,6 +17367,16 @@
       "base": "<p>Describes the storage parameters for Amazon S3 and Amazon S3 buckets for an instance store-backed AMI.</p>",
       "refs": {
         "Storage$S3": "<p>An Amazon S3 storage location.</p>"
+      }
+    },
+    "SSEType": {
+      "base": null,
+      "refs": {
+        "GetEbsEncryptionByDefaultResult$SseType": "<p>Reserved for future use.</p>",
+        "RestoreSnapshotFromRecycleBinResult$SseType": "<p>Reserved for future use.</p>",
+        "Snapshot$SseType": "<p>Reserved for future use.</p>",
+        "SnapshotInfo$SseType": "<p>Reserved for future use.</p>",
+        "Volume$SseType": "<p>Reserved for future use.</p>"
       }
     },
     "ScheduledInstance": {
@@ -23384,6 +23418,12 @@
       "base": null,
       "refs": {
         "GpuInfo$TotalGpuMemoryInMiB": "<p>The total size of the memory for the GPU accelerators for the instance type, in MiB.</p>"
+      }
+    },
+    "totalInferenceMemory": {
+      "base": null,
+      "refs": {
+        "InferenceAcceleratorInfo$TotalInferenceMemoryInMiB": "<p>The total size of the memory for the inference accelerators for the instance type, in MiB.</p>"
       }
     }
   }

@@ -461,14 +461,16 @@
         "output": {
           "AutoScalingGroups": [
             {
-              "AutoScalingGroupARN": "arn:aws:autoscaling:us-west-2:123456789012:autoScalingGroup:930d940e-891e-4781-a11a-7b0acd480f03:autoScalingGroupName/my-auto-scaling-group",
+              "AutoScalingGroupARN": "arn:aws:autoscaling:us-west-1:123456789012:autoScalingGroup:12345678-1234-1234-1234-123456789012:autoScalingGroupName/my-auto-scaling-group",
               "AutoScalingGroupName": "my-auto-scaling-group",
               "AvailabilityZones": [
+                "us-west-2a",
+                "us-west-2b",
                 "us-west-2c"
               ],
-              "CreatedTime": "2013-08-19T20:53:25.584Z",
+              "CreatedTime": "2023-03-09T22:15:11.611Z",
               "DefaultCooldown": 300,
-              "DesiredCapacity": 1,
+              "DesiredCapacity": 2,
               "EnabledMetrics": [
 
               ],
@@ -478,7 +480,17 @@
                 {
                   "AvailabilityZone": "us-west-2c",
                   "HealthStatus": "Healthy",
-                  "InstanceId": "i-4ba0837f",
+                  "InstanceId": "i-05b4f7d5be44822a6",
+                  "InstanceType": "t3.micro",
+                  "LaunchConfigurationName": "my-launch-config",
+                  "LifecycleState": "InService",
+                  "ProtectedFromScaleIn": false
+                },
+                {
+                  "AvailabilityZone": "us-west-2b",
+                  "HealthStatus": "Healthy",
+                  "InstanceId": "i-0c20ac468fa3049e8",
+                  "InstanceType": "t3.micro",
                   "LaunchConfigurationName": "my-launch-config",
                   "LifecycleState": "InService",
                   "ProtectedFromScaleIn": false
@@ -488,19 +500,26 @@
               "LoadBalancerNames": [
 
               ],
-              "MaxSize": 1,
-              "MinSize": 0,
+              "MaxSize": 5,
+              "MinSize": 1,
               "NewInstancesProtectedFromScaleIn": false,
+              "ServiceLinkedRoleARN": "arn:aws:iam::123456789012:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling",
               "SuspendedProcesses": [
 
               ],
               "Tags": [
 
               ],
+              "TargetGroupARNs": [
+
+              ],
               "TerminationPolicies": [
                 "Default"
               ],
-              "VPCZoneIdentifier": "subnet-12345678"
+              "TrafficSources": [
+
+              ],
+              "VPCZoneIdentifier": "subnet-5ea0c127,subnet-6194ea3b,subnet-c934b782"
             }
           ]
         },
@@ -519,7 +538,7 @@
       {
         "input": {
           "InstanceIds": [
-            "i-4ba0837f"
+            "i-05b4f7d5be44822a6"
           ]
         },
         "output": {
@@ -528,7 +547,8 @@
               "AutoScalingGroupName": "my-auto-scaling-group",
               "AvailabilityZone": "us-west-2c",
               "HealthStatus": "HEALTHY",
-              "InstanceId": "i-4ba0837f",
+              "InstanceId": "i-05b4f7d5be44822a6",
+              "InstanceType": "t3.micro",
               "LaunchConfigurationName": "my-launch-config",
               "LifecycleState": "InService",
               "ProtectedFromScaleIn": false
@@ -578,18 +598,35 @@
             {
               "AutoScalingGroupName": "my-auto-scaling-group",
               "InstanceRefreshId": "08b91cf7-8fa6-48af-b6a6-d227f40f1b9b",
-              "InstancesToUpdate": 5,
-              "PercentageComplete": 0,
-              "StartTime": "2020-06-02T18:11:27Z",
-              "Status": "InProgress"
+              "InstancesToUpdate": 0,
+              "PercentageComplete": 50,
+              "Preferences": {
+                "AutoRollback": true,
+                "InstanceWarmup": 60,
+                "MinHealthyPercentage": 90,
+                "ScaleInProtectedInstances": "Ignore",
+                "SkipMatching": false,
+                "StandbyInstances": "Ignore"
+              },
+              "StartTime": "2023-06-13T16:46:52+00:00",
+              "Status": "InProgress",
+              "StatusReason": "Waiting for instances to warm up before continuing. For example: i-0645704820a8e83ff is warming up."
             },
             {
               "AutoScalingGroupName": "my-auto-scaling-group",
-              "EndTime": "2020-06-02T16:53:37Z",
-              "InstanceRefreshId": "dd7728d0-5bc4-4575-96a3-1b2c52bf8bb1",
+              "EndTime": "2023-06-02T13:59:45+00:00",
+              "InstanceRefreshId": "0e151305-1e57-4a32-a256-1fd14157c5ec",
               "InstancesToUpdate": 0,
               "PercentageComplete": 100,
-              "StartTime": "2020-06-02T16:43:19Z",
+              "Preferences": {
+                "AutoRollback": true,
+                "InstanceWarmup": 60,
+                "MinHealthyPercentage": 90,
+                "ScaleInProtectedInstances": "Ignore",
+                "SkipMatching": false,
+                "StandbyInstances": "Ignore"
+              },
+              "StartTime": "2023-06-02T13:53:37+00:00",
               "Status": "Successful"
             }
           ]
@@ -871,6 +908,7 @@
           "Activities": [
             {
               "ActivityId": "f9f2d65b-f1f2-43e7-b46d-d86756459699",
+              "AutoScalingGroupARN": "arn:aws:autoscaling:us-east-1:123456789012:autoScalingGroup:12345678-1234-1234-1234-123456789012:autoScalingGroupName/my-auto-scaling-group",
               "AutoScalingGroupName": "my-auto-scaling-group",
               "Cause": "At 2013-08-19T20:53:25Z a user request created an AutoScalingGroup changing the desired capacity from 0 to 1.  At 2013-08-19T20:53:29Z an instance was started in response to a difference between desired and actual capacity, increasing the capacity from 0 to 1.",
               "Description": "Launching a new EC2 instance: i-4ba0837f",

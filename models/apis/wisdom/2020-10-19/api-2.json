@@ -586,11 +586,18 @@
         "assistantArn":{"shape":"Arn"},
         "assistantId":{"shape":"Uuid"},
         "description":{"shape":"Description"},
+        "integrationConfiguration":{"shape":"AssistantIntegrationConfiguration"},
         "name":{"shape":"Name"},
         "serverSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
         "status":{"shape":"AssistantStatus"},
         "tags":{"shape":"Tags"},
         "type":{"shape":"AssistantType"}
+      }
+    },
+    "AssistantIntegrationConfiguration":{
+      "type":"structure",
+      "members":{
+        "topicIntegrationArn":{"shape":"GenericArn"}
       }
     },
     "AssistantList":{
@@ -621,6 +628,7 @@
         "assistantArn":{"shape":"Arn"},
         "assistantId":{"shape":"Uuid"},
         "description":{"shape":"Description"},
+        "integrationConfiguration":{"shape":"AssistantIntegrationConfiguration"},
         "name":{"shape":"Name"},
         "serverSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
         "status":{"shape":"AssistantStatus"},
@@ -1755,10 +1763,17 @@
       ],
       "members":{
         "description":{"shape":"Description"},
+        "integrationConfiguration":{"shape":"SessionIntegrationConfiguration"},
         "name":{"shape":"Name"},
         "sessionArn":{"shape":"Arn"},
         "sessionId":{"shape":"Uuid"},
         "tags":{"shape":"Tags"}
+      }
+    },
+    "SessionIntegrationConfiguration":{
+      "type":"structure",
+      "members":{
+        "topicIntegrationArn":{"shape":"GenericArn"}
       }
     },
     "SessionSummaries":{

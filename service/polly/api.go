@@ -3995,6 +3995,9 @@ const (
 
 	// LanguageCodeEnIe is a LanguageCode enum value
 	LanguageCodeEnIe = "en-IE"
+
+	// LanguageCodeNlBe is a LanguageCode enum value
+	LanguageCodeNlBe = "nl-BE"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -4037,6 +4040,7 @@ func LanguageCode_Values() []string {
 		LanguageCodeArAe,
 		LanguageCodeFiFi,
 		LanguageCodeEnIe,
+		LanguageCodeNlBe,
 	}
 }
 
@@ -4398,6 +4402,9 @@ const (
 
 	// VoiceIdSofie is a VoiceId enum value
 	VoiceIdSofie = "Sofie"
+
+	// VoiceIdLisa is a VoiceId enum value
+	VoiceIdLisa = "Lisa"
 )
 
 // VoiceId_Values returns all elements of the VoiceId enum
@@ -4493,5 +4500,6 @@ func VoiceId_Values() []string {
 		VoiceIdTomoko,
 		VoiceIdNiamh,
 		VoiceIdSofie,
+		VoiceIdLisa,
 	}
 }
