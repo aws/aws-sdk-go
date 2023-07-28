@@ -1,3 +1,14 @@
+Release v1.44.311 (2023-07-28)
+===
+
+### Service Client Updates
+* `service/sqs`: Updates service documentation
+  * Documentation changes related to SQS APIs.
+
+### SDK Bugs
+* `aws/session`: Modify resolving sso credential logic to fix stack overflow bug while configuring shared config profile via env var.
+  * Fixes [4912](https://github.com/aws/aws-sdk-go/issues/4912)
+
 Release v1.44.310 (2023-07-27)
 ===
 
