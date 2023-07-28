@@ -1,3 +1,17 @@
+Release v1.44.312 (2023-07-28)
+===
+
+### Service Client Updates
+* `service/application-insights`: Updates service API, documentation, and paginators
+* `service/cloudformation`: Updates service API and documentation
+  * This SDK release is for the feature launch of AWS CloudFormation RetainExceptOnCreate. It adds a new parameter retainExceptOnCreate in the following APIs: CreateStack, UpdateStack, RollbackStack, ExecuteChangeSet.
+* `service/cloudfront`: Updates service API and documentation
+  * Add a new JavaScript runtime version for CloudFront Functions.
+* `service/connect`: Updates service API
+* `service/kafka`: Updates service API, documentation, and paginators
+* `service/pinpoint`: Updates service API, documentation, and examples
+  * Added support for sending push notifications using the FCM v1 API with json credentials. Amazon Pinpoint customers can now deliver messages to Android devices using both FCM v1 API and the legacy FCM/GCM API
+
 Release v1.44.311 (2023-07-28)
 ===
 

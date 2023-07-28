@@ -1138,6 +1138,103 @@ func (c *Kafka) DescribeClusterOperationWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opDescribeClusterOperationV2 = "DescribeClusterOperationV2"
+
+// DescribeClusterOperationV2Request generates a "aws/request.Request" representing the
+// client's request for the DescribeClusterOperationV2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeClusterOperationV2 for more information on using the DescribeClusterOperationV2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeClusterOperationV2Request method.
+//	req, resp := client.DescribeClusterOperationV2Request(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeClusterOperationV2
+func (c *Kafka) DescribeClusterOperationV2Request(input *DescribeClusterOperationV2Input) (req *request.Request, output *DescribeClusterOperationV2Output) {
+	op := &request.Operation{
+		Name:       opDescribeClusterOperationV2,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v2/operations/{clusterOperationArn}",
+	}
+
+	if input == nil {
+		input = &DescribeClusterOperationV2Input{}
+	}
+
+	output = &DescribeClusterOperationV2Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeClusterOperationV2 API operation for Managed Streaming for Kafka.
+//
+// Returns a description of the cluster operation specified by the ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation DescribeClusterOperationV2 for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeClusterOperationV2
+func (c *Kafka) DescribeClusterOperationV2(input *DescribeClusterOperationV2Input) (*DescribeClusterOperationV2Output, error) {
+	req, out := c.DescribeClusterOperationV2Request(input)
+	return out, req.Send()
+}
+
+// DescribeClusterOperationV2WithContext is the same as DescribeClusterOperationV2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeClusterOperationV2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) DescribeClusterOperationV2WithContext(ctx aws.Context, input *DescribeClusterOperationV2Input, opts ...request.Option) (*DescribeClusterOperationV2Output, error) {
+	req, out := c.DescribeClusterOperationV2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeClusterV2 = "DescribeClusterV2"
 
 // DescribeClusterV2Request generates a "aws/request.Request" representing the
@@ -2078,6 +2175,161 @@ func (c *Kafka) ListClusterOperationsPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListClusterOperationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListClusterOperationsV2 = "ListClusterOperationsV2"
+
+// ListClusterOperationsV2Request generates a "aws/request.Request" representing the
+// client's request for the ListClusterOperationsV2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListClusterOperationsV2 for more information on using the ListClusterOperationsV2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListClusterOperationsV2Request method.
+//	req, resp := client.ListClusterOperationsV2Request(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListClusterOperationsV2
+func (c *Kafka) ListClusterOperationsV2Request(input *ListClusterOperationsV2Input) (req *request.Request, output *ListClusterOperationsV2Output) {
+	op := &request.Operation{
+		Name:       opListClusterOperationsV2,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v2/clusters/{clusterArn}/operations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListClusterOperationsV2Input{}
+	}
+
+	output = &ListClusterOperationsV2Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListClusterOperationsV2 API operation for Managed Streaming for Kafka.
+//
+// Returns a list of all the operations that have been performed on the specified
+// MSK cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation ListClusterOperationsV2 for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListClusterOperationsV2
+func (c *Kafka) ListClusterOperationsV2(input *ListClusterOperationsV2Input) (*ListClusterOperationsV2Output, error) {
+	req, out := c.ListClusterOperationsV2Request(input)
+	return out, req.Send()
+}
+
+// ListClusterOperationsV2WithContext is the same as ListClusterOperationsV2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListClusterOperationsV2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListClusterOperationsV2WithContext(ctx aws.Context, input *ListClusterOperationsV2Input, opts ...request.Option) (*ListClusterOperationsV2Output, error) {
+	req, out := c.ListClusterOperationsV2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListClusterOperationsV2Pages iterates over the pages of a ListClusterOperationsV2 operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClusterOperationsV2 method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListClusterOperationsV2 operation.
+//	pageNum := 0
+//	err := client.ListClusterOperationsV2Pages(params,
+//	    func(page *kafka.ListClusterOperationsV2Output, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Kafka) ListClusterOperationsV2Pages(input *ListClusterOperationsV2Input, fn func(*ListClusterOperationsV2Output, bool) bool) error {
+	return c.ListClusterOperationsV2PagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListClusterOperationsV2PagesWithContext same as ListClusterOperationsV2Pages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListClusterOperationsV2PagesWithContext(ctx aws.Context, input *ListClusterOperationsV2Input, fn func(*ListClusterOperationsV2Output, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListClusterOperationsV2Input
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListClusterOperationsV2Request(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListClusterOperationsV2Output), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6118,6 +6370,274 @@ func (s *ClusterOperationStepInfo) SetStepStatus(v string) *ClusterOperationStep
 	return s
 }
 
+// Returns information about a cluster operation.
+type ClusterOperationV2 struct {
+	_ struct{} `type:"structure"`
+
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
+
+	ClusterType *string `locationName:"clusterType" type:"string" enum:"ClusterType"`
+
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	OperationArn *string `locationName:"operationArn" type:"string"`
+
+	OperationState *string `locationName:"operationState" type:"string"`
+
+	OperationType *string `locationName:"operationType" type:"string"`
+
+	// Properties of a provisioned cluster.
+	Provisioned *ClusterOperationV2Provisioned `locationName:"provisioned" type:"structure"`
+
+	// Properties of a serverless cluster.
+	Serverless *ClusterOperationV2Serverless `locationName:"serverless" type:"structure"`
+
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterOperationV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterOperationV2) GoString() string {
+	return s.String()
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *ClusterOperationV2) SetClusterArn(v string) *ClusterOperationV2 {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterType sets the ClusterType field's value.
+func (s *ClusterOperationV2) SetClusterType(v string) *ClusterOperationV2 {
+	s.ClusterType = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ClusterOperationV2) SetEndTime(v time.Time) *ClusterOperationV2 {
+	s.EndTime = &v
+	return s
+}
+
+// SetOperationArn sets the OperationArn field's value.
+func (s *ClusterOperationV2) SetOperationArn(v string) *ClusterOperationV2 {
+	s.OperationArn = &v
+	return s
+}
+
+// SetOperationState sets the OperationState field's value.
+func (s *ClusterOperationV2) SetOperationState(v string) *ClusterOperationV2 {
+	s.OperationState = &v
+	return s
+}
+
+// SetOperationType sets the OperationType field's value.
+func (s *ClusterOperationV2) SetOperationType(v string) *ClusterOperationV2 {
+	s.OperationType = &v
+	return s
+}
+
+// SetProvisioned sets the Provisioned field's value.
+func (s *ClusterOperationV2) SetProvisioned(v *ClusterOperationV2Provisioned) *ClusterOperationV2 {
+	s.Provisioned = v
+	return s
+}
+
+// SetServerless sets the Serverless field's value.
+func (s *ClusterOperationV2) SetServerless(v *ClusterOperationV2Serverless) *ClusterOperationV2 {
+	s.Serverless = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ClusterOperationV2) SetStartTime(v time.Time) *ClusterOperationV2 {
+	s.StartTime = &v
+	return s
+}
+
+// Returns information about a provisioned cluster operation.
+type ClusterOperationV2Provisioned struct {
+	_ struct{} `type:"structure"`
+
+	OperationSteps []*ClusterOperationStep `locationName:"operationSteps" type:"list"`
+
+	// Information about cluster attributes that can be updated via update APIs.
+	SourceClusterInfo *MutableClusterInfo `locationName:"sourceClusterInfo" type:"structure"`
+
+	// Information about cluster attributes that can be updated via update APIs.
+	TargetClusterInfo *MutableClusterInfo `locationName:"targetClusterInfo" type:"structure"`
+
+	// Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection
+	// operations.
+	VpcConnectionInfo *VpcConnectionInfo `locationName:"vpcConnectionInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterOperationV2Provisioned) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterOperationV2Provisioned) GoString() string {
+	return s.String()
+}
+
+// SetOperationSteps sets the OperationSteps field's value.
+func (s *ClusterOperationV2Provisioned) SetOperationSteps(v []*ClusterOperationStep) *ClusterOperationV2Provisioned {
+	s.OperationSteps = v
+	return s
+}
+
+// SetSourceClusterInfo sets the SourceClusterInfo field's value.
+func (s *ClusterOperationV2Provisioned) SetSourceClusterInfo(v *MutableClusterInfo) *ClusterOperationV2Provisioned {
+	s.SourceClusterInfo = v
+	return s
+}
+
+// SetTargetClusterInfo sets the TargetClusterInfo field's value.
+func (s *ClusterOperationV2Provisioned) SetTargetClusterInfo(v *MutableClusterInfo) *ClusterOperationV2Provisioned {
+	s.TargetClusterInfo = v
+	return s
+}
+
+// SetVpcConnectionInfo sets the VpcConnectionInfo field's value.
+func (s *ClusterOperationV2Provisioned) SetVpcConnectionInfo(v *VpcConnectionInfo) *ClusterOperationV2Provisioned {
+	s.VpcConnectionInfo = v
+	return s
+}
+
+// Returns information about a serverless cluster operation.
+type ClusterOperationV2Serverless struct {
+	_ struct{} `type:"structure"`
+
+	// Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection
+	// operations.
+	VpcConnectionInfo *VpcConnectionInfoServerless `locationName:"vpcConnectionInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterOperationV2Serverless) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterOperationV2Serverless) GoString() string {
+	return s.String()
+}
+
+// SetVpcConnectionInfo sets the VpcConnectionInfo field's value.
+func (s *ClusterOperationV2Serverless) SetVpcConnectionInfo(v *VpcConnectionInfoServerless) *ClusterOperationV2Serverless {
+	s.VpcConnectionInfo = v
+	return s
+}
+
+// Returns information about a cluster operation.
+type ClusterOperationV2Summary struct {
+	_ struct{} `type:"structure"`
+
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
+
+	ClusterType *string `locationName:"clusterType" type:"string" enum:"ClusterType"`
+
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	OperationArn *string `locationName:"operationArn" type:"string"`
+
+	OperationState *string `locationName:"operationState" type:"string"`
+
+	OperationType *string `locationName:"operationType" type:"string"`
+
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterOperationV2Summary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterOperationV2Summary) GoString() string {
+	return s.String()
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *ClusterOperationV2Summary) SetClusterArn(v string) *ClusterOperationV2Summary {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterType sets the ClusterType field's value.
+func (s *ClusterOperationV2Summary) SetClusterType(v string) *ClusterOperationV2Summary {
+	s.ClusterType = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ClusterOperationV2Summary) SetEndTime(v time.Time) *ClusterOperationV2Summary {
+	s.EndTime = &v
+	return s
+}
+
+// SetOperationArn sets the OperationArn field's value.
+func (s *ClusterOperationV2Summary) SetOperationArn(v string) *ClusterOperationV2Summary {
+	s.OperationArn = &v
+	return s
+}
+
+// SetOperationState sets the OperationState field's value.
+func (s *ClusterOperationV2Summary) SetOperationState(v string) *ClusterOperationV2Summary {
+	s.OperationState = &v
+	return s
+}
+
+// SetOperationType sets the OperationType field's value.
+func (s *ClusterOperationV2Summary) SetOperationType(v string) *ClusterOperationV2Summary {
+	s.OperationType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ClusterOperationV2Summary) SetStartTime(v time.Time) *ClusterOperationV2Summary {
+	s.StartTime = &v
+	return s
+}
+
 // Contains source Apache Kafka versions and compatible target Apache Kafka
 // versions.
 type CompatibleKafkaVersion struct {
@@ -7698,6 +8218,85 @@ func (s DescribeClusterOperationOutput) GoString() string {
 
 // SetClusterOperationInfo sets the ClusterOperationInfo field's value.
 func (s *DescribeClusterOperationOutput) SetClusterOperationInfo(v *ClusterOperationInfo) *DescribeClusterOperationOutput {
+	s.ClusterOperationInfo = v
+	return s
+}
+
+type DescribeClusterOperationV2Input struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ClusterOperationArn is a required field
+	ClusterOperationArn *string `location:"uri" locationName:"clusterOperationArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClusterOperationV2Input) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClusterOperationV2Input) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeClusterOperationV2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeClusterOperationV2Input"}
+	if s.ClusterOperationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterOperationArn"))
+	}
+	if s.ClusterOperationArn != nil && len(*s.ClusterOperationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterOperationArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterOperationArn sets the ClusterOperationArn field's value.
+func (s *DescribeClusterOperationV2Input) SetClusterOperationArn(v string) *DescribeClusterOperationV2Input {
+	s.ClusterOperationArn = &v
+	return s
+}
+
+// Information about a cluster operation.
+type DescribeClusterOperationV2Output struct {
+	_ struct{} `type:"structure"`
+
+	// Cluster operation information
+	ClusterOperationInfo *ClusterOperationV2 `locationName:"clusterOperationInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClusterOperationV2Output) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClusterOperationV2Output) GoString() string {
+	return s.String()
+}
+
+// SetClusterOperationInfo sets the ClusterOperationInfo field's value.
+func (s *DescribeClusterOperationV2Output) SetClusterOperationInfo(v *ClusterOperationV2) *DescribeClusterOperationV2Output {
 	s.ClusterOperationInfo = v
 	return s
 }
@@ -9371,6 +9970,112 @@ func (s *ListClusterOperationsOutput) SetClusterOperationInfoList(v []*ClusterOp
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListClusterOperationsOutput) SetNextToken(v string) *ListClusterOperationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListClusterOperationsV2Input struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClusterOperationsV2Input) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClusterOperationsV2Input) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListClusterOperationsV2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListClusterOperationsV2Input"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *ListClusterOperationsV2Input) SetClusterArn(v string) *ListClusterOperationsV2Input {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListClusterOperationsV2Input) SetMaxResults(v int64) *ListClusterOperationsV2Input {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClusterOperationsV2Input) SetNextToken(v string) *ListClusterOperationsV2Input {
+	s.NextToken = &v
+	return s
+}
+
+// The response contains an array containing cluster operation information and
+// a next token if the response is truncated.
+type ListClusterOperationsV2Output struct {
+	_ struct{} `type:"structure"`
+
+	ClusterOperationInfoList []*ClusterOperationV2Summary `locationName:"clusterOperationInfoList" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClusterOperationsV2Output) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClusterOperationsV2Output) GoString() string {
+	return s.String()
+}
+
+// SetClusterOperationInfoList sets the ClusterOperationInfoList field's value.
+func (s *ListClusterOperationsV2Output) SetClusterOperationInfoList(v []*ClusterOperationV2Summary) *ListClusterOperationsV2Output {
+	s.ClusterOperationInfoList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClusterOperationsV2Output) SetNextToken(v string) *ListClusterOperationsV2Output {
 	s.NextToken = &v
 	return s
 }
@@ -13889,6 +14594,63 @@ func (s *VpcConnectionInfo) SetUserIdentity(v *UserIdentity) *VpcConnectionInfo 
 
 // SetVpcConnectionArn sets the VpcConnectionArn field's value.
 func (s *VpcConnectionInfo) SetVpcConnectionArn(v string) *VpcConnectionInfo {
+	s.VpcConnectionArn = &v
+	return s
+}
+
+// Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection
+// operations.
+type VpcConnectionInfoServerless struct {
+	_ struct{} `type:"structure"`
+
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	Owner *string `locationName:"owner" type:"string"`
+
+	// Description of the requester that calls the API operation.
+	UserIdentity *UserIdentity `locationName:"userIdentity" type:"structure"`
+
+	VpcConnectionArn *string `locationName:"vpcConnectionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectionInfoServerless) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectionInfoServerless) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *VpcConnectionInfoServerless) SetCreationTime(v time.Time) *VpcConnectionInfoServerless {
+	s.CreationTime = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *VpcConnectionInfoServerless) SetOwner(v string) *VpcConnectionInfoServerless {
+	s.Owner = &v
+	return s
+}
+
+// SetUserIdentity sets the UserIdentity field's value.
+func (s *VpcConnectionInfoServerless) SetUserIdentity(v *UserIdentity) *VpcConnectionInfoServerless {
+	s.UserIdentity = v
+	return s
+}
+
+// SetVpcConnectionArn sets the VpcConnectionArn field's value.
+func (s *VpcConnectionInfoServerless) SetVpcConnectionArn(v string) *VpcConnectionInfoServerless {
 	s.VpcConnectionArn = &v
 	return s
 }

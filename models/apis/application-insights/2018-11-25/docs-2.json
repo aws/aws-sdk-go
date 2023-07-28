@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<fullname>Amazon CloudWatch Application Insights</fullname> <p> Amazon CloudWatch Application Insights is a service that helps you detect common problems with your applications. It enables you to pinpoint the source of issues in your applications (built with technologies such as Microsoft IIS, .NET, and Microsoft SQL Server), by providing key insights into detected problems.</p> <p>After you onboard your application, CloudWatch Application Insights identifies, recommends, and sets up metrics and logs. It continuously analyzes and correlates your metrics and logs for unusual behavior to surface actionable problems with your application. For example, if your application is slow and unresponsive and leading to HTTP 500 errors in your Application Load Balancer (ALB), Application Insights informs you that a memory pressure problem with your SQL Server database is occurring. It bases this analysis on impactful metrics and log errors. </p>",
   "operations": {
+    "AddWorkload": "<p>Adds a workload to a component. Each component can have at most five workloads.</p>",
     "CreateApplication": "<p>Adds an application that is created from a resource group.</p>",
     "CreateComponent": "<p>Creates a custom component by grouping similar standalone instances to monitor.</p>",
     "CreateLogPattern": "<p>Adds an log pattern to a <code>LogPatternSet</code>.</p>",
@@ -16,6 +17,7 @@
     "DescribeObservation": "<p>Describes an anomaly or error with the application.</p>",
     "DescribeProblem": "<p>Describes an application problem.</p>",
     "DescribeProblemObservations": "<p>Describes the anomalies or errors associated with the problem.</p>",
+    "DescribeWorkload": "<p>Describes a workload and its configuration.</p>",
     "ListApplications": "<p>Lists the IDs of the applications that you are monitoring. </p>",
     "ListComponents": "<p>Lists the auto-grouped, standalone, and custom components of the application.</p>",
     "ListConfigurationHistory": "<p> Lists the INFO, WARN, and ERROR events for periodic configuration updates performed by Application Insights. Examples of events represented are: </p> <ul> <li> <p>INFO: creating a new alarm or updating an alarm threshold.</p> </li> <li> <p>WARN: alarm not created due to insufficient data points used to predict thresholds.</p> </li> <li> <p>ERROR: alarm not created due to permission errors or exceeding quotas. </p> </li> </ul>",
@@ -23,16 +25,57 @@
     "ListLogPatterns": "<p>Lists the log patterns in the specific log <code>LogPatternSet</code>.</p>",
     "ListProblems": "<p>Lists the problems with your application.</p>",
     "ListTagsForResource": "<p>Retrieve a list of the tags (keys and values) that are associated with a specified application. A <i>tag</i> is a label that you optionally define and associate with an application. Each tag consists of a required <i>tag key</i> and an optional associated <i>tag value</i>. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.</p>",
+    "ListWorkloads": "<p>Lists the workloads that are configured on a given component.</p>",
+    "RemoveWorkload": "<p>Remove workload from a component.</p>",
     "TagResource": "<p>Add one or more tags (keys and values) to a specified application. A <i>tag</i> is a label that you optionally define and associate with an application. Tags can help you categorize and manage application in different ways, such as by purpose, owner, environment, or other criteria. </p> <p>Each tag consists of a required <i>tag key</i> and an associated <i>tag value</i>, both of which you define. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.</p>",
     "UntagResource": "<p>Remove one or more tags (keys and values) from a specified application.</p>",
     "UpdateApplication": "<p>Updates the application.</p>",
     "UpdateComponent": "<p>Updates the custom component name and/or the list of resources that make up the component.</p>",
     "UpdateComponentConfiguration": "<p>Updates the monitoring configurations for the component. The configuration input parameter is an escaped JSON of the configuration and should match the schema of what is returned by <code>DescribeComponentConfigurationRecommendation</code>. </p>",
-    "UpdateLogPattern": "<p>Adds a log pattern to a <code>LogPatternSet</code>.</p>"
+    "UpdateLogPattern": "<p>Adds a log pattern to a <code>LogPatternSet</code>.</p>",
+    "UpdateProblem": "<p>Updates the visibility of the problem or specifies the problem as <code>RESOLVED</code>.</p>",
+    "UpdateWorkload": "<p>Adds a workload to a component. Each component can have at most five workloads.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
       "base": "<p> User does not have permissions to perform this action. </p>",
+      "refs": {
+      }
+    },
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "ApplicationInfo$AccountId": "<p>The AWS account ID for the owner of the application.</p>",
+        "ConfigurationEvent$AccountId": "<p>The AWS account ID for the owner of the application to which the configuration event belongs.</p>",
+        "DescribeApplicationRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "DescribeComponentConfigurationRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "DescribeComponentRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "DescribeLogPatternRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "DescribeLogPatternResponse$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "DescribeObservationRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "DescribeProblemObservationsRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "DescribeProblemRequest$AccountId": "<p>The AWS account ID for the owner of the resource group affected by the problem.</p>",
+        "DescribeWorkloadRequest$AccountId": "<p>The AWS account ID for the workload owner.</p>",
+        "ListApplicationsRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListComponentsRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListConfigurationHistoryRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListLogPatternSetsRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListLogPatternSetsResponse$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListLogPatternsRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListLogPatternsResponse$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListProblemsRequest$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListProblemsResponse$AccountId": "<p>The AWS account ID for the resource group owner.</p>",
+        "ListWorkloadsRequest$AccountId": "<p>The AWS account ID of the owner of the workload.</p>",
+        "Problem$AccountId": "<p>The AWS account ID for the owner of the resource group affected by the problem.</p>"
+      }
+    },
+    "AddWorkloadRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AddWorkloadResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -160,18 +203,25 @@
       "refs": {
         "DescribeComponentConfigurationRecommendationResponse$ComponentConfiguration": "<p>The recommended configuration settings of the component. The value is the escaped JSON of the configuration.</p>",
         "DescribeComponentConfigurationResponse$ComponentConfiguration": "<p>The configuration settings of the component. The value is the escaped JSON of the configuration.</p>",
-        "UpdateComponentConfigurationRequest$ComponentConfiguration": "<p>The configuration settings of the component. The value is the escaped JSON of the configuration. For more information about the JSON format, see <a href=\"https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/working-with-json.html\">Working with JSON</a>. You can send a request to <code>DescribeComponentConfigurationRecommendation</code> to see the recommended configuration for a component. For the complete format of the component configuration file, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/component-config.html\">Component Configuration</a>.</p>"
+        "UpdateComponentConfigurationRequest$ComponentConfiguration": "<p>The configuration settings of the component. The value is the escaped JSON of the configuration. For more information about the JSON format, see <a href=\"https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/working-with-json.html\">Working with JSON</a>. You can send a request to <code>DescribeComponentConfigurationRecommendation</code> to see the recommended configuration for a component. For the complete format of the component configuration file, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/component-config.html\">Component Configuration</a>.</p>",
+        "WorkloadConfiguration$Configuration": "<p>The configuration settings of the workload.</p>"
       }
     },
     "ComponentName": {
       "base": null,
       "refs": {
+        "AddWorkloadRequest$ComponentName": "<p>The name of the component.</p>",
         "ApplicationComponent$ComponentName": "<p>The name of the component.</p>",
         "DescribeComponentConfigurationRecommendationRequest$ComponentName": "<p>The name of the component.</p>",
         "DescribeComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>",
         "DescribeComponentRequest$ComponentName": "<p>The name of the component.</p>",
+        "DescribeWorkloadRequest$ComponentName": "<p>The name of the component.</p>",
         "ListProblemsRequest$ComponentName": "<p> The name of the component. </p>",
-        "UpdateComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>"
+        "ListWorkloadsRequest$ComponentName": "<p>The name of the component.</p>",
+        "RemoveWorkloadRequest$ComponentName": "<p>The name of the component.</p>",
+        "UpdateComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>",
+        "UpdateWorkloadRequest$ComponentName": "<p> The name of the component. </p>",
+        "Workload$ComponentName": "<p>The name of the component.</p>"
       }
     },
     "ConfigurationEvent": {
@@ -368,6 +418,16 @@
       }
     },
     "DescribeProblemResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkloadRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkloadResponse": {
       "base": null,
       "refs": {
       }
@@ -594,6 +654,16 @@
       "refs": {
       }
     },
+    "ListWorkloadsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkloadsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LogFilter": {
       "base": null,
       "refs": {
@@ -679,7 +749,8 @@
         "ListConfigurationHistoryRequest$MaxResults": "<p> The maximum number of results returned by <code>ListConfigurationHistory</code> in paginated output. When this parameter is used, <code>ListConfigurationHistory</code> returns only <code>MaxResults</code> in a single page along with a <code>NextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListConfigurationHistory</code> request with the returned <code>NextToken</code> value. If this parameter is not used, then <code>ListConfigurationHistory</code> returns all results. </p>",
         "ListLogPatternSetsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "ListLogPatternsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
-        "ListProblemsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>"
+        "ListProblemsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
+        "ListWorkloadsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>"
       }
     },
     "MetaDataKey": {
@@ -770,7 +841,9 @@
         "ListLogPatternsRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "ListLogPatternsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "ListProblemsRequest$NextToken": "<p>The token to request the next page of results.</p>",
-        "ListProblemsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>"
+        "ListProblemsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
+        "ListWorkloadsRequest$NextToken": "<p>The token to request the next page of results.</p>",
+        "ListWorkloadsResponse$NextToken": "<p>The token to request the next page of results.</p>"
       }
     },
     "Problem": {
@@ -785,7 +858,8 @@
       "refs": {
         "DescribeProblemObservationsRequest$ProblemId": "<p>The ID of the problem.</p>",
         "DescribeProblemRequest$ProblemId": "<p>The ID of the problem.</p>",
-        "Problem$Id": "<p>The ID of the problem.</p>"
+        "Problem$Id": "<p>The ID of the problem.</p>",
+        "UpdateProblemRequest$ProblemId": "<p>The ID of the problem.</p>"
       }
     },
     "ProblemList": {
@@ -806,6 +880,12 @@
         "Observation$RdsEventMessage": "<p> The message of an RDS event. </p>"
       }
     },
+    "RecommendationType": {
+      "base": null,
+      "refs": {
+        "DescribeComponentConfigurationRecommendationRequest$RecommendationType": "<p>The recommended configuration type.</p>"
+      }
+    },
     "RecurringCount": {
       "base": null,
       "refs": {
@@ -822,13 +902,31 @@
       "base": null,
       "refs": {
         "ApplicationComponent$ComponentRemarks": "<p> If logging is supported for the resource type, indicates whether the component has configured logs to be monitored. </p>",
-        "ApplicationInfo$Remarks": "<p>The issues on the user side that block Application Insights from successfully monitoring an application. Example remarks include:</p> <ul> <li> <p>“Configuring application, detected 1 Errors, 3 Warnings”</p> </li> <li> <p>“Configuring application, detected 1 Unconfigured Components”</p> </li> </ul>"
+        "ApplicationInfo$Remarks": "<p>The issues on the user side that block Application Insights from successfully monitoring an application. Example remarks include:</p> <ul> <li> <p>“Configuring application, detected 1 Errors, 3 Warnings”</p> </li> <li> <p>“Configuring application, detected 1 Unconfigured Components”</p> </li> </ul>",
+        "DescribeWorkloadResponse$WorkloadRemarks": "<p>If logging is supported for the resource type, shows whether the component has configured logs to be monitored.</p>",
+        "Workload$WorkloadRemarks": "<p>If logging is supported for the resource type, shows whether the component has configured logs to be monitored.</p>"
       }
     },
     "RemoveSNSTopic": {
       "base": null,
       "refs": {
         "UpdateApplicationRequest$RemoveSNSTopic": "<p> Disassociates the SNS topic from the opsItem created for detected problems.</p>"
+      }
+    },
+    "RemoveWorkloadRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveWorkloadResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResolutionMethod": {
+      "base": null,
+      "refs": {
+        "Problem$ResolutionMethod": "<p>Specifies how the problem was resolved. If the value is <code>AUTOMATIC</code>, the system resolved the problem. If the value is <code>MANUAL</code>, the user resolved the problem. If the value is <code>UNRESOLVED</code>, then the problem is not resolved.</p>"
       }
     },
     "ResourceARN": {
@@ -840,7 +938,9 @@
     "ResourceGroupName": {
       "base": null,
       "refs": {
+        "AddWorkloadRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ApplicationInfo$ResourceGroupName": "<p>The name of the resource group used for the application.</p>",
+        "ConfigurationEvent$ResourceGroupName": "<p>The name of the resource group of the application to which the configuration event belongs.</p>",
         "CreateApplicationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "CreateComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "CreateLogPatternRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
@@ -854,6 +954,7 @@
         "DescribeComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DescribeLogPatternRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DescribeLogPatternResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "DescribeWorkloadRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListComponentsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListConfigurationHistoryRequest$ResourceGroupName": "<p>Resource group to which the application belongs. </p>",
         "ListLogPatternSetsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
@@ -862,12 +963,15 @@
         "ListLogPatternsResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListProblemsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListProblemsResponse$ResourceGroupName": "<p> The name of the resource group. </p>",
+        "ListWorkloadsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "Problem$ResourceGroupName": "<p>The name of the resource group affected by the problem.</p>",
+        "RemoveWorkloadRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "UpdateApplicationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "UpdateComponentConfigurationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "UpdateComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "UpdateLogPatternRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
-        "UpdateLogPatternResponse$ResourceGroupName": "<p>The name of the resource group.</p>"
+        "UpdateLogPatternResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "UpdateWorkloadRequest$ResourceGroupName": "<p>The name of the resource group.</p>"
       }
     },
     "ResourceInUseException": {
@@ -1012,7 +1116,9 @@
         "DescribeComponentConfigurationRecommendationRequest$Tier": "<p>The tier of the application component.</p>",
         "DescribeComponentConfigurationResponse$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_CORE</code>, <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code> </p>",
         "DetectedWorkload$key": null,
-        "UpdateComponentConfigurationRequest$Tier": "<p>The tier of the application component.</p>"
+        "UpdateComponentConfigurationRequest$Tier": "<p>The tier of the application component.</p>",
+        "Workload$Tier": "<p>The tier of the workload.</p>",
+        "WorkloadConfiguration$Tier": "<p>The configuration of the workload tier.</p>"
       }
     },
     "Title": {
@@ -1082,6 +1188,32 @@
       "refs": {
       }
     },
+    "UpdateProblemRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProblemResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateStatus": {
+      "base": null,
+      "refs": {
+        "UpdateProblemRequest$UpdateStatus": "<p>The status of the problem. Arguments can be passed for only problems that show a status of <code>RECOVERING</code>.</p>"
+      }
+    },
+    "UpdateWorkloadRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkloadResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ValidationException": {
       "base": "<p>The parameter is not valid.</p>",
       "refs": {
@@ -1093,10 +1225,59 @@
         "Observation$Value": "<p>The value of the source observation metric.</p>"
       }
     },
+    "Visibility": {
+      "base": null,
+      "refs": {
+        "ListProblemsRequest$Visibility": "<p>Specifies whether or not you can view the problem. If not specified, visible and ignored problems are returned.</p>",
+        "Problem$Visibility": "<p>Specifies whether or not you can view the problem. Updates to ignored problems do not generate notifications.</p>",
+        "UpdateProblemRequest$Visibility": "<p>The visibility of a problem. When you pass a value of <code>IGNORED</code>, the problem is removed from the default view, and all notifications for the problem are suspended. When <code>VISIBLE</code> is passed, the <code>IGNORED</code> action is reversed.</p>"
+      }
+    },
+    "Workload": {
+      "base": "<p>Describes the workloads on a component.</p>",
+      "refs": {
+        "WorkloadList$member": null
+      }
+    },
+    "WorkloadConfiguration": {
+      "base": "<p>The configuration of the workload.</p>",
+      "refs": {
+        "AddWorkloadRequest$WorkloadConfiguration": "<p>The configuration settings of the workload. The value is the escaped JSON of the configuration.</p>",
+        "AddWorkloadResponse$WorkloadConfiguration": "<p>The configuration settings of the workload. The value is the escaped JSON of the configuration.</p>",
+        "DescribeWorkloadResponse$WorkloadConfiguration": "<p>The configuration settings of the workload. The value is the escaped JSON of the configuration.</p>",
+        "UpdateWorkloadRequest$WorkloadConfiguration": "<p>The configuration settings of the workload. The value is the escaped JSON of the configuration.</p>",
+        "UpdateWorkloadResponse$WorkloadConfiguration": "<p>The configuration settings of the workload. The value is the escaped JSON of the configuration.</p>"
+      }
+    },
+    "WorkloadId": {
+      "base": null,
+      "refs": {
+        "AddWorkloadResponse$WorkloadId": "<p>The ID of the workload.</p>",
+        "DescribeWorkloadRequest$WorkloadId": "<p>The ID of the workload.</p>",
+        "DescribeWorkloadResponse$WorkloadId": "<p>The ID of the workload.</p>",
+        "RemoveWorkloadRequest$WorkloadId": "<p>The ID of the workload.</p>",
+        "UpdateWorkloadRequest$WorkloadId": "<p>The ID of the workload.</p>",
+        "UpdateWorkloadResponse$WorkloadId": "<p>The ID of the workload.</p>",
+        "Workload$WorkloadId": "<p>The ID of the workload.</p>"
+      }
+    },
+    "WorkloadList": {
+      "base": null,
+      "refs": {
+        "ListWorkloadsResponse$WorkloadList": "<p>The list of workloads.</p>"
+      }
+    },
     "WorkloadMetaData": {
       "base": null,
       "refs": {
         "DetectedWorkload$value": null
+      }
+    },
+    "WorkloadName": {
+      "base": null,
+      "refs": {
+        "Workload$WorkloadName": "<p>The name of the workload.</p>",
+        "WorkloadConfiguration$WorkloadName": "<p>The name of the workload.</p>"
       }
     },
     "XRayErrorPercent": {

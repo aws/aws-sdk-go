@@ -4964,7 +4964,7 @@
           "shape": "WaitActivity"
         },
         "ContactCenter": {
-            "shape": "ContactCenterActivity"
+          "shape": "ContactCenterActivity"
         }
       }
     },
@@ -5139,6 +5139,20 @@
         "Name"
       ]
     },
+    "ApplicationSettingsJourneyLimits": {
+      "type": "structure",
+      "members": {
+        "DailyCap": {
+          "shape": "__integer"
+        },
+        "TimeframeCap": {
+          "shape": "JourneyTimeframeCap"
+        },
+        "TotalCap": {
+          "shape": "__integer"
+        }
+      }
+    },
     "ApplicationSettingsResource": {
       "type": "structure",
       "members": {
@@ -5156,6 +5170,9 @@
         },
         "QuietTime": {
           "shape": "QuietTime"
+        },
+        "JourneyLimits": {
+          "shape": "ApplicationSettingsJourneyLimits"
         }
       },
       "required": [
@@ -5720,12 +5737,12 @@
       }
     },
     "ContactCenterActivity": {
-        "type": "structure",
-        "members": {
-          "NextActivity": {
-              "shape": "__string"
-          }
+      "type": "structure",
+      "members": {
+        "NextActivity": {
+          "shape": "__string"
         }
+      }
     },
     "ConflictException": {
       "type": "structure",
@@ -7754,13 +7771,16 @@
         "ApiKey": {
           "shape": "__string"
         },
+        "DefaultAuthenticationMethod": {
+          "shape": "__string"
+        },
         "Enabled": {
           "shape": "__boolean"
+        },
+        "ServiceJson": {
+          "shape": "__string"
         }
-      },
-      "required": [
-        "ApiKey"
-      ]
+      }
     },
     "GCMChannelResponse": {
       "type": "structure",
@@ -7774,10 +7794,16 @@
         "Credential": {
           "shape": "__string"
         },
+        "DefaultAuthenticationMethod": {
+          "shape": "__string"
+        },
         "Enabled": {
           "shape": "__boolean"
         },
         "HasCredential": {
+          "shape": "__boolean"
+        },
+        "HasFcmServiceCredentials": {
           "shape": "__boolean"
         },
         "Id": {
@@ -7800,7 +7826,6 @@
         }
       },
       "required": [
-        "Credential",
         "Platform"
       ]
     },
@@ -7826,6 +7851,9 @@
           "shape": "__string"
         },
         "ImageUrl": {
+          "shape": "__string"
+        },
+        "PreferredAuthenticationMethod": {
           "shape": "__string"
         },
         "Priority": {
@@ -10051,7 +10079,13 @@
           "shape": "__integer"
         },
         "EndpointReentryInterval": {
-            "shape": "__string"
+          "shape": "__string"
+        },
+        "TimeframeCap": {
+          "shape": "JourneyTimeframeCap"
+        },
+        "TotalCap": {
+          "shape": "__integer"
         }
       }
     },
@@ -10064,15 +10098,15 @@
       }
     },
     "JourneyChannelSettings": {
-        "type": "structure",
-        "members": {
-          "ConnectCampaignArn": {
-            "shape": "__string"
-          },
-          "ConnectCampaignExecutionRoleArn": {
-            "shape": "__string"
-          }
+      "type": "structure",
+      "members": {
+        "ConnectCampaignArn": {
+          "shape": "__string"
+        },
+        "ConnectCampaignExecutionRoleArn": {
+          "shape": "__string"
         }
+      }
     },
     "JourneyResponse": {
       "type": "structure",
@@ -10124,22 +10158,22 @@
           "locationName": "tags"
         },
         "WaitForQuietTime": {
-            "shape": "__boolean"
+          "shape": "__boolean"
         },
         "RefreshOnSegmentUpdate": {
-            "shape": "__boolean"
+          "shape": "__boolean"
         },
         "JourneyChannelSettings": {
-            "shape": "JourneyChannelSettings"
+          "shape": "JourneyChannelSettings"
         },
         "SendingSchedule": {
-            "shape": "__boolean"
+          "shape": "__boolean"
         },
         "OpenHours": {
-            "shape": "OpenHours"
+          "shape": "OpenHours"
         },
         "ClosedDays": {
-            "shape": "ClosedDays"
+          "shape": "ClosedDays"
         },
         "TimezoneEstimationMethods": {
           "shape": "ListOf__TimezoneEstimationMethodsElement"
@@ -10298,6 +10332,17 @@
       "members": {
         "State": {
           "shape": "State"
+        }
+      }
+    },
+    "JourneyTimeframeCap": {
+      "type": "structure",
+      "members": {
+        "Cap": {
+          "shape": "__integer"
+        },
+        "Days": {
+          "shape": "__integer"
         }
       }
     },
@@ -11993,6 +12038,9 @@
         },
         "VoiceTemplate": {
           "shape": "Template"
+        },
+        "InAppTemplate": {
+          "shape": "Template"
         }
       }
     },
@@ -13284,6 +13332,9 @@
         },
         "QuietTime": {
           "shape": "QuietTime"
+        },
+        "JourneyLimits": {
+          "shape": "ApplicationSettingsJourneyLimits"
         }
       }
     },
@@ -13399,22 +13450,22 @@
           "shape": "State"
         },
         "WaitForQuietTime": {
-            "shape": "__boolean"
+          "shape": "__boolean"
         },
         "RefreshOnSegmentUpdate": {
-            "shape": "__boolean"
+          "shape": "__boolean"
         },
         "JourneyChannelSettings": {
-            "shape": "JourneyChannelSettings"
+          "shape": "JourneyChannelSettings"
         },
         "SendingSchedule": {
-            "shape": "__boolean"
+          "shape": "__boolean"
         },
         "OpenHours": {
-            "shape": "OpenHours"
+          "shape": "OpenHours"
         },
         "ClosedDays": {
-            "shape": "ClosedDays"
+          "shape": "ClosedDays"
         },
         "TimezoneEstimationMethods": {
           "shape": "ListOf__TimezoneEstimationMethodsElement"
@@ -13841,102 +13892,102 @@
       "timestampFormat": "unixTimestamp"
     },
     "DayOfWeek": {
-        "type": "string",
-        "enum": [
-          "MONDAY",
-          "TUESDAY",
-          "WEDNESDAY",
-          "THURSDAY",
-          "FRIDAY",
-          "SATURDAY",
-          "SUNDAY"
-        ]
+      "type": "string",
+      "enum": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY"
+      ]
     },
     "ListOfOpenHoursRules": {
-        "type": "list",
-        "member": {
-            "shape": "OpenHoursRule"
-          }
+      "type": "list",
+      "member": {
+        "shape": "OpenHoursRule"
+      }
     },
     "OpenHoursRule": {
-        "type": "structure",
-        "members": {
-            "StartTime": {
-                "shape": "__string"
-            },
-            "EndTime": {
-                "shape": "__string"
-            }
-        }
-    },
-    "MapOfListOfOpenHoursRules": {
-        "type": "map",
-        "key": {
-          "shape": "DayOfWeek"
+      "type": "structure",
+      "members": {
+        "StartTime": {
+          "shape": "__string"
         },
-        "value": {
-          "shape": "ListOfOpenHoursRules"
-        }
-    },
-    "OpenHours": {
-        "type": "structure",
-        "members": {
-            "EMAIL": {
-                "shape": "MapOfListOfOpenHoursRules"
-            },
-            "SMS": {
-                "shape": "MapOfListOfOpenHoursRules"
-            },
-            "PUSH": {
-                "shape": "MapOfListOfOpenHoursRules"
-            },
-            "VOICE": {
-                "shape": "MapOfListOfOpenHoursRules"
-            },
-            "CUSTOM": {
-                "shape": "MapOfListOfOpenHoursRules"
-            }
-        }
-    },
-    "ClosedDaysRule": {
-        "type": "structure",
-        "members": {
-            "Name": {
-                "shape": "__string"
-            },
-            "StartDateTime": {
-                "shape": "__string"
-            },
-            "EndDateTime": {
-                "shape": "__string"
-            }
-        }
-    },
-    "ListOfClosedDaysRules": {
-        "type": "list",
-        "member": {
-            "shape": "ClosedDaysRule"
-          }
-    },
-    "ClosedDays": {
-        "type": "structure",
-        "members": {
-            "EMAIL": {
-                "shape": "ListOfClosedDaysRules"
-            },
-            "SMS": {
-                "shape": "ListOfClosedDaysRules"
-            },
-            "PUSH": {
-                "shape": "ListOfClosedDaysRules"
-            },
-            "VOICE": {
-                "shape": "ListOfClosedDaysRules"
-            },
-            "CUSTOM": {
-                "shape": "ListOfClosedDaysRules"
-            }
+        "EndTime": {
+          "shape": "__string"
         }
       }
+    },
+    "MapOfListOfOpenHoursRules": {
+      "type": "map",
+      "key": {
+        "shape": "DayOfWeek"
+      },
+      "value": {
+        "shape": "ListOfOpenHoursRules"
+      }
+    },
+    "OpenHours": {
+      "type": "structure",
+      "members": {
+        "EMAIL": {
+          "shape": "MapOfListOfOpenHoursRules"
+        },
+        "SMS": {
+          "shape": "MapOfListOfOpenHoursRules"
+        },
+        "PUSH": {
+          "shape": "MapOfListOfOpenHoursRules"
+        },
+        "VOICE": {
+          "shape": "MapOfListOfOpenHoursRules"
+        },
+        "CUSTOM": {
+          "shape": "MapOfListOfOpenHoursRules"
+        }
+      }
+    },
+    "ClosedDaysRule": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "shape": "__string"
+        },
+        "StartDateTime": {
+          "shape": "__string"
+        },
+        "EndDateTime": {
+          "shape": "__string"
+        }
+      }
+    },
+    "ListOfClosedDaysRules": {
+      "type": "list",
+      "member": {
+        "shape": "ClosedDaysRule"
+      }
+    },
+    "ClosedDays": {
+      "type": "structure",
+      "members": {
+        "EMAIL": {
+          "shape": "ListOfClosedDaysRules"
+        },
+        "SMS": {
+          "shape": "ListOfClosedDaysRules"
+        },
+        "PUSH": {
+          "shape": "ListOfClosedDaysRules"
+        },
+        "VOICE": {
+          "shape": "ListOfClosedDaysRules"
+        },
+        "CUSTOM": {
+          "shape": "ListOfClosedDaysRules"
+        }
+      }
+    }
   }
 }

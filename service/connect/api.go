@@ -62372,6 +62372,18 @@ const (
 
 	// PhoneNumberTypeDid is a PhoneNumberType enum value
 	PhoneNumberTypeDid = "DID"
+
+	// PhoneNumberTypeUifn is a PhoneNumberType enum value
+	PhoneNumberTypeUifn = "UIFN"
+
+	// PhoneNumberTypeShared is a PhoneNumberType enum value
+	PhoneNumberTypeShared = "SHARED"
+
+	// PhoneNumberTypeThirdPartyTf is a PhoneNumberType enum value
+	PhoneNumberTypeThirdPartyTf = "THIRD_PARTY_TF"
+
+	// PhoneNumberTypeThirdPartyDid is a PhoneNumberType enum value
+	PhoneNumberTypeThirdPartyDid = "THIRD_PARTY_DID"
 )
 
 // PhoneNumberType_Values returns all elements of the PhoneNumberType enum
@@ -62379,6 +62391,10 @@ func PhoneNumberType_Values() []string {
 	return []string{
 		PhoneNumberTypeTollFree,
 		PhoneNumberTypeDid,
+		PhoneNumberTypeUifn,
+		PhoneNumberTypeShared,
+		PhoneNumberTypeThirdPartyTf,
+		PhoneNumberTypeThirdPartyDid,
 	}
 }
 

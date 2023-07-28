@@ -125,159 +125,6 @@
                                 {
                                     "conditions": [
                                         {
-                                            "fn": "stringEquals",
-                                            "argv": [
-                                                {
-                                                    "fn": "getAttr",
-                                                    "argv": [
-                                                        {
-                                                            "ref": "PartitionResult"
-                                                        },
-                                                        "name"
-                                                    ]
-                                                },
-                                                "aws"
-                                            ]
-                                        },
-                                        {
-                                            "fn": "booleanEquals",
-                                            "argv": [
-                                                {
-                                                    "ref": "UseFIPS"
-                                                },
-                                                false
-                                            ]
-                                        },
-                                        {
-                                            "fn": "booleanEquals",
-                                            "argv": [
-                                                {
-                                                    "ref": "UseDualStack"
-                                                },
-                                                false
-                                            ]
-                                        }
-                                    ],
-                                    "endpoint": {
-                                        "url": "https://cloudfront.amazonaws.com",
-                                        "properties": {
-                                            "authSchemes": [
-                                                {
-                                                    "name": "sigv4",
-                                                    "signingName": "cloudfront",
-                                                    "signingRegion": "us-east-1"
-                                                }
-                                            ]
-                                        },
-                                        "headers": {}
-                                    },
-                                    "type": "endpoint"
-                                },
-                                {
-                                    "conditions": [
-                                        {
-                                            "fn": "stringEquals",
-                                            "argv": [
-                                                {
-                                                    "fn": "getAttr",
-                                                    "argv": [
-                                                        {
-                                                            "ref": "PartitionResult"
-                                                        },
-                                                        "name"
-                                                    ]
-                                                },
-                                                "aws"
-                                            ]
-                                        },
-                                        {
-                                            "fn": "booleanEquals",
-                                            "argv": [
-                                                {
-                                                    "ref": "UseFIPS"
-                                                },
-                                                true
-                                            ]
-                                        },
-                                        {
-                                            "fn": "booleanEquals",
-                                            "argv": [
-                                                {
-                                                    "ref": "UseDualStack"
-                                                },
-                                                false
-                                            ]
-                                        }
-                                    ],
-                                    "endpoint": {
-                                        "url": "https://cloudfront-fips.amazonaws.com",
-                                        "properties": {
-                                            "authSchemes": [
-                                                {
-                                                    "name": "sigv4",
-                                                    "signingName": "cloudfront",
-                                                    "signingRegion": "us-east-1"
-                                                }
-                                            ]
-                                        },
-                                        "headers": {}
-                                    },
-                                    "type": "endpoint"
-                                },
-                                {
-                                    "conditions": [
-                                        {
-                                            "fn": "stringEquals",
-                                            "argv": [
-                                                {
-                                                    "fn": "getAttr",
-                                                    "argv": [
-                                                        {
-                                                            "ref": "PartitionResult"
-                                                        },
-                                                        "name"
-                                                    ]
-                                                },
-                                                "aws-cn"
-                                            ]
-                                        },
-                                        {
-                                            "fn": "booleanEquals",
-                                            "argv": [
-                                                {
-                                                    "ref": "UseFIPS"
-                                                },
-                                                false
-                                            ]
-                                        },
-                                        {
-                                            "fn": "booleanEquals",
-                                            "argv": [
-                                                {
-                                                    "ref": "UseDualStack"
-                                                },
-                                                false
-                                            ]
-                                        }
-                                    ],
-                                    "endpoint": {
-                                        "url": "https://cloudfront.cn-northwest-1.amazonaws.com.cn",
-                                        "properties": {
-                                            "authSchemes": [
-                                                {
-                                                    "name": "sigv4",
-                                                    "signingName": "cloudfront",
-                                                    "signingRegion": "cn-northwest-1"
-                                                }
-                                            ]
-                                        },
-                                        "headers": {}
-                                    },
-                                    "type": "endpoint"
-                                },
-                                {
-                                    "conditions": [
-                                        {
                                             "fn": "booleanEquals",
                                             "argv": [
                                                 {
@@ -340,7 +187,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://cloudfront-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "url": "https://applicationinsights-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -398,7 +245,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://cloudfront-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                "url": "https://applicationinsights-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -456,7 +303,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://cloudfront.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "url": "https://applicationinsights.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -480,7 +327,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://cloudfront.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://applicationinsights.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
