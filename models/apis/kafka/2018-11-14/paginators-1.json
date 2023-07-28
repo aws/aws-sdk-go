@@ -36,6 +36,12 @@
       "limit_key": "MaxResults",
       "result_key": "ClusterOperationInfoList"
     },
+    "ListClusterOperationsV2": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ClusterOperationInfoList"
+    },
     "ListConfigurationRevisions": {
       "input_token": "NextToken",
       "output_token": "NextToken",

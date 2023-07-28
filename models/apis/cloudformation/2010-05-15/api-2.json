@@ -1490,7 +1490,8 @@
         "StackPolicyURL":{"shape":"StackPolicyURL"},
         "Tags":{"shape":"Tags"},
         "ClientRequestToken":{"shape":"ClientRequestToken"},
-        "EnableTerminationProtection":{"shape":"EnableTerminationProtection"}
+        "EnableTerminationProtection":{"shape":"EnableTerminationProtection"},
+        "RetainExceptOnCreate":{"shape":"RetainExceptOnCreate"}
       }
     },
     "CreateStackInstancesInput":{
@@ -2103,7 +2104,8 @@
         "ChangeSetName":{"shape":"ChangeSetNameOrId"},
         "StackName":{"shape":"StackNameOrId"},
         "ClientRequestToken":{"shape":"ClientRequestToken"},
-        "DisableRollback":{"shape":"DisableRollback"}
+        "DisableRollback":{"shape":"DisableRollback"},
+        "RetainExceptOnCreate":{"shape":"RetainExceptOnCreate"}
       }
     },
     "ExecuteChangeSetOutput":{
@@ -3275,6 +3277,7 @@
       "type":"list",
       "member":{"shape":"ResourceToSkip"}
     },
+    "RetainExceptOnCreate":{"type":"boolean"},
     "RetainResources":{
       "type":"list",
       "member":{"shape":"LogicalResourceId"}
@@ -3306,7 +3309,8 @@
       "members":{
         "StackName":{"shape":"StackNameOrId"},
         "RoleARN":{"shape":"RoleARN"},
-        "ClientRequestToken":{"shape":"ClientRequestToken"}
+        "ClientRequestToken":{"shape":"ClientRequestToken"},
+        "RetainExceptOnCreate":{"shape":"RetainExceptOnCreate"}
       }
     },
     "RollbackStackOutput":{
@@ -3430,7 +3434,8 @@
         "EnableTerminationProtection":{"shape":"EnableTerminationProtection"},
         "ParentId":{"shape":"StackId"},
         "RootId":{"shape":"StackId"},
-        "DriftInformation":{"shape":"StackDriftInformation"}
+        "DriftInformation":{"shape":"StackDriftInformation"},
+        "RetainExceptOnCreate":{"shape":"RetainExceptOnCreate"}
       }
     },
     "StackDriftDetectionId":{
@@ -4421,7 +4426,8 @@
         "NotificationARNs":{"shape":"NotificationARNs"},
         "Tags":{"shape":"Tags"},
         "DisableRollback":{"shape":"DisableRollback"},
-        "ClientRequestToken":{"shape":"ClientRequestToken"}
+        "ClientRequestToken":{"shape":"ClientRequestToken"},
+        "RetainExceptOnCreate":{"shape":"RetainExceptOnCreate"}
       }
     },
     "UpdateStackInstancesInput":{

@@ -26,10 +26,8 @@
           }
         },
         "comments": {
-          "input": {
-          },
-          "output": {
-          }
+          "input": {},
+          "output": {}
         },
         "description": "The following example gets the runs of a journey.",
         "id": "to-get-the-runs-of-a-journey",
@@ -57,10 +55,8 @@
           }
         },
         "comments": {
-          "input": {
-          },
-          "output": {
-          }
+          "input": {},
+          "output": {}
         },
         "description": "The following example gets execution metrics for a single run of a journey.",
         "id": "to-get-the-execution-metrics-for-a-journey-run",
@@ -89,10 +85,8 @@
           }
         },
         "comments": {
-          "input": {
-          },
-          "output": {
-          }
+          "input": {},
+          "output": {}
         },
         "description": "The following example gets activity execution metrics for a single run of a journey.",
         "id": "to-get-the-activity-execution-metrics-for-a-journey-run",

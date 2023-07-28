@@ -8783,6 +8783,14 @@ type CreateStackInput struct {
 	// see Controlling Access with Identity and Access Management (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html).
 	ResourceTypes []*string `type:"list"`
 
+	// This deletion policy deletes newly created resources, but retains existing
+	// resources, when a stack operation is rolled back. This ensures new, empty,
+	// and unused resources are deleted, while critical resources and their data
+	// are retained. RetainExceptOnCreate can be specified for any resource that
+	// supports the DeletionPolicy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html)
+	// attribute.
+	RetainExceptOnCreate *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of an Identity and Access Management (IAM)
 	// role that CloudFormation assumes to create the stack. CloudFormation uses
 	// the role's credentials to make calls on your behalf. CloudFormation always
@@ -8963,6 +8971,12 @@ func (s *CreateStackInput) SetParameters(v []*Parameter) *CreateStackInput {
 // SetResourceTypes sets the ResourceTypes field's value.
 func (s *CreateStackInput) SetResourceTypes(v []*string) *CreateStackInput {
 	s.ResourceTypes = v
+	return s
+}
+
+// SetRetainExceptOnCreate sets the RetainExceptOnCreate field's value.
+func (s *CreateStackInput) SetRetainExceptOnCreate(v bool) *CreateStackInput {
+	s.RetainExceptOnCreate = &v
 	return s
 }
 
@@ -13401,6 +13415,14 @@ type ExecuteChangeSetInput struct {
 	// Default: True
 	DisableRollback *bool `type:"boolean"`
 
+	// This deletion policy deletes newly created resources, but retains existing
+	// resources, when a stack operation is rolled back. This ensures new, empty,
+	// and unused resources are deleted, while critical resources and their data
+	// are retained. RetainExceptOnCreate can be specified for any resource that
+	// supports the DeletionPolicy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html)
+	// attribute.
+	RetainExceptOnCreate *bool `type:"boolean"`
+
 	// If you specified the name of a change set, specify the stack name or Amazon
 	// Resource Name (ARN) that's associated with the change set you want to execute.
 	StackName *string `min:"1" type:"string"`
@@ -13461,6 +13483,12 @@ func (s *ExecuteChangeSetInput) SetClientRequestToken(v string) *ExecuteChangeSe
 // SetDisableRollback sets the DisableRollback field's value.
 func (s *ExecuteChangeSetInput) SetDisableRollback(v bool) *ExecuteChangeSetInput {
 	s.DisableRollback = &v
+	return s
+}
+
+// SetRetainExceptOnCreate sets the RetainExceptOnCreate field's value.
+func (s *ExecuteChangeSetInput) SetRetainExceptOnCreate(v bool) *ExecuteChangeSetInput {
+	s.RetainExceptOnCreate = &v
 	return s
 }
 
@@ -17823,6 +17851,14 @@ type RollbackStackInput struct {
 	// A unique identifier for this RollbackStack request.
 	ClientRequestToken *string `min:"1" type:"string"`
 
+	// This deletion policy deletes newly created resources, but retains existing
+	// resources, when a stack operation is rolled back. This ensures new, empty,
+	// and unused resources are deleted, while critical resources and their data
+	// are retained. RetainExceptOnCreate can be specified for any resource that
+	// supports the DeletionPolicy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html)
+	// attribute.
+	RetainExceptOnCreate *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of an Identity and Access Management role
 	// that CloudFormation assumes to rollback the stack.
 	RoleARN *string `min:"20" type:"string"`
@@ -17876,6 +17912,12 @@ func (s *RollbackStackInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *RollbackStackInput) SetClientRequestToken(v string) *RollbackStackInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetRetainExceptOnCreate sets the RetainExceptOnCreate field's value.
+func (s *RollbackStackInput) SetRetainExceptOnCreate(v bool) *RollbackStackInput {
+	s.RetainExceptOnCreate = &v
 	return s
 }
 
@@ -18533,6 +18575,14 @@ type Stack struct {
 	// in the CloudFormation User Guide.
 	ParentId *string `type:"string"`
 
+	// This deletion policy deletes newly created resources, but retains existing
+	// resources, when a stack operation is rolled back. This ensures new, empty,
+	// and unused resources are deleted, while critical resources and their data
+	// are retained. RetainExceptOnCreate can be specified for any resource that
+	// supports the DeletionPolicy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html)
+	// attribute.
+	RetainExceptOnCreate *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of an Identity and Access Management (IAM)
 	// role that's associated with the stack. During a stack operation, CloudFormation
 	// uses this role's credentials to make calls on your behalf.
@@ -18665,6 +18715,12 @@ func (s *Stack) SetParameters(v []*Parameter) *Stack {
 // SetParentId sets the ParentId field's value.
 func (s *Stack) SetParentId(v string) *Stack {
 	s.ParentId = &v
+	return s
+}
+
+// SetRetainExceptOnCreate sets the RetainExceptOnCreate field's value.
+func (s *Stack) SetRetainExceptOnCreate(v bool) *Stack {
+	s.RetainExceptOnCreate = &v
 	return s
 }
 
@@ -22615,6 +22671,14 @@ type UpdateStackInput struct {
 	// see Controlling Access with Identity and Access Management (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html).
 	ResourceTypes []*string `type:"list"`
 
+	// This deletion policy deletes newly created resources, but retains existing
+	// resources, when a stack operation is rolled back. This ensures new, empty,
+	// and unused resources are deleted, while critical resources and their data
+	// are retained. RetainExceptOnCreate can be specified for any resource that
+	// supports the DeletionPolicy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html)
+	// attribute.
+	RetainExceptOnCreate *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of an Identity and Access Management (IAM)
 	// role that CloudFormation assumes to update the stack. CloudFormation uses
 	// the role's credentials to make calls on your behalf. CloudFormation always
@@ -22812,6 +22876,12 @@ func (s *UpdateStackInput) SetParameters(v []*Parameter) *UpdateStackInput {
 // SetResourceTypes sets the ResourceTypes field's value.
 func (s *UpdateStackInput) SetResourceTypes(v []*string) *UpdateStackInput {
 	s.ResourceTypes = v
+	return s
+}
+
+// SetRetainExceptOnCreate sets the RetainExceptOnCreate field's value.
+func (s *UpdateStackInput) SetRetainExceptOnCreate(v bool) *UpdateStackInput {
+	s.RetainExceptOnCreate = &v
 	return s
 }
 

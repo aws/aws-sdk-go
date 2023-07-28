@@ -14,6 +14,7 @@
     "DescribeCluster" : "<p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "DescribeClusterV2" : "<p>Returns a description of the MSK cluster of either the provisioned or the serverless type whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "DescribeClusterOperation" : "<p>Returns a description of the cluster operation specified by the ARN.</p>",
+    "DescribeClusterOperationV2" : "<p>Returns a description of the cluster operation specified by the ARN.</p>",
     "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
     "DescribeConfigurationRevision" : "<p>Returns a description of this revision of the configuration.</p>",
     "DescribeVpcConnection" : "<p>Displays information about the specified Amazon MSK VPC connection.</p>",
@@ -23,6 +24,7 @@
     "GetClusterPolicy" : "<p>Retrieves the contents of the specified MSK cluster policy.</p>",
     "ListClientVpcConnections" : "<p>Displays a list of client VPC connections.</p>",
     "ListClusterOperations" : "<p>Returns a list of all the operations that have been performed on the specified MSK cluster.</p>",
+    "ListClusterOperationsV2" : "<p>Returns a list of all the operations that have been performed on the specified MSK cluster.</p>",
     "ListClusters" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
     "ListClustersV2" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
     "ListConfigurationRevisions" : "<p>Returns a list of all the revisions of an MSK configuration.</p>",
@@ -195,6 +197,30 @@
         "ClusterOperationStep$StepInfo" : "<p>Information about the step and its status.</p>"
       }
     },
+    "ClusterOperationV2" : {
+      "base" : "<p>Returns information about a cluster operation.</p>",
+      "refs" : {
+        "DescribeClusterOperationV2Response$ClusterOperationInfo" : "<p>Cluster operation information</p>"
+      }
+    },
+    "ClusterOperationV2Provisioned" : {
+      "base" : "<p>Returns information about a provisioned cluster operation.</p>",
+      "refs" : {
+        "ClusterOperationV2$Provisioned" : "<p>Properties of a provisioned cluster.</p>"
+      }
+    },
+    "ClusterOperationV2Serverless" : {
+      "base" : "<p>Returns information about a serverless cluster operation.</p>",
+      "refs" : {
+        "ClusterOperationV2$Serverless" : "<p>Properties of a serverless cluster.</p>"
+      }
+    },
+    "ClusterOperationV2Summary" : {
+      "base" : "<p>Returns information about a cluster operation.</p>",
+      "refs" : {
+        "__listOfClusterOperationV2Summary$member" : null
+      }
+    },
     "ClusterState" : {
       "base" : "<p>The state of an Apache Kafka cluster.</p>",
       "refs" : {
@@ -316,6 +342,10 @@
       "refs" : { }
     },
     "DescribeClusterOperationResponse" : {
+      "base" : "<p>Information about a cluster operation.</p>",
+      "refs" : { }
+    },
+    "DescribeClusterOperationV2Response" : {
       "base" : "<p>Information about a cluster operation.</p>",
       "refs" : { }
     },
@@ -452,6 +482,10 @@
       }
     },
     "ListClusterOperationsResponse" : {
+      "base" : "<p>The response contains an array containing cluster operation information and a next token if the response is truncated.</p>",
+      "refs" : { }
+    },
+    "ListClusterOperationsV2Response" : {
       "base" : "<p>The response contains an array containing cluster operation information and a next token if the response is truncated.</p>",
       "refs" : { }
     },
@@ -796,6 +830,12 @@
       "base" : "<p>Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection operations.</p>",
       "refs" : {
         "ClusterOperationInfo$VpcConnectionInfo" : "<p>Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection operations.</p>"
+      }
+    },
+    "VpcConnectionInfoServerless" : {
+      "base" : "<p>Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection operations.</p>",
+      "refs" : {
+        "ClusterOperationV2Serverless$VpcConnectionInfo" : "<p>Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection operations.</p>"
       }
     },
     "VpcConnectionState" : {

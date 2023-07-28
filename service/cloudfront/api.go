@@ -170,6 +170,14 @@ func (c *CloudFront) CopyDistributionRequest(input *CopyDistributionInput) (req 
 // modify the staging distribution's configuration. Then you can use CreateContinuousDeploymentPolicy
 // to incrementally move traffic to the staging distribution.
 //
+// This API operation requires the following IAM permissions:
+//
+//   - GetDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistribution.html)
+//
+//   - CreateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html)
+//
+//   - CopyDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CopyDistribution.html)
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -366,6 +374,13 @@ func (c *CloudFront) CopyDistributionRequest(input *CopyDistributionInput) (req 
 //   - ErrCodeTooManyDistributionsAssociatedToCachePolicy "TooManyDistributionsAssociatedToCachePolicy"
 //     The maximum number of distributions have been associated with the specified
 //     cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToOriginAccessControl "TooManyDistributionsAssociatedToOriginAccessControl"
+//     The maximum number of distributions have been associated with the specified
+//     origin access control.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //     (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   - ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
@@ -1123,7 +1138,12 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 
 // CreateDistributionWithTags API operation for Amazon CloudFront.
 //
-// Create a new distribution with tags.
+// Create a new distribution with tags. This API operation requires the following
+// IAM permissions:
+//
+//   - CreateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html)
+//
+//   - TagResource (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_TagResource.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1150,6 +1170,10 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //
 //   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
 //     The origin access control is not valid.
+//
+//   - ErrCodeIllegalOriginAccessConfiguration "IllegalOriginAccessConfiguration"
+//     An origin cannot contain both an origin access control (OAC) and an origin
+//     access identity (OAI).
 //
 //   - ErrCodeAccessDenied "AccessDenied"
 //     Access denied.
@@ -1315,6 +1339,13 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   - ErrCodeTooManyDistributionsAssociatedToCachePolicy "TooManyDistributionsAssociatedToCachePolicy"
 //     The maximum number of distributions have been associated with the specified
 //     cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToOriginAccessControl "TooManyDistributionsAssociatedToOriginAccessControl"
+//     The maximum number of distributions have been associated with the specified
+//     origin access control.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //     (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   - ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
@@ -9953,6 +9984,13 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //     cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //     (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
+//   - ErrCodeTooManyDistributionsAssociatedToOriginAccessControl "TooManyDistributionsAssociatedToOriginAccessControl"
+//     The maximum number of distributions have been associated with the specified
+//     origin access control.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
 //   - ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
 //     The response headers policy does not exist.
 //
@@ -10086,6 +10124,12 @@ func (c *CloudFront) UpdateDistributionWithStagingConfigRequest(input *UpdateDis
 // can use this operation to copy the staging distribution's configuration to
 // the primary distribution. This action will disable the continuous deployment
 // policy and move your domain's traffic back to the primary distribution.
+//
+// This API operation requires the following IAM permissions:
+//
+//   - GetDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistribution.html)
+//
+//   - UpdateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10270,6 +10314,13 @@ func (c *CloudFront) UpdateDistributionWithStagingConfigRequest(input *UpdateDis
 //   - ErrCodeTooManyDistributionsAssociatedToCachePolicy "TooManyDistributionsAssociatedToCachePolicy"
 //     The maximum number of distributions have been associated with the specified
 //     cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToOriginAccessControl "TooManyDistributionsAssociatedToOriginAccessControl"
+//     The maximum number of distributions have been associated with the specified
+//     origin access control.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //     (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   - ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
@@ -11511,8 +11562,7 @@ type ActiveTrustedSigners struct {
 	_ struct{} `type:"structure"`
 
 	// This field is true if any of the Amazon Web Services accounts in the list
-	// have active CloudFront key pairs that CloudFront can use to verify the signatures
-	// of signed URLs and signed cookies. If not, this field is false.
+	// are configured as trusted signers. If not, this field is false.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
@@ -13894,6 +13944,13 @@ type CopyDistributionInput struct {
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
+	// A Boolean flag to specify the state of the staging distribution when it's
+	// created. When you set this value to True, the staging distribution is enabled.
+	// When you set this value to False, the staging distribution is disabled.
+	//
+	// If you omit this field, the default value is True.
+	Enabled *bool `type:"boolean"`
+
 	// The version identifier of the primary distribution whose configuration you
 	// are copying. This is the ETag value returned in the response to GetDistribution
 	// and GetDistributionConfig.
@@ -13951,6 +14008,12 @@ func (s *CopyDistributionInput) Validate() error {
 // SetCallerReference sets the CallerReference field's value.
 func (s *CopyDistributionInput) SetCallerReference(v string) *CopyDistributionInput {
 	s.CallerReference = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CopyDistributionInput) SetEnabled(v bool) *CopyDistributionInput {
+	s.Enabled = &v
 	return s
 }
 
@@ -20317,7 +20380,7 @@ type FunctionConfig struct {
 	// Comment is a required field
 	Comment *string `type:"string" required:"true"`
 
-	// The function's runtime environment. The only valid value is cloudfront-js-1.0.
+	// The function's runtime environment verion.
 	//
 	// Runtime is a required field
 	Runtime *string `type:"string" required:"true" enum:"FunctionRuntime"`
@@ -32973,9 +33036,8 @@ func (s *TrustedKeyGroups) SetQuantity(v int64) *TrustedKeyGroups {
 type TrustedSigners struct {
 	_ struct{} `type:"structure"`
 
-	// This field is true if any of the Amazon Web Services accounts have public
-	// keys that CloudFront can use to verify the signatures of signed URLs and
-	// signed cookies. If not, this field is false.
+	// This field is true if any of the Amazon Web Services accounts in the list
+	// are configured as trusted signers. If not, this field is false.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
@@ -35312,12 +35374,16 @@ func FrameOptionsList_Values() []string {
 const (
 	// FunctionRuntimeCloudfrontJs10 is a FunctionRuntime enum value
 	FunctionRuntimeCloudfrontJs10 = "cloudfront-js-1.0"
+
+	// FunctionRuntimeCloudfrontJs20 is a FunctionRuntime enum value
+	FunctionRuntimeCloudfrontJs20 = "cloudfront-js-2.0"
 )
 
 // FunctionRuntime_Values returns all elements of the FunctionRuntime enum
 func FunctionRuntime_Values() []string {
 	return []string{
 		FunctionRuntimeCloudfrontJs10,
+		FunctionRuntimeCloudfrontJs20,
 	}
 }
 

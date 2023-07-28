@@ -14357,6 +14357,61 @@ func (s *ApplicationResponse) SetTags(v map[string]*string) *ApplicationResponse
 	return s
 }
 
+// The default sending limits for journeys in the application. To override these
+// limits and define custom limits for a specific journey, use the Journey resource.
+type ApplicationSettingsJourneyLimits struct {
+	_ struct{} `type:"structure"`
+
+	// The daily number of messages that an endpoint can receive from all journeys.
+	// The maximum value is 100. If set to 0, this limit will not apply.
+	DailyCap *int64 `type:"integer"`
+
+	// The default maximum number of messages that can be sent to an endpoint during
+	// the specified timeframe for all journeys.
+	TimeframeCap *JourneyTimeframeCap `type:"structure"`
+
+	// The default maximum number of messages that a single journey can sent to
+	// a single endpoint. The maximum value is 100. If set to 0, this limit will
+	// not apply.
+	TotalCap *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSettingsJourneyLimits) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSettingsJourneyLimits) GoString() string {
+	return s.String()
+}
+
+// SetDailyCap sets the DailyCap field's value.
+func (s *ApplicationSettingsJourneyLimits) SetDailyCap(v int64) *ApplicationSettingsJourneyLimits {
+	s.DailyCap = &v
+	return s
+}
+
+// SetTimeframeCap sets the TimeframeCap field's value.
+func (s *ApplicationSettingsJourneyLimits) SetTimeframeCap(v *JourneyTimeframeCap) *ApplicationSettingsJourneyLimits {
+	s.TimeframeCap = v
+	return s
+}
+
+// SetTotalCap sets the TotalCap field's value.
+func (s *ApplicationSettingsJourneyLimits) SetTotalCap(v int64) *ApplicationSettingsJourneyLimits {
+	s.TotalCap = &v
+	return s
+}
+
 // Provides information about an application, including the default settings
 // for an application.
 type ApplicationSettingsResource struct {
@@ -14372,6 +14427,11 @@ type ApplicationSettingsResource struct {
 	// for campaigns in the application. You can use this hook to customize segments
 	// that are used by campaigns in the application.
 	CampaignHook *CampaignHook `type:"structure"`
+
+	// The default sending limits for journeys in the application. These limits
+	// apply to each journey for the application but can be overridden, on a per
+	// journey basis, with the JourneyLimits resource.
+	JourneyLimits *ApplicationSettingsJourneyLimits `type:"structure"`
 
 	// The date and time, in ISO 8601 format, when the application's settings were
 	// last modified.
@@ -14427,6 +14487,12 @@ func (s *ApplicationSettingsResource) SetApplicationId(v string) *ApplicationSet
 // SetCampaignHook sets the CampaignHook field's value.
 func (s *ApplicationSettingsResource) SetCampaignHook(v *CampaignHook) *ApplicationSettingsResource {
 	s.CampaignHook = v
+	return s
+}
+
+// SetJourneyLimits sets the JourneyLimits field's value.
+func (s *ApplicationSettingsResource) SetJourneyLimits(v *ApplicationSettingsJourneyLimits) *ApplicationSettingsResource {
+	s.JourneyLimits = v
 	return s
 }
 
@@ -23494,12 +23560,19 @@ type GCMChannelRequest struct {
 
 	// The Web API Key, also referred to as an API_KEY or server key, that you received
 	// from Google to communicate with Google services.
-	//
-	// ApiKey is a required field
-	ApiKey *string `type:"string" required:"true"`
+	ApiKey *string `type:"string"`
+
+	// The default authentication method used for GCM. Values are either "TOKEN"
+	// or "KEY". Defaults to "KEY".
+	DefaultAuthenticationMethod *string `type:"string"`
 
 	// Specifies whether to enable the GCM channel for the application.
 	Enabled *bool `type:"boolean"`
+
+	// The contents of the JSON file provided by Google during registration in order
+	// to generate an access token for authentication. For more information see
+	// Migrate from legacy FCM APIs to HTTP v1 (https://firebase.google.com/docs/cloud-messaging/migrate-v1).
+	ServiceJson *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -23520,28 +23593,27 @@ func (s GCMChannelRequest) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *GCMChannelRequest) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "GCMChannelRequest"}
-	if s.ApiKey == nil {
-		invalidParams.Add(request.NewErrParamRequired("ApiKey"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
 // SetApiKey sets the ApiKey field's value.
 func (s *GCMChannelRequest) SetApiKey(v string) *GCMChannelRequest {
 	s.ApiKey = &v
 	return s
 }
 
+// SetDefaultAuthenticationMethod sets the DefaultAuthenticationMethod field's value.
+func (s *GCMChannelRequest) SetDefaultAuthenticationMethod(v string) *GCMChannelRequest {
+	s.DefaultAuthenticationMethod = &v
+	return s
+}
+
 // SetEnabled sets the Enabled field's value.
 func (s *GCMChannelRequest) SetEnabled(v bool) *GCMChannelRequest {
 	s.Enabled = &v
+	return s
+}
+
+// SetServiceJson sets the ServiceJson field's value.
+func (s *GCMChannelRequest) SetServiceJson(v string) *GCMChannelRequest {
+	s.ServiceJson = &v
 	return s
 }
 
@@ -23560,15 +23632,21 @@ type GCMChannelResponse struct {
 
 	// The Web API Key, also referred to as an API_KEY or server key, that you received
 	// from Google to communicate with Google services.
-	//
-	// Credential is a required field
-	Credential *string `type:"string" required:"true"`
+	Credential *string `type:"string"`
+
+	// The default authentication method used for GCM. Values are either "TOKEN"
+	// or "KEY". Defaults to "KEY".
+	DefaultAuthenticationMethod *string `type:"string"`
 
 	// Specifies whether the GCM channel is enabled for the application.
 	Enabled *bool `type:"boolean"`
 
 	// (Not used) This property is retained only for backward compatibility.
 	HasCredential *bool `type:"boolean"`
+
+	// Returns true if the JSON file provided by Google during registration process
+	// was used in the ServiceJson field of the request.
+	HasFcmServiceCredentials *bool `type:"boolean"`
 
 	// (Deprecated) An identifier for the GCM channel. This property is retained
 	// only for backward compatibility.
@@ -23629,6 +23707,12 @@ func (s *GCMChannelResponse) SetCredential(v string) *GCMChannelResponse {
 	return s
 }
 
+// SetDefaultAuthenticationMethod sets the DefaultAuthenticationMethod field's value.
+func (s *GCMChannelResponse) SetDefaultAuthenticationMethod(v string) *GCMChannelResponse {
+	s.DefaultAuthenticationMethod = &v
+	return s
+}
+
 // SetEnabled sets the Enabled field's value.
 func (s *GCMChannelResponse) SetEnabled(v bool) *GCMChannelResponse {
 	s.Enabled = &v
@@ -23638,6 +23722,12 @@ func (s *GCMChannelResponse) SetEnabled(v bool) *GCMChannelResponse {
 // SetHasCredential sets the HasCredential field's value.
 func (s *GCMChannelResponse) SetHasCredential(v bool) *GCMChannelResponse {
 	s.HasCredential = &v
+	return s
+}
+
+// SetHasFcmServiceCredentials sets the HasFcmServiceCredentials field's value.
+func (s *GCMChannelResponse) SetHasFcmServiceCredentials(v bool) *GCMChannelResponse {
+	s.HasFcmServiceCredentials = &v
 	return s
 }
 
@@ -23724,6 +23814,10 @@ type GCMMessage struct {
 
 	// The URL of an image to display in the push notification.
 	ImageUrl *string `type:"string"`
+
+	// The preferred authentication method, with valid values "KEY" or "TOKEN".
+	// If a value isn't provided then the DefaultAuthenticationMethod is used.
+	PreferredAuthenticationMethod *string `type:"string"`
 
 	// para>normal - The notification might be delayed. Delivery is optimized for
 	// battery usage on the recipient's device. Use this value unless immediate
@@ -23841,6 +23935,12 @@ func (s *GCMMessage) SetImageIconUrl(v string) *GCMMessage {
 // SetImageUrl sets the ImageUrl field's value.
 func (s *GCMMessage) SetImageUrl(v string) *GCMMessage {
 	s.ImageUrl = &v
+	return s
+}
+
+// SetPreferredAuthenticationMethod sets the PreferredAuthenticationMethod field's value.
+func (s *GCMMessage) SetPreferredAuthenticationMethod(v string) *GCMMessage {
+	s.PreferredAuthenticationMethod = &v
 	return s
 }
 
@@ -30065,7 +30165,8 @@ type InAppTemplateResponse struct {
 	// TemplateName is a required field
 	TemplateName *string `type:"string" required:"true"`
 
-	// The type of the template.
+	// The type of channel that the message template is designed for. For an in-app
+	// message template, this value is INAPP.
 	//
 	// TemplateType is a required field
 	TemplateType *string `type:"string" required:"true" enum:"TemplateType"`
@@ -30684,6 +30785,14 @@ type JourneyLimits struct {
 
 	// The maximum number of messages that the journey can send each second.
 	MessagesPerSecond *int64 `type:"integer"`
+
+	// The number of messages that an endpoint can receive during the specified
+	// timeframe.
+	TimeframeCap *JourneyTimeframeCap `type:"structure"`
+
+	// The maximum number of messages a journey can sent to a single endpoint. The
+	// maximum value is 100. If set to 0, this limit will not apply.
+	TotalCap *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -30725,6 +30834,18 @@ func (s *JourneyLimits) SetEndpointReentryInterval(v string) *JourneyLimits {
 // SetMessagesPerSecond sets the MessagesPerSecond field's value.
 func (s *JourneyLimits) SetMessagesPerSecond(v int64) *JourneyLimits {
 	s.MessagesPerSecond = &v
+	return s
+}
+
+// SetTimeframeCap sets the TimeframeCap field's value.
+func (s *JourneyLimits) SetTimeframeCap(v *JourneyTimeframeCap) *JourneyLimits {
+	s.TimeframeCap = v
+	return s
+}
+
+// SetTotalCap sets the TotalCap field's value.
+func (s *JourneyLimits) SetTotalCap(v int64) *JourneyLimits {
+	s.TotalCap = &v
 	return s
 }
 
@@ -31562,6 +31683,51 @@ func (s JourneyStateRequest) GoString() string {
 // SetState sets the State field's value.
 func (s *JourneyStateRequest) SetState(v string) *JourneyStateRequest {
 	s.State = &v
+	return s
+}
+
+// The number of messages that can be sent to an endpoint during the specified
+// timeframe for all journeys.
+type JourneyTimeframeCap struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of messages that all journeys can send to an endpoint
+	// during the specified timeframe. The maximum value is 100. If set to 0, this
+	// limit will not apply.
+	Cap *int64 `type:"integer"`
+
+	// The length of the timeframe in days. The maximum value is 30. If set to 0,
+	// this limit will not apply.
+	Days *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyTimeframeCap) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyTimeframeCap) GoString() string {
+	return s.String()
+}
+
+// SetCap sets the Cap field's value.
+func (s *JourneyTimeframeCap) SetCap(v int64) *JourneyTimeframeCap {
+	s.Cap = &v
+	return s
+}
+
+// SetDays sets the Days field's value.
+func (s *JourneyTimeframeCap) SetDays(v int64) *JourneyTimeframeCap {
+	s.Days = &v
 	return s
 }
 
@@ -37756,6 +37922,10 @@ type TemplateConfiguration struct {
 	// The email template to use for the message.
 	EmailTemplate *Template `type:"structure"`
 
+	// The InApp template to use for the message. The InApp template object is not
+	// supported for SendMessages.
+	InAppTemplate *Template `type:"structure"`
+
 	// The push notification template to use for the message.
 	PushTemplate *Template `type:"structure"`
 
@@ -37788,6 +37958,12 @@ func (s TemplateConfiguration) GoString() string {
 // SetEmailTemplate sets the EmailTemplate field's value.
 func (s *TemplateConfiguration) SetEmailTemplate(v *Template) *TemplateConfiguration {
 	s.EmailTemplate = v
+	return s
+}
+
+// SetInAppTemplate sets the InAppTemplate field's value.
+func (s *TemplateConfiguration) SetInAppTemplate(v *Template) *TemplateConfiguration {
+	s.InAppTemplate = v
 	return s
 }
 
@@ -37909,7 +38085,7 @@ type TemplateResponse struct {
 	TemplateName *string `type:"string" required:"true"`
 
 	// The type of channel that the message template is designed for. Possible values
-	// are: EMAIL, PUSH, SMS, and VOICE.
+	// are: EMAIL, PUSH, SMS, INAPP, and VOICE.
 	//
 	// TemplateType is a required field
 	TemplateType *string `type:"string" required:"true" enum:"TemplateType"`
@@ -38022,7 +38198,7 @@ type TemplateVersionResponse struct {
 	TemplateName *string `type:"string" required:"true"`
 
 	// The type of channel that the message template is designed for. Possible values
-	// are: EMAIL, PUSH, SMS, and VOICE.
+	// are: EMAIL, PUSH, SMS, INAPP, and VOICE.
 	//
 	// TemplateType is a required field
 	TemplateType *string `type:"string" required:"true"`
@@ -39758,11 +39934,6 @@ func (s *UpdateGcmChannelInput) Validate() error {
 	}
 	if s.GCMChannelRequest == nil {
 		invalidParams.Add(request.NewErrParamRequired("GCMChannelRequest"))
-	}
-	if s.GCMChannelRequest != nil {
-		if err := s.GCMChannelRequest.Validate(); err != nil {
-			invalidParams.AddNested("GCMChannelRequest", err.(request.ErrInvalidParams))
-		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -41989,6 +42160,11 @@ type WriteApplicationSettingsRequest struct {
 	// Specifies whether to enable application-related alarms in Amazon CloudWatch.
 	CloudWatchMetricsEnabled *bool `type:"boolean"`
 
+	// The default sending limits for journeys in the application. These limits
+	// apply to each journey for the application but can be overridden, on a per
+	// journey basis, with the JourneyLimits resource.
+	JourneyLimits *ApplicationSettingsJourneyLimits `type:"structure"`
+
 	// The default sending limits for campaigns in the application. To override
 	// these limits and define custom limits for a specific campaign or journey,
 	// use the Campaign resource or the Journey resource, respectively.
@@ -42045,6 +42221,12 @@ func (s *WriteApplicationSettingsRequest) SetCampaignHook(v *CampaignHook) *Writ
 // SetCloudWatchMetricsEnabled sets the CloudWatchMetricsEnabled field's value.
 func (s *WriteApplicationSettingsRequest) SetCloudWatchMetricsEnabled(v bool) *WriteApplicationSettingsRequest {
 	s.CloudWatchMetricsEnabled = &v
+	return s
+}
+
+// SetJourneyLimits sets the JourneyLimits field's value.
+func (s *WriteApplicationSettingsRequest) SetJourneyLimits(v *ApplicationSettingsJourneyLimits) *WriteApplicationSettingsRequest {
+	s.JourneyLimits = v
 	return s
 }
 

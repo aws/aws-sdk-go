@@ -4,7 +4,7 @@
             "documentation": "For region af-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.af-south-1.amazonaws.com"
+                    "url": "https://applicationinsights.af-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -17,7 +17,7 @@
             "documentation": "For region ap-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.ap-east-1.amazonaws.com"
+                    "url": "https://applicationinsights.ap-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +30,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.ap-northeast-1.amazonaws.com"
+                    "url": "https://applicationinsights.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -43,7 +43,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.ap-northeast-2.amazonaws.com"
+                    "url": "https://applicationinsights.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -56,7 +56,7 @@
             "documentation": "For region ap-northeast-3 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.ap-northeast-3.amazonaws.com"
+                    "url": "https://applicationinsights.ap-northeast-3.amazonaws.com"
                 }
             },
             "params": {
@@ -69,7 +69,7 @@
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.ap-south-1.amazonaws.com"
+                    "url": "https://applicationinsights.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +82,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.ap-southeast-1.amazonaws.com"
+                    "url": "https://applicationinsights.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -95,7 +95,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.ap-southeast-2.amazonaws.com"
+                    "url": "https://applicationinsights.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -105,23 +105,10 @@
             }
         },
         {
-            "documentation": "For region ap-southeast-3 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation.ap-southeast-3.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-southeast-3",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.ca-central-1.amazonaws.com"
+                    "url": "https://applicationinsights.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -134,7 +121,7 @@
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.eu-central-1.amazonaws.com"
+                    "url": "https://applicationinsights.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -147,7 +134,7 @@
             "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.eu-north-1.amazonaws.com"
+                    "url": "https://applicationinsights.eu-north-1.amazonaws.com"
                 }
             },
             "params": {
@@ -160,7 +147,7 @@
             "documentation": "For region eu-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.eu-south-1.amazonaws.com"
+                    "url": "https://applicationinsights.eu-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -173,7 +160,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.eu-west-1.amazonaws.com"
+                    "url": "https://applicationinsights.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -186,7 +173,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.eu-west-2.amazonaws.com"
+                    "url": "https://applicationinsights.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -199,7 +186,7 @@
             "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.eu-west-3.amazonaws.com"
+                    "url": "https://applicationinsights.eu-west-3.amazonaws.com"
                 }
             },
             "params": {
@@ -212,7 +199,7 @@
             "documentation": "For region me-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.me-south-1.amazonaws.com"
+                    "url": "https://applicationinsights.me-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -225,7 +212,7 @@
             "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.sa-east-1.amazonaws.com"
+                    "url": "https://applicationinsights.sa-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -238,25 +225,12 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-east-1.amazonaws.com"
+                    "url": "https://applicationinsights.us-east-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-east-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation-fips.us-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -264,25 +238,12 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-east-2.amazonaws.com"
+                    "url": "https://applicationinsights.us-east-2.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-east-2",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation-fips.us-east-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-2",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -290,25 +251,12 @@
             "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-west-1.amazonaws.com"
+                    "url": "https://applicationinsights.us-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-west-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation-fips.us-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -316,7 +264,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-west-2.amazonaws.com"
+                    "url": "https://applicationinsights.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -326,23 +274,10 @@
             }
         },
         {
-            "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation-fips.us-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-2",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation-fips.us-east-1.api.aws"
+                    "url": "https://applicationinsights-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -352,10 +287,23 @@
             }
         },
         {
+            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://applicationinsights-fips.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-east-1.api.aws"
+                    "url": "https://applicationinsights.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -368,7 +316,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.cn-north-1.amazonaws.com.cn"
+                    "url": "https://applicationinsights.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -381,7 +329,7 @@
             "documentation": "For region cn-northwest-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.cn-northwest-1.amazonaws.com.cn"
+                    "url": "https://applicationinsights.cn-northwest-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -394,7 +342,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://applicationinsights-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -407,7 +355,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://applicationinsights-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -420,7 +368,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://applicationinsights.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -433,25 +381,12 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-gov-east-1.amazonaws.com"
+                    "url": "https://applicationinsights.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation.us-gov-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-east-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -459,25 +394,12 @@
             "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-gov-west-1.amazonaws.com"
+                    "url": "https://applicationinsights.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-gov-west-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-west-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -485,7 +407,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation-fips.us-gov-east-1.api.aws"
+                    "url": "https://applicationinsights-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -495,42 +417,29 @@
             }
         },
         {
+            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://applicationinsights-fips.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-gov-east-1.api.aws"
+                    "url": "https://applicationinsights.us-gov-east-1.api.aws"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
                 "UseFIPS": false,
                 "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation.us-iso-east-1.c2s.ic.gov"
-                }
-            },
-            "params": {
-                "Region": "us-iso-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-iso-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://cloudformation.us-iso-west-1.c2s.ic.gov"
-                }
-            },
-            "params": {
-                "Region": "us-iso-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
             }
         },
         {
@@ -548,7 +457,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://applicationinsights-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -569,14 +478,14 @@
             }
         },
         {
-            "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://applicationinsights.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
-                "Region": "us-isob-east-1",
+                "Region": "us-iso-east-1",
                 "UseFIPS": false,
                 "UseDualStack": false
             }
@@ -596,7 +505,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://cloudformation-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://applicationinsights-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -614,6 +523,19 @@
                 "Region": "us-isob-east-1",
                 "UseFIPS": false,
                 "UseDualStack": true
+            }
+        },
+        {
+            "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://applicationinsights.us-isob-east-1.sc2s.sgov.gov"
+                }
+            },
+            "params": {
+                "Region": "us-isob-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
             }
         },
         {

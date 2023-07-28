@@ -366,6 +366,35 @@
         }
       ]
     },
+    "DescribeClusterOperationV2" : {
+      "name" : "DescribeClusterOperationV2",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/api/v2/operations/{clusterOperationArn}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DescribeClusterOperationV2Request"
+      },
+      "output" : {
+        "shape" : "DescribeClusterOperationV2Response"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "UnauthorizedException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "ServiceUnavailableException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "DescribeConfiguration": {
       "name": "DescribeConfiguration",
       "http": {
@@ -592,6 +621,35 @@
           "shape": "ForbiddenException"
         }
       ]
+    },
+    "ListClusterOperationsV2" : {
+      "name" : "ListClusterOperationsV2",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/api/v2/clusters/{clusterArn}/operations",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListClusterOperationsV2Request"
+      },
+      "output" : {
+        "shape" : "ListClusterOperationsV2Response"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "UnauthorizedException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "ServiceUnavailableException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
     },
     "ListClusters": {
       "name": "ListClusters",
@@ -1793,6 +1851,110 @@
         }
       }
     },
+    "ClusterOperationV2" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "locationName" : "clusterArn"
+        },
+        "ClusterType" : {
+          "shape" : "ClusterType",
+          "locationName" : "clusterType"
+        },
+        "StartTime" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "startTime"
+        },
+        "EndTime" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "endTime"
+        },
+        "OperationArn" : {
+          "shape" : "__string",
+          "locationName" : "operationArn"
+        },
+        "OperationState" : {
+          "shape" : "__string",
+          "locationName" : "operationState"
+        },
+        "OperationType" : {
+          "shape" : "__string",
+          "locationName" : "operationType"
+        },
+        "Provisioned" : {
+          "shape" : "ClusterOperationV2Provisioned",
+          "locationName" : "provisioned"
+        },
+        "Serverless" : {
+          "shape" : "ClusterOperationV2Serverless",
+          "locationName" : "serverless"
+        }
+      }
+    },
+    "ClusterOperationV2Provisioned" : {
+      "type" : "structure",
+      "members" : {
+        "OperationSteps" : {
+          "shape" : "__listOfClusterOperationStep",
+          "locationName" : "operationSteps"
+        },
+        "SourceClusterInfo" : {
+          "shape" : "MutableClusterInfo",
+          "locationName" : "sourceClusterInfo"
+        },
+        "TargetClusterInfo" : {
+          "shape" : "MutableClusterInfo",
+          "locationName" : "targetClusterInfo"
+        },
+        "VpcConnectionInfo" : {
+          "shape" : "VpcConnectionInfo",
+          "locationName" : "vpcConnectionInfo"
+        }
+      }
+    },
+    "ClusterOperationV2Serverless" : {
+      "type" : "structure",
+      "members" : {
+        "VpcConnectionInfo" : {
+          "shape" : "VpcConnectionInfoServerless",
+          "locationName" : "vpcConnectionInfo"
+        }
+      }
+    },
+    "ClusterOperationV2Summary" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "locationName" : "clusterArn"
+        },
+        "ClusterType" : {
+          "shape" : "ClusterType",
+          "locationName" : "clusterType"
+        },
+        "StartTime" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "startTime"
+        },
+        "EndTime" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "endTime"
+        },
+        "OperationArn" : {
+          "shape" : "__string",
+          "locationName" : "operationArn"
+        },
+        "OperationState" : {
+          "shape" : "__string",
+          "locationName" : "operationState"
+        },
+        "OperationType" : {
+          "shape" : "__string",
+          "locationName" : "operationType"
+        }
+      }
+    },
     "ClusterState": {
       "type": "string",
       "enum": [
@@ -2295,12 +2457,32 @@
         "ClusterOperationArn"
       ]
     },
+    "DescribeClusterOperationV2Request" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterOperationArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "clusterOperationArn"
+        }
+      },
+      "required" : [ "ClusterOperationArn" ]
+    },
     "DescribeClusterOperationResponse": {
       "type": "structure",
       "members": {
         "ClusterOperationInfo": {
           "shape": "ClusterOperationInfo",
           "locationName": "clusterOperationInfo"
+        }
+      }
+    },
+    "DescribeClusterOperationV2Response" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterOperationInfo" : {
+          "shape" : "ClusterOperationV2",
+          "locationName" : "clusterOperationInfo"
         }
       }
     },
@@ -2753,6 +2935,27 @@
         "ClusterArn"
       ]
     },
+    "ListClusterOperationsV2Request" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "clusterArn"
+        },
+        "MaxResults" : {
+          "shape" : "MaxResults",
+          "location" : "querystring",
+          "locationName" : "maxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "nextToken"
+        }
+      },
+      "required" : [ "ClusterArn" ]
+    },
     "ListClusterOperationsResponse": {
       "type": "structure",
       "members": {
@@ -2763,6 +2966,19 @@
         "NextToken": {
           "shape": "__string",
           "locationName": "nextToken"
+        }
+      }
+    },
+    "ListClusterOperationsV2Response" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterOperationInfoList" : {
+          "shape" : "__listOfClusterOperationV2Summary",
+          "locationName" : "clusterOperationInfoList"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "locationName" : "nextToken"
         }
       }
     },
@@ -4389,6 +4605,27 @@
         }
       }
     },
+    "VpcConnectionInfoServerless" : {
+      "type" : "structure",
+      "members" : {
+        "CreationTime" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "creationTime"
+        },
+        "Owner" : {
+          "shape" : "__string",
+          "locationName" : "owner"
+        },
+        "UserIdentity" : {
+          "shape" : "UserIdentity",
+          "locationName" : "userIdentity"
+        },
+        "VpcConnectionArn" : {
+          "shape" : "__string",
+          "locationName" : "vpcConnectionArn"
+        }
+      }
+    },
     "VpcConnectionState":{
       "type": "string",
       "enum": [
@@ -4520,6 +4757,12 @@
       "type": "list",
       "member": {
         "shape": "ClusterInfo"
+      }
+    },
+    "__listOfClusterOperationV2Summary" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ClusterOperationV2Summary"
       }
     },
     "__listOfClusterOperationInfo": {
