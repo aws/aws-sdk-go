@@ -5,6 +5,7 @@
     "AssociateMember": "<p>Associates an Amazon Web Services account with an Amazon Inspector delegated administrator. An HTTP 200 response indicates the association was successfully started, but doesn’t indicate whether it was completed. You can check if the association completed by using <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_ListMembers.html\">ListMembers</a> for multiple accounts or <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_GetMember.html\">GetMembers</a> for a single account.</p>",
     "BatchGetAccountStatus": "<p>Retrieves the Amazon Inspector status of multiple Amazon Web Services accounts within your environment.</p>",
     "BatchGetCodeSnippet": "<p>Retrieves code snippets from findings that Amazon Inspector detected code vulnerabilities in.</p>",
+    "BatchGetFindingDetails": "<p>Gets vulnerability details for findings.</p>",
     "BatchGetFreeTrialInfo": "<p>Gets free trial status for multiple Amazon Web Services accounts.</p>",
     "BatchGetMemberEc2DeepInspectionStatus": "<p>Retrieves Amazon Inspector deep inspection activation status of multiple member accounts within your organization. You must be the delegated administrator of an organization in Amazon Inspector to use this API.</p>",
     "BatchUpdateMemberEc2DeepInspectionStatus": "<p>Activates or deactivates Amazon Inspector deep inspection for the provided member accounts in your organization. You must be the delegated administrator of an organization in Amazon Inspector to use this API.</p>",
@@ -327,6 +328,16 @@
       "refs": {
       }
     },
+    "BatchGetFindingDetailsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetFindingDetailsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BatchGetFreeTrialInfoRequest": {
       "base": null,
       "refs": {
@@ -405,6 +416,7 @@
     "CisaData": {
       "base": "<p>The Cybersecurity and Infrastructure Security Agency (CISA) details for a specific vulnerability.</p>",
       "refs": {
+        "FindingDetail$cisaData": null,
         "Vulnerability$cisaData": "<p>An object that contains the Cybersecurity and Infrastructure Security Agency (CISA) details for the vulnerability.</p>"
       }
     },
@@ -722,6 +734,7 @@
     "Cwes": {
       "base": null,
       "refs": {
+        "FindingDetail$cwes": "<p>The Common Weakness Enumerations (CWEs) associated with the vulnerability.</p>",
         "Vulnerability$cwes": "<p>The Common Weakness Enumeration (CWE) associated with the vulnerability.</p>"
       }
     },
@@ -869,6 +882,7 @@
         "CvssScore$baseScore": "<p>The base CVSS score used for the finding.</p>",
         "CvssScoreDetails$score": "<p>The CVSS score.</p>",
         "Finding$inspectorScore": "<p>The Amazon Inspector score given to the finding.</p>",
+        "FindingDetail$epssScore": "<p>The Exploit Prediction Scoring System (EPSS) score of the vulnerability.</p>",
         "NumberFilter$lowerInclusive": "<p>The lowest number to be included in the filter.</p>",
         "NumberFilter$upperInclusive": "<p>The highest number to be included in the filter.</p>"
       }
@@ -1023,6 +1037,36 @@
         "GetFindingsReportStatusResponse$errorMessage": "<p>The error message of the report.</p>"
       }
     },
+    "Evidence": {
+      "base": "<p>Details of the evidence for a vulnerability identified in a finding.</p>",
+      "refs": {
+        "EvidenceList$member": null
+      }
+    },
+    "EvidenceDetail": {
+      "base": null,
+      "refs": {
+        "Evidence$evidenceDetail": "<p>The evidence details.</p>"
+      }
+    },
+    "EvidenceList": {
+      "base": null,
+      "refs": {
+        "FindingDetail$evidences": "<p>Information on the evidence of the vulnerability.</p>"
+      }
+    },
+    "EvidenceRule": {
+      "base": null,
+      "refs": {
+        "Evidence$evidenceRule": "<p>The evidence rule.</p>"
+      }
+    },
+    "EvidenceSeverity": {
+      "base": null,
+      "refs": {
+        "Evidence$severity": "<p>The evidence severity.</p>"
+      }
+    },
     "ExecutionRoleArn": {
       "base": null,
       "refs": {
@@ -1038,6 +1082,7 @@
     "ExploitObserved": {
       "base": "<p>Contains information on when this exploit was observed.</p>",
       "refs": {
+        "FindingDetail$exploitObserved": null,
         "Vulnerability$exploitObserved": "<p>An object that contains details on when the exploit was observed.</p>"
       }
     },
@@ -1173,13 +1218,52 @@
         "BatchGetCodeSnippetRequestFindingArnsList$member": null,
         "CodeSnippetError$findingArn": "<p>The ARN of the finding that a code snippet couldn't be retrieved for.</p>",
         "CodeSnippetResult$findingArn": "<p>The ARN of a finding that the code snippet is associated with.</p>",
-        "Finding$findingArn": "<p>The Amazon Resource Number (ARN) of the finding.</p>"
+        "Finding$findingArn": "<p>The Amazon Resource Number (ARN) of the finding.</p>",
+        "FindingArnList$member": null,
+        "FindingDetail$findingArn": "<p>The finding ARN that the vulnerability details are associated with.</p>",
+        "FindingDetailsError$findingArn": "<p>The finding ARN that returned an error.</p>"
+      }
+    },
+    "FindingArnList": {
+      "base": null,
+      "refs": {
+        "BatchGetFindingDetailsRequest$findingArns": "<p>A list of finding ARNs.</p>"
       }
     },
     "FindingDescription": {
       "base": null,
       "refs": {
         "Finding$description": "<p>The description of the finding.</p>"
+      }
+    },
+    "FindingDetail": {
+      "base": "<p>Details of the vulnerability identified in a finding.</p>",
+      "refs": {
+        "FindingDetails$member": null
+      }
+    },
+    "FindingDetails": {
+      "base": null,
+      "refs": {
+        "BatchGetFindingDetailsResponse$findingDetails": "<p>A finding's vulnerability details.</p>"
+      }
+    },
+    "FindingDetailsError": {
+      "base": "<p>Details about an error encountered when trying to return vulnerability data for a finding.</p>",
+      "refs": {
+        "FindingDetailsErrorList$member": null
+      }
+    },
+    "FindingDetailsErrorCode": {
+      "base": null,
+      "refs": {
+        "FindingDetailsError$errorCode": "<p>The error code.</p>"
+      }
+    },
+    "FindingDetailsErrorList": {
+      "base": null,
+      "refs": {
+        "BatchGetFindingDetailsResponse$errors": "<p>Error information for findings that details could not be returned for.</p>"
       }
     },
     "FindingList": {
@@ -1866,6 +1950,7 @@
         "Ec2InstanceAggregationResponse$instanceId": "<p>The Amazon EC2 instance ID.</p>",
         "FailedAccount$errorMessage": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
         "FailedMemberAccountEc2DeepInspectionStatusState$errorMessage": "<p>The error message explaining why the account failed to activate Amazon Inspector deep inspection.</p>",
+        "FindingDetailsError$errorMessage": "<p>The error message.</p>",
         "GetEc2DeepInspectionConfigurationResponse$errorMessage": "<p>An error message explaining why Amazon Inspector deep inspection configurations could not be retrieved for your account.</p>",
         "GetSbomExportResponse$errorMessage": "<p>An error message.</p>",
         "ImageLayerAggregationResponse$layerHash": "<p>The layer hash.</p>",
@@ -2284,6 +2369,12 @@
         "UpdateEncryptionKeyRequest$resourceType": "<p>The resource type for the encryption key.</p>"
       }
     },
+    "RiskScore": {
+      "base": null,
+      "refs": {
+        "FindingDetail$riskScore": "<p>The risk score of the vulnerability.</p>"
+      }
+    },
     "Runtime": {
       "base": null,
       "refs": {
@@ -2470,7 +2561,7 @@
         "ConflictException$resourceId": "<p>The ID of the conflicting resource.</p>",
         "ConflictException$resourceType": "<p>The type of the conflicting resource.</p>",
         "Destination$bucketName": "<p>The name of the Amazon S3 bucket to export findings to.</p>",
-        "Destination$keyPrefix": "<p>The prefix of the Amazon S3 bucket used to export findings.</p>",
+        "Destination$keyPrefix": "<p>The prefix that the findings will be written under.</p>",
         "Destination$kmsKeyArn": "<p>The ARN of the KMS key used to encrypt data when exporting findings.</p>",
         "Ec2InstanceAggregationResponse$accountId": "<p>The Amazon Web Services account for the Amazon EC2 instance.</p>",
         "Ec2InstanceAggregationResponse$operatingSystem": "<p>The operating system of the Amazon EC2 instance.</p>",
@@ -2545,7 +2636,7 @@
         "FilterCriteria$lambdaFunctionLayers": "<p>Filters the list of AWS Lambda functions by the function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\"> layers</a>. A Lambda function can have up to five layers.</p>",
         "FilterCriteria$lambdaFunctionName": "<p>Filters the list of AWS Lambda functions by the name of the function.</p>",
         "FilterCriteria$lambdaFunctionRuntime": "<p>Filters the list of AWS Lambda functions by the runtime environment for the Lambda function.</p>",
-        "FilterCriteria$networkProtocol": "<p>Details on the ingress source addresses used to filter findings.</p>",
+        "FilterCriteria$networkProtocol": "<p>Details on network protocol used to filter findings.</p>",
         "FilterCriteria$relatedVulnerabilities": "<p>Details on the related vulnerabilities used to filter findings.</p>",
         "FilterCriteria$resourceId": "<p>Details on the resource IDs used to filter findings.</p>",
         "FilterCriteria$resourceType": "<p>Details on the resource types used to filter findings.</p>",
@@ -2705,6 +2796,18 @@
         "TitleAggregation$sortBy": "<p>The value to sort results by.</p>"
       }
     },
+    "Tool": {
+      "base": null,
+      "refs": {
+        "Tools$member": null
+      }
+    },
+    "Tools": {
+      "base": null,
+      "refs": {
+        "FindingDetail$tools": "<p>The known malware tools or kits that can exploit the vulnerability.</p>"
+      }
+    },
     "Ttp": {
       "base": null,
       "refs": {
@@ -2714,7 +2817,8 @@
     "Ttps": {
       "base": null,
       "refs": {
-        "AtigData$ttps": "<p>The <a href=\"https://attack.mitre.org/\">MITRE ATT&amp;CK</a> tactics, techniques, and procedures (TTPs) associated with vulnerability.</p>"
+        "AtigData$ttps": "<p>The <a href=\"https://attack.mitre.org/\">MITRE ATT&amp;CK</a> tactics, techniques, and procedures (TTPs) associated with vulnerability.</p>",
+        "FindingDetail$ttps": "<p>The MITRE adversary tactics, techniques, or procedures (TTPs) associated with the vulnerability.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -2940,6 +3044,7 @@
     "VulnerabilityReferenceUrls": {
       "base": null,
       "refs": {
+        "FindingDetail$referenceUrls": "<p>The reference URLs for the vulnerability data.</p>",
         "Vulnerability$referenceUrls": "<p>Links to various resources with more information on this vulnerability. </p>"
       }
     },

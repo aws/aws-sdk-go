@@ -181,6 +181,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourcePolicyRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeDataIngestionJob":{
       "name":"DescribeDataIngestionJob",
       "http":{
@@ -272,6 +288,74 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeModelVersion":{
+      "name":"DescribeModelVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeModelVersionRequest"},
+      "output":{"shape":"DescribeModelVersionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeResourcePolicy":{
+      "name":"DescribeResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeResourcePolicyRequest"},
+      "output":{"shape":"DescribeResourcePolicyResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ImportDataset":{
+      "name":"ImportDataset",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportDatasetRequest"},
+      "output":{"shape":"ImportDatasetResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ImportModelVersion":{
+      "name":"ImportModelVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportModelVersionRequest"},
+      "output":{"shape":"ImportModelVersionResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
@@ -384,6 +468,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListModelVersions":{
+      "name":"ListModelVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListModelVersionsRequest"},
+      "output":{"shape":"ListModelVersionsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListModels":{
       "name":"ListModels",
       "http":{
@@ -427,6 +527,24 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourcePolicyRequest"},
+      "output":{"shape":"PutResourcePolicyResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
@@ -514,6 +632,23 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateActiveModelVersion":{
+      "name":"UpdateActiveModelVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateActiveModelVersionRequest"},
+      "output":{"shape":"UpdateActiveModelVersionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
       ]
     },
     "UpdateInferenceScheduler":{
@@ -849,7 +984,8 @@
       "enum":[
         "CREATED",
         "INGESTION_IN_PROGRESS",
-        "ACTIVE"
+        "ACTIVE",
+        "IMPORT_IN_PROGRESS"
       ]
     },
     "DatasetSummaries":{
@@ -904,6 +1040,13 @@
         "ModelName":{"shape":"ModelName"}
       }
     },
+    "DeleteResourcePolicyRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
     "DescribeDataIngestionJobRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -926,7 +1069,8 @@
         "StatusDetail":{"shape":"BoundedLengthString"},
         "IngestedDataSize":{"shape":"DataSizeInBytes"},
         "DataStartTime":{"shape":"Timestamp"},
-        "DataEndTime":{"shape":"Timestamp"}
+        "DataEndTime":{"shape":"Timestamp"},
+        "SourceDatasetArn":{"shape":"DatasetArn"}
       }
     },
     "DescribeDatasetRequest":{
@@ -954,7 +1098,8 @@
         "IngestedFilesSummary":{"shape":"IngestedFilesSummary"},
         "RoleArn":{"shape":"IamRoleArn"},
         "DataStartTime":{"shape":"Timestamp"},
-        "DataEndTime":{"shape":"Timestamp"}
+        "DataEndTime":{"shape":"Timestamp"},
+        "SourceDatasetArn":{"shape":"DatasetArn"}
       }
     },
     "DescribeInferenceSchedulerRequest":{
@@ -1062,7 +1207,76 @@
         "LastUpdatedTime":{"shape":"Timestamp"},
         "CreatedAt":{"shape":"Timestamp"},
         "ServerSideKmsKeyId":{"shape":"KmsKeyArn"},
-        "OffCondition":{"shape":"OffCondition"}
+        "OffCondition":{"shape":"OffCondition"},
+        "SourceModelVersionArn":{"shape":"ModelVersionArn"},
+        "ImportJobStartTime":{"shape":"Timestamp"},
+        "ImportJobEndTime":{"shape":"Timestamp"},
+        "ActiveModelVersion":{"shape":"ModelVersion"},
+        "ActiveModelVersionArn":{"shape":"ModelVersionArn"},
+        "ModelVersionActivatedAt":{"shape":"Timestamp"},
+        "PreviousActiveModelVersion":{"shape":"ModelVersion"},
+        "PreviousActiveModelVersionArn":{"shape":"ModelVersionArn"},
+        "PreviousModelVersionActivatedAt":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeModelVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ModelName",
+        "ModelVersion"
+      ],
+      "members":{
+        "ModelName":{"shape":"ModelName"},
+        "ModelVersion":{"shape":"ModelVersion"}
+      }
+    },
+    "DescribeModelVersionResponse":{
+      "type":"structure",
+      "members":{
+        "ModelName":{"shape":"ModelName"},
+        "ModelArn":{"shape":"ModelArn"},
+        "ModelVersion":{"shape":"ModelVersion"},
+        "ModelVersionArn":{"shape":"ModelVersionArn"},
+        "Status":{"shape":"ModelVersionStatus"},
+        "SourceType":{"shape":"ModelVersionSourceType"},
+        "DatasetName":{"shape":"DatasetName"},
+        "DatasetArn":{"shape":"DatasetArn"},
+        "Schema":{"shape":"InlineDataSchema"},
+        "LabelsInputConfiguration":{"shape":"LabelsInputConfiguration"},
+        "TrainingDataStartTime":{"shape":"Timestamp"},
+        "TrainingDataEndTime":{"shape":"Timestamp"},
+        "EvaluationDataStartTime":{"shape":"Timestamp"},
+        "EvaluationDataEndTime":{"shape":"Timestamp"},
+        "RoleArn":{"shape":"IamRoleArn"},
+        "DataPreProcessingConfiguration":{"shape":"DataPreProcessingConfiguration"},
+        "TrainingExecutionStartTime":{"shape":"Timestamp"},
+        "TrainingExecutionEndTime":{"shape":"Timestamp"},
+        "FailedReason":{"shape":"BoundedLengthString"},
+        "ModelMetrics":{"shape":"ModelMetrics"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "ServerSideKmsKeyId":{"shape":"KmsKeyArn"},
+        "OffCondition":{"shape":"OffCondition"},
+        "SourceModelVersionArn":{"shape":"ModelVersionArn"},
+        "ImportJobStartTime":{"shape":"Timestamp"},
+        "ImportJobEndTime":{"shape":"Timestamp"},
+        "ImportedDataSizeInBytes":{"shape":"DataSizeInBytes"}
+      }
+    },
+    "DescribeResourcePolicyRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "DescribeResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"},
+        "ResourcePolicy":{"shape":"Policy"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
       }
     },
     "DuplicateTimestamps":{
@@ -1110,6 +1324,63 @@
       "max":256,
       "min":1,
       "pattern":"\\p{ASCII}{1,256}"
+    },
+    "ImportDatasetRequest":{
+      "type":"structure",
+      "required":[
+        "SourceDatasetArn",
+        "ClientToken"
+      ],
+      "members":{
+        "SourceDatasetArn":{"shape":"DatasetArn"},
+        "DatasetName":{"shape":"DatasetName"},
+        "ClientToken":{
+          "shape":"IdempotenceToken",
+          "idempotencyToken":true
+        },
+        "ServerSideKmsKeyId":{"shape":"NameOrArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "ImportDatasetResponse":{
+      "type":"structure",
+      "members":{
+        "DatasetName":{"shape":"DatasetName"},
+        "DatasetArn":{"shape":"DatasetArn"},
+        "Status":{"shape":"DatasetStatus"},
+        "JobId":{"shape":"IngestionJobId"}
+      }
+    },
+    "ImportModelVersionRequest":{
+      "type":"structure",
+      "required":[
+        "SourceModelVersionArn",
+        "DatasetName",
+        "ClientToken"
+      ],
+      "members":{
+        "SourceModelVersionArn":{"shape":"ModelVersionArn"},
+        "ModelName":{"shape":"ModelName"},
+        "DatasetName":{"shape":"DatasetIdentifier"},
+        "LabelsInputConfiguration":{"shape":"LabelsInputConfiguration"},
+        "ClientToken":{
+          "shape":"IdempotenceToken",
+          "idempotencyToken":true
+        },
+        "RoleArn":{"shape":"IamRoleArn"},
+        "ServerSideKmsKeyId":{"shape":"NameOrArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "ImportModelVersionResponse":{
+      "type":"structure",
+      "members":{
+        "ModelName":{"shape":"ModelName"},
+        "ModelArn":{"shape":"ModelArn"},
+        "ModelVersionArn":{"shape":"ModelVersionArn"},
+        "ModelVersion":{"shape":"ModelVersion"},
+        "Status":{"shape":"ModelVersionStatus"}
+      }
     },
     "InferenceEventSummaries":{
       "type":"list",
@@ -1267,7 +1538,8 @@
       "enum":[
         "IN_PROGRESS",
         "SUCCESS",
-        "FAILED"
+        "FAILED",
+        "IMPORT_IN_PROGRESS"
       ]
     },
     "IngestionS3InputConfiguration":{
@@ -1538,6 +1810,28 @@
         "LabelSummaries":{"shape":"LabelSummaries"}
       }
     },
+    "ListModelVersionsRequest":{
+      "type":"structure",
+      "required":["ModelName"],
+      "members":{
+        "ModelName":{"shape":"ModelName"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "Status":{"shape":"ModelVersionStatus"},
+        "SourceType":{"shape":"ModelVersionSourceType"},
+        "CreatedAtEndTime":{"shape":"Timestamp"},
+        "CreatedAtStartTime":{"shape":"Timestamp"},
+        "MaxModelVersion":{"shape":"ModelVersion"},
+        "MinModelVersion":{"shape":"ModelVersion"}
+      }
+    },
+    "ListModelVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "ModelVersionSummaries":{"shape":"ModelVersionSummaries"}
+      }
+    },
     "ListModelsRequest":{
       "type":"structure",
       "members":{
@@ -1635,7 +1929,8 @@
       "enum":[
         "IN_PROGRESS",
         "SUCCESS",
-        "FAILED"
+        "FAILED",
+        "IMPORT_IN_PROGRESS"
       ]
     },
     "ModelSummaries":{
@@ -1650,7 +1945,53 @@
         "DatasetName":{"shape":"DatasetName"},
         "DatasetArn":{"shape":"DatasetArn"},
         "Status":{"shape":"ModelStatus"},
-        "CreatedAt":{"shape":"Timestamp"}
+        "CreatedAt":{"shape":"Timestamp"},
+        "ActiveModelVersion":{"shape":"ModelVersion"},
+        "ActiveModelVersionArn":{"shape":"ModelVersionArn"}
+      }
+    },
+    "ModelVersion":{
+      "type":"long",
+      "min":1
+    },
+    "ModelVersionArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\\-]*:[0-9]{12}:model\\/.+\\/.+\\/model-version\\/[0-9]{1,}$"
+    },
+    "ModelVersionSourceType":{
+      "type":"string",
+      "enum":[
+        "TRAINING",
+        "RETRAINING",
+        "IMPORT"
+      ]
+    },
+    "ModelVersionStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILED",
+        "IMPORT_IN_PROGRESS",
+        "CANCELED"
+      ]
+    },
+    "ModelVersionSummaries":{
+      "type":"list",
+      "member":{"shape":"ModelVersionSummary"}
+    },
+    "ModelVersionSummary":{
+      "type":"structure",
+      "members":{
+        "ModelName":{"shape":"ModelName"},
+        "ModelArn":{"shape":"ModelArn"},
+        "ModelVersion":{"shape":"ModelVersion"},
+        "ModelVersionArn":{"shape":"ModelVersionArn"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "Status":{"shape":"ModelVersionStatus"},
+        "SourceType":{"shape":"ModelVersionSourceType"}
       }
     },
     "MonotonicValues":{
@@ -1691,6 +2032,47 @@
       "type":"string",
       "max":2048,
       "min":1
+    },
+    "Policy":{
+      "type":"string",
+      "max":20000,
+      "min":1,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
+    },
+    "PolicyRevisionId":{
+      "type":"string",
+      "max":50,
+      "pattern":"[0-9A-Fa-f]+"
+    },
+    "PutResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "ResourcePolicy",
+        "ClientToken"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "ResourcePolicy":{"shape":"Policy"},
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"},
+        "ClientToken":{
+          "shape":"IdempotenceToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "PutResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"}
+      }
+    },
+    "ResourceArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\\-]*:[0-9]{12}:.+"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1939,6 +2321,28 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateActiveModelVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ModelName",
+        "ModelVersion"
+      ],
+      "members":{
+        "ModelName":{"shape":"ModelName"},
+        "ModelVersion":{"shape":"ModelVersion"}
+      }
+    },
+    "UpdateActiveModelVersionResponse":{
+      "type":"structure",
+      "members":{
+        "ModelName":{"shape":"ModelName"},
+        "ModelArn":{"shape":"ModelArn"},
+        "CurrentActiveVersion":{"shape":"ModelVersion"},
+        "PreviousActiveVersion":{"shape":"ModelVersion"},
+        "CurrentActiveVersionArn":{"shape":"ModelVersionArn"},
+        "PreviousActiveVersionArn":{"shape":"ModelVersionArn"}
       }
     },
     "UpdateInferenceSchedulerRequest":{

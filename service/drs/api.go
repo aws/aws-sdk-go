@@ -16102,6 +16102,9 @@ const (
 
 	// TargetInstanceTypeRightSizingMethodBasic is a TargetInstanceTypeRightSizingMethod enum value
 	TargetInstanceTypeRightSizingMethodBasic = "BASIC"
+
+	// TargetInstanceTypeRightSizingMethodInAws is a TargetInstanceTypeRightSizingMethod enum value
+	TargetInstanceTypeRightSizingMethodInAws = "IN_AWS"
 )
 
 // TargetInstanceTypeRightSizingMethod_Values returns all elements of the TargetInstanceTypeRightSizingMethod enum
@@ -16109,6 +16112,7 @@ func TargetInstanceTypeRightSizingMethod_Values() []string {
 	return []string{
 		TargetInstanceTypeRightSizingMethodNone,
 		TargetInstanceTypeRightSizingMethodBasic,
+		TargetInstanceTypeRightSizingMethodInAws,
 	}
 }
 

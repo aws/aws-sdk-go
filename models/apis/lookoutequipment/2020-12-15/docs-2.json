@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<p>Amazon Lookout for Equipment is a machine learning service that uses advanced analytics to identify anomalies in machines from sensor data for use in predictive maintenance. </p>",
   "operations": {
-    "CreateDataset": "<p>Creates a container for a collection of data being ingested for analysis. The dataset contains the metadata describing where the data is and what the data actually looks like. In other words, it contains the location of the data source, the data schema, and other information. A dataset also contains any tags associated with the ingested data. </p>",
+    "CreateDataset": "<p>Creates a container for a collection of data being ingested for analysis. The dataset contains the metadata describing where the data is and what the data actually looks like. For example, it contains the location of the data source, the data schema, and other information. A dataset also contains any tags associated with the ingested data. </p>",
     "CreateInferenceScheduler": "<p> Creates a scheduled inference. Scheduling an inference is setting up a continuous real-time inference plan to analyze new measurement data. When setting up the schedule, you provide an S3 bucket location for the input data, assign it a delimiter between separate entries in the data, set an offset delay if desired, and set the frequency of inferencing. You must also provide an S3 bucket location for the output data. </p>",
     "CreateLabel": "<p> Creates a label for an event. </p>",
     "CreateLabelGroup": "<p> Creates a group of labels. </p>",
@@ -12,12 +12,17 @@
     "DeleteLabel": "<p> Deletes a label. </p>",
     "DeleteLabelGroup": "<p> Deletes a group of labels. </p>",
     "DeleteModel": "<p>Deletes an ML model currently available for Amazon Lookout for Equipment. This will prevent it from being used with an inference scheduler, even one that is already set up. </p>",
+    "DeleteResourcePolicy": "<p>Deletes the resource policy attached to the resource.</p>",
     "DescribeDataIngestionJob": "<p>Provides information on a specific data ingestion job such as creation time, dataset ARN, and status.</p>",
     "DescribeDataset": "<p>Provides a JSON description of the data in each time series dataset, including names, column names, and data types.</p>",
     "DescribeInferenceScheduler": "<p> Specifies information about the inference scheduler being used, including name, model, status, and associated metadata </p>",
     "DescribeLabel": "<p> Returns the name of the label. </p>",
     "DescribeLabelGroup": "<p> Returns information about the label group. </p>",
     "DescribeModel": "<p>Provides a JSON containing the overall information about a specific ML model, including model name and ARN, dataset, training and evaluation information, status, and so on. </p>",
+    "DescribeModelVersion": "<p>Retrieves information about a specific machine learning model version.</p>",
+    "DescribeResourcePolicy": "<p>Provides the details of a resource policy attached to a resource.</p>",
+    "ImportDataset": "<p>Imports a dataset.</p>",
+    "ImportModelVersion": "<p>Imports a model that has been trained successfully.</p>",
     "ListDataIngestionJobs": "<p>Provides a list of all data ingestion jobs, including dataset name and ARN, S3 location of the input data, status, and so on. </p>",
     "ListDatasets": "<p>Lists all datasets currently available in your account, filtering on the dataset name. </p>",
     "ListInferenceEvents": "<p> Lists all inference events that have been found for the specified inference scheduler. </p>",
@@ -25,14 +30,17 @@
     "ListInferenceSchedulers": "<p>Retrieves a list of all inference schedulers currently available for your account. </p>",
     "ListLabelGroups": "<p> Returns a list of the label groups. </p>",
     "ListLabels": "<p> Provides a list of labels. </p>",
+    "ListModelVersions": "<p>Generates a list of all model versions for a given model, including the model version, model version ARN, and status. To list a subset of versions, use the <code>MaxModelVersion</code> and <code>MinModelVersion</code> fields.</p>",
     "ListModels": "<p>Generates a list of all models in the account, including model name and ARN, dataset, and status. </p>",
     "ListSensorStatistics": "<p> Lists statistics about the data collected for each of the sensors that have been successfully ingested in the particular dataset. Can also be used to retreive Sensor Statistics for a previous ingestion job. </p>",
     "ListTagsForResource": "<p>Lists all the tags for a specified resource, including key and value. </p>",
+    "PutResourcePolicy": "<p>Creates a resource control policy for a given resource.</p>",
     "StartDataIngestionJob": "<p>Starts a data ingestion job. Amazon Lookout for Equipment returns the job status. </p>",
     "StartInferenceScheduler": "<p>Starts an inference scheduler. </p>",
     "StopInferenceScheduler": "<p>Stops an inference scheduler. </p>",
     "TagResource": "<p>Associates a given tag to a resource in your account. A tag is a key-value pair which can be added to an Amazon Lookout for Equipment resource as metadata. Tags can be used for organizing your resources as well as helping you to search and filter by tag. Multiple tags can be added to a resource, either when you create it, or later. Up to 50 tags can be associated with each resource. </p>",
     "UntagResource": "<p>Removes a specific tag from a given resource. The tag is specified by its key. </p>",
+    "UpdateActiveModelVersion": "<p>Sets the active model version for a given machine learning model.</p>",
     "UpdateInferenceScheduler": "<p>Updates an inference scheduler. </p>",
     "UpdateLabelGroup": "<p> Updates the label group. </p>"
   },
@@ -64,6 +72,7 @@
         "DescribeDataIngestionJobResponse$FailedReason": "<p>Specifies the reason for failure when a data ingestion job has failed. </p>",
         "DescribeDataIngestionJobResponse$StatusDetail": "<p> Provides details about status of the ingestion job that is currently in progress. </p>",
         "DescribeModelResponse$FailedReason": "<p>If the training of the ML model failed, this indicates the reason for that failure. </p>",
+        "DescribeModelVersionResponse$FailedReason": "<p>The failure message if the training of the model version failed.</p>",
         "InferenceExecutionSummary$FailedReason": "<p> Specifies the reason for failure when an inference execution has failed. </p>",
         "InternalServerException$Message": null,
         "ResourceNotFoundException$Message": null,
@@ -186,7 +195,8 @@
       "base": "<p>The configuration is the <code>TargetSamplingRate</code>, which is the sampling rate of the data after post processing by Amazon Lookout for Equipment. For example, if you provide data that has been collected at a 1 second level and you want the system to resample the data at a 1 minute rate before training, the <code>TargetSamplingRate</code> is 1 minute.</p> <p>When providing a value for the <code>TargetSamplingRate</code>, you must attach the prefix \"PT\" to the rate you want. The value for a 1 second rate is therefore <i>PT1S</i>, the value for a 15 minute rate is <i>PT15M</i>, and the value for a 1 hour rate is <i>PT1H</i> </p>",
       "refs": {
         "CreateModelRequest$DataPreProcessingConfiguration": "<p>The configuration is the <code>TargetSamplingRate</code>, which is the sampling rate of the data after post processing by Amazon Lookout for Equipment. For example, if you provide data that has been collected at a 1 second level and you want the system to resample the data at a 1 minute rate before training, the <code>TargetSamplingRate</code> is 1 minute.</p> <p>When providing a value for the <code>TargetSamplingRate</code>, you must attach the prefix \"PT\" to the rate you want. The value for a 1 second rate is therefore <i>PT1S</i>, the value for a 15 minute rate is <i>PT15M</i>, and the value for a 1 hour rate is <i>PT1H</i> </p>",
-        "DescribeModelResponse$DataPreProcessingConfiguration": "<p>The configuration is the <code>TargetSamplingRate</code>, which is the sampling rate of the data after post processing by Amazon Lookout for Equipment. For example, if you provide data that has been collected at a 1 second level and you want the system to resample the data at a 1 minute rate before training, the <code>TargetSamplingRate</code> is 1 minute.</p> <p>When providing a value for the <code>TargetSamplingRate</code>, you must attach the prefix \"PT\" to the rate you want. The value for a 1 second rate is therefore <i>PT1S</i>, the value for a 15 minute rate is <i>PT15M</i>, and the value for a 1 hour rate is <i>PT1H</i> </p>"
+        "DescribeModelResponse$DataPreProcessingConfiguration": "<p>The configuration is the <code>TargetSamplingRate</code>, which is the sampling rate of the data after post processing by Amazon Lookout for Equipment. For example, if you provide data that has been collected at a 1 second level and you want the system to resample the data at a 1 minute rate before training, the <code>TargetSamplingRate</code> is 1 minute.</p> <p>When providing a value for the <code>TargetSamplingRate</code>, you must attach the prefix \"PT\" to the rate you want. The value for a 1 second rate is therefore <i>PT1S</i>, the value for a 15 minute rate is <i>PT15M</i>, and the value for a 1 hour rate is <i>PT1H</i> </p>",
+        "DescribeModelVersionResponse$DataPreProcessingConfiguration": null
       }
     },
     "DataQualitySummary": {
@@ -199,7 +209,8 @@
     "DataSizeInBytes": {
       "base": null,
       "refs": {
-        "DescribeDataIngestionJobResponse$IngestedDataSize": "<p> Indicates the size of the ingested dataset. </p>"
+        "DescribeDataIngestionJobResponse$IngestedDataSize": "<p> Indicates the size of the ingested dataset. </p>",
+        "DescribeModelVersionResponse$ImportedDataSizeInBytes": "<p>The size in bytes of the imported data. This field appears if the model version was imported.</p>"
       }
     },
     "DataUploadFrequency": {
@@ -218,8 +229,13 @@
         "DataIngestionJobSummary$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset used in the data ingestion job. </p>",
         "DatasetSummary$DatasetArn": "<p>The Amazon Resource Name (ARN) of the specified dataset. </p>",
         "DescribeDataIngestionJobResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset being used in the data ingestion job. </p>",
+        "DescribeDataIngestionJobResponse$SourceDatasetArn": "<p>The Amazon Resource Name (ARN) of the source dataset from which the data used for the data ingestion job was imported from.</p>",
         "DescribeDatasetResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset being described. </p>",
+        "DescribeDatasetResponse$SourceDatasetArn": "<p>The Amazon Resource Name (ARN) of the source dataset from which the current data being described was imported from.</p>",
         "DescribeModelResponse$DatasetArn": "<p>The Amazon Resouce Name (ARN) of the dataset used to create the ML model being described. </p>",
+        "DescribeModelVersionResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset used to train the model version.</p>",
+        "ImportDatasetRequest$SourceDatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to import.</p>",
+        "ImportDatasetResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset that was imported.</p>",
         "ModelSummary$DatasetArn": "<p> The Amazon Resource Name (ARN) of the dataset used to create the model. </p>"
       }
     },
@@ -229,6 +245,7 @@
         "CreateModelRequest$DatasetName": "<p>The name of the dataset for the ML model being created. </p>",
         "DeleteDatasetRequest$DatasetName": "<p>The name of the dataset to be deleted. </p>",
         "DescribeDatasetRequest$DatasetName": "<p>The name of the dataset to be described. </p>",
+        "ImportModelVersionRequest$DatasetName": "<p>The name of the dataset for the machine learning model being imported. </p>",
         "StartDataIngestionJobRequest$DatasetName": "<p>The name of the dataset being used by the data ingestion job. </p>"
       }
     },
@@ -241,6 +258,9 @@
         "DatasetSummary$DatasetName": "<p>The name of the dataset. </p>",
         "DescribeDatasetResponse$DatasetName": "<p>The name of the dataset being described. </p>",
         "DescribeModelResponse$DatasetName": "<p>The name of the dataset being used by the ML being described. </p>",
+        "DescribeModelVersionResponse$DatasetName": "<p>The name of the dataset used to train the model version.</p>",
+        "ImportDatasetRequest$DatasetName": "<p>The name of the machine learning dataset to be created. If the dataset already exists, Amazon Lookout for Equipment overwrites the existing dataset. If you don't specify this field, it is filled with the name of the source dataset.</p>",
+        "ImportDatasetResponse$DatasetName": "<p>The name of the created machine learning dataset.</p>",
         "ListDataIngestionJobsRequest$DatasetName": "<p>The name of the dataset being used for the data ingestion job. </p>",
         "ListDatasetsRequest$DatasetNameBeginsWith": "<p>The beginning of the name of the datasets to be listed. </p>",
         "ListModelsRequest$DatasetNameBeginsWith": "<p>The beginning of the name of the dataset of the ML models to be listed. </p>",
@@ -260,7 +280,8 @@
       "refs": {
         "CreateDatasetResponse$Status": "<p>Indicates the status of the <code>CreateDataset</code> operation. </p>",
         "DatasetSummary$Status": "<p>Indicates the status of the dataset. </p>",
-        "DescribeDatasetResponse$Status": "<p>Indicates the status of the dataset. </p>"
+        "DescribeDatasetResponse$Status": "<p>Indicates the status of the dataset. </p>",
+        "ImportDatasetResponse$Status": "<p>The status of the <code>ImportDataset</code> operation.</p>"
       }
     },
     "DatasetSummaries": {
@@ -296,6 +317,11 @@
       }
     },
     "DeleteModelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePolicyRequest": {
       "base": null,
       "refs": {
       }
@@ -360,6 +386,26 @@
       "refs": {
       }
     },
+    "DescribeModelVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeModelVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DuplicateTimestamps": {
       "base": "<p> Entity that comprises information abount duplicate timestamps in the dataset. </p>",
       "refs": {
@@ -420,6 +466,8 @@
         "DescribeDatasetResponse$RoleArn": "<p> The Amazon Resource Name (ARN) of the IAM role that you are using for this the data ingestion job. </p>",
         "DescribeInferenceSchedulerResponse$RoleArn": "<p> The Amazon Resource Name (ARN) of a role with permission to access the data source for the inference scheduler being described. </p>",
         "DescribeModelResponse$RoleArn": "<p> The Amazon Resource Name (ARN) of a role with permission to access the data source for the ML model being described. </p>",
+        "DescribeModelVersionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that was used to train the model version.</p>",
+        "ImportModelVersionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the data source being used to create the machine learning model. </p>",
         "StartDataIngestionJobRequest$RoleArn": "<p> The Amazon Resource Name (ARN) of a role with permission to access the data source for the data ingestion job. </p>",
         "UpdateInferenceSchedulerRequest$RoleArn": "<p> The Amazon Resource Name (ARN) of a role with permission to access the data source for the inference scheduler. </p>"
       }
@@ -432,7 +480,30 @@
         "CreateLabelGroupRequest$ClientToken": "<p> A unique identifier for the request to create a label group. If you do not set the client request token, Lookout for Equipment generates one. </p>",
         "CreateLabelRequest$ClientToken": "<p> A unique identifier for the request to create a label. If you do not set the client request token, Lookout for Equipment generates one. </p>",
         "CreateModelRequest$ClientToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
+        "ImportDatasetRequest$ClientToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
+        "ImportModelVersionRequest$ClientToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
+        "PutResourcePolicyRequest$ClientToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
         "StartDataIngestionJobRequest$ClientToken": "<p> A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>"
+      }
+    },
+    "ImportDatasetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportDatasetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportModelVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportModelVersionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "InferenceEventSummaries": {
@@ -546,7 +617,7 @@
         "CreateInferenceSchedulerResponse$Status": "<p>Indicates the status of the <code>CreateInferenceScheduler</code> operation. </p>",
         "DescribeInferenceSchedulerResponse$Status": "<p>Indicates the status of the inference scheduler. </p>",
         "InferenceSchedulerSummary$Status": "<p>Indicates the status of the inference scheduler. </p>",
-        "ListInferenceSchedulersRequest$Status": "<p>Specifies the current status of the inference schedulers to list.</p>",
+        "ListInferenceSchedulersRequest$Status": "<p>Specifies the current status of the inference schedulers.</p>",
         "StartInferenceSchedulerResponse$Status": "<p>Indicates the status of the inference scheduler. </p>",
         "StopInferenceSchedulerResponse$Status": "<p>Indicates the status of the inference scheduler. </p>"
       }
@@ -585,6 +656,7 @@
         "DataIngestionJobSummary$JobId": "<p>Indicates the job ID of the data ingestion job. </p>",
         "DescribeDataIngestionJobRequest$JobId": "<p>The job ID of the data ingestion job. </p>",
         "DescribeDataIngestionJobResponse$JobId": "<p>Indicates the job ID of the data ingestion job. </p>",
+        "ImportDatasetResponse$JobId": "<p>A unique identifier for the job of importing the dataset.</p>",
         "ListSensorStatisticsRequest$IngestionJobId": "<p> The ingestion job id associated with the list of Sensor Statistics. To get sensor statistics for a particular ingestion job id, both dataset name and ingestion job id must be submitted as inputs. </p>",
         "StartDataIngestionJobResponse$JobId": "<p>Indicates the job ID of the data ingestion job. </p>"
       }
@@ -609,7 +681,8 @@
       "refs": {
         "DatasetSchema$InlineDataSchema": "<p> </p>",
         "DescribeDatasetResponse$Schema": "<p>A JSON description of the data that is in each time series dataset, including names, column names, and data types. </p>",
-        "DescribeModelResponse$Schema": "<p>A JSON description of the data that is in each time series dataset, including names, column names, and data types. </p>"
+        "DescribeModelResponse$Schema": "<p>A JSON description of the data that is in each time series dataset, including names, column names, and data types. </p>",
+        "DescribeModelVersionResponse$Schema": "<p>The schema of the data used to train the model version.</p>"
       }
     },
     "InsufficientSensorData": {
@@ -651,7 +724,7 @@
     "KeyPattern": {
       "base": null,
       "refs": {
-        "IngestionS3InputConfiguration$KeyPattern": "<p> Pattern for matching the Amazon S3 files which will be used for ingestion. If no KeyPattern is provided, we will use the default hierarchy file structure, which is same as KeyPattern {prefix}/{component_name}/* </p>"
+        "IngestionS3InputConfiguration$KeyPattern": "<p> The pattern for matching the Amazon S3 files that will be used for ingestion. If the schema was created previously without any KeyPattern, then the default KeyPattern {prefix}/{component_name}/* is used to download files from Amazon S3 according to the schema. This field is required when ingestion is being done for the first time.</p> <p>Valid Values: {prefix}/{component_name}_* | {prefix}/{component_name}/* | {prefix}/{component_name}[DELIMITER]* (Allowed delimiters : space, dot, underscore, hyphen)</p>"
       }
     },
     "KmsKeyArn": {
@@ -659,17 +732,18 @@
       "refs": {
         "DescribeDatasetResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt dataset data by Amazon Lookout for Equipment. </p>",
         "DescribeInferenceSchedulerResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt inference scheduler data by Amazon Lookout for Equipment. </p>",
-        "DescribeModelResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt model data by Amazon Lookout for Equipment. </p>"
+        "DescribeModelResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt model data by Amazon Lookout for Equipment. </p>",
+        "DescribeModelVersionResponse$ServerSideKmsKeyId": "<p>The identifier of the KMS key key used to encrypt model version data by Amazon Lookout for Equipment.</p>"
       }
     },
     "LabelGroupArn": {
       "base": null,
       "refs": {
-        "CreateLabelGroupResponse$LabelGroupArn": "<p> The ARN of the label group that you have created. </p>",
-        "DescribeLabelGroupResponse$LabelGroupArn": "<p> The ARN of the label group. </p>",
-        "DescribeLabelResponse$LabelGroupArn": "<p> The ARN of the requested label group. </p>",
-        "LabelGroupSummary$LabelGroupArn": "<p> The ARN of the label group. </p>",
-        "LabelSummary$LabelGroupArn": "<p> The ARN of the label group. </p>"
+        "CreateLabelGroupResponse$LabelGroupArn": "<p> The Amazon Resource Name (ARN) of the label group that you have created. </p>",
+        "DescribeLabelGroupResponse$LabelGroupArn": "<p> The Amazon Resource Name (ARN) of the label group. </p>",
+        "DescribeLabelResponse$LabelGroupArn": "<p> The Amazon Resource Name (ARN) of the requested label group. </p>",
+        "LabelGroupSummary$LabelGroupArn": "<p> The Amazon Resource Name (ARN) of the label group. </p>",
+        "LabelSummary$LabelGroupArn": "<p> The Amazon Resource Name (ARN) of the label group. </p>"
       }
     },
     "LabelGroupName": {
@@ -738,7 +812,9 @@
       "base": "<p>Contains the configuration information for the S3 location being used to hold label data. </p>",
       "refs": {
         "CreateModelRequest$LabelsInputConfiguration": "<p>The input configuration for the labels being used for the ML model that's being created. </p>",
-        "DescribeModelResponse$LabelsInputConfiguration": "<p>Specifies configuration information about the labels input, including its S3 location. </p>"
+        "DescribeModelResponse$LabelsInputConfiguration": "<p>Specifies configuration information about the labels input, including its S3 location. </p>",
+        "DescribeModelVersionResponse$LabelsInputConfiguration": null,
+        "ImportModelVersionRequest$LabelsInputConfiguration": null
       }
     },
     "LabelsS3InputConfiguration": {
@@ -830,6 +906,16 @@
       "refs": {
       }
     },
+    "ListModelVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListModelVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListModelsRequest": {
       "base": null,
       "refs": {
@@ -876,6 +962,7 @@
         "ListInferenceSchedulersRequest$MaxResults": "<p> Specifies the maximum number of inference schedulers to list. </p>",
         "ListLabelGroupsRequest$MaxResults": "<p> Specifies the maximum number of label groups to list. </p>",
         "ListLabelsRequest$MaxResults": "<p> Specifies the maximum number of labels to list. </p>",
+        "ListModelVersionsRequest$MaxResults": "<p>Specifies the maximum number of machine learning model versions to list.</p>",
         "ListModelsRequest$MaxResults": "<p> Specifies the maximum number of ML models to list. </p>",
         "ListSensorStatisticsRequest$MaxResults": "<p>Specifies the maximum number of sensors for which to retrieve statistics. </p>"
       }
@@ -898,17 +985,22 @@
         "CreateModelResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the model being created. </p>",
         "DescribeInferenceSchedulerResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the ML model of the inference scheduler being described. </p>",
         "DescribeModelResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the ML model being described. </p>",
+        "DescribeModelVersionResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the parent machine learning model that this version belong to.</p>",
+        "ImportModelVersionResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the model being created. </p>",
         "InferenceExecutionSummary$ModelArn": "<p>The Amazon Resource Name (ARN) of the ML model used for the inference execution. </p>",
         "InferenceSchedulerSummary$ModelArn": "<p> The Amazon Resource Name (ARN) of the ML model used by the inference scheduler. </p>",
         "ModelSummary$ModelArn": "<p> The Amazon Resource Name (ARN) of the ML model. </p>",
+        "ModelVersionSummary$ModelArn": "<p>The Amazon Resource Name (ARN) of the model that this model version is a version of.</p>",
         "StartInferenceSchedulerResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the ML model being used by the inference scheduler. </p>",
-        "StopInferenceSchedulerResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the ML model used by the inference scheduler being stopped. </p>"
+        "StopInferenceSchedulerResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the ML model used by the inference scheduler being stopped. </p>",
+        "UpdateActiveModelVersionResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the machine learning model for which the active model version was set.</p>"
       }
     },
     "ModelMetrics": {
       "base": null,
       "refs": {
         "DescribeModelResponse$ModelMetrics": "<p>The Model Metrics show an aggregated summary of the model's performance within the evaluation time range. This is the JSON content of the metrics created when evaluating the model. </p>",
+        "DescribeModelVersionResponse$ModelMetrics": "<p>Shows an aggregated summary, in JSON format, of the model's performance within the evaluation time range. These metrics are created when evaluating the model.</p>",
         "InferenceEventSummary$Diagnostics": "<p> An array which specifies the names and values of all sensors contributing to an inference event.</p>"
       }
     },
@@ -921,13 +1013,21 @@
         "DescribeInferenceSchedulerResponse$ModelName": "<p>The name of the ML model of the inference scheduler being described. </p>",
         "DescribeModelRequest$ModelName": "<p>The name of the ML model to be described. </p>",
         "DescribeModelResponse$ModelName": "<p>The name of the ML model being described. </p>",
+        "DescribeModelVersionRequest$ModelName": "<p>The name of the machine learning model that this version belongs to.</p>",
+        "DescribeModelVersionResponse$ModelName": "<p>The name of the machine learning model that this version belongs to.</p>",
+        "ImportModelVersionRequest$ModelName": "<p>The name for the machine learning model to be created. If the model already exists, Amazon Lookout for Equipment creates a new version. If you do not specify this field, it is filled with the name of the source model.</p>",
+        "ImportModelVersionResponse$ModelName": "<p>The name for the machine learning model.</p>",
         "InferenceExecutionSummary$ModelName": "<p>The name of the ML model being used for the inference execution. </p>",
         "InferenceSchedulerSummary$ModelName": "<p>The name of the ML model used for the inference scheduler. </p>",
         "ListInferenceSchedulersRequest$ModelName": "<p>The name of the ML model used by the inference scheduler to be listed. </p>",
+        "ListModelVersionsRequest$ModelName": "<p>Then name of the machine learning model for which the model versions are to be listed.</p>",
         "ListModelsRequest$ModelNameBeginsWith": "<p>The beginning of the name of the ML models being listed. </p>",
         "ModelSummary$ModelName": "<p>The name of the ML model. </p>",
+        "ModelVersionSummary$ModelName": "<p>The name of the model that this model version is a version of.</p>",
         "StartInferenceSchedulerResponse$ModelName": "<p>The name of the ML model being used by the inference scheduler. </p>",
-        "StopInferenceSchedulerResponse$ModelName": "<p>The name of the ML model used by the inference scheduler being stopped. </p>"
+        "StopInferenceSchedulerResponse$ModelName": "<p>The name of the ML model used by the inference scheduler being stopped. </p>",
+        "UpdateActiveModelVersionRequest$ModelName": "<p>The name of the machine learning model for which the active model version is being set.</p>",
+        "UpdateActiveModelVersionResponse$ModelName": "<p>The name of the machine learning model for which the active model version was set.</p>"
       }
     },
     "ModelStatus": {
@@ -949,6 +1049,68 @@
       "base": "<p>Provides information about the specified ML model, including dataset and model names and ARNs, as well as status. </p>",
       "refs": {
         "ModelSummaries$member": null
+      }
+    },
+    "ModelVersion": {
+      "base": null,
+      "refs": {
+        "DescribeModelResponse$ActiveModelVersion": "<p>The name of the model version used by the inference schedular when running a scheduled inference execution.</p>",
+        "DescribeModelResponse$PreviousActiveModelVersion": "<p>The model version that was set as the active model version prior to the current active model version.</p>",
+        "DescribeModelVersionRequest$ModelVersion": "<p>The version of the machine learning model.</p>",
+        "DescribeModelVersionResponse$ModelVersion": "<p>The version of the machine learning model.</p>",
+        "ImportModelVersionResponse$ModelVersion": "<p>The version of the model being created.</p>",
+        "ListModelVersionsRequest$MaxModelVersion": "<p>Specifies the highest version of the model to return in the list.</p>",
+        "ListModelVersionsRequest$MinModelVersion": "<p>Specifies the lowest version of the model to return in the list.</p>",
+        "ModelSummary$ActiveModelVersion": "<p>The model version that the inference scheduler uses to run an inference execution.</p>",
+        "ModelVersionSummary$ModelVersion": "<p>The version of the model.</p>",
+        "UpdateActiveModelVersionRequest$ModelVersion": "<p>The version of the machine learning model for which the active model version is being set.</p>",
+        "UpdateActiveModelVersionResponse$CurrentActiveVersion": "<p>The version that is currently active of the machine learning model for which the active model version was set.</p>",
+        "UpdateActiveModelVersionResponse$PreviousActiveVersion": "<p>The previous version that was active of the machine learning model for which the active model version was set.</p>"
+      }
+    },
+    "ModelVersionArn": {
+      "base": null,
+      "refs": {
+        "DescribeModelResponse$SourceModelVersionArn": "<p>The Amazon Resource Name (ARN) of the source model version. This field appears if the active model version was imported.</p>",
+        "DescribeModelResponse$ActiveModelVersionArn": "<p>The Amazon Resource Name (ARN) of the model version used by the inference scheduler when running a scheduled inference execution.</p>",
+        "DescribeModelResponse$PreviousActiveModelVersionArn": "<p>The ARN of the model version that was set as the active model version prior to the current active model version.</p>",
+        "DescribeModelVersionResponse$ModelVersionArn": "<p>The Amazon Resource Name (ARN) of the model version.</p>",
+        "DescribeModelVersionResponse$SourceModelVersionArn": "<p>If model version was imported, then this field is the arn of the source model version.</p>",
+        "ImportModelVersionRequest$SourceModelVersionArn": "<p>The Amazon Resource Name (ARN) of the model version to import.</p>",
+        "ImportModelVersionResponse$ModelVersionArn": "<p>The Amazon Resource Name (ARN) of the model version being created. </p>",
+        "ModelSummary$ActiveModelVersionArn": "<p>The Amazon Resource Name (ARN) of the model version that is set as active. The active model version is the model version that the inference scheduler uses to run an inference execution.</p>",
+        "ModelVersionSummary$ModelVersionArn": "<p>The Amazon Resource Name (ARN) of the model version.</p>",
+        "UpdateActiveModelVersionResponse$CurrentActiveVersionArn": "<p>The Amazon Resource Name (ARN) of the machine learning model version that is the current active model version.</p>",
+        "UpdateActiveModelVersionResponse$PreviousActiveVersionArn": "<p>The Amazon Resource Name (ARN) of the machine learning model version that was the previous active model version.</p>"
+      }
+    },
+    "ModelVersionSourceType": {
+      "base": null,
+      "refs": {
+        "DescribeModelVersionResponse$SourceType": "<p>Indicates whether this model version was created by training or by importing.</p>",
+        "ListModelVersionsRequest$SourceType": "<p>Filter the results based on the way the model version was generated.</p>",
+        "ModelVersionSummary$SourceType": "<p>Indicates how this model version was generated.</p>"
+      }
+    },
+    "ModelVersionStatus": {
+      "base": null,
+      "refs": {
+        "DescribeModelVersionResponse$Status": "<p>The current status of the model version.</p>",
+        "ImportModelVersionResponse$Status": "<p>The status of the <code>ImportModelVersion</code> operation. </p>",
+        "ListModelVersionsRequest$Status": "<p>Filter the results based on the current status of the model version.</p>",
+        "ModelVersionSummary$Status": "<p>The current status of the model version.</p>"
+      }
+    },
+    "ModelVersionSummaries": {
+      "base": null,
+      "refs": {
+        "ListModelVersionsResponse$ModelVersionSummaries": "<p>Provides information on the specified model version, including the created time, model and dataset ARNs, and status.</p>"
+      }
+    },
+    "ModelVersionSummary": {
+      "base": "<p>Contains information about the specific model version.</p>",
+      "refs": {
+        "ModelVersionSummaries$member": null
       }
     },
     "MonotonicValues": {
@@ -975,7 +1137,9 @@
         "CreateDatasetRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt dataset data by Amazon Lookout for Equipment. </p>",
         "CreateInferenceSchedulerRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt inference scheduler data by Amazon Lookout for Equipment. </p>",
         "CreateModelRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt model data by Amazon Lookout for Equipment. </p>",
-        "InferenceOutputConfiguration$KmsKeyId": "<p>The ID number for the AWS KMS key used to encrypt the inference output. </p>"
+        "ImportDatasetRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key key used to encrypt model data by Amazon Lookout for Equipment. </p>",
+        "ImportModelVersionRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key key used to encrypt model data by Amazon Lookout for Equipment. </p>",
+        "InferenceOutputConfiguration$KmsKeyId": "<p>The ID number for the KMS key key used to encrypt the inference output. </p>"
       }
     },
     "NextToken": {
@@ -995,6 +1159,8 @@
         "ListLabelGroupsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of label groups. </p>",
         "ListLabelsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of label groups. </p>",
         "ListLabelsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of datasets. </p>",
+        "ListModelVersionsRequest$NextToken": "<p>If the total number of results exceeds the limit that the response can display, the response returns an opaque pagination token indicating where to continue the listing of machine learning model versions. Use this token in the <code>NextToken</code> field in the request to list the next page of results.</p>",
+        "ListModelVersionsResponse$NextToken": "<p>If the total number of results exceeds the limit that the response can display, the response returns an opaque pagination token indicating where to continue the listing of machine learning model versions. Use this token in the <code>NextToken</code> field in the request to list the next page of results.</p>",
         "ListModelsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>",
         "ListModelsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>",
         "ListSensorStatisticsRequest$NextToken": "<p>An opaque pagination token indicating where to continue the listing of sensor statistics. </p>",
@@ -1005,7 +1171,42 @@
       "base": null,
       "refs": {
         "CreateModelRequest$OffCondition": "<p>Indicates that the asset associated with this sensor has been shut off. As long as this condition is met, Lookout for Equipment will not use data from this asset for training, evaluation, or inference.</p>",
-        "DescribeModelResponse$OffCondition": "<p>Indicates that the asset associated with this sensor has been shut off. As long as this condition is met, Lookout for Equipment will not use data from this asset for training, evaluation, or inference.</p>"
+        "DescribeModelResponse$OffCondition": "<p>Indicates that the asset associated with this sensor has been shut off. As long as this condition is met, Lookout for Equipment will not use data from this asset for training, evaluation, or inference.</p>",
+        "DescribeModelVersionResponse$OffCondition": "<p>Indicates that the asset associated with this sensor has been shut off. As long as this condition is met, Lookout for Equipment will not use data from this asset for training, evaluation, or inference.</p>"
+      }
+    },
+    "Policy": {
+      "base": null,
+      "refs": {
+        "DescribeResourcePolicyResponse$ResourcePolicy": "<p>The resource policy in a JSON-formatted string.</p>",
+        "PutResourcePolicyRequest$ResourcePolicy": "<p>The JSON-formatted resource policy to create.</p>"
+      }
+    },
+    "PolicyRevisionId": {
+      "base": null,
+      "refs": {
+        "DescribeResourcePolicyResponse$PolicyRevisionId": "<p>A unique identifier for a revision of the resource policy.</p>",
+        "PutResourcePolicyRequest$PolicyRevisionId": "<p>A unique identifier for a revision of the resource policy.</p>",
+        "PutResourcePolicyResponse$PolicyRevisionId": "<p>A unique identifier for a revision of the resource policy.</p>"
+      }
+    },
+    "PutResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "DeleteResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which the resource policy should be deleted.</p>",
+        "DescribeResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that is associated with the resource policy.</p>",
+        "PutResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which the policy is being created.</p>",
+        "PutResourcePolicyResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which the policy was created.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1026,7 +1227,7 @@
     "S3Key": {
       "base": null,
       "refs": {
-        "S3Object$Key": "<p>The AWS Key Management Service (AWS KMS) key being used to encrypt the S3 object. Without this key, data in the bucket is not accessible. </p>"
+        "S3Object$Key": "<p>The Amazon Web Services Key Management Service (KMS key) key being used to encrypt the S3 object. Without this key, data in the bucket is not accessible. </p>"
       }
     },
     "S3Object": {
@@ -1139,6 +1340,8 @@
         "CreateInferenceSchedulerRequest$Tags": "<p>Any tags associated with the inference scheduler. </p>",
         "CreateLabelGroupRequest$Tags": "<p> Tags that provide metadata about the label group you are creating. </p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>",
         "CreateModelRequest$Tags": "<p> Any tags associated with the ML model being created. </p>",
+        "ImportDatasetRequest$Tags": "<p>Any tags associated with the dataset to be created.</p>",
+        "ImportModelVersionRequest$Tags": "<p>The tags associated with the machine learning model to be created. </p>",
         "ListTagsForResourceResponse$Tags": "<p> Any tags associated with the resource. </p>",
         "TagResourceRequest$Tags": "<p>The tag or tags to be associated with a specific resource. Both the tag key and value are specified. </p>"
       }
@@ -1208,6 +1411,22 @@
         "DescribeModelResponse$TrainingExecutionEndTime": "<p>Indicates the time at which the training of the ML model was completed. </p>",
         "DescribeModelResponse$LastUpdatedTime": "<p>Indicates the last time the ML model was updated. The type of update is not specified. </p>",
         "DescribeModelResponse$CreatedAt": "<p>Indicates the time and date at which the ML model was created. </p>",
+        "DescribeModelResponse$ImportJobStartTime": "<p>The date and time when the import job was started. This field appears if the active model version was imported.</p>",
+        "DescribeModelResponse$ImportJobEndTime": "<p>The date and time when the import job was completed. This field appears if the active model version was imported.</p>",
+        "DescribeModelResponse$ModelVersionActivatedAt": "<p>The date the active model version was activated.</p>",
+        "DescribeModelResponse$PreviousModelVersionActivatedAt": "<p>The date and time when the previous active model version was activated.</p>",
+        "DescribeModelVersionResponse$TrainingDataStartTime": "<p>The date on which the training data began being gathered. If you imported the version, this is the date that the training data in the source version began being gathered.</p>",
+        "DescribeModelVersionResponse$TrainingDataEndTime": "<p>The date on which the training data finished being gathered. If you imported the version, this is the date that the training data in the source version finished being gathered.</p>",
+        "DescribeModelVersionResponse$EvaluationDataStartTime": "<p>The date on which the data in the evaluation set began being gathered. If you imported the version, this is the date that the evaluation set data in the source version began being gathered.</p>",
+        "DescribeModelVersionResponse$EvaluationDataEndTime": "<p>The date on which the data in the evaluation set began being gathered. If you imported the version, this is the date that the evaluation set data in the source version finished being gathered.</p>",
+        "DescribeModelVersionResponse$TrainingExecutionStartTime": "<p>The time when the training of the version began.</p>",
+        "DescribeModelVersionResponse$TrainingExecutionEndTime": "<p>The time when the training of the version completed.</p>",
+        "DescribeModelVersionResponse$LastUpdatedTime": "<p>Indicates the last time the machine learning model version was updated.</p>",
+        "DescribeModelVersionResponse$CreatedAt": "<p>Indicates the time and date at which the machine learning model version was created.</p>",
+        "DescribeModelVersionResponse$ImportJobStartTime": "<p>The date and time when the import job began. This field appears if the model version was imported.</p>",
+        "DescribeModelVersionResponse$ImportJobEndTime": "<p>The date and time when the import job completed. This field appears if the model version was imported.</p>",
+        "DescribeResourcePolicyResponse$CreationTime": "<p>The time when the resource policy was created.</p>",
+        "DescribeResourcePolicyResponse$LastModifiedTime": "<p>The time when the resource policy was last modified.</p>",
         "InferenceEventSummary$EventStartTime": "<p>Indicates the starting time of an inference event. </p>",
         "InferenceEventSummary$EventEndTime": "<p>Indicates the ending time of an inference event. </p>",
         "InferenceExecutionSummary$ScheduledStartTime": "<p>Indicates the start time at which the inference scheduler began the specific inference execution. </p>",
@@ -1219,12 +1438,15 @@
         "LabelSummary$EndTime": "<p> The timestamp indicating the end of the label. </p>",
         "LabelSummary$CreatedAt": "<p> The time at which the label was created. </p>",
         "ListInferenceEventsRequest$IntervalStartTime": "<p> Lookout for Equipment will return all the inference events with an end time equal to or greater than the start time given.</p>",
-        "ListInferenceEventsRequest$IntervalEndTime": "<p>Returns all the inference events with an end start time equal to or greater than less than the end time given</p>",
+        "ListInferenceEventsRequest$IntervalEndTime": "<p>Returns all the inference events with an end start time equal to or greater than less than the end time given.</p>",
         "ListInferenceExecutionsRequest$DataStartTimeAfter": "<p>The time reference in the inferenced dataset after which Amazon Lookout for Equipment started the inference execution. </p>",
         "ListInferenceExecutionsRequest$DataEndTimeBefore": "<p>The time reference in the inferenced dataset before which Amazon Lookout for Equipment stopped the inference execution. </p>",
         "ListLabelsRequest$IntervalStartTime": "<p> Returns all the labels with a end time equal to or later than the start time given. </p>",
         "ListLabelsRequest$IntervalEndTime": "<p> Returns all labels with a start time earlier than the end time given. </p>",
+        "ListModelVersionsRequest$CreatedAtEndTime": "<p>Filter results to return all the model versions created before this time.</p>",
+        "ListModelVersionsRequest$CreatedAtStartTime": "<p>Filter results to return all the model versions created after this time.</p>",
         "ModelSummary$CreatedAt": "<p>The time at which the specific model was created. </p>",
+        "ModelVersionSummary$CreatedAt": "<p>The time when this model version was created.</p>",
         "SensorStatisticsSummary$DataStartTime": "<p> Indicates the time reference to indicate the beginning of valid data associated with the sensor that the statistics belong to. </p>",
         "SensorStatisticsSummary$DataEndTime": "<p> Indicates the time reference to indicate the end of valid data associated with the sensor that the statistics belong to. </p>"
       }
@@ -1245,6 +1467,16 @@
       "refs": {
       }
     },
+    "UpdateActiveModelVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateActiveModelVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateInferenceSchedulerRequest": {
       "base": null,
       "refs": {
@@ -1256,7 +1488,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p> The input fails to satisfy constraints specified by Amazon Lookout for Equipment or a related AWS service that's being utilized. </p>",
+      "base": "<p> The input fails to satisfy constraints specified by Amazon Lookout for Equipment or a related Amazon Web Services service that's being utilized. </p>",
       "refs": {
       }
     }

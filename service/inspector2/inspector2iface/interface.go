@@ -72,6 +72,10 @@ type Inspector2API interface {
 	BatchGetCodeSnippetWithContext(aws.Context, *inspector2.BatchGetCodeSnippetInput, ...request.Option) (*inspector2.BatchGetCodeSnippetOutput, error)
 	BatchGetCodeSnippetRequest(*inspector2.BatchGetCodeSnippetInput) (*request.Request, *inspector2.BatchGetCodeSnippetOutput)
 
+	BatchGetFindingDetails(*inspector2.BatchGetFindingDetailsInput) (*inspector2.BatchGetFindingDetailsOutput, error)
+	BatchGetFindingDetailsWithContext(aws.Context, *inspector2.BatchGetFindingDetailsInput, ...request.Option) (*inspector2.BatchGetFindingDetailsOutput, error)
+	BatchGetFindingDetailsRequest(*inspector2.BatchGetFindingDetailsInput) (*request.Request, *inspector2.BatchGetFindingDetailsOutput)
+
 	BatchGetFreeTrialInfo(*inspector2.BatchGetFreeTrialInfoInput) (*inspector2.BatchGetFreeTrialInfoOutput, error)
 	BatchGetFreeTrialInfoWithContext(aws.Context, *inspector2.BatchGetFreeTrialInfoInput, ...request.Option) (*inspector2.BatchGetFreeTrialInfoOutput, error)
 	BatchGetFreeTrialInfoRequest(*inspector2.BatchGetFreeTrialInfoInput) (*request.Request, *inspector2.BatchGetFreeTrialInfoOutput)

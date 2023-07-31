@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS CodeStar Connections</fullname> <p>This AWS CodeStar Connections API Reference provides descriptions and usage examples of the operations and data types for the AWS CodeStar Connections API. You can use the connections API to work with connections and installations.</p> <p> <i>Connections</i> are configurations that you use to connect AWS resources to external code repositories. Each connection is a resource that can be given to services such as CodePipeline to connect to a third-party repository such as Bitbucket. For example, you can add the connection in CodePipeline so that it triggers your pipeline when a code change is made to your third-party code repository. Each connection is named and associated with a unique ARN that is used to reference the connection.</p> <p>When you create a connection, the console initiates a third-party connection handshake. <i>Installations</i> are the apps that are used to conduct this handshake. For example, the installation for the Bitbucket provider type is the Bitbucket app. When you create a connection, you can choose an existing installation or create one.</p> <p>When you want to create a connection to an installed provider type such as GitHub Enterprise Server, you create a <i>host</i> for your connections.</p> <p>You can work with connections by calling:</p> <ul> <li> <p> <a>CreateConnection</a>, which creates a uniquely named connection that can be referenced by services such as CodePipeline.</p> </li> <li> <p> <a>DeleteConnection</a>, which deletes the specified connection.</p> </li> <li> <p> <a>GetConnection</a>, which returns information about the connection, including the connection status.</p> </li> <li> <p> <a>ListConnections</a>, which lists the connections associated with your account.</p> </li> </ul> <p>You can work with hosts by calling:</p> <ul> <li> <p> <a>CreateHost</a>, which creates a host that represents the infrastructure where your provider is installed.</p> </li> <li> <p> <a>DeleteHost</a>, which deletes the specified host.</p> </li> <li> <p> <a>GetHost</a>, which returns information about the host, including the setup status.</p> </li> <li> <p> <a>ListHosts</a>, which lists the hosts associated with your account.</p> </li> </ul> <p>You can work with tags in AWS CodeStar Connections by calling the following:</p> <ul> <li> <p> <a>ListTagsForResource</a>, which gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeStar Connections.</p> </li> <li> <p> <a>TagResource</a>, which adds or updates tags for a resource in AWS CodeStar Connections.</p> </li> <li> <p> <a>UntagResource</a>, which removes tags for a resource in AWS CodeStar Connections.</p> </li> </ul> <p>For information about how to use AWS CodeStar Connections, see the <a href=\"https://docs.aws.amazon.com/dtconsole/latest/userguide/welcome-connections.html\">Developer Tools User Guide</a>.</p>",
+  "service": "<fullname>AWS CodeStar Connections</fullname> <p>This Amazon Web Services CodeStar Connections API Reference provides descriptions and usage examples of the operations and data types for the Amazon Web Services CodeStar Connections API. You can use the connections API to work with connections and installations.</p> <p> <i>Connections</i> are configurations that you use to connect Amazon Web Services resources to external code repositories. Each connection is a resource that can be given to services such as CodePipeline to connect to a third-party repository such as Bitbucket. For example, you can add the connection in CodePipeline so that it triggers your pipeline when a code change is made to your third-party code repository. Each connection is named and associated with a unique ARN that is used to reference the connection.</p> <p>When you create a connection, the console initiates a third-party connection handshake. <i>Installations</i> are the apps that are used to conduct this handshake. For example, the installation for the Bitbucket provider type is the Bitbucket app. When you create a connection, you can choose an existing installation or create one.</p> <p>When you want to create a connection to an installed provider type such as GitHub Enterprise Server, you create a <i>host</i> for your connections.</p> <p>You can work with connections by calling:</p> <ul> <li> <p> <a>CreateConnection</a>, which creates a uniquely named connection that can be referenced by services such as CodePipeline.</p> </li> <li> <p> <a>DeleteConnection</a>, which deletes the specified connection.</p> </li> <li> <p> <a>GetConnection</a>, which returns information about the connection, including the connection status.</p> </li> <li> <p> <a>ListConnections</a>, which lists the connections associated with your account.</p> </li> </ul> <p>You can work with hosts by calling:</p> <ul> <li> <p> <a>CreateHost</a>, which creates a host that represents the infrastructure where your provider is installed.</p> </li> <li> <p> <a>DeleteHost</a>, which deletes the specified host.</p> </li> <li> <p> <a>GetHost</a>, which returns information about the host, including the setup status.</p> </li> <li> <p> <a>ListHosts</a>, which lists the hosts associated with your account.</p> </li> </ul> <p>You can work with tags in Amazon Web Services CodeStar Connections by calling the following:</p> <ul> <li> <p> <a>ListTagsForResource</a>, which gets information about Amazon Web Services tags for a specified Amazon Resource Name (ARN) in Amazon Web Services CodeStar Connections.</p> </li> <li> <p> <a>TagResource</a>, which adds or updates tags for a resource in Amazon Web Services CodeStar Connections.</p> </li> <li> <p> <a>UntagResource</a>, which removes tags for a resource in Amazon Web Services CodeStar Connections.</p> </li> </ul> <p>For information about how to use Amazon Web Services CodeStar Connections, see the <a href=\"https://docs.aws.amazon.com/dtconsole/latest/userguide/welcome-connections.html\">Developer Tools User Guide</a>.</p>",
   "operations": {
-    "CreateConnection": "<p>Creates a connection that can then be given to other AWS services like CodePipeline so that it can access third-party code repositories. The connection is in pending status until the third-party connection handshake is completed from the console.</p>",
+    "CreateConnection": "<p>Creates a connection that can then be given to other Amazon Web Services services like CodePipeline so that it can access third-party code repositories. The connection is in pending status until the third-party connection handshake is completed from the console.</p>",
     "CreateHost": "<p>Creates a resource that represents the infrastructure where a third-party provider is installed. The host is used when you create connections to an installed third-party provider type, such as GitHub Enterprise Server. You create one host for all connections to that provider.</p> <note> <p>A host created through the CLI or the SDK is in `PENDING` status by default. You can make its status `AVAILABLE` by setting up the host in the console.</p> </note>",
     "DeleteConnection": "<p>The connection to be deleted.</p>",
     "DeleteHost": "<p>The host to be deleted. Before you delete a host, all connections associated to the host must be deleted.</p> <note> <p>A host cannot be deleted if it is in the VPC_CONFIG_INITIALIZING or VPC_CONFIG_DELETING state.</p> </note>",
@@ -12,7 +12,7 @@
     "ListHosts": "<p>Lists the hosts associated with your account.</p>",
     "ListTagsForResource": "<p>Gets the set of key-value pairs (metadata) that are used to manage the resource.</p>",
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
-    "UntagResource": "<p>Removes tags from an AWS resource.</p>",
+    "UntagResource": "<p>Removes tags from an Amazon Web Services resource.</p>",
     "UpdateHost": "<p>Updates a specified host with the provided configurations.</p>"
   },
   "shapes": {
@@ -36,7 +36,7 @@
       }
     },
     "Connection": {
-      "base": "<p>A resource that is used to connect third-party source providers with services like AWS CodePipeline.</p> <p>Note: A connection created through CloudFormation, the CLI, or the SDK is in `PENDING` status by default. You can make its status `AVAILABLE` by updating the connection in the console.</p>",
+      "base": "<p>A resource that is used to connect third-party source providers with services like CodePipeline.</p> <p>Note: A connection created through CloudFormation, the CLI, or the SDK is in `PENDING` status by default. You can make its status `AVAILABLE` by updating the connection in the console.</p>",
       "refs": {
         "ConnectionList$member": null,
         "GetConnectionOutput$Connection": "<p>The connection details, such as status, owner, and provider type.</p>"
@@ -45,8 +45,8 @@
     "ConnectionArn": {
       "base": null,
       "refs": {
-        "Connection$ConnectionArn": "<p>The Amazon Resource Name (ARN) of the connection. The ARN is used as the connection reference when the connection is shared between AWS services.</p> <note> <p>The ARN is never reused if the connection is deleted.</p> </note>",
-        "CreateConnectionOutput$ConnectionArn": "<p>The Amazon Resource Name (ARN) of the connection to be created. The ARN is used as the connection reference when the connection is shared between AWS services.</p> <note> <p>The ARN is never reused if the connection is deleted.</p> </note>",
+        "Connection$ConnectionArn": "<p>The Amazon Resource Name (ARN) of the connection. The ARN is used as the connection reference when the connection is shared between Amazon Web Services.</p> <note> <p>The ARN is never reused if the connection is deleted.</p> </note>",
+        "CreateConnectionOutput$ConnectionArn": "<p>The Amazon Resource Name (ARN) of the connection to be created. The ARN is used as the connection reference when the connection is shared between Amazon Web Services services.</p> <note> <p>The ARN is never reused if the connection is deleted.</p> </note>",
         "DeleteConnectionInput$ConnectionArn": "<p>The Amazon Resource Name (ARN) of the connection to be deleted.</p> <note> <p>The ARN is never reused if the connection is deleted.</p> </note>",
         "GetConnectionInput$ConnectionArn": "<p>The Amazon Resource Name (ARN) of a connection.</p>"
       }
@@ -60,8 +60,8 @@
     "ConnectionName": {
       "base": null,
       "refs": {
-        "Connection$ConnectionName": "<p>The name of the connection. Connection names must be unique in an AWS user account.</p>",
-        "CreateConnectionInput$ConnectionName": "<p>The name of the connection to be created. The name must be unique in the calling AWS account.</p>"
+        "Connection$ConnectionName": "<p>The name of the connection. Connection names must be unique in an Amazon Web Services account.</p>",
+        "CreateConnectionInput$ConnectionName": "<p>The name of the connection to be created.</p>"
       }
     },
     "ConnectionStatus": {
@@ -168,7 +168,7 @@
     "HostName": {
       "base": null,
       "refs": {
-        "CreateHostInput$Name": "<p>The name of the host to be created. The name must be unique in the calling AWS account.</p>",
+        "CreateHostInput$Name": "<p>The name of the host to be created.</p>",
         "GetHostOutput$Name": "<p>The name of the requested host.</p>",
         "Host$Name": "<p>The name of the host.</p>"
       }
@@ -283,7 +283,7 @@
       }
     },
     "Tag": {
-      "base": "<p>A tag is a key-value pair that is used to manage the resource.</p> <p>This tag is available for use by AWS services that support tags.</p>",
+      "base": "<p>A tag is a key-value pair that is used to manage the resource.</p> <p>This tag is available for use by Amazon Web Services services that support tags.</p>",
       "refs": {
         "TagList$member": null
       }

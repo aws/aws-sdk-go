@@ -468,6 +468,14 @@
         "VariantStoreItem$creationTime": "<p>When the store was created.</p>"
       }
     },
+    "CreationType": {
+      "base": null,
+      "refs": {
+        "GetReadSetMetadataResponse$creationType": "<p> The creation type of the read set. </p>",
+        "ReadSetFilter$creationType": "<p> The creation type of the read set. </p>",
+        "ReadSetListItem$creationType": "<p> The creation type of the read set. </p>"
+      }
+    },
     "DeleteAnnotationStoreRequest": {
       "base": null,
       "refs": {

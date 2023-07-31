@@ -219,6 +219,13 @@
     }
   },
   "shapes":{
+    "ActionAfterCompletion":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "DELETE"
+      ]
+    },
     "AssignPublicIp":{
       "type":"string",
       "enum":[
@@ -315,6 +322,7 @@
         "Target"
       ],
       "members":{
+        "ActionAfterCompletion":{"shape":"ActionAfterCompletion"},
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -510,6 +518,7 @@
     "GetScheduleOutput":{
       "type":"structure",
       "members":{
+        "ActionAfterCompletion":{"shape":"ActionAfterCompletion"},
         "Arn":{"shape":"ScheduleArn"},
         "CreationDate":{"shape":"CreationDate"},
         "Description":{"shape":"Description"},
@@ -1114,6 +1123,7 @@
         "Target"
       ],
       "members":{
+        "ActionAfterCompletion":{"shape":"ActionAfterCompletion"},
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true

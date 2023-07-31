@@ -1,3 +1,22 @@
+Release v1.44.313 (2023-07-31)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Updates service API and documentation
+* `service/autoscaling`: Updates service API, documentation, and examples
+  * You can now configure an instance refresh to set its status to 'failed' when it detects that a specified CloudWatch alarm has gone into the ALARM state. You can also choose to roll back the instance refresh automatically when the alarm threshold is met.
+* `service/cleanrooms`: Updates service API, documentation, and paginators
+* `service/codestar-connections`: Updates service API and documentation
+* `service/drs`: Updates service API
+* `service/inspector2`: Updates service API and documentation
+* `service/lookoutequipment`: Updates service API, documentation, and paginators
+* `service/omics`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for Aurora MySQL local write forwarding, which allows for forwarding of write operations from reader DB instances to the writer DB instance.
+* `service/route53`: Updates service API and documentation
+  * Amazon Route 53 now supports the Israel (Tel Aviv) Region (il-central-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* `service/scheduler`: Updates service API and documentation
+
 Release v1.44.312 (2023-07-28)
 ===
 

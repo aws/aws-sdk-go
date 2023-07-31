@@ -6152,6 +6152,7 @@
       },
       "emr-containers" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -7985,7 +7986,11 @@
             "hostname" : "internetmonitor.ap-southeast-4.api.aws"
           },
           "ca-central-1" : {
-            "hostname" : "internetmonitor.ca-central-1.api.aws"
+            "hostname" : "internetmonitor.ca-central-1.api.aws",
+            "variants" : [ {
+              "hostname" : "internetmonitor-fips.ca-central-1.api.aws",
+              "tags" : [ "fips" ]
+            } ]
           },
           "eu-central-1" : {
             "hostname" : "internetmonitor.eu-central-1.api.aws"
@@ -8021,16 +8026,32 @@
             "hostname" : "internetmonitor.sa-east-1.api.aws"
           },
           "us-east-1" : {
-            "hostname" : "internetmonitor.us-east-1.api.aws"
+            "hostname" : "internetmonitor.us-east-1.api.aws",
+            "variants" : [ {
+              "hostname" : "internetmonitor-fips.us-east-1.api.aws",
+              "tags" : [ "fips" ]
+            } ]
           },
           "us-east-2" : {
-            "hostname" : "internetmonitor.us-east-2.api.aws"
+            "hostname" : "internetmonitor.us-east-2.api.aws",
+            "variants" : [ {
+              "hostname" : "internetmonitor-fips.us-east-2.api.aws",
+              "tags" : [ "fips" ]
+            } ]
           },
           "us-west-1" : {
-            "hostname" : "internetmonitor.us-west-1.api.aws"
+            "hostname" : "internetmonitor.us-west-1.api.aws",
+            "variants" : [ {
+              "hostname" : "internetmonitor-fips.us-west-1.api.aws",
+              "tags" : [ "fips" ]
+            } ]
           },
           "us-west-2" : {
-            "hostname" : "internetmonitor.us-west-2.api.aws"
+            "hostname" : "internetmonitor.us-west-2.api.aws",
+            "variants" : [ {
+              "hostname" : "internetmonitor-fips.us-west-2.api.aws",
+              "tags" : [ "fips" ]
+            } ]
           }
         }
       },
@@ -24040,9 +24061,22 @@
             "deprecated" : true,
             "hostname" : "rbin-fips.us-iso-east-1.c2s.ic.gov"
           },
+          "fips-us-iso-west-1" : {
+            "credentialScope" : {
+              "region" : "us-iso-west-1"
+            },
+            "deprecated" : true,
+            "hostname" : "rbin-fips.us-iso-west-1.c2s.ic.gov"
+          },
           "us-iso-east-1" : {
             "variants" : [ {
               "hostname" : "rbin-fips.us-iso-east-1.c2s.ic.gov",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-iso-west-1" : {
+            "variants" : [ {
+              "hostname" : "rbin-fips.us-iso-west-1.c2s.ic.gov",
               "tags" : [ "fips" ]
             } ]
           }

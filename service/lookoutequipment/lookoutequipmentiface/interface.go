@@ -100,6 +100,10 @@ type LookoutEquipmentAPI interface {
 	DeleteModelWithContext(aws.Context, *lookoutequipment.DeleteModelInput, ...request.Option) (*lookoutequipment.DeleteModelOutput, error)
 	DeleteModelRequest(*lookoutequipment.DeleteModelInput) (*request.Request, *lookoutequipment.DeleteModelOutput)
 
+	DeleteResourcePolicy(*lookoutequipment.DeleteResourcePolicyInput) (*lookoutequipment.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyWithContext(aws.Context, *lookoutequipment.DeleteResourcePolicyInput, ...request.Option) (*lookoutequipment.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyRequest(*lookoutequipment.DeleteResourcePolicyInput) (*request.Request, *lookoutequipment.DeleteResourcePolicyOutput)
+
 	DescribeDataIngestionJob(*lookoutequipment.DescribeDataIngestionJobInput) (*lookoutequipment.DescribeDataIngestionJobOutput, error)
 	DescribeDataIngestionJobWithContext(aws.Context, *lookoutequipment.DescribeDataIngestionJobInput, ...request.Option) (*lookoutequipment.DescribeDataIngestionJobOutput, error)
 	DescribeDataIngestionJobRequest(*lookoutequipment.DescribeDataIngestionJobInput) (*request.Request, *lookoutequipment.DescribeDataIngestionJobOutput)
@@ -123,6 +127,22 @@ type LookoutEquipmentAPI interface {
 	DescribeModel(*lookoutequipment.DescribeModelInput) (*lookoutequipment.DescribeModelOutput, error)
 	DescribeModelWithContext(aws.Context, *lookoutequipment.DescribeModelInput, ...request.Option) (*lookoutequipment.DescribeModelOutput, error)
 	DescribeModelRequest(*lookoutequipment.DescribeModelInput) (*request.Request, *lookoutequipment.DescribeModelOutput)
+
+	DescribeModelVersion(*lookoutequipment.DescribeModelVersionInput) (*lookoutequipment.DescribeModelVersionOutput, error)
+	DescribeModelVersionWithContext(aws.Context, *lookoutequipment.DescribeModelVersionInput, ...request.Option) (*lookoutequipment.DescribeModelVersionOutput, error)
+	DescribeModelVersionRequest(*lookoutequipment.DescribeModelVersionInput) (*request.Request, *lookoutequipment.DescribeModelVersionOutput)
+
+	DescribeResourcePolicy(*lookoutequipment.DescribeResourcePolicyInput) (*lookoutequipment.DescribeResourcePolicyOutput, error)
+	DescribeResourcePolicyWithContext(aws.Context, *lookoutequipment.DescribeResourcePolicyInput, ...request.Option) (*lookoutequipment.DescribeResourcePolicyOutput, error)
+	DescribeResourcePolicyRequest(*lookoutequipment.DescribeResourcePolicyInput) (*request.Request, *lookoutequipment.DescribeResourcePolicyOutput)
+
+	ImportDataset(*lookoutequipment.ImportDatasetInput) (*lookoutequipment.ImportDatasetOutput, error)
+	ImportDatasetWithContext(aws.Context, *lookoutequipment.ImportDatasetInput, ...request.Option) (*lookoutequipment.ImportDatasetOutput, error)
+	ImportDatasetRequest(*lookoutequipment.ImportDatasetInput) (*request.Request, *lookoutequipment.ImportDatasetOutput)
+
+	ImportModelVersion(*lookoutequipment.ImportModelVersionInput) (*lookoutequipment.ImportModelVersionOutput, error)
+	ImportModelVersionWithContext(aws.Context, *lookoutequipment.ImportModelVersionInput, ...request.Option) (*lookoutequipment.ImportModelVersionOutput, error)
+	ImportModelVersionRequest(*lookoutequipment.ImportModelVersionInput) (*request.Request, *lookoutequipment.ImportModelVersionOutput)
 
 	ListDataIngestionJobs(*lookoutequipment.ListDataIngestionJobsInput) (*lookoutequipment.ListDataIngestionJobsOutput, error)
 	ListDataIngestionJobsWithContext(aws.Context, *lookoutequipment.ListDataIngestionJobsInput, ...request.Option) (*lookoutequipment.ListDataIngestionJobsOutput, error)
@@ -173,6 +193,13 @@ type LookoutEquipmentAPI interface {
 	ListLabelsPages(*lookoutequipment.ListLabelsInput, func(*lookoutequipment.ListLabelsOutput, bool) bool) error
 	ListLabelsPagesWithContext(aws.Context, *lookoutequipment.ListLabelsInput, func(*lookoutequipment.ListLabelsOutput, bool) bool, ...request.Option) error
 
+	ListModelVersions(*lookoutequipment.ListModelVersionsInput) (*lookoutequipment.ListModelVersionsOutput, error)
+	ListModelVersionsWithContext(aws.Context, *lookoutequipment.ListModelVersionsInput, ...request.Option) (*lookoutequipment.ListModelVersionsOutput, error)
+	ListModelVersionsRequest(*lookoutequipment.ListModelVersionsInput) (*request.Request, *lookoutequipment.ListModelVersionsOutput)
+
+	ListModelVersionsPages(*lookoutequipment.ListModelVersionsInput, func(*lookoutequipment.ListModelVersionsOutput, bool) bool) error
+	ListModelVersionsPagesWithContext(aws.Context, *lookoutequipment.ListModelVersionsInput, func(*lookoutequipment.ListModelVersionsOutput, bool) bool, ...request.Option) error
+
 	ListModels(*lookoutequipment.ListModelsInput) (*lookoutequipment.ListModelsOutput, error)
 	ListModelsWithContext(aws.Context, *lookoutequipment.ListModelsInput, ...request.Option) (*lookoutequipment.ListModelsOutput, error)
 	ListModelsRequest(*lookoutequipment.ListModelsInput) (*request.Request, *lookoutequipment.ListModelsOutput)
@@ -190,6 +217,10 @@ type LookoutEquipmentAPI interface {
 	ListTagsForResource(*lookoutequipment.ListTagsForResourceInput) (*lookoutequipment.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *lookoutequipment.ListTagsForResourceInput, ...request.Option) (*lookoutequipment.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*lookoutequipment.ListTagsForResourceInput) (*request.Request, *lookoutequipment.ListTagsForResourceOutput)
+
+	PutResourcePolicy(*lookoutequipment.PutResourcePolicyInput) (*lookoutequipment.PutResourcePolicyOutput, error)
+	PutResourcePolicyWithContext(aws.Context, *lookoutequipment.PutResourcePolicyInput, ...request.Option) (*lookoutequipment.PutResourcePolicyOutput, error)
+	PutResourcePolicyRequest(*lookoutequipment.PutResourcePolicyInput) (*request.Request, *lookoutequipment.PutResourcePolicyOutput)
 
 	StartDataIngestionJob(*lookoutequipment.StartDataIngestionJobInput) (*lookoutequipment.StartDataIngestionJobOutput, error)
 	StartDataIngestionJobWithContext(aws.Context, *lookoutequipment.StartDataIngestionJobInput, ...request.Option) (*lookoutequipment.StartDataIngestionJobOutput, error)
@@ -210,6 +241,10 @@ type LookoutEquipmentAPI interface {
 	UntagResource(*lookoutequipment.UntagResourceInput) (*lookoutequipment.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *lookoutequipment.UntagResourceInput, ...request.Option) (*lookoutequipment.UntagResourceOutput, error)
 	UntagResourceRequest(*lookoutequipment.UntagResourceInput) (*request.Request, *lookoutequipment.UntagResourceOutput)
+
+	UpdateActiveModelVersion(*lookoutequipment.UpdateActiveModelVersionInput) (*lookoutequipment.UpdateActiveModelVersionOutput, error)
+	UpdateActiveModelVersionWithContext(aws.Context, *lookoutequipment.UpdateActiveModelVersionInput, ...request.Option) (*lookoutequipment.UpdateActiveModelVersionOutput, error)
+	UpdateActiveModelVersionRequest(*lookoutequipment.UpdateActiveModelVersionInput) (*request.Request, *lookoutequipment.UpdateActiveModelVersionOutput)
 
 	UpdateInferenceScheduler(*lookoutequipment.UpdateInferenceSchedulerInput) (*lookoutequipment.UpdateInferenceSchedulerOutput, error)
 	UpdateInferenceSchedulerWithContext(aws.Context, *lookoutequipment.UpdateInferenceSchedulerInput, ...request.Option) (*lookoutequipment.UpdateInferenceSchedulerOutput, error)

@@ -97,7 +97,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListConnectionsInput"},
-      "output":{"shape":"ListConnectionsOutput"}
+      "output":{"shape":"ListConnectionsOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
     },
     "ListHosts":{
       "name":"ListHosts",
@@ -415,7 +418,8 @@
       "enum":[
         "Bitbucket",
         "GitHub",
-        "GitHubEnterpriseServer"
+        "GitHubEnterpriseServer",
+        "GitLab"
       ]
     },
     "ResourceNotFoundException":{

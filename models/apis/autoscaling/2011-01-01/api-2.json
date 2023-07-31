@@ -1091,6 +1091,16 @@
         "AlarmARN":{"shape":"ResourceName"}
       }
     },
+    "AlarmList":{
+      "type":"list",
+      "member":{"shape":"XmlStringMaxLen255"}
+    },
+    "AlarmSpecification":{
+      "type":"structure",
+      "members":{
+        "Alarms":{"shape":"AlarmList"}
+      }
+    },
     "Alarms":{
       "type":"list",
       "member":{"shape":"Alarm"}
@@ -3040,7 +3050,8 @@
         "SkipMatching":{"shape":"SkipMatching"},
         "AutoRollback":{"shape":"AutoRollback"},
         "ScaleInProtectedInstances":{"shape":"ScaleInProtectedInstances"},
-        "StandbyInstances":{"shape":"StandbyInstances"}
+        "StandbyInstances":{"shape":"StandbyInstances"},
+        "AlarmSpecification":{"shape":"AlarmSpecification"}
       }
     },
     "RefreshStrategy":{

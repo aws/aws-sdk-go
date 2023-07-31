@@ -228,10 +228,11 @@ func ExampleAutoScaling_CompleteLifecycleAction_shared00() {
 func ExampleAutoScaling_CreateAutoScalingGroup_shared00() {
 	svc := autoscaling.New(session.New())
 	input := &autoscaling.CreateAutoScalingGroupInput{
-		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
+		AutoScalingGroupName:  aws.String("my-auto-scaling-group"),
+		DefaultInstanceWarmup: aws.Int64(120),
 		LaunchTemplate: &autoscaling.LaunchTemplateSpecification{
 			LaunchTemplateName: aws.String("my-template-for-auto-scaling"),
-			Version:            aws.String("$Latest"),
+			Version:            aws.String("$Default"),
 		},
 		MaxInstanceLifetime: aws.Int64(2592000),
 		MaxSize:             aws.Int64(3),
@@ -275,7 +276,7 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared01() {
 		HealthCheckType:        aws.String("ELB"),
 		LaunchTemplate: &autoscaling.LaunchTemplateSpecification{
 			LaunchTemplateName: aws.String("my-template-for-auto-scaling"),
-			Version:            aws.String("$Latest"),
+			Version:            aws.String("$Default"),
 		},
 		MaxSize: aws.Int64(3),
 		MinSize: aws.Int64(1),
@@ -326,19 +327,19 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared02() {
 			InstancesDistribution: &autoscaling.InstancesDistribution{
 				OnDemandBaseCapacity:                aws.Int64(1),
 				OnDemandPercentageAboveBaseCapacity: aws.Int64(50),
-				SpotAllocationStrategy:              aws.String("capacity-optimized"),
+				SpotAllocationStrategy:              aws.String("price-capacity-optimized"),
 			},
 			LaunchTemplate: &autoscaling.LaunchTemplate{
 				LaunchTemplateSpecification: &autoscaling.LaunchTemplateSpecification{
 					LaunchTemplateName: aws.String("my-launch-template-for-x86"),
-					Version:            aws.String("$Latest"),
+					Version:            aws.String("$Default"),
 				},
 				Overrides: []*autoscaling.LaunchTemplateOverrides{
 					{
 						InstanceType: aws.String("c6g.large"),
 						LaunchTemplateSpecification: &autoscaling.LaunchTemplateSpecification{
 							LaunchTemplateName: aws.String("my-launch-template-for-arm"),
-							Version:            aws.String("$Latest"),
+							Version:            aws.String("$Default"),
 						},
 					},
 					{
@@ -346,6 +347,74 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared02() {
 					},
 					{
 						InstanceType: aws.String("c5a.large"),
+					},
+				},
+			},
+		},
+		VPCZoneIdentifier: aws.String("subnet-057fa0918fEXAMPLE, subnet-610acd08EXAMPLE"),
+	}
+
+	result, err := svc.CreateAutoScalingGroup(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case autoscaling.ErrCodeAlreadyExistsFault:
+				fmt.Println(autoscaling.ErrCodeAlreadyExistsFault, aerr.Error())
+			case autoscaling.ErrCodeLimitExceededFault:
+				fmt.Println(autoscaling.ErrCodeLimitExceededFault, aerr.Error())
+			case autoscaling.ErrCodeResourceContentionFault:
+				fmt.Println(autoscaling.ErrCodeResourceContentionFault, aerr.Error())
+			case autoscaling.ErrCodeServiceLinkedRoleFailure:
+				fmt.Println(autoscaling.ErrCodeServiceLinkedRoleFailure, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To create an Auto Scaling group using attribute-based instance type selection
+// This example creates an Auto Scaling group using attribute-based instance type selection.
+// It requires the instance types to have a minimum of four vCPUs and a maximum of eight
+// vCPUs, a minimum of 16,384 MiB of memory, and an Intel manufactured CPU.
+func ExampleAutoScaling_CreateAutoScalingGroup_shared03() {
+	svc := autoscaling.New(session.New())
+	input := &autoscaling.CreateAutoScalingGroupInput{
+		AutoScalingGroupName: aws.String("my-asg"),
+		DesiredCapacity:      aws.Int64(4),
+		MaxSize:              aws.Int64(100),
+		MinSize:              aws.Int64(0),
+		MixedInstancesPolicy: &autoscaling.MixedInstancesPolicy{
+			InstancesDistribution: &autoscaling.InstancesDistribution{
+				OnDemandPercentageAboveBaseCapacity: aws.Int64(50),
+				SpotAllocationStrategy:              aws.String("price-capacity-optimized"),
+			},
+			LaunchTemplate: &autoscaling.LaunchTemplate{
+				LaunchTemplateSpecification: &autoscaling.LaunchTemplateSpecification{
+					LaunchTemplateName: aws.String("my-template-for-auto-scaling"),
+					Version:            aws.String("$Default"),
+				},
+				Overrides: []*autoscaling.LaunchTemplateOverrides{
+					{
+						InstanceRequirements: &autoscaling.InstanceRequirements{
+							CpuManufacturers: []*string{
+								aws.String("intel"),
+							},
+							MemoryMiB: &autoscaling.MemoryMiBRequest{
+								Min: aws.Int64(16384),
+							},
+							VCpuCount: &autoscaling.VCpuCountRequest{
+								Max: aws.Int64(8),
+								Min: aws.Int64(4),
+							},
+						},
 					},
 				},
 			},
@@ -1984,9 +2053,14 @@ func ExampleAutoScaling_StartInstanceRefresh_shared00() {
 			},
 		},
 		Preferences: &autoscaling.RefreshPreferences{
-			InstanceWarmup:       aws.Int64(400),
+			AlarmSpecification: &autoscaling.AlarmSpecification{
+				Alarms: []*string{
+					aws.String("my-alarm"),
+				},
+			},
+			AutoRollback:         aws.Bool(true),
+			InstanceWarmup:       aws.Int64(200),
 			MinHealthyPercentage: aws.Int64(90),
-			SkipMatching:         aws.Bool(true),
 		},
 	}
 

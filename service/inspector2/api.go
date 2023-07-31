@@ -294,6 +294,96 @@ func (c *Inspector2) BatchGetCodeSnippetWithContext(ctx aws.Context, input *Batc
 	return out, req.Send()
 }
 
+const opBatchGetFindingDetails = "BatchGetFindingDetails"
+
+// BatchGetFindingDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetFindingDetails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetFindingDetails for more information on using the BatchGetFindingDetails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetFindingDetailsRequest method.
+//	req, resp := client.BatchGetFindingDetailsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/BatchGetFindingDetails
+func (c *Inspector2) BatchGetFindingDetailsRequest(input *BatchGetFindingDetailsInput) (req *request.Request, output *BatchGetFindingDetailsOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetFindingDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/findings/details/batch/get",
+	}
+
+	if input == nil {
+		input = &BatchGetFindingDetailsInput{}
+	}
+
+	output = &BatchGetFindingDetailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetFindingDetails API operation for Inspector2.
+//
+// Gets vulnerability details for findings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation BatchGetFindingDetails for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/BatchGetFindingDetails
+func (c *Inspector2) BatchGetFindingDetails(input *BatchGetFindingDetailsInput) (*BatchGetFindingDetailsOutput, error) {
+	req, out := c.BatchGetFindingDetailsRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetFindingDetailsWithContext is the same as BatchGetFindingDetails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetFindingDetails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) BatchGetFindingDetailsWithContext(ctx aws.Context, input *BatchGetFindingDetailsInput, opts ...request.Option) (*BatchGetFindingDetailsOutput, error) {
+	req, out := c.BatchGetFindingDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetFreeTrialInfo = "BatchGetFreeTrialInfo"
 
 // BatchGetFreeTrialInfoRequest generates a "aws/request.Request" representing the
@@ -6523,6 +6613,95 @@ func (s *BatchGetCodeSnippetOutput) SetErrors(v []*CodeSnippetError) *BatchGetCo
 	return s
 }
 
+type BatchGetFindingDetailsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of finding ARNs.
+	//
+	// FindingArns is a required field
+	FindingArns []*string `locationName:"findingArns" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetFindingDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetFindingDetailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetFindingDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetFindingDetailsInput"}
+	if s.FindingArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingArns"))
+	}
+	if s.FindingArns != nil && len(s.FindingArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFindingArns sets the FindingArns field's value.
+func (s *BatchGetFindingDetailsInput) SetFindingArns(v []*string) *BatchGetFindingDetailsInput {
+	s.FindingArns = v
+	return s
+}
+
+type BatchGetFindingDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Error information for findings that details could not be returned for.
+	Errors []*FindingDetailsError `locationName:"errors" type:"list"`
+
+	// A finding's vulnerability details.
+	FindingDetails []*FindingDetail `locationName:"findingDetails" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetFindingDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetFindingDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetFindingDetailsOutput) SetErrors(v []*FindingDetailsError) *BatchGetFindingDetailsOutput {
+	s.Errors = v
+	return s
+}
+
+// SetFindingDetails sets the FindingDetails field's value.
+func (s *BatchGetFindingDetailsOutput) SetFindingDetails(v []*FindingDetail) *BatchGetFindingDetailsOutput {
+	s.FindingDetails = v
+	return s
+}
+
 type BatchGetFreeTrialInfoInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8979,7 +9158,7 @@ type Destination struct {
 	// BucketName is a required field
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
-	// The prefix of the Amazon S3 bucket used to export findings.
+	// The prefix that the findings will be written under.
 	KeyPrefix *string `locationName:"keyPrefix" type:"string"`
 
 	// The ARN of the KMS key used to encrypt data when exporting findings.
@@ -10056,6 +10235,56 @@ func (s *EpssDetails) SetScore(v float64) *EpssDetails {
 	return s
 }
 
+// Details of the evidence for a vulnerability identified in a finding.
+type Evidence struct {
+	_ struct{} `type:"structure"`
+
+	// The evidence details.
+	EvidenceDetail *string `locationName:"evidenceDetail" type:"string"`
+
+	// The evidence rule.
+	EvidenceRule *string `locationName:"evidenceRule" type:"string"`
+
+	// The evidence severity.
+	Severity *string `locationName:"severity" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Evidence) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Evidence) GoString() string {
+	return s.String()
+}
+
+// SetEvidenceDetail sets the EvidenceDetail field's value.
+func (s *Evidence) SetEvidenceDetail(v string) *Evidence {
+	s.EvidenceDetail = &v
+	return s
+}
+
+// SetEvidenceRule sets the EvidenceRule field's value.
+func (s *Evidence) SetEvidenceRule(v string) *Evidence {
+	s.EvidenceRule = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *Evidence) SetSeverity(v string) *Evidence {
+	s.Severity = &v
+	return s
+}
+
 // Contains information on when this exploit was observed.
 type ExploitObserved struct {
 	_ struct{} `type:"structure"`
@@ -10490,7 +10719,7 @@ type FilterCriteria struct {
 	// Details on the date and time a finding was last seen used to filter findings.
 	LastObservedAt []*DateFilter `locationName:"lastObservedAt" min:"1" type:"list"`
 
-	// Details on the ingress source addresses used to filter findings.
+	// Details on network protocol used to filter findings.
 	NetworkProtocol []*StringFilter `locationName:"networkProtocol" min:"1" type:"list"`
 
 	// Details on the port ranges used to filter findings.
@@ -11510,6 +11739,178 @@ func (s *Finding) SetType(v string) *Finding {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *Finding) SetUpdatedAt(v time.Time) *Finding {
 	s.UpdatedAt = &v
+	return s
+}
+
+// Details of the vulnerability identified in a finding.
+type FindingDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The Cybersecurity and Infrastructure Security Agency (CISA) details for a
+	// specific vulnerability.
+	CisaData *CisaData `locationName:"cisaData" type:"structure"`
+
+	// The Common Weakness Enumerations (CWEs) associated with the vulnerability.
+	Cwes []*string `locationName:"cwes" type:"list"`
+
+	// The Exploit Prediction Scoring System (EPSS) score of the vulnerability.
+	EpssScore *float64 `locationName:"epssScore" type:"double"`
+
+	// Information on the evidence of the vulnerability.
+	Evidences []*Evidence `locationName:"evidences" type:"list"`
+
+	// Contains information on when this exploit was observed.
+	ExploitObserved *ExploitObserved `locationName:"exploitObserved" type:"structure"`
+
+	// The finding ARN that the vulnerability details are associated with.
+	FindingArn *string `locationName:"findingArn" min:"1" type:"string"`
+
+	// The reference URLs for the vulnerability data.
+	ReferenceUrls []*string `locationName:"referenceUrls" type:"list"`
+
+	// The risk score of the vulnerability.
+	RiskScore *int64 `locationName:"riskScore" type:"integer"`
+
+	// The known malware tools or kits that can exploit the vulnerability.
+	Tools []*string `locationName:"tools" type:"list"`
+
+	// The MITRE adversary tactics, techniques, or procedures (TTPs) associated
+	// with the vulnerability.
+	Ttps []*string `locationName:"ttps" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingDetail) GoString() string {
+	return s.String()
+}
+
+// SetCisaData sets the CisaData field's value.
+func (s *FindingDetail) SetCisaData(v *CisaData) *FindingDetail {
+	s.CisaData = v
+	return s
+}
+
+// SetCwes sets the Cwes field's value.
+func (s *FindingDetail) SetCwes(v []*string) *FindingDetail {
+	s.Cwes = v
+	return s
+}
+
+// SetEpssScore sets the EpssScore field's value.
+func (s *FindingDetail) SetEpssScore(v float64) *FindingDetail {
+	s.EpssScore = &v
+	return s
+}
+
+// SetEvidences sets the Evidences field's value.
+func (s *FindingDetail) SetEvidences(v []*Evidence) *FindingDetail {
+	s.Evidences = v
+	return s
+}
+
+// SetExploitObserved sets the ExploitObserved field's value.
+func (s *FindingDetail) SetExploitObserved(v *ExploitObserved) *FindingDetail {
+	s.ExploitObserved = v
+	return s
+}
+
+// SetFindingArn sets the FindingArn field's value.
+func (s *FindingDetail) SetFindingArn(v string) *FindingDetail {
+	s.FindingArn = &v
+	return s
+}
+
+// SetReferenceUrls sets the ReferenceUrls field's value.
+func (s *FindingDetail) SetReferenceUrls(v []*string) *FindingDetail {
+	s.ReferenceUrls = v
+	return s
+}
+
+// SetRiskScore sets the RiskScore field's value.
+func (s *FindingDetail) SetRiskScore(v int64) *FindingDetail {
+	s.RiskScore = &v
+	return s
+}
+
+// SetTools sets the Tools field's value.
+func (s *FindingDetail) SetTools(v []*string) *FindingDetail {
+	s.Tools = v
+	return s
+}
+
+// SetTtps sets the Ttps field's value.
+func (s *FindingDetail) SetTtps(v []*string) *FindingDetail {
+	s.Ttps = v
+	return s
+}
+
+// Details about an error encountered when trying to return vulnerability data
+// for a finding.
+type FindingDetailsError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" type:"string" required:"true" enum:"FindingDetailsErrorCode"`
+
+	// The error message.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string" required:"true"`
+
+	// The finding ARN that returned an error.
+	//
+	// FindingArn is a required field
+	FindingArn *string `locationName:"findingArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingDetailsError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingDetailsError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *FindingDetailsError) SetErrorCode(v string) *FindingDetailsError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FindingDetailsError) SetErrorMessage(v string) *FindingDetailsError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetFindingArn sets the FindingArn field's value.
+func (s *FindingDetailsError) SetFindingArn(v string) *FindingDetailsError {
+	s.FindingArn = &v
 	return s
 }
 
@@ -18913,6 +19314,30 @@ func FilterAction_Values() []string {
 	return []string{
 		FilterActionNone,
 		FilterActionSuppress,
+	}
+}
+
+const (
+	// FindingDetailsErrorCodeInternalError is a FindingDetailsErrorCode enum value
+	FindingDetailsErrorCodeInternalError = "INTERNAL_ERROR"
+
+	// FindingDetailsErrorCodeAccessDenied is a FindingDetailsErrorCode enum value
+	FindingDetailsErrorCodeAccessDenied = "ACCESS_DENIED"
+
+	// FindingDetailsErrorCodeFindingDetailsNotFound is a FindingDetailsErrorCode enum value
+	FindingDetailsErrorCodeFindingDetailsNotFound = "FINDING_DETAILS_NOT_FOUND"
+
+	// FindingDetailsErrorCodeInvalidInput is a FindingDetailsErrorCode enum value
+	FindingDetailsErrorCodeInvalidInput = "INVALID_INPUT"
+)
+
+// FindingDetailsErrorCode_Values returns all elements of the FindingDetailsErrorCode enum
+func FindingDetailsErrorCode_Values() []string {
+	return []string{
+		FindingDetailsErrorCodeInternalError,
+		FindingDetailsErrorCodeAccessDenied,
+		FindingDetailsErrorCodeFindingDetailsNotFound,
+		FindingDetailsErrorCodeInvalidInput,
 	}
 }
 

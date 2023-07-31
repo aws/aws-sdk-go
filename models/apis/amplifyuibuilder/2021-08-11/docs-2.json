@@ -3,7 +3,7 @@
   "service": "<p>The Amplify UI Builder API provides a programmatic interface for creating and configuring user interface (UI) component libraries and themes for use in your Amplify applications. You can then connect these UI components to an application's backend Amazon Web Services resources.</p> <p>You can also use the Amplify Studio visual designer to create UI components and model data for an app. For more information, see <a href=\"https://docs.amplify.aws/console/adminui/intro\">Introduction</a> in the <i>Amplify Docs</i>.</p> <p>The Amplify Framework is a comprehensive set of SDKs, libraries, tools, and documentation for client app development. For more information, see the <a href=\"https://docs.amplify.aws/\">Amplify Framework</a>. For more information about deploying an Amplify application to Amazon Web Services, see the <a href=\"https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html\">Amplify User Guide</a>.</p>",
   "operations": {
     "CreateComponent": "<p>Creates a new component for an Amplify app.</p>",
-    "CreateForm": "<p>Creates a new form for an Amplify.</p>",
+    "CreateForm": "<p>Creates a new form for an Amplify app.</p>",
     "CreateTheme": "<p>Creates a theme to apply to the components in an Amplify app.</p>",
     "DeleteComponent": "<p>Deletes a component from an Amplify app.</p>",
     "DeleteForm": "<p>Deletes a form from an Amplify app.</p>",
@@ -23,7 +23,7 @@
     "ListThemes": "<p>Retrieves a list of themes for a specified Amplify app and backend environment.</p>",
     "PutMetadataFlag": "<p>Stores the metadata information about a feature on a form.</p>",
     "RefreshToken": "<p>Refreshes a previously issued access token that might have expired.</p>",
-    "StartCodegenJob": "<p>Starts a code generation job for for a specified Amplify app and backend environment.</p>",
+    "StartCodegenJob": "<p>Starts a code generation job for a specified Amplify app and backend environment.</p>",
     "UpdateComponent": "<p>Updates an existing component.</p>",
     "UpdateForm": "<p>Updates an existing form.</p>",
     "UpdateTheme": "<p>Updates an existing theme.</p>"
@@ -33,6 +33,12 @@
       "base": "<p>Represents the event action configuration for an element of a <code>Component</code> or <code>ComponentChild</code>. Use for the workflow feature in Amplify Studio that allows you to bind events and actions to components. <code>ActionParameters</code> defines the action that is performed when an event occurs on the component.</p>",
       "refs": {
         "ComponentEvent$parameters": "<p>Describes information about the action.</p>"
+      }
+    },
+    "ApiConfiguration": {
+      "base": "<p>Describes the API configuration for a code generation job.</p>",
+      "refs": {
+        "ReactStartCodegenJobData$apiConfiguration": "<p>The API configuration for the code generation job.</p>"
       }
     },
     "AppId": {
@@ -185,7 +191,7 @@
       }
     },
     "CodegenJobRenderConfig": {
-      "base": "<p>Describes the configuration information for rendering the UI component associated the code generation job.</p>",
+      "base": "<p>Describes the configuration information for rendering the UI component associated with the code generation job.</p>",
       "refs": {
         "CodegenJob$renderConfig": null,
         "StartCodegenJobData$renderConfig": "<p>The code generation configuration for the codegen job.</p>"
@@ -450,6 +456,12 @@
     "CreateThemeResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DataStoreRenderConfig": {
+      "base": "<p>Describes the DataStore configuration for an API for a code generation job.</p>",
+      "refs": {
+        "ApiConfiguration$dataStoreConfig": "<p>The configuration for an application using DataStore APIs.</p>"
       }
     },
     "DeleteComponentRequest": {
@@ -777,6 +789,12 @@
       "refs": {
       }
     },
+    "GraphQLRenderConfig": {
+      "base": "<p>Describes the GraphQL configuration for an API for a code generation job.</p>",
+      "refs": {
+        "ApiConfiguration$graphQLConfig": "<p>The configuration for an application using GraphQL APIs.</p>"
+      }
+    },
     "IdentifierList": {
       "base": null,
       "refs": {
@@ -898,6 +916,12 @@
       "base": "<p>Represents the state configuration when an action modifies a property of another element within the same component.</p>",
       "refs": {
         "ActionParameters$state": "<p>A key-value pair that specifies the state property name and its initial value.</p>"
+      }
+    },
+    "NoApiRenderConfig": {
+      "base": "<p>Describes the configuration for an application with no API being used.</p>",
+      "refs": {
+        "ApiConfiguration$noApiConfig": "<p>The configuration for an application with no API being used.</p>"
       }
     },
     "NumValues": {
@@ -1194,6 +1218,11 @@
         "GetMetadataRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
         "GetThemeRequest$appId": "<p>The unique ID of the Amplify app.</p>",
         "GetThemeRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
+        "GraphQLRenderConfig$typesFilePath": "<p>The path to the GraphQL types file, relative to the component output directory.</p>",
+        "GraphQLRenderConfig$queriesFilePath": "<p>The path to the GraphQL queries file, relative to the component output directory.</p>",
+        "GraphQLRenderConfig$mutationsFilePath": "<p>The path to the GraphQL mutations file, relative to the component output directory.</p>",
+        "GraphQLRenderConfig$subscriptionsFilePath": "<p>The path to the GraphQL subscriptions file, relative to the component output directory.</p>",
+        "GraphQLRenderConfig$fragmentsFilePath": "<p>The path to the GraphQL fragments file, relative to the component output directory.</p>",
         "IdentifierList$member": null,
         "InternalServerException$message": null,
         "InvalidParameterException$message": null,

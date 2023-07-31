@@ -12,6 +12,23 @@
     "uid":"cleanrooms-2022-02-17"
   },
   "operations":{
+    "BatchGetCollaborationAnalysisTemplate":{
+      "name":"BatchGetCollaborationAnalysisTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/collaborations/{collaborationIdentifier}/batch-analysistemplates",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetCollaborationAnalysisTemplateInput"},
+      "output":{"shape":"BatchGetCollaborationAnalysisTemplateOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "BatchGetSchema":{
       "name":"BatchGetSchema",
       "http":{
@@ -22,6 +39,25 @@
       "input":{"shape":"BatchGetSchemaInput"},
       "output":{"shape":"BatchGetSchemaOutput"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "CreateAnalysisTemplate":{
+      "name":"CreateAnalysisTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/memberships/{membershipIdentifier}/analysistemplates",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateAnalysisTemplateInput"},
+      "output":{"shape":"CreateAnalysisTemplateOutput"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
@@ -122,6 +158,24 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
       ]
+    },
+    "DeleteAnalysisTemplate":{
+      "name":"DeleteAnalysisTemplate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteAnalysisTemplateInput"},
+      "output":{"shape":"DeleteAnalysisTemplateOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
     },
     "DeleteCollaboration":{
       "name":"DeleteCollaboration",
@@ -235,6 +289,23 @@
       ],
       "idempotent":true
     },
+    "GetAnalysisTemplate":{
+      "name":"GetAnalysisTemplate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAnalysisTemplateInput"},
+      "output":{"shape":"GetAnalysisTemplateOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetCollaboration":{
       "name":"GetCollaboration",
       "http":{
@@ -245,6 +316,23 @@
       "input":{"shape":"GetCollaborationInput"},
       "output":{"shape":"GetCollaborationOutput"},
       "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetCollaborationAnalysisTemplate":{
+      "name":"GetCollaborationAnalysisTemplate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/collaborations/{collaborationIdentifier}/analysistemplates/{analysisTemplateArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetCollaborationAnalysisTemplateInput"},
+      "output":{"shape":"GetCollaborationAnalysisTemplateOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
@@ -362,6 +450,40 @@
       },
       "input":{"shape":"GetSchemaAnalysisRuleInput"},
       "output":{"shape":"GetSchemaAnalysisRuleOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListAnalysisTemplates":{
+      "name":"ListAnalysisTemplates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/memberships/{membershipIdentifier}/analysistemplates",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAnalysisTemplatesInput"},
+      "output":{"shape":"ListAnalysisTemplatesOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListCollaborationAnalysisTemplates":{
+      "name":"ListCollaborationAnalysisTemplates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/collaborations/{collaborationIdentifier}/analysistemplates",
+        "responseCode":200
+      },
+      "input":{"shape":"ListCollaborationAnalysisTemplatesInput"},
+      "output":{"shape":"ListCollaborationAnalysisTemplatesOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
@@ -544,6 +666,23 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "UpdateAnalysisTemplate":{
+      "name":"UpdateAnalysisTemplate",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateAnalysisTemplateInput"},
+      "output":{"shape":"UpdateAnalysisTemplateOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateCollaboration":{
@@ -737,9 +876,32 @@
       "max":100,
       "min":1
     },
+    "AnalysisFormat":{
+      "type":"string",
+      "enum":["SQL"]
+    },
     "AnalysisMethod":{
       "type":"string",
       "enum":["DIRECT_QUERY"]
+    },
+    "AnalysisParameter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type"
+      ],
+      "members":{
+        "name":{"shape":"ParameterName"},
+        "type":{"shape":"ParameterType"},
+        "defaultValue":{"shape":"ParameterValue"}
+      },
+      "sensitive":true
+    },
+    "AnalysisParameterList":{
+      "type":"list",
+      "member":{"shape":"AnalysisParameter"},
+      "max":10,
+      "min":0
     },
     "AnalysisRule":{
       "type":"structure",
@@ -794,6 +956,24 @@
       "min":1,
       "pattern":"[a-z0-9_](([a-z0-9_ ]+-)*([a-z0-9_ ]+))?"
     },
+    "AnalysisRuleCustom":{
+      "type":"structure",
+      "required":["allowedAnalyses"],
+      "members":{
+        "allowedAnalyses":{"shape":"AnalysisRuleCustomAllowedAnalysesList"},
+        "allowedAnalysisProviders":{"shape":"AnalysisRuleCustomAllowedAnalysisProvidersList"}
+      }
+    },
+    "AnalysisRuleCustomAllowedAnalysesList":{
+      "type":"list",
+      "member":{"shape":"AnalysisTemplateArnOrQueryWildcard"},
+      "min":0
+    },
+    "AnalysisRuleCustomAllowedAnalysisProvidersList":{
+      "type":"list",
+      "member":{"shape":"AccountId"},
+      "min":0
+    },
     "AnalysisRuleList":{
       "type":"structure",
       "required":[
@@ -822,7 +1002,8 @@
       "type":"structure",
       "members":{
         "list":{"shape":"AnalysisRuleList"},
-        "aggregation":{"shape":"AnalysisRuleAggregation"}
+        "aggregation":{"shape":"AnalysisRuleAggregation"},
+        "custom":{"shape":"AnalysisRuleCustom"}
       },
       "union":true
     },
@@ -830,12 +1011,164 @@
       "type":"string",
       "enum":[
         "AGGREGATION",
-        "LIST"
+        "LIST",
+        "CUSTOM"
       ]
     },
     "AnalysisRuleTypeList":{
       "type":"list",
       "member":{"shape":"AnalysisRuleType"}
+    },
+    "AnalysisSchema":{
+      "type":"structure",
+      "members":{
+        "referencedTables":{"shape":"QueryTables"}
+      }
+    },
+    "AnalysisSource":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"AnalysisTemplateText"}
+      },
+      "sensitive":true,
+      "union":true
+    },
+    "AnalysisTemplate":{
+      "type":"structure",
+      "required":[
+        "id",
+        "arn",
+        "collaborationId",
+        "collaborationArn",
+        "membershipId",
+        "membershipArn",
+        "name",
+        "createTime",
+        "updateTime",
+        "schema",
+        "format",
+        "source"
+      ],
+      "members":{
+        "id":{"shape":"AnalysisTemplateIdentifier"},
+        "arn":{"shape":"AnalysisTemplateArn"},
+        "collaborationId":{"shape":"UUID"},
+        "collaborationArn":{"shape":"CollaborationArn"},
+        "membershipId":{"shape":"UUID"},
+        "membershipArn":{"shape":"MembershipArn"},
+        "description":{"shape":"ResourceDescription"},
+        "name":{"shape":"ResourceAlias"},
+        "createTime":{"shape":"Timestamp"},
+        "updateTime":{"shape":"Timestamp"},
+        "schema":{"shape":"AnalysisSchema"},
+        "format":{"shape":"AnalysisFormat"},
+        "source":{"shape":"AnalysisSource"},
+        "analysisParameters":{"shape":"AnalysisParameterList"}
+      }
+    },
+    "AnalysisTemplateArn":{
+      "type":"string",
+      "max":200,
+      "min":0,
+      "pattern":"arn:aws:cleanrooms:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+/analysistemplate/[\\d\\w-]+"
+    },
+    "AnalysisTemplateArnList":{
+      "type":"list",
+      "member":{"shape":"AnalysisTemplateArn"},
+      "max":10,
+      "min":1
+    },
+    "AnalysisTemplateArnOrQueryWildcard":{
+      "type":"string",
+      "max":200,
+      "min":0,
+      "pattern":"(ANY_QUERY|arn:aws:cleanrooms:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+/analysistemplate/[\\d\\w-]+)"
+    },
+    "AnalysisTemplateIdentifier":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+    },
+    "AnalysisTemplateSummary":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createTime",
+        "id",
+        "name",
+        "updateTime",
+        "membershipArn",
+        "membershipId",
+        "collaborationArn",
+        "collaborationId"
+      ],
+      "members":{
+        "arn":{"shape":"AnalysisTemplateArn"},
+        "createTime":{"shape":"Timestamp"},
+        "id":{"shape":"AnalysisTemplateIdentifier"},
+        "name":{"shape":"ResourceAlias"},
+        "updateTime":{"shape":"Timestamp"},
+        "membershipArn":{"shape":"MembershipArn"},
+        "membershipId":{"shape":"UUID"},
+        "collaborationArn":{"shape":"CollaborationArn"},
+        "collaborationId":{"shape":"UUID"},
+        "description":{"shape":"ResourceDescription"}
+      }
+    },
+    "AnalysisTemplateSummaryList":{
+      "type":"list",
+      "member":{"shape":"AnalysisTemplateSummary"}
+    },
+    "AnalysisTemplateText":{
+      "type":"string",
+      "max":15000,
+      "min":0
+    },
+    "BatchGetCollaborationAnalysisTemplateError":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "code",
+        "message"
+      ],
+      "members":{
+        "arn":{"shape":"AnalysisTemplateArn"},
+        "code":{"shape":"String"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetCollaborationAnalysisTemplateErrorList":{
+      "type":"list",
+      "member":{"shape":"BatchGetCollaborationAnalysisTemplateError"},
+      "max":10,
+      "min":0
+    },
+    "BatchGetCollaborationAnalysisTemplateInput":{
+      "type":"structure",
+      "required":[
+        "collaborationIdentifier",
+        "analysisTemplateArns"
+      ],
+      "members":{
+        "collaborationIdentifier":{
+          "shape":"CollaborationIdentifier",
+          "location":"uri",
+          "locationName":"collaborationIdentifier"
+        },
+        "analysisTemplateArns":{"shape":"AnalysisTemplateArnList"}
+      }
+    },
+    "BatchGetCollaborationAnalysisTemplateOutput":{
+      "type":"structure",
+      "required":[
+        "collaborationAnalysisTemplates",
+        "errors"
+      ],
+      "members":{
+        "collaborationAnalysisTemplates":{"shape":"CollaborationAnalysisTemplateList"},
+        "errors":{"shape":"BatchGetCollaborationAnalysisTemplateErrorList"}
+      }
     },
     "BatchGetSchemaError":{
       "type":"structure",
@@ -920,6 +1253,71 @@
         "dataEncryptionMetadata":{"shape":"DataEncryptionMetadata"},
         "queryLogStatus":{"shape":"CollaborationQueryLogStatus"}
       }
+    },
+    "CollaborationAnalysisTemplate":{
+      "type":"structure",
+      "required":[
+        "id",
+        "arn",
+        "collaborationId",
+        "collaborationArn",
+        "creatorAccountId",
+        "name",
+        "createTime",
+        "updateTime",
+        "schema",
+        "format",
+        "source"
+      ],
+      "members":{
+        "id":{"shape":"AnalysisTemplateIdentifier"},
+        "arn":{"shape":"AnalysisTemplateArn"},
+        "collaborationId":{"shape":"UUID"},
+        "collaborationArn":{"shape":"CollaborationArn"},
+        "description":{"shape":"ResourceDescription"},
+        "creatorAccountId":{"shape":"AccountId"},
+        "name":{"shape":"ResourceAlias"},
+        "createTime":{"shape":"Timestamp"},
+        "updateTime":{"shape":"Timestamp"},
+        "schema":{"shape":"AnalysisSchema"},
+        "format":{"shape":"AnalysisFormat"},
+        "source":{"shape":"AnalysisSource"},
+        "analysisParameters":{"shape":"AnalysisParameterList"}
+      }
+    },
+    "CollaborationAnalysisTemplateList":{
+      "type":"list",
+      "member":{"shape":"CollaborationAnalysisTemplate"},
+      "max":10,
+      "min":0
+    },
+    "CollaborationAnalysisTemplateSummary":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createTime",
+        "id",
+        "name",
+        "updateTime",
+        "collaborationArn",
+        "collaborationId",
+        "creatorAccountId"
+      ],
+      "members":{
+        "arn":{"shape":"AnalysisTemplateArn"},
+        "createTime":{"shape":"Timestamp"},
+        "id":{"shape":"AnalysisTemplateIdentifier"},
+        "name":{"shape":"ResourceAlias"},
+        "updateTime":{"shape":"Timestamp"},
+        "collaborationArn":{"shape":"CollaborationArn"},
+        "collaborationId":{"shape":"UUID"},
+        "creatorAccountId":{"shape":"AccountId"},
+        "description":{"shape":"ResourceDescription"}
+      }
+    },
+    "CollaborationAnalysisTemplateSummaryList":{
+      "type":"list",
+      "member":{"shape":"CollaborationAnalysisTemplateSummary"}
     },
     "CollaborationArn":{
       "type":"string",
@@ -1064,7 +1462,8 @@
       "type":"structure",
       "members":{
         "list":{"shape":"AnalysisRuleList"},
-        "aggregation":{"shape":"AnalysisRuleAggregation"}
+        "aggregation":{"shape":"AnalysisRuleAggregation"},
+        "custom":{"shape":"AnalysisRuleCustom"}
       },
       "union":true
     },
@@ -1072,7 +1471,8 @@
       "type":"string",
       "enum":[
         "AGGREGATION",
-        "LIST"
+        "LIST",
+        "CUSTOM"
       ]
     },
     "ConfiguredTableAnalysisRuleTypeList":{
@@ -1083,7 +1483,7 @@
       "type":"string",
       "max":100,
       "min":0,
-      "pattern":"arn:aws:[\\w]+:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:configuredTable/[\\d\\w-]+"
+      "pattern":"arn:aws:[\\w]+:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:configuredtable/[\\d\\w-]+"
     },
     "ConfiguredTableAssociation":{
       "type":"structure",
@@ -1117,7 +1517,7 @@
       "type":"string",
       "max":100,
       "min":0,
-      "pattern":"arn:aws:[\\w]+:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:configuredTableAssociation/[\\d\\w-]+/[\\d\\w-]+"
+      "pattern":"arn:aws:[\\w]+:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:configuredtableassociation/[\\d\\w-]+/[\\d\\w-]+"
     },
     "ConfiguredTableAssociationIdentifier":{
       "type":"string",
@@ -1204,6 +1604,35 @@
         "SUBRESOURCES_EXIST",
         "INVALID_STATE"
       ]
+    },
+    "CreateAnalysisTemplateInput":{
+      "type":"structure",
+      "required":[
+        "membershipIdentifier",
+        "name",
+        "format",
+        "source"
+      ],
+      "members":{
+        "description":{"shape":"ResourceDescription"},
+        "membershipIdentifier":{
+          "shape":"MembershipIdentifier",
+          "location":"uri",
+          "locationName":"membershipIdentifier"
+        },
+        "name":{"shape":"TableAlias"},
+        "format":{"shape":"AnalysisFormat"},
+        "source":{"shape":"AnalysisSource"},
+        "tags":{"shape":"TagMap"},
+        "analysisParameters":{"shape":"AnalysisParameterList"}
+      }
+    },
+    "CreateAnalysisTemplateOutput":{
+      "type":"structure",
+      "required":["analysisTemplate"],
+      "members":{
+        "analysisTemplate":{"shape":"AnalysisTemplate"}
+      }
     },
     "CreateCollaborationInput":{
       "type":"structure",
@@ -1343,6 +1772,30 @@
         "preserveNulls":{"shape":"Boolean"}
       }
     },
+    "DeleteAnalysisTemplateInput":{
+      "type":"structure",
+      "required":[
+        "membershipIdentifier",
+        "analysisTemplateIdentifier"
+      ],
+      "members":{
+        "membershipIdentifier":{
+          "shape":"MembershipIdentifier",
+          "location":"uri",
+          "locationName":"membershipIdentifier"
+        },
+        "analysisTemplateIdentifier":{
+          "shape":"AnalysisTemplateIdentifier",
+          "location":"uri",
+          "locationName":"analysisTemplateIdentifier"
+        }
+      }
+    },
+    "DeleteAnalysisTemplateOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteCollaborationInput":{
       "type":"structure",
       "required":["collaborationIdentifier"],
@@ -1479,6 +1932,58 @@
         "INVITED",
         "ACTIVE"
       ]
+    },
+    "GetAnalysisTemplateInput":{
+      "type":"structure",
+      "required":[
+        "membershipIdentifier",
+        "analysisTemplateIdentifier"
+      ],
+      "members":{
+        "membershipIdentifier":{
+          "shape":"MembershipIdentifier",
+          "location":"uri",
+          "locationName":"membershipIdentifier"
+        },
+        "analysisTemplateIdentifier":{
+          "shape":"AnalysisTemplateIdentifier",
+          "location":"uri",
+          "locationName":"analysisTemplateIdentifier"
+        }
+      }
+    },
+    "GetAnalysisTemplateOutput":{
+      "type":"structure",
+      "required":["analysisTemplate"],
+      "members":{
+        "analysisTemplate":{"shape":"AnalysisTemplate"}
+      }
+    },
+    "GetCollaborationAnalysisTemplateInput":{
+      "type":"structure",
+      "required":[
+        "collaborationIdentifier",
+        "analysisTemplateArn"
+      ],
+      "members":{
+        "collaborationIdentifier":{
+          "shape":"CollaborationIdentifier",
+          "location":"uri",
+          "locationName":"collaborationIdentifier"
+        },
+        "analysisTemplateArn":{
+          "shape":"AnalysisTemplateArn",
+          "location":"uri",
+          "locationName":"analysisTemplateArn"
+        }
+      }
+    },
+    "GetCollaborationAnalysisTemplateOutput":{
+      "type":"structure",
+      "required":["collaborationAnalysisTemplate"],
+      "members":{
+        "collaborationAnalysisTemplate":{"shape":"CollaborationAnalysisTemplate"}
+      }
     },
     "GetCollaborationInput":{
       "type":"structure",
@@ -1722,6 +2227,64 @@
     "KeyPrefix":{
       "type":"string",
       "pattern":"[\\w!.*/-]*"
+    },
+    "ListAnalysisTemplatesInput":{
+      "type":"structure",
+      "required":["membershipIdentifier"],
+      "members":{
+        "membershipIdentifier":{
+          "shape":"MembershipIdentifier",
+          "location":"uri",
+          "locationName":"membershipIdentifier"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAnalysisTemplatesOutput":{
+      "type":"structure",
+      "required":["analysisTemplateSummaries"],
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "analysisTemplateSummaries":{"shape":"AnalysisTemplateSummaryList"}
+      }
+    },
+    "ListCollaborationAnalysisTemplatesInput":{
+      "type":"structure",
+      "required":["collaborationIdentifier"],
+      "members":{
+        "collaborationIdentifier":{
+          "shape":"CollaborationIdentifier",
+          "location":"uri",
+          "locationName":"collaborationIdentifier"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListCollaborationAnalysisTemplatesOutput":{
+      "type":"structure",
+      "required":["collaborationAnalysisTemplateSummaries"],
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "collaborationAnalysisTemplateSummaries":{"shape":"CollaborationAnalysisTemplateSummaryList"}
+      }
     },
     "ListCollaborationsInput":{
       "type":"structure",
@@ -2116,6 +2679,42 @@
       "max":10240,
       "min":0
     },
+    "ParameterMap":{
+      "type":"map",
+      "key":{"shape":"ParameterName"},
+      "value":{"shape":"ParameterValue"}
+    },
+    "ParameterName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[0-9a-zA-Z_]+"
+    },
+    "ParameterType":{
+      "type":"string",
+      "enum":[
+        "SMALLINT",
+        "INTEGER",
+        "BIGINT",
+        "DECIMAL",
+        "REAL",
+        "DOUBLE_PRECISION",
+        "BOOLEAN",
+        "CHAR",
+        "VARCHAR",
+        "DATE",
+        "TIMESTAMP",
+        "TIMESTAMPTZ",
+        "TIME",
+        "TIMETZ",
+        "VARBYTE"
+      ]
+    },
+    "ParameterValue":{
+      "type":"string",
+      "max":250,
+      "min":0
+    },
     "ProtectedQuery":{
       "type":"structure",
       "required":[
@@ -2213,7 +2812,9 @@
     "ProtectedQuerySQLParameters":{
       "type":"structure",
       "members":{
-        "queryString":{"shape":"ProtectedQuerySQLParametersQueryStringString"}
+        "queryString":{"shape":"ProtectedQuerySQLParametersQueryStringString"},
+        "analysisTemplateArn":{"shape":"AnalysisTemplateArn"},
+        "parameters":{"shape":"ParameterMap"}
       },
       "sensitive":true
     },
@@ -2264,6 +2865,22 @@
     "ProtectedQueryType":{
       "type":"string",
       "enum":["SQL"]
+    },
+    "QueryTables":{
+      "type":"list",
+      "member":{"shape":"TableAlias"}
+    },
+    "ResourceAlias":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"[a-zA-Z0-9_](([a-zA-Z0-9_ ]+-)*([a-zA-Z0-9_ ]+))?"
+    },
+    "ResourceDescription":{
+      "type":"string",
+      "max":255,
+      "min":0,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -2552,6 +3169,33 @@
       "members":{
       }
     },
+    "UpdateAnalysisTemplateInput":{
+      "type":"structure",
+      "required":[
+        "membershipIdentifier",
+        "analysisTemplateIdentifier"
+      ],
+      "members":{
+        "membershipIdentifier":{
+          "shape":"MembershipIdentifier",
+          "location":"uri",
+          "locationName":"membershipIdentifier"
+        },
+        "analysisTemplateIdentifier":{
+          "shape":"AnalysisTemplateIdentifier",
+          "location":"uri",
+          "locationName":"analysisTemplateIdentifier"
+        },
+        "description":{"shape":"ResourceDescription"}
+      }
+    },
+    "UpdateAnalysisTemplateOutput":{
+      "type":"structure",
+      "required":["analysisTemplate"],
+      "members":{
+        "analysisTemplate":{"shape":"AnalysisTemplate"}
+      }
+    },
     "UpdateCollaborationInput":{
       "type":"structure",
       "required":["collaborationIdentifier"],
@@ -2728,7 +3372,8 @@
       "enum":[
         "FIELD_VALIDATION_FAILED",
         "INVALID_CONFIGURATION",
-        "INVALID_QUERY"
+        "INVALID_QUERY",
+        "IAM_SYNCHRONIZATION_DELAY"
       ]
     }
   }

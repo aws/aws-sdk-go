@@ -3831,6 +3831,13 @@
       "timestampFormat": "iso8601",
       "type": "timestamp"
     },
+    "CreationType": {
+      "enum": [
+        "IMPORT",
+        "UPLOAD"
+      ],
+      "type": "string"
+    },
     "DeleteAnnotationStoreRequest": {
       "members": {
         "force": {
@@ -4507,6 +4514,9 @@
         },
         "creationTime": {
           "shape": "SyntheticTimestamp_date_time"
+        },
+        "creationType": {
+          "shape": "CreationType"
         },
         "description": {
           "shape": "ReadSetDescription"
@@ -6682,6 +6692,9 @@
         "createdBefore": {
           "shape": "SyntheticTimestamp_date_time"
         },
+        "creationType": {
+          "shape": "CreationType"
+        },
         "generatedFrom": {
           "shape": "GeneratedFrom"
         },
@@ -6751,6 +6764,9 @@
         },
         "creationTime": {
           "shape": "SyntheticTimestamp_date_time"
+        },
+        "creationType": {
+          "shape": "CreationType"
         },
         "description": {
           "shape": "ReadSetDescription"
