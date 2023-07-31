@@ -62,6 +62,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "BatchGetFindingDetails":{
+      "name":"BatchGetFindingDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/findings/details/batch/get",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetFindingDetailsRequest"},
+      "output":{"shape":"BatchGetFindingDetailsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "BatchGetFreeTrialInfo":{
       "name":"BatchGetFreeTrialInfo",
       "http":{
@@ -1133,6 +1149,20 @@
         "errors":{"shape":"CodeSnippetErrorList"}
       }
     },
+    "BatchGetFindingDetailsRequest":{
+      "type":"structure",
+      "required":["findingArns"],
+      "members":{
+        "findingArns":{"shape":"FindingArnList"}
+      }
+    },
+    "BatchGetFindingDetailsResponse":{
+      "type":"structure",
+      "members":{
+        "errors":{"shape":"FindingDetailsErrorList"},
+        "findingDetails":{"shape":"FindingDetails"}
+      }
+    },
     "BatchGetFreeTrialInfoRequest":{
       "type":"structure",
       "required":["accountIds"],
@@ -1971,6 +2001,30 @@
       ]
     },
     "ErrorMessage":{"type":"string"},
+    "Evidence":{
+      "type":"structure",
+      "members":{
+        "evidenceDetail":{"shape":"EvidenceDetail"},
+        "evidenceRule":{"shape":"EvidenceRule"},
+        "severity":{"shape":"EvidenceSeverity"}
+      }
+    },
+    "EvidenceDetail":{
+      "type":"string",
+      "min":0
+    },
+    "EvidenceList":{
+      "type":"list",
+      "member":{"shape":"Evidence"}
+    },
+    "EvidenceRule":{
+      "type":"string",
+      "min":0
+    },
+    "EvidenceSeverity":{
+      "type":"string",
+      "min":0
+    },
     "ExecutionRoleArn":{
       "type":"string",
       "pattern":"^arn:(aws[a-zA-Z-]*)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
@@ -2195,10 +2249,62 @@
       "min":1,
       "pattern":"^arn:(aws[a-zA-Z-]*)?:inspector2:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:finding/[a-f0-9]{32}$"
     },
+    "FindingArnList":{
+      "type":"list",
+      "member":{"shape":"FindingArn"},
+      "max":10,
+      "min":1
+    },
     "FindingDescription":{
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "FindingDetail":{
+      "type":"structure",
+      "members":{
+        "cisaData":{"shape":"CisaData"},
+        "cwes":{"shape":"Cwes"},
+        "epssScore":{"shape":"Double"},
+        "evidences":{"shape":"EvidenceList"},
+        "exploitObserved":{"shape":"ExploitObserved"},
+        "findingArn":{"shape":"FindingArn"},
+        "referenceUrls":{"shape":"VulnerabilityReferenceUrls"},
+        "riskScore":{"shape":"RiskScore"},
+        "tools":{"shape":"Tools"},
+        "ttps":{"shape":"Ttps"}
+      }
+    },
+    "FindingDetails":{
+      "type":"list",
+      "member":{"shape":"FindingDetail"},
+      "min":0
+    },
+    "FindingDetailsError":{
+      "type":"structure",
+      "required":[
+        "errorCode",
+        "errorMessage",
+        "findingArn"
+      ],
+      "members":{
+        "errorCode":{"shape":"FindingDetailsErrorCode"},
+        "errorMessage":{"shape":"NonEmptyString"},
+        "findingArn":{"shape":"FindingArn"}
+      }
+    },
+    "FindingDetailsErrorCode":{
+      "type":"string",
+      "enum":[
+        "INTERNAL_ERROR",
+        "ACCESS_DENIED",
+        "FINDING_DETAILS_NOT_FOUND",
+        "INVALID_INPUT"
+      ]
+    },
+    "FindingDetailsErrorList":{
+      "type":"list",
+      "member":{"shape":"FindingDetailsError"}
     },
     "FindingList":{
       "type":"list",
@@ -3475,6 +3581,10 @@
         "AWS_LAMBDA_FUNCTION"
       ]
     },
+    "RiskScore":{
+      "type":"integer",
+      "box":true
+    },
     "Runtime":{
       "type":"string",
       "enum":[
@@ -3887,6 +3997,14 @@
         "HIGH",
         "ALL"
       ]
+    },
+    "Tool":{
+      "type":"string",
+      "min":0
+    },
+    "Tools":{
+      "type":"list",
+      "member":{"shape":"Tool"}
     },
     "Ttp":{
       "type":"string",

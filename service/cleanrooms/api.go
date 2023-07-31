@@ -13,6 +13,98 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opBatchGetCollaborationAnalysisTemplate = "BatchGetCollaborationAnalysisTemplate"
+
+// BatchGetCollaborationAnalysisTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetCollaborationAnalysisTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetCollaborationAnalysisTemplate for more information on using the BatchGetCollaborationAnalysisTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetCollaborationAnalysisTemplateRequest method.
+//	req, resp := client.BatchGetCollaborationAnalysisTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/BatchGetCollaborationAnalysisTemplate
+func (c *CleanRooms) BatchGetCollaborationAnalysisTemplateRequest(input *BatchGetCollaborationAnalysisTemplateInput) (req *request.Request, output *BatchGetCollaborationAnalysisTemplateOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetCollaborationAnalysisTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/batch-analysistemplates",
+	}
+
+	if input == nil {
+		input = &BatchGetCollaborationAnalysisTemplateInput{}
+	}
+
+	output = &BatchGetCollaborationAnalysisTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetCollaborationAnalysisTemplate API operation for AWS Clean Rooms Service.
+//
+// Retrieves multiple analysis templates within a collaboration by their Amazon
+// Resource Names (ARNs).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation BatchGetCollaborationAnalysisTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/BatchGetCollaborationAnalysisTemplate
+func (c *CleanRooms) BatchGetCollaborationAnalysisTemplate(input *BatchGetCollaborationAnalysisTemplateInput) (*BatchGetCollaborationAnalysisTemplateOutput, error) {
+	req, out := c.BatchGetCollaborationAnalysisTemplateRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetCollaborationAnalysisTemplateWithContext is the same as BatchGetCollaborationAnalysisTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetCollaborationAnalysisTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) BatchGetCollaborationAnalysisTemplateWithContext(ctx aws.Context, input *BatchGetCollaborationAnalysisTemplateInput, opts ...request.Option) (*BatchGetCollaborationAnalysisTemplateOutput, error) {
+	req, out := c.BatchGetCollaborationAnalysisTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetSchema = "BatchGetSchema"
 
 // BatchGetSchemaRequest generates a "aws/request.Request" representing the
@@ -99,6 +191,103 @@ func (c *CleanRooms) BatchGetSchema(input *BatchGetSchemaInput) (*BatchGetSchema
 // for more information on using Contexts.
 func (c *CleanRooms) BatchGetSchemaWithContext(ctx aws.Context, input *BatchGetSchemaInput, opts ...request.Option) (*BatchGetSchemaOutput, error) {
 	req, out := c.BatchGetSchemaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAnalysisTemplate = "CreateAnalysisTemplate"
+
+// CreateAnalysisTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAnalysisTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAnalysisTemplate for more information on using the CreateAnalysisTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAnalysisTemplateRequest method.
+//	req, resp := client.CreateAnalysisTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreateAnalysisTemplate
+func (c *CleanRooms) CreateAnalysisTemplateRequest(input *CreateAnalysisTemplateInput) (req *request.Request, output *CreateAnalysisTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateAnalysisTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/memberships/{membershipIdentifier}/analysistemplates",
+	}
+
+	if input == nil {
+		input = &CreateAnalysisTemplateInput{}
+	}
+
+	output = &CreateAnalysisTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAnalysisTemplate API operation for AWS Clean Rooms Service.
+//
+// Creates a new analysis template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation CreateAnalysisTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ServiceQuotaExceededException
+//     Request denied because service quota has been exceeded.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreateAnalysisTemplate
+func (c *CleanRooms) CreateAnalysisTemplate(input *CreateAnalysisTemplateInput) (*CreateAnalysisTemplateOutput, error) {
+	req, out := c.CreateAnalysisTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateAnalysisTemplateWithContext is the same as CreateAnalysisTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAnalysisTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) CreateAnalysisTemplateWithContext(ctx aws.Context, input *CreateAnalysisTemplateInput, opts ...request.Option) (*CreateAnalysisTemplateOutput, error) {
+	req, out := c.CreateAnalysisTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -578,6 +767,98 @@ func (c *CleanRooms) CreateMembership(input *CreateMembershipInput) (*CreateMemb
 // for more information on using Contexts.
 func (c *CleanRooms) CreateMembershipWithContext(ctx aws.Context, input *CreateMembershipInput, opts ...request.Option) (*CreateMembershipOutput, error) {
 	req, out := c.CreateMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAnalysisTemplate = "DeleteAnalysisTemplate"
+
+// DeleteAnalysisTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAnalysisTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAnalysisTemplate for more information on using the DeleteAnalysisTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAnalysisTemplateRequest method.
+//	req, resp := client.DeleteAnalysisTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteAnalysisTemplate
+func (c *CleanRooms) DeleteAnalysisTemplateRequest(input *DeleteAnalysisTemplateInput) (req *request.Request, output *DeleteAnalysisTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAnalysisTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteAnalysisTemplateInput{}
+	}
+
+	output = &DeleteAnalysisTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAnalysisTemplate API operation for AWS Clean Rooms Service.
+//
+// Deletes an analysis template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation DeleteAnalysisTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteAnalysisTemplate
+func (c *CleanRooms) DeleteAnalysisTemplate(input *DeleteAnalysisTemplateInput) (*DeleteAnalysisTemplateOutput, error) {
+	req, out := c.DeleteAnalysisTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAnalysisTemplateWithContext is the same as DeleteAnalysisTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAnalysisTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) DeleteAnalysisTemplateWithContext(ctx aws.Context, input *DeleteAnalysisTemplateInput, opts ...request.Option) (*DeleteAnalysisTemplateOutput, error) {
+	req, out := c.DeleteAnalysisTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1150,6 +1431,97 @@ func (c *CleanRooms) DeleteMembershipWithContext(ctx aws.Context, input *DeleteM
 	return out, req.Send()
 }
 
+const opGetAnalysisTemplate = "GetAnalysisTemplate"
+
+// GetAnalysisTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetAnalysisTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAnalysisTemplate for more information on using the GetAnalysisTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAnalysisTemplateRequest method.
+//	req, resp := client.GetAnalysisTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetAnalysisTemplate
+func (c *CleanRooms) GetAnalysisTemplateRequest(input *GetAnalysisTemplateInput) (req *request.Request, output *GetAnalysisTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetAnalysisTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetAnalysisTemplateInput{}
+	}
+
+	output = &GetAnalysisTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAnalysisTemplate API operation for AWS Clean Rooms Service.
+//
+// Retrieves an analysis template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation GetAnalysisTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetAnalysisTemplate
+func (c *CleanRooms) GetAnalysisTemplate(input *GetAnalysisTemplateInput) (*GetAnalysisTemplateOutput, error) {
+	req, out := c.GetAnalysisTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetAnalysisTemplateWithContext is the same as GetAnalysisTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAnalysisTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) GetAnalysisTemplateWithContext(ctx aws.Context, input *GetAnalysisTemplateInput, opts ...request.Option) (*GetAnalysisTemplateOutput, error) {
+	req, out := c.GetAnalysisTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCollaboration = "GetCollaboration"
 
 // GetCollaborationRequest generates a "aws/request.Request" representing the
@@ -1233,6 +1605,97 @@ func (c *CleanRooms) GetCollaboration(input *GetCollaborationInput) (*GetCollabo
 // for more information on using Contexts.
 func (c *CleanRooms) GetCollaborationWithContext(ctx aws.Context, input *GetCollaborationInput, opts ...request.Option) (*GetCollaborationOutput, error) {
 	req, out := c.GetCollaborationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCollaborationAnalysisTemplate = "GetCollaborationAnalysisTemplate"
+
+// GetCollaborationAnalysisTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetCollaborationAnalysisTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCollaborationAnalysisTemplate for more information on using the GetCollaborationAnalysisTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCollaborationAnalysisTemplateRequest method.
+//	req, resp := client.GetCollaborationAnalysisTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetCollaborationAnalysisTemplate
+func (c *CleanRooms) GetCollaborationAnalysisTemplateRequest(input *GetCollaborationAnalysisTemplateInput) (req *request.Request, output *GetCollaborationAnalysisTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetCollaborationAnalysisTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/analysistemplates/{analysisTemplateArn}",
+	}
+
+	if input == nil {
+		input = &GetCollaborationAnalysisTemplateInput{}
+	}
+
+	output = &GetCollaborationAnalysisTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCollaborationAnalysisTemplate API operation for AWS Clean Rooms Service.
+//
+// Retrieves an analysis template within a collaboration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation GetCollaborationAnalysisTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetCollaborationAnalysisTemplate
+func (c *CleanRooms) GetCollaborationAnalysisTemplate(input *GetCollaborationAnalysisTemplateInput) (*GetCollaborationAnalysisTemplateOutput, error) {
+	req, out := c.GetCollaborationAnalysisTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetCollaborationAnalysisTemplateWithContext is the same as GetCollaborationAnalysisTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCollaborationAnalysisTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) GetCollaborationAnalysisTemplateWithContext(ctx aws.Context, input *GetCollaborationAnalysisTemplateInput, opts ...request.Option) (*GetCollaborationAnalysisTemplateOutput, error) {
+	req, out := c.GetCollaborationAnalysisTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1873,6 +2336,302 @@ func (c *CleanRooms) GetSchemaAnalysisRuleWithContext(ctx aws.Context, input *Ge
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAnalysisTemplates = "ListAnalysisTemplates"
+
+// ListAnalysisTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAnalysisTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAnalysisTemplates for more information on using the ListAnalysisTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAnalysisTemplatesRequest method.
+//	req, resp := client.ListAnalysisTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListAnalysisTemplates
+func (c *CleanRooms) ListAnalysisTemplatesRequest(input *ListAnalysisTemplatesInput) (req *request.Request, output *ListAnalysisTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListAnalysisTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/analysistemplates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAnalysisTemplatesInput{}
+	}
+
+	output = &ListAnalysisTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAnalysisTemplates API operation for AWS Clean Rooms Service.
+//
+// Lists analysis templates that the caller owns.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListAnalysisTemplates for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListAnalysisTemplates
+func (c *CleanRooms) ListAnalysisTemplates(input *ListAnalysisTemplatesInput) (*ListAnalysisTemplatesOutput, error) {
+	req, out := c.ListAnalysisTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListAnalysisTemplatesWithContext is the same as ListAnalysisTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAnalysisTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListAnalysisTemplatesWithContext(ctx aws.Context, input *ListAnalysisTemplatesInput, opts ...request.Option) (*ListAnalysisTemplatesOutput, error) {
+	req, out := c.ListAnalysisTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAnalysisTemplatesPages iterates over the pages of a ListAnalysisTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAnalysisTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAnalysisTemplates operation.
+//	pageNum := 0
+//	err := client.ListAnalysisTemplatesPages(params,
+//	    func(page *cleanrooms.ListAnalysisTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListAnalysisTemplatesPages(input *ListAnalysisTemplatesInput, fn func(*ListAnalysisTemplatesOutput, bool) bool) error {
+	return c.ListAnalysisTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAnalysisTemplatesPagesWithContext same as ListAnalysisTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListAnalysisTemplatesPagesWithContext(ctx aws.Context, input *ListAnalysisTemplatesInput, fn func(*ListAnalysisTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAnalysisTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAnalysisTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAnalysisTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCollaborationAnalysisTemplates = "ListCollaborationAnalysisTemplates"
+
+// ListCollaborationAnalysisTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCollaborationAnalysisTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCollaborationAnalysisTemplates for more information on using the ListCollaborationAnalysisTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCollaborationAnalysisTemplatesRequest method.
+//	req, resp := client.ListCollaborationAnalysisTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationAnalysisTemplates
+func (c *CleanRooms) ListCollaborationAnalysisTemplatesRequest(input *ListCollaborationAnalysisTemplatesInput) (req *request.Request, output *ListCollaborationAnalysisTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListCollaborationAnalysisTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/analysistemplates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCollaborationAnalysisTemplatesInput{}
+	}
+
+	output = &ListCollaborationAnalysisTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCollaborationAnalysisTemplates API operation for AWS Clean Rooms Service.
+//
+// Lists analysis templates within a collaboration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListCollaborationAnalysisTemplates for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationAnalysisTemplates
+func (c *CleanRooms) ListCollaborationAnalysisTemplates(input *ListCollaborationAnalysisTemplatesInput) (*ListCollaborationAnalysisTemplatesOutput, error) {
+	req, out := c.ListCollaborationAnalysisTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListCollaborationAnalysisTemplatesWithContext is the same as ListCollaborationAnalysisTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCollaborationAnalysisTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationAnalysisTemplatesWithContext(ctx aws.Context, input *ListCollaborationAnalysisTemplatesInput, opts ...request.Option) (*ListCollaborationAnalysisTemplatesOutput, error) {
+	req, out := c.ListCollaborationAnalysisTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCollaborationAnalysisTemplatesPages iterates over the pages of a ListCollaborationAnalysisTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCollaborationAnalysisTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCollaborationAnalysisTemplates operation.
+//	pageNum := 0
+//	err := client.ListCollaborationAnalysisTemplatesPages(params,
+//	    func(page *cleanrooms.ListCollaborationAnalysisTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListCollaborationAnalysisTemplatesPages(input *ListCollaborationAnalysisTemplatesInput, fn func(*ListCollaborationAnalysisTemplatesOutput, bool) bool) error {
+	return c.ListCollaborationAnalysisTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCollaborationAnalysisTemplatesPagesWithContext same as ListCollaborationAnalysisTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationAnalysisTemplatesPagesWithContext(ctx aws.Context, input *ListCollaborationAnalysisTemplatesInput, fn func(*ListCollaborationAnalysisTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCollaborationAnalysisTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCollaborationAnalysisTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCollaborationAnalysisTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListCollaborations = "ListCollaborations"
@@ -3244,6 +4003,97 @@ func (c *CleanRooms) UntagResourceWithContext(ctx aws.Context, input *UntagResou
 	return out, req.Send()
 }
 
+const opUpdateAnalysisTemplate = "UpdateAnalysisTemplate"
+
+// UpdateAnalysisTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAnalysisTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAnalysisTemplate for more information on using the UpdateAnalysisTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAnalysisTemplateRequest method.
+//	req, resp := client.UpdateAnalysisTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdateAnalysisTemplate
+func (c *CleanRooms) UpdateAnalysisTemplateRequest(input *UpdateAnalysisTemplateInput) (req *request.Request, output *UpdateAnalysisTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAnalysisTemplate,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateAnalysisTemplateInput{}
+	}
+
+	output = &UpdateAnalysisTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAnalysisTemplate API operation for AWS Clean Rooms Service.
+//
+// Updates the analysis template metadata.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation UpdateAnalysisTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdateAnalysisTemplate
+func (c *CleanRooms) UpdateAnalysisTemplate(input *UpdateAnalysisTemplateInput) (*UpdateAnalysisTemplateOutput, error) {
+	req, out := c.UpdateAnalysisTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAnalysisTemplateWithContext is the same as UpdateAnalysisTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAnalysisTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) UpdateAnalysisTemplateWithContext(ctx aws.Context, input *UpdateAnalysisTemplateInput, opts ...request.Option) (*UpdateAnalysisTemplateOutput, error) {
+	req, out := c.UpdateAnalysisTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCollaboration = "UpdateCollaboration"
 
 // UpdateCollaborationRequest generates a "aws/request.Request" representing the
@@ -4020,6 +4870,82 @@ func (s *AggregationConstraint) SetType(v string) *AggregationConstraint {
 	return s
 }
 
+// Optional. The member who can query can provide this placeholder for a literal
+// data value in an analysis template.
+type AnalysisParameter struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// Optional. The default value that is applied in the analysis template. The
+	// member who can query can override this value in the query editor.
+	DefaultValue *string `locationName:"defaultValue" type:"string"`
+
+	// The name of the parameter. The name must use only alphanumeric, underscore
+	// (_), or hyphen (-) characters but cannot start or end with a hyphen.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The type of parameter.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"ParameterType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalysisParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalysisParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *AnalysisParameter) SetDefaultValue(v string) *AnalysisParameter {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AnalysisParameter) SetName(v string) *AnalysisParameter {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AnalysisParameter) SetType(v string) *AnalysisParameter {
+	s.Type = &v
+	return s
+}
+
 // A specification about how data from the configured table can be used in a
 // query.
 type AnalysisRule struct {
@@ -4045,7 +4971,7 @@ type AnalysisRule struct {
 	// Policy is a required field
 	Policy *AnalysisRulePolicy `locationName:"policy" type:"structure" required:"true"`
 
-	// The type of analysis rule. Valid values are `AGGREGATION` and `LIST`.
+	// The type of analysis rule.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"AnalysisRuleType"`
@@ -4110,7 +5036,8 @@ func (s *AnalysisRule) SetUpdateTime(v time.Time) *AnalysisRule {
 	return s
 }
 
-// Enables query structure and specified queries that produce aggregate statistics.
+// A type of analysis rule that enables query structure and specified queries
+// that produce aggregate statistics.
 type AnalysisRuleAggregation struct {
 	_ struct{} `type:"structure"`
 
@@ -4263,12 +5190,70 @@ func (s *AnalysisRuleAggregation) SetScalarFunctions(v []*string) *AnalysisRuleA
 	return s
 }
 
+// A type of analysis rule that enables the table owner to approve custom SQL
+// queries on their configured tables.
+type AnalysisRuleCustom struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis templates that are allowed by the custom analysis rule.
+	//
+	// AllowedAnalyses is a required field
+	AllowedAnalyses []*string `locationName:"allowedAnalyses" type:"list" required:"true"`
+
+	// The Amazon Web Services accounts that are allowed to query by the custom
+	// analysis rule. Required when allowedAnalyses is ANY_QUERY.
+	AllowedAnalysisProviders []*string `locationName:"allowedAnalysisProviders" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisRuleCustom) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisRuleCustom) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalysisRuleCustom) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalysisRuleCustom"}
+	if s.AllowedAnalyses == nil {
+		invalidParams.Add(request.NewErrParamRequired("AllowedAnalyses"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedAnalyses sets the AllowedAnalyses field's value.
+func (s *AnalysisRuleCustom) SetAllowedAnalyses(v []*string) *AnalysisRuleCustom {
+	s.AllowedAnalyses = v
+	return s
+}
+
+// SetAllowedAnalysisProviders sets the AllowedAnalysisProviders field's value.
+func (s *AnalysisRuleCustom) SetAllowedAnalysisProviders(v []*string) *AnalysisRuleCustom {
+	s.AllowedAnalysisProviders = v
+	return s
+}
+
 // A type of analysis rule that enables row-level analysis.
 type AnalysisRuleList struct {
 	_ struct{} `type:"structure"`
 
-	// Which logical operators (if any) are to be used in an INNER JOIN match condition.
-	// Default is AND.
+	// The logical operators (if any) that are to be used in an INNER JOIN match
+	// condition. Default is AND.
 	AllowedJoinOperators []*string `locationName:"allowedJoinOperators" type:"list" enum:"JoinOperator"`
 
 	// Columns that can be used to join a configured table with the table of the
@@ -4338,11 +5323,11 @@ func (s *AnalysisRuleList) SetListColumns(v []*string) *AnalysisRuleList {
 	return s
 }
 
-// Controls on the query specifications that can be run on configured table..
+// Controls on the query specifications that can be run on configured table.
 type AnalysisRulePolicy struct {
 	_ struct{} `type:"structure"`
 
-	// Controls on the query specifications that can be run on configured table..
+	// Controls on the query specifications that can be run on configured table.
 	V1 *AnalysisRulePolicyV1 `locationName:"v1" type:"structure"`
 }
 
@@ -4370,13 +5355,16 @@ func (s *AnalysisRulePolicy) SetV1(v *AnalysisRulePolicyV1) *AnalysisRulePolicy 
 	return s
 }
 
-// Controls on the query specifications that can be run on configured table..
+// Controls on the query specifications that can be run on configured table.
 type AnalysisRulePolicyV1 struct {
 	_ struct{} `type:"structure"`
 
 	// Analysis rule type that enables only aggregation queries on a configured
 	// table.
 	Aggregation *AnalysisRuleAggregation `locationName:"aggregation" type:"structure"`
+
+	// Analysis rule type that enables custom SQL queries on a configured table.
+	Custom *AnalysisRuleCustom `locationName:"custom" type:"structure"`
 
 	// Analysis rule type that enables only list queries on a configured table.
 	List *AnalysisRuleList `locationName:"list" type:"structure"`
@@ -4406,9 +5394,559 @@ func (s *AnalysisRulePolicyV1) SetAggregation(v *AnalysisRuleAggregation) *Analy
 	return s
 }
 
+// SetCustom sets the Custom field's value.
+func (s *AnalysisRulePolicyV1) SetCustom(v *AnalysisRuleCustom) *AnalysisRulePolicyV1 {
+	s.Custom = v
+	return s
+}
+
 // SetList sets the List field's value.
 func (s *AnalysisRulePolicyV1) SetList(v *AnalysisRuleList) *AnalysisRulePolicyV1 {
 	s.List = v
+	return s
+}
+
+// A relation within an analysis.
+type AnalysisSchema struct {
+	_ struct{} `type:"structure"`
+
+	// The tables referenced in the analysis schema.
+	ReferencedTables []*string `locationName:"referencedTables" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisSchema) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisSchema) GoString() string {
+	return s.String()
+}
+
+// SetReferencedTables sets the ReferencedTables field's value.
+func (s *AnalysisSchema) SetReferencedTables(v []*string) *AnalysisSchema {
+	s.ReferencedTables = v
+	return s
+}
+
+// The structure that defines the body of the analysis template.
+type AnalysisSource struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The query text.
+	Text *string `locationName:"text" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisSource) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *AnalysisSource) SetText(v string) *AnalysisSource {
+	s.Text = &v
+	return s
+}
+
+// The analysis template.
+type AnalysisTemplate struct {
+	_ struct{} `type:"structure"`
+
+	// The parameters of the analysis template.
+	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the analysis template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The unique ARN for the analysis template’s associated collaboration.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique ID for the associated collaboration of the analysis template.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time that the analysis template was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The description of the analysis template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The format of the analysis template.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true" enum:"AnalysisFormat"`
+
+	// The identifier for the analysis template.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the member who created the analysis template.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// The identifier of a member who created the analysis template.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The name of the analysis template.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The entire schema object.
+	//
+	// Schema is a required field
+	Schema *AnalysisSchema `locationName:"schema" type:"structure" required:"true"`
+
+	// The source of the analysis template.
+	//
+	// Source is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AnalysisTemplate's
+	// String and GoString methods.
+	//
+	// Source is a required field
+	Source *AnalysisSource `locationName:"source" type:"structure" required:"true" sensitive:"true"`
+
+	// The time that the analysis template was last updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisTemplate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisTemplate) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisParameters sets the AnalysisParameters field's value.
+func (s *AnalysisTemplate) SetAnalysisParameters(v []*AnalysisParameter) *AnalysisTemplate {
+	s.AnalysisParameters = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *AnalysisTemplate) SetArn(v string) *AnalysisTemplate {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *AnalysisTemplate) SetCollaborationArn(v string) *AnalysisTemplate {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *AnalysisTemplate) SetCollaborationId(v string) *AnalysisTemplate {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *AnalysisTemplate) SetCreateTime(v time.Time) *AnalysisTemplate {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AnalysisTemplate) SetDescription(v string) *AnalysisTemplate {
+	s.Description = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *AnalysisTemplate) SetFormat(v string) *AnalysisTemplate {
+	s.Format = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AnalysisTemplate) SetId(v string) *AnalysisTemplate {
+	s.Id = &v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *AnalysisTemplate) SetMembershipArn(v string) *AnalysisTemplate {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *AnalysisTemplate) SetMembershipId(v string) *AnalysisTemplate {
+	s.MembershipId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AnalysisTemplate) SetName(v string) *AnalysisTemplate {
+	s.Name = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *AnalysisTemplate) SetSchema(v *AnalysisSchema) *AnalysisTemplate {
+	s.Schema = v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *AnalysisTemplate) SetSource(v *AnalysisSource) *AnalysisTemplate {
+	s.Source = v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *AnalysisTemplate) SetUpdateTime(v time.Time) *AnalysisTemplate {
+	s.UpdateTime = &v
+	return s
+}
+
+// The metadata of the analysis template.
+type AnalysisTemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the analysis template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The unique ARN for the analysis template summary’s associated collaboration.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// A unique identifier for the collaboration that the analysis template summary
+	// belongs to. Currently accepts collaboration ID.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time that the analysis template summary was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The description of the analysis template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The identifier of the analysis template.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the member who created the analysis template.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The name of the analysis template.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The time that the analysis template summary was last updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisTemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisTemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AnalysisTemplateSummary) SetArn(v string) *AnalysisTemplateSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *AnalysisTemplateSummary) SetCollaborationArn(v string) *AnalysisTemplateSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *AnalysisTemplateSummary) SetCollaborationId(v string) *AnalysisTemplateSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *AnalysisTemplateSummary) SetCreateTime(v time.Time) *AnalysisTemplateSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AnalysisTemplateSummary) SetDescription(v string) *AnalysisTemplateSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AnalysisTemplateSummary) SetId(v string) *AnalysisTemplateSummary {
+	s.Id = &v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *AnalysisTemplateSummary) SetMembershipArn(v string) *AnalysisTemplateSummary {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *AnalysisTemplateSummary) SetMembershipId(v string) *AnalysisTemplateSummary {
+	s.MembershipId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AnalysisTemplateSummary) SetName(v string) *AnalysisTemplateSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *AnalysisTemplateSummary) SetUpdateTime(v time.Time) *AnalysisTemplateSummary {
+	s.UpdateTime = &v
+	return s
+}
+
+// Details of errors thrown by the call to retrieve multiple analysis templates
+// within a collaboration by their identifiers.
+type BatchGetCollaborationAnalysisTemplateError struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the analysis template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// An error code for the error.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true"`
+
+	// A description of why the call failed.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCollaborationAnalysisTemplateError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCollaborationAnalysisTemplateError) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *BatchGetCollaborationAnalysisTemplateError) SetArn(v string) *BatchGetCollaborationAnalysisTemplateError {
+	s.Arn = &v
+	return s
+}
+
+// SetCode sets the Code field's value.
+func (s *BatchGetCollaborationAnalysisTemplateError) SetCode(v string) *BatchGetCollaborationAnalysisTemplateError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *BatchGetCollaborationAnalysisTemplateError) SetMessage(v string) *BatchGetCollaborationAnalysisTemplateError {
+	s.Message = &v
+	return s
+}
+
+type BatchGetCollaborationAnalysisTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) associated with the analysis template within
+	// a collaboration.
+	//
+	// AnalysisTemplateArns is a required field
+	AnalysisTemplateArns []*string `locationName:"analysisTemplateArns" min:"1" type:"list" required:"true"`
+
+	// A unique identifier for the collaboration that the analysis templates belong
+	// to. Currently accepts collaboration ID.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCollaborationAnalysisTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCollaborationAnalysisTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetCollaborationAnalysisTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetCollaborationAnalysisTemplateInput"}
+	if s.AnalysisTemplateArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisTemplateArns"))
+	}
+	if s.AnalysisTemplateArns != nil && len(s.AnalysisTemplateArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisTemplateArns", 1))
+	}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisTemplateArns sets the AnalysisTemplateArns field's value.
+func (s *BatchGetCollaborationAnalysisTemplateInput) SetAnalysisTemplateArns(v []*string) *BatchGetCollaborationAnalysisTemplateInput {
+	s.AnalysisTemplateArns = v
+	return s
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *BatchGetCollaborationAnalysisTemplateInput) SetCollaborationIdentifier(v string) *BatchGetCollaborationAnalysisTemplateInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+type BatchGetCollaborationAnalysisTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The retrieved list of analysis templates within a collaboration.
+	//
+	// CollaborationAnalysisTemplates is a required field
+	CollaborationAnalysisTemplates []*CollaborationAnalysisTemplate `locationName:"collaborationAnalysisTemplates" type:"list" required:"true"`
+
+	// Error reasons for collaboration analysis templates that could not be retrieved.
+	// One error is returned for every collaboration analysis template that could
+	// not be retrieved.
+	//
+	// Errors is a required field
+	Errors []*BatchGetCollaborationAnalysisTemplateError `locationName:"errors" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCollaborationAnalysisTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCollaborationAnalysisTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationAnalysisTemplates sets the CollaborationAnalysisTemplates field's value.
+func (s *BatchGetCollaborationAnalysisTemplateOutput) SetCollaborationAnalysisTemplates(v []*CollaborationAnalysisTemplate) *BatchGetCollaborationAnalysisTemplateOutput {
+	s.CollaborationAnalysisTemplates = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetCollaborationAnalysisTemplateOutput) SetErrors(v []*BatchGetCollaborationAnalysisTemplateError) *BatchGetCollaborationAnalysisTemplateOutput {
+	s.Errors = v
 	return s
 }
 
@@ -4742,6 +6280,298 @@ func (s *Collaboration) SetUpdateTime(v time.Time) *Collaboration {
 	return s
 }
 
+// The analysis template within a collaboration.
+type CollaborationAnalysisTemplate struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis parameters that have been specified in the analysis template.
+	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the analysis template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The unique ARN for the analysis template’s associated collaboration.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// A unique identifier for the collaboration that the analysis templates belong
+	// to. Currently accepts collaboration ID.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time that the analysis template within a collaboration was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The identifier used to reference members of the collaboration. Currently
+	// only supports Amazon Web Services account ID.
+	//
+	// CreatorAccountId is a required field
+	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
+
+	// The description of the analysis template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The format of the analysis template in the collaboration.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true" enum:"AnalysisFormat"`
+
+	// The identifier of the analysis template.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The name of the analysis template.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The entire schema object.
+	//
+	// Schema is a required field
+	Schema *AnalysisSchema `locationName:"schema" type:"structure" required:"true"`
+
+	// The source of the analysis template within a collaboration.
+	//
+	// Source is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CollaborationAnalysisTemplate's
+	// String and GoString methods.
+	//
+	// Source is a required field
+	Source *AnalysisSource `locationName:"source" type:"structure" required:"true" sensitive:"true"`
+
+	// The time that the analysis template in the collaboration was last updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationAnalysisTemplate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationAnalysisTemplate) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisParameters sets the AnalysisParameters field's value.
+func (s *CollaborationAnalysisTemplate) SetAnalysisParameters(v []*AnalysisParameter) *CollaborationAnalysisTemplate {
+	s.AnalysisParameters = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *CollaborationAnalysisTemplate) SetArn(v string) *CollaborationAnalysisTemplate {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *CollaborationAnalysisTemplate) SetCollaborationArn(v string) *CollaborationAnalysisTemplate {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *CollaborationAnalysisTemplate) SetCollaborationId(v string) *CollaborationAnalysisTemplate {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CollaborationAnalysisTemplate) SetCreateTime(v time.Time) *CollaborationAnalysisTemplate {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatorAccountId sets the CreatorAccountId field's value.
+func (s *CollaborationAnalysisTemplate) SetCreatorAccountId(v string) *CollaborationAnalysisTemplate {
+	s.CreatorAccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CollaborationAnalysisTemplate) SetDescription(v string) *CollaborationAnalysisTemplate {
+	s.Description = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *CollaborationAnalysisTemplate) SetFormat(v string) *CollaborationAnalysisTemplate {
+	s.Format = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CollaborationAnalysisTemplate) SetId(v string) *CollaborationAnalysisTemplate {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CollaborationAnalysisTemplate) SetName(v string) *CollaborationAnalysisTemplate {
+	s.Name = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *CollaborationAnalysisTemplate) SetSchema(v *AnalysisSchema) *CollaborationAnalysisTemplate {
+	s.Schema = v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *CollaborationAnalysisTemplate) SetSource(v *AnalysisSource) *CollaborationAnalysisTemplate {
+	s.Source = v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *CollaborationAnalysisTemplate) SetUpdateTime(v time.Time) *CollaborationAnalysisTemplate {
+	s.UpdateTime = &v
+	return s
+}
+
+// The metadata of the analysis template within a collaboration.
+type CollaborationAnalysisTemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the analysis template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The unique ARN for the analysis template’s associated collaboration.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// A unique identifier for the collaboration that the analysis templates belong
+	// to. Currently accepts collaboration ID.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time that the summary of the analysis template in a collaboration was
+	// created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The identifier used to reference members of the collaboration. Currently
+	// only supports Amazon Web Services account ID.
+	//
+	// CreatorAccountId is a required field
+	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
+
+	// The description of the analysis template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The identifier of the analysis template.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The name of the analysis template.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The time that the summary of the analysis template in the collaboration was
+	// last updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationAnalysisTemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationAnalysisTemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetArn(v string) *CollaborationAnalysisTemplateSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetCollaborationArn(v string) *CollaborationAnalysisTemplateSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetCollaborationId(v string) *CollaborationAnalysisTemplateSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetCreateTime(v time.Time) *CollaborationAnalysisTemplateSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatorAccountId sets the CreatorAccountId field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetCreatorAccountId(v string) *CollaborationAnalysisTemplateSummary {
+	s.CreatorAccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetDescription(v string) *CollaborationAnalysisTemplateSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetId(v string) *CollaborationAnalysisTemplateSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetName(v string) *CollaborationAnalysisTemplateSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *CollaborationAnalysisTemplateSummary) SetUpdateTime(v time.Time) *CollaborationAnalysisTemplateSummary {
+	s.UpdateTime = &v
+	return s
+}
+
 // The metadata of the collaboration.
 type CollaborationSummary struct {
 	_ struct{} `type:"structure"`
@@ -4934,9 +6764,8 @@ type ConfiguredTable struct {
 	// AnalysisMethod is a required field
 	AnalysisMethod *string `locationName:"analysisMethod" type:"string" required:"true" enum:"AnalysisMethod"`
 
-	// The types of analysis rules associated with this configured table. Valid
-	// values are `AGGREGATION` and `LIST`. Currently, only one analysis rule may
-	// be associated with a configured table.
+	// The types of analysis rules associated with this configured table. Currently,
+	// only one analysis rule may be associated with a configured table.
 	//
 	// AnalysisRuleTypes is a required field
 	AnalysisRuleTypes []*string `locationName:"analysisRuleTypes" type:"list" required:"true" enum:"ConfiguredTableAnalysisRuleType"`
@@ -5078,8 +6907,7 @@ type ConfiguredTableAnalysisRule struct {
 	// Policy is a required field
 	Policy *ConfiguredTableAnalysisRulePolicy `locationName:"policy" type:"structure" required:"true"`
 
-	// The type of configured table analysis rule. Valid values are `AGGREGATION`
-	// and `LIST`.
+	// The type of configured table analysis rule.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ConfiguredTableAnalysisRuleType"`
@@ -5199,6 +7027,10 @@ type ConfiguredTableAnalysisRulePolicyV1 struct {
 	// table.
 	Aggregation *AnalysisRuleAggregation `locationName:"aggregation" type:"structure"`
 
+	// A type of analysis rule that enables the table owner to approve custom SQL
+	// queries on their configured tables.
+	Custom *AnalysisRuleCustom `locationName:"custom" type:"structure"`
+
 	// Analysis rule type that enables only list queries on a configured table.
 	List *AnalysisRuleList `locationName:"list" type:"structure"`
 }
@@ -5229,6 +7061,11 @@ func (s *ConfiguredTableAnalysisRulePolicyV1) Validate() error {
 			invalidParams.AddNested("Aggregation", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Custom != nil {
+		if err := s.Custom.Validate(); err != nil {
+			invalidParams.AddNested("Custom", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.List != nil {
 		if err := s.List.Validate(); err != nil {
 			invalidParams.AddNested("List", err.(request.ErrInvalidParams))
@@ -5244,6 +7081,12 @@ func (s *ConfiguredTableAnalysisRulePolicyV1) Validate() error {
 // SetAggregation sets the Aggregation field's value.
 func (s *ConfiguredTableAnalysisRulePolicyV1) SetAggregation(v *AnalysisRuleAggregation) *ConfiguredTableAnalysisRulePolicyV1 {
 	s.Aggregation = v
+	return s
+}
+
+// SetCustom sets the Custom field's value.
+func (s *ConfiguredTableAnalysisRulePolicyV1) SetCustom(v *AnalysisRuleCustom) *ConfiguredTableAnalysisRulePolicyV1 {
+	s.Custom = v
 	return s
 }
 
@@ -5689,6 +7532,175 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateAnalysisTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The parameters of the analysis template.
+	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list"`
+
+	// The description of the analysis template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The format of the analysis template.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true" enum:"AnalysisFormat"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// The name of the analysis template.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The information in the analysis template. Currently supports text, the query
+	// text for the analysis template.
+	//
+	// Source is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAnalysisTemplateInput's
+	// String and GoString methods.
+	//
+	// Source is a required field
+	Source *AnalysisSource `locationName:"source" type:"structure" required:"true" sensitive:"true"`
+
+	// An optional label that you can assign to a resource when you create it. Each
+	// tag consists of a key and an optional value, both of which you define. When
+	// you use tagging, you can also use tag-based access control in IAM policies
+	// to control access to this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAnalysisTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAnalysisTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAnalysisTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAnalysisTemplateInput"}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.AnalysisParameters != nil {
+		for i, v := range s.AnalysisParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AnalysisParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisParameters sets the AnalysisParameters field's value.
+func (s *CreateAnalysisTemplateInput) SetAnalysisParameters(v []*AnalysisParameter) *CreateAnalysisTemplateInput {
+	s.AnalysisParameters = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateAnalysisTemplateInput) SetDescription(v string) *CreateAnalysisTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *CreateAnalysisTemplateInput) SetFormat(v string) *CreateAnalysisTemplateInput {
+	s.Format = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *CreateAnalysisTemplateInput) SetMembershipIdentifier(v string) *CreateAnalysisTemplateInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAnalysisTemplateInput) SetName(v string) *CreateAnalysisTemplateInput {
+	s.Name = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *CreateAnalysisTemplateInput) SetSource(v *AnalysisSource) *CreateAnalysisTemplateInput {
+	s.Source = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAnalysisTemplateInput) SetTags(v map[string]*string) *CreateAnalysisTemplateInput {
+	s.Tags = v
+	return s
+}
+
+type CreateAnalysisTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis template.
+	//
+	// AnalysisTemplate is a required field
+	AnalysisTemplate *AnalysisTemplate `locationName:"analysisTemplate" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAnalysisTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAnalysisTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisTemplate sets the AnalysisTemplate field's value.
+func (s *CreateAnalysisTemplateOutput) SetAnalysisTemplate(v *AnalysisTemplate) *CreateAnalysisTemplateOutput {
+	s.AnalysisTemplate = v
+	return s
+}
+
 type CreateCollaborationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5893,7 +7905,7 @@ type CreateConfiguredTableAnalysisRuleInput struct {
 	// AnalysisRulePolicy is a required field
 	AnalysisRulePolicy *ConfiguredTableAnalysisRulePolicy `locationName:"analysisRulePolicy" type:"structure" required:"true"`
 
-	// The type of analysis rule. Valid values are AGGREGATION and LIST.
+	// The type of analysis rule.
 	//
 	// AnalysisRuleType is a required field
 	AnalysisRuleType *string `locationName:"analysisRuleType" type:"string" required:"true" enum:"ConfiguredTableAnalysisRuleType"`
@@ -6515,6 +8527,94 @@ func (s *DataEncryptionMetadata) SetPreserveNulls(v bool) *DataEncryptionMetadat
 	return s
 }
 
+type DeleteAnalysisTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier for the analysis template resource.
+	//
+	// AnalysisTemplateIdentifier is a required field
+	AnalysisTemplateIdentifier *string `location:"uri" locationName:"analysisTemplateIdentifier" min:"36" type:"string" required:"true"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAnalysisTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAnalysisTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAnalysisTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAnalysisTemplateInput"}
+	if s.AnalysisTemplateIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisTemplateIdentifier"))
+	}
+	if s.AnalysisTemplateIdentifier != nil && len(*s.AnalysisTemplateIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisTemplateIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisTemplateIdentifier sets the AnalysisTemplateIdentifier field's value.
+func (s *DeleteAnalysisTemplateInput) SetAnalysisTemplateIdentifier(v string) *DeleteAnalysisTemplateInput {
+	s.AnalysisTemplateIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *DeleteAnalysisTemplateInput) SetMembershipIdentifier(v string) *DeleteAnalysisTemplateInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type DeleteAnalysisTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAnalysisTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAnalysisTemplateOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteCollaborationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -6997,6 +9097,206 @@ func (s DeleteMembershipOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteMembershipOutput) GoString() string {
 	return s.String()
+}
+
+type GetAnalysisTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier for the analysis template resource.
+	//
+	// AnalysisTemplateIdentifier is a required field
+	AnalysisTemplateIdentifier *string `location:"uri" locationName:"analysisTemplateIdentifier" min:"36" type:"string" required:"true"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAnalysisTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAnalysisTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAnalysisTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAnalysisTemplateInput"}
+	if s.AnalysisTemplateIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisTemplateIdentifier"))
+	}
+	if s.AnalysisTemplateIdentifier != nil && len(*s.AnalysisTemplateIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisTemplateIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisTemplateIdentifier sets the AnalysisTemplateIdentifier field's value.
+func (s *GetAnalysisTemplateInput) SetAnalysisTemplateIdentifier(v string) *GetAnalysisTemplateInput {
+	s.AnalysisTemplateIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *GetAnalysisTemplateInput) SetMembershipIdentifier(v string) *GetAnalysisTemplateInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type GetAnalysisTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis template.
+	//
+	// AnalysisTemplate is a required field
+	AnalysisTemplate *AnalysisTemplate `locationName:"analysisTemplate" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAnalysisTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAnalysisTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisTemplate sets the AnalysisTemplate field's value.
+func (s *GetAnalysisTemplateOutput) SetAnalysisTemplate(v *AnalysisTemplate) *GetAnalysisTemplateOutput {
+	s.AnalysisTemplate = v
+	return s
+}
+
+type GetCollaborationAnalysisTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) associated with the analysis template within
+	// a collaboration.
+	//
+	// AnalysisTemplateArn is a required field
+	AnalysisTemplateArn *string `location:"uri" locationName:"analysisTemplateArn" type:"string" required:"true"`
+
+	// A unique identifier for the collaboration that the analysis templates belong
+	// to. Currently accepts collaboration ID.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationAnalysisTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationAnalysisTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCollaborationAnalysisTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCollaborationAnalysisTemplateInput"}
+	if s.AnalysisTemplateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisTemplateArn"))
+	}
+	if s.AnalysisTemplateArn != nil && len(*s.AnalysisTemplateArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisTemplateArn", 1))
+	}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisTemplateArn sets the AnalysisTemplateArn field's value.
+func (s *GetCollaborationAnalysisTemplateInput) SetAnalysisTemplateArn(v string) *GetCollaborationAnalysisTemplateInput {
+	s.AnalysisTemplateArn = &v
+	return s
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *GetCollaborationAnalysisTemplateInput) SetCollaborationIdentifier(v string) *GetCollaborationAnalysisTemplateInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+type GetCollaborationAnalysisTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis template within a collaboration.
+	//
+	// CollaborationAnalysisTemplate is a required field
+	CollaborationAnalysisTemplate *CollaborationAnalysisTemplate `locationName:"collaborationAnalysisTemplate" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationAnalysisTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationAnalysisTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationAnalysisTemplate sets the CollaborationAnalysisTemplate field's value.
+func (s *GetCollaborationAnalysisTemplateOutput) SetCollaborationAnalysisTemplate(v *CollaborationAnalysisTemplate) *GetCollaborationAnalysisTemplateOutput {
+	s.CollaborationAnalysisTemplate = v
+	return s
 }
 
 type GetCollaborationInput struct {
@@ -7888,6 +10188,235 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListAnalysisTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum size of the results that is returned per call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnalysisTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnalysisTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAnalysisTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAnalysisTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAnalysisTemplatesInput) SetMaxResults(v int64) *ListAnalysisTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *ListAnalysisTemplatesInput) SetMembershipIdentifier(v string) *ListAnalysisTemplatesInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnalysisTemplatesInput) SetNextToken(v string) *ListAnalysisTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAnalysisTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists analysis template metadata.
+	//
+	// AnalysisTemplateSummaries is a required field
+	AnalysisTemplateSummaries []*AnalysisTemplateSummary `locationName:"analysisTemplateSummaries" type:"list" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnalysisTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnalysisTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisTemplateSummaries sets the AnalysisTemplateSummaries field's value.
+func (s *ListAnalysisTemplatesOutput) SetAnalysisTemplateSummaries(v []*AnalysisTemplateSummary) *ListAnalysisTemplatesOutput {
+	s.AnalysisTemplateSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnalysisTemplatesOutput) SetNextToken(v string) *ListAnalysisTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCollaborationAnalysisTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the collaboration that the analysis templates belong
+	// to. Currently accepts collaboration ID.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+
+	// The maximum size of the results that is returned per call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationAnalysisTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationAnalysisTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCollaborationAnalysisTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCollaborationAnalysisTemplatesInput"}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *ListCollaborationAnalysisTemplatesInput) SetCollaborationIdentifier(v string) *ListCollaborationAnalysisTemplatesInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCollaborationAnalysisTemplatesInput) SetMaxResults(v int64) *ListCollaborationAnalysisTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationAnalysisTemplatesInput) SetNextToken(v string) *ListCollaborationAnalysisTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCollaborationAnalysisTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata of the analysis template within a collaboration.
+	//
+	// CollaborationAnalysisTemplateSummaries is a required field
+	CollaborationAnalysisTemplateSummaries []*CollaborationAnalysisTemplateSummary `locationName:"collaborationAnalysisTemplateSummaries" type:"list" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationAnalysisTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationAnalysisTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationAnalysisTemplateSummaries sets the CollaborationAnalysisTemplateSummaries field's value.
+func (s *ListCollaborationAnalysisTemplatesOutput) SetCollaborationAnalysisTemplateSummaries(v []*CollaborationAnalysisTemplateSummary) *ListCollaborationAnalysisTemplatesOutput {
+	s.CollaborationAnalysisTemplateSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationAnalysisTemplatesOutput) SetNextToken(v string) *ListCollaborationAnalysisTemplatesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListCollaborationsInput struct {
@@ -9708,6 +12237,13 @@ func (s *ProtectedQueryS3Output_) SetLocation(v string) *ProtectedQueryS3Output_
 type ProtectedQuerySQLParameters struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
+	// The Amazon Resource Name (ARN) associated with the analysis template within
+	// a collaboration.
+	AnalysisTemplateArn *string `locationName:"analysisTemplateArn" type:"string"`
+
+	// The protected query SQL parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
 	// The query string to be submitted.
 	QueryString *string `locationName:"queryString" type:"string"`
 }
@@ -9728,6 +12264,18 @@ func (s ProtectedQuerySQLParameters) String() string {
 // value will be replaced with "sensitive".
 func (s ProtectedQuerySQLParameters) GoString() string {
 	return s.String()
+}
+
+// SetAnalysisTemplateArn sets the AnalysisTemplateArn field's value.
+func (s *ProtectedQuerySQLParameters) SetAnalysisTemplateArn(v string) *ProtectedQuerySQLParameters {
+	s.AnalysisTemplateArn = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ProtectedQuerySQLParameters) SetParameters(v map[string]*string) *ProtectedQuerySQLParameters {
+	s.Parameters = v
+	return s
 }
 
 // SetQueryString sets the QueryString field's value.
@@ -9928,8 +12476,8 @@ type Schema struct {
 	// The analysis method for the schema. The only valid value is currently DIRECT_QUERY.
 	AnalysisMethod *string `locationName:"analysisMethod" type:"string" enum:"AnalysisMethod"`
 
-	// The analysis rule types associated with the schema. Valued values are LIST
-	// and AGGREGATION. Currently, only one entry is present.
+	// The analysis rule types associated with the schema. Currently, only one entry
+	// is present.
 	//
 	// AnalysisRuleTypes is a required field
 	AnalysisRuleTypes []*string `locationName:"analysisRuleTypes" type:"list" required:"true" enum:"AnalysisRuleType"`
@@ -10686,6 +13234,114 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateAnalysisTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the analysis template resource.
+	//
+	// AnalysisTemplateIdentifier is a required field
+	AnalysisTemplateIdentifier *string `location:"uri" locationName:"analysisTemplateIdentifier" min:"36" type:"string" required:"true"`
+
+	// A new description for the analysis template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAnalysisTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAnalysisTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAnalysisTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAnalysisTemplateInput"}
+	if s.AnalysisTemplateIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisTemplateIdentifier"))
+	}
+	if s.AnalysisTemplateIdentifier != nil && len(*s.AnalysisTemplateIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisTemplateIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisTemplateIdentifier sets the AnalysisTemplateIdentifier field's value.
+func (s *UpdateAnalysisTemplateInput) SetAnalysisTemplateIdentifier(v string) *UpdateAnalysisTemplateInput {
+	s.AnalysisTemplateIdentifier = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateAnalysisTemplateInput) SetDescription(v string) *UpdateAnalysisTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *UpdateAnalysisTemplateInput) SetMembershipIdentifier(v string) *UpdateAnalysisTemplateInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type UpdateAnalysisTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis template.
+	//
+	// AnalysisTemplate is a required field
+	AnalysisTemplate *AnalysisTemplate `locationName:"analysisTemplate" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAnalysisTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAnalysisTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisTemplate sets the AnalysisTemplate field's value.
+func (s *UpdateAnalysisTemplateOutput) SetAnalysisTemplate(v *AnalysisTemplate) *UpdateAnalysisTemplateOutput {
+	s.AnalysisTemplate = v
+	return s
 }
 
 type UpdateCollaborationInput struct {
@@ -11517,6 +14173,18 @@ func AggregationType_Values() []string {
 }
 
 const (
+	// AnalysisFormatSql is a AnalysisFormat enum value
+	AnalysisFormatSql = "SQL"
+)
+
+// AnalysisFormat_Values returns all elements of the AnalysisFormat enum
+func AnalysisFormat_Values() []string {
+	return []string{
+		AnalysisFormatSql,
+	}
+}
+
+const (
 	// AnalysisMethodDirectQuery is a AnalysisMethod enum value
 	AnalysisMethodDirectQuery = "DIRECT_QUERY"
 )
@@ -11534,6 +14202,9 @@ const (
 
 	// AnalysisRuleTypeList is a AnalysisRuleType enum value
 	AnalysisRuleTypeList = "LIST"
+
+	// AnalysisRuleTypeCustom is a AnalysisRuleType enum value
+	AnalysisRuleTypeCustom = "CUSTOM"
 )
 
 // AnalysisRuleType_Values returns all elements of the AnalysisRuleType enum
@@ -11541,6 +14212,7 @@ func AnalysisRuleType_Values() []string {
 	return []string{
 		AnalysisRuleTypeAggregation,
 		AnalysisRuleTypeList,
+		AnalysisRuleTypeCustom,
 	}
 }
 
@@ -11566,6 +14238,9 @@ const (
 
 	// ConfiguredTableAnalysisRuleTypeList is a ConfiguredTableAnalysisRuleType enum value
 	ConfiguredTableAnalysisRuleTypeList = "LIST"
+
+	// ConfiguredTableAnalysisRuleTypeCustom is a ConfiguredTableAnalysisRuleType enum value
+	ConfiguredTableAnalysisRuleTypeCustom = "CUSTOM"
 )
 
 // ConfiguredTableAnalysisRuleType_Values returns all elements of the ConfiguredTableAnalysisRuleType enum
@@ -11573,6 +14248,7 @@ func ConfiguredTableAnalysisRuleType_Values() []string {
 	return []string{
 		ConfiguredTableAnalysisRuleTypeAggregation,
 		ConfiguredTableAnalysisRuleTypeList,
+		ConfiguredTableAnalysisRuleTypeCustom,
 	}
 }
 
@@ -11713,6 +14389,74 @@ func MembershipStatus_Values() []string {
 		MembershipStatusActive,
 		MembershipStatusRemoved,
 		MembershipStatusCollaborationDeleted,
+	}
+}
+
+const (
+	// ParameterTypeSmallint is a ParameterType enum value
+	ParameterTypeSmallint = "SMALLINT"
+
+	// ParameterTypeInteger is a ParameterType enum value
+	ParameterTypeInteger = "INTEGER"
+
+	// ParameterTypeBigint is a ParameterType enum value
+	ParameterTypeBigint = "BIGINT"
+
+	// ParameterTypeDecimal is a ParameterType enum value
+	ParameterTypeDecimal = "DECIMAL"
+
+	// ParameterTypeReal is a ParameterType enum value
+	ParameterTypeReal = "REAL"
+
+	// ParameterTypeDoublePrecision is a ParameterType enum value
+	ParameterTypeDoublePrecision = "DOUBLE_PRECISION"
+
+	// ParameterTypeBoolean is a ParameterType enum value
+	ParameterTypeBoolean = "BOOLEAN"
+
+	// ParameterTypeChar is a ParameterType enum value
+	ParameterTypeChar = "CHAR"
+
+	// ParameterTypeVarchar is a ParameterType enum value
+	ParameterTypeVarchar = "VARCHAR"
+
+	// ParameterTypeDate is a ParameterType enum value
+	ParameterTypeDate = "DATE"
+
+	// ParameterTypeTimestamp is a ParameterType enum value
+	ParameterTypeTimestamp = "TIMESTAMP"
+
+	// ParameterTypeTimestamptz is a ParameterType enum value
+	ParameterTypeTimestamptz = "TIMESTAMPTZ"
+
+	// ParameterTypeTime is a ParameterType enum value
+	ParameterTypeTime = "TIME"
+
+	// ParameterTypeTimetz is a ParameterType enum value
+	ParameterTypeTimetz = "TIMETZ"
+
+	// ParameterTypeVarbyte is a ParameterType enum value
+	ParameterTypeVarbyte = "VARBYTE"
+)
+
+// ParameterType_Values returns all elements of the ParameterType enum
+func ParameterType_Values() []string {
+	return []string{
+		ParameterTypeSmallint,
+		ParameterTypeInteger,
+		ParameterTypeBigint,
+		ParameterTypeDecimal,
+		ParameterTypeReal,
+		ParameterTypeDoublePrecision,
+		ParameterTypeBoolean,
+		ParameterTypeChar,
+		ParameterTypeVarchar,
+		ParameterTypeDate,
+		ParameterTypeTimestamp,
+		ParameterTypeTimestamptz,
+		ParameterTypeTime,
+		ParameterTypeTimetz,
+		ParameterTypeVarbyte,
 	}
 }
 
@@ -11897,6 +14641,9 @@ const (
 
 	// ValidationExceptionReasonInvalidQuery is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidQuery = "INVALID_QUERY"
+
+	// ValidationExceptionReasonIamSynchronizationDelay is a ValidationExceptionReason enum value
+	ValidationExceptionReasonIamSynchronizationDelay = "IAM_SYNCHRONIZATION_DELAY"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -11905,5 +14652,6 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonInvalidConfiguration,
 		ValidationExceptionReasonInvalidQuery,
+		ValidationExceptionReasonIamSynchronizationDelay,
 	}
 }

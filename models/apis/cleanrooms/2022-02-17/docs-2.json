@@ -2,19 +2,24 @@
   "version": "2.0",
   "service": "<p>Welcome to the <i>Clean Rooms API Reference</i>.</p> <p>Clean Rooms is an Amazon Web Services service that helps multiple parties to join their data together in a secure collaboration workspace. In the collaboration, members who can query and receive results can get insights into the collective datasets without either party getting access to the other party's raw data.</p> <p>To learn more about Clean Rooms concepts, procedures, and best practices, see the <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/what-is.html\">Clean Rooms User Guide</a>.</p>",
   "operations": {
+    "BatchGetCollaborationAnalysisTemplate": "<p>Retrieves multiple analysis templates within a collaboration by their Amazon Resource Names (ARNs).</p>",
     "BatchGetSchema": "<p>Retrieves multiple schemas by their identifiers.</p>",
+    "CreateAnalysisTemplate": "<p>Creates a new analysis template.</p>",
     "CreateCollaboration": "<p>Creates a new collaboration.</p>",
     "CreateConfiguredTable": "<p>Creates a new configured table resource.</p>",
     "CreateConfiguredTableAnalysisRule": "<p>Creates a new analysis rule for a configured table. Currently, only one analysis rule can be created for a given configured table.</p>",
     "CreateConfiguredTableAssociation": "<p>Creates a configured table association. A configured table association links a configured table with a collaboration.</p>",
     "CreateMembership": "<p>Creates a membership for a specific collaboration identifier and joins the collaboration.</p>",
+    "DeleteAnalysisTemplate": "<p>Deletes an analysis template.</p>",
     "DeleteCollaboration": "<p>Deletes a collaboration. It can only be called by the collaboration owner.</p>",
     "DeleteConfiguredTable": "<p>Deletes a configured table.</p>",
     "DeleteConfiguredTableAnalysisRule": "<p>Deletes a configured table analysis rule.</p>",
     "DeleteConfiguredTableAssociation": "<p>Deletes a configured table association.</p>",
     "DeleteMember": "<p>Removes the specified member from a collaboration. The removed member is placed in the Removed status and can't interact with the collaboration. The removed member's data is inaccessible to active members of the collaboration.</p>",
     "DeleteMembership": "<p>Deletes a specified membership. All resources under a membership must be deleted.</p>",
+    "GetAnalysisTemplate": "<p>Retrieves an analysis template.</p>",
     "GetCollaboration": "<p>Returns metadata about a collaboration.</p>",
+    "GetCollaborationAnalysisTemplate": "<p>Retrieves an analysis template within a collaboration.</p>",
     "GetConfiguredTable": "<p>Retrieves a configured table.</p>",
     "GetConfiguredTableAnalysisRule": "<p>Retrieves a configured table analysis rule.</p>",
     "GetConfiguredTableAssociation": "<p>Retrieves a configured table association.</p>",
@@ -22,6 +27,8 @@
     "GetProtectedQuery": "<p>Returns query processing metadata.</p>",
     "GetSchema": "<p>Retrieves the schema for a relation within a collaboration.</p>",
     "GetSchemaAnalysisRule": "<p>Retrieves a schema analysis rule.</p>",
+    "ListAnalysisTemplates": "<p>Lists analysis templates that the caller owns.</p>",
+    "ListCollaborationAnalysisTemplates": "<p>Lists analysis templates within a collaboration.</p>",
     "ListCollaborations": "<p>Lists collaborations the caller owns, is active in, or has been invited to.</p>",
     "ListConfiguredTableAssociations": "<p>Lists configured table associations for a membership.</p>",
     "ListConfiguredTables": "<p>Lists configured tables.</p>",
@@ -33,6 +40,7 @@
     "StartProtectedQuery": "<p>Creates a protected query that is started by Clean Rooms .</p>",
     "TagResource": "<p>Tags a resource.</p>",
     "UntagResource": "<p>Removes a tag or list of tags from a resource.</p>",
+    "UpdateAnalysisTemplate": "<p>Updates the analysis template metadata.</p>",
     "UpdateCollaboration": "<p>Updates collaboration metadata and can only be called by the collaboration owner.</p>",
     "UpdateConfiguredTable": "<p>Updates a configured table.</p>",
     "UpdateConfiguredTableAnalysisRule": "<p>Updates a configured table analysis rule.</p>",
@@ -55,7 +63,10 @@
     "AccountId": {
       "base": null,
       "refs": {
+        "AnalysisRuleCustomAllowedAnalysisProvidersList$member": null,
         "Collaboration$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
+        "CollaborationAnalysisTemplate$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
+        "CollaborationAnalysisTemplateSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "CollaborationSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "DeleteMemberInput$accountId": "<p>The account ID of the member to remove.</p>",
         "MemberSpecification$accountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
@@ -115,6 +126,14 @@
         "CreateConfiguredTableInput$allowedColumns": "<p>The columns of the underlying table that can be used by collaborations or analysis rules.</p>"
       }
     },
+    "AnalysisFormat": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplate$format": "<p>The format of the analysis template.</p>",
+        "CollaborationAnalysisTemplate$format": "<p>The format of the analysis template in the collaboration.</p>",
+        "CreateAnalysisTemplateInput$format": "<p>The format of the analysis template.</p>"
+      }
+    },
     "AnalysisMethod": {
       "base": null,
       "refs": {
@@ -125,6 +144,20 @@
         "SchemaSummary$analysisMethod": "<p>The analysis method for the associated schema. The only valid value is currently `DIRECT_QUERY`.</p>"
       }
     },
+    "AnalysisParameter": {
+      "base": "<p>Optional. The member who can query can provide this placeholder for a literal data value in an analysis template.</p>",
+      "refs": {
+        "AnalysisParameterList$member": null
+      }
+    },
+    "AnalysisParameterList": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplate$analysisParameters": "<p>The parameters of the analysis template.</p>",
+        "CollaborationAnalysisTemplate$analysisParameters": "<p>The analysis parameters that have been specified in the analysis template.</p>",
+        "CreateAnalysisTemplateInput$analysisParameters": "<p>The parameters of the analysis template.</p>"
+      }
+    },
     "AnalysisRule": {
       "base": "<p>A specification about how data from the configured table can be used in a query.</p>",
       "refs": {
@@ -132,7 +165,7 @@
       }
     },
     "AnalysisRuleAggregation": {
-      "base": "<p>Enables query structure and specified queries that produce aggregate statistics.</p>",
+      "base": "<p>A type of analysis rule that enables query structure and specified queries that produce aggregate statistics.</p>",
       "refs": {
         "AnalysisRulePolicyV1$aggregation": "<p>Analysis rule type that enables only aggregation queries on a configured table.</p>",
         "ConfiguredTableAnalysisRulePolicyV1$aggregation": "<p>Analysis rule type that enables only aggregation queries on a configured table.</p>"
@@ -161,6 +194,25 @@
         "AnalysisRuleListJoinColumnsList$member": null
       }
     },
+    "AnalysisRuleCustom": {
+      "base": "<p>A type of analysis rule that enables the table owner to approve custom SQL queries on their configured tables.</p>",
+      "refs": {
+        "AnalysisRulePolicyV1$custom": "<p>Analysis rule type that enables custom SQL queries on a configured table.</p>",
+        "ConfiguredTableAnalysisRulePolicyV1$custom": null
+      }
+    },
+    "AnalysisRuleCustomAllowedAnalysesList": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleCustom$allowedAnalyses": "<p>The analysis templates that are allowed by the custom analysis rule.</p>"
+      }
+    },
+    "AnalysisRuleCustomAllowedAnalysisProvidersList": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleCustom$allowedAnalysisProviders": "<p>The Amazon Web Services accounts that are allowed to query by the custom analysis rule. Required when <code>allowedAnalyses</code> is <code>ANY_QUERY</code>.</p>"
+      }
+    },
     "AnalysisRuleList": {
       "base": "<p>A type of analysis rule that enables row-level analysis.</p>",
       "refs": {
@@ -175,21 +227,21 @@
       }
     },
     "AnalysisRulePolicy": {
-      "base": "<p>Controls on the query specifications that can be run on configured table..</p>",
+      "base": "<p>Controls on the query specifications that can be run on configured table.</p>",
       "refs": {
         "AnalysisRule$policy": "<p>A policy that describes the associated data usage limitations.</p>"
       }
     },
     "AnalysisRulePolicyV1": {
-      "base": "<p>Controls on the query specifications that can be run on configured table..</p>",
+      "base": "<p>Controls on the query specifications that can be run on configured table.</p>",
       "refs": {
-        "AnalysisRulePolicy$v1": "<p>Controls on the query specifications that can be run on configured table..</p>"
+        "AnalysisRulePolicy$v1": "<p>Controls on the query specifications that can be run on configured table.</p>"
       }
     },
     "AnalysisRuleType": {
       "base": null,
       "refs": {
-        "AnalysisRule$type": "<p>The type of analysis rule. Valid values are `AGGREGATION` and `LIST`.</p>",
+        "AnalysisRule$type": "<p>The type of analysis rule.</p>",
         "AnalysisRuleTypeList$member": null,
         "GetSchemaAnalysisRuleInput$type": "<p>The type of the schema analysis rule to retrieve. Schema analysis rules are uniquely identified by a combination of the collaboration, the schema name, and their type.</p>"
       }
@@ -197,8 +249,108 @@
     "AnalysisRuleTypeList": {
       "base": null,
       "refs": {
-        "Schema$analysisRuleTypes": "<p>The analysis rule types associated with the schema. Valued values are LIST and AGGREGATION. Currently, only one entry is present.</p>",
+        "Schema$analysisRuleTypes": "<p>The analysis rule types associated with the schema. Currently, only one entry is present.</p>",
         "SchemaSummary$analysisRuleTypes": "<p>The types of analysis rules that are associated with this schema object.</p>"
+      }
+    },
+    "AnalysisSchema": {
+      "base": "<p>A relation within an analysis.</p>",
+      "refs": {
+        "AnalysisTemplate$schema": "<p>The entire schema object.</p>",
+        "CollaborationAnalysisTemplate$schema": "<p>The entire schema object.</p>"
+      }
+    },
+    "AnalysisSource": {
+      "base": "<p>The structure that defines the body of the analysis template.</p>",
+      "refs": {
+        "AnalysisTemplate$source": "<p>The source of the analysis template.</p>",
+        "CollaborationAnalysisTemplate$source": "<p>The source of the analysis template within a collaboration.</p>",
+        "CreateAnalysisTemplateInput$source": "<p>The information in the analysis template. Currently supports <code>text</code>, the query text for the analysis template.</p>"
+      }
+    },
+    "AnalysisTemplate": {
+      "base": "<p>The analysis template.</p>",
+      "refs": {
+        "CreateAnalysisTemplateOutput$analysisTemplate": "<p>The analysis template.</p>",
+        "GetAnalysisTemplateOutput$analysisTemplate": "<p>The analysis template.</p>",
+        "UpdateAnalysisTemplateOutput$analysisTemplate": "<p>The analysis template.</p>"
+      }
+    },
+    "AnalysisTemplateArn": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplate$arn": "<p>The Amazon Resource Name (ARN) of the analysis template.</p>",
+        "AnalysisTemplateArnList$member": null,
+        "AnalysisTemplateSummary$arn": "<p>The Amazon Resource Name (ARN) of the analysis template.</p>",
+        "BatchGetCollaborationAnalysisTemplateError$arn": "<p>The Amazon Resource Name (ARN) of the analysis template.</p>",
+        "CollaborationAnalysisTemplate$arn": "<p>The Amazon Resource Name (ARN) of the analysis template.</p>",
+        "CollaborationAnalysisTemplateSummary$arn": "<p>The Amazon Resource Name (ARN) of the analysis template.</p>",
+        "GetCollaborationAnalysisTemplateInput$analysisTemplateArn": "<p>The Amazon Resource Name (ARN) associated with the analysis template within a collaboration.</p>",
+        "ProtectedQuerySQLParameters$analysisTemplateArn": "<p>The Amazon Resource Name (ARN) associated with the analysis template within a collaboration.</p>"
+      }
+    },
+    "AnalysisTemplateArnList": {
+      "base": null,
+      "refs": {
+        "BatchGetCollaborationAnalysisTemplateInput$analysisTemplateArns": "<p>The Amazon Resource Name (ARN) associated with the analysis template within a collaboration.</p>"
+      }
+    },
+    "AnalysisTemplateArnOrQueryWildcard": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleCustomAllowedAnalysesList$member": null
+      }
+    },
+    "AnalysisTemplateIdentifier": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplate$id": "<p>The identifier for the analysis template.</p>",
+        "AnalysisTemplateSummary$id": "<p>The identifier of the analysis template.</p>",
+        "CollaborationAnalysisTemplate$id": "<p>The identifier of the analysis template.</p>",
+        "CollaborationAnalysisTemplateSummary$id": "<p>The identifier of the analysis template.</p>",
+        "DeleteAnalysisTemplateInput$analysisTemplateIdentifier": "<p>The identifier for the analysis template resource.</p>",
+        "GetAnalysisTemplateInput$analysisTemplateIdentifier": "<p>The identifier for the analysis template resource.</p>",
+        "UpdateAnalysisTemplateInput$analysisTemplateIdentifier": "<p>The identifier for the analysis template resource.</p>"
+      }
+    },
+    "AnalysisTemplateSummary": {
+      "base": "<p>The metadata of the analysis template.</p>",
+      "refs": {
+        "AnalysisTemplateSummaryList$member": null
+      }
+    },
+    "AnalysisTemplateSummaryList": {
+      "base": null,
+      "refs": {
+        "ListAnalysisTemplatesOutput$analysisTemplateSummaries": "<p>Lists analysis template metadata.</p>"
+      }
+    },
+    "AnalysisTemplateText": {
+      "base": null,
+      "refs": {
+        "AnalysisSource$text": "<p>The query text.</p>"
+      }
+    },
+    "BatchGetCollaborationAnalysisTemplateError": {
+      "base": "<p>Details of errors thrown by the call to retrieve multiple analysis templates within a collaboration by their identifiers.</p>",
+      "refs": {
+        "BatchGetCollaborationAnalysisTemplateErrorList$member": null
+      }
+    },
+    "BatchGetCollaborationAnalysisTemplateErrorList": {
+      "base": null,
+      "refs": {
+        "BatchGetCollaborationAnalysisTemplateOutput$errors": "<p>Error reasons for collaboration analysis templates that could not be retrieved. One error is returned for every collaboration analysis template that could not be retrieved.</p>"
+      }
+    },
+    "BatchGetCollaborationAnalysisTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetCollaborationAnalysisTemplateOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "BatchGetSchemaError": {
@@ -248,10 +400,39 @@
         "UpdateCollaborationOutput$collaboration": "<p>The entire collaboration that has been updated.</p>"
       }
     },
+    "CollaborationAnalysisTemplate": {
+      "base": "<p>The analysis template within a collaboration.</p>",
+      "refs": {
+        "CollaborationAnalysisTemplateList$member": null,
+        "GetCollaborationAnalysisTemplateOutput$collaborationAnalysisTemplate": "<p>The analysis template within a collaboration.</p>"
+      }
+    },
+    "CollaborationAnalysisTemplateList": {
+      "base": null,
+      "refs": {
+        "BatchGetCollaborationAnalysisTemplateOutput$collaborationAnalysisTemplates": "<p>The retrieved list of analysis templates within a collaboration.</p>"
+      }
+    },
+    "CollaborationAnalysisTemplateSummary": {
+      "base": "<p>The metadata of the analysis template within a collaboration.</p>",
+      "refs": {
+        "CollaborationAnalysisTemplateSummaryList$member": null
+      }
+    },
+    "CollaborationAnalysisTemplateSummaryList": {
+      "base": null,
+      "refs": {
+        "ListCollaborationAnalysisTemplatesOutput$collaborationAnalysisTemplateSummaries": "<p>The metadata of the analysis template within a collaboration.</p>"
+      }
+    },
     "CollaborationArn": {
       "base": null,
       "refs": {
+        "AnalysisTemplate$collaborationArn": "<p>The unique ARN for the analysis template’s associated collaboration.</p>",
+        "AnalysisTemplateSummary$collaborationArn": "<p>The unique ARN for the analysis template summary’s associated collaboration.</p>",
         "Collaboration$arn": "<p>The unique ARN for the collaboration.</p>",
+        "CollaborationAnalysisTemplate$collaborationArn": "<p>The unique ARN for the analysis template’s associated collaboration.</p>",
+        "CollaborationAnalysisTemplateSummary$collaborationArn": "<p>The unique ARN for the analysis template’s associated collaboration.</p>",
         "CollaborationSummary$arn": "<p>The ARN of the collaboration.</p>",
         "Membership$collaborationArn": "<p>The unique ARN for the membership's associated collaboration.</p>",
         "MembershipSummary$collaborationArn": "<p>The unique ARN for the membership's associated collaboration.</p>",
@@ -271,13 +452,16 @@
       "base": null,
       "refs": {
         "AnalysisRule$collaborationId": "<p>The unique ID for the associated collaboration.</p>",
+        "BatchGetCollaborationAnalysisTemplateInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
         "BatchGetSchemaInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schemas belong to. Currently accepts collaboration ID.</p>",
         "CreateMembershipInput$collaborationIdentifier": "<p>The unique ID for the associated collaboration.</p>",
         "DeleteCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>",
         "DeleteMemberInput$collaborationIdentifier": "<p>The unique identifier for the associated collaboration.</p>",
+        "GetCollaborationAnalysisTemplateInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
         "GetCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>",
         "GetSchemaAnalysisRuleInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
         "GetSchemaInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
+        "ListCollaborationAnalysisTemplatesInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
         "ListMembersInput$collaborationIdentifier": "<p>The identifier of the collaboration in which the members are listed.</p>",
         "ListSchemasInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
         "MembershipSummary$collaborationId": "<p>The unique ID for the membership's collaboration.</p>",
@@ -373,9 +557,9 @@
     "ConfiguredTableAnalysisRuleType": {
       "base": null,
       "refs": {
-        "ConfiguredTableAnalysisRule$type": "<p>The type of configured table analysis rule. Valid values are `AGGREGATION` and `LIST`.</p>",
+        "ConfiguredTableAnalysisRule$type": "<p>The type of configured table analysis rule.</p>",
         "ConfiguredTableAnalysisRuleTypeList$member": null,
-        "CreateConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The type of analysis rule. Valid values are AGGREGATION and LIST.</p>",
+        "CreateConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The type of analysis rule.</p>",
         "DeleteConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The analysis rule type to be deleted. Configured table analysis rules are uniquely identified by their configured table identifier and analysis rule type.</p>",
         "GetConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The analysis rule to be retrieved. Configured table analysis rules are uniquely identified by their configured table identifier and analysis rule type.</p>",
         "UpdateConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The analysis rule type to be updated. Configured table analysis rules are uniquely identified by their configured table identifier and analysis rule type.</p>"
@@ -384,7 +568,7 @@
     "ConfiguredTableAnalysisRuleTypeList": {
       "base": null,
       "refs": {
-        "ConfiguredTable$analysisRuleTypes": "<p>The types of analysis rules associated with this configured table. Valid values are `AGGREGATION` and `LIST`. Currently, only one analysis rule may be associated with a configured table.</p>",
+        "ConfiguredTable$analysisRuleTypes": "<p>The types of analysis rules associated with this configured table. Currently, only one analysis rule may be associated with a configured table.</p>",
         "ConfiguredTableSummary$analysisRuleTypes": "<p>The types of analysis rules associated with this configured table.</p>"
       }
     },
@@ -469,6 +653,16 @@
         "ConflictException$reason": "<p>A reason code for the exception.</p>"
       }
     },
+    "CreateAnalysisTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAnalysisTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateCollaborationInput": {
       "base": null,
       "refs": {
@@ -524,6 +718,16 @@
       "refs": {
         "Collaboration$dataEncryptionMetadata": "<p>The settings for client-side encryption for cryptographic computing.</p>",
         "CreateCollaborationInput$dataEncryptionMetadata": "<p>The settings for client-side encryption with Cryptographic Computing for Clean Rooms.</p>"
+      }
+    },
+    "DeleteAnalysisTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAnalysisTemplateOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteCollaborationInput": {
@@ -612,6 +816,26 @@
       "base": null,
       "refs": {
         "ListCollaborationsInput$memberStatus": "<p>The caller's status in a collaboration.</p>"
+      }
+    },
+    "GetAnalysisTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAnalysisTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCollaborationAnalysisTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCollaborationAnalysisTemplateOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "GetCollaborationInput": {
@@ -727,7 +951,7 @@
       "base": null,
       "refs": {
         "AnalysisRuleAggregation$allowedJoinOperators": "<p>Which logical operators (if any) are to be used in an INNER JOIN match condition. Default is <code>AND</code>.</p>",
-        "AnalysisRuleList$allowedJoinOperators": "<p>Which logical operators (if any) are to be used in an INNER JOIN match condition. Default is <code>AND</code>.</p>"
+        "AnalysisRuleList$allowedJoinOperators": "<p>The logical operators (if any) that are to be used in an INNER JOIN match condition. Default is <code>AND</code>.</p>"
       }
     },
     "JoinRequiredOption": {
@@ -740,6 +964,26 @@
       "base": null,
       "refs": {
         "ProtectedQueryS3OutputConfiguration$keyPrefix": "<p>The S3 prefix to unload the protected query results.</p>"
+      }
+    },
+    "ListAnalysisTemplatesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAnalysisTemplatesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationAnalysisTemplatesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationAnalysisTemplatesOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "ListCollaborationsInput": {
@@ -831,6 +1075,8 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "ListAnalysisTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListCollaborationAnalysisTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
         "ListCollaborationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
         "ListConfiguredTableAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
         "ListConfiguredTablesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
@@ -899,6 +1145,8 @@
     "MembershipArn": {
       "base": null,
       "refs": {
+        "AnalysisTemplate$membershipArn": "<p>The Amazon Resource Name (ARN) of the member who created the analysis template.</p>",
+        "AnalysisTemplateSummary$membershipArn": "<p>The Amazon Resource Name (ARN) of the member who created the analysis template.</p>",
         "Collaboration$membershipArn": "<p>The unique ARN for your membership within the collaboration.</p>",
         "CollaborationSummary$membershipArn": "<p>The ARN of a member in a collaboration.</p>",
         "ConfiguredTableAssociation$membershipArn": "<p>The unique ARN for the membership this configured table association belongs to.</p>",
@@ -914,15 +1162,20 @@
       "base": null,
       "refs": {
         "ConfiguredTableAssociationSummary$membershipId": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
+        "CreateAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "CreateConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The configured table is associated to the collaboration that this membership belongs to. Currently accepts a membership ID.</p>",
+        "DeleteAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "DeleteConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "DeleteMembershipInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "GetAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "GetConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "GetMembershipInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "GetProtectedQueryInput$membershipIdentifier": "<p>The identifier for a membership in a protected query instance.</p>",
+        "ListAnalysisTemplatesInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "ListConfiguredTableAssociationsInput$membershipIdentifier": "<p>A unique identifier for the membership to list configured table associations for. Currently accepts the membership ID.</p>",
         "ListProtectedQueriesInput$membershipIdentifier": "<p>The identifier for the membership in the collaboration.</p>",
         "StartProtectedQueryInput$membershipIdentifier": "<p>A unique identifier for the membership to run this query against. Currently accepts a membership ID.</p>",
+        "UpdateAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "UpdateConfiguredTableAssociationInput$membershipIdentifier": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
         "UpdateMembershipInput$membershipIdentifier": "<p>The unique identifier of the membership.</p>",
         "UpdateProtectedQueryInput$membershipIdentifier": "<p>The identifier for a member of a protected query instance.</p>"
@@ -959,6 +1212,10 @@
     "PaginationToken": {
       "base": null,
       "refs": {
+        "ListAnalysisTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListAnalysisTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationAnalysisTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationAnalysisTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListCollaborationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListCollaborationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListConfiguredTableAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
@@ -973,6 +1230,32 @@
         "ListProtectedQueriesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListSchemasInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListSchemasOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>"
+      }
+    },
+    "ParameterMap": {
+      "base": null,
+      "refs": {
+        "ProtectedQuerySQLParameters$parameters": "<p>The protected query SQL parameters.</p>"
+      }
+    },
+    "ParameterName": {
+      "base": null,
+      "refs": {
+        "AnalysisParameter$name": "<p>The name of the parameter. The name must use only alphanumeric, underscore (_), or hyphen (-) characters but cannot start or end with a hyphen.</p>",
+        "ParameterMap$key": null
+      }
+    },
+    "ParameterType": {
+      "base": null,
+      "refs": {
+        "AnalysisParameter$type": "<p>The type of parameter.</p>"
+      }
+    },
+    "ParameterValue": {
+      "base": null,
+      "refs": {
+        "AnalysisParameter$defaultValue": "<p>Optional. The default value that is applied in the analysis template. The member who can query can override this value in the query editor.</p>",
+        "ParameterMap$value": null
       }
     },
     "ProtectedQuery": {
@@ -1084,6 +1367,32 @@
         "StartProtectedQueryInput$type": "<p>The type of the protected query to be started.</p>"
       }
     },
+    "QueryTables": {
+      "base": null,
+      "refs": {
+        "AnalysisSchema$referencedTables": "<p>The tables referenced in the analysis schema.</p>"
+      }
+    },
+    "ResourceAlias": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplate$name": "<p>The name of the analysis template.</p>",
+        "AnalysisTemplateSummary$name": "<p>The name of the analysis template. </p>",
+        "CollaborationAnalysisTemplate$name": "<p>The name of the analysis template.</p>",
+        "CollaborationAnalysisTemplateSummary$name": "<p>The name of the analysis template.</p>"
+      }
+    },
+    "ResourceDescription": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplate$description": "<p>The description of the analysis template.</p>",
+        "AnalysisTemplateSummary$description": "<p>The description of the analysis template.</p>",
+        "CollaborationAnalysisTemplate$description": "<p>The description of the analysis template.</p>",
+        "CollaborationAnalysisTemplateSummary$description": "<p>The description of the analysis template.</p>",
+        "CreateAnalysisTemplateInput$description": "<p>The description of the analysis template.</p>",
+        "UpdateAnalysisTemplateInput$description": "<p>A new description for the analysis template.</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>Request references a resource which does not exist.</p>",
       "refs": {
@@ -1174,6 +1483,8 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
+        "BatchGetCollaborationAnalysisTemplateError$code": "<p>An error code for the error.</p>",
+        "BatchGetCollaborationAnalysisTemplateError$message": "<p>A description of why the call failed.</p>",
         "BatchGetSchemaError$code": "<p>An error code for the error. </p>",
         "BatchGetSchemaError$message": "<p>An error message for the error.</p>",
         "ConflictException$message": null,
@@ -1199,9 +1510,11 @@
         "BatchGetSchemaError$name": "<p>An error name for the error.</p>",
         "ConfiguredTableAssociation$name": "<p>The name of the configured table association, in lowercase. The table is identified by this name when running protected queries against the underlying data.</p>",
         "ConfiguredTableAssociationSummary$name": "<p>The name of the configured table association. The table is identified by this name when running Protected Queries against the underlying data.</p>",
+        "CreateAnalysisTemplateInput$name": "<p>The name of the analysis template.</p>",
         "CreateConfiguredTableAssociationInput$name": "<p>The name of the configured table association. This name is used to query the underlying configured table.</p>",
         "GetSchemaAnalysisRuleInput$name": "<p>The name of the schema to retrieve the analysis rule for.</p>",
         "GetSchemaInput$name": "<p>The name of the relation to retrieve the schema for.</p>",
+        "QueryTables$member": null,
         "Schema$name": "<p>A name for the schema. The schema relation is referred to by this name when queried by a protected query.</p>",
         "SchemaSummary$name": "<p>The name for the schema object.</p>",
         "TableAliasList$member": null
@@ -1248,6 +1561,7 @@
     "TagMap": {
       "base": "<p>Map of tags assigned to a resource</p>",
       "refs": {
+        "CreateAnalysisTemplateInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateCollaborationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateConfiguredTableAssociationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateConfiguredTableInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
@@ -1288,8 +1602,16 @@
       "refs": {
         "AnalysisRule$createTime": "<p>The time the analysis rule was created.</p>",
         "AnalysisRule$updateTime": "<p>The time the analysis rule was last updated.</p>",
+        "AnalysisTemplate$createTime": "<p>The time that the analysis template was created.</p>",
+        "AnalysisTemplate$updateTime": "<p>The time that the analysis template was last updated.</p>",
+        "AnalysisTemplateSummary$createTime": "<p>The time that the analysis template summary was created.</p>",
+        "AnalysisTemplateSummary$updateTime": "<p>The time that the analysis template summary was last updated.</p>",
         "Collaboration$createTime": "<p>The time when the collaboration was created.</p>",
         "Collaboration$updateTime": "<p>The time the collaboration metadata was last updated.</p>",
+        "CollaborationAnalysisTemplate$createTime": "<p>The time that the analysis template within a collaboration was created.</p>",
+        "CollaborationAnalysisTemplate$updateTime": "<p>The time that the analysis template in the collaboration was last updated.</p>",
+        "CollaborationAnalysisTemplateSummary$createTime": "<p>The time that the summary of the analysis template in a collaboration was created.</p>",
+        "CollaborationAnalysisTemplateSummary$updateTime": "<p>The time that the summary of the analysis template in the collaboration was last updated.</p>",
         "CollaborationSummary$createTime": "<p>The time when the collaboration was created.</p>",
         "CollaborationSummary$updateTime": "<p>The time the collaboration metadata was last updated.</p>",
         "ConfiguredTable$createTime": "<p>The time the configured table was created.</p>",
@@ -1319,8 +1641,14 @@
     "UUID": {
       "base": null,
       "refs": {
+        "AnalysisTemplate$collaborationId": "<p>The unique ID for the associated collaboration of the analysis template.</p>",
+        "AnalysisTemplate$membershipId": "<p>The identifier of a member who created the analysis template.</p>",
+        "AnalysisTemplateSummary$membershipId": "<p>The identifier for a membership resource.</p>",
+        "AnalysisTemplateSummary$collaborationId": "<p>A unique identifier for the collaboration that the analysis template summary belongs to. Currently accepts collaboration ID.</p>",
         "Collaboration$id": "<p>The unique ID for the collaboration.</p>",
         "Collaboration$membershipId": "<p>The unique ID for your membership within the collaboration.</p>",
+        "CollaborationAnalysisTemplate$collaborationId": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
+        "CollaborationAnalysisTemplateSummary$collaborationId": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
         "CollaborationSummary$id": "<p>The identifier for the collaboration.</p>",
         "CollaborationSummary$membershipId": "<p>The identifier of a member in a collaboration.</p>",
         "ConfiguredTable$id": "<p>The unique ID for the configured table.</p>",
@@ -1348,6 +1676,16 @@
       }
     },
     "UntagResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAnalysisTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAnalysisTemplateOutput": {
       "base": null,
       "refs": {
       }

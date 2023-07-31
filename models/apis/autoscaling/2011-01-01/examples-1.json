@@ -123,9 +123,10 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
+          "DefaultInstanceWarmup": 120,
           "LaunchTemplate": {
             "LaunchTemplateName": "my-template-for-auto-scaling",
-            "Version": "$Latest"
+            "Version": "$Default"
           },
           "MaxInstanceLifetime": 2592000,
           "MaxSize": 3,
@@ -149,7 +150,7 @@
           "HealthCheckType": "ELB",
           "LaunchTemplate": {
             "LaunchTemplateName": "my-template-for-auto-scaling",
-            "Version": "$Latest"
+            "Version": "$Default"
           },
           "MaxSize": 3,
           "MinSize": 1,
@@ -178,19 +179,19 @@
             "InstancesDistribution": {
               "OnDemandBaseCapacity": 1,
               "OnDemandPercentageAboveBaseCapacity": 50,
-              "SpotAllocationStrategy": "capacity-optimized"
+              "SpotAllocationStrategy": "price-capacity-optimized"
             },
             "LaunchTemplate": {
               "LaunchTemplateSpecification": {
                 "LaunchTemplateName": "my-launch-template-for-x86",
-                "Version": "$Latest"
+                "Version": "$Default"
               },
               "Overrides": [
                 {
                   "InstanceType": "c6g.large",
                   "LaunchTemplateSpecification": {
                     "LaunchTemplateName": "my-launch-template-for-arm",
-                    "Version": "$Latest"
+                    "Version": "$Default"
                   }
                 },
                 {
@@ -213,6 +214,53 @@
         "description": "This example creates an Auto Scaling group with a mixed instances policy. It specifies the c5.large, c5a.large, and c6g.large instance types and defines a different launch template for the c6g.large instance type.",
         "id": "to-create-an-auto-scaling-group-with-a-mixed-instances-policy-1617815269039",
         "title": "To create an Auto Scaling group with a mixed instances policy"
+      },
+      {
+        "input": {
+          "AutoScalingGroupName": "my-asg",
+          "DesiredCapacity": 4,
+          "DesiredCapacityTypes": "units",
+          "MaxSize": 100,
+          "MinSize": 0,
+          "MixedInstancesPolicy": {
+            "InstancesDistribution": {
+              "OnDemandPercentageAboveBaseCapacity": 50,
+              "SpotAllocationStrategy": "price-capacity-optimized"
+            },
+            "LaunchTemplate": {
+              "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "my-template-for-auto-scaling",
+                "Version": "$Default"
+              },
+              "Overrides": [
+                {
+                  "InstanceRequirements": {
+                    "CpuManufacturers": [
+                      "intel"
+                    ],
+                    "MemoryMiB": {
+                      "Min": 16384
+                    },
+                    "VCpuCount": {
+                      "Max": 8,
+                      "Min": 4
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "VPCZoneIdentifier": "subnet-057fa0918fEXAMPLE, subnet-610acd08EXAMPLE"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example creates an Auto Scaling group using attribute-based instance type selection. It requires the instance types to have a minimum of four vCPUs and a maximum of eight vCPUs, a minimum of 16,384 MiB of memory, and an Intel manufactured CPU.",
+        "id": "to-create-an-auto-scaling-group-with-a-mixed-instances-policy-1617815269039",
+        "title": "To create an Auto Scaling group using attribute-based instance type selection"
       }
     ],
     "CreateLaunchConfiguration": [
@@ -601,8 +649,13 @@
               "InstancesToUpdate": 0,
               "PercentageComplete": 50,
               "Preferences": {
+                "AlarmSpecification": {
+                  "Alarms": [
+                    "my-alarm"
+                  ]
+                },
                 "AutoRollback": true,
-                "InstanceWarmup": 60,
+                "InstanceWarmup": 200,
                 "MinHealthyPercentage": 90,
                 "ScaleInProtectedInstances": "Ignore",
                 "SkipMatching": false,
@@ -619,8 +672,13 @@
               "InstancesToUpdate": 0,
               "PercentageComplete": 100,
               "Preferences": {
+                "AlarmSpecification": {
+                  "Alarms": [
+                    "my-alarm"
+                  ]
+                },
                 "AutoRollback": true,
-                "InstanceWarmup": 60,
+                "InstanceWarmup": 200,
                 "MinHealthyPercentage": 90,
                 "ScaleInProtectedInstances": "Ignore",
                 "SkipMatching": false,
@@ -1551,9 +1609,14 @@
             }
           },
           "Preferences": {
-            "InstanceWarmup": 400,
-            "MinHealthyPercentage": 90,
-            "SkipMatching": true
+            "AlarmSpecification": {
+              "Alarms": [
+                "my-alarm"
+              ]
+            },
+            "AutoRollback": true,
+            "InstanceWarmup": 200,
+            "MinHealthyPercentage": 90
           }
         },
         "output": {

@@ -1,10 +1,23 @@
 {
     "testCases": [
         {
+            "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.ap-northeast-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "ap-northeast-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.ap-northeast-2.amazonaws.com"
+                    "url": "https://codestar-connections.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -14,10 +27,88 @@
             }
         },
         {
+            "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.ap-south-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "ap-south-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.ap-southeast-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "ap-southeast-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.ap-southeast-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "ap-southeast-2",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.ca-central-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "ca-central-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.eu-central-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "eu-central-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.eu-north-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "eu-north-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.eu-west-1.amazonaws.com"
+                    "url": "https://codestar-connections.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -27,10 +118,49 @@
             }
         },
         {
+            "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.eu-west-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "eu-west-2",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.eu-west-3.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "eu-west-3",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.sa-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "sa-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.us-east-1.amazonaws.com"
+                    "url": "https://codestar-connections.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -40,10 +170,49 @@
             }
         },
         {
+            "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.us-east-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-2",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.us-west-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-west-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://codestar-connections.us-west-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-west-2",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment-fips.us-east-1.api.aws"
+                    "url": "https://codestar-connections-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -56,7 +225,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment-fips.us-east-1.amazonaws.com"
+                    "url": "https://codestar-connections-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -69,7 +238,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.us-east-1.api.aws"
+                    "url": "https://codestar-connections.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -82,7 +251,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://codestar-connections-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -95,7 +264,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://codestar-connections-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -108,7 +277,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://codestar-connections.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -121,7 +290,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.cn-north-1.amazonaws.com.cn"
+                    "url": "https://codestar-connections.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -134,7 +303,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment-fips.us-gov-east-1.api.aws"
+                    "url": "https://codestar-connections-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -147,7 +316,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://codestar-connections-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -160,7 +329,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.us-gov-east-1.api.aws"
+                    "url": "https://codestar-connections.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -173,7 +342,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.us-gov-east-1.amazonaws.com"
+                    "url": "https://codestar-connections.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -197,7 +366,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://codestar-connections-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -221,7 +390,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://codestar-connections.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -245,7 +414,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://codestar-connections-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -269,7 +438,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lookoutequipment.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://codestar-connections.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

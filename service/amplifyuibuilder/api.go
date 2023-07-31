@@ -146,7 +146,7 @@ func (c *AmplifyUIBuilder) CreateFormRequest(input *CreateFormInput) (req *reque
 
 // CreateForm API operation for AWS Amplify UI Builder.
 //
-// Creates a new form for an Amplify.
+// Creates a new form for an Amplify app.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2228,8 +2228,7 @@ func (c *AmplifyUIBuilder) StartCodegenJobRequest(input *StartCodegenJobInput) (
 
 // StartCodegenJob API operation for AWS Amplify UI Builder.
 //
-// Starts a code generation job for for a specified Amplify app and backend
-// environment.
+// Starts a code generation job for a specified Amplify app and backend environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2691,6 +2690,71 @@ func (s *ActionParameters) SetType(v *ComponentProperty) *ActionParameters {
 // SetUrl sets the Url field's value.
 func (s *ActionParameters) SetUrl(v *ComponentProperty) *ActionParameters {
 	s.Url = v
+	return s
+}
+
+// Describes the API configuration for a code generation job.
+type ApiConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for an application using DataStore APIs.
+	DataStoreConfig *DataStoreRenderConfig `locationName:"dataStoreConfig" type:"structure"`
+
+	// The configuration for an application using GraphQL APIs.
+	GraphQLConfig *GraphQLRenderConfig `locationName:"graphQLConfig" type:"structure"`
+
+	// The configuration for an application with no API being used.
+	NoApiConfig *NoApiRenderConfig `locationName:"noApiConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApiConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApiConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApiConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApiConfiguration"}
+	if s.GraphQLConfig != nil {
+		if err := s.GraphQLConfig.Validate(); err != nil {
+			invalidParams.AddNested("GraphQLConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataStoreConfig sets the DataStoreConfig field's value.
+func (s *ApiConfiguration) SetDataStoreConfig(v *DataStoreRenderConfig) *ApiConfiguration {
+	s.DataStoreConfig = v
+	return s
+}
+
+// SetGraphQLConfig sets the GraphQLConfig field's value.
+func (s *ApiConfiguration) SetGraphQLConfig(v *GraphQLRenderConfig) *ApiConfiguration {
+	s.GraphQLConfig = v
+	return s
+}
+
+// SetNoApiConfig sets the NoApiConfig field's value.
+func (s *ApiConfiguration) SetNoApiConfig(v *NoApiRenderConfig) *ApiConfiguration {
+	s.NoApiConfig = v
 	return s
 }
 
@@ -3199,7 +3263,7 @@ type CodegenJob struct {
 	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Describes the configuration information for rendering the UI component associated
-	// the code generation job.
+	// with the code generation job.
 	RenderConfig *CodegenJobRenderConfig `locationName:"renderConfig" type:"structure"`
 
 	// The status of the code generation job.
@@ -3461,7 +3525,7 @@ func (s *CodegenJobGenericDataSchema) SetNonModels(v map[string]*CodegenGenericD
 }
 
 // Describes the configuration information for rendering the UI component associated
-// the code generation job.
+// with the code generation job.
 type CodegenJobRenderConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -3485,6 +3549,21 @@ func (s CodegenJobRenderConfig) String() string {
 // value will be replaced with "sensitive".
 func (s CodegenJobRenderConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodegenJobRenderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodegenJobRenderConfig"}
+	if s.React != nil {
+		if err := s.React.Validate(); err != nil {
+			invalidParams.AddNested("React", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetReact sets the React field's value.
@@ -5577,6 +5656,29 @@ func (s CreateThemeOutput) GoString() string {
 func (s *CreateThemeOutput) SetEntity(v *Theme) *CreateThemeOutput {
 	s.Entity = v
 	return s
+}
+
+// Describes the DataStore configuration for an API for a code generation job.
+type DataStoreRenderConfig struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataStoreRenderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataStoreRenderConfig) GoString() string {
+	return s.String()
 }
 
 type DeleteComponentInput struct {
@@ -8324,6 +8426,112 @@ func (s *GetThemeOutput) SetTheme(v *Theme) *GetThemeOutput {
 	return s
 }
 
+// Describes the GraphQL configuration for an API for a code generation job.
+type GraphQLRenderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The path to the GraphQL fragments file, relative to the component output
+	// directory.
+	//
+	// FragmentsFilePath is a required field
+	FragmentsFilePath *string `locationName:"fragmentsFilePath" type:"string" required:"true"`
+
+	// The path to the GraphQL mutations file, relative to the component output
+	// directory.
+	//
+	// MutationsFilePath is a required field
+	MutationsFilePath *string `locationName:"mutationsFilePath" type:"string" required:"true"`
+
+	// The path to the GraphQL queries file, relative to the component output directory.
+	//
+	// QueriesFilePath is a required field
+	QueriesFilePath *string `locationName:"queriesFilePath" type:"string" required:"true"`
+
+	// The path to the GraphQL subscriptions file, relative to the component output
+	// directory.
+	//
+	// SubscriptionsFilePath is a required field
+	SubscriptionsFilePath *string `locationName:"subscriptionsFilePath" type:"string" required:"true"`
+
+	// The path to the GraphQL types file, relative to the component output directory.
+	//
+	// TypesFilePath is a required field
+	TypesFilePath *string `locationName:"typesFilePath" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GraphQLRenderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GraphQLRenderConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GraphQLRenderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GraphQLRenderConfig"}
+	if s.FragmentsFilePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("FragmentsFilePath"))
+	}
+	if s.MutationsFilePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("MutationsFilePath"))
+	}
+	if s.QueriesFilePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueriesFilePath"))
+	}
+	if s.SubscriptionsFilePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionsFilePath"))
+	}
+	if s.TypesFilePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("TypesFilePath"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFragmentsFilePath sets the FragmentsFilePath field's value.
+func (s *GraphQLRenderConfig) SetFragmentsFilePath(v string) *GraphQLRenderConfig {
+	s.FragmentsFilePath = &v
+	return s
+}
+
+// SetMutationsFilePath sets the MutationsFilePath field's value.
+func (s *GraphQLRenderConfig) SetMutationsFilePath(v string) *GraphQLRenderConfig {
+	s.MutationsFilePath = &v
+	return s
+}
+
+// SetQueriesFilePath sets the QueriesFilePath field's value.
+func (s *GraphQLRenderConfig) SetQueriesFilePath(v string) *GraphQLRenderConfig {
+	s.QueriesFilePath = &v
+	return s
+}
+
+// SetSubscriptionsFilePath sets the SubscriptionsFilePath field's value.
+func (s *GraphQLRenderConfig) SetSubscriptionsFilePath(v string) *GraphQLRenderConfig {
+	s.SubscriptionsFilePath = &v
+	return s
+}
+
+// SetTypesFilePath sets the TypesFilePath field's value.
+func (s *GraphQLRenderConfig) SetTypesFilePath(v string) *GraphQLRenderConfig {
+	s.TypesFilePath = &v
+	return s
+}
+
 // An internal error has occurred. Please retry your request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -9049,6 +9257,29 @@ func (s *MutationActionSetStateParameter) SetSet(v *ComponentProperty) *Mutation
 	return s
 }
 
+// Describes the configuration for an application with no API being used.
+type NoApiRenderConfig struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NoApiRenderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NoApiRenderConfig) GoString() string {
+	return s.String()
+}
+
 // Stores information for generating Amplify DataStore queries. Use a Predicate
 // to retrieve a subset of the data in a collection.
 type Predicate struct {
@@ -9302,6 +9533,9 @@ func (s PutMetadataFlagOutput) GoString() string {
 type ReactStartCodegenJobData struct {
 	_ struct{} `type:"structure"`
 
+	// The API configuration for the code generation job.
+	ApiConfiguration *ApiConfiguration `locationName:"apiConfiguration" type:"structure"`
+
 	// Specifies whether the code generation job should render inline source maps.
 	InlineSourceMap *bool `locationName:"inlineSourceMap" type:"boolean"`
 
@@ -9335,6 +9569,27 @@ func (s ReactStartCodegenJobData) String() string {
 // value will be replaced with "sensitive".
 func (s ReactStartCodegenJobData) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReactStartCodegenJobData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReactStartCodegenJobData"}
+	if s.ApiConfiguration != nil {
+		if err := s.ApiConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ApiConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiConfiguration sets the ApiConfiguration field's value.
+func (s *ReactStartCodegenJobData) SetApiConfiguration(v *ApiConfiguration) *ReactStartCodegenJobData {
+	s.ApiConfiguration = v
+	return s
 }
 
 // SetInlineSourceMap sets the InlineSourceMap field's value.
@@ -9949,6 +10204,11 @@ func (s *StartCodegenJobData) Validate() error {
 	if s.GenericDataSchema != nil {
 		if err := s.GenericDataSchema.Validate(); err != nil {
 			invalidParams.AddNested("GenericDataSchema", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RenderConfig != nil {
+		if err := s.RenderConfig.Validate(); err != nil {
+			invalidParams.AddNested("RenderConfig", err.(request.ErrInvalidParams))
 		}
 	}
 

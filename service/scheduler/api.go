@@ -1560,6 +1560,10 @@ func (s *CreateScheduleGroupOutput) SetScheduleGroupArn(v string) *CreateSchedul
 type CreateScheduleInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the action that EventBridge Scheduler applies to the schedule after
+	// the schedule completes invoking the target.
+	ActionAfterCompletion *string `type:"string" enum:"ActionAfterCompletion"`
+
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
 	// the request. If you do not specify a client token, EventBridge Scheduler
 	// uses a randomly generated token for the request to ensure idempotency.
@@ -1598,7 +1602,7 @@ type CreateScheduleInput struct {
 	//
 	//    * at expression - at(yyyy-mm-ddThh:mm:ss)
 	//
-	//    * rate expression - rate(unit value)
+	//    * rate expression - rate(value unit)
 	//
 	//    * cron expression - cron(fields)
 	//
@@ -1707,6 +1711,12 @@ func (s *CreateScheduleInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActionAfterCompletion sets the ActionAfterCompletion field's value.
+func (s *CreateScheduleInput) SetActionAfterCompletion(v string) *CreateScheduleInput {
+	s.ActionAfterCompletion = &v
+	return s
 }
 
 // SetClientToken sets the ClientToken field's value.
@@ -2569,6 +2579,10 @@ func (s *GetScheduleInput) SetName(v string) *GetScheduleInput {
 type GetScheduleOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates the action that EventBridge Scheduler applies to the schedule after
+	// the schedule completes invoking the target.
+	ActionAfterCompletion *string `type:"string" enum:"ActionAfterCompletion"`
+
 	// The Amazon Resource Name (ARN) of the schedule.
 	Arn *string `min:"1" type:"string"`
 
@@ -2606,7 +2620,7 @@ type GetScheduleOutput struct {
 	//
 	//    * at expression - at(yyyy-mm-ddThh:mm:ss)
 	//
-	//    * rate expression - rate(unit value)
+	//    * rate expression - rate(value unit)
 	//
 	//    * cron expression - cron(fields)
 	//
@@ -2661,6 +2675,12 @@ func (s GetScheduleOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetScheduleOutput) GoString() string {
 	return s.String()
+}
+
+// SetActionAfterCompletion sets the ActionAfterCompletion field's value.
+func (s *GetScheduleOutput) SetActionAfterCompletion(v string) *GetScheduleOutput {
+	s.ActionAfterCompletion = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -4406,6 +4426,10 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateScheduleInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the action that EventBridge Scheduler applies to the schedule after
+	// the schedule completes invoking the target.
+	ActionAfterCompletion *string `type:"string" enum:"ActionAfterCompletion"`
+
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
 	// the request. If you do not specify a client token, EventBridge Scheduler
 	// uses a randomly generated token for the request to ensure idempotency.
@@ -4446,7 +4470,7 @@ type UpdateScheduleInput struct {
 	//
 	//    * at expression - at(yyyy-mm-ddThh:mm:ss)
 	//
-	//    * rate expression - rate(unit value)
+	//    * rate expression - rate(value unit)
 	//
 	//    * cron expression - cron(fields)
 	//
@@ -4556,6 +4580,12 @@ func (s *UpdateScheduleInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActionAfterCompletion sets the ActionAfterCompletion field's value.
+func (s *UpdateScheduleInput) SetActionAfterCompletion(v string) *UpdateScheduleInput {
+	s.ActionAfterCompletion = &v
+	return s
 }
 
 // SetClientToken sets the ClientToken field's value.
@@ -4725,6 +4755,22 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// ActionAfterCompletionNone is a ActionAfterCompletion enum value
+	ActionAfterCompletionNone = "NONE"
+
+	// ActionAfterCompletionDelete is a ActionAfterCompletion enum value
+	ActionAfterCompletionDelete = "DELETE"
+)
+
+// ActionAfterCompletion_Values returns all elements of the ActionAfterCompletion enum
+func ActionAfterCompletion_Values() []string {
+	return []string{
+		ActionAfterCompletionNone,
+		ActionAfterCompletionDelete,
+	}
 }
 
 const (

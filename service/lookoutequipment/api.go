@@ -58,9 +58,9 @@ func (c *LookoutEquipment) CreateDatasetRequest(input *CreateDatasetInput) (req 
 //
 // Creates a container for a collection of data being ingested for analysis.
 // The dataset contains the metadata describing where the data is and what the
-// data actually looks like. In other words, it contains the location of the
-// data source, the data schema, and other information. A dataset also contains
-// any tags associated with the ingested data.
+// data actually looks like. For example, it contains the location of the data
+// source, the data schema, and other information. A dataset also contains any
+// tags associated with the ingested data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -73,7 +73,7 @@ func (c *LookoutEquipment) CreateDatasetRequest(input *CreateDatasetInput) (req 
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ConflictException
 //     The request could not be completed due to a conflict with the current state
@@ -184,7 +184,7 @@ func (c *LookoutEquipment) CreateInferenceSchedulerRequest(input *CreateInferenc
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ServiceQuotaExceededException
 //     Resource limitations have been exceeded.
@@ -278,7 +278,7 @@ func (c *LookoutEquipment) CreateLabelRequest(input *CreateLabelInput) (req *req
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -380,7 +380,7 @@ func (c *LookoutEquipment) CreateLabelGroupRequest(input *CreateLabelGroupInput)
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ConflictException
 //     The request could not be completed due to a conflict with the current state
@@ -489,7 +489,7 @@ func (c *LookoutEquipment) CreateModelRequest(input *CreateModelInput) (req *req
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ConflictException
 //     The request could not be completed due to a conflict with the current state
@@ -615,7 +615,7 @@ func (c *LookoutEquipment) DeleteDatasetRequest(input *DeleteDatasetInput) (req 
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteDataset
 func (c *LookoutEquipment) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOutput, error) {
@@ -697,7 +697,7 @@ func (c *LookoutEquipment) DeleteInferenceSchedulerRequest(input *DeleteInferenc
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -816,7 +816,7 @@ func (c *LookoutEquipment) DeleteLabelRequest(input *DeleteLabelInput) (req *req
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteLabel
 func (c *LookoutEquipment) DeleteLabel(input *DeleteLabelInput) (*DeleteLabelOutput, error) {
@@ -916,7 +916,7 @@ func (c *LookoutEquipment) DeleteLabelGroupRequest(input *DeleteLabelGroupInput)
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteLabelGroup
 func (c *LookoutEquipment) DeleteLabelGroup(input *DeleteLabelGroupInput) (*DeleteLabelGroupOutput, error) {
@@ -1018,7 +1018,7 @@ func (c *LookoutEquipment) DeleteModelRequest(input *DeleteModelInput) (req *req
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteModel
 func (c *LookoutEquipment) DeleteModel(input *DeleteModelInput) (*DeleteModelOutput, error) {
@@ -1037,6 +1037,106 @@ func (c *LookoutEquipment) DeleteModel(input *DeleteModelInput) (*DeleteModelOut
 // for more information on using Contexts.
 func (c *LookoutEquipment) DeleteModelWithContext(ctx aws.Context, input *DeleteModelInput, opts ...request.Option) (*DeleteModelOutput, error) {
 	req, out := c.DeleteModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteResourcePolicy = "DeleteResourcePolicy"
+
+// DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteResourcePolicy
+func (c *LookoutEquipment) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyInput{}
+	}
+
+	output = &DeleteResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResourcePolicy API operation for Amazon Lookout for Equipment.
+//
+// Deletes the resource policy attached to the resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation DeleteResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related Amazon Web Services service that's being utilized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteResourcePolicy
+func (c *LookoutEquipment) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyWithContext is the same as DeleteResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1099,7 +1199,7 @@ func (c *LookoutEquipment) DescribeDataIngestionJobRequest(input *DescribeDataIn
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -1195,7 +1295,7 @@ func (c *LookoutEquipment) DescribeDatasetRequest(input *DescribeDatasetInput) (
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -1291,7 +1391,7 @@ func (c *LookoutEquipment) DescribeInferenceSchedulerRequest(input *DescribeInfe
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -1386,7 +1486,7 @@ func (c *LookoutEquipment) DescribeLabelRequest(input *DescribeLabelInput) (req 
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -1481,7 +1581,7 @@ func (c *LookoutEquipment) DescribeLabelGroupRequest(input *DescribeLabelGroupIn
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -1578,7 +1678,7 @@ func (c *LookoutEquipment) DescribeModelRequest(input *DescribeModelInput) (req 
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -1612,6 +1712,400 @@ func (c *LookoutEquipment) DescribeModel(input *DescribeModelInput) (*DescribeMo
 // for more information on using Contexts.
 func (c *LookoutEquipment) DescribeModelWithContext(ctx aws.Context, input *DescribeModelInput, opts ...request.Option) (*DescribeModelOutput, error) {
 	req, out := c.DescribeModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeModelVersion = "DescribeModelVersion"
+
+// DescribeModelVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeModelVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeModelVersion for more information on using the DescribeModelVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeModelVersionRequest method.
+//	req, resp := client.DescribeModelVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DescribeModelVersion
+func (c *LookoutEquipment) DescribeModelVersionRequest(input *DescribeModelVersionInput) (req *request.Request, output *DescribeModelVersionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeModelVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeModelVersionInput{}
+	}
+
+	output = &DescribeModelVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeModelVersion API operation for Amazon Lookout for Equipment.
+//
+// Retrieves information about a specific machine learning model version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation DescribeModelVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related Amazon Web Services service that's being utilized.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DescribeModelVersion
+func (c *LookoutEquipment) DescribeModelVersion(input *DescribeModelVersionInput) (*DescribeModelVersionOutput, error) {
+	req, out := c.DescribeModelVersionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeModelVersionWithContext is the same as DescribeModelVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeModelVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) DescribeModelVersionWithContext(ctx aws.Context, input *DescribeModelVersionInput, opts ...request.Option) (*DescribeModelVersionOutput, error) {
+	req, out := c.DescribeModelVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeResourcePolicy = "DescribeResourcePolicy"
+
+// DescribeResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeResourcePolicy for more information on using the DescribeResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeResourcePolicyRequest method.
+//	req, resp := client.DescribeResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DescribeResourcePolicy
+func (c *LookoutEquipment) DescribeResourcePolicyRequest(input *DescribeResourcePolicyInput) (req *request.Request, output *DescribeResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDescribeResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeResourcePolicyInput{}
+	}
+
+	output = &DescribeResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeResourcePolicy API operation for Amazon Lookout for Equipment.
+//
+// Provides the details of a resource policy attached to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation DescribeResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related Amazon Web Services service that's being utilized.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DescribeResourcePolicy
+func (c *LookoutEquipment) DescribeResourcePolicy(input *DescribeResourcePolicyInput) (*DescribeResourcePolicyOutput, error) {
+	req, out := c.DescribeResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DescribeResourcePolicyWithContext is the same as DescribeResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) DescribeResourcePolicyWithContext(ctx aws.Context, input *DescribeResourcePolicyInput, opts ...request.Option) (*DescribeResourcePolicyOutput, error) {
+	req, out := c.DescribeResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opImportDataset = "ImportDataset"
+
+// ImportDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the ImportDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportDataset for more information on using the ImportDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ImportDatasetRequest method.
+//	req, resp := client.ImportDatasetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ImportDataset
+func (c *LookoutEquipment) ImportDatasetRequest(input *ImportDatasetInput) (req *request.Request, output *ImportDatasetOutput) {
+	op := &request.Operation{
+		Name:       opImportDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportDatasetInput{}
+	}
+
+	output = &ImportDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportDataset API operation for Amazon Lookout for Equipment.
+//
+// Imports a dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation ImportDataset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related Amazon Web Services service that's being utilized.
+//
+//   - ServiceQuotaExceededException
+//     Resource limitations have been exceeded.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ImportDataset
+func (c *LookoutEquipment) ImportDataset(input *ImportDatasetInput) (*ImportDatasetOutput, error) {
+	req, out := c.ImportDatasetRequest(input)
+	return out, req.Send()
+}
+
+// ImportDatasetWithContext is the same as ImportDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ImportDatasetWithContext(ctx aws.Context, input *ImportDatasetInput, opts ...request.Option) (*ImportDatasetOutput, error) {
+	req, out := c.ImportDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opImportModelVersion = "ImportModelVersion"
+
+// ImportModelVersionRequest generates a "aws/request.Request" representing the
+// client's request for the ImportModelVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportModelVersion for more information on using the ImportModelVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ImportModelVersionRequest method.
+//	req, resp := client.ImportModelVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ImportModelVersion
+func (c *LookoutEquipment) ImportModelVersionRequest(input *ImportModelVersionInput) (req *request.Request, output *ImportModelVersionOutput) {
+	op := &request.Operation{
+		Name:       opImportModelVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportModelVersionInput{}
+	}
+
+	output = &ImportModelVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportModelVersion API operation for Amazon Lookout for Equipment.
+//
+// Imports a model that has been trained successfully.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation ImportModelVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related Amazon Web Services service that's being utilized.
+//
+//   - ServiceQuotaExceededException
+//     Resource limitations have been exceeded.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ImportModelVersion
+func (c *LookoutEquipment) ImportModelVersion(input *ImportModelVersionInput) (*ImportModelVersionOutput, error) {
+	req, out := c.ImportModelVersionRequest(input)
+	return out, req.Send()
+}
+
+// ImportModelVersionWithContext is the same as ImportModelVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportModelVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ImportModelVersionWithContext(ctx aws.Context, input *ImportModelVersionInput, opts ...request.Option) (*ImportModelVersionOutput, error) {
+	req, out := c.ImportModelVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1680,7 +2174,7 @@ func (c *LookoutEquipment) ListDataIngestionJobsRequest(input *ListDataIngestion
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1829,7 +2323,7 @@ func (c *LookoutEquipment) ListDatasetsRequest(input *ListDatasetsInput) (req *r
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1978,7 +2472,7 @@ func (c *LookoutEquipment) ListInferenceEventsRequest(input *ListInferenceEvents
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -2131,7 +2625,7 @@ func (c *LookoutEquipment) ListInferenceExecutionsRequest(input *ListInferenceEx
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -2284,7 +2778,7 @@ func (c *LookoutEquipment) ListInferenceSchedulersRequest(input *ListInferenceSc
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -2432,7 +2926,7 @@ func (c *LookoutEquipment) ListLabelGroupsRequest(input *ListLabelGroupsInput) (
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -2580,7 +3074,7 @@ func (c *LookoutEquipment) ListLabelsRequest(input *ListLabelsInput) (req *reque
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -2666,6 +3160,160 @@ func (c *LookoutEquipment) ListLabelsPagesWithContext(ctx aws.Context, input *Li
 	return p.Err()
 }
 
+const opListModelVersions = "ListModelVersions"
+
+// ListModelVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListModelVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListModelVersions for more information on using the ListModelVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListModelVersionsRequest method.
+//	req, resp := client.ListModelVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListModelVersions
+func (c *LookoutEquipment) ListModelVersionsRequest(input *ListModelVersionsInput) (req *request.Request, output *ListModelVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListModelVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListModelVersionsInput{}
+	}
+
+	output = &ListModelVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListModelVersions API operation for Amazon Lookout for Equipment.
+//
+// Generates a list of all model versions for a given model, including the model
+// version, model version ARN, and status. To list a subset of versions, use
+// the MaxModelVersion and MinModelVersion fields.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation ListModelVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related Amazon Web Services service that's being utilized.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListModelVersions
+func (c *LookoutEquipment) ListModelVersions(input *ListModelVersionsInput) (*ListModelVersionsOutput, error) {
+	req, out := c.ListModelVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListModelVersionsWithContext is the same as ListModelVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListModelVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListModelVersionsWithContext(ctx aws.Context, input *ListModelVersionsInput, opts ...request.Option) (*ListModelVersionsOutput, error) {
+	req, out := c.ListModelVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListModelVersionsPages iterates over the pages of a ListModelVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListModelVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListModelVersions operation.
+//	pageNum := 0
+//	err := client.ListModelVersionsPages(params,
+//	    func(page *lookoutequipment.ListModelVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LookoutEquipment) ListModelVersionsPages(input *ListModelVersionsInput, fn func(*ListModelVersionsOutput, bool) bool) error {
+	return c.ListModelVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListModelVersionsPagesWithContext same as ListModelVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListModelVersionsPagesWithContext(ctx aws.Context, input *ListModelVersionsInput, fn func(*ListModelVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListModelVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListModelVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListModelVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListModels = "ListModels"
 
 // ListModelsRequest generates a "aws/request.Request" representing the
@@ -2729,7 +3377,7 @@ func (c *LookoutEquipment) ListModelsRequest(input *ListModelsInput) (req *reque
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -2879,7 +3527,7 @@ func (c *LookoutEquipment) ListSensorStatisticsRequest(input *ListSensorStatisti
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -3025,7 +3673,7 @@ func (c *LookoutEquipment) ListTagsForResourceRequest(input *ListTagsForResource
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -3059,6 +3707,108 @@ func (c *LookoutEquipment) ListTagsForResource(input *ListTagsForResourceInput) 
 // for more information on using Contexts.
 func (c *LookoutEquipment) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutResourcePolicy = "PutResourcePolicy"
+
+// PutResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourcePolicy for more information on using the PutResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/PutResourcePolicy
+func (c *LookoutEquipment) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutResourcePolicyInput{}
+	}
+
+	output = &PutResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutResourcePolicy API operation for Amazon Lookout for Equipment.
+//
+// Creates a resource control policy for a given resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation PutResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related Amazon Web Services service that's being utilized.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ServiceQuotaExceededException
+//     Resource limitations have been exceeded.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/PutResourcePolicy
+func (c *LookoutEquipment) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutResourcePolicyWithContext is the same as PutResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) PutResourcePolicyWithContext(ctx aws.Context, input *PutResourcePolicyInput, opts ...request.Option) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3121,7 +3871,7 @@ func (c *LookoutEquipment) StartDataIngestionJobRequest(input *StartDataIngestio
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -3223,7 +3973,7 @@ func (c *LookoutEquipment) StartInferenceSchedulerRequest(input *StartInferenceS
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ConflictException
 //     The request could not be completed due to a conflict with the current state
@@ -3322,7 +4072,7 @@ func (c *LookoutEquipment) StopInferenceSchedulerRequest(input *StopInferenceSch
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ConflictException
 //     The request could not be completed due to a conflict with the current state
@@ -3426,7 +4176,7 @@ func (c *LookoutEquipment) TagResourceRequest(input *TagResourceInput) (req *req
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -3526,7 +4276,7 @@ func (c *LookoutEquipment) UntagResourceRequest(input *UntagResourceInput) (req 
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ResourceNotFoundException
 //     The resource requested could not be found. Verify the resource ID and retry
@@ -3560,6 +4310,105 @@ func (c *LookoutEquipment) UntagResource(input *UntagResourceInput) (*UntagResou
 // for more information on using Contexts.
 func (c *LookoutEquipment) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateActiveModelVersion = "UpdateActiveModelVersion"
+
+// UpdateActiveModelVersionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateActiveModelVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateActiveModelVersion for more information on using the UpdateActiveModelVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateActiveModelVersionRequest method.
+//	req, resp := client.UpdateActiveModelVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/UpdateActiveModelVersion
+func (c *LookoutEquipment) UpdateActiveModelVersionRequest(input *UpdateActiveModelVersionInput) (req *request.Request, output *UpdateActiveModelVersionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateActiveModelVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateActiveModelVersionInput{}
+	}
+
+	output = &UpdateActiveModelVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateActiveModelVersion API operation for Amazon Lookout for Equipment.
+//
+// Sets the active model version for a given machine learning model.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation UpdateActiveModelVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related Amazon Web Services service that's being utilized.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/UpdateActiveModelVersion
+func (c *LookoutEquipment) UpdateActiveModelVersion(input *UpdateActiveModelVersionInput) (*UpdateActiveModelVersionOutput, error) {
+	req, out := c.UpdateActiveModelVersionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateActiveModelVersionWithContext is the same as UpdateActiveModelVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateActiveModelVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) UpdateActiveModelVersionWithContext(ctx aws.Context, input *UpdateActiveModelVersionInput, opts ...request.Option) (*UpdateActiveModelVersionOutput, error) {
+	req, out := c.UpdateActiveModelVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3630,7 +4479,7 @@ func (c *LookoutEquipment) UpdateInferenceSchedulerRequest(input *UpdateInferenc
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -3730,7 +4579,7 @@ func (c *LookoutEquipment) UpdateLabelGroupRequest(input *UpdateLabelGroupInput)
 //
 //   - ValidationException
 //     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-//     or a related AWS service that's being utilized.
+//     or a related Amazon Web Services service that's being utilized.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -4497,7 +5346,7 @@ func (s *CreateLabelGroupInput) SetTags(v []*Tag) *CreateLabelGroupInput {
 type CreateLabelGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the label group that you have created.
+	// The Amazon Resource Name (ARN) of the label group that you have created.
 	LabelGroupArn *string `min:"20" type:"string"`
 
 	// The name of the label group that you have created. Data in this field will
@@ -5651,6 +6500,78 @@ func (s DeleteModelOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource for which the resource policy
+	// should be deleted.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DeleteResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeDataIngestionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5741,6 +6662,10 @@ type DescribeDataIngestionJobOutput struct {
 	// data source being ingested.
 	RoleArn *string `min:"20" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the source dataset from which the data
+	// used for the data ingestion job was imported from.
+	SourceDatasetArn *string `min:"20" type:"string"`
+
 	// Indicates the status of the DataIngestionJob operation.
 	Status *string `type:"string" enum:"IngestionJobStatus"`
 
@@ -5829,6 +6754,12 @@ func (s *DescribeDataIngestionJobOutput) SetJobId(v string) *DescribeDataIngesti
 // SetRoleArn sets the RoleArn field's value.
 func (s *DescribeDataIngestionJobOutput) SetRoleArn(v string) *DescribeDataIngestionJobOutput {
 	s.RoleArn = &v
+	return s
+}
+
+// SetSourceDatasetArn sets the SourceDatasetArn field's value.
+func (s *DescribeDataIngestionJobOutput) SetSourceDatasetArn(v string) *DescribeDataIngestionJobOutput {
+	s.SourceDatasetArn = &v
 	return s
 }
 
@@ -5942,6 +6873,10 @@ type DescribeDatasetOutput struct {
 	// Lookout for Equipment.
 	ServerSideKmsKeyId *string `min:"1" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the source dataset from which the current
+	// data being described was imported from.
+	SourceDatasetArn *string `min:"20" type:"string"`
+
 	// Indicates the status of the dataset.
 	Status *string `type:"string" enum:"DatasetStatus"`
 }
@@ -6033,6 +6968,12 @@ func (s *DescribeDatasetOutput) SetSchema(v aws.JSONValue) *DescribeDatasetOutpu
 // SetServerSideKmsKeyId sets the ServerSideKmsKeyId field's value.
 func (s *DescribeDatasetOutput) SetServerSideKmsKeyId(v string) *DescribeDatasetOutput {
 	s.ServerSideKmsKeyId = &v
+	return s
+}
+
+// SetSourceDatasetArn sets the SourceDatasetArn field's value.
+func (s *DescribeDatasetOutput) SetSourceDatasetArn(v string) *DescribeDatasetOutput {
+	s.SourceDatasetArn = &v
 	return s
 }
 
@@ -6317,7 +7258,7 @@ type DescribeLabelGroupOutput struct {
 	// group.
 	FaultCodes []*string `type:"list"`
 
-	// The ARN of the label group.
+	// The Amazon Resource Name (ARN) of the label group.
 	LabelGroupArn *string `min:"20" type:"string"`
 
 	// The name of the label group.
@@ -6456,7 +7397,7 @@ type DescribeLabelOutput struct {
 	// for the security of your data.
 	FaultCode *string `min:"1" type:"string"`
 
-	// The ARN of the requested label group.
+	// The Amazon Resource Name (ARN) of the requested label group.
 	LabelGroupArn *string `min:"20" type:"string"`
 
 	// The name of the requested label group.
@@ -6608,6 +7549,14 @@ func (s *DescribeModelInput) SetModelName(v string) *DescribeModelInput {
 type DescribeModelOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the model version used by the inference schedular when running
+	// a scheduled inference execution.
+	ActiveModelVersion *int64 `min:"1" type:"long"`
+
+	// The Amazon Resource Name (ARN) of the model version used by the inference
+	// scheduler when running a scheduled inference execution.
+	ActiveModelVersionArn *string `min:"20" type:"string"`
+
 	// Indicates the time and date at which the ML model was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
@@ -6642,6 +7591,14 @@ type DescribeModelOutput struct {
 	// failure.
 	FailedReason *string `min:"1" type:"string"`
 
+	// The date and time when the import job was completed. This field appears if
+	// the active model version was imported.
+	ImportJobEndTime *time.Time `type:"timestamp"`
+
+	// The date and time when the import job was started. This field appears if
+	// the active model version was imported.
+	ImportJobStartTime *time.Time `type:"timestamp"`
+
 	// Specifies configuration information about the labels input, including its
 	// S3 location.
 	LabelsInputConfiguration *LabelsInputConfiguration `type:"structure"`
@@ -6661,10 +7618,24 @@ type DescribeModelOutput struct {
 	// The name of the ML model being described.
 	ModelName *string `min:"1" type:"string"`
 
+	// The date the active model version was activated.
+	ModelVersionActivatedAt *time.Time `type:"timestamp"`
+
 	// Indicates that the asset associated with this sensor has been shut off. As
 	// long as this condition is met, Lookout for Equipment will not use data from
 	// this asset for training, evaluation, or inference.
 	OffCondition *string `min:"1" type:"string"`
+
+	// The model version that was set as the active model version prior to the current
+	// active model version.
+	PreviousActiveModelVersion *int64 `min:"1" type:"long"`
+
+	// The ARN of the model version that was set as the active model version prior
+	// to the current active model version.
+	PreviousActiveModelVersionArn *string `min:"20" type:"string"`
+
+	// The date and time when the previous active model version was activated.
+	PreviousModelVersionActivatedAt *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of a role with permission to access the data
 	// source for the ML model being described.
@@ -6677,6 +7648,10 @@ type DescribeModelOutput struct {
 	// Provides the identifier of the KMS key used to encrypt model data by Amazon
 	// Lookout for Equipment.
 	ServerSideKmsKeyId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the source model version. This field appears
+	// if the active model version was imported.
+	SourceModelVersionArn *string `min:"20" type:"string"`
 
 	// Specifies the current status of the model being described. Status describes
 	// the status of the most recent action of the model.
@@ -6713,6 +7688,18 @@ func (s DescribeModelOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeModelOutput) GoString() string {
 	return s.String()
+}
+
+// SetActiveModelVersion sets the ActiveModelVersion field's value.
+func (s *DescribeModelOutput) SetActiveModelVersion(v int64) *DescribeModelOutput {
+	s.ActiveModelVersion = &v
+	return s
+}
+
+// SetActiveModelVersionArn sets the ActiveModelVersionArn field's value.
+func (s *DescribeModelOutput) SetActiveModelVersionArn(v string) *DescribeModelOutput {
+	s.ActiveModelVersionArn = &v
+	return s
 }
 
 // SetCreatedAt sets the CreatedAt field's value.
@@ -6757,6 +7744,18 @@ func (s *DescribeModelOutput) SetFailedReason(v string) *DescribeModelOutput {
 	return s
 }
 
+// SetImportJobEndTime sets the ImportJobEndTime field's value.
+func (s *DescribeModelOutput) SetImportJobEndTime(v time.Time) *DescribeModelOutput {
+	s.ImportJobEndTime = &v
+	return s
+}
+
+// SetImportJobStartTime sets the ImportJobStartTime field's value.
+func (s *DescribeModelOutput) SetImportJobStartTime(v time.Time) *DescribeModelOutput {
+	s.ImportJobStartTime = &v
+	return s
+}
+
 // SetLabelsInputConfiguration sets the LabelsInputConfiguration field's value.
 func (s *DescribeModelOutput) SetLabelsInputConfiguration(v *LabelsInputConfiguration) *DescribeModelOutput {
 	s.LabelsInputConfiguration = v
@@ -6787,9 +7786,33 @@ func (s *DescribeModelOutput) SetModelName(v string) *DescribeModelOutput {
 	return s
 }
 
+// SetModelVersionActivatedAt sets the ModelVersionActivatedAt field's value.
+func (s *DescribeModelOutput) SetModelVersionActivatedAt(v time.Time) *DescribeModelOutput {
+	s.ModelVersionActivatedAt = &v
+	return s
+}
+
 // SetOffCondition sets the OffCondition field's value.
 func (s *DescribeModelOutput) SetOffCondition(v string) *DescribeModelOutput {
 	s.OffCondition = &v
+	return s
+}
+
+// SetPreviousActiveModelVersion sets the PreviousActiveModelVersion field's value.
+func (s *DescribeModelOutput) SetPreviousActiveModelVersion(v int64) *DescribeModelOutput {
+	s.PreviousActiveModelVersion = &v
+	return s
+}
+
+// SetPreviousActiveModelVersionArn sets the PreviousActiveModelVersionArn field's value.
+func (s *DescribeModelOutput) SetPreviousActiveModelVersionArn(v string) *DescribeModelOutput {
+	s.PreviousActiveModelVersionArn = &v
+	return s
+}
+
+// SetPreviousModelVersionActivatedAt sets the PreviousModelVersionActivatedAt field's value.
+func (s *DescribeModelOutput) SetPreviousModelVersionActivatedAt(v time.Time) *DescribeModelOutput {
+	s.PreviousModelVersionActivatedAt = &v
 	return s
 }
 
@@ -6808,6 +7831,12 @@ func (s *DescribeModelOutput) SetSchema(v aws.JSONValue) *DescribeModelOutput {
 // SetServerSideKmsKeyId sets the ServerSideKmsKeyId field's value.
 func (s *DescribeModelOutput) SetServerSideKmsKeyId(v string) *DescribeModelOutput {
 	s.ServerSideKmsKeyId = &v
+	return s
+}
+
+// SetSourceModelVersionArn sets the SourceModelVersionArn field's value.
+func (s *DescribeModelOutput) SetSourceModelVersionArn(v string) *DescribeModelOutput {
+	s.SourceModelVersionArn = &v
 	return s
 }
 
@@ -6838,6 +7867,484 @@ func (s *DescribeModelOutput) SetTrainingExecutionEndTime(v time.Time) *Describe
 // SetTrainingExecutionStartTime sets the TrainingExecutionStartTime field's value.
 func (s *DescribeModelOutput) SetTrainingExecutionStartTime(v time.Time) *DescribeModelOutput {
 	s.TrainingExecutionStartTime = &v
+	return s
+}
+
+type DescribeModelVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the machine learning model that this version belongs to.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+
+	// The version of the machine learning model.
+	//
+	// ModelVersion is a required field
+	ModelVersion *int64 `min:"1" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeModelVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeModelVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeModelVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeModelVersionInput"}
+	if s.ModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelName"))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+	if s.ModelVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelVersion"))
+	}
+	if s.ModelVersion != nil && *s.ModelVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ModelVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *DescribeModelVersionInput) SetModelName(v string) *DescribeModelVersionInput {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *DescribeModelVersionInput) SetModelVersion(v int64) *DescribeModelVersionInput {
+	s.ModelVersion = &v
+	return s
+}
+
+type DescribeModelVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the time and date at which the machine learning model version was
+	// created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The configuration is the TargetSamplingRate, which is the sampling rate of
+	// the data after post processing by Amazon Lookout for Equipment. For example,
+	// if you provide data that has been collected at a 1 second level and you want
+	// the system to resample the data at a 1 minute rate before training, the TargetSamplingRate
+	// is 1 minute.
+	//
+	// When providing a value for the TargetSamplingRate, you must attach the prefix
+	// "PT" to the rate you want. The value for a 1 second rate is therefore PT1S,
+	// the value for a 15 minute rate is PT15M, and the value for a 1 hour rate
+	// is PT1H
+	DataPreProcessingConfiguration *DataPreProcessingConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset used to train the model version.
+	DatasetArn *string `min:"20" type:"string"`
+
+	// The name of the dataset used to train the model version.
+	DatasetName *string `min:"1" type:"string"`
+
+	// The date on which the data in the evaluation set began being gathered. If
+	// you imported the version, this is the date that the evaluation set data in
+	// the source version finished being gathered.
+	EvaluationDataEndTime *time.Time `type:"timestamp"`
+
+	// The date on which the data in the evaluation set began being gathered. If
+	// you imported the version, this is the date that the evaluation set data in
+	// the source version began being gathered.
+	EvaluationDataStartTime *time.Time `type:"timestamp"`
+
+	// The failure message if the training of the model version failed.
+	FailedReason *string `min:"1" type:"string"`
+
+	// The date and time when the import job completed. This field appears if the
+	// model version was imported.
+	ImportJobEndTime *time.Time `type:"timestamp"`
+
+	// The date and time when the import job began. This field appears if the model
+	// version was imported.
+	ImportJobStartTime *time.Time `type:"timestamp"`
+
+	// The size in bytes of the imported data. This field appears if the model version
+	// was imported.
+	ImportedDataSizeInBytes *int64 `type:"long"`
+
+	// Contains the configuration information for the S3 location being used to
+	// hold label data.
+	LabelsInputConfiguration *LabelsInputConfiguration `type:"structure"`
+
+	// Indicates the last time the machine learning model version was updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the parent machine learning model that
+	// this version belong to.
+	ModelArn *string `min:"20" type:"string"`
+
+	// Shows an aggregated summary, in JSON format, of the model's performance within
+	// the evaluation time range. These metrics are created when evaluating the
+	// model.
+	ModelMetrics *string `min:"1" type:"string"`
+
+	// The name of the machine learning model that this version belongs to.
+	ModelName *string `min:"1" type:"string"`
+
+	// The version of the machine learning model.
+	ModelVersion *int64 `min:"1" type:"long"`
+
+	// The Amazon Resource Name (ARN) of the model version.
+	ModelVersionArn *string `min:"20" type:"string"`
+
+	// Indicates that the asset associated with this sensor has been shut off. As
+	// long as this condition is met, Lookout for Equipment will not use data from
+	// this asset for training, evaluation, or inference.
+	OffCondition *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the role that was used to train the model
+	// version.
+	RoleArn *string `min:"20" type:"string"`
+
+	// The schema of the data used to train the model version.
+	Schema *string `min:"1" type:"string"`
+
+	// The identifier of the KMS key key used to encrypt model version data by Amazon
+	// Lookout for Equipment.
+	ServerSideKmsKeyId *string `min:"1" type:"string"`
+
+	// If model version was imported, then this field is the arn of the source model
+	// version.
+	SourceModelVersionArn *string `min:"20" type:"string"`
+
+	// Indicates whether this model version was created by training or by importing.
+	SourceType *string `type:"string" enum:"ModelVersionSourceType"`
+
+	// The current status of the model version.
+	Status *string `type:"string" enum:"ModelVersionStatus"`
+
+	// The date on which the training data finished being gathered. If you imported
+	// the version, this is the date that the training data in the source version
+	// finished being gathered.
+	TrainingDataEndTime *time.Time `type:"timestamp"`
+
+	// The date on which the training data began being gathered. If you imported
+	// the version, this is the date that the training data in the source version
+	// began being gathered.
+	TrainingDataStartTime *time.Time `type:"timestamp"`
+
+	// The time when the training of the version completed.
+	TrainingExecutionEndTime *time.Time `type:"timestamp"`
+
+	// The time when the training of the version began.
+	TrainingExecutionStartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeModelVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeModelVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeModelVersionOutput) SetCreatedAt(v time.Time) *DescribeModelVersionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDataPreProcessingConfiguration sets the DataPreProcessingConfiguration field's value.
+func (s *DescribeModelVersionOutput) SetDataPreProcessingConfiguration(v *DataPreProcessingConfiguration) *DescribeModelVersionOutput {
+	s.DataPreProcessingConfiguration = v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DescribeModelVersionOutput) SetDatasetArn(v string) *DescribeModelVersionOutput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *DescribeModelVersionOutput) SetDatasetName(v string) *DescribeModelVersionOutput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetEvaluationDataEndTime sets the EvaluationDataEndTime field's value.
+func (s *DescribeModelVersionOutput) SetEvaluationDataEndTime(v time.Time) *DescribeModelVersionOutput {
+	s.EvaluationDataEndTime = &v
+	return s
+}
+
+// SetEvaluationDataStartTime sets the EvaluationDataStartTime field's value.
+func (s *DescribeModelVersionOutput) SetEvaluationDataStartTime(v time.Time) *DescribeModelVersionOutput {
+	s.EvaluationDataStartTime = &v
+	return s
+}
+
+// SetFailedReason sets the FailedReason field's value.
+func (s *DescribeModelVersionOutput) SetFailedReason(v string) *DescribeModelVersionOutput {
+	s.FailedReason = &v
+	return s
+}
+
+// SetImportJobEndTime sets the ImportJobEndTime field's value.
+func (s *DescribeModelVersionOutput) SetImportJobEndTime(v time.Time) *DescribeModelVersionOutput {
+	s.ImportJobEndTime = &v
+	return s
+}
+
+// SetImportJobStartTime sets the ImportJobStartTime field's value.
+func (s *DescribeModelVersionOutput) SetImportJobStartTime(v time.Time) *DescribeModelVersionOutput {
+	s.ImportJobStartTime = &v
+	return s
+}
+
+// SetImportedDataSizeInBytes sets the ImportedDataSizeInBytes field's value.
+func (s *DescribeModelVersionOutput) SetImportedDataSizeInBytes(v int64) *DescribeModelVersionOutput {
+	s.ImportedDataSizeInBytes = &v
+	return s
+}
+
+// SetLabelsInputConfiguration sets the LabelsInputConfiguration field's value.
+func (s *DescribeModelVersionOutput) SetLabelsInputConfiguration(v *LabelsInputConfiguration) *DescribeModelVersionOutput {
+	s.LabelsInputConfiguration = v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *DescribeModelVersionOutput) SetLastUpdatedTime(v time.Time) *DescribeModelVersionOutput {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *DescribeModelVersionOutput) SetModelArn(v string) *DescribeModelVersionOutput {
+	s.ModelArn = &v
+	return s
+}
+
+// SetModelMetrics sets the ModelMetrics field's value.
+func (s *DescribeModelVersionOutput) SetModelMetrics(v string) *DescribeModelVersionOutput {
+	s.ModelMetrics = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *DescribeModelVersionOutput) SetModelName(v string) *DescribeModelVersionOutput {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *DescribeModelVersionOutput) SetModelVersion(v int64) *DescribeModelVersionOutput {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetModelVersionArn sets the ModelVersionArn field's value.
+func (s *DescribeModelVersionOutput) SetModelVersionArn(v string) *DescribeModelVersionOutput {
+	s.ModelVersionArn = &v
+	return s
+}
+
+// SetOffCondition sets the OffCondition field's value.
+func (s *DescribeModelVersionOutput) SetOffCondition(v string) *DescribeModelVersionOutput {
+	s.OffCondition = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeModelVersionOutput) SetRoleArn(v string) *DescribeModelVersionOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *DescribeModelVersionOutput) SetSchema(v string) *DescribeModelVersionOutput {
+	s.Schema = &v
+	return s
+}
+
+// SetServerSideKmsKeyId sets the ServerSideKmsKeyId field's value.
+func (s *DescribeModelVersionOutput) SetServerSideKmsKeyId(v string) *DescribeModelVersionOutput {
+	s.ServerSideKmsKeyId = &v
+	return s
+}
+
+// SetSourceModelVersionArn sets the SourceModelVersionArn field's value.
+func (s *DescribeModelVersionOutput) SetSourceModelVersionArn(v string) *DescribeModelVersionOutput {
+	s.SourceModelVersionArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *DescribeModelVersionOutput) SetSourceType(v string) *DescribeModelVersionOutput {
+	s.SourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeModelVersionOutput) SetStatus(v string) *DescribeModelVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTrainingDataEndTime sets the TrainingDataEndTime field's value.
+func (s *DescribeModelVersionOutput) SetTrainingDataEndTime(v time.Time) *DescribeModelVersionOutput {
+	s.TrainingDataEndTime = &v
+	return s
+}
+
+// SetTrainingDataStartTime sets the TrainingDataStartTime field's value.
+func (s *DescribeModelVersionOutput) SetTrainingDataStartTime(v time.Time) *DescribeModelVersionOutput {
+	s.TrainingDataStartTime = &v
+	return s
+}
+
+// SetTrainingExecutionEndTime sets the TrainingExecutionEndTime field's value.
+func (s *DescribeModelVersionOutput) SetTrainingExecutionEndTime(v time.Time) *DescribeModelVersionOutput {
+	s.TrainingExecutionEndTime = &v
+	return s
+}
+
+// SetTrainingExecutionStartTime sets the TrainingExecutionStartTime field's value.
+func (s *DescribeModelVersionOutput) SetTrainingExecutionStartTime(v time.Time) *DescribeModelVersionOutput {
+	s.TrainingExecutionStartTime = &v
+	return s
+}
+
+type DescribeResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource that is associated with the
+	// resource policy.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DescribeResourcePolicyInput) SetResourceArn(v string) *DescribeResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DescribeResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the resource policy was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The time when the resource policy was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// A unique identifier for a revision of the resource policy.
+	PolicyRevisionId *string `type:"string"`
+
+	// The resource policy in a JSON-formatted string.
+	ResourcePolicy *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeResourcePolicyOutput) SetCreationTime(v time.Time) *DescribeResourcePolicyOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeResourcePolicyOutput) SetLastModifiedTime(v time.Time) *DescribeResourcePolicyOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *DescribeResourcePolicyOutput) SetPolicyRevisionId(v string) *DescribeResourcePolicyOutput {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *DescribeResourcePolicyOutput) SetResourcePolicy(v string) *DescribeResourcePolicyOutput {
+	s.ResourcePolicy = &v
 	return s
 }
 
@@ -6872,6 +8379,392 @@ func (s DuplicateTimestamps) GoString() string {
 // SetTotalNumberOfDuplicateTimestamps sets the TotalNumberOfDuplicateTimestamps field's value.
 func (s *DuplicateTimestamps) SetTotalNumberOfDuplicateTimestamps(v int64) *DuplicateTimestamps {
 	s.TotalNumberOfDuplicateTimestamps = &v
+	return s
+}
+
+type ImportDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you do not set the client request
+	// token, Amazon Lookout for Equipment generates one.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the machine learning dataset to be created. If the dataset already
+	// exists, Amazon Lookout for Equipment overwrites the existing dataset. If
+	// you don't specify this field, it is filled with the name of the source dataset.
+	DatasetName *string `min:"1" type:"string"`
+
+	// Provides the identifier of the KMS key key used to encrypt model data by
+	// Amazon Lookout for Equipment.
+	ServerSideKmsKeyId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the dataset to import.
+	//
+	// SourceDatasetArn is a required field
+	SourceDatasetArn *string `min:"20" type:"string" required:"true"`
+
+	// Any tags associated with the dataset to be created.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportDatasetInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.ServerSideKmsKeyId != nil && len(*s.ServerSideKmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerSideKmsKeyId", 1))
+	}
+	if s.SourceDatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceDatasetArn"))
+	}
+	if s.SourceDatasetArn != nil && len(*s.SourceDatasetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceDatasetArn", 20))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ImportDatasetInput) SetClientToken(v string) *ImportDatasetInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *ImportDatasetInput) SetDatasetName(v string) *ImportDatasetInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetServerSideKmsKeyId sets the ServerSideKmsKeyId field's value.
+func (s *ImportDatasetInput) SetServerSideKmsKeyId(v string) *ImportDatasetInput {
+	s.ServerSideKmsKeyId = &v
+	return s
+}
+
+// SetSourceDatasetArn sets the SourceDatasetArn field's value.
+func (s *ImportDatasetInput) SetSourceDatasetArn(v string) *ImportDatasetInput {
+	s.SourceDatasetArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportDatasetInput) SetTags(v []*Tag) *ImportDatasetInput {
+	s.Tags = v
+	return s
+}
+
+type ImportDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset that was imported.
+	DatasetArn *string `min:"20" type:"string"`
+
+	// The name of the created machine learning dataset.
+	DatasetName *string `min:"1" type:"string"`
+
+	// A unique identifier for the job of importing the dataset.
+	JobId *string `type:"string"`
+
+	// The status of the ImportDataset operation.
+	Status *string `type:"string" enum:"DatasetStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *ImportDatasetOutput) SetDatasetArn(v string) *ImportDatasetOutput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *ImportDatasetOutput) SetDatasetName(v string) *ImportDatasetOutput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ImportDatasetOutput) SetJobId(v string) *ImportDatasetOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportDatasetOutput) SetStatus(v string) *ImportDatasetOutput {
+	s.Status = &v
+	return s
+}
+
+type ImportModelVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you do not set the client request
+	// token, Amazon Lookout for Equipment generates one.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the dataset for the machine learning model being imported.
+	//
+	// DatasetName is a required field
+	DatasetName *string `min:"1" type:"string" required:"true"`
+
+	// Contains the configuration information for the S3 location being used to
+	// hold label data.
+	LabelsInputConfiguration *LabelsInputConfiguration `type:"structure"`
+
+	// The name for the machine learning model to be created. If the model already
+	// exists, Amazon Lookout for Equipment creates a new version. If you do not
+	// specify this field, it is filled with the name of the source model.
+	ModelName *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of a role with permission to access the data
+	// source being used to create the machine learning model.
+	RoleArn *string `min:"20" type:"string"`
+
+	// Provides the identifier of the KMS key key used to encrypt model data by
+	// Amazon Lookout for Equipment.
+	ServerSideKmsKeyId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the model version to import.
+	//
+	// SourceModelVersionArn is a required field
+	SourceModelVersionArn *string `min:"20" type:"string" required:"true"`
+
+	// The tags associated with the machine learning model to be created.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportModelVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportModelVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportModelVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportModelVersionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.ServerSideKmsKeyId != nil && len(*s.ServerSideKmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerSideKmsKeyId", 1))
+	}
+	if s.SourceModelVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceModelVersionArn"))
+	}
+	if s.SourceModelVersionArn != nil && len(*s.SourceModelVersionArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceModelVersionArn", 20))
+	}
+	if s.LabelsInputConfiguration != nil {
+		if err := s.LabelsInputConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LabelsInputConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ImportModelVersionInput) SetClientToken(v string) *ImportModelVersionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *ImportModelVersionInput) SetDatasetName(v string) *ImportModelVersionInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetLabelsInputConfiguration sets the LabelsInputConfiguration field's value.
+func (s *ImportModelVersionInput) SetLabelsInputConfiguration(v *LabelsInputConfiguration) *ImportModelVersionInput {
+	s.LabelsInputConfiguration = v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *ImportModelVersionInput) SetModelName(v string) *ImportModelVersionInput {
+	s.ModelName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ImportModelVersionInput) SetRoleArn(v string) *ImportModelVersionInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetServerSideKmsKeyId sets the ServerSideKmsKeyId field's value.
+func (s *ImportModelVersionInput) SetServerSideKmsKeyId(v string) *ImportModelVersionInput {
+	s.ServerSideKmsKeyId = &v
+	return s
+}
+
+// SetSourceModelVersionArn sets the SourceModelVersionArn field's value.
+func (s *ImportModelVersionInput) SetSourceModelVersionArn(v string) *ImportModelVersionInput {
+	s.SourceModelVersionArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportModelVersionInput) SetTags(v []*Tag) *ImportModelVersionInput {
+	s.Tags = v
+	return s
+}
+
+type ImportModelVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model being created.
+	ModelArn *string `min:"20" type:"string"`
+
+	// The name for the machine learning model.
+	ModelName *string `min:"1" type:"string"`
+
+	// The version of the model being created.
+	ModelVersion *int64 `min:"1" type:"long"`
+
+	// The Amazon Resource Name (ARN) of the model version being created.
+	ModelVersionArn *string `min:"20" type:"string"`
+
+	// The status of the ImportModelVersion operation.
+	Status *string `type:"string" enum:"ModelVersionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportModelVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportModelVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *ImportModelVersionOutput) SetModelArn(v string) *ImportModelVersionOutput {
+	s.ModelArn = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *ImportModelVersionOutput) SetModelName(v string) *ImportModelVersionOutput {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *ImportModelVersionOutput) SetModelVersion(v int64) *ImportModelVersionOutput {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetModelVersionArn sets the ModelVersionArn field's value.
+func (s *ImportModelVersionOutput) SetModelVersionArn(v string) *ImportModelVersionOutput {
+	s.ModelVersionArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportModelVersionOutput) SetStatus(v string) *ImportModelVersionOutput {
+	s.Status = &v
 	return s
 }
 
@@ -7211,7 +9104,7 @@ func (s *InferenceInputNameConfiguration) SetTimestampFormat(v string) *Inferenc
 type InferenceOutputConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ID number for the AWS KMS key used to encrypt the inference output.
+	// The ID number for the KMS key key used to encrypt the inference output.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// Specifies configuration information for the output results from for the inference,
@@ -7621,9 +9514,15 @@ type IngestionS3InputConfiguration struct {
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
 
-	// Pattern for matching the Amazon S3 files which will be used for ingestion.
-	// If no KeyPattern is provided, we will use the default hierarchy file structure,
-	// which is same as KeyPattern {prefix}/{component_name}/*
+	// The pattern for matching the Amazon S3 files that will be used for ingestion.
+	// If the schema was created previously without any KeyPattern, then the default
+	// KeyPattern {prefix}/{component_name}/* is used to download files from Amazon
+	// S3 according to the schema. This field is required when ingestion is being
+	// done for the first time.
+	//
+	// Valid Values: {prefix}/{component_name}_* | {prefix}/{component_name}/* |
+	// {prefix}/{component_name}[DELIMITER]* (Allowed delimiters : space, dot, underscore,
+	// hyphen)
 	KeyPattern *string `min:"1" type:"string"`
 
 	// The prefix for the S3 location being used for the input data for the data
@@ -7852,7 +9751,7 @@ type LabelGroupSummary struct {
 	// The time at which the label group was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The ARN of the label group.
+	// The Amazon Resource Name (ARN) of the label group.
 	LabelGroupArn *string `min:"20" type:"string"`
 
 	// The name of the label group.
@@ -7923,7 +9822,7 @@ type LabelSummary struct {
 	// for the security of your data.
 	FaultCode *string `min:"1" type:"string"`
 
-	// The ARN of the label group.
+	// The Amazon Resource Name (ARN) of the label group.
 	LabelGroupArn *string `min:"20" type:"string"`
 
 	// The name of the label group.
@@ -8417,7 +10316,7 @@ type ListInferenceEventsInput struct {
 	InferenceSchedulerName *string `min:"1" type:"string" required:"true"`
 
 	// Returns all the inference events with an end start time equal to or greater
-	// than less than the end time given
+	// than less than the end time given.
 	//
 	// IntervalEndTime is a required field
 	IntervalEndTime *time.Time `type:"timestamp" required:"true"`
@@ -8711,7 +10610,7 @@ type ListInferenceSchedulersInput struct {
 	// schedulers.
 	NextToken *string `type:"string"`
 
-	// Specifies the current status of the inference schedulers to list.
+	// Specifies the current status of the inference schedulers.
 	Status *string `type:"string" enum:"InferenceSchedulerStatus"`
 }
 
@@ -9081,6 +10980,184 @@ func (s *ListLabelsOutput) SetLabelSummaries(v []*LabelSummary) *ListLabelsOutpu
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListLabelsOutput) SetNextToken(v string) *ListLabelsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListModelVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filter results to return all the model versions created before this time.
+	CreatedAtEndTime *time.Time `type:"timestamp"`
+
+	// Filter results to return all the model versions created after this time.
+	CreatedAtStartTime *time.Time `type:"timestamp"`
+
+	// Specifies the highest version of the model to return in the list.
+	MaxModelVersion *int64 `min:"1" type:"long"`
+
+	// Specifies the maximum number of machine learning model versions to list.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Specifies the lowest version of the model to return in the list.
+	MinModelVersion *int64 `min:"1" type:"long"`
+
+	// Then name of the machine learning model for which the model versions are
+	// to be listed.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+
+	// If the total number of results exceeds the limit that the response can display,
+	// the response returns an opaque pagination token indicating where to continue
+	// the listing of machine learning model versions. Use this token in the NextToken
+	// field in the request to list the next page of results.
+	NextToken *string `type:"string"`
+
+	// Filter the results based on the way the model version was generated.
+	SourceType *string `type:"string" enum:"ModelVersionSourceType"`
+
+	// Filter the results based on the current status of the model version.
+	Status *string `type:"string" enum:"ModelVersionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListModelVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListModelVersionsInput"}
+	if s.MaxModelVersion != nil && *s.MaxModelVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxModelVersion", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MinModelVersion != nil && *s.MinModelVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinModelVersion", 1))
+	}
+	if s.ModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelName"))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatedAtEndTime sets the CreatedAtEndTime field's value.
+func (s *ListModelVersionsInput) SetCreatedAtEndTime(v time.Time) *ListModelVersionsInput {
+	s.CreatedAtEndTime = &v
+	return s
+}
+
+// SetCreatedAtStartTime sets the CreatedAtStartTime field's value.
+func (s *ListModelVersionsInput) SetCreatedAtStartTime(v time.Time) *ListModelVersionsInput {
+	s.CreatedAtStartTime = &v
+	return s
+}
+
+// SetMaxModelVersion sets the MaxModelVersion field's value.
+func (s *ListModelVersionsInput) SetMaxModelVersion(v int64) *ListModelVersionsInput {
+	s.MaxModelVersion = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListModelVersionsInput) SetMaxResults(v int64) *ListModelVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMinModelVersion sets the MinModelVersion field's value.
+func (s *ListModelVersionsInput) SetMinModelVersion(v int64) *ListModelVersionsInput {
+	s.MinModelVersion = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *ListModelVersionsInput) SetModelName(v string) *ListModelVersionsInput {
+	s.ModelName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelVersionsInput) SetNextToken(v string) *ListModelVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *ListModelVersionsInput) SetSourceType(v string) *ListModelVersionsInput {
+	s.SourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListModelVersionsInput) SetStatus(v string) *ListModelVersionsInput {
+	s.Status = &v
+	return s
+}
+
+type ListModelVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information on the specified model version, including the created
+	// time, model and dataset ARNs, and status.
+	ModelVersionSummaries []*ModelVersionSummary `type:"list"`
+
+	// If the total number of results exceeds the limit that the response can display,
+	// the response returns an opaque pagination token indicating where to continue
+	// the listing of machine learning model versions. Use this token in the NextToken
+	// field in the request to list the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetModelVersionSummaries sets the ModelVersionSummaries field's value.
+func (s *ListModelVersionsOutput) SetModelVersionSummaries(v []*ModelVersionSummary) *ListModelVersionsOutput {
+	s.ModelVersionSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelVersionsOutput) SetNextToken(v string) *ListModelVersionsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -9506,6 +11583,14 @@ func (s *MissingSensorData) SetTotalNumberOfMissingValues(v int64) *MissingSenso
 type ModelSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The model version that the inference scheduler uses to run an inference execution.
+	ActiveModelVersion *int64 `min:"1" type:"long"`
+
+	// The Amazon Resource Name (ARN) of the model version that is set as active.
+	// The active model version is the model version that the inference scheduler
+	// uses to run an inference execution.
+	ActiveModelVersionArn *string `min:"20" type:"string"`
+
 	// The time at which the specific model was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
@@ -9543,6 +11628,18 @@ func (s ModelSummary) GoString() string {
 	return s.String()
 }
 
+// SetActiveModelVersion sets the ActiveModelVersion field's value.
+func (s *ModelSummary) SetActiveModelVersion(v int64) *ModelSummary {
+	s.ActiveModelVersion = &v
+	return s
+}
+
+// SetActiveModelVersionArn sets the ActiveModelVersionArn field's value.
+func (s *ModelSummary) SetActiveModelVersionArn(v string) *ModelSummary {
+	s.ActiveModelVersionArn = &v
+	return s
+}
+
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *ModelSummary) SetCreatedAt(v time.Time) *ModelSummary {
 	s.CreatedAt = &v
@@ -9575,6 +11672,93 @@ func (s *ModelSummary) SetModelName(v string) *ModelSummary {
 
 // SetStatus sets the Status field's value.
 func (s *ModelSummary) SetStatus(v string) *ModelSummary {
+	s.Status = &v
+	return s
+}
+
+// Contains information about the specific model version.
+type ModelVersionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time when this model version was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the model that this model version is a
+	// version of.
+	ModelArn *string `min:"20" type:"string"`
+
+	// The name of the model that this model version is a version of.
+	ModelName *string `min:"1" type:"string"`
+
+	// The version of the model.
+	ModelVersion *int64 `min:"1" type:"long"`
+
+	// The Amazon Resource Name (ARN) of the model version.
+	ModelVersionArn *string `min:"20" type:"string"`
+
+	// Indicates how this model version was generated.
+	SourceType *string `type:"string" enum:"ModelVersionSourceType"`
+
+	// The current status of the model version.
+	Status *string `type:"string" enum:"ModelVersionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelVersionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelVersionSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ModelVersionSummary) SetCreatedAt(v time.Time) *ModelVersionSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *ModelVersionSummary) SetModelArn(v string) *ModelVersionSummary {
+	s.ModelArn = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *ModelVersionSummary) SetModelName(v string) *ModelVersionSummary {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *ModelVersionSummary) SetModelVersion(v int64) *ModelVersionSummary {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetModelVersionArn sets the ModelVersionArn field's value.
+func (s *ModelVersionSummary) SetModelVersionArn(v string) *ModelVersionSummary {
+	s.ModelVersionArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *ModelVersionSummary) SetSourceType(v string) *ModelVersionSummary {
+	s.SourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModelVersionSummary) SetStatus(v string) *ModelVersionSummary {
 	s.Status = &v
 	return s
 }
@@ -9658,6 +11842,135 @@ func (s *MultipleOperatingModes) SetStatus(v string) *MultipleOperatingModes {
 	return s
 }
 
+type PutResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you do not set the client request
+	// token, Amazon Lookout for Equipment generates one.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A unique identifier for a revision of the resource policy.
+	PolicyRevisionId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource for which the policy is being
+	// created.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+
+	// The JSON-formatted resource policy to create.
+	//
+	// ResourcePolicy is a required field
+	ResourcePolicy *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourcePolicyInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+	if s.ResourcePolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourcePolicy"))
+	}
+	if s.ResourcePolicy != nil && len(*s.ResourcePolicy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourcePolicy", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PutResourcePolicyInput) SetClientToken(v string) *PutResourcePolicyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *PutResourcePolicyInput) SetPolicyRevisionId(v string) *PutResourcePolicyInput {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutResourcePolicyInput) SetResourceArn(v string) *PutResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *PutResourcePolicyInput) SetResourcePolicy(v string) *PutResourcePolicyInput {
+	s.ResourcePolicy = &v
+	return s
+}
+
+type PutResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for a revision of the resource policy.
+	PolicyRevisionId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource for which the policy was created.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *PutResourcePolicyOutput) SetPolicyRevisionId(v string) *PutResourcePolicyOutput {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutResourcePolicyOutput) SetResourceArn(v string) *PutResourcePolicyOutput {
+	s.ResourceArn = &v
+	return s
+}
+
 // The resource requested could not be found. Verify the resource ID and retry
 // your request.
 type ResourceNotFoundException struct {
@@ -9732,8 +12045,8 @@ type S3Object struct {
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
 
-	// The AWS Key Management Service (AWS KMS) key being used to encrypt the S3
-	// object. Without this key, data in the bucket is not accessible.
+	// The Amazon Web Services Key Management Service (KMS key) key being used to
+	// encrypt the S3 object. Without this key, data in the bucket is not accessible.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
@@ -10740,6 +13053,156 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateActiveModelVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the machine learning model for which the active model version
+	// is being set.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+
+	// The version of the machine learning model for which the active model version
+	// is being set.
+	//
+	// ModelVersion is a required field
+	ModelVersion *int64 `min:"1" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateActiveModelVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateActiveModelVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateActiveModelVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateActiveModelVersionInput"}
+	if s.ModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelName"))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+	if s.ModelVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelVersion"))
+	}
+	if s.ModelVersion != nil && *s.ModelVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ModelVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *UpdateActiveModelVersionInput) SetModelName(v string) *UpdateActiveModelVersionInput {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *UpdateActiveModelVersionInput) SetModelVersion(v int64) *UpdateActiveModelVersionInput {
+	s.ModelVersion = &v
+	return s
+}
+
+type UpdateActiveModelVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The version that is currently active of the machine learning model for which
+	// the active model version was set.
+	CurrentActiveVersion *int64 `min:"1" type:"long"`
+
+	// The Amazon Resource Name (ARN) of the machine learning model version that
+	// is the current active model version.
+	CurrentActiveVersionArn *string `min:"20" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the machine learning model for which the
+	// active model version was set.
+	ModelArn *string `min:"20" type:"string"`
+
+	// The name of the machine learning model for which the active model version
+	// was set.
+	ModelName *string `min:"1" type:"string"`
+
+	// The previous version that was active of the machine learning model for which
+	// the active model version was set.
+	PreviousActiveVersion *int64 `min:"1" type:"long"`
+
+	// The Amazon Resource Name (ARN) of the machine learning model version that
+	// was the previous active model version.
+	PreviousActiveVersionArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateActiveModelVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateActiveModelVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCurrentActiveVersion sets the CurrentActiveVersion field's value.
+func (s *UpdateActiveModelVersionOutput) SetCurrentActiveVersion(v int64) *UpdateActiveModelVersionOutput {
+	s.CurrentActiveVersion = &v
+	return s
+}
+
+// SetCurrentActiveVersionArn sets the CurrentActiveVersionArn field's value.
+func (s *UpdateActiveModelVersionOutput) SetCurrentActiveVersionArn(v string) *UpdateActiveModelVersionOutput {
+	s.CurrentActiveVersionArn = &v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *UpdateActiveModelVersionOutput) SetModelArn(v string) *UpdateActiveModelVersionOutput {
+	s.ModelArn = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *UpdateActiveModelVersionOutput) SetModelName(v string) *UpdateActiveModelVersionOutput {
+	s.ModelName = &v
+	return s
+}
+
+// SetPreviousActiveVersion sets the PreviousActiveVersion field's value.
+func (s *UpdateActiveModelVersionOutput) SetPreviousActiveVersion(v int64) *UpdateActiveModelVersionOutput {
+	s.PreviousActiveVersion = &v
+	return s
+}
+
+// SetPreviousActiveVersionArn sets the PreviousActiveVersionArn field's value.
+func (s *UpdateActiveModelVersionOutput) SetPreviousActiveVersionArn(v string) *UpdateActiveModelVersionOutput {
+	s.PreviousActiveVersionArn = &v
+	return s
+}
+
 type UpdateInferenceSchedulerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10968,7 +13431,7 @@ func (s UpdateLabelGroupOutput) GoString() string {
 }
 
 // The input fails to satisfy constraints specified by Amazon Lookout for Equipment
-// or a related AWS service that's being utilized.
+// or a related Amazon Web Services service that's being utilized.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11069,6 +13532,9 @@ const (
 
 	// DatasetStatusActive is a DatasetStatus enum value
 	DatasetStatusActive = "ACTIVE"
+
+	// DatasetStatusImportInProgress is a DatasetStatus enum value
+	DatasetStatusImportInProgress = "IMPORT_IN_PROGRESS"
 )
 
 // DatasetStatus_Values returns all elements of the DatasetStatus enum
@@ -11077,6 +13543,7 @@ func DatasetStatus_Values() []string {
 		DatasetStatusCreated,
 		DatasetStatusIngestionInProgress,
 		DatasetStatusActive,
+		DatasetStatusImportInProgress,
 	}
 }
 
@@ -11133,6 +13600,9 @@ const (
 
 	// IngestionJobStatusFailed is a IngestionJobStatus enum value
 	IngestionJobStatusFailed = "FAILED"
+
+	// IngestionJobStatusImportInProgress is a IngestionJobStatus enum value
+	IngestionJobStatusImportInProgress = "IMPORT_IN_PROGRESS"
 )
 
 // IngestionJobStatus_Values returns all elements of the IngestionJobStatus enum
@@ -11141,6 +13611,7 @@ func IngestionJobStatus_Values() []string {
 		IngestionJobStatusInProgress,
 		IngestionJobStatusSuccess,
 		IngestionJobStatusFailed,
+		IngestionJobStatusImportInProgress,
 	}
 }
 
@@ -11189,6 +13660,9 @@ const (
 
 	// ModelStatusFailed is a ModelStatus enum value
 	ModelStatusFailed = "FAILED"
+
+	// ModelStatusImportInProgress is a ModelStatus enum value
+	ModelStatusImportInProgress = "IMPORT_IN_PROGRESS"
 )
 
 // ModelStatus_Values returns all elements of the ModelStatus enum
@@ -11197,6 +13671,55 @@ func ModelStatus_Values() []string {
 		ModelStatusInProgress,
 		ModelStatusSuccess,
 		ModelStatusFailed,
+		ModelStatusImportInProgress,
+	}
+}
+
+const (
+	// ModelVersionSourceTypeTraining is a ModelVersionSourceType enum value
+	ModelVersionSourceTypeTraining = "TRAINING"
+
+	// ModelVersionSourceTypeRetraining is a ModelVersionSourceType enum value
+	ModelVersionSourceTypeRetraining = "RETRAINING"
+
+	// ModelVersionSourceTypeImport is a ModelVersionSourceType enum value
+	ModelVersionSourceTypeImport = "IMPORT"
+)
+
+// ModelVersionSourceType_Values returns all elements of the ModelVersionSourceType enum
+func ModelVersionSourceType_Values() []string {
+	return []string{
+		ModelVersionSourceTypeTraining,
+		ModelVersionSourceTypeRetraining,
+		ModelVersionSourceTypeImport,
+	}
+}
+
+const (
+	// ModelVersionStatusInProgress is a ModelVersionStatus enum value
+	ModelVersionStatusInProgress = "IN_PROGRESS"
+
+	// ModelVersionStatusSuccess is a ModelVersionStatus enum value
+	ModelVersionStatusSuccess = "SUCCESS"
+
+	// ModelVersionStatusFailed is a ModelVersionStatus enum value
+	ModelVersionStatusFailed = "FAILED"
+
+	// ModelVersionStatusImportInProgress is a ModelVersionStatus enum value
+	ModelVersionStatusImportInProgress = "IMPORT_IN_PROGRESS"
+
+	// ModelVersionStatusCanceled is a ModelVersionStatus enum value
+	ModelVersionStatusCanceled = "CANCELED"
+)
+
+// ModelVersionStatus_Values returns all elements of the ModelVersionStatus enum
+func ModelVersionStatus_Values() []string {
+	return []string{
+		ModelVersionStatusInProgress,
+		ModelVersionStatusSuccess,
+		ModelVersionStatusFailed,
+		ModelVersionStatusImportInProgress,
+		ModelVersionStatusCanceled,
 	}
 }
 

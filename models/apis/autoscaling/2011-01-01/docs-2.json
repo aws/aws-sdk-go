@@ -172,6 +172,18 @@
         "Alarms$member": null
       }
     },
+    "AlarmList": {
+      "base": null,
+      "refs": {
+        "AlarmSpecification$Alarms": "<p>The names of one or more CloudWatch alarms to monitor for the instance refresh.</p>"
+      }
+    },
+    "AlarmSpecification": {
+      "base": "<p>Specifies the CloudWatch alarm specification to use in an instance refresh.</p>",
+      "refs": {
+        "RefreshPreferences$AlarmSpecification": "<p>(Optional) The CloudWatch alarm specification. CloudWatch alarms can be used to identify any issues and fail the operation if an alarm threshold is met.</p>"
+      }
+    },
     "Alarms": {
       "base": null,
       "refs": {
@@ -253,7 +265,7 @@
     "AutoRollback": {
       "base": null,
       "refs": {
-        "RefreshPreferences$AutoRollback": "<p>(Optional) Indicates whether to roll back the Auto Scaling group to its previous configuration if the instance refresh fails. The default is <code>false</code>.</p> <p>A rollback is not supported in the following situations: </p> <ul> <li> <p>There is no desired configuration specified for the instance refresh.</p> </li> <li> <p>The Auto Scaling group has a launch template that uses an Amazon Web Services Systems Manager parameter instead of an AMI ID for the <code>ImageId</code> property.</p> </li> <li> <p>The Auto Scaling group uses the launch template's <code>$Latest</code> or <code>$Default</code> version.</p> </li> </ul>"
+        "RefreshPreferences$AutoRollback": "<p>(Optional) Indicates whether to roll back the Auto Scaling group to its previous configuration if the instance refresh fails or a CloudWatch alarm threshold is met. The default is <code>false</code>.</p> <p>A rollback is not supported in the following situations: </p> <ul> <li> <p>There is no desired configuration specified for the instance refresh.</p> </li> <li> <p>The Auto Scaling group has a launch template that uses an Amazon Web Services Systems Manager parameter instead of an AMI ID for the <code>ImageId</code> property.</p> </li> <li> <p>The Auto Scaling group uses the launch template's <code>$Latest</code> or <code>$Default</code> version.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-rollback.html\">Undo changes with a rollback</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"
       }
     },
     "AutoScalingGroup": {
@@ -1885,7 +1897,7 @@
       "base": "<p>Describes the preferences for an instance refresh.</p>",
       "refs": {
         "InstanceRefresh$Preferences": "<p>The preferences for an instance refresh.</p>",
-        "StartInstanceRefreshType$Preferences": "<p>Sets your preferences for the instance refresh so that it performs as expected when you start it. Includes the instance warmup time, the minimum healthy percentage, and the behaviors that you want Amazon EC2 Auto Scaling to use if instances that are in <code>Standby</code> state or protected from scale in are found. You can also choose to enable additional features, such as the following:</p> <ul> <li> <p>Auto rollback</p> </li> <li> <p>Checkpoints</p> </li> <li> <p>Skip matching</p> </li> </ul>"
+        "StartInstanceRefreshType$Preferences": "<p>Sets your preferences for the instance refresh so that it performs as expected when you start it. Includes the instance warmup time, the minimum healthy percentage, and the behaviors that you want Amazon EC2 Auto Scaling to use if instances that are in <code>Standby</code> state or protected from scale in are found. You can also choose to enable additional features, such as the following:</p> <ul> <li> <p>Auto rollback</p> </li> <li> <p>Checkpoints</p> </li> <li> <p>CloudWatch alarms</p> </li> <li> <p>Skip matching</p> </li> </ul>"
       }
     },
     "RefreshStrategy": {
@@ -2439,6 +2451,7 @@
         "Activity$StatusMessage": "<p>A friendly, more verbose description of the activity status.</p>",
         "AdjustmentType$AdjustmentType": "<p>The policy adjustment type. The valid values are <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.</p>",
         "Alarm$AlarmName": "<p>The name of the alarm.</p>",
+        "AlarmList$member": null,
         "AlreadyExistsFault$message": "<p/>",
         "AttachInstancesQuery$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "AttachLoadBalancerTargetGroupsType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",

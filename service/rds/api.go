@@ -19099,6 +19099,13 @@ type CreateCustomDBEngineVersionOutput struct {
 	// specific DB engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
+	// A value that indicates whether the DB engine version supports forwarding
+	// write operations from reader DB instances to the writer DB instance in the
+	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	//
+	// Valid for: Aurora DB clusters only
+	SupportsLocalWriteForwarding *bool `type:"boolean"`
+
 	// A value that indicates whether the engine version supports exporting the
 	// log types specified by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
@@ -19290,6 +19297,12 @@ func (s *CreateCustomDBEngineVersionOutput) SetSupportsCertificateRotationWithou
 // SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
 func (s *CreateCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *CreateCustomDBEngineVersionOutput {
 	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsLocalWriteForwarding sets the SupportsLocalWriteForwarding field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportsLocalWriteForwarding(v bool) *CreateCustomDBEngineVersionOutput {
+	s.SupportsLocalWriteForwarding = &v
 	return s
 }
 
@@ -19781,6 +19794,13 @@ type CreateDBClusterInput struct {
 	//
 	// Valid for Cluster Type: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
+
+	// Specifies whether read replicas can forward write operations to the writer
+	// DB instance in the DB cluster. By default, write operations aren't allowed
+	// on reader DB instances.
+	//
+	// Valid for: Aurora DB clusters only
+	EnableLocalWriteForwarding *bool `type:"boolean"`
 
 	// Specifies whether to turn on Performance Insights for the DB cluster.
 	//
@@ -20405,6 +20425,12 @@ func (s *CreateDBClusterInput) SetEnableHttpEndpoint(v bool) *CreateDBClusterInp
 // SetEnableIAMDatabaseAuthentication sets the EnableIAMDatabaseAuthentication field's value.
 func (s *CreateDBClusterInput) SetEnableIAMDatabaseAuthentication(v bool) *CreateDBClusterInput {
 	s.EnableIAMDatabaseAuthentication = &v
+	return s
+}
+
+// SetEnableLocalWriteForwarding sets the EnableLocalWriteForwarding field's value.
+func (s *CreateDBClusterInput) SetEnableLocalWriteForwarding(v bool) *CreateDBClusterInput {
+	s.EnableLocalWriteForwarding = &v
 	return s
 }
 
@@ -24900,6 +24926,10 @@ type DBCluster struct {
 	// The latest time to which a database can be restored with point-in-time restore.
 	LatestRestorableTime *time.Time `type:"timestamp"`
 
+	// Specifies whether an Aurora DB cluster has in-cluster write forwarding enabled,
+	// not enabled, requested, or is in the process of enabling it.
+	LocalWriteForwardingStatus *string `type:"string" enum:"LocalWriteForwardingStatus"`
+
 	// The secret managed by RDS in Amazon Web Services Secrets Manager for the
 	// master user password.
 	//
@@ -25355,6 +25385,12 @@ func (s *DBCluster) SetKmsKeyId(v string) *DBCluster {
 // SetLatestRestorableTime sets the LatestRestorableTime field's value.
 func (s *DBCluster) SetLatestRestorableTime(v time.Time) *DBCluster {
 	s.LatestRestorableTime = &v
+	return s
+}
+
+// SetLocalWriteForwardingStatus sets the LocalWriteForwardingStatus field's value.
+func (s *DBCluster) SetLocalWriteForwardingStatus(v string) *DBCluster {
+	s.LocalWriteForwardingStatus = &v
 	return s
 }
 
@@ -26402,6 +26438,13 @@ type DBEngineVersion struct {
 	// specific DB engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
+	// A value that indicates whether the DB engine version supports forwarding
+	// write operations from reader DB instances to the writer DB instance in the
+	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	//
+	// Valid for: Aurora DB clusters only
+	SupportsLocalWriteForwarding *bool `type:"boolean"`
+
 	// A value that indicates whether the engine version supports exporting the
 	// log types specified by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
@@ -26593,6 +26636,12 @@ func (s *DBEngineVersion) SetSupportsCertificateRotationWithoutRestart(v bool) *
 // SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
 func (s *DBEngineVersion) SetSupportsGlobalDatabases(v bool) *DBEngineVersion {
 	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsLocalWriteForwarding sets the SupportsLocalWriteForwarding field's value.
+func (s *DBEngineVersion) SetSupportsLocalWriteForwarding(v bool) *DBEngineVersion {
+	s.SupportsLocalWriteForwarding = &v
 	return s
 }
 
@@ -29703,6 +29752,13 @@ type DeleteCustomDBEngineVersionOutput struct {
 	// specific DB engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
+	// A value that indicates whether the DB engine version supports forwarding
+	// write operations from reader DB instances to the writer DB instance in the
+	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	//
+	// Valid for: Aurora DB clusters only
+	SupportsLocalWriteForwarding *bool `type:"boolean"`
+
 	// A value that indicates whether the engine version supports exporting the
 	// log types specified by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
@@ -29894,6 +29950,12 @@ func (s *DeleteCustomDBEngineVersionOutput) SetSupportsCertificateRotationWithou
 // SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
 func (s *DeleteCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *DeleteCustomDBEngineVersionOutput {
 	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsLocalWriteForwarding sets the SupportsLocalWriteForwarding field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportsLocalWriteForwarding(v bool) *DeleteCustomDBEngineVersionOutput {
+	s.SupportsLocalWriteForwarding = &v
 	return s
 }
 
@@ -39819,6 +39881,13 @@ type ModifyCustomDBEngineVersionOutput struct {
 	// specific DB engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
+	// A value that indicates whether the DB engine version supports forwarding
+	// write operations from reader DB instances to the writer DB instance in the
+	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	//
+	// Valid for: Aurora DB clusters only
+	SupportsLocalWriteForwarding *bool `type:"boolean"`
+
 	// A value that indicates whether the engine version supports exporting the
 	// log types specified by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
@@ -40010,6 +40079,12 @@ func (s *ModifyCustomDBEngineVersionOutput) SetSupportsCertificateRotationWithou
 // SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
 func (s *ModifyCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *ModifyCustomDBEngineVersionOutput {
 	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsLocalWriteForwarding sets the SupportsLocalWriteForwarding field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportsLocalWriteForwarding(v bool) *ModifyCustomDBEngineVersionOutput {
+	s.SupportsLocalWriteForwarding = &v
 	return s
 }
 
@@ -40467,6 +40542,13 @@ type ModifyDBClusterInput struct {
 	//
 	// Valid for Cluster Type: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
+
+	// Specifies whether read replicas can forward write operations to the writer
+	// DB instance in the DB cluster. By default, write operations aren't allowed
+	// on reader DB instances.
+	//
+	// Valid for: Aurora DB clusters only
+	EnableLocalWriteForwarding *bool `type:"boolean"`
 
 	// Specifies whether to turn on Performance Insights for the DB cluster.
 	//
@@ -40947,6 +41029,12 @@ func (s *ModifyDBClusterInput) SetEnableHttpEndpoint(v bool) *ModifyDBClusterInp
 // SetEnableIAMDatabaseAuthentication sets the EnableIAMDatabaseAuthentication field's value.
 func (s *ModifyDBClusterInput) SetEnableIAMDatabaseAuthentication(v bool) *ModifyDBClusterInput {
 	s.EnableIAMDatabaseAuthentication = &v
+	return s
+}
+
+// SetEnableLocalWriteForwarding sets the EnableLocalWriteForwarding field's value.
+func (s *ModifyDBClusterInput) SetEnableLocalWriteForwarding(v bool) *ModifyDBClusterInput {
+	s.EnableLocalWriteForwarding = &v
 	return s
 }
 
@@ -53701,6 +53789,13 @@ type UpgradeTarget struct {
 	// target engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
+	// A value that indicates whether the target engine version supports forwarding
+	// write operations from reader DB instances to the writer DB instance in the
+	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	//
+	// Valid for: Aurora DB clusters only
+	SupportsLocalWriteForwarding *bool `type:"boolean"`
+
 	// A value that indicates whether you can use Aurora parallel query with the
 	// target engine version.
 	SupportsParallelQuery *bool `type:"boolean"`
@@ -53769,6 +53864,12 @@ func (s *UpgradeTarget) SetSupportsBabelfish(v bool) *UpgradeTarget {
 // SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
 func (s *UpgradeTarget) SetSupportsGlobalDatabases(v bool) *UpgradeTarget {
 	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsLocalWriteForwarding sets the SupportsLocalWriteForwarding field's value.
+func (s *UpgradeTarget) SetSupportsLocalWriteForwarding(v bool) *UpgradeTarget {
+	s.SupportsLocalWriteForwarding = &v
 	return s
 }
 
@@ -54459,6 +54560,34 @@ func IAMAuthMode_Values() []string {
 		IAMAuthModeDisabled,
 		IAMAuthModeRequired,
 		IAMAuthModeEnabled,
+	}
+}
+
+const (
+	// LocalWriteForwardingStatusEnabled is a LocalWriteForwardingStatus enum value
+	LocalWriteForwardingStatusEnabled = "enabled"
+
+	// LocalWriteForwardingStatusDisabled is a LocalWriteForwardingStatus enum value
+	LocalWriteForwardingStatusDisabled = "disabled"
+
+	// LocalWriteForwardingStatusEnabling is a LocalWriteForwardingStatus enum value
+	LocalWriteForwardingStatusEnabling = "enabling"
+
+	// LocalWriteForwardingStatusDisabling is a LocalWriteForwardingStatus enum value
+	LocalWriteForwardingStatusDisabling = "disabling"
+
+	// LocalWriteForwardingStatusRequested is a LocalWriteForwardingStatus enum value
+	LocalWriteForwardingStatusRequested = "requested"
+)
+
+// LocalWriteForwardingStatus_Values returns all elements of the LocalWriteForwardingStatus enum
+func LocalWriteForwardingStatus_Values() []string {
+	return []string{
+		LocalWriteForwardingStatusEnabled,
+		LocalWriteForwardingStatusDisabled,
+		LocalWriteForwardingStatusEnabling,
+		LocalWriteForwardingStatusDisabling,
+		LocalWriteForwardingStatusRequested,
 	}
 }
 

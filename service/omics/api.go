@@ -12975,6 +12975,9 @@ type GetReadSetMetadataOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// The creation type of the read set.
+	CreationType *string `locationName:"creationType" type:"string" enum:"CreationType"`
+
 	// The read set's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
@@ -13048,6 +13051,12 @@ func (s *GetReadSetMetadataOutput) SetArn(v string) *GetReadSetMetadataOutput {
 // SetCreationTime sets the CreationTime field's value.
 func (s *GetReadSetMetadataOutput) SetCreationTime(v time.Time) *GetReadSetMetadataOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCreationType sets the CreationType field's value.
+func (s *GetReadSetMetadataOutput) SetCreationType(v string) *GetReadSetMetadataOutput {
+	s.CreationType = &v
 	return s
 }
 
@@ -18685,6 +18694,9 @@ type ReadSetFilter struct {
 	// The filter's end date.
 	CreatedBefore *time.Time `locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The creation type of the read set.
+	CreationType *string `locationName:"creationType" type:"string" enum:"CreationType"`
+
 	// Where the source originated.
 	GeneratedFrom *string `locationName:"generatedFrom" min:"1" type:"string"`
 
@@ -18759,6 +18771,12 @@ func (s *ReadSetFilter) SetCreatedBefore(v time.Time) *ReadSetFilter {
 	return s
 }
 
+// SetCreationType sets the CreationType field's value.
+func (s *ReadSetFilter) SetCreationType(v string) *ReadSetFilter {
+	s.CreationType = &v
+	return s
+}
+
 // SetGeneratedFrom sets the GeneratedFrom field's value.
 func (s *ReadSetFilter) SetGeneratedFrom(v string) *ReadSetFilter {
 	s.GeneratedFrom = &v
@@ -18808,6 +18826,9 @@ type ReadSetListItem struct {
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The creation type of the read set.
+	CreationType *string `locationName:"creationType" type:"string" enum:"CreationType"`
 
 	// The read set's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -18879,6 +18900,12 @@ func (s *ReadSetListItem) SetArn(v string) *ReadSetListItem {
 // SetCreationTime sets the CreationTime field's value.
 func (s *ReadSetListItem) SetCreationTime(v time.Time) *ReadSetListItem {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCreationType sets the CreationType field's value.
+func (s *ReadSetListItem) SetCreationType(v string) *ReadSetListItem {
+	s.CreationType = &v
 	return s
 }
 
@@ -23628,6 +23655,22 @@ func AnnotationType_Values() []string {
 		AnnotationTypeChrStartEndRefAltOneBase,
 		AnnotationTypeChrStartEndZeroBase,
 		AnnotationTypeChrStartEndRefAltZeroBase,
+	}
+}
+
+const (
+	// CreationTypeImport is a CreationType enum value
+	CreationTypeImport = "IMPORT"
+
+	// CreationTypeUpload is a CreationType enum value
+	CreationTypeUpload = "UPLOAD"
+)
+
+// CreationType_Values returns all elements of the CreationType enum
+func CreationType_Values() []string {
+	return []string{
+		CreationTypeImport,
+		CreationTypeUpload,
 	}
 }
 

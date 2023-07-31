@@ -3190,7 +3190,8 @@
         "NetworkType":{"shape":"String"},
         "DBSystemId":{"shape":"String"},
         "ManageMasterUserPassword":{"shape":"BooleanOptional"},
-        "MasterUserSecretKmsKeyId":{"shape":"String"}
+        "MasterUserSecretKmsKeyId":{"shape":"String"},
+        "EnableLocalWriteForwarding":{"shape":"BooleanOptional"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -3706,7 +3707,8 @@
         "NetworkType":{"shape":"String"},
         "DBSystemId":{"shape":"String"},
         "MasterUserSecret":{"shape":"MasterUserSecret"},
-        "IOOptimizedNextAllowedModificationTime":{"shape":"TStamp"}
+        "IOOptimizedNextAllowedModificationTime":{"shape":"TStamp"},
+        "LocalWriteForwardingStatus":{"shape":"LocalWriteForwardingStatus"}
       },
       "wrapper":true
     },
@@ -4119,7 +4121,8 @@
         "SupportsBabelfish":{"shape":"Boolean"},
         "CustomDBEngineVersionManifest":{"shape":"CustomDBEngineVersionManifest"},
         "SupportsCertificateRotationWithoutRestart":{"shape":"BooleanOptional"},
-        "SupportedCACertificateIdentifiers":{"shape":"CACertificateIdentifiersList"}
+        "SupportedCACertificateIdentifiers":{"shape":"CACertificateIdentifiersList"},
+        "SupportsLocalWriteForwarding":{"shape":"BooleanOptional"}
       }
     },
     "DBEngineVersionList":{
@@ -6578,6 +6581,16 @@
         "Filters":{"shape":"FilterList"}
       }
     },
+    "LocalWriteForwardingStatus":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled",
+        "enabling",
+        "disabling",
+        "requested"
+      ]
+    },
     "LogTypeList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -6719,7 +6732,8 @@
         "RotateMasterUserPassword":{"shape":"BooleanOptional"},
         "MasterUserSecretKmsKeyId":{"shape":"String"},
         "EngineMode":{"shape":"String"},
-        "AllowEngineModeChange":{"shape":"Boolean"}
+        "AllowEngineModeChange":{"shape":"Boolean"},
+        "EnableLocalWriteForwarding":{"shape":"BooleanOptional"}
       }
     },
     "ModifyDBClusterParameterGroupMessage":{
@@ -8711,7 +8725,8 @@
         "SupportedEngineModes":{"shape":"EngineModeList"},
         "SupportsParallelQuery":{"shape":"BooleanOptional"},
         "SupportsGlobalDatabases":{"shape":"BooleanOptional"},
-        "SupportsBabelfish":{"shape":"BooleanOptional"}
+        "SupportsBabelfish":{"shape":"BooleanOptional"},
+        "SupportsLocalWriteForwarding":{"shape":"BooleanOptional"}
       }
     },
     "UserAuthConfig":{

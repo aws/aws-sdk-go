@@ -400,6 +400,15 @@
         "state":{"shape":"MutationActionSetStateParameter"}
       }
     },
+    "ApiConfiguration":{
+      "type":"structure",
+      "members":{
+        "graphQLConfig":{"shape":"GraphQLRenderConfig"},
+        "dataStoreConfig":{"shape":"DataStoreRenderConfig"},
+        "noApiConfig":{"shape":"NoApiRenderConfig"}
+      },
+      "union":true
+    },
     "AppId":{
       "type":"string",
       "max":20,
@@ -1004,6 +1013,11 @@
         "entity":{"shape":"Theme"}
       },
       "payload":"entity"
+    },
+    "DataStoreRenderConfig":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteComponentRequest":{
       "type":"structure",
@@ -1645,6 +1659,23 @@
       },
       "payload":"theme"
     },
+    "GraphQLRenderConfig":{
+      "type":"structure",
+      "required":[
+        "typesFilePath",
+        "queriesFilePath",
+        "mutationsFilePath",
+        "subscriptionsFilePath",
+        "fragmentsFilePath"
+      ],
+      "members":{
+        "typesFilePath":{"shape":"String"},
+        "queriesFilePath":{"shape":"String"},
+        "mutationsFilePath":{"shape":"String"},
+        "subscriptionsFilePath":{"shape":"String"},
+        "fragmentsFilePath":{"shape":"String"}
+      }
+    },
     "IdentifierList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -1885,6 +1916,11 @@
         "set":{"shape":"ComponentProperty"}
       }
     },
+    "NoApiRenderConfig":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "NumValues":{
       "type":"list",
       "member":{"shape":"Integer"}
@@ -1950,7 +1986,8 @@
         "target":{"shape":"JSTarget"},
         "script":{"shape":"JSScript"},
         "renderTypeDeclarations":{"shape":"Boolean"},
-        "inlineSourceMap":{"shape":"Boolean"}
+        "inlineSourceMap":{"shape":"Boolean"},
+        "apiConfiguration":{"shape":"ApiConfiguration"}
       }
     },
     "RefreshTokenRequest":{

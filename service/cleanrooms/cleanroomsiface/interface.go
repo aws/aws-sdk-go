@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS Clean Rooms Service.
 //	func myFunc(svc cleanroomsiface.CleanRoomsAPI) bool {
-//	    // Make svc.BatchGetSchema request
+//	    // Make svc.BatchGetCollaborationAnalysisTemplate request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockCleanRoomsClient struct {
 //	    cleanroomsiface.CleanRoomsAPI
 //	}
-//	func (m *mockCleanRoomsClient) BatchGetSchema(input *cleanrooms.BatchGetSchemaInput) (*cleanrooms.BatchGetSchemaOutput, error) {
+//	func (m *mockCleanRoomsClient) BatchGetCollaborationAnalysisTemplate(input *cleanrooms.BatchGetCollaborationAnalysisTemplateInput) (*cleanrooms.BatchGetCollaborationAnalysisTemplateOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,9 +60,17 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type CleanRoomsAPI interface {
+	BatchGetCollaborationAnalysisTemplate(*cleanrooms.BatchGetCollaborationAnalysisTemplateInput) (*cleanrooms.BatchGetCollaborationAnalysisTemplateOutput, error)
+	BatchGetCollaborationAnalysisTemplateWithContext(aws.Context, *cleanrooms.BatchGetCollaborationAnalysisTemplateInput, ...request.Option) (*cleanrooms.BatchGetCollaborationAnalysisTemplateOutput, error)
+	BatchGetCollaborationAnalysisTemplateRequest(*cleanrooms.BatchGetCollaborationAnalysisTemplateInput) (*request.Request, *cleanrooms.BatchGetCollaborationAnalysisTemplateOutput)
+
 	BatchGetSchema(*cleanrooms.BatchGetSchemaInput) (*cleanrooms.BatchGetSchemaOutput, error)
 	BatchGetSchemaWithContext(aws.Context, *cleanrooms.BatchGetSchemaInput, ...request.Option) (*cleanrooms.BatchGetSchemaOutput, error)
 	BatchGetSchemaRequest(*cleanrooms.BatchGetSchemaInput) (*request.Request, *cleanrooms.BatchGetSchemaOutput)
+
+	CreateAnalysisTemplate(*cleanrooms.CreateAnalysisTemplateInput) (*cleanrooms.CreateAnalysisTemplateOutput, error)
+	CreateAnalysisTemplateWithContext(aws.Context, *cleanrooms.CreateAnalysisTemplateInput, ...request.Option) (*cleanrooms.CreateAnalysisTemplateOutput, error)
+	CreateAnalysisTemplateRequest(*cleanrooms.CreateAnalysisTemplateInput) (*request.Request, *cleanrooms.CreateAnalysisTemplateOutput)
 
 	CreateCollaboration(*cleanrooms.CreateCollaborationInput) (*cleanrooms.CreateCollaborationOutput, error)
 	CreateCollaborationWithContext(aws.Context, *cleanrooms.CreateCollaborationInput, ...request.Option) (*cleanrooms.CreateCollaborationOutput, error)
@@ -83,6 +91,10 @@ type CleanRoomsAPI interface {
 	CreateMembership(*cleanrooms.CreateMembershipInput) (*cleanrooms.CreateMembershipOutput, error)
 	CreateMembershipWithContext(aws.Context, *cleanrooms.CreateMembershipInput, ...request.Option) (*cleanrooms.CreateMembershipOutput, error)
 	CreateMembershipRequest(*cleanrooms.CreateMembershipInput) (*request.Request, *cleanrooms.CreateMembershipOutput)
+
+	DeleteAnalysisTemplate(*cleanrooms.DeleteAnalysisTemplateInput) (*cleanrooms.DeleteAnalysisTemplateOutput, error)
+	DeleteAnalysisTemplateWithContext(aws.Context, *cleanrooms.DeleteAnalysisTemplateInput, ...request.Option) (*cleanrooms.DeleteAnalysisTemplateOutput, error)
+	DeleteAnalysisTemplateRequest(*cleanrooms.DeleteAnalysisTemplateInput) (*request.Request, *cleanrooms.DeleteAnalysisTemplateOutput)
 
 	DeleteCollaboration(*cleanrooms.DeleteCollaborationInput) (*cleanrooms.DeleteCollaborationOutput, error)
 	DeleteCollaborationWithContext(aws.Context, *cleanrooms.DeleteCollaborationInput, ...request.Option) (*cleanrooms.DeleteCollaborationOutput, error)
@@ -108,9 +120,17 @@ type CleanRoomsAPI interface {
 	DeleteMembershipWithContext(aws.Context, *cleanrooms.DeleteMembershipInput, ...request.Option) (*cleanrooms.DeleteMembershipOutput, error)
 	DeleteMembershipRequest(*cleanrooms.DeleteMembershipInput) (*request.Request, *cleanrooms.DeleteMembershipOutput)
 
+	GetAnalysisTemplate(*cleanrooms.GetAnalysisTemplateInput) (*cleanrooms.GetAnalysisTemplateOutput, error)
+	GetAnalysisTemplateWithContext(aws.Context, *cleanrooms.GetAnalysisTemplateInput, ...request.Option) (*cleanrooms.GetAnalysisTemplateOutput, error)
+	GetAnalysisTemplateRequest(*cleanrooms.GetAnalysisTemplateInput) (*request.Request, *cleanrooms.GetAnalysisTemplateOutput)
+
 	GetCollaboration(*cleanrooms.GetCollaborationInput) (*cleanrooms.GetCollaborationOutput, error)
 	GetCollaborationWithContext(aws.Context, *cleanrooms.GetCollaborationInput, ...request.Option) (*cleanrooms.GetCollaborationOutput, error)
 	GetCollaborationRequest(*cleanrooms.GetCollaborationInput) (*request.Request, *cleanrooms.GetCollaborationOutput)
+
+	GetCollaborationAnalysisTemplate(*cleanrooms.GetCollaborationAnalysisTemplateInput) (*cleanrooms.GetCollaborationAnalysisTemplateOutput, error)
+	GetCollaborationAnalysisTemplateWithContext(aws.Context, *cleanrooms.GetCollaborationAnalysisTemplateInput, ...request.Option) (*cleanrooms.GetCollaborationAnalysisTemplateOutput, error)
+	GetCollaborationAnalysisTemplateRequest(*cleanrooms.GetCollaborationAnalysisTemplateInput) (*request.Request, *cleanrooms.GetCollaborationAnalysisTemplateOutput)
 
 	GetConfiguredTable(*cleanrooms.GetConfiguredTableInput) (*cleanrooms.GetConfiguredTableOutput, error)
 	GetConfiguredTableWithContext(aws.Context, *cleanrooms.GetConfiguredTableInput, ...request.Option) (*cleanrooms.GetConfiguredTableOutput, error)
@@ -139,6 +159,20 @@ type CleanRoomsAPI interface {
 	GetSchemaAnalysisRule(*cleanrooms.GetSchemaAnalysisRuleInput) (*cleanrooms.GetSchemaAnalysisRuleOutput, error)
 	GetSchemaAnalysisRuleWithContext(aws.Context, *cleanrooms.GetSchemaAnalysisRuleInput, ...request.Option) (*cleanrooms.GetSchemaAnalysisRuleOutput, error)
 	GetSchemaAnalysisRuleRequest(*cleanrooms.GetSchemaAnalysisRuleInput) (*request.Request, *cleanrooms.GetSchemaAnalysisRuleOutput)
+
+	ListAnalysisTemplates(*cleanrooms.ListAnalysisTemplatesInput) (*cleanrooms.ListAnalysisTemplatesOutput, error)
+	ListAnalysisTemplatesWithContext(aws.Context, *cleanrooms.ListAnalysisTemplatesInput, ...request.Option) (*cleanrooms.ListAnalysisTemplatesOutput, error)
+	ListAnalysisTemplatesRequest(*cleanrooms.ListAnalysisTemplatesInput) (*request.Request, *cleanrooms.ListAnalysisTemplatesOutput)
+
+	ListAnalysisTemplatesPages(*cleanrooms.ListAnalysisTemplatesInput, func(*cleanrooms.ListAnalysisTemplatesOutput, bool) bool) error
+	ListAnalysisTemplatesPagesWithContext(aws.Context, *cleanrooms.ListAnalysisTemplatesInput, func(*cleanrooms.ListAnalysisTemplatesOutput, bool) bool, ...request.Option) error
+
+	ListCollaborationAnalysisTemplates(*cleanrooms.ListCollaborationAnalysisTemplatesInput) (*cleanrooms.ListCollaborationAnalysisTemplatesOutput, error)
+	ListCollaborationAnalysisTemplatesWithContext(aws.Context, *cleanrooms.ListCollaborationAnalysisTemplatesInput, ...request.Option) (*cleanrooms.ListCollaborationAnalysisTemplatesOutput, error)
+	ListCollaborationAnalysisTemplatesRequest(*cleanrooms.ListCollaborationAnalysisTemplatesInput) (*request.Request, *cleanrooms.ListCollaborationAnalysisTemplatesOutput)
+
+	ListCollaborationAnalysisTemplatesPages(*cleanrooms.ListCollaborationAnalysisTemplatesInput, func(*cleanrooms.ListCollaborationAnalysisTemplatesOutput, bool) bool) error
+	ListCollaborationAnalysisTemplatesPagesWithContext(aws.Context, *cleanrooms.ListCollaborationAnalysisTemplatesInput, func(*cleanrooms.ListCollaborationAnalysisTemplatesOutput, bool) bool, ...request.Option) error
 
 	ListCollaborations(*cleanrooms.ListCollaborationsInput) (*cleanrooms.ListCollaborationsOutput, error)
 	ListCollaborationsWithContext(aws.Context, *cleanrooms.ListCollaborationsInput, ...request.Option) (*cleanrooms.ListCollaborationsOutput, error)
@@ -204,6 +238,10 @@ type CleanRoomsAPI interface {
 	UntagResource(*cleanrooms.UntagResourceInput) (*cleanrooms.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *cleanrooms.UntagResourceInput, ...request.Option) (*cleanrooms.UntagResourceOutput, error)
 	UntagResourceRequest(*cleanrooms.UntagResourceInput) (*request.Request, *cleanrooms.UntagResourceOutput)
+
+	UpdateAnalysisTemplate(*cleanrooms.UpdateAnalysisTemplateInput) (*cleanrooms.UpdateAnalysisTemplateOutput, error)
+	UpdateAnalysisTemplateWithContext(aws.Context, *cleanrooms.UpdateAnalysisTemplateInput, ...request.Option) (*cleanrooms.UpdateAnalysisTemplateOutput, error)
+	UpdateAnalysisTemplateRequest(*cleanrooms.UpdateAnalysisTemplateInput) (*request.Request, *cleanrooms.UpdateAnalysisTemplateOutput)
 
 	UpdateCollaboration(*cleanrooms.UpdateCollaborationInput) (*cleanrooms.UpdateCollaborationOutput, error)
 	UpdateCollaborationWithContext(aws.Context, *cleanrooms.UpdateCollaborationInput, ...request.Option) (*cleanrooms.UpdateCollaborationOutput, error)

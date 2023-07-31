@@ -55,10 +55,10 @@ func (c *CodeStarConnections) CreateConnectionRequest(input *CreateConnectionInp
 
 // CreateConnection API operation for AWS CodeStar connections.
 //
-// Creates a connection that can then be given to other AWS services like CodePipeline
-// so that it can access third-party code repositories. The connection is in
-// pending status until the third-party connection handshake is completed from
-// the console.
+// Creates a connection that can then be given to other Amazon Web Services
+// services like CodePipeline so that it can access third-party code repositories.
+// The connection is in pending status until the third-party connection handshake
+// is completed from the console.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -573,6 +573,11 @@ func (c *CodeStarConnections) ListConnectionsRequest(input *ListConnectionsInput
 //
 // See the AWS API reference guide for AWS CodeStar connections's
 // API operation ListConnections for usage and error information.
+//
+// Returned Error Types:
+//   - ResourceNotFoundException
+//     Resource not found. Verify the connection resource ARN and try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/ListConnections
 func (c *CodeStarConnections) ListConnections(input *ListConnectionsInput) (*ListConnectionsOutput, error) {
 	req, out := c.ListConnectionsRequest(input)
@@ -982,7 +987,7 @@ func (c *CodeStarConnections) UntagResourceRequest(input *UntagResourceInput) (r
 
 // UntagResource API operation for AWS CodeStar connections.
 //
-// Removes tags from an AWS resource.
+// Removes tags from an Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1171,7 +1176,7 @@ func (s *ConflictException) RequestID() string {
 }
 
 // A resource that is used to connect third-party source providers with services
-// like AWS CodePipeline.
+// like CodePipeline.
 //
 // Note: A connection created through CloudFormation, the CLI, or the SDK is
 // in `PENDING` status by default. You can make its status `AVAILABLE` by updating
@@ -1180,13 +1185,13 @@ type Connection struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the connection. The ARN is used as the
-	// connection reference when the connection is shared between AWS services.
+	// connection reference when the connection is shared between Amazon Web Services.
 	//
 	// The ARN is never reused if the connection is deleted.
 	ConnectionArn *string `type:"string"`
 
-	// The name of the connection. Connection names must be unique in an AWS user
-	// account.
+	// The name of the connection. Connection names must be unique in an Amazon
+	// Web Services account.
 	ConnectionName *string `min:"1" type:"string"`
 
 	// The current status of the connection.
@@ -1262,8 +1267,7 @@ func (s *Connection) SetProviderType(v string) *Connection {
 type CreateConnectionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the connection to be created. The name must be unique in the
-	// calling AWS account.
+	// The name of the connection to be created.
 	//
 	// ConnectionName is a required field
 	ConnectionName *string `min:"1" type:"string" required:"true"`
@@ -1352,8 +1356,8 @@ type CreateConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the connection to be created. The ARN is
-	// used as the connection reference when the connection is shared between AWS
-	// services.
+	// used as the connection reference when the connection is shared between Amazon
+	// Web Services services.
 	//
 	// The ARN is never reused if the connection is deleted.
 	//
@@ -1397,8 +1401,7 @@ func (s *CreateConnectionOutput) SetTags(v []*Tag) *CreateConnectionOutput {
 type CreateHostInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the host to be created. The name must be unique in the calling
-	// AWS account.
+	// The name of the host to be created.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -2464,7 +2467,8 @@ func (s *ResourceUnavailableException) RequestID() string {
 
 // A tag is a key-value pair that is used to manage the resource.
 //
-// This tag is available for use by AWS services that support tags.
+// This tag is available for use by Amazon Web Services services that support
+// tags.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -2998,6 +3002,9 @@ const (
 
 	// ProviderTypeGitHubEnterpriseServer is a ProviderType enum value
 	ProviderTypeGitHubEnterpriseServer = "GitHubEnterpriseServer"
+
+	// ProviderTypeGitLab is a ProviderType enum value
+	ProviderTypeGitLab = "GitLab"
 )
 
 // ProviderType_Values returns all elements of the ProviderType enum
@@ -3006,5 +3013,6 @@ func ProviderType_Values() []string {
 		ProviderTypeBitbucket,
 		ProviderTypeGitHub,
 		ProviderTypeGitHubEnterpriseServer,
+		ProviderTypeGitLab,
 	}
 }
