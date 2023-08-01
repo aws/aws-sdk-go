@@ -86,6 +86,20 @@ const (
 	// The user already has a DB cluster with the given identifier.
 	ErrCodeDBClusterAlreadyExistsFault = "DBClusterAlreadyExistsFault"
 
+	// ErrCodeDBClusterAutomatedBackupNotFoundFault for service response error code
+	// "DBClusterAutomatedBackupNotFoundFault".
+	//
+	// No automated backup for this DB cluster was found.
+	ErrCodeDBClusterAutomatedBackupNotFoundFault = "DBClusterAutomatedBackupNotFoundFault"
+
+	// ErrCodeDBClusterAutomatedBackupQuotaExceededFault for service response error code
+	// "DBClusterAutomatedBackupQuotaExceededFault".
+	//
+	// The quota for retained automated backups was exceeded. This prevents you
+	// from retaining any additional automated backups. The retained automated backups
+	// quota is the same as your DB cluster quota.
+	ErrCodeDBClusterAutomatedBackupQuotaExceededFault = "DBClusterAutomatedBackupQuotaExceededFault"
+
 	// ErrCodeDBClusterBacktrackNotFoundFault for service response error code
 	// "DBClusterBacktrackNotFoundFault".
 	//
@@ -180,7 +194,7 @@ const (
 	//
 	// The quota for retained automated backups was exceeded. This prevents you
 	// from retaining any additional automated backups. The retained automated backups
-	// quota is the same as your DB Instance quota.
+	// quota is the same as your DB instance quota.
 	ErrCodeDBInstanceAutomatedBackupQuotaExceededFault = "DBInstanceAutomatedBackupQuotaExceeded"
 
 	// ErrCodeDBInstanceNotFoundFault for service response error code
@@ -492,6 +506,13 @@ const (
 	//
 	// You can't delete the CEV.
 	ErrCodeInvalidCustomDBEngineVersionStateFault = "InvalidCustomDBEngineVersionStateFault"
+
+	// ErrCodeInvalidDBClusterAutomatedBackupStateFault for service response error code
+	// "InvalidDBClusterAutomatedBackupStateFault".
+	//
+	// The automated backup is in an invalid state. For example, this automated
+	// backup is associated with an active cluster.
+	ErrCodeInvalidDBClusterAutomatedBackupStateFault = "InvalidDBClusterAutomatedBackupStateFault"
 
 	// ErrCodeInvalidDBClusterCapacityFault for service response error code
 	// "InvalidDBClusterCapacityFault".

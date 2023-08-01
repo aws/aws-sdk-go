@@ -12869,6 +12869,8 @@ type DescribeInputDeviceOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
 	// The state of the connection between the input device and AWS.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"InputDeviceConnectionState"`
 
@@ -12929,6 +12931,12 @@ func (s DescribeInputDeviceOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeInputDeviceOutput) SetArn(v string) *DescribeInputDeviceOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *DescribeInputDeviceOutput) SetAvailabilityZone(v string) *DescribeInputDeviceOutput {
+	s.AvailabilityZone = &v
 	return s
 }
 
@@ -19934,6 +19942,9 @@ type InputDeviceSummary struct {
 	// The unique ARN of the input device.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The Availability Zone associated with this input device.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
 	// The state of the connection between the input device and AWS.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"InputDeviceConnectionState"`
 
@@ -19996,6 +20007,12 @@ func (s InputDeviceSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *InputDeviceSummary) SetArn(v string) *InputDeviceSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *InputDeviceSummary) SetAvailabilityZone(v string) *InputDeviceSummary {
+	s.AvailabilityZone = &v
 	return s
 }
 
@@ -31241,6 +31258,8 @@ func (s *UpdateChannelOutput) SetChannel(v *Channel) *UpdateChannelOutput {
 type UpdateInputDeviceInput struct {
 	_ struct{} `type:"structure"`
 
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
 	// Configurable settings for the input device.
 	HdDeviceSettings *InputDeviceConfigurableSettings `locationName:"hdDeviceSettings" type:"structure"`
 
@@ -31287,6 +31306,12 @@ func (s *UpdateInputDeviceInput) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *UpdateInputDeviceInput) SetAvailabilityZone(v string) *UpdateInputDeviceInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
 // SetHdDeviceSettings sets the HdDeviceSettings field's value.
 func (s *UpdateInputDeviceInput) SetHdDeviceSettings(v *InputDeviceConfigurableSettings) *UpdateInputDeviceInput {
 	s.HdDeviceSettings = v
@@ -31315,6 +31340,8 @@ type UpdateInputDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
 	Arn *string `locationName:"arn" type:"string"`
+
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The state of the connection between the input device and AWS.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"InputDeviceConnectionState"`
@@ -31376,6 +31403,12 @@ func (s UpdateInputDeviceOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *UpdateInputDeviceOutput) SetArn(v string) *UpdateInputDeviceOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *UpdateInputDeviceOutput) SetAvailabilityZone(v string) *UpdateInputDeviceOutput {
+	s.AvailabilityZone = &v
 	return s
 }
 

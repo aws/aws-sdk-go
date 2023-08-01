@@ -421,7 +421,8 @@
       "enum":[
         "BEST_FIT",
         "BEST_FIT_PROGRESSIVE",
-        "SPOT_CAPACITY_OPTIMIZED"
+        "SPOT_CAPACITY_OPTIMIZED",
+        "SPOT_PRICE_CAPACITY_OPTIMIZED"
       ]
     },
     "CRType":{
@@ -437,7 +438,8 @@
       "type":"string",
       "enum":[
         "BEST_FIT_PROGRESSIVE",
-        "SPOT_CAPACITY_OPTIMIZED"
+        "SPOT_CAPACITY_OPTIMIZED",
+        "SPOT_PRICE_CAPACITY_OPTIMIZED"
       ]
     },
     "CancelJobRequest":{

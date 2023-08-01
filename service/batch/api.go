@@ -210,8 +210,8 @@ func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentI
 //   - Either don't set the service role (serviceRole) parameter or set it
 //     to the AWSBatchServiceRole service-linked role.
 //
-//   - Set the allocation strategy (allocationStrategy) parameter to BEST_FIT_PROGRESSIVE
-//     or SPOT_CAPACITY_OPTIMIZED.
+//   - Set the allocation strategy (allocationStrategy) parameter to BEST_FIT_PROGRESSIVE,
+//     SPOT_CAPACITY_OPTIMIZED, or SPOT_PRICE_CAPACITY_OPTIMIZED.
 //
 //   - Set the update to latest image version (updateToLatestImageVersion)
 //     parameter to true. The updateToLatestImageVersion parameter is used when
@@ -3250,10 +3250,18 @@ type ComputeResource struct {
 	// that are less likely to be interrupted. This allocation strategy is only
 	// available for Spot Instance compute resources.
 	//
-	// With both BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED strategies using
-	// On-Demand or Spot Instances, and the BEST_FIT strategy using Spot Instances,
-	// Batch might need to exceed maxvCpus to meet your capacity requirements. In
-	// this event, Batch never exceeds maxvCpus by more than a single instance.
+	// SPOT_PRICE_CAPACITY_OPTIMIZED
+	//
+	// The price and capacity optimized allocation strategy looks at both price
+	// and capacity to select the Spot Instance pools that are the least likely
+	// to be interrupted and have the lowest possible price. This allocation strategy
+	// is only available for Spot Instance compute resources.
+	//
+	// With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and SPOT_PRICE_CAPACITY_OPTIMIZED
+	// strategies using On-Demand or Spot Instances, and the BEST_FIT strategy using
+	// Spot Instances, Batch might need to exceed maxvCpus to meet your capacity
+	// requirements. In this event, Batch never exceeds maxvCpus by more than a
+	// single instance.
 	AllocationStrategy *string `locationName:"allocationStrategy" type:"string" enum:"CRAllocationStrategy"`
 
 	// The maximum percentage that a Spot Instance price can be when compared with
@@ -3351,12 +3359,12 @@ type ComputeResource struct {
 
 	// The maximum number of vCPUs that a compute environment can support.
 	//
-	// With both BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED allocation strategies
-	// using On-Demand or Spot Instances, and the BEST_FIT strategy using Spot Instances,
-	// Batch might need to exceed maxvCpus to meet your capacity requirements. In
-	// this event, Batch never exceeds maxvCpus by more than a single instance.
-	// For example, no more than a single instance from among those specified in
-	// your compute environment is allocated.
+	// With BEST_FIT_PROGRESSIVE, SPOT_CAPACITY_OPTIMIZED and SPOT_PRICE_CAPACITY_OPTIMIZED
+	// allocation strategies using On-Demand or Spot Instances, and the BEST_FIT
+	// strategy using Spot Instances, Batch might need to exceed maxvCpus to meet
+	// your capacity requirements. In this event, Batch never exceeds maxvCpus by
+	// more than a single instance. For example, no more than a single instance
+	// from among those specified in your compute environment is allocated.
 	//
 	// MaxvCpus is a required field
 	MaxvCpus *int64 `locationName:"maxvCpus" type:"integer" required:"true"`
@@ -3636,10 +3644,18 @@ type ComputeResourceUpdate struct {
 	// that are less likely to be interrupted. This allocation strategy is only
 	// available for Spot Instance compute resources.
 	//
-	// With both BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED strategies using
-	// On-Demand or Spot Instances, and the BEST_FIT strategy using Spot Instances,
-	// Batch might need to exceed maxvCpus to meet your capacity requirements. In
-	// this event, Batch never exceeds maxvCpus by more than a single instance.
+	// SPOT_PRICE_CAPACITY_OPTIMIZED
+	//
+	// The price and capacity optimized allocation strategy looks at both price
+	// and capacity to select the Spot Instance pools that are the least likely
+	// to be interrupted and have the lowest possible price. This allocation strategy
+	// is only available for Spot Instance compute resources.
+	//
+	// With both BEST_FIT_PROGRESSIVE, SPOT_CAPACITY_OPTIMIZED, and SPOT_PRICE_CAPACITY_OPTIMIZED
+	// strategies using On-Demand or Spot Instances, and the BEST_FIT strategy using
+	// Spot Instances, Batch might need to exceed maxvCpus to meet your capacity
+	// requirements. In this event, Batch never exceeds maxvCpus by more than a
+	// single instance.
 	AllocationStrategy *string `locationName:"allocationStrategy" type:"string" enum:"CRUpdateAllocationStrategy"`
 
 	// The maximum percentage that a Spot Instance price can be when compared with
@@ -3787,12 +3803,12 @@ type ComputeResourceUpdate struct {
 
 	// The maximum number of Amazon EC2 vCPUs that an environment can reach.
 	//
-	// With both BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED allocation strategies
-	// using On-Demand or Spot Instances, and the BEST_FIT strategy using Spot Instances,
-	// Batch might need to exceed maxvCpus to meet your capacity requirements. In
-	// this event, Batch never exceeds maxvCpus by more than a single instance.
-	// That is, no more than a single instance from among those specified in your
-	// compute environment.
+	// With BEST_FIT_PROGRESSIVE, SPOT_CAPACITY_OPTIMIZED, and SPOT_PRICE_CAPACITY_OPTIMIZED
+	// allocation strategies using On-Demand or Spot Instances, and the BEST_FIT
+	// strategy using Spot Instances, Batch might need to exceed maxvCpus to meet
+	// your capacity requirements. In this event, Batch never exceeds maxvCpus by
+	// more than a single instance. That is, no more than a single instance from
+	// among those specified in your compute environment.
 	MaxvCpus *int64 `locationName:"maxvCpus" type:"integer"`
 
 	// The minimum number of vCPUs that an environment should maintain (even if
@@ -13268,6 +13284,9 @@ const (
 
 	// CRAllocationStrategySpotCapacityOptimized is a CRAllocationStrategy enum value
 	CRAllocationStrategySpotCapacityOptimized = "SPOT_CAPACITY_OPTIMIZED"
+
+	// CRAllocationStrategySpotPriceCapacityOptimized is a CRAllocationStrategy enum value
+	CRAllocationStrategySpotPriceCapacityOptimized = "SPOT_PRICE_CAPACITY_OPTIMIZED"
 )
 
 // CRAllocationStrategy_Values returns all elements of the CRAllocationStrategy enum
@@ -13276,6 +13295,7 @@ func CRAllocationStrategy_Values() []string {
 		CRAllocationStrategyBestFit,
 		CRAllocationStrategyBestFitProgressive,
 		CRAllocationStrategySpotCapacityOptimized,
+		CRAllocationStrategySpotPriceCapacityOptimized,
 	}
 }
 
@@ -13309,6 +13329,9 @@ const (
 
 	// CRUpdateAllocationStrategySpotCapacityOptimized is a CRUpdateAllocationStrategy enum value
 	CRUpdateAllocationStrategySpotCapacityOptimized = "SPOT_CAPACITY_OPTIMIZED"
+
+	// CRUpdateAllocationStrategySpotPriceCapacityOptimized is a CRUpdateAllocationStrategy enum value
+	CRUpdateAllocationStrategySpotPriceCapacityOptimized = "SPOT_PRICE_CAPACITY_OPTIMIZED"
 )
 
 // CRUpdateAllocationStrategy_Values returns all elements of the CRUpdateAllocationStrategy enum
@@ -13316,6 +13339,7 @@ func CRUpdateAllocationStrategy_Values() []string {
 	return []string{
 		CRUpdateAllocationStrategyBestFitProgressive,
 		CRUpdateAllocationStrategySpotCapacityOptimized,
+		CRUpdateAllocationStrategySpotPriceCapacityOptimized,
 	}
 }
 

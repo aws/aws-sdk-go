@@ -10800,6 +10800,13 @@
       "max":40,
       "min":0
     },
+    "FlatInvocations":{
+      "type":"string",
+      "enum":[
+        "Continue",
+        "Stop"
+      ]
+    },
     "Float":{"type":"float"},
     "FlowDefinitionArn":{
       "type":"string",
@@ -16155,6 +16162,10 @@
       "max":9,
       "min":1
     },
+    "NumberOfSteps":{
+      "type":"integer",
+      "min":1
+    },
     "ObjectiveStatus":{
       "type":"string",
       "enum":[
@@ -17808,7 +17819,8 @@
       "type":"structure",
       "members":{
         "MaxInvocations":{"shape":"Integer"},
-        "ModelLatencyThresholds":{"shape":"ModelLatencyThresholds"}
+        "ModelLatencyThresholds":{"shape":"ModelLatencyThresholds"},
+        "FlatInvocations":{"shape":"FlatInvocations"}
       }
     },
     "RecommendationJobSupportedContentTypes":{
@@ -18937,6 +18949,14 @@
         "STOPPED"
       ]
     },
+    "Stairs":{
+      "type":"structure",
+      "members":{
+        "DurationInSeconds":{"shape":"TrafficDurationInSeconds"},
+        "NumberOfSteps":{"shape":"NumberOfSteps"},
+        "UsersPerStep":{"shape":"UsersPerStep"}
+      }
+    },
     "StartEdgeDeploymentStageRequest":{
       "type":"structure",
       "required":[
@@ -19606,7 +19626,8 @@
       "type":"structure",
       "members":{
         "TrafficType":{"shape":"TrafficType"},
-        "Phases":{"shape":"Phases"}
+        "Phases":{"shape":"Phases"},
+        "Stairs":{"shape":"Stairs"}
       }
     },
     "TrafficRoutingConfig":{
@@ -19632,7 +19653,10 @@
     },
     "TrafficType":{
       "type":"string",
-      "enum":["PHASES"]
+      "enum":[
+        "PHASES",
+        "STAIRS"
+      ]
     },
     "TrainingContainerArgument":{
       "type":"string",
@@ -21072,6 +21096,11 @@
         "RSessionAppSettings":{"shape":"RSessionAppSettings"},
         "CanvasAppSettings":{"shape":"CanvasAppSettings"}
       }
+    },
+    "UsersPerStep":{
+      "type":"integer",
+      "max":3,
+      "min":1
     },
     "UtilizationMetric":{
       "type":"float",

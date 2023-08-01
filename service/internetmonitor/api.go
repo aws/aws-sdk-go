@@ -57,20 +57,23 @@ func (c *InternetMonitor) CreateMonitorRequest(input *CreateMonitorInput) (req *
 // CreateMonitor API operation for Amazon CloudWatch Internet Monitor.
 //
 // Creates a monitor in Amazon CloudWatch Internet Monitor. A monitor is built
-// based on information from the application resources that you add: Amazon
-// Virtual Private Clouds (VPCs), Amazon CloudFront distributions, and WorkSpaces
+// based on information from the application resources that you add: VPCs, Network
+// Load Balancers (NLBs), Amazon CloudFront distributions, and Amazon WorkSpaces
 // directories. Internet Monitor then publishes internet measurements from Amazon
-// Web Services that are specific to the city-networks, that is, the locations
+// Web Services that are specific to the city-networks. That is, the locations
 // and ASNs (typically internet service providers or ISPs), where clients access
 // your application. For more information, see Using Amazon CloudWatch Internet
 // Monitor (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-InternetMonitor.html)
 // in the Amazon CloudWatch User Guide.
 //
-// When you create a monitor, you set a maximum limit for the number of city-networks
-// where client traffic is monitored. The city-network maximum that you choose
-// is the limit, but you only pay for the number of city-networks that are actually
-// monitored. You can change the maximum at any time by updating your monitor.
-// For more information, see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
+// When you create a monitor, you choose the percentage of traffic that you
+// want to monitor. You can also set a maximum limit for the number of city-networks
+// where client traffic is monitored, that caps the total traffic that Internet
+// Monitor monitors. A city-network maximum is the limit of city-networks, but
+// you only pay for the number of city-networks that are actually monitored.
+// You can update your monitor at any time to change the percentage of traffic
+// to monitor or the city-networks maximum. For more information, see Choosing
+// a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
 // in the Amazon CloudWatch User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -256,11 +259,11 @@ func (c *InternetMonitor) GetHealthEventRequest(input *GetHealthEventInput) (req
 //
 // Gets information the Amazon CloudWatch Internet Monitor has created and stored
 // about a health event for a specified monitor. This information includes the
-// impacted locations, and all of the information related to the event by location.
+// impacted locations, and all the information related to the event, by location.
 //
-// The information returned includes the performance, availability, and round-trip
-// time impact, information about the network providers, the event type, and
-// so on.
+// The information returned includes the impact on performance, availability,
+// and round-trip time, information about the network providers (ASNs), the
+// event type, and so on.
 //
 // Information rolled up at the global traffic level is also returned, including
 // the impact type and total traffic impact.
@@ -449,9 +452,8 @@ func (c *InternetMonitor) ListHealthEventsRequest(input *ListHealthEventsInput) 
 // ListHealthEvents API operation for Amazon CloudWatch Internet Monitor.
 //
 // Lists all health events for a monitor in Amazon CloudWatch Internet Monitor.
-// Returns all information for health events including the client location information
-// the network cause and status, event start and end time, percentage of total
-// traffic impacted, and status.
+// Returns information for health events including the event start and end time
+// and the status.
 //
 // Health events that have start times during the time frame that is requested
 // are not included in the list of health events.
@@ -1020,10 +1022,10 @@ func (c *InternetMonitor) UpdateMonitorRequest(input *UpdateMonitorInput) (req *
 
 // UpdateMonitor API operation for Amazon CloudWatch Internet Monitor.
 //
-// Updates a monitor. You can update a monitor to change the maximum number
-// of city-networks (locations and ASNs or internet service providers), to add
-// or remove resources, or to change the status of the monitor. Note that you
-// can't change the name of a monitor.
+// Updates a monitor. You can update a monitor to change the percentage of traffic
+// to monitor or the maximum number of city-networks (locations and ASNs), to
+// add or remove resources, or to change the status of the monitor. Note that
+// you can't change the name of a monitor.
 //
 // The city-network maximum that you choose is the limit, but you only pay for
 // the number of city-networks that are actually monitored. For more information,
@@ -1143,15 +1145,16 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Measurements about the availability for your application on the internet,
-// calculated by Amazon CloudWatch Internet Monitor. Amazon Web Services has
-// substantial historical data about internet performance and availability between
-// Amazon Web Services services and different network providers and geographies.
-// By applying statistical analysis to the data, Internet Monitor can detect
-// when the performance and availability for your application has dropped, compared
-// to an estimated baseline that's already calculated. To make it easier to
-// see those drops, we report that information to you in the form of health
-// scores: a performance score and an availability score.
+// Amazon CloudWatch Internet Monitor calculates measurements about the availability
+// for your application's internet traffic between client locations and Amazon
+// Web Services. Amazon Web Services has substantial historical data about internet
+// performance and availability between Amazon Web Services services and different
+// network providers and geographies. By applying statistical analysis to the
+// data, Internet Monitor can detect when the performance and availability for
+// your application has dropped, compared to an estimated baseline that's already
+// calculated. To make it easier to see those drops, we report that information
+// to you in the form of health scores: a performance score and an availability
+// score.
 //
 // Availability in Internet Monitor represents the estimated percentage of traffic
 // that is not seeing an availability drop. For example, an availability score
@@ -1189,10 +1192,14 @@ type AvailabilityMeasurement struct {
 	// User Guide.
 	PercentOfClientLocationImpacted *float64 `type:"double"`
 
-	// The percentage of impact caused by a health event for total traffic globally.
+	// The impact on total traffic that a health event has, in increased latency
+	// or reduced availability. This is the percentage of how much latency has increased
+	// or availability has decreased during the event, compared to what is typical
+	// for traffic from this client location to the Amazon Web Services location
+	// using this client network.
 	//
-	// For information about how Internet Monitor calculates impact, see Inside
-	// Internet Monitor (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html)
+	// For information about how Internet Monitor calculates impact, see How Internet
+	// Monitor works (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html)
 	// in the Amazon CloudWatch Internet Monitor section of the Amazon CloudWatch
 	// User Guide.
 	PercentOfTotalTrafficImpacted *float64 `type:"double"`
@@ -1370,11 +1377,16 @@ type CreateMonitorInput struct {
 	// other API requests.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// Defines the health event threshold percentages, for performance score and
-	// availability score. Internet Monitor creates a health event when there's
-	// an internet issue that affects your application end users where a health
-	// score percentage is at or below a set threshold. If you don't set a health
-	// event threshold, the default calue is 95%.
+	// Defines the threshold percentages and other configuration information for
+	// when Amazon CloudWatch Internet Monitor creates a health event. Internet
+	// Monitor creates a health event when an internet issue that affects your application
+	// end users has a health score percentage that is at or below a specific threshold,
+	// and, sometimes, when other criteria are met.
+	//
+	// If you don't set a health event threshold, the default value is 95%.
+	//
+	// For more information, see Change health event thresholds (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-overview.html#IMUpdateThresholdFromOverview)
+	// in the Internet Monitor section of the CloudWatch User Guide.
 	HealthEventsConfig *HealthEventsConfig `type:"structure"`
 
 	// Publish internet measurements for Internet Monitor to an Amazon S3 bucket
@@ -1383,8 +1395,9 @@ type CreateMonitorInput struct {
 
 	// The maximum number of city-networks to monitor for your resources. A city-network
 	// is the location (city) where clients access your application resources from
-	// and the network or ASN, such as an internet service provider (ISP), that
-	// clients access the resources through. This limit helps control billing costs.
+	// and the ASN or network provider, such as an internet service provider (ISP),
+	// that clients access the resources through. Setting this limit can help control
+	// billing costs.
 	//
 	// To learn more, see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
 	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
@@ -1397,21 +1410,28 @@ type CreateMonitorInput struct {
 	MonitorName *string `min:"1" type:"string" required:"true"`
 
 	// The resources to include in a monitor, which you provide as a set of Amazon
-	// Resource Names (ARNs).
+	// Resource Names (ARNs). Resources can be VPCs, NLBs, Amazon CloudFront distributions,
+	// or Amazon WorkSpaces directories.
 	//
-	// You can add a combination of Amazon Virtual Private Clouds (VPCs) and Amazon
-	// CloudFront distributions, or you can add Amazon WorkSpaces directories. You
-	// can't add all three types of resources.
+	// You can add a combination of VPCs and CloudFront distributions, or you can
+	// add WorkSpaces directories, or you can add NLBs. You can't add NLBs or WorkSpaces
+	// directories together with any other resources.
 	//
-	// If you add only VPC resources, at least one VPC must have an Internet Gateway
-	// attached to it, to make sure that it has internet connectivity.
+	// If you add only Amazon VPC resources, at least one VPC must have an Internet
+	// Gateway attached to it, to make sure that it has internet connectivity.
 	Resources []*string `type:"list"`
 
 	// The tags for a monitor. You can add a maximum of 50 tags in Internet Monitor.
 	Tags map[string]*string `type:"map"`
 
 	// The percentage of the internet-facing traffic for your application that you
-	// want to monitor with this monitor.
+	// want to monitor with this monitor. If you set a city-networks maximum, that
+	// limit overrides the traffic percentage that you set.
+	//
+	// To learn more, see Choosing an application traffic percentage to monitor
+	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMTrafficPercentage.html)
+	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
+	// Guide.
 	TrafficPercentageToMonitor *int64 `min:"1" type:"integer"`
 }
 
@@ -1711,8 +1731,9 @@ type GetHealthEventOutput struct {
 	// EventId is a required field
 	EventId *string `min:"1" type:"string" required:"true"`
 
-	// The threshold percentage for health events when Amazon CloudWatch Internet
-	// Monitor creates a health event.
+	// The threshold percentage for a health score that determines, along with other
+	// configuration information, when Internet Monitor creates a health event when
+	// there's an internet issue that affects your application end users.
 	HealthScoreThreshold *float64 `type:"double"`
 
 	// The type of impairment of a specific health event.
@@ -1730,7 +1751,11 @@ type GetHealthEventOutput struct {
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The impact on total traffic that a health event has.
+	// The impact on total traffic that a health event has, in increased latency
+	// or reduced availability. This is the percentage of how much latency has increased
+	// or availability has decreased during the event, compared to what is typical
+	// for traffic from this client location to the Amazon Web Services location
+	// using this client network.
 	PercentOfTotalTrafficImpacted *float64 `type:"double"`
 
 	// The time when a health event started.
@@ -1885,10 +1910,13 @@ type GetMonitorOutput struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The list of health event thresholds. A health event threshold percentage,
-	// for performance and availability, determines the level of impact at which
-	// Amazon CloudWatch Internet Monitor creates a health event when there's an
-	// internet issue that affects your application end users.
+	// The list of health event threshold configurations. The threshold percentage
+	// for a health score determines, along with other configuration information,
+	// when Internet Monitor creates a health event when there's an internet issue
+	// that affects your application end users.
+	//
+	// For more information, see Change health event thresholds (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-overview.html#IMUpdateThresholdFromOverview)
+	// in the Internet Monitor section of the CloudWatch User Guide.
 	HealthEventsConfig *HealthEventsConfig `type:"structure"`
 
 	// Publish internet measurements for Internet Monitor to another location, such
@@ -1898,8 +1926,9 @@ type GetMonitorOutput struct {
 
 	// The maximum number of city-networks to monitor for your resources. A city-network
 	// is the location (city) where clients access your application resources from
-	// and the network or ASN, such as an internet service provider (ISP), that
-	// clients access the resources through. This limit helps control billing costs.
+	// and the ASN or network provider, such as an internet service provider (ISP),
+	// that clients access the resources through. This limit can help control billing
+	// costs.
 	//
 	// To learn more, see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
 	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
@@ -1927,8 +1956,8 @@ type GetMonitorOutput struct {
 	// Additional information about the health of the data processing for the monitor.
 	ProcessingStatusInfo *string `type:"string"`
 
-	// The resources that have been added for the monitor. Resources are listed
-	// by their Amazon Resource Names (ARNs).
+	// The resources monitored by the monitor. Resources are listed by their Amazon
+	// Resource Names (ARNs).
 	//
 	// Resources is a required field
 	Resources []*string `type:"list" required:"true"`
@@ -1941,8 +1970,14 @@ type GetMonitorOutput struct {
 	// The tags that have been added to monitor.
 	Tags map[string]*string `type:"map"`
 
-	// The percentage of the internet-facing traffic for your application that you
-	// want to monitor with this monitor.
+	// The percentage of the internet-facing traffic for your application to monitor
+	// with this monitor. If you set a city-networks maximum, that limit overrides
+	// the traffic percentage that you set.
+	//
+	// To learn more, see Choosing an application traffic percentage to monitor
+	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMTrafficPercentage.html)
+	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
+	// Guide.
 	TrafficPercentageToMonitor *int64 `min:"1" type:"integer"`
 }
 
@@ -2085,7 +2120,11 @@ type HealthEvent struct {
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The impact on global traffic monitored by this monitor for this health event.
+	// The impact on total traffic that a health event has, in increased latency
+	// or reduced availability. This is the percentage of how much latency has increased
+	// or availability has decreased during the event, compared to what is typical
+	// for traffic from this client location to the Amazon Web Services location
+	// using this client network.
 	PercentOfTotalTrafficImpacted *float64 `type:"double"`
 
 	// When a health event started.
@@ -2183,17 +2222,42 @@ func (s *HealthEvent) SetStatus(v string) *HealthEvent {
 	return s
 }
 
-// A complex type for the configuration. Defines the health event threshold
-// percentages, for performance score and availability score. Amazon CloudWatch
-// Internet Monitor creates a health event when there's an internet issue that
-// affects your application end users where a health score percentage is at
-// or below a set threshold. If you don't set a health event threshold, the
-// default value is 95%.
+// A complex type with the configuration information that determines the threshold
+// and other conditions for when Internet Monitor creates a health event for
+// an overall performance or availability issue, across an application's geographies.
+//
+// Defines the percentages, for overall performance scores and availability
+// scores for an application, that are the thresholds for when Amazon CloudWatch
+// Internet Monitor creates a health event. You can override the defaults to
+// set a custom threshold for overall performance or availability scores, or
+// both.
+//
+// You can also set thresholds for local health scores,, where Internet Monitor
+// creates a health event when scores cross a threshold for one or more city-networks,
+// in addition to creating an event when an overall score crosses a threshold.
+//
+// If you don't set a health event threshold, the default value is 95%.
+//
+// For local thresholds, you also set a minimum percentage of overall traffic
+// that is impacted by an issue before Internet Monitor creates an event. In
+// addition, you can disable local thresholds, for performance scores, availability
+// scores, or both.
+//
+// For more information, see Change health event thresholds (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-overview.html#IMUpdateThresholdFromOverview)
+// in the Internet Monitor section of the CloudWatch User Guide.
 type HealthEventsConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration that determines the threshold and other conditions for
+	// when Internet Monitor creates a health event for a local availability issue.
+	AvailabilityLocalHealthEventsConfig *LocalHealthEventsConfig `type:"structure"`
+
 	// The health event threshold percentage set for availability scores.
 	AvailabilityScoreThreshold *float64 `type:"double"`
+
+	// The configuration that determines the threshold and other conditions for
+	// when Internet Monitor creates a health event for a local performance issue.
+	PerformanceLocalHealthEventsConfig *LocalHealthEventsConfig `type:"structure"`
 
 	// The health event threshold percentage set for performance scores.
 	PerformanceScoreThreshold *float64 `type:"double"`
@@ -2217,9 +2281,21 @@ func (s HealthEventsConfig) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityLocalHealthEventsConfig sets the AvailabilityLocalHealthEventsConfig field's value.
+func (s *HealthEventsConfig) SetAvailabilityLocalHealthEventsConfig(v *LocalHealthEventsConfig) *HealthEventsConfig {
+	s.AvailabilityLocalHealthEventsConfig = v
+	return s
+}
+
 // SetAvailabilityScoreThreshold sets the AvailabilityScoreThreshold field's value.
 func (s *HealthEventsConfig) SetAvailabilityScoreThreshold(v float64) *HealthEventsConfig {
 	s.AvailabilityScoreThreshold = &v
+	return s
+}
+
+// SetPerformanceLocalHealthEventsConfig sets the PerformanceLocalHealthEventsConfig field's value.
+func (s *HealthEventsConfig) SetPerformanceLocalHealthEventsConfig(v *LocalHealthEventsConfig) *HealthEventsConfig {
+	s.PerformanceLocalHealthEventsConfig = v
 	return s
 }
 
@@ -2539,9 +2615,9 @@ func (s *InternalServerException) RequestID() string {
 // network providers and geographies. By applying statistical analysis to the
 // data, Internet Monitor can detect when the performance and availability for
 // your application has dropped, compared to an estimated baseline that's already
-// calculated. To make it easier to see those drops, we report that information
-// to you in the form of health scores: a performance score and an availability
-// score.
+// calculated. To make it easier to see those drops, Internet Monitor reports
+// the information to you in the form of health scores: a performance score
+// and an availability score.
 type InternetHealth struct {
 	_ struct{} `type:"structure"`
 
@@ -3045,6 +3121,73 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// A complex type with the configuration information that determines the threshold
+// and other conditions for when Internet Monitor creates a health event for
+// a local performance or availability issue, when scores cross a threshold
+// for one or more city-networks.
+//
+// Defines the percentages, for performance scores or availability scores, that
+// are the local thresholds for when Amazon CloudWatch Internet Monitor creates
+// a health event. Also defines whether a local threshold is enabled or disabled,
+// and the minimum percentage of overall traffic that must be impacted by an
+// issue before Internet Monitor creates an event when a threshold is crossed
+// for a local health score.
+//
+// For more information, see Change health event thresholds (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-overview.html#IMUpdateThresholdFromOverview)
+// in the Internet Monitor section of the CloudWatch User Guide.
+type LocalHealthEventsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The health event threshold percentage set for a local health score.
+	HealthScoreThreshold *float64 `type:"double"`
+
+	// The minimum percentage of overall traffic for an application that must be
+	// impacted by an issue before Internet Monitor creates an event when a threshold
+	// is crossed for a local health score.
+	MinTrafficImpact *float64 `type:"double"`
+
+	// The status of whether Internet Monitor creates a health event based on a
+	// threshold percentage set for a local health score. The status can be ENABLED
+	// or DISABLED.
+	Status *string `type:"string" enum:"LocalHealthEventsConfigStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocalHealthEventsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocalHealthEventsConfig) GoString() string {
+	return s.String()
+}
+
+// SetHealthScoreThreshold sets the HealthScoreThreshold field's value.
+func (s *LocalHealthEventsConfig) SetHealthScoreThreshold(v float64) *LocalHealthEventsConfig {
+	s.HealthScoreThreshold = &v
+	return s
+}
+
+// SetMinTrafficImpact sets the MinTrafficImpact field's value.
+func (s *LocalHealthEventsConfig) SetMinTrafficImpact(v float64) *LocalHealthEventsConfig {
+	s.MinTrafficImpact = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LocalHealthEventsConfig) SetStatus(v string) *LocalHealthEventsConfig {
+	s.Status = &v
+	return s
+}
+
 // The description of and information about a monitor in Amazon CloudWatch Internet
 // Monitor.
 type Monitor struct {
@@ -3279,15 +3422,16 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Measurements about the performance for your application on the internet calculated
-// by Amazon CloudWatch Internet Monitor. Amazon Web Services has substantial
-// historical data about internet performance and availability between Amazon
-// Web Services services and different network providers and geographies. By
-// applying statistical analysis to the data, Internet Monitor can detect when
-// the performance and availability for your application has dropped, compared
-// to an estimated baseline that's already calculated. To make it easier to
-// see those drops, we report that information to you in the form of health
-// scores: a performance score and an availability score.
+// Amazon CloudWatch Internet Monitor calculates measurements about the performance
+// for your application's internet traffic between client locations and Amazon
+// Web Services. Amazon Web Services has substantial historical data about internet
+// performance and availability between Amazon Web Services services and different
+// network providers and geographies. By applying statistical analysis to the
+// data, Internet Monitor can detect when the performance and availability for
+// your application has dropped, compared to an estimated baseline that's already
+// calculated. To make it easier to see those drops, we report that information
+// to you in the form of health scores: a performance score and an availability
+// score.
 //
 // Performance in Internet Monitor represents the estimated percentage of traffic
 // that is not seeing a performance drop. For example, a performance score of
@@ -3327,10 +3471,11 @@ type PerformanceMeasurement struct {
 	// Guide.
 	PercentOfClientLocationImpacted *float64 `type:"double"`
 
-	// How much performance impact was caused by a health event for total traffic
-	// globally. For performance, this is the percentage of how much latency increased
-	// during the event compared to typical performance for your application traffic
-	// globally.
+	// The impact on total traffic that a health event has, in increased latency
+	// or reduced availability. This is the percentage of how much latency has increased
+	// or availability has decreased during the event, compared to what is typical
+	// for traffic from this client location to the Amazon Web Services location
+	// using this client network.
 	//
 	// For more information, see When Amazon Web Services creates and resolves health
 	// events (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html#IMHealthEventStartStop)
@@ -3882,10 +4027,13 @@ type UpdateMonitorInput struct {
 	// for other API requests.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The list of health event thresholds. A health event threshold percentage,
-	// for performance and availability, determines when Internet Monitor creates
-	// a health event when there's an internet issue that affects your application
+	// The list of health score thresholds. A threshold percentage for health scores,
+	// along with other configuration information, determines when Internet Monitor
+	// creates a health event when there's an internet issue that affects your application
 	// end users.
+	//
+	// For more information, see Change health event thresholds (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-overview.html#IMUpdateThresholdFromOverview)
+	// in the Internet Monitor section of the CloudWatch User Guide.
 	HealthEventsConfig *HealthEventsConfig `type:"structure"`
 
 	// Publish internet measurements for Internet Monitor to another location, such
@@ -3893,10 +4041,11 @@ type UpdateMonitorInput struct {
 	// Logs.
 	InternetMeasurementsLogDelivery *InternetMeasurementsLogDelivery `type:"structure"`
 
-	// The maximum number of city-networks to monitor for your resources. A city-network
+	// The maximum number of city-networks to monitor for your application. A city-network
 	// is the location (city) where clients access your application resources from
-	// and the network or ASN, such as an internet service provider, that clients
-	// access the resources through.
+	// and the ASN or network provider, such as an internet service provider (ISP),
+	// that clients access the resources through. Setting this limit can help control
+	// billing costs.
 	MaxCityNetworksToMonitor *int64 `min:"1" type:"integer"`
 
 	// The name of the monitor.
@@ -3905,14 +4054,16 @@ type UpdateMonitorInput struct {
 	MonitorName *string `location:"uri" locationName:"MonitorName" min:"1" type:"string" required:"true"`
 
 	// The resources to include in a monitor, which you provide as a set of Amazon
-	// Resource Names (ARNs).
+	// Resource Names (ARNs). Resources can be VPCs, NLBs, Amazon CloudFront distributions,
+	// or Amazon WorkSpaces directories.
 	//
-	// You can add a combination of Amazon Virtual Private Clouds (VPCs) and Amazon
-	// CloudFront distributions, or you can add Amazon WorkSpaces directories. You
-	// can't add all three types of resources.
+	// You can add a combination of VPCs and CloudFront distributions, or you can
+	// add WorkSpaces directories, or you can add NLBs. You can't add NLBs or WorkSpaces
+	// directories together with any other resources.
 	//
-	// If you add only VPC resources, at least one VPC must have an Internet Gateway
-	// attached to it, to make sure that it has internet connectivity.
+	// If you add only Amazon Virtual Private Clouds resources, at least one VPC
+	// must have an Internet Gateway attached to it, to make sure that it has internet
+	// connectivity.
 	ResourcesToAdd []*string `type:"list"`
 
 	// The resources to remove from a monitor, which you provide as a set of Amazon
@@ -3925,7 +4076,13 @@ type UpdateMonitorInput struct {
 	Status *string `type:"string" enum:"MonitorConfigState"`
 
 	// The percentage of the internet-facing traffic for your application that you
-	// want to monitor with this monitor.
+	// want to monitor with this monitor. If you set a city-networks maximum, that
+	// limit overrides the traffic percentage that you set.
+	//
+	// To learn more, see Choosing an application traffic percentage to monitor
+	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMTrafficPercentage.html)
+	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
+	// Guide.
 	TrafficPercentageToMonitor *int64 `min:"1" type:"integer"`
 }
 
@@ -4142,6 +4299,12 @@ const (
 
 	// HealthEventImpactTypePerformance is a HealthEventImpactType enum value
 	HealthEventImpactTypePerformance = "PERFORMANCE"
+
+	// HealthEventImpactTypeLocalAvailability is a HealthEventImpactType enum value
+	HealthEventImpactTypeLocalAvailability = "LOCAL_AVAILABILITY"
+
+	// HealthEventImpactTypeLocalPerformance is a HealthEventImpactType enum value
+	HealthEventImpactTypeLocalPerformance = "LOCAL_PERFORMANCE"
 )
 
 // HealthEventImpactType_Values returns all elements of the HealthEventImpactType enum
@@ -4149,6 +4312,8 @@ func HealthEventImpactType_Values() []string {
 	return []string{
 		HealthEventImpactTypeAvailability,
 		HealthEventImpactTypePerformance,
+		HealthEventImpactTypeLocalAvailability,
+		HealthEventImpactTypeLocalPerformance,
 	}
 }
 
@@ -4165,6 +4330,22 @@ func HealthEventStatus_Values() []string {
 	return []string{
 		HealthEventStatusActive,
 		HealthEventStatusResolved,
+	}
+}
+
+const (
+	// LocalHealthEventsConfigStatusEnabled is a LocalHealthEventsConfigStatus enum value
+	LocalHealthEventsConfigStatusEnabled = "ENABLED"
+
+	// LocalHealthEventsConfigStatusDisabled is a LocalHealthEventsConfigStatus enum value
+	LocalHealthEventsConfigStatusDisabled = "DISABLED"
+)
+
+// LocalHealthEventsConfigStatus_Values returns all elements of the LocalHealthEventsConfigStatus enum
+func LocalHealthEventsConfigStatus_Values() []string {
+	return []string{
+		LocalHealthEventsConfigStatusEnabled,
+		LocalHealthEventsConfigStatusDisabled,
 	}
 }
 

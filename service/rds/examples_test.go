@@ -1304,6 +1304,8 @@ func ExampleRDS_DeleteDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeSnapshotQuotaExceededFault, aerr.Error())
 			case rds.ErrCodeInvalidDBClusterSnapshotStateFault:
 				fmt.Println(rds.ErrCodeInvalidDBClusterSnapshotStateFault, aerr.Error())
+			case rds.ErrCodeDBClusterAutomatedBackupQuotaExceededFault:
+				fmt.Println(rds.ErrCodeDBClusterAutomatedBackupQuotaExceededFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3963,6 +3965,8 @@ func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterParameterGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterParameterGroupNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBClusterAutomatedBackupNotFoundFault:
+				fmt.Println(rds.ErrCodeDBClusterAutomatedBackupNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

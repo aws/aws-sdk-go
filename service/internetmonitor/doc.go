@@ -5,8 +5,8 @@
 //
 // Amazon CloudWatch Internet Monitor provides visibility into how internet
 // issues impact the performance and availability between your applications
-// hosted on Amazon Web Services and your end users. It reduces the time it
-// takes for you to diagnose internet issues from days to minutes. Internet
+// hosted on Amazon Web Services and your end users. It can reduce the time
+// it takes for you to diagnose internet issues from days to minutes. Internet
 // Monitor uses the connectivity data that Amazon Web Services captures from
 // its global networking footprint to calculate a baseline of performance and
 // availability for internet traffic. This is the same data that Amazon Web
@@ -24,11 +24,11 @@
 // that Amazon Web Services is taking to mitigate the problem.
 //
 // To use Internet Monitor, you create a monitor and associate your application's
-// resources with it, VPCs, CloudFront distributions, or WorkSpaces directories,
-// to enable Internet Monitor to know where your application's internet traffic
+// resources with it - VPCs, NLBs, CloudFront distributions, or WorkSpaces directories
+// - so Internet Monitor can determine where your application's internet traffic
 // is. Internet Monitor then provides internet measurements from Amazon Web
-// Services that are specific to the locations and networks that communicate
-// with your application.
+// Services that are specific to the locations and ASNs (typically, internet
+// service providers or ISPs) that communicate with your application.
 //
 // For more information, see Using Amazon CloudWatch Internet Monitor (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-InternetMonitor.html)
 // in the Amazon CloudWatch User Guide.
