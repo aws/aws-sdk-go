@@ -194,6 +194,13 @@ type DatabaseMigrationServiceAPI interface {
 	DescribeEndpointsPages(*databasemigrationservice.DescribeEndpointsInput, func(*databasemigrationservice.DescribeEndpointsOutput, bool) bool) error
 	DescribeEndpointsPagesWithContext(aws.Context, *databasemigrationservice.DescribeEndpointsInput, func(*databasemigrationservice.DescribeEndpointsOutput, bool) bool, ...request.Option) error
 
+	DescribeEngineVersions(*databasemigrationservice.DescribeEngineVersionsInput) (*databasemigrationservice.DescribeEngineVersionsOutput, error)
+	DescribeEngineVersionsWithContext(aws.Context, *databasemigrationservice.DescribeEngineVersionsInput, ...request.Option) (*databasemigrationservice.DescribeEngineVersionsOutput, error)
+	DescribeEngineVersionsRequest(*databasemigrationservice.DescribeEngineVersionsInput) (*request.Request, *databasemigrationservice.DescribeEngineVersionsOutput)
+
+	DescribeEngineVersionsPages(*databasemigrationservice.DescribeEngineVersionsInput, func(*databasemigrationservice.DescribeEngineVersionsOutput, bool) bool) error
+	DescribeEngineVersionsPagesWithContext(aws.Context, *databasemigrationservice.DescribeEngineVersionsInput, func(*databasemigrationservice.DescribeEngineVersionsOutput, bool) bool, ...request.Option) error
+
 	DescribeEventCategories(*databasemigrationservice.DescribeEventCategoriesInput) (*databasemigrationservice.DescribeEventCategoriesOutput, error)
 	DescribeEventCategoriesWithContext(aws.Context, *databasemigrationservice.DescribeEventCategoriesInput, ...request.Option) (*databasemigrationservice.DescribeEventCategoriesOutput, error)
 	DescribeEventCategoriesRequest(*databasemigrationservice.DescribeEventCategoriesInput) (*request.Request, *databasemigrationservice.DescribeEventCategoriesOutput)

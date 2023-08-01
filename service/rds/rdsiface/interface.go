@@ -192,6 +192,10 @@ type RDSAPI interface {
 	DeleteDBClusterWithContext(aws.Context, *rds.DeleteDBClusterInput, ...request.Option) (*rds.DeleteDBClusterOutput, error)
 	DeleteDBClusterRequest(*rds.DeleteDBClusterInput) (*request.Request, *rds.DeleteDBClusterOutput)
 
+	DeleteDBClusterAutomatedBackup(*rds.DeleteDBClusterAutomatedBackupInput) (*rds.DeleteDBClusterAutomatedBackupOutput, error)
+	DeleteDBClusterAutomatedBackupWithContext(aws.Context, *rds.DeleteDBClusterAutomatedBackupInput, ...request.Option) (*rds.DeleteDBClusterAutomatedBackupOutput, error)
+	DeleteDBClusterAutomatedBackupRequest(*rds.DeleteDBClusterAutomatedBackupInput) (*request.Request, *rds.DeleteDBClusterAutomatedBackupOutput)
+
 	DeleteDBClusterEndpoint(*rds.DeleteDBClusterEndpointInput) (*rds.DeleteDBClusterEndpointOutput, error)
 	DeleteDBClusterEndpointWithContext(aws.Context, *rds.DeleteDBClusterEndpointInput, ...request.Option) (*rds.DeleteDBClusterEndpointOutput, error)
 	DeleteDBClusterEndpointRequest(*rds.DeleteDBClusterEndpointInput) (*request.Request, *rds.DeleteDBClusterEndpointOutput)
@@ -269,6 +273,10 @@ type RDSAPI interface {
 
 	DescribeCertificatesPages(*rds.DescribeCertificatesInput, func(*rds.DescribeCertificatesOutput, bool) bool) error
 	DescribeCertificatesPagesWithContext(aws.Context, *rds.DescribeCertificatesInput, func(*rds.DescribeCertificatesOutput, bool) bool, ...request.Option) error
+
+	DescribeDBClusterAutomatedBackups(*rds.DescribeDBClusterAutomatedBackupsInput) (*rds.DescribeDBClusterAutomatedBackupsOutput, error)
+	DescribeDBClusterAutomatedBackupsWithContext(aws.Context, *rds.DescribeDBClusterAutomatedBackupsInput, ...request.Option) (*rds.DescribeDBClusterAutomatedBackupsOutput, error)
+	DescribeDBClusterAutomatedBackupsRequest(*rds.DescribeDBClusterAutomatedBackupsInput) (*request.Request, *rds.DescribeDBClusterAutomatedBackupsOutput)
 
 	DescribeDBClusterBacktracks(*rds.DescribeDBClusterBacktracksInput) (*rds.DescribeDBClusterBacktracksOutput, error)
 	DescribeDBClusterBacktracksWithContext(aws.Context, *rds.DescribeDBClusterBacktracksInput, ...request.Option) (*rds.DescribeDBClusterBacktracksOutput, error)

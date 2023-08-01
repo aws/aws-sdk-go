@@ -30,6 +30,11 @@
       "output_token": "Marker",
       "limit_key": "MaxRecords"
     },
+    "DescribeEngineVersions": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
     "DescribeEventSubscriptions": {
       "input_token": "Marker",
       "output_token": "Marker",

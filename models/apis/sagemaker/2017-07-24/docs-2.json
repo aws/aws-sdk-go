@@ -4769,7 +4769,7 @@
     "EndpointStatus": {
       "base": null,
       "refs": {
-        "DescribeEndpointOutput$EndpointStatus": "<p>The status of the endpoint.</p> <ul> <li> <p> <code>OutOfService</code>: Endpoint is not available to take incoming requests.</p> </li> <li> <p> <code>Creating</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html\">CreateEndpoint</a> is executing.</p> </li> <li> <p> <code>Updating</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html\">UpdateEndpoint</a> or <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> is executing.</p> </li> <li> <p> <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be updated or deleted or re-scaled until it has completed. This maintenance operation does not change any customer-specified values such as VPC config, KMS encryption, model, instance type, or instance count.</p> </li> <li> <p> <code>RollingBack</code>: Endpoint fails to scale up or down or change its variant weight and is in the process of rolling back to its previous configuration. Once the rollback completes, endpoint returns to an <code>InService</code> status. This transitional status only applies to an endpoint that has autoscaling enabled and is undergoing variant weight or capacity changes as part of an <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> call or when the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> operation is called explicitly.</p> </li> <li> <p> <code>InService</code>: Endpoint is available to process incoming requests.</p> </li> <li> <p> <code>Deleting</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteEndpoint.html\">DeleteEndpoint</a> is executing.</p> </li> <li> <p> <code>Failed</code>: Endpoint could not be created, updated, or re-scaled. Use the <code>FailureReason</code> value returned by <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html\">DescribeEndpoint</a> for information about the failure. <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteEndpoint.html\">DeleteEndpoint</a> is the only operation that can be performed on a failed endpoint.</p> </li> </ul>",
+        "DescribeEndpointOutput$EndpointStatus": "<p>The status of the endpoint.</p> <ul> <li> <p> <code>OutOfService</code>: Endpoint is not available to take incoming requests.</p> </li> <li> <p> <code>Creating</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html\">CreateEndpoint</a> is executing.</p> </li> <li> <p> <code>Updating</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html\">UpdateEndpoint</a> or <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> is executing.</p> </li> <li> <p> <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be updated or deleted or re-scaled until it has completed. This maintenance operation does not change any customer-specified values such as VPC config, KMS encryption, model, instance type, or instance count.</p> </li> <li> <p> <code>RollingBack</code>: Endpoint fails to scale up or down or change its variant weight and is in the process of rolling back to its previous configuration. Once the rollback completes, endpoint returns to an <code>InService</code> status. This transitional status only applies to an endpoint that has autoscaling enabled and is undergoing variant weight or capacity changes as part of an <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> call or when the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> operation is called explicitly.</p> </li> <li> <p> <code>InService</code>: Endpoint is available to process incoming requests.</p> </li> <li> <p> <code>Deleting</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteEndpoint.html\">DeleteEndpoint</a> is executing.</p> </li> <li> <p> <code>Failed</code>: Endpoint could not be created, updated, or re-scaled. Use the <code>FailureReason</code> value returned by <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html\">DescribeEndpoint</a> for information about the failure. <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteEndpoint.html\">DeleteEndpoint</a> is the only operation that can be performed on a failed endpoint.</p> </li> <li> <p> <code>UpdateRollbackFailed</code>: Both the rolling deployment and auto-rollback failed. Your endpoint is in service with a mix of the old and new endpoint configurations. For information about how to remedy this issue and restore the endpoint's status to <code>InService</code>, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails-rolling.html\">Rolling Deployments</a>.</p> </li> </ul>",
         "Endpoint$EndpointStatus": "<p>The status of the endpoint.</p>",
         "EndpointMetadata$EndpointStatus": "<p> The status of the endpoint. For possible values of the status of an endpoint, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_EndpointSummary.html\">EndpointSummary</a>. </p>",
         "EndpointSummary$EndpointStatus": "<p>The status of the endpoint.</p> <ul> <li> <p> <code>OutOfService</code>: Endpoint is not available to take incoming requests.</p> </li> <li> <p> <code>Creating</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html\">CreateEndpoint</a> is executing.</p> </li> <li> <p> <code>Updating</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html\">UpdateEndpoint</a> or <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> is executing.</p> </li> <li> <p> <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be updated or deleted or re-scaled until it has completed. This maintenance operation does not change any customer-specified values such as VPC config, KMS encryption, model, instance type, or instance count.</p> </li> <li> <p> <code>RollingBack</code>: Endpoint fails to scale up or down or change its variant weight and is in the process of rolling back to its previous configuration. Once the rollback completes, endpoint returns to an <code>InService</code> status. This transitional status only applies to an endpoint that has autoscaling enabled and is undergoing variant weight or capacity changes as part of an <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> call or when the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html\">UpdateEndpointWeightsAndCapacities</a> operation is called explicitly.</p> </li> <li> <p> <code>InService</code>: Endpoint is available to process incoming requests.</p> </li> <li> <p> <code>Deleting</code>: <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteEndpoint.html\">DeleteEndpoint</a> is executing.</p> </li> <li> <p> <code>Failed</code>: Endpoint could not be created, updated, or re-scaled. Use <code>DescribeEndpointOutput$FailureReason</code> for information about the failure. <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteEndpoint.html\">DeleteEndpoint</a> is the only operation that can be performed on a failed endpoint.</p> </li> </ul> <p>To get a list of endpoints with a specified status, use the <code>StatusEquals</code> filter with a call to <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListEndpoints.html\">ListEndpoints</a>.</p>",
@@ -5536,6 +5536,12 @@
       "refs": {
         "DescribeTrainingJobResponse$FinalMetricDataList": "<p>A collection of <code>MetricData</code> objects that specify the names, values, and dates and times that the training algorithm emitted to Amazon CloudWatch.</p>",
         "TrainingJob$FinalMetricDataList": "<p>A list of final metric values that are set when the training job completes. Used only if the training job was configured to use metrics.</p>"
+      }
+    },
+    "FlatInvocations": {
+      "base": null,
+      "refs": {
+        "RecommendationJobStoppingConditions$FlatInvocations": "<p>Stops a load test when the number of invocations (TPS) peaks and flattens, which means that the instance has reached capacity. The default value is <code>Stop</code>. If you want the load test to continue after invocations have flattened, set the value to <code>Continue</code>.</p>"
       }
     },
     "Float": {
@@ -6766,7 +6772,7 @@
     "InitialNumberOfUsers": {
       "base": null,
       "refs": {
-        "Phase$InitialNumberOfUsers": "<p>Specifies how many concurrent users to start with.</p>"
+        "Phase$InitialNumberOfUsers": "<p>Specifies how many concurrent users to start with. The value should be between 1 and 3.</p>"
       }
     },
     "InitialTaskCount": {
@@ -6944,7 +6950,7 @@
     "JobDurationInSeconds": {
       "base": null,
       "refs": {
-        "RecommendationJobInputConfig$JobDurationInSeconds": "<p>Specifies the maximum duration of the job, in seconds.&gt;</p>"
+        "RecommendationJobInputConfig$JobDurationInSeconds": "<p>Specifies the maximum duration of the job, in seconds. The maximum value is 7200.</p>"
       }
     },
     "JobReferenceCode": {
@@ -9695,7 +9701,7 @@
       "base": null,
       "refs": {
         "BatchTransformInput$StartTimeOffset": "<p>If specified, monitoring jobs substract this time from the start time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
-        "BatchTransformInput$EndTimeOffset": "<p>If specified, monitoring jobs substract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
+        "BatchTransformInput$EndTimeOffset": "<p>If specified, monitoring jobs subtract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
         "EndpointInput$StartTimeOffset": "<p>If specified, monitoring jobs substract this time from the start time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
         "EndpointInput$EndTimeOffset": "<p>If specified, monitoring jobs substract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>"
       }
@@ -10153,6 +10159,12 @@
       "refs": {
         "HumanTaskConfig$NumberOfHumanWorkersPerDataObject": "<p>The number of human workers that will label an object. </p>",
         "LabelingJobForWorkteamSummary$NumberOfHumanWorkersPerDataObject": "<p>The configured number of workers per data object.</p>"
+      }
+    },
+    "NumberOfSteps": {
+      "base": null,
+      "refs": {
+        "Stairs$NumberOfSteps": "<p>Specifies how many steps to perform during traffic.</p>"
       }
     },
     "ObjectiveStatus": {
@@ -12682,6 +12694,12 @@
         "EdgeDeploymentStatus$StageStatus": "<p>The general status of the current stage.</p>"
       }
     },
+    "Stairs": {
+      "base": "<p>Defines the stairs traffic pattern for an Inference Recommender load test. This pattern type consists of multiple steps where the number of users increases at each step.</p> <p>Specify either the stairs or phases traffic pattern.</p>",
+      "refs": {
+        "TrafficPattern$Stairs": "<p>Defines the stairs traffic pattern.</p>"
+      }
+    },
     "StartEdgeDeploymentStageRequest": {
       "base": null,
       "refs": {
@@ -13033,7 +13051,7 @@
       "refs": {
         "ActionSummary$ActionType": "<p>The type of the action.</p>",
         "CategoricalParameter$Name": "<p>The Name of the environment variable.</p>",
-        "ModelLatencyThreshold$Percentile": "<p>The model latency percentile threshold.</p>"
+        "ModelLatencyThreshold$Percentile": "<p>The model latency percentile threshold. For custom load tests, specify the value as <code>P95</code>.</p>"
       }
     },
     "String8192": {
@@ -13867,7 +13885,8 @@
     "TrafficDurationInSeconds": {
       "base": null,
       "refs": {
-        "Phase$DurationInSeconds": "<p>Specifies how long traffic phase should be.</p>"
+        "Phase$DurationInSeconds": "<p>Specifies how long a traffic phase should be. For custom load tests, the value should be between 120 and 3600. This value should not exceed <code>JobDurationInSeconds</code>.</p>",
+        "Stairs$DurationInSeconds": "<p>Defines how long each traffic step should be.</p>"
       }
     },
     "TrafficPattern": {
@@ -13891,7 +13910,7 @@
     "TrafficType": {
       "base": null,
       "refs": {
-        "TrafficPattern$TrafficType": "<p>Defines the traffic patterns.</p>"
+        "TrafficPattern$TrafficType": "<p>Defines the traffic patterns. Choose either <code>PHASES</code> or <code>STAIRS</code>.</p>"
       }
     },
     "TrainingContainerArgument": {
@@ -14962,6 +14981,12 @@
         "DescribeUserProfileResponse$UserSettings": "<p>A collection of settings.</p>",
         "UpdateDomainRequest$DefaultUserSettings": "<p>A collection of settings.</p>",
         "UpdateUserProfileRequest$UserSettings": "<p>A collection of settings.</p>"
+      }
+    },
+    "UsersPerStep": {
+      "base": null,
+      "refs": {
+        "Stairs$UsersPerStep": "<p>Specifies how many new users to spawn in each step.</p>"
       }
     },
     "UtilizationMetric": {

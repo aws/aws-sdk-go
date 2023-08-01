@@ -31,6 +31,7 @@
     "DescribeEndpointSettings": "<p>Returns information about the possible endpoint settings available when you create an endpoint for a specific database engine.</p>",
     "DescribeEndpointTypes": "<p>Returns information about the type of endpoints available.</p>",
     "DescribeEndpoints": "<p>Returns information about the endpoints for your account in the current region.</p>",
+    "DescribeEngineVersions": "<p>Returns information about the replication instance versions used in the project.</p>",
     "DescribeEventCategories": "<p>Lists categories for all event source types, or, if specified, for a specified source type. You can see a list of the event categories and source types in <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html\">Working with Events and Notifications</a> in the <i>Database Migration Service User Guide.</i> </p>",
     "DescribeEventSubscriptions": "<p>Lists all the event subscriptions for a customer account. The description of a subscription includes <code>SubscriptionName</code>, <code>SNSTopicARN</code>, <code>CustomerID</code>, <code>SourceType</code>, <code>SourceID</code>, <code>CreationTime</code>, and <code>Status</code>. </p> <p>If you specify <code>SubscriptionName</code>, this action lists the description for that subscription.</p>",
     "DescribeEvents": "<p> Lists events for a given source identifier and source type. You can also specify a start and end time. For more information on DMS events, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html\">Working with Events and Notifications</a> in the <i>Database Migration Service User Guide.</i> </p>",
@@ -147,6 +148,12 @@
       "base": null,
       "refs": {
         "OrderableReplicationInstance$AvailabilityZones": "<p>List of Availability Zones for this replication instance.</p>"
+      }
+    },
+    "AvailableUpgradesList": {
+      "base": null,
+      "refs": {
+        "EngineVersion$AvailableUpgrades": "<p>The list of valid replication instance versions that you can upgrade to.</p>"
       }
     },
     "BatchStartRecommendationsErrorEntry": {
@@ -488,7 +495,7 @@
     "DatabaseMode": {
       "base": null,
       "refs": {
-        "PostgreSQLSettings$DatabaseMode": "<p>Specifies whether to use default or custom replication behavior for PostgreSQL-compatible endpoints. You can use this setting to specify replication behavior for endpoints that require additional configuration, such as Babelfish endpoints.</p>"
+        "PostgreSQLSettings$DatabaseMode": "<p>Specifies the default behavior of the replication's handling of PostgreSQL- compatible endpoints that require some additional configuration, such as Babelfish endpoints.</p>"
       }
     },
     "DatabaseResponse": {
@@ -687,6 +694,16 @@
     },
     "DescribeEndpointsResponse": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeEngineVersionsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEngineVersionsResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1042,6 +1059,18 @@
         "DescribeEndpointSettingsResponse$EndpointSettings": "<p>Descriptions of the endpoint settings available for your source or target database engine.</p>"
       }
     },
+    "EngineVersion": {
+      "base": "<p>Provides information about a replication instance version.</p>",
+      "refs": {
+        "EngineVersionList$member": null
+      }
+    },
+    "EngineVersionList": {
+      "base": null,
+      "refs": {
+        "DescribeEngineVersionsResponse$EngineVersions": "<p>Returned <code>EngineVersion</code> objects that describe the replication instance engine versions used in the project.</p>"
+      }
+    },
     "Event": {
       "base": "<p>Describes an identifiable significant activity that affects a replication instance or task. This object can provide the message, the available event categories, the date and source of the event, and the DMS resource type.</p>",
       "refs": {
@@ -1287,6 +1316,7 @@
         "DescribeEndpointSettingsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeEndpointTypesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEndpointsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeEngineVersionsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p>",
         "DescribeEventSubscriptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEventsMessage$Duration": "<p>The duration of the events to be listed.</p>",
         "DescribeEventsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -1834,6 +1864,7 @@
     "ReleaseStatusValues": {
       "base": null,
       "refs": {
+        "EngineVersion$ReleaseStatus": "<p>The release status of the replication instance version.</p>",
         "OrderableReplicationInstance$ReleaseStatus": "<p>The value returned when the specified <code>EngineVersion</code> of the replication instance is in Beta or test mode. This indicates some features might not work as expected.</p> <note> <p>DMS supports the <code>ReleaseStatus</code> parameter in versions 3.1.4 and later.</p> </note>"
       }
     },
@@ -2300,6 +2331,7 @@
         "ArnList$member": null,
         "AvailabilityZone$Name": "<p>The name of the Availability Zone.</p>",
         "AvailabilityZonesList$member": null,
+        "AvailableUpgradesList$member": null,
         "BatchStartRecommendationsErrorEntry$DatabaseId": "<p>The identifier of the source database.</p>",
         "BatchStartRecommendationsErrorEntry$Message": "<p>The information about the error.</p>",
         "BatchStartRecommendationsErrorEntry$Code": "<p>The code of an error that occurred during the analysis of the source database.</p>",
@@ -2426,6 +2458,8 @@
         "DescribeEndpointTypesResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeEndpointsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeEndpointsResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeEngineVersionsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeEngineVersionsResponse$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeEventCategoriesMessage$SourceType": "<p> The type of DMS resource that generates events. </p> <p>Valid values: replication-instance | replication-task</p>",
         "DescribeEventSubscriptionsMessage$SubscriptionName": "<p>The name of the DMS event subscription to be described.</p>",
         "DescribeEventSubscriptionsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
@@ -2516,6 +2550,8 @@
         "EndpointSetting$Applicability": "<p>The relevance or validity of an endpoint setting for an engine name and its endpoint type.</p>",
         "EndpointSetting$DefaultValue": "<p>The default value of the endpoint setting if no value is specified using <code>CreateEndpoint</code> or <code>ModifyEndpoint</code>.</p>",
         "EndpointSettingEnumValues$member": null,
+        "EngineVersion$Version": "<p>The version number of the replication instance.</p>",
+        "EngineVersion$Lifecycle": "<p>The lifecycle status of the replication instance version. Valid values are <code>DEPRECATED</code>, <code>DEFAULT_VERSION</code>, and <code>ACTIVE</code>.</p>",
         "Event$SourceIdentifier": "<p> The identifier of an event source.</p>",
         "Event$Message": "<p>The event message.</p>",
         "EventCategoriesList$member": null,
@@ -2919,6 +2955,10 @@
         "CreateReplicationTaskMessage$CdcStartTime": "<p>Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error.</p> <p>Timestamp Example: --cdc-start-time “2018-03-08T12:12:12”</p>",
         "DescribeEventsMessage$StartTime": "<p>The start time for the events to be listed.</p>",
         "DescribeEventsMessage$EndTime": "<p>The end time for the events to be listed.</p>",
+        "EngineVersion$LaunchDate": "<p>The date when the replication instance version became publicly available.</p>",
+        "EngineVersion$AutoUpgradeDate": "<p>The date when the replication instance will be automatically upgraded. This setting only applies if the <code>auto-minor-version</code> setting is enabled.</p>",
+        "EngineVersion$DeprecationDate": "<p>The date when the replication instance version will be deprecated and can no longer be requested.</p>",
+        "EngineVersion$ForceUpgradeDate": "<p>The date when the replication instance will have a version upgrade forced.</p>",
         "Event$Date": "<p>The date of the event.</p>",
         "ModifyReplicationTaskMessage$CdcStartTime": "<p>Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error.</p> <p>Timestamp Example: --cdc-start-time “2018-03-08T12:12:12”</p>",
         "PendingMaintenanceAction$AutoAppliedAfterDate": "<p>The date of the maintenance window when the action is to be applied. The maintenance action is applied to the resource during its first maintenance window after this date. If this date is specified, any <code>next-maintenance</code> opt-in requests are ignored.</p>",

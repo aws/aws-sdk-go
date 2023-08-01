@@ -5067,9 +5067,13 @@
           "shape": "InputDeviceUhdSettings",
           "locationName": "uhdDeviceSettings"
         },
-	  "Tags": {
+        "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "AvailabilityZone": {
+          "shape": "__string",
+          "locationName": "availabilityZone"
         }
       }
     },
@@ -8142,9 +8146,13 @@
           "shape": "InputDeviceUhdSettings",
           "locationName": "uhdDeviceSettings"
         },
-	"Tags": {
+        "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "AvailabilityZone": {
+          "shape": "__string",
+          "locationName": "availabilityZone"
         }
       }
     },
@@ -8356,9 +8364,13 @@
           "shape": "InputDeviceUhdSettings",
           "locationName": "uhdDeviceSettings"
         },
-	  "Tags": {
+        "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "AvailabilityZone": {
+          "shape": "__string",
+          "locationName": "availabilityZone"
         }
       }
     },
@@ -13138,6 +13150,10 @@
         "UhdDeviceSettings": {
           "shape": "InputDeviceConfigurableSettings",
           "locationName": "uhdDeviceSettings"
+        },
+        "AvailabilityZone": {
+          "shape": "__string",
+          "locationName": "availabilityZone"
         }
       }
     },
@@ -13160,6 +13176,10 @@
         "UhdDeviceSettings": {
           "shape": "InputDeviceConfigurableSettings",
           "locationName": "uhdDeviceSettings"
+        },
+        "AvailabilityZone": {
+          "shape": "__string",
+          "locationName": "availabilityZone"
         }
       },
       "required": [
@@ -13217,9 +13237,13 @@
           "shape": "InputDeviceUhdSettings",
           "locationName": "uhdDeviceSettings"
         },
-	"Tags": {
+        "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "AvailabilityZone": {
+          "shape": "__string",
+          "locationName": "availabilityZone"
         }
       }
     },

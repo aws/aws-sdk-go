@@ -2946,6 +2946,136 @@ func (c *DatabaseMigrationService) DescribeEndpointsPagesWithContext(ctx aws.Con
 	return p.Err()
 }
 
+const opDescribeEngineVersions = "DescribeEngineVersions"
+
+// DescribeEngineVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEngineVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEngineVersions for more information on using the DescribeEngineVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeEngineVersionsRequest method.
+//	req, resp := client.DescribeEngineVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEngineVersions
+func (c *DatabaseMigrationService) DescribeEngineVersionsRequest(input *DescribeEngineVersionsInput) (req *request.Request, output *DescribeEngineVersionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEngineVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeEngineVersionsInput{}
+	}
+
+	output = &DescribeEngineVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEngineVersions API operation for AWS Database Migration Service.
+//
+// Returns information about the replication instance versions used in the project.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeEngineVersions for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEngineVersions
+func (c *DatabaseMigrationService) DescribeEngineVersions(input *DescribeEngineVersionsInput) (*DescribeEngineVersionsOutput, error) {
+	req, out := c.DescribeEngineVersionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEngineVersionsWithContext is the same as DescribeEngineVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEngineVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeEngineVersionsWithContext(ctx aws.Context, input *DescribeEngineVersionsInput, opts ...request.Option) (*DescribeEngineVersionsOutput, error) {
+	req, out := c.DescribeEngineVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeEngineVersionsPages iterates over the pages of a DescribeEngineVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEngineVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeEngineVersions operation.
+//	pageNum := 0
+//	err := client.DescribeEngineVersionsPages(params,
+//	    func(page *databasemigrationservice.DescribeEngineVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeEngineVersionsPages(input *DescribeEngineVersionsInput, fn func(*DescribeEngineVersionsOutput, bool) bool) error {
+	return c.DescribeEngineVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEngineVersionsPagesWithContext same as DescribeEngineVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeEngineVersionsPagesWithContext(ctx aws.Context, input *DescribeEngineVersionsInput, fn func(*DescribeEngineVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEngineVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEngineVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEngineVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeEventCategories = "DescribeEventCategories"
 
 // DescribeEventCategoriesRequest generates a "aws/request.Request" representing the
@@ -13306,6 +13436,93 @@ func (s *DescribeEndpointsOutput) SetMarker(v string) *DescribeEndpointsOutput {
 	return s
 }
 
+type DescribeEngineVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEngineVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEngineVersionsInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEngineVersionsInput) SetMarker(v string) *DescribeEngineVersionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEngineVersionsInput) SetMaxRecords(v int64) *DescribeEngineVersionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeEngineVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned EngineVersion objects that describe the replication instance engine
+	// versions used in the project.
+	EngineVersions []*EngineVersion `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEngineVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEngineVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEngineVersions sets the EngineVersions field's value.
+func (s *DescribeEngineVersionsOutput) SetEngineVersions(v []*EngineVersion) *DescribeEngineVersionsOutput {
+	s.EngineVersions = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEngineVersionsOutput) SetMarker(v string) *DescribeEngineVersionsOutput {
+	s.Marker = &v
+	return s
+}
+
 type DescribeEventCategoriesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17183,6 +17400,104 @@ func (s *EndpointSetting) SetType(v string) *EndpointSetting {
 // SetUnits sets the Units field's value.
 func (s *EndpointSetting) SetUnits(v string) *EndpointSetting {
 	s.Units = &v
+	return s
+}
+
+// Provides information about a replication instance version.
+type EngineVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The date when the replication instance will be automatically upgraded. This
+	// setting only applies if the auto-minor-version setting is enabled.
+	AutoUpgradeDate *time.Time `type:"timestamp"`
+
+	// The list of valid replication instance versions that you can upgrade to.
+	AvailableUpgrades []*string `type:"list"`
+
+	// The date when the replication instance version will be deprecated and can
+	// no longer be requested.
+	DeprecationDate *time.Time `type:"timestamp"`
+
+	// The date when the replication instance will have a version upgrade forced.
+	ForceUpgradeDate *time.Time `type:"timestamp"`
+
+	// The date when the replication instance version became publicly available.
+	LaunchDate *time.Time `type:"timestamp"`
+
+	// The lifecycle status of the replication instance version. Valid values are
+	// DEPRECATED, DEFAULT_VERSION, and ACTIVE.
+	Lifecycle *string `type:"string"`
+
+	// The release status of the replication instance version.
+	ReleaseStatus *string `type:"string" enum:"ReleaseStatusValues"`
+
+	// The version number of the replication instance.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EngineVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EngineVersion) GoString() string {
+	return s.String()
+}
+
+// SetAutoUpgradeDate sets the AutoUpgradeDate field's value.
+func (s *EngineVersion) SetAutoUpgradeDate(v time.Time) *EngineVersion {
+	s.AutoUpgradeDate = &v
+	return s
+}
+
+// SetAvailableUpgrades sets the AvailableUpgrades field's value.
+func (s *EngineVersion) SetAvailableUpgrades(v []*string) *EngineVersion {
+	s.AvailableUpgrades = v
+	return s
+}
+
+// SetDeprecationDate sets the DeprecationDate field's value.
+func (s *EngineVersion) SetDeprecationDate(v time.Time) *EngineVersion {
+	s.DeprecationDate = &v
+	return s
+}
+
+// SetForceUpgradeDate sets the ForceUpgradeDate field's value.
+func (s *EngineVersion) SetForceUpgradeDate(v time.Time) *EngineVersion {
+	s.ForceUpgradeDate = &v
+	return s
+}
+
+// SetLaunchDate sets the LaunchDate field's value.
+func (s *EngineVersion) SetLaunchDate(v time.Time) *EngineVersion {
+	s.LaunchDate = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *EngineVersion) SetLifecycle(v string) *EngineVersion {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetReleaseStatus sets the ReleaseStatus field's value.
+func (s *EngineVersion) SetReleaseStatus(v string) *EngineVersion {
+	s.ReleaseStatus = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *EngineVersion) SetVersion(v string) *EngineVersion {
+	s.Version = &v
 	return s
 }
 
@@ -22392,9 +22707,9 @@ type PostgreSQLSettings struct {
 	// the source database.
 	CaptureDdls *bool `type:"boolean"`
 
-	// Specifies whether to use default or custom replication behavior for PostgreSQL-compatible
-	// endpoints. You can use this setting to specify replication behavior for endpoints
-	// that require additional configuration, such as Babelfish endpoints.
+	// Specifies the default behavior of the replication's handling of PostgreSQL-
+	// compatible endpoints that require some additional configuration, such as
+	// Babelfish endpoints.
 	DatabaseMode *string `type:"string" enum:"DatabaseMode"`
 
 	// Database name for the endpoint.

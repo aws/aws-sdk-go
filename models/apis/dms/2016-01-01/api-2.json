@@ -415,6 +415,15 @@
         {"shape":"ResourceNotFoundFault"}
       ]
     },
+    "DescribeEngineVersions":{
+      "name":"DescribeEngineVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEngineVersionsMessage"},
+      "output":{"shape":"DescribeEngineVersionsResponse"}
+    },
     "DescribeEventCategories":{
       "name":"DescribeEventCategories",
       "http":{
@@ -1154,6 +1163,10 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "AvailableUpgradesList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "BatchStartRecommendationsErrorEntry":{
       "type":"structure",
       "members":{
@@ -1852,6 +1865,20 @@
         "Endpoints":{"shape":"EndpointList"}
       }
     },
+    "DescribeEngineVersionsMessage":{
+      "type":"structure",
+      "members":{
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeEngineVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "EngineVersions":{"shape":"EngineVersionList"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeEventCategoriesMessage":{
       "type":"structure",
       "members":{
@@ -2386,6 +2413,23 @@
     "EndpointSettingsList":{
       "type":"list",
       "member":{"shape":"EndpointSetting"}
+    },
+    "EngineVersion":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"String"},
+        "Lifecycle":{"shape":"String"},
+        "ReleaseStatus":{"shape":"ReleaseStatusValues"},
+        "LaunchDate":{"shape":"TStamp"},
+        "AutoUpgradeDate":{"shape":"TStamp"},
+        "DeprecationDate":{"shape":"TStamp"},
+        "ForceUpgradeDate":{"shape":"TStamp"},
+        "AvailableUpgrades":{"shape":"AvailableUpgradesList"}
+      }
+    },
+    "EngineVersionList":{
+      "type":"list",
+      "member":{"shape":"EngineVersion"}
     },
     "Event":{
       "type":"structure",

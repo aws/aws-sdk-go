@@ -3423,6 +3423,11 @@ func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.
 //   - ErrCodeInvalidDBClusterSnapshotStateFault "InvalidDBClusterSnapshotStateFault"
 //     The supplied value isn't a valid DB cluster snapshot state.
 //
+//   - ErrCodeDBClusterAutomatedBackupQuotaExceededFault "DBClusterAutomatedBackupQuotaExceededFault"
+//     The quota for retained automated backups was exceeded. This prevents you
+//     from retaining any additional automated backups. The retained automated backups
+//     quota is the same as your DB cluster quota.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBCluster
 func (c *RDS) DeleteDBCluster(input *DeleteDBClusterInput) (*DeleteDBClusterOutput, error) {
 	req, out := c.DeleteDBClusterRequest(input)
@@ -3440,6 +3445,90 @@ func (c *RDS) DeleteDBCluster(input *DeleteDBClusterInput) (*DeleteDBClusterOutp
 // for more information on using Contexts.
 func (c *RDS) DeleteDBClusterWithContext(ctx aws.Context, input *DeleteDBClusterInput, opts ...request.Option) (*DeleteDBClusterOutput, error) {
 	req, out := c.DeleteDBClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDBClusterAutomatedBackup = "DeleteDBClusterAutomatedBackup"
+
+// DeleteDBClusterAutomatedBackupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBClusterAutomatedBackup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDBClusterAutomatedBackup for more information on using the DeleteDBClusterAutomatedBackup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteDBClusterAutomatedBackupRequest method.
+//	req, resp := client.DeleteDBClusterAutomatedBackupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBClusterAutomatedBackup
+func (c *RDS) DeleteDBClusterAutomatedBackupRequest(input *DeleteDBClusterAutomatedBackupInput) (req *request.Request, output *DeleteDBClusterAutomatedBackupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDBClusterAutomatedBackup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDBClusterAutomatedBackupInput{}
+	}
+
+	output = &DeleteDBClusterAutomatedBackupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteDBClusterAutomatedBackup API operation for Amazon Relational Database Service.
+//
+// Deletes automated backups using the DbClusterResourceId value of the source
+// DB cluster or the Amazon Resource Name (ARN) of the automated backups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DeleteDBClusterAutomatedBackup for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeInvalidDBClusterAutomatedBackupStateFault "InvalidDBClusterAutomatedBackupStateFault"
+//     The automated backup is in an invalid state. For example, this automated
+//     backup is associated with an active cluster.
+//
+//   - ErrCodeDBClusterAutomatedBackupNotFoundFault "DBClusterAutomatedBackupNotFoundFault"
+//     No automated backup for this DB cluster was found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBClusterAutomatedBackup
+func (c *RDS) DeleteDBClusterAutomatedBackup(input *DeleteDBClusterAutomatedBackupInput) (*DeleteDBClusterAutomatedBackupOutput, error) {
+	req, out := c.DeleteDBClusterAutomatedBackupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDBClusterAutomatedBackupWithContext is the same as DeleteDBClusterAutomatedBackup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDBClusterAutomatedBackup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DeleteDBClusterAutomatedBackupWithContext(ctx aws.Context, input *DeleteDBClusterAutomatedBackupInput, opts ...request.Option) (*DeleteDBClusterAutomatedBackupOutput, error) {
+	req, out := c.DeleteDBClusterAutomatedBackupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3814,7 +3903,7 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 //   - ErrCodeDBInstanceAutomatedBackupQuotaExceededFault "DBInstanceAutomatedBackupQuotaExceeded"
 //     The quota for retained automated backups was exceeded. This prevents you
 //     from retaining any additional automated backups. The retained automated backups
-//     quota is the same as your DB Instance quota.
+//     quota is the same as your DB instance quota.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBInstance
 func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceOutput, error) {
@@ -5149,6 +5238,89 @@ func (c *RDS) DescribeCertificatesPagesWithContext(ctx aws.Context, input *Descr
 	}
 
 	return p.Err()
+}
+
+const opDescribeDBClusterAutomatedBackups = "DescribeDBClusterAutomatedBackups"
+
+// DescribeDBClusterAutomatedBackupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBClusterAutomatedBackups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDBClusterAutomatedBackups for more information on using the DescribeDBClusterAutomatedBackups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDBClusterAutomatedBackupsRequest method.
+//	req, resp := client.DescribeDBClusterAutomatedBackupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterAutomatedBackups
+func (c *RDS) DescribeDBClusterAutomatedBackupsRequest(input *DescribeDBClusterAutomatedBackupsInput) (req *request.Request, output *DescribeDBClusterAutomatedBackupsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBClusterAutomatedBackups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDBClusterAutomatedBackupsInput{}
+	}
+
+	output = &DescribeDBClusterAutomatedBackupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDBClusterAutomatedBackups API operation for Amazon Relational Database Service.
+//
+// Displays backups for both current and deleted DB clusters. For example, use
+// this operation to find details about automated backups for previously deleted
+// clusters. Current clusters are returned for both the DescribeDBClusterAutomatedBackups
+// and DescribeDBClusters operations.
+//
+// All parameters are optional.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DescribeDBClusterAutomatedBackups for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeDBClusterAutomatedBackupNotFoundFault "DBClusterAutomatedBackupNotFoundFault"
+//     No automated backup for this DB cluster was found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterAutomatedBackups
+func (c *RDS) DescribeDBClusterAutomatedBackups(input *DescribeDBClusterAutomatedBackupsInput) (*DescribeDBClusterAutomatedBackupsOutput, error) {
+	req, out := c.DescribeDBClusterAutomatedBackupsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDBClusterAutomatedBackupsWithContext is the same as DescribeDBClusterAutomatedBackups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDBClusterAutomatedBackups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBClusterAutomatedBackupsWithContext(ctx aws.Context, input *DescribeDBClusterAutomatedBackupsInput, opts ...request.Option) (*DescribeDBClusterAutomatedBackupsOutput, error) {
+	req, out := c.DescribeDBClusterAutomatedBackupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeDBClusterBacktracks = "DescribeDBClusterBacktracks"
@@ -13895,6 +14067,9 @@ func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPoin
 //     DBClusterParameterGroupName doesn't refer to an existing DB cluster parameter
 //     group.
 //
+//   - ErrCodeDBClusterAutomatedBackupNotFoundFault "DBClusterAutomatedBackupNotFoundFault"
+//     No automated backup for this DB cluster was found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBClusterToPointInTime
 func (c *RDS) RestoreDBClusterToPointInTime(input *RestoreDBClusterToPointInTimeInput) (*RestoreDBClusterToPointInTimeOutput, error) {
 	req, out := c.RestoreDBClusterToPointInTimeRequest(input)
@@ -14895,7 +15070,7 @@ func (c *RDS) StartDBInstanceAutomatedBackupsReplicationRequest(input *StartDBIn
 //   - ErrCodeDBInstanceAutomatedBackupQuotaExceededFault "DBInstanceAutomatedBackupQuotaExceeded"
 //     The quota for retained automated backups was exceeded. This prevents you
 //     from retaining any additional automated backups. The retained automated backups
-//     quota is the same as your DB Instance quota.
+//     quota is the same as your DB instance quota.
 //
 //   - ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
 //     The specified StorageType can't be associated with the DB instance.
@@ -25544,6 +25719,259 @@ func (s *DBCluster) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBClu
 	return s
 }
 
+// An automated backup of a DB cluster. It consists of system backups, transaction
+// logs, and the database cluster properties that existed at the time you deleted
+// the source cluster.
+type DBClusterAutomatedBackup struct {
+	_ struct{} `type:"structure"`
+
+	// For all database engines except Amazon Aurora, AllocatedStorage specifies
+	// the allocated storage size in gibibytes (GiB). For Aurora, AllocatedStorage
+	// always returns 1, because Aurora DB cluster storage size isn't fixed, but
+	// instead automatically adjusts as needed.
+	AllocatedStorage *int64 `type:"integer"`
+
+	// The Availability Zones where instances in the DB cluster can be created.
+	// For information on Amazon Web Services Regions and Availability Zones, see
+	// Regions and Availability Zones (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html).
+	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
+
+	// The retention period for the automated backups.
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// The time when the DB cluster was created, in Universal Coordinated Time (UTC).
+	ClusterCreateTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) for the source DB cluster.
+	DBClusterArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the automated backups.
+	DBClusterAutomatedBackupsArn *string `type:"string"`
+
+	// The identifier for the source DB cluster, which can't be changed and which
+	// is unique to an Amazon Web Services Region.
+	DBClusterIdentifier *string `type:"string"`
+
+	// The resource ID for the source DB cluster, which can't be changed and which
+	// is unique to an Amazon Web Services Region.
+	DbClusterResourceId *string `type:"string"`
+
+	// The name of the database engine for this automated backup.
+	Engine *string `type:"string"`
+
+	// The engine mode of the database engine for the automated backup.
+	EngineMode *string `type:"string"`
+
+	// The version of the database engine for the automated backup.
+	EngineVersion *string `type:"string"`
+
+	// True if mapping of Amazon Web Services Identity and Access Management (IAM)
+	// accounts to database accounts is enabled, and otherwise false.
+	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
+
+	// The IOPS (I/O operations per second) value for the automated backup.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	Iops *int64 `type:"integer"`
+
+	// The Amazon Web Services KMS key ID for an automated backup.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key.
+	KmsKeyId *string `type:"string"`
+
+	// The license model information for this DB cluster automated backup.
+	LicenseModel *string `type:"string"`
+
+	// The master user name of the automated backup.
+	MasterUsername *string `type:"string"`
+
+	// The port number that the automated backup used for connections.
+	//
+	// Default: Inherits from the source DB cluster
+	//
+	// Valid Values: 1150-65535
+	Port *int64 `type:"integer"`
+
+	// The Amazon Web Services Region associated with the automated backup.
+	Region *string `type:"string"`
+
+	// Earliest and latest time an instance can be restored to:
+	RestoreWindow *RestoreWindow `type:"structure"`
+
+	// A list of status information for an automated backup:
+	//
+	//    * retained - Automated backups for deleted clusters.
+	Status *string `type:"string"`
+
+	// Specifies whether the source DB cluster is encrypted.
+	StorageEncrypted *bool `type:"boolean"`
+
+	// The storage type associated with the DB cluster.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	StorageType *string `type:"string"`
+
+	// The VPC ID associated with the DB cluster.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBClusterAutomatedBackup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBClusterAutomatedBackup) GoString() string {
+	return s.String()
+}
+
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *DBClusterAutomatedBackup) SetAllocatedStorage(v int64) *DBClusterAutomatedBackup {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *DBClusterAutomatedBackup) SetAvailabilityZones(v []*string) *DBClusterAutomatedBackup {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *DBClusterAutomatedBackup) SetBackupRetentionPeriod(v int64) *DBClusterAutomatedBackup {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetClusterCreateTime sets the ClusterCreateTime field's value.
+func (s *DBClusterAutomatedBackup) SetClusterCreateTime(v time.Time) *DBClusterAutomatedBackup {
+	s.ClusterCreateTime = &v
+	return s
+}
+
+// SetDBClusterArn sets the DBClusterArn field's value.
+func (s *DBClusterAutomatedBackup) SetDBClusterArn(v string) *DBClusterAutomatedBackup {
+	s.DBClusterArn = &v
+	return s
+}
+
+// SetDBClusterAutomatedBackupsArn sets the DBClusterAutomatedBackupsArn field's value.
+func (s *DBClusterAutomatedBackup) SetDBClusterAutomatedBackupsArn(v string) *DBClusterAutomatedBackup {
+	s.DBClusterAutomatedBackupsArn = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DBClusterAutomatedBackup) SetDBClusterIdentifier(v string) *DBClusterAutomatedBackup {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDbClusterResourceId sets the DbClusterResourceId field's value.
+func (s *DBClusterAutomatedBackup) SetDbClusterResourceId(v string) *DBClusterAutomatedBackup {
+	s.DbClusterResourceId = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DBClusterAutomatedBackup) SetEngine(v string) *DBClusterAutomatedBackup {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineMode sets the EngineMode field's value.
+func (s *DBClusterAutomatedBackup) SetEngineMode(v string) *DBClusterAutomatedBackup {
+	s.EngineMode = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DBClusterAutomatedBackup) SetEngineVersion(v string) *DBClusterAutomatedBackup {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIAMDatabaseAuthenticationEnabled sets the IAMDatabaseAuthenticationEnabled field's value.
+func (s *DBClusterAutomatedBackup) SetIAMDatabaseAuthenticationEnabled(v bool) *DBClusterAutomatedBackup {
+	s.IAMDatabaseAuthenticationEnabled = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *DBClusterAutomatedBackup) SetIops(v int64) *DBClusterAutomatedBackup {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DBClusterAutomatedBackup) SetKmsKeyId(v string) *DBClusterAutomatedBackup {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *DBClusterAutomatedBackup) SetLicenseModel(v string) *DBClusterAutomatedBackup {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *DBClusterAutomatedBackup) SetMasterUsername(v string) *DBClusterAutomatedBackup {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DBClusterAutomatedBackup) SetPort(v int64) *DBClusterAutomatedBackup {
+	s.Port = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DBClusterAutomatedBackup) SetRegion(v string) *DBClusterAutomatedBackup {
+	s.Region = &v
+	return s
+}
+
+// SetRestoreWindow sets the RestoreWindow field's value.
+func (s *DBClusterAutomatedBackup) SetRestoreWindow(v *RestoreWindow) *DBClusterAutomatedBackup {
+	s.RestoreWindow = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBClusterAutomatedBackup) SetStatus(v string) *DBClusterAutomatedBackup {
+	s.Status = &v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *DBClusterAutomatedBackup) SetStorageEncrypted(v bool) *DBClusterAutomatedBackup {
+	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DBClusterAutomatedBackup) SetStorageType(v string) *DBClusterAutomatedBackup {
+	s.StorageType = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DBClusterAutomatedBackup) SetVpcId(v string) *DBClusterAutomatedBackup {
+	s.VpcId = &v
+	return s
+}
+
 // This data type represents the information you need to connect to an Amazon
 // Aurora DB cluster. This data type is used as a response element in the following
 // actions:
@@ -25974,7 +26402,7 @@ type DBClusterSnapshot struct {
 	// snapshot was created from.
 	DBClusterIdentifier *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) for the DB cluster snapshot.
+	// Specifies the Amazon Resource Name (ARN) for the DB cluster snapshot.
 	DBClusterSnapshotArn *string `type:"string"`
 
 	// Specifies the identifier for the DB cluster snapshot.
@@ -25982,6 +26410,10 @@ type DBClusterSnapshot struct {
 
 	// Reserved for future use.
 	DBSystemId *string `type:"string"`
+
+	// Specifies the resource ID of the DB cluster that this DB cluster snapshot
+	// was created from.
+	DbClusterResourceId *string `type:"string"`
 
 	// Specifies the name of the database engine for this DB cluster snapshot.
 	Engine *string `type:"string"`
@@ -26111,6 +26543,12 @@ func (s *DBClusterSnapshot) SetDBClusterSnapshotIdentifier(v string) *DBClusterS
 // SetDBSystemId sets the DBSystemId field's value.
 func (s *DBClusterSnapshot) SetDBSystemId(v string) *DBClusterSnapshot {
 	s.DBSystemId = &v
+	return s
+}
+
+// SetDbClusterResourceId sets the DbClusterResourceId field's value.
+func (s *DBClusterSnapshot) SetDbClusterResourceId(v string) *DBClusterSnapshot {
+	s.DbClusterResourceId = &v
 	return s
 }
 
@@ -27636,11 +28074,11 @@ type DBInstanceAutomatedBackup struct {
 	// with the automated backup.
 	DBInstanceAutomatedBackupsReplications []*DBInstanceAutomatedBackupsReplication `locationNameList:"DBInstanceAutomatedBackupsReplication" type:"list"`
 
-	// The customer id of the instance that is/was associated with the automated
-	// backup.
+	// The identifier for the source DB instance, which can't be changed and which
+	// is unique to an Amazon Web Services Region.
 	DBInstanceIdentifier *string `type:"string"`
 
-	// The identifier for the source DB instance, which can't be changed and which
+	// The resource ID for the source DB instance, which can't be changed and which
 	// is unique to an Amazon Web Services Region.
 	DbiResourceId *string `type:"string"`
 
@@ -27672,7 +28110,7 @@ type DBInstanceAutomatedBackup struct {
 	// License model information for the automated backup.
 	LicenseModel *string `type:"string"`
 
-	// The license model of an automated backup.
+	// The master user name of an automated backup.
 	MasterUsername *string `type:"string"`
 
 	// The option group the automated backup is associated with. If omitted, the
@@ -27694,11 +28132,11 @@ type DBInstanceAutomatedBackup struct {
 
 	// Provides a list of status information for an automated backup:
 	//
-	//    * active - automated backups for current instances
+	//    * active - Automated backups for current instances.
 	//
-	//    * retained - automated backups for deleted instances
+	//    * retained - Automated backups for deleted instances.
 	//
-	//    * creating - automated backups that are waiting for the first automated
+	//    * creating - Automated backups that are waiting for the first automated
 	//    snapshot to be available.
 	Status *string `type:"string"`
 
@@ -29989,6 +30427,86 @@ func (s *DeleteCustomDBEngineVersionOutput) SetValidUpgradeTarget(v []*UpgradeTa
 	return s
 }
 
+type DeleteDBClusterAutomatedBackupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the source DB cluster, which can't be changed and which
+	// is unique to an Amazon Web Services Region.
+	//
+	// DbClusterResourceId is a required field
+	DbClusterResourceId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDBClusterAutomatedBackupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDBClusterAutomatedBackupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDBClusterAutomatedBackupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDBClusterAutomatedBackupInput"}
+	if s.DbClusterResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DbClusterResourceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDbClusterResourceId sets the DbClusterResourceId field's value.
+func (s *DeleteDBClusterAutomatedBackupInput) SetDbClusterResourceId(v string) *DeleteDBClusterAutomatedBackupInput {
+	s.DbClusterResourceId = &v
+	return s
+}
+
+type DeleteDBClusterAutomatedBackupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An automated backup of a DB cluster. It consists of system backups, transaction
+	// logs, and the database cluster properties that existed at the time you deleted
+	// the source cluster.
+	DBClusterAutomatedBackup *DBClusterAutomatedBackup `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDBClusterAutomatedBackupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDBClusterAutomatedBackupOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBClusterAutomatedBackup sets the DBClusterAutomatedBackup field's value.
+func (s *DeleteDBClusterAutomatedBackupOutput) SetDBClusterAutomatedBackup(v *DBClusterAutomatedBackup) *DeleteDBClusterAutomatedBackupOutput {
+	s.DBClusterAutomatedBackup = v
+	return s
+}
+
 type DeleteDBClusterEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -30183,6 +30701,11 @@ type DeleteDBClusterInput struct {
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
+	// A value that indicates whether to remove automated backups immediately after
+	// the DB cluster is deleted. This parameter isn't case-sensitive. The default
+	// is to remove automated backups immediately after the DB cluster is deleted.
+	DeleteAutomatedBackups *bool `type:"boolean"`
+
 	// The DB cluster snapshot identifier of the new DB cluster snapshot created
 	// when SkipFinalSnapshot is disabled.
 	//
@@ -30243,6 +30766,12 @@ func (s *DeleteDBClusterInput) Validate() error {
 // SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
 func (s *DeleteDBClusterInput) SetDBClusterIdentifier(v string) *DeleteDBClusterInput {
 	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDeleteAutomatedBackups sets the DeleteAutomatedBackups field's value.
+func (s *DeleteDBClusterInput) SetDeleteAutomatedBackups(v bool) *DeleteDBClusterInput {
+	s.DeleteAutomatedBackups = &v
 	return s
 }
 
@@ -31834,6 +32363,159 @@ func (s *DescribeCertificatesOutput) SetMarker(v string) *DescribeCertificatesOu
 	return s
 }
 
+type DescribeDBClusterAutomatedBackupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) The user-supplied DB cluster identifier. If this parameter is
+	// specified, it must match the identifier of an existing DB cluster. It returns
+	// information from the specific DB cluster's automated backup. This parameter
+	// isn't case-sensitive.
+	DBClusterIdentifier *string `type:"string"`
+
+	// The resource ID of the DB cluster that is the source of the automated backup.
+	// This parameter isn't case-sensitive.
+	DbClusterResourceId *string `type:"string"`
+
+	// A filter that specifies which resources to return based on status.
+	//
+	// Supported filters are the following:
+	//
+	//    * status retained - Automated backups for deleted clusters and after backup
+	//    replication is stopped.
+	//
+	//    * db-cluster-id - Accepts DB cluster identifiers and Amazon Resource Names
+	//    (ARNs). The results list includes only information about the DB cluster
+	//    automated backups identified by these ARNs.
+	//
+	//    * db-cluster-resource-id - Accepts DB resource identifiers and Amazon
+	//    Resource Names (ARNs). The results list includes only information about
+	//    the DB cluster resources identified by these ARNs.
+	//
+	// Returns all resources by default. The status for each resource is specified
+	// in the response.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// The pagination token provided in the previous request. If this parameter
+	// is specified the response includes only records beyond the marker, up to
+	// MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that you can retrieve the remaining results.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBClusterAutomatedBackupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBClusterAutomatedBackupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDBClusterAutomatedBackupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDBClusterAutomatedBackupsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DescribeDBClusterAutomatedBackupsInput) SetDBClusterIdentifier(v string) *DescribeDBClusterAutomatedBackupsInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDbClusterResourceId sets the DbClusterResourceId field's value.
+func (s *DescribeDBClusterAutomatedBackupsInput) SetDbClusterResourceId(v string) *DescribeDBClusterAutomatedBackupsInput {
+	s.DbClusterResourceId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBClusterAutomatedBackupsInput) SetFilters(v []*Filter) *DescribeDBClusterAutomatedBackupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterAutomatedBackupsInput) SetMarker(v string) *DescribeDBClusterAutomatedBackupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBClusterAutomatedBackupsInput) SetMaxRecords(v int64) *DescribeDBClusterAutomatedBackupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeDBClusterAutomatedBackupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DBClusterAutomatedBackup backups.
+	DBClusterAutomatedBackups []*DBClusterAutomatedBackup `locationNameList:"DBClusterAutomatedBackup" type:"list"`
+
+	// The pagination token provided in the previous request. If this parameter
+	// is specified the response includes only records beyond the marker, up to
+	// MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBClusterAutomatedBackupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBClusterAutomatedBackupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBClusterAutomatedBackups sets the DBClusterAutomatedBackups field's value.
+func (s *DescribeDBClusterAutomatedBackupsOutput) SetDBClusterAutomatedBackups(v []*DBClusterAutomatedBackup) *DescribeDBClusterAutomatedBackupsOutput {
+	s.DBClusterAutomatedBackups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterAutomatedBackupsOutput) SetMarker(v string) *DescribeDBClusterAutomatedBackupsOutput {
+	s.Marker = &v
+	return s
+}
+
 type DescribeDBClusterBacktracksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -32539,6 +33221,9 @@ type DescribeDBClusterSnapshotsInput struct {
 	//    must also be specified.
 	DBClusterSnapshotIdentifier *string `type:"string"`
 
+	// A specific DB cluster resource ID to describe.
+	DbClusterResourceId *string `type:"string"`
+
 	// A filter that specifies one or more DB cluster snapshots to describe.
 	//
 	// Supported filters:
@@ -32659,6 +33344,12 @@ func (s *DescribeDBClusterSnapshotsInput) SetDBClusterIdentifier(v string) *Desc
 // SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
 func (s *DescribeDBClusterSnapshotsInput) SetDBClusterSnapshotIdentifier(v string) *DescribeDBClusterSnapshotsInput {
 	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetDbClusterResourceId sets the DbClusterResourceId field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetDbClusterResourceId(v string) *DescribeDBClusterSnapshotsInput {
+	s.DbClusterResourceId = &v
 	return s
 }
 
@@ -33177,7 +33868,7 @@ type DescribeDBInstanceAutomatedBackupsInput struct {
 
 	// (Optional) The user-supplied instance identifier. If this parameter is specified,
 	// it must match the identifier of an existing DB instance. It returns information
-	// from the specific DB instance' automated backup. This parameter isn't case-sensitive.
+	// from the specific DB instance's automated backup. This parameter isn't case-sensitive.
 	DBInstanceIdentifier *string `type:"string"`
 
 	// The resource ID of the DB instance that is the source of the automated backup.
@@ -33188,10 +33879,10 @@ type DescribeDBInstanceAutomatedBackupsInput struct {
 	//
 	// Supported filters are the following:
 	//
-	//    * status active - automated backups for current instances retained - automated
-	//    backups for deleted instances and after backup replication is stopped
-	//    creating - automated backups that are waiting for the first automated
-	//    snapshot to be available
+	//    * status active - Automated backups for current instances. creating -
+	//    Automated backups that are waiting for the first automated snapshot to
+	//    be available. retained - Automated backups for deleted instances and after
+	//    backup replication is stopped.
 	//
 	//    * db-instance-id - Accepts DB instance identifiers and Amazon Resource
 	//    Names (ARNs). The results list includes only information about the DB
@@ -48930,9 +49621,10 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//    * Must match the identifier of an existing DBCluster.
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
-	//
-	// SourceDBClusterIdentifier is a required field
-	SourceDBClusterIdentifier *string `type:"string" required:"true"`
+	SourceDBClusterIdentifier *string `type:"string"`
+
+	// The resource ID of the source DB cluster from which to restore.
+	SourceDbClusterResourceId *string `type:"string"`
 
 	// Specifies the storage type to be associated with the DB cluster.
 	//
@@ -48989,9 +49681,6 @@ func (s *RestoreDBClusterToPointInTimeInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RestoreDBClusterToPointInTimeInput"}
 	if s.DBClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
-	}
-	if s.SourceDBClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceDBClusterIdentifier"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -49135,6 +49824,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetServerlessV2ScalingConfiguration
 // SetSourceDBClusterIdentifier sets the SourceDBClusterIdentifier field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetSourceDBClusterIdentifier(v string) *RestoreDBClusterToPointInTimeInput {
 	s.SourceDBClusterIdentifier = &v
+	return s
+}
+
+// SetSourceDbClusterResourceId sets the SourceDbClusterResourceId field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetSourceDbClusterResourceId(v string) *RestoreDBClusterToPointInTimeInput {
+	s.SourceDbClusterResourceId = &v
 	return s
 }
 

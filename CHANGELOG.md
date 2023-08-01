@@ -1,3 +1,21 @@
+Release v1.44.314 (2023-08-01)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This release adds support for price capacity optimized allocation strategy for Spot Instances.
+* `service/dms`: Updates service API, documentation, and paginators
+  * Adding new API describe-engine-versions which provides information about the lifecycle of a replication instance's version.
+* `service/internetmonitor`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental Link devices now report their Availability Zone. Link devices now support the ability to change their Availability Zone.
+* `service/polly`: Updates service API
+  * Amazon Polly adds new French Belgian voice - Isabelle. Isabelle is available as Neural voice only.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Added support for deleted clusters PiTR.
+* `service/sagemaker`: Updates service API and documentation
+  * Add Stairs TrafficPattern and FlatInvocations to RecommendationJobStoppingConditions
+
 Release v1.44.313 (2023-07-31)
 ===
 

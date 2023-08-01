@@ -391,7 +391,9 @@
       "type":"string",
       "enum":[
         "AVAILABILITY",
-        "PERFORMANCE"
+        "PERFORMANCE",
+        "LOCAL_AVAILABILITY",
+        "LOCAL_PERFORMANCE"
       ]
     },
     "HealthEventList":{
@@ -415,7 +417,9 @@
       "type":"structure",
       "members":{
         "AvailabilityScoreThreshold":{"shape":"Percentage"},
-        "PerformanceScoreThreshold":{"shape":"Percentage"}
+        "PerformanceScoreThreshold":{"shape":"Percentage"},
+        "AvailabilityLocalHealthEventsConfig":{"shape":"LocalHealthEventsConfig"},
+        "PerformanceLocalHealthEventsConfig":{"shape":"LocalHealthEventsConfig"}
       }
     },
     "ImpactedLocation":{
@@ -579,6 +583,21 @@
       "members":{
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "LocalHealthEventsConfig":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"LocalHealthEventsConfigStatus"},
+        "HealthScoreThreshold":{"shape":"Percentage"},
+        "MinTrafficImpact":{"shape":"Percentage"}
+      }
+    },
+    "LocalHealthEventsConfigStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "LogDeliveryStatus":{
       "type":"string",
