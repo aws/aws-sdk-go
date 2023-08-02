@@ -2744,8 +2744,8 @@ type Action struct {
 	// ApprovalModel is a required field
 	ApprovalModel *string `type:"string" required:"true" enum:"ApprovalModel"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -3125,7 +3125,7 @@ type Budget struct {
 	BudgetLimit *Spend `type:"structure"`
 
 	// The name of a budget. The name must be unique within an account. The : and
-	// \ characters aren't allowed in BudgetName.
+	// \ characters, and the "/action/" substring, aren't allowed in BudgetName.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -3357,8 +3357,8 @@ func (s *Budget) SetTimeUnit(v string) *Budget {
 type BudgetNotificationsForAccount struct {
 	_ struct{} `type:"structure"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	BudgetName *string `min:"1" type:"string"`
 
 	// A list of notifications.
@@ -3400,8 +3400,8 @@ func (s *BudgetNotificationsForAccount) SetNotifications(v []*Notification) *Bud
 type BudgetPerformanceHistory struct {
 	_ struct{} `type:"structure"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	BudgetName *string `min:"1" type:"string"`
 
 	// The type of a budget. It must be one of the following types:
@@ -3773,8 +3773,8 @@ type CreateBudgetActionInput struct {
 	// ApprovalModel is a required field
 	ApprovalModel *string `type:"string" required:"true" enum:"ApprovalModel"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -3955,8 +3955,8 @@ type CreateBudgetActionOutput struct {
 	// ActionId is a required field
 	ActionId *string `min:"36" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -4535,8 +4535,8 @@ type DeleteBudgetActionInput struct {
 	// ActionId is a required field
 	ActionId *string `min:"36" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -4619,8 +4619,8 @@ type DeleteBudgetActionOutput struct {
 	// Action is a required field
 	Action *Action `type:"structure" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -5004,8 +5004,8 @@ type DescribeBudgetActionHistoriesInput struct {
 	// ActionId is a required field
 	ActionId *string `min:"36" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -5163,8 +5163,8 @@ type DescribeBudgetActionInput struct {
 	// ActionId is a required field
 	ActionId *string `min:"36" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -5247,8 +5247,8 @@ type DescribeBudgetActionOutput struct {
 	// Action is a required field
 	Action *Action `type:"structure" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -5411,8 +5411,8 @@ type DescribeBudgetActionsForBudgetInput struct {
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -5752,8 +5752,8 @@ type DescribeBudgetPerformanceHistoryInput struct {
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -6367,8 +6367,8 @@ type ExecuteBudgetActionInput struct {
 	// ActionId is a required field
 	ActionId *string `min:"36" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -6465,8 +6465,8 @@ type ExecuteBudgetActionOutput struct {
 	// ActionId is a required field
 	ActionId *string `min:"36" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -7726,8 +7726,8 @@ type UpdateBudgetActionInput struct {
 	// This specifies if the action needs manual or automatic approval.
 	ApprovalModel *string `type:"string" enum:"ApprovalModel"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`
@@ -7880,8 +7880,8 @@ type UpdateBudgetActionOutput struct {
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
-	// A string that represents the budget name. The ":" and "\" characters aren't
-	// allowed.
+	// A string that represents the budget name. The ":" and "\" characters, and
+	// the "/action/" substring, aren't allowed.
 	//
 	// BudgetName is a required field
 	BudgetName *string `min:"1" type:"string" required:"true"`

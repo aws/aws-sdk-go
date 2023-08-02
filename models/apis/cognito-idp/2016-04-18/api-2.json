@@ -1137,6 +1137,22 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "GetLogDeliveryConfiguration":{
+      "name":"GetLogDeliveryConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetLogDeliveryConfigurationRequest"},
+      "output":{"shape":"GetLogDeliveryConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetSigningCertificate":{
       "name":"GetSigningCertificate",
       "http":{
@@ -1519,6 +1535,22 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"UnsupportedTokenTypeException"},
         {"shape":"ForbiddenException"}
+      ]
+    },
+    "SetLogDeliveryConfiguration":{
+      "name":"SetLogDeliveryConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetLogDeliveryConfigurationRequest"},
+      "output":{"shape":"SetLogDeliveryConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "SetRiskConfiguration":{
@@ -1935,7 +1967,11 @@
     }
   },
   "shapes":{
-    "AWSAccountIdType":{"type":"string"},
+    "AWSAccountIdType":{
+      "type":"string",
+      "max":12,
+      "pattern":"[0-9]+"
+    },
     "AccessTokenValidityType":{
       "type":"integer",
       "max":86400,
@@ -2663,7 +2699,11 @@
       "max":200
     },
     "BooleanType":{"type":"boolean"},
-    "CSSType":{"type":"string"},
+    "CSSType":{
+      "type":"string",
+      "max":131072,
+      "min":0
+    },
     "CSSVersionType":{"type":"string"},
     "CallbackURLsListType":{
       "type":"list",
@@ -2719,8 +2759,7 @@
     "ChallengeResponsesType":{
       "type":"map",
       "key":{"shape":"StringType"},
-      "value":{"shape":"StringType"},
-      "sensitive":true
+      "value":{"shape":"StringType"}
     },
     "ChangePasswordRequest":{
       "type":"structure",
@@ -2773,6 +2812,12 @@
       "min":1,
       "pattern":"[\\w+]+",
       "sensitive":true
+    },
+    "CloudWatchLogsConfigurationType":{
+      "type":"structure",
+      "members":{
+        "LogGroupArn":{"shape":"ArnType"}
+      }
     },
     "CodeDeliveryDetailsListType":{
       "type":"list",
@@ -3584,6 +3629,10 @@
         "CompromisedCredentialsDetected":{"shape":"WrappedBooleanType"}
       }
     },
+    "EventSourceName":{
+      "type":"string",
+      "enum":["userNotification"]
+    },
     "EventType":{
       "type":"string",
       "enum":[
@@ -3725,6 +3774,19 @@
       "required":["IdentityProvider"],
       "members":{
         "IdentityProvider":{"shape":"IdentityProviderType"}
+      }
+    },
+    "GetLogDeliveryConfigurationRequest":{
+      "type":"structure",
+      "required":["UserPoolId"],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"}
+      }
+    },
+    "GetLogDeliveryConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "LogDeliveryConfiguration":{"shape":"LogDeliveryConfigurationType"}
       }
     },
     "GetSigningCertificateRequest":{
@@ -3906,7 +3968,11 @@
       "max":50,
       "min":0
     },
-    "ImageFileType":{"type":"blob"},
+    "ImageFileType":{
+      "type":"blob",
+      "max":131072,
+      "min":0
+    },
     "ImageUrlType":{"type":"string"},
     "InitiateAuthRequest":{
       "type":"structure",
@@ -4202,6 +4268,39 @@
         "Users":{"shape":"UsersListType"},
         "PaginationToken":{"shape":"SearchPaginationTokenType"}
       }
+    },
+    "LogConfigurationListType":{
+      "type":"list",
+      "member":{"shape":"LogConfigurationType"},
+      "max":1,
+      "min":0
+    },
+    "LogConfigurationType":{
+      "type":"structure",
+      "required":[
+        "LogLevel",
+        "EventSource"
+      ],
+      "members":{
+        "LogLevel":{"shape":"LogLevel"},
+        "EventSource":{"shape":"EventSourceName"},
+        "CloudWatchLogsConfiguration":{"shape":"CloudWatchLogsConfigurationType"}
+      }
+    },
+    "LogDeliveryConfigurationType":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "LogConfigurations"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "LogConfigurations":{"shape":"LogConfigurationListType"}
+      }
+    },
+    "LogLevel":{
+      "type":"string",
+      "enum":["ERROR"]
     },
     "LogoutURLsListType":{
       "type":"list",
@@ -4708,8 +4807,24 @@
     "SessionType":{
       "type":"string",
       "max":2048,
-      "min":20,
-      "sensitive":true
+      "min":20
+    },
+    "SetLogDeliveryConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "LogConfigurations"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "LogConfigurations":{"shape":"LogConfigurationListType"}
+      }
+    },
+    "SetLogDeliveryConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "LogDeliveryConfiguration":{"shape":"LogDeliveryConfigurationType"}
+      }
     },
     "SetRiskConfigurationRequest":{
       "type":"structure",
@@ -4863,8 +4978,7 @@
       "type":"string",
       "max":6,
       "min":6,
-      "pattern":"[0-9]+",
-      "sensitive":true
+      "pattern":"[0-9]+"
     },
     "SoftwareTokenMfaConfigType":{
       "type":"structure",
@@ -4927,7 +5041,11 @@
         "MaxLength":{"shape":"StringType"}
       }
     },
-    "StringType":{"type":"string"},
+    "StringType":{
+      "type":"string",
+      "max":131072,
+      "min":0
+    },
     "SupportedIdentityProvidersListType":{
       "type":"list",
       "member":{"shape":"ProviderNameType"}
@@ -5285,8 +5403,7 @@
       "members":{
         "IpAddress":{"shape":"StringType"},
         "EncodedData":{"shape":"StringType"}
-      },
-      "sensitive":true
+      }
     },
     "UserFilterType":{
       "type":"string",

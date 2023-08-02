@@ -64,6 +64,10 @@ type ResilienceHubAPI interface {
 	AddDraftAppVersionResourceMappingsWithContext(aws.Context, *resiliencehub.AddDraftAppVersionResourceMappingsInput, ...request.Option) (*resiliencehub.AddDraftAppVersionResourceMappingsOutput, error)
 	AddDraftAppVersionResourceMappingsRequest(*resiliencehub.AddDraftAppVersionResourceMappingsInput) (*request.Request, *resiliencehub.AddDraftAppVersionResourceMappingsOutput)
 
+	BatchUpdateRecommendationStatus(*resiliencehub.BatchUpdateRecommendationStatusInput) (*resiliencehub.BatchUpdateRecommendationStatusOutput, error)
+	BatchUpdateRecommendationStatusWithContext(aws.Context, *resiliencehub.BatchUpdateRecommendationStatusInput, ...request.Option) (*resiliencehub.BatchUpdateRecommendationStatusOutput, error)
+	BatchUpdateRecommendationStatusRequest(*resiliencehub.BatchUpdateRecommendationStatusInput) (*request.Request, *resiliencehub.BatchUpdateRecommendationStatusOutput)
+
 	CreateApp(*resiliencehub.CreateAppInput) (*resiliencehub.CreateAppOutput, error)
 	CreateAppWithContext(aws.Context, *resiliencehub.CreateAppInput, ...request.Option) (*resiliencehub.CreateAppOutput, error)
 	CreateAppRequest(*resiliencehub.CreateAppInput) (*request.Request, *resiliencehub.CreateAppOutput)
@@ -158,6 +162,13 @@ type ResilienceHubAPI interface {
 
 	ListAlarmRecommendationsPages(*resiliencehub.ListAlarmRecommendationsInput, func(*resiliencehub.ListAlarmRecommendationsOutput, bool) bool) error
 	ListAlarmRecommendationsPagesWithContext(aws.Context, *resiliencehub.ListAlarmRecommendationsInput, func(*resiliencehub.ListAlarmRecommendationsOutput, bool) bool, ...request.Option) error
+
+	ListAppAssessmentComplianceDrifts(*resiliencehub.ListAppAssessmentComplianceDriftsInput) (*resiliencehub.ListAppAssessmentComplianceDriftsOutput, error)
+	ListAppAssessmentComplianceDriftsWithContext(aws.Context, *resiliencehub.ListAppAssessmentComplianceDriftsInput, ...request.Option) (*resiliencehub.ListAppAssessmentComplianceDriftsOutput, error)
+	ListAppAssessmentComplianceDriftsRequest(*resiliencehub.ListAppAssessmentComplianceDriftsInput) (*request.Request, *resiliencehub.ListAppAssessmentComplianceDriftsOutput)
+
+	ListAppAssessmentComplianceDriftsPages(*resiliencehub.ListAppAssessmentComplianceDriftsInput, func(*resiliencehub.ListAppAssessmentComplianceDriftsOutput, bool) bool) error
+	ListAppAssessmentComplianceDriftsPagesWithContext(aws.Context, *resiliencehub.ListAppAssessmentComplianceDriftsInput, func(*resiliencehub.ListAppAssessmentComplianceDriftsOutput, bool) bool, ...request.Option) error
 
 	ListAppAssessments(*resiliencehub.ListAppAssessmentsInput) (*resiliencehub.ListAppAssessmentsOutput, error)
 	ListAppAssessmentsWithContext(aws.Context, *resiliencehub.ListAppAssessmentsInput, ...request.Option) (*resiliencehub.ListAppAssessmentsOutput, error)

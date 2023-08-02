@@ -171,6 +171,7 @@
     "GetLineageGroupPolicy": "<p>The resource policy for the lineage group.</p>",
     "GetModelPackageGroupPolicy": "<p>Gets a resource policy that manages access for a model group. For information about resource policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html\">Identity-based policies and resource-based policies</a> in the <i>Amazon Web Services Identity and Access Management User Guide.</i>.</p>",
     "GetSagemakerServicecatalogPortfolioStatus": "<p>Gets the status of Service Catalog in SageMaker. Service Catalog is used to create SageMaker projects.</p>",
+    "GetScalingConfigurationRecommendation": "<p>Starts an Amazon SageMaker Inference Recommender autoscaling recommendation job. Returns recommendations for autoscaling policies that you can apply to your SageMaker endpoint.</p>",
     "GetSearchSuggestions": "<p>An auto-complete API for the search functionality in the SageMaker console. It returns suggestions of possible matches for the property name to use in <code>Search</code> queries. Provides suggestions for <code>HyperParameters</code>, <code>Tags</code>, and <code>Metrics</code>.</p>",
     "ImportHubContent": "<p>Import hub content.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
     "ListActions": "<p>Lists the actions in your account and their properties.</p>",
@@ -2907,6 +2908,12 @@
         "CustomerMetadataMap$value": null
       }
     },
+    "CustomizedMetricSpecification": {
+      "base": "<p>A customized metric.</p>",
+      "refs": {
+        "MetricSpecification$Customized": "<p>Information about a customized metric.</p>"
+      }
+    },
     "DataCaptureConfig": {
       "base": "<p>Configuration to control how SageMaker captures inference data.</p>",
       "refs": {
@@ -4355,6 +4362,12 @@
         "DomainDetails$Status": "<p>The status.</p>"
       }
     },
+    "Double": {
+      "base": null,
+      "refs": {
+        "TargetTrackingScalingPolicyConfiguration$TargetValue": "<p>The recommended target value to specify for the metric when creating a scaling policy.</p>"
+      }
+    },
     "DoubleParameterValue": {
       "base": null,
       "refs": {
@@ -4391,6 +4404,12 @@
       "base": "<p>Represents the drift check model quality baselines that can be used when the model monitor is set using the model package. </p>",
       "refs": {
         "DriftCheckBaselines$ModelQuality": "<p>Represents the drift check model quality baselines that can be used when the model monitor is set using the model package.</p>"
+      }
+    },
+    "DynamicScalingConfiguration": {
+      "base": "<p>An object with the recommended values for you to specify when creating an autoscaling policy.</p>",
+      "refs": {
+        "GetScalingConfigurationRecommendationResponse$DynamicScalingConfiguration": "<p>An object with the recommended values for you to specify when creating an autoscaling policy.</p>"
       }
     },
     "EMRStepMetadata": {
@@ -4717,6 +4736,8 @@
         "EndpointInput$EndpointName": "<p>An endpoint in customer's account which has enabled <code>DataCaptureConfig</code> enabled.</p>",
         "EndpointMetadata$EndpointName": "<p>The name of the endpoint.</p>",
         "EndpointSummary$EndpointName": "<p>The name of the endpoint.</p>",
+        "GetScalingConfigurationRecommendationRequest$EndpointName": "<p>The name of an endpoint benchmarked during a previously completed inference recommendation job. This name should come from one of the recommendations returned by the job specified in the <code>InferenceRecommendationsJobName</code> field.</p> <p>Specify either this field or the <code>RecommendationId</code> field.</p>",
+        "GetScalingConfigurationRecommendationResponse$EndpointName": "<p>The name of an endpoint benchmarked during a previously completed Inference Recommender job.</p>",
         "ListDataQualityJobDefinitionsRequest$EndpointName": "<p>A filter that lists the data quality job definitions associated with the specified endpoint.</p>",
         "ListModelBiasJobDefinitionsRequest$EndpointName": "<p>Name of the endpoint to monitor for model bias.</p>",
         "ListModelExplainabilityJobDefinitionsRequest$EndpointName": "<p>Name of the endpoint to monitor for model explainability.</p>",
@@ -5719,6 +5740,16 @@
       }
     },
     "GetSagemakerServicecatalogPortfolioStatusOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetScalingConfigurationRecommendationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetScalingConfigurationRecommendationResponse": {
       "base": null,
       "refs": {
       }
@@ -6864,6 +6895,10 @@
         "DescribeModelCardExportJobResponse$ModelCardVersion": "<p>The version of the model card that the model export job exports.</p>",
         "DescribeModelCardRequest$ModelCardVersion": "<p>The version of the model card to describe. If a version is not provided, then the latest version of the model card is described.</p>",
         "DescribeModelCardResponse$ModelCardVersion": "<p>The version of the model card.</p>",
+        "DynamicScalingConfiguration$MinCapacity": "<p>The recommended minimum capacity to specify for your autoscaling policy.</p>",
+        "DynamicScalingConfiguration$MaxCapacity": "<p>The recommended maximum capacity to specify for your autoscaling policy.</p>",
+        "DynamicScalingConfiguration$ScaleInCooldown": "<p>The recommended scale in cooldown time for your autoscaling policy.</p>",
+        "DynamicScalingConfiguration$ScaleOutCooldown": "<p>The recommended scale out cooldown time for your autoscaling policy.</p>",
         "EdgeDeploymentPlanSummary$EdgeDeploymentSuccess": "<p>The number of edge devices with the successful deployment.</p>",
         "EdgeDeploymentPlanSummary$EdgeDeploymentPending": "<p>The number of edge devices yet to pick up the deployment, or in progress.</p>",
         "EdgeDeploymentPlanSummary$EdgeDeploymentFailed": "<p>The number of edge devices that failed the deployment.</p>",
@@ -6882,7 +6917,11 @@
         "ModelLatencyThreshold$ValueInMilliseconds": "<p>The model latency percentile value in milliseconds.</p>",
         "RecommendationJobStoppingConditions$MaxInvocations": "<p>The maximum number of requests per minute expected for the endpoint.</p>",
         "RecommendationMetrics$MaxInvocations": "<p>The expected maximum number of requests per minute for the instance.</p>",
-        "RecommendationMetrics$ModelLatency": "<p>The expected model latency at maximum invocation per minute for the instance.</p>"
+        "RecommendationMetrics$ModelLatency": "<p>The expected model latency at maximum invocation per minute for the instance.</p>",
+        "ScalingPolicyMetric$InvocationsPerInstance": "<p>The number of invocations sent to a model, normalized by <code>InstanceCount</code> in each ProductionVariant. <code>1/numberOfInstances</code> is sent as the value on each request, where <code>numberOfInstances</code> is the number of active instances for the ProductionVariant behind the endpoint at the time of the request.</p>",
+        "ScalingPolicyMetric$ModelLatency": "<p>The interval of time taken by a model to respond as viewed from SageMaker. This interval includes the local communication times taken to send the request and to fetch the response from the container of a model and the time taken to complete the inference in the container.</p>",
+        "ScalingPolicyObjective$MinInvocationsPerMinute": "<p>The minimum number of expected requests to your endpoint per minute.</p>",
+        "ScalingPolicyObjective$MaxInvocationsPerMinute": "<p>The maximum number of expected requests to your endpoint per minute.</p>"
       }
     },
     "IntegerParameterRange": {
@@ -8498,6 +8537,12 @@
       "base": null,
       "refs": {
         "MetricDatum$Set": "<p>The dataset split from which the AutoML job produced the metric.</p>"
+      }
+    },
+    "MetricSpecification": {
+      "base": "<p>An object containing information about a metric.</p>",
+      "refs": {
+        "TargetTrackingScalingPolicyConfiguration$MetricSpecification": "<p>An object containing information about a metric.</p>"
       }
     },
     "MetricValue": {
@@ -10718,6 +10763,12 @@
         "PutModelPackageGroupPolicyInput$ResourcePolicy": "<p>The resource policy for the model group.</p>"
       }
     },
+    "PredefinedMetricSpecification": {
+      "base": "<p>A specification for a predefined metric.</p>",
+      "refs": {
+        "MetricSpecification$Predefined": "<p>Information about a predefined metric.</p>"
+      }
+    },
     "PresignedDomainUrl": {
       "base": null,
       "refs": {
@@ -11504,6 +11555,8 @@
         "CreateInferenceRecommendationsJobRequest$JobName": "<p>A name for the recommendation job. The name must be unique within the Amazon Web Services Region and within your Amazon Web Services account. The job name is passed down to the resources created by the recommendation job. The names of resources (such as the model, endpoint configuration, endpoint, and compilation) that are prefixed with the job name are truncated at 40 characters.</p>",
         "DescribeInferenceRecommendationsJobRequest$JobName": "<p>The name of the job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.</p>",
         "DescribeInferenceRecommendationsJobResponse$JobName": "<p>The name of the job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.</p>",
+        "GetScalingConfigurationRecommendationRequest$InferenceRecommendationsJobName": "<p>The name of a previously completed Inference Recommender job.</p>",
+        "GetScalingConfigurationRecommendationResponse$InferenceRecommendationsJobName": "<p>The name of a previously completed Inference Recommender job.</p>",
         "InferenceRecommendationsJob$JobName": "<p>The name of the job.</p>",
         "InferenceRecommendationsJobStep$JobName": "<p>The name of the Inference Recommender job.</p>",
         "ListInferenceRecommendationsJobStepsRequest$JobName": "<p>The name for the Inference Recommender job.</p>",
@@ -12179,6 +12232,31 @@
         "DataCaptureConfigSummary$CurrentSamplingPercentage": "<p>The percentage of requests being captured by your Endpoint.</p>"
       }
     },
+    "ScalingPolicies": {
+      "base": null,
+      "refs": {
+        "DynamicScalingConfiguration$ScalingPolicies": "<p>An object of the scaling policies for each metric.</p>"
+      }
+    },
+    "ScalingPolicy": {
+      "base": "<p>An object containing a recommended scaling policy.</p>",
+      "refs": {
+        "ScalingPolicies$member": null
+      }
+    },
+    "ScalingPolicyMetric": {
+      "base": "<p>The metric for a scaling policy.</p>",
+      "refs": {
+        "GetScalingConfigurationRecommendationResponse$Metric": "<p>An object with a list of metrics that were benchmarked during the previously completed Inference Recommender job.</p>"
+      }
+    },
+    "ScalingPolicyObjective": {
+      "base": "<p>An object where you specify the anticipated traffic pattern for an endpoint.</p>",
+      "refs": {
+        "GetScalingConfigurationRecommendationRequest$ScalingPolicyObjective": "<p>An object where you specify the anticipated traffic pattern for an endpoint.</p>",
+        "GetScalingConfigurationRecommendationResponse$ScalingPolicyObjective": "<p>An object representing the anticipated traffic pattern for an endpoint that you specified in the request.</p>"
+      }
+    },
     "ScheduleConfig": {
       "base": "<p>Configuration details about the monitoring schedule.</p>",
       "refs": {
@@ -12735,6 +12813,12 @@
       "refs": {
       }
     },
+    "Statistic": {
+      "base": null,
+      "refs": {
+        "CustomizedMetricSpecification$Statistic": "<p>The statistic of the customized metric.</p>"
+      }
+    },
     "StatusDetails": {
       "base": null,
       "refs": {
@@ -12875,6 +12959,8 @@
         "BatchTransformInput$ProbabilityAttribute": "<p>In a classification problem, the attribute that represents the class probability.</p>",
         "CreateModelPackageInput$Domain": "<p>The machine learning domain of your model package and its components. Common machine learning domains include computer vision and natural language processing.</p>",
         "CreateModelPackageInput$Task": "<p>The machine learning task your model package accomplishes. Common machine learning tasks include object detection and image classification. The following tasks are supported by Inference Recommender: <code>\"IMAGE_CLASSIFICATION\"</code> | <code>\"OBJECT_DETECTION\"</code> | <code>\"TEXT_GENERATION\"</code> |<code>\"IMAGE_SEGMENTATION\"</code> | <code>\"FILL_MASK\"</code> | <code>\"CLASSIFICATION\"</code> | <code>\"REGRESSION\"</code> | <code>\"OTHER\"</code>.</p> <p>Specify \"OTHER\" if none of the tasks listed fit your use case.</p>",
+        "CustomizedMetricSpecification$MetricName": "<p>The name of the customized metric.</p>",
+        "CustomizedMetricSpecification$Namespace": "<p>The namespace of the customized metric.</p>",
         "DescribeEdgePackagingJobResponse$EdgePackagingJobStatusMessage": "<p>Returns a message describing the job status and error messages.</p>",
         "DescribeEdgePackagingJobResponse$ModelSignature": "<p>The signature document of files in the model artifact.</p>",
         "DescribeModelPackageOutput$Domain": "<p>The machine learning domain of the model package you specified. Common machine learning domains include computer vision and natural language processing.</p>",
@@ -12892,6 +12978,8 @@
         "EnvironmentParameter$Key": "<p>The environment key suggested by the Amazon SageMaker Inference Recommender.</p>",
         "EnvironmentParameter$ValueType": "<p>The value type suggested by the Amazon SageMaker Inference Recommender.</p>",
         "EnvironmentParameter$Value": "<p>The value suggested by the Amazon SageMaker Inference Recommender.</p>",
+        "GetScalingConfigurationRecommendationRequest$RecommendationId": "<p>The recommendation ID of a previously completed inference recommendation. This ID should come from one of the recommendations returned by the job specified in the <code>InferenceRecommendationsJobName</code> field.</p> <p>Specify either this field or the <code>EndpointName</code> field.</p>",
+        "GetScalingConfigurationRecommendationResponse$RecommendationId": "<p>The recommendation ID of a previously completed inference recommendation.</p>",
         "IamIdentity$Arn": "<p>The Amazon Resource Name (ARN) of the IAM identity.</p>",
         "IamIdentity$PrincipalId": "<p>The ID of the principal that assumes the IAM identity.</p>",
         "IamIdentity$SourceIdentity": "<p>The person or application which assumes the IAM identity.</p>",
@@ -12913,6 +13001,7 @@
         "ModelPackageContainerDefinition$Framework": "<p>The machine learning framework of the model package container image.</p>",
         "ModelPackageContainerDefinition$NearestModelName": "<p>The name of a pre-trained machine learning benchmarked by Amazon SageMaker Inference Recommender model that matches your model. You can find a list of benchmarked models by calling <code>ListModelMetadata</code>.</p>",
         "ModelPackageStatusItem$FailureReason": "<p>if the overall status is <code>Failed</code>, the reason for the failure.</p>",
+        "PredefinedMetricSpecification$PredefinedMetricType": "<p>The metric type. You can only apply SageMaker metric types to SageMaker endpoints.</p>",
         "ProcessingInput$InputName": "<p>The name for the processing job input.</p>",
         "ProcessingOutput$OutputName": "<p>The name for the processing job output.</p>",
         "ProductListings$member": null,
@@ -13344,6 +13433,12 @@
       "refs": {
         "CompilationJobSummary$CompilationTargetPlatformOs": "<p>The type of OS that the model will run on after the compilation job has completed.</p>",
         "TargetPlatform$Os": "<p>Specifies a target platform OS.</p> <ul> <li> <p> <code>LINUX</code>: Linux-based operating systems.</p> </li> <li> <p> <code>ANDROID</code>: Android operating systems. Android API level can be specified using the <code>ANDROID_PLATFORM</code> compiler option. For example, <code>\"CompilerOptions\": {'ANDROID_PLATFORM': 28}</code> </p> </li> </ul>"
+      }
+    },
+    "TargetTrackingScalingPolicyConfiguration": {
+      "base": "<p>A target tracking scaling policy. Includes support for predefined or customized metrics.</p> <p>When using the <a href=\"https://docs.aws.amazon.com/autoscaling/application/APIReference/API_PutScalingPolicy.html\">PutScalingPolicy</a> API, this parameter is required when you are creating a policy with the policy type <code>TargetTrackingScaling</code>.</p>",
+      "refs": {
+        "ScalingPolicy$TargetTracking": "<p>A target tracking scaling policy. Includes support for predefined or customized metrics.</p>"
       }
     },
     "TaskAvailabilityLifetimeInSeconds": {
@@ -14994,6 +15089,13 @@
       "refs": {
         "RecommendationMetrics$CpuUtilization": "<p>The expected CPU utilization at maximum invocations per minute for the instance.</p> <p> <code>NaN</code> indicates that the value is not available.</p>",
         "RecommendationMetrics$MemoryUtilization": "<p>The expected memory utilization at maximum invocations per minute for the instance.</p> <p> <code>NaN</code> indicates that the value is not available.</p>"
+      }
+    },
+    "UtilizationPercentagePerCore": {
+      "base": null,
+      "refs": {
+        "GetScalingConfigurationRecommendationRequest$TargetCpuUtilizationPerCore": "<p>The percentage of how much utilization you want an instance to use before autoscaling. The default value is 50%.</p>",
+        "GetScalingConfigurationRecommendationResponse$TargetCpuUtilizationPerCore": "<p>The percentage of how much utilization you want an instance to use before autoscaling, which you specified in the request. The default value is 50%.</p>"
       }
     },
     "ValidationFraction": {

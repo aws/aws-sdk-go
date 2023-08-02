@@ -1,3 +1,16 @@
+Release v1.44.315 (2023-08-02)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * As part of CAE tagging integration we need to update our budget names regex filter to prevent customers from using "/action/" in their budget names.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * This release includes additional Glue Streaming KAKFA SASL property types.
+* `service/resiliencehub`: Updates service API, documentation, and paginators
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender introduces a new API GetScalingConfigurationRecommendation to recommend auto scaling policies based on completed Inference Recommender jobs.
+
 Release v1.44.314 (2023-08-01)
 ===
 
