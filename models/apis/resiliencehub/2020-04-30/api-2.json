@@ -30,6 +30,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "BatchUpdateRecommendationStatus":{
+      "name":"BatchUpdateRecommendationStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/batch-update-recommendation-status",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchUpdateRecommendationStatusRequest"},
+      "output":{"shape":"BatchUpdateRecommendationStatusResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateApp":{
       "name":"CreateApp",
       "http":{
@@ -416,6 +433,7 @@
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
@@ -433,6 +451,22 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListAppAssessmentComplianceDrifts":{
+      "name":"ListAppAssessmentComplianceDrifts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-app-assessment-compliance-drifts",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAppAssessmentComplianceDriftsRequest"},
+      "output":{"shape":"ListAppAssessmentComplianceDriftsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
@@ -985,7 +1019,12 @@
         "type"
       ],
       "members":{
-        "appComponentName":{"shape":"EntityId"},
+        "appComponentName":{
+          "shape":"EntityId",
+          "deprecated":true,
+          "deprecatedMessage":"An alarm recommendation can be attached to multiple Application Components, hence this property will be replaced by the new property 'appComponentNames'."
+        },
+        "appComponentNames":{"shape":"AppComponentNameList"},
         "description":{"shape":"EntityDescription"},
         "items":{"shape":"RecommendationItemList"},
         "name":{"shape":"String500"},
@@ -1028,9 +1067,13 @@
         "complianceStatus":{"shape":"AppComplianceStatusType"},
         "creationTime":{"shape":"TimeStamp"},
         "description":{"shape":"EntityDescription"},
+        "driftStatus":{"shape":"AppDriftStatusType"},
+        "eventSubscriptions":{"shape":"EventSubscriptionList"},
         "lastAppComplianceEvaluationTime":{"shape":"TimeStamp"},
+        "lastDriftEvaluationTime":{"shape":"TimeStamp"},
         "lastResiliencyScoreEvaluationTime":{"shape":"TimeStamp"},
         "name":{"shape":"EntityName"},
+        "permissionModel":{"shape":"PermissionModel"},
         "policyArn":{"shape":"Arn"},
         "resiliencyScore":{"shape":"Double"},
         "status":{"shape":"AppStatusType"},
@@ -1053,6 +1096,7 @@
         "compliance":{"shape":"AssessmentCompliance"},
         "complianceStatus":{"shape":"ComplianceStatus"},
         "cost":{"shape":"Cost"},
+        "driftStatus":{"shape":"DriftStatus"},
         "endTime":{"shape":"TimeStamp"},
         "invoker":{"shape":"AssessmentInvoker"},
         "message":{"shape":"String500"},
@@ -1060,7 +1104,8 @@
         "resiliencyScore":{"shape":"ResiliencyScore"},
         "resourceErrorsDetails":{"shape":"ResourceErrorsDetails"},
         "startTime":{"shape":"TimeStamp"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "versionName":{"shape":"EntityVersion"}
       }
     },
     "AppAssessmentScheduleType":{
@@ -1084,11 +1129,13 @@
         "assessmentStatus":{"shape":"AssessmentStatus"},
         "complianceStatus":{"shape":"ComplianceStatus"},
         "cost":{"shape":"Cost"},
+        "driftStatus":{"shape":"DriftStatus"},
         "endTime":{"shape":"TimeStamp"},
         "invoker":{"shape":"AssessmentInvoker"},
         "message":{"shape":"String500"},
         "resiliencyScore":{"shape":"Double"},
-        "startTime":{"shape":"TimeStamp"}
+        "startTime":{"shape":"TimeStamp"},
+        "versionName":{"shape":"EntityVersion"}
       }
     },
     "AppAssessmentSummaryList":{
@@ -1136,6 +1183,14 @@
       "type":"list",
       "member":{"shape":"String255"}
     },
+    "AppDriftStatusType":{
+      "type":"string",
+      "enum":[
+        "NotChecked",
+        "NotDetected",
+        "Detected"
+      ]
+    },
     "AppInputSource":{
       "type":"structure",
       "required":["importType"],
@@ -1172,6 +1227,7 @@
         "complianceStatus":{"shape":"AppComplianceStatusType"},
         "creationTime":{"shape":"TimeStamp"},
         "description":{"shape":"EntityDescription"},
+        "driftStatus":{"shape":"AppDriftStatusType"},
         "name":{"shape":"EntityName"},
         "resiliencyScore":{"shape":"Double"},
         "status":{"shape":"AppStatusType"}
@@ -1195,7 +1251,10 @@
       "type":"structure",
       "required":["appVersion"],
       "members":{
-        "appVersion":{"shape":"EntityVersion"}
+        "appVersion":{"shape":"EntityVersion"},
+        "creationTime":{"shape":"TimeStamp"},
+        "identifier":{"shape":"LongOptional"},
+        "versionName":{"shape":"EntityVersion"}
       }
     },
     "Arn":{
@@ -1237,6 +1296,65 @@
       "type":"string",
       "pattern":"^[a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]$"
     },
+    "BatchUpdateRecommendationStatusFailedEntries":{
+      "type":"list",
+      "member":{"shape":"BatchUpdateRecommendationStatusFailedEntry"}
+    },
+    "BatchUpdateRecommendationStatusFailedEntry":{
+      "type":"structure",
+      "required":[
+        "entryId",
+        "errorMessage"
+      ],
+      "members":{
+        "entryId":{"shape":"String255"},
+        "errorMessage":{"shape":"ErrorMessage"}
+      }
+    },
+    "BatchUpdateRecommendationStatusRequest":{
+      "type":"structure",
+      "required":[
+        "appArn",
+        "requestEntries"
+      ],
+      "members":{
+        "appArn":{"shape":"Arn"},
+        "requestEntries":{"shape":"UpdateRecommendationStatusRequestEntries"}
+      }
+    },
+    "BatchUpdateRecommendationStatusResponse":{
+      "type":"structure",
+      "required":[
+        "appArn",
+        "failedEntries",
+        "successfulEntries"
+      ],
+      "members":{
+        "appArn":{"shape":"Arn"},
+        "failedEntries":{"shape":"BatchUpdateRecommendationStatusFailedEntries"},
+        "successfulEntries":{"shape":"BatchUpdateRecommendationStatusSuccessfulEntries"}
+      }
+    },
+    "BatchUpdateRecommendationStatusSuccessfulEntries":{
+      "type":"list",
+      "member":{"shape":"BatchUpdateRecommendationStatusSuccessfulEntry"}
+    },
+    "BatchUpdateRecommendationStatusSuccessfulEntry":{
+      "type":"structure",
+      "required":[
+        "entryId",
+        "excluded",
+        "item",
+        "referenceId"
+      ],
+      "members":{
+        "entryId":{"shape":"String255"},
+        "excludeReason":{"shape":"ExcludeRecommendationReason"},
+        "excluded":{"shape":"BooleanOptional"},
+        "item":{"shape":"UpdateRecommendationStatusItem"},
+        "referenceId":{"shape":"SpecReferenceId"}
+      }
+    },
     "BooleanOptional":{
       "type":"boolean",
       "box":true
@@ -1246,6 +1364,25 @@
       "max":63,
       "min":1,
       "pattern":"^[A-za-z0-9_.-]{0,63}$"
+    },
+    "ComplianceDrift":{
+      "type":"structure",
+      "members":{
+        "actualReferenceId":{"shape":"String255"},
+        "actualValue":{"shape":"AssessmentCompliance"},
+        "appId":{"shape":"String255"},
+        "appVersion":{"shape":"String255"},
+        "diffType":{"shape":"DifferenceType"},
+        "driftType":{"shape":"DriftType"},
+        "entityId":{"shape":"String255"},
+        "entityType":{"shape":"String255"},
+        "expectedReferenceId":{"shape":"String255"},
+        "expectedValue":{"shape":"AssessmentCompliance"}
+      }
+    },
+    "ComplianceDriftList":{
+      "type":"list",
+      "member":{"shape":"ComplianceDrift"}
     },
     "ComplianceStatus":{
       "type":"string",
@@ -1355,7 +1492,9 @@
           "idempotencyToken":true
         },
         "description":{"shape":"EntityDescription"},
+        "eventSubscriptions":{"shape":"EventSubscriptionList"},
         "name":{"shape":"EntityName"},
+        "permissionModel":{"shape":"PermissionModel"},
         "policyArn":{"shape":"Arn"},
         "tags":{"shape":"TagMap"}
       }
@@ -1855,6 +1994,10 @@
         "policy":{"shape":"ResiliencyPolicy"}
       }
     },
+    "DifferenceType":{
+      "type":"string",
+      "enum":["NotEqual"]
+    },
     "DisruptionCompliance":{
       "type":"structure",
       "required":["complianceStatus"],
@@ -1896,6 +2039,18 @@
       "min":1
     },
     "Double":{"type":"double"},
+    "DriftStatus":{
+      "type":"string",
+      "enum":[
+        "NotChecked",
+        "NotDetected",
+        "Detected"
+      ]
+    },
+    "DriftType":{
+      "type":"string",
+      "enum":["ApplicationCompliance"]
+    },
     "EksNamespace":{
       "type":"string",
       "max":63,
@@ -1967,6 +2122,39 @@
         "L4"
       ]
     },
+    "EventSubscription":{
+      "type":"structure",
+      "required":[
+        "eventType",
+        "name"
+      ],
+      "members":{
+        "eventType":{"shape":"EventType"},
+        "name":{"shape":"String255"},
+        "snsTopicArn":{"shape":"Arn"}
+      }
+    },
+    "EventSubscriptionList":{
+      "type":"list",
+      "member":{"shape":"EventSubscription"},
+      "max":10,
+      "min":0
+    },
+    "EventType":{
+      "type":"string",
+      "enum":[
+        "ScheduledAssessmentFailure",
+        "DriftDetected"
+      ]
+    },
+    "ExcludeRecommendationReason":{
+      "type":"string",
+      "enum":[
+        "AlreadyImplemented",
+        "NotRelevant",
+        "ComplexityOfImplementation"
+      ]
+    },
     "FailurePolicy":{
       "type":"structure",
       "required":[
@@ -1987,6 +2175,20 @@
         "BackupAndRestore",
         "NoRecoveryPlan"
       ]
+    },
+    "IamRoleArn":{
+      "type":"string",
+      "pattern":"^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):iam::[0-9]{12}:role/(([^/][!-~]+/){1,511})?[A-Za-z0-9_+=,.@-]{1,64}$"
+    },
+    "IamRoleArnList":{
+      "type":"list",
+      "member":{"shape":"IamRoleArn"},
+      "max":10,
+      "min":0
+    },
+    "IamRoleName":{
+      "type":"string",
+      "pattern":"^([^/]([!-~]+/){1,511})?[A-Za-z0-9_+=,.@-]{1,64}$"
     },
     "ImportResourcesToDraftAppVersionRequest":{
       "type":"structure",
@@ -2039,6 +2241,23 @@
       "required":["alarmRecommendations"],
       "members":{
         "alarmRecommendations":{"shape":"AlarmRecommendationList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAppAssessmentComplianceDriftsRequest":{
+      "type":"structure",
+      "required":["assessmentArn"],
+      "members":{
+        "assessmentArn":{"shape":"Arn"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAppAssessmentComplianceDriftsResponse":{
+      "type":"structure",
+      "required":["complianceDrifts"],
+      "members":{
+        "complianceDrifts":{"shape":"ComplianceDriftList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -2228,8 +2447,10 @@
       "required":["appArn"],
       "members":{
         "appArn":{"shape":"Arn"},
+        "endTime":{"shape":"TimeStamp"},
         "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "startTime":{"shape":"TimeStamp"}
       }
     },
     "ListAppVersionsResponse":{
@@ -2460,6 +2681,10 @@
         "terraformSourceName":{"shape":"String255"}
       }
     },
+    "LongOptional":{
+      "type":"long",
+      "box":true
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -2469,6 +2694,22 @@
     "NextToken":{
       "type":"string",
       "pattern":"^\\S{1,2000}$"
+    },
+    "PermissionModel":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "crossAccountRoleArns":{"shape":"IamRoleArnList"},
+        "invokerRoleName":{"shape":"IamRoleName"},
+        "type":{"shape":"PermissionModelType"}
+      }
+    },
+    "PermissionModelType":{
+      "type":"string",
+      "enum":[
+        "LegacyIAMUser",
+        "RoleBased"
+      ]
     },
     "PhysicalIdentifierType":{
       "type":"string",
@@ -2517,7 +2758,8 @@
       "type":"structure",
       "required":["appArn"],
       "members":{
-        "appArn":{"shape":"Arn"}
+        "appArn":{"shape":"Arn"},
+        "versionName":{"shape":"EntityVersion"}
       }
     },
     "PublishAppVersionResponse":{
@@ -2525,7 +2767,9 @@
       "required":["appArn"],
       "members":{
         "appArn":{"shape":"Arn"},
-        "appVersion":{"shape":"EntityVersion"}
+        "appVersion":{"shape":"EntityVersion"},
+        "identifier":{"shape":"LongOptional"},
+        "versionName":{"shape":"EntityVersion"}
       }
     },
     "PutDraftAppVersionTemplateRequest":{
@@ -2580,6 +2824,8 @@
       "type":"structure",
       "members":{
         "alreadyImplemented":{"shape":"BooleanOptional"},
+        "excludeReason":{"shape":"ExcludeRecommendationReason"},
+        "excluded":{"shape":"BooleanOptional"},
         "resourceId":{"shape":"String500"},
         "targetAccountId":{"shape":"CustomerId"},
         "targetRegion":{"shape":"AwsRegion"}
@@ -2694,7 +2940,8 @@
         "Critical",
         "Important",
         "CoreServices",
-        "NonCritical"
+        "NonCritical",
+        "NotApplicable"
       ]
     },
     "ResiliencyScore":{
@@ -3124,6 +3371,8 @@
         "assessmentSchedule":{"shape":"AppAssessmentScheduleType"},
         "clearResiliencyPolicyArn":{"shape":"BooleanOptional"},
         "description":{"shape":"EntityDescription"},
+        "eventSubscriptions":{"shape":"EventSubscriptionList"},
+        "permissionModel":{"shape":"PermissionModel"},
         "policyArn":{"shape":"Arn"}
       }
     },
@@ -3206,6 +3455,36 @@
         "additionalInfo":{"shape":"AdditionalInfoMap"},
         "appArn":{"shape":"Arn"},
         "appVersion":{"shape":"EntityVersion"}
+      }
+    },
+    "UpdateRecommendationStatusItem":{
+      "type":"structure",
+      "members":{
+        "resourceId":{"shape":"String500"},
+        "targetAccountId":{"shape":"CustomerId"},
+        "targetRegion":{"shape":"AwsRegion"}
+      }
+    },
+    "UpdateRecommendationStatusRequestEntries":{
+      "type":"list",
+      "member":{"shape":"UpdateRecommendationStatusRequestEntry"},
+      "max":50,
+      "min":1
+    },
+    "UpdateRecommendationStatusRequestEntry":{
+      "type":"structure",
+      "required":[
+        "entryId",
+        "excluded",
+        "item",
+        "referenceId"
+      ],
+      "members":{
+        "entryId":{"shape":"String255"},
+        "excludeReason":{"shape":"ExcludeRecommendationReason"},
+        "excluded":{"shape":"BooleanOptional"},
+        "item":{"shape":"UpdateRecommendationStatusItem"},
+        "referenceId":{"shape":"SpecReferenceId"}
       }
     },
     "UpdateResiliencyPolicyRequest":{

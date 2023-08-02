@@ -115,6 +115,101 @@ func (c *ResilienceHub) AddDraftAppVersionResourceMappingsWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+const opBatchUpdateRecommendationStatus = "BatchUpdateRecommendationStatus"
+
+// BatchUpdateRecommendationStatusRequest generates a "aws/request.Request" representing the
+// client's request for the BatchUpdateRecommendationStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchUpdateRecommendationStatus for more information on using the BatchUpdateRecommendationStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchUpdateRecommendationStatusRequest method.
+//	req, resp := client.BatchUpdateRecommendationStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/BatchUpdateRecommendationStatus
+func (c *ResilienceHub) BatchUpdateRecommendationStatusRequest(input *BatchUpdateRecommendationStatusInput) (req *request.Request, output *BatchUpdateRecommendationStatusOutput) {
+	op := &request.Operation{
+		Name:       opBatchUpdateRecommendationStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/batch-update-recommendation-status",
+	}
+
+	if input == nil {
+		input = &BatchUpdateRecommendationStatusInput{}
+	}
+
+	output = &BatchUpdateRecommendationStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchUpdateRecommendationStatus API operation for AWS Resilience Hub.
+//
+// Enables you to include or exclude one or more operational recommendations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resilience Hub's
+// API operation BatchUpdateRecommendationStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Resilience
+//     Hub service.
+//
+//   - ResourceNotFoundException
+//     This exception occurs when the specified resource could not be found.
+//
+//   - ThrottlingException
+//     This exception occurs when you have exceeded the limit on the number of requests
+//     per second.
+//
+//   - ValidationException
+//     This exception occurs when a request is not valid.
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/BatchUpdateRecommendationStatus
+func (c *ResilienceHub) BatchUpdateRecommendationStatus(input *BatchUpdateRecommendationStatusInput) (*BatchUpdateRecommendationStatusOutput, error) {
+	req, out := c.BatchUpdateRecommendationStatusRequest(input)
+	return out, req.Send()
+}
+
+// BatchUpdateRecommendationStatusWithContext is the same as BatchUpdateRecommendationStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchUpdateRecommendationStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResilienceHub) BatchUpdateRecommendationStatusWithContext(ctx aws.Context, input *BatchUpdateRecommendationStatusInput, opts ...request.Option) (*BatchUpdateRecommendationStatusOutput, error) {
+	req, out := c.BatchUpdateRecommendationStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateApp = "CreateApp"
 
 // CreateAppRequest generates a "aws/request.Request" representing the
@@ -160,12 +255,13 @@ func (c *ResilienceHub) CreateAppRequest(input *CreateAppInput) (req *request.Re
 //
 // Creates an Resilience Hub application. An Resilience Hub application is a
 // collection of Amazon Web Services resources structured to prevent and recover
-// Amazon Web Services application disruptions. To describe an Resilience Hub
+// Amazon Web Services application disruptions. To describe a Resilience Hub
 // application, you provide an application name, resources from one or more
 // CloudFormation stacks, Resource Groups, Terraform state files, AppRegistry
-// applications, and an appropriate resiliency policy. For more information
-// about the number of resources supported per application, see Service Quotas
-// (https://docs.aws.amazon.com/general/latest/gr/resiliencehub.html#limits_resiliencehub).
+// applications, and an appropriate resiliency policy. In addition, you can
+// also add resources that are located on Amazon Elastic Kubernetes Service
+// (Amazon EKS) clusters as optional resources. For more information about the
+// number of resources supported per application, see Service quotas (https://docs.aws.amazon.com/general/latest/gr/resiliencehub.html#limits_resiliencehub).
 //
 // After you create an Resilience Hub application, you publish it so that you
 // can run a resiliency assessment on it. You can then use recommendations from
@@ -2341,6 +2437,11 @@ func (c *ResilienceHub) ImportResourcesToDraftAppVersionRequest(input *ImportRes
 //     to propagate to the host serving the current request. A retry (with appropriate
 //     backoff logic) is the recommended response to this exception.
 //
+//   - ServiceQuotaExceededException
+//     This exception occurs when you have exceeded your service quota. To perform
+//     the requested action, remove some of the relevant resources, or use Service
+//     Quotas to request a service quota increase.
+//
 //   - ThrottlingException
 //     This exception occurs when you have exceeded the limit on the number of requests
 //     per second.
@@ -2520,6 +2621,155 @@ func (c *ResilienceHub) ListAlarmRecommendationsPagesWithContext(ctx aws.Context
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAlarmRecommendationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAppAssessmentComplianceDrifts = "ListAppAssessmentComplianceDrifts"
+
+// ListAppAssessmentComplianceDriftsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAppAssessmentComplianceDrifts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAppAssessmentComplianceDrifts for more information on using the ListAppAssessmentComplianceDrifts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAppAssessmentComplianceDriftsRequest method.
+//	req, resp := client.ListAppAssessmentComplianceDriftsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListAppAssessmentComplianceDrifts
+func (c *ResilienceHub) ListAppAssessmentComplianceDriftsRequest(input *ListAppAssessmentComplianceDriftsInput) (req *request.Request, output *ListAppAssessmentComplianceDriftsOutput) {
+	op := &request.Operation{
+		Name:       opListAppAssessmentComplianceDrifts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-app-assessment-compliance-drifts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAppAssessmentComplianceDriftsInput{}
+	}
+
+	output = &ListAppAssessmentComplianceDriftsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAppAssessmentComplianceDrifts API operation for AWS Resilience Hub.
+//
+// List of compliance drifts that were detected while running an assessment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resilience Hub's
+// API operation ListAppAssessmentComplianceDrifts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Resilience
+//     Hub service.
+//
+//   - ThrottlingException
+//     This exception occurs when you have exceeded the limit on the number of requests
+//     per second.
+//
+//   - ValidationException
+//     This exception occurs when a request is not valid.
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListAppAssessmentComplianceDrifts
+func (c *ResilienceHub) ListAppAssessmentComplianceDrifts(input *ListAppAssessmentComplianceDriftsInput) (*ListAppAssessmentComplianceDriftsOutput, error) {
+	req, out := c.ListAppAssessmentComplianceDriftsRequest(input)
+	return out, req.Send()
+}
+
+// ListAppAssessmentComplianceDriftsWithContext is the same as ListAppAssessmentComplianceDrifts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAppAssessmentComplianceDrifts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResilienceHub) ListAppAssessmentComplianceDriftsWithContext(ctx aws.Context, input *ListAppAssessmentComplianceDriftsInput, opts ...request.Option) (*ListAppAssessmentComplianceDriftsOutput, error) {
+	req, out := c.ListAppAssessmentComplianceDriftsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAppAssessmentComplianceDriftsPages iterates over the pages of a ListAppAssessmentComplianceDrifts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAppAssessmentComplianceDrifts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAppAssessmentComplianceDrifts operation.
+//	pageNum := 0
+//	err := client.ListAppAssessmentComplianceDriftsPages(params,
+//	    func(page *resiliencehub.ListAppAssessmentComplianceDriftsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ResilienceHub) ListAppAssessmentComplianceDriftsPages(input *ListAppAssessmentComplianceDriftsInput, fn func(*ListAppAssessmentComplianceDriftsOutput, bool) bool) error {
+	return c.ListAppAssessmentComplianceDriftsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppAssessmentComplianceDriftsPagesWithContext same as ListAppAssessmentComplianceDriftsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResilienceHub) ListAppAssessmentComplianceDriftsPagesWithContext(ctx aws.Context, input *ListAppAssessmentComplianceDriftsInput, fn func(*ListAppAssessmentComplianceDriftsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAppAssessmentComplianceDriftsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAppAssessmentComplianceDriftsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAppAssessmentComplianceDriftsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6236,7 +6486,7 @@ func (s *AccessDeniedException) RequestID() string {
 type AddDraftAppVersionResourceMappingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -6313,7 +6563,7 @@ func (s *AddDraftAppVersionResourceMappingsInput) SetResourceMappings(v []*Resou
 type AddDraftAppVersionResourceMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -6326,11 +6576,9 @@ type AddDraftAppVersionResourceMappingsOutput struct {
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// Mappings used to map logical resources from the template to physical resources.
-	// You can use the mapping type CFN_STACK if the application template uses a
-	// logical stack name. Or you can map individual resources by using the mapping
-	// type RESOURCE. We recommend using the mapping type CFN_STACK if the application
-	// is backed by a CloudFormation stack.
+	// List of sources that are used to map a logical resource from the template
+	// to a physical resource. You can use sources such as CloudFormation, Terraform
+	// state files, AppRegistry applications, or Amazon EKS.
 	//
 	// ResourceMappings is a required field
 	ResourceMappings []*ResourceMapping `locationName:"resourceMappings" type:"list" required:"true"`
@@ -6376,16 +6624,22 @@ func (s *AddDraftAppVersionResourceMappingsOutput) SetResourceMappings(v []*Reso
 type AlarmRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The Application Component for the CloudWatch alarm recommendation.
-	AppComponentName *string `locationName:"appComponentName" type:"string"`
+	// Application Component name for the CloudWatch alarm recommendation. This
+	// name is saved as the first item in the appComponentNames list.
+	//
+	// Deprecated: An alarm recommendation can be attached to multiple Application Components, hence this property will be replaced by the new property 'appComponentNames'.
+	AppComponentName *string `locationName:"appComponentName" deprecated:"true" type:"string"`
 
-	// The description of the recommendation.
+	// List of Application Component names for the CloudWatch alarm recommendation.
+	AppComponentNames []*string `locationName:"appComponentNames" type:"list"`
+
+	// Description of the alarm recommendation.
 	Description *string `locationName:"description" type:"string"`
 
-	// The list of CloudWatch alarm recommendations.
+	// List of CloudWatch alarm recommendations.
 	Items []*RecommendationItem `locationName:"items" type:"list"`
 
-	// The name of the alarm recommendation.
+	// Name of the alarm recommendation.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -6393,17 +6647,17 @@ type AlarmRecommendation struct {
 	// The prerequisite for the alarm recommendation.
 	Prerequisite *string `locationName:"prerequisite" min:"1" type:"string"`
 
-	// The identifier of the alarm recommendation.
+	// Identifier of the alarm recommendation.
 	//
 	// RecommendationId is a required field
 	RecommendationId *string `locationName:"recommendationId" type:"string" required:"true"`
 
-	// The reference identifier of the alarm recommendation.
+	// Reference identifier of the alarm recommendation.
 	//
 	// ReferenceId is a required field
 	ReferenceId *string `locationName:"referenceId" min:"1" type:"string" required:"true"`
 
-	// The type of alarm recommendation.
+	// Type of alarm recommendation.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"AlarmType"`
@@ -6430,6 +6684,12 @@ func (s AlarmRecommendation) GoString() string {
 // SetAppComponentName sets the AppComponentName field's value.
 func (s *AlarmRecommendation) SetAppComponentName(v string) *AlarmRecommendation {
 	s.AppComponentName = &v
+	return s
+}
+
+// SetAppComponentNames sets the AppComponentNames field's value.
+func (s *AlarmRecommendation) SetAppComponentNames(v []*string) *AlarmRecommendation {
+	s.AppComponentNames = v
 	return s
 }
 
@@ -6479,7 +6739,7 @@ func (s *AlarmRecommendation) SetType(v string) *AlarmRecommendation {
 type App struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -6490,42 +6750,58 @@ type App struct {
 	// Assessment execution schedule with 'Daily' or 'Disabled' values.
 	AssessmentSchedule *string `locationName:"assessmentSchedule" type:"string" enum:"AppAssessmentScheduleType"`
 
-	// The current status of compliance for the resiliency policy.
+	// Current status of compliance for the resiliency policy.
 	ComplianceStatus *string `locationName:"complianceStatus" type:"string" enum:"AppComplianceStatusType"`
 
-	// The timestamp for when the app was created.
+	// Timestamp for when the app was created.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
 
-	// The optional description for an app.
+	// Optional description for an application.
 	Description *string `locationName:"description" type:"string"`
 
-	// The timestamp for the most recent compliance evaluation.
+	// Indicates if compliance drifts (deviations) were detected while running an
+	// assessment for your application.
+	DriftStatus *string `locationName:"driftStatus" type:"string" enum:"AppDriftStatusType"`
+
+	// The list of events you would like to subscribe and get notification for.
+	// Currently, Resilience Hub supports notifications only for Drift detected
+	// and Scheduled assessment failure events.
+	EventSubscriptions []*EventSubscription `locationName:"eventSubscriptions" type:"list"`
+
+	// Timestamp for the most recent compliance evaluation.
 	LastAppComplianceEvaluationTime *time.Time `locationName:"lastAppComplianceEvaluationTime" type:"timestamp"`
 
-	// The timestamp for the most recent resiliency score evaluation.
+	// Indicates the last time that a drift was evaluated.
+	LastDriftEvaluationTime *time.Time `locationName:"lastDriftEvaluationTime" type:"timestamp"`
+
+	// Timestamp for the most recent resiliency score evaluation.
 	LastResiliencyScoreEvaluationTime *time.Time `locationName:"lastResiliencyScoreEvaluationTime" type:"timestamp"`
 
-	// The name for the application.
+	// Name for the application.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
+	// Defines the roles and credentials that Resilience Hub would use while creating
+	// the application, importing its resources, and running an assessment.
+	PermissionModel *PermissionModel `locationName:"permissionModel" type:"structure"`
+
+	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 
-	// The current resiliency score for the application.
+	// Current resiliency score for the application.
 	ResiliencyScore *float64 `locationName:"resiliencyScore" type:"double"`
 
-	// The status of the application.
+	// Status of the application.
 	Status *string `locationName:"status" type:"string" enum:"AppStatusType"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by App's
@@ -6581,9 +6857,27 @@ func (s *App) SetDescription(v string) *App {
 	return s
 }
 
+// SetDriftStatus sets the DriftStatus field's value.
+func (s *App) SetDriftStatus(v string) *App {
+	s.DriftStatus = &v
+	return s
+}
+
+// SetEventSubscriptions sets the EventSubscriptions field's value.
+func (s *App) SetEventSubscriptions(v []*EventSubscription) *App {
+	s.EventSubscriptions = v
+	return s
+}
+
 // SetLastAppComplianceEvaluationTime sets the LastAppComplianceEvaluationTime field's value.
 func (s *App) SetLastAppComplianceEvaluationTime(v time.Time) *App {
 	s.LastAppComplianceEvaluationTime = &v
+	return s
+}
+
+// SetLastDriftEvaluationTime sets the LastDriftEvaluationTime field's value.
+func (s *App) SetLastDriftEvaluationTime(v time.Time) *App {
+	s.LastDriftEvaluationTime = &v
 	return s
 }
 
@@ -6596,6 +6890,12 @@ func (s *App) SetLastResiliencyScoreEvaluationTime(v time.Time) *App {
 // SetName sets the Name field's value.
 func (s *App) SetName(v string) *App {
 	s.Name = &v
+	return s
+}
+
+// SetPermissionModel sets the PermissionModel field's value.
+func (s *App) SetPermissionModel(v *PermissionModel) *App {
+	s.PermissionModel = v
 	return s
 }
 
@@ -6627,41 +6927,45 @@ func (s *App) SetTags(v map[string]*string) *App {
 type AppAssessment struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
-	// The version of the application.
+	// Version of an application.
 	AppVersion *string `locationName:"appVersion" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	// The name of the assessment.
+	// Name of the assessment.
 	AssessmentName *string `locationName:"assessmentName" type:"string"`
 
-	// The current status of the assessment for the resiliency policy.
+	// Current status of the assessment for the resiliency policy.
 	//
 	// AssessmentStatus is a required field
 	AssessmentStatus *string `locationName:"assessmentStatus" type:"string" required:"true" enum:"AssessmentStatus"`
 
-	// The application compliance against the resiliency policy.
+	// Application compliance against the resiliency policy.
 	Compliance map[string]*DisruptionCompliance `locationName:"compliance" type:"map"`
 
-	// The current status of the compliance for the resiliency policy.
+	// Current status of the compliance for the resiliency policy.
 	ComplianceStatus *string `locationName:"complianceStatus" type:"string" enum:"ComplianceStatus"`
 
-	// The cost for the application.
+	// Cost for the application.
 	Cost *Cost `locationName:"cost" type:"structure"`
 
-	// The end time for the action.
+	// Indicates if compliance drifts (deviations) were detected while running an
+	// assessment for your application.
+	DriftStatus *string `locationName:"driftStatus" type:"string" enum:"DriftStatus"`
+
+	// End time for the action.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// The entity that invoked the assessment.
@@ -6672,26 +6976,29 @@ type AppAssessment struct {
 	// Error or warning message from the assessment execution
 	Message *string `locationName:"message" min:"1" type:"string"`
 
-	// The resiliency policy.
+	// Resiliency policy of an application.
 	Policy *ResiliencyPolicy `locationName:"policy" type:"structure"`
 
-	// The current resiliency score for the application.
+	// Current resiliency score for an application.
 	ResiliencyScore *ResiliencyScore `locationName:"resiliencyScore" type:"structure"`
 
 	// A resource error object containing a list of errors retrieving an application's
 	// resources.
 	ResourceErrorsDetails *ResourceErrorsDetails `locationName:"resourceErrorsDetails" type:"structure"`
 
-	// The starting time for the action.
+	// Starting time for the action.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AppAssessment's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" sensitive:"true"`
+
+	// Version name of the published application.
+	VersionName *string `locationName:"versionName" type:"string"`
 }
 
 // String returns the string representation.
@@ -6760,6 +7067,12 @@ func (s *AppAssessment) SetCost(v *Cost) *AppAssessment {
 	return s
 }
 
+// SetDriftStatus sets the DriftStatus field's value.
+func (s *AppAssessment) SetDriftStatus(v string) *AppAssessment {
+	s.DriftStatus = &v
+	return s
+}
+
 // SetEndTime sets the EndTime field's value.
 func (s *AppAssessment) SetEndTime(v time.Time) *AppAssessment {
 	s.EndTime = &v
@@ -6808,55 +7121,68 @@ func (s *AppAssessment) SetTags(v map[string]*string) *AppAssessment {
 	return s
 }
 
+// SetVersionName sets the VersionName field's value.
+func (s *AppAssessment) SetVersionName(v string) *AppAssessment {
+	s.VersionName = &v
+	return s
+}
+
 // Defines an application assessment summary.
 type AppAssessmentSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
-	// The version of the application.
+	// Version of an application.
 	AppVersion *string `locationName:"appVersion" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	// The name of the assessment.
+	// Name of the assessment.
 	AssessmentName *string `locationName:"assessmentName" type:"string"`
 
-	// The current status of the assessment for the resiliency policy.
+	// Current status of the assessment for the resiliency policy.
 	//
 	// AssessmentStatus is a required field
 	AssessmentStatus *string `locationName:"assessmentStatus" type:"string" required:"true" enum:"AssessmentStatus"`
 
-	// The current status of compliance for the resiliency policy.
+	// TCurrent status of compliance for the resiliency policy.
 	ComplianceStatus *string `locationName:"complianceStatus" type:"string" enum:"ComplianceStatus"`
 
-	// The cost for the application.
+	// Cost for an application.
 	Cost *Cost `locationName:"cost" type:"structure"`
 
-	// The end time for the action.
+	// Indicates if compliance drifts (deviations) were detected while running an
+	// assessment for your application.
+	DriftStatus *string `locationName:"driftStatus" type:"string" enum:"DriftStatus"`
+
+	// End time for the action.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
-	// The entity that invoked the assessment.
+	// Entity that invoked the assessment.
 	Invoker *string `locationName:"invoker" type:"string" enum:"AssessmentInvoker"`
 
-	// The message from the assessment run.
+	// Message from the assessment run.
 	Message *string `locationName:"message" min:"1" type:"string"`
 
-	// The current resiliency score for the application.
+	// Current resiliency score for the application.
 	ResiliencyScore *float64 `locationName:"resiliencyScore" type:"double"`
 
-	// The starting time for the action.
+	// Starting time for the action.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
+
+	// Name of an application version.
+	VersionName *string `locationName:"versionName" type:"string"`
 }
 
 // String returns the string representation.
@@ -6919,6 +7245,12 @@ func (s *AppAssessmentSummary) SetCost(v *Cost) *AppAssessmentSummary {
 	return s
 }
 
+// SetDriftStatus sets the DriftStatus field's value.
+func (s *AppAssessmentSummary) SetDriftStatus(v string) *AppAssessmentSummary {
+	s.DriftStatus = &v
+	return s
+}
+
 // SetEndTime sets the EndTime field's value.
 func (s *AppAssessmentSummary) SetEndTime(v time.Time) *AppAssessmentSummary {
 	s.EndTime = &v
@@ -6949,6 +7281,12 @@ func (s *AppAssessmentSummary) SetStartTime(v time.Time) *AppAssessmentSummary {
 	return s
 }
 
+// SetVersionName sets the VersionName field's value.
+func (s *AppAssessmentSummary) SetVersionName(v string) *AppAssessmentSummary {
+	s.VersionName = &v
+	return s
+}
+
 // Defines an Application Component.
 type AppComponent struct {
 	_ struct{} `type:"structure"`
@@ -6966,10 +7304,10 @@ type AppComponent struct {
 	// Value: "[{"region":"<REGION>", "accounts":[{"id":"<ACCOUNT_ID>"}]}]"
 	AdditionalInfo map[string][]*string `locationName:"additionalInfo" type:"map"`
 
-	// Unique identifier of the Application Component.
+	// Identifier of the Application Component.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
-	// The name of the Application Component.
+	// Name of the Application Component.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -7027,7 +7365,7 @@ func (s *AppComponent) SetType(v string) *AppComponent {
 type AppComponentCompliance struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Application Component.
+	// Name of the Application Component.
 	AppComponentName *string `locationName:"appComponentName" type:"string"`
 
 	// The compliance of the Application Component against the resiliency policy.
@@ -7042,7 +7380,7 @@ type AppComponentCompliance struct {
 	// The current resiliency score for the application.
 	ResiliencyScore *ResiliencyScore `locationName:"resiliencyScore" type:"structure"`
 
-	// The status of the action.
+	// Status of the action.
 	Status *string `locationName:"status" type:"string" enum:"ComplianceStatus"`
 }
 
@@ -7185,7 +7523,7 @@ func (s *AppInputSource) SetTerraformSource(v *TerraformSource) *AppInputSource 
 type AppSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -7207,6 +7545,10 @@ type AppSummary struct {
 	// The optional description for an app.
 	Description *string `locationName:"description" type:"string"`
 
+	// Indicates if compliance drifts (deviations) were detected while running an
+	// assessment for your application.
+	DriftStatus *string `locationName:"driftStatus" type:"string" enum:"AppDriftStatusType"`
+
 	// The name of the application.
 	//
 	// Name is a required field
@@ -7215,7 +7557,7 @@ type AppSummary struct {
 	// The current resiliency score for the application.
 	ResiliencyScore *float64 `locationName:"resiliencyScore" type:"double"`
 
-	// The status of the application.
+	// Status of the application.
 	Status *string `locationName:"status" type:"string" enum:"AppStatusType"`
 }
 
@@ -7267,6 +7609,12 @@ func (s *AppSummary) SetDescription(v string) *AppSummary {
 	return s
 }
 
+// SetDriftStatus sets the DriftStatus field's value.
+func (s *AppSummary) SetDriftStatus(v string) *AppSummary {
+	s.DriftStatus = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *AppSummary) SetName(v string) *AppSummary {
 	s.Name = &v
@@ -7285,14 +7633,23 @@ func (s *AppSummary) SetStatus(v string) *AppSummary {
 	return s
 }
 
-// The version of the application.
+// Version of an application.
 type AppVersionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The version of the application.
+	// Version of an application.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
+
+	// Creation time of the application version.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
+
+	// Identifier of the application version.
+	Identifier *int64 `locationName:"identifier" type:"long"`
+
+	// Name of the application version.
+	VersionName *string `locationName:"versionName" type:"string"`
 }
 
 // String returns the string representation.
@@ -7319,23 +7676,425 @@ func (s *AppVersionSummary) SetAppVersion(v string) *AppVersionSummary {
 	return s
 }
 
+// SetCreationTime sets the CreationTime field's value.
+func (s *AppVersionSummary) SetCreationTime(v time.Time) *AppVersionSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *AppVersionSummary) SetIdentifier(v int64) *AppVersionSummary {
+	s.Identifier = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *AppVersionSummary) SetVersionName(v string) *AppVersionSummary {
+	s.VersionName = &v
+	return s
+}
+
+// List of operational recommendations that did not get included or excluded.
+type BatchUpdateRecommendationStatusFailedEntry struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier of an entry in this batch that is used to communicate the result.
+	//
+	// The entryIds of a batch request need to be unique within a request.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// Indicates the error that occurred while excluding an operational recommendation.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationStatusFailedEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationStatusFailedEntry) GoString() string {
+	return s.String()
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchUpdateRecommendationStatusFailedEntry) SetEntryId(v string) *BatchUpdateRecommendationStatusFailedEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchUpdateRecommendationStatusFailedEntry) SetErrorMessage(v string) *BatchUpdateRecommendationStatusFailedEntry {
+	s.ErrorMessage = &v
+	return s
+}
+
+type BatchUpdateRecommendationStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference guide.
+	//
+	// AppArn is a required field
+	AppArn *string `locationName:"appArn" type:"string" required:"true"`
+
+	// Defines the list of operational recommendations that need to be included
+	// or excluded.
+	//
+	// RequestEntries is a required field
+	RequestEntries []*UpdateRecommendationStatusRequestEntry `locationName:"requestEntries" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchUpdateRecommendationStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateRecommendationStatusInput"}
+	if s.AppArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppArn"))
+	}
+	if s.RequestEntries == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestEntries"))
+	}
+	if s.RequestEntries != nil && len(s.RequestEntries) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestEntries", 1))
+	}
+	if s.RequestEntries != nil {
+		for i, v := range s.RequestEntries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RequestEntries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppArn sets the AppArn field's value.
+func (s *BatchUpdateRecommendationStatusInput) SetAppArn(v string) *BatchUpdateRecommendationStatusInput {
+	s.AppArn = &v
+	return s
+}
+
+// SetRequestEntries sets the RequestEntries field's value.
+func (s *BatchUpdateRecommendationStatusInput) SetRequestEntries(v []*UpdateRecommendationStatusRequestEntry) *BatchUpdateRecommendationStatusInput {
+	s.RequestEntries = v
+	return s
+}
+
+type BatchUpdateRecommendationStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference guide.
+	//
+	// AppArn is a required field
+	AppArn *string `locationName:"appArn" type:"string" required:"true"`
+
+	// A list of items with error details about each item, which could not be included
+	// or excluded.
+	//
+	// FailedEntries is a required field
+	FailedEntries []*BatchUpdateRecommendationStatusFailedEntry `locationName:"failedEntries" type:"list" required:"true"`
+
+	// A list of items that were included or excluded.
+	//
+	// SuccessfulEntries is a required field
+	SuccessfulEntries []*BatchUpdateRecommendationStatusSuccessfulEntry `locationName:"successfulEntries" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppArn sets the AppArn field's value.
+func (s *BatchUpdateRecommendationStatusOutput) SetAppArn(v string) *BatchUpdateRecommendationStatusOutput {
+	s.AppArn = &v
+	return s
+}
+
+// SetFailedEntries sets the FailedEntries field's value.
+func (s *BatchUpdateRecommendationStatusOutput) SetFailedEntries(v []*BatchUpdateRecommendationStatusFailedEntry) *BatchUpdateRecommendationStatusOutput {
+	s.FailedEntries = v
+	return s
+}
+
+// SetSuccessfulEntries sets the SuccessfulEntries field's value.
+func (s *BatchUpdateRecommendationStatusOutput) SetSuccessfulEntries(v []*BatchUpdateRecommendationStatusSuccessfulEntry) *BatchUpdateRecommendationStatusOutput {
+	s.SuccessfulEntries = v
+	return s
+}
+
+// List of operational recommendations that were successfully included or excluded.
+type BatchUpdateRecommendationStatusSuccessfulEntry struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier for an entry in this batch that is used to communicate the
+	// result.
+	//
+	// The entryIds of a batch request need to be unique within a request.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// Indicates the reason for excluding an operational recommendation.
+	ExcludeReason *string `locationName:"excludeReason" type:"string" enum:"ExcludeRecommendationReason"`
+
+	// Indicates if the operational recommendation was successfully excluded.
+	//
+	// Excluded is a required field
+	Excluded *bool `locationName:"excluded" type:"boolean" required:"true"`
+
+	// The operational recommendation item.
+	//
+	// Item is a required field
+	Item *UpdateRecommendationStatusItem `locationName:"item" type:"structure" required:"true"`
+
+	// Reference identifier of the operational recommendation.
+	//
+	// ReferenceId is a required field
+	ReferenceId *string `locationName:"referenceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationStatusSuccessfulEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationStatusSuccessfulEntry) GoString() string {
+	return s.String()
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchUpdateRecommendationStatusSuccessfulEntry) SetEntryId(v string) *BatchUpdateRecommendationStatusSuccessfulEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetExcludeReason sets the ExcludeReason field's value.
+func (s *BatchUpdateRecommendationStatusSuccessfulEntry) SetExcludeReason(v string) *BatchUpdateRecommendationStatusSuccessfulEntry {
+	s.ExcludeReason = &v
+	return s
+}
+
+// SetExcluded sets the Excluded field's value.
+func (s *BatchUpdateRecommendationStatusSuccessfulEntry) SetExcluded(v bool) *BatchUpdateRecommendationStatusSuccessfulEntry {
+	s.Excluded = &v
+	return s
+}
+
+// SetItem sets the Item field's value.
+func (s *BatchUpdateRecommendationStatusSuccessfulEntry) SetItem(v *UpdateRecommendationStatusItem) *BatchUpdateRecommendationStatusSuccessfulEntry {
+	s.Item = v
+	return s
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *BatchUpdateRecommendationStatusSuccessfulEntry) SetReferenceId(v string) *BatchUpdateRecommendationStatusSuccessfulEntry {
+	s.ReferenceId = &v
+	return s
+}
+
+// Indicates the compliance drifts (recovery time objective (RTO) and recovery
+// point objective (RPO)) that were detected for an assessed entity.
+type ComplianceDrift struct {
+	_ struct{} `type:"structure"`
+
+	// Assessment identifier that is associated with this drift item.
+	ActualReferenceId *string `locationName:"actualReferenceId" min:"1" type:"string"`
+
+	// Actual compliance value of the entity.
+	ActualValue map[string]*DisruptionCompliance `locationName:"actualValue" type:"map"`
+
+	// Identifier of your application.
+	AppId *string `locationName:"appId" min:"1" type:"string"`
+
+	// Published version of your application on which drift was detected.
+	AppVersion *string `locationName:"appVersion" min:"1" type:"string"`
+
+	// Difference type between actual and expected recovery point objective (RPO)
+	// and recovery time objective (RTO) values. Currently, Resilience Hub supports
+	// only NotEqual difference type.
+	DiffType *string `locationName:"diffType" type:"string" enum:"DifferenceType"`
+
+	// The type of drift detected. Currently, Resilience Hub supports only ApplicationCompliance
+	// drift type.
+	DriftType *string `locationName:"driftType" type:"string" enum:"DriftType"`
+
+	// Identifier of an entity in which drift was detected. For compliance drift,
+	// the entity ID can be either application ID or the AppComponent ID.
+	EntityId *string `locationName:"entityId" min:"1" type:"string"`
+
+	// The type of entity in which drift was detected. For compliance drifts, Resilience
+	// Hub supports AWS::ResilienceHub::AppComponent and AWS::ResilienceHub::Application.
+	EntityType *string `locationName:"entityType" min:"1" type:"string"`
+
+	// Assessment identifier of a previous assessment of the same application version.
+	// Resilience Hub uses the previous assessment (associated with the reference
+	// identifier) to compare the compliance with the current assessment to identify
+	// drifts.
+	ExpectedReferenceId *string `locationName:"expectedReferenceId" min:"1" type:"string"`
+
+	// The expected compliance value of an entity.
+	ExpectedValue map[string]*DisruptionCompliance `locationName:"expectedValue" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComplianceDrift) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComplianceDrift) GoString() string {
+	return s.String()
+}
+
+// SetActualReferenceId sets the ActualReferenceId field's value.
+func (s *ComplianceDrift) SetActualReferenceId(v string) *ComplianceDrift {
+	s.ActualReferenceId = &v
+	return s
+}
+
+// SetActualValue sets the ActualValue field's value.
+func (s *ComplianceDrift) SetActualValue(v map[string]*DisruptionCompliance) *ComplianceDrift {
+	s.ActualValue = v
+	return s
+}
+
+// SetAppId sets the AppId field's value.
+func (s *ComplianceDrift) SetAppId(v string) *ComplianceDrift {
+	s.AppId = &v
+	return s
+}
+
+// SetAppVersion sets the AppVersion field's value.
+func (s *ComplianceDrift) SetAppVersion(v string) *ComplianceDrift {
+	s.AppVersion = &v
+	return s
+}
+
+// SetDiffType sets the DiffType field's value.
+func (s *ComplianceDrift) SetDiffType(v string) *ComplianceDrift {
+	s.DiffType = &v
+	return s
+}
+
+// SetDriftType sets the DriftType field's value.
+func (s *ComplianceDrift) SetDriftType(v string) *ComplianceDrift {
+	s.DriftType = &v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *ComplianceDrift) SetEntityId(v string) *ComplianceDrift {
+	s.EntityId = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *ComplianceDrift) SetEntityType(v string) *ComplianceDrift {
+	s.EntityType = &v
+	return s
+}
+
+// SetExpectedReferenceId sets the ExpectedReferenceId field's value.
+func (s *ComplianceDrift) SetExpectedReferenceId(v string) *ComplianceDrift {
+	s.ExpectedReferenceId = &v
+	return s
+}
+
+// SetExpectedValue sets the ExpectedValue field's value.
+func (s *ComplianceDrift) SetExpectedValue(v map[string]*DisruptionCompliance) *ComplianceDrift {
+	s.ExpectedValue = v
+	return s
+}
+
 // Defines recommendations for an Resilience Hub Application Component, returned
 // as an object. This object contains component names, configuration recommendations,
 // and recommendation statuses.
 type ComponentRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Application Component.
+	// Name of the Application Component.
 	//
 	// AppComponentName is a required field
 	AppComponentName *string `locationName:"appComponentName" type:"string" required:"true"`
 
-	// The list of recommendations.
+	// List of recommendations.
 	//
 	// ConfigRecommendations is a required field
 	ConfigRecommendations []*ConfigRecommendation `locationName:"configRecommendations" type:"list" required:"true"`
 
-	// The recommendation status.
+	// Status of the recommendation.
 	//
 	// RecommendationStatus is a required field
 	RecommendationStatus *string `locationName:"recommendationStatus" type:"string" required:"true" enum:"RecommendationComplianceStatus"`
@@ -7377,11 +8136,11 @@ func (s *ComponentRecommendation) SetRecommendationStatus(v string) *ComponentRe
 	return s
 }
 
-// Defines a configuration recommendation.
+// Defines a recommendation configuration.
 type ConfigRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Application Component.
+	// Name of the Application Component.
 	AppComponentName *string `locationName:"appComponentName" type:"string"`
 
 	// The current compliance against the resiliency policy before applying the
@@ -7411,7 +8170,7 @@ type ConfigRecommendation struct {
 	// configuration change.
 	RecommendationCompliance map[string]*RecommendationDisruptionCompliance `locationName:"recommendationCompliance" type:"map"`
 
-	// The reference identifier for the recommendation configuration.
+	// Reference identifier for the recommendation configuration.
 	//
 	// ReferenceId is a required field
 	ReferenceId *string `locationName:"referenceId" min:"1" type:"string" required:"true"`
@@ -7641,19 +8400,28 @@ type CreateAppInput struct {
 	// The optional description for an app.
 	Description *string `locationName:"description" type:"string"`
 
-	// The name for the application.
+	// The list of events you would like to subscribe and get notification for.
+	// Currently, Resilience Hub supports only Drift detected and Scheduled assessment
+	// failure events notification.
+	EventSubscriptions []*EventSubscription `locationName:"eventSubscriptions" type:"list"`
+
+	// Name of the application.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
+	// Defines the roles and credentials that Resilience Hub would use while creating
+	// the application, importing its resources, and running an assessment.
+	PermissionModel *PermissionModel `locationName:"permissionModel" type:"structure"`
+
+	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAppInput's
@@ -7691,6 +8459,21 @@ func (s *CreateAppInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.EventSubscriptions != nil {
+		for i, v := range s.EventSubscriptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EventSubscriptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PermissionModel != nil {
+		if err := s.PermissionModel.Validate(); err != nil {
+			invalidParams.AddNested("PermissionModel", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7716,9 +8499,21 @@ func (s *CreateAppInput) SetDescription(v string) *CreateAppInput {
 	return s
 }
 
+// SetEventSubscriptions sets the EventSubscriptions field's value.
+func (s *CreateAppInput) SetEventSubscriptions(v []*EventSubscription) *CreateAppInput {
+	s.EventSubscriptions = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateAppInput) SetName(v string) *CreateAppInput {
 	s.Name = &v
+	return s
+}
+
+// SetPermissionModel sets the PermissionModel field's value.
+func (s *CreateAppInput) SetPermissionModel(v *PermissionModel) *CreateAppInput {
+	s.PermissionModel = v
 	return s
 }
 
@@ -7774,7 +8569,7 @@ type CreateAppVersionAppComponentInput struct {
 	// Currently, there is no supported additional information for Application Components.
 	AdditionalInfo map[string][]*string `locationName:"additionalInfo" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -7787,16 +8582,16 @@ type CreateAppVersionAppComponentInput struct {
 	// token for other API requests.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The identifier of the Application Component.
+	// Identifier of the Application Component.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
-	// The name of the Application Component.
+	// Name of the Application Component.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The type of Application Component. For more information about the types of
-	// Application Component, see Grouping resources in an AppComponent (https://docs.aws.amazon.com/resilience-hub/latest/userguide/AppComponent.grouping.html).
+	// Type of Application Component. For more information about the types of Application
+	// Component, see Grouping resources in an AppComponent (https://docs.aws.amazon.com/resilience-hub/latest/userguide/AppComponent.grouping.html).
 	//
 	// Type is a required field
 	Type *string `locationName:"type" min:"1" type:"string" required:"true"`
@@ -7890,7 +8685,7 @@ func (s *CreateAppVersionAppComponentInput) SetType(v string) *CreateAppVersionA
 type CreateAppVersionAppComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -7898,10 +8693,10 @@ type CreateAppVersionAppComponentOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The list of Application Components that belong to this resource.
+	// List of Application Components that belong to this resource.
 	AppComponent *AppComponent `locationName:"appComponent" type:"structure"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -7949,7 +8744,7 @@ type CreateAppVersionResourceInput struct {
 	// Currently, there is no supported additional information for resources.
 	AdditionalInfo map[string][]*string `locationName:"additionalInfo" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -7957,16 +8752,16 @@ type CreateAppVersionResourceInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The list of Application Components that this resource belongs to. If an Application
+	// List of Application Components that this resource belongs to. If an Application
 	// Component is not part of the Resilience Hub application, it will be added.
 	//
 	// AppComponents is a required field
 	AppComponents []*string `locationName:"appComponents" type:"list" required:"true"`
 
-	// The Amazon Web Services account that owns the physical resource.
+	// Amazon Web Services account that owns the physical resource.
 	AwsAccountId *string `locationName:"awsAccountId" type:"string"`
 
-	// The Amazon Web Services region that owns the physical resource.
+	// Amazon Web Services region that owns the physical resource.
 	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
 	// Used for an idempotency token. A client token is a unique, case-sensitive
@@ -7974,20 +8769,20 @@ type CreateAppVersionResourceInput struct {
 	// token for other API requests.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The logical identifier of the resource.
+	// Logical identifier of the resource.
 	//
 	// LogicalResourceId is a required field
 	LogicalResourceId *LogicalResourceId `locationName:"logicalResourceId" type:"structure" required:"true"`
 
-	// The physical identifier of the resource.
+	// Physical identifier of the resource.
 	//
 	// PhysicalResourceId is a required field
 	PhysicalResourceId *string `locationName:"physicalResourceId" min:"1" type:"string" required:"true"`
 
-	// The name of the resource.
+	// Name of the resource.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
-	// The type of resource.
+	// Type of resource.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -8113,7 +8908,7 @@ func (s *CreateAppVersionResourceInput) SetResourceType(v string) *CreateAppVers
 type CreateAppVersionResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -8121,7 +8916,7 @@ type CreateAppVersionResourceOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -8171,9 +8966,9 @@ func (s *CreateAppVersionResourceOutput) SetPhysicalResource(v *PhysicalResource
 type CreateRecommendationTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
@@ -8221,8 +9016,8 @@ type CreateRecommendationTemplateInput struct {
 	// The template is a TestRecommendation template.
 	RecommendationTypes []*string `locationName:"recommendationTypes" min:"1" type:"list" enum:"RenderRecommendationType"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateRecommendationTemplateInput's
@@ -8383,8 +9178,8 @@ type CreateResiliencyPolicyInput struct {
 	// PolicyName is a required field
 	PolicyName *string `locationName:"policyName" type:"string" required:"true"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateResiliencyPolicyInput's
@@ -8530,9 +9325,9 @@ func (s *CreateResiliencyPolicyOutput) SetPolicy(v *ResiliencyPolicy) *CreateRes
 type DeleteAppAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
@@ -8593,9 +9388,9 @@ func (s *DeleteAppAssessmentInput) SetClientToken(v string) *DeleteAppAssessment
 type DeleteAppAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
@@ -8640,7 +9435,7 @@ func (s *DeleteAppAssessmentOutput) SetAssessmentStatus(v string) *DeleteAppAsse
 type DeleteAppInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -8712,7 +9507,7 @@ func (s *DeleteAppInput) SetForceDelete(v bool) *DeleteAppInput {
 type DeleteAppInputSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -8817,13 +9612,13 @@ func (s *DeleteAppInputSourceInput) SetTerraformSource(v *TerraformSource) *Dele
 type DeleteAppInputSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
-	// The name of the input source from where the application resource is imported
+	// Name of the input source from where the application resource is imported
 	// from.
 	AppInputSource *AppInputSource `locationName:"appInputSource" type:"structure"`
 }
@@ -8861,7 +9656,7 @@ func (s *DeleteAppInputSourceOutput) SetAppInputSource(v *AppInputSource) *Delet
 type DeleteAppOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -8897,7 +9692,7 @@ func (s *DeleteAppOutput) SetAppArn(v string) *DeleteAppOutput {
 type DeleteAppVersionAppComponentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -8910,7 +9705,7 @@ type DeleteAppVersionAppComponentInput struct {
 	// token for other API requests.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The identifier of the Application Component.
+	// Identifier of the Application Component.
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
@@ -8977,7 +9772,7 @@ func (s *DeleteAppVersionAppComponentInput) SetId(v string) *DeleteAppVersionApp
 type DeleteAppVersionAppComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -8985,10 +9780,10 @@ type DeleteAppVersionAppComponentOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The list of Application Components that belong to this resource.
+	// List of Application Components that belong to this resource.
 	AppComponent *AppComponent `locationName:"appComponent" type:"structure"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -9033,7 +9828,7 @@ func (s *DeleteAppVersionAppComponentOutput) SetAppVersion(v string) *DeleteAppV
 type DeleteAppVersionResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9041,10 +9836,10 @@ type DeleteAppVersionResourceInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Amazon Web Services account that owns the physical resource.
+	// Amazon Web Services account that owns the physical resource.
 	AwsAccountId *string `locationName:"awsAccountId" type:"string"`
 
-	// The Amazon Web Services region that owns the physical resource.
+	// Amazon Web Services region that owns the physical resource.
 	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
 	// Used for an idempotency token. A client token is a unique, case-sensitive
@@ -9052,13 +9847,13 @@ type DeleteAppVersionResourceInput struct {
 	// token for other API requests.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The logical identifier of the resource.
+	// Logical identifier of the resource.
 	LogicalResourceId *LogicalResourceId `locationName:"logicalResourceId" type:"structure"`
 
-	// The physical identifier of the resource.
+	// Physical identifier of the resource.
 	PhysicalResourceId *string `locationName:"physicalResourceId" min:"1" type:"string"`
 
-	// The name of the resource.
+	// Name of the resource.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 }
 
@@ -9149,7 +9944,7 @@ func (s *DeleteAppVersionResourceInput) SetResourceName(v string) *DeleteAppVers
 type DeleteAppVersionResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9157,7 +9952,7 @@ type DeleteAppVersionResourceOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -9272,7 +10067,7 @@ type DeleteRecommendationTemplateOutput struct {
 	// RecommendationTemplateArn is a required field
 	RecommendationTemplateArn *string `locationName:"recommendationTemplateArn" type:"string" required:"true"`
 
-	// The status of the action.
+	// Status of the action.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RecommendationTemplateStatus"`
@@ -9316,7 +10111,7 @@ type DeleteResiliencyPolicyInput struct {
 	// token for other API requests.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
+	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9374,7 +10169,7 @@ func (s *DeleteResiliencyPolicyInput) SetPolicyArn(v string) *DeleteResiliencyPo
 type DeleteResiliencyPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
+	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9410,9 +10205,9 @@ func (s *DeleteResiliencyPolicyOutput) SetPolicyArn(v string) *DeleteResiliencyP
 type DescribeAppAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
@@ -9494,7 +10289,7 @@ func (s *DescribeAppAssessmentOutput) SetAssessment(v *AppAssessment) *DescribeA
 type DescribeAppInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9577,7 +10372,7 @@ func (s *DescribeAppOutput) SetApp(v *App) *DescribeAppOutput {
 type DescribeAppVersionAppComponentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9585,12 +10380,12 @@ type DescribeAppVersionAppComponentInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// The identifier of the Application Component.
+	// Identifier of the Application Component.
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
@@ -9657,7 +10452,7 @@ func (s *DescribeAppVersionAppComponentInput) SetId(v string) *DescribeAppVersio
 type DescribeAppVersionAppComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9665,10 +10460,10 @@ type DescribeAppVersionAppComponentOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The list of Application Components that belong to this resource.
+	// List of Application Components that belong to this resource.
 	AppComponent *AppComponent `locationName:"appComponent" type:"structure"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -9713,7 +10508,7 @@ func (s *DescribeAppVersionAppComponentOutput) SetAppVersion(v string) *Describe
 type DescribeAppVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9721,7 +10516,7 @@ type DescribeAppVersionInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -9784,7 +10579,7 @@ type DescribeAppVersionOutput struct {
 	// Currently, this parameter supports only failover region and account.
 	AdditionalInfo map[string][]*string `locationName:"additionalInfo" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9792,7 +10587,7 @@ type DescribeAppVersionOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -9837,7 +10632,7 @@ func (s *DescribeAppVersionOutput) SetAppVersion(v string) *DescribeAppVersionOu
 type DescribeAppVersionResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9845,24 +10640,24 @@ type DescribeAppVersionResourceInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// The Amazon Web Services account that owns the physical resource.
+	// Amazon Web Services account that owns the physical resource.
 	AwsAccountId *string `locationName:"awsAccountId" type:"string"`
 
-	// The Amazon Web Services region that owns the physical resource.
+	// Amazon Web Services region that owns the physical resource.
 	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
-	// The logical identifier of the resource.
+	// Logical identifier of the resource.
 	LogicalResourceId *LogicalResourceId `locationName:"logicalResourceId" type:"structure"`
 
-	// The physical identifier of the resource.
+	// Physical identifier of the resource.
 	PhysicalResourceId *string `locationName:"physicalResourceId" min:"1" type:"string"`
 
-	// The name of the resource.
+	// Name of the resource.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 }
 
@@ -9953,7 +10748,7 @@ func (s *DescribeAppVersionResourceInput) SetResourceName(v string) *DescribeApp
 type DescribeAppVersionResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -9961,7 +10756,7 @@ type DescribeAppVersionResourceOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -10011,7 +10806,7 @@ func (s *DescribeAppVersionResourceOutput) SetPhysicalResource(v *PhysicalResour
 type DescribeAppVersionResourcesResolutionStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10086,7 +10881,7 @@ func (s *DescribeAppVersionResourcesResolutionStatusInput) SetResolutionId(v str
 type DescribeAppVersionResourcesResolutionStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10107,7 +10902,7 @@ type DescribeAppVersionResourcesResolutionStatusOutput struct {
 	// ResolutionId is a required field
 	ResolutionId *string `locationName:"resolutionId" min:"1" type:"string" required:"true"`
 
-	// The status of the action.
+	// Status of the action.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceResolutionStatusType"`
@@ -10164,7 +10959,7 @@ func (s *DescribeAppVersionResourcesResolutionStatusOutput) SetStatus(v string) 
 type DescribeAppVersionTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10227,7 +11022,7 @@ func (s *DescribeAppVersionTemplateInput) SetAppVersion(v string) *DescribeAppVe
 type DescribeAppVersionTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10244,31 +11039,30 @@ type DescribeAppVersionTemplateOutput struct {
 	//    * resources The list of logical resources that must be included in the
 	//    Resilience Hub application. Type: Array Don't add the resources that you
 	//    want to exclude. Each resources array item includes the following fields:
-	//    logicalResourceId The logical identifier of the resource. Type: Object
-	//    Each logicalResourceId object includes the following fields: identifier
-	//    The identifier of the resource. Type: String logicalStackName The name
-	//    of the CloudFormation stack this resource belongs to. Type: String resourceGroupName
-	//    The name of the resource group this resource belongs to. Type: String
-	//    terraformSourceName The name of the Terraform S3 state file this resource
-	//    belongs to. Type: String eksSourceName The name of the Amazon Elastic
-	//    Kubernetes Service cluster and namespace this resource belongs to. This
-	//    parameter accepts values in "eks-cluster/namespace" format. Type: String
-	//    type The type of resource. Type: string name The name of the resource.
-	//    Type: String additionalInfo Additional configuration parameters for an
-	//    Resilience Hub application. If you want to implement additionalInfo through
-	//    the Resilience Hub console rather than using an API call, see Configure
-	//    the application configuration parameters (https://docs.aws.amazon.com/resilience-hub/latest/userguide/app-config-param.html).
+	//    logicalResourceId Logical identifier of the resource. Type: Object Each
+	//    logicalResourceId object includes the following fields: identifier Identifier
+	//    of the resource. Type: String logicalStackName The name of the CloudFormation
+	//    stack this resource belongs to. Type: String resourceGroupName The name
+	//    of the resource group this resource belongs to. Type: String terraformSourceName
+	//    The name of the Terraform S3 state file this resource belongs to. Type:
+	//    String eksSourceName Name of the Amazon Elastic Kubernetes Service cluster
+	//    and namespace this resource belongs to. This parameter accepts values
+	//    in "eks-cluster/namespace" format. Type: String type The type of resource.
+	//    Type: string name The name of the resource. Type: String additionalInfo
+	//    Additional configuration parameters for an Resilience Hub application.
+	//    If you want to implement additionalInfo through the Resilience Hub console
+	//    rather than using an API call, see Configure the application configuration
+	//    parameters (https://docs.aws.amazon.com/resilience-hub/latest/userguide/app-config-param.html).
 	//    Currently, this parameter accepts a key-value mapping (in a string format)
 	//    of only one failover region and one associated account. Key: "failover-regions"
 	//    Value: "[{"region":"<REGION>", "accounts":[{"id":"<ACCOUNT_ID>"}]}]"
 	//
-	//    * appComponents The list of Application Components that this resource
-	//    belongs to. If an Application Component is not part of the Resilience
-	//    Hub application, it will be added. Type: Array Each appComponents array
-	//    item includes the following fields: name The name of the Application Component.
-	//    Type: String type The type of Application Component. For more information
-	//    about the types of Application Component, see Grouping resources in an
-	//    AppComponent (https://docs.aws.amazon.com/resilience-hub/latest/userguide/AppComponent.grouping.html).
+	//    * appComponents List of Application Components that this resource belongs
+	//    to. If an Application Component is not part of the Resilience Hub application,
+	//    it will be added. Type: Array Each appComponents array item includes the
+	//    following fields: name Name of the Application Component. Type: String
+	//    type Type of Application Component. For more information about the types
+	//    of Application Component, see Grouping resources in an AppComponent (https://docs.aws.amazon.com/resilience-hub/latest/userguide/AppComponent.grouping.html).
 	//    Type: String resourceNames The list of included resources that are assigned
 	//    to the Application Component. Type: Array of strings additionalInfo Additional
 	//    configuration parameters for an Resilience Hub application. If you want
@@ -10282,19 +11076,19 @@ type DescribeAppVersionTemplateOutput struct {
 	//    * excludedResources The list of logical resource identifiers to be excluded
 	//    from the application. Type: Array Don't add the resources that you want
 	//    to include. Each excludedResources array item includes the following fields:
-	//    logicalResourceIds The logical identifier of the resource. Type: Object
-	//    You can configure only one of the following fields: logicalStackName resourceGroupName
+	//    logicalResourceIds Logical identifier of the resource. Type: Object You
+	//    can configure only one of the following fields: logicalStackName resourceGroupName
 	//    terraformSourceName eksSourceName Each logicalResourceIds object includes
-	//    the following fields: identifier The identifier of the resource. Type:
-	//    String logicalStackName The name of the CloudFormation stack this resource
-	//    belongs to. Type: String resourceGroupName The name of the resource group
-	//    this resource belongs to. Type: String terraformSourceName The name of
-	//    the Terraform S3 state file this resource belongs to. Type: String eksSourceName
-	//    The name of the Amazon Elastic Kubernetes Service cluster and namespace
-	//    this resource belongs to. This parameter accepts values in "eks-cluster/namespace"
+	//    the following fields: identifier Identifier of the resource. Type: String
+	//    logicalStackName The name of the CloudFormation stack this resource belongs
+	//    to. Type: String resourceGroupName The name of the resource group this
+	//    resource belongs to. Type: String terraformSourceName The name of the
+	//    Terraform S3 state file this resource belongs to. Type: String eksSourceName
+	//    Name of the Amazon Elastic Kubernetes Service cluster and namespace this
+	//    resource belongs to. This parameter accepts values in "eks-cluster/namespace"
 	//    format. Type: String
 	//
-	//    * version The Resilience Hub application version.
+	//    * version Resilience Hub application version.
 	//
 	//    * additionalInfo Additional configuration parameters for an Resilience
 	//    Hub application. If you want to implement additionalInfo through the Resilience
@@ -10352,7 +11146,7 @@ func (s *DescribeAppVersionTemplateOutput) SetAppVersion(v string) *DescribeAppV
 type DescribeDraftAppVersionResourcesImportStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10401,7 +11195,7 @@ func (s *DescribeDraftAppVersionResourcesImportStatusInput) SetAppArn(v string) 
 type DescribeDraftAppVersionResourcesImportStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10417,7 +11211,7 @@ type DescribeDraftAppVersionResourcesImportStatusOutput struct {
 	// The returned error message for the request.
 	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
 
-	// The status of the action.
+	// Status of the action.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceImportStatusType"`
@@ -10479,7 +11273,7 @@ func (s *DescribeDraftAppVersionResourcesImportStatusOutput) SetStatusChangeTime
 type DescribeResiliencyPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
+	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10588,13 +11382,13 @@ type DisruptionCompliance struct {
 	// The RPO description.
 	RpoDescription *string `locationName:"rpoDescription" min:"1" type:"string"`
 
-	// The RPO reference identifier.
+	// Reference identifier of the RPO .
 	RpoReferenceId *string `locationName:"rpoReferenceId" min:"1" type:"string"`
 
 	// The RTO description.
 	RtoDescription *string `locationName:"rtoDescription" min:"1" type:"string"`
 
-	// The RTO reference identifier.
+	// Reference identifier of the RTO.
 	RtoReferenceId *string `locationName:"rtoReferenceId" min:"1" type:"string"`
 }
 
@@ -10680,7 +11474,7 @@ func (s *DisruptionCompliance) SetRtoReferenceId(v string) *DisruptionCompliance
 type EksSource struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster.
+	// Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster.
 	// The format for this ARN is: arn:aws:eks:region:account-id:cluster/cluster-name.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10746,7 +11540,7 @@ func (s *EksSource) SetNamespaces(v []*string) *EksSource {
 type EksSourceClusterNamespace struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster.
+	// Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster.
 	// The format for this ARN is: arn:aws:eks:region:account-id:cluster/cluster-name.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10807,6 +11601,86 @@ func (s *EksSourceClusterNamespace) SetEksClusterArn(v string) *EksSourceCluster
 // SetNamespace sets the Namespace field's value.
 func (s *EksSourceClusterNamespace) SetNamespace(v string) *EksSourceClusterNamespace {
 	s.Namespace = &v
+	return s
+}
+
+// Indicates an event you would like to subscribe and get notification for.
+// Currently, Resilience Hub supports notifications only for Drift detected
+// and Scheduled assessment failure events.
+type EventSubscription struct {
+	_ struct{} `type:"structure"`
+
+	// The type of event you would like to subscribe and get notification for. Currently,
+	// Resilience Hub supports notifications only for Drift detected (DriftDetected)
+	// and Scheduled assessment failure (ScheduledAssessmentFailure) events.
+	//
+	// EventType is a required field
+	EventType *string `locationName:"eventType" type:"string" required:"true" enum:"EventType"`
+
+	// Unique name to identify an event subscription.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic.
+	// The format for this ARN is: arn:partition:resiliencehub:region:account:app/app-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference guide.
+	SnsTopicArn *string `locationName:"snsTopicArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventSubscription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventSubscription) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventSubscription) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventSubscription"}
+	if s.EventType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventType"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventType sets the EventType field's value.
+func (s *EventSubscription) SetEventType(v string) *EventSubscription {
+	s.EventType = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EventSubscription) SetName(v string) *EventSubscription {
+	s.Name = &v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *EventSubscription) SetSnsTopicArn(v string) *EventSubscription {
+	s.SnsTopicArn = &v
 	return s
 }
 
@@ -10874,7 +11748,7 @@ func (s *FailurePolicy) SetRtoInSecs(v int64) *FailurePolicy {
 type ImportResourcesToDraftAppVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -10981,7 +11855,7 @@ func (s *ImportResourcesToDraftAppVersionInput) SetTerraformSources(v []*Terrafo
 type ImportResourcesToDraftAppVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -11001,7 +11875,7 @@ type ImportResourcesToDraftAppVersionOutput struct {
 	// The Amazon Resource Names (ARNs) for the resources you have imported.
 	SourceArns []*string `locationName:"sourceArns" type:"list"`
 
-	// The status of the action.
+	// Status of the action.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceImportStatusType"`
@@ -11132,16 +12006,16 @@ func (s *InternalServerException) RequestID() string {
 type ListAlarmRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -11212,7 +12086,7 @@ type ListAlarmRecommendationsOutput struct {
 	// AlarmRecommendations is a required field
 	AlarmRecommendations []*AlarmRecommendation `locationName:"alarmRecommendations" type:"list" required:"true"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -11246,10 +12120,125 @@ func (s *ListAlarmRecommendationsOutput) SetNextToken(v string) *ListAlarmRecomm
 	return s
 }
 
+type ListAppAssessmentComplianceDriftsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference guide.
+	//
+	// AssessmentArn is a required field
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
+
+	// Indicates the maximum number of applications requested.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Indicates the unique token number of the next application to be checked for
+	// compliance and regulatory requirements from the list of applications.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppAssessmentComplianceDriftsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppAssessmentComplianceDriftsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAppAssessmentComplianceDriftsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAppAssessmentComplianceDriftsInput"}
+	if s.AssessmentArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssessmentArn sets the AssessmentArn field's value.
+func (s *ListAppAssessmentComplianceDriftsInput) SetAssessmentArn(v string) *ListAppAssessmentComplianceDriftsInput {
+	s.AssessmentArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAppAssessmentComplianceDriftsInput) SetMaxResults(v int64) *ListAppAssessmentComplianceDriftsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppAssessmentComplianceDriftsInput) SetNextToken(v string) *ListAppAssessmentComplianceDriftsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppAssessmentComplianceDriftsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates compliance drifts (recovery time objective (RTO) and recovery point
+	// objective (RPO)) detected for an assessed entity.
+	//
+	// ComplianceDrifts is a required field
+	ComplianceDrifts []*ComplianceDrift `locationName:"complianceDrifts" type:"list" required:"true"`
+
+	// Token number of the next application to be checked for compliance and regulatory
+	// requirements from the list of applications.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppAssessmentComplianceDriftsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppAssessmentComplianceDriftsOutput) GoString() string {
+	return s.String()
+}
+
+// SetComplianceDrifts sets the ComplianceDrifts field's value.
+func (s *ListAppAssessmentComplianceDriftsOutput) SetComplianceDrifts(v []*ComplianceDrift) *ListAppAssessmentComplianceDriftsOutput {
+	s.ComplianceDrifts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppAssessmentComplianceDriftsOutput) SetNextToken(v string) *ListAppAssessmentComplianceDriftsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListAppAssessmentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -11268,8 +12257,8 @@ type ListAppAssessmentsInput struct {
 	// the System.
 	Invoker *string `location:"querystring" locationName:"invoker" type:"string" enum:"AssessmentInvoker"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -11373,7 +12362,7 @@ type ListAppAssessmentsOutput struct {
 	// AssessmentSummaries is a required field
 	AssessmentSummaries []*AppAssessmentSummary `locationName:"assessmentSummaries" type:"list" required:"true"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -11410,16 +12399,16 @@ func (s *ListAppAssessmentsOutput) SetNextToken(v string) *ListAppAssessmentsOut
 type ListAppComponentCompliancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -11489,7 +12478,7 @@ type ListAppComponentCompliancesOutput struct {
 	// ComponentCompliances is a required field
 	ComponentCompliances []*AppComponentCompliance `locationName:"componentCompliances" type:"list" required:"true"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -11526,16 +12515,16 @@ func (s *ListAppComponentCompliancesOutput) SetNextToken(v string) *ListAppCompo
 type ListAppComponentRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -11605,7 +12594,7 @@ type ListAppComponentRecommendationsOutput struct {
 	// ComponentRecommendations is a required field
 	ComponentRecommendations []*ComponentRecommendation `locationName:"componentRecommendations" type:"list" required:"true"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -11642,7 +12631,7 @@ func (s *ListAppComponentRecommendationsOutput) SetNextToken(v string) *ListAppC
 type ListAppInputSourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -11650,7 +12639,7 @@ type ListAppInputSourcesInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -11731,7 +12720,7 @@ type ListAppInputSourcesOutput struct {
 	// AppInputSources is a required field
 	AppInputSources []*AppInputSource `locationName:"appInputSources" type:"list" required:"true"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -11768,7 +12757,7 @@ func (s *ListAppInputSourcesOutput) SetNextToken(v string) *ListAppInputSourcesO
 type ListAppVersionAppComponentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -11776,7 +12765,7 @@ type ListAppVersionAppComponentsInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The version of the Application Component.
+	// Version of the Application Component.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -11853,7 +12842,7 @@ func (s *ListAppVersionAppComponentsInput) SetNextToken(v string) *ListAppVersio
 type ListAppVersionAppComponentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -11864,12 +12853,12 @@ type ListAppVersionAppComponentsOutput struct {
 	// Defines an Application Component.
 	AppComponents []*AppComponent `locationName:"appComponents" type:"list"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -11918,7 +12907,7 @@ func (s *ListAppVersionAppComponentsOutput) SetNextToken(v string) *ListAppVersi
 type ListAppVersionResourceMappingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -11931,8 +12920,8 @@ type ListAppVersionResourceMappingsInput struct {
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12004,7 +12993,7 @@ func (s *ListAppVersionResourceMappingsInput) SetNextToken(v string) *ListAppVer
 type ListAppVersionResourceMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Mappings used to map logical resources from the template to physical resources.
@@ -12050,7 +13039,7 @@ func (s *ListAppVersionResourceMappingsOutput) SetResourceMappings(v []*Resource
 type ListAppVersionResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -12063,8 +13052,8 @@ type ListAppVersionResourcesInput struct {
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12148,7 +13137,7 @@ func (s *ListAppVersionResourcesInput) SetResolutionId(v string) *ListAppVersion
 type ListAppVersionResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The physical resources in the application version.
@@ -12201,7 +13190,7 @@ func (s *ListAppVersionResourcesOutput) SetResolutionId(v string) *ListAppVersio
 type ListAppVersionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -12209,13 +13198,19 @@ type ListAppVersionsInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Upper limit of the time range to filter the application versions.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// Null, or the token from a previous call to get the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Lower limit of the time range to filter the application versions.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 }
 
 // String returns the string representation.
@@ -12258,6 +13253,12 @@ func (s *ListAppVersionsInput) SetAppArn(v string) *ListAppVersionsInput {
 	return s
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *ListAppVersionsInput) SetEndTime(v time.Time) *ListAppVersionsInput {
+	s.EndTime = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListAppVersionsInput) SetMaxResults(v int64) *ListAppVersionsInput {
 	s.MaxResults = &v
@@ -12270,6 +13271,12 @@ func (s *ListAppVersionsInput) SetNextToken(v string) *ListAppVersionsInput {
 	return s
 }
 
+// SetStartTime sets the StartTime field's value.
+func (s *ListAppVersionsInput) SetStartTime(v time.Time) *ListAppVersionsInput {
+	s.StartTime = &v
+	return s
+}
+
 type ListAppVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12278,7 +13285,7 @@ type ListAppVersionsOutput struct {
 	// AppVersions is a required field
 	AppVersions []*AppVersionSummary `locationName:"appVersions" type:"list" required:"true"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -12315,14 +13322,14 @@ func (s *ListAppVersionsOutput) SetNextToken(v string) *ListAppVersionsOutput {
 type ListAppsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	AppArn *string `location:"querystring" locationName:"appArn" type:"string"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12396,7 +13403,7 @@ type ListAppsOutput struct {
 	// AppSummaries is a required field
 	AppSummaries []*AppSummary `locationName:"appSummaries" type:"list" required:"true"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -12433,16 +13440,16 @@ func (s *ListAppsOutput) SetNextToken(v string) *ListAppsOutput {
 type ListRecommendationTemplatesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `location:"querystring" locationName:"assessmentArn" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12459,7 +13466,7 @@ type ListRecommendationTemplatesInput struct {
 	// set reverseOrder to true.
 	ReverseOrder *bool `location:"querystring" locationName:"reverseOrder" type:"boolean"`
 
-	// The status of the action.
+	// Status of the action.
 	Status []*string `location:"querystring" locationName:"status" min:"1" type:"list" enum:"RecommendationTemplateStatus"`
 }
 
@@ -12545,7 +13552,7 @@ func (s *ListRecommendationTemplatesInput) SetStatus(v []*string) *ListRecommend
 type ListRecommendationTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The recommendation templates for the Resilience Hub applications.
@@ -12585,8 +13592,8 @@ func (s *ListRecommendationTemplatesOutput) SetRecommendationTemplates(v []*Reco
 type ListResiliencyPoliciesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12649,7 +13656,7 @@ func (s *ListResiliencyPoliciesInput) SetPolicyName(v string) *ListResiliencyPol
 type ListResiliencyPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The resiliency policies for the Resilience Hub applications.
@@ -12691,16 +13698,16 @@ func (s *ListResiliencyPoliciesOutput) SetResiliencyPolicies(v []*ResiliencyPoli
 type ListSopRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12763,7 +13770,7 @@ func (s *ListSopRecommendationsInput) SetNextToken(v string) *ListSopRecommendat
 type ListSopRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The standard operating procedure (SOP) recommendations for the Resilience
@@ -12806,8 +13813,8 @@ func (s *ListSopRecommendationsOutput) SetSopRecommendations(v []*SopRecommendat
 type ListSuggestedResiliencyPoliciesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12861,7 +13868,7 @@ func (s *ListSuggestedResiliencyPoliciesInput) SetNextToken(v string) *ListSugge
 type ListSuggestedResiliencyPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The suggested resiliency policies for the Resilience Hub applications.
@@ -12953,8 +13960,8 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ListTagsForResourceOutput's
@@ -12989,16 +13996,16 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type ListTestRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -13061,7 +14068,7 @@ func (s *ListTestRecommendationsInput) SetNextToken(v string) *ListTestRecommend
 type ListTestRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The test recommendations for the Resilience Hub application.
@@ -13103,7 +14110,7 @@ func (s *ListTestRecommendationsOutput) SetTestRecommendations(v []*TestRecommen
 type ListUnsupportedAppVersionResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -13116,8 +14123,8 @@ type ListUnsupportedAppVersionResourcesInput struct {
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
+	// Maximum number of results to include in the response. If more results exist
+	// than the specified MaxResults value, a token is included in the response
 	// so that the remaining results can be retrieved.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -13201,7 +14208,7 @@ func (s *ListUnsupportedAppVersionResourcesInput) SetResolutionId(v string) *Lis
 type ListUnsupportedAppVersionResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no more results.
+	// Token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The identifier for a specific resolution.
@@ -13255,13 +14262,13 @@ func (s *ListUnsupportedAppVersionResourcesOutput) SetUnsupportedResources(v []*
 type LogicalResourceId struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon Elastic Kubernetes Service cluster and namespace this
+	// Name of the Amazon Elastic Kubernetes Service cluster and namespace this
 	// resource belongs to.
 	//
 	// This parameter accepts values in "eks-cluster/namespace" format.
 	EksSourceName *string `locationName:"eksSourceName" min:"1" type:"string"`
 
-	// The identifier of the resource.
+	// Identifier of the resource.
 	//
 	// Identifier is a required field
 	Identifier *string `locationName:"identifier" min:"1" type:"string" required:"true"`
@@ -13349,6 +14356,88 @@ func (s *LogicalResourceId) SetTerraformSourceName(v string) *LogicalResourceId 
 	return s
 }
 
+// Defines the roles and credentials that Resilience Hub would use while creating
+// the application, importing its resources, and running an assessment.
+type PermissionModel struct {
+	_ struct{} `type:"structure"`
+
+	// Defines a list of role Amazon Resource Names (ARNs) to be used in other accounts.
+	// These ARNs are used for querying purposes while importing resources and assessing
+	// your application.
+	//
+	//    * These ARNs are required only when your resources are in other accounts
+	//    and you have different role name in these accounts. Else, the invoker
+	//    role name will be used in the other accounts.
+	//
+	//    * These roles must have a trust policy with iam:AssumeRole permission
+	//    to the invoker role in the primary account.
+	CrossAccountRoleArns []*string `locationName:"crossAccountRoleArns" type:"list"`
+
+	// Existing Amazon Web Services IAM role name in the primary Amazon Web Services
+	// account that will be assumed by Resilience Hub Service Principle to obtain
+	// a read-only access to your application resources while running an assessment.
+	//
+	// You must have iam:passRole permission for this role while creating or updating
+	// the application.
+	InvokerRoleName *string `locationName:"invokerRoleName" type:"string"`
+
+	// Defines how Resilience Hub scans your resources. It can scan for the resources
+	// by using a pre-existing role in your Amazon Web Services account, or by using
+	// the credentials of the current IAM user.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"PermissionModelType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionModel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionModel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PermissionModel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PermissionModel"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrossAccountRoleArns sets the CrossAccountRoleArns field's value.
+func (s *PermissionModel) SetCrossAccountRoleArns(v []*string) *PermissionModel {
+	s.CrossAccountRoleArns = v
+	return s
+}
+
+// SetInvokerRoleName sets the InvokerRoleName field's value.
+func (s *PermissionModel) SetInvokerRoleName(v string) *PermissionModel {
+	s.InvokerRoleName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PermissionModel) SetType(v string) *PermissionModel {
+	s.Type = &v
+	return s
+}
+
 // Defines a physical resource. A physical resource is a resource that exists
 // in your account. It can be identified using an Amazon Resource Name (ARN)
 // or an Resilience Hub-native identifier.
@@ -13374,15 +14463,15 @@ type PhysicalResource struct {
 	// Indicates if a resource is included or excluded from the assessment.
 	Excluded *bool `locationName:"excluded" type:"boolean"`
 
-	// The logical identifier of the resource.
+	// Logical identifier of the resource.
 	//
 	// LogicalResourceId is a required field
 	LogicalResourceId *LogicalResourceId `locationName:"logicalResourceId" type:"structure" required:"true"`
 
-	// The name of the parent resource.
+	// Name of the parent resource.
 	ParentResourceName *string `locationName:"parentResourceName" type:"string"`
 
-	// The physical identifier of the resource.
+	// Identifier of the physical resource.
 	//
 	// PhysicalResourceId is a required field
 	PhysicalResourceId *PhysicalResourceId `locationName:"physicalResourceId" type:"structure" required:"true"`
@@ -13395,7 +14484,7 @@ type PhysicalResource struct {
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
 
-	// The type of input source.
+	// Type of input source.
 	SourceType *string `locationName:"sourceType" type:"string" enum:"ResourceSourceType"`
 }
 
@@ -13481,7 +14570,7 @@ type PhysicalResourceId struct {
 	// The Amazon Web Services Region that the physical resource is located in.
 	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
-	// The identifier of the physical resource.
+	// Identifier of the physical resource.
 	//
 	// Identifier is a required field
 	Identifier *string `locationName:"identifier" min:"1" type:"string" required:"true"`
@@ -13490,11 +14579,61 @@ type PhysicalResourceId struct {
 	//
 	// Arn
 	//
-	// The resource identifier is an Amazon Resource Name (ARN) .
+	// The resource identifier is an Amazon Resource Name (ARN) and it can identify
+	// the following list of resources:
+	//
+	//    * AWS::ECS::Service
+	//
+	//    * AWS::EFS::FileSystem
+	//
+	//    * AWS::ElasticLoadBalancingV2::LoadBalancer
+	//
+	//    * AWS::Lambda::Function
+	//
+	//    * AWS::SNS::Topic
 	//
 	// Native
 	//
-	// The resource identifier is an Resilience Hub-native identifier.
+	// The resource identifier is an Resilience Hub-native identifier and it can
+	// identify the following list of resources:
+	//
+	//    * AWS::ApiGateway::RestApi
+	//
+	//    * AWS::ApiGatewayV2::Api
+	//
+	//    * AWS::AutoScaling::AutoScalingGroup
+	//
+	//    * AWS::DocDB::DBCluster
+	//
+	//    * AWS::DocDB::DBGlobalCluster
+	//
+	//    * AWS::DocDB::DBInstance
+	//
+	//    * AWS::DynamoDB::GlobalTable
+	//
+	//    * AWS::DynamoDB::Table
+	//
+	//    * AWS::EC2::EC2Fleet
+	//
+	//    * AWS::EC2::Instance
+	//
+	//    * AWS::EC2::NatGateway
+	//
+	//    * AWS::EC2::Volume
+	//
+	//    * AWS::ElasticLoadBalancing::LoadBalancer
+	//
+	//    * AWS::RDS::DBCluster
+	//
+	//    * AWS::RDS::DBInstance
+	//
+	//    * AWS::RDS::GlobalCluster
+	//
+	//    * AWS::Route53::RecordSet
+	//
+	//    * AWS::S3::Bucket
+	//
+	//    * AWS::SQS::Queue
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"PhysicalIdentifierType"`
@@ -13564,13 +14703,16 @@ func (s *PhysicalResourceId) SetType(v string) *PhysicalResourceId {
 type PublishAppVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
+
+	// Name of the application version.
+	VersionName *string `locationName:"versionName" type:"string"`
 }
 
 // String returns the string representation.
@@ -13610,10 +14752,16 @@ func (s *PublishAppVersionInput) SetAppArn(v string) *PublishAppVersionInput {
 	return s
 }
 
+// SetVersionName sets the VersionName field's value.
+func (s *PublishAppVersionInput) SetVersionName(v string) *PublishAppVersionInput {
+	s.VersionName = &v
+	return s
+}
+
 type PublishAppVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -13623,6 +14771,12 @@ type PublishAppVersionOutput struct {
 
 	// The version of the application.
 	AppVersion *string `locationName:"appVersion" type:"string"`
+
+	// Identifier of the application version.
+	Identifier *int64 `locationName:"identifier" type:"long"`
+
+	// Name of the application version.
+	VersionName *string `locationName:"versionName" type:"string"`
 }
 
 // String returns the string representation.
@@ -13655,10 +14809,22 @@ func (s *PublishAppVersionOutput) SetAppVersion(v string) *PublishAppVersionOutp
 	return s
 }
 
+// SetIdentifier sets the Identifier field's value.
+func (s *PublishAppVersionOutput) SetIdentifier(v int64) *PublishAppVersionOutput {
+	s.Identifier = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *PublishAppVersionOutput) SetVersionName(v string) *PublishAppVersionOutput {
+	s.VersionName = &v
+	return s
+}
+
 type PutDraftAppVersionTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -13675,31 +14841,30 @@ type PutDraftAppVersionTemplateInput struct {
 	//    * resources The list of logical resources that must be included in the
 	//    Resilience Hub application. Type: Array Don't add the resources that you
 	//    want to exclude. Each resources array item includes the following fields:
-	//    logicalResourceId The logical identifier of the resource. Type: Object
-	//    Each logicalResourceId object includes the following fields: identifier
-	//    The identifier of the resource. Type: String logicalStackName The name
-	//    of the CloudFormation stack this resource belongs to. Type: String resourceGroupName
-	//    The name of the resource group this resource belongs to. Type: String
-	//    terraformSourceName The name of the Terraform S3 state file this resource
-	//    belongs to. Type: String eksSourceName The name of the Amazon Elastic
-	//    Kubernetes Service cluster and namespace this resource belongs to. This
-	//    parameter accepts values in "eks-cluster/namespace" format. Type: String
-	//    type The type of resource. Type: string name The name of the resource.
-	//    Type: String additionalInfo Additional configuration parameters for an
-	//    Resilience Hub application. If you want to implement additionalInfo through
-	//    the Resilience Hub console rather than using an API call, see Configure
-	//    the application configuration parameters (https://docs.aws.amazon.com/resilience-hub/latest/userguide/app-config-param.html).
+	//    logicalResourceId Logical identifier of the resource. Type: Object Each
+	//    logicalResourceId object includes the following fields: identifier Identifier
+	//    of the resource. Type: String logicalStackName The name of the CloudFormation
+	//    stack this resource belongs to. Type: String resourceGroupName The name
+	//    of the resource group this resource belongs to. Type: String terraformSourceName
+	//    The name of the Terraform S3 state file this resource belongs to. Type:
+	//    String eksSourceName Name of the Amazon Elastic Kubernetes Service cluster
+	//    and namespace this resource belongs to. This parameter accepts values
+	//    in "eks-cluster/namespace" format. Type: String type The type of resource.
+	//    Type: string name The name of the resource. Type: String additionalInfo
+	//    Additional configuration parameters for an Resilience Hub application.
+	//    If you want to implement additionalInfo through the Resilience Hub console
+	//    rather than using an API call, see Configure the application configuration
+	//    parameters (https://docs.aws.amazon.com/resilience-hub/latest/userguide/app-config-param.html).
 	//    Currently, this parameter accepts a key-value mapping (in a string format)
 	//    of only one failover region and one associated account. Key: "failover-regions"
 	//    Value: "[{"region":"<REGION>", "accounts":[{"id":"<ACCOUNT_ID>"}]}]"
 	//
-	//    * appComponents The list of Application Components that this resource
-	//    belongs to. If an Application Component is not part of the Resilience
-	//    Hub application, it will be added. Type: Array Each appComponents array
-	//    item includes the following fields: name The name of the Application Component.
-	//    Type: String type The type of Application Component. For more information
-	//    about the types of Application Component, see Grouping resources in an
-	//    AppComponent (https://docs.aws.amazon.com/resilience-hub/latest/userguide/AppComponent.grouping.html).
+	//    * appComponents List of Application Components that this resource belongs
+	//    to. If an Application Component is not part of the Resilience Hub application,
+	//    it will be added. Type: Array Each appComponents array item includes the
+	//    following fields: name Name of the Application Component. Type: String
+	//    type Type of Application Component. For more information about the types
+	//    of Application Component, see Grouping resources in an AppComponent (https://docs.aws.amazon.com/resilience-hub/latest/userguide/AppComponent.grouping.html).
 	//    Type: String resourceNames The list of included resources that are assigned
 	//    to the Application Component. Type: Array of strings additionalInfo Additional
 	//    configuration parameters for an Resilience Hub application. If you want
@@ -13713,19 +14878,19 @@ type PutDraftAppVersionTemplateInput struct {
 	//    * excludedResources The list of logical resource identifiers to be excluded
 	//    from the application. Type: Array Don't add the resources that you want
 	//    to include. Each excludedResources array item includes the following fields:
-	//    logicalResourceIds The logical identifier of the resource. Type: Object
-	//    You can configure only one of the following fields: logicalStackName resourceGroupName
+	//    logicalResourceIds Logical identifier of the resource. Type: Object You
+	//    can configure only one of the following fields: logicalStackName resourceGroupName
 	//    terraformSourceName eksSourceName Each logicalResourceIds object includes
-	//    the following fields: identifier The identifier of the resource. Type:
-	//    String logicalStackName The name of the CloudFormation stack this resource
-	//    belongs to. Type: String resourceGroupName The name of the resource group
-	//    this resource belongs to. Type: String terraformSourceName The name of
-	//    the Terraform S3 state file this resource belongs to. Type: String eksSourceName
-	//    The name of the Amazon Elastic Kubernetes Service cluster and namespace
-	//    this resource belongs to. This parameter accepts values in "eks-cluster/namespace"
+	//    the following fields: identifier Identifier of the resource. Type: String
+	//    logicalStackName The name of the CloudFormation stack this resource belongs
+	//    to. Type: String resourceGroupName The name of the resource group this
+	//    resource belongs to. Type: String terraformSourceName The name of the
+	//    Terraform S3 state file this resource belongs to. Type: String eksSourceName
+	//    Name of the Amazon Elastic Kubernetes Service cluster and namespace this
+	//    resource belongs to. This parameter accepts values in "eks-cluster/namespace"
 	//    format. Type: String
 	//
-	//    * version The Resilience Hub application version.
+	//    * version Resilience Hub application version.
 	//
 	//    * additionalInfo Additional configuration parameters for an Resilience
 	//    Hub application. If you want to implement additionalInfo through the Resilience
@@ -13788,7 +14953,7 @@ func (s *PutDraftAppVersionTemplateInput) SetAppTemplateBody(v string) *PutDraft
 type PutDraftAppVersionTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -13908,10 +15073,16 @@ type RecommendationItem struct {
 	// Specifies if the recommendation has already been implemented.
 	AlreadyImplemented *bool `locationName:"alreadyImplemented" type:"boolean"`
 
-	// The resource identifier.
+	// Indicates the reason for excluding an operational recommendation.
+	ExcludeReason *string `locationName:"excludeReason" type:"string" enum:"ExcludeRecommendationReason"`
+
+	// Indicates if an operational recommendation item is excluded.
+	Excluded *bool `locationName:"excluded" type:"boolean"`
+
+	// Identifier of the resource.
 	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
 
-	// The target account identifier.
+	// Identifier of the target account.
 	TargetAccountId *string `locationName:"targetAccountId" type:"string"`
 
 	// The target region.
@@ -13942,6 +15113,18 @@ func (s *RecommendationItem) SetAlreadyImplemented(v bool) *RecommendationItem {
 	return s
 }
 
+// SetExcludeReason sets the ExcludeReason field's value.
+func (s *RecommendationItem) SetExcludeReason(v string) *RecommendationItem {
+	s.ExcludeReason = &v
+	return s
+}
+
+// SetExcluded sets the Excluded field's value.
+func (s *RecommendationItem) SetExcluded(v bool) *RecommendationItem {
+	s.Excluded = &v
+	return s
+}
+
 // SetResourceId sets the ResourceId field's value.
 func (s *RecommendationItem) SetResourceId(v string) *RecommendationItem {
 	s.ResourceId = &v
@@ -13965,15 +15148,15 @@ func (s *RecommendationItem) SetTargetRegion(v string) *RecommendationItem {
 type RecommendationTemplate struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	//
 	// AssessmentArn is a required field
@@ -13982,7 +15165,7 @@ type RecommendationTemplate struct {
 	// The end time for the action.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
-	// The format of the recommendation template.
+	// Format of the recommendation template.
 	//
 	// CfnJson
 	//
@@ -13995,10 +15178,10 @@ type RecommendationTemplate struct {
 	// Format is a required field
 	Format *string `locationName:"format" type:"string" required:"true" enum:"TemplateFormat"`
 
-	// The message for the recommendation template.
+	// Message for the recommendation template.
 	Message *string `locationName:"message" min:"1" type:"string"`
 
-	// The name for the recommendation template.
+	// Name for the recommendation template.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -14009,7 +15192,7 @@ type RecommendationTemplate struct {
 	// Identifiers for the recommendations used in the recommendation template.
 	RecommendationIds []*string `locationName:"recommendationIds" min:"1" type:"list"`
 
-	// The Amazon Resource Name (ARN) for the recommendation template.
+	// Amazon Resource Name (ARN) for the recommendation template.
 	//
 	// RecommendationTemplateArn is a required field
 	RecommendationTemplateArn *string `locationName:"recommendationTemplateArn" type:"string" required:"true"`
@@ -14034,13 +15217,13 @@ type RecommendationTemplate struct {
 	// The start time for the action.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
-	// The status of the action.
+	// Status of the action.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RecommendationTemplateStatus"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RecommendationTemplate's
@@ -14156,7 +15339,7 @@ func (s *RecommendationTemplate) SetTemplatesLocation(v *S3Location) *Recommenda
 type RemoveDraftAppVersionResourceMappingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -14264,7 +15447,7 @@ func (s *RemoveDraftAppVersionResourceMappingsInput) SetTerraformSourceNames(v [
 type RemoveDraftAppVersionResourceMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -14321,7 +15504,7 @@ type ResiliencyPolicy struct {
 	// The resiliency policy.
 	Policy map[string]*FailurePolicy `locationName:"policy" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
+	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -14333,8 +15516,8 @@ type ResiliencyPolicy struct {
 	// The name of the policy
 	PolicyName *string `locationName:"policyName" type:"string"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ResiliencyPolicy's
@@ -14467,7 +15650,7 @@ func (s *ResiliencyScore) SetScore(v float64) *ResiliencyScore {
 type ResolveAppVersionResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -14530,7 +15713,7 @@ func (s *ResolveAppVersionResourcesInput) SetAppVersion(v string) *ResolveAppVer
 type ResolveAppVersionResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -14548,7 +15731,7 @@ type ResolveAppVersionResourcesOutput struct {
 	// ResolutionId is a required field
 	ResolutionId *string `locationName:"resolutionId" min:"1" type:"string" required:"true"`
 
-	// The status of the action.
+	// Status of the action.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceResolutionStatusType"`
@@ -14600,10 +15783,10 @@ func (s *ResolveAppVersionResourcesOutput) SetStatus(v string) *ResolveAppVersio
 type ResourceError struct {
 	_ struct{} `type:"structure"`
 
-	// This is the identifier of the resource.
+	// Identifier of the logical resource.
 	LogicalResourceId *string `locationName:"logicalResourceId" min:"1" type:"string"`
 
-	// This is the identifier of the physical resource.
+	// Identifier of the physical resource.
 	PhysicalResourceId *string `locationName:"physicalResourceId" min:"1" type:"string"`
 
 	// This is the error message.
@@ -14695,7 +15878,7 @@ type ResourceMapping struct {
 	// The name of the application this resource is mapped to.
 	AppRegistryAppName *string `locationName:"appRegistryAppName" type:"string"`
 
-	// The name of the Amazon Elastic Kubernetes Service cluster and namespace this
+	// Name of the Amazon Elastic Kubernetes Service cluster and namespace this
 	// resource belongs to.
 	//
 	// This parameter accepts values in "eks-cluster/namespace" format.
@@ -14729,15 +15912,15 @@ type ResourceMapping struct {
 	// MappingType is a required field
 	MappingType *string `locationName:"mappingType" type:"string" required:"true" enum:"ResourceMappingType"`
 
-	// The identifier of this resource.
+	// Identifier of the physical resource.
 	//
 	// PhysicalResourceId is a required field
 	PhysicalResourceId *PhysicalResourceId `locationName:"physicalResourceId" type:"structure" required:"true"`
 
-	// The name of the resource group this resource is mapped to.
+	// Name of the resource group that the resource is mapped to.
 	ResourceGroupName *string `locationName:"resourceGroupName" type:"string"`
 
-	// The name of the resource this resource is mapped to.
+	// Name of the resource that the resource is mapped to.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The short name of the Terraform source.
@@ -15021,19 +16204,19 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type SopRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Application Component.
+	// Name of the Application Component.
 	AppComponentName *string `locationName:"appComponentName" type:"string"`
 
-	// The description of the SOP recommendation.
+	// Description of the SOP recommendation.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The recommendation items.
 	Items []*RecommendationItem `locationName:"items" type:"list"`
 
-	// The name of the SOP recommendation.
+	// Name of the SOP recommendation.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The prerequisite for the SOP recommendation.
+	// Prerequisite for the SOP recommendation.
 	Prerequisite *string `locationName:"prerequisite" min:"1" type:"string"`
 
 	// Identifier for the SOP recommendation.
@@ -15041,7 +16224,7 @@ type SopRecommendation struct {
 	// RecommendationId is a required field
 	RecommendationId *string `locationName:"recommendationId" type:"string" required:"true"`
 
-	// The reference identifier for the SOP recommendation.
+	// Reference identifier for the SOP recommendation.
 	//
 	// ReferenceId is a required field
 	ReferenceId *string `locationName:"referenceId" min:"1" type:"string" required:"true"`
@@ -15121,7 +16304,7 @@ func (s *SopRecommendation) SetServiceType(v string) *SopRecommendation {
 type StartAppAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -15144,8 +16327,8 @@ type StartAppAssessmentInput struct {
 	// token for other API requests.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The tags assigned to the resource. A tag is a label that you assign to an
-	// Amazon Web Services resource. Each tag consists of a key/value pair.
+	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
+	// Web Services resource. Each tag consists of a key/value pair.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by StartAppAssessmentInput's
@@ -15262,7 +16445,7 @@ func (s *StartAppAssessmentOutput) SetAssessment(v *AppAssessment) *StartAppAsse
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource.
+	// Amazon Resource Name (ARN) of the resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -15402,40 +16585,40 @@ func (s *TerraformSource) SetS3StateFileUrl(v string) *TerraformSource {
 type TestRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Application Component.
+	// Name of the Application Component.
 	AppComponentName *string `locationName:"appComponentName" type:"string"`
 
 	// A list of recommended alarms that are used in the test and must be exported
 	// before or with the test.
 	DependsOnAlarms []*string `locationName:"dependsOnAlarms" min:"1" type:"list"`
 
-	// The description for the test recommendation.
+	// Description for the test recommendation.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The intent of the test recommendation.
+	// Intent of the test recommendation.
 	Intent *string `locationName:"intent" type:"string"`
 
 	// The test recommendation items.
 	Items []*RecommendationItem `locationName:"items" type:"list"`
 
-	// The name of the test recommendation.
+	// Name of the test recommendation.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The prerequisite of the test recommendation.
+	// Prerequisite of the test recommendation.
 	Prerequisite *string `locationName:"prerequisite" min:"1" type:"string"`
 
 	// Identifier for the test recommendation.
 	RecommendationId *string `locationName:"recommendationId" type:"string"`
 
-	// The reference identifier for the test recommendation.
+	// Reference identifier for the test recommendation.
 	//
 	// ReferenceId is a required field
 	ReferenceId *string `locationName:"referenceId" min:"1" type:"string" required:"true"`
 
-	// The level of risk for this test recommendation.
+	// Level of risk for this test recommendation.
 	Risk *string `locationName:"risk" type:"string" enum:"TestRisk"`
 
-	// The type of test recommendation.
+	// Type of test recommendation.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 }
 
@@ -15595,12 +16778,12 @@ func (s *ThrottlingException) RequestID() string {
 type UnsupportedResource struct {
 	_ struct{} `type:"structure"`
 
-	// The logical resource identifier for the unsupported resource.
+	// Logical resource identifier for the unsupported resource.
 	//
 	// LogicalResourceId is a required field
 	LogicalResourceId *LogicalResourceId `locationName:"logicalResourceId" type:"structure" required:"true"`
 
-	// The physical resource identifier for the unsupported resource.
+	// Physical resource identifier for the unsupported resource.
 	//
 	// PhysicalResourceId is a required field
 	PhysicalResourceId *PhysicalResourceId `locationName:"physicalResourceId" type:"structure" required:"true"`
@@ -15659,7 +16842,7 @@ func (s *UnsupportedResource) SetUnsupportedResourceStatus(v string) *Unsupporte
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the resource.
+	// Amazon Resource Name (ARN) of the resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -15751,7 +16934,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAppInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -15768,7 +16951,16 @@ type UpdateAppInput struct {
 	// The optional description for an app.
 	Description *string `locationName:"description" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
+	// The list of events you would like to subscribe and get notification for.
+	// Currently, Resilience Hub supports notifications only for Drift detected
+	// and Scheduled assessment failure events.
+	EventSubscriptions []*EventSubscription `locationName:"eventSubscriptions" type:"list"`
+
+	// Defines the roles and credentials that Resilience Hub would use while creating
+	// an application, importing its resources, and running an assessment.
+	PermissionModel *PermissionModel `locationName:"permissionModel" type:"structure"`
+
+	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -15799,6 +16991,21 @@ func (s *UpdateAppInput) Validate() error {
 	if s.AppArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("AppArn"))
 	}
+	if s.EventSubscriptions != nil {
+		for i, v := range s.EventSubscriptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EventSubscriptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PermissionModel != nil {
+		if err := s.PermissionModel.Validate(); err != nil {
+			invalidParams.AddNested("PermissionModel", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15827,6 +17034,18 @@ func (s *UpdateAppInput) SetClearResiliencyPolicyArn(v bool) *UpdateAppInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateAppInput) SetDescription(v string) *UpdateAppInput {
 	s.Description = &v
+	return s
+}
+
+// SetEventSubscriptions sets the EventSubscriptions field's value.
+func (s *UpdateAppInput) SetEventSubscriptions(v []*EventSubscription) *UpdateAppInput {
+	s.EventSubscriptions = v
+	return s
+}
+
+// SetPermissionModel sets the PermissionModel field's value.
+func (s *UpdateAppInput) SetPermissionModel(v *PermissionModel) *UpdateAppInput {
+	s.PermissionModel = v
 	return s
 }
 
@@ -15876,7 +17095,7 @@ type UpdateAppVersionAppComponentInput struct {
 	// Currently, there is no supported additional information for Application Components.
 	AdditionalInfo map[string][]*string `locationName:"additionalInfo" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -15884,16 +17103,16 @@ type UpdateAppVersionAppComponentInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The identifier of the Application Component.
+	// Identifier of the Application Component.
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
-	// The name of the Application Component.
+	// Name of the Application Component.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The type of Application Component. For more information about the types of
-	// Application Component, see Grouping resources in an AppComponent (https://docs.aws.amazon.com/resilience-hub/latest/userguide/AppComponent.grouping.html).
+	// Type of Application Component. For more information about the types of Application
+	// Component, see Grouping resources in an AppComponent (https://docs.aws.amazon.com/resilience-hub/latest/userguide/AppComponent.grouping.html).
 	Type *string `locationName:"type" min:"1" type:"string"`
 }
 
@@ -15973,7 +17192,7 @@ func (s *UpdateAppVersionAppComponentInput) SetType(v string) *UpdateAppVersionA
 type UpdateAppVersionAppComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -15981,10 +17200,10 @@ type UpdateAppVersionAppComponentOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The list of Application Components that belong to this resource.
+	// List of Application Components that belong to this resource.
 	AppComponent *AppComponent `locationName:"appComponent" type:"structure"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -16042,7 +17261,7 @@ type UpdateAppVersionInput struct {
 	// Value: "[{"region":"<REGION>", "accounts":[{"id":"<ACCOUNT_ID>"}]}]"
 	AdditionalInfo map[string][]*string `locationName:"additionalInfo" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -16105,7 +17324,7 @@ type UpdateAppVersionOutput struct {
 	// Currently, this parameter supports only failover region and account.
 	AdditionalInfo map[string][]*string `locationName:"additionalInfo" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -16113,7 +17332,7 @@ type UpdateAppVersionOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -16161,7 +17380,7 @@ type UpdateAppVersionResourceInput struct {
 	// Currently, there is no supported additional information for resources.
 	AdditionalInfo map[string][]*string `locationName:"additionalInfo" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -16169,14 +17388,14 @@ type UpdateAppVersionResourceInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The list of Application Components that this resource belongs to. If an Application
+	// List of Application Components that this resource belongs to. If an Application
 	// Component is not part of the Resilience Hub application, it will be added.
 	AppComponents []*string `locationName:"appComponents" type:"list"`
 
-	// The Amazon Web Services account that owns the physical resource.
+	// Amazon Web Services account that owns the physical resource.
 	AwsAccountId *string `locationName:"awsAccountId" type:"string"`
 
-	// The Amazon Web Services region that owns the physical resource.
+	// Amazon Web Services region that owns the physical resource.
 	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
 	// Indicates if a resource is excluded from an Resilience Hub application.
@@ -16184,16 +17403,16 @@ type UpdateAppVersionResourceInput struct {
 	// You can exclude only imported resources from an Resilience Hub application.
 	Excluded *bool `locationName:"excluded" type:"boolean"`
 
-	// The logical identifier of the resource.
+	// Logical identifier of the resource.
 	LogicalResourceId *LogicalResourceId `locationName:"logicalResourceId" type:"structure"`
 
-	// The physical identifier of the resource.
+	// Physical identifier of the resource.
 	PhysicalResourceId *string `locationName:"physicalResourceId" min:"1" type:"string"`
 
-	// The name of the resource.
+	// Name of the resource.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
-	// The type of resource.
+	// Type of resource.
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string"`
 }
 
@@ -16302,7 +17521,7 @@ func (s *UpdateAppVersionResourceInput) SetResourceType(v string) *UpdateAppVers
 type UpdateAppVersionResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Resilience Hub application. The format
+	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -16310,7 +17529,7 @@ type UpdateAppVersionResourceOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The Resilience Hub application version.
+	// Resilience Hub application version.
 	//
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
@@ -16357,6 +17576,182 @@ func (s *UpdateAppVersionResourceOutput) SetPhysicalResource(v *PhysicalResource
 	return s
 }
 
+// Defines the operational recommendation item that needs a status update.
+type UpdateRecommendationStatusItem struct {
+	_ struct{} `type:"structure"`
+
+	// Resource identifier of the operational recommendation item.
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
+
+	// Identifier of the target Amazon Web Services account.
+	TargetAccountId *string `locationName:"targetAccountId" type:"string"`
+
+	// Identifier of the target Amazon Web Services Region.
+	TargetRegion *string `locationName:"targetRegion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommendationStatusItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommendationStatusItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRecommendationStatusItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRecommendationStatusItem"}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *UpdateRecommendationStatusItem) SetResourceId(v string) *UpdateRecommendationStatusItem {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTargetAccountId sets the TargetAccountId field's value.
+func (s *UpdateRecommendationStatusItem) SetTargetAccountId(v string) *UpdateRecommendationStatusItem {
+	s.TargetAccountId = &v
+	return s
+}
+
+// SetTargetRegion sets the TargetRegion field's value.
+func (s *UpdateRecommendationStatusItem) SetTargetRegion(v string) *UpdateRecommendationStatusItem {
+	s.TargetRegion = &v
+	return s
+}
+
+// Defines the operational recommendation item that is to be included or excluded.
+type UpdateRecommendationStatusRequestEntry struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier for an entry in this batch that is used to communicate the
+	// result.
+	//
+	// The entryIds of a batch request need to be unique within a request.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// Indicates the reason for excluding an operational recommendation.
+	ExcludeReason *string `locationName:"excludeReason" type:"string" enum:"ExcludeRecommendationReason"`
+
+	// Indicates if the operational recommendation needs to be excluded. If set
+	// to True, the operational recommendation will be excluded.
+	//
+	// Excluded is a required field
+	Excluded *bool `locationName:"excluded" type:"boolean" required:"true"`
+
+	// The operational recommendation item.
+	//
+	// Item is a required field
+	Item *UpdateRecommendationStatusItem `locationName:"item" type:"structure" required:"true"`
+
+	// Reference identifier of the operational recommendation item.
+	//
+	// ReferenceId is a required field
+	ReferenceId *string `locationName:"referenceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommendationStatusRequestEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommendationStatusRequestEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRecommendationStatusRequestEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRecommendationStatusRequestEntry"}
+	if s.EntryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntryId"))
+	}
+	if s.EntryId != nil && len(*s.EntryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntryId", 1))
+	}
+	if s.Excluded == nil {
+		invalidParams.Add(request.NewErrParamRequired("Excluded"))
+	}
+	if s.Item == nil {
+		invalidParams.Add(request.NewErrParamRequired("Item"))
+	}
+	if s.ReferenceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReferenceId"))
+	}
+	if s.ReferenceId != nil && len(*s.ReferenceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReferenceId", 1))
+	}
+	if s.Item != nil {
+		if err := s.Item.Validate(); err != nil {
+			invalidParams.AddNested("Item", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *UpdateRecommendationStatusRequestEntry) SetEntryId(v string) *UpdateRecommendationStatusRequestEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetExcludeReason sets the ExcludeReason field's value.
+func (s *UpdateRecommendationStatusRequestEntry) SetExcludeReason(v string) *UpdateRecommendationStatusRequestEntry {
+	s.ExcludeReason = &v
+	return s
+}
+
+// SetExcluded sets the Excluded field's value.
+func (s *UpdateRecommendationStatusRequestEntry) SetExcluded(v bool) *UpdateRecommendationStatusRequestEntry {
+	s.Excluded = &v
+	return s
+}
+
+// SetItem sets the Item field's value.
+func (s *UpdateRecommendationStatusRequestEntry) SetItem(v *UpdateRecommendationStatusItem) *UpdateRecommendationStatusRequestEntry {
+	s.Item = v
+	return s
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *UpdateRecommendationStatusRequestEntry) SetReferenceId(v string) *UpdateRecommendationStatusRequestEntry {
+	s.ReferenceId = &v
+	return s
+}
+
 type UpdateResiliencyPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16368,7 +17763,7 @@ type UpdateResiliencyPolicyInput struct {
 	// objective (RTO) and recovery point objective (RPO) in seconds.
 	Policy map[string]*FailurePolicy `locationName:"policy" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
+	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
@@ -16631,6 +18026,26 @@ func AppComplianceStatusType_Values() []string {
 }
 
 const (
+	// AppDriftStatusTypeNotChecked is a AppDriftStatusType enum value
+	AppDriftStatusTypeNotChecked = "NotChecked"
+
+	// AppDriftStatusTypeNotDetected is a AppDriftStatusType enum value
+	AppDriftStatusTypeNotDetected = "NotDetected"
+
+	// AppDriftStatusTypeDetected is a AppDriftStatusType enum value
+	AppDriftStatusTypeDetected = "Detected"
+)
+
+// AppDriftStatusType_Values returns all elements of the AppDriftStatusType enum
+func AppDriftStatusType_Values() []string {
+	return []string{
+		AppDriftStatusTypeNotChecked,
+		AppDriftStatusTypeNotDetected,
+		AppDriftStatusTypeDetected,
+	}
+}
+
+const (
 	// AppStatusTypeActive is a AppStatusType enum value
 	AppStatusTypeActive = "Active"
 
@@ -16779,6 +18194,18 @@ func DataLocationConstraint_Values() []string {
 }
 
 const (
+	// DifferenceTypeNotEqual is a DifferenceType enum value
+	DifferenceTypeNotEqual = "NotEqual"
+)
+
+// DifferenceType_Values returns all elements of the DifferenceType enum
+func DifferenceType_Values() []string {
+	return []string{
+		DifferenceTypeNotEqual,
+	}
+}
+
+const (
 	// DisruptionTypeSoftware is a DisruptionType enum value
 	DisruptionTypeSoftware = "Software"
 
@@ -16799,6 +18226,38 @@ func DisruptionType_Values() []string {
 		DisruptionTypeHardware,
 		DisruptionTypeAz,
 		DisruptionTypeRegion,
+	}
+}
+
+const (
+	// DriftStatusNotChecked is a DriftStatus enum value
+	DriftStatusNotChecked = "NotChecked"
+
+	// DriftStatusNotDetected is a DriftStatus enum value
+	DriftStatusNotDetected = "NotDetected"
+
+	// DriftStatusDetected is a DriftStatus enum value
+	DriftStatusDetected = "Detected"
+)
+
+// DriftStatus_Values returns all elements of the DriftStatus enum
+func DriftStatus_Values() []string {
+	return []string{
+		DriftStatusNotChecked,
+		DriftStatusNotDetected,
+		DriftStatusDetected,
+	}
+}
+
+const (
+	// DriftTypeApplicationCompliance is a DriftType enum value
+	DriftTypeApplicationCompliance = "ApplicationCompliance"
+)
+
+// DriftType_Values returns all elements of the DriftType enum
+func DriftType_Values() []string {
+	return []string{
+		DriftTypeApplicationCompliance,
 	}
 }
 
@@ -16827,6 +18286,42 @@ func EstimatedCostTier_Values() []string {
 }
 
 const (
+	// EventTypeScheduledAssessmentFailure is a EventType enum value
+	EventTypeScheduledAssessmentFailure = "ScheduledAssessmentFailure"
+
+	// EventTypeDriftDetected is a EventType enum value
+	EventTypeDriftDetected = "DriftDetected"
+)
+
+// EventType_Values returns all elements of the EventType enum
+func EventType_Values() []string {
+	return []string{
+		EventTypeScheduledAssessmentFailure,
+		EventTypeDriftDetected,
+	}
+}
+
+const (
+	// ExcludeRecommendationReasonAlreadyImplemented is a ExcludeRecommendationReason enum value
+	ExcludeRecommendationReasonAlreadyImplemented = "AlreadyImplemented"
+
+	// ExcludeRecommendationReasonNotRelevant is a ExcludeRecommendationReason enum value
+	ExcludeRecommendationReasonNotRelevant = "NotRelevant"
+
+	// ExcludeRecommendationReasonComplexityOfImplementation is a ExcludeRecommendationReason enum value
+	ExcludeRecommendationReasonComplexityOfImplementation = "ComplexityOfImplementation"
+)
+
+// ExcludeRecommendationReason_Values returns all elements of the ExcludeRecommendationReason enum
+func ExcludeRecommendationReason_Values() []string {
+	return []string{
+		ExcludeRecommendationReasonAlreadyImplemented,
+		ExcludeRecommendationReasonNotRelevant,
+		ExcludeRecommendationReasonComplexityOfImplementation,
+	}
+}
+
+const (
 	// HaArchitectureMultiSite is a HaArchitecture enum value
 	HaArchitectureMultiSite = "MultiSite"
 
@@ -16851,6 +18346,22 @@ func HaArchitecture_Values() []string {
 		HaArchitecturePilotLight,
 		HaArchitectureBackupAndRestore,
 		HaArchitectureNoRecoveryPlan,
+	}
+}
+
+const (
+	// PermissionModelTypeLegacyIamuser is a PermissionModelType enum value
+	PermissionModelTypeLegacyIamuser = "LegacyIAMUser"
+
+	// PermissionModelTypeRoleBased is a PermissionModelType enum value
+	PermissionModelTypeRoleBased = "RoleBased"
+)
+
+// PermissionModelType_Values returns all elements of the PermissionModelType enum
+func PermissionModelType_Values() []string {
+	return []string{
+		PermissionModelTypeLegacyIamuser,
+		PermissionModelTypeRoleBased,
 	}
 }
 
@@ -16949,6 +18460,9 @@ const (
 
 	// ResiliencyPolicyTierNonCritical is a ResiliencyPolicyTier enum value
 	ResiliencyPolicyTierNonCritical = "NonCritical"
+
+	// ResiliencyPolicyTierNotApplicable is a ResiliencyPolicyTier enum value
+	ResiliencyPolicyTierNotApplicable = "NotApplicable"
 )
 
 // ResiliencyPolicyTier_Values returns all elements of the ResiliencyPolicyTier enum
@@ -16959,6 +18473,7 @@ func ResiliencyPolicyTier_Values() []string {
 		ResiliencyPolicyTierImportant,
 		ResiliencyPolicyTierCoreServices,
 		ResiliencyPolicyTierNonCritical,
+		ResiliencyPolicyTierNotApplicable,
 	}
 }
 

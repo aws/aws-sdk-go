@@ -179,10 +179,10 @@
       }
     },
     "BudgetName": {
-      "base": "<p> A string that represents the budget name. The \":\" and \"\\\" characters aren't allowed.</p>",
+      "base": "<p> A string that represents the budget name. The \":\" and \"\\\" characters, and the \"/action/\" substring, aren't allowed.</p>",
       "refs": {
         "Action$BudgetName": null,
-        "Budget$BudgetName": "<p>The name of a budget. The name must be unique within an account. The <code>:</code> and <code>\\</code> characters aren't allowed in <code>BudgetName</code>.</p>",
+        "Budget$BudgetName": "<p>The name of a budget. The name must be unique within an account. The <code>:</code> and <code>\\</code> characters, and the \"/action/\" substring, aren't allowed in <code>BudgetName</code>.</p>",
         "BudgetNotificationsForAccount$BudgetName": null,
         "BudgetPerformanceHistory$BudgetName": null,
         "CreateBudgetActionRequest$BudgetName": null,
@@ -828,7 +828,7 @@
       }
     },
     "ThrottlingException": {
-      "base": "<p> The number of API requests has exceeded the maximum allowed API request throttling limit for the account. </p>",
+      "base": "<p>The number of API requests has exceeded the maximum allowed API request throttling limit for the account.</p>",
       "refs": {
       }
     },

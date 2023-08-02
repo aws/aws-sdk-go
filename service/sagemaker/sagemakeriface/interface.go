@@ -736,6 +736,10 @@ type SageMakerAPI interface {
 	GetSagemakerServicecatalogPortfolioStatusWithContext(aws.Context, *sagemaker.GetSagemakerServicecatalogPortfolioStatusInput, ...request.Option) (*sagemaker.GetSagemakerServicecatalogPortfolioStatusOutput, error)
 	GetSagemakerServicecatalogPortfolioStatusRequest(*sagemaker.GetSagemakerServicecatalogPortfolioStatusInput) (*request.Request, *sagemaker.GetSagemakerServicecatalogPortfolioStatusOutput)
 
+	GetScalingConfigurationRecommendation(*sagemaker.GetScalingConfigurationRecommendationInput) (*sagemaker.GetScalingConfigurationRecommendationOutput, error)
+	GetScalingConfigurationRecommendationWithContext(aws.Context, *sagemaker.GetScalingConfigurationRecommendationInput, ...request.Option) (*sagemaker.GetScalingConfigurationRecommendationOutput, error)
+	GetScalingConfigurationRecommendationRequest(*sagemaker.GetScalingConfigurationRecommendationInput) (*request.Request, *sagemaker.GetScalingConfigurationRecommendationOutput)
+
 	GetSearchSuggestions(*sagemaker.GetSearchSuggestionsInput) (*sagemaker.GetSearchSuggestionsOutput, error)
 	GetSearchSuggestionsWithContext(aws.Context, *sagemaker.GetSearchSuggestionsInput, ...request.Option) (*sagemaker.GetSearchSuggestionsOutput, error)
 	GetSearchSuggestionsRequest(*sagemaker.GetSearchSuggestionsInput) (*request.Request, *sagemaker.GetSearchSuggestionsOutput)

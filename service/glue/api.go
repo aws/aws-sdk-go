@@ -27994,6 +27994,9 @@ type Connection struct {
 	//    SASL SCRAM password (if the user has the Glue encrypt passwords setting
 	//    selected).
 	//
+	//    * KAFKA_SASL_SCRAM_SECRETS_ARN - The Amazon Resource Name of a secret
+	//    in Amazon Web Services Secrets Manager.
+	//
 	//    * KAFKA_SASL_GSSAPI_KEYTAB - The S3 location of a Kerberos keytab file.
 	//    A keytab stores long-term keys for one or more principals. For more information,
 	//    see MIT Kerberos Documentation: Keytab (https://web.mit.edu/kerberos/krb5-latest/doc/basic/keytab_def.html).
@@ -74139,6 +74142,33 @@ const (
 
 	// ConnectionPropertyKeyConnectorClassName is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeyConnectorClassName = "CONNECTOR_CLASS_NAME"
+
+	// ConnectionPropertyKeyKafkaSaslMechanism is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslMechanism = "KAFKA_SASL_MECHANISM"
+
+	// ConnectionPropertyKeyKafkaSaslScramUsername is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslScramUsername = "KAFKA_SASL_SCRAM_USERNAME"
+
+	// ConnectionPropertyKeyKafkaSaslScramPassword is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslScramPassword = "KAFKA_SASL_SCRAM_PASSWORD"
+
+	// ConnectionPropertyKeyKafkaSaslScramSecretsArn is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslScramSecretsArn = "KAFKA_SASL_SCRAM_SECRETS_ARN"
+
+	// ConnectionPropertyKeyEncryptedKafkaSaslScramPassword is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyEncryptedKafkaSaslScramPassword = "ENCRYPTED_KAFKA_SASL_SCRAM_PASSWORD"
+
+	// ConnectionPropertyKeyKafkaSaslGssapiKeytab is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslGssapiKeytab = "KAFKA_SASL_GSSAPI_KEYTAB"
+
+	// ConnectionPropertyKeyKafkaSaslGssapiKrb5Conf is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslGssapiKrb5Conf = "KAFKA_SASL_GSSAPI_KRB5_CONF"
+
+	// ConnectionPropertyKeyKafkaSaslGssapiService is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslGssapiService = "KAFKA_SASL_GSSAPI_SERVICE"
+
+	// ConnectionPropertyKeyKafkaSaslGssapiPrincipal is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslGssapiPrincipal = "KAFKA_SASL_GSSAPI_PRINCIPAL"
 )
 
 // ConnectionPropertyKey_Values returns all elements of the ConnectionPropertyKey enum
@@ -74174,6 +74204,15 @@ func ConnectionPropertyKey_Values() []string {
 		ConnectionPropertyKeyConnectorUrl,
 		ConnectionPropertyKeyConnectorType,
 		ConnectionPropertyKeyConnectorClassName,
+		ConnectionPropertyKeyKafkaSaslMechanism,
+		ConnectionPropertyKeyKafkaSaslScramUsername,
+		ConnectionPropertyKeyKafkaSaslScramPassword,
+		ConnectionPropertyKeyKafkaSaslScramSecretsArn,
+		ConnectionPropertyKeyEncryptedKafkaSaslScramPassword,
+		ConnectionPropertyKeyKafkaSaslGssapiKeytab,
+		ConnectionPropertyKeyKafkaSaslGssapiKrb5Conf,
+		ConnectionPropertyKeyKafkaSaslGssapiService,
+		ConnectionPropertyKeyKafkaSaslGssapiPrincipal,
 	}
 }
 
