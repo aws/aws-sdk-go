@@ -11031,7 +11031,8 @@
         "ClientToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "EnablePrimaryIpv6":{"shape":"Boolean"}
       }
     },
     "CreateNetworkInterfaceResult":{
@@ -25842,6 +25843,10 @@
         "Ipv6Address":{
           "shape":"String",
           "locationName":"ipv6Address"
+        },
+        "IsPrimaryIpv6":{
+          "shape":"Boolean",
+          "locationName":"isPrimaryIpv6"
         }
       }
     },
@@ -26221,7 +26226,8 @@
           "shape":"Ipv6PrefixList",
           "locationName":"Ipv6Prefix"
         },
-        "Ipv6PrefixCount":{"shape":"Integer"}
+        "Ipv6PrefixCount":{"shape":"Integer"},
+        "PrimaryIpv6":{"shape":"Boolean"}
       }
     },
     "InstanceNetworkInterfaceSpecificationList":{
@@ -29540,6 +29546,10 @@
         "Ipv6PrefixCount":{
           "shape":"Integer",
           "locationName":"ipv6PrefixCount"
+        },
+        "PrimaryIpv6":{
+          "shape":"Boolean",
+          "locationName":"primaryIpv6"
         }
       }
     },
@@ -29580,7 +29590,8 @@
           "shape":"Ipv6PrefixList",
           "locationName":"Ipv6Prefix"
         },
-        "Ipv6PrefixCount":{"shape":"Integer"}
+        "Ipv6PrefixCount":{"shape":"Integer"},
+        "PrimaryIpv6":{"shape":"Boolean"}
       }
     },
     "LaunchTemplateInstanceNetworkInterfaceSpecificationRequestList":{
@@ -31447,7 +31458,8 @@
           "shape":"AttributeBooleanValue",
           "locationName":"sourceDestCheck"
         },
-        "EnaSrdSpecification":{"shape":"EnaSrdSpecification"}
+        "EnaSrdSpecification":{"shape":"EnaSrdSpecification"},
+        "EnablePrimaryIpv6":{"shape":"Boolean"}
       }
     },
     "ModifyPrivateDnsNameOptionsRequest":{
@@ -33408,6 +33420,10 @@
         "Ipv6Address":{
           "shape":"String",
           "locationName":"ipv6Address"
+        },
+        "IsPrimaryIpv6":{
+          "shape":"Boolean",
+          "locationName":"isPrimaryIpv6"
         }
       }
     },
@@ -37884,7 +37900,8 @@
         "EnclaveOptions":{"shape":"EnclaveOptionsRequest"},
         "PrivateDnsNameOptions":{"shape":"PrivateDnsNameOptionsRequest"},
         "MaintenanceOptions":{"shape":"InstanceMaintenanceOptionsRequest"},
-        "DisableApiStop":{"shape":"Boolean"}
+        "DisableApiStop":{"shape":"Boolean"},
+        "EnablePrimaryIpv6":{"shape":"Boolean"}
       }
     },
     "RunInstancesUserData":{

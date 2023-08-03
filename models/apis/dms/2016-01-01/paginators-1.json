@@ -15,6 +15,11 @@
       "output_token": "Marker",
       "limit_key": "MaxRecords"
     },
+    "DescribeDataProviders": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
     "DescribeEndpointSettings": {
       "input_token": "Marker",
       "output_token": "Marker",
@@ -45,6 +50,11 @@
       "output_token": "Marker",
       "limit_key": "MaxRecords"
     },
+    "DescribeExtensionPackAssociations": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
     "DescribeFleetAdvisorCollectors": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -68,6 +78,41 @@
     "DescribeFleetAdvisorSchemas": {
       "input_token": "NextToken",
       "output_token": "NextToken",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeInstanceProfiles": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeMetadataModelAssessments": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeMetadataModelConversions": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeMetadataModelExportsAsScript": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeMetadataModelExportsToTarget": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeMetadataModelImports": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeMigrationProjects": {
+      "input_token": "Marker",
+      "output_token": "Marker",
       "limit_key": "MaxRecords"
     },
     "DescribeOrderableReplicationInstances": {

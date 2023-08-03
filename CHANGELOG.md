@@ -1,3 +1,18 @@
+Release v1.44.316 (2023-08-03)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation and examples
+  * Documentation changes related to Amazon EC2 Auto Scaling APIs.
+* `service/cloud9`: Updates service documentation
+  * Updated the deprecation date for Amazon Linux. Doc only update.
+* `service/dms`: Updates service API, documentation, and paginators
+  * The release makes public API for DMS Schema Conversion feature.
+* `service/ec2`: Updates service API and documentation
+  * This release adds new parameter isPrimaryIPv6 to  allow assigning an IPv6 address as a primary IPv6 address to a network interface which cannot be changed to give equivalent functionality available for network interfaces with primary IPv4 address.
+* `service/sagemaker`: Updates service API
+  * Amazon SageMaker now supports running training jobs on p5.48xlarge instance types.
+
 Release v1.44.315 (2023-08-02)
 ===
 

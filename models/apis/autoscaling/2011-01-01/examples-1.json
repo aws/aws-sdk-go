@@ -212,7 +212,7 @@
           }
         },
         "description": "This example creates an Auto Scaling group with a mixed instances policy. It specifies the c5.large, c5a.large, and c6g.large instance types and defines a different launch template for the c6g.large instance type.",
-        "id": "to-create-an-auto-scaling-group-with-a-mixed-instances-policy-1617815269039",
+        "id": "autoscaling-create-auto-scaling-group-3",
         "title": "To create an Auto Scaling group with a mixed instances policy"
       },
       {
@@ -259,7 +259,7 @@
           }
         },
         "description": "This example creates an Auto Scaling group using attribute-based instance type selection. It requires the instance types to have a minimum of four vCPUs and a maximum of eight vCPUs, a minimum of 16,384 MiB of memory, and an Intel manufactured CPU.",
-        "id": "to-create-an-auto-scaling-group-with-a-mixed-instances-policy-1617815269039",
+        "id": "autoscaling-create-auto-scaling-group-4",
         "title": "To create an Auto Scaling group using attribute-based instance type selection"
       }
     ],

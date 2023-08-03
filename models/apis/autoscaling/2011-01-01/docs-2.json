@@ -175,7 +175,7 @@
     "AlarmList": {
       "base": null,
       "refs": {
-        "AlarmSpecification$Alarms": "<p>The names of one or more CloudWatch alarms to monitor for the instance refresh.</p>"
+        "AlarmSpecification$Alarms": "<p>The names of one or more CloudWatch alarms to monitor for the instance refresh. You can specify up to 10 alarms.</p>"
       }
     },
     "AlarmSpecification": {
