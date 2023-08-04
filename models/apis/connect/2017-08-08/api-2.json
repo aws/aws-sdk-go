@@ -2927,6 +2927,21 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateRoutingProfileAgentAvailabilityTimer":{
+      "name":"UpdateRoutingProfileAgentAvailabilityTimer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/routing-profiles/{InstanceId}/{RoutingProfileId}/agent-availability-timer"
+      },
+      "input":{"shape":"UpdateRoutingProfileAgentAvailabilityTimerRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdateRoutingProfileConcurrency":{
       "name":"UpdateRoutingProfileConcurrency",
       "http":{
@@ -3228,6 +3243,13 @@
     "AfterContactWorkTimeLimit":{
       "type":"integer",
       "min":0
+    },
+    "AgentAvailabilityTimer":{
+      "type":"string",
+      "enum":[
+        "TIME_SINCE_LAST_ACTIVITY",
+        "TIME_SINCE_LAST_INBOUND"
+      ]
     },
     "AgentContactReference":{
       "type":"structure",
@@ -4319,7 +4341,8 @@
         "DefaultOutboundQueueId":{"shape":"QueueId"},
         "QueueConfigs":{"shape":"RoutingProfileQueueConfigList"},
         "MediaConcurrencies":{"shape":"MediaConcurrencies"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "AgentAvailabilityTimer":{"shape":"AgentAvailabilityTimer"}
       }
     },
     "CreateRoutingProfileResponse":{
@@ -9779,7 +9802,8 @@
         "DefaultOutboundQueueId":{"shape":"QueueId"},
         "Tags":{"shape":"TagMap"},
         "NumberOfAssociatedQueues":{"shape":"Long"},
-        "NumberOfAssociatedUsers":{"shape":"Long"}
+        "NumberOfAssociatedUsers":{"shape":"Long"},
+        "AgentAvailabilityTimer":{"shape":"AgentAvailabilityTimer"}
       }
     },
     "RoutingProfileDescription":{
@@ -11774,6 +11798,27 @@
         },
         "Name":{"shape":"QuickConnectName"},
         "Description":{"shape":"UpdateQuickConnectDescription"}
+      }
+    },
+    "UpdateRoutingProfileAgentAvailabilityTimerRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "RoutingProfileId",
+        "AgentAvailabilityTimer"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "RoutingProfileId":{
+          "shape":"RoutingProfileId",
+          "location":"uri",
+          "locationName":"RoutingProfileId"
+        },
+        "AgentAvailabilityTimer":{"shape":"AgentAvailabilityTimer"}
       }
     },
     "UpdateRoutingProfileConcurrencyRequest":{

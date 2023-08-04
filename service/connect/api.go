@@ -20090,6 +20090,99 @@ func (c *Connect) UpdateQuickConnectNameWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
+const opUpdateRoutingProfileAgentAvailabilityTimer = "UpdateRoutingProfileAgentAvailabilityTimer"
+
+// UpdateRoutingProfileAgentAvailabilityTimerRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoutingProfileAgentAvailabilityTimer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoutingProfileAgentAvailabilityTimer for more information on using the UpdateRoutingProfileAgentAvailabilityTimer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateRoutingProfileAgentAvailabilityTimerRequest method.
+//	req, resp := client.UpdateRoutingProfileAgentAvailabilityTimerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileAgentAvailabilityTimer
+func (c *Connect) UpdateRoutingProfileAgentAvailabilityTimerRequest(input *UpdateRoutingProfileAgentAvailabilityTimerInput) (req *request.Request, output *UpdateRoutingProfileAgentAvailabilityTimerOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoutingProfileAgentAvailabilityTimer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}/agent-availability-timer",
+	}
+
+	if input == nil {
+		input = &UpdateRoutingProfileAgentAvailabilityTimerInput{}
+	}
+
+	output = &UpdateRoutingProfileAgentAvailabilityTimerOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateRoutingProfileAgentAvailabilityTimer API operation for Amazon Connect Service.
+//
+// Whether agents with this routing profile will have their routing order calculated
+// based on time since their last inbound contact or longest idle time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateRoutingProfileAgentAvailabilityTimer for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileAgentAvailabilityTimer
+func (c *Connect) UpdateRoutingProfileAgentAvailabilityTimer(input *UpdateRoutingProfileAgentAvailabilityTimerInput) (*UpdateRoutingProfileAgentAvailabilityTimerOutput, error) {
+	req, out := c.UpdateRoutingProfileAgentAvailabilityTimerRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRoutingProfileAgentAvailabilityTimerWithContext is the same as UpdateRoutingProfileAgentAvailabilityTimer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoutingProfileAgentAvailabilityTimer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateRoutingProfileAgentAvailabilityTimerWithContext(ctx aws.Context, input *UpdateRoutingProfileAgentAvailabilityTimerInput, opts ...request.Option) (*UpdateRoutingProfileAgentAvailabilityTimerOutput, error) {
+	req, out := c.UpdateRoutingProfileAgentAvailabilityTimerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRoutingProfileConcurrency = "UpdateRoutingProfileConcurrency"
 
 // UpdateRoutingProfileConcurrencyRequest generates a "aws/request.Request" representing the
@@ -26270,6 +26363,10 @@ func (s *CreateQuickConnectOutput) SetQuickConnectId(v string) *CreateQuickConne
 type CreateRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Whether agents with this routing profile will have their routing order calculated
+	// based on time since their last inbound contact or longest idle time.
+	AgentAvailabilityTimer *string `type:"string" enum:"AgentAvailabilityTimer"`
+
 	// The default outbound queue for the routing profile.
 	//
 	// DefaultOutboundQueueId is a required field
@@ -26388,6 +26485,12 @@ func (s *CreateRoutingProfileInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAgentAvailabilityTimer sets the AgentAvailabilityTimer field's value.
+func (s *CreateRoutingProfileInput) SetAgentAvailabilityTimer(v string) *CreateRoutingProfileInput {
+	s.AgentAvailabilityTimer = &v
+	return s
 }
 
 // SetDefaultOutboundQueueId sets the DefaultOutboundQueueId field's value.
@@ -48061,6 +48164,10 @@ func (s ResumeContactRecordingOutput) GoString() string {
 type RoutingProfile struct {
 	_ struct{} `type:"structure"`
 
+	// Whether agents with this routing profile will have their routing order calculated
+	// based on time since their last inbound contact or longest idle time.
+	AgentAvailabilityTimer *string `type:"string" enum:"AgentAvailabilityTimer"`
+
 	// The identifier of the default outbound queue for this routing profile.
 	DefaultOutboundQueueId *string `type:"string"`
 
@@ -48112,6 +48219,12 @@ func (s RoutingProfile) String() string {
 // value will be replaced with "sensitive".
 func (s RoutingProfile) GoString() string {
 	return s.String()
+}
+
+// SetAgentAvailabilityTimer sets the AgentAvailabilityTimer field's value.
+func (s *RoutingProfile) SetAgentAvailabilityTimer(v string) *RoutingProfile {
+	s.AgentAvailabilityTimer = &v
+	return s
 }
 
 // SetDefaultOutboundQueueId sets the DefaultOutboundQueueId field's value.
@@ -57231,6 +57344,111 @@ func (s UpdateQuickConnectNameOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateRoutingProfileAgentAvailabilityTimerInput struct {
+	_ struct{} `type:"structure"`
+
+	// Whether agents with this routing profile will have their routing order calculated
+	// based on time since their last inbound contact or longest idle time.
+	//
+	// AgentAvailabilityTimer is a required field
+	AgentAvailabilityTimer *string `type:"string" required:"true" enum:"AgentAvailabilityTimer"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRoutingProfileAgentAvailabilityTimerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRoutingProfileAgentAvailabilityTimerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRoutingProfileAgentAvailabilityTimerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRoutingProfileAgentAvailabilityTimerInput"}
+	if s.AgentAvailabilityTimer == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentAvailabilityTimer"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentAvailabilityTimer sets the AgentAvailabilityTimer field's value.
+func (s *UpdateRoutingProfileAgentAvailabilityTimerInput) SetAgentAvailabilityTimer(v string) *UpdateRoutingProfileAgentAvailabilityTimerInput {
+	s.AgentAvailabilityTimer = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateRoutingProfileAgentAvailabilityTimerInput) SetInstanceId(v string) *UpdateRoutingProfileAgentAvailabilityTimerInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *UpdateRoutingProfileAgentAvailabilityTimerInput) SetRoutingProfileId(v string) *UpdateRoutingProfileAgentAvailabilityTimerInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type UpdateRoutingProfileAgentAvailabilityTimerOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRoutingProfileAgentAvailabilityTimerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRoutingProfileAgentAvailabilityTimerOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateRoutingProfileConcurrencyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -60437,6 +60655,22 @@ func ActionType_Values() []string {
 		ActionTypeAssignContactCategory,
 		ActionTypeGenerateEventbridgeEvent,
 		ActionTypeSendNotification,
+	}
+}
+
+const (
+	// AgentAvailabilityTimerTimeSinceLastActivity is a AgentAvailabilityTimer enum value
+	AgentAvailabilityTimerTimeSinceLastActivity = "TIME_SINCE_LAST_ACTIVITY"
+
+	// AgentAvailabilityTimerTimeSinceLastInbound is a AgentAvailabilityTimer enum value
+	AgentAvailabilityTimerTimeSinceLastInbound = "TIME_SINCE_LAST_INBOUND"
+)
+
+// AgentAvailabilityTimer_Values returns all elements of the AgentAvailabilityTimer enum
+func AgentAvailabilityTimer_Values() []string {
+	return []string{
+		AgentAvailabilityTimerTimeSinceLastActivity,
+		AgentAvailabilityTimerTimeSinceLastInbound,
 	}
 }
 
