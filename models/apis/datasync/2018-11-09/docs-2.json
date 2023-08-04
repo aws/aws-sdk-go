@@ -12,7 +12,7 @@
     "CreateLocationFsxOpenZfs": "<p>Creates an endpoint for an Amazon FSx for OpenZFS file system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html\">Creating a location for FSx for OpenZFS</a>.</p> <note> <p>Request parameters related to <code>SMB</code> aren't supported with the <code>CreateLocationFsxOpenZfs</code> operation.</p> </note>",
     "CreateLocationFsxWindows": "<p>Creates an endpoint for an Amazon FSx for Windows File Server file system.</p>",
     "CreateLocationHdfs": "<p>Creates an endpoint for a Hadoop Distributed File System (HDFS). </p>",
-    "CreateLocationNfs": "<p>Creates an endpoint for an Network File System (NFS) file server that DataSync can use for a data transfer.</p>",
+    "CreateLocationNfs": "<p>Creates an endpoint for a Network File System (NFS) file server that DataSync can use for a data transfer.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html\">Configuring transfers to or from an NFS file server</a>.</p> <note> <p>If you're copying data to or from an Snowcone device, you can also use <code>CreateLocationNfs</code> to create your transfer location. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/nfs-on-snowcone.html\">Configuring transfers with Snowcone</a>.</p> </note>",
     "CreateLocationObjectStorage": "<p>Creates an endpoint for an object storage system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
     "CreateLocationS3": "<p>A <i>location</i> is an endpoint for an Amazon S3 bucket. DataSync can use the location as a source or destination for copying data.</p> <important> <p>Before you create your location, make sure that you read the following sections:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes\">Storage class considerations with Amazon S3 locations</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests\">Evaluating S3 request costs when using DataSync</a> </p> </li> </ul> </important> <p> For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli\">Creating an Amazon S3 location</a>.</p>",
     "CreateLocationSmb": "<p>Creates an endpoint for a Server Message Block (SMB) file server that DataSync can use for a data transfer.</p> <p>Before you begin, make sure that you understand how DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html\">accesses an SMB file server</a>.</p>",
@@ -29,7 +29,7 @@
     "DescribeLocationFsxOpenZfs": "<p>Provides details about how an DataSync location for an Amazon FSx for OpenZFS file system is configured.</p> <note> <p>Response elements related to <code>SMB</code> aren't supported with the <code>DescribeLocationFsxOpenZfs</code> operation.</p> </note>",
     "DescribeLocationFsxWindows": "<p>Returns metadata about an Amazon FSx for Windows File Server location, such as information about its path.</p>",
     "DescribeLocationHdfs": "<p>Returns metadata, such as the authentication information about the Hadoop Distributed File System (HDFS) location. </p>",
-    "DescribeLocationNfs": "<p>Returns metadata, such as the path information, about an NFS location.</p>",
+    "DescribeLocationNfs": "<p>Provides details about how an DataSync transfer location for a Network File System (NFS) file server is configured.</p>",
     "DescribeLocationObjectStorage": "<p>Returns metadata about your DataSync location for an object storage system.</p>",
     "DescribeLocationS3": "<p>Returns metadata, such as bucket name, about an Amazon S3 bucket location.</p>",
     "DescribeLocationSmb": "<p>Returns metadata, such as the path and user information about an SMB location.</p>",
@@ -56,7 +56,7 @@
     "UpdateDiscoveryJob": "<p>Edits a DataSync discovery job configuration.</p>",
     "UpdateLocationAzureBlob": "<p>Modifies some configurations of the Microsoft Azure Blob Storage transfer location that you're using with DataSync.</p>",
     "UpdateLocationHdfs": "<p>Updates some parameters of a previously created location for a Hadoop Distributed File System cluster.</p>",
-    "UpdateLocationNfs": "<p>Updates some of the parameters of a previously created location for Network File System (NFS) access. For information about creating an NFS location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html\">Creating a location for NFS</a>.</p>",
+    "UpdateLocationNfs": "<p>Modifies some configurations of the Network File System (NFS) transfer location that you're using with DataSync.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html\">Configuring transfers to or from an NFS file server</a>.</p>",
     "UpdateLocationObjectStorage": "<p>Updates some parameters of an existing object storage location that DataSync accesses for a transfer. For information about creating a self-managed object storage location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
     "UpdateLocationSmb": "<p>Updates some of the parameters of a previously created location for Server Message Block (SMB) file system access. For information about creating an SMB location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html\">Creating a location for SMB</a>.</p>",
     "UpdateStorageSystem": "<p>Modifies some configurations of an on-premises storage system resource that you're using with DataSync Discovery.</p>",
@@ -106,7 +106,7 @@
         "DescribeLocationObjectStorageResponse$AgentArns": "<p>The ARNs of the DataSync agents that can securely connect with your location.</p>",
         "DescribeLocationS3Response$AgentArns": "<p>If you are using DataSync on an Amazon Web Services Outpost, the Amazon Resource Name (ARNs) of the EC2 agents deployed on your Outpost. For more information about launching a DataSync agent on an Amazon Web Services Outpost, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent\">Deploy your DataSync agent on Outposts</a>.</p>",
         "DescribeLocationSmbResponse$AgentArns": "<p>The Amazon Resource Name (ARN) of the source SMB file system location that is created.</p>",
-        "OnPremConfig$AgentArns": "<p>ARNs of the agents to use for an NFS location.</p>",
+        "OnPremConfig$AgentArns": "<p>The Amazon Resource Names (ARNs) of the agents connecting to a transfer location.</p>",
         "UpdateLocationAzureBlobRequest$AgentArns": "<p>Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect with your Azure Blob Storage container.</p> <p>You can specify more than one agent. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/multiple-agents.html\">Using multiple agents for your transfer</a>.</p>",
         "UpdateLocationHdfsRequest$AgentArns": "<p>The ARNs of the agents that are used to connect to the HDFS cluster. </p>",
         "UpdateLocationObjectStorageRequest$AgentArns": "<p>Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely connect with your location.</p>",
@@ -1161,8 +1161,8 @@
         "DescribeLocationFsxWindowsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the FSx for Windows File Server location that was described.</p>",
         "DescribeLocationHdfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the HDFS cluster location to describe.</p>",
         "DescribeLocationHdfsResponse$LocationArn": "<p>The ARN of the HDFS cluster location.</p>",
-        "DescribeLocationNfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the NFS location to describe.</p>",
-        "DescribeLocationNfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the NFS location that was described.</p>",
+        "DescribeLocationNfsRequest$LocationArn": "<p>Specifies the Amazon Resource Name (ARN) of the NFS location that you want information about.</p>",
+        "DescribeLocationNfsResponse$LocationArn": "<p>The ARN of the NFS location.</p>",
         "DescribeLocationObjectStorageRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the object storage system location that you want information about.</p>",
         "DescribeLocationObjectStorageResponse$LocationArn": "<p>The ARN of the object storage system location.</p>",
         "DescribeLocationS3Request$LocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon S3 bucket location to describe.</p>",
@@ -1174,7 +1174,7 @@
         "LocationListEntry$LocationArn": "<p>The Amazon Resource Name (ARN) of the location. For Network File System (NFS) or Amazon EFS, the location is the export path. For Amazon S3, the location is the prefix path that you want to mount and use as the root of the location.</p>",
         "UpdateLocationAzureBlobRequest$LocationArn": "<p>Specifies the ARN of the Azure Blob Storage transfer location that you're updating.</p>",
         "UpdateLocationHdfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the source HDFS cluster location.</p>",
-        "UpdateLocationNfsRequest$LocationArn": "<p>Specifies the Amazon Resource Name (ARN) of the NFS location that you want to update.</p>",
+        "UpdateLocationNfsRequest$LocationArn": "<p>Specifies the Amazon Resource Name (ARN) of the NFS transfer location that you want to update.</p>",
         "UpdateLocationObjectStorageRequest$LocationArn": "<p>Specifies the ARN of the object storage system location that you're updating.</p>",
         "UpdateLocationSmbRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the SMB location to update.</p>"
       }
@@ -1219,7 +1219,7 @@
         "DescribeLocationFsxOpenZfsResponse$LocationUri": "<p>The uniform resource identifier (URI) of the FSx for OpenZFS location that was described.</p> <p>Example: <code>fsxz://us-west-2.fs-1234567890abcdef02/fsx/folderA/folder</code> </p>",
         "DescribeLocationFsxWindowsResponse$LocationUri": "<p>The URL of the FSx for Windows File Server location that was described.</p>",
         "DescribeLocationHdfsResponse$LocationUri": "<p>The URI of the HDFS cluster location.</p>",
-        "DescribeLocationNfsResponse$LocationUri": "<p>The URL of the source NFS location that was described.</p>",
+        "DescribeLocationNfsResponse$LocationUri": "<p>The URL of the NFS location.</p>",
         "DescribeLocationObjectStorageResponse$LocationUri": "<p>The URL of the object storage system location.</p>",
         "DescribeLocationS3Response$LocationUri": "<p>The URL of the Amazon S3 location that was described.</p>",
         "DescribeLocationSmbResponse$LocationUri": "<p>The URL of the source SMB location that was described.</p>",
@@ -1343,8 +1343,8 @@
     "NfsMountOptions": {
       "base": "<p>Specifies how DataSync can access a location using the NFS protocol.</p>",
       "refs": {
-        "CreateLocationNfsRequest$MountOptions": "<p>Specifies the mount options that DataSync can use to mount your NFS share.</p>",
-        "DescribeLocationNfsResponse$MountOptions": "<p>The mount options that DataSync uses to mount your NFS share.</p>",
+        "CreateLocationNfsRequest$MountOptions": "<p>Specifies the options that DataSync can use to mount your NFS file server.</p>",
+        "DescribeLocationNfsResponse$MountOptions": "<p>The mount options that DataSync uses to mount your NFS file server.</p>",
         "FsxProtocolNfs$MountOptions": null,
         "UpdateLocationNfsRequest$MountOptions": null
       }
@@ -1352,8 +1352,8 @@
     "NfsSubdirectory": {
       "base": null,
       "refs": {
-        "CreateLocationNfsRequest$Subdirectory": "<p>Specifies the subdirectory in the NFS file server that DataSync transfers to or from. The NFS path should be a path that's exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network. </p> <p>To see all the paths exported by your NFS server, run \"<code>showmount -e nfs-server-name</code>\" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication. </p> <p>To transfer all the data in the folder you specified, DataSync needs to have permissions to read all the data. To ensure this, either configure the NFS export with <code>no_root_squash,</code> or ensure that the permissions for all of the files that you want DataSync allow read access for all users. Doing either enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access.</p> <p>If you are copying data to or from your Snowcone device, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone\">NFS Server on Snowcone</a> for more information.</p>",
-        "UpdateLocationNfsRequest$Subdirectory": "<p>Specifies the subdirectory in your NFS file system that DataSync uses to read from or write to during a transfer. The NFS path should be exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network.</p> <p>To see all the paths exported by your NFS server, run \"<code>showmount -e nfs-server-name</code>\" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication. </p> <p>To transfer all the data in the folder that you specified, DataSync must have permissions to read all the data. To ensure this, either configure the NFS export with <code>no_root_squash</code>, or ensure that the files you want DataSync to access have permissions that allow read access for all users. Doing either option enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access.</p> <p>If you are copying data to or from your Snowcone device, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone\">NFS Server on Snowcone</a> for more information.</p>"
+        "CreateLocationNfsRequest$Subdirectory": "<p>Specifies the export path in your NFS file server that you want DataSync to mount.</p> <p>This path (or a subdirectory of the path) is where DataSync transfers data to or from. For information on configuring an export for DataSync, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#accessing-nfs\">Accessing NFS file servers</a>.</p>",
+        "UpdateLocationNfsRequest$Subdirectory": "<p>Specifies the export path in your NFS file server that you want DataSync to mount.</p> <p>This path (or a subdirectory of the path) is where DataSync transfers data to or from. For information on configuring an export for DataSync, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#accessing-nfs\">Accessing NFS file servers</a>.</p>"
       }
     },
     "NfsVersion": {
@@ -1395,12 +1395,14 @@
         "Capacity$Used": "<p>The amount of space that's being used in a storage system resource.</p>",
         "Capacity$Provisioned": "<p>The total amount of space available in a storage system resource.</p>",
         "Capacity$LogicalUsed": "<p>The amount of space that's being used in a storage system resource without accounting for compression or deduplication.</p>",
+        "Capacity$ClusterCloudStorageUsed": "<p>The amount of space in the cluster that's in cloud storage (for example, if you're using data tiering).</p>",
         "NetAppONTAPCluster$CifsShareCount": "<p>The number of CIFS shares in the cluster.</p>",
         "NetAppONTAPCluster$NfsExportedVolumes": "<p>The number of NFS volumes in the cluster.</p>",
         "NetAppONTAPCluster$ClusterBlockStorageSize": "<p>The total storage space that's available in the cluster.</p>",
         "NetAppONTAPCluster$ClusterBlockStorageUsed": "<p>The storage space that's being used in a cluster.</p>",
         "NetAppONTAPCluster$ClusterBlockStorageLogicalUsed": "<p>The storage space that's being used in the cluster without accounting for compression or deduplication.</p>",
         "NetAppONTAPCluster$LunCount": "<p>The number of LUNs (logical unit numbers) in the cluster.</p>",
+        "NetAppONTAPCluster$ClusterCloudStorageUsed": "<p>The amount of space in the cluster that's in cloud storage (for example, if you're using data tiering).</p>",
         "NetAppONTAPSVM$CifsShareCount": "<p>The number of CIFS shares in the SVM.</p>",
         "NetAppONTAPSVM$TotalCapacityUsed": "<p>The storage space that's being used in the SVM.</p>",
         "NetAppONTAPSVM$TotalCapacityProvisioned": "<p>The total storage space that's available in the SVM.</p>",
@@ -1468,9 +1470,9 @@
       }
     },
     "OnPremConfig": {
-      "base": "<p>A list of Amazon Resource Names (ARNs) of agents to use for a Network File System (NFS) location.</p>",
+      "base": "<p>The DataSync agents that are connecting to a Network File System (NFS) location.</p>",
       "refs": {
-        "CreateLocationNfsRequest$OnPremConfig": "<p>Specifies the Amazon Resource Names (ARNs) of agents that DataSync uses to connect to your NFS file server. </p> <p>If you are copying data to or from your Snowcone device, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone\">NFS Server on Snowcone</a> for more information.</p>",
+        "CreateLocationNfsRequest$OnPremConfig": "<p>Specifies the Amazon Resource Name (ARN) of the DataSync agent that want to connect to your NFS file server.</p> <p>You can specify more than one agent. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/multiple-agents.html\">Using multiple agents for transfers</a>.</p>",
         "DescribeLocationNfsResponse$OnPremConfig": null,
         "UpdateLocationNfsRequest$OnPremConfig": null
       }
@@ -1725,7 +1727,7 @@
     "ServerHostname": {
       "base": null,
       "refs": {
-        "CreateLocationNfsRequest$ServerHostname": "<p>Specifies the IP address or domain name of your NFS file server. An agent that is installed on-premises uses this hostname to mount the NFS server in a network. </p> <p>If you are copying data to or from your Snowcone device, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone\">NFS Server on Snowcone</a> for more information.</p> <note> <p>You must specify be an IP version 4 address or Domain Name System (DNS)-compliant name.</p> </note>",
+        "CreateLocationNfsRequest$ServerHostname": "<p>Specifies the Domain Name System (DNS) name or IP version 4 address of the NFS file server that your DataSync agent connects to.</p>",
         "CreateLocationObjectStorageRequest$ServerHostname": "<p>Specifies the domain name or IP address of the object storage server. A DataSync agent uses this hostname to mount the object storage server in a network.</p>",
         "CreateLocationSmbRequest$ServerHostname": "<p>Specifies the Domain Name Service (DNS) name or IP address of the SMB file server that your DataSync agent will mount.</p> <note> <p>You can't specify an IP version 6 (IPv6) address.</p> </note>"
       }
@@ -2035,7 +2037,7 @@
         "DescribeLocationFsxOpenZfsResponse$CreationTime": "<p>The time that the FSx for OpenZFS location was created.</p>",
         "DescribeLocationFsxWindowsResponse$CreationTime": "<p>The time that the FSx for Windows File Server location was created.</p>",
         "DescribeLocationHdfsResponse$CreationTime": "<p>The time that the HDFS location was created.</p>",
-        "DescribeLocationNfsResponse$CreationTime": "<p>The time that the NFS location was created.</p>",
+        "DescribeLocationNfsResponse$CreationTime": "<p>The time when the NFS location was created.</p>",
         "DescribeLocationObjectStorageResponse$CreationTime": "<p>The time that the location was created.</p>",
         "DescribeLocationS3Response$CreationTime": "<p>The time that the Amazon S3 bucket location was created.</p>",
         "DescribeLocationSmbResponse$CreationTime": "<p>The time that the SMB location was created.</p>",

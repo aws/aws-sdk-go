@@ -942,7 +942,8 @@
       "members":{
         "Used":{"shape":"NonNegativeLong"},
         "Provisioned":{"shape":"NonNegativeLong"},
-        "LogicalUsed":{"shape":"NonNegativeLong"}
+        "LogicalUsed":{"shape":"NonNegativeLong"},
+        "ClusterCloudStorageUsed":{"shape":"NonNegativeLong"}
       }
     },
     "CollectionDurationMinutes":{
@@ -2289,7 +2290,8 @@
         "ClusterBlockStorageLogicalUsed":{"shape":"NonNegativeLong"},
         "Recommendations":{"shape":"Recommendations"},
         "RecommendationStatus":{"shape":"RecommendationStatus"},
-        "LunCount":{"shape":"NonNegativeLong"}
+        "LunCount":{"shape":"NonNegativeLong"},
+        "ClusterCloudStorageUsed":{"shape":"NonNegativeLong"}
       }
     },
     "NetAppONTAPClusters":{

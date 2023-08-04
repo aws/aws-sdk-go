@@ -928,6 +928,10 @@ type ConnectAPI interface {
 	UpdateQuickConnectNameWithContext(aws.Context, *connect.UpdateQuickConnectNameInput, ...request.Option) (*connect.UpdateQuickConnectNameOutput, error)
 	UpdateQuickConnectNameRequest(*connect.UpdateQuickConnectNameInput) (*request.Request, *connect.UpdateQuickConnectNameOutput)
 
+	UpdateRoutingProfileAgentAvailabilityTimer(*connect.UpdateRoutingProfileAgentAvailabilityTimerInput) (*connect.UpdateRoutingProfileAgentAvailabilityTimerOutput, error)
+	UpdateRoutingProfileAgentAvailabilityTimerWithContext(aws.Context, *connect.UpdateRoutingProfileAgentAvailabilityTimerInput, ...request.Option) (*connect.UpdateRoutingProfileAgentAvailabilityTimerOutput, error)
+	UpdateRoutingProfileAgentAvailabilityTimerRequest(*connect.UpdateRoutingProfileAgentAvailabilityTimerInput) (*request.Request, *connect.UpdateRoutingProfileAgentAvailabilityTimerOutput)
+
 	UpdateRoutingProfileConcurrency(*connect.UpdateRoutingProfileConcurrencyInput) (*connect.UpdateRoutingProfileConcurrencyOutput, error)
 	UpdateRoutingProfileConcurrencyWithContext(aws.Context, *connect.UpdateRoutingProfileConcurrencyInput, ...request.Option) (*connect.UpdateRoutingProfileConcurrencyOutput, error)
 	UpdateRoutingProfileConcurrencyRequest(*connect.UpdateRoutingProfileConcurrencyInput) (*request.Request, *connect.UpdateRoutingProfileConcurrencyOutput)

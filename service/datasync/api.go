@@ -916,8 +916,15 @@ func (c *DataSync) CreateLocationNfsRequest(input *CreateLocationNfsInput) (req 
 
 // CreateLocationNfs API operation for AWS DataSync.
 //
-// Creates an endpoint for an Network File System (NFS) file server that DataSync
+// Creates an endpoint for a Network File System (NFS) file server that DataSync
 // can use for a data transfer.
+//
+// For more information, see Configuring transfers to or from an NFS file server
+// (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html).
+//
+// If you're copying data to or from an Snowcone device, you can also use CreateLocationNfs
+// to create your transfer location. For more information, see Configuring transfers
+// with Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/nfs-on-snowcone.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2356,7 +2363,8 @@ func (c *DataSync) DescribeLocationNfsRequest(input *DescribeLocationNfsInput) (
 
 // DescribeLocationNfs API operation for AWS DataSync.
 //
-// Returns metadata, such as the path information, about an NFS location.
+// Provides details about how an DataSync transfer location for a Network File
+// System (NFS) file server is configured.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5171,9 +5179,11 @@ func (c *DataSync) UpdateLocationNfsRequest(input *UpdateLocationNfsInput) (req 
 
 // UpdateLocationNfs API operation for AWS DataSync.
 //
-// Updates some of the parameters of a previously created location for Network
-// File System (NFS) access. For information about creating an NFS location,
-// see Creating a location for NFS (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html).
+// Modifies some configurations of the Network File System (NFS) transfer location
+// that you're using with DataSync.
+//
+// For more information, see Configuring transfers to or from an NFS file server
+// (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6026,6 +6036,10 @@ func (s CancelTaskExecutionOutput) GoString() string {
 type Capacity struct {
 	_ struct{} `type:"structure"`
 
+	// The amount of space in the cluster that's in cloud storage (for example,
+	// if you're using data tiering).
+	ClusterCloudStorageUsed *int64 `type:"long"`
+
 	// The amount of space that's being used in a storage system resource without
 	// accounting for compression or deduplication.
 	LogicalUsed *int64 `type:"long"`
@@ -6053,6 +6067,12 @@ func (s Capacity) String() string {
 // value will be replaced with "sensitive".
 func (s Capacity) GoString() string {
 	return s.String()
+}
+
+// SetClusterCloudStorageUsed sets the ClusterCloudStorageUsed field's value.
+func (s *Capacity) SetClusterCloudStorageUsed(v int64) *Capacity {
+	s.ClusterCloudStorageUsed = &v
+	return s
 }
 
 // SetLogicalUsed sets the LogicalUsed field's value.
@@ -7473,53 +7493,30 @@ func (s *CreateLocationHdfsOutput) SetLocationArn(v string) *CreateLocationHdfsO
 type CreateLocationNfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the mount options that DataSync can use to mount your NFS share.
+	// Specifies the options that DataSync can use to mount your NFS file server.
 	MountOptions *NfsMountOptions `type:"structure"`
 
-	// Specifies the Amazon Resource Names (ARNs) of agents that DataSync uses to
-	// connect to your NFS file server.
+	// Specifies the Amazon Resource Name (ARN) of the DataSync agent that want
+	// to connect to your NFS file server.
 	//
-	// If you are copying data to or from your Snowcone device, see NFS Server on
-	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
-	// for more information.
+	// You can specify more than one agent. For more information, see Using multiple
+	// agents for transfers (https://docs.aws.amazon.com/datasync/latest/userguide/multiple-agents.html).
 	//
 	// OnPremConfig is a required field
 	OnPremConfig *OnPremConfig `type:"structure" required:"true"`
 
-	// Specifies the IP address or domain name of your NFS file server. An agent
-	// that is installed on-premises uses this hostname to mount the NFS server
-	// in a network.
-	//
-	// If you are copying data to or from your Snowcone device, see NFS Server on
-	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
-	// for more information.
-	//
-	// You must specify be an IP version 4 address or Domain Name System (DNS)-compliant
-	// name.
+	// Specifies the Domain Name System (DNS) name or IP version 4 address of the
+	// NFS file server that your DataSync agent connects to.
 	//
 	// ServerHostname is a required field
 	ServerHostname *string `type:"string" required:"true"`
 
-	// Specifies the subdirectory in the NFS file server that DataSync transfers
-	// to or from. The NFS path should be a path that's exported by the NFS server,
-	// or a subdirectory of that path. The path should be such that it can be mounted
-	// by other NFS clients in your network.
+	// Specifies the export path in your NFS file server that you want DataSync
+	// to mount.
 	//
-	// To see all the paths exported by your NFS server, run "showmount -e nfs-server-name"
-	// from an NFS client that has access to your server. You can specify any directory
-	// that appears in the results, and any subdirectory of that directory. Ensure
-	// that the NFS export is accessible without Kerberos authentication.
-	//
-	// To transfer all the data in the folder you specified, DataSync needs to have
-	// permissions to read all the data. To ensure this, either configure the NFS
-	// export with no_root_squash, or ensure that the permissions for all of the
-	// files that you want DataSync allow read access for all users. Doing either
-	// enables the agent to read the files. For the agent to access directories,
-	// you must additionally enable all execute access.
-	//
-	// If you are copying data to or from your Snowcone device, see NFS Server on
-	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
-	// for more information.
+	// This path (or a subdirectory of the path) is where DataSync transfers data
+	// to or from. For information on configuring an export for DataSync, see Accessing
+	// NFS file servers (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#accessing-nfs).
 	//
 	// Subdirectory is a required field
 	Subdirectory *string `type:"string" required:"true"`
@@ -9927,7 +9924,8 @@ func (s *DescribeLocationHdfsOutput) SetSimpleUser(v string) *DescribeLocationHd
 type DescribeLocationNfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the NFS location to describe.
+	// Specifies the Amazon Resource Name (ARN) of the NFS location that you want
+	// information about.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
@@ -9974,20 +9972,19 @@ func (s *DescribeLocationNfsInput) SetLocationArn(v string) *DescribeLocationNfs
 type DescribeLocationNfsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The time that the NFS location was created.
+	// The time when the NFS location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the NFS location that was described.
+	// The ARN of the NFS location.
 	LocationArn *string `type:"string"`
 
-	// The URL of the source NFS location that was described.
+	// The URL of the NFS location.
 	LocationUri *string `type:"string"`
 
-	// The mount options that DataSync uses to mount your NFS share.
+	// The mount options that DataSync uses to mount your NFS file server.
 	MountOptions *NfsMountOptions `type:"structure"`
 
-	// A list of Amazon Resource Names (ARNs) of agents to use for a Network File
-	// System (NFS) location.
+	// The DataSync agents that are connecting to a Network File System (NFS) location.
 	OnPremConfig *OnPremConfig `type:"structure"`
 }
 
@@ -13259,6 +13256,10 @@ type NetAppONTAPCluster struct {
 	// The storage space that's being used in a cluster.
 	ClusterBlockStorageUsed *int64 `type:"long"`
 
+	// The amount of space in the cluster that's in cloud storage (for example,
+	// if you're using data tiering).
+	ClusterCloudStorageUsed *int64 `type:"long"`
+
 	// The name of the cluster.
 	ClusterName *string `type:"string"`
 
@@ -13325,6 +13326,12 @@ func (s *NetAppONTAPCluster) SetClusterBlockStorageSize(v int64) *NetAppONTAPClu
 // SetClusterBlockStorageUsed sets the ClusterBlockStorageUsed field's value.
 func (s *NetAppONTAPCluster) SetClusterBlockStorageUsed(v int64) *NetAppONTAPCluster {
 	s.ClusterBlockStorageUsed = &v
+	return s
+}
+
+// SetClusterCloudStorageUsed sets the ClusterCloudStorageUsed field's value.
+func (s *NetAppONTAPCluster) SetClusterCloudStorageUsed(v int64) *NetAppONTAPCluster {
+	s.ClusterCloudStorageUsed = &v
 	return s
 }
 
@@ -13742,12 +13749,11 @@ func (s *NfsMountOptions) SetVersion(v string) *NfsMountOptions {
 	return s
 }
 
-// A list of Amazon Resource Names (ARNs) of agents to use for a Network File
-// System (NFS) location.
+// The DataSync agents that are connecting to a Network File System (NFS) location.
 type OnPremConfig struct {
 	_ struct{} `type:"structure"`
 
-	// ARNs of the agents to use for an NFS location.
+	// The Amazon Resource Names (ARNs) of the agents connecting to a transfer location.
 	//
 	// AgentArns is a required field
 	AgentArns []*string `min:"1" type:"list" required:"true"`
@@ -16226,8 +16232,8 @@ func (s UpdateLocationHdfsOutput) GoString() string {
 type UpdateLocationNfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the NFS location that you want
-	// to update.
+	// Specifies the Amazon Resource Name (ARN) of the NFS transfer location that
+	// you want to update.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
@@ -16235,30 +16241,15 @@ type UpdateLocationNfsInput struct {
 	// Specifies how DataSync can access a location using the NFS protocol.
 	MountOptions *NfsMountOptions `type:"structure"`
 
-	// A list of Amazon Resource Names (ARNs) of agents to use for a Network File
-	// System (NFS) location.
+	// The DataSync agents that are connecting to a Network File System (NFS) location.
 	OnPremConfig *OnPremConfig `type:"structure"`
 
-	// Specifies the subdirectory in your NFS file system that DataSync uses to
-	// read from or write to during a transfer. The NFS path should be exported
-	// by the NFS server, or a subdirectory of that path. The path should be such
-	// that it can be mounted by other NFS clients in your network.
+	// Specifies the export path in your NFS file server that you want DataSync
+	// to mount.
 	//
-	// To see all the paths exported by your NFS server, run "showmount -e nfs-server-name"
-	// from an NFS client that has access to your server. You can specify any directory
-	// that appears in the results, and any subdirectory of that directory. Ensure
-	// that the NFS export is accessible without Kerberos authentication.
-	//
-	// To transfer all the data in the folder that you specified, DataSync must
-	// have permissions to read all the data. To ensure this, either configure the
-	// NFS export with no_root_squash, or ensure that the files you want DataSync
-	// to access have permissions that allow read access for all users. Doing either
-	// option enables the agent to read the files. For the agent to access directories,
-	// you must additionally enable all execute access.
-	//
-	// If you are copying data to or from your Snowcone device, see NFS Server on
-	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
-	// for more information.
+	// This path (or a subdirectory of the path) is where DataSync transfers data
+	// to or from. For information on configuring an export for DataSync, see Accessing
+	// NFS file servers (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#accessing-nfs).
 	Subdirectory *string `type:"string"`
 }
 

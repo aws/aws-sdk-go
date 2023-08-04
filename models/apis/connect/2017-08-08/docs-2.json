@@ -183,6 +183,7 @@
     "UpdateQueueStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the status of the queue.</p>",
     "UpdateQuickConnectConfig": "<p>Updates the configuration settings for the specified quick connect.</p>",
     "UpdateQuickConnectName": "<p>Updates the name and description of a quick connect. The request accepts the following data in JSON format. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
+    "UpdateRoutingProfileAgentAvailabilityTimer": "<p>Whether agents with this routing profile will have their routing order calculated based on <i>time since their last inbound contact</i> or <i>longest idle time</i>. </p>",
     "UpdateRoutingProfileConcurrency": "<p>Updates the channels that agents can handle in the Contact Control Panel (CCP) for a routing profile.</p>",
     "UpdateRoutingProfileDefaultOutboundQueue": "<p>Updates the default outbound queue of a routing profile.</p>",
     "UpdateRoutingProfileName": "<p>Updates the name and description of a routing profile. The request accepts the following data in JSON format. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
@@ -351,6 +352,14 @@
       "base": null,
       "refs": {
         "UserPhoneConfig$AfterContactWorkTimeLimit": "<p>The After Call Work (ACW) timeout setting, in seconds.</p> <note> <p>When returned by a <code>SearchUsers</code> call, <code>AfterContactWorkTimeLimit</code> is returned in milliseconds. </p> </note>"
+      }
+    },
+    "AgentAvailabilityTimer": {
+      "base": null,
+      "refs": {
+        "CreateRoutingProfileRequest$AgentAvailabilityTimer": "<p>Whether agents with this routing profile will have their routing order calculated based on <i>time since their last inbound contact</i> or <i>longest idle time</i>. </p>",
+        "RoutingProfile$AgentAvailabilityTimer": "<p>Whether agents with this routing profile will have their routing order calculated based on <i>time since their last inbound contact</i> or <i>longest idle time</i>. </p>",
+        "UpdateRoutingProfileAgentAvailabilityTimerRequest$AgentAvailabilityTimer": "<p>Whether agents with this routing profile will have their routing order calculated based on <i>time since their last inbound contact</i> or <i>longest idle time</i>. </p>"
       }
     },
     "AgentContactReference": {
@@ -3002,6 +3011,7 @@
         "UpdateQueueStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateQuickConnectConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateQuickConnectNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "UpdateRoutingProfileAgentAvailabilityTimerRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateRoutingProfileConcurrencyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateRoutingProfileDefaultOutboundQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateRoutingProfileNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -4877,6 +4887,7 @@
         "RoutingProfileReference$Id": "<p>The identifier of the routing profile.</p>",
         "RoutingProfileSummary$Id": "<p>The identifier of the routing profile.</p>",
         "RoutingProfiles$member": null,
+        "UpdateRoutingProfileAgentAvailabilityTimerRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateRoutingProfileConcurrencyRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateRoutingProfileDefaultOutboundQueueRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateRoutingProfileNameRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
@@ -6234,6 +6245,11 @@
       }
     },
     "UpdateQuickConnectNameRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRoutingProfileAgentAvailabilityTimerRequest": {
       "base": null,
       "refs": {
       }

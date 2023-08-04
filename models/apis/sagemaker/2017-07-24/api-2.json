@@ -20170,7 +20170,8 @@
         "AutoMLJobArn":{"shape":"AutoMLJobArn"},
         "DataProcessing":{"shape":"DataProcessing"},
         "ExperimentConfig":{"shape":"ExperimentConfig"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DataCaptureConfig":{"shape":"BatchDataCaptureConfig"}
       }
     },
     "TransformJobArn":{

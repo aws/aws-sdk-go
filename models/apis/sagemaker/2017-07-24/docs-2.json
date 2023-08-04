@@ -1315,7 +1315,8 @@
       "base": "<p>Configuration to control how SageMaker captures inference data for batch transform jobs.</p>",
       "refs": {
         "CreateTransformJobRequest$DataCaptureConfig": "<p>Configuration to control how SageMaker captures inference data.</p>",
-        "DescribeTransformJobResponse$DataCaptureConfig": "<p>Configuration to control how SageMaker captures inference data.</p>"
+        "DescribeTransformJobResponse$DataCaptureConfig": "<p>Configuration to control how SageMaker captures inference data.</p>",
+        "TransformJob$DataCaptureConfig": null
       }
     },
     "BatchDescribeModelPackageError": {

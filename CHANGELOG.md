@@ -1,3 +1,15 @@
+Release v1.44.317 (2023-08-04)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service documentation
+* `service/connect`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/ecs`: Updates service documentation
+  * This is a documentation update to address various tickets.
+* `service/sagemaker`: Updates service API and documentation
+  * Including DataCaptureConfig key in the Amazon Sagemaker Search's transform job object
+
 Release v1.44.316 (2023-08-03)
 ===
 
