@@ -2904,6 +2904,11 @@ func (c *KinesisVideo) UpdateMediaStorageConfigurationRequest(input *UpdateMedia
 //   - If the StorageStatus is enabled, the data will be stored in the StreamARN
 //     provided.
 //
+// If StorageStatus is enabled, direct peer-to-peer (master-viewer) connections
+// no longer occur. Peers connect directly to the storage session. You must
+// call the JoinStorageSession API to trigger an SDP offer send and establish
+// a connection between a peer and the storage session.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5511,7 +5516,7 @@ type ImageGenerationConfiguration struct {
 	// from the StartTimestamp will be returned if available.
 	//
 	// SamplingInterval is a required field
-	SamplingInterval *int64 `min:"3000" type:"integer" required:"true"`
+	SamplingInterval *int64 `type:"integer" required:"true"`
 
 	// Indicates whether the ContinuousImageGenerationConfigurations API is enabled
 	// or disabled.
@@ -5566,9 +5571,6 @@ func (s *ImageGenerationConfiguration) Validate() error {
 	}
 	if s.SamplingInterval == nil {
 		invalidParams.Add(request.NewErrParamRequired("SamplingInterval"))
-	}
-	if s.SamplingInterval != nil && *s.SamplingInterval < 3000 {
-		invalidParams.Add(request.NewErrParamMinValue("SamplingInterval", 3000))
 	}
 	if s.Status == nil {
 		invalidParams.Add(request.NewErrParamRequired("Status"))

@@ -5,16 +5,17 @@
 //
 // # Introduction
 //
-// The Amazon Interactive Video Service (IVS) stage API is REST compatible,
+// The Amazon Interactive Video Service (IVS) real-time API is REST compatible,
 // using a standard HTTP API and an AWS EventBridge event stream for responses.
 // JSON is used for both requests and responses, including errors.
 //
 // Terminology:
 //
-//   - The IVS stage API sometimes is referred to as the IVS RealTime API.
+//   - A stage is a virtual space where participants can exchange video in
+//     real time.
 //
-//   - A participant token is an authorization token used to publish/subscribe
-//     to a stage.
+//   - A participant token is a token that authenticates a participant when
+//     they join a stage.
 //
 //   - A participant object represents participants (people) in the stage and
 //     contains information about them. When a token is created, it includes
@@ -25,10 +26,10 @@
 // # Resources
 //
 // The following resources contain information about your IVS live stream (see
-// Getting Started with Amazon IVS (https://docs.aws.amazon.com/ivs/latest/userguide/getting-started.html)):
+// Getting Started with Amazon IVS Real-Time Streaming (https://docs.aws.amazon.com/ivs/latest/RealTimeUserGuide/getting-started.html)):
 //
-//   - Stage — A stage is a virtual space where multiple participants can
-//     exchange audio and video in real time.
+//   - Stage — A stage is a virtual space where participants can exchange
+//     video in real time.
 //
 // # Tagging
 //
@@ -43,8 +44,9 @@
 // you can use the same tag for different resources to indicate that they are
 // related. You can also use tags to manage access (see Access Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html)).
 //
-// The Amazon IVS stage API has these tag-related endpoints: TagResource, UntagResource,
-// and ListTagsForResource. The following resource supports tagging: Stage.
+// The Amazon IVS real-time API has these tag-related endpoints: TagResource,
+// UntagResource, and ListTagsForResource. The following resource supports tagging:
+// Stage.
 //
 // At most 50 tags can be applied to a resource.
 //

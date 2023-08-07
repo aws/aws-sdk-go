@@ -127,7 +127,7 @@
           "output": {
           }
         },
-        "description": "This operation copies a version of an Amazon Rekognition Custom Labels model from a source project to a destination project.",
+        "description": "Copies a version of an Amazon Rekognition Custom Labels model from a source project to a destination project.",
         "id": "copyprojectversion-1658203943815",
         "title": "CopyProjectVersion"
       }
@@ -150,6 +150,75 @@
         "description": "This operation creates a Rekognition collection for storing image data.",
         "id": "to-create-a-collection-1481833313674",
         "title": "To create a collection"
+      }
+    ],
+    "CreateDataset": [
+      {
+        "input": {
+          "DatasetSource": {
+            "GroundTruthManifest": {
+              "S3Object": {
+                "Bucket": "my-bucket",
+                "Name": "datasets/flowers_training/manifests/output/output.manifest"
+              }
+            }
+          },
+          "DatasetType": "TRAIN",
+          "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/1690474772815"
+        },
+        "output": {
+          "DatasetArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/dataset/train/1690476084535"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Creates an Amazon Rekognition Custom Labels dataset with a manifest file stored in an Amazon S3 bucket.",
+        "id": "to-create-an-amazon-rekognition-custom-labels-dataset-1690476237145",
+        "title": "To create an Amazon Rekognition Custom Labels dataset"
+      }
+    ],
+    "CreateProject": [
+      {
+        "input": {
+          "ProjectName": "my-project"
+        },
+        "output": {
+          "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/1690405809285"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Creates an Amazon Rekognition Custom Labels project.",
+        "id": "to-create-an-amazon-rekognition-custom-labels-project-1690405898597",
+        "title": "To create an Amazon Rekognition Custom Labels project"
+      }
+    ],
+    "CreateProjectVersion": [
+      {
+        "input": {
+          "OutputConfig": {
+            "S3Bucket": "output_bucket",
+            "S3KeyPrefix": "output_folder"
+          },
+          "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/1690474772815",
+          "VersionName": "1"
+        },
+        "output": {
+          "ProjectVersionArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958"
+        },
+        "comments": {
+          "input": {
+          }
+        },
+        "description": "Trains a version of an Amazon Rekognition Custom Labels model.",
+        "id": "to-train-an-amazon-rekognition-custom-labels-model-1690555832843",
+        "title": "To train an Amazon Rekognition Custom Labels model"
       }
     ],
     "CreateUser": [
@@ -188,6 +257,24 @@
         "title": "To delete a collection"
       }
     ],
+    "DeleteDataset": [
+      {
+        "input": {
+          "DatasetArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/dataset/test/1690556733321"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Deletes an Amazon Rekognition Custom Labels dataset.",
+        "id": "to-delete-an-amazon-rekognition-custom-labels-dataset-1690826556349",
+        "title": "To delete an Amazon Rekognition Custom Labels dataset"
+      }
+    ],
     "DeleteFaces": [
       {
         "input": {
@@ -212,6 +299,25 @@
         "title": "To delete a face"
       }
     ],
+    "DeleteProject": [
+      {
+        "input": {
+          "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/1690405809285"
+        },
+        "output": {
+          "Status": "DELETING"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Deletes an Amazon Rekognition Custom Labels projects.",
+        "id": "to-delete-an-amazon-rekognition-custom-labels-project-1690409093478",
+        "title": "To delete an Amazon Rekognition Custom Labels project"
+      }
+    ],
     "DeleteProjectPolicy": [
       {
         "input": {
@@ -232,6 +338,25 @@
         "title": "DeleteProjectPolicy"
       }
     ],
+    "DeleteProjectVersion": [
+      {
+        "input": {
+          "ProjectVersionArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958"
+        },
+        "output": {
+          "Status": "DELETING"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Deletes a version of an Amazon Rekognition Custom Labels model.",
+        "id": "to-delete-an-amazon-rekognition-custom-labels-model-1690827562055",
+        "title": "To delete an Amazon Rekognition Custom Labels model"
+      }
+    ],
     "DeleteUser": [
       {
         "input": {
@@ -248,6 +373,225 @@
         "description": "Deletes the specified UserID within the collection.",
         "id": "deleteuser-1686181913475",
         "title": "DeleteUser"
+      }
+    ],
+    "DescribeDataset": [
+      {
+        "input": {
+          "DatasetArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/dataset/train/1690476084535"
+        },
+        "output": {
+          "DatasetDescription": {
+            "CreationTimestamp": "2023-07-27T09:41:24.738000-07:00",
+            "DatasetStats": {
+              "ErrorEntries": 0,
+              "LabeledEntries": 15,
+              "TotalEntries": 15,
+              "TotalLabels": 9
+            },
+            "LastUpdatedTimestamp": "2023-07-28T09:46:45.406000-07:00",
+            "Status": "UPDATE_FAILED",
+            "StatusMessage": "The manifest file contains images from multiple S3 buckets.",
+            "StatusMessageCode": "CLIENT_ERROR"
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Describes an Amazon Rekognition Custom Labels dataset.",
+        "id": "to-describe-an-amazon-rekognition-custom-labels-dataset-1690827075604",
+        "title": "To describe an Amazon Rekognition Custom Labels dataset"
+      }
+    ],
+    "DescribeProjectVersions": [
+      {
+        "input": {
+          "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/1690474772815",
+          "VersionNames": [
+            "1"
+          ]
+        },
+        "output": {
+          "NextToken": "",
+          "ProjectVersionDescriptions": [
+            {
+              "BillableTrainingTimeInSeconds": 1899,
+              "CreationTimestamp": "2023-07-28T08:05:51.958000-07:00",
+              "EvaluationResult": {
+                "F1Score": 1,
+                "Summary": {
+                  "S3Object": {
+                    "Bucket": "custom-labels-console-us-east-1-111111111",
+                    "Name": "my-model-output/EvaluationResultSummary-my-project-1.json"
+                  }
+                }
+              },
+              "ManifestSummary": {
+                "S3Object": {
+                  "Bucket": "custom-labels-console-us-east-1-111111111",
+                  "Name": "my-model-output/ManifestSummary-my-project-1.json"
+                }
+              },
+              "OutputConfig": {
+                "S3Bucket": "custom-labels-console-us-east-1-111111111",
+                "S3KeyPrefix": "my-model-output"
+              },
+              "ProjectVersionArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958",
+              "Status": "TRAINING_COMPLETED",
+              "StatusMessage": "The model is ready to run.",
+              "TestingDataResult": {
+                "Input": {
+                  "AutoCreate": false
+                },
+                "Output": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Bucket": "custom-labels-console-us-east-1-111111111",
+                          "Name": "my-model-output/TestingGroundTruth-my-project-1.json"
+                        }
+                      }
+                    }
+                  ],
+                  "AutoCreate": false
+                },
+                "Validation": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Bucket": "custom-labels-console-us-east-1-111111111",
+                          "Name": "my-model-output/TestingManifestWithValidation-my-project-1.json"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "TrainingDataResult": {
+                "Input": {
+                },
+                "Output": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Bucket": "custom-labels-console-us-east-1-111111111",
+                          "Name": "my-model-output/TrainingGroundTruth-my-project-1.json"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "Validation": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Bucket": "custom-labels-console-us-east-1-111111111",
+                          "Name": "my-model-output/TrainingManifestWithValidation-my-project-1.json"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "TrainingEndTimestamp": "2023-07-28T08:33:10.827000-07:00"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          }
+        },
+        "description": "Describes a version of an Amazon Rekognition Custom Labels model.",
+        "id": "to-describes-an-amazon-rekognition-custom-labels-model-1690558265950",
+        "title": "To describe an Amazon Rekognition Custom Labels model"
+      }
+    ],
+    "DescribeProjects": [
+      {
+        "input": {
+          "ProjectNames": [
+            "my-project"
+          ]
+        },
+        "output": {
+          "ProjectDescriptions": [
+            {
+              "CreationTimestamp": "2022-06-13T15:16:00.634000-07:00",
+              "Datasets": [
+                {
+                  "CreationTimestamp": "2022-06-13T15:17:34.620000-07:00",
+                  "DatasetArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/dataset/test/1655158654491",
+                  "DatasetType": "TEST",
+                  "Status": "CREATE_COMPLETE",
+                  "StatusMessage": "The dataset was successfully created from the manifest file.",
+                  "StatusMessageCode": "SUCCESS"
+                },
+                {
+                  "CreationTimestamp": "2022-06-13T15:17:50.118000-07:00",
+                  "DatasetArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/dataset/train/1655158669954",
+                  "DatasetType": "TRAIN",
+                  "Status": "CREATE_COMPLETE",
+                  "StatusMessage": "The dataset was successfully created from the manifest file.",
+                  "StatusMessageCode": "SUCCESS"
+                }
+              ],
+              "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/1655158560634",
+              "Status": "CREATED"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Describes an Amazon Rekognition Custom Labels projects.",
+        "id": "to-describe-an-amazon-rekognition-custom-labels-project-1690400952376",
+        "title": "To describe an Amazon Rekognition Custom Labels project."
+      }
+    ],
+    "DetectCustomLabels": [
+      {
+        "input": {
+          "Image": {
+            "S3Object": {
+              "Bucket": "custom-labels-console-us-east-1-1111111111",
+              "Name": "assets/flowers_1_test_dataset/camellia4.jpg"
+            }
+          },
+          "MaxResults": 100,
+          "MinConfidence": 50,
+          "ProjectVersionArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/my-project.2023-07-31T11.49.37/1690829378219"
+        },
+        "output": {
+          "CustomLabels": [
+            {
+              "Confidence": 67.56399536132812,
+              "Name": "with_leaves"
+            },
+            {
+              "Confidence": 50.65699768066406,
+              "Name": "without_leaves"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Detects custom labels in an image with an Amazon Rekognition Custom Labels model",
+        "id": "to-detect-custom-labels-in-images-with-an-amazon-rekognition-custom-labels-model-1690832037913",
+        "title": "To detect custom labels in an image with an Amazon Rekognition Custom Labels model"
       }
     ],
     "DetectFaces": [
@@ -393,6 +737,31 @@
         "description": "Removes the association between a Face supplied in an array of FaceIds and the User.",
         "id": "disassociatefaces-1686182627295",
         "title": "DisassociateFaces"
+      }
+    ],
+    "DistributeDatasetEntries": [
+      {
+        "input": {
+          "Datasets": [
+            {
+              "Arn": "arn:aws:rekognition:us-east-1:111122223333:project/my-proj-2/dataset/train/1690564858106"
+            },
+            {
+              "Arn": "arn:aws:rekognition:us-east-1:111122223333:project/my-proj-2/dataset/test/1690564858106"
+            }
+          ]
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Distributes an Amazon Rekognition Custom Labels training dataset to a test dataset.",
+        "id": "to-distribute-to-an-amazon-rekognition-custom-labels-dataset-1690816977073",
+        "title": "To distribute an Amazon Rekognition Custom Labels dataset"
       }
     ],
     "IndexFaces": [
@@ -560,6 +929,76 @@
         "description": "This operation returns a list of Rekognition collections.",
         "id": "to-list-the-collections-1482179199088",
         "title": "To list the collections"
+      }
+    ],
+    "ListDatasetEntries": [
+      {
+        "input": {
+          "ContainsLabels": [
+            "camellia"
+          ],
+          "DatasetArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-proj-2/dataset/train/1690564858106",
+          "HasErrors": true,
+          "Labeled": true,
+          "MaxResults": 100,
+          "NextToken": "",
+          "SourceRefContains": "camellia4.jpg"
+        },
+        "output": {
+          "DatasetEntries": [
+            "{\"source-ref\":\"s3://custom-labels-console-us-east-1-1111111111/assets/flowers_1_train_dataset/camellia4.jpg\",\"camellia\":1,\"camellia-metadata\":{\"confidence\":1,\"job-name\":\"labeling-job/camellia\",\"class-name\":\"camellia\",\"human-annotated\":\"yes\",\"creation-date\":\"2021-07-11T03:32:13.456Z\",\"type\":\"groundtruth/image-classification\"},\"with_leaves\":1,\"with_leaves-metadata\":{\"confidence\":1,\"job-name\":\"labeling-job/with_leaves\",\"class-name\":\"with_leaves\",\"human-annotated\":\"yes\",\"creation-date\":\"2021-07-11T03:32:13.456Z\",\"type\":\"groundtruth/image-classification\"},\"cl-metadata\":{\"is_labeled\":true}}"
+          ],
+          "NextToken": ""
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Lists the JSON line entries in an Amazon Rekognition Custom Labels dataset.",
+        "id": "to-list-the-entries-in-an-amazon-rekognition-custom-labels-dataset-1690823292345",
+        "title": "To list the entries in an Amazon Rekognition Custom Labels dataset"
+      }
+    ],
+    "ListDatasetLabels": [
+      {
+        "input": {
+          "DatasetArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-proj-2/dataset/train/1690564858106",
+          "MaxResults": 100,
+          "NextToken": ""
+        },
+        "output": {
+          "DatasetLabelDescriptions": [
+            {
+              "LabelName": "camellia",
+              "LabelStats": {
+                "EntryCount": 1
+              }
+            },
+            {
+              "LabelName": "with_leaves",
+              "LabelStats": {
+                "EntryCount": 2
+              }
+            },
+            {
+              "LabelName": "mediterranean_spurge",
+              "LabelStats": {
+                "EntryCount": 1
+              }
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Lists the JSON line entries in an Amazon Rekognition Custom Labels dataset.",
+        "id": "to-list-the-entries-in-an-amazon-rekognition-custom-labels-dataset-1690823292345",
+        "title": "To list the entries in an Amazon Rekognition Custom Labels dataset"
       }
     ],
     "ListFaces": [
@@ -925,6 +1364,67 @@
         "description": "Searches for UserIDs using a supplied image.",
         "id": "searchusersbyimage-1686183178610",
         "title": "SearchUsersByImage"
+      }
+    ],
+    "StartProjectVersion": [
+      {
+        "input": {
+          "MaxInferenceUnits": 1,
+          "MinInferenceUnits": 1,
+          "ProjectVersionArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958"
+        },
+        "output": {
+          "Status": "STARTING"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Starts a version of an Amazon Rekognition Custom Labels model.",
+        "id": "to-start-an-amazon-rekognition-custom-labels-model-1690559168398",
+        "title": "To start an Amazon Rekognition Custom Labels model"
+      }
+    ],
+    "StopProjectVersion": [
+      {
+        "input": {
+          "ProjectVersionArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958"
+        },
+        "output": {
+          "Status": "STOPPING"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Stops a version of an Amazon Rekognition Custom Labels model.",
+        "id": "to-stop-an-amazon-rekognition-custom-labels-model-1690561110698",
+        "title": "To stop an Amazon Rekognition Custom Labels model."
+      }
+    ],
+    "UpdateDatasetEntries": [
+      {
+        "input": {
+          "Changes": {
+            "GroundTruth": "{\"source-ref\":\"s3://custom-labels-console-us-east-1-111111111/assets/flowers_1_test_dataset/mediterranean_spurge4.jpg\",\"mediterranean_spurge\":1,\"mediterranean_spurge-metadata\":{\"confidence\":1,\"job-name\":\"labeling-job/mediterranean_spurge\",\"class-name\":\"mediterranean_spurge\",\"human-annotated\":\"yes\",\"creation-date\":\"2021-07-11T03:33:42.025Z\",\"type\":\"groundtruth/image-classification\"},\"with_leaves\":1,\"with_leaves-metadata\":{\"confidence\":1,\"job-name\":\"labeling-job/with_leaves\",\"class-name\":\"with_leaves\",\"human-annotated\":\"yes\",\"creation-date\":\"2021-07-11T03:33:42.025Z\",\"type\":\"groundtruth/image-classification\"}}"
+          },
+          "DatasetArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-proj-2/dataset/train/1690564858106"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Adds dataset entries to an Amazon Rekognition Custom Labels dataset.",
+        "id": "to-add-dataset-entries-to-an-amazon-rekognition-custom-labels-dataset-1690816977073",
+        "title": "To-add dataset entries to an Amazon Rekognition Custom Labels dataset"
       }
     ]
   }

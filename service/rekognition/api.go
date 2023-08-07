@@ -598,8 +598,8 @@ func (c *Rekognition) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 // dataset by using an Amazon Sagemaker format manifest file or by copying an
 // existing Amazon Rekognition Custom Labels dataset.
 //
-// To create a training dataset for a project, specify train for the value of
-// DatasetType. To create the test dataset for a project, specify test for the
+// To create a training dataset for a project, specify TRAIN for the value of
+// DatasetType. To create the test dataset for a project, specify TEST for the
 // value of DatasetType.
 //
 // The response from CreateDataset is the Amazon Resource Name (ARN) for the
@@ -726,12 +726,16 @@ func (c *Rekognition) CreateFaceLivenessSessionRequest(input *CreateFaceLiveness
 //
 // This API operation initiates a Face Liveness session. It returns a SessionId,
 // which you can use to start streaming Face Liveness video and get the results
-// for a Face Liveness session. You can use the OutputConfig option in the Settings
-// parameter to provide an Amazon S3 bucket location. The Amazon S3 bucket stores
-// reference images and audit images. You can use AuditImagesLimit to limit
-// the number of audit images returned. This number is between 0 and 4. By default,
-// it is set to 0. The limit is best effort and based on the duration of the
-// selfie-video.
+// for a Face Liveness session.
+//
+// You can use the OutputConfig option in the Settings parameter to provide
+// an Amazon S3 bucket location. The Amazon S3 bucket stores reference images
+// and audit images. If no Amazon S3 bucket is defined, raw bytes are sent instead.
+//
+// You can use AuditImagesLimit to limit the number of audit images returned
+// when GetFaceLivenessSessionResults is called. This number is between 0 and
+// 4. By default, it is set to 0. The limit is best effort and based on the
+// duration of the selfie-video.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3059,10 +3063,11 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // filters, or a combination of inclusive and exclusive filters. For more information
 // on filtering see Detecting Labels in an Image (https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html).
 //
-// You can specify MinConfidence to control the confidence threshold for the
-// labels returned. The default is 55%. You can also add the MaxLabels parameter
-// to limit the number of labels returned. The default and upper limit is 1000
-// labels.
+// When getting labels, you can specify MinConfidence to control the confidence
+// threshold for the labels returned. The default is 55%. You can also add the
+// MaxLabels parameter to limit the number of labels returned. The default and
+// upper limit is 1000 labels. These arguments are only valid when supplying
+// GENERAL_LABELS as a feature type.
 //
 // # Response Elements
 //
@@ -4370,6 +4375,9 @@ func (c *Rekognition) GetFaceDetectionRequest(input *GetFaceDetectionInput) (req
 // the NextToken request parameter with the token value returned from the previous
 // call to GetFaceDetection.
 //
+// Note that for the GetFaceDetection operation, the returned values for FaceOccluded
+// and EyeDirection will always be "null".
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4519,8 +4527,11 @@ func (c *Rekognition) GetFaceLivenessSessionResultsRequest(input *GetFaceLivenes
 // sessionId as input, which was created using CreateFaceLivenessSession. Returns
 // the corresponding Face Liveness confidence score, a reference image that
 // includes a face bounding box, and audit images that also contain face bounding
-// boxes. The Face Liveness confidence score ranges from 0 to 100. The reference
-// image can optionally be returned.
+// boxes. The Face Liveness confidence score ranges from 0 to 100.
+//
+// The number of audit images returned by GetFaceLivenessSessionResults is defined
+// by the AuditImagesLimit paramater when calling CreateFaceLivenessSession.
+// Reference images are always returned when possible.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5405,7 +5416,7 @@ func (c *Rekognition) GetTextDetectionRequest(input *GetTextDetectionInput) (req
 // the job identifier (JobId) from the initial call of StartLabelDetection.
 //
 // GetTextDetection returns an array of detected text (TextDetections) sorted
-// by the time the text was detected, up to 50 words per frame of video.
+// by the time the text was detected, up to 100 words per frame of video.
 //
 // Each element of the array includes the detected text, the precentage confidence
 // in the acuracy of the detected text, the time the text was detected, bounding
@@ -11441,8 +11452,8 @@ type CreateDatasetInput struct {
 	// To add labeled images to the dataset, You can use the console or call UpdateDatasetEntries.
 	DatasetSource *DatasetSource `type:"structure"`
 
-	// The type of the dataset. Specify train to create a training dataset. Specify
-	// test to create a test dataset.
+	// The type of the dataset. Specify TRAIN to create a training dataset. Specify
+	// TEST to create a test dataset.
 	//
 	// DatasetType is a required field
 	DatasetType *string `type:"string" required:"true" enum:"DatasetType"`
@@ -14349,6 +14360,10 @@ type DetectFacesInput struct {
 	//
 	// If you provide both, ["ALL", "DEFAULT"], the service uses a logical "AND"
 	// operator to determine which attributes to return (in this case, all attributes).
+	//
+	// Note that while the FaceOccluded and EyeDirection attributes are supported
+	// when using DetectFaces, they aren't supported when analyzing videos with
+	// StartFaceDetection and GetFaceDetection.
 	Attributes []*string `type:"list" enum:"Attribute"`
 
 	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
@@ -14722,14 +14737,17 @@ type DetectLabelsInput struct {
 	Image *Image `type:"structure" required:"true"`
 
 	// Maximum number of labels you want the service to return in the response.
-	// The service returns the specified number of highest confidence labels.
+	// The service returns the specified number of highest confidence labels. Only
+	// valid when GENERAL_LABELS is specified as a feature type in the Feature input
+	// parameter.
 	MaxLabels *int64 `type:"integer"`
 
 	// Specifies the minimum confidence level for the labels to return. Amazon Rekognition
 	// doesn't return any labels with confidence lower than this specified value.
 	//
 	// If MinConfidence is not specified, the operation returns labels with a confidence
-	// values greater than or equal to 55 percent.
+	// values greater than or equal to 55 percent. Only valid when GENERAL_LABELS
+	// is specified as a feature type in the Feature input parameter.
 	MinConfidence *float64 `type:"float"`
 
 	// A list of the filters to be applied to returned detected labels and image
@@ -17569,7 +17587,7 @@ type GetFaceLivenessSessionResultsOutput struct {
 	// It includes a bounding box of the face and the Base64-encoded bytes that
 	// return an image. If the CreateFaceLivenessSession request included an OutputConfig
 	// argument, the image will be uploaded to an S3Object specified in the output
-	// configuration.
+	// configuration. If no Amazon S3 bucket is defined, raw bytes are sent instead.
 	AuditImages []*AuditImage `type:"list"`
 
 	// Probabalistic confidence score for if the person in the given video was live,
@@ -20833,7 +20851,7 @@ type ListFacesInput struct {
 	// CollectionId is a required field
 	CollectionId *string `min:"1" type:"string" required:"true"`
 
-	// An array of face IDs to match when listing faces in a collection.
+	// An array of face IDs to filter results with when listing faces in a collection.
 	FaceIds []*string `min:"1" type:"list"`
 
 	// Maximum number of faces to return.
@@ -20844,7 +20862,7 @@ type ListFacesInput struct {
 	// this pagination token to retrieve the next set of faces.
 	NextToken *string `type:"string"`
 
-	// An array of user IDs to match when listing faces in a collection.
+	// An array of user IDs to filter results with when listing faces in a collection.
 	UserId *string `min:"1" type:"string"`
 }
 

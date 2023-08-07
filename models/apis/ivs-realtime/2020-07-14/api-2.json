@@ -346,7 +346,11 @@
     },
     "EventErrorCode":{
       "type":"string",
-      "enum":["INSUFFICIENT_CAPABILITIES"]
+      "enum":[
+        "INSUFFICIENT_CAPABILITIES",
+        "QUOTA_EXCEEDED",
+        "PUBLISHER_NOT_FOUND"
+      ]
     },
     "EventList":{
       "type":"list",
