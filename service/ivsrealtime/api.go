@@ -2039,7 +2039,11 @@ type Event struct {
 	// this field is null. INSUFFICIENT_CAPABILITIES indicates that the participant
 	// tried to take an action that the participant’s token is not allowed to
 	// do. For more information about participant capabilities, see the capabilities
-	// field in CreateParticipantToken.
+	// field in CreateParticipantToken. QUOTA_EXCEEDED indicates that the number
+	// of participants who want to publish/subscribe to a stage exceeds the quota;
+	// for more information, see Service Quotas (https://docs.aws.amazon.com/ivs/latest/RealTimeUserGuide/service-quotas.html).
+	// PUBLISHER_NOT_FOUND indicates that the participant tried to subscribe to
+	// a publisher that doesn’t exist.
 	ErrorCode *string `locationName:"errorCode" type:"string" enum:"EventErrorCode"`
 
 	// ISO 8601 timestamp (returned as a string) for when the event occurred.
@@ -4169,12 +4173,20 @@ func (s *ValidationException) RequestID() string {
 const (
 	// EventErrorCodeInsufficientCapabilities is a EventErrorCode enum value
 	EventErrorCodeInsufficientCapabilities = "INSUFFICIENT_CAPABILITIES"
+
+	// EventErrorCodeQuotaExceeded is a EventErrorCode enum value
+	EventErrorCodeQuotaExceeded = "QUOTA_EXCEEDED"
+
+	// EventErrorCodePublisherNotFound is a EventErrorCode enum value
+	EventErrorCodePublisherNotFound = "PUBLISHER_NOT_FOUND"
 )
 
 // EventErrorCode_Values returns all elements of the EventErrorCode enum
 func EventErrorCode_Values() []string {
 	return []string{
 		EventErrorCodeInsufficientCapabilities,
+		EventErrorCodeQuotaExceeded,
+		EventErrorCodePublisherNotFound,
 	}
 }
 

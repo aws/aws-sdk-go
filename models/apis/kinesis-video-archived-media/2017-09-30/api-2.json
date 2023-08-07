@@ -355,7 +355,6 @@
         "ImageSelectorType",
         "StartTimestamp",
         "EndTimestamp",
-        "SamplingInterval",
         "Format"
       ],
       "members":{
@@ -587,11 +586,7 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
-    "SamplingInterval":{
-      "type":"integer",
-      "max":20000,
-      "min":3000
-    },
+    "SamplingInterval":{"type":"integer"},
     "StreamName":{
       "type":"string",
       "max":256,

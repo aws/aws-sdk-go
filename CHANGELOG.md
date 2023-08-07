@@ -1,3 +1,15 @@
+Release v1.44.318 (2023-08-07)
+===
+
+### Service Client Updates
+* `service/detective`: Updates service API
+* `service/ivs-realtime`: Updates service API and documentation
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/kinesisvideo`: Updates service API and documentation
+  * This release enables minimum of Images SamplingInterval to be as low as 200 milliseconds in Kinesis Video Stream Image feature.
+* `service/rekognition`: Updates service documentation and examples
+  * This release adds code snippets for Amazon Rekognition Custom Labels.
+
 Release v1.44.317 (2023-08-04)
 ===
 
