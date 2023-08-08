@@ -113,6 +113,24 @@
       ],
       "idempotent":true
     },
+    "CreateLogicallyAirGappedBackupVault":{
+      "name":"CreateLogicallyAirGappedBackupVault",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/logically-air-gapped-backup-vaults/{backupVaultName}"
+      },
+      "input":{"shape":"CreateLogicallyAirGappedBackupVaultInput"},
+      "output":{"shape":"CreateLogicallyAirGappedBackupVaultOutput"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"}
+      ],
+      "idempotent":true
+    },
     "CreateReportPlan":{
       "name":"CreateReportPlan",
       "http":{
@@ -767,6 +785,20 @@
         {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
+    },
+    "ListProtectedResourcesByBackupVault":{
+      "name":"ListProtectedResourcesByBackupVault",
+      "http":{
+        "method":"GET",
+        "requestUri":"/backup-vaults/{backupVaultName}/resources/"
+      },
+      "input":{"shape":"ListProtectedResourcesByBackupVaultInput"},
+      "output":{"shape":"ListProtectedResourcesByBackupVaultOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
     },
     "ListRecoveryPointsByBackupVault":{
       "name":"ListRecoveryPointsByBackupVault",
@@ -1699,6 +1731,34 @@
         "RecoveryPointSelection":{"shape":"RecoveryPointSelection"}
       }
     },
+    "CreateLogicallyAirGappedBackupVaultInput":{
+      "type":"structure",
+      "required":[
+        "BackupVaultName",
+        "MinRetentionDays",
+        "MaxRetentionDays"
+      ],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        },
+        "BackupVaultTags":{"shape":"Tags"},
+        "CreatorRequestId":{"shape":"string"},
+        "MinRetentionDays":{"shape":"Long"},
+        "MaxRetentionDays":{"shape":"Long"}
+      }
+    },
+    "CreateLogicallyAirGappedBackupVaultOutput":{
+      "type":"structure",
+      "members":{
+        "BackupVaultName":{"shape":"BackupVaultName"},
+        "BackupVaultArn":{"shape":"ARN"},
+        "CreationDate":{"shape":"timestamp"},
+        "VaultState":{"shape":"VaultState"}
+      }
+    },
     "CreateReportPlanInput":{
       "type":"structure",
       "required":[
@@ -1922,6 +1982,11 @@
           "shape":"string",
           "location":"uri",
           "locationName":"backupVaultName"
+        },
+        "BackupVaultAccountId":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
         }
       }
     },
@@ -1930,6 +1995,7 @@
       "members":{
         "BackupVaultName":{"shape":"string"},
         "BackupVaultArn":{"shape":"ARN"},
+        "VaultType":{"shape":"VaultType"},
         "EncryptionKeyArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "CreatorRequestId":{"shape":"string"},
@@ -2029,6 +2095,11 @@
           "shape":"ARN",
           "location":"uri",
           "locationName":"recoveryPointArn"
+        },
+        "BackupVaultAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
         }
       }
     },
@@ -2404,6 +2475,11 @@
           "shape":"ARN",
           "location":"uri",
           "locationName":"recoveryPointArn"
+        },
+        "BackupVaultAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
         }
       }
     },
@@ -2683,6 +2759,16 @@
     "ListBackupVaultsInput":{
       "type":"structure",
       "members":{
+        "ByVaultType":{
+          "shape":"VaultType",
+          "location":"querystring",
+          "locationName":"vaultType"
+        },
+        "ByShared":{
+          "shape":"boolean",
+          "location":"querystring",
+          "locationName":"shared"
+        },
         "NextToken":{
           "shape":"string",
           "location":"querystring",
@@ -2822,6 +2908,39 @@
       "type":"list",
       "member":{"shape":"Condition"}
     },
+    "ListProtectedResourcesByBackupVaultInput":{
+      "type":"structure",
+      "required":["BackupVaultName"],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        },
+        "BackupVaultAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListProtectedResourcesByBackupVaultOutput":{
+      "type":"structure",
+      "members":{
+        "Results":{"shape":"ProtectedResourcesList"},
+        "NextToken":{"shape":"string"}
+      }
+    },
     "ListProtectedResourcesInput":{
       "type":"structure",
       "members":{
@@ -2852,6 +2971,11 @@
           "shape":"BackupVaultName",
           "location":"uri",
           "locationName":"backupVaultName"
+        },
+        "BackupVaultAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
         },
         "NextToken":{
           "shape":"string",
@@ -3716,6 +3840,21 @@
     "VaultNames":{
       "type":"list",
       "member":{"shape":"string"}
+    },
+    "VaultState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "AVAILABLE",
+        "FAILED"
+      ]
+    },
+    "VaultType":{
+      "type":"string",
+      "enum":[
+        "BACKUP_VAULT",
+        "LOGICALLY_AIR_GAPPED_BACKUP_VAULT"
+      ]
     },
     "WindowMinutes":{"type":"long"},
     "boolean":{"type":"boolean"},

@@ -1,3 +1,13 @@
+Release v1.44.319 (2023-08-08)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API, documentation, and paginators
+* `service/elasticache`: Updates service API and documentation
+  * Added support for cluster mode in online migration and test migration API
+* `service/servicecatalog`: Updates service API and documentation
+  * Introduce support for HashiCorp Terraform Cloud in Service Catalog by addying TERRAFORM_CLOUD product type in CreateProduct and CreateProvisioningArtifact API.
+
 Release v1.44.318 (2023-08-07)
 ===
 

@@ -7494,6 +7494,94 @@ func (c *ElastiCache) TestFailoverWithContext(ctx aws.Context, input *TestFailov
 	return out, req.Send()
 }
 
+const opTestMigration = "TestMigration"
+
+// TestMigrationRequest generates a "aws/request.Request" representing the
+// client's request for the TestMigration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TestMigration for more information on using the TestMigration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TestMigrationRequest method.
+//	req, resp := client.TestMigrationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/TestMigration
+func (c *ElastiCache) TestMigrationRequest(input *TestMigrationInput) (req *request.Request, output *TestMigrationOutput) {
+	op := &request.Operation{
+		Name:       opTestMigration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TestMigrationInput{}
+	}
+
+	output = &TestMigrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// TestMigration API operation for Amazon ElastiCache.
+//
+// Async API to test connection between source and target replication group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation TestMigration for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeReplicationGroupNotFoundFault "ReplicationGroupNotFoundFault"
+//     The specified replication group does not exist.
+//
+//   - ErrCodeInvalidReplicationGroupStateFault "InvalidReplicationGroupState"
+//     The requested replication group is not in the available state.
+//
+//   - ErrCodeReplicationGroupAlreadyUnderMigrationFault "ReplicationGroupAlreadyUnderMigrationFault"
+//     The targeted replication group is not available.
+//
+//   - ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//     The value for a parameter is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/TestMigration
+func (c *ElastiCache) TestMigration(input *TestMigrationInput) (*TestMigrationOutput, error) {
+	req, out := c.TestMigrationRequest(input)
+	return out, req.Send()
+}
+
+// TestMigrationWithContext is the same as TestMigration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TestMigration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) TestMigrationWithContext(ctx aws.Context, input *TestMigrationInput, opts ...request.Option) (*TestMigrationOutput, error) {
+	req, out := c.TestMigrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Represents the input of an AddTagsToResource operation.
 type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
@@ -16113,7 +16201,7 @@ type IncreaseNodeGroupsInGlobalReplicationGroupInput struct {
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
 
-	// The number of node groups you wish to add
+	// Total number of node groups you want
 	//
 	// NodeGroupCount is a required field
 	NodeGroupCount *int64 `type:"integer" required:"true"`
@@ -21868,6 +21956,98 @@ func (s TestFailoverOutput) GoString() string {
 
 // SetReplicationGroup sets the ReplicationGroup field's value.
 func (s *TestFailoverOutput) SetReplicationGroup(v *ReplicationGroup) *TestFailoverOutput {
+	s.ReplicationGroup = v
+	return s
+}
+
+type TestMigrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// List of endpoints from which data should be migrated. List should have only
+	// one element.
+	//
+	// CustomerNodeEndpointList is a required field
+	CustomerNodeEndpointList []*CustomerNodeEndpoint `type:"list" required:"true"`
+
+	// The ID of the replication group to which data is to be migrated.
+	//
+	// ReplicationGroupId is a required field
+	ReplicationGroupId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestMigrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestMigrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestMigrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestMigrationInput"}
+	if s.CustomerNodeEndpointList == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomerNodeEndpointList"))
+	}
+	if s.ReplicationGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationGroupId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomerNodeEndpointList sets the CustomerNodeEndpointList field's value.
+func (s *TestMigrationInput) SetCustomerNodeEndpointList(v []*CustomerNodeEndpoint) *TestMigrationInput {
+	s.CustomerNodeEndpointList = v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *TestMigrationInput) SetReplicationGroupId(v string) *TestMigrationInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+type TestMigrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains all of the attributes of a specific Redis replication group.
+	ReplicationGroup *ReplicationGroup `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestMigrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestMigrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationGroup sets the ReplicationGroup field's value.
+func (s *TestMigrationOutput) SetReplicationGroup(v *ReplicationGroup) *TestMigrationOutput {
 	s.ReplicationGroup = v
 	return s
 }

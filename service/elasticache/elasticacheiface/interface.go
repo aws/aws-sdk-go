@@ -371,6 +371,10 @@ type ElastiCacheAPI interface {
 	TestFailoverWithContext(aws.Context, *elasticache.TestFailoverInput, ...request.Option) (*elasticache.TestFailoverOutput, error)
 	TestFailoverRequest(*elasticache.TestFailoverInput) (*request.Request, *elasticache.TestFailoverOutput)
 
+	TestMigration(*elasticache.TestMigrationInput) (*elasticache.TestMigrationOutput, error)
+	TestMigrationWithContext(aws.Context, *elasticache.TestMigrationInput, ...request.Option) (*elasticache.TestMigrationOutput, error)
+	TestMigrationRequest(*elasticache.TestMigrationInput) (*request.Request, *elasticache.TestMigrationOutput)
+
 	WaitUntilCacheClusterAvailable(*elasticache.DescribeCacheClustersInput) error
 	WaitUntilCacheClusterAvailableWithContext(aws.Context, *elasticache.DescribeCacheClustersInput, ...request.WaiterOption) error
 

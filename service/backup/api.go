@@ -589,6 +589,109 @@ func (c *Backup) CreateLegalHoldWithContext(ctx aws.Context, input *CreateLegalH
 	return out, req.Send()
 }
 
+const opCreateLogicallyAirGappedBackupVault = "CreateLogicallyAirGappedBackupVault"
+
+// CreateLogicallyAirGappedBackupVaultRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLogicallyAirGappedBackupVault operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLogicallyAirGappedBackupVault for more information on using the CreateLogicallyAirGappedBackupVault
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLogicallyAirGappedBackupVaultRequest method.
+//	req, resp := client.CreateLogicallyAirGappedBackupVaultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateLogicallyAirGappedBackupVault
+func (c *Backup) CreateLogicallyAirGappedBackupVaultRequest(input *CreateLogicallyAirGappedBackupVaultInput) (req *request.Request, output *CreateLogicallyAirGappedBackupVaultOutput) {
+	op := &request.Operation{
+		Name:       opCreateLogicallyAirGappedBackupVault,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/logically-air-gapped-backup-vaults/{backupVaultName}",
+	}
+
+	if input == nil {
+		input = &CreateLogicallyAirGappedBackupVaultInput{}
+	}
+
+	output = &CreateLogicallyAirGappedBackupVaultOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLogicallyAirGappedBackupVault API operation for AWS Backup.
+//
+// This request creates a logical container where backups are stored.
+//
+// This request includes a name, optionally one or more resource tags, an encryption
+// key, and a request ID.
+//
+// Do not include sensitive data, such as passport numbers, in the name of a
+// backup vault.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation CreateLogicallyAirGappedBackupVault for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AlreadyExistsException
+//     The required resource already exists.
+//
+//   - InvalidParameterValueException
+//     Indicates that something is wrong with a parameter's value. For example,
+//     the value is out of range.
+//
+//   - LimitExceededException
+//     A limit in the request has been exceeded; for example, a maximum number of
+//     items allowed in a request.
+//
+//   - MissingParameterValueException
+//     Indicates that a required parameter is missing.
+//
+//   - ServiceUnavailableException
+//     The request failed due to a temporary failure of the server.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a parameter is of the wrong type.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateLogicallyAirGappedBackupVault
+func (c *Backup) CreateLogicallyAirGappedBackupVault(input *CreateLogicallyAirGappedBackupVaultInput) (*CreateLogicallyAirGappedBackupVaultOutput, error) {
+	req, out := c.CreateLogicallyAirGappedBackupVaultRequest(input)
+	return out, req.Send()
+}
+
+// CreateLogicallyAirGappedBackupVaultWithContext is the same as CreateLogicallyAirGappedBackupVault with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLogicallyAirGappedBackupVault for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) CreateLogicallyAirGappedBackupVaultWithContext(ctx aws.Context, input *CreateLogicallyAirGappedBackupVaultInput, opts ...request.Option) (*CreateLogicallyAirGappedBackupVaultOutput, error) {
+	req, out := c.CreateLogicallyAirGappedBackupVaultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReportPlan = "CreateReportPlan"
 
 // CreateReportPlanRequest generates a "aws/request.Request" representing the
@@ -5056,6 +5159,149 @@ func (c *Backup) ListProtectedResourcesPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListProtectedResourcesByBackupVault = "ListProtectedResourcesByBackupVault"
+
+// ListProtectedResourcesByBackupVaultRequest generates a "aws/request.Request" representing the
+// client's request for the ListProtectedResourcesByBackupVault operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListProtectedResourcesByBackupVault for more information on using the ListProtectedResourcesByBackupVault
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListProtectedResourcesByBackupVaultRequest method.
+//	req, resp := client.ListProtectedResourcesByBackupVaultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListProtectedResourcesByBackupVault
+func (c *Backup) ListProtectedResourcesByBackupVaultRequest(input *ListProtectedResourcesByBackupVaultInput) (req *request.Request, output *ListProtectedResourcesByBackupVaultOutput) {
+	op := &request.Operation{
+		Name:       opListProtectedResourcesByBackupVault,
+		HTTPMethod: "GET",
+		HTTPPath:   "/backup-vaults/{backupVaultName}/resources/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListProtectedResourcesByBackupVaultInput{}
+	}
+
+	output = &ListProtectedResourcesByBackupVaultOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListProtectedResourcesByBackupVault API operation for AWS Backup.
+//
+// This request lists the protected resources corresponding to each backup vault.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation ListProtectedResourcesByBackupVault for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValueException
+//     Indicates that something is wrong with a parameter's value. For example,
+//     the value is out of range.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action doesn't exist.
+//
+//   - ServiceUnavailableException
+//     The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListProtectedResourcesByBackupVault
+func (c *Backup) ListProtectedResourcesByBackupVault(input *ListProtectedResourcesByBackupVaultInput) (*ListProtectedResourcesByBackupVaultOutput, error) {
+	req, out := c.ListProtectedResourcesByBackupVaultRequest(input)
+	return out, req.Send()
+}
+
+// ListProtectedResourcesByBackupVaultWithContext is the same as ListProtectedResourcesByBackupVault with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListProtectedResourcesByBackupVault for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListProtectedResourcesByBackupVaultWithContext(ctx aws.Context, input *ListProtectedResourcesByBackupVaultInput, opts ...request.Option) (*ListProtectedResourcesByBackupVaultOutput, error) {
+	req, out := c.ListProtectedResourcesByBackupVaultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListProtectedResourcesByBackupVaultPages iterates over the pages of a ListProtectedResourcesByBackupVault operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListProtectedResourcesByBackupVault method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListProtectedResourcesByBackupVault operation.
+//	pageNum := 0
+//	err := client.ListProtectedResourcesByBackupVaultPages(params,
+//	    func(page *backup.ListProtectedResourcesByBackupVaultOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Backup) ListProtectedResourcesByBackupVaultPages(input *ListProtectedResourcesByBackupVaultInput, fn func(*ListProtectedResourcesByBackupVaultOutput, bool) bool) error {
+	return c.ListProtectedResourcesByBackupVaultPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProtectedResourcesByBackupVaultPagesWithContext same as ListProtectedResourcesByBackupVaultPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListProtectedResourcesByBackupVaultPagesWithContext(ctx aws.Context, input *ListProtectedResourcesByBackupVaultInput, fn func(*ListProtectedResourcesByBackupVaultOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProtectedResourcesByBackupVaultInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProtectedResourcesByBackupVaultRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListProtectedResourcesByBackupVaultOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListRecoveryPointsByBackupVault = "ListRecoveryPointsByBackupVault"
 
 // ListRecoveryPointsByBackupVaultRequest generates a "aws/request.Request" representing the
@@ -9353,6 +9599,187 @@ func (s *CreateLegalHoldOutput) SetTitle(v string) *CreateLegalHoldOutput {
 	return s
 }
 
+type CreateLogicallyAirGappedBackupVaultInput struct {
+	_ struct{} `type:"structure"`
+
+	// This is the name of the vault that is being created.
+	//
+	// BackupVaultName is a required field
+	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
+
+	// These are the tags that will be included in the newly-created vault.
+	//
+	// BackupVaultTags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLogicallyAirGappedBackupVaultInput's
+	// String and GoString methods.
+	BackupVaultTags map[string]*string `type:"map" sensitive:"true"`
+
+	// This is the ID of the creation request.
+	CreatorRequestId *string `type:"string"`
+
+	// This is the setting that specifies the maximum retention period that the
+	// vault retains its recovery points. If this parameter is not specified, Backup
+	// does not enforce a maximum retention period on the recovery points in the
+	// vault (allowing indefinite storage).
+	//
+	// If specified, any backup or copy job to the vault must have a lifecycle policy
+	// with a retention period equal to or shorter than the maximum retention period.
+	// If the job retention period is longer than that maximum retention period,
+	// then the vault fails the backup or copy job, and you should either modify
+	// your lifecycle settings or use a different vault.
+	//
+	// MaxRetentionDays is a required field
+	MaxRetentionDays *int64 `type:"long" required:"true"`
+
+	// This setting specifies the minimum retention period that the vault retains
+	// its recovery points. If this parameter is not specified, no minimum retention
+	// period is enforced.
+	//
+	// If specified, any backup or copy job to the vault must have a lifecycle policy
+	// with a retention period equal to or longer than the minimum retention period.
+	// If a job retention period is shorter than that minimum retention period,
+	// then the vault fails the backup or copy job, and you should either modify
+	// your lifecycle settings or use a different vault.
+	//
+	// MinRetentionDays is a required field
+	MinRetentionDays *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLogicallyAirGappedBackupVaultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLogicallyAirGappedBackupVaultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLogicallyAirGappedBackupVaultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLogicallyAirGappedBackupVaultInput"}
+	if s.BackupVaultName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupVaultName"))
+	}
+	if s.BackupVaultName != nil && len(*s.BackupVaultName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackupVaultName", 1))
+	}
+	if s.MaxRetentionDays == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxRetentionDays"))
+	}
+	if s.MinRetentionDays == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinRetentionDays"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *CreateLogicallyAirGappedBackupVaultInput) SetBackupVaultName(v string) *CreateLogicallyAirGappedBackupVaultInput {
+	s.BackupVaultName = &v
+	return s
+}
+
+// SetBackupVaultTags sets the BackupVaultTags field's value.
+func (s *CreateLogicallyAirGappedBackupVaultInput) SetBackupVaultTags(v map[string]*string) *CreateLogicallyAirGappedBackupVaultInput {
+	s.BackupVaultTags = v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *CreateLogicallyAirGappedBackupVaultInput) SetCreatorRequestId(v string) *CreateLogicallyAirGappedBackupVaultInput {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetMaxRetentionDays sets the MaxRetentionDays field's value.
+func (s *CreateLogicallyAirGappedBackupVaultInput) SetMaxRetentionDays(v int64) *CreateLogicallyAirGappedBackupVaultInput {
+	s.MaxRetentionDays = &v
+	return s
+}
+
+// SetMinRetentionDays sets the MinRetentionDays field's value.
+func (s *CreateLogicallyAirGappedBackupVaultInput) SetMinRetentionDays(v int64) *CreateLogicallyAirGappedBackupVaultInput {
+	s.MinRetentionDays = &v
+	return s
+}
+
+type CreateLogicallyAirGappedBackupVaultOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This is the ARN (Amazon Resource Name) of the vault being created.
+	BackupVaultArn *string `type:"string"`
+
+	// The name of a logical container where backups are stored. Logically air-gapped
+	// backup vaults are identified by names that are unique to the account used
+	// to create them and the Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
+	BackupVaultName *string `type:"string"`
+
+	// The date and time when the vault was created.
+	//
+	// This value is in Unix format, Coordinated Universal Time (UTC), and accurate
+	// to milliseconds. For example, the value 1516925490.087 represents Friday,
+	// January 26, 2018 12:11:30.087 AM.
+	CreationDate *time.Time `type:"timestamp"`
+
+	// This is the current state of the vault.
+	VaultState *string `type:"string" enum:"VaultState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLogicallyAirGappedBackupVaultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLogicallyAirGappedBackupVaultOutput) GoString() string {
+	return s.String()
+}
+
+// SetBackupVaultArn sets the BackupVaultArn field's value.
+func (s *CreateLogicallyAirGappedBackupVaultOutput) SetBackupVaultArn(v string) *CreateLogicallyAirGappedBackupVaultOutput {
+	s.BackupVaultArn = &v
+	return s
+}
+
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *CreateLogicallyAirGappedBackupVaultOutput) SetBackupVaultName(v string) *CreateLogicallyAirGappedBackupVaultOutput {
+	s.BackupVaultName = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *CreateLogicallyAirGappedBackupVaultOutput) SetCreationDate(v time.Time) *CreateLogicallyAirGappedBackupVaultOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetVaultState sets the VaultState field's value.
+func (s *CreateLogicallyAirGappedBackupVaultOutput) SetVaultState(v string) *CreateLogicallyAirGappedBackupVaultOutput {
+	s.VaultState = &v
+	return s
+}
+
 type CreateReportPlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10561,7 +10988,7 @@ type DescribeBackupJobOutput struct {
 	// 12:11:30.087 AM.
 	StartBy *time.Time `type:"timestamp"`
 
-	// The current state of a resource recovery point.
+	// The current state of a backup job.
 	State *string `type:"string" enum:"JobState"`
 
 	// A detailed message explaining the status of the job to back up a resource.
@@ -10739,6 +11166,9 @@ func (s *DescribeBackupJobOutput) SetStatusMessage(v string) *DescribeBackupJobO
 type DescribeBackupVaultInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// This is the account ID of the specified backup vault.
+	BackupVaultAccountId *string `location:"querystring" locationName:"backupVaultAccountId" type:"string"`
+
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
 	// the Amazon Web Services Region where they are created. They consist of lowercase
@@ -10780,6 +11210,12 @@ func (s *DescribeBackupVaultInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBackupVaultAccountId sets the BackupVaultAccountId field's value.
+func (s *DescribeBackupVaultInput) SetBackupVaultAccountId(v string) *DescribeBackupVaultInput {
+	s.BackupVaultAccountId = &v
+	return s
 }
 
 // SetBackupVaultName sets the BackupVaultName field's value.
@@ -10859,6 +11295,9 @@ type DescribeBackupVaultOutput struct {
 
 	// The number of recovery points that are stored in a backup vault.
 	NumberOfRecoveryPoints *int64 `type:"long"`
+
+	// This is the type of vault described.
+	VaultType *string `type:"string" enum:"VaultType"`
 }
 
 // String returns the string representation.
@@ -10936,6 +11375,12 @@ func (s *DescribeBackupVaultOutput) SetMinRetentionDays(v int64) *DescribeBackup
 // SetNumberOfRecoveryPoints sets the NumberOfRecoveryPoints field's value.
 func (s *DescribeBackupVaultOutput) SetNumberOfRecoveryPoints(v int64) *DescribeBackupVaultOutput {
 	s.NumberOfRecoveryPoints = &v
+	return s
+}
+
+// SetVaultType sets the VaultType field's value.
+func (s *DescribeBackupVaultOutput) SetVaultType(v string) *DescribeBackupVaultOutput {
+	s.VaultType = &v
 	return s
 }
 
@@ -11369,6 +11814,9 @@ func (s *DescribeProtectedResourceOutput) SetResourceType(v string) *DescribePro
 type DescribeRecoveryPointInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// This is the account ID of the specified backup vault.
+	BackupVaultAccountId *string `location:"querystring" locationName:"backupVaultAccountId" type:"string"`
+
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
 	// the Amazon Web Services Region where they are created. They consist of lowercase
@@ -11422,6 +11870,12 @@ func (s *DescribeRecoveryPointInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBackupVaultAccountId sets the BackupVaultAccountId field's value.
+func (s *DescribeRecoveryPointInput) SetBackupVaultAccountId(v string) *DescribeRecoveryPointInput {
+	s.BackupVaultAccountId = &v
+	return s
 }
 
 // SetBackupVaultName sets the BackupVaultName field's value.
@@ -13465,6 +13919,9 @@ func (s *GetLegalHoldOutput) SetTitle(v string) *GetLegalHoldOutput {
 type GetRecoveryPointRestoreMetadataInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// This is the account ID of the specified backup vault.
+	BackupVaultAccountId *string `location:"querystring" locationName:"backupVaultAccountId" type:"string"`
+
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
 	// the Amazon Web Services Region where they are created. They consist of lowercase
@@ -13518,6 +13975,12 @@ func (s *GetRecoveryPointRestoreMetadataInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBackupVaultAccountId sets the BackupVaultAccountId field's value.
+func (s *GetRecoveryPointRestoreMetadataInput) SetBackupVaultAccountId(v string) *GetRecoveryPointRestoreMetadataInput {
+	s.BackupVaultAccountId = &v
+	return s
 }
 
 // SetBackupVaultName sets the BackupVaultName field's value.
@@ -13978,7 +14441,7 @@ type Job struct {
 	// 12:11:30.087 AM.
 	StartBy *time.Time `type:"timestamp"`
 
-	// The current state of a resource recovery point.
+	// The current state of a backup job.
 	State *string `type:"string" enum:"JobState"`
 
 	// A detailed message explaining the status of the job to back up a resource.
@@ -15030,6 +15493,12 @@ func (s *ListBackupSelectionsOutput) SetNextToken(v string) *ListBackupSelection
 type ListBackupVaultsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// This parameter will sort the list of vaults by shared vaults.
+	ByShared *bool `location:"querystring" locationName:"shared" type:"boolean"`
+
+	// This parameter will sort the list of vaults by vault type.
+	ByVaultType *string `location:"querystring" locationName:"vaultType" type:"string" enum:"VaultType"`
+
 	// The maximum number of items to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -15069,6 +15538,18 @@ func (s *ListBackupVaultsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetByShared sets the ByShared field's value.
+func (s *ListBackupVaultsInput) SetByShared(v bool) *ListBackupVaultsInput {
+	s.ByShared = &v
+	return s
+}
+
+// SetByVaultType sets the ByVaultType field's value.
+func (s *ListBackupVaultsInput) SetByVaultType(v string) *ListBackupVaultsInput {
+	s.ByVaultType = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -15545,6 +16026,133 @@ func (s *ListLegalHoldsOutput) SetNextToken(v string) *ListLegalHoldsOutput {
 	return s
 }
 
+type ListProtectedResourcesByBackupVaultInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// This is the list of protected resources by backup vault within the vault(s)
+	// you specify by account ID.
+	BackupVaultAccountId *string `location:"querystring" locationName:"backupVaultAccountId" type:"string"`
+
+	// This is the list of protected resources by backup vault within the vault(s)
+	// you specify by name.
+	//
+	// BackupVaultName is a required field
+	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
+
+	// The maximum number of items to be returned.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The next item following a partial list of returned items. For example, if
+	// a request is made to return maxResults number of items, NextToken allows
+	// you to return more items in your list starting at the location pointed to
+	// by the next token.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProtectedResourcesByBackupVaultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProtectedResourcesByBackupVaultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListProtectedResourcesByBackupVaultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListProtectedResourcesByBackupVaultInput"}
+	if s.BackupVaultName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupVaultName"))
+	}
+	if s.BackupVaultName != nil && len(*s.BackupVaultName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackupVaultName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupVaultAccountId sets the BackupVaultAccountId field's value.
+func (s *ListProtectedResourcesByBackupVaultInput) SetBackupVaultAccountId(v string) *ListProtectedResourcesByBackupVaultInput {
+	s.BackupVaultAccountId = &v
+	return s
+}
+
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *ListProtectedResourcesByBackupVaultInput) SetBackupVaultName(v string) *ListProtectedResourcesByBackupVaultInput {
+	s.BackupVaultName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListProtectedResourcesByBackupVaultInput) SetMaxResults(v int64) *ListProtectedResourcesByBackupVaultInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProtectedResourcesByBackupVaultInput) SetNextToken(v string) *ListProtectedResourcesByBackupVaultInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListProtectedResourcesByBackupVaultOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The next item following a partial list of returned items. For example, if
+	// a request is made to return maxResults number of items, NextToken allows
+	// you to return more items in your list starting at the location pointed to
+	// by the next token.
+	NextToken *string `type:"string"`
+
+	// These are the results returned for the request ListProtectedResourcesByBackupVault.
+	Results []*ProtectedResource `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProtectedResourcesByBackupVaultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProtectedResourcesByBackupVaultOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProtectedResourcesByBackupVaultOutput) SetNextToken(v string) *ListProtectedResourcesByBackupVaultOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *ListProtectedResourcesByBackupVaultOutput) SetResults(v []*ProtectedResource) *ListProtectedResourcesByBackupVaultOutput {
+	s.Results = v
+	return s
+}
+
 type ListProtectedResourcesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -15649,6 +16257,9 @@ func (s *ListProtectedResourcesOutput) SetResults(v []*ProtectedResource) *ListP
 type ListRecoveryPointsByBackupVaultInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// This parameter will sort the list of recovery points by account ID.
+	BackupVaultAccountId *string `location:"querystring" locationName:"backupVaultAccountId" type:"string"`
+
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
 	// the Amazon Web Services Region where they are created. They consist of lowercase
@@ -15725,6 +16336,12 @@ func (s *ListRecoveryPointsByBackupVaultInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBackupVaultAccountId sets the BackupVaultAccountId field's value.
+func (s *ListRecoveryPointsByBackupVaultInput) SetBackupVaultAccountId(v string) *ListRecoveryPointsByBackupVaultInput {
+	s.BackupVaultAccountId = &v
+	return s
 }
 
 // SetBackupVaultName sets the BackupVaultName field's value.
@@ -18826,6 +19443,8 @@ type RuleInput struct {
 	// in the "Lifecycle to cold storage" section of the Feature availability by
 	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
+	//
+	// This parameter has a maximum value of 100 years (36,500 days).
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// To help organize your resources, you can assign your own metadata to the
@@ -18848,6 +19467,8 @@ type RuleInput struct {
 	// A value in minutes after a backup is scheduled before a job will be canceled
 	// if it doesn't start successfully. This value is optional. If this value is
 	// included, it must be at least 60 minutes to avoid errors.
+	//
+	// This parameter has a maximum value of 100 years (52,560,000 minutes).
 	//
 	// During the start window, the backup job status remains in CREATED status
 	// until it has successfully begun or until the start window time has run out.
@@ -19287,6 +19908,9 @@ type StartBackupJobInput struct {
 	// or else Backup will cancel the job. This value is optional. This value begins
 	// counting down from when the backup was scheduled. It does not add additional
 	// time for StartWindowMinutes, or if the backup started later than scheduled.
+	//
+	// Like StartWindowMinutes, this parameter has a maximum value of 100 years
+	// (52,560,000 minutes).
 	CompleteWindowMinutes *int64 `type:"long"`
 
 	// Specifies the IAM role ARN used to create the target recovery point; for
@@ -19314,6 +19938,8 @@ type StartBackupJobInput struct {
 	// in the "Lifecycle to cold storage" section of the Feature availability by
 	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
+	//
+	// This parameter has a maximum value of 100 years (36,500 days).
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// To help organize your resources, you can assign your own metadata to the
@@ -19334,6 +19960,8 @@ type StartBackupJobInput struct {
 	// if it doesn't start successfully. This value is optional, and the default
 	// is 8 hours. If this value is included, it must be at least 60 minutes to
 	// avoid errors.
+	//
+	// This parameter has a maximum value of 100 years (52,560,000 minutes).
 	//
 	// During the start window, the backup job status remains in CREATED status
 	// until it has successfully begun or until the start window time has run out.
@@ -21368,5 +21996,41 @@ func VaultEvent_Values() []string {
 		VaultEventBackupPlanModified,
 		VaultEventS3BackupObjectFailed,
 		VaultEventS3RestoreObjectFailed,
+	}
+}
+
+const (
+	// VaultStateCreating is a VaultState enum value
+	VaultStateCreating = "CREATING"
+
+	// VaultStateAvailable is a VaultState enum value
+	VaultStateAvailable = "AVAILABLE"
+
+	// VaultStateFailed is a VaultState enum value
+	VaultStateFailed = "FAILED"
+)
+
+// VaultState_Values returns all elements of the VaultState enum
+func VaultState_Values() []string {
+	return []string{
+		VaultStateCreating,
+		VaultStateAvailable,
+		VaultStateFailed,
+	}
+}
+
+const (
+	// VaultTypeBackupVault is a VaultType enum value
+	VaultTypeBackupVault = "BACKUP_VAULT"
+
+	// VaultTypeLogicallyAirGappedBackupVault is a VaultType enum value
+	VaultTypeLogicallyAirGappedBackupVault = "LOGICALLY_AIR_GAPPED_BACKUP_VAULT"
+)
+
+// VaultType_Values returns all elements of the VaultType enum
+func VaultType_Values() []string {
+	return []string{
+		VaultTypeBackupVault,
+		VaultTypeLogicallyAirGappedBackupVault,
 	}
 }
