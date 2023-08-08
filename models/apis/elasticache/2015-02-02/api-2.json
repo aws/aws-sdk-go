@@ -1264,6 +1264,24 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
+    },
+    "TestMigration":{
+      "name":"TestMigration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TestMigrationMessage"},
+      "output":{
+        "shape":"TestMigrationResponse",
+        "resultWrapper":"TestMigrationResult"
+      },
+      "errors":[
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"ReplicationGroupAlreadyUnderMigrationFault"},
+        {"shape":"InvalidParameterValueException"}
+      ]
     }
   },
   "shapes":{
@@ -4345,6 +4363,23 @@
       "exception":true
     },
     "TestFailoverResult":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
+    },
+    "TestMigrationMessage":{
+      "type":"structure",
+      "required":[
+        "ReplicationGroupId",
+        "CustomerNodeEndpointList"
+      ],
+      "members":{
+        "ReplicationGroupId":{"shape":"String"},
+        "CustomerNodeEndpointList":{"shape":"CustomerNodeEndpointList"}
+      }
+    },
+    "TestMigrationResponse":{
       "type":"structure",
       "members":{
         "ReplicationGroup":{"shape":"ReplicationGroup"}

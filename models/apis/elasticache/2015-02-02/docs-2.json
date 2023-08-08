@@ -66,7 +66,8 @@
     "ResetCacheParameterGroup": "<p>Modifies the parameters of a cache parameter group to the engine or system default value. You can reset specific parameters by submitting a list of parameter names. To reset the entire cache parameter group, specify the <code>ResetAllParameters</code> and <code>CacheParameterGroupName</code> parameters.</p>",
     "RevokeCacheSecurityGroupIngress": "<p>Revokes ingress from a cache security group. Use this operation to disallow access from an Amazon EC2 security group that had been previously authorized.</p>",
     "StartMigration": "<p>Start the migration of data.</p>",
-    "TestFailover": "<p>Represents the input of a <code>TestFailover</code> operation which test automatic failover on a specified node group (called shard in the console) in a replication group (called cluster in the console).</p> <p>This API is designed for testing the behavior of your application in case of ElastiCache failover. It is not designed to be an operational tool for initiating a failover to overcome a problem you may have with the cluster. Moreover, in certain conditions such as large-scale operational events, Amazon may block this API. </p> <p class=\"title\"> <b>Note the following</b> </p> <ul> <li> <p>A customer can use this operation to test automatic failover on up to 5 shards (called node groups in the ElastiCache API and Amazon CLI) in any rolling 24-hour period.</p> </li> <li> <p>If calling this operation on shards in different clusters (called replication groups in the API and CLI), the calls can be made concurrently.</p> <p> </p> </li> <li> <p>If calling this operation multiple times on different shards in the same Redis (cluster mode enabled) replication group, the first node replacement must complete before a subsequent call can be made.</p> </li> <li> <p>To determine whether the node replacement is complete you can check Events using the Amazon ElastiCache console, the Amazon CLI, or the ElastiCache API. Look for the following automatic failover related events, listed here in order of occurrance:</p> <ol> <li> <p>Replication group message: <code>Test Failover API called for node group &lt;node-group-id&gt;</code> </p> </li> <li> <p>Cache cluster message: <code>Failover from primary node &lt;primary-node-id&gt; to replica node &lt;node-id&gt; completed</code> </p> </li> <li> <p>Replication group message: <code>Failover from primary node &lt;primary-node-id&gt; to replica node &lt;node-id&gt; completed</code> </p> </li> <li> <p>Cache cluster message: <code>Recovering cache nodes &lt;node-id&gt;</code> </p> </li> <li> <p>Cache cluster message: <code>Finished recovery for cache nodes &lt;node-id&gt;</code> </p> </li> </ol> <p>For more information see:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ECEvents.Viewing.html\">Viewing ElastiCache Events</a> in the <i>ElastiCache User Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeEvents.html\">DescribeEvents</a> in the ElastiCache API Reference</p> </li> </ul> </li> </ul> <p>Also see, <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html#auto-failover-test\">Testing Multi-AZ </a> in the <i>ElastiCache User Guide</i>.</p>"
+    "TestFailover": "<p>Represents the input of a <code>TestFailover</code> operation which test automatic failover on a specified node group (called shard in the console) in a replication group (called cluster in the console).</p> <p>This API is designed for testing the behavior of your application in case of ElastiCache failover. It is not designed to be an operational tool for initiating a failover to overcome a problem you may have with the cluster. Moreover, in certain conditions such as large-scale operational events, Amazon may block this API. </p> <p class=\"title\"> <b>Note the following</b> </p> <ul> <li> <p>A customer can use this operation to test automatic failover on up to 5 shards (called node groups in the ElastiCache API and Amazon CLI) in any rolling 24-hour period.</p> </li> <li> <p>If calling this operation on shards in different clusters (called replication groups in the API and CLI), the calls can be made concurrently.</p> <p> </p> </li> <li> <p>If calling this operation multiple times on different shards in the same Redis (cluster mode enabled) replication group, the first node replacement must complete before a subsequent call can be made.</p> </li> <li> <p>To determine whether the node replacement is complete you can check Events using the Amazon ElastiCache console, the Amazon CLI, or the ElastiCache API. Look for the following automatic failover related events, listed here in order of occurrance:</p> <ol> <li> <p>Replication group message: <code>Test Failover API called for node group &lt;node-group-id&gt;</code> </p> </li> <li> <p>Cache cluster message: <code>Failover from primary node &lt;primary-node-id&gt; to replica node &lt;node-id&gt; completed</code> </p> </li> <li> <p>Replication group message: <code>Failover from primary node &lt;primary-node-id&gt; to replica node &lt;node-id&gt; completed</code> </p> </li> <li> <p>Cache cluster message: <code>Recovering cache nodes &lt;node-id&gt;</code> </p> </li> <li> <p>Cache cluster message: <code>Finished recovery for cache nodes &lt;node-id&gt;</code> </p> </li> </ol> <p>For more information see:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ECEvents.Viewing.html\">Viewing ElastiCache Events</a> in the <i>ElastiCache User Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeEvents.html\">DescribeEvents</a> in the ElastiCache API Reference</p> </li> </ul> </li> </ul> <p>Also see, <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html#auto-failover-test\">Testing Multi-AZ </a> in the <i>ElastiCache User Guide</i>.</p>",
+    "TestMigration": "<p> Async API to test connection between source and target replication group. </p>"
   },
   "shapes": {
     "APICallRateForCustomerExceededFault": {
@@ -681,7 +682,8 @@
     "CustomerNodeEndpointList": {
       "base": null,
       "refs": {
-        "StartMigrationMessage$CustomerNodeEndpointList": "<p>List of endpoints from which data should be migrated. For Redis (cluster mode disabled), list should have only one element.</p>"
+        "StartMigrationMessage$CustomerNodeEndpointList": "<p>List of endpoints from which data should be migrated. For Redis (cluster mode disabled), list should have only one element.</p>",
+        "TestMigrationMessage$CustomerNodeEndpointList": "<p> List of endpoints from which data should be migrated. List should have only one element. </p>"
       }
     },
     "DataTieringStatus": {
@@ -1138,7 +1140,7 @@
         "ConfigureShard$NewReplicaCount": "<p>The number of replicas you want in this node group at the end of this operation. The maximum value for <code>NewReplicaCount</code> is 5. The minimum value depends upon the type of Redis replication group you are working with.</p> <p>The minimum number of replicas in a shard or replication group is:</p> <ul> <li> <p>Redis (cluster mode disabled)</p> <ul> <li> <p>If Multi-AZ: 1</p> </li> <li> <p>If Multi-AZ: 0</p> </li> </ul> </li> <li> <p>Redis (cluster mode enabled): 0 (though you will not be able to failover to a replica if your primary node fails)</p> </li> </ul>",
         "DecreaseNodeGroupsInGlobalReplicationGroupMessage$NodeGroupCount": "<p>The number of node groups (shards) that results from the modification of the shard configuration</p>",
         "Endpoint$Port": "<p>The port number that the cache engine is listening on.</p>",
-        "IncreaseNodeGroupsInGlobalReplicationGroupMessage$NodeGroupCount": "<p>The number of node groups you wish to add</p>",
+        "IncreaseNodeGroupsInGlobalReplicationGroupMessage$NodeGroupCount": "<p>Total number of node groups you want</p>",
         "ModifyReplicationGroupShardConfigurationMessage$NodeGroupCount": "<p>The number of node groups (shards) that results from the modification of the shard configuration.</p>",
         "ReservedCacheNode$Duration": "<p>The duration of the reservation in seconds.</p>",
         "ReservedCacheNode$CacheNodeCount": "<p>The number of cache nodes that have been reserved.</p>",
@@ -1754,7 +1756,8 @@
         "ModifyReplicationGroupShardConfigurationResult$ReplicationGroup": null,
         "ReplicationGroupList$member": null,
         "StartMigrationResponse$ReplicationGroup": null,
-        "TestFailoverResult$ReplicationGroup": null
+        "TestFailoverResult$ReplicationGroup": null,
+        "TestMigrationResponse$ReplicationGroup": null
       }
     },
     "ReplicationGroupAlreadyExistsFault": {
@@ -2416,6 +2419,7 @@
         "Tag$Key": "<p>The key for the tag. May not be null.</p>",
         "Tag$Value": "<p>The tag's value. May be null.</p>",
         "TestFailoverMessage$ReplicationGroupId": "<p>The name of the replication group (console: cluster) whose automatic failover is being tested by this operation.</p>",
+        "TestMigrationMessage$ReplicationGroupId": "<p> The ID of the replication group to which data is to be migrated. </p>",
         "UGReplicationGroupIdList$member": null,
         "UnprocessedUpdateAction$ReplicationGroupId": "<p>The replication group ID</p>",
         "UnprocessedUpdateAction$CacheClusterId": "<p>The ID of the cache cluster</p>",
@@ -2561,6 +2565,16 @@
       }
     },
     "TestFailoverResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TestMigrationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TestMigrationResponse": {
       "base": null,
       "refs": {
       }

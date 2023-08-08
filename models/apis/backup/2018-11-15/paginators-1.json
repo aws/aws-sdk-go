@@ -59,6 +59,12 @@
       "limit_key": "MaxResults",
       "result_key": "Results"
     },
+    "ListProtectedResourcesByBackupVault": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Results"
+    },
     "ListRecoveryPointsByBackupVault": {
       "input_token": "NextToken",
       "output_token": "NextToken",

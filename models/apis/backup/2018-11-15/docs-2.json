@@ -8,6 +8,7 @@
     "CreateBackupVault": "<p>Creates a logical container where backups are stored. A <code>CreateBackupVault</code> request includes a name, optionally one or more resource tags, an encryption key, and a request ID.</p> <note> <p>Do not include sensitive data, such as passport numbers, in the name of a backup vault.</p> </note>",
     "CreateFramework": "<p>Creates a framework with one or more controls. A framework is a collection of controls that you can use to evaluate your backup practices. By using pre-built customizable controls to define your policies, you can evaluate whether your backup practices comply with your policies and which resources are not yet in compliance.</p>",
     "CreateLegalHold": "<p>This action creates a legal hold on a recovery point (backup). A legal hold is a restraint on altering or deleting a backup until an authorized user cancels the legal hold. Any actions to delete or disassociate a recovery point will fail with an error if one or more active legal holds are on the recovery point.</p>",
+    "CreateLogicallyAirGappedBackupVault": "<p>This request creates a logical container where backups are stored.</p> <p>This request includes a name, optionally one or more resource tags, an encryption key, and a request ID.</p> <note> <p>Do not include sensitive data, such as passport numbers, in the name of a backup vault.</p> </note>",
     "CreateReportPlan": "<p>Creates a report plan. A report plan is a document that contains information about the contents of the report and where Backup will deliver it.</p> <p>If you call <code>CreateReportPlan</code> with a plan that already exists, you receive an <code>AlreadyExistsException</code> exception.</p>",
     "DeleteBackupPlan": "<p>Deletes a backup plan. A backup plan can only be deleted after all associated selections of resources have been deleted. Deleting a backup plan deletes the current version of a backup plan. Previous versions, if any, will still exist.</p>",
     "DeleteBackupSelection": "<p>Deletes the resource selection associated with a backup plan that is specified by the <code>SelectionId</code>.</p>",
@@ -51,6 +52,7 @@
     "ListFrameworks": "<p>Returns a list of all frameworks for an Amazon Web Services account and Amazon Web Services Region.</p>",
     "ListLegalHolds": "<p>This action returns metadata about active and previous legal holds.</p>",
     "ListProtectedResources": "<p>Returns an array of resources successfully backed up by Backup, including the time the resource was saved, an Amazon Resource Name (ARN) of the resource, and a resource type.</p>",
+    "ListProtectedResourcesByBackupVault": "<p>This request lists the protected resources corresponding to each backup vault.</p>",
     "ListRecoveryPointsByBackupVault": "<p>Returns detailed information about the recovery points stored in a backup vault.</p>",
     "ListRecoveryPointsByLegalHold": "<p>This action returns recovery point ARNs (Amazon Resource Names) of the specified legal hold.</p>",
     "ListRecoveryPointsByResource": "<p>Returns detailed information about all the recovery points of the type specified by a resource Amazon Resource Name (ARN).</p> <note> <p>For Amazon EFS and Amazon EC2, this action only lists recovery points created by Backup.</p> </note>",
@@ -96,6 +98,7 @@
         "CreateBackupVaultOutput$BackupVaultArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>",
         "CreateFrameworkOutput$FrameworkArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a resource. The format of the ARN depends on the resource type.</p>",
         "CreateLegalHoldOutput$LegalHoldArn": "<p>This is the ARN (Amazon Resource Number) of the created legal hold.</p>",
+        "CreateLogicallyAirGappedBackupVaultOutput$BackupVaultArn": "<p>This is the ARN (Amazon Resource Name) of the vault being created.</p>",
         "CreateReportPlanOutput$ReportPlanArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a resource. The format of the ARN depends on the resource type.</p>",
         "DeleteBackupPlanOutput$BackupPlanArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for example, <code>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</code>.</p>",
         "DeleteRecoveryPointInput$RecoveryPointArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example, <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.</p>",
@@ -175,9 +178,13 @@
         "BackupJob$AccountId": "<p>The account ID that owns the backup job.</p>",
         "CopyJob$AccountId": "<p>The account ID that owns the copy job.</p>",
         "DescribeBackupJobOutput$AccountId": "<p>Returns the account ID that owns the backup job.</p>",
+        "DescribeRecoveryPointInput$BackupVaultAccountId": "<p>This is the account ID of the specified backup vault.</p>",
         "DescribeRestoreJobOutput$AccountId": "<p>Returns the account ID that owns the restore job.</p>",
+        "GetRecoveryPointRestoreMetadataInput$BackupVaultAccountId": "<p>This is the account ID of the specified backup vault.</p>",
         "ListBackupJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only backup jobs associated with the specified account ID.</p> <p>If used from an Organizations management account, passing <code>*</code> returns all jobs across the organization.</p>",
         "ListCopyJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only copy jobs associated with the specified account ID.</p>",
+        "ListProtectedResourcesByBackupVaultInput$BackupVaultAccountId": "<p>This is the list of protected resources by backup vault within the vault(s) you specify by account ID.</p>",
+        "ListRecoveryPointsByBackupVaultInput$BackupVaultAccountId": "<p>This parameter will sort the list of recovery points by account ID.</p>",
         "ListRestoreJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only restore jobs associated with the specified account ID.</p>",
         "RestoreJobsListMember$AccountId": "<p>The account ID that owns the restore job.</p>"
       }
@@ -219,9 +226,9 @@
     "BackupJobState": {
       "base": null,
       "refs": {
-        "BackupJob$State": "<p>The current state of a resource recovery point.</p>",
+        "BackupJob$State": "<p>The current state of a backup job.</p>",
         "BackupJobChildJobsInState$key": null,
-        "DescribeBackupJobOutput$State": "<p>The current state of a resource recovery point.</p>",
+        "DescribeBackupJobOutput$State": "<p>The current state of a backup job.</p>",
         "ListBackupJobsInput$ByState": "<p>Returns only backup jobs that are in the specified state.</p>"
       }
     },
@@ -397,6 +404,8 @@
         "BackupVaultListMember$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "CreateBackupVaultInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of letters, numbers, and hyphens.</p>",
         "CreateBackupVaultOutput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
+        "CreateLogicallyAirGappedBackupVaultInput$BackupVaultName": "<p>This is the name of the vault that is being created.</p>",
+        "CreateLogicallyAirGappedBackupVaultOutput$BackupVaultName": "<p>The name of a logical container where backups are stored. Logically air-gapped backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "DeleteBackupVaultAccessPolicyInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "DeleteBackupVaultLockConfigurationInput$BackupVaultName": "<p>The name of the backup vault from which to delete Backup Vault Lock.</p>",
         "DeleteBackupVaultNotificationsInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
@@ -412,6 +421,7 @@
         "GetBackupVaultNotificationsOutput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "GetRecoveryPointRestoreMetadataInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "ListBackupJobsInput$ByBackupVaultName": "<p>Returns only backup jobs that will be stored in the specified backup vault. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
+        "ListProtectedResourcesByBackupVaultInput$BackupVaultName": "<p>This is the list of protected resources by backup vault within the vault(s) you specify by name.</p>",
         "ListRecoveryPointsByBackupVaultInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p> <note> <p>Backup vault name might not be available when a supported service creates the backup.</p> </note>",
         "PutBackupVaultAccessPolicyInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "PutBackupVaultLockConfigurationInput$BackupVaultName": "<p>The Backup Vault Lock configuration that specifies the name of the backup vault it protects.</p>",
@@ -620,6 +630,16 @@
       }
     },
     "CreateLegalHoldOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLogicallyAirGappedBackupVaultInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLogicallyAirGappedBackupVaultOutput": {
       "base": null,
       "refs": {
       }
@@ -1060,11 +1080,11 @@
       "base": "<p>Contains an array of <code>Transition</code> objects specifying how long in days before a recovery point transitions to cold storage or is deleted.</p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, on the console, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold.</p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p>",
       "refs": {
         "BackupRule$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p>",
-        "BackupRuleInput$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup will transition and expire backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold.</p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p>",
+        "BackupRuleInput$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup will transition and expire backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold.</p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p> <p>This parameter has a maximum value of 100 years (36,500 days).</p>",
         "CopyAction$Lifecycle": null,
         "DescribeRecoveryPointOutput$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define.</p> <p>Backups that are transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p>",
         "RecoveryPointByBackupVault$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p>",
-        "StartBackupJobInput$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup will transition and expire backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p>",
+        "StartBackupJobInput$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup will transition and expire backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p> <p>This parameter has a maximum value of 100 years (36,500 days).</p>",
         "StartCopyJobInput$Lifecycle": null,
         "UpdateRecoveryPointLifecycleInput$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p>",
         "UpdateRecoveryPointLifecycleOutput$Lifecycle": "<p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define.</p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold.</p> <p>Resource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p>"
@@ -1171,6 +1191,16 @@
         "BackupSelection$ListOfTags": "<p>A list of conditions that you define to assign resources to your backup plans using tags. For example, <code>\"StringEquals\": { \"ConditionKey\": \"aws:ResourceTag/CreatedByCryo\", \"ConditionValue\": \"true\" },</code>. Condition operators are case sensitive.</p> <p> <code>ListOfTags</code> differs from <code>Conditions</code> as follows:</p> <ul> <li> <p>When you specify more than one condition, you assign all resources that match AT LEAST ONE condition (using OR logic).</p> </li> <li> <p> <code>ListOfTags</code> only supports <code>StringEquals</code>. <code>Conditions</code> supports <code>StringEquals</code>, <code>StringLike</code>, <code>StringNotEquals</code>, and <code>StringNotLike</code>. </p> </li> </ul>"
       }
     },
+    "ListProtectedResourcesByBackupVaultInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProtectedResourcesByBackupVaultOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListProtectedResourcesInput": {
       "base": null,
       "refs": {
@@ -1263,6 +1293,8 @@
         "CopyJob$BackupSizeInBytes": "<p>The size, in bytes, of a copy job.</p>",
         "CopyJob$NumberOfChildJobs": "<p>This is the number of child (nested) copy jobs.</p>",
         "CopyJobChildJobsInState$value": null,
+        "CreateLogicallyAirGappedBackupVaultInput$MinRetentionDays": "<p>This setting specifies the minimum retention period that the vault retains its recovery points. If this parameter is not specified, no minimum retention period is enforced.</p> <p>If specified, any backup or copy job to the vault must have a lifecycle policy with a retention period equal to or longer than the minimum retention period. If a job retention period is shorter than that minimum retention period, then the vault fails the backup or copy job, and you should either modify your lifecycle settings or use a different vault.</p>",
+        "CreateLogicallyAirGappedBackupVaultInput$MaxRetentionDays": "<p>This is the setting that specifies the maximum retention period that the vault retains its recovery points. If this parameter is not specified, Backup does not enforce a maximum retention period on the recovery points in the vault (allowing indefinite storage).</p> <p>If specified, any backup or copy job to the vault must have a lifecycle policy with a retention period equal to or shorter than the maximum retention period. If the job retention period is longer than that maximum retention period, then the vault fails the backup or copy job, and you should either modify your lifecycle settings or use a different vault.</p>",
         "DescribeBackupJobOutput$BackupSizeInBytes": "<p>The size, in bytes, of a backup.</p>",
         "DescribeBackupJobOutput$BytesTransferred": "<p>The size in bytes transferred to a backup vault at the time that the job status was queried.</p>",
         "DescribeBackupJobOutput$NumberOfChildJobs": "<p>This returns the number of child (nested) backup jobs.</p>",
@@ -1299,6 +1331,7 @@
         "ListBackupVaultsInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListCopyJobsInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListLegalHoldsInput$MaxResults": "<p>The maximum number of resource list items to be returned.</p>",
+        "ListProtectedResourcesByBackupVaultInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListProtectedResourcesInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListRecoveryPointsByBackupVaultInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListRecoveryPointsByLegalHoldInput$MaxResults": "<p>This is the maximum number of resource list items to be returned.</p>",
@@ -1354,6 +1387,7 @@
     "ProtectedResourcesList": {
       "base": null,
       "refs": {
+        "ListProtectedResourcesByBackupVaultOutput$Results": "<p>These are the results returned for the request ListProtectedResourcesByBackupVault.</p>",
         "ListProtectedResourcesOutput$Results": "<p>An array of resources successfully backed up by Backup including the time the resource was saved, an Amazon Resource Name (ARN) of the resource, and a resource type.</p>"
       }
     },
@@ -1693,6 +1727,7 @@
         "CreateBackupPlanInput$BackupPlanTags": "<p>To help organize your resources, you can assign your own metadata to the resources that you create. Each tag is a key-value pair. The specified tags are assigned to all backups created with this plan.</p>",
         "CreateBackupVaultInput$BackupVaultTags": "<p>Metadata that you can assign to help organize the resources that you create. Each tag is a key-value pair.</p>",
         "CreateLegalHoldInput$Tags": "<p>Optional tags to include. A tag is a key-value pair you can use to manage, filter, and search for your resources. Allowed characters include UTF-8 letters, numbers, spaces, and the following characters: + - = . _ : /. </p>",
+        "CreateLogicallyAirGappedBackupVaultInput$BackupVaultTags": "<p>These are the tags that will be included in the newly-created vault.</p>",
         "ListTagsOutput$Tags": "<p>To help organize your resources, you can assign your own metadata to the resources you create. Each tag is a key-value pair.</p>",
         "StartBackupJobInput$RecoveryPointTags": "<p>To help organize your resources, you can assign your own metadata to the resources that you create. Each tag is a key-value pair.</p>",
         "TagResourceInput$Tags": "<p>Key-value pairs that are used to help organize your resources. You can assign your own metadata to the resources you create. For clarity, this is the structure to assign tags: <code>[{\"Key\":\"string\",\"Value\":\"string\"}]</code>.</p>"
@@ -1759,15 +1794,28 @@
         "RecoveryPointSelection$VaultNames": "<p>These are the names of the vaults in which the selected recovery points are contained.</p>"
       }
     },
+    "VaultState": {
+      "base": null,
+      "refs": {
+        "CreateLogicallyAirGappedBackupVaultOutput$VaultState": "<p>This is the current state of the vault.</p>"
+      }
+    },
+    "VaultType": {
+      "base": null,
+      "refs": {
+        "DescribeBackupVaultOutput$VaultType": "<p>This is the type of vault described.</p>",
+        "ListBackupVaultsInput$ByVaultType": "<p>This parameter will sort the list of vaults by vault type.</p>"
+      }
+    },
     "WindowMinutes": {
       "base": null,
       "refs": {
         "BackupRule$StartWindowMinutes": "<p>A value in minutes after a backup is scheduled before a job will be canceled if it doesn't start successfully. This value is optional. If this value is included, it must be at least 60 minutes to avoid errors.</p> <p>During the start window, the backup job status remains in <code>CREATED</code> status until it has successfully begun or until the start window time has run out. If within the start window time Backup receives an error that allows the job to be retried, Backup will automatically retry to begin the job at least every 10 minutes until the backup successfully begins (the job status changes to <code>RUNNING</code>) or until the job status changes to <code>EXPIRED</code> (which is expected to occur when the start window time is over).</p>",
         "BackupRule$CompletionWindowMinutes": "<p>A value in minutes after a backup job is successfully started before it must be completed or it will be canceled by Backup. This value is optional.</p>",
-        "BackupRuleInput$StartWindowMinutes": "<p>A value in minutes after a backup is scheduled before a job will be canceled if it doesn't start successfully. This value is optional. If this value is included, it must be at least 60 minutes to avoid errors.</p> <p>During the start window, the backup job status remains in <code>CREATED</code> status until it has successfully begun or until the start window time has run out. If within the start window time Backup receives an error that allows the job to be retried, Backup will automatically retry to begin the job at least every 10 minutes until the backup successfully begins (the job status changes to <code>RUNNING</code>) or until the job status changes to <code>EXPIRED</code> (which is expected to occur when the start window time is over).</p>",
+        "BackupRuleInput$StartWindowMinutes": "<p>A value in minutes after a backup is scheduled before a job will be canceled if it doesn't start successfully. This value is optional. If this value is included, it must be at least 60 minutes to avoid errors.</p> <p>This parameter has a maximum value of 100 years (52,560,000 minutes).</p> <p>During the start window, the backup job status remains in <code>CREATED</code> status until it has successfully begun or until the start window time has run out. If within the start window time Backup receives an error that allows the job to be retried, Backup will automatically retry to begin the job at least every 10 minutes until the backup successfully begins (the job status changes to <code>RUNNING</code>) or until the job status changes to <code>EXPIRED</code> (which is expected to occur when the start window time is over).</p>",
         "BackupRuleInput$CompletionWindowMinutes": "<p>A value in minutes after a backup job is successfully started before it must be completed or it will be canceled by Backup. This value is optional.</p>",
-        "StartBackupJobInput$StartWindowMinutes": "<p>A value in minutes after a backup is scheduled before a job will be canceled if it doesn't start successfully. This value is optional, and the default is 8 hours. If this value is included, it must be at least 60 minutes to avoid errors.</p> <p>During the start window, the backup job status remains in <code>CREATED</code> status until it has successfully begun or until the start window time has run out. If within the start window time Backup receives an error that allows the job to be retried, Backup will automatically retry to begin the job at least every 10 minutes until the backup successfully begins (the job status changes to <code>RUNNING</code>) or until the job status changes to <code>EXPIRED</code> (which is expected to occur when the start window time is over).</p>",
-        "StartBackupJobInput$CompleteWindowMinutes": "<p>A value in minutes during which a successfully started backup must complete, or else Backup will cancel the job. This value is optional. This value begins counting down from when the backup was scheduled. It does not add additional time for <code>StartWindowMinutes</code>, or if the backup started later than scheduled.</p>"
+        "StartBackupJobInput$StartWindowMinutes": "<p>A value in minutes after a backup is scheduled before a job will be canceled if it doesn't start successfully. This value is optional, and the default is 8 hours. If this value is included, it must be at least 60 minutes to avoid errors.</p> <p>This parameter has a maximum value of 100 years (52,560,000 minutes).</p> <p>During the start window, the backup job status remains in <code>CREATED</code> status until it has successfully begun or until the start window time has run out. If within the start window time Backup receives an error that allows the job to be retried, Backup will automatically retry to begin the job at least every 10 minutes until the backup successfully begins (the job status changes to <code>RUNNING</code>) or until the job status changes to <code>EXPIRED</code> (which is expected to occur when the start window time is over).</p>",
+        "StartBackupJobInput$CompleteWindowMinutes": "<p>A value in minutes during which a successfully started backup must complete, or else Backup will cancel the job. This value is optional. This value begins counting down from when the backup was scheduled. It does not add additional time for <code>StartWindowMinutes</code>, or if the backup started later than scheduled.</p> <p>Like <code>StartWindowMinutes</code>, this parameter has a maximum value of 100 years (52,560,000 minutes).</p>"
       }
     },
     "boolean": {
@@ -1778,6 +1826,7 @@
         "DescribeBackupJobOutput$IsParent": "<p>This returns the boolean value that a backup job is a parent (composite) job.</p>",
         "DescribeRecoveryPointOutput$IsEncrypted": "<p>A Boolean value that is returned as <code>TRUE</code> if the specified recovery point is encrypted, or <code>FALSE</code> if the recovery point is not encrypted.</p>",
         "DescribeRecoveryPointOutput$IsParent": "<p>This returns the boolean value that a recovery point is a parent (composite) job.</p>",
+        "ListBackupVaultsInput$ByShared": "<p>This parameter will sort the list of vaults by shared vaults.</p>",
         "RecoveryPointByBackupVault$IsEncrypted": "<p>A Boolean value that is returned as <code>TRUE</code> if the specified recovery point is encrypted, or <code>FALSE</code> if the recovery point is not encrypted.</p>",
         "RecoveryPointByBackupVault$IsParent": "<p>This is a boolean value indicating this is a parent (composite) recovery point.</p>",
         "RecoveryPointByResource$IsParent": "<p>This is a boolean value indicating this is a parent (composite) recovery point.</p>",
@@ -1852,6 +1901,7 @@
         "CreateLegalHoldOutput$Title": "<p>This is the string title of the legal hold returned after creating the legal hold.</p>",
         "CreateLegalHoldOutput$Description": "<p>This is the returned string description of the legal hold.</p>",
         "CreateLegalHoldOutput$LegalHoldId": "<p>Legal hold ID returned for the specified legal hold on a recovery point.</p>",
+        "CreateLogicallyAirGappedBackupVaultInput$CreatorRequestId": "<p>This is the ID of the creation request.</p>",
         "CreateReportPlanInput$IdempotencyToken": "<p>A customer-chosen string that you can use to distinguish between otherwise identical calls to <code>CreateReportPlanInput</code>. Retrying a successful request with the same idempotency token results in a success message with no action taken.</p>",
         "DeleteBackupPlanInput$BackupPlanId": "<p>Uniquely identifies a backup plan.</p>",
         "DeleteBackupPlanOutput$BackupPlanId": "<p>Uniquely identifies a backup plan.</p>",
@@ -1871,6 +1921,7 @@
         "DescribeBackupJobOutput$ParentJobId": "<p>This returns the parent (composite) resource backup job ID.</p>",
         "DescribeBackupJobOutput$ResourceName": "<p>This is the non-unique name of the resource that belongs to the specified backup.</p>",
         "DescribeBackupVaultInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
+        "DescribeBackupVaultInput$BackupVaultAccountId": "<p>This is the account ID of the specified backup vault.</p>",
         "DescribeBackupVaultOutput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "DescribeBackupVaultOutput$CreatorRequestId": "<p>A unique string that identifies the request and allows failed requests to be retried without the risk of running the operation twice.</p>",
         "DescribeCopyJobInput$CopyJobId": "<p>Uniquely identifies a copy job.</p>",
@@ -1947,6 +1998,8 @@
         "ListFrameworksOutput$NextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListLegalHoldsInput$NextToken": "<p>The next item following a partial list of returned resources. For example, if a request is made to return <code>maxResults</code> number of resources, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListLegalHoldsOutput$NextToken": "<p>The next item following a partial list of returned resources. For example, if a request is made to return <code>maxResults</code> number of resources, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
+        "ListProtectedResourcesByBackupVaultInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
+        "ListProtectedResourcesByBackupVaultOutput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListProtectedResourcesInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListProtectedResourcesOutput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListRecoveryPointsByBackupVaultInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
@@ -2057,6 +2110,7 @@
         "CreateBackupSelectionOutput$CreationDate": "<p>The date and time a backup selection is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupVaultOutput$CreationDate": "<p>The date and time a backup vault is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateLegalHoldOutput$CreationDate": "<p>Time in number format when legal hold was created.</p>",
+        "CreateLogicallyAirGappedBackupVaultOutput$CreationDate": "<p>The date and time when the vault was created.</p> <p>This value is in Unix format, Coordinated Universal Time (UTC), and accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateReportPlanOutput$CreationTime": "<p>The date and time a backup vault is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DateRange$FromDate": "<p>This value is the beginning date, inclusive.</p> <p>The date and time are in Unix format and Coordinated Universal Time (UTC), and it is accurate to milliseconds (milliseconds are optional).</p>",
         "DateRange$ToDate": "<p>This value is the end date, inclusive.</p> <p>The date and time are in Unix format and Coordinated Universal Time (UTC), and it is accurate to milliseconds (milliseconds are optional).</p>",

@@ -84,6 +84,10 @@ type BackupAPI interface {
 	CreateLegalHoldWithContext(aws.Context, *backup.CreateLegalHoldInput, ...request.Option) (*backup.CreateLegalHoldOutput, error)
 	CreateLegalHoldRequest(*backup.CreateLegalHoldInput) (*request.Request, *backup.CreateLegalHoldOutput)
 
+	CreateLogicallyAirGappedBackupVault(*backup.CreateLogicallyAirGappedBackupVaultInput) (*backup.CreateLogicallyAirGappedBackupVaultOutput, error)
+	CreateLogicallyAirGappedBackupVaultWithContext(aws.Context, *backup.CreateLogicallyAirGappedBackupVaultInput, ...request.Option) (*backup.CreateLogicallyAirGappedBackupVaultOutput, error)
+	CreateLogicallyAirGappedBackupVaultRequest(*backup.CreateLogicallyAirGappedBackupVaultInput) (*request.Request, *backup.CreateLogicallyAirGappedBackupVaultOutput)
+
 	CreateReportPlan(*backup.CreateReportPlanInput) (*backup.CreateReportPlanOutput, error)
 	CreateReportPlanWithContext(aws.Context, *backup.CreateReportPlanInput, ...request.Option) (*backup.CreateReportPlanOutput, error)
 	CreateReportPlanRequest(*backup.CreateReportPlanInput) (*request.Request, *backup.CreateReportPlanOutput)
@@ -285,6 +289,13 @@ type BackupAPI interface {
 
 	ListProtectedResourcesPages(*backup.ListProtectedResourcesInput, func(*backup.ListProtectedResourcesOutput, bool) bool) error
 	ListProtectedResourcesPagesWithContext(aws.Context, *backup.ListProtectedResourcesInput, func(*backup.ListProtectedResourcesOutput, bool) bool, ...request.Option) error
+
+	ListProtectedResourcesByBackupVault(*backup.ListProtectedResourcesByBackupVaultInput) (*backup.ListProtectedResourcesByBackupVaultOutput, error)
+	ListProtectedResourcesByBackupVaultWithContext(aws.Context, *backup.ListProtectedResourcesByBackupVaultInput, ...request.Option) (*backup.ListProtectedResourcesByBackupVaultOutput, error)
+	ListProtectedResourcesByBackupVaultRequest(*backup.ListProtectedResourcesByBackupVaultInput) (*request.Request, *backup.ListProtectedResourcesByBackupVaultOutput)
+
+	ListProtectedResourcesByBackupVaultPages(*backup.ListProtectedResourcesByBackupVaultInput, func(*backup.ListProtectedResourcesByBackupVaultOutput, bool) bool) error
+	ListProtectedResourcesByBackupVaultPagesWithContext(aws.Context, *backup.ListProtectedResourcesByBackupVaultInput, func(*backup.ListProtectedResourcesByBackupVaultOutput, bool) bool, ...request.Option) error
 
 	ListRecoveryPointsByBackupVault(*backup.ListRecoveryPointsByBackupVaultInput) (*backup.ListRecoveryPointsByBackupVaultOutput, error)
 	ListRecoveryPointsByBackupVaultWithContext(aws.Context, *backup.ListRecoveryPointsByBackupVaultInput, ...request.Option) (*backup.ListRecoveryPointsByBackupVaultOutput, error)
