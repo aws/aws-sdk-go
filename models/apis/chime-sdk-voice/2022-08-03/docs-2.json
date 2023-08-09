@@ -1336,6 +1336,15 @@
         "SearchAvailablePhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return.</p>"
       }
     },
+    "PhoneNumberName": {
+      "base": null,
+      "refs": {
+        "CreatePhoneNumberOrderRequest$Name": "<p>Specifies the name assigned to one or more phone numbers.</p>",
+        "PhoneNumber$Name": "<p>The name of the phone number.</p>",
+        "UpdatePhoneNumberRequest$Name": "<p>Specifies the name assigned to one or more phone numbers.</p>",
+        "UpdatePhoneNumberRequestItem$Name": "<p>The name of the phone number.</p>"
+      }
+    },
     "PhoneNumberOrder": {
       "base": "<p>The details of an Amazon Chime SDK phone number order.</p>",
       "refs": {

@@ -5058,7 +5058,8 @@
       "type":"string",
       "enum":[
         "NEW",
-        "NONE"
+        "NONE",
+        "ALL"
       ]
     },
     "Organization":{
