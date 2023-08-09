@@ -10807,6 +10807,13 @@ type CreatePhoneNumberOrderInput struct {
 	// E164PhoneNumbers is a required field
 	E164PhoneNumbers []*string `type:"list" required:"true"`
 
+	// Specifies the name assigned to one or more phone numbers.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePhoneNumberOrderInput's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
+
 	// The phone number product type.
 	//
 	// ProductType is a required field
@@ -10850,6 +10857,12 @@ func (s *CreatePhoneNumberOrderInput) Validate() error {
 // SetE164PhoneNumbers sets the E164PhoneNumbers field's value.
 func (s *CreatePhoneNumberOrderInput) SetE164PhoneNumbers(v []*string) *CreatePhoneNumberOrderInput {
 	s.E164PhoneNumbers = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePhoneNumberOrderInput) SetName(v string) *CreatePhoneNumberOrderInput {
+	s.Name = &v
 	return s
 }
 
@@ -16982,6 +16995,13 @@ type PhoneNumber struct {
 	// String and GoString methods.
 	E164PhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The name of the phone number.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PhoneNumber's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
+
 	// The phone number's order ID.
 	OrderId *string `type:"string"`
 
@@ -17068,6 +17088,12 @@ func (s *PhoneNumber) SetDeletionTimestamp(v time.Time) *PhoneNumber {
 // SetE164PhoneNumber sets the E164PhoneNumber field's value.
 func (s *PhoneNumber) SetE164PhoneNumber(v string) *PhoneNumber {
 	s.E164PhoneNumber = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PhoneNumber) SetName(v string) *PhoneNumber {
+	s.Name = &v
 	return s
 }
 
@@ -20804,6 +20830,13 @@ type UpdatePhoneNumberInput struct {
 	// String and GoString methods.
 	CallingName *string `type:"string" sensitive:"true"`
 
+	// Specifies the name assigned to one or more phone numbers.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePhoneNumberInput's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
+
 	// The phone number ID.
 	//
 	// PhoneNumberId is a sensitive parameter and its value will be
@@ -20854,6 +20887,12 @@ func (s *UpdatePhoneNumberInput) Validate() error {
 // SetCallingName sets the CallingName field's value.
 func (s *UpdatePhoneNumberInput) SetCallingName(v string) *UpdatePhoneNumberInput {
 	s.CallingName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePhoneNumberInput) SetName(v string) *UpdatePhoneNumberInput {
+	s.Name = &v
 	return s
 }
 
@@ -20912,6 +20951,13 @@ type UpdatePhoneNumberRequestItem struct {
 	// String and GoString methods.
 	CallingName *string `type:"string" sensitive:"true"`
 
+	// The name of the phone number.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePhoneNumberRequestItem's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
+
 	// The phone number ID to update.
 	//
 	// PhoneNumberId is a sensitive parameter and its value will be
@@ -20959,6 +21005,12 @@ func (s *UpdatePhoneNumberRequestItem) Validate() error {
 // SetCallingName sets the CallingName field's value.
 func (s *UpdatePhoneNumberRequestItem) SetCallingName(v string) *UpdatePhoneNumberRequestItem {
 	s.CallingName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePhoneNumberRequestItem) SetName(v string) *UpdatePhoneNumberRequestItem {
+	s.Name = &v
 	return s
 }
 

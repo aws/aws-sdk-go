@@ -2031,7 +2031,8 @@
       ],
       "members":{
         "ProductType":{"shape":"PhoneNumberProductType"},
-        "E164PhoneNumbers":{"shape":"E164PhoneNumberList"}
+        "E164PhoneNumbers":{"shape":"E164PhoneNumberList"},
+        "Name":{"shape":"PhoneNumberName"}
       }
     },
     "CreatePhoneNumberOrderResponse":{
@@ -3358,7 +3359,8 @@
         "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
         "UpdatedTimestamp":{"shape":"Iso8601Timestamp"},
         "DeletionTimestamp":{"shape":"Iso8601Timestamp"},
-        "OrderId":{"shape":"GuidString"}
+        "OrderId":{"shape":"GuidString"},
+        "Name":{"shape":"PhoneNumberName"}
       }
     },
     "PhoneNumberAssociation":{
@@ -3423,6 +3425,13 @@
       "type":"integer",
       "max":500,
       "min":1
+    },
+    "PhoneNumberName":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^$|^[a-zA-Z0-9\\,\\.\\_\\-]+(\\s+[a-zA-Z0-9\\,\\.\\_\\-]+)*$",
+      "sensitive":true
     },
     "PhoneNumberOrder":{
       "type":"structure",
@@ -4240,7 +4249,8 @@
           "locationName":"phoneNumberId"
         },
         "ProductType":{"shape":"PhoneNumberProductType"},
-        "CallingName":{"shape":"CallingName"}
+        "CallingName":{"shape":"CallingName"},
+        "Name":{"shape":"PhoneNumberName"}
       }
     },
     "UpdatePhoneNumberRequestItem":{
@@ -4249,7 +4259,8 @@
       "members":{
         "PhoneNumberId":{"shape":"SensitiveNonEmptyString"},
         "ProductType":{"shape":"PhoneNumberProductType"},
-        "CallingName":{"shape":"CallingName"}
+        "CallingName":{"shape":"CallingName"},
+        "Name":{"shape":"PhoneNumberName"}
       }
     },
     "UpdatePhoneNumberRequestItemList":{

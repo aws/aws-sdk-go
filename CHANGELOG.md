@@ -1,3 +1,15 @@
+Release v1.44.320 (2023-08-09)
+===
+
+### Service Client Updates
+* `service/chime-sdk-voice`: Updates service API and documentation
+* `service/fsx`: Updates service API and documentation
+* `service/globalaccelerator`: Updates service documentation
+* `service/guardduty`: Updates service API and documentation
+  * Added autoEnable ALL to UpdateOrganizationConfiguration and DescribeOrganizationConfiguration APIs.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for cross account access for SageMaker Model Cards through AWS RAM.
+
 Release v1.44.319 (2023-08-08)
 ===
 

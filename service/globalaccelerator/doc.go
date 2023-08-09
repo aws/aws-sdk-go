@@ -24,7 +24,7 @@
 // Global Accelerator is a global service that supports endpoints in multiple
 // Amazon Web Services Regions but you must specify the US West (Oregon) Region
 // to create, update, or otherwise work with accelerators. That is, for example,
-// specify --region us-west-2 on AWS CLI commands.
+// specify --region us-west-2 on Amazon Web Services CLI commands.
 //
 // By default, Global Accelerator provides you with static IP addresses that
 // you associate with your accelerator. The static IP addresses are anycast

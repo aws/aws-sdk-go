@@ -6366,7 +6366,7 @@
         "OutputConfig"
       ],
       "members":{
-        "ModelCardName":{"shape":"EntityName"},
+        "ModelCardName":{"shape":"ModelCardNameOrArn"},
         "ModelCardVersion":{"shape":"Integer"},
         "ModelCardExportJobName":{"shape":"EntityName"},
         "OutputConfig":{"shape":"ModelCardExportOutputConfig"}
@@ -8810,7 +8810,7 @@
       "type":"structure",
       "required":["ModelCardName"],
       "members":{
-        "ModelCardName":{"shape":"EntityName"},
+        "ModelCardName":{"shape":"ModelCardNameOrArn"},
         "ModelCardVersion":{"shape":"Integer"}
       }
     },
@@ -13698,7 +13698,7 @@
         "CreationTimeAfter":{"shape":"Timestamp"},
         "CreationTimeBefore":{"shape":"Timestamp"},
         "MaxResults":{"shape":"MaxResults"},
-        "ModelCardName":{"shape":"EntityName"},
+        "ModelCardName":{"shape":"ModelCardNameOrArn"},
         "ModelCardStatus":{"shape":"ModelCardStatus"},
         "NextToken":{"shape":"NextToken"},
         "SortBy":{"shape":"ModelCardVersionSortBy"},
@@ -14805,6 +14805,12 @@
       "members":{
         "S3OutputPath":{"shape":"S3Uri"}
       }
+    },
+    "ModelCardNameOrArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:model-card/.*)?([a-zA-Z0-9](-*[a-zA-Z0-9]){0,62})"
     },
     "ModelCardProcessingStatus":{
       "type":"string",
@@ -20851,7 +20857,7 @@
       "type":"structure",
       "required":["ModelCardName"],
       "members":{
-        "ModelCardName":{"shape":"EntityName"},
+        "ModelCardName":{"shape":"ModelCardNameOrArn"},
         "Content":{"shape":"ModelCardContent"},
         "ModelCardStatus":{"shape":"ModelCardStatus"}
       }
