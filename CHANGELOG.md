@@ -1,3 +1,17 @@
+Release v1.44.321 (2023-08-10)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service documentation
+  * Documentation updates for CloudTrail.
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/omics`: Updates service API and documentation
+* `service/secretsmanager`: Updates service API
+  * Add additional InvalidRequestException to list of possible exceptions for ListSecret.
+* `service/transfer`: Updates service documentation
+  * Documentation updates for AW Transfer Family
+
 Release v1.44.320 (2023-08-09)
 ===
 

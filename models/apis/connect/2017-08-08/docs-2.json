@@ -13,6 +13,7 @@
     "AssociateQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a set of quick connects with a queue.</p>",
     "AssociateRoutingProfileQueues": "<p>Associates a set of queues with a routing profile.</p>",
     "AssociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a security key to the instance.</p>",
+    "AssociateTrafficDistributionGroupUser": "<p>Associates an agent with a traffic distribution group.</p>",
     "ClaimPhoneNumber": "<p>Claims an available phone number to your Amazon Connect instance or traffic distribution group. You can call this API only in the same Amazon Web Services Region where the Amazon Connect instance or traffic distribution group was created.</p> <p>For more information about how to use this operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html\">Claim a phone number in your country</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html\">Claim phone numbers to traffic distribution groups</a> in the <i>Amazon Connect Administrator Guide</i>. </p> <important> <p>You can call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html\">SearchAvailablePhoneNumbers</a> API for available phone numbers that you can claim. Call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html\">ClaimPhoneNumber</a> operation.</p> </important> <p>If you plan to claim and release numbers frequently during a 30 day period, contact us for a service quota exception. Otherwise, it is possible you will be blocked from claiming and releasing any more numbers until 30 days past the oldest number released has expired.</p> <p>By default you can claim and release up to 200% of your maximum number of active phone numbers during any 30 day period. If you claim and release phone numbers using the UI or API during a rolling 30 day cycle that exceeds 200% of your phone number service level quota, you will be blocked from claiming any more numbers until 30 days past the oldest number released has expired. </p> <p>For example, if you already have 99 claimed numbers and a service level quota of 99 phone numbers, and in any 30 day period you release 99, claim 99, and then release 99, you will have exceeded the 200% limit. At that point you are blocked from claiming any more numbers until you open an Amazon Web Services support ticket.</p>",
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a flow for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
@@ -85,6 +86,7 @@
     "DisassociateQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Disassociates a set of quick connects from a queue.</p>",
     "DisassociateRoutingProfileQueues": "<p>Disassociates a set of queues from a routing profile.</p>",
     "DisassociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the specified security key.</p>",
+    "DisassociateTrafficDistributionGroupUser": "<p>Disassociates an agent from a traffic distribution group.</p>",
     "DismissUserContact": "<p>Dismisses contacts from an agent’s CCP and returns the agent to an available state, which allows the agent to receive a new routed contact. Contacts can only be dismissed if they are in a <code>MISSED</code>, <code>ERROR</code>, <code>ENDED</code>, or <code>REJECTED</code> state in the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html\">Agent Event Stream</a>.</p>",
     "GetContactAttributes": "<p>Retrieves the contact attributes for the specified contact.</p>",
     "GetCurrentMetricData": "<p>Gets the real-time metric data from the specified Amazon Connect instance.</p> <p>For a description of each metric, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html\">Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -113,7 +115,7 @@
     "ListLambdaFunctions": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all Lambda functions that display in the dropdown options in the relevant flow blocks.</p>",
     "ListLexBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all the Amazon Lex V1 bots currently associated with the instance. To return both Amazon Lex V1 and V2 bots, use the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListBots.html\">ListBots</a> API. </p>",
     "ListPhoneNumbers": "<p>Provides information about the phone numbers for the specified Amazon Connect instance. </p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <important> <p>The phone number <code>Arn</code> value that is returned from each of the items in the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList\">PhoneNumberSummaryList</a> cannot be used to tag phone number resources. It will fail with a <code>ResourceNotFoundException</code>. Instead, use the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html\">ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can be used to tag phone number resources.</p> </important>",
-    "ListPhoneNumbersV2": "<p>Lists phone numbers claimed to your Amazon Connect instance or traffic distribution group. If the provided <code>TargetArn</code> is a traffic distribution group, you can call this API in both Amazon Web Services Regions associated with traffic distribution group.</p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "ListPhoneNumbersV2": "<p>Lists phone numbers claimed to your Amazon Connect instance or traffic distribution group. If the provided <code>TargetArn</code> is a traffic distribution group, you can call this API in both Amazon Web Services Regions associated with traffic distribution group.</p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <note> <ul> <li> <p>When given an instance ARN, <code>ListPhoneNumbersV2</code> returns only the phone numbers claimed to the instance.</p> </li> <li> <p>When given a traffic distribution group ARN <code>ListPhoneNumbersV2</code> returns only the phone numbers claimed to the traffic distribution group.</p> </li> </ul> </note>",
     "ListPrompts": "<p>Provides information about the prompts for the specified Amazon Connect instance.</p>",
     "ListQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists the quick connects associated with a queue.</p>",
     "ListQueues": "<p>Provides information about the queues for the specified Amazon Connect instance.</p> <p>If you do not specify a <code>QueueTypes</code> parameter, both standard and agent queues are returned. This might cause an unexpected truncation of results if you have more than 1000 agents and you limit the number of results of the API call in code.</p> <p>For more information about queues, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html\">Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -126,6 +128,7 @@
     "ListSecurityProfiles": "<p>Provides summary information about the security profiles for the specified Amazon Connect instance.</p> <p>For more information about security profiles, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html\">Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListTaskTemplates": "<p>Lists task templates for the specified Amazon Connect instance.</p>",
+    "ListTrafficDistributionGroupUsers": "<p>Lists traffic distribution group users.</p>",
     "ListTrafficDistributionGroups": "<p>Lists traffic distribution groups.</p>",
     "ListUseCases": "<p>Lists the use cases for the integration association. </p>",
     "ListUserHierarchyGroups": "<p>Provides summary information about the hierarchy groups for the specified Amazon Connect instance.</p> <p>For more information about agent hierarchies, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html\">Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -191,7 +194,7 @@
     "UpdateRule": "<p>Updates a rule for the specified Amazon Connect instance.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html\">Rules Function language</a> to code conditions for the rule. </p>",
     "UpdateSecurityProfile": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates a security profile.</p>",
     "UpdateTaskTemplate": "<p>Updates details about a specific task template in the specified Amazon Connect instance. This operation does not support partial updates. Instead it does a full update of template content.</p>",
-    "UpdateTrafficDistribution": "<p>Updates the traffic distribution for a given traffic distribution group. </p> <p>For more information about updating a traffic distribution group, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html\">Update telephony traffic distribution across Amazon Web Services Regions </a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
+    "UpdateTrafficDistribution": "<p>Updates the traffic distribution for a given traffic distribution group. </p> <note> <p>You can change the <code>SignInConfig</code> only for a default <code>TrafficDistributionGroup</code>. If you call <code>UpdateTrafficDistribution</code> with a modified <code>SignInConfig</code> and a non-default <code>TrafficDistributionGroup</code>, an <code>InvalidRequestException</code> is returned.</p> </note> <p>For more information about updating a traffic distribution group, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html\">Update telephony traffic distribution across Amazon Web Services Regions </a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
     "UpdateUserHierarchy": "<p>Assigns the specified hierarchy group to the specified user.</p>",
     "UpdateUserHierarchyGroupName": "<p>Updates the name of the user hierarchy group. </p>",
     "UpdateUserHierarchyStructure": "<p>Updates the user hierarchy structure: add, remove, and rename user hierarchy levels.</p>",
@@ -357,9 +360,16 @@
     "AgentAvailabilityTimer": {
       "base": null,
       "refs": {
-        "CreateRoutingProfileRequest$AgentAvailabilityTimer": "<p>Whether agents with this routing profile will have their routing order calculated based on <i>time since their last inbound contact</i> or <i>longest idle time</i>. </p>",
+        "CreateRoutingProfileRequest$AgentAvailabilityTimer": "<p>Whether agents with this routing profile will have their routing order calculated based on <i>longest idle time</i> or <i>time since their last inbound contact</i>. </p>",
         "RoutingProfile$AgentAvailabilityTimer": "<p>Whether agents with this routing profile will have their routing order calculated based on <i>time since their last inbound contact</i> or <i>longest idle time</i>. </p>",
         "UpdateRoutingProfileAgentAvailabilityTimerRequest$AgentAvailabilityTimer": "<p>Whether agents with this routing profile will have their routing order calculated based on <i>time since their last inbound contact</i> or <i>longest idle time</i>. </p>"
+      }
+    },
+    "AgentConfig": {
+      "base": "<p>The distribution of agents between the instance and its replica(s).</p>",
+      "refs": {
+        "GetTrafficDistributionResponse$AgentConfig": "<p>The distribution of agents between the instance and its replica(s).</p>",
+        "UpdateTrafficDistributionRequest$AgentConfig": "<p>The distribution of agents between the instance and its replica(s).</p>"
       }
     },
     "AgentContactReference": {
@@ -398,9 +408,9 @@
       "base": null,
       "refs": {
         "AgentInfo$Id": "<p>The identifier of the agent who accepted the contact.</p>",
-        "GetFederationTokenResponse$UserId": "<p>The identifier for the user.</p>",
+        "GetFederationTokenResponse$UserId": "<p>The identifier for the user. This can be the ID or the ARN of the user.</p>",
         "MonitorContactRequest$UserId": "<p>The identifier of the user account.</p>",
-        "TransferContactRequest$UserId": "<p>The identifier for the user.</p>"
+        "TransferContactRequest$UserId": "<p>The identifier for the user. This can be the ID or the ARN of the user.</p>"
       }
     },
     "AgentStatus": {
@@ -612,6 +622,16 @@
       "refs": {
       }
     },
+    "AssociateTrafficDistributionGroupUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateTrafficDistributionGroupUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AssociationId": {
       "base": null,
       "refs": {
@@ -688,7 +708,8 @@
       "base": null,
       "refs": {
         "Distribution$Region": "<p>The Amazon Web Services Region where the traffic is distributed.</p>",
-        "ReplicateInstanceRequest$ReplicaRegion": "<p>The Amazon Web Services Region where to replicate the Amazon Connect instance.</p>"
+        "ReplicateInstanceRequest$ReplicaRegion": "<p>The Amazon Web Services Region where to replicate the Amazon Connect instance.</p>",
+        "SignInDistribution$Region": "<p>The Amazon Web Services Region of the sign in distribution.</p>"
       }
     },
     "BehaviorType": {
@@ -708,6 +729,9 @@
         "EvaluationFormSingleSelectQuestionOption$AutomaticFail": "<p>The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0.</p>",
         "EvaluationScore$NotApplicable": "<p>The flag to mark the item as not applicable for scoring.</p>",
         "EvaluationScore$AutomaticFail": "<p>The flag that marks the item as automatic fail. If the item or a child item gets an automatic fail answer, this flag will be true.</p>",
+        "SignInDistribution$Enabled": "<p>Whether sign in distribution is enabled.</p>",
+        "TrafficDistributionGroup$IsDefault": "<p>Whether this is the default traffic distribution group created during instance replication. The default traffic distribution group cannot be deleted by the <code>DeleteTrafficDistributionGroup</code> API. The default traffic distribution group is deleted as part of the process for deleting a replica.</p> <note> <p>You can change the <code>SignInConfig</code> only for a default <code>TrafficDistributionGroup</code>. If you call <code>UpdateTrafficDistribution</code> with a modified <code>SignInConfig</code> and a non-default <code>TrafficDistributionGroup</code>, an <code>InvalidRequestException</code> is returned.</p> </note>",
+        "TrafficDistributionGroupSummary$IsDefault": "<p>Whether this is the default traffic distribution group created during instance replication. The default traffic distribution group cannot be deleted by the <code>DeleteTrafficDistributionGroup</code> API. The default traffic distribution group is deleted as part of the process for deleting a replica.</p>",
         "UpdateAgentStatusRequest$ResetOrderNumber": "<p>A number indicating the reset order of the agent status.</p>"
       }
     },
@@ -1919,6 +1943,16 @@
       "refs": {
       }
     },
+    "DisassociateTrafficDistributionGroupUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateTrafficDistributionGroupUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DismissUserContactRequest": {
       "base": null,
       "refs": {
@@ -1945,6 +1979,7 @@
     "DistributionList": {
       "base": null,
       "refs": {
+        "AgentConfig$Distributions": "<p>Information about traffic distributions.</p>",
         "TelephonyConfig$Distributions": "<p>Information about traffic distributions.</p>"
       }
     },
@@ -2850,6 +2885,7 @@
         "AssociateQueueQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "AssociateTrafficDistributionGroupUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateContactFlowModuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
@@ -2918,6 +2954,7 @@
         "DisassociateQueueQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DisassociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DisassociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DisassociateTrafficDistributionGroupUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DismissUserContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "GetContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "GetCurrentMetricDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3581,6 +3618,16 @@
       "refs": {
       }
     },
+    "ListTrafficDistributionGroupUsersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTrafficDistributionGroupUsersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTrafficDistributionGroupsRequest": {
       "base": null,
       "refs": {
@@ -3633,6 +3680,7 @@
       "refs": {
         "ListInstanceStorageConfigsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListInstancesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListTrafficDistributionGroupUsersRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListTrafficDistributionGroupsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchAvailablePhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return per page.</p>"
       }
@@ -3918,6 +3966,8 @@
         "ListSecurityProfilesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListTaskTemplatesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p> <important> <p>It is not expected that you set this because the value returned in the previous response is always null.</p> </important>",
         "ListTaskTemplatesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p> <important> <p>This is always returned as a null in the response.</p> </important>",
+        "ListTrafficDistributionGroupUsersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListTrafficDistributionGroupUsersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListTrafficDistributionGroupsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListTrafficDistributionGroupsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListUseCasesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -5331,6 +5381,25 @@
       "refs": {
       }
     },
+    "SignInConfig": {
+      "base": "<p>The distribution of allowing signing in to the instance and its replica(s).</p>",
+      "refs": {
+        "GetTrafficDistributionResponse$SignInConfig": "<p>The distribution of allowing signing in to the instance and its replica(s).</p>",
+        "UpdateTrafficDistributionRequest$SignInConfig": "<p>The distribution of allowing signing in to the instance and its replica(s).</p>"
+      }
+    },
+    "SignInDistribution": {
+      "base": "<p>The distribution of sign in traffic between the instance and its replica(s).</p>",
+      "refs": {
+        "SignInDistributionList$member": null
+      }
+    },
+    "SignInDistributionList": {
+      "base": null,
+      "refs": {
+        "SignInConfig$Distributions": "<p>Information about traffic distributions.</p>"
+      }
+    },
     "SingleSelectOptions": {
       "base": null,
       "refs": {
@@ -5980,9 +6049,12 @@
     "TrafficDistributionGroupIdOrArn": {
       "base": null,
       "refs": {
+        "AssociateTrafficDistributionGroupUserRequest$TrafficDistributionGroupId": "<p>The identifier of the traffic distribution group. This can be the ID or the ARN if the API is being called in the Region where the traffic distribution group was created. The ARN must be provided if the call is from the replicated Region.</p>",
         "DeleteTrafficDistributionGroupRequest$TrafficDistributionGroupId": "<p>The identifier of the traffic distribution group. This can be the ID or the ARN if the API is being called in the Region where the traffic distribution group was created. The ARN must be provided if the call is from the replicated Region.</p>",
         "DescribeTrafficDistributionGroupRequest$TrafficDistributionGroupId": "<p>The identifier of the traffic distribution group. This can be the ID or the ARN if the API is being called in the Region where the traffic distribution group was created. The ARN must be provided if the call is from the replicated Region.</p>",
+        "DisassociateTrafficDistributionGroupUserRequest$TrafficDistributionGroupId": "<p>The identifier of the traffic distribution group. This can be the ID or the ARN if the API is being called in the Region where the traffic distribution group was created. The ARN must be provided if the call is from the replicated Region.</p>",
         "GetTrafficDistributionRequest$Id": "<p>The identifier of the traffic distribution group.</p>",
+        "ListTrafficDistributionGroupUsersRequest$TrafficDistributionGroupId": "<p>The identifier of the traffic distribution group. This can be the ID or the ARN if the API is being called in the Region where the traffic distribution group was created. The ARN must be provided if the call is from the replicated Region.</p>",
         "UpdateTrafficDistributionRequest$Id": "<p>The identifier of the traffic distribution group. This can be the ID or the ARN if the API is being called in the Region where the traffic distribution group was created. The ARN must be provided if the call is from the replicated Region.</p>"
       }
     },
@@ -6003,6 +6075,18 @@
       "base": null,
       "refs": {
         "ListTrafficDistributionGroupsResponse$TrafficDistributionGroupSummaryList": "<p>A list of traffic distribution groups.</p>"
+      }
+    },
+    "TrafficDistributionGroupUserSummary": {
+      "base": "<p>Summary information about a traffic distribution group user.</p>",
+      "refs": {
+        "TrafficDistributionGroupUserSummaryList$member": null
+      }
+    },
+    "TrafficDistributionGroupUserSummaryList": {
+      "base": null,
+      "refs": {
+        "ListTrafficDistributionGroupUsersResponse$TrafficDistributionGroupUserSummaryList": "<p>A list of traffic distribution group users.</p>"
       }
     },
     "TrafficType": {
@@ -6414,11 +6498,14 @@
       "base": null,
       "refs": {
         "AgentsMinOneMaxHundred$member": null,
+        "AssociateTrafficDistributionGroupUserRequest$UserId": "<p>The identifier of the user account. This can be the ID or the ARN of the user. </p>",
         "CreateUserResponse$UserId": "<p>The identifier of the user account.</p>",
         "DeleteUserRequest$UserId": "<p>The identifier of the user.</p>",
         "DescribeUserRequest$UserId": "<p>The identifier of the user account.</p>",
+        "DisassociateTrafficDistributionGroupUserRequest$UserId": "<p>The identifier for the user. This can be the ID or the ARN of the user.</p>",
         "DismissUserContactRequest$UserId": "<p>The identifier of the user account.</p>",
         "PutUserStatusRequest$UserId": "<p>The identifier of the user.</p>",
+        "TrafficDistributionGroupUserSummary$UserId": "<p>The identifier for the user. This can be the ID or the ARN of the user.</p>",
         "UpdateUserHierarchyRequest$UserId": "<p>The identifier of the user account.</p>",
         "UpdateUserIdentityInfoRequest$UserId": "<p>The identifier of the user account.</p>",
         "UpdateUserPhoneConfigRequest$UserId": "<p>The identifier of the user account.</p>",

@@ -371,6 +371,8 @@ func ExampleSecretsManager_ListSecrets_shared00() {
 			switch aerr.Code() {
 			case secretsmanager.ErrCodeInvalidParameterException:
 				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidRequestException:
+				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
 			case secretsmanager.ErrCodeInvalidNextTokenException:
 				fmt.Println(secretsmanager.ErrCodeInvalidNextTokenException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:

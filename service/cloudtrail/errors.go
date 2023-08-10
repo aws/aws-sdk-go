@@ -456,8 +456,9 @@ const (
 	// ErrCodeMaxConcurrentQueriesException for service response error code
 	// "MaxConcurrentQueriesException".
 	//
-	// You are already running the maximum number of concurrent queries. Wait a
-	// minute for some queries to finish, and then run the query again.
+	// You are already running the maximum number of concurrent queries. The maximum
+	// number of concurrent queries is 10. Wait a minute for some queries to finish,
+	// and then run the query again.
 	ErrCodeMaxConcurrentQueriesException = "MaxConcurrentQueriesException"
 
 	// ErrCodeMaximumNumberOfTrailsExceededException for service response error code

@@ -1231,6 +1231,21 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 //   - InvalidParameterException
 //     The parameter name or value is invalid.
 //
+//   - InvalidRequestException
+//     A parameter value is not valid for the current state of the resource.
+//
+//     Possible causes:
+//
+//   - The secret is scheduled for deletion.
+//
+//   - You tried to enable rotation on a secret that doesn't already have a
+//     Lambda function ARN configured and you didn't include such an ARN as a
+//     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - InvalidNextTokenException
 //     The NextToken value is invalid.
 //

@@ -5476,8 +5476,9 @@ func (c *CloudTrail) StartQueryRequest(input *StartQueryInput) (req *request.Req
 //     in the CloudTrail User Guide.
 //
 //   - MaxConcurrentQueriesException
-//     You are already running the maximum number of concurrent queries. Wait a
-//     minute for some queries to finish, and then run the query again.
+//     You are already running the maximum number of concurrent queries. The maximum
+//     number of concurrent queries is 10. Wait a minute for some queries to finish,
+//     and then run the query again.
 //
 //   - InsufficientEncryptionPolicyException
 //     This exception is thrown when the policy on the S3 bucket or KMS key does
@@ -7069,11 +7070,12 @@ type AdvancedFieldSelector struct {
 	//    AWS::CloudTrail::Channel AWS::CodeWhisperer::Profile AWS::Cognito::IdentityPool
 	//    AWS::DynamoDB::Stream AWS::EC2::Snapshot AWS::EMRWAL::Workspace AWS::FinSpace::Environment
 	//    AWS::Glue::Table AWS::GuardDuty::Detector AWS::KendraRanking::ExecutionPlan
-	//    AWS::ManagedBlockchain::Node AWS::SageMaker::ExperimentTrialComponent
-	//    AWS::SageMaker::FeatureGroup AWS::S3::AccessPoint AWS::S3ObjectLambda::AccessPoint
-	//    AWS::S3Outposts::Object You can have only one resources.type ﬁeld per
-	//    selector. To log data events on more than one resource type, add another
-	//    selector.
+	//    AWS::ManagedBlockchain::Network AWS::ManagedBlockchain::Node AWS::MedicalImaging::Datastore
+	//    AWS::SageMaker::ExperimentTrialComponent AWS::SageMaker::FeatureGroup
+	//    AWS::S3::AccessPoint AWS::S3ObjectLambda::AccessPoint AWS::S3Outposts::Object
+	//    AWS::SSMMessages::ControlChannel AWS::VerifiedPermissions::PolicyStore
+	//    You can have only one resources.type ﬁeld per selector. To log data
+	//    events on more than one resource type, add another selector.
 	//
 	//    * resources.ARN - You can use any operator with resources.ARN, but if
 	//    you use Equals or NotEquals, the value must exactly match the ARN of a
@@ -7115,9 +7117,14 @@ type AdvancedFieldSelector struct {
 	//    When resources.type equals AWS::KendraRanking::ExecutionPlan, and the
 	//    operator is set to Equals or NotEquals, the ARN must be in the following
 	//    format: arn:<partition>:kendra-ranking:<region>:<account_ID>:rescore-execution-plan/<rescore_execution_plan_ID>
-	//    When resources.type equals AWS::ManagedBlockchain::Node, and the operator
+	//    When resources.type equals AWS::ManagedBlockchain::Network, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
-	//    arn:<partition>:managedblockchain:<region>:<account_ID>:nodes/<node_ID>
+	//    arn:<partition>:managedblockchain:::networks/<network_name> When resources.type
+	//    equals AWS::ManagedBlockchain::Node, and the operator is set to Equals
+	//    or NotEquals, the ARN must be in the following format: arn:<partition>:managedblockchain:<region>:<account_ID>:nodes/<node_ID>
+	//    When resources.type equals AWS::MedicalImaging::Datastore, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:medical-imaging:<region>:<account_ID>:datastore/<data_store_ID>
 	//    When resources.type equals AWS::SageMaker::ExperimentTrialComponent, and
 	//    the operator is set to Equals or NotEquals, the ARN must be in the following
 	//    format: arn:<partition>:sagemaker:<region>:<account_ID>:experiment-trial-component/<experiment_trial_component_name>
@@ -7135,6 +7142,12 @@ type AdvancedFieldSelector struct {
 	//    arn:<partition>:s3-object-lambda:<region>:<account_ID>:accesspoint/<access_point_name>
 	//    When resources.type equals AWS::S3Outposts::Object, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:s3-outposts:<region>:<account_ID>:<object_path>
+	//    When resources.type equals AWS::SSMMessages::ControlChannel, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:ssmmessages:<region>:<account_ID>:control-channel/<channel_ID>
+	//    When resources.type equals AWS::VerifiedPermissions::PolicyStore, and
+	//    the operator is set to Equals or NotEquals, the ARN must be in the following
+	//    format: arn:<partition>:verifiedpermissions:<region>:<account_ID>:policy-store/<policy_store_UUID>
 	//
 	// Field is a required field
 	Field *string `min:"1" type:"string" required:"true"`
@@ -8240,7 +8253,18 @@ type CreateEventDataStoreInput struct {
 	OrganizationEnabled *bool `type:"boolean"`
 
 	// The retention period of the event data store, in days. You can set a retention
-	// period of up to 2557 days, the equivalent of seven years.
+	// period of up to 2557 days, the equivalent of seven years. CloudTrail Lake
+	// determines whether to retain an event by checking if the eventTime of the
+	// event is within the specified retention period. For example, if you set a
+	// retention period of 90 days, CloudTrail will remove events when the eventTime
+	// is older than 90 days.
+	//
+	// If you plan to copy trail events to this event data store, we recommend that
+	// you consider both the age of the events that you want to copy as well as
+	// how long you want to keep the copied events in your event data store. For
+	// example, if you copy trail events that are 5 years old and specify a retention
+	// period of 7 years, the event data store will retain those events for two
+	// years.
 	RetentionPeriod *int64 `min:"7" type:"integer"`
 
 	// Specifies whether the event data store should start ingesting live events.
@@ -8968,7 +8992,11 @@ type DataResource struct {
 	//
 	//    * AWS::KendraRanking::ExecutionPlan
 	//
+	//    * AWS::ManagedBlockchain::Network
+	//
 	//    * AWS::ManagedBlockchain::Node
+	//
+	//    * AWS::MedicalImaging::Datastore
 	//
 	//    * AWS::SageMaker::ExperimentTrialComponent
 	//
@@ -8979,6 +9007,10 @@ type DataResource struct {
 	//    * AWS::S3ObjectLambda::AccessPoint
 	//
 	//    * AWS::S3Outposts::Object
+	//
+	//    * AWS::SSMMessages::ControlChannel
+	//
+	//    * AWS::VerifiedPermissions::PolicyStore
 	Type *string `type:"string"`
 
 	// An array of Amazon Resource Name (ARN) strings or partial ARN strings for
@@ -15674,8 +15706,9 @@ func (s *LookupEventsOutput) SetNextToken(v string) *LookupEventsOutput {
 	return s
 }
 
-// You are already running the maximum number of concurrent queries. Wait a
-// minute for some queries to finish, and then run the query again.
+// You are already running the maximum number of concurrent queries. The maximum
+// number of concurrent queries is 10. Wait a minute for some queries to finish,
+// and then run the query again.
 type MaxConcurrentQueriesException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19408,7 +19441,18 @@ type UpdateEventDataStoreInput struct {
 	// in Organizations.
 	OrganizationEnabled *bool `type:"boolean"`
 
-	// The retention period, in days.
+	// The retention period of the event data store, in days. You can set a retention
+	// period of up to 2557 days, the equivalent of seven years. CloudTrail Lake
+	// determines whether to retain an event by checking if the eventTime of the
+	// event is within the specified retention period. For example, if you set a
+	// retention period of 90 days, CloudTrail will remove events when the eventTime
+	// is older than 90 days.
+	//
+	// If you decrease the retention period of an event data store, CloudTrail will
+	// remove any events with an eventTime older than the new retention period.
+	// For example, if the previous retention period was 365 days and you decrease
+	// it to 100 days, CloudTrail will remove events with an eventTime older than
+	// 100 days.
 	RetentionPeriod *int64 `min:"7" type:"integer"`
 
 	// Indicates that termination protection is enabled and the event data store

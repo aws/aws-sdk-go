@@ -104,6 +104,10 @@ type ConnectAPI interface {
 	AssociateSecurityKeyWithContext(aws.Context, *connect.AssociateSecurityKeyInput, ...request.Option) (*connect.AssociateSecurityKeyOutput, error)
 	AssociateSecurityKeyRequest(*connect.AssociateSecurityKeyInput) (*request.Request, *connect.AssociateSecurityKeyOutput)
 
+	AssociateTrafficDistributionGroupUser(*connect.AssociateTrafficDistributionGroupUserInput) (*connect.AssociateTrafficDistributionGroupUserOutput, error)
+	AssociateTrafficDistributionGroupUserWithContext(aws.Context, *connect.AssociateTrafficDistributionGroupUserInput, ...request.Option) (*connect.AssociateTrafficDistributionGroupUserOutput, error)
+	AssociateTrafficDistributionGroupUserRequest(*connect.AssociateTrafficDistributionGroupUserInput) (*request.Request, *connect.AssociateTrafficDistributionGroupUserOutput)
+
 	ClaimPhoneNumber(*connect.ClaimPhoneNumberInput) (*connect.ClaimPhoneNumberOutput, error)
 	ClaimPhoneNumberWithContext(aws.Context, *connect.ClaimPhoneNumberInput, ...request.Option) (*connect.ClaimPhoneNumberOutput, error)
 	ClaimPhoneNumberRequest(*connect.ClaimPhoneNumberInput) (*request.Request, *connect.ClaimPhoneNumberOutput)
@@ -392,6 +396,10 @@ type ConnectAPI interface {
 	DisassociateSecurityKeyWithContext(aws.Context, *connect.DisassociateSecurityKeyInput, ...request.Option) (*connect.DisassociateSecurityKeyOutput, error)
 	DisassociateSecurityKeyRequest(*connect.DisassociateSecurityKeyInput) (*request.Request, *connect.DisassociateSecurityKeyOutput)
 
+	DisassociateTrafficDistributionGroupUser(*connect.DisassociateTrafficDistributionGroupUserInput) (*connect.DisassociateTrafficDistributionGroupUserOutput, error)
+	DisassociateTrafficDistributionGroupUserWithContext(aws.Context, *connect.DisassociateTrafficDistributionGroupUserInput, ...request.Option) (*connect.DisassociateTrafficDistributionGroupUserOutput, error)
+	DisassociateTrafficDistributionGroupUserRequest(*connect.DisassociateTrafficDistributionGroupUserInput) (*request.Request, *connect.DisassociateTrafficDistributionGroupUserOutput)
+
 	DismissUserContact(*connect.DismissUserContactInput) (*connect.DismissUserContactOutput, error)
 	DismissUserContactWithContext(aws.Context, *connect.DismissUserContactInput, ...request.Option) (*connect.DismissUserContactOutput, error)
 	DismissUserContactRequest(*connect.DismissUserContactInput) (*request.Request, *connect.DismissUserContactOutput)
@@ -657,6 +665,13 @@ type ConnectAPI interface {
 
 	ListTaskTemplatesPages(*connect.ListTaskTemplatesInput, func(*connect.ListTaskTemplatesOutput, bool) bool) error
 	ListTaskTemplatesPagesWithContext(aws.Context, *connect.ListTaskTemplatesInput, func(*connect.ListTaskTemplatesOutput, bool) bool, ...request.Option) error
+
+	ListTrafficDistributionGroupUsers(*connect.ListTrafficDistributionGroupUsersInput) (*connect.ListTrafficDistributionGroupUsersOutput, error)
+	ListTrafficDistributionGroupUsersWithContext(aws.Context, *connect.ListTrafficDistributionGroupUsersInput, ...request.Option) (*connect.ListTrafficDistributionGroupUsersOutput, error)
+	ListTrafficDistributionGroupUsersRequest(*connect.ListTrafficDistributionGroupUsersInput) (*request.Request, *connect.ListTrafficDistributionGroupUsersOutput)
+
+	ListTrafficDistributionGroupUsersPages(*connect.ListTrafficDistributionGroupUsersInput, func(*connect.ListTrafficDistributionGroupUsersOutput, bool) bool) error
+	ListTrafficDistributionGroupUsersPagesWithContext(aws.Context, *connect.ListTrafficDistributionGroupUsersInput, func(*connect.ListTrafficDistributionGroupUsersOutput, bool) bool, ...request.Option) error
 
 	ListTrafficDistributionGroups(*connect.ListTrafficDistributionGroupsInput) (*connect.ListTrafficDistributionGroupsOutput, error)
 	ListTrafficDistributionGroupsWithContext(aws.Context, *connect.ListTrafficDistributionGroupsInput, ...request.Option) (*connect.ListTrafficDistributionGroupsOutput, error)

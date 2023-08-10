@@ -1260,6 +1260,14 @@
       },
       "exception":true
     },
+    "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic":{"type":"string"},
+    "EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum":{
+      "type":"string",
+      "enum":[
+        "on",
+        "off"
+      ]
+    },
     "FixedResponseActionConfig":{
       "type":"structure",
       "required":["StatusCode"],
@@ -1489,7 +1497,8 @@
         "AvailabilityZones":{"shape":"AvailabilityZones"},
         "SecurityGroups":{"shape":"SecurityGroups"},
         "IpAddressType":{"shape":"IpAddressType"},
-        "CustomerOwnedIpv4Pool":{"shape":"CustomerOwnedIpv4Pool"}
+        "CustomerOwnedIpv4Pool":{"shape":"CustomerOwnedIpv4Pool"},
+        "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic":{"shape":"EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic"}
       }
     },
     "LoadBalancerAddress":{
@@ -1977,13 +1986,15 @@
       ],
       "members":{
         "LoadBalancerArn":{"shape":"LoadBalancerArn"},
-        "SecurityGroups":{"shape":"SecurityGroups"}
+        "SecurityGroups":{"shape":"SecurityGroups"},
+        "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic":{"shape":"EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum"}
       }
     },
     "SetSecurityGroupsOutput":{
       "type":"structure",
       "members":{
-        "SecurityGroupIds":{"shape":"SecurityGroups"}
+        "SecurityGroupIds":{"shape":"SecurityGroups"},
+        "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic":{"shape":"EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum"}
       }
     },
     "SetSubnetsInput":{
