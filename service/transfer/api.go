@@ -259,10 +259,12 @@ func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *req
 
 // CreateConnector API operation for AWS Transfer Family.
 //
-// Creates the connector, which captures the parameters for an outbound connection
-// for the AS2 or SFTP protocol. The connector is required for sending files
-// to an externally hosted AS2 or SFTP server. For more details about AS2 connectors,
-// see Create AS2 connectors (https://docs.aws.amazon.com/transfer/latest/userguide/create-b2b-server.html#configure-as2-connector).
+// Creates the connector, which captures the parameters for a connection for
+// the AS2 or SFTP protocol. For AS2, the connector is required for sending
+// files to an externally hosted AS2 server. For SFTP, the connector is required
+// when sending files to an SFTP server or receiving files from an SFTP server.
+// For more details about connectors, see Create AS2 connectors (https://docs.aws.amazon.com/transfer/latest/userguide/create-b2b-server.html#configure-as2-connector)
+// and Create SFTP connectors (https://docs.aws.amazon.com/transfer/latest/userguide/configure-sftp-connector.html).
 //
 // You must specify exactly one configuration object: either for AS2 (As2Config)
 // or SFTP (SftpConfig).
@@ -4883,12 +4885,12 @@ func (c *Transfer) StartFileTransferRequest(input *StartFileTransferInput) (req 
 //   - For an SFTP connector, the file transfer can be either outbound or inbound.
 //     In both cases, you specify the ConnectorId. Depending on the direction
 //     of the transfer, you also specify the following items: If you are transferring
-//     file from a partner's SFTP server to a Transfer Family server, you specify
-//     one or more RetreiveFilePaths to identify the files you want to transfer,
-//     and a LocalDirectoryPath to specify the destination folder. If you are
-//     transferring file to a partner's SFTP server from Amazon Web Services
-//     storage, you specify one or more SendFilePaths to identify the files you
-//     want to transfer, and a RemoteDirectoryPath to specify the destination
+//     file from a partner's SFTP server to Amazon Web Services storage, you
+//     specify one or more RetreiveFilePaths to identify the files you want to
+//     transfer, and a LocalDirectoryPath to specify the destination folder.
+//     If you are transferring file to a partner's SFTP server from Amazon Web
+//     Services storage, you specify one or more SendFilePaths to identify the
+//     files you want to transfer, and a RemoteDirectoryPath to specify the destination
 //     folder.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7006,6 +7008,12 @@ func (s *CreateAccessOutput) SetServerId(v string) *CreateAccessOutput {
 type CreateAgreementInput struct {
 	_ struct{} `type:"structure"`
 
+	// Connectors are used to send files using either the AS2 or SFTP protocol.
+	// For the access role, provide the Amazon Resource Name (ARN) of the Identity
+	// and Access Management role to use.
+	//
+	// For AS2 connectors
+	//
 	// With AS2, you can send files by calling StartFileTransfer and specifying
 	// the file paths in the request parameter, SendFilePaths. We use the file’s
 	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
@@ -7022,6 +7030,13 @@ type CreateAgreementInput struct {
 	// If the secret is encrypted using a customer-managed key instead of the Amazon
 	// Web Services managed key in Secrets Manager, then the role also needs the
 	// kms:Decrypt permission for that key.
+	//
+	// For SFTP connectors
+	//
+	// Make sure that the access role provides read and write access to the parent
+	// directory of the file location that's used in the StartFileTransfer request.
+	// Additionally, make sure that the role provides secretsmanager:GetSecretValue
+	// permission to Secrets Manager.
 	//
 	// AccessRole is a required field
 	AccessRole *string `min:"20" type:"string" required:"true"`
@@ -7216,6 +7231,12 @@ func (s *CreateAgreementOutput) SetAgreementId(v string) *CreateAgreementOutput 
 type CreateConnectorInput struct {
 	_ struct{} `type:"structure"`
 
+	// Connectors are used to send files using either the AS2 or SFTP protocol.
+	// For the access role, provide the Amazon Resource Name (ARN) of the Identity
+	// and Access Management role to use.
+	//
+	// For AS2 connectors
+	//
 	// With AS2, you can send files by calling StartFileTransfer and specifying
 	// the file paths in the request parameter, SendFilePaths. We use the file’s
 	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
@@ -7232,6 +7253,13 @@ type CreateConnectorInput struct {
 	// If the secret is encrypted using a customer-managed key instead of the Amazon
 	// Web Services managed key in Secrets Manager, then the role also needs the
 	// kms:Decrypt permission for that key.
+	//
+	// For SFTP connectors
+	//
+	// Make sure that the access role provides read and write access to the parent
+	// directory of the file location that's used in the StartFileTransfer request.
+	// Additionally, make sure that the role provides secretsmanager:GetSecretValue
+	// permission to Secrets Manager.
 	//
 	// AccessRole is a required field
 	AccessRole *string `min:"20" type:"string" required:"true"`
@@ -10675,6 +10703,12 @@ func (s *DescribedAccess) SetRole(v string) *DescribedAccess {
 type DescribedAgreement struct {
 	_ struct{} `type:"structure"`
 
+	// Connectors are used to send files using either the AS2 or SFTP protocol.
+	// For the access role, provide the Amazon Resource Name (ARN) of the Identity
+	// and Access Management role to use.
+	//
+	// For AS2 connectors
+	//
 	// With AS2, you can send files by calling StartFileTransfer and specifying
 	// the file paths in the request parameter, SendFilePaths. We use the file’s
 	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
@@ -10691,6 +10725,13 @@ type DescribedAgreement struct {
 	// If the secret is encrypted using a customer-managed key instead of the Amazon
 	// Web Services managed key in Secrets Manager, then the role also needs the
 	// kms:Decrypt permission for that key.
+	//
+	// For SFTP connectors
+	//
+	// Make sure that the access role provides read and write access to the parent
+	// directory of the file location that's used in the StartFileTransfer request.
+	// Additionally, make sure that the role provides secretsmanager:GetSecretValue
+	// permission to Secrets Manager.
 	AccessRole *string `min:"20" type:"string"`
 
 	// A unique identifier for the agreement. This identifier is returned when you
@@ -10971,6 +11012,12 @@ func (s *DescribedCertificate) SetUsage(v string) *DescribedCertificate {
 type DescribedConnector struct {
 	_ struct{} `type:"structure"`
 
+	// Connectors are used to send files using either the AS2 or SFTP protocol.
+	// For the access role, provide the Amazon Resource Name (ARN) of the Identity
+	// and Access Management role to use.
+	//
+	// For AS2 connectors
+	//
 	// With AS2, you can send files by calling StartFileTransfer and specifying
 	// the file paths in the request parameter, SendFilePaths. We use the file’s
 	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
@@ -10987,6 +11034,13 @@ type DescribedConnector struct {
 	// If the secret is encrypted using a customer-managed key instead of the Amazon
 	// Web Services managed key in Secrets Manager, then the role also needs the
 	// kms:Decrypt permission for that key.
+	//
+	// For SFTP connectors
+	//
+	// Make sure that the access role provides read and write access to the parent
+	// directory of the file location that's used in the StartFileTransfer request.
+	// Additionally, make sure that the role provides secretsmanager:GetSecretValue
+	// permission to Secrets Manager.
 	AccessRole *string `min:"20" type:"string"`
 
 	// The unique Amazon Resource Name (ARN) for the connector.
@@ -16517,6 +16571,8 @@ type StartFileTransferInput struct {
 
 	// One or more source paths for the Transfer Family server. Each string represents
 	// a source file path for one outbound file transfer. For example, DOC-EXAMPLE-BUCKET/myfile.txt .
+	//
+	// Replace DOC-EXAMPLE-BUCKET with one of your actual buckets.
 	SendFilePaths []*string `min:"1" type:"list"`
 }
 
@@ -17724,6 +17780,12 @@ func (s *UpdateAccessOutput) SetServerId(v string) *UpdateAccessOutput {
 type UpdateAgreementInput struct {
 	_ struct{} `type:"structure"`
 
+	// Connectors are used to send files using either the AS2 or SFTP protocol.
+	// For the access role, provide the Amazon Resource Name (ARN) of the Identity
+	// and Access Management role to use.
+	//
+	// For AS2 connectors
+	//
 	// With AS2, you can send files by calling StartFileTransfer and specifying
 	// the file paths in the request parameter, SendFilePaths. We use the file’s
 	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
@@ -17740,6 +17802,13 @@ type UpdateAgreementInput struct {
 	// If the secret is encrypted using a customer-managed key instead of the Amazon
 	// Web Services managed key in Secrets Manager, then the role also needs the
 	// kms:Decrypt permission for that key.
+	//
+	// For SFTP connectors
+	//
+	// Make sure that the access role provides read and write access to the parent
+	// directory of the file location that's used in the StartFileTransfer request.
+	// Additionally, make sure that the role provides secretsmanager:GetSecretValue
+	// permission to Secrets Manager.
 	AccessRole *string `min:"20" type:"string"`
 
 	// A unique identifier for the agreement. This identifier is returned when you
@@ -18025,6 +18094,12 @@ func (s *UpdateCertificateOutput) SetCertificateId(v string) *UpdateCertificateO
 type UpdateConnectorInput struct {
 	_ struct{} `type:"structure"`
 
+	// Connectors are used to send files using either the AS2 or SFTP protocol.
+	// For the access role, provide the Amazon Resource Name (ARN) of the Identity
+	// and Access Management role to use.
+	//
+	// For AS2 connectors
+	//
 	// With AS2, you can send files by calling StartFileTransfer and specifying
 	// the file paths in the request parameter, SendFilePaths. We use the file’s
 	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
@@ -18041,6 +18116,13 @@ type UpdateConnectorInput struct {
 	// If the secret is encrypted using a customer-managed key instead of the Amazon
 	// Web Services managed key in Secrets Manager, then the role also needs the
 	// kms:Decrypt permission for that key.
+	//
+	// For SFTP connectors
+	//
+	// Make sure that the access role provides read and write access to the parent
+	// directory of the file location that's used in the StartFileTransfer request.
+	// Additionally, make sure that the role provides secretsmanager:GetSecretValue
+	// permission to Secrets Manager.
 	AccessRole *string `min:"20" type:"string"`
 
 	// A structure that contains the parameters for an AS2 connector object.

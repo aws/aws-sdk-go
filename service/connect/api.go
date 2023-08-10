@@ -1095,6 +1095,101 @@ func (c *Connect) AssociateSecurityKeyWithContext(ctx aws.Context, input *Associ
 	return out, req.Send()
 }
 
+const opAssociateTrafficDistributionGroupUser = "AssociateTrafficDistributionGroupUser"
+
+// AssociateTrafficDistributionGroupUserRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateTrafficDistributionGroupUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateTrafficDistributionGroupUser for more information on using the AssociateTrafficDistributionGroupUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateTrafficDistributionGroupUserRequest method.
+//	req, resp := client.AssociateTrafficDistributionGroupUserRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateTrafficDistributionGroupUser
+func (c *Connect) AssociateTrafficDistributionGroupUserRequest(input *AssociateTrafficDistributionGroupUserInput) (req *request.Request, output *AssociateTrafficDistributionGroupUserOutput) {
+	op := &request.Operation{
+		Name:       opAssociateTrafficDistributionGroupUser,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+	}
+
+	if input == nil {
+		input = &AssociateTrafficDistributionGroupUserInput{}
+	}
+
+	output = &AssociateTrafficDistributionGroupUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateTrafficDistributionGroupUser API operation for Amazon Connect Service.
+//
+// Associates an agent with a traffic distribution group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateTrafficDistributionGroupUser for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateTrafficDistributionGroupUser
+func (c *Connect) AssociateTrafficDistributionGroupUser(input *AssociateTrafficDistributionGroupUserInput) (*AssociateTrafficDistributionGroupUserOutput, error) {
+	req, out := c.AssociateTrafficDistributionGroupUserRequest(input)
+	return out, req.Send()
+}
+
+// AssociateTrafficDistributionGroupUserWithContext is the same as AssociateTrafficDistributionGroupUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateTrafficDistributionGroupUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateTrafficDistributionGroupUserWithContext(ctx aws.Context, input *AssociateTrafficDistributionGroupUserInput, opts ...request.Option) (*AssociateTrafficDistributionGroupUserOutput, error) {
+	req, out := c.AssociateTrafficDistributionGroupUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opClaimPhoneNumber = "ClaimPhoneNumber"
 
 // ClaimPhoneNumberRequest generates a "aws/request.Request" representing the
@@ -7976,6 +8071,101 @@ func (c *Connect) DisassociateSecurityKeyWithContext(ctx aws.Context, input *Dis
 	return out, req.Send()
 }
 
+const opDisassociateTrafficDistributionGroupUser = "DisassociateTrafficDistributionGroupUser"
+
+// DisassociateTrafficDistributionGroupUserRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateTrafficDistributionGroupUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateTrafficDistributionGroupUser for more information on using the DisassociateTrafficDistributionGroupUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateTrafficDistributionGroupUserRequest method.
+//	req, resp := client.DisassociateTrafficDistributionGroupUserRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateTrafficDistributionGroupUser
+func (c *Connect) DisassociateTrafficDistributionGroupUserRequest(input *DisassociateTrafficDistributionGroupUserInput) (req *request.Request, output *DisassociateTrafficDistributionGroupUserOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateTrafficDistributionGroupUser,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+	}
+
+	if input == nil {
+		input = &DisassociateTrafficDistributionGroupUserInput{}
+	}
+
+	output = &DisassociateTrafficDistributionGroupUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateTrafficDistributionGroupUser API operation for Amazon Connect Service.
+//
+// Disassociates an agent from a traffic distribution group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateTrafficDistributionGroupUser for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateTrafficDistributionGroupUser
+func (c *Connect) DisassociateTrafficDistributionGroupUser(input *DisassociateTrafficDistributionGroupUserInput) (*DisassociateTrafficDistributionGroupUserOutput, error) {
+	req, out := c.DisassociateTrafficDistributionGroupUserRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateTrafficDistributionGroupUserWithContext is the same as DisassociateTrafficDistributionGroupUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateTrafficDistributionGroupUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateTrafficDistributionGroupUserWithContext(ctx aws.Context, input *DisassociateTrafficDistributionGroupUserInput, opts ...request.Option) (*DisassociateTrafficDistributionGroupUserOutput, error) {
+	req, out := c.DisassociateTrafficDistributionGroupUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDismissUserContact = "DismissUserContact"
 
 // DismissUserContactRequest generates a "aws/request.Request" representing the
@@ -11895,6 +12085,12 @@ func (c *Connect) ListPhoneNumbersV2Request(input *ListPhoneNumbersV2Input) (req
 // Contact Center (https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html)
 // in the Amazon Connect Administrator Guide.
 //
+//   - When given an instance ARN, ListPhoneNumbersV2 returns only the phone
+//     numbers claimed to the instance.
+//
+//   - When given a traffic distribution group ARN ListPhoneNumbersV2 returns
+//     only the phone numbers claimed to the traffic distribution group.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -13732,6 +13928,154 @@ func (c *Connect) ListTaskTemplatesPagesWithContext(ctx aws.Context, input *List
 
 	for p.Next() {
 		if !fn(p.Page().(*ListTaskTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTrafficDistributionGroupUsers = "ListTrafficDistributionGroupUsers"
+
+// ListTrafficDistributionGroupUsersRequest generates a "aws/request.Request" representing the
+// client's request for the ListTrafficDistributionGroupUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTrafficDistributionGroupUsers for more information on using the ListTrafficDistributionGroupUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTrafficDistributionGroupUsersRequest method.
+//	req, resp := client.ListTrafficDistributionGroupUsersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTrafficDistributionGroupUsers
+func (c *Connect) ListTrafficDistributionGroupUsersRequest(input *ListTrafficDistributionGroupUsersInput) (req *request.Request, output *ListTrafficDistributionGroupUsersOutput) {
+	op := &request.Operation{
+		Name:       opListTrafficDistributionGroupUsers,
+		HTTPMethod: "GET",
+		HTTPPath:   "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTrafficDistributionGroupUsersInput{}
+	}
+
+	output = &ListTrafficDistributionGroupUsersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTrafficDistributionGroupUsers API operation for Amazon Connect Service.
+//
+// Lists traffic distribution group users.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListTrafficDistributionGroupUsers for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTrafficDistributionGroupUsers
+func (c *Connect) ListTrafficDistributionGroupUsers(input *ListTrafficDistributionGroupUsersInput) (*ListTrafficDistributionGroupUsersOutput, error) {
+	req, out := c.ListTrafficDistributionGroupUsersRequest(input)
+	return out, req.Send()
+}
+
+// ListTrafficDistributionGroupUsersWithContext is the same as ListTrafficDistributionGroupUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTrafficDistributionGroupUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListTrafficDistributionGroupUsersWithContext(ctx aws.Context, input *ListTrafficDistributionGroupUsersInput, opts ...request.Option) (*ListTrafficDistributionGroupUsersOutput, error) {
+	req, out := c.ListTrafficDistributionGroupUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTrafficDistributionGroupUsersPages iterates over the pages of a ListTrafficDistributionGroupUsers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTrafficDistributionGroupUsers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTrafficDistributionGroupUsers operation.
+//	pageNum := 0
+//	err := client.ListTrafficDistributionGroupUsersPages(params,
+//	    func(page *connect.ListTrafficDistributionGroupUsersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListTrafficDistributionGroupUsersPages(input *ListTrafficDistributionGroupUsersInput, fn func(*ListTrafficDistributionGroupUsersOutput, bool) bool) error {
+	return c.ListTrafficDistributionGroupUsersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTrafficDistributionGroupUsersPagesWithContext same as ListTrafficDistributionGroupUsersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListTrafficDistributionGroupUsersPagesWithContext(ctx aws.Context, input *ListTrafficDistributionGroupUsersInput, fn func(*ListTrafficDistributionGroupUsersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTrafficDistributionGroupUsersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTrafficDistributionGroupUsersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTrafficDistributionGroupUsersOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -20890,6 +21234,10 @@ func (c *Connect) UpdateTrafficDistributionRequest(input *UpdateTrafficDistribut
 //
 // Updates the traffic distribution for a given traffic distribution group.
 //
+// You can change the SignInConfig only for a default TrafficDistributionGroup.
+// If you call UpdateTrafficDistribution with a modified SignInConfig and a
+// non-default TrafficDistributionGroup, an InvalidRequestException is returned.
+//
 // For more information about updating a traffic distribution group, see Update
 // telephony traffic distribution across Amazon Web Services Regions (https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html)
 // in the Amazon Connect Administrator Guide.
@@ -21838,6 +22186,63 @@ func (s *ActivateEvaluationFormOutput) SetEvaluationFormId(v string) *ActivateEv
 // SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
 func (s *ActivateEvaluationFormOutput) SetEvaluationFormVersion(v int64) *ActivateEvaluationFormOutput {
 	s.EvaluationFormVersion = &v
+	return s
+}
+
+// The distribution of agents between the instance and its replica(s).
+type AgentConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Information about traffic distributions.
+	//
+	// Distributions is a required field
+	Distributions []*Distribution `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AgentConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AgentConfig"}
+	if s.Distributions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Distributions"))
+	}
+	if s.Distributions != nil {
+		for i, v := range s.Distributions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Distributions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDistributions sets the Distributions field's value.
+func (s *AgentConfig) SetDistributions(v []*Distribution) *AgentConfig {
+	s.Distributions = v
 	return s
 }
 
@@ -23260,6 +23665,114 @@ func (s AssociateSecurityKeyOutput) GoString() string {
 func (s *AssociateSecurityKeyOutput) SetAssociationId(v string) *AssociateSecurityKeyOutput {
 	s.AssociationId = &v
 	return s
+}
+
+type AssociateTrafficDistributionGroupUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the traffic distribution group. This can be the ID or the
+	// ARN if the API is being called in the Region where the traffic distribution
+	// group was created. The ARN must be provided if the call is from the replicated
+	// Region.
+	//
+	// TrafficDistributionGroupId is a required field
+	TrafficDistributionGroupId *string `location:"uri" locationName:"TrafficDistributionGroupId" type:"string" required:"true"`
+
+	// The identifier of the user account. This can be the ID or the ARN of the
+	// user.
+	//
+	// UserId is a required field
+	UserId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateTrafficDistributionGroupUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateTrafficDistributionGroupUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateTrafficDistributionGroupUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateTrafficDistributionGroupUserInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.TrafficDistributionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrafficDistributionGroupId"))
+	}
+	if s.TrafficDistributionGroupId != nil && len(*s.TrafficDistributionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrafficDistributionGroupId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateTrafficDistributionGroupUserInput) SetInstanceId(v string) *AssociateTrafficDistributionGroupUserInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTrafficDistributionGroupId sets the TrafficDistributionGroupId field's value.
+func (s *AssociateTrafficDistributionGroupUserInput) SetTrafficDistributionGroupId(v string) *AssociateTrafficDistributionGroupUserInput {
+	s.TrafficDistributionGroupId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *AssociateTrafficDistributionGroupUserInput) SetUserId(v string) *AssociateTrafficDistributionGroupUserInput {
+	s.UserId = &v
+	return s
+}
+
+type AssociateTrafficDistributionGroupUserOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateTrafficDistributionGroupUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateTrafficDistributionGroupUserOutput) GoString() string {
+	return s.String()
 }
 
 // Information about a reference when the referenceType is ATTACHMENT. Otherwise,
@@ -26364,7 +26877,7 @@ type CreateRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
 	// Whether agents with this routing profile will have their routing order calculated
-	// based on time since their last inbound contact or longest idle time.
+	// based on longest idle time or time since their last inbound contact.
 	AgentAvailabilityTimer *string `type:"string" enum:"AgentAvailabilityTimer"`
 
 	// The default outbound queue for the routing profile.
@@ -33398,6 +33911,113 @@ func (s DisassociateSecurityKeyOutput) GoString() string {
 	return s.String()
 }
 
+type DisassociateTrafficDistributionGroupUserInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"querystring" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the traffic distribution group. This can be the ID or the
+	// ARN if the API is being called in the Region where the traffic distribution
+	// group was created. The ARN must be provided if the call is from the replicated
+	// Region.
+	//
+	// TrafficDistributionGroupId is a required field
+	TrafficDistributionGroupId *string `location:"uri" locationName:"TrafficDistributionGroupId" type:"string" required:"true"`
+
+	// The identifier for the user. This can be the ID or the ARN of the user.
+	//
+	// UserId is a required field
+	UserId *string `location:"querystring" locationName:"UserId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateTrafficDistributionGroupUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateTrafficDistributionGroupUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateTrafficDistributionGroupUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateTrafficDistributionGroupUserInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.TrafficDistributionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrafficDistributionGroupId"))
+	}
+	if s.TrafficDistributionGroupId != nil && len(*s.TrafficDistributionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrafficDistributionGroupId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateTrafficDistributionGroupUserInput) SetInstanceId(v string) *DisassociateTrafficDistributionGroupUserInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTrafficDistributionGroupId sets the TrafficDistributionGroupId field's value.
+func (s *DisassociateTrafficDistributionGroupUserInput) SetTrafficDistributionGroupId(v string) *DisassociateTrafficDistributionGroupUserInput {
+	s.TrafficDistributionGroupId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DisassociateTrafficDistributionGroupUserInput) SetUserId(v string) *DisassociateTrafficDistributionGroupUserInput {
+	s.UserId = &v
+	return s
+}
+
+type DisassociateTrafficDistributionGroupUserOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateTrafficDistributionGroupUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateTrafficDistributionGroupUserOutput) GoString() string {
+	return s.String()
+}
+
 type DismissUserContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -36545,7 +37165,7 @@ type GetFederationTokenOutput struct {
 	// The Amazon Resource Name (ARN) of the user.
 	UserArn *string `type:"string"`
 
-	// The identifier for the user.
+	// The identifier for the user. This can be the ID or the ARN of the user.
 	UserId *string `min:"1" type:"string"`
 }
 
@@ -37931,6 +38551,9 @@ func (s *GetTrafficDistributionInput) SetId(v string) *GetTrafficDistributionInp
 type GetTrafficDistributionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The distribution of agents between the instance and its replica(s).
+	AgentConfig *AgentConfig `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the traffic distribution group.
 	Arn *string `type:"string"`
 
@@ -37939,6 +38562,9 @@ type GetTrafficDistributionOutput struct {
 	// group was created. The ARN must be provided if the call is from the replicated
 	// Region.
 	Id *string `type:"string"`
+
+	// The distribution of allowing signing in to the instance and its replica(s).
+	SignInConfig *SignInConfig `type:"structure"`
 
 	// The distribution of traffic between the instance and its replicas.
 	TelephonyConfig *TelephonyConfig `type:"structure"`
@@ -37962,6 +38588,12 @@ func (s GetTrafficDistributionOutput) GoString() string {
 	return s.String()
 }
 
+// SetAgentConfig sets the AgentConfig field's value.
+func (s *GetTrafficDistributionOutput) SetAgentConfig(v *AgentConfig) *GetTrafficDistributionOutput {
+	s.AgentConfig = v
+	return s
+}
+
 // SetArn sets the Arn field's value.
 func (s *GetTrafficDistributionOutput) SetArn(v string) *GetTrafficDistributionOutput {
 	s.Arn = &v
@@ -37971,6 +38603,12 @@ func (s *GetTrafficDistributionOutput) SetArn(v string) *GetTrafficDistributionO
 // SetId sets the Id field's value.
 func (s *GetTrafficDistributionOutput) SetId(v string) *GetTrafficDistributionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetSignInConfig sets the SignInConfig field's value.
+func (s *GetTrafficDistributionOutput) SetSignInConfig(v *SignInConfig) *GetTrafficDistributionOutput {
+	s.SignInConfig = v
 	return s
 }
 
@@ -44275,6 +44913,120 @@ func (s *ListTaskTemplatesOutput) SetNextToken(v string) *ListTaskTemplatesOutpu
 // SetTaskTemplates sets the TaskTemplates field's value.
 func (s *ListTaskTemplatesOutput) SetTaskTemplates(v []*TaskTemplateMetadata) *ListTaskTemplatesOutput {
 	s.TaskTemplates = v
+	return s
+}
+
+type ListTrafficDistributionGroupUsersInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The identifier of the traffic distribution group. This can be the ID or the
+	// ARN if the API is being called in the Region where the traffic distribution
+	// group was created. The ARN must be provided if the call is from the replicated
+	// Region.
+	//
+	// TrafficDistributionGroupId is a required field
+	TrafficDistributionGroupId *string `location:"uri" locationName:"TrafficDistributionGroupId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTrafficDistributionGroupUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTrafficDistributionGroupUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTrafficDistributionGroupUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTrafficDistributionGroupUsersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TrafficDistributionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrafficDistributionGroupId"))
+	}
+	if s.TrafficDistributionGroupId != nil && len(*s.TrafficDistributionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrafficDistributionGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTrafficDistributionGroupUsersInput) SetMaxResults(v int64) *ListTrafficDistributionGroupUsersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTrafficDistributionGroupUsersInput) SetNextToken(v string) *ListTrafficDistributionGroupUsersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTrafficDistributionGroupId sets the TrafficDistributionGroupId field's value.
+func (s *ListTrafficDistributionGroupUsersInput) SetTrafficDistributionGroupId(v string) *ListTrafficDistributionGroupUsersInput {
+	s.TrafficDistributionGroupId = &v
+	return s
+}
+
+type ListTrafficDistributionGroupUsersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// A list of traffic distribution group users.
+	TrafficDistributionGroupUserSummaryList []*TrafficDistributionGroupUserSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTrafficDistributionGroupUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTrafficDistributionGroupUsersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTrafficDistributionGroupUsersOutput) SetNextToken(v string) *ListTrafficDistributionGroupUsersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTrafficDistributionGroupUserSummaryList sets the TrafficDistributionGroupUserSummaryList field's value.
+func (s *ListTrafficDistributionGroupUsersOutput) SetTrafficDistributionGroupUserSummaryList(v []*TrafficDistributionGroupUserSummary) *ListTrafficDistributionGroupUsersOutput {
+	s.TrafficDistributionGroupUserSummaryList = v
 	return s
 }
 
@@ -51199,6 +51951,127 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The distribution of allowing signing in to the instance and its replica(s).
+type SignInConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Information about traffic distributions.
+	//
+	// Distributions is a required field
+	Distributions []*SignInDistribution `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignInConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignInConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SignInConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SignInConfig"}
+	if s.Distributions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Distributions"))
+	}
+	if s.Distributions != nil {
+		for i, v := range s.Distributions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Distributions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDistributions sets the Distributions field's value.
+func (s *SignInConfig) SetDistributions(v []*SignInDistribution) *SignInConfig {
+	s.Distributions = v
+	return s
+}
+
+// The distribution of sign in traffic between the instance and its replica(s).
+type SignInDistribution struct {
+	_ struct{} `type:"structure"`
+
+	// Whether sign in distribution is enabled.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// The Amazon Web Services Region of the sign in distribution.
+	//
+	// Region is a required field
+	Region *string `min:"8" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignInDistribution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignInDistribution) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SignInDistribution) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SignInDistribution"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.Region == nil {
+		invalidParams.Add(request.NewErrParamRequired("Region"))
+	}
+	if s.Region != nil && len(*s.Region) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 8))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *SignInDistribution) SetEnabled(v bool) *SignInDistribution {
+	s.Enabled = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *SignInDistribution) SetRegion(v string) *SignInDistribution {
+	s.Region = &v
+	return s
+}
+
 // Information about the automation option based on a rule category for a single
 // select question.
 type SingleSelectQuestionRuleCategoryAutomation struct {
@@ -53974,6 +54847,16 @@ type TrafficDistributionGroup struct {
 	// The Amazon Resource Name (ARN).
 	InstanceArn *string `type:"string"`
 
+	// Whether this is the default traffic distribution group created during instance
+	// replication. The default traffic distribution group cannot be deleted by
+	// the DeleteTrafficDistributionGroup API. The default traffic distribution
+	// group is deleted as part of the process for deleting a replica.
+	//
+	// You can change the SignInConfig only for a default TrafficDistributionGroup.
+	// If you call UpdateTrafficDistribution with a modified SignInConfig and a
+	// non-default TrafficDistributionGroup, an InvalidRequestException is returned.
+	IsDefault *bool `type:"boolean"`
+
 	// The name of the traffic distribution group.
 	Name *string `min:"1" type:"string"`
 
@@ -54048,6 +54931,12 @@ func (s *TrafficDistributionGroup) SetInstanceArn(v string) *TrafficDistribution
 	return s
 }
 
+// SetIsDefault sets the IsDefault field's value.
+func (s *TrafficDistributionGroup) SetIsDefault(v bool) *TrafficDistributionGroup {
+	s.IsDefault = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *TrafficDistributionGroup) SetName(v string) *TrafficDistributionGroup {
 	s.Name = &v
@@ -54081,6 +54970,12 @@ type TrafficDistributionGroupSummary struct {
 
 	// The Amazon Resource Name (ARN) of the traffic distribution group.
 	InstanceArn *string `type:"string"`
+
+	// Whether this is the default traffic distribution group created during instance
+	// replication. The default traffic distribution group cannot be deleted by
+	// the DeleteTrafficDistributionGroup API. The default traffic distribution
+	// group is deleted as part of the process for deleting a replica.
+	IsDefault *bool `type:"boolean"`
 
 	// The name of the traffic distribution group.
 	Name *string `min:"1" type:"string"`
@@ -54146,6 +55041,12 @@ func (s *TrafficDistributionGroupSummary) SetInstanceArn(v string) *TrafficDistr
 	return s
 }
 
+// SetIsDefault sets the IsDefault field's value.
+func (s *TrafficDistributionGroupSummary) SetIsDefault(v bool) *TrafficDistributionGroupSummary {
+	s.IsDefault = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *TrafficDistributionGroupSummary) SetName(v string) *TrafficDistributionGroupSummary {
 	s.Name = &v
@@ -54155,6 +55056,38 @@ func (s *TrafficDistributionGroupSummary) SetName(v string) *TrafficDistribution
 // SetStatus sets the Status field's value.
 func (s *TrafficDistributionGroupSummary) SetStatus(v string) *TrafficDistributionGroupSummary {
 	s.Status = &v
+	return s
+}
+
+// Summary information about a traffic distribution group user.
+type TrafficDistributionGroupUserSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the user. This can be the ID or the ARN of the user.
+	UserId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrafficDistributionGroupUserSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrafficDistributionGroupUserSummary) GoString() string {
+	return s.String()
+}
+
+// SetUserId sets the UserId field's value.
+func (s *TrafficDistributionGroupUserSummary) SetUserId(v string) *TrafficDistributionGroupUserSummary {
+	s.UserId = &v
 	return s
 }
 
@@ -54187,7 +55120,7 @@ type TransferContactInput struct {
 	// The identifier for the queue.
 	QueueId *string `type:"string"`
 
-	// The identifier for the user.
+	// The identifier for the user. This can be the ID or the ARN of the user.
 	UserId *string `min:"1" type:"string"`
 }
 
@@ -58489,6 +59422,9 @@ func (s *UpdateTaskTemplateOutput) SetStatus(v string) *UpdateTaskTemplateOutput
 type UpdateTrafficDistributionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The distribution of agents between the instance and its replica(s).
+	AgentConfig *AgentConfig `type:"structure"`
+
 	// The identifier of the traffic distribution group. This can be the ID or the
 	// ARN if the API is being called in the Region where the traffic distribution
 	// group was created. The ARN must be provided if the call is from the replicated
@@ -58496,6 +59432,9 @@ type UpdateTrafficDistributionInput struct {
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The distribution of allowing signing in to the instance and its replica(s).
+	SignInConfig *SignInConfig `type:"structure"`
 
 	// The distribution of traffic between the instance and its replica(s).
 	TelephonyConfig *TelephonyConfig `type:"structure"`
@@ -58528,6 +59467,16 @@ func (s *UpdateTrafficDistributionInput) Validate() error {
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
+	if s.AgentConfig != nil {
+		if err := s.AgentConfig.Validate(); err != nil {
+			invalidParams.AddNested("AgentConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SignInConfig != nil {
+		if err := s.SignInConfig.Validate(); err != nil {
+			invalidParams.AddNested("SignInConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TelephonyConfig != nil {
 		if err := s.TelephonyConfig.Validate(); err != nil {
 			invalidParams.AddNested("TelephonyConfig", err.(request.ErrInvalidParams))
@@ -58540,9 +59489,21 @@ func (s *UpdateTrafficDistributionInput) Validate() error {
 	return nil
 }
 
+// SetAgentConfig sets the AgentConfig field's value.
+func (s *UpdateTrafficDistributionInput) SetAgentConfig(v *AgentConfig) *UpdateTrafficDistributionInput {
+	s.AgentConfig = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *UpdateTrafficDistributionInput) SetId(v string) *UpdateTrafficDistributionInput {
 	s.Id = &v
+	return s
+}
+
+// SetSignInConfig sets the SignInConfig field's value.
+func (s *UpdateTrafficDistributionInput) SetSignInConfig(v *SignInConfig) *UpdateTrafficDistributionInput {
+	s.SignInConfig = v
 	return s
 }
 

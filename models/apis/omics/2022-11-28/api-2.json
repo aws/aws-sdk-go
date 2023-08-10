@@ -5022,6 +5022,9 @@
         "gpus": {
           "shape": "GetRunTaskResponseGpusInteger"
         },
+        "instanceType": {
+          "shape": "TaskInstanceType"
+        },
         "logStream": {
           "shape": "TaskLogStream"
         },
@@ -8210,6 +8213,10 @@
       "pattern": "[0-9]+",
       "type": "string"
     },
+    "TaskInstanceType": {
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
+      "type": "string"
+    },
     "TaskList": {
       "member": {
         "shape": "TaskListItem"
@@ -8226,6 +8233,9 @@
         },
         "gpus": {
           "shape": "TaskListItemGpusInteger"
+        },
+        "instanceType": {
+          "shape": "TaskInstanceType"
         },
         "memory": {
           "shape": "TaskListItemMemoryInteger"

@@ -1089,7 +1089,7 @@
     "ListAnnotationImportJobsRequestNextTokenString": {
       "base": null,
       "refs": {
-        "ListAnnotationImportJobsRequest$nextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>"
+        "ListAnnotationImportJobsRequest$nextToken": "<p>Specifies the pagination token from a previous request to retrieve the next page of results.</p>"
       }
     },
     "ListAnnotationImportJobsResponse": {
@@ -2640,7 +2640,7 @@
         "GetVariantStoreResponse$name": "<p>The store's name.</p>",
         "InternalServerException$message": null,
         "ListAnnotationImportJobsFilter$storeName": "<p>A store name to filter on.</p>",
-        "ListAnnotationImportJobsResponse$nextToken": "<p>A pagination token that's included if more results are available.</p>",
+        "ListAnnotationImportJobsResponse$nextToken": "<p>Specifies the pagination token from a previous request to retrieve the next page of results.</p>",
         "ListAnnotationStoresResponse$nextToken": "<p>A pagination token that's included if more results are available.</p>",
         "ListVariantImportJobsFilter$storeName": "<p>A store name to filter on.</p>",
         "ListVariantImportJobsResponse$nextToken": "<p>A pagination token that's included if more results are available.</p>",
@@ -2817,6 +2817,13 @@
         "GetRunTaskRequest$taskId": "<p>The task's ID.</p>",
         "GetRunTaskResponse$taskId": "<p>The task's ID.</p>",
         "TaskListItem$taskId": "<p>The task's ID.</p>"
+      }
+    },
+    "TaskInstanceType": {
+      "base": null,
+      "refs": {
+        "GetRunTaskResponse$instanceType": "<p> The instance type for a task. </p>",
+        "TaskListItem$instanceType": "<p> The instance type for a task. </p>"
       }
     },
     "TaskList": {

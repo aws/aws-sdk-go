@@ -14308,6 +14308,9 @@ type GetRunTaskOutput struct {
 	// The number of Graphics Processing Units (GPU) specified in the task.
 	Gpus *int64 `locationName:"gpus" type:"integer"`
 
+	// The instance type for a task.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
 	// The task's log stream.
 	LogStream *string `locationName:"logStream" type:"string"`
 
@@ -14366,6 +14369,12 @@ func (s *GetRunTaskOutput) SetCreationTime(v time.Time) *GetRunTaskOutput {
 // SetGpus sets the Gpus field's value.
 func (s *GetRunTaskOutput) SetGpus(v int64) *GetRunTaskOutput {
 	s.Gpus = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *GetRunTaskOutput) SetInstanceType(v string) *GetRunTaskOutput {
+	s.InstanceType = &v
 	return s
 }
 
@@ -15795,7 +15804,7 @@ type ListAnnotationImportJobsInput struct {
 	// The maximum number of jobs to return in one page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// Specify the pagination token from a previous request to retrieve the next
+	// Specifies the pagination token from a previous request to retrieve the next
 	// page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
@@ -15867,7 +15876,8 @@ type ListAnnotationImportJobsOutput struct {
 	// A list of jobs.
 	AnnotationImportJobs []*AnnotationImportJobItem `locationName:"annotationImportJobs" type:"list"`
 
-	// A pagination token that's included if more results are available.
+	// Specifies the pagination token from a previous request to retrieve the next
+	// page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -21949,6 +21959,9 @@ type TaskListItem struct {
 	// The number of Graphics Processing Units (GPU) specified for the task.
 	Gpus *int64 `locationName:"gpus" type:"integer"`
 
+	// The instance type for a task.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
 	// The task's memory use in gigabyes.
 	Memory *int64 `locationName:"memory" min:"1" type:"integer"`
 
@@ -22001,6 +22014,12 @@ func (s *TaskListItem) SetCreationTime(v time.Time) *TaskListItem {
 // SetGpus sets the Gpus field's value.
 func (s *TaskListItem) SetGpus(v int64) *TaskListItem {
 	s.Gpus = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *TaskListItem) SetInstanceType(v string) *TaskListItem {
+	s.InstanceType = &v
 	return s
 }
 
