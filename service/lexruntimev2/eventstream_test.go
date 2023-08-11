@@ -942,6 +942,9 @@ func TestStartConversation_Write(t *testing.T) {
 			BiDirectional: true,
 		},
 		true)
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 	defer cleanupFn()
 
 	svc := New(sess)
@@ -1040,6 +1043,9 @@ func TestStartConversation_ReadWrite(t *testing.T) {
 			BiDirectional: true,
 		},
 		true)
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 	defer cleanupFn()
 
 	svc := New(sess)
