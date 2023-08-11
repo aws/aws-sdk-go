@@ -3058,7 +3058,7 @@ func (s *BackendAPIResourceConfig) SetTransformSchema(v string) *BackendAPIResou
 // Describes Apple social federation configurations for allowing your app users
 // to sign in using OAuth.
 type BackendAuthAppleProviderConfig struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Describes the client_id (also called Services ID) that comes from Apple.
 	ClientId *string `locationName:"client_id" type:"string"`
@@ -3118,7 +3118,7 @@ func (s *BackendAuthAppleProviderConfig) SetTeamId(v string) *BackendAuthApplePr
 // Describes third-party social federation configurations for allowing your
 // app users to sign in using OAuth.
 type BackendAuthSocialProviderConfig struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Describes the client_id, which can be obtained from the third-party social
 	// federation provider.
@@ -3695,11 +3695,19 @@ type CreateBackendAuthForgotPasswordConfig struct {
 
 	// (DEPRECATED) The configuration for the email sent when an app user forgets
 	// their password.
-	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
+	//
+	// EmailSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBackendAuthForgotPasswordConfig's
+	// String and GoString methods.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure" sensitive:"true"`
 
 	// (DEPRECATED) The configuration for the SMS message sent when an app user
 	// forgets their password.
-	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
+	//
+	// SmsSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBackendAuthForgotPasswordConfig's
+	// String and GoString methods.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -4463,10 +4471,18 @@ type CreateBackendAuthVerificationMessageConfig struct {
 	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
 
 	// The settings for the email message.
-	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
+	//
+	// EmailSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBackendAuthVerificationMessageConfig's
+	// String and GoString methods.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure" sensitive:"true"`
 
 	// The settings for the SMS message.
-	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
+	//
+	// SmsSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBackendAuthVerificationMessageConfig's
+	// String and GoString methods.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5765,7 +5781,7 @@ func (s *DeleteTokenOutput) SetIsSuccess(v bool) *DeleteTokenOutput {
 
 // The settings for the email message.
 type EmailSettings struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The contents of the email message.
 	EmailMessage *string `locationName:"emailMessage" type:"string"`
@@ -7975,7 +7991,7 @@ func (s *Settings) SetSmsMessage(v string) *Settings {
 
 // The settings for the SMS message.
 type SmsSettings struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The contents of the SMS message.
 	SmsMessage *string `locationName:"smsMessage" type:"string"`
@@ -8010,19 +8026,35 @@ type SocialProviderSettings struct {
 
 	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
-	Facebook *BackendAuthSocialProviderConfig `type:"structure"`
+	//
+	// Facebook is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SocialProviderSettings's
+	// String and GoString methods.
+	Facebook *BackendAuthSocialProviderConfig `type:"structure" sensitive:"true"`
 
 	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
-	Google *BackendAuthSocialProviderConfig `type:"structure"`
+	//
+	// Google is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SocialProviderSettings's
+	// String and GoString methods.
+	Google *BackendAuthSocialProviderConfig `type:"structure" sensitive:"true"`
 
 	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
-	LoginWithAmazon *BackendAuthSocialProviderConfig `type:"structure"`
+	//
+	// LoginWithAmazon is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SocialProviderSettings's
+	// String and GoString methods.
+	LoginWithAmazon *BackendAuthSocialProviderConfig `type:"structure" sensitive:"true"`
 
 	// Describes Apple social federation configurations for allowing your app users
 	// to sign in using OAuth.
-	SignInWithApple *BackendAuthAppleProviderConfig `type:"structure"`
+	//
+	// SignInWithApple is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SocialProviderSettings's
+	// String and GoString methods.
+	SignInWithApple *BackendAuthAppleProviderConfig `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8298,11 +8330,19 @@ type UpdateBackendAuthForgotPasswordConfig struct {
 
 	// (DEPRECATED) The configuration for the email sent when an app user forgets
 	// their password.
-	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
+	//
+	// EmailSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBackendAuthForgotPasswordConfig's
+	// String and GoString methods.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure" sensitive:"true"`
 
 	// (DEPRECATED) The configuration for the SMS message sent when an Amplify app
 	// user forgets their password.
-	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
+	//
+	// SmsSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBackendAuthForgotPasswordConfig's
+	// String and GoString methods.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8899,10 +8939,18 @@ type UpdateBackendAuthVerificationMessageConfig struct {
 	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
 
 	// The settings for the email message.
-	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
+	//
+	// EmailSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBackendAuthVerificationMessageConfig's
+	// String and GoString methods.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure" sensitive:"true"`
 
 	// The settings for the SMS message.
-	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
+	//
+	// SmsSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBackendAuthVerificationMessageConfig's
+	// String and GoString methods.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.

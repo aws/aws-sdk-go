@@ -1,3 +1,18 @@
+Release v1.44.322 (2023-08-11)
+===
+
+### Service Client Updates
+* `service/amplifybackend`: Updates service API
+* `service/config`: Updates service API
+* `service/ec2`: Updates service API
+  * Amazon EC2 P5 instances, powered by the latest NVIDIA H100 Tensor Core GPUs, deliver the highest performance in EC2 for deep learning (DL) and HPC applications. M7i-flex and M7i instances are next-generation general purpose instances powered by custom 4th Generation Intel Xeon Scalable processors.
+* `service/email`: Updates service documentation
+  * Doc only updates to include: 1) Clarified which part of an email address where it's okay to have Punycode when it contains non-ASCII characters for the SendRawEmail action and other actions where this is applicable. 2) Updated S3Action description with new MB max bucket size from 30 to 40.
+* `service/quicksight`: Updates service API and documentation
+  * New Authentication method for Account subscription - IAM Identity Center. Hierarchy layout support, default column width support and related style properties for pivot table visuals. Non-additive topic field aggregations for Topic API
+* `service/swf`: Updates service API and documentation
+  * This release adds new API parameters to override workflow task list for workflow executions.
+
 Release v1.44.321 (2023-08-10)
 ===
 

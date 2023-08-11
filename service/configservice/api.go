@@ -34783,6 +34783,111 @@ const (
 
 	// ResourceTypeAwsKinesisFirehoseDeliveryStream is a ResourceType enum value
 	ResourceTypeAwsKinesisFirehoseDeliveryStream = "AWS::KinesisFirehose::DeliveryStream"
+
+	// ResourceTypeAwsAmplifyBranch is a ResourceType enum value
+	ResourceTypeAwsAmplifyBranch = "AWS::Amplify::Branch"
+
+	// ResourceTypeAwsAppIntegrationsEventIntegration is a ResourceType enum value
+	ResourceTypeAwsAppIntegrationsEventIntegration = "AWS::AppIntegrations::EventIntegration"
+
+	// ResourceTypeAwsAppMeshRoute is a ResourceType enum value
+	ResourceTypeAwsAppMeshRoute = "AWS::AppMesh::Route"
+
+	// ResourceTypeAwsAthenaPreparedStatement is a ResourceType enum value
+	ResourceTypeAwsAthenaPreparedStatement = "AWS::Athena::PreparedStatement"
+
+	// ResourceTypeAwsEc2Ipamscope is a ResourceType enum value
+	ResourceTypeAwsEc2Ipamscope = "AWS::EC2::IPAMScope"
+
+	// ResourceTypeAwsEvidentlyLaunch is a ResourceType enum value
+	ResourceTypeAwsEvidentlyLaunch = "AWS::Evidently::Launch"
+
+	// ResourceTypeAwsForecastDatasetGroup is a ResourceType enum value
+	ResourceTypeAwsForecastDatasetGroup = "AWS::Forecast::DatasetGroup"
+
+	// ResourceTypeAwsGreengrassV2ComponentVersion is a ResourceType enum value
+	ResourceTypeAwsGreengrassV2ComponentVersion = "AWS::GreengrassV2::ComponentVersion"
+
+	// ResourceTypeAwsGroundStationMissionProfile is a ResourceType enum value
+	ResourceTypeAwsGroundStationMissionProfile = "AWS::GroundStation::MissionProfile"
+
+	// ResourceTypeAwsMediaConnectFlowEntitlement is a ResourceType enum value
+	ResourceTypeAwsMediaConnectFlowEntitlement = "AWS::MediaConnect::FlowEntitlement"
+
+	// ResourceTypeAwsMediaConnectFlowVpcInterface is a ResourceType enum value
+	ResourceTypeAwsMediaConnectFlowVpcInterface = "AWS::MediaConnect::FlowVpcInterface"
+
+	// ResourceTypeAwsMediaTailorPlaybackConfiguration is a ResourceType enum value
+	ResourceTypeAwsMediaTailorPlaybackConfiguration = "AWS::MediaTailor::PlaybackConfiguration"
+
+	// ResourceTypeAwsMskConfiguration is a ResourceType enum value
+	ResourceTypeAwsMskConfiguration = "AWS::MSK::Configuration"
+
+	// ResourceTypeAwsPersonalizeDataset is a ResourceType enum value
+	ResourceTypeAwsPersonalizeDataset = "AWS::Personalize::Dataset"
+
+	// ResourceTypeAwsPersonalizeSchema is a ResourceType enum value
+	ResourceTypeAwsPersonalizeSchema = "AWS::Personalize::Schema"
+
+	// ResourceTypeAwsPersonalizeSolution is a ResourceType enum value
+	ResourceTypeAwsPersonalizeSolution = "AWS::Personalize::Solution"
+
+	// ResourceTypeAwsPinpointEmailTemplate is a ResourceType enum value
+	ResourceTypeAwsPinpointEmailTemplate = "AWS::Pinpoint::EmailTemplate"
+
+	// ResourceTypeAwsPinpointEventStream is a ResourceType enum value
+	ResourceTypeAwsPinpointEventStream = "AWS::Pinpoint::EventStream"
+
+	// ResourceTypeAwsResilienceHubApp is a ResourceType enum value
+	ResourceTypeAwsResilienceHubApp = "AWS::ResilienceHub::App"
+
+	// ResourceTypeAwsAcmpcaCertificateAuthority is a ResourceType enum value
+	ResourceTypeAwsAcmpcaCertificateAuthority = "AWS::ACMPCA::CertificateAuthority"
+
+	// ResourceTypeAwsAppConfigHostedConfigurationVersion is a ResourceType enum value
+	ResourceTypeAwsAppConfigHostedConfigurationVersion = "AWS::AppConfig::HostedConfigurationVersion"
+
+	// ResourceTypeAwsAppMeshVirtualGateway is a ResourceType enum value
+	ResourceTypeAwsAppMeshVirtualGateway = "AWS::AppMesh::VirtualGateway"
+
+	// ResourceTypeAwsAppMeshVirtualRouter is a ResourceType enum value
+	ResourceTypeAwsAppMeshVirtualRouter = "AWS::AppMesh::VirtualRouter"
+
+	// ResourceTypeAwsAppRunnerService is a ResourceType enum value
+	ResourceTypeAwsAppRunnerService = "AWS::AppRunner::Service"
+
+	// ResourceTypeAwsCustomerProfilesObjectType is a ResourceType enum value
+	ResourceTypeAwsCustomerProfilesObjectType = "AWS::CustomerProfiles::ObjectType"
+
+	// ResourceTypeAwsDmsEndpoint is a ResourceType enum value
+	ResourceTypeAwsDmsEndpoint = "AWS::DMS::Endpoint"
+
+	// ResourceTypeAwsEc2CapacityReservation is a ResourceType enum value
+	ResourceTypeAwsEc2CapacityReservation = "AWS::EC2::CapacityReservation"
+
+	// ResourceTypeAwsEc2ClientVpnEndpoint is a ResourceType enum value
+	ResourceTypeAwsEc2ClientVpnEndpoint = "AWS::EC2::ClientVpnEndpoint"
+
+	// ResourceTypeAwsKendraIndex is a ResourceType enum value
+	ResourceTypeAwsKendraIndex = "AWS::Kendra::Index"
+
+	// ResourceTypeAwsKinesisVideoStream is a ResourceType enum value
+	ResourceTypeAwsKinesisVideoStream = "AWS::KinesisVideo::Stream"
+
+	// ResourceTypeAwsLogsDestination is a ResourceType enum value
+	ResourceTypeAwsLogsDestination = "AWS::Logs::Destination"
+
+	// ResourceTypeAwsPinpointEmailChannel is a ResourceType enum value
+	ResourceTypeAwsPinpointEmailChannel = "AWS::Pinpoint::EmailChannel"
+
+	// ResourceTypeAwsS3AccessPoint is a ResourceType enum value
+	ResourceTypeAwsS3AccessPoint = "AWS::S3::AccessPoint"
+
+	// ResourceTypeAwsNetworkManagerCustomerGatewayAssociation is a ResourceType enum value
+	ResourceTypeAwsNetworkManagerCustomerGatewayAssociation = "AWS::NetworkManager::CustomerGatewayAssociation"
+
+	// ResourceTypeAwsNetworkManagerLinkAssociation is a ResourceType enum value
+	ResourceTypeAwsNetworkManagerLinkAssociation = "AWS::NetworkManager::LinkAssociation"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -35106,6 +35211,41 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsTransferAgreement,
 		ResourceTypeAwsTransferConnector,
 		ResourceTypeAwsKinesisFirehoseDeliveryStream,
+		ResourceTypeAwsAmplifyBranch,
+		ResourceTypeAwsAppIntegrationsEventIntegration,
+		ResourceTypeAwsAppMeshRoute,
+		ResourceTypeAwsAthenaPreparedStatement,
+		ResourceTypeAwsEc2Ipamscope,
+		ResourceTypeAwsEvidentlyLaunch,
+		ResourceTypeAwsForecastDatasetGroup,
+		ResourceTypeAwsGreengrassV2ComponentVersion,
+		ResourceTypeAwsGroundStationMissionProfile,
+		ResourceTypeAwsMediaConnectFlowEntitlement,
+		ResourceTypeAwsMediaConnectFlowVpcInterface,
+		ResourceTypeAwsMediaTailorPlaybackConfiguration,
+		ResourceTypeAwsMskConfiguration,
+		ResourceTypeAwsPersonalizeDataset,
+		ResourceTypeAwsPersonalizeSchema,
+		ResourceTypeAwsPersonalizeSolution,
+		ResourceTypeAwsPinpointEmailTemplate,
+		ResourceTypeAwsPinpointEventStream,
+		ResourceTypeAwsResilienceHubApp,
+		ResourceTypeAwsAcmpcaCertificateAuthority,
+		ResourceTypeAwsAppConfigHostedConfigurationVersion,
+		ResourceTypeAwsAppMeshVirtualGateway,
+		ResourceTypeAwsAppMeshVirtualRouter,
+		ResourceTypeAwsAppRunnerService,
+		ResourceTypeAwsCustomerProfilesObjectType,
+		ResourceTypeAwsDmsEndpoint,
+		ResourceTypeAwsEc2CapacityReservation,
+		ResourceTypeAwsEc2ClientVpnEndpoint,
+		ResourceTypeAwsKendraIndex,
+		ResourceTypeAwsKinesisVideoStream,
+		ResourceTypeAwsLogsDestination,
+		ResourceTypeAwsPinpointEmailChannel,
+		ResourceTypeAwsS3AccessPoint,
+		ResourceTypeAwsNetworkManagerCustomerGatewayAssociation,
+		ResourceTypeAwsNetworkManagerLinkAssociation,
 	}
 }
 
