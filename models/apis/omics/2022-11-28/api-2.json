@@ -55,6 +55,47 @@
         "shape": "AbortMultipartReadSetUploadResponse"
       }
     },
+    "AcceptShare": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/share/{shareId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "AcceptShareRequest"
+      },
+      "name": "AcceptShare",
+      "output": {
+        "shape": "AcceptShareResponse"
+      }
+    },
     "BatchDeleteReadSet": {
       "authtype": "v4",
       "endpoint": {
@@ -292,6 +333,47 @@
         "shape": "CreateAnnotationStoreResponse"
       }
     },
+    "CreateAnnotationStoreVersion": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/annotationStore/{name}/version",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateAnnotationStoreVersionRequest"
+      },
+      "name": "CreateAnnotationStoreVersion",
+      "output": {
+        "shape": "CreateAnnotationStoreVersionResponse"
+      }
+    },
     "CreateMultipartReadSetUpload": {
       "authtype": "v4",
       "endpoint": {
@@ -456,6 +538,47 @@
         "shape": "CreateSequenceStoreResponse"
       }
     },
+    "CreateShare": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/share",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateShareRequest"
+      },
+      "name": "CreateShare",
+      "output": {
+        "shape": "CreateShareResponse"
+      }
+    },
     "CreateVariantStore": {
       "authtype": "v4",
       "endpoint": {
@@ -578,6 +701,45 @@
       "name": "DeleteAnnotationStore",
       "output": {
         "shape": "DeleteAnnotationStoreResponse"
+      }
+    },
+    "DeleteAnnotationStoreVersions": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/annotationStore/{name}/versions/delete",
+        "responseCode": 200
+      },
+      "idempotent": true,
+      "input": {
+        "shape": "DeleteAnnotationStoreVersionsRequest"
+      },
+      "name": "DeleteAnnotationStoreVersions",
+      "output": {
+        "shape": "DeleteAnnotationStoreVersionsResponse"
       }
     },
     "DeleteReference": {
@@ -790,6 +952,48 @@
         "shape": "DeleteSequenceStoreResponse"
       }
     },
+    "DeleteShare": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/share/{shareId}",
+        "responseCode": 200
+      },
+      "idempotent": true,
+      "input": {
+        "shape": "DeleteShareRequest"
+      },
+      "name": "DeleteShare",
+      "output": {
+        "shape": "DeleteShareResponse"
+      }
+    },
     "DeleteVariantStore": {
       "authtype": "v4",
       "endpoint": {
@@ -939,6 +1143,41 @@
       "name": "GetAnnotationStore",
       "output": {
         "shape": "GetAnnotationStoreResponse"
+      }
+    },
+    "GetAnnotationStoreVersion": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/annotationStore/{name}/version/{versionName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetAnnotationStoreVersionRequest"
+      },
+      "name": "GetAnnotationStoreVersion",
+      "output": {
+        "shape": "GetAnnotationStoreVersionResponse"
       }
     },
     "GetReadSet": {
@@ -1462,6 +1701,47 @@
         "shape": "GetSequenceStoreResponse"
       }
     },
+    "GetShare": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/share/{shareId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetShareRequest"
+      },
+      "name": "GetShare",
+      "output": {
+        "shape": "GetShareResponse"
+      }
+    },
     "GetVariantImportJob": {
       "authtype": "v4",
       "endpoint": {
@@ -1609,6 +1889,41 @@
       "name": "ListAnnotationImportJobs",
       "output": {
         "shape": "ListAnnotationImportJobsResponse"
+      }
+    },
+    "ListAnnotationStoreVersions": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/annotationStore/{name}/versions",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListAnnotationStoreVersionsRequest"
+      },
+      "name": "ListAnnotationStoreVersions",
+      "output": {
+        "shape": "ListAnnotationStoreVersionsResponse"
       }
     },
     "ListAnnotationStores": {
@@ -2162,6 +2477,47 @@
       "name": "ListSequenceStores",
       "output": {
         "shape": "ListSequenceStoresResponse"
+      }
+    },
+    "ListShares": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/shares",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListSharesRequest"
+      },
+      "name": "ListShares",
+      "output": {
+        "shape": "ListSharesResponse"
       }
     },
     "ListTagsForResource": {
@@ -2730,6 +3086,41 @@
         "shape": "UpdateAnnotationStoreResponse"
       }
     },
+    "UpdateAnnotationStoreVersion": {
+      "authtype": "v4",
+      "endpoint": {
+        "hostPrefix": "analytics-"
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/annotationStore/{name}/version/{versionName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateAnnotationStoreVersionRequest"
+      },
+      "name": "UpdateAnnotationStoreVersion",
+      "output": {
+        "shape": "UpdateAnnotationStoreVersionResponse"
+      }
+    },
     "UpdateRunGroup": {
       "authtype": "v4",
       "endpoint": {
@@ -2924,6 +3315,27 @@
       "min": 1,
       "type": "string"
     },
+    "AcceptShareRequest": {
+      "members": {
+        "shareId": {
+          "location": "uri",
+          "locationName": "shareId",
+          "shape": "String"
+        }
+      },
+      "required": [
+        "shareId"
+      ],
+      "type": "structure"
+    },
+    "AcceptShareResponse": {
+      "members": {
+        "status": {
+          "shape": "ShareStatus"
+        }
+      },
+      "type": "structure"
+    },
     "AccessDeniedException": {
       "error": {
         "httpStatusCode": 403,
@@ -3104,11 +3516,15 @@
         },
         "updateTime": {
           "shape": "UpdateTime"
+        },
+        "versionName": {
+          "shape": "VersionName"
         }
       },
       "required": [
         "id",
         "destinationName",
+        "versionName",
         "roleArn",
         "status",
         "creationTime",
@@ -3128,7 +3544,7 @@
           "shape": "CreationTime"
         },
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "id": {
           "shape": "ResourceId"
@@ -3183,6 +3599,63 @@
       },
       "type": "list"
     },
+    "AnnotationStoreVersionItem": {
+      "members": {
+        "creationTime": {
+          "shape": "CreationTime"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "id": {
+          "shape": "ResourceId"
+        },
+        "name": {
+          "shape": "StoreName"
+        },
+        "status": {
+          "shape": "VersionStatus"
+        },
+        "statusMessage": {
+          "shape": "StatusMessage"
+        },
+        "storeId": {
+          "shape": "ResourceId"
+        },
+        "updateTime": {
+          "shape": "UpdateTime"
+        },
+        "versionArn": {
+          "shape": "Arn"
+        },
+        "versionName": {
+          "shape": "VersionName"
+        },
+        "versionSizeBytes": {
+          "shape": "Long"
+        }
+      },
+      "required": [
+        "storeId",
+        "id",
+        "status",
+        "versionArn",
+        "name",
+        "versionName",
+        "description",
+        "creationTime",
+        "updateTime",
+        "statusMessage",
+        "versionSizeBytes"
+      ],
+      "type": "structure"
+    },
+    "AnnotationStoreVersionItems": {
+      "member": {
+        "shape": "AnnotationStoreVersionItem"
+      },
+      "type": "list"
+    },
     "AnnotationType": {
       "enum": [
         "GENERIC",
@@ -3200,6 +3673,14 @@
       "min": 20,
       "pattern": "arn:([^: ]*):([^: ]*):([^: ]*):([0-9]{12}):([^: ]*)",
       "type": "string"
+    },
+    "ArnList": {
+      "max": 10,
+      "member": {
+        "shape": "String"
+      },
+      "min": 1,
+      "type": "list"
     },
     "BatchDeleteReadSetRequest": {
       "members": {
@@ -3379,10 +3860,10 @@
     "CreateAnnotationStoreRequest": {
       "members": {
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "name": {
-          "shape": "CreateAnnotationStoreRequestNameString"
+          "shape": "StoreName"
         },
         "reference": {
           "shape": "ReferenceItem"
@@ -3398,16 +3879,15 @@
         },
         "tags": {
           "shape": "TagMap"
+        },
+        "versionName": {
+          "shape": "VersionName"
         }
       },
       "required": [
         "storeFormat"
       ],
       "type": "structure"
-    },
-    "CreateAnnotationStoreRequestNameString": {
-      "pattern": "([a-z]){1}([a-z0-9_]){2,254}",
-      "type": "string"
     },
     "CreateAnnotationStoreResponse": {
       "members": {
@@ -3431,12 +3911,76 @@
         },
         "storeOptions": {
           "shape": "StoreOptions"
+        },
+        "versionName": {
+          "shape": "VersionName"
         }
       },
       "required": [
         "id",
         "status",
         "name",
+        "versionName",
+        "creationTime"
+      ],
+      "type": "structure"
+    },
+    "CreateAnnotationStoreVersionRequest": {
+      "members": {
+        "description": {
+          "shape": "Description"
+        },
+        "name": {
+          "location": "uri",
+          "locationName": "name",
+          "shape": "StoreName"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "versionName": {
+          "shape": "VersionName"
+        },
+        "versionOptions": {
+          "shape": "VersionOptions"
+        }
+      },
+      "required": [
+        "name",
+        "versionName"
+      ],
+      "type": "structure"
+    },
+    "CreateAnnotationStoreVersionResponse": {
+      "members": {
+        "creationTime": {
+          "shape": "CreationTime"
+        },
+        "id": {
+          "shape": "ResourceId"
+        },
+        "name": {
+          "shape": "StoreName"
+        },
+        "status": {
+          "shape": "VersionStatus"
+        },
+        "storeId": {
+          "shape": "ResourceId"
+        },
+        "versionName": {
+          "shape": "VersionName"
+        },
+        "versionOptions": {
+          "shape": "VersionOptions"
+        }
+      },
+      "required": [
+        "id",
+        "versionName",
+        "storeId",
+        "name",
+        "status",
         "creationTime"
       ],
       "type": "structure"
@@ -3709,13 +4253,45 @@
       ],
       "type": "structure"
     },
+    "CreateShareRequest": {
+      "members": {
+        "principalSubscriber": {
+          "shape": "String"
+        },
+        "resourceArn": {
+          "shape": "String"
+        },
+        "shareName": {
+          "shape": "ShareName"
+        }
+      },
+      "required": [
+        "resourceArn",
+        "principalSubscriber"
+      ],
+      "type": "structure"
+    },
+    "CreateShareResponse": {
+      "members": {
+        "shareId": {
+          "shape": "String"
+        },
+        "shareName": {
+          "shape": "ShareName"
+        },
+        "status": {
+          "shape": "ShareStatus"
+        }
+      },
+      "type": "structure"
+    },
     "CreateVariantStoreRequest": {
       "members": {
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "name": {
-          "shape": "CreateVariantStoreRequestNameString"
+          "shape": "StoreName"
         },
         "reference": {
           "shape": "ReferenceItem"
@@ -3731,10 +4307,6 @@
         "reference"
       ],
       "type": "structure"
-    },
-    "CreateVariantStoreRequestNameString": {
-      "pattern": "([a-z]){1}([a-z0-9_]){2,254}",
-      "type": "string"
     },
     "CreateVariantStoreResponse": {
       "members": {
@@ -3867,6 +4439,36 @@
       ],
       "type": "structure"
     },
+    "DeleteAnnotationStoreVersionsRequest": {
+      "members": {
+        "force": {
+          "location": "querystring",
+          "locationName": "force",
+          "shape": "PrimitiveBoolean"
+        },
+        "name": {
+          "location": "uri",
+          "locationName": "name",
+          "shape": "String"
+        },
+        "versions": {
+          "shape": "VersionList"
+        }
+      },
+      "required": [
+        "name",
+        "versions"
+      ],
+      "type": "structure"
+    },
+    "DeleteAnnotationStoreVersionsResponse": {
+      "members": {
+        "errors": {
+          "shape": "VersionDeleteErrorList"
+        }
+      },
+      "type": "structure"
+    },
     "DeleteReferenceRequest": {
       "members": {
         "id": {
@@ -3950,6 +4552,27 @@
       "members": {},
       "type": "structure"
     },
+    "DeleteShareRequest": {
+      "members": {
+        "shareId": {
+          "location": "uri",
+          "locationName": "shareId",
+          "shape": "String"
+        }
+      },
+      "required": [
+        "shareId"
+      ],
+      "type": "structure"
+    },
+    "DeleteShareResponse": {
+      "members": {
+        "status": {
+          "shape": "ShareStatus"
+        }
+      },
+      "type": "structure"
+    },
     "DeleteVariantStoreRequest": {
       "members": {
         "force": {
@@ -3991,6 +4614,11 @@
         "id"
       ],
       "type": "structure"
+    },
+    "Description": {
+      "max": 500,
+      "min": 0,
+      "type": "string"
     },
     "Encoding": {
       "max": 20,
@@ -4142,6 +4770,17 @@
       ],
       "type": "string"
     },
+    "Filter": {
+      "members": {
+        "resourceArns": {
+          "shape": "ArnList"
+        },
+        "status": {
+          "shape": "StatusList"
+        }
+      },
+      "type": "structure"
+    },
     "FormatOptions": {
       "members": {
         "tsvOptions": {
@@ -4235,11 +4874,15 @@
         },
         "updateTime": {
           "shape": "UpdateTime"
+        },
+        "versionName": {
+          "shape": "VersionName"
         }
       },
       "required": [
         "id",
         "destinationName",
+        "versionName",
         "roleArn",
         "status",
         "statusMessage",
@@ -4271,13 +4914,16 @@
           "shape": "CreationTime"
         },
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "id": {
           "shape": "ResourceId"
         },
         "name": {
           "shape": "String"
+        },
+        "numVersions": {
+          "shape": "Integer"
         },
         "reference": {
           "shape": "ReferenceItem"
@@ -4322,7 +4968,85 @@
         "updateTime",
         "tags",
         "statusMessage",
-        "storeSizeBytes"
+        "storeSizeBytes",
+        "numVersions"
+      ],
+      "type": "structure"
+    },
+    "GetAnnotationStoreVersionRequest": {
+      "members": {
+        "name": {
+          "location": "uri",
+          "locationName": "name",
+          "shape": "String"
+        },
+        "versionName": {
+          "location": "uri",
+          "locationName": "versionName",
+          "shape": "String"
+        }
+      },
+      "required": [
+        "name",
+        "versionName"
+      ],
+      "type": "structure"
+    },
+    "GetAnnotationStoreVersionResponse": {
+      "members": {
+        "creationTime": {
+          "shape": "CreationTime"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "id": {
+          "shape": "ResourceId"
+        },
+        "name": {
+          "shape": "StoreName"
+        },
+        "status": {
+          "shape": "VersionStatus"
+        },
+        "statusMessage": {
+          "shape": "StatusMessage"
+        },
+        "storeId": {
+          "shape": "ResourceId"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "updateTime": {
+          "shape": "UpdateTime"
+        },
+        "versionArn": {
+          "shape": "Arn"
+        },
+        "versionName": {
+          "shape": "VersionName"
+        },
+        "versionOptions": {
+          "shape": "VersionOptions"
+        },
+        "versionSizeBytes": {
+          "shape": "Long"
+        }
+      },
+      "required": [
+        "storeId",
+        "id",
+        "status",
+        "versionArn",
+        "name",
+        "versionName",
+        "description",
+        "creationTime",
+        "updateTime",
+        "tags",
+        "statusMessage",
+        "versionSizeBytes"
       ],
       "type": "structure"
     },
@@ -5111,6 +5835,27 @@
       ],
       "type": "structure"
     },
+    "GetShareRequest": {
+      "members": {
+        "shareId": {
+          "location": "uri",
+          "locationName": "shareId",
+          "shape": "String"
+        }
+      },
+      "required": [
+        "shareId"
+      ],
+      "type": "structure"
+    },
+    "GetShareResponse": {
+      "members": {
+        "share": {
+          "shape": "ShareDetails"
+        }
+      },
+      "type": "structure"
+    },
     "GetVariantImportRequest": {
       "members": {
         "jobId": {
@@ -5192,7 +5937,7 @@
           "shape": "CreationTime"
         },
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "id": {
           "shape": "ResourceId"
@@ -5518,6 +6263,10 @@
       },
       "type": "list"
     },
+    "Integer": {
+      "box": true,
+      "type": "integer"
+    },
     "InternalServerException": {
       "error": {
         "httpStatusCode": 500
@@ -5617,6 +6366,62 @@
       "members": {
         "annotationImportJobs": {
           "shape": "AnnotationImportJobItems"
+        },
+        "nextToken": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ListAnnotationStoreVersionsFilter": {
+      "members": {
+        "status": {
+          "shape": "VersionStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "ListAnnotationStoreVersionsRequest": {
+      "members": {
+        "filter": {
+          "shape": "ListAnnotationStoreVersionsFilter"
+        },
+        "maxResults": {
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "ListAnnotationStoreVersionsRequestMaxResultsInteger"
+        },
+        "name": {
+          "location": "uri",
+          "locationName": "name",
+          "shape": "String"
+        },
+        "nextToken": {
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "ListAnnotationStoreVersionsRequestNextTokenString"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "structure"
+    },
+    "ListAnnotationStoreVersionsRequestMaxResultsInteger": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListAnnotationStoreVersionsRequestNextTokenString": {
+      "max": 10000,
+      "min": 1,
+      "type": "string"
+    },
+    "ListAnnotationStoreVersionsResponse": {
+      "members": {
+        "annotationStoreVersions": {
+          "shape": "AnnotationStoreVersionItems"
         },
         "nextToken": {
           "shape": "String"
@@ -6242,6 +7047,44 @@
       },
       "required": [
         "sequenceStores"
+      ],
+      "type": "structure"
+    },
+    "ListSharesRequest": {
+      "members": {
+        "filter": {
+          "shape": "Filter"
+        },
+        "maxResults": {
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "Integer"
+        },
+        "nextToken": {
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "String"
+        },
+        "resourceOwner": {
+          "shape": "ResourceOwner"
+        }
+      },
+      "required": [
+        "resourceOwner"
+      ],
+      "type": "structure"
+    },
+    "ListSharesResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "String"
+        },
+        "shares": {
+          "shape": "ShareDetailsList"
+        }
+      },
+      "required": [
+        "shares"
       ],
       "type": "structure"
     },
@@ -7173,6 +8016,13 @@
       ],
       "type": "structure"
     },
+    "ResourceOwner": {
+      "enum": [
+        "SELF",
+        "OTHER"
+      ],
+      "type": "string"
+    },
     "RoleArn": {
       "max": 2048,
       "min": 20,
@@ -7599,6 +8449,61 @@
       ],
       "type": "structure"
     },
+    "ShareDetails": {
+      "members": {
+        "creationTime": {
+          "shape": "CreationTime"
+        },
+        "ownerId": {
+          "shape": "String"
+        },
+        "principalSubscriber": {
+          "shape": "String"
+        },
+        "resourceArn": {
+          "shape": "String"
+        },
+        "shareId": {
+          "shape": "String"
+        },
+        "shareName": {
+          "shape": "ShareName"
+        },
+        "status": {
+          "shape": "ShareStatus"
+        },
+        "statusMessage": {
+          "shape": "StatusMessage"
+        },
+        "updateTime": {
+          "shape": "UpdateTime"
+        }
+      },
+      "type": "structure"
+    },
+    "ShareDetailsList": {
+      "member": {
+        "shape": "ShareDetails"
+      },
+      "type": "list"
+    },
+    "ShareName": {
+      "max": 256,
+      "min": 1,
+      "pattern": "[a-zA-Z0-9_-]+",
+      "type": "string"
+    },
+    "ShareStatus": {
+      "enum": [
+        "PENDING",
+        "ACTIVATING",
+        "ACTIVE",
+        "DELETING",
+        "DELETED",
+        "FAILED"
+      ],
+      "type": "string"
+    },
     "SourceFiles": {
       "members": {
         "source1": {
@@ -7652,6 +8557,9 @@
         },
         "runLeftNormalization": {
           "shape": "RunLeftNormalization"
+        },
+        "versionName": {
+          "shape": "VersionName"
         }
       },
       "required": [
@@ -8086,13 +8994,14 @@
       ],
       "type": "structure"
     },
+    "StatusList": {
+      "member": {
+        "shape": "ShareStatus"
+      },
+      "type": "list"
+    },
     "StatusMessage": {
       "max": 1000,
-      "min": 0,
-      "type": "string"
-    },
-    "StoreDescription": {
-      "max": 500,
       "min": 0,
       "type": "string"
     },
@@ -8359,6 +9268,28 @@
       "min": 1,
       "type": "list"
     },
+    "TsvVersionOptions": {
+      "members": {
+        "annotationType": {
+          "shape": "AnnotationType"
+        },
+        "formatToHeader": {
+          "shape": "FormatToHeader"
+        },
+        "schema": {
+          "shape": "TsvVersionOptionsSchemaList"
+        }
+      },
+      "type": "structure"
+    },
+    "TsvVersionOptionsSchemaList": {
+      "max": 5000,
+      "member": {
+        "shape": "SchemaItem"
+      },
+      "min": 1,
+      "type": "list"
+    },
     "UntagResourceRequest": {
       "members": {
         "resourceArn": {
@@ -8385,7 +9316,7 @@
     "UpdateAnnotationStoreRequest": {
       "members": {
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "name": {
           "location": "uri",
@@ -8404,7 +9335,7 @@
           "shape": "CreationTime"
         },
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "id": {
           "shape": "ResourceId"
@@ -8433,6 +9364,67 @@
         "reference",
         "status",
         "name",
+        "description",
+        "creationTime",
+        "updateTime"
+      ],
+      "type": "structure"
+    },
+    "UpdateAnnotationStoreVersionRequest": {
+      "members": {
+        "description": {
+          "shape": "Description"
+        },
+        "name": {
+          "location": "uri",
+          "locationName": "name",
+          "shape": "String"
+        },
+        "versionName": {
+          "location": "uri",
+          "locationName": "versionName",
+          "shape": "String"
+        }
+      },
+      "required": [
+        "name",
+        "versionName"
+      ],
+      "type": "structure"
+    },
+    "UpdateAnnotationStoreVersionResponse": {
+      "members": {
+        "creationTime": {
+          "shape": "CreationTime"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "id": {
+          "shape": "ResourceId"
+        },
+        "name": {
+          "shape": "StoreName"
+        },
+        "status": {
+          "shape": "VersionStatus"
+        },
+        "storeId": {
+          "shape": "ResourceId"
+        },
+        "updateTime": {
+          "shape": "UpdateTime"
+        },
+        "versionName": {
+          "shape": "VersionName"
+        }
+      },
+      "required": [
+        "storeId",
+        "id",
+        "status",
+        "name",
+        "versionName",
         "description",
         "creationTime",
         "updateTime"
@@ -8498,7 +9490,7 @@
     "UpdateVariantStoreRequest": {
       "members": {
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "name": {
           "location": "uri",
@@ -8517,7 +9509,7 @@
           "shape": "CreationTime"
         },
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "id": {
           "shape": "ResourceId"
@@ -8735,7 +9727,7 @@
           "shape": "CreationTime"
         },
         "description": {
-          "shape": "StoreDescription"
+          "shape": "Description"
         },
         "id": {
           "shape": "ResourceId"
@@ -8796,6 +9788,60 @@
         }
       },
       "type": "structure"
+    },
+    "VersionDeleteError": {
+      "members": {
+        "message": {
+          "shape": "String"
+        },
+        "versionName": {
+          "shape": "VersionName"
+        }
+      },
+      "required": [
+        "versionName",
+        "message"
+      ],
+      "type": "structure"
+    },
+    "VersionDeleteErrorList": {
+      "member": {
+        "shape": "VersionDeleteError"
+      },
+      "type": "list"
+    },
+    "VersionList": {
+      "max": 10,
+      "member": {
+        "shape": "VersionName"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "VersionName": {
+      "max": 255,
+      "min": 3,
+      "pattern": "([a-z]){1}([a-z0-9_]){2,254}",
+      "type": "string"
+    },
+    "VersionOptions": {
+      "members": {
+        "tsvVersionOptions": {
+          "shape": "TsvVersionOptions"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "VersionStatus": {
+      "enum": [
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "ACTIVE",
+        "FAILED"
+      ],
+      "type": "string"
     },
     "WorkflowArn": {
       "max": 128,

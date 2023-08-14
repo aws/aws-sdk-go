@@ -1,3 +1,13 @@
+Release v1.44.323 (2023-08-14)
+===
+
+### Service Client Updates
+* `service/mediapackage`: Updates service API
+  * Fix SDK logging of certain fields.
+* `service/omics`: Updates service API, documentation, waiters, and paginators
+* `service/transfer`: Updates service documentation
+  * Documentation updates for AWS Transfer Family
+
 Release v1.44.322 (2023-08-11)
 ===
 
