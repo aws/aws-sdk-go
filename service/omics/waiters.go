@@ -192,6 +192,123 @@ func (c *Omics) WaitUntilAnnotationStoreDeletedWithContext(ctx aws.Context, inpu
 	return w.WaitWithContext(ctx)
 }
 
+// WaitUntilAnnotationStoreVersionCreated uses the Amazon Omics API operation
+// GetAnnotationStoreVersion to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *Omics) WaitUntilAnnotationStoreVersionCreated(input *GetAnnotationStoreVersionInput) error {
+	return c.WaitUntilAnnotationStoreVersionCreatedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilAnnotationStoreVersionCreatedWithContext is an extended version of WaitUntilAnnotationStoreVersionCreated.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) WaitUntilAnnotationStoreVersionCreatedWithContext(ctx aws.Context, input *GetAnnotationStoreVersionInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilAnnotationStoreVersionCreated",
+		MaxAttempts: 20,
+		Delay:       request.ConstantWaiterDelay(30 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "status",
+				Expected: "ACTIVE",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "status",
+				Expected: "CREATING",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "status",
+				Expected: "UPDATING",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "status",
+				Expected: "FAILED",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *GetAnnotationStoreVersionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetAnnotationStoreVersionRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilAnnotationStoreVersionDeleted uses the Amazon Omics API operation
+// GetAnnotationStoreVersion to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *Omics) WaitUntilAnnotationStoreVersionDeleted(input *GetAnnotationStoreVersionInput) error {
+	return c.WaitUntilAnnotationStoreVersionDeletedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilAnnotationStoreVersionDeletedWithContext is an extended version of WaitUntilAnnotationStoreVersionDeleted.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Omics) WaitUntilAnnotationStoreVersionDeletedWithContext(ctx aws.Context, input *GetAnnotationStoreVersionInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilAnnotationStoreVersionDeleted",
+		MaxAttempts: 20,
+		Delay:       request.ConstantWaiterDelay(30 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "status",
+				Expected: "DELETED",
+			},
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ResourceNotFoundException",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "status",
+				Expected: "DELETING",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *GetAnnotationStoreVersionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetAnnotationStoreVersionRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
 // WaitUntilReadSetActivationJobCompleted uses the Amazon Omics API operation
 // GetReadSetActivationJob to wait for a condition to be met before returning.
 // If the condition is not met within the max attempt window, an error will

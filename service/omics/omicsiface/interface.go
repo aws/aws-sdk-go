@@ -64,6 +64,10 @@ type OmicsAPI interface {
 	AbortMultipartReadSetUploadWithContext(aws.Context, *omics.AbortMultipartReadSetUploadInput, ...request.Option) (*omics.AbortMultipartReadSetUploadOutput, error)
 	AbortMultipartReadSetUploadRequest(*omics.AbortMultipartReadSetUploadInput) (*request.Request, *omics.AbortMultipartReadSetUploadOutput)
 
+	AcceptShare(*omics.AcceptShareInput) (*omics.AcceptShareOutput, error)
+	AcceptShareWithContext(aws.Context, *omics.AcceptShareInput, ...request.Option) (*omics.AcceptShareOutput, error)
+	AcceptShareRequest(*omics.AcceptShareInput) (*request.Request, *omics.AcceptShareOutput)
+
 	BatchDeleteReadSet(*omics.BatchDeleteReadSetInput) (*omics.BatchDeleteReadSetOutput, error)
 	BatchDeleteReadSetWithContext(aws.Context, *omics.BatchDeleteReadSetInput, ...request.Option) (*omics.BatchDeleteReadSetOutput, error)
 	BatchDeleteReadSetRequest(*omics.BatchDeleteReadSetInput) (*request.Request, *omics.BatchDeleteReadSetOutput)
@@ -88,6 +92,10 @@ type OmicsAPI interface {
 	CreateAnnotationStoreWithContext(aws.Context, *omics.CreateAnnotationStoreInput, ...request.Option) (*omics.CreateAnnotationStoreOutput, error)
 	CreateAnnotationStoreRequest(*omics.CreateAnnotationStoreInput) (*request.Request, *omics.CreateAnnotationStoreOutput)
 
+	CreateAnnotationStoreVersion(*omics.CreateAnnotationStoreVersionInput) (*omics.CreateAnnotationStoreVersionOutput, error)
+	CreateAnnotationStoreVersionWithContext(aws.Context, *omics.CreateAnnotationStoreVersionInput, ...request.Option) (*omics.CreateAnnotationStoreVersionOutput, error)
+	CreateAnnotationStoreVersionRequest(*omics.CreateAnnotationStoreVersionInput) (*request.Request, *omics.CreateAnnotationStoreVersionOutput)
+
 	CreateMultipartReadSetUpload(*omics.CreateMultipartReadSetUploadInput) (*omics.CreateMultipartReadSetUploadOutput, error)
 	CreateMultipartReadSetUploadWithContext(aws.Context, *omics.CreateMultipartReadSetUploadInput, ...request.Option) (*omics.CreateMultipartReadSetUploadOutput, error)
 	CreateMultipartReadSetUploadRequest(*omics.CreateMultipartReadSetUploadInput) (*request.Request, *omics.CreateMultipartReadSetUploadOutput)
@@ -104,6 +112,10 @@ type OmicsAPI interface {
 	CreateSequenceStoreWithContext(aws.Context, *omics.CreateSequenceStoreInput, ...request.Option) (*omics.CreateSequenceStoreOutput, error)
 	CreateSequenceStoreRequest(*omics.CreateSequenceStoreInput) (*request.Request, *omics.CreateSequenceStoreOutput)
 
+	CreateShare(*omics.CreateShareInput) (*omics.CreateShareOutput, error)
+	CreateShareWithContext(aws.Context, *omics.CreateShareInput, ...request.Option) (*omics.CreateShareOutput, error)
+	CreateShareRequest(*omics.CreateShareInput) (*request.Request, *omics.CreateShareOutput)
+
 	CreateVariantStore(*omics.CreateVariantStoreInput) (*omics.CreateVariantStoreOutput, error)
 	CreateVariantStoreWithContext(aws.Context, *omics.CreateVariantStoreInput, ...request.Option) (*omics.CreateVariantStoreOutput, error)
 	CreateVariantStoreRequest(*omics.CreateVariantStoreInput) (*request.Request, *omics.CreateVariantStoreOutput)
@@ -115,6 +127,10 @@ type OmicsAPI interface {
 	DeleteAnnotationStore(*omics.DeleteAnnotationStoreInput) (*omics.DeleteAnnotationStoreOutput, error)
 	DeleteAnnotationStoreWithContext(aws.Context, *omics.DeleteAnnotationStoreInput, ...request.Option) (*omics.DeleteAnnotationStoreOutput, error)
 	DeleteAnnotationStoreRequest(*omics.DeleteAnnotationStoreInput) (*request.Request, *omics.DeleteAnnotationStoreOutput)
+
+	DeleteAnnotationStoreVersions(*omics.DeleteAnnotationStoreVersionsInput) (*omics.DeleteAnnotationStoreVersionsOutput, error)
+	DeleteAnnotationStoreVersionsWithContext(aws.Context, *omics.DeleteAnnotationStoreVersionsInput, ...request.Option) (*omics.DeleteAnnotationStoreVersionsOutput, error)
+	DeleteAnnotationStoreVersionsRequest(*omics.DeleteAnnotationStoreVersionsInput) (*request.Request, *omics.DeleteAnnotationStoreVersionsOutput)
 
 	DeleteReference(*omics.DeleteReferenceInput) (*omics.DeleteReferenceOutput, error)
 	DeleteReferenceWithContext(aws.Context, *omics.DeleteReferenceInput, ...request.Option) (*omics.DeleteReferenceOutput, error)
@@ -136,6 +152,10 @@ type OmicsAPI interface {
 	DeleteSequenceStoreWithContext(aws.Context, *omics.DeleteSequenceStoreInput, ...request.Option) (*omics.DeleteSequenceStoreOutput, error)
 	DeleteSequenceStoreRequest(*omics.DeleteSequenceStoreInput) (*request.Request, *omics.DeleteSequenceStoreOutput)
 
+	DeleteShare(*omics.DeleteShareInput) (*omics.DeleteShareOutput, error)
+	DeleteShareWithContext(aws.Context, *omics.DeleteShareInput, ...request.Option) (*omics.DeleteShareOutput, error)
+	DeleteShareRequest(*omics.DeleteShareInput) (*request.Request, *omics.DeleteShareOutput)
+
 	DeleteVariantStore(*omics.DeleteVariantStoreInput) (*omics.DeleteVariantStoreOutput, error)
 	DeleteVariantStoreWithContext(aws.Context, *omics.DeleteVariantStoreInput, ...request.Option) (*omics.DeleteVariantStoreOutput, error)
 	DeleteVariantStoreRequest(*omics.DeleteVariantStoreInput) (*request.Request, *omics.DeleteVariantStoreOutput)
@@ -151,6 +171,10 @@ type OmicsAPI interface {
 	GetAnnotationStore(*omics.GetAnnotationStoreInput) (*omics.GetAnnotationStoreOutput, error)
 	GetAnnotationStoreWithContext(aws.Context, *omics.GetAnnotationStoreInput, ...request.Option) (*omics.GetAnnotationStoreOutput, error)
 	GetAnnotationStoreRequest(*omics.GetAnnotationStoreInput) (*request.Request, *omics.GetAnnotationStoreOutput)
+
+	GetAnnotationStoreVersion(*omics.GetAnnotationStoreVersionInput) (*omics.GetAnnotationStoreVersionOutput, error)
+	GetAnnotationStoreVersionWithContext(aws.Context, *omics.GetAnnotationStoreVersionInput, ...request.Option) (*omics.GetAnnotationStoreVersionOutput, error)
+	GetAnnotationStoreVersionRequest(*omics.GetAnnotationStoreVersionInput) (*request.Request, *omics.GetAnnotationStoreVersionOutput)
 
 	GetReadSet(*omics.GetReadSetInput) (*omics.GetReadSetOutput, error)
 	GetReadSetWithContext(aws.Context, *omics.GetReadSetInput, ...request.Option) (*omics.GetReadSetOutput, error)
@@ -204,6 +228,10 @@ type OmicsAPI interface {
 	GetSequenceStoreWithContext(aws.Context, *omics.GetSequenceStoreInput, ...request.Option) (*omics.GetSequenceStoreOutput, error)
 	GetSequenceStoreRequest(*omics.GetSequenceStoreInput) (*request.Request, *omics.GetSequenceStoreOutput)
 
+	GetShare(*omics.GetShareInput) (*omics.GetShareOutput, error)
+	GetShareWithContext(aws.Context, *omics.GetShareInput, ...request.Option) (*omics.GetShareOutput, error)
+	GetShareRequest(*omics.GetShareInput) (*request.Request, *omics.GetShareOutput)
+
 	GetVariantImportJob(*omics.GetVariantImportJobInput) (*omics.GetVariantImportJobOutput, error)
 	GetVariantImportJobWithContext(aws.Context, *omics.GetVariantImportJobInput, ...request.Option) (*omics.GetVariantImportJobOutput, error)
 	GetVariantImportJobRequest(*omics.GetVariantImportJobInput) (*request.Request, *omics.GetVariantImportJobOutput)
@@ -222,6 +250,13 @@ type OmicsAPI interface {
 
 	ListAnnotationImportJobsPages(*omics.ListAnnotationImportJobsInput, func(*omics.ListAnnotationImportJobsOutput, bool) bool) error
 	ListAnnotationImportJobsPagesWithContext(aws.Context, *omics.ListAnnotationImportJobsInput, func(*omics.ListAnnotationImportJobsOutput, bool) bool, ...request.Option) error
+
+	ListAnnotationStoreVersions(*omics.ListAnnotationStoreVersionsInput) (*omics.ListAnnotationStoreVersionsOutput, error)
+	ListAnnotationStoreVersionsWithContext(aws.Context, *omics.ListAnnotationStoreVersionsInput, ...request.Option) (*omics.ListAnnotationStoreVersionsOutput, error)
+	ListAnnotationStoreVersionsRequest(*omics.ListAnnotationStoreVersionsInput) (*request.Request, *omics.ListAnnotationStoreVersionsOutput)
+
+	ListAnnotationStoreVersionsPages(*omics.ListAnnotationStoreVersionsInput, func(*omics.ListAnnotationStoreVersionsOutput, bool) bool) error
+	ListAnnotationStoreVersionsPagesWithContext(aws.Context, *omics.ListAnnotationStoreVersionsInput, func(*omics.ListAnnotationStoreVersionsOutput, bool) bool, ...request.Option) error
 
 	ListAnnotationStores(*omics.ListAnnotationStoresInput) (*omics.ListAnnotationStoresOutput, error)
 	ListAnnotationStoresWithContext(aws.Context, *omics.ListAnnotationStoresInput, ...request.Option) (*omics.ListAnnotationStoresOutput, error)
@@ -321,6 +356,13 @@ type OmicsAPI interface {
 	ListSequenceStoresPages(*omics.ListSequenceStoresInput, func(*omics.ListSequenceStoresOutput, bool) bool) error
 	ListSequenceStoresPagesWithContext(aws.Context, *omics.ListSequenceStoresInput, func(*omics.ListSequenceStoresOutput, bool) bool, ...request.Option) error
 
+	ListShares(*omics.ListSharesInput) (*omics.ListSharesOutput, error)
+	ListSharesWithContext(aws.Context, *omics.ListSharesInput, ...request.Option) (*omics.ListSharesOutput, error)
+	ListSharesRequest(*omics.ListSharesInput) (*request.Request, *omics.ListSharesOutput)
+
+	ListSharesPages(*omics.ListSharesInput, func(*omics.ListSharesOutput, bool) bool) error
+	ListSharesPagesWithContext(aws.Context, *omics.ListSharesInput, func(*omics.ListSharesOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*omics.ListTagsForResourceInput) (*omics.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *omics.ListTagsForResourceInput, ...request.Option) (*omics.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*omics.ListTagsForResourceInput) (*request.Request, *omics.ListTagsForResourceOutput)
@@ -386,6 +428,10 @@ type OmicsAPI interface {
 	UpdateAnnotationStoreWithContext(aws.Context, *omics.UpdateAnnotationStoreInput, ...request.Option) (*omics.UpdateAnnotationStoreOutput, error)
 	UpdateAnnotationStoreRequest(*omics.UpdateAnnotationStoreInput) (*request.Request, *omics.UpdateAnnotationStoreOutput)
 
+	UpdateAnnotationStoreVersion(*omics.UpdateAnnotationStoreVersionInput) (*omics.UpdateAnnotationStoreVersionOutput, error)
+	UpdateAnnotationStoreVersionWithContext(aws.Context, *omics.UpdateAnnotationStoreVersionInput, ...request.Option) (*omics.UpdateAnnotationStoreVersionOutput, error)
+	UpdateAnnotationStoreVersionRequest(*omics.UpdateAnnotationStoreVersionInput) (*request.Request, *omics.UpdateAnnotationStoreVersionOutput)
+
 	UpdateRunGroup(*omics.UpdateRunGroupInput) (*omics.UpdateRunGroupOutput, error)
 	UpdateRunGroupWithContext(aws.Context, *omics.UpdateRunGroupInput, ...request.Option) (*omics.UpdateRunGroupOutput, error)
 	UpdateRunGroupRequest(*omics.UpdateRunGroupInput) (*request.Request, *omics.UpdateRunGroupOutput)
@@ -410,6 +456,12 @@ type OmicsAPI interface {
 
 	WaitUntilAnnotationStoreDeleted(*omics.GetAnnotationStoreInput) error
 	WaitUntilAnnotationStoreDeletedWithContext(aws.Context, *omics.GetAnnotationStoreInput, ...request.WaiterOption) error
+
+	WaitUntilAnnotationStoreVersionCreated(*omics.GetAnnotationStoreVersionInput) error
+	WaitUntilAnnotationStoreVersionCreatedWithContext(aws.Context, *omics.GetAnnotationStoreVersionInput, ...request.WaiterOption) error
+
+	WaitUntilAnnotationStoreVersionDeleted(*omics.GetAnnotationStoreVersionInput) error
+	WaitUntilAnnotationStoreVersionDeletedWithContext(aws.Context, *omics.GetAnnotationStoreVersionInput, ...request.WaiterOption) error
 
 	WaitUntilReadSetActivationJobCompleted(*omics.GetReadSetActivationJobInput) error
 	WaitUntilReadSetActivationJobCompletedWithContext(aws.Context, *omics.GetReadSetActivationJobInput, ...request.WaiterOption) error

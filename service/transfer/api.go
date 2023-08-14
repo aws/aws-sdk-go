@@ -16432,8 +16432,9 @@ type SftpConnectorConfig struct {
 	//    or ecdsa-sha2-nistp521, depending on the size of the key you generated.
 	TrustedHostKeys []*string `min:"1" type:"list"`
 
-	// The identifiers for the secrets (in Amazon Web Services Secrets Manager)
-	// that contain the SFTP user's private keys or passwords.
+	// The identifier for the secret (in Amazon Web Services Secrets Manager) that
+	// contains the SFTP user's private key, password, or both. The identifier can
+	// be either the Amazon Resource Name (ARN) or the name of the secret.
 	UserSecretId *string `min:"1" type:"string"`
 }
 
@@ -16569,7 +16570,7 @@ type StartFileTransferInput struct {
 	// a source file path for one inbound file transfer.
 	RetrieveFilePaths []*string `min:"1" type:"list"`
 
-	// One or more source paths for the Transfer Family server. Each string represents
+	// One or more source paths for the Amazon S3 storage. Each string represents
 	// a source file path for one outbound file transfer. For example, DOC-EXAMPLE-BUCKET/myfile.txt .
 	//
 	// Replace DOC-EXAMPLE-BUCKET with one of your actual buckets.

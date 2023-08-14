@@ -1762,7 +1762,7 @@
         },
         "Password": {
           "locationName": "password",
-          "shape": "__string"
+          "shape": "SensitiveString"
         },
         "Url": {
           "locationName": "url",
@@ -1770,7 +1770,7 @@
         },
         "Username": {
           "locationName": "username",
-          "shape": "__string"
+          "shape": "SensitiveString"
         }
       },
       "type": "structure"
@@ -2361,6 +2361,10 @@
         "TIME_WITH_TIMELINE",
         "NUMBER_WITH_DURATION"
       ],
+      "type": "string"
+    },
+    "SensitiveString": {
+      "sensitive": true,
       "type": "string"
     },
     "ServiceUnavailableException": {
