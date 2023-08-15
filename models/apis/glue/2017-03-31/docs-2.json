@@ -1901,6 +1901,14 @@
         "UpdateCsvClassifierRequest$QuoteSymbol": "<p>A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.</p>"
       }
     },
+    "CsvSerdeOption": {
+      "base": null,
+      "refs": {
+        "CreateCsvClassifierRequest$Serde": "<p>Sets the SerDe for processing CSV in the classifier, which will be applied in the Data Catalog. Valid values are <code>OpenCSVSerDe</code>, <code>LazySimpleSerDe</code>, and <code>None</code>. You can specify the <code>None</code> value when you want the crawler to do the detection.</p>",
+        "CsvClassifier$Serde": "<p>Sets the SerDe for processing CSV in the classifier, which will be applied in the Data Catalog. Valid values are <code>OpenCSVSerDe</code>, <code>LazySimpleSerDe</code>, and <code>None</code>. You can specify the <code>None</code> value when you want the crawler to do the detection.</p>",
+        "UpdateCsvClassifierRequest$Serde": "<p>Sets the SerDe for processing CSV in the classifier, which will be applied in the Data Catalog. Valid values are <code>OpenCSVSerDe</code>, <code>LazySimpleSerDe</code>, and <code>None</code>. You can specify the <code>None</code> value when you want the crawler to do the detection.</p>"
+      }
+    },
     "CustomCode": {
       "base": "<p>Specifies a transform that uses custom code you provide to perform the data transformation. The output is a collection of DynamicFrames.</p>",
       "refs": {

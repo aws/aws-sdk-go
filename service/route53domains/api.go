@@ -3543,8 +3543,12 @@ type AcceptDomainTransferFromAnotherAwsAccountInput struct {
 	// The password that was returned by the TransferDomainToAnotherAwsAccount (https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_TransferDomainToAnotherAwsAccount.html)
 	// request.
 	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AcceptDomainTransferFromAnotherAwsAccountInput's
+	// String and GoString methods.
+	//
 	// Password is a required field
-	Password *string `type:"string" required:"true"`
+	Password *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -4113,6 +4117,9 @@ func (s *CheckDomainTransferabilityInput) SetDomainName(v string) *CheckDomainTr
 type CheckDomainTransferabilityOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Provides an explanation for when a domain can't be transferred.
+	Message *string `type:"string"`
+
 	// A complex type that contains information about whether the specified domain
 	// can be transferred to Route 53.
 	Transferability *DomainTransferability `type:"structure"`
@@ -4134,6 +4141,12 @@ func (s CheckDomainTransferabilityOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CheckDomainTransferabilityOutput) GoString() string {
 	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *CheckDomainTransferabilityOutput) SetMessage(v string) *CheckDomainTransferabilityOutput {
+	s.Message = &v
+	return s
 }
 
 // SetTransferability sets the Transferability field's value.
@@ -4211,13 +4224,25 @@ type ContactDetail struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
 	// First line of the contact's address.
-	AddressLine1 *string `type:"string"`
+	//
+	// AddressLine1 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	AddressLine1 *string `type:"string" sensitive:"true"`
 
 	// Second line of contact's address, if any.
-	AddressLine2 *string `type:"string"`
+	//
+	// AddressLine2 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	AddressLine2 *string `type:"string" sensitive:"true"`
 
 	// The city of the contact's address.
-	City *string `type:"string"`
+	//
+	// City is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	City *string `type:"string" sensitive:"true"`
 
 	// Indicates whether the contact is a person, company, association, or public
 	// organization. Note the following:
@@ -4235,10 +4260,18 @@ type ContactDetail struct {
 	ContactType *string `type:"string" enum:"ContactType"`
 
 	// Code for the country of the contact's address.
-	CountryCode *string `type:"string" enum:"CountryCode"`
+	//
+	// CountryCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	CountryCode *string `type:"string" enum:"CountryCode" sensitive:"true"`
 
 	// Email address of the contact.
-	Email *string `type:"string"`
+	//
+	// Email is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	Email *string `type:"string" sensitive:"true"`
 
 	// A list of name-value pairs for parameters required by certain top-level domains.
 	ExtraParams []*ExtraParam `type:"list"`
@@ -4248,29 +4281,57 @@ type ContactDetail struct {
 	// Constraints: Phone number must be specified in the format "+[country dialing
 	// code].[number including any area code]". For example, a US phone number might
 	// appear as "+1.1234567890".
-	Fax *string `type:"string"`
+	//
+	// Fax is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	Fax *string `type:"string" sensitive:"true"`
 
 	// First name of contact.
-	FirstName *string `type:"string"`
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	FirstName *string `type:"string" sensitive:"true"`
 
 	// Last name of contact.
-	LastName *string `type:"string"`
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	LastName *string `type:"string" sensitive:"true"`
 
 	// Name of the organization for contact types other than PERSON.
-	OrganizationName *string `type:"string"`
+	//
+	// OrganizationName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	OrganizationName *string `type:"string" sensitive:"true"`
 
 	// The phone number of the contact.
 	//
 	// Constraints: Phone number must be specified in the format "+[country dialing
 	// code].[number including any area code>]". For example, a US phone number
 	// might appear as "+1.1234567890".
-	PhoneNumber *string `type:"string"`
+	//
+	// PhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	PhoneNumber *string `type:"string" sensitive:"true"`
 
 	// The state or province of the contact's city.
-	State *string `type:"string"`
+	//
+	// State is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	State *string `type:"string" sensitive:"true"`
 
 	// The zip or postal code of the contact's address.
-	ZipCode *string `type:"string"`
+	//
+	// ZipCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactDetail's
+	// String and GoString methods.
+	ZipCode *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5350,7 +5411,7 @@ type DomainTransferability struct {
 	//
 	// DOMAIN_IN_ANOTHER_ACCOUNT
 	//
-	// the domain exists in another Amazon Web Services account.
+	// The domain exists in another Amazon Web Services account.
 	//
 	// PREMIUM_DOMAIN
 	//
@@ -5389,6 +5450,9 @@ type DuplicateRequest struct {
 
 	// The request is already in progress for the domain.
 	Message_ *string `locationName:"message" type:"string"`
+
+	// ID of the request operation.
+	RequestId *string `locationName:"requestId" type:"string"`
 }
 
 // String returns the string representation.
@@ -5434,7 +5498,7 @@ func (s *DuplicateRequest) OrigErr() error {
 }
 
 func (s *DuplicateRequest) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -6013,10 +6077,18 @@ type GetDomainDetailOutput struct {
 	// Email address to contact to report incorrect contact information for a domain,
 	// to report that the domain is being used to send spam, to report that someone
 	// is cybersquatting on a domain name, or report some other type of abuse.
-	AbuseContactEmail *string `type:"string"`
+	//
+	// AbuseContactEmail is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetDomainDetailOutput's
+	// String and GoString methods.
+	AbuseContactEmail *string `type:"string" sensitive:"true"`
 
 	// Phone number for reporting abuse.
-	AbuseContactPhone *string `type:"string"`
+	//
+	// AbuseContactPhone is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetDomainDetailOutput's
+	// String and GoString methods.
+	AbuseContactPhone *string `type:"string" sensitive:"true"`
 
 	// Provides details about the domain administrative contact.
 	//
@@ -7992,7 +8064,11 @@ type ResendContactReachabilityEmailOutput struct {
 
 	// The email address for the registrant contact at the time that we sent the
 	// verification email.
-	EmailAddress *string `locationName:"emailAddress" type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ResendContactReachabilityEmailOutput's
+	// String and GoString methods.
+	EmailAddress *string `locationName:"emailAddress" type:"string" sensitive:"true"`
 
 	// True if the email address for the registrant contact has already been verified,
 	// and false otherwise. If the email address has already been verified, we don't
@@ -8753,7 +8829,11 @@ type TransferDomainToAnotherAwsAccountOutput struct {
 	// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_AcceptDomainTransferFromAnotherAwsAccount.html)
 	// request. The request must include the value of the Password element that
 	// was returned in the TransferDomainToAnotherAwsAccount response.
-	Password *string `type:"string"`
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TransferDomainToAnotherAwsAccountOutput's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -10916,7 +10996,7 @@ func StatusFlag_Values() []string {
 //
 // DOMAIN_IN_ANOTHER_ACCOUNT
 //
-// the domain exists in another Amazon Web Services account.
+// The domain exists in another Amazon Web Services account.
 //
 // PREMIUM_DOMAIN
 //

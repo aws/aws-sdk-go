@@ -1,3 +1,18 @@
+Release v1.44.324 (2023-08-15)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Elastic Compute Cloud (EC2).
+* `service/glue`: Updates service API and documentation
+  * AWS Glue Crawlers can now accept SerDe overrides from a custom csv classifier. The two SerDe options are LazySimpleSerDe and OpenCSVSerDe. In case, the user wants crawler to do the selection, "None" can be selected for this purpose.
+* `service/pi`: Updates service API, documentation, and paginators
+* `service/route53domains`: Updates service API and documentation
+  * Provide explanation if CheckDomainTransferability return false. Provide requestId if a request is already submitted.  Add sensitive protection for customer information
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender now provides SupportedResponseMIMETypes from DescribeInferenceRecommendationsJob response
+
 Release v1.44.323 (2023-08-14)
 ===
 
