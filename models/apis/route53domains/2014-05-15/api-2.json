@@ -505,7 +505,7 @@
       ],
       "members":{
         "DomainName":{"shape":"DomainName"},
-        "Password":{"shape":"String"}
+        "Password":{"shape":"Password"}
       }
     },
     "AcceptDomainTransferFromAnotherAwsAccountResponse":{
@@ -522,7 +522,8 @@
     },
     "AddressLine":{
       "type":"string",
-      "max":255
+      "max":255,
+      "sensitive":true
     },
     "AssociateDelegationSignerToDomainRequest":{
       "type":"structure",
@@ -594,12 +595,14 @@
     "CheckDomainTransferabilityResponse":{
       "type":"structure",
       "members":{
-        "Transferability":{"shape":"DomainTransferability"}
+        "Transferability":{"shape":"DomainTransferability"},
+        "Message":{"shape":"Message"}
       }
     },
     "City":{
       "type":"string",
-      "max":255
+      "max":255,
+      "sensitive":true
     },
     "Consent":{
       "type":"structure",
@@ -634,11 +637,13 @@
     },
     "ContactName":{
       "type":"string",
-      "max":255
+      "max":255,
+      "sensitive":true
     },
     "ContactNumber":{
       "type":"string",
-      "max":30
+      "max":30,
+      "sensitive":true
     },
     "ContactType":{
       "type":"string",
@@ -904,7 +909,8 @@
         "ZA",
         "ZM",
         "ZW"
-      ]
+      ],
+      "sensitive":true
     },
     "Currency":{
       "type":"string",
@@ -1106,6 +1112,7 @@
     "DuplicateRequest":{
       "type":"structure",
       "members":{
+        "requestId":{"shape":"RequestId"},
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
@@ -1117,7 +1124,8 @@
     },
     "Email":{
       "type":"string",
-      "max":254
+      "max":254,
+      "sensitive":true
     },
     "EnableDomainAutoRenewRequest":{
       "type":"structure",
@@ -1419,6 +1427,7 @@
         "TagList":{"shape":"TagList"}
       }
     },
+    "Message":{"type":"string"},
     "Nameserver":{
       "type":"structure",
       "required":["Name"],
@@ -1519,6 +1528,10 @@
       "type":"integer",
       "max":100
     },
+    "Password":{
+      "type":"string",
+      "sensitive":true
+    },
     "Price":{"type":"double"},
     "PriceWithCurrency":{
       "type":"structure",
@@ -1613,6 +1626,7 @@
         "OperationId":{"shape":"OperationId"}
       }
     },
+    "RequestId":{"type":"string"},
     "Reseller":{"type":"string"},
     "ResendContactReachabilityEmailRequest":{
       "type":"structure",
@@ -1668,7 +1682,8 @@
     },
     "State":{
       "type":"string",
-      "max":255
+      "max":255,
+      "sensitive":true
     },
     "StatusFlag":{
       "type":"string",
@@ -1764,7 +1779,7 @@
       "type":"structure",
       "members":{
         "OperationId":{"shape":"OperationId"},
-        "Password":{"shape":"String"}
+        "Password":{"shape":"Password"}
       }
     },
     "Transferable":{
@@ -1881,7 +1896,8 @@
     },
     "ZipCode":{
       "type":"string",
-      "max":255
+      "max":255,
+      "sensitive":true
     }
   }
 }
