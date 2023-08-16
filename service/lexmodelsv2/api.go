@@ -20294,7 +20294,7 @@ type CustomVocabularyItem struct {
 
 	// The weight assigned for the custom vocabulary item from the custom vocabulary
 	// list.
-	Weight *int64 `locationName:"weight" min:"1" type:"integer"`
+	Weight *int64 `locationName:"weight" type:"integer"`
 }
 
 // String returns the string representation.
@@ -20332,9 +20332,6 @@ func (s *CustomVocabularyItem) Validate() error {
 	}
 	if s.Phrase != nil && len(*s.Phrase) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Phrase", 1))
-	}
-	if s.Weight != nil && *s.Weight < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("Weight", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -34016,7 +34013,7 @@ type NewCustomVocabularyItem struct {
 
 	// The weight assigned to the new custom vocabulary item from the custom vocabulary
 	// list.
-	Weight *int64 `locationName:"weight" min:"1" type:"integer"`
+	Weight *int64 `locationName:"weight" type:"integer"`
 }
 
 // String returns the string representation.
@@ -34048,9 +34045,6 @@ func (s *NewCustomVocabularyItem) Validate() error {
 	}
 	if s.Phrase != nil && len(*s.Phrase) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Phrase", 1))
-	}
-	if s.Weight != nil && *s.Weight < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("Weight", 1))
 	}
 
 	if invalidParams.Len() > 0 {

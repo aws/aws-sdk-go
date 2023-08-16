@@ -1,3 +1,11 @@
+Release v1.44.325 (2023-08-16)
+===
+
+### Service Client Updates
+* `service/models.lex.v2`: Updates service API
+* `service/monitoring`: Updates service documentation
+  * Doc-only update to incorporate several doc bug fixes
+
 Release v1.44.324 (2023-08-15)
 ===
 
