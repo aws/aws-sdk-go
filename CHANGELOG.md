@@ -1,3 +1,43 @@
+Release v1.44.324 (2023-08-15)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Elastic Compute Cloud (EC2).
+* `service/glue`: Updates service API and documentation
+  * AWS Glue Crawlers can now accept SerDe overrides from a custom csv classifier. The two SerDe options are LazySimpleSerDe and OpenCSVSerDe. In case, the user wants crawler to do the selection, "None" can be selected for this purpose.
+* `service/pi`: Updates service API, documentation, and paginators
+* `service/route53domains`: Updates service API and documentation
+  * Provide explanation if CheckDomainTransferability return false. Provide requestId if a request is already submitted.  Add sensitive protection for customer information
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender now provides SupportedResponseMIMETypes from DescribeInferenceRecommendationsJob response
+
+Release v1.44.323 (2023-08-14)
+===
+
+### Service Client Updates
+* `service/mediapackage`: Updates service API
+  * Fix SDK logging of certain fields.
+* `service/omics`: Updates service API, documentation, waiters, and paginators
+* `service/transfer`: Updates service documentation
+  * Documentation updates for AWS Transfer Family
+
+Release v1.44.322 (2023-08-11)
+===
+
+### Service Client Updates
+* `service/amplifybackend`: Updates service API
+* `service/config`: Updates service API
+* `service/ec2`: Updates service API
+  * Amazon EC2 P5 instances, powered by the latest NVIDIA H100 Tensor Core GPUs, deliver the highest performance in EC2 for deep learning (DL) and HPC applications. M7i-flex and M7i instances are next-generation general purpose instances powered by custom 4th Generation Intel Xeon Scalable processors.
+* `service/email`: Updates service documentation
+  * Doc only updates to include: 1) Clarified which part of an email address where it's okay to have Punycode when it contains non-ASCII characters for the SendRawEmail action and other actions where this is applicable. 2) Updated S3Action description with new MB max bucket size from 30 to 40.
+* `service/quicksight`: Updates service API and documentation
+  * New Authentication method for Account subscription - IAM Identity Center. Hierarchy layout support, default column width support and related style properties for pivot table visuals. Non-additive topic field aggregations for Topic API
+* `service/swf`: Updates service API and documentation
+  * This release adds new API parameters to override workflow task list for workflow executions.
+
 Release v1.44.321 (2023-08-10)
 ===
 

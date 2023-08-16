@@ -131,7 +131,7 @@
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
     "StartAssetBundleExportJob": "<p>Starts an Asset Bundle export job.</p> <p>An Asset Bundle export job exports specified Amazon QuickSight assets. You can also choose to export any asset dependencies in the same job. Export jobs run asynchronously and can be polled with a <code>DescribeAssetBundleExportJob</code> API call. When a job is successfully completed, a download URL that contains the exported assets is returned. The URL is valid for 5 minutes and can be refreshed with a <code>DescribeAssetBundleExportJob</code> API call. Each Amazon QuickSight account can run up to 5 export jobs concurrently.</p> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>",
     "StartAssetBundleImportJob": "<p>Starts an Asset Bundle import job.</p> <p>An Asset Bundle import job imports specified Amazon QuickSight assets into an Amazon QuickSight account. You can also choose to import a naming prefix and specified configuration overrides. The assets that are contained in the bundle file that you provide are used to create or update a new or existing asset in your Amazon QuickSight account. Each Amazon QuickSight account can run up to 5 import jobs concurrently.</p> <p>The API caller must have the necessary <code>\"create\"</code>, <code>\"describe\"</code>, and <code>\"update\"</code> permissions in their IAM role to access each resource type that is contained in the bundle file before the resources can be imported.</p>",
-    "StartDashboardSnapshotJob": "<p>Starts an asynchronous job that generates a dashboard snapshot. You can request up to one paginated PDF and up to five CSVs per API call.</p> <p>Poll job descriptions with a <code>DescribeDashboardSnapshotJob</code> API call. Once the job succeeds, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the download URIs that the job generates.</p>",
+    "StartDashboardSnapshotJob": "<p>Starts an asynchronous job that generates a dashboard snapshot. You can request one of the following format configurations per API call.</p> <ul> <li> <p>1 paginated PDF</p> </li> <li> <p>5 CSVs</p> </li> </ul> <p>Poll job descriptions with a <code>DescribeDashboardSnapshotJob</code> API call. Once the job succeeds, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the download URIs that the job generates.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, and topic. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, the only customization that you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
@@ -184,6 +184,12 @@
       "base": "<p>A structure that contains the following account information elements:</p> <ul> <li> <p>Your Amazon QuickSight account name.</p> </li> <li> <p>The edition of Amazon QuickSight that your account is using.</p> </li> <li> <p>The notification email address that is associated with the Amazon QuickSight account. </p> </li> <li> <p>The authentication type of the Amazon QuickSight account.</p> </li> <li> <p>The status of the Amazon QuickSight account's subscription.</p> </li> </ul>",
       "refs": {
         "DescribeAccountSubscriptionResponse$AccountInfo": "<p>A structure that contains the following elements:</p> <ul> <li> <p>Your Amazon QuickSight account name.</p> </li> <li> <p>The edition of Amazon QuickSight that your account is using.</p> </li> <li> <p>The notification email address that is associated with the Amazon QuickSight account. </p> </li> <li> <p>The authentication type of the Amazon QuickSight account.</p> </li> <li> <p>The status of the Amazon QuickSight account's subscription.</p> </li> </ul>"
+      }
+    },
+    "AccountName": {
+      "base": null,
+      "refs": {
+        "CreateAccountSubscriptionRequest$AccountName": "<p>The name of your Amazon QuickSight account. This name is unique over all of Amazon Web Services, and it appears only when users sign in. You can't change <code>AccountName</code> value after the Amazon QuickSight account is created.</p>"
       }
     },
     "AccountSettings": {
@@ -3463,7 +3469,7 @@
       "base": null,
       "refs": {
         "TopicCalculatedField$Aggregation": "<p>The default aggregation. Valid values for this structure are <code>SUM</code>, <code>MAX</code>, <code>MIN</code>, <code>COUNT</code>, <code>DISTINCT_COUNT</code>, and <code>AVERAGE</code>.</p>",
-        "TopicColumn$Aggregation": "<p>The type of aggregation that is performed on the column data when it's queried. Valid values for this structure are <code>SUM</code>, <code>MAX</code>, <code>MIN</code>, <code>COUNT</code>, <code>DISTINCT_COUNT</code>, and <code>AVERAGE</code>.</p>"
+        "TopicColumn$Aggregation": "<p>The type of aggregation that is performed on the column data when it's queried.</p>"
       }
     },
     "DefaultFormatting": {
@@ -7106,7 +7112,9 @@
       "refs": {
         "DescribeIpRestrictionResponse$Enabled": "<p>A value that specifies whether IP rules are turned on.</p>",
         "TopicCalculatedField$DisableIndexing": "<p>A Boolean value that indicates if a calculated field is visible in the autocomplete.</p>",
+        "TopicCalculatedField$NonAdditive": "<p>The non additive for the table style target.</p>",
         "TopicColumn$DisableIndexing": "<p>A Boolean value that indicates whether the column shows in the autocomplete functionality.</p>",
+        "TopicColumn$NonAdditive": "<p>The non additive value for the column.</p>",
         "TopicRefreshSchedule$IsEnabled": "<p>A Boolean value that controls whether to schedule is enabled.</p>",
         "UpdateIpRestrictionRequest$Enabled": "<p>A value that specifies whether IP rules are turned on.</p>"
       }
@@ -7718,6 +7726,24 @@
         "PivotTableConfiguration$PaginatedReportOptions": "<p>The paginated report options for a pivot table visual.</p>"
       }
     },
+    "PivotTableRowsLabelOptions": {
+      "base": "<p>The options for the label thta is located above the row headers. This option is only applicable when <code>RowsLayout</code> is set to <code>HIERARCHY</code>.</p>",
+      "refs": {
+        "PivotTableOptions$RowsLabelOptions": "<p>The options for the label that is located above the row headers. This option is only applicable when <code>RowsLayout</code> is set to <code>HIERARCHY</code>.</p>"
+      }
+    },
+    "PivotTableRowsLabelText": {
+      "base": null,
+      "refs": {
+        "PivotTableRowsLabelOptions$CustomLabel": "<p>The custom label string for the rows label.</p>"
+      }
+    },
+    "PivotTableRowsLayout": {
+      "base": null,
+      "refs": {
+        "PivotTableOptions$RowsLayout": "<p>The layout for the row dimension headers of a pivot table. Choose one of the following options.</p> <ul> <li> <p> <code>TABULAR</code>: (Default) Each row field is displayed in a separate column.</p> </li> <li> <p> <code>HIERARCHY</code>: All row fields are displayed in a single column. Indentation is used to differentiate row headers of different fields.</p> </li> </ul>"
+      }
+    },
     "PivotTableSortBy": {
       "base": "<p>The sort by field for the field sort options.</p>",
       "refs": {
@@ -7771,6 +7797,7 @@
         "PanelConfiguration$BorderThickness": "<p>Sets the line thickness of panel borders.</p>",
         "PanelConfiguration$GutterSpacing": "<p>Sets the total amount of negative space to display between sibling panels.</p>",
         "PivotTableDataPathOption$Width": "<p>The width of the data path option.</p>",
+        "PivotTableOptions$DefaultCellWidth": "<p>The default cell width of the pivot table.</p>",
         "SectionStyle$Height": "<p>The height of a section.</p> <p>Heights can only be defined for header and footer sections. The default height margin is 0.5 inches. </p>",
         "TableFieldOption$Width": "<p>The width for a table field.</p>"
       }
@@ -9387,7 +9414,7 @@
         "SheetDefinition$SheetId": "<p>The unique identifier of a sheet.</p>",
         "SheetTextBox$SheetTextBoxId": "<p>The unique identifier for a text box. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have text boxes that share identifiers.</p>",
         "SheetVisualScopingConfiguration$SheetId": "<p>The selected sheet that the filter is applied to.</p>",
-        "SnapshotFileSheetSelection$SheetId": "<p>The sheet ID of the dashboard to generate the snapshot artifact from. This value is required for CSV or PDF format types.</p>",
+        "SnapshotFileSheetSelection$SheetId": "<p>The sheet ID of the dashboard to generate the snapshot artifact from. This value is required for CSV and PDF format types.</p>",
         "SnapshotFileSheetSelectionVisualIdList$member": null,
         "StartAssetBundleExportJobRequest$AssetBundleExportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
         "StartAssetBundleExportJobResponse$AssetBundleExportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
@@ -9562,7 +9589,7 @@
     "SnapshotFileFormatType": {
       "base": null,
       "refs": {
-        "SnapshotFile$FormatType": "<p>The format of the snapshot file to be generated. You can choose between <code>CSV</code> and <code>PDF</code>.</p>"
+        "SnapshotFile$FormatType": "<p>The format of the snapshot file to be generated. You can choose between <code>CSV</code> or <code>PDF</code>.</p>"
       }
     },
     "SnapshotFileGroup": {
@@ -9605,7 +9632,7 @@
     "SnapshotFileSheetSelectionVisualIdList": {
       "base": null,
       "refs": {
-        "SnapshotFileSheetSelection$VisualIds": "<p> A structure that lists the IDs of the visuals in the selected sheet. Supported visual types are table, pivot table visuals. This value is required if you are generating a CSV. This value supports a maximum of 1 visual ID. </p>"
+        "SnapshotFileSheetSelection$VisualIds": "<p> A list of visual IDs that are located in the selected sheet. This structure supports tables and pivot tables. This structure is required if you are generating a CSV. You can add a maximum of 1 visual ID to this structure. </p>"
       }
     },
     "SnapshotJobErrorInfo": {
@@ -9968,6 +9995,7 @@
         "AccountInfo$NotificationEmail": "<p>The email address that will be used for Amazon QuickSight to send notifications regarding your Amazon Web Services account or Amazon QuickSight subscription.</p>",
         "AccountInfo$AuthenticationType": "<p>The way that your Amazon QuickSight account is authenticated.</p>",
         "AccountInfo$AccountSubscriptionStatus": "<p>The status of your account subscription.</p>",
+        "AccountInfo$IAMIdentityCenterInstanceArn": "<p>The Amazon Resource Name (ARN) for the IAM Identity Center instance.</p>",
         "AccountSettings$AccountName": "<p>The \"account name\" you provided for the Amazon QuickSight subscription in your Amazon Web Services account. You create this name when you sign up for Amazon QuickSight. It is unique in all of Amazon Web Services and it appears only when users sign in.</p>",
         "AccountSettings$NotificationEmail": "<p>The main notification email for your Amazon QuickSight subscription.</p>",
         "ActionList$member": null,
@@ -9992,7 +10020,6 @@
         "ConflictException$Message": null,
         "ConflictException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "CreateAccountCustomizationResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "CreateAccountSubscriptionRequest$AccountName": "<p>The name of your Amazon QuickSight account. This name is unique over all of Amazon Web Services, and it appears only when users sign in. You can't change <code>AccountName</code> value after the Amazon QuickSight account is created.</p>",
         "CreateAccountSubscriptionRequest$NotificationEmail": "<p>The email address that you want Amazon QuickSight to send notifications to regarding your Amazon QuickSight account or Amazon QuickSight subscription.</p>",
         "CreateAccountSubscriptionRequest$ActiveDirectoryName": "<p>The name of your Active Directory. This field is required if <code>ACTIVE_DIRECTORY</code> is the selected authentication method of the new Amazon QuickSight account.</p>",
         "CreateAccountSubscriptionRequest$Realm": "<p>The realm of the Active Directory that is associated with your Amazon QuickSight account. This field is required if <code>ACTIVE_DIRECTORY</code> is the selected authentication method of the new Amazon QuickSight account.</p>",
@@ -10421,6 +10448,12 @@
         "StringParameterDeclaration$ValueWhenUnset": "<p>The configuration that defines the default value of a <code>String</code> parameter when a value has not been set.</p>"
       }
     },
+    "StyledCellType": {
+      "base": null,
+      "refs": {
+        "TableStyleTarget$CellType": "<p>The cell type of the table style target.</p>"
+      }
+    },
     "SubnetId": {
       "base": null,
       "refs": {
@@ -10668,6 +10701,18 @@
       "base": "<p>The sort configuration for a <code>TableVisual</code>.</p>",
       "refs": {
         "TableConfiguration$SortConfiguration": "<p>The sort configuration for a <code>TableVisual</code>.</p>"
+      }
+    },
+    "TableStyleTarget": {
+      "base": "<p>The table style target.</p>",
+      "refs": {
+        "TableStyleTargetList$member": null
+      }
+    },
+    "TableStyleTargetList": {
+      "base": null,
+      "refs": {
+        "SubtotalOptions$StyleTargets": "<p>The style targets options for subtotals.</p>"
       }
     },
     "TableTotalsPlacement": {
@@ -12140,6 +12185,7 @@
         "PivotTableOptions$CollapsedRowDimensionsVisibility": "<p>The visibility setting of a pivot table's collapsed row dimension fields. If the value of this structure is <code>HIDDEN</code>, all collapsed columns in a pivot table are automatically hidden. The default value is <code>VISIBLE</code>.</p>",
         "PivotTablePaginatedReportOptions$VerticalOverflowVisibility": "<p>The visibility of the printing table overflow across pages.</p>",
         "PivotTablePaginatedReportOptions$OverflowColumnHeaderVisibility": "<p>The visibility of the repeating header rows on each page.</p>",
+        "PivotTableRowsLabelOptions$Visibility": "<p>The visibility of the rows label.</p>",
         "PivotTotalOptions$TotalsVisibility": "<p>The visibility configuration for the total cells.</p>",
         "ProgressBarOptions$Visibility": "<p>The visibility of the progress bar.</p>",
         "RadarChartAreaStyleSettings$Visibility": "<p>The visibility settings of a radar chart.</p>",
@@ -12404,6 +12450,7 @@
         "FilterGroup$Status": "<p>The status of the <code>FilterGroup</code>.</p>",
         "ReferenceLine$Status": "<p>The status of the reference line. Choose one of the following options:</p> <ul> <li> <p> <code>ENABLE</code> </p> </li> <li> <p> <code>DISABLE</code> </p> </li> </ul>",
         "RowAlternateColorOptions$Status": "<p>Determines the widget status.</p>",
+        "RowAlternateColorOptions$UsePrimaryBackgroundColor": "<p>The primary background color options for alternate rows.</p>",
         "VisualCustomAction$Status": "<p>The status of the <code>VisualCustomAction</code>.</p>"
       }
     },

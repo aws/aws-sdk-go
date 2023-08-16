@@ -4933,7 +4933,8 @@
         "DisableValueTrimming":{"shape":"NullableBoolean"},
         "AllowSingleColumn":{"shape":"NullableBoolean"},
         "CustomDatatypeConfigured":{"shape":"NullableBoolean"},
-        "CustomDatatypes":{"shape":"CustomDatatypes"}
+        "CustomDatatypes":{"shape":"CustomDatatypes"},
+        "Serde":{"shape":"CsvSerdeOption"}
       }
     },
     "CreateCustomEntityTypeRequest":{
@@ -5399,7 +5400,8 @@
         "DisableValueTrimming":{"shape":"NullableBoolean"},
         "AllowSingleColumn":{"shape":"NullableBoolean"},
         "CustomDatatypeConfigured":{"shape":"NullableBoolean"},
-        "CustomDatatypes":{"shape":"CustomDatatypes"}
+        "CustomDatatypes":{"shape":"CustomDatatypes"},
+        "Serde":{"shape":"CsvSerdeOption"}
       }
     },
     "CsvColumnDelimiter":{
@@ -5425,6 +5427,14 @@
       "max":1,
       "min":1,
       "pattern":"[^\\r\\n]"
+    },
+    "CsvSerdeOption":{
+      "type":"string",
+      "enum":[
+        "OpenCSVSerDe",
+        "LazySimpleSerDe",
+        "None"
+      ]
     },
     "CustomCode":{
       "type":"structure",
@@ -12244,7 +12254,8 @@
         "DisableValueTrimming":{"shape":"NullableBoolean"},
         "AllowSingleColumn":{"shape":"NullableBoolean"},
         "CustomDatatypeConfigured":{"shape":"NullableBoolean"},
-        "CustomDatatypes":{"shape":"CustomDatatypes"}
+        "CustomDatatypes":{"shape":"CustomDatatypes"},
+        "Serde":{"shape":"CsvSerdeOption"}
       }
     },
     "UpdateDataQualityRulesetRequest":{

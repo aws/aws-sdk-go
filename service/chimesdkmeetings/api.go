@@ -213,6 +213,12 @@ func (c *ChimeSDKMeetings) BatchUpdateAttendeeCapabilitiesExceptRequest(input *B
 //   - ServiceUnavailableException
 //     The service is currently unavailable.
 //
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+//   - ThrottlingException
+//     The number of customer requests exceeds the request rate limit.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/BatchUpdateAttendeeCapabilitiesExcept
 func (c *ChimeSDKMeetings) BatchUpdateAttendeeCapabilitiesExcept(input *BatchUpdateAttendeeCapabilitiesExceptInput) (*BatchUpdateAttendeeCapabilitiesExceptOutput, error) {
 	req, out := c.BatchUpdateAttendeeCapabilitiesExceptRequest(input)
@@ -403,6 +409,9 @@ func (c *ChimeSDKMeetings) CreateMeetingRequest(input *CreateMeetingInput) (req 
 //   - BadRequestException
 //     The input parameters don't match the service's restrictions.
 //
+//   - ConflictException
+//     Multiple instances of the same request have been made simultaneously.
+//
 //   - ForbiddenException
 //     The client is permanently forbidden from making the request.
 //
@@ -504,6 +513,9 @@ func (c *ChimeSDKMeetings) CreateMeetingWithAttendeesRequest(input *CreateMeetin
 //
 //   - BadRequestException
 //     The input parameters don't match the service's restrictions.
+//
+//   - ConflictException
+//     Multiple instances of the same request have been made simultaneously.
 //
 //   - ForbiddenException
 //     The client is permanently forbidden from making the request.
@@ -1158,6 +1170,28 @@ func (c *ChimeSDKMeetings) ListTagsForResourceRequest(input *ListTagsForResource
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedException
+//     The user isn't authorized to request a resource.
+//
+//   - LimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+//   - ThrottlingException
+//     The number of customer requests exceeds the request rate limit.
+//
 //   - ResourceNotFoundException
 //     The resource that you want to tag couldn't be found.
 //
@@ -1468,6 +1502,24 @@ func (c *ChimeSDKMeetings) TagResourceRequest(input *TagResourceInput) (req *req
 //   - BadRequestException
 //     The input parameters don't match the service's restrictions.
 //
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedException
+//     The user isn't authorized to request a resource.
+//
+//   - LimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+//   - ThrottlingException
+//     The number of customer requests exceeds the request rate limit.
+//
 //   - ResourceNotFoundException
 //     The resource that you want to tag couldn't be found.
 //
@@ -1576,6 +1628,24 @@ func (c *ChimeSDKMeetings) UntagResourceRequest(input *UntagResourceInput) (req 
 //
 //   - BadRequestException
 //     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedException
+//     The user isn't authorized to request a resource.
+//
+//   - LimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+//   - ThrottlingException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceNotFoundException
 //     The resource that you want to tag couldn't be found.
@@ -1694,6 +1764,12 @@ func (c *ChimeSDKMeetings) UpdateAttendeeCapabilitiesRequest(input *UpdateAttend
 //
 //   - ServiceUnavailableException
 //     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+//   - ThrottlingException
+//     The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/UpdateAttendeeCapabilities
 func (c *ChimeSDKMeetings) UpdateAttendeeCapabilities(input *UpdateAttendeeCapabilitiesInput) (*UpdateAttendeeCapabilitiesOutput, error) {

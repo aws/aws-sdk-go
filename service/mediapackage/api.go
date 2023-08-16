@@ -4816,14 +4816,18 @@ type IngestEndpoint struct {
 	// The system generated unique identifier for the IngestEndpoint
 	Id *string `locationName:"id" type:"string"`
 
-	// The system generated password for ingest authentication.
-	Password *string `locationName:"password" type:"string"`
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IngestEndpoint's
+	// String and GoString methods.
+	Password *string `locationName:"password" type:"string" sensitive:"true"`
 
 	// The ingest URL to which the source stream should be sent.
 	Url *string `locationName:"url" type:"string"`
 
-	// The system generated username for ingest authentication.
-	Username *string `locationName:"username" type:"string"`
+	// Username is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IngestEndpoint's
+	// String and GoString methods.
+	Username *string `locationName:"username" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.

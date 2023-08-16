@@ -29882,6 +29882,12 @@ type CreateCsvClassifierRequest struct {
 	// A custom symbol to denote what combines content into a single column value.
 	// Must be different from the column delimiter.
 	QuoteSymbol *string `min:"1" type:"string"`
+
+	// Sets the SerDe for processing CSV in the classifier, which will be applied
+	// in the Data Catalog. Valid values are OpenCSVSerDe, LazySimpleSerDe, and
+	// None. You can specify the None value when you want the crawler to do the
+	// detection.
+	Serde *string `type:"string" enum:"CsvSerdeOption"`
 }
 
 // String returns the string representation.
@@ -29975,6 +29981,12 @@ func (s *CreateCsvClassifierRequest) SetName(v string) *CreateCsvClassifierReque
 // SetQuoteSymbol sets the QuoteSymbol field's value.
 func (s *CreateCsvClassifierRequest) SetQuoteSymbol(v string) *CreateCsvClassifierRequest {
 	s.QuoteSymbol = &v
+	return s
+}
+
+// SetSerde sets the Serde field's value.
+func (s *CreateCsvClassifierRequest) SetSerde(v string) *CreateCsvClassifierRequest {
+	s.Serde = &v
 	return s
 }
 
@@ -33561,6 +33573,12 @@ type CsvClassifier struct {
 	// It must be different from the column delimiter.
 	QuoteSymbol *string `min:"1" type:"string"`
 
+	// Sets the SerDe for processing CSV in the classifier, which will be applied
+	// in the Data Catalog. Valid values are OpenCSVSerDe, LazySimpleSerDe, and
+	// None. You can specify the None value when you want the crawler to do the
+	// detection.
+	Serde *string `type:"string" enum:"CsvSerdeOption"`
+
 	// The version of this classifier.
 	Version *int64 `type:"long"`
 }
@@ -33646,6 +33664,12 @@ func (s *CsvClassifier) SetName(v string) *CsvClassifier {
 // SetQuoteSymbol sets the QuoteSymbol field's value.
 func (s *CsvClassifier) SetQuoteSymbol(v string) *CsvClassifier {
 	s.QuoteSymbol = &v
+	return s
+}
+
+// SetSerde sets the Serde field's value.
+func (s *CsvClassifier) SetSerde(v string) *CsvClassifier {
+	s.Serde = &v
 	return s
 }
 
@@ -70738,6 +70762,12 @@ type UpdateCsvClassifierRequest struct {
 	// A custom symbol to denote what combines content into a single column value.
 	// It must be different from the column delimiter.
 	QuoteSymbol *string `min:"1" type:"string"`
+
+	// Sets the SerDe for processing CSV in the classifier, which will be applied
+	// in the Data Catalog. Valid values are OpenCSVSerDe, LazySimpleSerDe, and
+	// None. You can specify the None value when you want the crawler to do the
+	// detection.
+	Serde *string `type:"string" enum:"CsvSerdeOption"`
 }
 
 // String returns the string representation.
@@ -70831,6 +70861,12 @@ func (s *UpdateCsvClassifierRequest) SetName(v string) *UpdateCsvClassifierReque
 // SetQuoteSymbol sets the QuoteSymbol field's value.
 func (s *UpdateCsvClassifierRequest) SetQuoteSymbol(v string) *UpdateCsvClassifierRequest {
 	s.QuoteSymbol = &v
+	return s
+}
+
+// SetSerde sets the Serde field's value.
+func (s *UpdateCsvClassifierRequest) SetSerde(v string) *UpdateCsvClassifierRequest {
+	s.Serde = &v
 	return s
 }
 
@@ -74361,6 +74397,26 @@ func CsvHeaderOption_Values() []string {
 		CsvHeaderOptionUnknown,
 		CsvHeaderOptionPresent,
 		CsvHeaderOptionAbsent,
+	}
+}
+
+const (
+	// CsvSerdeOptionOpenCsvserDe is a CsvSerdeOption enum value
+	CsvSerdeOptionOpenCsvserDe = "OpenCSVSerDe"
+
+	// CsvSerdeOptionLazySimpleSerDe is a CsvSerdeOption enum value
+	CsvSerdeOptionLazySimpleSerDe = "LazySimpleSerDe"
+
+	// CsvSerdeOptionNone is a CsvSerdeOption enum value
+	CsvSerdeOptionNone = "None"
+)
+
+// CsvSerdeOption_Values returns all elements of the CsvSerdeOption enum
+func CsvSerdeOption_Values() []string {
+	return []string{
+		CsvSerdeOptionOpenCsvserDe,
+		CsvSerdeOptionLazySimpleSerDe,
+		CsvSerdeOptionNone,
 	}
 }
 

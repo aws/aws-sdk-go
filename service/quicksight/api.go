@@ -15005,7 +15005,11 @@ func (c *QuickSight) StartDashboardSnapshotJobRequest(input *StartDashboardSnaps
 // StartDashboardSnapshotJob API operation for Amazon QuickSight.
 //
 // Starts an asynchronous job that generates a dashboard snapshot. You can request
-// up to one paginated PDF and up to five CSVs per API call.
+// one of the following format configurations per API call.
+//
+//   - 1 paginated PDF
+//
+//   - 5 CSVs
 //
 // Poll job descriptions with a DescribeDashboardSnapshotJob API call. Once
 // the job succeeds, use the DescribeDashboardSnapshotJobResult API to obtain
@@ -18436,6 +18440,9 @@ type AccountInfo struct {
 	// The edition of your Amazon QuickSight account.
 	Edition *string `type:"string" enum:"Edition"`
 
+	// The Amazon Resource Name (ARN) for the IAM Identity Center instance.
+	IAMIdentityCenterInstanceArn *string `type:"string"`
+
 	// The email address that will be used for Amazon QuickSight to send notifications
 	// regarding your Amazon Web Services account or Amazon QuickSight subscription.
 	NotificationEmail *string `type:"string"`
@@ -18480,6 +18487,12 @@ func (s *AccountInfo) SetAuthenticationType(v string) *AccountInfo {
 // SetEdition sets the Edition field's value.
 func (s *AccountInfo) SetEdition(v string) *AccountInfo {
 	s.Edition = &v
+	return s
+}
+
+// SetIAMIdentityCenterInstanceArn sets the IAMIdentityCenterInstanceArn field's value.
+func (s *AccountInfo) SetIAMIdentityCenterInstanceArn(v string) *AccountInfo {
+	s.IAMIdentityCenterInstanceArn = &v
 	return s
 }
 
@@ -28334,7 +28347,7 @@ type CreateAccountSubscriptionInput struct {
 	// change AccountName value after the Amazon QuickSight account is created.
 	//
 	// AccountName is a required field
-	AccountName *string `type:"string" required:"true"`
+	AccountName *string `min:"1" type:"string" required:"true"`
 
 	// The name of your Active Directory. This field is required if ACTIVE_DIRECTORY
 	// is the selected authentication method of the new Amazon QuickSight account.
@@ -28451,6 +28464,9 @@ func (s *CreateAccountSubscriptionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateAccountSubscriptionInput"}
 	if s.AccountName == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountName"))
+	}
+	if s.AccountName != nil && len(*s.AccountName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountName", 1))
 	}
 	if s.AuthenticationMethod == nil {
 		invalidParams.Add(request.NewErrParamRequired("AuthenticationMethod"))
@@ -71975,6 +71991,9 @@ type PivotTableOptions struct {
 	// The visibility of the column names.
 	ColumnNamesVisibility *string `type:"string" enum:"Visibility"`
 
+	// The default cell width of the pivot table.
+	DefaultCellWidth *string `type:"string"`
+
 	// The metric placement (row, column) options.
 	MetricPlacement *string `type:"string" enum:"PivotTableMetricPlacement"`
 
@@ -71986,6 +72005,19 @@ type PivotTableOptions struct {
 
 	// The table cell style of the row headers.
 	RowHeaderStyle *TableCellStyle `type:"structure"`
+
+	// The options for the label that is located above the row headers. This option
+	// is only applicable when RowsLayout is set to HIERARCHY.
+	RowsLabelOptions *PivotTableRowsLabelOptions `type:"structure"`
+
+	// The layout for the row dimension headers of a pivot table. Choose one of
+	// the following options.
+	//
+	//    * TABULAR: (Default) Each row field is displayed in a separate column.
+	//
+	//    * HIERARCHY: All row fields are displayed in a single column. Indentation
+	//    is used to differentiate row headers of different fields.
+	RowsLayout *string `type:"string" enum:"PivotTableRowsLayout"`
 
 	// The visibility of the single metric options.
 	SingleMetricVisibility *string `type:"string" enum:"Visibility"`
@@ -72035,6 +72067,11 @@ func (s *PivotTableOptions) Validate() error {
 			invalidParams.AddNested("RowHeaderStyle", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RowsLabelOptions != nil {
+		if err := s.RowsLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("RowsLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -72066,6 +72103,12 @@ func (s *PivotTableOptions) SetColumnNamesVisibility(v string) *PivotTableOption
 	return s
 }
 
+// SetDefaultCellWidth sets the DefaultCellWidth field's value.
+func (s *PivotTableOptions) SetDefaultCellWidth(v string) *PivotTableOptions {
+	s.DefaultCellWidth = &v
+	return s
+}
+
 // SetMetricPlacement sets the MetricPlacement field's value.
 func (s *PivotTableOptions) SetMetricPlacement(v string) *PivotTableOptions {
 	s.MetricPlacement = &v
@@ -72087,6 +72130,18 @@ func (s *PivotTableOptions) SetRowFieldNamesStyle(v *TableCellStyle) *PivotTable
 // SetRowHeaderStyle sets the RowHeaderStyle field's value.
 func (s *PivotTableOptions) SetRowHeaderStyle(v *TableCellStyle) *PivotTableOptions {
 	s.RowHeaderStyle = v
+	return s
+}
+
+// SetRowsLabelOptions sets the RowsLabelOptions field's value.
+func (s *PivotTableOptions) SetRowsLabelOptions(v *PivotTableRowsLabelOptions) *PivotTableOptions {
+	s.RowsLabelOptions = v
+	return s
+}
+
+// SetRowsLayout sets the RowsLayout field's value.
+func (s *PivotTableOptions) SetRowsLayout(v string) *PivotTableOptions {
+	s.RowsLayout = &v
 	return s
 }
 
@@ -72140,6 +72195,61 @@ func (s *PivotTablePaginatedReportOptions) SetOverflowColumnHeaderVisibility(v s
 // SetVerticalOverflowVisibility sets the VerticalOverflowVisibility field's value.
 func (s *PivotTablePaginatedReportOptions) SetVerticalOverflowVisibility(v string) *PivotTablePaginatedReportOptions {
 	s.VerticalOverflowVisibility = &v
+	return s
+}
+
+// The options for the label thta is located above the row headers. This option
+// is only applicable when RowsLayout is set to HIERARCHY.
+type PivotTableRowsLabelOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The custom label string for the rows label.
+	CustomLabel *string `min:"1" type:"string"`
+
+	// The visibility of the rows label.
+	Visibility *string `type:"string" enum:"Visibility"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PivotTableRowsLabelOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PivotTableRowsLabelOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PivotTableRowsLabelOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PivotTableRowsLabelOptions"}
+	if s.CustomLabel != nil && len(*s.CustomLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomLabel", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomLabel sets the CustomLabel field's value.
+func (s *PivotTableRowsLabelOptions) SetCustomLabel(v string) *PivotTableRowsLabelOptions {
+	s.CustomLabel = &v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *PivotTableRowsLabelOptions) SetVisibility(v string) *PivotTableRowsLabelOptions {
+	s.Visibility = &v
 	return s
 }
 
@@ -76553,6 +76663,9 @@ type RowAlternateColorOptions struct {
 
 	// Determines the widget status.
 	Status *string `type:"string" enum:"WidgetStatus"`
+
+	// The primary background color options for alternate rows.
+	UsePrimaryBackgroundColor *string `type:"string" enum:"WidgetStatus"`
 }
 
 // String returns the string representation.
@@ -76582,6 +76695,12 @@ func (s *RowAlternateColorOptions) SetRowAlternateColors(v []*string) *RowAltern
 // SetStatus sets the Status field's value.
 func (s *RowAlternateColorOptions) SetStatus(v string) *RowAlternateColorOptions {
 	s.Status = &v
+	return s
+}
+
+// SetUsePrimaryBackgroundColor sets the UsePrimaryBackgroundColor field's value.
+func (s *RowAlternateColorOptions) SetUsePrimaryBackgroundColor(v string) *RowAlternateColorOptions {
+	s.UsePrimaryBackgroundColor = &v
 	return s
 }
 
@@ -81625,7 +81744,7 @@ type SnapshotFile struct {
 	_ struct{} `type:"structure"`
 
 	// The format of the snapshot file to be generated. You can choose between CSV
-	// and PDF.
+	// or PDF.
 	//
 	// FormatType is a required field
 	FormatType *string `type:"string" required:"true" enum:"SnapshotFileFormatType"`
@@ -81773,14 +81892,14 @@ type SnapshotFileSheetSelection struct {
 	SelectionScope *string `type:"string" required:"true" enum:"SnapshotFileSheetSelectionScope"`
 
 	// The sheet ID of the dashboard to generate the snapshot artifact from. This
-	// value is required for CSV or PDF format types.
+	// value is required for CSV and PDF format types.
 	//
 	// SheetId is a required field
 	SheetId *string `min:"1" type:"string" required:"true"`
 
-	// A structure that lists the IDs of the visuals in the selected sheet. Supported
-	// visual types are table, pivot table visuals. This value is required if you
-	// are generating a CSV. This value supports a maximum of 1 visual ID.
+	// A list of visual IDs that are located in the selected sheet. This structure
+	// supports tables and pivot tables. This structure is required if you are generating
+	// a CSV. You can add a maximum of 1 visual ID to this structure.
 	VisualIds []*string `min:"1" type:"list"`
 }
 
@@ -83631,6 +83750,9 @@ type SubtotalOptions struct {
 	// The cell styling options for the subtotals of header cells.
 	MetricHeaderCellStyle *TableCellStyle `type:"structure"`
 
+	// The style targets options for subtotals.
+	StyleTargets []*TableStyleTarget `type:"list"`
+
 	// The cell styling options for the subtotal cells.
 	TotalCellStyle *TableCellStyle `type:"structure"`
 
@@ -83677,6 +83799,16 @@ func (s *SubtotalOptions) Validate() error {
 			invalidParams.AddNested("MetricHeaderCellStyle", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.StyleTargets != nil {
+		for i, v := range s.StyleTargets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StyleTargets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.TotalCellStyle != nil {
 		if err := s.TotalCellStyle.Validate(); err != nil {
 			invalidParams.AddNested("TotalCellStyle", err.(request.ErrInvalidParams))
@@ -83715,6 +83847,12 @@ func (s *SubtotalOptions) SetFieldLevelOptions(v []*PivotTableFieldSubtotalOptio
 // SetMetricHeaderCellStyle sets the MetricHeaderCellStyle field's value.
 func (s *SubtotalOptions) SetMetricHeaderCellStyle(v *TableCellStyle) *SubtotalOptions {
 	s.MetricHeaderCellStyle = v
+	return s
+}
+
+// SetStyleTargets sets the StyleTargets field's value.
+func (s *SubtotalOptions) SetStyleTargets(v []*TableStyleTarget) *SubtotalOptions {
+	s.StyleTargets = v
 	return s
 }
 
@@ -85257,6 +85395,53 @@ func (s *TableSortConfiguration) SetPaginationConfiguration(v *PaginationConfigu
 // SetRowSort sets the RowSort field's value.
 func (s *TableSortConfiguration) SetRowSort(v []*FieldSortOptions) *TableSortConfiguration {
 	s.RowSort = v
+	return s
+}
+
+// The table style target.
+type TableStyleTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The cell type of the table style target.
+	//
+	// CellType is a required field
+	CellType *string `type:"string" required:"true" enum:"StyledCellType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableStyleTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableStyleTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TableStyleTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TableStyleTarget"}
+	if s.CellType == nil {
+		invalidParams.Add(request.NewErrParamRequired("CellType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCellType sets the CellType field's value.
+func (s *TableStyleTarget) SetCellType(v string) *TableStyleTarget {
+	s.CellType = &v
 	return s
 }
 
@@ -88603,6 +88788,9 @@ type TopicCalculatedField struct {
 	// in filters.
 	NeverAggregateInFilter *bool `type:"boolean"`
 
+	// The non additive for the table style target.
+	NonAdditive *bool `type:"boolean"`
+
 	// The list of aggregation types that are not allowed for the calculated field.
 	// Valid values for this structure are COUNT, DISTINCT_COUNT, MIN, MAX, MEDIAN,
 	// SUM, AVERAGE, STDEV, STDEVP, VAR, VARP, and PERCENTILE.
@@ -88727,6 +88915,12 @@ func (s *TopicCalculatedField) SetIsIncludedInTopic(v bool) *TopicCalculatedFiel
 // SetNeverAggregateInFilter sets the NeverAggregateInFilter field's value.
 func (s *TopicCalculatedField) SetNeverAggregateInFilter(v bool) *TopicCalculatedField {
 	s.NeverAggregateInFilter = &v
+	return s
+}
+
+// SetNonAdditive sets the NonAdditive field's value.
+func (s *TopicCalculatedField) SetNonAdditive(v bool) *TopicCalculatedField {
+	s.NonAdditive = &v
 	return s
 }
 
@@ -88871,8 +89065,6 @@ type TopicColumn struct {
 	_ struct{} `type:"structure"`
 
 	// The type of aggregation that is performed on the column data when it's queried.
-	// Valid values for this structure are SUM, MAX, MIN, COUNT, DISTINCT_COUNT,
-	// and AVERAGE.
 	Aggregation *string `type:"string" enum:"DefaultAggregation"`
 
 	// The list of aggregation types that are allowed for the column. Valid values
@@ -88918,6 +89110,9 @@ type TopicColumn struct {
 	// A Boolean value that indicates whether to aggregate the column data when
 	// it's used in a filter context.
 	NeverAggregateInFilter *bool `type:"boolean"`
+
+	// The non additive value for the column.
+	NonAdditive *bool `type:"boolean"`
 
 	// The list of aggregation types that are not allowed for the column. Valid
 	// values for this structure are COUNT, DISTINCT_COUNT, MIN, MAX, MEDIAN, SUM,
@@ -89037,6 +89232,12 @@ func (s *TopicColumn) SetIsIncludedInTopic(v bool) *TopicColumn {
 // SetNeverAggregateInFilter sets the NeverAggregateInFilter field's value.
 func (s *TopicColumn) SetNeverAggregateInFilter(v bool) *TopicColumn {
 	s.NeverAggregateInFilter = &v
+	return s
+}
+
+// SetNonAdditive sets the NonAdditive field's value.
+func (s *TopicColumn) SetNonAdditive(v bool) *TopicColumn {
+	s.NonAdditive = &v
 	return s
 }
 
@@ -99879,6 +100080,9 @@ const (
 
 	// AuthenticationMethodOptionActiveDirectory is a AuthenticationMethodOption enum value
 	AuthenticationMethodOptionActiveDirectory = "ACTIVE_DIRECTORY"
+
+	// AuthenticationMethodOptionIamIdentityCenter is a AuthenticationMethodOption enum value
+	AuthenticationMethodOptionIamIdentityCenter = "IAM_IDENTITY_CENTER"
 )
 
 // AuthenticationMethodOption_Values returns all elements of the AuthenticationMethodOption enum
@@ -99887,6 +100091,7 @@ func AuthenticationMethodOption_Values() []string {
 		AuthenticationMethodOptionIamAndQuicksight,
 		AuthenticationMethodOptionIamOnly,
 		AuthenticationMethodOptionActiveDirectory,
+		AuthenticationMethodOptionIamIdentityCenter,
 	}
 }
 
@@ -100904,6 +101109,21 @@ const (
 
 	// DefaultAggregationAverage is a DefaultAggregation enum value
 	DefaultAggregationAverage = "AVERAGE"
+
+	// DefaultAggregationMedian is a DefaultAggregation enum value
+	DefaultAggregationMedian = "MEDIAN"
+
+	// DefaultAggregationStdev is a DefaultAggregation enum value
+	DefaultAggregationStdev = "STDEV"
+
+	// DefaultAggregationStdevp is a DefaultAggregation enum value
+	DefaultAggregationStdevp = "STDEVP"
+
+	// DefaultAggregationVar is a DefaultAggregation enum value
+	DefaultAggregationVar = "VAR"
+
+	// DefaultAggregationVarp is a DefaultAggregation enum value
+	DefaultAggregationVarp = "VARP"
 )
 
 // DefaultAggregation_Values returns all elements of the DefaultAggregation enum
@@ -100915,6 +101135,11 @@ func DefaultAggregation_Values() []string {
 		DefaultAggregationCount,
 		DefaultAggregationDistinctCount,
 		DefaultAggregationAverage,
+		DefaultAggregationMedian,
+		DefaultAggregationStdev,
+		DefaultAggregationStdevp,
+		DefaultAggregationVar,
+		DefaultAggregationVarp,
 	}
 }
 
@@ -101540,6 +101765,9 @@ const (
 
 	// IdentityTypeQuicksight is a IdentityType enum value
 	IdentityTypeQuicksight = "QUICKSIGHT"
+
+	// IdentityTypeIamIdentityCenter is a IdentityType enum value
+	IdentityTypeIamIdentityCenter = "IAM_IDENTITY_CENTER"
 )
 
 // IdentityType_Values returns all elements of the IdentityType enum
@@ -101547,6 +101775,7 @@ func IdentityType_Values() []string {
 	return []string{
 		IdentityTypeIam,
 		IdentityTypeQuicksight,
+		IdentityTypeIamIdentityCenter,
 	}
 }
 
@@ -102623,6 +102852,22 @@ func PivotTableMetricPlacement_Values() []string {
 }
 
 const (
+	// PivotTableRowsLayoutTabular is a PivotTableRowsLayout enum value
+	PivotTableRowsLayoutTabular = "TABULAR"
+
+	// PivotTableRowsLayoutHierarchy is a PivotTableRowsLayout enum value
+	PivotTableRowsLayoutHierarchy = "HIERARCHY"
+)
+
+// PivotTableRowsLayout_Values returns all elements of the PivotTableRowsLayout enum
+func PivotTableRowsLayout_Values() []string {
+	return []string{
+		PivotTableRowsLayoutTabular,
+		PivotTableRowsLayoutHierarchy,
+	}
+}
+
+const (
 	// PivotTableSubtotalLevelAll is a PivotTableSubtotalLevel enum value
 	PivotTableSubtotalLevelAll = "ALL"
 
@@ -103303,6 +103548,26 @@ func Status_Values() []string {
 }
 
 const (
+	// StyledCellTypeTotal is a StyledCellType enum value
+	StyledCellTypeTotal = "TOTAL"
+
+	// StyledCellTypeMetricHeader is a StyledCellType enum value
+	StyledCellTypeMetricHeader = "METRIC_HEADER"
+
+	// StyledCellTypeValue is a StyledCellType enum value
+	StyledCellTypeValue = "VALUE"
+)
+
+// StyledCellType_Values returns all elements of the StyledCellType enum
+func StyledCellType_Values() []string {
+	return []string{
+		StyledCellTypeTotal,
+		StyledCellTypeMetricHeader,
+		StyledCellTypeValue,
+	}
+}
+
+const (
 	// TableBorderStyleNone is a TableBorderStyle enum value
 	TableBorderStyleNone = "NONE"
 
@@ -103879,6 +104144,9 @@ const (
 
 	// VerticalTextAlignmentBottom is a VerticalTextAlignment enum value
 	VerticalTextAlignmentBottom = "BOTTOM"
+
+	// VerticalTextAlignmentAuto is a VerticalTextAlignment enum value
+	VerticalTextAlignmentAuto = "AUTO"
 )
 
 // VerticalTextAlignment_Values returns all elements of the VerticalTextAlignment enum
@@ -103887,6 +104155,7 @@ func VerticalTextAlignment_Values() []string {
 		VerticalTextAlignmentTop,
 		VerticalTextAlignmentMiddle,
 		VerticalTextAlignmentBottom,
+		VerticalTextAlignmentAuto,
 	}
 }
 

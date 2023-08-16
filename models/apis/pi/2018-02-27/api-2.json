@@ -14,6 +14,34 @@
     "uid":"pi-2018-02-27"
   },
   "operations":{
+    "CreatePerformanceAnalysisReport":{
+      "name":"CreatePerformanceAnalysisReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreatePerformanceAnalysisReportRequest"},
+      "output":{"shape":"CreatePerformanceAnalysisReportResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
+    "DeletePerformanceAnalysisReport":{
+      "name":"DeletePerformanceAnalysisReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePerformanceAnalysisReportRequest"},
+      "output":{"shape":"DeletePerformanceAnalysisReportResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
     "DescribeDimensionKeys":{
       "name":"DescribeDimensionKeys",
       "http":{
@@ -36,6 +64,20 @@
       },
       "input":{"shape":"GetDimensionKeyDetailsRequest"},
       "output":{"shape":"GetDimensionKeyDetailsResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
+    "GetPerformanceAnalysisReport":{
+      "name":"GetPerformanceAnalysisReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPerformanceAnalysisReportRequest"},
+      "output":{"shape":"GetPerformanceAnalysisReportResponse"},
       "errors":[
         {"shape":"InvalidArgumentException"},
         {"shape":"InternalServiceError"},
@@ -97,9 +139,69 @@
         {"shape":"InternalServiceError"},
         {"shape":"NotAuthorizedException"}
       ]
+    },
+    "ListPerformanceAnalysisReports":{
+      "name":"ListPerformanceAnalysisReports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPerformanceAnalysisReportsRequest"},
+      "output":{"shape":"ListPerformanceAnalysisReportsResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
     }
   },
   "shapes":{
+    "AcceptLanguage":{
+      "type":"string",
+      "enum":["EN_US"]
+    },
     "AdditionalMetricsList":{
       "type":"list",
       "member":{"shape":"RequestString"},
@@ -110,6 +212,95 @@
       "type":"map",
       "key":{"shape":"RequestString"},
       "value":{"shape":"Double"}
+    },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^arn:.*:pi:.*$"
+    },
+    "AnalysisReport":{
+      "type":"structure",
+      "required":["AnalysisReportId"],
+      "members":{
+        "AnalysisReportId":{"shape":"AnalysisReportId"},
+        "Identifier":{"shape":"IdentifierString"},
+        "ServiceType":{"shape":"ServiceType"},
+        "CreateTime":{"shape":"ISOTimestamp"},
+        "StartTime":{"shape":"ISOTimestamp"},
+        "EndTime":{"shape":"ISOTimestamp"},
+        "Status":{"shape":"AnalysisStatus"},
+        "Insights":{"shape":"InsightList"}
+      }
+    },
+    "AnalysisReportId":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"report-[0-9a-f]{17}"
+    },
+    "AnalysisReportSummary":{
+      "type":"structure",
+      "members":{
+        "AnalysisReportId":{"shape":"String"},
+        "CreateTime":{"shape":"ISOTimestamp"},
+        "StartTime":{"shape":"ISOTimestamp"},
+        "EndTime":{"shape":"ISOTimestamp"},
+        "Status":{"shape":"AnalysisStatus"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "AnalysisReportSummaryList":{
+      "type":"list",
+      "member":{"shape":"AnalysisReportSummary"}
+    },
+    "AnalysisStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "Boolean":{"type":"boolean"},
+    "ContextType":{
+      "type":"string",
+      "enum":[
+        "CAUSAL",
+        "CONTEXTUAL"
+      ]
+    },
+    "CreatePerformanceAnalysisReportRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "Identifier",
+        "StartTime",
+        "EndTime"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "Identifier":{"shape":"IdentifierString"},
+        "StartTime":{"shape":"ISOTimestamp"},
+        "EndTime":{"shape":"ISOTimestamp"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreatePerformanceAnalysisReportResponse":{
+      "type":"structure",
+      "members":{
+        "AnalysisReportId":{"shape":"AnalysisReportId"}
+      }
+    },
+    "Data":{
+      "type":"structure",
+      "members":{
+        "PerformanceInsightsMetric":{"shape":"PerformanceInsightsMetric"}
+      }
+    },
+    "DataList":{
+      "type":"list",
+      "member":{"shape":"Data"}
     },
     "DataPoint":{
       "type":"structure",
@@ -126,6 +317,24 @@
       "type":"list",
       "member":{"shape":"DataPoint"}
     },
+    "DeletePerformanceAnalysisReportRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "Identifier",
+        "AnalysisReportId"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "Identifier":{"shape":"IdentifierString"},
+        "AnalysisReportId":{"shape":"AnalysisReportId"}
+      }
+    },
+    "DeletePerformanceAnalysisReportResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeDimensionKeysRequest":{
       "type":"structure",
       "required":[
@@ -138,7 +347,7 @@
       ],
       "members":{
         "ServiceType":{"shape":"ServiceType"},
-        "Identifier":{"shape":"RequestString"},
+        "Identifier":{"shape":"IdentifierString"},
         "StartTime":{"shape":"ISOTimestamp"},
         "EndTime":{"shape":"ISOTimestamp"},
         "Metric":{"shape":"RequestString"},
@@ -165,6 +374,17 @@
       "type":"string",
       "max":2048,
       "min":1
+    },
+    "DescriptiveMap":{
+      "type":"map",
+      "key":{"shape":"DescriptiveString"},
+      "value":{"shape":"DescriptiveString"}
+    },
+    "DescriptiveString":{
+      "type":"string",
+      "max":2000,
+      "min":1,
+      "pattern":"^.*$"
     },
     "DetailStatus":{
       "type":"string",
@@ -286,6 +506,27 @@
         "Dimensions":{"shape":"DimensionKeyDetailList"}
       }
     },
+    "GetPerformanceAnalysisReportRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "Identifier",
+        "AnalysisReportId"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "Identifier":{"shape":"IdentifierString"},
+        "AnalysisReportId":{"shape":"AnalysisReportId"},
+        "TextFormat":{"shape":"TextFormat"},
+        "AcceptLanguage":{"shape":"AcceptLanguage"}
+      }
+    },
+    "GetPerformanceAnalysisReportResponse":{
+      "type":"structure",
+      "members":{
+        "AnalysisReport":{"shape":"AnalysisReport"}
+      }
+    },
     "GetResourceMetadataRequest":{
       "type":"structure",
       "required":[
@@ -294,7 +535,7 @@
       ],
       "members":{
         "ServiceType":{"shape":"ServiceType"},
-        "Identifier":{"shape":"RequestString"}
+        "Identifier":{"shape":"IdentifierString"}
       }
     },
     "GetResourceMetadataResponse":{
@@ -315,7 +556,7 @@
       ],
       "members":{
         "ServiceType":{"shape":"ServiceType"},
-        "Identifier":{"shape":"RequestString"},
+        "Identifier":{"shape":"IdentifierString"},
         "MetricQueries":{"shape":"MetricQueryList"},
         "StartTime":{"shape":"ISOTimestamp"},
         "EndTime":{"shape":"ISOTimestamp"},
@@ -340,7 +581,28 @@
       "type":"string",
       "max":256,
       "min":0,
-      "pattern":"^db-[a-zA-Z0-9-]*$"
+      "pattern":"^[a-zA-Z0-9-]+$"
+    },
+    "Insight":{
+      "type":"structure",
+      "required":["InsightId"],
+      "members":{
+        "InsightId":{"shape":"String"},
+        "InsightType":{"shape":"String"},
+        "Context":{"shape":"ContextType"},
+        "StartTime":{"shape":"ISOTimestamp"},
+        "EndTime":{"shape":"ISOTimestamp"},
+        "Severity":{"shape":"Severity"},
+        "SupportingInsights":{"shape":"InsightList"},
+        "Description":{"shape":"MarkdownString"},
+        "Recommendations":{"shape":"RecommendationList"},
+        "InsightData":{"shape":"DataList"},
+        "BaselineData":{"shape":"DataList"}
+      }
+    },
+    "InsightList":{
+      "type":"list",
+      "member":{"shape":"Insight"}
     },
     "Integer":{"type":"integer"},
     "InternalServiceError":{
@@ -372,7 +634,7 @@
       ],
       "members":{
         "ServiceType":{"shape":"ServiceType"},
-        "Identifier":{"shape":"RequestString"},
+        "Identifier":{"shape":"IdentifierString"},
         "Metrics":{"shape":"DimensionsMetricList"},
         "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"NextToken"}
@@ -394,7 +656,7 @@
       ],
       "members":{
         "ServiceType":{"shape":"ServiceType"},
-        "Identifier":{"shape":"RequestString"},
+        "Identifier":{"shape":"IdentifierString"},
         "MetricTypes":{"shape":"MetricTypeList"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxResults"}
@@ -406,6 +668,51 @@
         "Metrics":{"shape":"ResponseResourceMetricList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ListPerformanceAnalysisReportsRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "Identifier"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "Identifier":{"shape":"IdentifierString"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "ListTags":{"shape":"Boolean"}
+      }
+    },
+    "ListPerformanceAnalysisReportsResponse":{
+      "type":"structure",
+      "members":{
+        "AnalysisReports":{"shape":"AnalysisReportSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "ResourceARN"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "MarkdownString":{
+      "type":"string",
+      "max":8000,
+      "min":0,
+      "pattern":"(.|\\n)*",
+      "sensitive":true
     },
     "MaxResults":{
       "type":"integer",
@@ -466,7 +773,7 @@
       "type":"string",
       "max":8192,
       "min":1,
-      "pattern":"[\\s\\S]*"
+      "pattern":"^[a-zA-Z0-9_=-]+$"
     },
     "NotAuthorizedException":{
       "type":"structure",
@@ -475,12 +782,32 @@
       },
       "exception":true
     },
+    "PerformanceInsightsMetric":{
+      "type":"structure",
+      "members":{
+        "Metric":{"shape":"DescriptiveString"},
+        "DisplayName":{"shape":"DescriptiveString"},
+        "Dimensions":{"shape":"DescriptiveMap"},
+        "Value":{"shape":"Double"}
+      }
+    },
     "PeriodAlignment":{
       "type":"string",
       "enum":[
         "END_TIME",
         "START_TIME"
       ]
+    },
+    "Recommendation":{
+      "type":"structure",
+      "members":{
+        "RecommendationId":{"shape":"String"},
+        "RecommendationDescription":{"shape":"MarkdownString"}
+      }
+    },
+    "RecommendationList":{
+      "type":"list",
+      "member":{"shape":"Recommendation"}
     },
     "RequestString":{
       "type":"string",
@@ -538,11 +865,97 @@
         "DOCDB"
       ]
     },
+    "Severity":{
+      "type":"string",
+      "enum":[
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
     "String":{
       "type":"string",
       "max":256,
       "min":0,
       "pattern":".*\\S.*"
+    },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "TextFormat":{
+      "type":"string",
+      "enum":[
+        "PLAIN_TEXT",
+        "MARKDOWN"
+      ]
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     }
   }
 }

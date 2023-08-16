@@ -45,7 +45,9 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"ForbiddenException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateAttendee":{
@@ -78,6 +80,7 @@
       "output":{"shape":"CreateMeetingResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedException"},
         {"shape":"ThrottlingException"},
@@ -96,6 +99,7 @@
       "output":{"shape":"CreateMeetingWithAttendeesResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedException"},
         {"shape":"ThrottlingException"},
@@ -205,6 +209,13 @@
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -258,6 +269,12 @@
       "output":{"shape":"TagResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyTagsException"}
       ]
@@ -273,6 +290,12 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -290,7 +313,9 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"ForbiddenException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ThrottlingException"}
       ]
     }
   },

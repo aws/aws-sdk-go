@@ -17810,7 +17810,8 @@
         "NearestModelName":{"shape":"String"},
         "SupportedInstanceTypes":{"shape":"RecommendationJobSupportedInstanceTypes"},
         "DataInputConfig":{"shape":"RecommendationJobDataInputConfig"},
-        "SupportedEndpointType":{"shape":"RecommendationJobSupportedEndpointType"}
+        "SupportedEndpointType":{"shape":"RecommendationJobSupportedEndpointType"},
+        "SupportedResponseMIMETypes":{"shape":"RecommendationJobSupportedResponseMIMETypes"}
       }
     },
     "RecommendationJobDataInputConfig":{
@@ -17911,6 +17912,15 @@
     "RecommendationJobSupportedInstanceTypes":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "RecommendationJobSupportedResponseMIMEType":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^[-\\w]+\\/.+$"
+    },
+    "RecommendationJobSupportedResponseMIMETypes":{
+      "type":"list",
+      "member":{"shape":"RecommendationJobSupportedResponseMIMEType"}
     },
     "RecommendationJobType":{
       "type":"string",

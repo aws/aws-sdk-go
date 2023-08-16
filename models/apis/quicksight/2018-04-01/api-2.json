@@ -2894,8 +2894,15 @@
         "Edition":{"shape":"Edition"},
         "NotificationEmail":{"shape":"String"},
         "AuthenticationType":{"shape":"String"},
-        "AccountSubscriptionStatus":{"shape":"String"}
+        "AccountSubscriptionStatus":{"shape":"String"},
+        "IAMIdentityCenterInstanceArn":{"shape":"String"}
       }
+    },
+    "AccountName":{
+      "type":"string",
+      "max":62,
+      "min":1,
+      "pattern":"^(?!D-|d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*"
     },
     "AccountSettings":{
       "type":"structure",
@@ -3747,7 +3754,8 @@
       "enum":[
         "IAM_AND_QUICKSIGHT",
         "IAM_ONLY",
-        "ACTIVE_DIRECTORY"
+        "ACTIVE_DIRECTORY",
+        "IAM_IDENTITY_CENTER"
       ]
     },
     "AuthorSpecifiedAggregation":{
@@ -4954,7 +4962,7 @@
           "location":"uri",
           "locationName":"AwsAccountId"
         },
-        "AccountName":{"shape":"String"},
+        "AccountName":{"shape":"AccountName"},
         "NotificationEmail":{"shape":"String"},
         "ActiveDirectoryName":{"shape":"String"},
         "Realm":{"shape":"String"},
@@ -6946,7 +6954,12 @@
         "MIN",
         "COUNT",
         "DISTINCT_COUNT",
-        "AVERAGE"
+        "AVERAGE",
+        "MEDIAN",
+        "STDEV",
+        "STDEVP",
+        "VAR",
+        "VARP"
       ]
     },
     "DefaultFormatting":{
@@ -9494,7 +9507,7 @@
     "FieldOrderList":{
       "type":"list",
       "member":{"shape":"FieldId"},
-      "max":100
+      "max":200
     },
     "FieldSeriesItem":{
       "type":"structure",
@@ -11064,7 +11077,8 @@
       "type":"string",
       "enum":[
         "IAM",
-        "QUICKSIGHT"
+        "QUICKSIGHT",
+        "IAM_IDENTITY_CENTER"
       ]
     },
     "IdentityTypeNotSupportedException":{
@@ -14099,7 +14113,10 @@
         "CellStyle":{"shape":"TableCellStyle"},
         "RowFieldNamesStyle":{"shape":"TableCellStyle"},
         "RowAlternateColorOptions":{"shape":"RowAlternateColorOptions"},
-        "CollapsedRowDimensionsVisibility":{"shape":"Visibility"}
+        "CollapsedRowDimensionsVisibility":{"shape":"Visibility"},
+        "RowsLayout":{"shape":"PivotTableRowsLayout"},
+        "RowsLabelOptions":{"shape":"PivotTableRowsLabelOptions"},
+        "DefaultCellWidth":{"shape":"PixelLength"}
       }
     },
     "PivotTablePaginatedReportOptions":{
@@ -14108,6 +14125,25 @@
         "VerticalOverflowVisibility":{"shape":"Visibility"},
         "OverflowColumnHeaderVisibility":{"shape":"Visibility"}
       }
+    },
+    "PivotTableRowsLabelOptions":{
+      "type":"structure",
+      "members":{
+        "Visibility":{"shape":"Visibility"},
+        "CustomLabel":{"shape":"PivotTableRowsLabelText"}
+      }
+    },
+    "PivotTableRowsLabelText":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "PivotTableRowsLayout":{
+      "type":"string",
+      "enum":[
+        "TABULAR",
+        "HIERARCHY"
+      ]
     },
     "PivotTableSortBy":{
       "type":"structure",
@@ -14973,7 +15009,8 @@
       "type":"structure",
       "members":{
         "Status":{"shape":"WidgetStatus"},
-        "RowAlternateColors":{"shape":"RowAlternateColorList"}
+        "RowAlternateColors":{"shape":"RowAlternateColorList"},
+        "UsePrimaryBackgroundColor":{"shape":"WidgetStatus"}
       }
     },
     "RowInfo":{
@@ -16480,6 +16517,14 @@
         "CustomValue":{"shape":"SensitiveString"}
       }
     },
+    "StyledCellType":{
+      "type":"string",
+      "enum":[
+        "TOTAL",
+        "METRIC_HEADER",
+        "VALUE"
+      ]
+    },
     "SubnetId":{
       "type":"string",
       "max":255,
@@ -16501,7 +16546,8 @@
         "FieldLevelOptions":{"shape":"PivotTableFieldSubtotalOptionsList"},
         "TotalCellStyle":{"shape":"TableCellStyle"},
         "ValueCellStyle":{"shape":"TableCellStyle"},
-        "MetricHeaderCellStyle":{"shape":"TableCellStyle"}
+        "MetricHeaderCellStyle":{"shape":"TableCellStyle"},
+        "StyleTargets":{"shape":"TableStyleTargetList"}
       }
     },
     "Suffix":{
@@ -16748,6 +16794,18 @@
         "RowSort":{"shape":"RowSortList"},
         "PaginationConfiguration":{"shape":"PaginationConfiguration"}
       }
+    },
+    "TableStyleTarget":{
+      "type":"structure",
+      "required":["CellType"],
+      "members":{
+        "CellType":{"shape":"StyledCellType"}
+      }
+    },
+    "TableStyleTargetList":{
+      "type":"list",
+      "member":{"shape":"TableStyleTarget"},
+      "max":3
     },
     "TableTotalsPlacement":{
       "type":"string",
@@ -17425,7 +17483,8 @@
         "AllowedAggregations":{"shape":"AuthorSpecifiedAggregations"},
         "NotAllowedAggregations":{"shape":"AuthorSpecifiedAggregations"},
         "NeverAggregateInFilter":{"shape":"Boolean"},
-        "CellValueSynonyms":{"shape":"CellValueSynonyms"}
+        "CellValueSynonyms":{"shape":"CellValueSynonyms"},
+        "NonAdditive":{"shape":"NullableBoolean"}
       }
     },
     "TopicCalculatedFields":{
@@ -17469,7 +17528,8 @@
         "NotAllowedAggregations":{"shape":"AuthorSpecifiedAggregations"},
         "DefaultFormatting":{"shape":"DefaultFormatting"},
         "NeverAggregateInFilter":{"shape":"Boolean"},
-        "CellValueSynonyms":{"shape":"CellValueSynonyms"}
+        "CellValueSynonyms":{"shape":"CellValueSynonyms"},
+        "NonAdditive":{"shape":"NullableBoolean"}
       }
     },
     "TopicColumns":{
@@ -19120,7 +19180,8 @@
       "enum":[
         "TOP",
         "MIDDLE",
-        "BOTTOM"
+        "BOTTOM",
+        "AUTO"
       ]
     },
     "Visibility":{
