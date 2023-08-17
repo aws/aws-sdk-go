@@ -111,6 +111,10 @@ func (p *SSOTokenProvider) refreshToken(token cachedToken) (cachedToken, error) 
 	if err != nil {
 		return cachedToken{}, fmt.Errorf("unable to refresh SSO token, %v", err)
 	}
+	if createResult == nil || createResult.ExpiresIn == nil ||
+		createResult.AccessToken == nil || createResult.RefreshToken == nil {
+		return cachedToken{}, fmt.Errorf("CreateToken returned some nil val without err")
+	}
 
 	expiresAt := nowTime().Add(time.Duration(*createResult.ExpiresIn) * time.Second)
 
