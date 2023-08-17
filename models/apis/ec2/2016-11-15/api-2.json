@@ -12205,6 +12205,10 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
+        },
+        "SubnetConfigurations":{
+          "shape":"SubnetConfigurationsList",
+          "locationName":"SubnetConfiguration"
         }
       }
     },
@@ -32130,7 +32134,11 @@
         },
         "IpAddressType":{"shape":"IpAddressType"},
         "DnsOptions":{"shape":"DnsOptionsSpecification"},
-        "PrivateDnsEnabled":{"shape":"Boolean"}
+        "PrivateDnsEnabled":{"shape":"Boolean"},
+        "SubnetConfigurations":{
+          "shape":"SubnetConfigurationsList",
+          "locationName":"SubnetConfiguration"
+        }
       }
     },
     "ModifyVpcEndpointResult":{
@@ -40372,6 +40380,21 @@
         "prefix",
         "explicit"
       ]
+    },
+    "SubnetConfiguration":{
+      "type":"structure",
+      "members":{
+        "SubnetId":{"shape":"SubnetId"},
+        "Ipv4":{"shape":"String"},
+        "Ipv6":{"shape":"String"}
+      }
+    },
+    "SubnetConfigurationsList":{
+      "type":"list",
+      "member":{
+        "shape":"SubnetConfiguration",
+        "locationName":"item"
+      }
     },
     "SubnetId":{"type":"string"},
     "SubnetIdStringList":{
