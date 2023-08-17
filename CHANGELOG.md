@@ -1,3 +1,16 @@
+Release v1.44.326 (2023-08-17)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Adds support for SubnetConfigurations to allow users to select their own IPv4 and IPv6 addresses for Interface VPC endpoints
+* `service/gamelift`: Updates service API and documentation
+  * Amazon GameLift updates its instance types support.
+
+### SDK Bugs
+* `aws/signer/v4`: Sign `X-Amz-Server-Side-Encryption-Context` header.
+  * Fixes signing for PutObject requests that set `SSEKMSEncryptionContext`.
+
 Release v1.44.325 (2023-08-16)
 ===
 

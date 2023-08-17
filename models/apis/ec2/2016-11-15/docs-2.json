@@ -20060,6 +20060,8 @@
         "SubnetCidrReservation$Cidr": "<p>The CIDR that has been reserved.</p>",
         "SubnetCidrReservation$OwnerId": "<p>The ID of the account that owns the subnet CIDR reservation. </p>",
         "SubnetCidrReservation$Description": "<p>The description assigned to the subnet CIDR reservation.</p>",
+        "SubnetConfiguration$Ipv4": "<p>The IPv4 address to assign to the endpoint network interface in the subnet. You must provide an IPv4 address if the VPC endpoint supports IPv4.</p> <p>If you specify an IPv4 address when modifying a VPC endpoint, we replace the existing endpoint network interface with a new endpoint network interface with this IP address. This process temporarily disconnects the subnet and the VPC endpoint.</p>",
+        "SubnetConfiguration$Ipv6": "<p>The IPv6 address to assign to the endpoint network interface in the subnet. You must provide an IPv6 address if the VPC endpoint supports IPv6.</p> <p>If you specify an IPv6 address when modifying a VPC endpoint, we replace the existing endpoint network interface with a new endpoint network interface with this IP address. This process temporarily disconnects the subnet and the VPC endpoint.</p>",
         "SubnetIpv6CidrBlockAssociation$Ipv6CidrBlock": "<p>The IPv6 CIDR block.</p>",
         "Subscription$Source": "<p>The Region or Availability Zone that's the source for the subscription. For example, <code>us-east-1</code>.</p>",
         "Subscription$Destination": "<p>The Region or Availability Zone that's the target for the subscription. For example, <code>eu-west-1</code>.</p>",
@@ -20429,6 +20431,19 @@
         "SubnetCidrReservation$ReservationType": "<p>The type of reservation. </p>"
       }
     },
+    "SubnetConfiguration": {
+      "base": "<p>Describes the configuration of a subnet for a VPC endpoint.</p>",
+      "refs": {
+        "SubnetConfigurationsList$member": null
+      }
+    },
+    "SubnetConfigurationsList": {
+      "base": null,
+      "refs": {
+        "CreateVpcEndpointRequest$SubnetConfigurations": "<p>The subnet configurations for the endpoint.</p>",
+        "ModifyVpcEndpointRequest$SubnetConfigurations": "<p>The subnet configurations for the endpoint.</p>"
+      }
+    },
     "SubnetId": {
       "base": null,
       "refs": {
@@ -20459,6 +20474,7 @@
         "ScheduledInstancesNetworkInterface$SubnetId": "<p>The ID of the subnet.</p>",
         "SpotFleetLaunchSpecification$SubnetId": "<p>The IDs of the subnets in which to launch the instances. To specify multiple subnets, separate them using commas; for example, \"subnet-1234abcdeexample1, subnet-0987cdef6example2\".</p>",
         "SubnetCidrReservation$SubnetId": "<p>The ID of the subnet.</p>",
+        "SubnetConfiguration$SubnetId": "<p>The ID of the subnet.</p>",
         "SubnetIdStringList$member": null,
         "TransitGatewaySubnetIdList$member": null,
         "VerifiedAccessEndpointSubnetIdList$member": null,
@@ -22989,9 +23005,9 @@
     "VpcEndpointSecurityGroupIdList": {
       "base": null,
       "refs": {
-        "CreateVpcEndpointRequest$SecurityGroupIds": "<p>(Interface endpoint) The IDs of the security groups to associate with the endpoint network interface. If this parameter is not specified, we use the default security group for the VPC.</p>",
-        "ModifyVpcEndpointRequest$AddSecurityGroupIds": "<p>(Interface endpoint) The IDs of the security groups to associate with the network interface.</p>",
-        "ModifyVpcEndpointRequest$RemoveSecurityGroupIds": "<p>(Interface endpoint) The IDs of the security groups to disassociate from the network interface.</p>"
+        "CreateVpcEndpointRequest$SecurityGroupIds": "<p>(Interface endpoint) The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC.</p>",
+        "ModifyVpcEndpointRequest$AddSecurityGroupIds": "<p>(Interface endpoint) The IDs of the security groups to associate with the endpoint network interfaces.</p>",
+        "ModifyVpcEndpointRequest$RemoveSecurityGroupIds": "<p>(Interface endpoint) The IDs of the security groups to disassociate from the endpoint network interfaces.</p>"
       }
     },
     "VpcEndpointServiceId": {
@@ -23024,7 +23040,7 @@
     "VpcEndpointSubnetIdList": {
       "base": null,
       "refs": {
-        "CreateVpcEndpointRequest$SubnetIds": "<p>(Interface and Gateway Load Balancer endpoints) The IDs of the subnets in which to create an endpoint network interface. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>",
+        "CreateVpcEndpointRequest$SubnetIds": "<p>(Interface and Gateway Load Balancer endpoints) The IDs of the subnets in which to create endpoint network interfaces. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>",
         "ModifyVpcEndpointRequest$AddSubnetIds": "<p>(Interface and Gateway Load Balancer endpoints) The IDs of the subnets in which to serve the endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>",
         "ModifyVpcEndpointRequest$RemoveSubnetIds": "<p>(Interface endpoint) The IDs of the subnets from which to remove the endpoint.</p>"
       }
