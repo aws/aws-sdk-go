@@ -5975,7 +5975,8 @@
         "PatchSummary":{"shape":"PatchSummary"},
         "Action":{"shape":"Action"},
         "FindingProviderFields":{"shape":"FindingProviderFields"},
-        "Sample":{"shape":"Boolean"}
+        "Sample":{"shape":"Boolean"},
+        "GeneratorDetails":{"shape":"GeneratorDetails"}
       }
     },
     "AwsSecurityFindingFilters":{
@@ -6812,6 +6813,15 @@
         "Reason":{"shape":"NonEmptyString"}
       }
     },
+    "CodeVulnerabilitiesFilePath":{
+      "type":"structure",
+      "members":{
+        "EndLine":{"shape":"Integer"},
+        "FileName":{"shape":"NonEmptyString"},
+        "FilePath":{"shape":"NonEmptyString"},
+        "StartLine":{"shape":"Integer"}
+      }
+    },
     "Compliance":{
       "type":"structure",
       "members":{
@@ -7490,6 +7500,14 @@
     "FirewallPolicyStatelessRuleGroupReferencesList":{
       "type":"list",
       "member":{"shape":"FirewallPolicyStatelessRuleGroupReferencesDetails"}
+    },
+    "GeneratorDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "Labels":{"shape":"TypeList"}
+      }
     },
     "GeoLocation":{
       "type":"structure",
@@ -9626,8 +9644,30 @@
         "RelatedVulnerabilities":{"shape":"StringList"},
         "Vendor":{"shape":"VulnerabilityVendor"},
         "ReferenceUrls":{"shape":"StringList"},
-        "FixAvailable":{"shape":"VulnerabilityFixAvailable"}
+        "FixAvailable":{"shape":"VulnerabilityFixAvailable"},
+        "EpssScore":{"shape":"Double"},
+        "ExploitAvailable":{"shape":"VulnerabilityExploitAvailable"},
+        "CodeVulnerabilities":{"shape":"VulnerabilityCodeVulnerabilitiesList"}
       }
+    },
+    "VulnerabilityCodeVulnerabilities":{
+      "type":"structure",
+      "members":{
+        "Cwes":{"shape":"TypeList"},
+        "FilePath":{"shape":"CodeVulnerabilitiesFilePath"},
+        "SourceArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "VulnerabilityCodeVulnerabilitiesList":{
+      "type":"list",
+      "member":{"shape":"VulnerabilityCodeVulnerabilities"}
+    },
+    "VulnerabilityExploitAvailable":{
+      "type":"string",
+      "enum":[
+        "YES",
+        "NO"
+      ]
     },
     "VulnerabilityFixAvailable":{
       "type":"string",

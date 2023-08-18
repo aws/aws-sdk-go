@@ -9,7 +9,7 @@
 // security standards. Security Hub collects security data from Amazon Web Services
 // accounts, services, and integrated third-party products and helps you analyze
 // security trends in your environment to identify the highest priority security
-// issues. For more information about Security Hub, see the Security HubUser
+// issues. For more information about Security Hub, see the Security Hub User
 // Guide (https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html).
 //
 // When you use operations in the Security Hub API, the requests are executed

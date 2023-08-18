@@ -2300,8 +2300,9 @@ func (c *SecurityHub) DeleteMembersRequest(input *DeleteMembersInput) (req *requ
 //
 // Deletes the specified member accounts from Security Hub.
 //
-// Can be used to delete member accounts that belong to an organization as well
-// as member accounts that were invited manually.
+// You can invoke this API only to delete accounts that became members through
+// invitation. You can't invoke this API to delete accounts that belong to an
+// Organizations organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3368,12 +3369,12 @@ func (c *SecurityHub) DisableSecurityHubRequest(input *DisableSecurityHubInput) 
 
 // DisableSecurityHub API operation for AWS SecurityHub.
 //
-// Disables Security Hub in your account only in the current Region. To disable
-// Security Hub in all Regions, you must submit one request per Region where
-// you have enabled Security Hub.
+// Disables Security Hub in your account only in the current Amazon Web Services
+// Region. To disable Security Hub in all Regions, you must submit one request
+// per Region where you have enabled Security Hub.
 //
-// When you disable Security Hub for an administrator account, it doesn't disable
-// Security Hub for any associated member accounts.
+// You can't disable Security Hub in an account that is currently the Security
+// Hub administrator.
 //
 // When you disable Security Hub, your existing findings and insights and any
 // Security Hub configuration settings are deleted after 90 days and cannot
@@ -38508,6 +38509,13 @@ type AwsSecurityFinding struct {
 	// 2020-03-22T13:22:13.933Z.
 	FirstObservedAt *string `type:"string"`
 
+	// Provides metadata for the Amazon CodeGuru detector associated with a finding.
+	// This field pertains to findings that relate to Lambda functions. Amazon Inspector
+	// identifies policy violations and vulnerabilities in Lambda function code
+	// based on internal detectors developed in collaboration with Amazon CodeGuru.
+	// Security Hub receives those findings.
+	GeneratorDetails *GeneratorDetails `type:"structure"`
+
 	// The identifier for the solution-specific component (a discrete unit of logic)
 	// that generated a finding. In various security findings providers' solutions,
 	// this generator can be called a rule, a check, a detector, a plugin, etc.
@@ -38832,6 +38840,12 @@ func (s *AwsSecurityFinding) SetFindingProviderFields(v *FindingProviderFields) 
 // SetFirstObservedAt sets the FirstObservedAt field's value.
 func (s *AwsSecurityFinding) SetFirstObservedAt(v string) *AwsSecurityFinding {
 	s.FirstObservedAt = &v
+	return s
+}
+
+// SetGeneratorDetails sets the GeneratorDetails field's value.
+func (s *AwsSecurityFinding) SetGeneratorDetails(v *GeneratorDetails) *AwsSecurityFinding {
+	s.GeneratorDetails = v
 	return s
 }
 
@@ -44416,6 +44430,66 @@ func (s *ClassificationStatus) SetReason(v string) *ClassificationStatus {
 	return s
 }
 
+// Provides details about where a code vulnerability is located in your Lambda
+// function.
+type CodeVulnerabilitiesFilePath struct {
+	_ struct{} `type:"structure"`
+
+	// The line number of the last line of code in which the vulnerability is located.
+	EndLine *int64 `type:"integer"`
+
+	// The name of the file in which the code vulnerability is located.
+	FileName *string `type:"string"`
+
+	// The file path to the code in which the vulnerability is located.
+	FilePath *string `type:"string"`
+
+	// The line number of the first line of code in which the vulnerability is located.
+	StartLine *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeVulnerabilitiesFilePath) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeVulnerabilitiesFilePath) GoString() string {
+	return s.String()
+}
+
+// SetEndLine sets the EndLine field's value.
+func (s *CodeVulnerabilitiesFilePath) SetEndLine(v int64) *CodeVulnerabilitiesFilePath {
+	s.EndLine = &v
+	return s
+}
+
+// SetFileName sets the FileName field's value.
+func (s *CodeVulnerabilitiesFilePath) SetFileName(v string) *CodeVulnerabilitiesFilePath {
+	s.FileName = &v
+	return s
+}
+
+// SetFilePath sets the FilePath field's value.
+func (s *CodeVulnerabilitiesFilePath) SetFilePath(v string) *CodeVulnerabilitiesFilePath {
+	s.FilePath = &v
+	return s
+}
+
+// SetStartLine sets the StartLine field's value.
+func (s *CodeVulnerabilitiesFilePath) SetStartLine(v int64) *CodeVulnerabilitiesFilePath {
+	s.StartLine = &v
+	return s
+}
+
 // Contains finding details that are specific to control-based findings. Only
 // returned for findings generated from controls.
 type Compliance struct {
@@ -47951,6 +48025,60 @@ func (s *FirewallPolicyStatelessRuleGroupReferencesDetails) SetPriority(v int64)
 // SetResourceArn sets the ResourceArn field's value.
 func (s *FirewallPolicyStatelessRuleGroupReferencesDetails) SetResourceArn(v string) *FirewallPolicyStatelessRuleGroupReferencesDetails {
 	s.ResourceArn = &v
+	return s
+}
+
+// Provides metadata for the Amazon CodeGuru detector associated with a finding.
+// This field pertains to findings that relate to Lambda functions. Amazon Inspector
+// identifies policy violations and vulnerabilities in Lambda function code
+// based on internal detectors developed in collaboration with Amazon CodeGuru.
+// Security Hub receives those findings.
+type GeneratorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the detector used to identify the code vulnerability.
+	Description *string `type:"string"`
+
+	// An array of tags used to identify the detector associated with the finding.
+	Labels []*string `type:"list"`
+
+	// The name of the detector used to identify the code vulnerability.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeneratorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeneratorDetails) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *GeneratorDetails) SetDescription(v string) *GeneratorDetails {
+	s.Description = &v
+	return s
+}
+
+// SetLabels sets the Labels field's value.
+func (s *GeneratorDetails) SetLabels(v []*string) *GeneratorDetails {
+	s.Labels = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GeneratorDetails) SetName(v string) *GeneratorDetails {
+	s.Name = &v
 	return s
 }
 
@@ -58093,8 +58221,18 @@ func (s *VpcInfoPeeringOptionsDetails) SetAllowEgressFromLocalVpcToRemoteClassic
 type Vulnerability struct {
 	_ struct{} `type:"structure"`
 
+	// The vulnerabilities found in your Lambda function code. This field pertains
+	// to findings that Security Hub receives from Amazon Inspector.
+	CodeVulnerabilities []*VulnerabilityCodeVulnerabilities `type:"list"`
+
 	// CVSS scores from the advisory related to the vulnerability.
 	Cvss []*Cvss `type:"list"`
+
+	// The Exploit Prediction Scoring System (EPSS) score for a finding.
+	EpssScore *float64 `type:"double"`
+
+	// Whether an exploit is available for a finding.
+	ExploitAvailable *string `type:"string" enum:"VulnerabilityExploitAvailable"`
 
 	// Specifies if all vulnerable packages in a finding have a value for FixedInVersion
 	// and Remediation. This field is evaluated for each vulnerability Id based
@@ -58163,9 +58301,27 @@ func (s *Vulnerability) Validate() error {
 	return nil
 }
 
+// SetCodeVulnerabilities sets the CodeVulnerabilities field's value.
+func (s *Vulnerability) SetCodeVulnerabilities(v []*VulnerabilityCodeVulnerabilities) *Vulnerability {
+	s.CodeVulnerabilities = v
+	return s
+}
+
 // SetCvss sets the Cvss field's value.
 func (s *Vulnerability) SetCvss(v []*Cvss) *Vulnerability {
 	s.Cvss = v
+	return s
+}
+
+// SetEpssScore sets the EpssScore field's value.
+func (s *Vulnerability) SetEpssScore(v float64) *Vulnerability {
+	s.EpssScore = &v
+	return s
+}
+
+// SetExploitAvailable sets the ExploitAvailable field's value.
+func (s *Vulnerability) SetExploitAvailable(v string) *Vulnerability {
+	s.ExploitAvailable = &v
 	return s
 }
 
@@ -58202,6 +58358,61 @@ func (s *Vulnerability) SetVendor(v *VulnerabilityVendor) *Vulnerability {
 // SetVulnerablePackages sets the VulnerablePackages field's value.
 func (s *Vulnerability) SetVulnerablePackages(v []*SoftwarePackage) *Vulnerability {
 	s.VulnerablePackages = v
+	return s
+}
+
+// Provides details about the vulnerabilities found in your Lambda function
+// code. This field pertains to findings that Security Hub receives from Amazon
+// Inspector.
+type VulnerabilityCodeVulnerabilities struct {
+	_ struct{} `type:"structure"`
+
+	// The Common Weakness Enumeration (CWE) item associated with the detected code
+	// vulnerability.
+	Cwes []*string `type:"list"`
+
+	// Provides details about where a code vulnerability is located in your Lambda
+	// function.
+	FilePath *CodeVulnerabilitiesFilePath `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Lambda layer in which the code vulnerability
+	// is located.
+	SourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VulnerabilityCodeVulnerabilities) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VulnerabilityCodeVulnerabilities) GoString() string {
+	return s.String()
+}
+
+// SetCwes sets the Cwes field's value.
+func (s *VulnerabilityCodeVulnerabilities) SetCwes(v []*string) *VulnerabilityCodeVulnerabilities {
+	s.Cwes = v
+	return s
+}
+
+// SetFilePath sets the FilePath field's value.
+func (s *VulnerabilityCodeVulnerabilities) SetFilePath(v *CodeVulnerabilitiesFilePath) *VulnerabilityCodeVulnerabilities {
+	s.FilePath = v
+	return s
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *VulnerabilityCodeVulnerabilities) SetSourceArn(v string) *VulnerabilityCodeVulnerabilities {
+	s.SourceArn = &v
 	return s
 }
 
@@ -58409,7 +58620,7 @@ func (s *WafOverrideAction) SetType(v string) *WafOverrideAction {
 	return s
 }
 
-// Provides information about the status of the investigation into a finding.
+// Provides details about the status of the investigation into a finding.
 type Workflow struct {
 	_ struct{} `type:"structure"`
 
@@ -59178,6 +59389,22 @@ func VerificationState_Values() []string {
 		VerificationStateTruePositive,
 		VerificationStateFalsePositive,
 		VerificationStateBenignPositive,
+	}
+}
+
+const (
+	// VulnerabilityExploitAvailableYes is a VulnerabilityExploitAvailable enum value
+	VulnerabilityExploitAvailableYes = "YES"
+
+	// VulnerabilityExploitAvailableNo is a VulnerabilityExploitAvailable enum value
+	VulnerabilityExploitAvailableNo = "NO"
+)
+
+// VulnerabilityExploitAvailable_Values returns all elements of the VulnerabilityExploitAvailable enum
+func VulnerabilityExploitAvailable_Values() []string {
+	return []string{
+		VulnerabilityExploitAvailableYes,
+		VulnerabilityExploitAvailableNo,
 	}
 }
 

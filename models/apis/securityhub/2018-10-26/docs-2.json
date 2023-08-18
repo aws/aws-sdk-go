@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your Amazon Web Services environment and resources. It also provides you with the readiness status of your environment based on controls from supported security standards. Security Hub collects security data from Amazon Web Services accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">Security HubUser Guide</a>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the Amazon Web Services Region that is currently active or in the specific Amazon Web Services Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, run the same command for each Region in which you want to apply the change.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code>CreateMembers</code> to add a member account to Security Hub, the association of the member account with the administrator account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code>BatchEnableStandards</code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 1 request per second.</p> </li> <li> <p> <code>GetFindings</code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code>BatchImportFindings</code> - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> <li> <p> <code>BatchUpdateFindings</code> - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> <li> <p> <code>UpdateStandardsControl</code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
+  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your Amazon Web Services environment and resources. It also provides you with the readiness status of your environment based on controls from supported security standards. Security Hub collects security data from Amazon Web Services accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\"> <i>Security Hub User Guide</i> </a>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the Amazon Web Services Region that is currently active or in the specific Amazon Web Services Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, run the same command for each Region in which you want to apply the change.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code>CreateMembers</code> to add a member account to Security Hub, the association of the member account with the administrator account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code>BatchEnableStandards</code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 1 request per second.</p> </li> <li> <p> <code>GetFindings</code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code>BatchImportFindings</code> - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> <li> <p> <code>BatchUpdateFindings</code> - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> <li> <p> <code>UpdateStandardsControl</code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
   "operations": {
     "AcceptAdministratorInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account.</p>",
     "AcceptInvitation": "<p>This method is deprecated. Instead, use <code>AcceptAdministratorInvitation</code>.</p> <p>The Security Hub console continues to use <code>AcceptInvitation</code>. It will eventually change to use <code>AcceptAdministratorInvitation</code>. Any IAM policies that specifically control access to this function must continue to use <code>AcceptInvitation</code>. You should also add <code>AcceptAdministratorInvitation</code> to your policies to ensure that the correct permissions are in place after the console begins to use <code>AcceptAdministratorInvitation</code>.</p> <p>Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account.</p>",
@@ -24,7 +24,7 @@
     "DeleteFindingAggregator": "<p>Deletes a finding aggregator. When you delete the finding aggregator, you stop finding aggregation.</p> <p>When you stop finding aggregation, findings that were already aggregated to the aggregation Region are still visible from the aggregation Region. New findings and finding updates are not aggregated. </p>",
     "DeleteInsight": "<p>Deletes the insight specified by the <code>InsightArn</code>.</p>",
     "DeleteInvitations": "<p>Deletes invitations received by the Amazon Web Services account to become a member account.</p> <p>A Security Hub administrator account can use this operation to delete invitations sent to one or more member accounts.</p> <p>This operation is only used to delete invitations that are sent to member accounts that aren't part of an organization. Organization accounts don't receive invitations.</p>",
-    "DeleteMembers": "<p>Deletes the specified member accounts from Security Hub.</p> <p>Can be used to delete member accounts that belong to an organization as well as member accounts that were invited manually.</p>",
+    "DeleteMembers": "<p>Deletes the specified member accounts from Security Hub.</p> <p>You can invoke this API only to delete accounts that became members through invitation. You can't invoke this API to delete accounts that belong to an Organizations organization.</p>",
     "DescribeActionTargets": "<p>Returns a list of the custom action targets in Security Hub in your account.</p>",
     "DescribeHub": "<p>Returns details about the Hub resource in your account, including the <code>HubArn</code> and the time when you enabled Security Hub.</p>",
     "DescribeOrganizationConfiguration": "<p>Returns information about the Organizations configuration for Security Hub. Can only be called from a Security Hub administrator account.</p>",
@@ -33,7 +33,7 @@
     "DescribeStandardsControls": "<p>Returns a list of security standards controls.</p> <p>For each control, the results include information about whether it is currently enabled, the severity, and a link to remediation information.</p>",
     "DisableImportFindingsForProduct": "<p>Disables the integration of the specified product with Security Hub. After the integration is disabled, findings from that product are no longer sent to Security Hub.</p>",
     "DisableOrganizationAdminAccount": "<p>Disables a Security Hub administrator account. Can only be called by the organization management account.</p>",
-    "DisableSecurityHub": "<p>Disables Security Hub in your account only in the current Region. To disable Security Hub in all Regions, you must submit one request per Region where you have enabled Security Hub.</p> <p>When you disable Security Hub for an administrator account, it doesn't disable Security Hub for any associated member accounts.</p> <p>When you disable Security Hub, your existing findings and insights and any Security Hub configuration settings are deleted after 90 days and cannot be recovered. Any standards that were enabled are disabled, and your administrator and member account associations are removed.</p> <p>If you want to save your existing findings, you must export them before you disable Security Hub.</p>",
+    "DisableSecurityHub": "<p>Disables Security Hub in your account only in the current Amazon Web Services Region. To disable Security Hub in all Regions, you must submit one request per Region where you have enabled Security Hub.</p> <p>You can't disable Security Hub in an account that is currently the Security Hub administrator.</p> <p>When you disable Security Hub, your existing findings and insights and any Security Hub configuration settings are deleted after 90 days and cannot be recovered. Any standards that were enabled are disabled, and your administrator and member account associations are removed.</p> <p>If you want to save your existing findings, you must export them before you disable Security Hub.</p>",
     "DisassociateFromAdministratorAccount": "<p>Disassociates the current Security Hub member account from the associated administrator account.</p> <p>This operation is only used by accounts that are not part of an organization. For organization accounts, only the administrator account can disassociate a member account.</p>",
     "DisassociateFromMasterAccount": "<p>This method is deprecated. Instead, use <code>DisassociateFromAdministratorAccount</code>.</p> <p>The Security Hub console continues to use <code>DisassociateFromMasterAccount</code>. It will eventually change to use <code>DisassociateFromAdministratorAccount</code>. Any IAM policies that specifically control access to this function must continue to use <code>DisassociateFromMasterAccount</code>. You should also add <code>DisassociateFromAdministratorAccount</code> to your policies to ensure that the correct permissions are in place after the console begins to use <code>DisassociateFromAdministratorAccount</code>.</p> <p>Disassociates the current Security Hub member account from the associated administrator account.</p> <p>This operation is only used by accounts that are not part of an organization. For organization accounts, only the administrator account can disassociate a member account.</p>",
     "DisassociateMembers": "<p>Disassociates the specified member accounts from the associated administrator account.</p> <p>Can be used to disassociate both accounts that are managed using Organizations and accounts that were invited manually.</p>",
@@ -4397,6 +4397,12 @@
         "ClassificationResult$Status": "<p>The current status of the sensitive data detection.</p>"
       }
     },
+    "CodeVulnerabilitiesFilePath": {
+      "base": "<p> Provides details about where a code vulnerability is located in your Lambda function. </p>",
+      "refs": {
+        "VulnerabilityCodeVulnerabilities$FilePath": "<p> Provides details about where a code vulnerability is located in your Lambda function. </p>"
+      }
+    },
     "Compliance": {
       "base": "<p>Contains finding details that are specific to control-based findings. Only returned for findings generated from controls.</p>",
       "refs": {
@@ -4775,7 +4781,8 @@
         "NumberFilter$Lte": "<p>The less-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Eq": "<p>The equal-to condition to be applied to a single field when querying for findings.</p>",
         "Severity$Product": "<p>Deprecated. This attribute is being deprecated. Instead of providing <code>Product</code>, provide <code>Original</code>.</p> <p>The native severity as defined by the Amazon Web Services service or integrated partner product that generated the finding.</p>",
-        "SeverityUpdate$Product": "<p>The native severity as defined by the Amazon Web Services service or integrated partner product that generated the finding.</p>"
+        "SeverityUpdate$Product": "<p>The native severity as defined by the Amazon Web Services service or integrated partner product that generated the finding.</p>",
+        "Vulnerability$EpssScore": "<p>The Exploit Prediction Scoring System (EPSS) score for a finding. </p>"
       }
     },
     "EnableImportFindingsForProductRequest": {
@@ -4944,6 +4951,12 @@
       "base": null,
       "refs": {
         "FirewallPolicyDetails$StatelessRuleGroupReferences": "<p>The stateless rule groups that are used in the firewall policy.</p>"
+      }
+    },
+    "GeneratorDetails": {
+      "base": "<p> Provides metadata for the Amazon CodeGuru detector associated with a finding. This field pertains to findings that relate to Lambda functions. Amazon Inspector identifies policy violations and vulnerabilities in Lambda function code based on internal detectors developed in collaboration with Amazon CodeGuru. Security Hub receives those findings. </p>",
+      "refs": {
+        "AwsSecurityFinding$GeneratorDetails": "<p>Provides metadata for the Amazon CodeGuru detector associated with a finding. This field pertains to findings that relate to Lambda functions. Amazon Inspector identifies policy violations and vulnerabilities in Lambda function code based on internal detectors developed in collaboration with Amazon CodeGuru. Security Hub receives those findings. </p>"
       }
     },
     "GeoLocation": {
@@ -5302,6 +5315,8 @@
         "AwsWafv2RulesDetails$Priority": "<p> If you define more than one Rule in a WebACL, WAF evaluates each request against the Rules in order based on the value of <code>Priority</code>. WAF processes rules with lower priority first. The priorities don't need to be consecutive, but they must all be different. </p>",
         "BatchImportFindingsResponse$FailedCount": "<p>The number of findings that failed to import.</p>",
         "BatchImportFindingsResponse$SuccessCount": "<p>The number of findings that were successfully imported.</p>",
+        "CodeVulnerabilitiesFilePath$EndLine": "<p> The line number of the last line of code in which the vulnerability is located. </p>",
+        "CodeVulnerabilitiesFilePath$StartLine": "<p> The line number of the first line of code in which the vulnerability is located. </p>",
         "DateRange$Value": "<p>A date range value for the date filter.</p>",
         "FirewallPolicyStatelessRuleGroupReferencesDetails$Priority": "<p>The order in which to run the stateless rule group.</p>",
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of all membership invitations sent to this Security Hub member account, not including the currently accepted invitation.</p>",
@@ -6993,6 +7008,8 @@
         "ClassificationResult$MimeType": "<p>The type of content that the finding applies to.</p>",
         "ClassificationStatus$Code": "<p>The code that represents the status of the sensitive data detection.</p>",
         "ClassificationStatus$Reason": "<p>A longer description of the current status of the sensitive data detection.</p>",
+        "CodeVulnerabilitiesFilePath$FileName": "<p> The name of the file in which the code vulnerability is located. </p>",
+        "CodeVulnerabilitiesFilePath$FilePath": "<p> The file path to the code in which the vulnerability is located. </p>",
         "Compliance$SecurityControlId": "<p> The unique identifier of a control across standards. Values for this field typically consist of an Amazon Web Service and a number, such as APIGateway.5. </p>",
         "ContainerDetails$ContainerRuntime": "<p>The runtime of the container. </p>",
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
@@ -7055,6 +7072,8 @@
         "FirewallPolicyStatefulRuleGroupReferencesDetails$ResourceArn": "<p>The ARN of the stateful rule group.</p>",
         "FirewallPolicyStatelessCustomActionsDetails$ActionName": "<p>The name of the custom action.</p>",
         "FirewallPolicyStatelessRuleGroupReferencesDetails$ResourceArn": "<p>The ARN of the stateless rule group.</p>",
+        "GeneratorDetails$Name": "<p> The name of the detector used to identify the code vulnerability. </p>",
+        "GeneratorDetails$Description": "<p> The description of the detector used to identify the code vulnerability. </p>",
         "GetFindingAggregatorRequest$FindingAggregatorArn": "<p>The ARN of the finding aggregator to return details for. To obtain the ARN, use <code>ListFindingAggregators</code>.</p>",
         "GetFindingAggregatorResponse$FindingAggregatorArn": "<p>The ARN of the finding aggregator.</p>",
         "GetFindingAggregatorResponse$FindingAggregationRegion": "<p>The aggregation Region.</p>",
@@ -7282,6 +7301,7 @@
         "VpcInfoCidrBlockSetDetails$CidrBlock": "<p>The IPv4 CIDR block for the VPC. </p>",
         "VpcInfoIpv6CidrBlockSetDetails$Ipv6CidrBlock": "<p>The IPv6 CIDR block for the VPC. </p>",
         "Vulnerability$Id": "<p>The identifier of the vulnerability.</p>",
+        "VulnerabilityCodeVulnerabilities$SourceArn": "<p> The Amazon Resource Name (ARN) of the Lambda layer in which the code vulnerability is located. </p>",
         "VulnerabilityVendor$Name": "<p>The name of the vendor.</p>",
         "VulnerabilityVendor$Url": "<p>The URL of the vulnerability advisory.</p>",
         "VulnerabilityVendor$VendorSeverity": "<p>The severity that the vendor assigned to the vulnerability.</p>",
@@ -8418,7 +8438,9 @@
         "AutomationRulesFindingFieldsUpdate$Types": "<p> The rule action updates the <code>Types</code> field of a finding. </p>",
         "AwsSecurityFinding$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
         "BatchUpdateFindingsRequest$Types": "<p>One or more finding types in the format of namespace/category/classifier that classify a finding.</p> <p>Valid namespace values are as follows.</p> <ul> <li> <p>Software and Configuration Checks</p> </li> <li> <p>TTPs</p> </li> <li> <p>Effects</p> </li> <li> <p>Unusual Behaviors</p> </li> <li> <p>Sensitive Data Identifications </p> </li> </ul>",
-        "FindingProviderFields$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>"
+        "FindingProviderFields$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
+        "GeneratorDetails$Labels": "<p> An array of tags used to identify the detector associated with the finding. </p>",
+        "VulnerabilityCodeVulnerabilities$Cwes": "<p> The Common Weakness Enumeration (CWE) item associated with the detected code vulnerability. </p>"
       }
     },
     "UnprocessedAutomationRule": {
@@ -8627,6 +8649,24 @@
         "VulnerabilityList$member": null
       }
     },
+    "VulnerabilityCodeVulnerabilities": {
+      "base": "<p>Provides details about the vulnerabilities found in your Lambda function code. This field pertains to findings that Security Hub receives from Amazon Inspector. </p>",
+      "refs": {
+        "VulnerabilityCodeVulnerabilitiesList$member": null
+      }
+    },
+    "VulnerabilityCodeVulnerabilitiesList": {
+      "base": null,
+      "refs": {
+        "Vulnerability$CodeVulnerabilities": "<p>The vulnerabilities found in your Lambda function code. This field pertains to findings that Security Hub receives from Amazon Inspector. </p>"
+      }
+    },
+    "VulnerabilityExploitAvailable": {
+      "base": null,
+      "refs": {
+        "Vulnerability$ExploitAvailable": "<p>Whether an exploit is available for a finding. </p>"
+      }
+    },
     "VulnerabilityFixAvailable": {
       "base": null,
       "refs": {
@@ -8670,7 +8710,7 @@
       }
     },
     "Workflow": {
-      "base": "<p>Provides information about the status of the investigation into a finding.</p>",
+      "base": "<p>Provides details about the status of the investigation into a finding.</p>",
       "refs": {
         "AwsSecurityFinding$Workflow": "<p>Provides information about the status of the investigation into a finding.</p>"
       }
