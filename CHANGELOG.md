@@ -1,3 +1,15 @@
+Release v1.44.327 (2023-08-18)
+===
+
+### Service Client Updates
+* `service/codecommit`: Updates service API, documentation, and paginators
+  * Add new ListFileCommitHistory operation to retrieve commits which introduced changes to a specific file.
+* `service/securityhub`: Updates service API and documentation
+
+### SDK Bugs
+* `aws/credentials/ssocreds`: Modify sso token provider logic to handle possible nil val returned by CreateToken.
+  * Fixes [4947](https://github.com/aws/aws-sdk-go/issues/4947)
+
 Release v1.44.326 (2023-08-17)
 ===
 

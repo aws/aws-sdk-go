@@ -173,7 +173,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://securityhub-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://codecommit-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -225,7 +225,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://securityhub-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://codecommit-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -277,7 +277,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://securityhub.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://codecommit.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -295,7 +295,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://securityhub.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://codecommit.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },
