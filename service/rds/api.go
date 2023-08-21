@@ -10335,23 +10335,47 @@ func (c *RDS) FailoverGlobalClusterRequest(input *FailoverGlobalClusterInput) (r
 
 // FailoverGlobalCluster API operation for Amazon Relational Database Service.
 //
-// Initiates the failover process for an Aurora global database (GlobalCluster).
+// Promotes the specified secondary DB cluster to be the primary DB cluster
+// in the global database cluster to fail over or switch over a global database.
+// Switchover operations were previously called "managed planned failovers."
 //
-// A failover for an Aurora global database promotes one of secondary read-only
-// DB clusters to be the primary DB cluster and demotes the primary DB cluster
-// to being a secondary (read-only) DB cluster. In other words, the role of
-// the current primary DB cluster and the selected (target) DB cluster are switched.
-// The selected secondary DB cluster assumes full read/write capabilities for
-// the Aurora global database.
+// Although this operation can be used either to fail over or to switch over
+// a global database cluster, its intended use is for global database failover.
+// To switch over a global database cluster, we recommend that you use the SwitchoverGlobalCluster
+// operation instead.
 //
-// For more information about failing over an Amazon Aurora global database,
-// see Managed planned failover for Amazon Aurora global databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery.managed-failover)
-// in the Amazon Aurora User Guide.
+// How you use this operation depends on whether you are failing over or switching
+// over your global database cluster:
 //
-// This action applies to GlobalCluster (Aurora global databases) only. Use
-// this action only on healthy Aurora global databases with running Aurora DB
-// clusters and no Region-wide outages, to test disaster recovery scenarios
-// or to reconfigure your Aurora global database topology.
+//   - Failing over - Specify the AllowDataLoss parameter and don't specify
+//     the Switchover parameter.
+//
+//   - Switching over - Specify the Switchover parameter or omit it, but don't
+//     specify the AllowDataLoss parameter.
+//
+// # About failing over and switching over
+//
+// While failing over and switching over a global database cluster both change
+// the primary DB cluster, you use these operations for different reasons:
+//
+//   - Failing over - Use this operation to respond to an unplanned event,
+//     such as a Regional disaster in the primary Region. Failing over can result
+//     in a loss of write transaction data that wasn't replicated to the chosen
+//     secondary before the failover event occurred. However, the recovery process
+//     that promotes a DB instance on the chosen seconday DB cluster to be the
+//     primary writer DB instance guarantees that the data is in a transactionally
+//     consistent state. For more information about failing over an Amazon Aurora
+//     global database, see Performing managed failovers for Aurora global databases
+//     (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned)
+//     in the Amazon Aurora User Guide.
+//
+//   - Switching over - Use this operation on a healthy global database cluster
+//     for planned events, such as Regional rotation or to fail back to the original
+//     primary DB cluster after a failover operation. With this operation, there
+//     is no data loss. For more information about switching over an Amazon Aurora
+//     global database, see Performing switchovers for Aurora global databases
+//     (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery.managed-failover)
+//     in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12276,10 +12300,10 @@ func (c *RDS) ModifyGlobalClusterRequest(input *ModifyGlobalClusterInput) (req *
 
 // ModifyGlobalCluster API operation for Amazon Relational Database Service.
 //
-// Modifies a setting for an Amazon Aurora global cluster. You can change one
-// or more database configuration parameters by specifying these parameters
-// and the new values in the request. For more information on Amazon Aurora,
-// see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// Modifies a setting for an Amazon Aurora global database cluster. You can
+// change one or more database configuration parameters by specifying these
+// parameters and the new values in the request. For more information on Amazon
+// Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
 // This operation only applies to Aurora global database clusters.
@@ -15690,6 +15714,113 @@ func (c *RDS) SwitchoverBlueGreenDeployment(input *SwitchoverBlueGreenDeployment
 // for more information on using Contexts.
 func (c *RDS) SwitchoverBlueGreenDeploymentWithContext(ctx aws.Context, input *SwitchoverBlueGreenDeploymentInput, opts ...request.Option) (*SwitchoverBlueGreenDeploymentOutput, error) {
 	req, out := c.SwitchoverBlueGreenDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSwitchoverGlobalCluster = "SwitchoverGlobalCluster"
+
+// SwitchoverGlobalClusterRequest generates a "aws/request.Request" representing the
+// client's request for the SwitchoverGlobalCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SwitchoverGlobalCluster for more information on using the SwitchoverGlobalCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SwitchoverGlobalClusterRequest method.
+//	req, resp := client.SwitchoverGlobalClusterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverGlobalCluster
+func (c *RDS) SwitchoverGlobalClusterRequest(input *SwitchoverGlobalClusterInput) (req *request.Request, output *SwitchoverGlobalClusterOutput) {
+	op := &request.Operation{
+		Name:       opSwitchoverGlobalCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SwitchoverGlobalClusterInput{}
+	}
+
+	output = &SwitchoverGlobalClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SwitchoverGlobalCluster API operation for Amazon Relational Database Service.
+//
+// Switches over the specified secondary DB cluster to be the new primary DB
+// cluster in the global database cluster. Switchover operations were previously
+// called "managed planned failovers."
+//
+// Aurora promotes the specified secondary cluster to assume full read/write
+// capabilities and demotes the current primary cluster to a secondary (read-only)
+// cluster, maintaining the orginal replication topology. All secondary clusters
+// are synchronized with the primary at the beginning of the process so the
+// new primary continues operations for the Aurora global database without losing
+// any data. Your database is unavailable for a short time while the primary
+// and selected secondary clusters are assuming their new roles. For more information
+// about switching over an Aurora global database, see Performing switchovers
+// for Amazon Aurora global databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery.managed-failover)
+// in the Amazon Aurora User Guide.
+//
+// This operation is intended for controlled environments, for operations such
+// as "regional rotation" or to fall back to the original primary after a global
+// database failover.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation SwitchoverGlobalCluster for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//     The GlobalClusterIdentifier doesn't refer to an existing global database
+//     cluster.
+//
+//   - ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//     The global cluster is in an invalid state and can't perform the requested
+//     operation.
+//
+//   - ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//     The requested operation can't be performed while the cluster is in this state.
+//
+//   - ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//     DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverGlobalCluster
+func (c *RDS) SwitchoverGlobalCluster(input *SwitchoverGlobalClusterInput) (*SwitchoverGlobalClusterOutput, error) {
+	req, out := c.SwitchoverGlobalClusterRequest(input)
+	return out, req.Send()
+}
+
+// SwitchoverGlobalClusterWithContext is the same as SwitchoverGlobalCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SwitchoverGlobalCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) SwitchoverGlobalClusterWithContext(ctx aws.Context, input *SwitchoverGlobalClusterInput, opts ...request.Option) (*SwitchoverGlobalClusterOutput, error) {
+	req, out := c.SwitchoverGlobalClusterRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -20430,6 +20561,10 @@ type CreateDBClusterInput struct {
 	//    * Aurora DB clusters - aurora
 	//
 	//    * Multi-AZ DB clusters - io1
+	//
+	// When you create an Aurora DB cluster with the storage type set to aurora-iopt1,
+	// the storage type is returned in the response. The storage type isn't returned
+	// when you set it to aurora.
 	StorageType *string `type:"string"`
 
 	// Tags to assign to the DB cluster.
@@ -39271,23 +39406,40 @@ func (s *FailoverDBClusterOutput) SetDBCluster(v *DBCluster) *FailoverDBClusterO
 type FailoverGlobalClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the Aurora global database (GlobalCluster) that should be failed
-	// over. The identifier is the unique key assigned by the user when the Aurora
-	// global database was created. In other words, it's the name of the Aurora
-	// global database that you want to fail over.
+	// Specifies whether to allow data loss for this global database cluster operation.
+	// Allowing data loss triggers a global failover operation.
+	//
+	// If you don't specify AllowDataLoss, the global database cluster operation
+	// defaults to a switchover.
 	//
 	// Constraints:
 	//
-	//    * Must match the identifier of an existing GlobalCluster (Aurora global
-	//    database).
+	//    * Can't be specified together with the Switchover parameter.
+	AllowDataLoss *bool `type:"boolean"`
+
+	// The identifier of the global database cluster (Aurora global database) this
+	// operation should apply to. The identifier is the unique key assigned by the
+	// user when the Aurora global database is created. In other words, it's the
+	// name of the Aurora global database.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing global database cluster.
 	//
 	// GlobalClusterIdentifier is a required field
 	GlobalClusterIdentifier *string `min:"1" type:"string" required:"true"`
 
-	// Identifier of the secondary Aurora DB cluster that you want to promote to
-	// primary for the Aurora global database (GlobalCluster.) Use the Amazon Resource
-	// Name (ARN) for the identifier so that Aurora can locate the cluster in its
-	// Amazon Web Services Region.
+	// Specifies whether to switch over this global database cluster.
+	//
+	// Constraints:
+	//
+	//    * Can't be specified together with the AllowDataLoss parameter.
+	Switchover *bool `type:"boolean"`
+
+	// The identifier of the secondary Aurora DB cluster that you want to promote
+	// to the primary for the global database cluster. Use the Amazon Resource Name
+	// (ARN) for the identifier so that Aurora can locate the cluster in its Amazon
+	// Web Services Region.
 	//
 	// TargetDbClusterIdentifier is a required field
 	TargetDbClusterIdentifier *string `min:"1" type:"string" required:"true"`
@@ -39333,9 +39485,21 @@ func (s *FailoverGlobalClusterInput) Validate() error {
 	return nil
 }
 
+// SetAllowDataLoss sets the AllowDataLoss field's value.
+func (s *FailoverGlobalClusterInput) SetAllowDataLoss(v bool) *FailoverGlobalClusterInput {
+	s.AllowDataLoss = &v
+	return s
+}
+
 // SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
 func (s *FailoverGlobalClusterInput) SetGlobalClusterIdentifier(v string) *FailoverGlobalClusterInput {
 	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+// SetSwitchover sets the Switchover field's value.
+func (s *FailoverGlobalClusterInput) SetSwitchover(v bool) *FailoverGlobalClusterInput {
+	s.Switchover = &v
 	return s
 }
 
@@ -39376,9 +39540,9 @@ func (s *FailoverGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *Failov
 	return s
 }
 
-// Contains the state of scheduled or in-process failover operations on an Aurora
-// global database (GlobalCluster). This Data type is empty unless a failover
-// operation is scheduled or is currently underway on the Aurora global database.
+// Contains the state of scheduled or in-process operations on a global cluster
+// (Aurora global database). This data type is empty unless a switchover or
+// failover operation is scheduled or is in progress on the Aurora global database.
 type FailoverState struct {
 	_ struct{} `type:"structure"`
 
@@ -39386,20 +39550,23 @@ type FailoverState struct {
 	// being demoted, and which is associated with this state.
 	FromDbClusterArn *string `type:"string"`
 
-	// The current status of the Aurora global database (GlobalCluster). Possible
-	// values are as follows:
+	// Indicates whether the operation is a global switchover or a global failover.
+	// If data loss is allowed, then the operation is a global failover. Otherwise,
+	// it's a switchover.
+	IsDataLossAllowed *bool `type:"boolean"`
+
+	// The current status of the global cluster. Possible values are as follows:
 	//
-	//    * pending – A request to fail over the Aurora global database (GlobalCluster)
-	//    has been received by the service. The GlobalCluster's primary DB cluster
-	//    and the specified secondary DB cluster are being verified before the failover
-	//    process can start.
+	//    * pending – The service received a request to switch over or fail over
+	//    the global cluster. The global cluster's primary DB cluster and the specified
+	//    secondary DB cluster are being verified before the operation starts.
 	//
 	//    * failing-over – This status covers the range of Aurora internal operations
-	//    that take place during the failover process, such as demoting the primary
-	//    Aurora DB cluster, promoting the secondary Aurora DB, and synchronizing
-	//    replicas.
+	//    that take place during the switchover or failover process, such as demoting
+	//    the primary Aurora DB cluster, promoting the secondary Aurora DB cluster,
+	//    and synchronizing replicas.
 	//
-	//    * cancelling – The request to fail over the Aurora global database (GlobalCluster)
+	//    * cancelling – The request to switch over or fail over the global cluster
 	//    was cancelled and the primary Aurora DB cluster and the selected secondary
 	//    Aurora DB cluster are returning to their previous states.
 	Status *string `type:"string" enum:"FailoverStatus"`
@@ -39430,6 +39597,12 @@ func (s FailoverState) GoString() string {
 // SetFromDbClusterArn sets the FromDbClusterArn field's value.
 func (s *FailoverState) SetFromDbClusterArn(v string) *FailoverState {
 	s.FromDbClusterArn = &v
+	return s
+}
+
+// SetIsDataLossAllowed sets the IsDataLossAllowed field's value.
+func (s *FailoverState) SetIsDataLossAllowed(v bool) *FailoverState {
+	s.IsDataLossAllowed = &v
 	return s
 }
 
@@ -39540,9 +39713,9 @@ type GlobalCluster struct {
 	EngineVersion *string `type:"string"`
 
 	// A data object containing all properties for the current state of an in-process
-	// or pending failover process for this Aurora global database. This object
-	// is empty unless the FailoverGlobalCluster API operation has been called on
-	// this Aurora global database (GlobalCluster).
+	// or pending switchover or failover process for this global cluster (Aurora
+	// global database). This object is empty unless the SwitchoverGlobalCluster
+	// or FailoverGlobalCluster operation was called on this global cluster.
 	FailoverState *FailoverState `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the global database cluster.
@@ -39653,24 +39826,27 @@ func (s *GlobalCluster) SetStorageEncrypted(v bool) *GlobalCluster {
 }
 
 // A data structure with information about any primary and secondary clusters
-// associated with an Aurora global database.
+// associated with a global cluster (Aurora global database).
 type GlobalClusterMember struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for each Aurora cluster.
+	// The Amazon Resource Name (ARN) for each Aurora DB cluster in the global cluster.
 	DBClusterArn *string `type:"string"`
 
-	// Specifies whether a secondary cluster in an Aurora global database has write
-	// forwarding enabled, not enabled, or is in the process of enabling it.
+	// Specifies whether a secondary cluster in the global cluster has write forwarding
+	// enabled, not enabled, or is in the process of enabling it.
 	GlobalWriteForwardingStatus *string `type:"string" enum:"WriteForwardingStatus"`
 
-	// Specifies whether the Aurora cluster is the primary cluster (that is, has
-	// read-write capability) for the Aurora global database with which it is associated.
+	// Specifies whether the Aurora DB cluster is the primary cluster (that is,
+	// has read-write capability) for the global cluster with which it is associated.
 	IsWriter *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) for each read-only secondary cluster associated
-	// with the Aurora global database.
+	// with the global cluster.
 	Readers []*string `type:"list"`
+
+	// The status of synchronization of each Aurora DB cluster in the global cluster.
+	SynchronizationStatus *string `type:"string" enum:"GlobalClusterMemberSynchronizationStatus"`
 }
 
 // String returns the string representation.
@@ -39712,6 +39888,12 @@ func (s *GlobalClusterMember) SetIsWriter(v bool) *GlobalClusterMember {
 // SetReaders sets the Readers field's value.
 func (s *GlobalClusterMember) SetReaders(v []*string) *GlobalClusterMember {
 	s.Readers = v
+	return s
+}
+
+// SetSynchronizationStatus sets the SynchronizationStatus field's value.
+func (s *GlobalClusterMember) SetSynchronizationStatus(v string) *GlobalClusterMember {
+	s.SynchronizationStatus = &v
 	return s
 }
 
@@ -54226,6 +54408,112 @@ func (s *SwitchoverDetail) SetTargetMember(v string) *SwitchoverDetail {
 	return s
 }
 
+type SwitchoverGlobalClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the global database cluster to switch over. This parameter
+	// isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing global database cluster (Aurora
+	//    global database).
+	//
+	// GlobalClusterIdentifier is a required field
+	GlobalClusterIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the secondary Aurora DB cluster to promote to the new primary
+	// for the global database cluster. Use the Amazon Resource Name (ARN) for the
+	// identifier so that Aurora can locate the cluster in its Amazon Web Services
+	// Region.
+	//
+	// TargetDbClusterIdentifier is a required field
+	TargetDbClusterIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverGlobalClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverGlobalClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SwitchoverGlobalClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SwitchoverGlobalClusterInput"}
+	if s.GlobalClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalClusterIdentifier"))
+	}
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
+	}
+	if s.TargetDbClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDbClusterIdentifier"))
+	}
+	if s.TargetDbClusterIdentifier != nil && len(*s.TargetDbClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetDbClusterIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *SwitchoverGlobalClusterInput) SetGlobalClusterIdentifier(v string) *SwitchoverGlobalClusterInput {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+// SetTargetDbClusterIdentifier sets the TargetDbClusterIdentifier field's value.
+func (s *SwitchoverGlobalClusterInput) SetTargetDbClusterIdentifier(v string) *SwitchoverGlobalClusterInput {
+	s.TargetDbClusterIdentifier = &v
+	return s
+}
+
+type SwitchoverGlobalClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A data type representing an Aurora global database.
+	GlobalCluster *GlobalCluster `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverGlobalClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverGlobalClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalCluster sets the GlobalCluster field's value.
+func (s *SwitchoverGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *SwitchoverGlobalClusterOutput {
+	s.GlobalCluster = v
+	return s
+}
+
 type SwitchoverReadReplicaInput struct {
 	_ struct{} `type:"structure"`
 
@@ -55235,6 +55523,22 @@ func FailoverStatus_Values() []string {
 		FailoverStatusPending,
 		FailoverStatusFailingOver,
 		FailoverStatusCancelling,
+	}
+}
+
+const (
+	// GlobalClusterMemberSynchronizationStatusConnected is a GlobalClusterMemberSynchronizationStatus enum value
+	GlobalClusterMemberSynchronizationStatusConnected = "connected"
+
+	// GlobalClusterMemberSynchronizationStatusPendingResync is a GlobalClusterMemberSynchronizationStatus enum value
+	GlobalClusterMemberSynchronizationStatusPendingResync = "pending-resync"
+)
+
+// GlobalClusterMemberSynchronizationStatus_Values returns all elements of the GlobalClusterMemberSynchronizationStatus enum
+func GlobalClusterMemberSynchronizationStatus_Values() []string {
+	return []string{
+		GlobalClusterMemberSynchronizationStatusConnected,
+		GlobalClusterMemberSynchronizationStatusPendingResync,
 	}
 }
 

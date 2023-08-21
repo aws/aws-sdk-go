@@ -3027,6 +3027,9 @@ func (c *Finspace) UpdateKxClusterDatabasesRequest(input *UpdateKxClusterDatabas
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by an AWS service.
 //
+//   - ConflictException
+//     There was a conflict with this action, and it could not be completed.
+//
 //   - ResourceNotFoundException
 //     One or more resources can't be found.
 //
@@ -3614,8 +3617,7 @@ func (s *AutoScalingConfiguration) SetScaleOutCooldownSeconds(v float64) *AutoSc
 }
 
 // A structure for the metadata of a cluster. It includes information like the
-// CPUs needed, memory of instances, number of instances, and the port used
-// while establishing a connection.
+// CPUs needed, memory of instances, and number of instances.
 type CapacityConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4367,9 +4369,8 @@ type CreateKxClusterInput struct {
 	// This cache will be stored as an FSx Lustre that reads from the S3 store.
 	CacheStorageConfigurations []*KxCacheStorageConfiguration `locationName:"cacheStorageConfigurations" type:"list"`
 
-	// A structure for the metadata of a cluster. It includes information about
-	// like the CPUs needed, memory of instances, number of instances, and the port
-	// used while establishing a connection.
+	// A structure for the metadata of a cluster. It includes information like the
+	// CPUs needed, memory of instances, and number of instances.
 	//
 	// CapacityConfiguration is a required field
 	CapacityConfiguration *CapacityConfiguration `locationName:"capacityConfiguration" type:"structure" required:"true"`
@@ -4715,8 +4716,7 @@ type CreateKxClusterOutput struct {
 	CacheStorageConfigurations []*KxCacheStorageConfiguration `locationName:"cacheStorageConfigurations" type:"list"`
 
 	// A structure for the metadata of a cluster. It includes information like the
-	// CPUs needed, memory of instances, number of instances, and the port used
-	// while establishing a connection.
+	// CPUs needed, memory of instances, and number of instances.
 	CapacityConfiguration *CapacityConfiguration `locationName:"capacityConfiguration" type:"structure"`
 
 	// A description of the cluster.
@@ -5448,7 +5448,7 @@ type CreateKxUserOutput struct {
 	IamRole *string `locationName:"iamRole" min:"20" type:"string"`
 
 	// The Amazon Resource Name (ARN) that identifies the user. For more information
-	// about ARNs and how to use ARNs in policies, see IAM Identifiers (IAM/latest/UserGuide/reference_identifiers.html)
+	// about ARNs and how to use ARNs in policies, see IAM Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in the IAM User Guide.
 	UserArn *string `locationName:"userArn" min:"20" type:"string"`
 
@@ -6645,8 +6645,7 @@ type GetKxClusterOutput struct {
 	CacheStorageConfigurations []*KxCacheStorageConfiguration `locationName:"cacheStorageConfigurations" type:"list"`
 
 	// A structure for the metadata of a cluster. It includes information like the
-	// CPUs needed, memory of instances, number of instances, and the port used
-	// while establishing a connection.
+	// CPUs needed, memory of instances, and number of instances.
 	CapacityConfiguration *CapacityConfiguration `locationName:"capacityConfiguration" type:"structure"`
 
 	// A description of the cluster.
@@ -6894,7 +6893,7 @@ type GetKxConnectionStringInput struct {
 	EnvironmentId *string `location:"uri" locationName:"environmentId" min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) that identifies the user. For more information
-	// about ARNs and how to use ARNs in policies, see IAM Identifiers (IAM/latest/UserGuide/reference_identifiers.html)
+	// about ARNs and how to use ARNs in policies, see IAM Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in the IAM User Guide.
 	//
 	// UserArn is a required field
@@ -7485,7 +7484,7 @@ type GetKxUserOutput struct {
 	IamRole *string `locationName:"iamRole" min:"20" type:"string"`
 
 	// The Amazon Resource Name (ARN) that identifies the user. For more information
-	// about ARNs and how to use ARNs in policies, see IAM Identifiers (IAM/latest/UserGuide/reference_identifiers.html)
+	// about ARNs and how to use ARNs in policies, see IAM Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in the IAM User Guide.
 	UserArn *string `locationName:"userArn" min:"20" type:"string"`
 
@@ -7532,6 +7531,67 @@ func (s *GetKxUserOutput) SetUserArn(v string) *GetKxUserOutput {
 // SetUserName sets the UserName field's value.
 func (s *GetKxUserOutput) SetUserName(v string) *GetKxUserOutput {
 	s.UserName = &v
+	return s
+}
+
+// Defines the ICMP protocol that consists of the ICMP type and code.
+type IcmpTypeCode struct {
+	_ struct{} `type:"structure"`
+
+	// The ICMP code. A value of -1 means all codes for the specified ICMP type.
+	//
+	// Code is a required field
+	Code *int64 `locationName:"code" type:"integer" required:"true"`
+
+	// The ICMP type. A value of -1 means all types.
+	//
+	// Type is a required field
+	Type *int64 `locationName:"type" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IcmpTypeCode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IcmpTypeCode) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IcmpTypeCode) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IcmpTypeCode"}
+	if s.Code == nil {
+		invalidParams.Add(request.NewErrParamRequired("Code"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCode sets the Code field's value.
+func (s *IcmpTypeCode) SetCode(v int64) *IcmpTypeCode {
+	s.Code = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *IcmpTypeCode) SetType(v int64) *IcmpTypeCode {
+	s.Type = &v
 	return s
 }
 
@@ -7823,7 +7883,7 @@ type KxCluster struct {
 	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
 
 	// The number of availability zones assigned per cluster. This can be one of
-	// the following
+	// the following:
 	//
 	//    * SINGLE – Assigns one availability zone per cluster.
 	//
@@ -8254,6 +8314,63 @@ func (s *KxDatabaseListEntry) SetLastModifiedTimestamp(v time.Time) *KxDatabaseL
 	return s
 }
 
+// The configuration that allows you to choose how you want to update the databases
+// on a cluster. Depending on the option you choose, you can reduce the time
+// it takes to update the database changesets on to a cluster.
+type KxDeploymentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of deployment that you want on a cluster.
+	//
+	//    * ROLLING – This options loads the updated database by stopping the
+	//    exiting q process and starting a new q process with updated configuration.
+	//
+	//    * NO_RESTART – This option loads the updated database on the running
+	//    q process without stopping it. This option is quicker as it reduces the
+	//    turn around time to update a kdb database changeset configuration on a
+	//    cluster.
+	//
+	// DeploymentStrategy is a required field
+	DeploymentStrategy *string `locationName:"deploymentStrategy" type:"string" required:"true" enum:"KxDeploymentStrategy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KxDeploymentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KxDeploymentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KxDeploymentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KxDeploymentConfiguration"}
+	if s.DeploymentStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentStrategy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeploymentStrategy sets the DeploymentStrategy field's value.
+func (s *KxDeploymentConfiguration) SetDeploymentStrategy(v string) *KxDeploymentConfiguration {
+	s.DeploymentStrategy = &v
+	return s
+}
+
 // The details of a kdb environment.
 type KxEnvironment struct {
 	_ struct{} `type:"structure"`
@@ -8515,7 +8632,7 @@ func (s *KxNode) SetNodeId(v string) *KxNode {
 type KxSavedownStorageConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The size of temporary storage in bytes.
+	// The size of temporary storage in gibibytes.
 	//
 	// Size is a required field
 	Size *int64 `locationName:"size" min:"4" type:"integer" required:"true"`
@@ -8592,7 +8709,7 @@ type KxUser struct {
 	UpdateTimestamp *time.Time `locationName:"updateTimestamp" type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) that identifies the user. For more information
-	// about ARNs and how to use ARNs in policies, see IAM Identifiers (IAM/latest/UserGuide/reference_identifiers.html)
+	// about ARNs and how to use ARNs in policies, see IAM Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in the IAM User Guide.
 	UserArn *string `locationName:"userArn" min:"20" type:"string"`
 
@@ -9592,6 +9709,201 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// The network access control list (ACL) is an optional layer of security for
+// your VPC that acts as a firewall for controlling traffic in and out of one
+// or more subnets. The entry is a set of numbered ingress and egress rules
+// that determine whether a packet should be allowed in or out of a subnet associated
+// with the ACL. We process the entries in the ACL according to the rule numbers,
+// in ascending order.
+type NetworkACLEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The IPv4 network range to allow or deny, in CIDR notation. For example, 172.16.0.0/24.
+	// We modify the specified CIDR block to its canonical form. For example, if
+	// you specify 100.68.0.18/18, we modify it to 100.68.0.0/18.
+	//
+	// CidrBlock is a required field
+	CidrBlock *string `locationName:"cidrBlock" min:"1" type:"string" required:"true"`
+
+	// Defines the ICMP protocol that consists of the ICMP type and code.
+	IcmpTypeCode *IcmpTypeCode `locationName:"icmpTypeCode" type:"structure"`
+
+	// The range of ports the rule applies to.
+	PortRange *PortRange `locationName:"portRange" type:"structure"`
+
+	// The protocol number. A value of -1 means all the protocols.
+	//
+	// Protocol is a required field
+	Protocol *string `locationName:"protocol" min:"1" type:"string" required:"true"`
+
+	// Indicates whether to allow or deny the traffic that matches the rule.
+	//
+	// RuleAction is a required field
+	RuleAction *string `locationName:"ruleAction" type:"string" required:"true" enum:"RuleAction"`
+
+	// The rule number for the entry. For example 100. All the network ACL entries
+	// are processed in ascending order by rule number.
+	//
+	// RuleNumber is a required field
+	RuleNumber *int64 `locationName:"ruleNumber" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkACLEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkACLEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NetworkACLEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NetworkACLEntry"}
+	if s.CidrBlock == nil {
+		invalidParams.Add(request.NewErrParamRequired("CidrBlock"))
+	}
+	if s.CidrBlock != nil && len(*s.CidrBlock) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CidrBlock", 1))
+	}
+	if s.Protocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocol"))
+	}
+	if s.Protocol != nil && len(*s.Protocol) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Protocol", 1))
+	}
+	if s.RuleAction == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleAction"))
+	}
+	if s.RuleNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleNumber"))
+	}
+	if s.RuleNumber != nil && *s.RuleNumber < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RuleNumber", 1))
+	}
+	if s.IcmpTypeCode != nil {
+		if err := s.IcmpTypeCode.Validate(); err != nil {
+			invalidParams.AddNested("IcmpTypeCode", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PortRange != nil {
+		if err := s.PortRange.Validate(); err != nil {
+			invalidParams.AddNested("PortRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *NetworkACLEntry) SetCidrBlock(v string) *NetworkACLEntry {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetIcmpTypeCode sets the IcmpTypeCode field's value.
+func (s *NetworkACLEntry) SetIcmpTypeCode(v *IcmpTypeCode) *NetworkACLEntry {
+	s.IcmpTypeCode = v
+	return s
+}
+
+// SetPortRange sets the PortRange field's value.
+func (s *NetworkACLEntry) SetPortRange(v *PortRange) *NetworkACLEntry {
+	s.PortRange = v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *NetworkACLEntry) SetProtocol(v string) *NetworkACLEntry {
+	s.Protocol = &v
+	return s
+}
+
+// SetRuleAction sets the RuleAction field's value.
+func (s *NetworkACLEntry) SetRuleAction(v string) *NetworkACLEntry {
+	s.RuleAction = &v
+	return s
+}
+
+// SetRuleNumber sets the RuleNumber field's value.
+func (s *NetworkACLEntry) SetRuleNumber(v int64) *NetworkACLEntry {
+	s.RuleNumber = &v
+	return s
+}
+
+// The range of ports the rule applies to.
+type PortRange struct {
+	_ struct{} `type:"structure"`
+
+	// The first port in the range.
+	//
+	// From is a required field
+	From *int64 `locationName:"from" type:"integer" required:"true"`
+
+	// The last port in the range.
+	//
+	// To is a required field
+	To *int64 `locationName:"to" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PortRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PortRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PortRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PortRange"}
+	if s.From == nil {
+		invalidParams.Add(request.NewErrParamRequired("From"))
+	}
+	if s.To == nil {
+		invalidParams.Add(request.NewErrParamRequired("To"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFrom sets the From field's value.
+func (s *PortRange) SetFrom(v int64) *PortRange {
+	s.From = &v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *PortRange) SetTo(v int64) *PortRange {
+	s.To = &v
+	return s
+}
+
 // The specified resource group already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -10031,6 +10343,10 @@ func (s *ThrottlingException) RequestID() string {
 type TransitGatewayConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The rules that define how you manage the outbound traffic from kdb network
+	// to your internal network.
+	AttachmentNetworkAclConfiguration []*NetworkACLEntry `locationName:"attachmentNetworkAclConfiguration" min:"1" type:"list"`
+
 	// The routing CIDR on behalf of kdb environment. It could be any "/26 range
 	// in the 100.64.0.0 CIDR space. After providing, it will be added to the customer's
 	// transit gateway routing table so that the traffics could be routed to kdb
@@ -10067,6 +10383,9 @@ func (s TransitGatewayConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TransitGatewayConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TransitGatewayConfiguration"}
+	if s.AttachmentNetworkAclConfiguration != nil && len(s.AttachmentNetworkAclConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttachmentNetworkAclConfiguration", 1))
+	}
 	if s.RoutableCIDRSpace == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoutableCIDRSpace"))
 	}
@@ -10076,11 +10395,27 @@ func (s *TransitGatewayConfiguration) Validate() error {
 	if s.TransitGatewayID != nil && len(*s.TransitGatewayID) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TransitGatewayID", 1))
 	}
+	if s.AttachmentNetworkAclConfiguration != nil {
+		for i, v := range s.AttachmentNetworkAclConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AttachmentNetworkAclConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttachmentNetworkAclConfiguration sets the AttachmentNetworkAclConfiguration field's value.
+func (s *TransitGatewayConfiguration) SetAttachmentNetworkAclConfiguration(v []*NetworkACLEntry) *TransitGatewayConfiguration {
+	s.AttachmentNetworkAclConfiguration = v
+	return s
 }
 
 // SetRoutableCIDRSpace sets the RoutableCIDRSpace field's value.
@@ -10321,7 +10656,7 @@ type UpdateKxClusterDatabasesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A token that ensures idempotency. This token expires in 10 minutes.
-	ClientToken *string `locationName:"clientToken" min:"1" type:"string"`
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A unique name for the cluster that you want to modify.
 	//
@@ -10332,6 +10667,10 @@ type UpdateKxClusterDatabasesInput struct {
 	//
 	// Databases is a required field
 	Databases []*KxDatabaseConfiguration `locationName:"databases" type:"list" required:"true"`
+
+	// The configuration that allows you to choose how you want to update the databases
+	// on a cluster.
+	DeploymentConfiguration *KxDeploymentConfiguration `locationName:"deploymentConfiguration" type:"structure"`
 
 	// The unique identifier of a kdb environment.
 	//
@@ -10388,6 +10727,11 @@ func (s *UpdateKxClusterDatabasesInput) Validate() error {
 			}
 		}
 	}
+	if s.DeploymentConfiguration != nil {
+		if err := s.DeploymentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DeploymentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10410,6 +10754,12 @@ func (s *UpdateKxClusterDatabasesInput) SetClusterName(v string) *UpdateKxCluste
 // SetDatabases sets the Databases field's value.
 func (s *UpdateKxClusterDatabasesInput) SetDatabases(v []*KxDatabaseConfiguration) *UpdateKxClusterDatabasesInput {
 	s.Databases = v
+	return s
+}
+
+// SetDeploymentConfiguration sets the DeploymentConfiguration field's value.
+func (s *UpdateKxClusterDatabasesInput) SetDeploymentConfiguration(v *KxDeploymentConfiguration) *UpdateKxClusterDatabasesInput {
+	s.DeploymentConfiguration = v
 	return s
 }
 
@@ -11215,7 +11565,7 @@ type UpdateKxUserOutput struct {
 	IamRole *string `locationName:"iamRole" min:"20" type:"string"`
 
 	// The Amazon Resource Name (ARN) that identifies the user. For more information
-	// about ARNs and how to use ARNs in policies, see IAM Identifiers (IAM/latest/UserGuide/reference_identifiers.html)
+	// about ARNs and how to use ARNs in policies, see IAM Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in the IAM User Guide.
 	UserArn *string `locationName:"userArn" min:"20" type:"string"`
 
@@ -11692,6 +12042,22 @@ func KxClusterType_Values() []string {
 }
 
 const (
+	// KxDeploymentStrategyNoRestart is a KxDeploymentStrategy enum value
+	KxDeploymentStrategyNoRestart = "NO_RESTART"
+
+	// KxDeploymentStrategyRolling is a KxDeploymentStrategy enum value
+	KxDeploymentStrategyRolling = "ROLLING"
+)
+
+// KxDeploymentStrategy_Values returns all elements of the KxDeploymentStrategy enum
+func KxDeploymentStrategy_Values() []string {
+	return []string{
+		KxDeploymentStrategyNoRestart,
+		KxDeploymentStrategyRolling,
+	}
+}
+
+const (
 	// KxSavedownStorageTypeSds01 is a KxSavedownStorageType enum value
 	KxSavedownStorageTypeSds01 = "SDS01"
 )
@@ -11700,6 +12066,22 @@ const (
 func KxSavedownStorageType_Values() []string {
 	return []string{
 		KxSavedownStorageTypeSds01,
+	}
+}
+
+const (
+	// RuleActionAllow is a RuleAction enum value
+	RuleActionAllow = "allow"
+
+	// RuleActionDeny is a RuleAction enum value
+	RuleActionDeny = "deny"
+)
+
+// RuleAction_Values returns all elements of the RuleAction enum
+func RuleAction_Values() []string {
+	return []string{
+		RuleActionAllow,
+		RuleActionDeny,
 	}
 }
 

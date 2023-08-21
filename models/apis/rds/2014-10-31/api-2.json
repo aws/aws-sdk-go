@@ -2515,6 +2515,24 @@
         {"shape":"InvalidBlueGreenDeploymentStateFault"}
       ]
     },
+    "SwitchoverGlobalCluster":{
+      "name":"SwitchoverGlobalCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SwitchoverGlobalClusterMessage"},
+      "output":{
+        "shape":"SwitchoverGlobalClusterResult",
+        "resultWrapper":"SwitchoverGlobalClusterResult"
+      },
+      "errors":[
+        {"shape":"GlobalClusterNotFoundFault"},
+        {"shape":"InvalidGlobalClusterStateFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"DBClusterNotFoundFault"}
+      ]
+    },
     "SwitchoverReadReplica":{
       "name":"SwitchoverReadReplica",
       "http":{
@@ -6147,7 +6165,9 @@
       ],
       "members":{
         "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"},
-        "TargetDbClusterIdentifier":{"shape":"DBClusterIdentifier"}
+        "TargetDbClusterIdentifier":{"shape":"DBClusterIdentifier"},
+        "AllowDataLoss":{"shape":"BooleanOptional"},
+        "Switchover":{"shape":"BooleanOptional"}
       }
     },
     "FailoverGlobalClusterResult":{
@@ -6161,7 +6181,8 @@
       "members":{
         "Status":{"shape":"FailoverStatus"},
         "FromDbClusterArn":{"shape":"String"},
-        "ToDbClusterArn":{"shape":"String"}
+        "ToDbClusterArn":{"shape":"String"},
+        "IsDataLossAllowed":{"shape":"Boolean"}
       },
       "wrapper":true
     },
@@ -6249,7 +6270,8 @@
         "DBClusterArn":{"shape":"String"},
         "Readers":{"shape":"ReadersArnList"},
         "IsWriter":{"shape":"Boolean"},
-        "GlobalWriteForwardingStatus":{"shape":"WriteForwardingStatus"}
+        "GlobalWriteForwardingStatus":{"shape":"WriteForwardingStatus"},
+        "SynchronizationStatus":{"shape":"GlobalClusterMemberSynchronizationStatus"}
       },
       "wrapper":true
     },
@@ -6259,6 +6281,13 @@
         "shape":"GlobalClusterMember",
         "locationName":"GlobalClusterMember"
       }
+    },
+    "GlobalClusterMemberSynchronizationStatus":{
+      "type":"string",
+      "enum":[
+        "connected",
+        "pending-resync"
+      ]
     },
     "GlobalClusterNotFoundFault":{
       "type":"structure",
@@ -8735,6 +8764,23 @@
       "member":{"shape":"SwitchoverDetail"}
     },
     "SwitchoverDetailStatus":{"type":"string"},
+    "SwitchoverGlobalClusterMessage":{
+      "type":"structure",
+      "required":[
+        "GlobalClusterIdentifier",
+        "TargetDbClusterIdentifier"
+      ],
+      "members":{
+        "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"},
+        "TargetDbClusterIdentifier":{"shape":"DBClusterIdentifier"}
+      }
+    },
+    "SwitchoverGlobalClusterResult":{
+      "type":"structure",
+      "members":{
+        "GlobalCluster":{"shape":"GlobalCluster"}
+      }
+    },
     "SwitchoverReadReplicaMessage":{
       "type":"structure",
       "required":["DBInstanceIdentifier"],

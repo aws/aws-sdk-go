@@ -1,3 +1,17 @@
+Release v1.44.328 (2023-08-21)
+===
+
+### Service Client Updates
+* `service/cloud9`: Adds new service
+  * Doc only update to add Ubuntu 22.04 as an Image ID option for Cloud9
+* `service/ec2`: Updates service API and documentation
+  * The DeleteKeyPair API has been updated to return the keyPairId when an existing key pair is deleted.
+* `service/finspace`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adding support for RDS Aurora Global Database Unplanned Failover
+* `service/route53domains`: Updates service documentation
+  * Fixed typos in description fields
+
 Release v1.44.327 (2023-08-18)
 ===
 
