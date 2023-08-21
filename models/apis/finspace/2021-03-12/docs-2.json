@@ -96,11 +96,11 @@
       }
     },
     "CapacityConfiguration": {
-      "base": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, number of instances, and the port used while establishing a connection.</p>",
+      "base": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, and number of instances.</p>",
       "refs": {
-        "CreateKxClusterRequest$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information about like the CPUs needed, memory of instances, number of instances, and the port used while establishing a connection.</p>",
-        "CreateKxClusterResponse$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, number of instances, and the port used while establishing a connection.</p>",
-        "GetKxClusterResponse$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, number of instances, and the port used while establishing a connection.</p>"
+        "CreateKxClusterRequest$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, and number of instances.</p>",
+        "CreateKxClusterResponse$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, and number of instances.</p>",
+        "GetKxClusterResponse$capacityConfiguration": "<p>A structure for the metadata of a cluster. It includes information like the CPUs needed, memory of instances, and number of instances.</p>"
       }
     },
     "ChangeRequest": {
@@ -605,6 +605,19 @@
         "VpcConfiguration$ipAddressType": "<p>The IP address type for cluster network configuration parameters. The following type is available:</p> <ul> <li> <p>IP_V4 – IP address version 4</p> </li> </ul>"
       }
     },
+    "IcmpTypeCode": {
+      "base": "<p> Defines the ICMP protocol that consists of the ICMP type and code. </p>",
+      "refs": {
+        "NetworkACLEntry$icmpTypeCode": "<p> Defines the ICMP protocol that consists of the ICMP type and code. </p>"
+      }
+    },
+    "IcmpTypeOrCode": {
+      "base": null,
+      "refs": {
+        "IcmpTypeCode$type": "<p>The ICMP type. A value of <i>-1</i> means all types. </p>",
+        "IcmpTypeCode$code": "<p> The ICMP code. A value of <i>-1</i> means all codes for the specified ICMP type. </p>"
+      }
+    },
     "IdType": {
       "base": null,
       "refs": {
@@ -687,7 +700,7 @@
         "CreateKxClusterRequest$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
         "CreateKxClusterResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
         "GetKxClusterResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
-        "KxCluster$azMode": "<p>The number of availability zones assigned per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>"
+        "KxCluster$azMode": "<p>The number of availability zones assigned per cluster. This can be one of the following:</p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>"
       }
     },
     "KxCacheStorageConfiguration": {
@@ -861,6 +874,18 @@
         "ListKxDatabasesResponse$kxDatabases": "<p>A list of databases in the kdb environment.</p>"
       }
     },
+    "KxDeploymentConfiguration": {
+      "base": "<p> The configuration that allows you to choose how you want to update the databases on a cluster. Depending on the option you choose, you can reduce the time it takes to update the database changesets on to a cluster. </p>",
+      "refs": {
+        "UpdateKxClusterDatabasesRequest$deploymentConfiguration": "<p> The configuration that allows you to choose how you want to update the databases on a cluster. </p>"
+      }
+    },
+    "KxDeploymentStrategy": {
+      "base": null,
+      "refs": {
+        "KxDeploymentConfiguration$deploymentStrategy": "<p> The type of deployment that you want on a cluster. </p> <ul> <li> <p>ROLLING – This options loads the updated database by stopping the exiting q process and starting a new q process with updated configuration.</p> </li> <li> <p>NO_RESTART – This option loads the updated database on the running q process without stopping it. This option is quicker as it reduces the turn around time to update a kdb database changeset configuration on a cluster.</p> </li> </ul>"
+      }
+    },
     "KxEnvironment": {
       "base": "<p>The details of a kdb environment.</p>",
       "refs": {
@@ -920,7 +945,7 @@
     "KxSavedownStorageSize": {
       "base": null,
       "refs": {
-        "KxSavedownStorageConfiguration$size": "<p>The size of temporary storage in bytes.</p>"
+        "KxSavedownStorageConfiguration$size": "<p>The size of temporary storage in gibibytes.</p>"
       }
     },
     "KxSavedownStorageType": {
@@ -938,11 +963,11 @@
     "KxUserArn": {
       "base": null,
       "refs": {
-        "CreateKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
-        "GetKxConnectionStringRequest$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
-        "GetKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
-        "KxUser$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
-        "UpdateKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>"
+        "CreateKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
+        "GetKxConnectionStringRequest$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
+        "GetKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
+        "KxUser$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>",
+        "UpdateKxUserResponse$userArn": "<p> The Amazon Resource Name (ARN) that identifies the user. For more information about ARNs and how to use ARNs in policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM Identifiers</a> in the <i>IAM User Guide</i>. </p>"
       }
     },
     "KxUserList": {
@@ -1063,6 +1088,18 @@
         "SuperuserParameters$lastName": "<p>The last name of the superuser.</p>"
       }
     },
+    "NetworkACLConfiguration": {
+      "base": null,
+      "refs": {
+        "TransitGatewayConfiguration$attachmentNetworkAclConfiguration": "<p> The rules that define how you manage the outbound traffic from kdb network to your internal network. </p>"
+      }
+    },
+    "NetworkACLEntry": {
+      "base": "<p> The network access control list (ACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets. The entry is a set of numbered ingress and egress rules that determine whether a packet should be allowed in or out of a subnet associated with the ACL. We process the entries in the ACL according to the rule numbers, in ascending order. </p>",
+      "refs": {
+        "NetworkACLConfiguration$member": null
+      }
+    },
     "NodeCount": {
       "base": null,
       "refs": {
@@ -1094,6 +1131,25 @@
         "ListKxEnvironmentsResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
         "ListKxUsersRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
         "ListKxUsersResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>"
+      }
+    },
+    "Port": {
+      "base": null,
+      "refs": {
+        "PortRange$from": "<p> The first port in the range. </p>",
+        "PortRange$to": "<p> The last port in the range. </p>"
+      }
+    },
+    "PortRange": {
+      "base": "<p> The range of ports the rule applies to. </p>",
+      "refs": {
+        "NetworkACLEntry$portRange": "<p> The range of ports the rule applies to. </p>"
+      }
+    },
+    "Protocol": {
+      "base": null,
+      "refs": {
+        "NetworkACLEntry$protocol": "<p> The protocol number. A value of <i>-1</i> means all the protocols. </p>"
       }
     },
     "ReleaseLabel": {
@@ -1132,6 +1188,18 @@
         "KxUser$iamRole": "<p>The IAM role ARN that is associated with the user.</p>",
         "UpdateKxUserRequest$iamRole": "<p>The IAM role ARN that is associated with the user.</p>",
         "UpdateKxUserResponse$iamRole": "<p>The IAM role ARN that is associated with the user.</p>"
+      }
+    },
+    "RuleAction": {
+      "base": null,
+      "refs": {
+        "NetworkACLEntry$ruleAction": "<p> Indicates whether to allow or deny the traffic that matches the rule. </p>"
+      }
+    },
+    "RuleNumber": {
+      "base": null,
+      "refs": {
+        "NetworkACLEntry$ruleNumber": "<p> The rule number for the entry. For example <i>100</i>. All the network ACL entries are processed in ascending order by rule number. </p>"
       }
     },
     "S3Bucket": {
@@ -1381,6 +1449,12 @@
       "refs": {
       }
     },
+    "ValidCIDRBlock": {
+      "base": null,
+      "refs": {
+        "NetworkACLEntry$cidrBlock": "<p> The IPv4 network range to allow or deny, in CIDR notation. For example, <code>172.16.0.0/24</code>. We modify the specified CIDR block to its canonical form. For example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>. </p>"
+      }
+    },
     "ValidCIDRSpace": {
       "base": null,
       "refs": {
@@ -1430,6 +1504,7 @@
     "errorMessage": {
       "base": null,
       "refs": {
+        "AccessDeniedException$message": null,
         "ConflictException$message": null,
         "ConflictException$reason": "<p>The reason for the conflict exception.</p>",
         "InternalServerException$message": null,
@@ -1438,6 +1513,7 @@
         "ResourceAlreadyExistsException$message": null,
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
+        "ThrottlingException$message": null,
         "ValidationException$message": null
       }
     },

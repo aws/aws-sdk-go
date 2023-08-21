@@ -2093,6 +2093,7 @@
         "DeleteIpamResourceDiscoveryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteIpamScopeRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteKeyPairRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteKeyPairResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
         "DeleteLaunchTemplateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteLaunchTemplateVersionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteLocalGatewayRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -5239,6 +5240,11 @@
       }
     },
     "DeleteKeyPairRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKeyPairResult": {
       "base": null,
       "refs": {
       }
@@ -18761,6 +18767,7 @@
         "DeleteClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route to be deleted.</p>",
         "DeleteCoipCidrRequest$Cidr": "<p> A customer-owned IP address range that you want to delete. </p>",
         "DeleteFleetError$Message": "<p>The description for the error code.</p>",
+        "DeleteKeyPairResult$KeyPairId": "<p>The ID of the key pair.</p>",
         "DeleteLaunchTemplateVersionsResponseErrorItem$LaunchTemplateId": "<p>The ID of the launch template.</p>",
         "DeleteLaunchTemplateVersionsResponseErrorItem$LaunchTemplateName": "<p>The name of the launch template.</p>",
         "DeleteLaunchTemplateVersionsResponseSuccessItem$LaunchTemplateId": "<p>The ID of the launch template.</p>",

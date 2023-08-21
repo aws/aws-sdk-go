@@ -5411,7 +5411,7 @@ type DomainTransferability struct {
 	//
 	// DOMAIN_IN_ANOTHER_ACCOUNT
 	//
-	// The domain exists in another Amazon Web Services account.
+	// the domain exists in another Amazon Web Services account.
 	//
 	// PREMIUM_DOMAIN
 	//
@@ -6866,7 +6866,7 @@ type ListOperationsInput struct {
 	// The sort type for returned values.
 	SortBy *string `type:"string" enum:"ListOperationsSortAttributeName"`
 
-	// The sort order ofr returned values, either ascending or descending.
+	// The sort order for returned values, either ascending or descending.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 
 	// The status of the operations.
@@ -10996,7 +10996,7 @@ func StatusFlag_Values() []string {
 //
 // DOMAIN_IN_ANOTHER_ACCOUNT
 //
-// The domain exists in another Amazon Web Services account.
+// the domain exists in another Amazon Web Services account.
 //
 // PREMIUM_DOMAIN
 //

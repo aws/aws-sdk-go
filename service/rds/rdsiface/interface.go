@@ -730,6 +730,10 @@ type RDSAPI interface {
 	SwitchoverBlueGreenDeploymentWithContext(aws.Context, *rds.SwitchoverBlueGreenDeploymentInput, ...request.Option) (*rds.SwitchoverBlueGreenDeploymentOutput, error)
 	SwitchoverBlueGreenDeploymentRequest(*rds.SwitchoverBlueGreenDeploymentInput) (*request.Request, *rds.SwitchoverBlueGreenDeploymentOutput)
 
+	SwitchoverGlobalCluster(*rds.SwitchoverGlobalClusterInput) (*rds.SwitchoverGlobalClusterOutput, error)
+	SwitchoverGlobalClusterWithContext(aws.Context, *rds.SwitchoverGlobalClusterInput, ...request.Option) (*rds.SwitchoverGlobalClusterOutput, error)
+	SwitchoverGlobalClusterRequest(*rds.SwitchoverGlobalClusterInput) (*request.Request, *rds.SwitchoverGlobalClusterOutput)
+
 	SwitchoverReadReplica(*rds.SwitchoverReadReplicaInput) (*rds.SwitchoverReadReplicaOutput, error)
 	SwitchoverReadReplicaWithContext(aws.Context, *rds.SwitchoverReadReplicaInput, ...request.Option) (*rds.SwitchoverReadReplicaOutput, error)
 	SwitchoverReadReplicaRequest(*rds.SwitchoverReadReplicaInput) (*request.Request, *rds.SwitchoverReadReplicaOutput)

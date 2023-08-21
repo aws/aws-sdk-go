@@ -1394,7 +1394,8 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"DeleteKeyPairRequest"}
+      "input":{"shape":"DeleteKeyPairRequest"},
+      "output":{"shape":"DeleteKeyPairResult"}
     },
     "DeleteLaunchTemplate":{
       "name":"DeleteLaunchTemplate",
@@ -12976,6 +12977,19 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
+        }
+      }
+    },
+    "DeleteKeyPairResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        },
+        "KeyPairId":{
+          "shape":"String",
+          "locationName":"keyPairId"
         }
       }
     },
