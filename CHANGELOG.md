@@ -1,3 +1,13 @@
+Release v1.44.329 (2023-08-22)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/globalaccelerator`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adding parameters to CreateCustomDbEngineVersion reserved for future use.
+* `service/verifiedpermissions`: Updates service API and documentation
+
 Release v1.44.328 (2023-08-21)
 ===
 

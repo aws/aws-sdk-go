@@ -526,6 +526,7 @@
         "CopyDBClusterSnapshotMessage$CopyTags": "<p>A value that indicates whether to copy all tags from the source DB cluster snapshot to the target DB cluster snapshot. By default, tags are not copied.</p>",
         "CopyDBSnapshotMessage$CopyTags": "<p>A value that indicates whether to copy all tags from the source DB snapshot to the target DB snapshot. By default, tags aren't copied.</p>",
         "CopyDBSnapshotMessage$CopyOptionGroup": "<p>A value that indicates whether to copy the DB option group associated with the source DB snapshot to the target Amazon Web Services account and associate with the target DB snapshot. The associated option group can be copied only with cross-account snapshot copy calls.</p>",
+        "CreateCustomDBEngineVersionMessage$UseAwsProvidedLatestImage": "<p>Reserved for future use.</p>",
         "CreateDBClusterMessage$StorageEncrypted": "<p>Specifies whether the DB cluster is encrypted.</p> <p>Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters</p>",
         "CreateDBClusterMessage$EnableIAMDatabaseAuthentication": "<p>Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html\"> IAM Database Authentication</a> in the <i>Amazon Aurora User Guide</i>.</p> <p>Valid for Cluster Type: Aurora DB clusters only</p>",
         "CreateDBClusterMessage$DeletionProtection": "<p>Specifies whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection isn't enabled.</p> <p>Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters</p>",
@@ -5007,7 +5008,8 @@
       "base": null,
       "refs": {
         "CreateCustomDBEngineVersionMessage$DatabaseInstallationFilesS3Prefix": "<p>The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is <code>123456789012/cev1</code>. If this setting isn't specified, no prefix is assumed.</p>",
-        "CreateCustomDBEngineVersionMessage$ImageId": "<p>The ID of the Amazon Machine Image (AMI). For RDS Custom for SQL Server, an AMI ID is required to create a CEV. For RDS Custom for Oracle, the default is the most recent AMI available, but you can specify an AMI ID that was used in a different Oracle CEV. Find the AMIs used by your CEVs by calling the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBEngineVersions.html\">DescribeDBEngineVersions</a> operation.</p>"
+        "CreateCustomDBEngineVersionMessage$ImageId": "<p>The ID of the Amazon Machine Image (AMI). For RDS Custom for SQL Server, an AMI ID is required to create a CEV. For RDS Custom for Oracle, the default is the most recent AMI available, but you can specify an AMI ID that was used in a different Oracle CEV. Find the AMIs used by your CEVs by calling the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBEngineVersions.html\">DescribeDBEngineVersions</a> operation.</p>",
+        "CreateCustomDBEngineVersionMessage$SourceCustomDbEngineVersionIdentifier": "<p>Reserved for future use.</p>"
       }
     },
     "StringList": {

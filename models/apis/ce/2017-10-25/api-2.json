@@ -690,7 +690,9 @@
       "members":{
         "TagKey":{"shape":"TagKey"},
         "Type":{"shape":"CostAllocationTagType"},
-        "Status":{"shape":"CostAllocationTagStatus"}
+        "Status":{"shape":"CostAllocationTagStatus"},
+        "LastUpdatedDate":{"shape":"ZonedDateTime"},
+        "LastUsedDate":{"shape":"ZonedDateTime"}
       }
     },
     "CostAllocationTagKeyList":{

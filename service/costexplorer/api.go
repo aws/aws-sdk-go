@@ -1771,7 +1771,7 @@ func (c *CostExplorer) GetSavingsPlanPurchaseRecommendationDetailsRequest(input 
 // GetSavingsPlanPurchaseRecommendationDetails API operation for AWS Cost Explorer Service.
 //
 // Retrieves the details for a Savings Plan recommendation. These details include
-// the hourly data-points that construct the new cost, coverage, and utilization
+// the hourly data-points that construct the cost, coverage, and utilization
 // charts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4277,6 +4277,12 @@ func (s *BillExpirationException) RequestID() string {
 type CostAllocationTag struct {
 	_ struct{} `type:"structure"`
 
+	// The last date that the tag was either activated or deactivated.
+	LastUpdatedDate *string `min:"20" type:"string"`
+
+	// The last month that the tag was used on an Amazon Web Services resource.
+	LastUsedDate *string `min:"20" type:"string"`
+
 	// The status of a cost allocation tag.
 	//
 	// Status is a required field
@@ -4313,6 +4319,18 @@ func (s CostAllocationTag) String() string {
 // value will be replaced with "sensitive".
 func (s CostAllocationTag) GoString() string {
 	return s.String()
+}
+
+// SetLastUpdatedDate sets the LastUpdatedDate field's value.
+func (s *CostAllocationTag) SetLastUpdatedDate(v string) *CostAllocationTag {
+	s.LastUpdatedDate = &v
+	return s
+}
+
+// SetLastUsedDate sets the LastUsedDate field's value.
+func (s *CostAllocationTag) SetLastUsedDate(v string) *CostAllocationTag {
+	s.LastUsedDate = &v
+	return s
 }
 
 // SetStatus sets the Status field's value.
