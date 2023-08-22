@@ -10906,6 +10906,7 @@
             "deprecated" : true,
             "hostname" : "mgn-fips.us-west-2.amazonaws.com"
           },
+          "il-central-1" : { },
           "me-central-1" : { },
           "me-south-1" : { },
           "sa-east-1" : { },
@@ -12944,6 +12945,7 @@
           "eu-central-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
+          "il-central-1" : { },
           "rekognition-fips.ca-central-1" : {
             "credentialScope" : {
               "region" : "ca-central-1"
@@ -16017,6 +16019,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "il-central-1" : { },
           "me-central-1" : { },
           "me-south-1" : { },
           "sa-east-1" : { },

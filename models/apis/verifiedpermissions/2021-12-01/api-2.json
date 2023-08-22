@@ -435,7 +435,8 @@
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":".*"
+      "pattern":".*",
+      "sensitive":true
     },
     "ActionIdentifier":{
       "type":"structure",
@@ -452,7 +453,8 @@
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":"Action$|^.+::Action"
+      "pattern":"Action$|^.+::Action",
+      "sensitive":true
     },
     "AttributeValue":{
       "type":"structure",
@@ -472,13 +474,15 @@
     },
     "BooleanAttribute":{
       "type":"boolean",
-      "box":true
+      "box":true,
+      "sensitive":true
     },
     "ClientId":{
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":".*"
+      "pattern":".*",
+      "sensitive":true
     },
     "ClientIds":{
       "type":"list",
@@ -523,8 +527,7 @@
     "ContextMap":{
       "type":"map",
       "key":{"shape":"String"},
-      "value":{"shape":"AttributeValue"},
-      "min":0
+      "value":{"shape":"AttributeValue"}
     },
     "CreateIdentitySourceInput":{
       "type":"structure",
@@ -742,14 +745,14 @@
     "EntityAttributes":{
       "type":"map",
       "key":{"shape":"String"},
-      "value":{"shape":"AttributeValue"},
-      "min":0
+      "value":{"shape":"AttributeValue"}
     },
     "EntityId":{
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":".*"
+      "pattern":".*",
+      "sensitive":true
     },
     "EntityIdentifier":{
       "type":"structure",
@@ -773,8 +776,7 @@
     },
     "EntityList":{
       "type":"list",
-      "member":{"shape":"EntityItem"},
-      "min":0
+      "member":{"shape":"EntityItem"}
     },
     "EntityReference":{
       "type":"structure",
@@ -788,14 +790,16 @@
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":".*"
+      "pattern":".*",
+      "sensitive":true
     },
     "EvaluationErrorItem":{
       "type":"structure",
       "required":["errorDescription"],
       "members":{
         "errorDescription":{"shape":"String"}
-      }
+      },
+      "sensitive":true
     },
     "EvaluationErrorList":{
       "type":"list",
@@ -1140,19 +1144,21 @@
     },
     "LongAttribute":{
       "type":"long",
-      "box":true
+      "box":true,
+      "sensitive":true
     },
     "MaxResults":{
       "type":"integer",
       "box":true,
-      "max":20,
+      "max":50,
       "min":1
     },
     "Namespace":{
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":".*"
+      "pattern":".*",
+      "sensitive":true
     },
     "NamespaceList":{
       "type":"list",
@@ -1241,7 +1247,8 @@
     "PolicyStatement":{
       "type":"string",
       "max":10000,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "PolicyStoreId":{
       "type":"string",
@@ -1269,7 +1276,8 @@
     "PolicyTemplateDescription":{
       "type":"string",
       "max":150,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "PolicyTemplateId":{
       "type":"string",
@@ -1308,7 +1316,8 @@
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":".*"
+      "pattern":".*",
+      "sensitive":true
     },
     "PutSchemaInput":{
       "type":"structure",
@@ -1396,7 +1405,8 @@
     "SchemaJson":{
       "type":"string",
       "max":10000,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -1442,10 +1452,14 @@
     "StaticPolicyDescription":{
       "type":"string",
       "max":150,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "String":{"type":"string"},
-    "StringAttribute":{"type":"string"},
+    "StringAttribute":{
+      "type":"string",
+      "sensitive":true
+    },
     "TemplateLinkedPolicyDefinition":{
       "type":"structure",
       "required":["policyTemplateId"],
@@ -1492,7 +1506,8 @@
       "type":"string",
       "max":131072,
       "min":1,
-      "pattern":"[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+"
+      "pattern":"[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+",
+      "sensitive":true
     },
     "UpdateCognitoUserPoolConfiguration":{
       "type":"structure",

@@ -2041,11 +2041,25 @@ func (c *VerifiedPermissions) IsAuthorizedWithTokenRequest(input *IsAuthorizedWi
 //
 // Makes an authorization decision about a service request described in the
 // parameters. The principal in this request comes from an external identity
-// source. The information in the parameters can also define additional context
-// that Verified Permissions can include in the evaluation. The request is evaluated
-// against all matching policies in the specified policy store. The result of
-// the decision is either Allow or Deny, along with a list of the policies that
-// resulted in the decision.
+// source in the form of an identity token formatted as a JSON web token (JWT)
+// (https://wikipedia.org/wiki/JSON_Web_Token). The information in the parameters
+// can also define additional context that Verified Permissions can include
+// in the evaluation. The request is evaluated against all matching policies
+// in the specified policy store. The result of the decision is either Allow
+// or Deny, along with a list of the policies that resulted in the decision.
+//
+// If you specify the identityToken parameter, then this operation derives the
+// principal from that token. You must not also include that principal in the
+// entities parameter or the operation fails and reports a conflict between
+// the two entity sources.
+//
+// If you provide only an accessToken, then you can include the entity as part
+// of the entities parameter to provide additional attributes.
+//
+// At this time, Verified Permissions accepts tokens from only Amazon Cognito.
+//
+// Verified Permissions validates each token that is specified in a request
+// by checking its expiration date and its signature.
 //
 // If you delete a Amazon Cognito user pool or user, tokens from that deleted
 // pool or that deleted user continue to be usable until they expire.
@@ -3245,10 +3259,19 @@ func (c *VerifiedPermissions) UpdatePolicyRequest(input *UpdatePolicyInput) (req
 // policy, you must update the template instead, using UpdatePolicyTemplate
 // (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyTemplate.html).
 //
-// If policy validation is enabled in the policy store, then updating a static
-// policy causes Verified Permissions to validate the policy against the schema
-// in the policy store. If the updated static policy doesn't pass validation,
-// the operation fails and the update isn't stored.
+//   - If policy validation is enabled in the policy store, then updating a
+//     static policy causes Verified Permissions to validate the policy against
+//     the schema in the policy store. If the updated static policy doesn't pass
+//     validation, the operation fails and the update isn't stored.
+//
+//   - When you edit a static policy, You can change only certain elements
+//     of a static policy: The action referenced by the policy. A condition clause,
+//     such as when and unless. You can't change these elements of a static policy:
+//     Changing a policy from a static policy to a template-linked policy. Changing
+//     the effect of a static policy from permit or forbid. The principal referenced
+//     by a static policy. The resource referenced by a static policy.
+//
+//   - To update a template-linked policy, you must update the template instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3707,13 +3730,21 @@ type ActionIdentifier struct {
 
 	// The ID of an action.
 	//
+	// ActionId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ActionIdentifier's
+	// String and GoString methods.
+	//
 	// ActionId is a required field
-	ActionId *string `locationName:"actionId" min:"1" type:"string" required:"true"`
+	ActionId *string `locationName:"actionId" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The type of an action.
 	//
+	// ActionType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ActionIdentifier's
+	// String and GoString methods.
+	//
 	// ActionType is a required field
-	ActionType *string `locationName:"actionType" min:"1" type:"string" required:"true"`
+	ActionType *string `locationName:"actionType" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -3784,7 +3815,11 @@ type AttributeValue struct {
 	// type.
 	//
 	// Example: {"boolean": true}
-	Boolean *bool `locationName:"boolean" type:"boolean"`
+	//
+	// Boolean is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AttributeValue's
+	// String and GoString methods.
+	Boolean *bool `locationName:"boolean" type:"boolean" sensitive:"true"`
 
 	// An attribute value of type EntityIdentifier (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_EntityIdentifier.html).
 	//
@@ -3796,7 +3831,11 @@ type AttributeValue struct {
 	// type.
 	//
 	// Example: {"long": 0}
-	Long *int64 `locationName:"long" type:"long"`
+	//
+	// Long is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AttributeValue's
+	// String and GoString methods.
+	Long *int64 `locationName:"long" type:"long" sensitive:"true"`
 
 	// An attribute value of Record (https://docs.cedarpolicy.com/syntax-datatypes.html#record)
 	// type.
@@ -3814,7 +3853,11 @@ type AttributeValue struct {
 	// type.
 	//
 	// Example: {"string": "abc"}
-	String_ *string `locationName:"string" type:"string"`
+	//
+	// String_ is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AttributeValue's
+	// String and GoString methods.
+	String_ *string `locationName:"string" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -4210,7 +4253,11 @@ type CreateIdentitySourceInput struct {
 
 	// Specifies the namespace and data type of the principals generated for identities
 	// authenticated by the new identity source.
-	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string"`
+	//
+	// PrincipalEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateIdentitySourceInput's
+	// String and GoString methods.
+	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -4706,7 +4753,11 @@ type CreatePolicyTemplateInput struct {
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Specifies a description for the policy template.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePolicyTemplateInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The ID of the policy store in which to create the policy template.
 	//
@@ -4716,8 +4767,12 @@ type CreatePolicyTemplateInput struct {
 	// Specifies the content that you want to use for the new policy template, written
 	// in the Cedar policy language.
 	//
+	// Statement is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePolicyTemplateInput's
+	// String and GoString methods.
+	//
 	// Statement is a required field
-	Statement *string `locationName:"statement" min:"1" type:"string" required:"true"`
+	Statement *string `locationName:"statement" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5312,15 +5367,23 @@ type EntityIdentifier struct {
 	//
 	// "entityId":"identifier"
 	//
+	// EntityId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EntityIdentifier's
+	// String and GoString methods.
+	//
 	// EntityId is a required field
-	EntityId *string `locationName:"entityId" min:"1" type:"string" required:"true"`
+	EntityId *string `locationName:"entityId" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The type of an entity.
 	//
 	// Example: "entityType":"typeName"
 	//
+	// EntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EntityIdentifier's
+	// String and GoString methods.
+	//
 	// EntityType is a required field
-	EntityType *string `locationName:"entityType" min:"1" type:"string" required:"true"`
+	EntityType *string `locationName:"entityType" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5542,7 +5605,7 @@ func (s *EntityReference) SetUnspecified(v bool) *EntityReference {
 // and IsAuthorizedWithToken (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html)
 // operations.
 type EvaluationErrorItem struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The error description.
 	//
@@ -5672,8 +5735,12 @@ type GetIdentitySourceOutput struct {
 	// The data type of principals generated for identities authenticated by this
 	// identity source.
 	//
+	// PrincipalEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetIdentitySourceOutput's
+	// String and GoString methods.
+	//
 	// PrincipalEntityType is a required field
-	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string" required:"true"`
+	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6108,7 +6175,11 @@ type GetPolicyTemplateOutput struct {
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The description of the policy template.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPolicyTemplateOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The date and time that the policy template was most recently updated.
 	//
@@ -6128,8 +6199,12 @@ type GetPolicyTemplateOutput struct {
 	// The content of the body of the policy template written in the Cedar policy
 	// language.
 	//
+	// Statement is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPolicyTemplateOutput's
+	// String and GoString methods.
+	//
 	// Statement is a required field
-	Statement *string `locationName:"statement" min:"1" type:"string" required:"true"`
+	Statement *string `locationName:"statement" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6255,8 +6330,12 @@ type GetSchemaOutput struct {
 
 	// The body of the schema, written in Cedar schema JSON.
 	//
+	// Schema is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetSchemaOutput's
+	// String and GoString methods.
+	//
 	// Schema is a required field
-	Schema *string `locationName:"schema" min:"1" type:"string" required:"true"`
+	Schema *string `locationName:"schema" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6386,7 +6465,11 @@ type IdentitySourceFilter struct {
 
 	// The Cedar entity type of the principals returned by the identity provider
 	// (IdP) associated with this identity source.
-	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string"`
+	//
+	// PrincipalEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IdentitySourceFilter's
+	// String and GoString methods.
+	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6463,8 +6546,12 @@ type IdentitySourceItem struct {
 	// The Cedar entity type of the principals returned from the IdP associated
 	// with this identity source.
 	//
+	// PrincipalEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IdentitySourceItem's
+	// String and GoString methods.
+	//
 	// PrincipalEntityType is a required field
-	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string" required:"true"`
+	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6852,9 +6939,13 @@ type IsAuthorizedWithTokenInput struct {
 
 	// Specifies an access token for the principal to be authorized. This token
 	// is provided to you by the identity provider (IdP) associated with the specified
-	// identity source. You must specify either an AccessToken or an IdentityToken,
-	// but not both.
-	AccessToken *string `locationName:"accessToken" min:"1" type:"string"`
+	// identity source. You must specify either an AccessToken, or an IdentityToken,
+	// or both.
+	//
+	// AccessToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IsAuthorizedWithTokenInput's
+	// String and GoString methods.
+	AccessToken *string `locationName:"accessToken" min:"1" type:"string" sensitive:"true"`
 
 	// Specifies the requested action to be authorized. Is the specified principal
 	// authorized to perform this action on the specified resource.
@@ -6864,18 +6955,27 @@ type IsAuthorizedWithTokenInput struct {
 	// decisions.
 	Context *ContextDefinition `locationName:"context" type:"structure"`
 
-	// Specifies the list of resources and principals and their associated attributes
-	// that Verified Permissions can examine when evaluating the policies.
+	// Specifies the list of resources and their associated attributes that Verified
+	// Permissions can examine when evaluating the policies.
 	//
-	// You can include only principal and resource entities in this parameter; you
-	// can't include actions. You must specify actions in the schema.
+	// You can include only resource and action entities in this parameter; you
+	// can't include principals.
+	//
+	//    * The IsAuthorizedWithToken operation takes principal attributes from
+	//    only the identityToken or accessToken passed to the operation.
+	//
+	//    * For action entities, you can include only their Identifier and EntityType.
 	Entities *EntitiesDefinition `locationName:"entities" type:"structure"`
 
 	// Specifies an identity token for the principal to be authorized. This token
 	// is provided to you by the identity provider (IdP) associated with the specified
 	// identity source. You must specify either an AccessToken or an IdentityToken,
-	// but not both.
-	IdentityToken *string `locationName:"identityToken" min:"1" type:"string"`
+	// or both.
+	//
+	// IdentityToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IsAuthorizedWithTokenInput's
+	// String and GoString methods.
+	IdentityToken *string `locationName:"identityToken" min:"1" type:"string" sensitive:"true"`
 
 	// Specifies the ID of the policy store. Policies in this policy store will
 	// be used to make an authorization decision for the input.
@@ -7060,15 +7160,17 @@ type ListIdentitySourcesInput struct {
 	// the output to matching identity sources.
 	Filters []*IdentitySourceFilter `locationName:"filters" type:"list"`
 
-	// Specifies the total number of results that you want included on each page
-	// of the response. If you do not include this parameter, it defaults to a value
-	// that is specific to the operation. If additional items exist beyond the number
-	// you specify, the NextToken response element is returned with a value (not
-	// null). Include the specified value as the NextToken request parameter in
-	// the next call to the operation to get the next part of the results. Note
-	// that the service might return fewer results than the maximum even when there
-	// are more results available. You should check NextToken after every operation
-	// to ensure that you receive all of the results.
+	// Specifies the total number of results that you want included in each response.
+	// If additional items exist beyond the number you specify, the NextToken response
+	// element is returned with a value (not null). Include the specified value
+	// as the NextToken request parameter in the next call to the operation to get
+	// the next set of results. Note that the service might return fewer results
+	// than the maximum even when there are more results available. You should check
+	// NextToken after every operation to ensure that you receive all of the results.
+	//
+	// If you do not specify this parameter, the operation defaults to 10 identity
+	// sources per response. You can specify a maximum of 200 identity sources per
+	// response.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// Specifies that you want to receive the next page of results. Valid only if
@@ -7213,15 +7315,16 @@ type ListPoliciesInput struct {
 	// a specified principal.
 	Filter *PolicyFilter `locationName:"filter" type:"structure"`
 
-	// Specifies the total number of results that you want included on each page
-	// of the response. If you do not include this parameter, it defaults to a value
-	// that is specific to the operation. If additional items exist beyond the number
-	// you specify, the NextToken response element is returned with a value (not
-	// null). Include the specified value as the NextToken request parameter in
-	// the next call to the operation to get the next part of the results. Note
-	// that the service might return fewer results than the maximum even when there
-	// are more results available. You should check NextToken after every operation
-	// to ensure that you receive all of the results.
+	// Specifies the total number of results that you want included in each response.
+	// If additional items exist beyond the number you specify, the NextToken response
+	// element is returned with a value (not null). Include the specified value
+	// as the NextToken request parameter in the next call to the operation to get
+	// the next set of results. Note that the service might return fewer results
+	// than the maximum even when there are more results available. You should check
+	// NextToken after every operation to ensure that you receive all of the results.
+	//
+	// If you do not specify this parameter, the operation defaults to 10 policies
+	// per response. You can specify a maximum of 50 policies per response.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// Specifies that you want to receive the next page of results. Valid only if
@@ -7355,15 +7458,16 @@ func (s *ListPoliciesOutput) SetPolicies(v []*PolicyItem) *ListPoliciesOutput {
 type ListPolicyStoresInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the total number of results that you want included on each page
-	// of the response. If you do not include this parameter, it defaults to a value
-	// that is specific to the operation. If additional items exist beyond the number
-	// you specify, the NextToken response element is returned with a value (not
-	// null). Include the specified value as the NextToken request parameter in
-	// the next call to the operation to get the next part of the results. Note
-	// that the service might return fewer results than the maximum even when there
-	// are more results available. You should check NextToken after every operation
-	// to ensure that you receive all of the results.
+	// Specifies the total number of results that you want included in each response.
+	// If additional items exist beyond the number you specify, the NextToken response
+	// element is returned with a value (not null). Include the specified value
+	// as the NextToken request parameter in the next call to the operation to get
+	// the next set of results. Note that the service might return fewer results
+	// than the maximum even when there are more results available. You should check
+	// NextToken after every operation to ensure that you receive all of the results.
+	//
+	// If you do not specify this parameter, the operation defaults to 10 policy
+	// stores per response. You can specify a maximum of 50 policy stores per response.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// Specifies that you want to receive the next page of results. Valid only if
@@ -7469,15 +7573,17 @@ func (s *ListPolicyStoresOutput) SetPolicyStores(v []*PolicyStoreItem) *ListPoli
 type ListPolicyTemplatesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the total number of results that you want included on each page
-	// of the response. If you do not include this parameter, it defaults to a value
-	// that is specific to the operation. If additional items exist beyond the number
-	// you specify, the NextToken response element is returned with a value (not
-	// null). Include the specified value as the NextToken request parameter in
-	// the next call to the operation to get the next part of the results. Note
-	// that the service might return fewer results than the maximum even when there
-	// are more results available. You should check NextToken after every operation
-	// to ensure that you receive all of the results.
+	// Specifies the total number of results that you want included in each response.
+	// If additional items exist beyond the number you specify, the NextToken response
+	// element is returned with a value (not null). Include the specified value
+	// as the NextToken request parameter in the next call to the operation to get
+	// the next set of results. Note that the service might return fewer results
+	// than the maximum even when there are more results available. You should check
+	// NextToken after every operation to ensure that you receive all of the results.
+	//
+	// If you do not specify this parameter, the operation defaults to 10 policy
+	// templates per response. You can specify a maximum of 50 policy templates
+	// per response.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// Specifies that you want to receive the next page of results. Valid only if
@@ -8037,7 +8143,11 @@ type PolicyTemplateItem struct {
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The description attached to the policy template.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PolicyTemplateItem's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The date and time that the policy template was most recently updated.
 	//
@@ -8368,7 +8478,11 @@ type SchemaDefinition struct {
 	// A JSON string representation of the schema supported by applications that
 	// use this policy store. For more information, see Policy store schema (https://docs.aws.amazon.com/verifiedpermissions/latest/userguide/schema.html)
 	// in the Amazon Verified Permissions User Guide.
-	CedarJson *string `locationName:"cedarJson" min:"1" type:"string"`
+	//
+	// CedarJson is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SchemaDefinition's
+	// String and GoString methods.
+	CedarJson *string `locationName:"cedarJson" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8495,12 +8609,20 @@ type StaticPolicyDefinition struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the static policy.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StaticPolicyDefinition's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The policy content of the static policy, written in the Cedar policy language.
 	//
+	// Statement is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StaticPolicyDefinition's
+	// String and GoString methods.
+	//
 	// Statement is a required field
-	Statement *string `locationName:"statement" min:"1" type:"string" required:"true"`
+	Statement *string `locationName:"statement" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8559,12 +8681,20 @@ type StaticPolicyDefinitionDetail struct {
 	_ struct{} `type:"structure"`
 
 	// A description of the static policy.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StaticPolicyDefinitionDetail's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The content of the static policy written in the Cedar policy language.
 	//
+	// Statement is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StaticPolicyDefinitionDetail's
+	// String and GoString methods.
+	//
 	// Statement is a required field
-	Statement *string `locationName:"statement" min:"1" type:"string" required:"true"`
+	Statement *string `locationName:"statement" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8607,7 +8737,11 @@ type StaticPolicyDefinitionItem struct {
 	_ struct{} `type:"structure"`
 
 	// A description of the static policy.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StaticPolicyDefinitionItem's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -9035,7 +9169,11 @@ type UpdateIdentitySourceInput struct {
 
 	// Specifies the data type of principals generated for identities authenticated
 	// by the identity source.
-	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string"`
+	//
+	// PrincipalEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateIdentitySourceInput's
+	// String and GoString methods.
+	PrincipalEntityType *string `locationName:"principalEntityType" min:"1" type:"string" sensitive:"true"`
 
 	// Specifies the details required to communicate with the identity provider
 	// (IdP) associated with this identity source.
@@ -9581,7 +9719,11 @@ type UpdatePolicyTemplateInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies a new description to apply to the policy template.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePolicyTemplateInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// Specifies the ID of the policy store that contains the policy template that
 	// you want to update.
@@ -9611,8 +9753,12 @@ type UpdatePolicyTemplateInput struct {
 	//
 	//    * The resource referenced by the policy template.
 	//
+	// Statement is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePolicyTemplateInput's
+	// String and GoString methods.
+	//
 	// Statement is a required field
-	Statement *string `locationName:"statement" min:"1" type:"string" required:"true"`
+	Statement *string `locationName:"statement" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -9756,7 +9902,11 @@ type UpdateStaticPolicyDefinition struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the description to be added to or replaced on the static policy.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStaticPolicyDefinition's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// Specifies the Cedar policy language text to be added to or replaced on the
 	// static policy.
@@ -9777,8 +9927,12 @@ type UpdateStaticPolicyDefinition struct {
 	//
 	//    * The resource referenced by the policy.
 	//
+	// Statement is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStaticPolicyDefinition's
+	// String and GoString methods.
+	//
 	// Statement is a required field
-	Statement *string `locationName:"statement" min:"1" type:"string" required:"true"`
+	Statement *string `locationName:"statement" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

@@ -9306,8 +9306,9 @@ type EndpointConfiguration struct {
 	// endpoint fronted by the accelerator.
 	//
 	// Client IP address preservation is supported, in specific Amazon Web Services
-	// Regions, for endpoints that are Application Load Balancers and Amazon EC2
-	// instances.
+	// Regions, for endpoints that are Application Load Balancers, Amazon EC2 instances,
+	// and Network Load Balancers with Security Groups. IMPORTANT: You cannot use
+	// client IP address preservation with Network Load Balancers with TLS listeners.
 	//
 	// For more information, see Preserve client IP addresses in Global Accelerator
 	// (https://docs.aws.amazon.com/global-accelerator/latest/dg/preserve-client-ip-address.html)
@@ -9383,8 +9384,9 @@ type EndpointDescription struct {
 	// endpoint fronted by the accelerator.
 	//
 	// Client IP address preservation is supported, in specific Amazon Web Services
-	// Regions, for endpoints that are Application Load Balancers and Amazon EC2
-	// instances.
+	// Regions, for endpoints that are Application Load Balancers, Amazon EC2 instances,
+	// and Network Load Balancers with Security Groups. IMPORTANT: You cannot use
+	// client IP address preservation with Network Load Balancers with TLS listeners.
 	//
 	// For more information, see Preserve client IP addresses in Global Accelerator
 	// (https://docs.aws.amazon.com/global-accelerator/latest/dg/preserve-client-ip-address.html)

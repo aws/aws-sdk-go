@@ -19168,9 +19168,15 @@ type CreateCustomDBEngineVersionInput struct {
 	// in the Amazon RDS User Guide.
 	Manifest *string `min:"1" type:"string"`
 
+	// Reserved for future use.
+	SourceCustomDbEngineVersionIdentifier *string `min:"1" type:"string"`
+
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// Reserved for future use.
+	UseAwsProvidedLatestImage *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -19223,6 +19229,9 @@ func (s *CreateCustomDBEngineVersionInput) Validate() error {
 	}
 	if s.Manifest != nil && len(*s.Manifest) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Manifest", 1))
+	}
+	if s.SourceCustomDbEngineVersionIdentifier != nil && len(*s.SourceCustomDbEngineVersionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceCustomDbEngineVersionIdentifier", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -19279,9 +19288,21 @@ func (s *CreateCustomDBEngineVersionInput) SetManifest(v string) *CreateCustomDB
 	return s
 }
 
+// SetSourceCustomDbEngineVersionIdentifier sets the SourceCustomDbEngineVersionIdentifier field's value.
+func (s *CreateCustomDBEngineVersionInput) SetSourceCustomDbEngineVersionIdentifier(v string) *CreateCustomDBEngineVersionInput {
+	s.SourceCustomDbEngineVersionIdentifier = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateCustomDBEngineVersionInput) SetTags(v []*Tag) *CreateCustomDBEngineVersionInput {
 	s.Tags = v
+	return s
+}
+
+// SetUseAwsProvidedLatestImage sets the UseAwsProvidedLatestImage field's value.
+func (s *CreateCustomDBEngineVersionInput) SetUseAwsProvidedLatestImage(v bool) *CreateCustomDBEngineVersionInput {
+	s.UseAwsProvidedLatestImage = &v
 	return s
 }
 

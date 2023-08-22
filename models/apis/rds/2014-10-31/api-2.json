@@ -3167,7 +3167,9 @@
         "KMSKeyId":{"shape":"KmsKeyIdOrArn"},
         "Description":{"shape":"Description"},
         "Manifest":{"shape":"CustomDBEngineVersionManifest"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "SourceCustomDbEngineVersionIdentifier":{"shape":"String255"},
+        "UseAwsProvidedLatestImage":{"shape":"BooleanOptional"}
       }
     },
     "CreateDBClusterEndpointMessage":{
