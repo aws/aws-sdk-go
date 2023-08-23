@@ -15371,6 +15371,12 @@
         "AthenaIntegration$PartitionLoadFrequency": "<p>The schedule for adding new partitions to the table.</p>"
       }
     },
+    "PasswordData": {
+      "base": null,
+      "refs": {
+        "GetPasswordDataResult$PasswordData": "<p>The password of the instance. Returns an empty string if the password is not available.</p>"
+      }
+    },
     "PathComponent": {
       "base": "<p>Describes a path component.</p>",
       "refs": {
@@ -17383,6 +17389,17 @@
         "Storage$S3": "<p>An Amazon S3 storage location.</p>"
       }
     },
+    "S3StorageUploadPolicy": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "S3StorageUploadPolicySignature": {
+      "base": null,
+      "refs": {
+        "S3Storage$UploadPolicySignature": "<p>The signature of the JSON document.</p>"
+      }
+    },
     "SSEType": {
       "base": null,
       "refs": {
@@ -19173,7 +19190,6 @@
         "GetManagedPrefixListAssociationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetNetworkInsightsAccessScopeAnalysisFindingsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetPasswordDataResult$InstanceId": "<p>The ID of the Windows instance.</p>",
-        "GetPasswordDataResult$PasswordData": "<p>The password of the instance. Returns an empty string if the password is not available.</p>",
         "GetReservedInstancesExchangeQuoteResult$CurrencyCode": "<p>The currency of the transaction.</p>",
         "GetReservedInstancesExchangeQuoteResult$PaymentDue": "<p>The total true upfront charge for the exchange.</p>",
         "GetReservedInstancesExchangeQuoteResult$ValidationFailureReason": "<p>Describes the reason why the exchange cannot be completed.</p>",
@@ -19905,7 +19921,6 @@
         "S3Storage$AWSAccessKeyId": "<p>The access key ID of the owner of the bucket. Before you specify a value for your access key ID, review and follow the guidance in <a href=\"https://docs.aws.amazon.com/accounts/latest/reference/best-practices.html\">Best Practices for Amazon Web Services accounts</a> in the <i>Account ManagementReference Guide</i>.</p>",
         "S3Storage$Bucket": "<p>The bucket in which to store the AMI. You can specify a bucket that you already own or a new bucket that Amazon EC2 creates on your behalf. If you specify a bucket that belongs to someone else, Amazon EC2 returns an error.</p>",
         "S3Storage$Prefix": "<p>The beginning of the file name of the AMI.</p>",
-        "S3Storage$UploadPolicySignature": "<p>The signature of the JSON document.</p>",
         "ScheduledInstance$AvailabilityZone": "<p>The Availability Zone.</p>",
         "ScheduledInstance$HourlyPrice": "<p>The hourly price for a single instance.</p>",
         "ScheduledInstance$InstanceType": "<p>The instance type.</p>",
