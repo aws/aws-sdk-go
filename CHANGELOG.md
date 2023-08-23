@@ -1,3 +1,14 @@
+Release v1.44.330 (2023-08-23)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * This release adds RootResourceId to GetRestApi response.
+* `service/ec2`: Updates service API and documentation
+  * Marking fields as sensitive on BundleTask and GetPasswordData
+* `service/polly`: Updates service API
+  * Amazon Polly adds 1 new voice - Zayd (ar-AE)
+
 Release v1.44.329 (2023-08-22)
 ===
 

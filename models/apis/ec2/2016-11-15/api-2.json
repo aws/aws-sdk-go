@@ -23121,7 +23121,7 @@
           "locationName":"instanceId"
         },
         "PasswordData":{
-          "shape":"String",
+          "shape":"PasswordData",
           "locationName":"passwordData"
         },
         "Timestamp":{
@@ -33874,6 +33874,10 @@
         "monthly"
       ]
     },
+    "PasswordData":{
+      "type":"string",
+      "sensitive":true
+    },
     "PathComponent":{
       "type":"structure",
       "members":{
@@ -38002,10 +38006,18 @@
           "locationName":"uploadPolicy"
         },
         "UploadPolicySignature":{
-          "shape":"String",
+          "shape":"S3StorageUploadPolicySignature",
           "locationName":"uploadPolicySignature"
         }
       }
+    },
+    "S3StorageUploadPolicy":{
+      "type":"string",
+      "sensitive":true
+    },
+    "S3StorageUploadPolicySignature":{
+      "type":"string",
+      "sensitive":true
     },
     "SSEType":{
       "type":"string",

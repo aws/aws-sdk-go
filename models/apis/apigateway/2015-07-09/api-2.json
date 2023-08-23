@@ -4710,7 +4710,8 @@
         "endpointConfiguration":{"shape":"EndpointConfiguration"},
         "policy":{"shape":"String"},
         "tags":{"shape":"MapOfStringToString"},
-        "disableExecuteApiEndpoint":{"shape":"Boolean"}
+        "disableExecuteApiEndpoint":{"shape":"Boolean"},
+        "rootResourceId":{"shape":"String"}
       }
     },
     "RestApis":{
