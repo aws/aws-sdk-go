@@ -10,6 +10,7 @@ package defaults
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net"
 	"net/http"
 	"net/url"
@@ -211,7 +212,7 @@ func httpCredProvider(cfg aws.Config, handlers request.Handlers, u string) crede
 	if authFilePath := os.Getenv(httpProviderAuthFileEnvVar); authFilePath != "" {
 		var tokenFile authTokenFile
 		var contents []byte
-		if contents, err = os.ReadFile(authFilePath); err != nil {
+		if contents, err = ioutil.ReadFile(authFilePath); err != nil {
 			errMsg = fmt.Sprintf("failed to read authorization token from %v: %v", authFilePath, err)
 		} else if err = json.Unmarshal(contents, &tokenFile); err != nil {
 			errMsg = fmt.Sprintf("failed to unmashal the token file: %v", err)
