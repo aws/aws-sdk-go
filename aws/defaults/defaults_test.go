@@ -49,7 +49,8 @@ func TestHTTPCredProvider(t *testing.T) {
 		{Host: "127.1.1.1", Fail: false},
 		{Host: "[::1]", Fail: false},
 		{Host: "www.example.com", Fail: true},
-		{Host: "169.254.170.2", Fail: true},
+		{Host: "169.254.170.2", Fail: false},
+		{Host: "169.254.170.23", Fail: false},
 		{Host: "localhost", Fail: false, AuthToken: "Basic abc123"},
 	}
 

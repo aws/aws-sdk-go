@@ -8,6 +8,7 @@
 package defaults
 
 import (
+	"encoding/json"
 	"fmt"
 	"net"
 	"net/http"
@@ -113,8 +114,11 @@ func CredProviders(cfg *aws.Config, handlers request.Handlers) []credentials.Pro
 }
 
 const (
+	httpProviderAuthFileEnvVar      = "AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE"
 	httpProviderAuthorizationEnvVar = "AWS_CONTAINER_AUTHORIZATION_TOKEN"
 	httpProviderEnvVar              = "AWS_CONTAINER_CREDENTIALS_FULL_URI"
+	ECSContainerHost                = "169.254.170.2"
+	EKSContainerHost                = "169.254.170.23"
 )
 
 // RemoteCredProvider returns a credentials provider for the default remote
@@ -154,6 +158,15 @@ func isLoopbackHost(host string) (bool, error) {
 	return true, nil
 }
 
+// isAllowedHost allows host to be loopback host,ECS container host 169.254.170.2
+// and EKS container host 169.254.170.23
+func isAllowedHost(host string) (bool, error) {
+	if host == ECSContainerHost || host == EKSContainerHost {
+		return true, nil
+	}
+	return isLoopbackHost(host)
+}
+
 func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
 	var errMsg string
 
@@ -164,10 +177,12 @@ func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) 
 		host := aws.URLHostname(parsed)
 		if len(host) == 0 {
 			errMsg = "unable to parse host from local HTTP cred provider URL"
-		} else if isLoopback, loopbackErr := isLoopbackHost(host); loopbackErr != nil {
-			errMsg = fmt.Sprintf("failed to resolve host %q, %v", host, loopbackErr)
-		} else if !isLoopback {
-			errMsg = fmt.Sprintf("invalid endpoint host, %q, only loopback hosts are allowed.", host)
+		} else if parsed.Scheme == "http" {
+			if isAllowedHost, allowHostErr := isAllowedHost(host); allowHostErr != nil {
+				errMsg = fmt.Sprintf("failed to resolve host %q, %v", host, allowHostErr)
+			} else if !isAllowedHost {
+				errMsg = fmt.Sprintf("invalid endpoint host, %q, only loopback/ecs/eks hosts are allowed.", host)
+			}
 		}
 	}
 
@@ -184,11 +199,42 @@ func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) 
 	return httpCredProvider(cfg, handlers, u)
 }
 
+type authTokenFile struct {
+	Content string `json:"content"`
+}
+
 func httpCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
+	var authToken string
+	var errMsg string
+	var err error
+
+	if authFilePath := os.Getenv(httpProviderAuthFileEnvVar); authFilePath != "" {
+		var tokenFile authTokenFile
+		var contents []byte
+		if contents, err = os.ReadFile(authFilePath); err != nil {
+			errMsg = fmt.Sprintf("failed to read authorization token from %v: %v", authFilePath, err)
+		} else if err = json.Unmarshal(contents, &tokenFile); err != nil {
+			errMsg = fmt.Sprintf("failed to unmashal the token file: %v", err)
+		}
+		authToken = tokenFile.Content
+	} else {
+		authToken = os.Getenv(httpProviderAuthorizationEnvVar)
+	}
+
+	if errMsg != "" {
+		if cfg.Logger != nil {
+			cfg.Logger.Log("Ignoring, HTTP credential provider", errMsg, err)
+		}
+		return credentials.ErrorProvider{
+			Err:          awserr.New("CredentialsEndpointError", errMsg, err),
+			ProviderName: endpointcreds.ProviderName,
+		}
+	}
+
 	return endpointcreds.NewProviderClient(cfg, handlers, u,
 		func(p *endpointcreds.Provider) {
 			p.ExpiryWindow = 5 * time.Minute
-			p.AuthorizationToken = os.Getenv(httpProviderAuthorizationEnvVar)
+			p.AuthorizationToken = authToken
 		},
 	)
 }
